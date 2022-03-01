@@ -1,8 +1,8 @@
-﻿using Foundation;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-
-namespace MoneyFox.iOS
+﻿namespace MoneyFox.iOS
 {
+    using Core._Pending_.Common.Interfaces;
+    using Foundation;
+
     /// <inheritdoc />
     public class AppInformation : IAppInformation
     {

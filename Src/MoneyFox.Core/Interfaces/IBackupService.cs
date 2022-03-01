@@ -1,10 +1,10 @@
-﻿using MoneyFox.Core._Pending_.DbBackup;
-using MoneyFox.Core._Pending_.Exceptions;
-using System;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core.Interfaces
+﻿namespace MoneyFox.Core.Interfaces
 {
+    using _Pending_.DbBackup;
+    using _Pending_.Exceptions;
+    using System;
+    using System.Threading.Tasks;
+
     // TODO Segregate interface
     public interface IBackupService
     {

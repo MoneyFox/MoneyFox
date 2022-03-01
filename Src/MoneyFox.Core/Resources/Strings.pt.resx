@@ -352,7 +352,7 @@
     <value>Ok</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>Já existe uma conta com este nome.</value>
+    <value>An account with that name already exists. Continue with saving?</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
     <value>Já existe uma pasta com o mesmo nome.</value>

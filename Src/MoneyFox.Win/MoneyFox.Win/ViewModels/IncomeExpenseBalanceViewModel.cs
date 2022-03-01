@@ -1,41 +1,40 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿#nullable enable
+namespace MoneyFox.Win.ViewModels;
 
-#nullable enable
-namespace MoneyFox.Win.ViewModels
+using CommunityToolkit.Mvvm.ComponentModel;
+
+public class IncomeExpenseBalanceViewModel : ObservableObject
 {
-    public class IncomeExpenseBalanceViewModel : ObservableObject
+    private decimal totalEarned;
+    private decimal totalSpent;
+
+    public decimal TotalEarned
     {
-        private decimal totalEarned;
-        private decimal totalSpent;
-
-        public decimal TotalEarned
+        get => totalEarned;
+        set
         {
-            get => totalEarned;
-            set
+            if(totalEarned == value)
             {
-                if(totalEarned == value)
-                {
-                    return;
-                }
-
-                totalEarned = value;
-                OnPropertyChanged();
+                return;
             }
+
+            totalEarned = value;
+            OnPropertyChanged();
         }
+    }
 
-        public decimal TotalSpent
+    public decimal TotalSpent
+    {
+        get => totalSpent;
+        set
         {
-            get => totalSpent;
-            set
+            if(totalSpent == value)
             {
-                if(totalSpent == value)
-                {
-                    return;
-                }
-
-                totalSpent = value;
-                OnPropertyChanged();
+                return;
             }
+
+            totalSpent = value;
+            OnPropertyChanged();
         }
     }
 }

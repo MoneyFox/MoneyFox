@@ -1,9 +1,9 @@
-﻿using MoneyFox.ViewModels.Payments;
-using System;
-using Xamarin.Forms;
-
-namespace MoneyFox.Views.Payments
+﻿namespace MoneyFox.Views.Payments
 {
+    using System;
+    using ViewModels.Payments;
+    using Xamarin.Forms;
+
     [QueryProperty("AccountId", "accountId")]
     public partial class PaymentListPage : ContentPage
     {

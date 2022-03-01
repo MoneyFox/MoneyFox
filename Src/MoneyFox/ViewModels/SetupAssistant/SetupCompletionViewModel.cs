@@ -1,10 +1,10 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Core._Pending_.Common.Facades;
-using Xamarin.Forms;
-
-namespace MoneyFox.ViewModels.SetupAssistant
+﻿namespace MoneyFox.ViewModels.SetupAssistant
 {
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using CommunityToolkit.Mvvm.Input;
+    using Core._Pending_.Common.Facades;
+    using Xamarin.Forms;
+
     public class SetupCompletionViewModel : ObservableObject
     {
         private readonly ISettingsFacade settingsFacade;

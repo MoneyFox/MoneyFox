@@ -1,8 +1,8 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-
-namespace MoneyFox.ViewModels.Statistics
+﻿namespace MoneyFox.ViewModels.Statistics
 {
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using System;
+
     public class CategoryOverviewViewModel : ObservableObject
     {
         private const decimal DECIMAL_DELTA = 0.01m;

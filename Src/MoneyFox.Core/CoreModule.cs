@@ -1,12 +1,12 @@
-﻿using Autofac;
-using MediatR;
-using MediatR.Pipeline;
-using System;
-using System.Reflection;
-using Module = Autofac.Module;
-
-namespace MoneyFox.Core
+﻿namespace MoneyFox.Core
 {
+    using Autofac;
+    using MediatR;
+    using MediatR.Pipeline;
+    using System;
+    using System.Reflection;
+    using Module = Autofac.Module;
+
     public class CoreModule : Module
     {
         protected override void Load(ContainerBuilder builder)

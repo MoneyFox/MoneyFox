@@ -1,12 +1,12 @@
-﻿using MoneyFox.Core._Pending_.Common.QueryObjects;
-using MoneyFox.Core.Aggregates.Payments;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using Xunit;
-
-namespace MoneyFox.Core.Tests._Pending_.QueryObjects
+﻿namespace MoneyFox.Core.Tests._Pending_.QueryObjects
 {
+    using Core._Pending_.Common.QueryObjects;
+    using Core.Aggregates.Payments;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class CategoryQueryExtensionsTests
     {

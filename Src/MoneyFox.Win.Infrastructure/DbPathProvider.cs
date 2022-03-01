@@ -1,14 +1,12 @@
-﻿using MoneyFox.Core._Pending_.Common.Constants;
-using MoneyFox.Core.Interfaces;
+﻿namespace MoneyFox.Win.Infrastructure;
+
+using Core._Pending_.Common.Constants;
+using Core.Interfaces;
 using System.IO;
 using Windows.Storage;
 
-namespace MoneyFox.Win.Infrastructure;
-
 internal class DbPathProvider : IDbPathProvider
 {
-    public string GetDbPath()
-    {
-        return Path.Combine(ApplicationData.Current.LocalFolder.Path, DatabaseConstants.DATABASE_NAME);
-    }
+    public string GetDbPath() =>
+        Path.Combine(ApplicationData.Current.LocalFolder.Path, DatabaseConstants.DATABASE_NAME);
 }

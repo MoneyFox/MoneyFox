@@ -1,28 +1,27 @@
-﻿using MoneyFox.Core._Pending_.Common.Interfaces;
+﻿#nullable enable
+namespace MoneyFox.Win;
+
+using Core._Pending_.Common.Interfaces;
 using System.Globalization;
 using Windows.ApplicationModel;
 
-#nullable enable
-namespace MoneyFox.Win
+public class WindowsAppInformation : IAppInformation
 {
-    public class WindowsAppInformation : IAppInformation
+    /// <summary>
+    ///     Returns the version of the package.
+    /// </summary>
+    public string GetVersion
     {
-        /// <summary>
-        ///     Returns the version of the package.
-        /// </summary>
-        public string GetVersion
+        get
         {
-            get
-            {
-                PackageVersion version = Package.Current.Id.Version;
-                return string.Format(
-                    CultureInfo.InvariantCulture,
-                    "{0}.{1}.{2}.{3}",
-                    version.Major,
-                    version.Minor,
-                    version.Build,
-                    version.Revision);
-            }
+            PackageVersion version = Package.Current.Id.Version;
+            return string.Format(
+                CultureInfo.InvariantCulture,
+                "{0}.{1}.{2}.{3}",
+                version.Major,
+                version.Minor,
+                version.Build,
+                version.Revision);
         }
     }
 }

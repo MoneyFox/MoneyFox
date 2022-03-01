@@ -1,12 +1,11 @@
-﻿namespace MoneyFox.Win.Pages.Accounts
+﻿namespace MoneyFox.Win.Pages.Accounts;
+
+public sealed partial class AddAccountDialog
 {
-    public sealed partial class AddAccountDialog
+    public AddAccountDialog()
     {
-        public AddAccountDialog()
-        {
-            XamlRoot = MainWindow.RootFrame.XamlRoot;
-            InitializeComponent();
-            DataContext = ViewModelLocator.AddAccountVm;
-        }
+        XamlRoot = MainWindow.RootFrame.XamlRoot;
+        InitializeComponent();
+        DataContext = ViewModelLocator.AddAccountVm;
     }
 }

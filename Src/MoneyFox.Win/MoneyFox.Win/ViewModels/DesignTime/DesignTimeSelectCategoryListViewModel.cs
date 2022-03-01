@@ -1,9 +1,8 @@
-﻿using MoneyFox.Win.ViewModels.Categories;
+﻿namespace MoneyFox.Win.ViewModels.DesignTime;
 
-namespace MoneyFox.Win.ViewModels.DesignTime
+using Categories;
+
+public class DesignTimeSelectCategoryListViewModel : ISelectCategoryListViewModel
 {
-    public class DesignTimeSelectCategoryListViewModel : ISelectCategoryListViewModel
-    {
-        public CategoryViewModel SelectedCategory { get; } = new CategoryViewModel();
-    }
+    public CategoryViewModel SelectedCategory { get; } = new();
 }

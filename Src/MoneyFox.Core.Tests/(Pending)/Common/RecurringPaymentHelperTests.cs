@@ -1,14 +1,14 @@
-﻿using FluentAssertions;
-using MoneyFox.Core._Pending_.Common.Extensions;
-using MoneyFox.Core._Pending_.Common.Helpers;
-using MoneyFox.Core.Aggregates;
-using MoneyFox.Core.Aggregates.Payments;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using Xunit;
-
-namespace MoneyFox.Core.Tests._Pending_.Common
+﻿namespace MoneyFox.Core.Tests._Pending_.Common
 {
+    using Core._Pending_.Common.Extensions;
+    using Core._Pending_.Common.Helpers;
+    using Core.Aggregates;
+    using Core.Aggregates.Payments;
+    using FluentAssertions;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class RecurringPaymentHelperTests
     {

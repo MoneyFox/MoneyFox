@@ -1,19 +1,18 @@
-﻿using AutoMapper;
-using FluentAssertions;
-using MediatR;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Aggregates;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Queries.Categories.GetCategoryBySearchTerm;
-using MoneyFox.ViewModels.Categories;
-using NSubstitute;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace MoneyFox.Tests.ViewModels
+﻿namespace MoneyFox.Tests.ViewModels
 {
+    using Core._Pending_.Common.Interfaces;
+    using Core.Aggregates.Payments;
+    using Core.Queries.Categories.GetCategoryBySearchTerm;
+    using FluentAssertions;
+    using global::AutoMapper;
+    using MediatR;
+    using MoneyFox.ViewModels.Categories;
+    using NSubstitute;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class CategoryListViewModelTests
     {
@@ -44,7 +43,7 @@ namespace MoneyFox.Tests.ViewModels
         {
             // Arrange
             mapper.Map<List<CategoryViewModel>>(Arg.Any<List<Category>>())
-                .Returns(new List<CategoryViewModel> { new CategoryViewModel { Name = "asdf" } });
+                .Returns(new List<CategoryViewModel> {new CategoryViewModel {Name = "asdf"}});
             var viewModel = new CategoryListViewModel(mediator, mapper, dialogService);
 
             // Act

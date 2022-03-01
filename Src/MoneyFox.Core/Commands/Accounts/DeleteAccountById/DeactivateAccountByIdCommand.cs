@@ -1,11 +1,11 @@
-﻿using MediatR;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Aggregates;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core.Commands.Accounts.DeleteAccountById
+﻿namespace MoneyFox.Core.Commands.Accounts.DeleteAccountById
 {
+    using _Pending_.Common.Interfaces;
+    using Aggregates;
+    using MediatR;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     public class DeactivateAccountByIdCommand : IRequest
     {
         public DeactivateAccountByIdCommand(int accountId)

@@ -1,10 +1,10 @@
-﻿using MoneyFox.ViewModels.Statistics;
-using MoneyFox.Views.Dialogs;
-using System;
-using Xamarin.Forms;
-
-namespace MoneyFox.Views.Statistics
+﻿namespace MoneyFox.Views.Statistics
 {
+    using Dialogs;
+    using System;
+    using ViewModels.Statistics;
+    using Xamarin.Forms;
+
     public partial class StatisticCategoryProgressionPage : ContentPage
     {
         public StatisticCategoryProgressionPage()

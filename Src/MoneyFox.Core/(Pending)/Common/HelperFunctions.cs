@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace MoneyFox.Core._Pending_.Common
+﻿namespace MoneyFox.Core._Pending_.Common
 {
+    using System;
+
     /// <summary>
     ///     Utility methods
     /// </summary>

@@ -1,15 +1,14 @@
-﻿using MoneyFox.Win.ViewModels.About;
+﻿namespace MoneyFox.Win.Pages.Settings;
 
-namespace MoneyFox.Win.Pages.Settings
+using ViewModels.About;
+
+public sealed partial class AboutPage
 {
-    public sealed partial class AboutPage
-    {
-        private AboutViewModel ViewModel => (AboutViewModel)DataContext;
+    private AboutViewModel ViewModel => (AboutViewModel)DataContext;
 
-        public AboutPage()
-        {
-            InitializeComponent();
-            DataContext = ViewModelLocator.AboutVm;
-        }
+    public AboutPage()
+    {
+        InitializeComponent();
+        DataContext = ViewModelLocator.AboutVm;
     }
 }

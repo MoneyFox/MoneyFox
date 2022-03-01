@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace MoneyFox.Core._Pending_.Common.Extensions
+﻿namespace MoneyFox.Core._Pending_.Common.Extensions
 {
+    using System;
+
     /// <summary>
     ///     Extension method for DateTime.
     /// </summary>

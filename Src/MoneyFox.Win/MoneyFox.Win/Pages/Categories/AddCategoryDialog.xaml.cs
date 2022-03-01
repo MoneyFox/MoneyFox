@@ -1,12 +1,11 @@
-﻿namespace MoneyFox.Win.Pages.Categories
+﻿namespace MoneyFox.Win.Pages.Categories;
+
+public sealed partial class AddCategoryDialog
 {
-    public sealed partial class AddCategoryDialog
+    public AddCategoryDialog()
     {
-        public AddCategoryDialog()
-        {
-            XamlRoot = MainWindow.RootFrame.XamlRoot;
-            InitializeComponent();
-            DataContext = ViewModelLocator.AddCategoryVm;
-        }
+        XamlRoot = MainWindow.RootFrame.XamlRoot;
+        InitializeComponent();
+        DataContext = ViewModelLocator.AddCategoryVm;
     }
 }

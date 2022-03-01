@@ -1,9 +1,9 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core._Pending_.Common.Facades;
-
-namespace MoneyFox.Infrastructure.Persistence
+﻿namespace MoneyFox.Infrastructure.Persistence
 {
+    using Core._Pending_.Common.Facades;
+    using MediatR;
+    using Microsoft.EntityFrameworkCore;
+
     public static class EfCoreContextFactory
     {
         public static AppDbContext Create(IPublisher publisher, ISettingsFacade settingsFacade, string dbPath)

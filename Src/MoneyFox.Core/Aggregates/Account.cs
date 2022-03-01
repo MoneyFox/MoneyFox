@@ -1,12 +1,12 @@
-﻿using Dawn;
-using JetBrains.Annotations;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.SharedKernel.Interface;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace MoneyFox.Core.Aggregates
+﻿namespace MoneyFox.Core.Aggregates
 {
+    using Dawn;
+    using JetBrains.Annotations;
+    using Payments;
+    using SharedKernel.Interface;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public class Account : EntityBase, IAggregateRoot
     {
         [UsedImplicitly]
@@ -84,9 +84,6 @@ namespace MoneyFox.Core.Aggregates
             }
         }
 
-        public void Deactivate()
-        {
-            IsDeactivated = true;
-        }
+        public void Deactivate() => IsDeactivated = true;
     }
 }

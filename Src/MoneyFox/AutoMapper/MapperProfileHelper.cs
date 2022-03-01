@@ -1,11 +1,11 @@
-﻿using MoneyFox.Core._Pending_.Common.Interfaces.Mapping;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-
-namespace MoneyFox.AutoMapper
+﻿namespace MoneyFox.AutoMapper
 {
+    using Core._Pending_.Common.Interfaces.Mapping;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+
     public sealed class Map
     {
         public Map(Type source, Type destination)

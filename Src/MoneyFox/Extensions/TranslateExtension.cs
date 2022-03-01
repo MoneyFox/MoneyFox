@@ -1,13 +1,13 @@
-﻿using MoneyFox.Core._Pending_;
-using MoneyFox.Core.Resources;
-using System;
-using System.Reflection;
-using System.Resources;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-namespace MoneyFox.Extensions
+﻿namespace MoneyFox.Extensions
 {
+    using Core._Pending_;
+    using Core.Resources;
+    using System;
+    using System.Reflection;
+    using System.Resources;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;
+
     [ContentProperty("Text")]
     public class TranslateExtension : IMarkupExtension
     {

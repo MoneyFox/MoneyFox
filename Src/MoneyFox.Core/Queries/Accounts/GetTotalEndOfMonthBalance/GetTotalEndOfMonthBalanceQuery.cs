@@ -1,21 +1,21 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core._Pending_;
-using MoneyFox.Core._Pending_.Common;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.Common.QueryObjects;
-using MoneyFox.Core._Pending_.Exceptions;
-using MoneyFox.Core.Aggregates;
-using MoneyFox.Core.Aggregates.Payments;
-using NLog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core.Queries.Accounts.GetTotalEndOfMonthBalance
+﻿namespace MoneyFox.Core.Queries.Accounts.GetTotalEndOfMonthBalance
 {
+    using _Pending_;
+    using _Pending_.Common;
+    using _Pending_.Common.Interfaces;
+    using _Pending_.Common.QueryObjects;
+    using _Pending_.Exceptions;
+    using Aggregates;
+    using Aggregates.Payments;
+    using MediatR;
+    using Microsoft.EntityFrameworkCore;
+    using NLog;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     public class GetTotalEndOfMonthBalanceQuery : IRequest<decimal>
     {
         public class Handler : IRequestHandler<GetTotalEndOfMonthBalanceQuery, decimal>

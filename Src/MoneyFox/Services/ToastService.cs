@@ -1,10 +1,10 @@
-﻿using Acr.UserDialogs;
-using JetBrains.Annotations;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Services
+﻿namespace MoneyFox.Services
 {
+    using Acr.UserDialogs;
+    using Core._Pending_.Common.Interfaces;
+    using JetBrains.Annotations;
+    using System.Threading.Tasks;
+
     [UsedImplicitly]
     public class ToastService : IToastService
     {

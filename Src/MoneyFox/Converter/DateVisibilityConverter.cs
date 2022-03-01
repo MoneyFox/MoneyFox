@@ -1,9 +1,9 @@
-﻿using System;
-using System.Globalization;
-using Xamarin.Forms;
-
-namespace MoneyFox.Converter
+﻿namespace MoneyFox.Converter
 {
+    using System;
+    using System.Globalization;
+    using Xamarin.Forms;
+
     /// <summary>
     ///     Hides the date if it is equal to the default DateTime Value.
     /// </summary>

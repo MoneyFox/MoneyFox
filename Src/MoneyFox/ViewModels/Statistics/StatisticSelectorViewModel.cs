@@ -1,13 +1,13 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Core;
-using MoneyFox.Core.Resources;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-
-namespace MoneyFox.ViewModels.Statistics
+﻿namespace MoneyFox.ViewModels.Statistics
 {
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using CommunityToolkit.Mvvm.Input;
+    using Core;
+    using Core.Resources;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Xamarin.Forms;
+
     public class StatisticSelectorViewModel : ObservableObject, IStatisticSelectorViewModel
     {
         /// <summary>

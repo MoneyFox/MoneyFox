@@ -1,162 +1,159 @@
-﻿using MediatR;
-using MoneyFox.Core._Pending_.Exceptions;
-using MoneyFox.Core.Aggregates;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Queries.Accounts.GetExcludedAccount;
-using MoneyFox.Core.Queries.Accounts.GetIncludedAccountBalanceSummary;
-using MoneyFox.Core.Queries.Payments.GetUnclearedPaymentsOfThisMonth;
-using MoneyFox.Win.ViewModels.Accounts;
+﻿namespace MoneyFox.Win;
+
+using Core._Pending_.Exceptions;
+using Core.Aggregates;
+using Core.Aggregates.Payments;
+using Core.Queries.Accounts.GetExcludedAccount;
+using Core.Queries.Accounts.GetIncludedAccountBalanceSummary;
+using Core.Queries.Payments.GetUnclearedPaymentsOfThisMonth;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ViewModels.Accounts;
 
-namespace MoneyFox.Win
+/// <summary>
+///     Provides different calculations for the balance at the end of month.
+/// </summary>
+public interface IBalanceCalculationService
 {
     /// <summary>
-    ///     Provides different calculations for the balance at the end of month.
+    ///     Returns the sum of all account balances that are not excluded.
     /// </summary>
-    public interface IBalanceCalculationService
+    Task<decimal> GetTotalBalanceAsync();
+
+    /// <summary>
+    ///     Returns the sum of the balance of the passed accounts at the ned of month.
+    /// </summary>
+    /// <returns>Sum of the end of month balance.</returns>
+    Task<decimal> GetTotalEndOfMonthBalanceAsync();
+
+    /// <summary>
+    ///     Returns the the balance of the passed accounts at the ned of month.
+    /// </summary>
+    /// <param name="account">Account to calculate the balance.</param>
+    /// <returns>The end of month balance.</returns>
+    Task<decimal> GetEndOfMonthBalanceForAccountAsync(AccountViewModel account);
+}
+
+/// <inheritdoc />
+public class BalanceCalculationService : IBalanceCalculationService
+{
+    private readonly IMediator mediator;
+
+    /// <summary>
+    ///     Constructor
+    /// </summary>
+    public BalanceCalculationService(IMediator mediator)
     {
-        /// <summary>
-        ///     Returns the sum of all account balances that are not excluded.
-        /// </summary>
-        Task<decimal> GetTotalBalanceAsync();
-
-        /// <summary>
-        ///     Returns the sum of the balance of the passed accounts at the ned of month.
-        /// </summary>
-        /// <returns>Sum of the end of month balance.</returns>
-        Task<decimal> GetTotalEndOfMonthBalanceAsync();
-
-        /// <summary>
-        ///     Returns the the balance of the passed accounts at the ned of month.
-        /// </summary>
-        /// <param name="account">Account to calculate the balance.</param>
-        /// <returns>The end of month balance.</returns>
-        Task<decimal> GetEndOfMonthBalanceForAccountAsync(AccountViewModel account);
+        this.mediator = mediator;
     }
 
     /// <inheritdoc />
-    public class BalanceCalculationService : IBalanceCalculationService
+    public async Task<decimal> GetTotalBalanceAsync() =>
+        await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
+
+    /// <inheritdoc />
+    public async Task<decimal> GetTotalEndOfMonthBalanceAsync()
     {
-        private readonly IMediator mediator;
+        List<Account> excluded = await mediator.Send(new GetExcludedAccountQuery());
 
-        /// <summary>
-        ///     Constructor
-        /// </summary>
-        public BalanceCalculationService(IMediator mediator)
+        decimal balance = await GetTotalBalanceAsync();
+
+        foreach(Payment payment in await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery()))
         {
-            this.mediator = mediator;
-        }
-
-        /// <inheritdoc />
-        public async Task<decimal> GetTotalBalanceAsync()
-        {
-            return await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
-        }
-
-        /// <inheritdoc />
-        public async Task<decimal> GetTotalEndOfMonthBalanceAsync()
-        {
-            List<Account> excluded = await mediator.Send(new GetExcludedAccountQuery());
-
-            decimal balance = await GetTotalBalanceAsync();
-
-            foreach(Payment payment in await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery()))
+            switch(payment.Type)
             {
-                switch(payment.Type)
-                {
-                    case PaymentType.Expense:
-                        balance -= payment.Amount;
-                        break;
-
-                    case PaymentType.Income:
-                        balance += payment.Amount;
-                        break;
-
-                    case PaymentType.Transfer:
-                        balance = HandleTransfer(excluded, balance, payment);
-                        break;
-
-                    default:
-                        throw new InvalidPaymentTypeException();
-                }
-            }
-
-            return balance;
-        }
-
-        /// <inheritdoc />
-        public async Task<decimal> GetEndOfMonthBalanceForAccountAsync(AccountViewModel account)
-        {
-            decimal balance = account.CurrentBalance;
-
-            List<Payment> paymentList =
-                await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery { AccountId = account.Id });
-
-            foreach(Payment payment in paymentList)
-
-            {
-                switch(payment.Type)
-                {
-                    case PaymentType.Expense:
-                        balance -= payment.Amount;
-                        break;
-
-                    case PaymentType.Income:
-                        balance += payment.Amount;
-                        break;
-
-                    case PaymentType.Transfer:
-                        balance = HandleTransferAmount(payment, balance, account.Id);
-
-                        break;
-                    default:
-                        throw new InvalidPaymentTypeException();
-                }
-            }
-
-            return balance;
-        }
-
-        private static decimal HandleTransfer(List<Account> excluded, decimal balance, Payment payment)
-        {
-            foreach(int accountId in excluded.Select(x => x.Id))
-            {
-                if(payment.TargetAccount == null)
-                {
-                    throw new InvalidOperationException("Uninitialized property: " + nameof(payment.TargetAccount));
-                }
-
-                if(Equals(accountId, payment.ChargedAccount.Id))
-                {
-                    //Transfer from excluded account
-                    balance += payment.Amount;
-                }
-
-                if(Equals(accountId, payment.TargetAccount.Id))
-                {
-                    //Transfer to excluded account
+                case PaymentType.Expense:
                     balance -= payment.Amount;
-                }
-            }
+                    break;
 
-            return balance;
+                case PaymentType.Income:
+                    balance += payment.Amount;
+                    break;
+
+                case PaymentType.Transfer:
+                    balance = HandleTransfer(excluded, balance, payment);
+                    break;
+
+                default:
+                    throw new InvalidPaymentTypeException();
+            }
         }
 
-        private static decimal HandleTransferAmount(Payment payment, decimal balance, int accountId)
+        return balance;
+    }
+
+    /// <inheritdoc />
+    public async Task<decimal> GetEndOfMonthBalanceForAccountAsync(AccountViewModel account)
+    {
+        decimal balance = account.CurrentBalance;
+
+        List<Payment> paymentList =
+            await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery {AccountId = account.Id});
+
+        foreach(Payment payment in paymentList)
+
         {
-            if(accountId == payment.ChargedAccount.Id)
+            switch(payment.Type)
             {
-                balance -= payment.Amount;
+                case PaymentType.Expense:
+                    balance -= payment.Amount;
+                    break;
+
+                case PaymentType.Income:
+                    balance += payment.Amount;
+                    break;
+
+                case PaymentType.Transfer:
+                    balance = HandleTransferAmount(payment, balance, account.Id);
+
+                    break;
+                default:
+                    throw new InvalidPaymentTypeException();
             }
-            else
+        }
+
+        return balance;
+    }
+
+    private static decimal HandleTransfer(List<Account> excluded, decimal balance, Payment payment)
+    {
+        foreach(int accountId in excluded.Select(x => x.Id))
+        {
+            if(payment.TargetAccount == null)
             {
+                throw new InvalidOperationException("Uninitialized property: " + nameof(payment.TargetAccount));
+            }
+
+            if(Equals(accountId, payment.ChargedAccount.Id))
+            {
+                //Transfer from excluded account
                 balance += payment.Amount;
             }
 
-            return balance;
+            if(Equals(accountId, payment.TargetAccount.Id))
+            {
+                //Transfer to excluded account
+                balance -= payment.Amount;
+            }
         }
+
+        return balance;
+    }
+
+    private static decimal HandleTransferAmount(Payment payment, decimal balance, int accountId)
+    {
+        if(accountId == payment.ChargedAccount.Id)
+        {
+            balance -= payment.Amount;
+        }
+        else
+        {
+            balance += payment.Amount;
+        }
+
+        return balance;
     }
 }

@@ -1,24 +1,24 @@
-﻿using AutoMapper;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
-using MediatR;
-using MoneyFox.Core._Pending_.Common.Messages;
-using MoneyFox.Core.Queries.Accounts.GetAccountEndOfMonthBalance;
-using MoneyFox.Core.Queries.Accounts.GetAccounts;
-using MoneyFox.Core.Queries.Accounts.GetIncludedAccountBalanceSummary;
-using MoneyFox.Core.Queries.Accounts.GetTotalEndOfMonthBalance;
-using MoneyFox.Core.Queries.Payments.GetMonthlyExpense;
-using MoneyFox.Core.Queries.Payments.GetMonthlyIncome;
-using MoneyFox.Extensions;
-using MoneyFox.ViewModels.Accounts;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-using Xamarin.Forms.Internals;
-
-namespace MoneyFox.ViewModels.Dashboard
+﻿namespace MoneyFox.ViewModels.Dashboard
 {
+    using Accounts;
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using CommunityToolkit.Mvvm.Input;
+    using CommunityToolkit.Mvvm.Messaging;
+    using Core._Pending_.Common.Messages;
+    using Core.Queries.Accounts.GetAccountEndOfMonthBalance;
+    using Core.Queries.Accounts.GetAccounts;
+    using Core.Queries.Accounts.GetIncludedAccountBalanceSummary;
+    using Core.Queries.Accounts.GetTotalEndOfMonthBalance;
+    using Core.Queries.Payments.GetMonthlyExpense;
+    using Core.Queries.Payments.GetMonthlyIncome;
+    using Extensions;
+    using global::AutoMapper;
+    using MediatR;
+    using System.Collections.ObjectModel;
+    using System.Threading.Tasks;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Internals;
+
     public class DashboardViewModel : ObservableRecipient
     {
         private readonly IMapper mapper;

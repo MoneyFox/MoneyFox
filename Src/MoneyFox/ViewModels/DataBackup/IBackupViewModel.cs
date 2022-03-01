@@ -1,8 +1,8 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using System;
-
-namespace MoneyFox.ViewModels.DataBackup
+﻿namespace MoneyFox.ViewModels.DataBackup
 {
+    using CommunityToolkit.Mvvm.Input;
+    using System;
+
     public interface IBackupViewModel
     {
         /// <summary>

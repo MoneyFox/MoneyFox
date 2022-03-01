@@ -1,23 +1,22 @@
-﻿namespace MoneyFox.Win
+﻿namespace MoneyFox.Win;
+
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Pages;
+
+public sealed partial class MainWindow : Window
 {
-    using Microsoft.UI.Xaml;
-    using Microsoft.UI.Xaml.Controls;
-    using MoneyFox.Win.Pages;
+    // This is a temporary fix until WinUI Dialogs are fixed
+    public static Frame RootFrame { get; private set; }
 
-    public sealed partial class MainWindow : Window
+    public MainWindow()
     {
-        // This is a temporary fix until WinUI Dialogs are fixed
-        public static Frame RootFrame { get; private set; }
+        InitializeComponent();
 
-        public MainWindow()
-        {
-            InitializeComponent();
+        ExtendsContentIntoTitleBar = true;
+        SetTitleBar(AppTitleBar);
 
-            ExtendsContentIntoTitleBar = true;
-            SetTitleBar(AppTitleBar);
-
-            RootFrame = ShellFrame;
-            RootFrame.Navigate(typeof(ShellPage), null);
-        }
+        RootFrame = ShellFrame;
+        RootFrame.Navigate(typeof(ShellPage), null);
     }
 }

@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace MoneyFox.Core._Pending_.Common.Messages
+﻿namespace MoneyFox.Core._Pending_.Common.Messages
 {
+    using System;
+
     /// <summary>
     ///     Used to notify the payment list that a filter changed.
     /// </summary>

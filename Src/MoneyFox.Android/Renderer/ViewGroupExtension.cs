@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using AView = Android.Views.View;
+﻿using AView = Android.Views.View;
 using AViewGroup = Android.Views.ViewGroup;
 
 #nullable enable
 namespace MoneyFox.Droid.Renderer
 {
+    using System.Collections.Generic;
+
     public static class ViewGroupExtension
     {
         internal static IEnumerable<T> GetChildrenOfType<T>(this AViewGroup self)

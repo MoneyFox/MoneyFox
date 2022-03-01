@@ -1,35 +1,34 @@
-﻿using Microsoft.UI.Xaml.Controls;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Resources;
-using MoneyFox.Win.ViewModels.Payments;
+﻿namespace MoneyFox.Win.Pages.Payments;
 
-namespace MoneyFox.Win.Pages.Payments
+using Core.Aggregates.Payments;
+using Core.Resources;
+using Microsoft.UI.Xaml.Controls;
+using ViewModels.Payments;
+
+public sealed partial class ModifyPaymentUserControl
 {
-    public sealed partial class ModifyPaymentUserControl
+    public ModifyPaymentViewModel ViewModel => (ModifyPaymentViewModel)DataContext;
+
+    public ModifyPaymentUserControl()
     {
-        public ModifyPaymentViewModel ViewModel => (ModifyPaymentViewModel)DataContext;
+        InitializeComponent();
+    }
 
-        public ModifyPaymentUserControl()
+    private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        string selectedItem = ((ComboBoxItem)e.AddedItems[0]).Content?.ToString() ?? "";
+
+        if(selectedItem == Strings.IncomeLabel)
         {
-            InitializeComponent();
+            ViewModel.SelectedPayment.Type = PaymentType.Income;
         }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        else if(selectedItem == Strings.ExpenseLabel)
         {
-            string selectedItem = ((ComboBoxItem)e.AddedItems[0]).Content?.ToString() ?? "";
-
-            if(selectedItem == Strings.IncomeLabel)
-            {
-                ViewModel.SelectedPayment.Type = PaymentType.Income;
-            }
-            else if(selectedItem == Strings.ExpenseLabel)
-            {
-                ViewModel.SelectedPayment.Type = PaymentType.Expense;
-            }
-            else if(selectedItem == Strings.TransferLabel)
-            {
-                ViewModel.SelectedPayment.Type = PaymentType.Transfer;
-            }
+            ViewModel.SelectedPayment.Type = PaymentType.Expense;
+        }
+        else if(selectedItem == Strings.TransferLabel)
+        {
+            ViewModel.SelectedPayment.Type = PaymentType.Transfer;
         }
     }
 }

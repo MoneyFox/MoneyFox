@@ -352,7 +352,7 @@
     <value>Tapos</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>Meron nang Account na may gayong pangalan.</value>
+    <value>An account with that name already exists. Continue with saving?</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
     <value>Meron nang Kategorya na may gayong pangalan.</value>

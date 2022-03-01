@@ -1,24 +1,24 @@
-﻿using AutoMapper;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
-using MediatR;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.Common.Messages;
-using MoneyFox.Core.Commands.Categories.DeleteCategoryById;
-using MoneyFox.Core.Queries.Categories.GetCategoryBySearchTerm;
-using MoneyFox.Core.Resources;
-using MoneyFox.Extensions;
-using MoneyFox.Groups;
-using MoneyFox.Views.Categories;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-
-namespace MoneyFox.ViewModels.Categories
+﻿namespace MoneyFox.ViewModels.Categories
 {
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using CommunityToolkit.Mvvm.Input;
+    using CommunityToolkit.Mvvm.Messaging;
+    using Core._Pending_.Common.Interfaces;
+    using Core._Pending_.Common.Messages;
+    using Core.Commands.Categories.DeleteCategoryById;
+    using Core.Queries.Categories.GetCategoryBySearchTerm;
+    using Core.Resources;
+    using Extensions;
+    using global::AutoMapper;
+    using Groups;
+    using MediatR;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Globalization;
+    using System.Threading.Tasks;
+    using Views.Categories;
+    using Xamarin.Forms;
+
     public class CategoryListViewModel : ObservableRecipient
     {
         private readonly IDialogService dialogService;

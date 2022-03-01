@@ -352,7 +352,7 @@
     <value>完成</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>已存在同名账号。</value>
+    <value>An account with that name already exists. Continue with saving?</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
     <value>已存在同名分类。</value>

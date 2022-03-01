@@ -1,27 +1,27 @@
-﻿using Autofac;
-using Autofac.Extras.CommonServiceLocator;
-using CommonServiceLocator;
-using MoneyFox.ViewModels.About;
-using MoneyFox.ViewModels.Accounts;
-using MoneyFox.ViewModels.Categories;
-using MoneyFox.ViewModels.Dashboard;
-using MoneyFox.ViewModels.DataBackup;
-using MoneyFox.ViewModels.Dialogs;
-using MoneyFox.ViewModels.Payments;
-using MoneyFox.ViewModels.Settings;
-using MoneyFox.ViewModels.Statistics;
-using MoneyFox.Views.Accounts;
-using MoneyFox.Views.Backup;
-using MoneyFox.Views.Budget;
-using MoneyFox.Views.Categories;
-using MoneyFox.Views.Dashboard;
-using MoneyFox.Views.Payments;
-using MoneyFox.Views.Settings;
-using MoneyFox.Views.SetupAssistant;
-using MoneyFox.Views.Statistics;
-
-namespace MoneyFox
+﻿namespace MoneyFox
 {
+    using Autofac;
+    using Autofac.Extras.CommonServiceLocator;
+    using CommonServiceLocator;
+    using ViewModels.About;
+    using ViewModels.Accounts;
+    using ViewModels.Categories;
+    using ViewModels.Dashboard;
+    using ViewModels.DataBackup;
+    using ViewModels.Dialogs;
+    using ViewModels.Payments;
+    using ViewModels.Settings;
+    using ViewModels.Statistics;
+    using Views.Accounts;
+    using Views.Backup;
+    using Views.Budget;
+    using Views.Categories;
+    using Views.Dashboard;
+    using Views.Payments;
+    using Views.Settings;
+    using Views.SetupAssistant;
+    using Views.Statistics;
+
     public class ViewModelLocator
     {
         // Routes

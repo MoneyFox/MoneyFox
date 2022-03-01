@@ -1,9 +1,9 @@
-﻿using MoneyFox.Core.Aggregates.Payments;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace MoneyFox.Core._Pending_.Common.QueryObjects
+﻿namespace MoneyFox.Core._Pending_.Common.QueryObjects
 {
+    using Aggregates.Payments;
+    using System.Collections.Generic;
+    using System.Linq;
+
     /// <summary>
     ///     Provides Extensions for categories queries.
     /// </summary>

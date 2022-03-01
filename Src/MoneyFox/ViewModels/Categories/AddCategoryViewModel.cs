@@ -1,10 +1,10 @@
-﻿using MediatR;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Commands.Categories.CreateCategory;
-using System.Threading.Tasks;
-
-namespace MoneyFox.ViewModels.Categories
+﻿namespace MoneyFox.ViewModels.Categories
 {
+    using Core._Pending_.Common.Interfaces;
+    using Core.Commands.Categories.CreateCategory;
+    using MediatR;
+    using System.Threading.Tasks;
+
     public class AddCategoryViewModel : ModifyCategoryViewModel
     {
         private readonly IMediator mediator;

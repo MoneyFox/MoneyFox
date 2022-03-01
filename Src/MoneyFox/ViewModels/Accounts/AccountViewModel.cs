@@ -1,10 +1,10 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using MoneyFox.Core._Pending_.Common.Interfaces.Mapping;
-using MoneyFox.Core.Aggregates;
-using System;
-
-namespace MoneyFox.ViewModels.Accounts
+﻿namespace MoneyFox.ViewModels.Accounts
 {
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using Core._Pending_.Common.Interfaces.Mapping;
+    using Core.Aggregates;
+    using System;
+
     public sealed class AccountViewModel : ObservableObject, IMapFrom<Account>, IEquatable<AccountViewModel>
     {
         private const decimal DECIMAL_DELTA = 0.01m;

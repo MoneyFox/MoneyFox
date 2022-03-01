@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core.Interfaces
+﻿namespace MoneyFox.Core.Interfaces
 {
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Threading.Tasks;
+
     public interface IFileStore
     {
         Task WriteFileAsync(string path, IEnumerable<byte> contents);

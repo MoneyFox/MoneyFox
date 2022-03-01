@@ -1,28 +1,27 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿namespace MoneyFox.Win.ViewModels.DataBackup;
+
+using CommunityToolkit.Mvvm.Input;
 using System;
 
-namespace MoneyFox.Win.ViewModels.DataBackup
+public class DesignTimeBackupViewModel : IBackupViewModel
 {
-    public class DesignTimeBackupViewModel : IBackupViewModel
-    {
-        public AsyncRelayCommand InitializeCommand { get; } = null!;
+    public AsyncRelayCommand InitializeCommand { get; } = null!;
 
-        public AsyncRelayCommand LoginCommand { get; } = null!;
+    public AsyncRelayCommand LoginCommand { get; } = null!;
 
-        public AsyncRelayCommand LogoutCommand { get; } = null!;
+    public AsyncRelayCommand LogoutCommand { get; } = null!;
 
-        public AsyncRelayCommand BackupCommand { get; } = null!;
+    public AsyncRelayCommand BackupCommand { get; } = null!;
 
-        public AsyncRelayCommand RestoreCommand { get; } = null!;
+    public AsyncRelayCommand RestoreCommand { get; } = null!;
 
-        public DateTime BackupLastModified { get; }
+    public DateTime BackupLastModified { get; }
 
-        public bool IsLoadingBackupAvailability { get; }
+    public bool IsLoadingBackupAvailability { get; }
 
-        public bool IsLoggedIn { get; } = true;
+    public bool IsLoggedIn { get; } = true;
 
-        public bool BackupAvailable { get; }
+    public bool BackupAvailable { get; }
 
-        public bool IsAutoBackupEnabled { get; }
-    }
+    public bool IsAutoBackupEnabled { get; }
 }

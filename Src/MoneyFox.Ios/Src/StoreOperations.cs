@@ -1,8 +1,8 @@
-﻿using MoneyFox.Core._Pending_.Common.Interfaces;
-using StoreKit;
-
-namespace MoneyFox.iOS
+﻿namespace MoneyFox.iOS
 {
+    using Core._Pending_.Common.Interfaces;
+    using StoreKit;
+
     /// <inheritdoc />
     public class StoreOperations : IStoreOperations
     {

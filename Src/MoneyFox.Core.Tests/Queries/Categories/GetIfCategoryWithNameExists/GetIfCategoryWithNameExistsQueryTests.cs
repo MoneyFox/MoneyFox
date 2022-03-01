@@ -1,15 +1,15 @@
-﻿using FluentAssertions;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Queries.Categories.GetIfCategoryWithNameExists;
-using MoneyFox.Core.Tests.Infrastructure;
-using MoneyFox.Infrastructure.Persistence;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace MoneyFox.Core.Tests.Queries.Categories.GetIfCategoryWithNameExists
+﻿namespace MoneyFox.Core.Tests.Queries.Categories.GetIfCategoryWithNameExists
 {
+    using Core.Aggregates.Payments;
+    using Core.Queries.Categories.GetIfCategoryWithNameExists;
+    using FluentAssertions;
+    using Infrastructure;
+    using MoneyFox.Infrastructure.Persistence;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class GetIfCategoryWithNameExistsQueryTests : IDisposable
     {

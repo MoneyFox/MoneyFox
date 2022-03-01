@@ -1,14 +1,14 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.Common.QueryObjects;
-using MoneyFox.Core.Aggregates;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core.Queries.Accounts.GetIncludedAccount
+﻿namespace MoneyFox.Core.Queries.Accounts.GetIncludedAccount
 {
+    using _Pending_.Common.Interfaces;
+    using _Pending_.Common.QueryObjects;
+    using Aggregates;
+    using MediatR;
+    using Microsoft.EntityFrameworkCore;
+    using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     public class GetIncludedAccountQuery : IRequest<List<Account>>
     {
         public class Handler : IRequestHandler<GetIncludedAccountQuery, List<Account>>

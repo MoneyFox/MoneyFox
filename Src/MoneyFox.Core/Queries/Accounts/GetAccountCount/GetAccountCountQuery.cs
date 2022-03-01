@@ -1,12 +1,12 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.Common.QueryObjects;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core.Queries.Accounts.GetAccountCount
+﻿namespace MoneyFox.Core.Queries.Accounts.GetAccountCount
 {
+    using _Pending_.Common.Interfaces;
+    using _Pending_.Common.QueryObjects;
+    using MediatR;
+    using Microsoft.EntityFrameworkCore;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     public class GetAccountCountQuery : IRequest<int>
     {
         public class Handler : IRequestHandler<GetAccountCountQuery, int>

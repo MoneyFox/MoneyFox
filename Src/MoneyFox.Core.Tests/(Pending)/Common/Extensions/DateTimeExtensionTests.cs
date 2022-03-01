@@ -1,10 +1,10 @@
-﻿using MoneyFox.Core._Pending_.Common.Extensions;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using Xunit;
-
-namespace MoneyFox.Core.Tests._Pending_.Common.Extensions
+﻿namespace MoneyFox.Core.Tests._Pending_.Common.Extensions
 {
+    using Core._Pending_.Common.Extensions;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class DateTimeExtensionTests
     {

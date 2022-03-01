@@ -1,17 +1,17 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core._Pending_;
-using MoneyFox.Core._Pending_.Common;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.Common.QueryObjects;
-using MoneyFox.Core.Aggregates.Payments;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core.Queries.Payments.GetUnclearedPaymentsOfThisMonth
+﻿namespace MoneyFox.Core.Queries.Payments.GetUnclearedPaymentsOfThisMonth
 {
+    using _Pending_;
+    using _Pending_.Common;
+    using _Pending_.Common.Interfaces;
+    using _Pending_.Common.QueryObjects;
+    using Aggregates.Payments;
+    using MediatR;
+    using Microsoft.EntityFrameworkCore;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     public class GetUnclearedPaymentsOfThisMonthQuery : IRequest<List<Payment>>
     {
         public int AccountId { get; set; }

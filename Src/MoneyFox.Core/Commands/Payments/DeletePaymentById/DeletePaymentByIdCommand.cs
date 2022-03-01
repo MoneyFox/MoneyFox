@@ -1,21 +1,16 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core._Pending_.Common;
-using MoneyFox.Core._Pending_.Common.Facades;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.DbBackup;
-using MoneyFox.Core._Pending_.Exceptions;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Interfaces;
-using NLog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core.Commands.Payments.DeletePaymentById
+﻿namespace MoneyFox.Core.Commands.Payments.DeletePaymentById
 {
+    using _Pending_.Common.Interfaces;
+    using _Pending_.Exceptions;
+    using Aggregates.Payments;
+    using MediatR;
+    using Microsoft.EntityFrameworkCore;
+    using NLog;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     public class DeletePaymentByIdCommand : IRequest
     {
         public DeletePaymentByIdCommand(int paymentId, bool deleteRecurringPayment = false)

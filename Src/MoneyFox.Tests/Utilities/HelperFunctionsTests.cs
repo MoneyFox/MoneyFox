@@ -1,10 +1,10 @@
-﻿using FluentAssertions;
-using MoneyFox.Utilities;
-using System.Diagnostics.CodeAnalysis;
-using Xunit;
-
-namespace MoneyFox.Tests.Utilities
+﻿namespace MoneyFox.Tests.Utilities
 {
+    using FluentAssertions;
+    using MoneyFox.Utilities;
+    using System.Diagnostics.CodeAnalysis;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class HelperFunctionsTests
     {

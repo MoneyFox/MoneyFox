@@ -1,9 +1,9 @@
-﻿using MoneyFox.Core._Pending_.Exceptions;
-using MoneyFox.Core.Aggregates.Payments;
-using System;
-
-namespace MoneyFox.Core._Pending_.Common.Helpers
+﻿namespace MoneyFox.Core._Pending_.Common.Helpers
 {
+    using Aggregates.Payments;
+    using Exceptions;
+    using System;
+
     public static class RecurringPaymentHelper
     {
         private const int WEEKLY_RECURRENCE_DAYS = 7;

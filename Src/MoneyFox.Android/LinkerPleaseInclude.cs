@@ -4,15 +4,15 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using Android.Views;
-using Android.Widget;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Windows.Input;
-
 #pragma warning disable S1481 // Unused local variable
 namespace MoneyFox.Droid
 {
+    using Android.Views;
+    using Android.Widget;
+    using System.Collections.Specialized;
+    using System.ComponentModel;
+    using System.Windows.Input;
+
     /// <summary>
     ///     Defines the LinkerPleaseInclude type.     This class is never actually executed, but when Xamarin linking is
     ///     enabled it does how to     ensure types and properties are preserved in the deployed app.

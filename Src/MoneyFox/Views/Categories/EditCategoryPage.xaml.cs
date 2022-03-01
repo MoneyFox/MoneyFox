@@ -1,10 +1,10 @@
-﻿using CommonServiceLocator;
-using MoneyFox.Core.Resources;
-using MoneyFox.ViewModels.Categories;
-using Xamarin.Forms;
-
-namespace MoneyFox.Views.Categories
+﻿namespace MoneyFox.Views.Categories
 {
+    using CommonServiceLocator;
+    using Core.Resources;
+    using ViewModels.Categories;
+    using Xamarin.Forms;
+
     public partial class EditCategoryPage
     {
         private readonly int categoryId;

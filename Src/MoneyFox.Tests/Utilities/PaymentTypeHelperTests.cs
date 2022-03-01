@@ -1,12 +1,12 @@
-﻿using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Resources;
-using MoneyFox.Utilities;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using Xunit;
-
-namespace MoneyFox.Tests.Utilities
+﻿namespace MoneyFox.Tests.Utilities
 {
+    using Core.Aggregates.Payments;
+    using Core.Resources;
+    using MoneyFox.Utilities;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class PaymentTypeHelperTests
     {

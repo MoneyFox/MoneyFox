@@ -1,11 +1,11 @@
-﻿using FluentAssertions;
-using MoneyFox.Core.Queries.Payments.GetPaymentsForCategory;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using Xunit;
-
-namespace MoneyFox.Core.Tests.Queries.Payments.GetPaymentsForCategory
+﻿namespace MoneyFox.Core.Tests.Queries.Payments.GetPaymentsForCategory
 {
+    using Core.Queries.Payments.GetPaymentsForCategory;
+    using FluentAssertions;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class GetPaymentsForCategoryQueryTests
     {
