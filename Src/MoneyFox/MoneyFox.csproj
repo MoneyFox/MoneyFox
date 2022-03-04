@@ -100,7 +100,7 @@
         <EmbeddedResource Update="Views\Dialogs\LoadingDialog.xaml">
             <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
         </EmbeddedResource>
-        <EmbeddedResource Update="Views\OverflowMenuPage.xaml">
+        <EmbeddedResource Update="Views\OverflowMenu\OverflowMenuPage.xaml">
           <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
         </EmbeddedResource>
         <EmbeddedResource Update="Views\Payments\AddPaymentPage.xaml">
@@ -152,7 +152,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Update="Views\OverflowMenuPage.xaml.cs">
+        <Compile Update="Views\OverflowMenu\OverflowMenuPage.xaml.cs">
           <DependentUpon>OverflowMenuPage.xaml</DependentUpon>
         </Compile>
         <Compile Update="Views\Statistics\StatisticCategoryProgressionPage.xaml.cs">

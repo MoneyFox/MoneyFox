@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Views
+﻿namespace MoneyFox.Views.OverflowMenu
 {
     using Xamarin.Forms.Xaml;
 
