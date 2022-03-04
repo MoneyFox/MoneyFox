@@ -21,11 +21,6 @@
         DateTime LastDatabaseUpdate { get; set; }
 
         /// <summary>
-        ///     Currently selected theme.
-        /// </summary>
-        AppTheme Theme { get; set; }
-
-        /// <summary>
         ///     Indicates if the user is logged in to the backup service.
         /// </summary>
         bool IsLoggedInToBackupService { get; set; }
@@ -46,9 +41,6 @@
 
         private const string BACKUP_LOGGEDIN_KEYNAME = "BackupLoggedIn";
         private const bool BACKUP_LOGGEDIN_KEY_DEFAULT = false;
-
-        private const string THEME_KEYNAME = "Theme";
-        private const int THEME_KEYDEFAULT = (int)AppTheme.Light;
 
         private const string LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME = "LastExecutionTimeStampSyncBackup";
         private const string LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_DEFAULT = "";
@@ -101,17 +93,6 @@
                 => settingsAdapter.AddOrUpdate(
                     DATABASE_LAST_UPDATE_KEY_NAME,
                     value.ToString(CultureInfo.InvariantCulture));
-        }
-
-        public AppTheme Theme
-        {
-            get
-            {
-                int themeInt = settingsAdapter.GetValue(THEME_KEYNAME, THEME_KEYDEFAULT);
-
-                return (AppTheme)Enum.ToObject(typeof(AppTheme), themeInt);
-            }
-            set => settingsAdapter.AddOrUpdate(THEME_KEYNAME, (int)value);
         }
 
         /// <inheritdoc />
