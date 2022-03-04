@@ -42,9 +42,6 @@
             this.dialogService = dialogService;
         }
 
-        /// <summary>
-        ///     The currently selected PaymentViewModel
-        /// </summary>
         public PaymentViewModel SelectedPayment
         {
             get => selectedPayment;
@@ -55,9 +52,6 @@
             }
         }
 
-        /// <summary>
-        ///     Gives access to all accounts for Charged Dropdown list
-        /// </summary>
         public ObservableCollection<AccountViewModel> ChargedAccounts
         {
             get => chargedAccounts;
@@ -68,9 +62,6 @@
             }
         }
 
-        /// <summary>
-        ///     Gives access to all accounts for Target Dropdown list
-        /// </summary>
         public ObservableCollection<AccountViewModel> TargetAccounts
         {
             get => targetAccounts;
@@ -81,9 +72,6 @@
             }
         }
 
-        /// <summary>
-        ///     Indicates if the PaymentViewModel is a transfer.
-        /// </summary>
         public bool IsTransfer => SelectedPayment.IsTransfer;
 
         public List<PaymentType> PaymentTypeList => new List<PaymentType>
@@ -92,7 +80,7 @@
         };
 
         /// <summary>
-        ///     List with the different recurrence types.     This has to have the same order as the enum
+        ///     List with the different recurrence types. This has to have the same order as the enum
         /// </summary>
         public List<PaymentRecurrence> RecurrenceList => new List<PaymentRecurrence>
         {

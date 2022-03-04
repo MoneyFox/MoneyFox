@@ -5,14 +5,11 @@
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              xmlns:overflowmenu="clr-namespace:MoneyFox.ViewModels.OverflowMenu"
+             Title="{x:Static resources:Strings.MenuTitle}"
              Visual="Material">
 
     <ContentPage.Content>
         <StackLayout>
-            <Label Style="{StaticResource TextHeadline}"
-                   Margin="15,0,15,0"
-                   Text="{x:Static resources:Strings.MenuTitle}" />
-
             <CollectionView x:Name="OverflowMenuCollectionView"
                             ItemsSource="{Binding OverflowEntries}">
 

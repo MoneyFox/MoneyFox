@@ -7,6 +7,7 @@
                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                            xmlns:accounts="clr-namespace:MoneyFox.Views.Accounts"
                            xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+                           Title="{x:Static resources:Strings.AddAccountLabel}"
                            mc:Ignorable="d"
                            Visual="Material"
                            x:Class="MoneyFox.Views.Accounts.AddAccountPage">
@@ -14,9 +15,6 @@
     <ContentPage.Content>
         <ScrollView Padding="15,0,15,0">
             <StackLayout>
-                <Label Style="{StaticResource TextHeadline}"
-                       Text="{x:Static resources:Strings.AddAccountLabel}" />
-
                 <accounts:ModifyAccountContentView />
             </StackLayout>
         </ScrollView>

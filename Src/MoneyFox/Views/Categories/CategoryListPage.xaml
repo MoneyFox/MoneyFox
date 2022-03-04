@@ -6,7 +6,6 @@
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              mc:Ignorable="d"
              Visual="Material"
-             xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
              xmlns:categories="clr-namespace:MoneyFox.ViewModels.Categories;assembly=MoneyFox"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              Shell.NavBarHasShadow="False"
@@ -19,7 +18,7 @@
             <Button
                 Margin="0,0,6,0"
                 HorizontalOptions="End"
-                Text="Add Category"
+                Text="{x:Static resources:Strings.AddCategoryLabel}"
                 VerticalOptions="Center"
                 Command="{Binding GoToAddCategoryCommand}" />
 
