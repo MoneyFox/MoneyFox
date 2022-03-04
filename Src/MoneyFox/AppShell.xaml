@@ -8,7 +8,7 @@
        xmlns:statistic="clr-namespace:MoneyFox.Views.Statistics"
        xmlns:about="clr-namespace:MoneyFox.Views.About"
        xmlns:setup="clr-namespace:MoneyFox.Views.SetupAssistant"
-       xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+       xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core" xmlns:views="clr-namespace:MoneyFox.Views"
        Shell.BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}"
        Shell.ForegroundColor="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}"
        Shell.TabBarBackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundTabColorDark}, Light={StaticResource BackgroundTabColorLight}}"
@@ -51,7 +51,7 @@
         <Tab Title="{x:Static resources:Strings.SettingsTitle}"
              Icon="{AppThemeBinding Dark=ic_settings_white, Light=ic_settings_black}">
             <ShellContent >
-                <about:AboutPage />
+                <views:OverflowMenuPage />
             </ShellContent>
         </Tab>
     </TabBar>
