@@ -6,7 +6,6 @@
        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
        xmlns:dashboard="clr-namespace:MoneyFox.Views.Dashboard"
        xmlns:statistic="clr-namespace:MoneyFox.Views.Statistics"
-       xmlns:about="clr-namespace:MoneyFox.Views.About"
        xmlns:setup="clr-namespace:MoneyFox.Views.SetupAssistant"
        xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core" xmlns:views="clr-namespace:MoneyFox.Views"
        Shell.BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}"
@@ -15,23 +14,6 @@
        Shell.NavBarHasShadow="False"
        Title="MoneyFox"
        mc:Ignorable="d">
-
-    <Shell.ItemTemplate>
-        <DataTemplate>
-            <Grid Style="{StaticResource FloutItemStyle}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.2*" />
-                    <ColumnDefinition Width="0.8*" />
-                </Grid.ColumnDefinitions>
-                <Image Source="{Binding FlyoutIcon}"
-                       Margin="5"
-                       HeightRequest="25" />
-                <Label Grid.Column="1"
-                       Text="{Binding Title}"
-                       VerticalTextAlignment="Center" />
-            </Grid>
-        </DataTemplate>
-    </Shell.ItemTemplate>
 
     <TabBar>
         <Tab Title="{x:Static resources:Strings.HomeTitle}"
