@@ -10,6 +10,7 @@
        xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core" xmlns:views="clr-namespace:MoneyFox.Views"
        Shell.BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}"
        Shell.ForegroundColor="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}"
+       Shell.TitleColor="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}"
        Shell.TabBarBackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundTabColorDark}, Light={StaticResource BackgroundTabColorLight}}"
        Shell.NavBarHasShadow="False"
        Title="MoneyFox"
