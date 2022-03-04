@@ -4,6 +4,7 @@
     using AutoMapper;
     using Core;
     using Mobile.Infrastructure;
+    using MoneyFox.Mapping;
     using System;
     using ViewModels.Settings;
 
