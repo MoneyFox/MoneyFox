@@ -18,6 +18,10 @@
 
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,66">
+            <Label Style="{StaticResource TextTitle}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center"
+                   Text="{x:Static resources:Strings.CategoryProgressionTitle}" />
             <Button
                 Margin="0,0,5,0"
                 Padding="0"
@@ -35,22 +39,20 @@
     </Shell.TitleView>
 
     <ContentPage.Content>
-        <Grid RowDefinitions="38, auto, auto, *" Padding="15,0,15,0">
-            <Label Style="{StaticResource TextHeadline}"
-                   Text="{x:Static resources:Strings.CategoryProgressionTitle}" />
+        <Grid RowDefinitions="auto, auto, *" Padding="15,0,15,0">
 
-            <Label Grid.Row="1"
+            <Label Grid.Row="0"
                    Style="{StaticResource TextBodySecondary}"
                    Text="{Binding Title}" />
 
-            <Button Grid.Row="2"
+            <Button Grid.Row="1"
                     Text="{Binding SelectedCategory, Converter={StaticResource NoCategorySelectedConverter}}"
                     Command="{Binding GoToSelectCategoryDialogCommand}" />
 
-            <microcharts:ChartView Grid.Row="3" Chart="{Binding Chart}"
+            <microcharts:ChartView Grid.Row="2" Chart="{Binding Chart}"
                                    IsVisible="{Binding HasNoData, Converter={StaticResource InverseBoolConverter}}" />
 
-            <Label Grid.Row="3"
+            <Label Grid.Row="2"
                    Text="{x:Static resources:Strings.SelectCategoryLabel}"
                    Style="{DynamicResource DeemphasizedLabelStyle}"
                    IsVisible="{Binding HasNoData}" />

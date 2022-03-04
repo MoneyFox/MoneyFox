@@ -5,6 +5,7 @@
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:statistics="clr-namespace:MoneyFox.ViewModels.Statistics;assembly=MoneyFox"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+             Title="{x:Static resources:Strings.SelectStatisticTitle}"
              mc:Ignorable="d"
              x:Class="MoneyFox.Views.Statistics.StatisticSelectorPage"
              Visual="Material"
@@ -12,10 +13,6 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Label Style="{StaticResource TextHeadline}"
-                   Margin="15,0,15,0"
-                   Text="{x:Static resources:Strings.SelectStatisticTitle}" />
-
             <CollectionView x:Name="StatisticCollectionView"
                             ItemsSource="{Binding StatisticItems}">
 
