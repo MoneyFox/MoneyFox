@@ -69,7 +69,6 @@
             UserAccount = cloudBackupService.UserAccount.GetUserAccount();
 
             settingsFacade.IsLoggedInToBackupService = true;
-            settingsFacade.IsBackupAutouploadEnabled = true;
 
             await toastService.ShowToastAsync(Strings.LoggedInMessage, Strings.LoggedInTitle);
 
