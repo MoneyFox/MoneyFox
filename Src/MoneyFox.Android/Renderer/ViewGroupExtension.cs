@@ -1,8 +1,7 @@
-﻿using AView = Android.Views.View;
-using AViewGroup = Android.Views.ViewGroup;
-
-namespace MoneyFox.Droid.Renderer
+﻿namespace MoneyFox.Droid.Renderer
 {
+    using AView = Android.Views.View;
+    using AViewGroup = Android.Views.ViewGroup;
     using System.Collections.Generic;
 
     public static class ViewGroupExtension
