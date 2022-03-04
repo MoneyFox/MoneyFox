@@ -33,6 +33,9 @@
     <Color x:Key="BackgroundColorDark">#121212</Color>
     <Color x:Key="BackgroundColorLight">#EFF2F5</Color>
 
+    <Color x:Key="BackgroundTabColorDark">#323130</Color>
+    <Color x:Key="BackgroundTabColorLight">White</Color>
+
     <Color x:Key="BackgroundColorSearchBarDark">#323130</Color>
     <Color x:Key="BackgroundColorSearchBarLight">#EFF2F5</Color>
 
@@ -78,89 +81,6 @@
     <x:Double x:Key="TextSizeBody">14</x:Double>
     <x:Double x:Key="TextSizeCaption">12</x:Double>
     <x:Double x:Key="TextSizeSmallCaption">11</x:Double>
-
-    <!-- Shell -->
-    <Style x:Key="BaseStyle"
-           TargetType="Element"
-           ApplyToDerivedTypes="True">
-        <Setter Property="Shell.BackgroundColor"
-                Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}" />
-        <Setter Property="Shell.ForegroundColor"
-                Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
-        <Setter Property="Shell.DisabledColor"
-                Value="#B4000000" />
-        <Setter Property="Shell.UnselectedColor"
-                Value="#CC0000" />
-        <Setter Property="Shell.NavBarHasShadow"
-                Value="false" />
-    </Style>
-
-    <Style BasedOn="{StaticResource BaseStyle}"
-           ApplyToDerivedTypes="True"
-           TargetType="FlyoutItem" />
-
-    <Style TargetType="Label"
-           Class="FlyoutItemLabelStyle">
-        <Setter
-            Property="BackgroundColor" Value="Transparent" />
-        <Setter
-            Property="FontSize" Value="16" />
-        <Setter
-            Property="TextColor"
-            Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
-        <Setter
-            Property="FontFamily" Value="Product" />
-        <Setter
-            Property="HeightRequest"
-            Value="44" />
-    </Style>
-
-    <Style TargetType="Shell" ApplyToDerivedTypes="True">
-        <Setter Property="FlyoutBackgroundColor"
-                Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}" />
-    </Style>
-
-    <Style TargetType="Layout"
-           ApplyToDerivedTypes="True"
-           Class="FlyoutItemGridStyle">
-        <Setter Property="HeightRequest"
-                Value="44" />
-        <Setter Property="VisualStateManager.VisualStateGroups">
-            <VisualStateGroupList>
-                <VisualStateGroup
-                    x:Name="CommonStates">
-                    <VisualState
-                        x:Name="Normal" />
-                    <VisualState
-                        x:Name="Selected">
-                        <VisualState.Setters>
-                            <Setter
-                                Property="BackgroundColor"
-                                Value="#FF3300" />
-
-                        </VisualState.Setters>
-                    </VisualState>
-                    <VisualState
-                        x:Name="Disabled" />
-                </VisualStateGroup>
-            </VisualStateGroupList>
-        </Setter>
-    </Style>
-
-    <Style x:Key="FloutItemStyle" TargetType="Grid">
-        <Setter Property="VisualStateManager.VisualStateGroups">
-            <VisualStateGroupList>
-                <VisualStateGroup x:Name="CommonStates">
-                    <VisualState x:Name="Normal" />
-                    <VisualState x:Name="Selected">
-                        <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="Accent" />
-                        </VisualState.Setters>
-                    </VisualState>
-                </VisualStateGroup>
-            </VisualStateGroupList>
-        </Setter>
-    </Style>
 
     <!-- ContentPage -->
     <Style TargetType="Page" ApplyToDerivedTypes="True">
