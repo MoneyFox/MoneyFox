@@ -31,6 +31,7 @@
         <converter:DateTimeToStringConverter x:Key="DateTimeToStringConverter" />
         <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
         <converter:PaymentTypeToStringConverter x:Key="PaymentTypeToStringConverter" />
+        <converter:PaymentTypeToIntConverter x:Key="PaymentTypeToIntConverter" />
         <converter:RecurrenceTypeConverter x:Key="RecurrenceTypeConverter" />
 
         <Flyout x:Key="FilterFlyout" Placement="LeftEdgeAlignedTop">
@@ -41,6 +42,16 @@
                           IsChecked="{Binding IsClearedFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 <CheckBox Content="{x:Bind resources:Strings.IsRecurringFilterLabel}"
                           IsChecked="{Binding IsRecurringFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                <ComboBox
+                    Header="{x:Bind resources:Strings.PaymentTypeLabel}"
+                    ItemsSource="{x:Bind ViewModel.PaymentTypeFilterList}"
+                    SelectedItem="{Binding PaymentTypeFilter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={StaticResource PaymentTypeToIntConverter}}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
                 <CalendarDatePicker
                     Date="{Binding TimeRangeStart, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     FirstDayOfWeek="Monday"

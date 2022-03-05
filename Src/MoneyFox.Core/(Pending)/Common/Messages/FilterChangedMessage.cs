@@ -1,6 +1,7 @@
 ﻿namespace MoneyFox.Core._Pending_.Common.Messages
 {
     using System;
+    using MoneyFox.Core.Aggregates.Payments;
 
     /// <summary>
     ///     Used to notify the payment list that a filter changed.
@@ -23,6 +24,11 @@
         ///     Indicate if payment list should be grouped.
         /// </summary>
         public bool IsGrouped { get; set; }
+
+        /// <summary>
+        ///     Indicates if only specific payment types should be displayed.
+        /// </summary>
+        public int PaymentTypeFilter { get; set; } = -1;
 
         /// <summary>
         ///     Start of the time range to load payments.

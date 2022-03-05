@@ -17,13 +17,15 @@
             DateTime timeRangeStart,
             DateTime timeRangeEnd,
             bool isClearedFilterActive = false,
-            bool isRecurringFilterActive = false)
+            bool isRecurringFilterActive = false,
+            int paymentTypeFilter = -1)
         {
             AccountId = accountId;
             TimeRangeStart = timeRangeStart;
             TimeRangeEnd = timeRangeEnd;
             IsClearedFilterActive = isClearedFilterActive;
             IsRecurringFilterActive = isRecurringFilterActive;
+            PaymentTypeFilter = paymentTypeFilter;
         }
 
         public int AccountId { get; }
@@ -31,6 +33,8 @@
         public DateTime TimeRangeStart { get; }
 
         public DateTime TimeRangeEnd { get; }
+
+        public int PaymentTypeFilter { get; set; }
 
         public bool IsClearedFilterActive { get; set; }
 
@@ -64,6 +68,11 @@
                 if(request.IsRecurringFilterActive)
                 {
                     paymentQuery = paymentQuery.AreRecurring();
+                }
+
+                if (request.PaymentTypeFilter != -1)
+                {
+                    paymentQuery = paymentQuery.IsPaymentType((PaymentType)request.PaymentTypeFilter);
                 }
 
                 paymentQuery = paymentQuery.Where(x => x.Date >= request.TimeRangeStart);

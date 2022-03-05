@@ -10,6 +10,7 @@ public class SelectFilterDialogViewModel : ObservableRecipient, ISelectFilterDia
 {
     private bool isClearedFilterActive;
     private bool isRecurringFilterActive;
+    private int paymentTypeFilter = -1;
     private DateTime timeRangeStart = DateTime.Now.AddMonths(-2);
     private DateTime timeRangeEnd = DateTime.Now.AddMonths(6);
 
@@ -46,6 +47,25 @@ public class SelectFilterDialogViewModel : ObservableRecipient, ISelectFilterDia
             }
 
             isRecurringFilterActive = value;
+            OnPropertyChanged();
+            UpdateList();
+        }
+    }
+
+    /// <summary>
+    ///     Indicates whether to filter on specific payment types.
+    /// </summary>
+    public int PaymentTypeFilter
+    {
+        get => paymentTypeFilter;
+        set
+        {
+            if(paymentTypeFilter == value)
+            {
+                return;
+            }
+
+            paymentTypeFilter = value;
             OnPropertyChanged();
             UpdateList();
         }
@@ -96,6 +116,7 @@ public class SelectFilterDialogViewModel : ObservableRecipient, ISelectFilterDia
                 IsClearedFilterActive = IsClearedFilterActive,
                 IsRecurringFilterActive = IsRecurringFilterActive,
                 TimeRangeStart = TimeRangeStart,
-                TimeRangeEnd = TimeRangeEnd
+                TimeRangeEnd = TimeRangeEnd,
+                PaymentTypeFilter = PaymentTypeFilter
             });
 }

@@ -9,6 +9,8 @@ public interface ISelectFilterDialogViewModel
 
     bool IsRecurringFilterActive { get; set; }
 
+    int PaymentTypeFilter { get; set; }
+
     DateTime TimeRangeStart { get; set; }
 
     DateTime TimeRangeEnd { get; set; }

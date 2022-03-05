@@ -8,6 +8,8 @@ public class DesignTimeSelectFilterDialogViewModel : ISelectFilterDialogViewMode
 
     public bool IsRecurringFilterActive { get; set; }
 
+    public int PaymentTypeFilter { get; set; }
+
     public DateTime TimeRangeStart { get; set; }
 
     public DateTime TimeRangeEnd { get; set; }

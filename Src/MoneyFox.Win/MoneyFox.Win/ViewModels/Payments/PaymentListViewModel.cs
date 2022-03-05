@@ -46,6 +46,9 @@ public class PaymentListViewModel : ObservableRecipient
     private bool isBusy;
     private IPaymentListViewActionViewModel? viewActionViewModel;
 
+    public List<int> PaymentTypeFilterList => new() { -1, 0, 1, 2 };
+
+
     /// <summary>
     ///     Default constructor
     /// </summary>
@@ -87,7 +90,7 @@ public class PaymentListViewModel : ObservableRecipient
 
     public AsyncRelayCommand LoadDataCommand => new(
         async () => await LoadDataAsync(
-            new PaymentListFilterChangedMessage {TimeRangeStart = DateTime.Now.AddYears(DEFAULT_YEAR_BACK)}));
+            new PaymentListFilterChangedMessage { TimeRangeStart = DateTime.Now.AddYears(DEFAULT_YEAR_BACK) }));
 
     public RelayCommand<PaymentViewModel> EditPaymentCommand
         => new(vm => navigationService.Navigate<EditPaymentViewModel>(vm));
@@ -172,7 +175,7 @@ public class PaymentListViewModel : ObservableRecipient
             navigationService);
 
         await LoadDataAsync(
-            new PaymentListFilterChangedMessage {TimeRangeStart = DateTime.Now.AddYears(DEFAULT_YEAR_BACK)});
+            new PaymentListFilterChangedMessage { TimeRangeStart = DateTime.Now.AddYears(DEFAULT_YEAR_BACK) });
         IsBusy = false;
     }
 
@@ -209,7 +212,8 @@ public class PaymentListViewModel : ObservableRecipient
             filterMessage.TimeRangeEnd)
         {
             IsClearedFilterActive = filterMessage.IsClearedFilterActive,
-            IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
+            IsRecurringFilterActive = filterMessage.IsRecurringFilterActive,
+            PaymentTypeFilter = filterMessage.PaymentTypeFilter
         };
 
         List<Payment> loadedPayments = await mediator.Send(getPaymentsForAccountIdQuery);
@@ -217,7 +221,7 @@ public class PaymentListViewModel : ObservableRecipient
 
         payments.ForEach(x => x.CurrentAccountId = AccountId);
 
-        var source = new CollectionViewSource {IsSourceGrouped = filterMessage.IsGrouped};
+        var source = new CollectionViewSource { IsSourceGrouped = filterMessage.IsGrouped };
 
         if(filterMessage.IsGrouped)
         {
