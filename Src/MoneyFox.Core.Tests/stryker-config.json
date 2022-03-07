@@ -1,0 +1,10 @@
+{
+  "stryker-config":
+  {
+      "solution": "../MoneyFox.sln",
+      "project": "MoneyFox.Core.csproj",
+      "baseline": {
+        "provider": "Dashboard"
+      }
+  }
+}
