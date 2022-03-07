@@ -109,7 +109,7 @@ jobs:
       workingDirectory: '$(Build.Repository.LocalPath)\src\MoneyFox.Core.Tests'
       targetType: 'inline'
       pwsh: true
-      script: $(Agent.BuildDirectory)/tools/dotnet-stryker --with-baseline:$(System.PullRequest.TargetBranch) --dashboard-api-key $(StrykerDashboardApiKey) --version $(System.PullRequest.SourceBranch)
+      script: $(Agent.BuildDirectory)/tools/dotnet-stryker --with-baseline:master --dashboard-api-key $(StrykerDashboardApiKey) --version master
 
   - task: CopyFiles@2
     displayName: 'Copy coveragexml to staging'
