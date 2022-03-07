@@ -792,4 +792,7 @@ To start create a new account. Accounts are used to organize payments and money 
   <data name="InitialBalanceLabel" xml:space="preserve">
     <value>Initial Balance</value>
   </data>
+  <data name="AllLabel" xml:space="preserve">
+    <value>All</value>
+  </data>
 </root>

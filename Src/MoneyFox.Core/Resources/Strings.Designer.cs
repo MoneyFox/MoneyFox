@@ -196,6 +196,15 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string AllLabel {
+            get {
+                return ResourceManager.GetString("AllLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Amount.
         /// </summary>
         public static string AmountLabel {

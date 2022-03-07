@@ -9,8 +9,12 @@ public class PaymentTypeToIntConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, string language)
     {
-        // A value of -1 is expected from lists that offer an option for not selecting a sepcific payment type.
-        // Return string.Empty in those cases so the list presents an empty row for user selection.
+        // A value of -1 is expected from lists that offer an option for not selecting a specific payment type.
+        if(value is int && (int)value == -1)
+        {
+            return Strings.AllLabel;
+        }
+
         var paymentType = (PaymentType)Enum.ToObject(typeof(PaymentType), value);
 
         return paymentType switch
