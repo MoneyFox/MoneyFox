@@ -90,11 +90,26 @@ jobs:
       restoreSolution: '**/MoneyFox.WinUI.sln'
 
   - task: DotNetCoreCLI@2
+    displayName: 'Install dotnet-stryker'
+    inputs:
+      command: custom
+      custom: tool
+      arguments: install dotnet-stryker --tool-path $(Agent.BuildDirectory)/tools
+
+  - task: DotNetCoreCLI@2
     displayName: 'Run Tests'
     inputs:
       command: test
       projects: '**/*.Tests.csproj'
       arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
+
+  - task: Powershell@2
+    displayName: 'Run dotnet-stryker'
+    inputs:
+      workingDirectory: '$(Build.Repository.LocalPath)\src\MoneyFox.Core.Tests'
+      targetType: 'inline'
+      pwsh: true
+      script: dotnet stryker --with-baseline:$(System.PullRequest.TargetBranch) --dashboard-api-key $(StrykerDashboardApiKey) --version $(System.PullRequest.SourceBranch)
 
   - task: CopyFiles@2
     displayName: 'Copy coveragexml to staging'
@@ -121,3 +136,7 @@ jobs:
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: drop'
+
+  - task: PublishMutationReport@1
+    inputs:
+      reportPattern: '**/mutation-report.html'
