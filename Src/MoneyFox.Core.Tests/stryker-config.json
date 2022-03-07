@@ -1,6 +1,7 @@
 {
   "stryker-config":
   {
+      "reporters": ["html, progress, dashboard"],
       "project": "MoneyFox.Core.csproj",
       "project-info": 
       { 
