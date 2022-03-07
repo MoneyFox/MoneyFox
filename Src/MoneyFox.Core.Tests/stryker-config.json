@@ -2,6 +2,7 @@
   "stryker-config":
   {
       "project": "MoneyFox.Core.csproj",
+      "project-info": { "name": 'https://github.com/MoneyFox/MoneyFox' },
       "baseline": {
         "provider": "Dashboard"
       }
