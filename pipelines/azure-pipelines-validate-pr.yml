@@ -206,7 +206,6 @@ jobs:
       pwsh: true
       script: $(Agent.BuildDirectory)/tools/dotnet-stryker --with-baseline:$(System.PullRequest.TargetBranch) --dashboard-api-key $(StrykerDashboardApiKey) --version $(System.PullRequest.SourceBranch)
 
-
   - task: VSBuild@1
     displayName: 'Build WinUI Project'
     inputs:
