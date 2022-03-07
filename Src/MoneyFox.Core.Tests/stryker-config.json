@@ -1,11 +1,11 @@
 {
   "stryker-config":
   {
-      "reporters": ["html, progress, dashboard"],
+      "reporters": ["html", "progress", "dashboard"],
       "project": "MoneyFox.Core.csproj",
       "project-info": 
       { 
-        "name": "https://github.com/MoneyFox/MoneyFox"
+        "name": "github.com/MoneyFox/MoneyFox/master"
       },
       "baseline": {
         "provider": "Dashboard"
