@@ -12,16 +12,14 @@
     using System.Threading.Tasks;
     using Xamarin.Essentials;
 
-    public class AboutViewModel : ObservableObject, IAboutViewModel
+    public class 
+        AboutViewModel : ObservableObject
     {
         private readonly IAppInformation appInformation;
         private readonly IBrowserAdapter browserAdapter;
         private readonly IEmailAdapter emailAdapter;
         private readonly IStoreOperations storeFeatures;
 
-        /// <summary>
-        ///     Creates an AboutViewModel Object
-        /// </summary>
         public AboutViewModel(IAppInformation appInformation,
             IEmailAdapter emailAdapter,
             IBrowserAdapter browserAdapter,
@@ -32,58 +30,28 @@
             this.browserAdapter = browserAdapter;
             storeFeatures = storeOperations;
         }
+        
+        public AsyncRelayCommand GoToWebsiteCommand => new AsyncRelayCommand(async () => await GoToWebsiteAsync());
 
-        /// <summary>
-        ///     Opens the web browser and loads to the apply solutions     website
-        /// </summary>
-        public RelayCommand GoToWebsiteCommand => new RelayCommand(async () => await GoToWebsiteAsync());
-
-        /// <summary>
-        ///     Sends a feedback mail to the apply solutions support     mail address
-        /// </summary>
-        public RelayCommand SendMailCommand => new RelayCommand(async () => await SendMailAsync());
-
-        /// <summary>
-        ///     Opens the store to rate the app.
-        /// </summary>
+        public AsyncRelayCommand SendMailCommand => new AsyncRelayCommand(async () => await SendMailAsync());
+        
         public RelayCommand RateAppCommand => new RelayCommand(RateApp);
-
-        /// <summary>
-        ///     Opens the web browser and loads repository page     on GitHub
-        /// </summary>
-        public RelayCommand GoToRepositoryCommand => new RelayCommand(async () => await GoToRepositoryAsync());
-
-        /// <summary>
-        ///     Opens the web browser and loads the project on Crowdin.
-        /// </summary>
-        public RelayCommand GoToTranslationProjectCommand =>
-            new RelayCommand(async () => await GoToTranslationProjectAsync());
-
-        /// <summary>
-        ///     Opens the webbrowser and loads the project on crowdin.
-        /// </summary>
-        public RelayCommand GoToDesignerTwitterAccountCommand =>
-            new RelayCommand(async () => await GoToDesignerTwitterAccountAsync());
-
-        /// <summary>
-        ///     Opens the webbrowser loads the contribution page on Github.
-        /// </summary>
-        public RelayCommand GoToContributionPageCommand =>
-            new RelayCommand(async () => await GoToContributionPageAsync());
-
-        /// <summary>
-        ///     Returns the Version of App
-        /// </summary>
+        
+        public AsyncRelayCommand GoToRepositoryCommand => new AsyncRelayCommand(async () => await GoToRepositoryAsync());
+        
+        public AsyncRelayCommand GoToTranslationProjectCommand =>
+            new AsyncRelayCommand(async () => await GoToTranslationProjectAsync());
+        
+        public AsyncRelayCommand GoToDesignerTwitterAccountCommand =>
+            new AsyncRelayCommand(async () => await GoToDesignerTwitterAccountAsync());
+        
+        public AsyncRelayCommand GoToContributionPageCommand =>
+            new AsyncRelayCommand(async () => await GoToContributionPageAsync());
+        
         public string Version => appInformation.GetVersion;
 
-        /// <summary>
-        ///     Returns the apply solutions webite url from the     resource file
-        /// </summary>
         public string Website => AppConstants.WebsiteUrl;
-
-        /// <summary>
-        ///     Returns the mailaddress for support cases from the     resource file
-        /// </summary>
+        
         public string SupportMail => AppConstants.SupportMail;
 
         private async Task GoToWebsiteAsync()
