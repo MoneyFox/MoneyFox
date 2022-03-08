@@ -14,6 +14,7 @@
        Shell.TitleColor="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}"
        Shell.TabBarBackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundTabColorDark}, Light={StaticResource BackgroundTabColorLight}}"
        Shell.NavBarHasShadow="False"
+       Shell.TabBarUnselectedColor="DarkGray"
        Title="MoneyFox"
        mc:Ignorable="d">
 
