@@ -48,23 +48,20 @@ namespace MoneyFox.Infrastructure.DbBackup
         {
             IEnumerable<IAccount> accounts = await publicClientApplication.GetAccountsAsync();
 
-            // let's see if we have a user in our belly already
             try
             {
                 IAccount? firstAccount = accounts.FirstOrDefault();
                 AuthenticationResult authResult = firstAccount == null
-                    ? await publicClientApplication.AcquireTokenInteractive(scopes)
-                        .WithUseEmbeddedWebView(true)
-                        .WithParentActivityOrWindow(ParentActivityWrapper
-                            .ParentActivity) // this is required for Android
-                        .ExecuteAsync()
+                    ? await AcquireInteractive()
                     : await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
 
                 GraphServiceClient = graphClientFactory.CreateClient(authResult);
                 User user = await GraphServiceClient.Me.Request().GetAsync();
                 UserAccount.SetUserAccount(
-                    user.DisplayName,
-                    string.IsNullOrEmpty(user.Mail) ? user.UserPrincipalName : user.Mail);
+                    displayName: user.DisplayName,
+                    email: string.IsNullOrEmpty(user.Mail) 
+                        ? user.UserPrincipalName 
+                        : user.Mail);
             }
             catch(MsalUiRequiredException ex)
             {
@@ -83,6 +80,13 @@ namespace MoneyFox.Infrastructure.DbBackup
                 throw;
             }
         }
+
+        private async Task<AuthenticationResult> AcquireInteractive() =>
+            await publicClientApplication.AcquireTokenInteractive(scopes)
+                .WithUseEmbeddedWebView(true)
+                .WithParentActivityOrWindow(ParentActivityWrapper
+                    .ParentActivity) // this is required for Android
+                .ExecuteAsync();
 
         /// <summary>
         ///     Logout User from OneDrive.
