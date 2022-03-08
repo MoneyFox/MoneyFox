@@ -199,10 +199,6 @@ jobs:
       platform: x64
       configuration: '$(BuildConfiguration)'
 
-  - task: PublishMutationReport@1
-    inputs:
-      reportPattern: '**/mutation-report.html'
-
 
 - job: RunMutationTests
   displayName: "Run Mutation Tests"
