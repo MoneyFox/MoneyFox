@@ -15,7 +15,7 @@
             builder.RegisterModule<InfrastructureMobileModule>();
 
             builder.RegisterInstance(AutoMapperFactory.Create());
-
+            
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("Service", StringComparison.CurrentCultureIgnoreCase))
                 .AsImplementedInterfaces();
