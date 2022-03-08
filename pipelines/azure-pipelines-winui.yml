@@ -140,3 +140,4 @@ jobs:
   - task: PublishMutationReport@1
     inputs:
       reportPattern: '**/mutation-report.html'
+      

@@ -5,7 +5,7 @@
       "project": "MoneyFox.Core.csproj",
       "project-info": 
       { 
-        "name": "github.com/MoneyFox/MoneyFox/master"
+        "name": "github.com/MoneyFox/MoneyFox"
       },
       "baseline": {
         "provider": "Dashboard"
