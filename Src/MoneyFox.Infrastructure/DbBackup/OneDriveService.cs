@@ -1,6 +1,6 @@
-﻿namespace MoneyFox.Infrastructure.DbBackup
+﻿#nullable enable
+namespace MoneyFox.Infrastructure.DbBackup
 {
-    using Core._Pending_.Common;
     using Core._Pending_.Common.Constants;
     using Core._Pending_.DbBackup;
     using Core._Pending_.Exceptions;
@@ -14,23 +14,19 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Logger = NLog.Logger;
-
-    /// <inheritdoc />
+    
     public class OneDriveService : ICloudBackupService
     {
         private const int BACKUP_ARCHIVE_COUNT = 15;
         private const string BACKUP_NAME_TEMP = "moneyfox.db_upload";
         private const string ERROR_CODE_CANCELED = "authentication_canceled";
-        private readonly string[] scopes = {"Files.ReadWrite", "User.ReadBasic.All"};
+        private readonly string[] scopes = { "Files.ReadWrite", "User.ReadBasic.All" };
 
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
         private readonly IPublicClientApplication publicClientApplication;
         private readonly IGraphClientFactory graphClientFactory;
-
-        /// <summary>
-        ///     Constructor
-        /// </summary>
+        
         public OneDriveService(IPublicClientApplication publicClientApplication, IGraphClientFactory graphClientFactory)
         {
             this.publicClientApplication = publicClientApplication;
@@ -55,7 +51,7 @@
             // let's see if we have a user in our belly already
             try
             {
-                IAccount firstAccount = accounts.FirstOrDefault();
+                IAccount? firstAccount = accounts.FirstOrDefault();
                 AuthenticationResult authResult = firstAccount == null
                     ? await publicClientApplication.AcquireTokenInteractive(scopes)
                         .WithUseEmbeddedWebView(true)
@@ -85,36 +81,6 @@
 
                 logManager.Error(ex);
                 throw;
-            }
-        }
-
-        /// <summary>
-        ///     Login User to OneDrive silently.
-        /// </summary>
-        private async Task LoginSilentAsync()
-        {
-            try
-            {
-                IEnumerable<IAccount> accounts = await publicClientApplication.GetAccountsAsync();
-                IAccount? firstAccount = accounts.FirstOrDefault();
-                AuthenticationResult authResult = firstAccount == null
-                    ? await publicClientApplication.AcquireTokenInteractive(scopes)
-                        .WithUseEmbeddedWebView(true)
-                        .WithParentActivityOrWindow(ParentActivityWrapper
-                            .ParentActivity) // this is required for Android
-                        .ExecuteAsync()
-                    : await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
-
-                GraphServiceClient = graphClientFactory.CreateClient(authResult);
-                User user = await GraphServiceClient.Me.Request().GetAsync();
-                UserAccount.SetUserAccount(
-                    user.DisplayName,
-                    string.IsNullOrEmpty(user.Mail) ? user.UserPrincipalName : user.Mail);
-            }
-            catch(MsalUiRequiredException ex)
-            {
-                logManager.Info(ex);
-                throw new BackupAuthenticationFailedException();
             }
         }
 
@@ -210,56 +176,6 @@
                 logManager.Error(ex);
                 await RestoreArchivedBackupInCaseOfErrorAsync();
                 throw new BackupAuthenticationFailedException(ex);
-            }
-        }
-
-        private async Task RestoreArchivedBackupInCaseOfErrorAsync()
-        {
-            try
-            {
-                logManager.Info("Restore archived Backup.");
-
-                if(GraphServiceClient == null)
-                {
-                    throw new GraphClientNullException();
-                }
-
-                IDriveItemChildrenCollectionPage archivedBackups = await GraphServiceClient.Drive
-                    .Items[ArchiveFolder?.Id]
-                    .Children
-                    .Request()
-                    .GetAsync();
-
-                if(!archivedBackups.Any())
-                {
-                    logManager.Info("No backups found.");
-                    return;
-                }
-
-                DriveItem lastBackup = archivedBackups.OrderByDescending(x => x.CreatedDateTime).First();
-
-                DriveItem? appRoot = await GraphServiceClient
-                    .Me
-                    .Drive
-                    .Special
-                    .AppRoot
-                    .Request()
-                    .GetAsync();
-
-                var updateItem = new DriveItem
-                {
-                    ParentReference = new ItemReference {Id = appRoot.Id}, Name = DatabaseConstants.BACKUP_NAME
-                };
-
-                await GraphServiceClient
-                    .Drive
-                    .Items[lastBackup.Id]
-                    .Request()
-                    .UpdateAsync(updateItem);
-            }
-            catch(Exception ex)
-            {
-                logManager.Error(ex, "Failed to restore database on fail.");
             }
         }
 
@@ -388,6 +304,86 @@
             }
         }
 
+        /// <summary>
+        ///     Login User to OneDrive silently.
+        /// </summary>
+        private async Task LoginSilentAsync()
+        {
+            try
+            {
+                IEnumerable<IAccount> accounts = await publicClientApplication.GetAccountsAsync();
+                IAccount? firstAccount = accounts.FirstOrDefault();
+                AuthenticationResult authResult = firstAccount == null
+                    ? await publicClientApplication.AcquireTokenInteractive(scopes)
+                        .WithUseEmbeddedWebView(true)
+                        .WithParentActivityOrWindow(ParentActivityWrapper
+                            .ParentActivity) // this is required for Android
+                        .ExecuteAsync()
+                    : await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
+
+                GraphServiceClient = graphClientFactory.CreateClient(authResult);
+                User user = await GraphServiceClient.Me.Request().GetAsync();
+                UserAccount.SetUserAccount(
+                    user.DisplayName,
+                    string.IsNullOrEmpty(user.Mail) ? user.UserPrincipalName : user.Mail);
+            }
+            catch(MsalUiRequiredException ex)
+            {
+                logManager.Info(ex);
+                throw new BackupAuthenticationFailedException();
+            }
+        }
+
+        private async Task RestoreArchivedBackupInCaseOfErrorAsync()
+        {
+            try
+            {
+                logManager.Info("Restore archived Backup.");
+
+                if(GraphServiceClient == null)
+                {
+                    throw new GraphClientNullException();
+                }
+
+                IDriveItemChildrenCollectionPage archivedBackups = await GraphServiceClient.Drive
+                    .Items[ArchiveFolder?.Id]
+                    .Children
+                    .Request()
+                    .GetAsync();
+
+                if(!archivedBackups.Any())
+                {
+                    logManager.Info("No backups found.");
+                    return;
+                }
+
+                DriveItem lastBackup = archivedBackups.OrderByDescending(x => x.CreatedDateTime).First();
+
+                DriveItem? appRoot = await GraphServiceClient
+                    .Me
+                    .Drive
+                    .Special
+                    .AppRoot
+                    .Request()
+                    .GetAsync();
+
+                var updateItem = new DriveItem
+                {
+                    ParentReference = new ItemReference { Id = appRoot.Id }, Name = DatabaseConstants.BACKUP_NAME
+                };
+
+                await GraphServiceClient
+                    .Drive
+                    .Items[lastBackup.Id]
+                    .Request()
+                    .UpdateAsync(updateItem);
+            }
+            catch(Exception ex)
+            {
+                logManager.Error(ex, "Failed to restore database on fail.");
+            }
+        }
+
         private async Task DeleteCleanupOldBackupsAsync()
         {
             logManager.Info("Cleanup old backups.");
@@ -446,7 +442,7 @@
 
             var updateItem = new DriveItem
             {
-                ParentReference = new ItemReference {Id = ArchiveFolder.Id},
+                ParentReference = new ItemReference { Id = ArchiveFolder.Id },
                 Name = string.Format(
                     CultureInfo.InvariantCulture,
                     DatabaseConstants.BACKUP_ARCHIVE_NAME,
@@ -483,7 +479,7 @@
                 return;
             }
 
-            var updateItem = new DriveItem {Name = DatabaseConstants.BACKUP_NAME};
+            var updateItem = new DriveItem { Name = DatabaseConstants.BACKUP_NAME };
 
             await GraphServiceClient
                 .Drive
@@ -527,7 +523,7 @@
                 throw new GraphClientNullException();
             }
 
-            var folderToCreate = new DriveItem {Name = DatabaseConstants.ARCHIVE_FOLDER_NAME, Folder = new Folder()};
+            var folderToCreate = new DriveItem { Name = DatabaseConstants.ARCHIVE_FOLDER_NAME, Folder = new Folder() };
 
             ArchiveFolder = await GraphServiceClient
                 .Me

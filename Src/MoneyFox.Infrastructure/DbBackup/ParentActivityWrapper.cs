@@ -1,4 +1,5 @@
-﻿namespace MoneyFox.Core._Pending_.Common
+﻿#nullable enable
+namespace MoneyFox.Infrastructure.DbBackup
 {
     public static class ParentActivityWrapper
     {
