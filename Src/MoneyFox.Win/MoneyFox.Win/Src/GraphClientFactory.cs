@@ -1,5 +1,4 @@
-﻿#nullable enable
-namespace MoneyFox.Win;
+﻿namespace MoneyFox.Win;
 
 using Microsoft.Graph;
 using Microsoft.Identity.Client;

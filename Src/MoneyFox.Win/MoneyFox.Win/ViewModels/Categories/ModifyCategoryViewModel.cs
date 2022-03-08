@@ -1,19 +1,18 @@
-﻿using DialogServiceClass = MoneyFox.Win.DialogService;
+﻿namespace MoneyFox.Win.ViewModels.Categories;
 
-namespace MoneyFox.Win.ViewModels.Categories;
-
+using DialogServiceClass = DialogService;
 using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core._Pending_.Common.Interfaces;
-using Core._Pending_.Common.Messages;
-using Core.Queries.Categories.GetCategoryById;
-using Core.Queries.Categories.GetIfCategoryWithNameExists;
-using Core.Resources;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core._Pending_.Common.Messages;
+using MoneyFox.Core.Queries.Categories.GetCategoryById;
+using MoneyFox.Core.Queries.Categories.GetIfCategoryWithNameExists;
+using MoneyFox.Core.Resources;
 using MediatR;
 using Microsoft.UI.Xaml.Controls;
-using Services;
+using MoneyFox.Win.Services;
 using System.Threading.Tasks;
 
 /// <summary>

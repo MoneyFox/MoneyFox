@@ -3,6 +3,8 @@
     using Autofac;
     using Autofac.Extras.CommonServiceLocator;
     using CommonServiceLocator;
+    using MoneyFox.ViewModels.OverflowMenu;
+    using MoneyFox.Views.About;
     using ViewModels.About;
     using ViewModels.Accounts;
     using ViewModels.Categories;
@@ -37,6 +39,7 @@
         public static string AddCategoryRoute => nameof(AddCategoryPage);
         public static string BackupRoute => nameof(BackupPage);
         public static string SettingsRoute => nameof(SettingsPage);
+        public static string AboutRoute => nameof(AboutPage);
         public static string StatisticCashFlowRoute => nameof(StatisticCashFlowPage);
         public static string StatisticCategorySpreadingRoute => nameof(StatisticCategorySpreadingPage);
         public static string StatisticCategorySummaryRoute => nameof(StatisticCategorySummaryPage);
@@ -112,6 +115,9 @@
 
         public static SettingsViewModel SettingsViewModel => ServiceLocator.Current.GetInstance<SettingsViewModel>();
         public static AboutViewModel AboutViewModel => ServiceLocator.Current.GetInstance<AboutViewModel>();
+
+        public static OverflowMenuViewModel OverflowMenuViewModel =>
+            ServiceLocator.Current.GetInstance<OverflowMenuViewModel>();
 
         public static void RegisterServices(ContainerBuilder registrations)
         {

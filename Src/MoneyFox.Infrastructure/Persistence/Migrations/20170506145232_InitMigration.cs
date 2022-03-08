@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-using System.Diagnostics.CodeAnalysis;
-
-namespace MoneyFox.Persistence.Migrations
+﻿namespace MoneyFox.Persistence.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+
     [SuppressMessage("Major Code Smell", "S138:Functions should not have too many lines of code", Justification = "Generated Code")]
     [SuppressMessage("Minor Code Smell", "S1192:String literals should not be duplicated")]
     public partial class InitMigration : Migration

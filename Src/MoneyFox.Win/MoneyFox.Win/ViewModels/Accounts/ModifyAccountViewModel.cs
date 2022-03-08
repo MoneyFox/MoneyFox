@@ -1,19 +1,18 @@
-﻿using DialogServiceClass = MoneyFox.Win.DialogService;
+﻿namespace MoneyFox.Win.ViewModels.Accounts;
 
-namespace MoneyFox.Win.ViewModels.Accounts;
-
+using DialogServiceClass = DialogService;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core._Pending_.Common.Interfaces;
-using Core._Pending_.Common.Messages;
-using Core.Queries.Accounts.GetAccountNameById;
-using Core.Queries.Accounts.GetIfAccountWithNameExists;
-using Core.Resources;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core._Pending_.Common.Messages;
+using MoneyFox.Core.Queries.Accounts.GetAccountNameById;
+using MoneyFox.Core.Queries.Accounts.GetIfAccountWithNameExists;
+using MoneyFox.Core.Resources;
 using MediatR;
 using Microsoft.UI.Xaml.Controls;
 using NLog;
-using Services;
+using MoneyFox.Win.Services;
 using System.Globalization;
 using System.Threading.Tasks;
 

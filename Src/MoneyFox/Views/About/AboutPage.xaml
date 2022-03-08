@@ -5,14 +5,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              Visual="Material"
+             Title="{x:Static resources:Strings.AboutTitle}"
              mc:Ignorable="d">
 
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="15">
-                <Label Style="{StaticResource TextHeadline}"
-                       Text="{x:Static resources:Strings.AboutTitle}" />
-
                 <StackLayout Orientation="Horizontal">
                     <Label Text="{x:Static resources:Strings.VersionLabel}" />
                     <Label Text="{Binding Version}" />

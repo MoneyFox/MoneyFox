@@ -1096,6 +1096,15 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        public static string HomeTitle {
+            get {
+                return ResourceManager.GetString("HomeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The app icon was created by:.
         /// </summary>
         public static string IconDesignerLabel {
@@ -1381,6 +1390,15 @@ namespace MoneyFox.Core.Resources {
         public static string MandatoryFieldEmptyTitle {
             get {
                 return ResourceManager.GetString("MandatoryFieldEmptyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Menu.
+        /// </summary>
+        public static string MenuTitle {
+            get {
+                return ResourceManager.GetString("MenuTitle", resourceCulture);
             }
         }
         

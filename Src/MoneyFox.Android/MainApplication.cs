@@ -1,5 +1,4 @@
-﻿#nullable enable
-namespace MoneyFox.Droid
+﻿namespace MoneyFox.Droid
 {
     using Android.App;
     using Android.Runtime;
