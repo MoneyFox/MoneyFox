@@ -2,59 +2,54 @@
 {
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
+    using Core.Interfaces;
     using Core.Resources;
-    using MoneyFox;
+    using JetBrains.Annotations;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Xamarin.Forms;
+    using Views.About;
+    using Views.Backup;
+    using Views.Categories;
+    using Views.Settings;
 
+    [UsedImplicitly]
     public class OverflowMenuViewModel : ObservableObject
     {
+        private readonly INavigationService navigationService;
+
+        public OverflowMenuViewModel(INavigationService navigationService)
+        {
+            this.navigationService = navigationService;
+        }
+
+        public AsyncRelayCommand<OverflowItem> GoToSelectedItemCommand
+            => new AsyncRelayCommand<OverflowItem>(async s => await GoToSelectedItem(s.Type));
+
         public List<OverflowItem> OverflowEntries
             => new List<OverflowItem>
             {
-                new OverflowItem
-                {
-                    Name = Strings.CategoriesTitle,
-                    Type = OverflowMenuItemType.Categories
-                },
-                new OverflowItem
-                {
-                    Name = Strings.BackupTitle,
-                    Type = OverflowMenuItemType.Backup
-                },
-                new OverflowItem
-                {
-                    Name = Strings.SettingsTitle,
-                    Type = OverflowMenuItemType.Settings
-                },
-                new OverflowItem
-                {
-                    Name = Strings.AboutTitle,
-                    Type = OverflowMenuItemType.About
-                }
+                new OverflowItem { Name = Strings.CategoriesTitle, Type = OverflowMenuItemType.Categories },
+                new OverflowItem { Name = Strings.BackupTitle, Type = OverflowMenuItemType.Backup },
+                new OverflowItem { Name = Strings.SettingsTitle, Type = OverflowMenuItemType.Settings },
+                new OverflowItem { Name = Strings.AboutTitle, Type = OverflowMenuItemType.About }
             };
 
-        public AsyncRelayCommand<OverflowItem> GoToSelectedItemCommand
-            => new AsyncRelayCommand<OverflowItem>(async s => await GoToSelectedItem(s));
-
-        private static async Task GoToSelectedItem(OverflowItem item)
+        private async Task GoToSelectedItem(OverflowMenuItemType menuType)
         {
-            if(item.Type == OverflowMenuItemType.Categories)
+            switch(menuType)
             {
-                await Shell.Current.GoToAsync(ViewModelLocator.CategoryListRoute);
-            }
-            else if(item.Type == OverflowMenuItemType.Backup)
-            {
-                await Shell.Current.GoToAsync(ViewModelLocator.BackupRoute);
-            }
-            else if(item.Type == OverflowMenuItemType.Settings)
-            {
-                await Shell.Current.GoToAsync(ViewModelLocator.SettingsRoute);
-            }
-            else if(item.Type == OverflowMenuItemType.About)
-            {
-                await Shell.Current.GoToAsync(ViewModelLocator.AboutRoute);
+                case OverflowMenuItemType.Categories:
+                    await navigationService.NavigateTo<CategoryListPage>();
+                    break;
+                case OverflowMenuItemType.Backup:
+                    await navigationService.NavigateTo<BackupPage>();
+                    break;
+                case OverflowMenuItemType.Settings:
+                    await navigationService.NavigateTo<SettingsPage>();
+                    break;
+                case OverflowMenuItemType.About:
+                    await navigationService.NavigateTo<AboutPage>();
+                    break;
             }
         }
     }
