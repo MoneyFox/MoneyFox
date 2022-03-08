@@ -352,7 +352,7 @@
     <value>Fertig</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>An account with that name already exists. Continue with saving?</value>
+    <value>Ein Konto mit diesem Namen existiert bereits. Speichern fortsetzen?</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
     <value>Eine Kategorie mit diesem Namen existiert bereits.</value>
@@ -790,5 +790,11 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
   </data>
   <data name="InitialBalanceLabel" xml:space="preserve">
     <value>Anfangsguthaben</value>
+  </data>
+  <data name="HomeTitle" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="MenuTitle" xml:space="preserve">
+    <value>Menu</value>
   </data>
 </root>
