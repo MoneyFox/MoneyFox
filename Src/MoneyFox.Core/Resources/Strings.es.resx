@@ -790,4 +790,10 @@ Para empezar crea una nueva cuenta. Las cuentas se utilizan para organizar en gr
   <data name="InitialBalanceLabel" xml:space="preserve">
     <value>Initial Balance</value>
   </data>
+  <data name="HomeTitle" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="MenuTitle" xml:space="preserve">
+    <value>Menu</value>
+  </data>
 </root>
