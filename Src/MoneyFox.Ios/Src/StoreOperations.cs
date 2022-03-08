@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.iOS
 {
-    using Core._Pending_.Common.Interfaces;
+    using Core.Common.Interfaces;
     using StoreKit;
 
     /// <inheritdoc />

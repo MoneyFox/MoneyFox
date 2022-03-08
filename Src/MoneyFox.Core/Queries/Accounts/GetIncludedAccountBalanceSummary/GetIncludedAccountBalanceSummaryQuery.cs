@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Core.Queries.Accounts.GetIncludedAccountBalanceSummary
 {
-    using _Pending_.Common.Interfaces;
     using _Pending_.Common.QueryObjects;
+    using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
     using System.Linq;

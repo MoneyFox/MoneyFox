@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Statistics
 {
-    using Core._Pending_.Common.Interfaces;
+    using Common.Interfaces;
     using Core.Aggregates;
     using Core.Aggregates.Payments;
     using Core.Queries.Statistics;

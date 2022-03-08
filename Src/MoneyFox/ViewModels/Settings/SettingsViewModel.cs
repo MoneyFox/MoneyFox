@@ -3,7 +3,7 @@
     using CommunityToolkit.Mvvm.ComponentModel;
     using Core._Pending_;
     using Core._Pending_.Common.Facades;
-    using Core._Pending_.Common.Interfaces;
+    using Core.Common.Interfaces;
     using System.Collections.ObjectModel;
     using System.Globalization;
     using System.Linq;
@@ -16,7 +16,8 @@
 
         private CultureInfo selectedCulture = CultureHelper.CurrentCulture;
 
-        public SettingsViewModel(ISettingsFacade settingsFacade,
+        public SettingsViewModel(
+            ISettingsFacade settingsFacade,
             IDialogService dialogService)
         {
             this.settingsFacade = settingsFacade;

@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Categories.GetCategoryById
 {
-    using Core._Pending_.Common.Interfaces;
+    using Common.Interfaces;
     using Core.Aggregates.Payments;
     using Core.Queries.Categories.GetCategoryById;
     using FluentAssertions;

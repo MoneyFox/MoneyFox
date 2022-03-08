@@ -1,16 +1,16 @@
 ﻿namespace MoneyFox.ViewModels.Accounts
 {
+    using AutoMapper;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
-    using Core._Pending_.Common.Interfaces;
     using Core._Pending_.Common.Messages;
     using Core.Commands.Accounts.DeleteAccountById;
+    using Core.Common.Interfaces;
     using Core.Queries.Accounts.GetAccountEndOfMonthBalance;
     using Core.Queries.Accounts.GetAccounts;
     using Core.Resources;
     using Extensions;
-    using global::AutoMapper;
     using Groups;
     using MediatR;
     using System.Collections.Generic;

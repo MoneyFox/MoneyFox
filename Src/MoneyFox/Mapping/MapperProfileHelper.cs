@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Mapping
 {
-    using Core._Pending_.Common.Interfaces.Mapping;
+    using Core.Common.Interfaces.Mapping;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -25,18 +25,18 @@
         {
             Type[] types = rootAssembly.GetExportedTypes();
 
-            var mapsFrom = (from type in types
-                            from instance in type.GetInterfaces()
-                            where instance.IsGenericType
-                                  && instance.GetGenericTypeDefinition() == typeof(IMapFrom<>)
-                                  && !type.IsAbstract
-                                  && !type.IsInterface
-                            select new Map(
-                                type.GetInterfaces()
-                                    .First(x => x.Name.Contains("MapFrom"))
-                                    .GetGenericArguments()
-                                    .First(),
-                                type))
+            List<Map> mapsFrom = (from type in types
+                    from instance in type.GetInterfaces()
+                    where instance.IsGenericType
+                          && instance.GetGenericTypeDefinition() == typeof(IMapFrom<>)
+                          && !type.IsAbstract
+                          && !type.IsInterface
+                    select new Map(
+                        type.GetInterfaces()
+                            .First(x => x.Name.Contains("MapFrom"))
+                            .GetGenericArguments()
+                            .First(),
+                        type))
                 .ToList();
 
             return mapsFrom;
@@ -46,12 +46,12 @@
         {
             Type[] types = rootAssembly.GetExportedTypes();
 
-            var mapsFrom = (from type in types
-                            from instance in type.GetInterfaces()
-                            where typeof(IHaveCustomMapping).IsAssignableFrom(type)
-                                  && !type.IsAbstract
-                                  && !type.IsInterface
-                            select (IHaveCustomMapping)Activator.CreateInstance(type)).ToList();
+            List<IHaveCustomMapping> mapsFrom = (from type in types
+                from instance in type.GetInterfaces()
+                where typeof(IHaveCustomMapping).IsAssignableFrom(type)
+                      && !type.IsAbstract
+                      && !type.IsInterface
+                select (IHaveCustomMapping)Activator.CreateInstance(type)).ToList();
 
             return mapsFrom;
         }

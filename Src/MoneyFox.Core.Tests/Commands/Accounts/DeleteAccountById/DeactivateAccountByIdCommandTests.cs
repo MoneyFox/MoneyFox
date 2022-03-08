@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Core.Tests.Commands.Accounts.DeleteAccountById
 {
-    using Core._Pending_.Common.Interfaces;
+    using Common.Interfaces;
     using Core.Aggregates;
     using Core.Commands.Accounts.DeleteAccountById;
     using FluentAssertions;

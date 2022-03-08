@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Core.Tests.Commands.Accounts.CreateAccount
 {
+    using Common.Interfaces;
     using Core._Pending_.Common.Facades;
-    using Core._Pending_.Common.Interfaces;
     using Core.Commands.Accounts.CreateAccount;
     using Infrastructure;
     using MediatR;

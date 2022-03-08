@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Core.Tests.Commands.Payments.UpdatePaymentById
 {
-    using Core._Pending_.Common.Interfaces;
+    using Common.Interfaces;
     using Core.Aggregates;
     using Core.Aggregates.Payments;
     using Core.Commands.Payments.UpdatePayment;

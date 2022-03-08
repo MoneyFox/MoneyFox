@@ -1,8 +1,8 @@
 ﻿namespace MoneyFox.Win.ViewModels.Categories;
 
 using CommunityToolkit.Mvvm.ComponentModel;
-using Core._Pending_.Common.Interfaces.Mapping;
 using Core.Aggregates.Payments;
+using Core.Common.Interfaces.Mapping;
 using System;
 
 public class CategoryViewModel : ObservableObject, IMapFrom<Category>

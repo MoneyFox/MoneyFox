@@ -27,7 +27,7 @@
 
         public App()
         {
-            Device.SetFlags(new[] {"AppTheme_Experimental", "SwipeView_Experimental"});
+            Device.SetFlags(new[] { "AppTheme_Experimental", "SwipeView_Experimental" });
 
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
             CultureHelper.CurrentCulture = new CultureInfo(settingsFacade.DefaultCulture);

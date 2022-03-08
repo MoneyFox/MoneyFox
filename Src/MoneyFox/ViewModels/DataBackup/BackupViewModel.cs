@@ -3,9 +3,9 @@
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using Core._Pending_.Common.Facades;
-    using Core._Pending_.Common.Interfaces;
     using Core._Pending_.DbBackup;
     using Core._Pending_.Exceptions;
+    using Core.Common.Interfaces;
     using Core.Interfaces;
     using Core.Resources;
     using Microsoft.AppCenter.Crashes;
@@ -30,7 +30,8 @@
         private bool isLoadingBackupAvailability;
         private UserAccount userAccount;
 
-        public BackupViewModel(IBackupService backupService,
+        public BackupViewModel(
+            IBackupService backupService,
             IDialogService dialogService,
             IConnectivityAdapter connectivity,
             ISettingsFacade settingsFacade,

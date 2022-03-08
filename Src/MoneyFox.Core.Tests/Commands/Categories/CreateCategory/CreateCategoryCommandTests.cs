@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Core.Tests.Commands.Categories.CreateCategory
 {
-    using Core._Pending_.Common.Interfaces;
+    using Common.Interfaces;
     using Core.Aggregates.Payments;
     using Core.Commands.Categories.CreateCategory;
     using FluentAssertions;

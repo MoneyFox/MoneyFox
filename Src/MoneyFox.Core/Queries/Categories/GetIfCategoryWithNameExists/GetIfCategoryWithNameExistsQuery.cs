@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Core.Queries.Categories.GetIfCategoryWithNameExists
 {
-    using _Pending_.Common.Interfaces;
+    using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
     using System.Threading;

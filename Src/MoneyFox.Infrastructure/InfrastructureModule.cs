@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Infrastructure
 {
     using Autofac;
-    using Core._Pending_.Common.Interfaces;
+    using Core.Common.Interfaces;
     using DbBackup;
     using Persistence;
 

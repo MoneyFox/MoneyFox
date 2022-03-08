@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.ViewModels.Categories
 {
-    using Core._Pending_.Common.Interfaces;
     using Core.Commands.Categories.CreateCategory;
+    using Core.Common.Interfaces;
     using MediatR;
     using System.Threading.Tasks;
 
@@ -9,7 +9,8 @@
     {
         private readonly IMediator mediator;
 
-        public AddCategoryViewModel(IMediator mediator,
+        public AddCategoryViewModel(
+            IMediator mediator,
             IDialogService dialogService) : base(mediator, dialogService)
         {
             this.mediator = mediator;

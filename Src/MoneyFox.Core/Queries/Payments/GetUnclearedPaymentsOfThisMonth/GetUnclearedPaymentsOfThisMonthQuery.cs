@@ -2,9 +2,9 @@
 {
     using _Pending_;
     using _Pending_.Common;
-    using _Pending_.Common.Interfaces;
     using _Pending_.Common.QueryObjects;
     using Aggregates.Payments;
+    using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;

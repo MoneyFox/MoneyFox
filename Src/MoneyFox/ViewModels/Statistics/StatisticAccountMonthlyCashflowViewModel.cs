@@ -1,11 +1,11 @@
 ﻿namespace MoneyFox.ViewModels.Statistics
 {
     using Accounts;
+    using AutoMapper;
     using CommunityToolkit.Mvvm.Input;
     using Core.Queries.Accounts.GetAccounts;
     using Core.Queries.Statistics;
     using Core.Queries.Statistics.Queries;
-    using global::AutoMapper;
     using MediatR;
     using Microcharts;
     using SkiaSharp;
@@ -27,7 +27,8 @@
         private bool hasNoData;
         private AccountViewModel selectedAccount = null!;
 
-        public StatisticAccountMonthlyCashflowViewModel(IMediator mediator,
+        public StatisticAccountMonthlyCashflowViewModel(
+            IMediator mediator,
             IMapper mapper) : base(mediator)
         {
             this.mapper = mapper;
