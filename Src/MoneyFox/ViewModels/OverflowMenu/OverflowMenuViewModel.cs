@@ -53,18 +53,4 @@
             }
         }
     }
-
-    public enum OverflowMenuItemType
-    {
-        Categories,
-        Backup,
-        Settings,
-        About
-    }
-
-    public class OverflowItem
-    {
-        public string Name { get; set; } = "";
-        public OverflowMenuItemType Type { get; set; }
-    }
 }
