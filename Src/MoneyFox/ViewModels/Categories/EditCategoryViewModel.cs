@@ -1,9 +1,9 @@
 ﻿namespace MoneyFox.ViewModels.Categories
 {
     using AutoMapper;
-    using Core._Pending_.Common.Interfaces;
     using Core.Aggregates.Payments;
     using Core.Commands.Categories.UpdateCategory;
+    using Core.Common.Interfaces;
     using Core.Queries.Categories.GetCategoryById;
     using MediatR;
     using System.Threading.Tasks;

@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Core.Queries.Accounts.GetAccountById
 {
-    using _Pending_.Common.Interfaces;
     using Aggregates;
+    using Common.Interfaces;
     using MediatR;
     using System.Threading;
     using System.Threading.Tasks;

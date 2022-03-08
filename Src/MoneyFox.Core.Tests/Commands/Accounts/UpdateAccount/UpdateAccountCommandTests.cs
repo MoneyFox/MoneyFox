@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Core.Tests.Commands.Accounts.UpdateAccount
 {
-    using Core._Pending_.Common.Interfaces;
+    using Common.Interfaces;
     using Core.Aggregates;
     using Core.Commands.Accounts.UpdateAccount;
     using FluentAssertions;

@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Services
 {
     using Acr.UserDialogs;
-    using Core._Pending_.Common.Interfaces;
+    using Core.Common.Interfaces;
     using JetBrains.Annotations;
     using System.Threading.Tasks;
 

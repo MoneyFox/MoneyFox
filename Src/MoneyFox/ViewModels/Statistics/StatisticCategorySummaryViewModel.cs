@@ -2,7 +2,7 @@
 {
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
-    using Core._Pending_.Common.Interfaces;
+    using Core.Common.Interfaces;
     using Core.Queries.Statistics.Queries.GetCategorySummary;
     using Extensions;
     using MediatR;

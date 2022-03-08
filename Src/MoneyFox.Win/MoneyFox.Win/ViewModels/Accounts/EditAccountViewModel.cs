@@ -2,10 +2,10 @@
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
-using Core._Pending_.Common.Interfaces;
 using Core.Aggregates;
 using Core.Commands.Accounts.DeleteAccountById;
 using Core.Commands.Accounts.UpdateAccount;
+using Core.Common.Interfaces;
 using Core.Queries.Accounts.GetAccountById;
 using Core.Resources;
 using MediatR;

@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Core.Tests.Commands.Payments.DeletePaymentById
 {
-    using Core._Pending_.Common.Interfaces;
+    using Common.Interfaces;
     using Core._Pending_.Exceptions;
     using Core.Aggregates;
     using Core.Aggregates.Payments;

@@ -1,10 +1,10 @@
 ﻿namespace MoneyFox.Tests.ViewModels
 {
-    using Core._Pending_.Common.Interfaces;
     using Core.Aggregates.Payments;
     using Core.Queries.Categories.GetCategoryBySearchTerm;
     using FluentAssertions;
     using AutoMapper;
+    using Core.Common.Interfaces;
     using MediatR;
     using MoneyFox.ViewModels.Categories;
     using NSubstitute;

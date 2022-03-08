@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Payments.GetPaymentById
 {
-    using Core._Pending_.Common.Interfaces;
+    using Common.Interfaces;
     using Core._Pending_.Exceptions;
     using Core.Aggregates;
     using Core.Aggregates.Payments;

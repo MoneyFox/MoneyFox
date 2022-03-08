@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.ViewModels.Categories
 {
-    using Core._Pending_.Common.Interfaces;
     using Core.Commands.Categories.CreateCategory;
+    using Core.Common.Interfaces;
     using MediatR;
     using System.Threading.Tasks;
 

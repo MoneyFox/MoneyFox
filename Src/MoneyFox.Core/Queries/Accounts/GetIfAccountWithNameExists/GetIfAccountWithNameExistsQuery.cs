@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Core.Queries.Accounts.GetIfAccountWithNameExists
 {
-    using _Pending_.Common.Interfaces;
     using _Pending_.Common.QueryObjects;
+    using Common.Interfaces;
     using MediatR;
     using System.Threading;
     using System.Threading.Tasks;

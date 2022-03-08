@@ -1,9 +1,9 @@
 ﻿namespace MoneyFox.Core.Queries.Statistics.Queries
 {
     using _Pending_;
-    using _Pending_.Common.Interfaces;
     using _Pending_.Common.QueryObjects;
     using Aggregates.Payments;
+    using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
     using Resources;

@@ -1,9 +1,9 @@
 ﻿namespace MoneyFox.ViewModels.Payments
 {
     using AutoMapper;
-    using Core._Pending_.Common.Interfaces;
     using Core.Aggregates.Payments;
     using Core.Commands.Payments.CreatePayment;
+    using Core.Common.Interfaces;
     using Core.Queries.Accounts.GetAccountById;
     using JetBrains.Annotations;
     using MediatR;

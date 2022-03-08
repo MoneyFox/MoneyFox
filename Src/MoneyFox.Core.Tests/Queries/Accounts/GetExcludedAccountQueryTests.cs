@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Accounts
 {
-    using Core._Pending_.Common.Interfaces;
+    using Common.Interfaces;
     using Core.Aggregates;
     using Core.Queries.Accounts.GetExcludedAccount;
     using FluentAssertions;

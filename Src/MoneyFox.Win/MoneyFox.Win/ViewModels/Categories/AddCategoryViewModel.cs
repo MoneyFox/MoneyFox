@@ -1,8 +1,8 @@
 ﻿namespace MoneyFox.Win.ViewModels.Categories;
 
 using AutoMapper;
-using Core._Pending_.Common.Interfaces;
 using Core.Commands.Categories.CreateCategory;
+using Core.Common.Interfaces;
 using Core.Resources;
 using MediatR;
 using Services;

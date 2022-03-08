@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Categories.GetCategoryBySearchTerm
 {
-    using Core._Pending_.Common.Interfaces;
+    using Common.Interfaces;
     using Core.Aggregates.Payments;
     using Core.Queries.Categories.GetCategoryBySearchTerm;
     using FluentAssertions;

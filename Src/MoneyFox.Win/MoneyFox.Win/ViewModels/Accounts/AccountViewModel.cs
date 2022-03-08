@@ -1,8 +1,8 @@
 ﻿namespace MoneyFox.Win.ViewModels.Accounts;
 
 using CommunityToolkit.Mvvm.ComponentModel;
-using Core._Pending_.Common.Interfaces.Mapping;
 using Core.Aggregates;
+using Core.Common.Interfaces.Mapping;
 using System;
 
 public sealed class AccountViewModel : ObservableObject, IMapFrom<Account>, IEquatable<AccountViewModel>

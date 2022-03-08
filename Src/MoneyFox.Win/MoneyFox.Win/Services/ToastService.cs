@@ -1,7 +1,7 @@
 ﻿#nullable enable
 namespace MoneyFox.Win.Services;
 
-using Core._Pending_.Common.Interfaces;
+using Core.Common.Interfaces;
 using System.Threading.Tasks;
 
 public class ToastService : IToastService

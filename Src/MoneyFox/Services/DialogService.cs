@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Services
 {
-    using Core._Pending_.Common.Interfaces;
+    using Core.Common.Interfaces;
     using Core.Resources;
     using System;
     using System.Threading.Tasks;

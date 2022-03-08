@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Payments.GetMonthlyIncome
 {
+    using Common.Interfaces;
     using Core._Pending_;
-    using Core._Pending_.Common.Interfaces;
     using Core.Aggregates;
     using Core.Aggregates.Payments;
     using Core.Queries.Payments.GetMonthlyIncome;
