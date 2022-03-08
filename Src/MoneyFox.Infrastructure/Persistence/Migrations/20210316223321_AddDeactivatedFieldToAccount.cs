@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System.Diagnostics.CodeAnalysis;
-
-namespace MoneyFox.Persistence.Migrations
+﻿namespace MoneyFox.Persistence.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+    using System.Diagnostics.CodeAnalysis;
+
     [SuppressMessage("Minor Code Smell", "S3254:Default parameter values should not be passed as arguments", Justification = "Generated Code")]
     public partial class AddDeactivatedFieldToAccount : Migration
     {

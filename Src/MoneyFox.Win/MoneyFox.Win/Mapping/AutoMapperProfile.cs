@@ -1,5 +1,4 @@
-﻿#nullable enable
-namespace MoneyFox.Win.Mapping;
+﻿namespace MoneyFox.Win.Mapping;
 
 using AutoMapper;
 using Core.Common.Interfaces.Mapping;

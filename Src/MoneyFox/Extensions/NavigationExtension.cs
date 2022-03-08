@@ -4,6 +4,7 @@
     using NLog;
     using System;
     using System.Threading.Tasks;
+    using Xamarin.Essentials;
     using Xamarin.Forms;
 
     public static class NavigationExtension
@@ -20,7 +21,11 @@
                 }
 
                 return shell.Navigation.PushModalAsync(
-                    new NavigationPage(page) { BarBackgroundColor = Color.Transparent });
+                    new NavigationPage(page)
+                    {
+                        BarBackgroundColor = Color.Transparent,
+                        BarTextColor = GetCurrentForegroundColor()
+                    });
             }
             catch(Exception ex)
             {
@@ -28,6 +33,17 @@
                 logger.Error(exception);
                 throw exception;
             }
+        }
+
+        private static Color GetCurrentForegroundColor()
+        {
+            if(AppInfo.RequestedTheme == AppTheme.Dark)
+            {
+                Application.Current.Resources.TryGetValue("TextPrimaryColor_Dark", out var colorDark);
+                return (Color) colorDark;
+            }
+            Application.Current.Resources.TryGetValue("TextPrimaryColor_Light", out var colorLight);
+            return (Color)colorLight;
         }
     }
 }

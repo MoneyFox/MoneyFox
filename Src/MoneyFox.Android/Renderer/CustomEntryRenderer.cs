@@ -1,9 +1,7 @@
 ﻿using MoneyFox.Droid.Renderer;
 using Xamarin.Forms;
 
-#nullable enable
 [assembly: ExportRenderer(typeof(Entry), typeof(CustomEntryRenderer), new[] {typeof(VisualMarker.MaterialVisual)})]
-
 namespace MoneyFox.Droid.Renderer
 {
     using Android.Content;

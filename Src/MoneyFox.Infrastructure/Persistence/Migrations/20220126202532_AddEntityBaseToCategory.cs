@@ -1,8 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace MoneyFox.Persistence.Migrations
+﻿namespace MoneyFox.Persistence.Migrations
 {
+    using System;
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddEntityBaseToCategory : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,7 +17,7 @@ namespace MoneyFox.Persistence.Migrations
                 name: "LastModified",
                 table: "Categories",
                 nullable: true);
-            
+
             migrationBuilder.Sql("Update Categories Set Created = CreationTime, LastModified = ModificationDate");
         }
 

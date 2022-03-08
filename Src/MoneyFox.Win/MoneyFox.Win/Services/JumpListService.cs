@@ -1,5 +1,4 @@
-﻿#nullable enable
-namespace MoneyFox.Win.Services;
+﻿namespace MoneyFox.Win.Services;
 
 using Core._Pending_.Common.Constants;
 using Core.Resources;

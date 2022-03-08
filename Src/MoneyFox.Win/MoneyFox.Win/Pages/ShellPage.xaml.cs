@@ -1,16 +1,15 @@
-﻿using static MoneyFox.Win.ViewModels.ShellViewModel;
+﻿namespace MoneyFox.Win.Pages;
 
-namespace MoneyFox.Win.Pages;
-
+using static MoneyFox.Win.ViewModels.ShellViewModel;
 using CommonServiceLocator;
 using Microsoft.UI.Input;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Navigation;
-using Payments;
-using Services;
-using Settings;
-using ViewModels;
+using MoneyFox.Win.Pages.Payments;
+using MoneyFox.Win.Services;
+using MoneyFox.Win.Pages.Settings;
+using MoneyFox.Win.ViewModels;
 using Windows.System;
 using Windows.UI.Core;
 

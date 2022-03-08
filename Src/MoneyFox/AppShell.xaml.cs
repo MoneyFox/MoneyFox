@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox
 {
+    using MoneyFox.Views.About;
     using Views.Accounts;
     using Views.Backup;
     using Views.Budget;
@@ -37,6 +38,7 @@
             Routing.RegisterRoute(ViewModelLocator.AddPaymentRoute, typeof(AddPaymentPage));
             Routing.RegisterRoute(ViewModelLocator.BackupRoute, typeof(BackupPage));
             Routing.RegisterRoute(ViewModelLocator.SettingsRoute, typeof(SettingsPage));
+            Routing.RegisterRoute(ViewModelLocator.AboutRoute, typeof(AboutPage));
             Routing.RegisterRoute(ViewModelLocator.StatisticCashFlowRoute, typeof(StatisticCashFlowPage));
             Routing.RegisterRoute(
                 ViewModelLocator.StatisticAccountMonthlyCashflowRoute,

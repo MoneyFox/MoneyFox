@@ -1,7 +1,6 @@
-﻿using DialogServiceClass = MoneyFox.Win.DialogService;
+﻿namespace MoneyFox.Win.ViewModels.Accounts;
 
-namespace MoneyFox.Win.ViewModels.Accounts;
-
+using DialogServiceClass = DialogService;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;

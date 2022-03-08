@@ -8,6 +8,7 @@
                            xmlns:extensions="clr-namespace:MoneyFox.Extensions"
                            xmlns:Categories="clr-namespace:MoneyFox.Views.Categories"
                            xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+                           Title="{x:Static resources:Strings.EditCategoryTitle}"
                            mc:Ignorable="d"
                            Visual="Material"
                            x:Class="MoneyFox.Views.Categories.EditCategoryPage">
@@ -15,10 +16,6 @@
     <ContentPage.Content>
         <ScrollView Padding="15,0,15,0">
             <StackLayout>
-
-                <Label Style="{StaticResource TextHeadline}"
-                       Text="{x:Static resources:Strings.EditCategoryTitle}" />
-
                 <Categories:ModifyCategoryContentView />
 
                 <Label Style="{StaticResource TextBodySecondary}"

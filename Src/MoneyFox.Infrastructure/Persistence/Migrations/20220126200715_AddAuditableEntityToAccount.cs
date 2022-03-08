@@ -1,8 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace MoneyFox.Persistence.Migrations
+﻿namespace MoneyFox.Persistence.Migrations
 {
+    using System;
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddAuditableEntityToAccount : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

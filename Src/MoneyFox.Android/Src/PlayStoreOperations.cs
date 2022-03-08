@@ -1,4 +1,3 @@
-#nullable enable
 namespace MoneyFox.Droid
 {
     using Android.App;

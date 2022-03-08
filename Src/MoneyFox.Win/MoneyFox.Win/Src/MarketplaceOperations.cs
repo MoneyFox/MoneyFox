@@ -1,5 +1,4 @@
-﻿#nullable enable
-namespace MoneyFox.Win;
+﻿namespace MoneyFox.Win;
 
 using Core.Common.Interfaces;
 using System;
