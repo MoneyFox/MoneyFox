@@ -177,13 +177,6 @@ jobs:
       versionSpec: 6.x
 
   - task: DotNetCoreCLI@2
-    displayName: 'Install dotnet-stryker'
-    inputs:
-      command: custom
-      custom: tool
-      arguments: install dotnet-stryker --tool-path $(Agent.BuildDirectory)/tools
-
-  - task: DotNetCoreCLI@2
     displayName: Restore NuGets
     inputs:
       command: 'restore'
@@ -198,14 +191,6 @@ jobs:
         **/*.Tests.csproj
       arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
 
-  - task: Powershell@2
-    displayName: 'Run dotnet-stryker'
-    inputs:
-      workingDirectory: '$(Build.Repository.LocalPath)\src\MoneyFox.Core.Tests'
-      targetType: 'inline'
-      pwsh: true
-      script: $(Agent.BuildDirectory)/tools/dotnet-stryker --with-baseline:$(System.PullRequest.TargetBranch) --dashboard-api-key $(StrykerDashboardApiKey) --version $(System.PullRequest.SourceBranch)
-
   - task: VSBuild@1
     displayName: 'Build WinUI Project'
     inputs:
@@ -217,3 +202,30 @@ jobs:
   - task: PublishMutationReport@1
     inputs:
       reportPattern: '**/mutation-report.html'
+
+
+- job: Run Mutation Tests
+  displayName: "Run Mutation Tests"
+  pool:
+    vmImage: windows-2022
+    
+  steps:
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Install dotnet-stryker'
+      inputs:
+        command: custom
+        custom: tool
+        arguments: install dotnet-stryker --tool-path $(Agent.BuildDirectory)/tools
+
+    - task: Powershell@2
+      displayName: 'Run dotnet-stryker'
+      inputs:
+        workingDirectory: '$(Build.Repository.LocalPath)\src\MoneyFox.Core.Tests'
+        targetType: 'inline'
+        pwsh: true
+        script: $(Agent.BuildDirectory)/tools/dotnet-stryker --with-baseline:$(System.PullRequest.TargetBranch) --dashboard-api-key $(StrykerDashboardApiKey) --version $(System.PullRequest.SourceBranch)
+
+    - task: PublishMutationReport@1
+      inputs:
+        reportPattern: '**/mutation-report.html'
