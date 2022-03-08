@@ -1,10 +1,10 @@
 ﻿namespace MoneyFox.ViewModels.Categories
 {
+    using AutoMapper;
     using Core._Pending_.Common.Interfaces;
     using Core.Aggregates.Payments;
     using Core.Commands.Categories.UpdateCategory;
     using Core.Queries.Categories.GetCategoryById;
-    using global::AutoMapper;
     using MediatR;
     using System.Threading.Tasks;
 
@@ -13,7 +13,8 @@
         private readonly IMapper mapper;
         private readonly IMediator mediator;
 
-        public EditCategoryViewModel(IMediator mediator,
+        public EditCategoryViewModel(
+            IMediator mediator,
             IMapper mapper,
             IDialogService dialogService)
             : base(mediator, dialogService)

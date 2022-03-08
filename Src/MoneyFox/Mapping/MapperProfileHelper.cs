@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.AutoMapper
+﻿namespace MoneyFox.Mapping
 {
     using Core._Pending_.Common.Interfaces.Mapping;
     using System;

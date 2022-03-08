@@ -10,7 +10,8 @@
         private readonly IDialogService dialogService;
         private readonly IMediator mediator;
 
-        public AddAccountViewModel(IMediator mediator,
+        public AddAccountViewModel(
+            IMediator mediator,
             IDialogService dialogService)
             : base(dialogService, mediator)
         {

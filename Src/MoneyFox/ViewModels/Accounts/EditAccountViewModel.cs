@@ -1,10 +1,10 @@
 ﻿namespace MoneyFox.ViewModels.Accounts
 {
+    using AutoMapper;
     using Core._Pending_.Common.Interfaces;
     using Core.Aggregates;
     using Core.Commands.Accounts.UpdateAccount;
     using Core.Queries.Accounts.GetAccountById;
-    using global::AutoMapper;
     using MediatR;
     using System.Threading.Tasks;
 
@@ -13,7 +13,8 @@
         private readonly IMapper mapper;
         private readonly IMediator mediator;
 
-        public EditAccountViewModel(IMediator mediator,
+        public EditAccountViewModel(
+            IMediator mediator,
             IMapper mapper,
             IDialogService dialogService)
             : base(dialogService, mediator)

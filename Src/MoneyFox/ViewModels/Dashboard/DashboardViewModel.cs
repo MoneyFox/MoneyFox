@@ -1,6 +1,7 @@
 ﻿namespace MoneyFox.ViewModels.Dashboard
 {
     using Accounts;
+    using AutoMapper;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
@@ -12,7 +13,6 @@
     using Core.Queries.Payments.GetMonthlyExpense;
     using Core.Queries.Payments.GetMonthlyIncome;
     using Extensions;
-    using global::AutoMapper;
     using MediatR;
     using System.Collections.ObjectModel;
     using System.Threading.Tasks;

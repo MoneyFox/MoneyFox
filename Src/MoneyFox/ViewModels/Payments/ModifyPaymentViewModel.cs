@@ -1,6 +1,7 @@
 ﻿namespace MoneyFox.ViewModels.Payments
 {
     using Accounts;
+    using AutoMapper;
     using Categories;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
@@ -12,7 +13,6 @@
     using Core.Queries.Categories.GetCategoryById;
     using Core.Resources;
     using Extensions;
-    using global::AutoMapper;
     using MediatR;
     using NLog;
     using System;
@@ -33,7 +33,8 @@
         private PaymentViewModel selectedPayment = new PaymentViewModel();
         private ObservableCollection<AccountViewModel> targetAccounts = new ObservableCollection<AccountViewModel>();
 
-        protected ModifyPaymentViewModel(IMediator mediator,
+        protected ModifyPaymentViewModel(
+            IMediator mediator,
             IMapper mapper,
             IDialogService dialogService)
         {

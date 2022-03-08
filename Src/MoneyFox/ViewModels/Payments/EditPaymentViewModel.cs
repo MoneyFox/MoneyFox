@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.ViewModels.Payments
 {
+    using AutoMapper;
     using CommunityToolkit.Mvvm.Input;
     using Core._Pending_.Common.Interfaces;
     using Core._Pending_.Exceptions;
@@ -7,7 +8,6 @@
     using Core.Commands.Payments.UpdatePayment;
     using Core.Queries.Payments.GetPaymentById;
     using Core.Resources;
-    using global::AutoMapper;
     using MediatR;
     using NLog;
     using System.Threading.Tasks;
@@ -21,7 +21,8 @@
 
         private readonly IMediator mediator;
 
-        public EditPaymentViewModel(IMediator mediator,
+        public EditPaymentViewModel(
+            IMediator mediator,
             IMapper mapper,
             IDialogService dialogService)
             : base(mediator, mapper, dialogService)

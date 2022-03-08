@@ -18,7 +18,8 @@
 
         private AccountViewModel selectedAccountVm = new AccountViewModel();
 
-        protected ModifyAccountViewModel(IDialogService dialogService,
+        protected ModifyAccountViewModel(
+            IDialogService dialogService,
             IMediator mediator)
         {
             this.dialogService = dialogService;

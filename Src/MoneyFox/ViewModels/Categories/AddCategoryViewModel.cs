@@ -9,7 +9,8 @@
     {
         private readonly IMediator mediator;
 
-        public AddCategoryViewModel(IMediator mediator,
+        public AddCategoryViewModel(
+            IMediator mediator,
             IDialogService dialogService) : base(mediator, dialogService)
         {
             this.mediator = mediator;

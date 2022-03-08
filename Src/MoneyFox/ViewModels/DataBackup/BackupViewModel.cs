@@ -30,7 +30,8 @@
         private bool isLoadingBackupAvailability;
         private UserAccount userAccount;
 
-        public BackupViewModel(IBackupService backupService,
+        public BackupViewModel(
+            IBackupService backupService,
             IDialogService dialogService,
             IConnectivityAdapter connectivity,
             ISettingsFacade settingsFacade,

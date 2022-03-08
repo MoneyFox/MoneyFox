@@ -1,8 +1,8 @@
 ﻿namespace MoneyFox
 {
     using Autofac;
-    using AutoMapper;
     using Core;
+    using Mapping;
     using Mobile.Infrastructure;
     using System;
     using ViewModels.Settings;
@@ -15,7 +15,7 @@
             builder.RegisterModule<InfrastructureMobileModule>();
 
             builder.RegisterInstance(AutoMapperFactory.Create());
-            
+
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("Service", StringComparison.CurrentCultureIgnoreCase))
                 .AsImplementedInterfaces();

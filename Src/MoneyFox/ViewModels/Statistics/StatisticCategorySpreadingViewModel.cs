@@ -26,7 +26,7 @@
         {
         }
 
-        public List<PaymentType> PaymentTypes => new List<PaymentType> {PaymentType.Expense, PaymentType.Income};
+        public List<PaymentType> PaymentTypes => new List<PaymentType> { PaymentType.Expense, PaymentType.Income };
 
         public PaymentType SelectedPaymentType
         {

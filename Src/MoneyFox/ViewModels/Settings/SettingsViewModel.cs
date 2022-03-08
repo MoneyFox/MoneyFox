@@ -16,7 +16,8 @@
 
         private CultureInfo selectedCulture = CultureHelper.CurrentCulture;
 
-        public SettingsViewModel(ISettingsFacade settingsFacade,
+        public SettingsViewModel(
+            ISettingsFacade settingsFacade,
             IDialogService dialogService)
         {
             this.settingsFacade = settingsFacade;

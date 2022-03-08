@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.ViewModels.Statistics
 {
+    using AutoMapper;
     using Categories;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
@@ -8,7 +9,6 @@
     using Core.Queries.Statistics;
     using Core.Queries.Statistics.Queries;
     using Extensions;
-    using global::AutoMapper;
     using MediatR;
     using Microcharts;
     using SkiaSharp;

@@ -4,7 +4,7 @@
     using Core.Aggregates.Payments;
     using Core.Queries.Categories.GetCategoryBySearchTerm;
     using FluentAssertions;
-    using global::AutoMapper;
+    using AutoMapper;
     using MediatR;
     using MoneyFox.ViewModels.Categories;
     using NSubstitute;

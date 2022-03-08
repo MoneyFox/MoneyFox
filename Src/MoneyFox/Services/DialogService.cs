@@ -53,7 +53,8 @@
             await messageDialog.ShowAsync();
         }
 
-        public async Task<bool> ShowConfirmMessageAsync(string title,
+        public async Task<bool> ShowConfirmMessageAsync(
+            string title,
             string message,
             string? positiveButtonText = null,
             string? negativeButtonText = null)

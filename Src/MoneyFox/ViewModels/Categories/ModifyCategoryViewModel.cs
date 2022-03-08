@@ -18,7 +18,8 @@
 
         private CategoryViewModel selectedCategory = new CategoryViewModel();
 
-        protected ModifyCategoryViewModel(IMediator mediator,
+        protected ModifyCategoryViewModel(
+            IMediator mediator,
             IDialogService dialogService)
         {
             this.mediator = mediator;

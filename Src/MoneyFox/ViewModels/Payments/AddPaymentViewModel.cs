@@ -1,20 +1,23 @@
 ﻿namespace MoneyFox.ViewModels.Payments
 {
+    using AutoMapper;
     using Core._Pending_.Common.Interfaces;
     using Core.Aggregates.Payments;
     using Core.Commands.Payments.CreatePayment;
     using Core.Queries.Accounts.GetAccountById;
-    using global::AutoMapper;
+    using JetBrains.Annotations;
     using MediatR;
     using System.Linq;
     using System.Threading.Tasks;
 
+    [UsedImplicitly]
     public class AddPaymentViewModel : ModifyPaymentViewModel
     {
         private readonly IMapper mapper;
         private readonly IMediator mediator;
 
-        public AddPaymentViewModel(IMediator mediator,
+        public AddPaymentViewModel(
+            IMediator mediator,
             IMapper mapper,
             IDialogService dialogService)
             : base(mediator, mapper, dialogService)

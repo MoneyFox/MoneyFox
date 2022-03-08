@@ -6,9 +6,6 @@
 
     internal sealed class NavigationService : INavigationService
     {
-        public async Task NavigateTo<T>(T pageType)
-        {
-            await Shell.Current.GoToAsync(pageType.ToString());
-        }
+        public async Task NavigateTo<T>(T pageType) => await Shell.Current.GoToAsync(pageType.ToString());
     }
 }

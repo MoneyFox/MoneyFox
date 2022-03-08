@@ -20,7 +20,7 @@
                 }
 
                 return shell.Navigation.PushModalAsync(
-                    new NavigationPage(page) {BarBackgroundColor = Color.Transparent});
+                    new NavigationPage(page) { BarBackgroundColor = Color.Transparent });
             }
             catch(Exception ex)
             {
