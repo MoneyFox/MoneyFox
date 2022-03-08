@@ -204,7 +204,7 @@ jobs:
       reportPattern: '**/mutation-report.html'
 
 
-- job: Run Mutation Tests
+- job: RunMutationTests
   displayName: "Run Mutation Tests"
   pool:
     vmImage: windows-2022
