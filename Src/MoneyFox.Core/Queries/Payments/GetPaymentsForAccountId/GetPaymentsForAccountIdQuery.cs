@@ -2,6 +2,7 @@
 {
     using _Pending_.Common.Interfaces;
     using _Pending_.Common.QueryObjects;
+    using _Pending_.Common.Helpers;
     using Aggregates.Payments;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
@@ -18,14 +19,14 @@
             DateTime timeRangeEnd,
             bool isClearedFilterActive = false,
             bool isRecurringFilterActive = false,
-            int paymentTypeFilter = -1)
+            PaymentTypeFilter filteredPaymentType = PaymentTypeFilter.All)
         {
             AccountId = accountId;
             TimeRangeStart = timeRangeStart;
             TimeRangeEnd = timeRangeEnd;
             IsClearedFilterActive = isClearedFilterActive;
             IsRecurringFilterActive = isRecurringFilterActive;
-            PaymentTypeFilter = paymentTypeFilter;
+            FilteredPaymentType = filteredPaymentType;
         }
 
         public int AccountId { get; }
@@ -34,11 +35,11 @@
 
         public DateTime TimeRangeEnd { get; }
 
-        public int PaymentTypeFilter { get; set; }
+        public PaymentTypeFilter FilteredPaymentType { get; }
 
-        public bool IsClearedFilterActive { get; set; }
+        public bool IsClearedFilterActive { get; }
 
-        public bool IsRecurringFilterActive { get; set; }
+        public bool IsRecurringFilterActive { get; }
 
         public class Handler : IRequestHandler<GetPaymentsForAccountIdQuery, List<Payment>>
         {
@@ -70,9 +71,9 @@
                     paymentQuery = paymentQuery.AreRecurring();
                 }
 
-                if (request.PaymentTypeFilter != -1)
+                if (request.FilteredPaymentType != PaymentTypeFilter.All)
                 {
-                    paymentQuery = paymentQuery.IsPaymentType((PaymentType)request.PaymentTypeFilter);
+                    paymentQuery = paymentQuery.IsPaymentType(PaymentTypeFilterHelper.PaymentTypeFilterToPaymentType(request.FilteredPaymentType));
                 }
 
                 paymentQuery = paymentQuery.Where(x => x.Date >= request.TimeRangeStart);

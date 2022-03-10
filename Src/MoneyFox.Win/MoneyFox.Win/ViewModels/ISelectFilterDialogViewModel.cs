@@ -2,6 +2,7 @@
 namespace MoneyFox.Win.ViewModels;
 
 using System;
+using Core.Aggregates.Payments;
 
 public interface ISelectFilterDialogViewModel
 {
@@ -9,7 +10,7 @@ public interface ISelectFilterDialogViewModel
 
     bool IsRecurringFilterActive { get; set; }
 
-    int PaymentTypeFilter { get; set; }
+    PaymentTypeFilter FilteredPaymentType { get; set; }
 
     DateTime TimeRangeStart { get; set; }
 

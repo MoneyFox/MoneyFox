@@ -46,7 +46,7 @@ public class PaymentListViewModel : ObservableRecipient
     private bool isBusy;
     private IPaymentListViewActionViewModel? viewActionViewModel;
 
-    public List<int> PaymentTypeFilterList => new() { -1, 0, 1, 2 };
+    public List<PaymentTypeFilter> PaymentTypeFilterList => new() { PaymentTypeFilter.All, PaymentTypeFilter.Expense, PaymentTypeFilter.Income, PaymentTypeFilter.Transfer };
 
 
     /// <summary>
@@ -209,12 +209,11 @@ public class PaymentListViewModel : ObservableRecipient
         var getPaymentsForAccountIdQuery = new GetPaymentsForAccountIdQuery(
             AccountId,
             filterMessage.TimeRangeStart,
-            filterMessage.TimeRangeEnd)
-        {
-            IsClearedFilterActive = filterMessage.IsClearedFilterActive,
-            IsRecurringFilterActive = filterMessage.IsRecurringFilterActive,
-            PaymentTypeFilter = filterMessage.PaymentTypeFilter
-        };
+            filterMessage.TimeRangeEnd,
+            filterMessage.IsClearedFilterActive,
+            filterMessage.IsRecurringFilterActive,
+            filterMessage.FilteredPaymentType
+            );
 
         List<Payment> loadedPayments = await mediator.Send(getPaymentsForAccountIdQuery);
         var payments = mapper.Map<List<PaymentViewModel>>(loadedPayments);

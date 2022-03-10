@@ -25,7 +25,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converter:PaymentTypeIntConverter x:Key="PaymentTypeIntConverter" />
+            <converter:PaymentTypeFilterConverter x:Key="PaymentTypeFilterConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -64,8 +64,8 @@
                        Text="{x:Static resources:Strings.PaymentTypeLabel}" />
                 <Picker Title="{x:Static resources:Strings.PaymentTypeLabel}"
                     ItemsSource="{Binding PaymentTypeFilterList}"
-                    SelectedItem="{Binding PaymentTypeFilter}"
-                    ItemDisplayBinding="{Binding ., Converter={StaticResource PaymentTypeIntConverter}}" />
+                    SelectedItem="{Binding FilteredPaymentType}"
+                    ItemDisplayBinding="{Binding ., Converter={StaticResource PaymentTypeFilterConverter}}" />
 
                 <Label Style="{DynamicResource BaseLabel}"
                        Text="{x:Static resources:Strings.TimeRangeStartLabel}" />

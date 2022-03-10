@@ -3,6 +3,7 @@ namespace MoneyFox.Win.ViewModels.Interfaces;
 
 using CommunityToolkit.Mvvm.Input;
 using System;
+using Core.Aggregates.Payments;
 
 /// <summary>
 ///     Represents the Actions for a view.
@@ -32,7 +33,7 @@ public interface IPaymentListViewActionViewModel
     /// <summary>
     ///     Indicates whether the list should be filtered for a specific payment type.
     /// </summary>
-    int PaymentTypeFilter { get; set; }
+    PaymentTypeFilter FilteredPaymentType { get; set; }
 
     /// <summary>
     ///     Indicates whether the paymentlist should be grouped

@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Win.ViewModels.DesignTime;
 
+using Core.Aggregates.Payments;
 using System;
 
 public class DesignTimeSelectFilterDialogViewModel : ISelectFilterDialogViewModel
@@ -8,7 +9,7 @@ public class DesignTimeSelectFilterDialogViewModel : ISelectFilterDialogViewMode
 
     public bool IsRecurringFilterActive { get; set; }
 
-    public int PaymentTypeFilter { get; set; }
+    public PaymentTypeFilter FilteredPaymentType { get; set; }
 
     public DateTime TimeRangeStart { get; set; }
 

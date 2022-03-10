@@ -137,7 +137,7 @@
                             message.TimeRangeEnd,
                             message.IsClearedFilterActive,
                             message.IsRecurringFilterActive,
-                            message.PaymentTypeFilter)));
+                            message.FilteredPaymentType)));
 
                 paymentVms.ForEach(x => x.CurrentAccountId = SelectedAccount.Id);
 

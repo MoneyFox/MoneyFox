@@ -28,7 +28,7 @@
         /// <summary>
         ///     Indicates if only specific payment types should be displayed.
         /// </summary>
-        public int PaymentTypeFilter { get; set; } = -1;
+        public PaymentTypeFilter FilteredPaymentType { get; set; } = PaymentTypeFilter.All;
 
         /// <summary>
         ///     Start of the time range to load payments.

@@ -32,7 +32,7 @@ public class PaymentListViewActionViewModel : ObservableRecipient, IPaymentListV
     private bool isClearedFilterActive;
     private bool isRecurringFilterActive;
     private bool isGrouped;
-    private int paymentTypeFilter = -1;
+    private PaymentTypeFilter filteredPaymentType = PaymentTypeFilter.All;
     private DateTime timeRangeStart = DateTime.Now.AddMonths(-2);
     private DateTime timeRangeEnd = DateTime.Now.AddMonths(6);
     private bool isTransferAvailable;
@@ -185,17 +185,17 @@ public class PaymentListViewActionViewModel : ObservableRecipient, IPaymentListV
     }
 
     /// <inheritdoc />
-    public int PaymentTypeFilter
+    public PaymentTypeFilter FilteredPaymentType
     {
-        get => paymentTypeFilter;
+        get => filteredPaymentType;
         set
         {
-            if(paymentTypeFilter == value)
+            if(filteredPaymentType == value)
             {
                 return;
             }
 
-            paymentTypeFilter = value;
+            filteredPaymentType = value;
             OnPropertyChanged();
         }
     }
@@ -255,6 +255,6 @@ public class PaymentListViewActionViewModel : ObservableRecipient, IPaymentListV
                 TimeRangeStart = TimeRangeStart,
                 TimeRangeEnd = TimeRangeEnd,
                 IsGrouped = IsGrouped,
-                PaymentTypeFilter = PaymentTypeFilter
+                FilteredPaymentType = FilteredPaymentType
             });
 }

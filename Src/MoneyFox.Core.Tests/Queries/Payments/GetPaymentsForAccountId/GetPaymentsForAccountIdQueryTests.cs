@@ -78,5 +78,46 @@
             // Assert
             result.First().Id.Should().Be(payment2.Id);
         }
+
+        [Theory]
+        [InlineData(PaymentTypeFilter.All)]
+        [InlineData(PaymentTypeFilter.Expense)]
+        [InlineData(PaymentTypeFilter.Income)]
+        [InlineData(PaymentTypeFilter.Transfer)]
+        public async Task GetPaymentsForAccountId_CorrectPaymentType_PaymentFound(PaymentTypeFilter filteredPaymentType)
+        {
+            // Arrange
+            var account = new Account("test", 80);
+            var accountxfer = new Account("dest", 80);
+
+            var payment1 = new Payment(DateTime.Now, 10, PaymentType.Expense, account);
+            var payment2 = new Payment(DateTime.Now, 20, PaymentType.Income, account);
+            var payment3 = new Payment(DateTime.Now, 30, PaymentType.Transfer, account, accountxfer);
+            await context.AddAsync(payment1);
+            await context.AddAsync(payment2);
+            await context.AddAsync(payment3);
+            await context.SaveChangesAsync();
+
+            // Act
+            List<Payment> result = await new GetPaymentsForAccountIdQuery.Handler(contextAdapterMock.Object).Handle(
+                new GetPaymentsForAccountIdQuery(account.Id, DateTime.Now.AddDays(-1), DateTime.Now.AddDays(1), default, default, filteredPaymentType),
+                default);
+
+            var expectedamount = filteredPaymentType switch
+            {
+                PaymentTypeFilter.Expense => 10,
+                PaymentTypeFilter.Income => 20,
+                PaymentTypeFilter.Transfer => 30,
+                _ => 0
+            };
+
+            // Assert
+            Assert.Equal(result.Count, filteredPaymentType == PaymentTypeFilter.All ? 3 : 1);
+
+            if(filteredPaymentType != PaymentTypeFilter.All)
+            {
+                result.First().Amount.Should().Be(expectedamount);
+            }
+        }
     }
 }

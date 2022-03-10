@@ -4,6 +4,7 @@
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
     using Core._Pending_.Common.Messages;
+    using Core.Aggregates.Payments;
     using System;
     using System.Collections.Generic;
 
@@ -13,7 +14,7 @@
 
         bool IsRecurringFilterActive { get; set; }
 
-        int PaymentTypeFilter { get; set; }
+        PaymentTypeFilter FilteredPaymentType { get; set; }
 
         DateTime TimeRangeStart { get; set; }
 
@@ -24,11 +25,11 @@
     {
         private bool isClearedFilterActive;
         private bool isRecurringFilterActive;
-        private int paymentTypeFilter = -1;
+        private PaymentTypeFilter filteredPaymentType = PaymentTypeFilter.All;
         private DateTime timeRangeEnd = DateTime.Now.AddMonths(6);
         private DateTime timeRangeStart = DateTime.Now.AddMonths(-2);
 
-        public List<int> PaymentTypeFilterList => new List<int>() { -1, 0, 1, 2 };
+        public List<PaymentTypeFilter> PaymentTypeFilterList => new List<PaymentTypeFilter>() { PaymentTypeFilter.All, PaymentTypeFilter.Expense, PaymentTypeFilter.Income, PaymentTypeFilter.Transfer };
 
         public RelayCommand FilterSelectedCommand => new RelayCommand(
             () =>
@@ -39,7 +40,7 @@
                         IsRecurringFilterActive = IsRecurringFilterActive,
                         TimeRangeStart = TimeRangeStart,
                         TimeRangeEnd = TimeRangeEnd,
-                        PaymentTypeFilter = PaymentTypeFilter
+                        FilteredPaymentType = FilteredPaymentType
                     }));
 
         /// <summary>
@@ -81,17 +82,17 @@
         /// <summary>
         ///     Indicates whether the filter to only display a specific payment type is active or not.
         /// </summary>
-        public int PaymentTypeFilter
+        public PaymentTypeFilter FilteredPaymentType
         {
-            get => paymentTypeFilter;
+            get => filteredPaymentType;
             set
             {
-                if(paymentTypeFilter == value)
+                if(filteredPaymentType == value)
                 {
                     return;
                 }
 
-                paymentTypeFilter = value;
+                filteredPaymentType = value;
                 OnPropertyChanged();
             }
         }
@@ -141,7 +142,7 @@
             IsRecurringFilterActive = message.IsRecurringFilterActive;
             TimeRangeStart = message.TimeRangeStart;
             TimeRangeEnd = message.TimeRangeEnd;
-            PaymentTypeFilter = message.PaymentTypeFilter;
+            FilteredPaymentType = message.FilteredPaymentType;
         }
     }
 }
