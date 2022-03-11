@@ -1,9 +1,9 @@
 ﻿namespace MoneyFox.Infrastructure.Persistence
 {
     using Core._Pending_.Common.Facades;
-    using Core._Pending_.Common.Interfaces;
     using Core.Aggregates;
     using Core.Aggregates.Payments;
+    using Core.Common.Interfaces;
     using Core.Events;
     using MediatR;
     using Microsoft.EntityFrameworkCore;

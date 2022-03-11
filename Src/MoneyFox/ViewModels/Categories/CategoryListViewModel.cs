@@ -1,15 +1,15 @@
 ﻿namespace MoneyFox.ViewModels.Categories
 {
+    using AutoMapper;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
-    using Core._Pending_.Common.Interfaces;
     using Core._Pending_.Common.Messages;
     using Core.Commands.Categories.DeleteCategoryById;
+    using Core.Common.Interfaces;
     using Core.Queries.Categories.GetCategoryBySearchTerm;
     using Core.Resources;
     using Extensions;
-    using global::AutoMapper;
     using Groups;
     using MediatR;
     using System.Collections.Generic;

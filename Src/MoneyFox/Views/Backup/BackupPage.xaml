@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <ContentPage x:Class="MoneyFox.Views.Backup.BackupPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -7,9 +6,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converter="clr-namespace:MoneyFox.Converter"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-             mc:Ignorable="d"
-             Shell.NavBarHasShadow="False"
              BackgroundColor="{DynamicResource WindowBackgroundColor}"
+             Title="{x:Static resources:Strings.BackupTitle}"
+             Shell.NavBarHasShadow="False"
+             mc:Ignorable="d"
              Visual="Material">
 
     <ContentPage.Resources>
@@ -22,9 +22,6 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="16">
-                <Label Style="{StaticResource TextHeadline}"
-                       Text="{x:Static resources:Strings.BackupTitle}" />
-
                 <StackLayout IsVisible="{Binding IsLoggedIn}">
                     <Label Style="{StaticResource TextTitle}"
                            Text="{Binding UserAccount.Name}"

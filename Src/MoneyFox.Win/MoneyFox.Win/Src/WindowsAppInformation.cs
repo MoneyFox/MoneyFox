@@ -1,7 +1,6 @@
-﻿#nullable enable
-namespace MoneyFox.Win;
+﻿namespace MoneyFox.Win;
 
-using Core._Pending_.Common.Interfaces;
+using Core.Common.Interfaces;
 using System.Globalization;
 using Windows.ApplicationModel;
 

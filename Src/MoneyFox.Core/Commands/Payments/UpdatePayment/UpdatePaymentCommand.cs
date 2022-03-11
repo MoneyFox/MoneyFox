@@ -1,9 +1,9 @@
 ﻿namespace MoneyFox.Core.Commands.Payments.UpdatePayment
 {
-    using _Pending_.Common.Interfaces;
     using _Pending_.Exceptions;
     using Aggregates;
     using Aggregates.Payments;
+    using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
     using System;

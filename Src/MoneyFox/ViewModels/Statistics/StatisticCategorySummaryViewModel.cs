@@ -2,7 +2,7 @@
 {
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
-    using Core._Pending_.Common.Interfaces;
+    using Core.Common.Interfaces;
     using Core.Queries.Statistics.Queries.GetCategorySummary;
     using Extensions;
     using MediatR;
@@ -22,7 +22,8 @@
         private ObservableCollection<CategoryOverviewViewModel> categorySummary =
             new ObservableCollection<CategoryOverviewViewModel>();
 
-        public StatisticCategorySummaryViewModel(IMediator mediator,
+        public StatisticCategorySummaryViewModel(
+            IMediator mediator,
             IDialogService dialogService) : base(mediator)
         {
             this.dialogService = dialogService;
@@ -55,7 +56,7 @@
             try
             {
                 CategorySummaryModel categorySummaryModel =
-                    await Mediator.Send(new GetCategorySummaryQuery {EndDate = EndDate, StartDate = StartDate});
+                    await Mediator.Send(new GetCategorySummaryQuery { EndDate = EndDate, StartDate = StartDate });
 
                 CategorySummary = new ObservableCollection<CategoryOverviewViewModel>(
                     categorySummaryModel

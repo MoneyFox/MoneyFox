@@ -9,15 +9,12 @@
                            xmlns:extensions="clr-namespace:MoneyFox.Extensions"
                            xmlns:accounts="clr-namespace:MoneyFox.Views.Accounts"
                            xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+                           Title="{Binding Title}"
                            Visual="Material"
                            x:Class="MoneyFox.Views.Accounts.EditAccountPage">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="15,0,15,0">
-
-                <Label Style="{StaticResource TextHeadline}"
-                       Text="{Binding Title}" />
-
                 <accounts:ModifyAccountContentView />
 
                 <Label Style="{StaticResource TextBodySecondary}"

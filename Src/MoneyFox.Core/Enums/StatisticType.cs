@@ -9,14 +9,4 @@
         MonthlyAccountCashFlow,
         CategoryProgression
     }
-
-    public enum SettingsType
-    {
-        Personalization,
-        Regional,
-        Categories,
-        Backup,
-        BackgroundJob,
-        About
-    }
 }

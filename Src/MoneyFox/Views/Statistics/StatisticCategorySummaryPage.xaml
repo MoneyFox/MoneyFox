@@ -13,6 +13,11 @@
 
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,66">
+            <Label Style="{StaticResource TextTitle}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center"
+                   Text="{x:Static resources:Strings.CategorySummaryTitle}" />
+
             <Button
                 Margin="0,0,5,0"
                 Padding="0"
@@ -36,19 +41,15 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <Grid RowDefinitions="45, 35, *">
-            <Label Grid.Row="0"
-                   Margin="15,0,15,0"
-                   Style="{StaticResource TextHeadline}"
-                   Text="{x:Static resources:Strings.CategorySummaryTitle}" />
+        <Grid RowDefinitions="35, *">
 
-            <Label Grid.Row="1"
+            <Label Grid.Row="0"
                    Margin="15,0,15,0"
                    Style="{StaticResource TextBodySecondary}"
                    Text="{Binding Title}" />
 
             <CollectionView x:Name="CategorySummaryList"
-                            Grid.Row="2"
+                            Grid.Row="1"
                             EmptyView="{x:Static resources:Strings.NoPaymentsMessage}"
                             ItemsSource="{Binding CategorySummary}">
 

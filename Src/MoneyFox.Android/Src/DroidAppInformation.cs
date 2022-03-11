@@ -1,9 +1,8 @@
-#nullable enable
 namespace MoneyFox.Droid
 {
     using Android.App;
     using Android.Content;
-    using Core._Pending_.Common.Interfaces;
+    using Core.Common.Interfaces;
 
     public class DroidAppInformation : IAppInformation
     {

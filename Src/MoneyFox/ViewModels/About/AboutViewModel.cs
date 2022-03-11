@@ -3,7 +3,7 @@
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using Core._Pending_.Common.Constants;
-    using Core._Pending_.Common.Interfaces;
+    using Core.Common.Interfaces;
     using Core.Interfaces;
     using Core.Resources;
     using System;
@@ -12,17 +12,16 @@
     using System.Threading.Tasks;
     using Xamarin.Essentials;
 
-    public class AboutViewModel : ObservableObject, IAboutViewModel
+    public class
+        AboutViewModel : ObservableObject
     {
         private readonly IAppInformation appInformation;
         private readonly IBrowserAdapter browserAdapter;
         private readonly IEmailAdapter emailAdapter;
         private readonly IStoreOperations storeFeatures;
 
-        /// <summary>
-        ///     Creates an AboutViewModel Object
-        /// </summary>
-        public AboutViewModel(IAppInformation appInformation,
+        public AboutViewModel(
+            IAppInformation appInformation,
             IEmailAdapter emailAdapter,
             IBrowserAdapter browserAdapter,
             IStoreOperations storeOperations)
@@ -33,57 +32,28 @@
             storeFeatures = storeOperations;
         }
 
-        /// <summary>
-        ///     Opens the web browser and loads to the apply solutions     website
-        /// </summary>
-        public RelayCommand GoToWebsiteCommand => new RelayCommand(async () => await GoToWebsiteAsync());
+        public AsyncRelayCommand GoToWebsiteCommand => new AsyncRelayCommand(async () => await GoToWebsiteAsync());
 
-        /// <summary>
-        ///     Sends a feedback mail to the apply solutions support     mail address
-        /// </summary>
-        public RelayCommand SendMailCommand => new RelayCommand(async () => await SendMailAsync());
+        public AsyncRelayCommand SendMailCommand => new AsyncRelayCommand(async () => await SendMailAsync());
 
-        /// <summary>
-        ///     Opens the store to rate the app.
-        /// </summary>
         public RelayCommand RateAppCommand => new RelayCommand(RateApp);
 
-        /// <summary>
-        ///     Opens the web browser and loads repository page     on GitHub
-        /// </summary>
-        public RelayCommand GoToRepositoryCommand => new RelayCommand(async () => await GoToRepositoryAsync());
+        public AsyncRelayCommand GoToRepositoryCommand =>
+            new AsyncRelayCommand(async () => await GoToRepositoryAsync());
 
-        /// <summary>
-        ///     Opens the web browser and loads the project on Crowdin.
-        /// </summary>
-        public RelayCommand GoToTranslationProjectCommand =>
-            new RelayCommand(async () => await GoToTranslationProjectAsync());
+        public AsyncRelayCommand GoToTranslationProjectCommand =>
+            new AsyncRelayCommand(async () => await GoToTranslationProjectAsync());
 
-        /// <summary>
-        ///     Opens the webbrowser and loads the project on crowdin.
-        /// </summary>
-        public RelayCommand GoToDesignerTwitterAccountCommand =>
-            new RelayCommand(async () => await GoToDesignerTwitterAccountAsync());
+        public AsyncRelayCommand GoToDesignerTwitterAccountCommand =>
+            new AsyncRelayCommand(async () => await GoToDesignerTwitterAccountAsync());
 
-        /// <summary>
-        ///     Opens the webbrowser loads the contribution page on Github.
-        /// </summary>
-        public RelayCommand GoToContributionPageCommand =>
-            new RelayCommand(async () => await GoToContributionPageAsync());
+        public AsyncRelayCommand GoToContributionPageCommand =>
+            new AsyncRelayCommand(async () => await GoToContributionPageAsync());
 
-        /// <summary>
-        ///     Returns the Version of App
-        /// </summary>
         public string Version => appInformation.GetVersion;
 
-        /// <summary>
-        ///     Returns the apply solutions webite url from the     resource file
-        /// </summary>
         public string Website => AppConstants.WebsiteUrl;
 
-        /// <summary>
-        ///     Returns the mailaddress for support cases from the     resource file
-        /// </summary>
         public string SupportMail => AppConstants.SupportMail;
 
         private async Task GoToWebsiteAsync()
@@ -93,8 +63,8 @@
             await emailAdapter.SendEmailAsync(
                 Strings.FeedbackSubject,
                 string.Empty,
-                new List<string> {AppConstants.SupportMail},
-                new List<string> {Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName)});
+                new List<string> { AppConstants.SupportMail },
+                new List<string> { Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName) });
 
         private void RateApp()
             => storeFeatures.RateApp();

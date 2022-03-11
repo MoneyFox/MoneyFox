@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Core.Commands.Categories.UpdateCategory
 {
-    using _Pending_.Common.Interfaces;
     using Aggregates.Payments;
+    using Common.Interfaces;
     using MediatR;
     using System.Threading;
     using System.Threading.Tasks;

@@ -1,18 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+             Title="{x:Static resources:Strings.SettingsTitle}"
              Visual="Material"
              x:Class="MoneyFox.Views.Settings.SettingsPage">
 
     <ContentPage.Content>
         <ScrollView Padding="15">
             <StackLayout>
-
-                <Label Style="{StaticResource TextHeadline}"
-                       Text="{x:Static resources:Strings.SettingsTitle}" />
-
                 <Label Style="{StaticResource TextSubHead}"
                        Text="{x:Static resources:Strings.DefaultRegionText}" />
 
@@ -22,7 +18,6 @@
                 <Picker ItemsSource="{Binding AvailableCultures}"
                         SelectedItem="{Binding SelectedCulture, Mode=TwoWay}"
                         ItemDisplayBinding="{Binding EnglishName}" />
-
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

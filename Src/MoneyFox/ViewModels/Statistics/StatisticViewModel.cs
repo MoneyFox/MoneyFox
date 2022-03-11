@@ -35,7 +35,8 @@ namespace MoneyFox.ViewModels.Statistics
         /// <summary>
         ///     Creates a Statistic ViewModel with custom start and end date
         /// </summary>
-        protected StatisticViewModel(DateTime startDate,
+        protected StatisticViewModel(
+            DateTime startDate,
             DateTime endDate,
             IMediator mediator)
         {

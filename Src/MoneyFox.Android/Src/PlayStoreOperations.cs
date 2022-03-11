@@ -1,10 +1,9 @@
-#nullable enable
 namespace MoneyFox.Droid
 {
     using Android.App;
     using Android.Content;
     using Android.Net;
-    using Core._Pending_.Common.Interfaces;
+    using Core.Common.Interfaces;
 
     /// <summary>
     ///     Gives access to the features of google play on android.

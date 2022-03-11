@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core._Pending_.Common.Interfaces
+﻿namespace MoneyFox.Core.Common.Interfaces
 {
     public interface IStoreOperations
     {

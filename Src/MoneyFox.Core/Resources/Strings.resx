@@ -794,5 +794,10 @@ To start create a new account. Accounts are used to organize payments and money 
   </data>
   <data name="AllLabel" xml:space="preserve">
     <value>All</value>
+  <data name="HomeTitle" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="MenuTitle" xml:space="preserve">
+    <value>Menu</value>
   </data>
 </root>

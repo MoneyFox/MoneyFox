@@ -1,9 +1,10 @@
 ﻿namespace MoneyFox
 {
     using Autofac;
-    using AutoMapper;
     using Core;
+    using Mapping;
     using Mobile.Infrastructure;
+    using MoneyFox.Mapping;
     using System;
     using ViewModels.Settings;
 

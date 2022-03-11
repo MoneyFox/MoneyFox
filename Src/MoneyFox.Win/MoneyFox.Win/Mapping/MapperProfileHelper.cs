@@ -1,7 +1,6 @@
-﻿#nullable enable
-namespace MoneyFox.Win.Mapping;
+﻿namespace MoneyFox.Win.Mapping;
 
-using Core._Pending_.Common.Interfaces.Mapping;
+using Core.Common.Interfaces.Mapping;
 using System;
 using System.Collections.Generic;
 using System.Linq;

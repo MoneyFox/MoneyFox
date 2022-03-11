@@ -1,9 +1,9 @@
 ﻿namespace MoneyFox.Core.Queries.Payments.GetPaymentsForAccountId
 {
-    using _Pending_.Common.Interfaces;
     using _Pending_.Common.QueryObjects;
     using _Pending_.Common.Helpers;
     using Aggregates.Payments;
+    using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
     using System;

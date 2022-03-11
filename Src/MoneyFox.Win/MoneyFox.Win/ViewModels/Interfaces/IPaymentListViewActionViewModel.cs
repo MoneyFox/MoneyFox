@@ -1,5 +1,4 @@
-﻿#nullable enable
-namespace MoneyFox.Win.ViewModels.Interfaces;
+﻿namespace MoneyFox.Win.ViewModels.Interfaces;
 
 using CommunityToolkit.Mvvm.Input;
 using System;

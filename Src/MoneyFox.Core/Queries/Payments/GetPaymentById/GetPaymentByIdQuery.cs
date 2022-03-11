@@ -1,8 +1,8 @@
 ﻿namespace MoneyFox.Core.Queries.Payments.GetPaymentById
 {
-    using _Pending_.Common.Interfaces;
     using _Pending_.Exceptions;
     using Aggregates.Payments;
+    using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
     using NLog;

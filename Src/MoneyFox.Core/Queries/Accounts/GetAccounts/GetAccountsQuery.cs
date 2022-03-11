@@ -1,8 +1,8 @@
 ﻿namespace MoneyFox.Core.Queries.Accounts.GetAccounts
 {
-    using _Pending_.Common.Interfaces;
     using _Pending_.Common.QueryObjects;
     using Aggregates;
+    using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;

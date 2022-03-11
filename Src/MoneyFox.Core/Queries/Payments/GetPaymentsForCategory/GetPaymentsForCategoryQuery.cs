@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Core.Queries.Payments.GetPaymentsForCategory
 {
-    using _Pending_.Common.Interfaces;
     using Aggregates.Payments;
+    using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
     using System;

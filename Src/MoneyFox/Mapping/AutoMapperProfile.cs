@@ -1,7 +1,7 @@
-﻿namespace MoneyFox.AutoMapper
+﻿namespace MoneyFox.Mapping
 {
-    using Core._Pending_.Common.Interfaces.Mapping;
-    using global::AutoMapper;
+    using AutoMapper;
+    using Core.Common.Interfaces.Mapping;
     using System.Collections.Generic;
     using ViewModels.Payments;
 

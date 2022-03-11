@@ -1,5 +1,4 @@
-﻿#nullable enable
-namespace MoneyFox.iOS
+﻿namespace MoneyFox.iOS
 {
     using Autofac;
     using Core._Pending_.Common.Constants;

@@ -1,5 +1,4 @@
-﻿#nullable enable
-namespace MoneyFox.Win.ViewModels;
+﻿namespace MoneyFox.Win.ViewModels;
 
 using System;
 using Core.Aggregates.Payments;

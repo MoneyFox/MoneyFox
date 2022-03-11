@@ -1,9 +1,5 @@
-# Xamarin.iOS
-# Build a Xamarin.iOS project.
-# Add steps that install certificates, test, sign, and distribute an app, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/xamarin
-
 trigger:
+  batch: true
   branches:
     include:
     - master

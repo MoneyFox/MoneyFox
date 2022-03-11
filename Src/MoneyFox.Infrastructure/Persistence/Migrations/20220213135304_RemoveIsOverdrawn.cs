@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace MoneyFox.Persistence.Migrations
+﻿namespace MoneyFox.Persistence.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class RemoveIsOverdrawn : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

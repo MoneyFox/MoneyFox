@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Accounts.GetIncludedAccountBalanceSummary
 {
-    using Core._Pending_.Common.Interfaces;
+    using Common.Interfaces;
     using Core.Aggregates;
     using Core.Queries.Accounts.GetIncludedAccountBalanceSummary;
     using FluentAssertions;

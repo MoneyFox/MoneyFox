@@ -43,7 +43,7 @@
         protected override async Task LoadAsync()
         {
             List<StatisticEntry>? statisticItems =
-                await Mediator.Send(new GetCashFlowQuery {EndDate = EndDate, StartDate = StartDate});
+                await Mediator.Send(new GetCashFlowQuery { EndDate = EndDate, StartDate = StartDate });
 
             Chart = new BarChart
             {

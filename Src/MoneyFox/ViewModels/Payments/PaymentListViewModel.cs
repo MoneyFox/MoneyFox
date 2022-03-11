@@ -1,6 +1,7 @@
 ﻿namespace MoneyFox.ViewModels.Payments
 {
     using Accounts;
+    using AutoMapper;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
@@ -10,7 +11,6 @@
     using Core.Queries.Payments.GetPaymentsForAccountId;
     using Core.Resources;
     using Extensions;
-    using global::AutoMapper;
     using Groups;
     using MediatR;
     using System.Collections.Generic;

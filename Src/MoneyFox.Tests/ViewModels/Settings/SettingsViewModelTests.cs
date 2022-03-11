@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Tests.ViewModels.Settings
 {
     using Core._Pending_.Common.Facades;
-    using Core._Pending_.Common.Interfaces;
+    using Core.Common.Interfaces;
     using FluentAssertions;
     using MoneyFox.ViewModels.Settings;
     using NSubstitute;

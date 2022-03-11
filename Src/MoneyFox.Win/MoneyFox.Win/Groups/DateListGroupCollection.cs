@@ -1,5 +1,4 @@
-﻿#nullable enable
-namespace MoneyFox.Win.Groups;
+﻿namespace MoneyFox.Win.Groups;
 
 using CommunityToolkit.Mvvm.Input;
 using Core._Pending_.Exceptions;

@@ -1,10 +1,10 @@
 ﻿namespace MoneyFox.ViewModels.Categories
 {
+    using AutoMapper;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
-    using Core._Pending_.Common.Interfaces;
     using Core._Pending_.Common.Messages;
-    using global::AutoMapper;
+    using Core.Common.Interfaces;
     using MediatR;
     using Xamarin.Forms;
 

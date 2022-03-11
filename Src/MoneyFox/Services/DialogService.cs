@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Services
 {
-    using Core._Pending_.Common.Interfaces;
+    using Core.Common.Interfaces;
     using Core.Resources;
     using System;
     using System.Threading.Tasks;
@@ -53,7 +53,8 @@
             await messageDialog.ShowAsync();
         }
 
-        public async Task<bool> ShowConfirmMessageAsync(string title,
+        public async Task<bool> ShowConfirmMessageAsync(
+            string title,
             string message,
             string? positiveButtonText = null,
             string? negativeButtonText = null)
