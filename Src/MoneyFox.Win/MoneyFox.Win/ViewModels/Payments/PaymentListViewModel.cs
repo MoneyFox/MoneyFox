@@ -46,6 +46,9 @@ public class PaymentListViewModel : ObservableRecipient
     private bool isBusy;
     private IPaymentListViewActionViewModel? viewActionViewModel;
 
+    public List<PaymentTypeFilter> PaymentTypeFilterList => new() { PaymentTypeFilter.All, PaymentTypeFilter.Expense, PaymentTypeFilter.Income, PaymentTypeFilter.Transfer };
+
+
     /// <summary>
     ///     Default constructor
     /// </summary>
@@ -87,7 +90,7 @@ public class PaymentListViewModel : ObservableRecipient
 
     public AsyncRelayCommand LoadDataCommand => new(
         async () => await LoadDataAsync(
-            new PaymentListFilterChangedMessage {TimeRangeStart = DateTime.Now.AddYears(DEFAULT_YEAR_BACK)}));
+            new PaymentListFilterChangedMessage { TimeRangeStart = DateTime.Now.AddYears(DEFAULT_YEAR_BACK) }));
 
     public RelayCommand<PaymentViewModel> EditPaymentCommand
         => new(vm => navigationService.Navigate<EditPaymentViewModel>(vm));
@@ -172,7 +175,7 @@ public class PaymentListViewModel : ObservableRecipient
             navigationService);
 
         await LoadDataAsync(
-            new PaymentListFilterChangedMessage {TimeRangeStart = DateTime.Now.AddYears(DEFAULT_YEAR_BACK)});
+            new PaymentListFilterChangedMessage { TimeRangeStart = DateTime.Now.AddYears(DEFAULT_YEAR_BACK) });
         IsBusy = false;
     }
 
@@ -206,18 +209,18 @@ public class PaymentListViewModel : ObservableRecipient
         var getPaymentsForAccountIdQuery = new GetPaymentsForAccountIdQuery(
             AccountId,
             filterMessage.TimeRangeStart,
-            filterMessage.TimeRangeEnd)
-        {
-            IsClearedFilterActive = filterMessage.IsClearedFilterActive,
-            IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
-        };
+            filterMessage.TimeRangeEnd,
+            filterMessage.IsClearedFilterActive,
+            filterMessage.IsRecurringFilterActive,
+            filterMessage.FilteredPaymentType
+            );
 
         List<Payment> loadedPayments = await mediator.Send(getPaymentsForAccountIdQuery);
         var payments = mapper.Map<List<PaymentViewModel>>(loadedPayments);
 
         payments.ForEach(x => x.CurrentAccountId = AccountId);
 
-        var source = new CollectionViewSource {IsSourceGrouped = filterMessage.IsGrouped};
+        var source = new CollectionViewSource { IsSourceGrouped = filterMessage.IsGrouped };
 
         if(filterMessage.IsGrouped)
         {

@@ -1,12 +1,15 @@
 ﻿namespace MoneyFox.Win.ViewModels;
 
 using System;
+using Core.Aggregates.Payments;
 
 public interface ISelectFilterDialogViewModel
 {
     bool IsClearedFilterActive { get; set; }
 
     bool IsRecurringFilterActive { get; set; }
+
+    PaymentTypeFilter FilteredPaymentType { get; set; }
 
     DateTime TimeRangeStart { get; set; }
 

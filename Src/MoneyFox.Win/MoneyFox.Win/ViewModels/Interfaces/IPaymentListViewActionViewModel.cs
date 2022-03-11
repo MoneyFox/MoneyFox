@@ -2,6 +2,7 @@
 
 using CommunityToolkit.Mvvm.Input;
 using System;
+using Core.Aggregates.Payments;
 
 /// <summary>
 ///     Represents the Actions for a view.
@@ -24,12 +25,17 @@ public interface IPaymentListViewActionViewModel
     bool IsClearedFilterActive { get; set; }
 
     /// <summary>
-    ///     Indicates wether the filter to only display recurring Payments is active or not.
+    ///     Indicates whether the filter to only display recurring Payments is active or not.
     /// </summary>
     bool IsRecurringFilterActive { get; set; }
 
     /// <summary>
-    ///     Indicates wether the paymentlist should be grouped
+    ///     Indicates whether the list should be filtered for a specific payment type.
+    /// </summary>
+    PaymentTypeFilter FilteredPaymentType { get; set; }
+
+    /// <summary>
+    ///     Indicates whether the paymentlist should be grouped
     /// </summary>
     bool IsGrouped { get; set; }
 
