@@ -792,7 +792,7 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
     <value>Anfangsguthaben</value>
   </data>
   <data name="AllLabel" xml:space="preserve">
-    <value>All</value>
+    <value>Alle</value>
   </data>
   <data name="HomeTitle" xml:space="preserve">
     <value>Start</value>
