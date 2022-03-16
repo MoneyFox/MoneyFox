@@ -15,7 +15,7 @@ variables:
   buildConfiguration: 'Release'
   appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
   Major: '7'
-  Minor: '5'
+  Minor: '6'
 
 jobs:
 - job: BuildWindows
@@ -141,4 +141,3 @@ jobs:
   - task: PublishMutationReport@1
     inputs:
       reportPattern: '**/mutation-report.html'
-      

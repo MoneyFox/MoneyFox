@@ -12,7 +12,7 @@ pool:
 variables:
   BuildConfiguration: 'Release'
   Major: '7'
-  Minor: '5'
+  Minor: '6'
 
 name: $(date:yyyy)$(DayOfYear)$(rev:rrr)
 steps:
@@ -21,7 +21,7 @@ steps:
   displayName: 'Use NuGet'
   inputs:
     versionSpec: 6.x
-  
+
 - task: JavaToolInstaller@0
   displayName: 'Install Java 11'
   inputs:
