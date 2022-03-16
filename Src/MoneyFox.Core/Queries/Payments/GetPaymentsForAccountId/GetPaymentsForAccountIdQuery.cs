@@ -1,6 +1,7 @@
 ﻿namespace MoneyFox.Core.Queries.Payments.GetPaymentsForAccountId
 {
     using _Pending_.Common.QueryObjects;
+    using _Pending_.Common.Helpers;
     using Aggregates.Payments;
     using Common.Interfaces;
     using MediatR;
@@ -17,13 +18,15 @@
             DateTime timeRangeStart,
             DateTime timeRangeEnd,
             bool isClearedFilterActive = false,
-            bool isRecurringFilterActive = false)
+            bool isRecurringFilterActive = false,
+            PaymentTypeFilter filteredPaymentType = PaymentTypeFilter.All)
         {
             AccountId = accountId;
             TimeRangeStart = timeRangeStart;
             TimeRangeEnd = timeRangeEnd;
             IsClearedFilterActive = isClearedFilterActive;
             IsRecurringFilterActive = isRecurringFilterActive;
+            FilteredPaymentType = filteredPaymentType;
         }
 
         public int AccountId { get; }
@@ -32,9 +35,11 @@
 
         public DateTime TimeRangeEnd { get; }
 
-        public bool IsClearedFilterActive { get; set; }
+        public PaymentTypeFilter FilteredPaymentType { get; }
 
-        public bool IsRecurringFilterActive { get; set; }
+        public bool IsClearedFilterActive { get; }
+
+        public bool IsRecurringFilterActive { get; }
 
         public class Handler : IRequestHandler<GetPaymentsForAccountIdQuery, List<Payment>>
         {
@@ -64,6 +69,11 @@
                 if(request.IsRecurringFilterActive)
                 {
                     paymentQuery = paymentQuery.AreRecurring();
+                }
+
+                if (request.FilteredPaymentType != PaymentTypeFilter.All)
+                {
+                    paymentQuery = paymentQuery.IsPaymentType(PaymentTypeFilterHelper.PaymentTypeFilterToPaymentType(request.FilteredPaymentType));
                 }
 
                 paymentQuery = paymentQuery.Where(x => x.Date >= request.TimeRangeStart);

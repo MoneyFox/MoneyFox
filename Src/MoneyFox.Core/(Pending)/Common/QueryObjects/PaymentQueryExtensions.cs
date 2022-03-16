@@ -26,6 +26,14 @@
             => query.Where(payment => payment.Type == PaymentType.Income);
 
         /// <summary>
+        ///     Adds a filter to a query for payments of a specified payment type
+        /// </summary>
+        /// <param name="query">Existing query.</param>
+        /// <returns>Query filtered for the specified payment type.</returns>
+        public static IQueryable<Payment> IsPaymentType(this IQueryable<Payment> query, PaymentType paymentType)
+            => query.Where(payment => payment.Type == paymentType);
+
+        /// <summary>
         ///     Adds a filter to a query for cleared payments
         /// </summary>
         /// <param name="query">Existing query.</param>

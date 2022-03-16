@@ -789,6 +789,9 @@ Pour commencer, créez un nouveau compte. Les comptes sont utilisés pour organi
   <data name="InitialBalanceLabel" xml:space="preserve">
     <value>Initial Balance</value>
   </data>
+  <data name="AllLabel" xml:space="preserve">
+    <value>All</value>
+  </data>
   <data name="HomeTitle" xml:space="preserve">
     <value>Home</value>
   </data>

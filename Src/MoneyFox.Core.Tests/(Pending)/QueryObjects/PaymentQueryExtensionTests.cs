@@ -118,5 +118,38 @@
             Assert.Equal(13, resultList[1].Amount);
             Assert.Equal(15, resultList[2].Amount);
         }
+
+        [Theory]
+        [InlineData(PaymentType.Expense, 22)]
+        [InlineData(PaymentType.Income, 23)]
+        [InlineData(PaymentType.Transfer, 24)]
+        public void IsPaymentType(PaymentType paymentType, decimal amount)
+        {
+
+            // Arrange
+            IQueryable<Payment> paymentListQuery = new List<Payment>
+            {
+                new Payment(DateTime.Now, 12, PaymentType.Expense, new Account("d"), new Account("t")),
+                new Payment(DateTime.Now, 13, PaymentType.Income, new Account("d"), new Account("t")),
+                new Payment(DateTime.Now, 14, PaymentType.Transfer, new Account("d"), new Account("t")),
+                new Payment(DateTime.Now, amount, paymentType, new Account("d"), new Account("t"))
+            }.AsQueryable();
+
+            // Act
+            List<Payment> resultList = paymentListQuery.IsPaymentType(paymentType).ToList();
+
+            var seedval = paymentType switch
+            {
+                PaymentType.Expense => 12,
+                PaymentType.Income => 13,
+                PaymentType.Transfer => 14,
+                _ => 0
+            };
+
+            // Assert
+            Assert.Equal(2, resultList.Count);
+            Assert.Equal(seedval, resultList[0].Amount);
+            Assert.Equal(amount, resultList[1].Amount);
+        }
     }
 }

@@ -3,12 +3,14 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using Core._Pending_.Common.Messages;
+using Core.Aggregates.Payments;
 using System;
 
 public class SelectFilterDialogViewModel : ObservableRecipient, ISelectFilterDialogViewModel
 {
     private bool isClearedFilterActive;
     private bool isRecurringFilterActive;
+    private PaymentTypeFilter filteredPaymentType = PaymentTypeFilter.All;
     private DateTime timeRangeStart = DateTime.Now.AddMonths(-2);
     private DateTime timeRangeEnd = DateTime.Now.AddMonths(6);
 
@@ -45,6 +47,25 @@ public class SelectFilterDialogViewModel : ObservableRecipient, ISelectFilterDia
             }
 
             isRecurringFilterActive = value;
+            OnPropertyChanged();
+            UpdateList();
+        }
+    }
+
+    /// <summary>
+    ///     Indicates whether to filter on specific payment types.
+    /// </summary>
+    public PaymentTypeFilter FilteredPaymentType
+    {
+        get => filteredPaymentType;
+        set
+        {
+            if(filteredPaymentType == value)
+            {
+                return;
+            }
+
+            filteredPaymentType = value;
             OnPropertyChanged();
             UpdateList();
         }
@@ -95,6 +116,7 @@ public class SelectFilterDialogViewModel : ObservableRecipient, ISelectFilterDia
                 IsClearedFilterActive = IsClearedFilterActive,
                 IsRecurringFilterActive = IsRecurringFilterActive,
                 TimeRangeStart = TimeRangeStart,
-                TimeRangeEnd = TimeRangeEnd
+                TimeRangeEnd = TimeRangeEnd,
+                FilteredPaymentType = FilteredPaymentType
             });
 }
