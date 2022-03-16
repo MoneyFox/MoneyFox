@@ -791,6 +791,9 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
   <data name="InitialBalanceLabel" xml:space="preserve">
     <value>Anfangsguthaben</value>
   </data>
+  <data name="AllLabel" xml:space="preserve">
+    <value>Alle</value>
+  </data>
   <data name="HomeTitle" xml:space="preserve">
     <value>Start</value>
   </data>

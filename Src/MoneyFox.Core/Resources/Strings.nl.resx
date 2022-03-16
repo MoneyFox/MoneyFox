@@ -795,6 +795,9 @@ Maak een nieuw account aan om hier dan uw budgetten op een gemakkelijke manier b
   <data name="InitialBalanceLabel" xml:space="preserve">
     <value>Initial Balance</value>
   </data>
+  <data name="AllLabel" xml:space="preserve">
+    <value>All</value>
+  </data>
   <data name="HomeTitle" xml:space="preserve">
     <value>Home</value>
   </data>
