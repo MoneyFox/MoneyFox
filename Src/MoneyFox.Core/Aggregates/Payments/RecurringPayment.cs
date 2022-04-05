@@ -40,6 +40,7 @@
             IsEndless = endDate == null;
 
             LastRecurrenceCreated = lastRecurrenceCreated ?? DateTime.Now;
+            CreationTime = DateTime.Now;
         }
 
         [Key]
@@ -70,6 +71,13 @@
 
         public virtual List<Payment> RelatedPayments { get; [UsedImplicitly] private set; } = new List<Payment>();
 
+
+        [Obsolete("Will be removed")]
+        public DateTime? ModificationDate { get; private set; }
+
+        [Obsolete("Will be removed")]
+        public DateTime CreationTime { get; [UsedImplicitly] private set; }
+
         public void UpdateRecurringPayment(decimal amount,
             PaymentRecurrence recurrence,
             Account chargedAccount,
@@ -91,8 +99,14 @@
             Category = category;
             TargetAccount = Type == PaymentType.Transfer ? targetAccount : null;
             IsEndless = endDate == null;
+
+            ModificationDate = DateTime.Now;
         }
 
-        public void SetLastRecurrenceCreatedDate() => LastRecurrenceCreated = DateTime.Now;
+        public void SetLastRecurrenceCreatedDate()
+        {
+            LastRecurrenceCreated = DateTime.Now;
+            ModificationDate = DateTime.Now;
+        }
     }
 }
