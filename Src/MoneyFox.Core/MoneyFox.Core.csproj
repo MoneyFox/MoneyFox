@@ -22,8 +22,8 @@
         </PackageReference>
         <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.15" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.15" />
-        <PackageReference Include="NLog" Version="4.7.14" />
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.36.1.44192">
+        <PackageReference Include="NLog" Version="4.7.15" />
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.37.0.45539">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>

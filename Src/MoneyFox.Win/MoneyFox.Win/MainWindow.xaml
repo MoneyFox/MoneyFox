@@ -9,7 +9,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid x:Name="AppTitleBar" Margin="0,0,120,0" Background="{ThemeResource TitleBarBrush}">
+        <Grid x:Name="AppTitleBar" Background="{ThemeResource TitleBarBrush}">
             <TextBlock x:Name="AppTitleTextBlock" Text="Money Fox"
                        Style="{StaticResource CaptionTextBlockStyle}"
                        Margin="12,0,0,0" VerticalAlignment="Center" />
