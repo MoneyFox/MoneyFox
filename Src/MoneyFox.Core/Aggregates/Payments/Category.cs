@@ -2,6 +2,7 @@
 {
     using Dawn;
     using JetBrains.Annotations;
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -14,6 +15,7 @@
         public Category(string name, string note = "", bool requireNote = false)
         {
             UpdateData(name, note, requireNote);
+            CreationTime = DateTime.Now;
         }
 
         [Key]
@@ -26,6 +28,12 @@
 
         public bool RequireNote { get; private set; }
 
+        [Obsolete("Will be removed")]
+        public DateTime? ModificationDate { get; private set; }
+
+        [Obsolete("Will be removed")]
+        public DateTime CreationTime { get; [UsedImplicitly] private set; }
+
         public List<Payment> Payments { get; [UsedImplicitly] private set; } = new List<Payment>();
 
         public void UpdateData(string name, string note = "", bool requireNote = false)
@@ -35,6 +43,8 @@
             Name = name;
             Note = note;
             RequireNote = requireNote;
+
+            ModificationDate = DateTime.Now;
         }
     }
 }

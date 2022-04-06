@@ -32,6 +32,7 @@
                 RecurringPayment = recurringPayment;
                 IsRecurring = true;
             }
+            CreationTime = DateTime.Now;
         }
 
         public int Id { get; [UsedImplicitly] private set; }
@@ -58,6 +59,14 @@
 
         public virtual RecurringPayment? RecurringPayment { get; private set; }
 
+
+
+        [Obsolete("Will be removed")]
+        public DateTime? ModificationDate { get; private set; }
+
+        [Obsolete("Will be removed")]
+        public DateTime CreationTime { get; [UsedImplicitly] private set; }
+
         public void UpdatePayment(DateTime date,
             decimal amount,
             PaymentType type,
@@ -77,6 +86,8 @@
             AssignValues(date, amount, type, chargedAccount, targetAccount, category, note);
 
             ClearPayment();
+
+            ModificationDate = DateTime.Now;
         }
 
         private void AssignValues(DateTime date,
@@ -94,6 +105,8 @@
             ChargedAccount = chargedAccount ?? throw new AccountNullException();
             TargetAccount = type == PaymentType.Transfer ? targetAccount : null;
             Category = category;
+
+            ModificationDate = DateTime.Now;
         }
 
         public void AddRecurringPayment(PaymentRecurrence recurrence, DateTime? endDate = null)
@@ -110,6 +123,8 @@
                 Category,
                 Date);
             IsRecurring = true;
+
+            ModificationDate = DateTime.Now;
         }
 
         public void RemoveRecurringPayment()
@@ -139,6 +154,8 @@
 
                 TargetAccount.AddPaymentAmount(this);
             }
+
+            ModificationDate = DateTime.Now;
         }
     }
 }
