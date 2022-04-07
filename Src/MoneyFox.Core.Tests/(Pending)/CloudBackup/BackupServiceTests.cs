@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Core.Tests._Pending_.CloudBackup
 {
-    using Core._Pending_.Common.Constants;
+
     using Core._Pending_.Common.Facades;
     using Core._Pending_.DbBackup;
     using Core._Pending_.Exceptions;
@@ -351,7 +351,7 @@
             settingsFacadeMock.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(true);
             settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(true);
 
-            cloudBackupServiceMock.Setup(x => x.RestoreAsync(It.IsAny<string>(), It.IsAny<string>()))
+            cloudBackupServiceMock.Setup(x => x.RestoreAsync())
                 .ReturnsAsync(new Mock<Stream>().Object);
 
             cloudBackupServiceMock.Setup(x => x.GetFileNamesAsync())
@@ -387,10 +387,7 @@
             settingsFacadeMock.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(true);
             settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(true);
 
-            cloudBackupServiceMock.Setup(x => x.GetFileNamesAsync())
-                .ReturnsAsync(new List<string> {DatabaseConstants.BACKUP_NAME});
-
-            cloudBackupServiceMock.Setup(x => x.RestoreAsync(It.IsAny<string>(), It.IsAny<string>()))
+            cloudBackupServiceMock.Setup(x => x.RestoreAsync())
                 .Callback(() => throw new BackupException());
 
             cloudBackupServiceMock.Setup(x => x.GetBackupDateAsync()).ReturnsAsync(DateTime.Now);

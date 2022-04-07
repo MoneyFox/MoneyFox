@@ -38,12 +38,10 @@ namespace MoneyFox.Core._Pending_.DbBackup
         /// <summary>
         ///     Restores the file with the passed name
         /// </summary>
-        /// <param name="backupName">Name of the backup to restore</param>
-        /// <param name="dbName">filename in which the database shall be restored.</param>
         /// <returns>TaskCompletionType which indicates if the task was successful or not</returns>
         /// <exception cref="NoBackupFoundException">Thrown when no backup with the right name is found.</exception>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
-        Task<Stream> RestoreAsync(string backupName, string dbName);
+        Task<Stream> RestoreAsync();
 
         /// <summary>
         ///     Gets a list with all the filenames who are available in the backup folder.     The name of the backupfolder is

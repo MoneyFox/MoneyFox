@@ -3,7 +3,6 @@
     using Android.App;
     using Android.Runtime;
     using Autofac;
-    using Core._Pending_.Common.Constants;
     using NLog;
     using NLog.Config;
     using NLog.Targets;

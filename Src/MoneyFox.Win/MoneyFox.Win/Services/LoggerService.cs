@@ -1,6 +1,5 @@
 ﻿namespace MoneyFox.Win.Services;
 
-using Core._Pending_.Common.Constants;
 using Core.Common;
 using NLog;
 using NLog.Config;

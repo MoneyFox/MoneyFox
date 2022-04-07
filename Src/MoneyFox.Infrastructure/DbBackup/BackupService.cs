@@ -2,7 +2,6 @@
 {
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Messaging;
-    using Core._Pending_.Common.Constants;
     using Core._Pending_.Common.Extensions;
     using Core._Pending_.Common.Facades;
     using Core._Pending_.Common.Messages;
@@ -22,6 +21,7 @@
 
     internal sealed class BackupService : ObservableRecipient, IBackupService, IDisposable
     {
+        private const string TEMP_DOWNLOAD_PATH = "backupmoneyfox3.db";
         private const int BACKUP_OPERATION_TIMEOUT = 10000;
         private const int BACKUP_REPEAT_DELAY = 2000;
 
@@ -175,35 +175,28 @@
                     return BackupRestoreResult.Canceled;
                 }
 
-                List<string> backups = await cloudBackupService.GetFileNamesAsync();
-
-                if(backups.Contains(DatabaseConstants.BACKUP_NAME))
+                logger.Info("New backup found. Starting download.");
+                await using(var backupStream = await cloudBackupService.RestoreAsync())
                 {
-                    logger.Info("New backup found. Starting download.");
-                    using(Stream backupStream = await cloudBackupService.RestoreAsync(
-                              DatabaseConstants.BACKUP_NAME,
-                              DatabaseConstants.BACKUP_NAME))
-                    {
-                        await fileStore.WriteFileAsync(DatabaseConstants.BACKUP_NAME, backupStream.ReadToEnd());
-                    }
-
-                    logger.Info("Backup downloaded. Replace current file.");
-
-                    bool moveSucceed = await fileStore.TryMoveAsync(
-                        DatabaseConstants.BACKUP_NAME,
-                        dbPathProvider.GetDbPath(),
-                        true);
-
-                    if(!moveSucceed)
-                    {
-                        throw new BackupException("Error Moving downloaded backup file");
-                    }
-
-                    logger.Info("Recreate database context.");
-                    contextAdapter.RecreateContext();
-
-                    return BackupRestoreResult.NewBackupRestored;
+                    await fileStore.WriteFileAsync(TEMP_DOWNLOAD_PATH, backupStream.ReadToEnd());
                 }
+
+                logger.Info("Backup downloaded. Replace current file.");
+
+                bool moveSucceed = await fileStore.TryMoveAsync(
+                    TEMP_DOWNLOAD_PATH,
+                    dbPathProvider.GetDbPath(),
+                    true);
+
+                if(!moveSucceed)
+                {
+                    throw new BackupException("Error Moving downloaded backup file");
+                }
+
+                logger.Info("Recreate database context.");
+                contextAdapter.RecreateContext();
+
+                return BackupRestoreResult.NewBackupRestored;
             }
             catch(BackupOperationCanceledException ex)
             {

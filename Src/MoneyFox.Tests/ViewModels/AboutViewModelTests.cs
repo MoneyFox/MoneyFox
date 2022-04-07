@@ -4,7 +4,6 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-    using Core._Pending_.Common.Constants;
     using Core.Common.Interfaces;
     using Core.Interfaces;
     using FluentAssertions;

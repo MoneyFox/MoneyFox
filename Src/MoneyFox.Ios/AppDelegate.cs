@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.iOS
 {
     using Autofac;
-    using Core._Pending_.Common.Constants;
     using Foundation;
     using JetBrains.Annotations;
     using Microsoft.Identity.Client;
