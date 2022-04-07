@@ -1,110 +1,97 @@
 ﻿namespace MoneyFox.Tests.ViewModels
 {
+
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
     using Core._Pending_.Common.Constants;
     using Core.Common.Interfaces;
     using Core.Interfaces;
     using FluentAssertions;
     using MoneyFox.ViewModels.About;
     using NSubstitute;
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
     public class AboutViewModelTests
     {
         [Fact]
-        public void SupportMail_NoParams_ReturnCorrectMail() =>
+        public void SupportMail_NoParams_ReturnCorrectMail()
+        {
             new AboutViewModel(
-                    Substitute.For<IAppInformation>(),
-                    Substitute.For<IEmailAdapter>(),
-                    Substitute.For<IBrowserAdapter>(),
-                    Substitute.For<IStoreOperations>())
-                .SupportMail
-                .Should()
-                .Be(AppConstants.SupportMail);
+                    appInformation: Substitute.For<IAppInformation>(),
+                    emailAdapter: Substitute.For<IEmailAdapter>(),
+                    browserAdapter: Substitute.For<IBrowserAdapter>(),
+                    storeOperations: Substitute.For<IStoreOperations>()).SupportMail.Should()
+                .Be("mobile.support@apply-solutions.ch");
+        }
 
         [Fact]
-        public void Website_NoParams_ReturnCorrectMail() =>
+        public void Website_NoParams_ReturnCorrectMail()
+        {
             new AboutViewModel(
-                    Substitute.For<IAppInformation>(),
-                    Substitute.For<IEmailAdapter>(),
-                    Substitute.For<IBrowserAdapter>(),
-                    Substitute.For<IStoreOperations>())
-                .Website
-                .Should()
-                .Be(AppConstants.WebsiteUrl);
+                    appInformation: Substitute.For<IAppInformation>(),
+                    emailAdapter: Substitute.For<IEmailAdapter>(),
+                    browserAdapter: Substitute.For<IBrowserAdapter>(),
+                    storeOperations: Substitute.For<IStoreOperations>()).Website.Should()
+                .Be("https://www.apply-solutions.ch");
+        }
 
         [Fact]
         public void Version_NoParams_ReturnCorrectMail()
         {
             var appinfos = Substitute.For<IAppInformation>();
             appinfos.GetVersion.Returns("42");
-
             new AboutViewModel(
-                    appinfos,
-                    Substitute.For<IEmailAdapter>(),
-                    Substitute.For<IBrowserAdapter>(),
-                    Substitute.For<IStoreOperations>())
-                .Version
-                .Should()
+                    appInformation: appinfos,
+                    emailAdapter: Substitute.For<IEmailAdapter>(),
+                    browserAdapter: Substitute.For<IBrowserAdapter>(),
+                    storeOperations: Substitute.For<IStoreOperations>()).Version.Should()
                 .Be("42");
         }
 
         [Fact]
         public async Task GoToWebsite_NoParams_Called()
         {
-            var webbrowserTaskSetup = Substitute.For<IBrowserAdapter>();
-            webbrowserTaskSetup.OpenWebsiteAsync(Arg.Is<Uri>(s => s == new Uri(AppConstants.WebsiteUrl)))
-                .Returns(Task.CompletedTask);
+            var webBrowserTaskSetup = Substitute.For<IBrowserAdapter>();
+            webBrowserTaskSetup.OpenWebsiteAsync(Arg.Any<Uri>()).Returns(Task.CompletedTask);
 
             new AboutViewModel(
-                    Substitute.For<IAppInformation>(),
-                    Substitute.For<IEmailAdapter>(),
-                    webbrowserTaskSetup,
-                    Substitute.For<IStoreOperations>())
-                .GoToWebsiteCommand
-                .Execute(null);
+                appInformation: Substitute.For<IAppInformation>(),
+                emailAdapter: Substitute.For<IEmailAdapter>(),
+                browserAdapter: webBrowserTaskSetup,
+                // ReSharper disable once MethodHasAsyncOverload
+                storeOperations: Substitute.For<IStoreOperations>()).GoToWebsiteCommand.Execute(null);
 
-            await webbrowserTaskSetup.Received(1)
-                .OpenWebsiteAsync(Arg.Is<Uri>(s => s == new Uri(AppConstants.WebsiteUrl)));
+            await webBrowserTaskSetup.Received(1).OpenWebsiteAsync(Arg.Is<Uri>(s => s == new Uri("https://www.apply-solutions.ch")));
         }
 
         [Fact]
         public async Task GoToRepository_NoParams_CommandCalled()
         {
             var webbrowserTaskSetup = Substitute.For<IBrowserAdapter>();
-            webbrowserTaskSetup.OpenWebsiteAsync(Arg.Is<Uri>(s => s == new Uri(AppConstants.GitHubRepositoryUrl)))
-                .Returns(Task.CompletedTask);
-
+            webbrowserTaskSetup.OpenWebsiteAsync(Arg.Any<Uri>()).Returns(Task.CompletedTask);
             new AboutViewModel(
-                    Substitute.For<IAppInformation>(),
-                    Substitute.For<IEmailAdapter>(),
-                    webbrowserTaskSetup,
-                    Substitute.For<IStoreOperations>())
-                .GoToRepositoryCommand
-                .Execute(null);
+                appInformation: Substitute.For<IAppInformation>(),
+                emailAdapter: Substitute.For<IEmailAdapter>(),
+                browserAdapter: webbrowserTaskSetup,
+                storeOperations: Substitute.For<IStoreOperations>()).GoToRepositoryCommand.Execute(null);
 
-            await webbrowserTaskSetup.Received(1)
-                .OpenWebsiteAsync(
-                    Arg.Is<Uri>(s => s == new Uri(AppConstants.GitHubRepositoryUrl)));
+            await webbrowserTaskSetup.Received(1).OpenWebsiteAsync(Arg.Is<Uri>(s => s == new Uri("https://github.com/MoneyFox/MoneyFox")));
         }
 
         [Fact]
         public void RateApp_NoParams_CommandCalled()
         {
             var storeFeaturesSetup = Substitute.For<IStoreOperations>();
-
             new AboutViewModel(
-                    Substitute.For<IAppInformation>(),
-                    Substitute.For<IEmailAdapter>(),
-                    Substitute.For<IBrowserAdapter>(),
-                    storeFeaturesSetup)
-                .RateAppCommand
-                .Execute(null);
+                appInformation: Substitute.For<IAppInformation>(),
+                emailAdapter: Substitute.For<IEmailAdapter>(),
+                browserAdapter: Substitute.For<IBrowserAdapter>(),
+                storeOperations: storeFeaturesSetup).RateAppCommand.Execute(null);
 
             storeFeaturesSetup.Received(1).RateApp();
         }
     }
+
 }
