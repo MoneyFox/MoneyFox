@@ -9,6 +9,7 @@
     using NLog.Targets;
     using System;
     using System.IO;
+    using Core.Common;
     using Xamarin.Essentials;
 
     [Application]
@@ -62,7 +63,7 @@
 
             var logfile = new FileTarget("logfile")
             {
-                FileName = Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName),
+                FileName = Path.Combine(FileSystem.CacheDirectory, LogConfiguration.FilePath),
                 AutoFlush = true,
                 ArchiveEvery = FileArchivePeriod.Month
             };

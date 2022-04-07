@@ -9,6 +9,7 @@ using Core.Resources;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Core.Common;
 
 public class AboutViewModel : ObservableObject, IAboutViewModel
 {
@@ -65,7 +66,7 @@ public class AboutViewModel : ObservableObject, IAboutViewModel
         Strings.FeedbackSubject,
         string.Empty,
         new List<string> { SUPPORT_MAIL },
-        new List<string> { AppConstants.LogFileName });
+        new List<string> { LogConfiguration.FilePath });
 
     private void RateApp()
         => storeFeatures.RateApp();
