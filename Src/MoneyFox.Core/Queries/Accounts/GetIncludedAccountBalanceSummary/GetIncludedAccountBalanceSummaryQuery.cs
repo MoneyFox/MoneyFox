@@ -1,12 +1,13 @@
 ﻿namespace MoneyFox.Core.Queries.Accounts.GetIncludedAccountBalanceSummary
 {
+
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
     using _Pending_.Common.QueryObjects;
     using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     public class GetIncludedAccountBalanceSummaryQuery : IRequest<decimal>
     {
@@ -19,15 +20,11 @@
                 this.contextAdapter = contextAdapter;
             }
 
-            public async Task<decimal> Handle(GetIncludedAccountBalanceSummaryQuery request,
-                CancellationToken cancellationToken) =>
-                (await contextAdapter.Context
-                    .Accounts
-                    .AreActive()
-                    .AreNotExcluded()
-                    .Select(x => x.CurrentBalance)
-                    .ToListAsync(cancellationToken))
-                .Sum();
+            public async Task<decimal> Handle(GetIncludedAccountBalanceSummaryQuery request, CancellationToken cancellationToken)
+            {
+                return (await contextAdapter.Context.Accounts.AreActive().AreNotExcluded().Select(x => x.CurrentBalance).ToListAsync(cancellationToken)).Sum();
+            }
         }
     }
+
 }

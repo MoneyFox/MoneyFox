@@ -1,5 +1,9 @@
 ﻿namespace MoneyFox.Core.Queries.Payments.GetUnclearedPaymentsOfThisMonth
 {
+
+    using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
     using _Pending_;
     using _Pending_.Common;
     using _Pending_.Common.QueryObjects;
@@ -7,10 +11,6 @@
     using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     public class GetUnclearedPaymentsOfThisMonthQuery : IRequest<List<Payment>>
     {
@@ -27,18 +27,14 @@
                 this.systemDateHelper = systemDateHelper;
             }
 
-            public async Task<List<Payment>> Handle(GetUnclearedPaymentsOfThisMonthQuery request,
-                CancellationToken cancellationToken)
+            public async Task<List<Payment>> Handle(GetUnclearedPaymentsOfThisMonthQuery request, CancellationToken cancellationToken)
             {
-                IQueryable<Payment> query = contextAdapter.Context
-                    .Payments
-                    .Include(x => x.ChargedAccount)
+                var query = contextAdapter.Context.Payments.Include(x => x.ChargedAccount)
                     .Include(x => x.TargetAccount)
                     .AreNotCleared()
-                    .HasDateSmallerEqualsThan(
-                        HelperFunctions.GetEndOfMonth(systemDateHelper));
+                    .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper));
 
-                if(request.AccountId != 0)
+                if (request.AccountId != 0)
                 {
                     query = query.HasAccountId(request.AccountId);
                 }
@@ -47,4 +43,5 @@
             }
         }
     }
+
 }

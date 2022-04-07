@@ -1,12 +1,11 @@
 ﻿namespace MoneyFox.Core.Queries.Statistics.Queries.GetCategorySummary
 {
+
     using System.Collections.Generic;
 
     public class CategorySummaryModel
     {
-        public CategorySummaryModel(decimal totalEarned,
-            decimal totalSpent,
-            List<CategoryOverviewItem> categoryOverviewItems)
+        public CategorySummaryModel(decimal totalEarned, decimal totalSpent, List<CategoryOverviewItem> categoryOverviewItems)
         {
             TotalEarned = totalEarned;
             TotalSpent = totalSpent;
@@ -21,4 +20,5 @@
 
         public List<CategoryOverviewItem> CategoryOverviewItems { get; }
     }
+
 }

@@ -1,10 +1,11 @@
 ﻿namespace MoneyFox.Core.Queries.Accounts.GetAccountById
 {
+
+    using System.Threading;
+    using System.Threading.Tasks;
     using Aggregates;
     using Common.Interfaces;
     using MediatR;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     public class GetAccountByIdQuery : IRequest<Account>
     {
@@ -24,8 +25,11 @@
                 this.contextAdapter = contextAdapter;
             }
 
-            public async Task<Account> Handle(GetAccountByIdQuery request, CancellationToken cancellationToken) =>
-                await contextAdapter.Context.Accounts.FindAsync(request.AccountId);
+            public async Task<Account> Handle(GetAccountByIdQuery request, CancellationToken cancellationToken)
+            {
+                return await contextAdapter.Context.Accounts.FindAsync(request.AccountId);
+            }
         }
     }
+
 }

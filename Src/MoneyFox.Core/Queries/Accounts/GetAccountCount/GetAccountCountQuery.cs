@@ -1,11 +1,12 @@
 ﻿namespace MoneyFox.Core.Queries.Accounts.GetAccountCount
 {
+
+    using System.Threading;
+    using System.Threading.Tasks;
     using _Pending_.Common.QueryObjects;
     using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     public class GetAccountCountQuery : IRequest<int>
     {
@@ -19,8 +20,10 @@
             }
 
             public async Task<int> Handle(GetAccountCountQuery request, CancellationToken cancellationToken)
-                => await contextAdapter.Context.Accounts.AreActive()
-                    .CountAsync(cancellationToken);
+            {
+                return await contextAdapter.Context.Accounts.AreActive().CountAsync(cancellationToken);
+            }
         }
     }
+
 }
