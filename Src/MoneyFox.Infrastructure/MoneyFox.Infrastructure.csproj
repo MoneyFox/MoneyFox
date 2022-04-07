@@ -15,6 +15,14 @@
         <PackageReference Include="NLog" Version="4.7.15"/>
         <PackageReference Include="Microsoft.Graph" Version="4.23.0"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.15"/>
+        <PackageReference Include="Autofac" Version="6.3.0" />
+        <PackageReference Include="AutoMapper" Version="11.0.1" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="7.1.2" />
+        <PackageReference Include="JetBrains.Annotations" Version="2021.3.0" />
+        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.0" />
+        <PackageReference Include="NLog" Version="4.7.15" />
+        <PackageReference Include="Microsoft.Graph" Version="4.24.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.15" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.15">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
