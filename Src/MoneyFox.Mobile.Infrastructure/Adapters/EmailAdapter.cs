@@ -1,9 +1,10 @@
 ﻿namespace MoneyFox.Mobile.Infrastructure.Adapters
 {
-    using Core.Interfaces;
-    using NLog;
+
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Core.Interfaces;
+    using NLog;
     using Xamarin.Essentials;
 
     public class EmailAdapter : IEmailAdapter
@@ -14,10 +15,10 @@
         {
             try
             {
-                var message = new EmailMessage {Subject = subject, Body = body, To = recipients};
+                var message = new EmailMessage { Subject = subject, Body = body, To = recipients };
                 await Email.ComposeAsync(message);
             }
-            catch(FeatureNotSupportedException ex)
+            catch (FeatureNotSupportedException ex)
             {
                 logManager.Warn(ex);
             }
@@ -27,19 +28,19 @@
         {
             try
             {
-                var message = new EmailMessage {Subject = subject, Body = body, To = recipients};
-
-                foreach(string path in filePaths)
+                var message = new EmailMessage { Subject = subject, Body = body, To = recipients };
+                foreach (var path in filePaths)
                 {
-                    message.Attachments.Add(new EmailAttachment(path, "txt"));
+                    message.Attachments.Add(new EmailAttachment(fullPath: path, contentType: "txt"));
                 }
 
                 await Email.ComposeAsync(message);
             }
-            catch(FeatureNotSupportedException ex)
+            catch (FeatureNotSupportedException ex)
             {
                 logManager.Warn(ex);
             }
         }
     }
+
 }

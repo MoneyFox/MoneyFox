@@ -1,5 +1,11 @@
 ﻿namespace MoneyFox.Infrastructure.DbBackup
 {
+
+    using System;
+    using System.IO;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Messaging;
     using Core._Pending_.Common.Extensions;
@@ -12,12 +18,6 @@
     using Core.Resources;
     using Microsoft.AppCenter.Crashes;
     using NLog;
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     internal sealed class BackupService : ObservableRecipient, IBackupService, IDisposable
     {
@@ -34,10 +34,8 @@
         private readonly IDbPathProvider dbPathProvider;
 
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-        private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
+        private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(initialCount: 1, maxCount: 1);
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
-
-        public UserAccount UserAccount { get; set; }
 
         public BackupService(
             ICloudBackupService cloudBackupService,
@@ -58,71 +56,66 @@
             this.dbPathProvider = dbPathProvider;
         }
 
+        public UserAccount UserAccount { get; set; }
+
         public async Task LoginAsync()
         {
-            if(!connectivity.IsConnected)
+            if (!connectivity.IsConnected)
             {
                 throw new NetworkConnectionException();
             }
 
             await cloudBackupService.LoginAsync();
             UserAccount = cloudBackupService.UserAccount.GetUserAccount();
-
             settingsFacade.IsLoggedInToBackupService = true;
-
-            await toastService.ShowToastAsync(Strings.LoggedInMessage, Strings.LoggedInTitle);
-
+            await toastService.ShowToastAsync(message: Strings.LoggedInMessage, title: Strings.LoggedInTitle);
             logger.Info("Successfully logged in.");
         }
 
         public async Task LogoutAsync()
         {
-            if(!connectivity.IsConnected)
+            if (!connectivity.IsConnected)
             {
                 throw new NetworkConnectionException();
             }
 
             await cloudBackupService.LogoutAsync();
-
             settingsFacade.IsLoggedInToBackupService = false;
             settingsFacade.IsBackupAutouploadEnabled = false;
-
-            await toastService.ShowToastAsync(Strings.LoggedOutMessage, Strings.LoggedOutTitle);
-
+            await toastService.ShowToastAsync(message: Strings.LoggedOutMessage, title: Strings.LoggedOutTitle);
             logger.Info("Successfully logged out.");
         }
 
         public async Task<bool> IsBackupExistingAsync()
         {
-            if(!connectivity.IsConnected)
+            if (!connectivity.IsConnected)
             {
                 return false;
             }
 
-            List<string> files = await cloudBackupService.GetFileNamesAsync();
+            var files = await cloudBackupService.GetFileNamesAsync();
+
             return files.Any();
         }
 
         public async Task<DateTime> GetBackupDateAsync()
         {
-            if(!connectivity.IsConnected)
+            if (!connectivity.IsConnected)
             {
                 return DateTime.MinValue;
             }
 
             try
             {
-                DateTime date = await cloudBackupService.GetBackupDateAsync();
+                var date = await cloudBackupService.GetBackupDateAsync();
+
                 return date.ToLocalTime();
             }
-            catch(Exception ex)
-                when(ex is BackupOperationCanceledException || ex is BackupAuthenticationFailedException)
+            catch (Exception ex) when (ex is BackupOperationCanceledException || ex is BackupAuthenticationFailedException)
             {
-                logger.Error(ex, "Operation canceled during get backup date. Execute logout");
+                logger.Error(exception: ex, "Operation canceled during get backup date. Execute logout");
                 await LogoutAsync();
-                await toastService.ShowToastAsync(
-                    Strings.FailedToLoginToBackupMessage,
-                    Strings.FailedToLoginToBackupTitle);
+                await toastService.ShowToastAsync(message: Strings.FailedToLoginToBackupMessage, title: Strings.FailedToLoginToBackupTitle);
                 Crashes.TrackError(ex);
             }
 
@@ -131,94 +124,46 @@
 
         public async Task RestoreBackupAsync(BackupMode backupMode = BackupMode.Automatic)
         {
-            if(backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutouploadEnabled)
+            if (backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutouploadEnabled)
             {
                 logger.Info("Backup is in Automatic Mode but Auto Backup isn't enabled.");
+
                 return;
             }
 
-            if(!connectivity.IsConnected)
+            if (!connectivity.IsConnected)
             {
                 throw new NetworkConnectionException();
             }
 
             try
             {
-                BackupRestoreResult result = await DownloadBackupAsync(backupMode);
-
-                if(result == BackupRestoreResult.NewBackupRestored)
+                var result = await DownloadBackupAsync(backupMode);
+                if (result == BackupRestoreResult.NewBackupRestored)
                 {
                     settingsFacade.LastDatabaseUpdate = DateTime.Now;
-
                     await toastService.ShowToastAsync(Strings.BackupRestoredMessage);
                     Messenger.Send(new ReloadMessage());
                 }
             }
-            catch(BackupOperationCanceledException ex)
+            catch (BackupOperationCanceledException ex)
             {
-                logger.Error(ex, "Operation canceled during restore backup. Execute logout");
+                logger.Error(exception: ex, "Operation canceled during restore backup. Execute logout");
                 await LogoutAsync();
-                await toastService.ShowToastAsync(
-                    Strings.FailedToLoginToBackupMessage,
-                    Strings.FailedToLoginToBackupTitle);
+                await toastService.ShowToastAsync(message: Strings.FailedToLoginToBackupMessage, title: Strings.FailedToLoginToBackupTitle);
             }
-        }
-
-        private async Task<BackupRestoreResult> DownloadBackupAsync(BackupMode backupMode)
-        {
-            try
-            {
-                DateTime backupDate = await GetBackupDateAsync();
-                if(settingsFacade.LastDatabaseUpdate > backupDate && backupMode == BackupMode.Automatic)
-                {
-                    logger.Info("Local backup is newer than remote. Don't download backup");
-                    return BackupRestoreResult.Canceled;
-                }
-
-                logger.Info("New backup found. Starting download.");
-                await using(var backupStream = await cloudBackupService.RestoreAsync())
-                {
-                    await fileStore.WriteFileAsync(TEMP_DOWNLOAD_PATH, backupStream.ReadToEnd());
-                }
-
-                logger.Info("Backup downloaded. Replace current file.");
-
-                bool moveSucceed = await fileStore.TryMoveAsync(
-                    TEMP_DOWNLOAD_PATH,
-                    dbPathProvider.GetDbPath(),
-                    true);
-
-                if(!moveSucceed)
-                {
-                    throw new BackupException("Error Moving downloaded backup file");
-                }
-
-                logger.Info("Recreate database context.");
-                contextAdapter.RecreateContext();
-
-                return BackupRestoreResult.NewBackupRestored;
-            }
-            catch(BackupOperationCanceledException ex)
-            {
-                logger.Error(ex, "Operation canceled during restore backup. Execute logout");
-                await LogoutAsync();
-                await toastService.ShowToastAsync(
-                    Strings.FailedToLoginToBackupMessage,
-                    Strings.FailedToLoginToBackupTitle);
-            }
-
-            return BackupRestoreResult.BackupNotFound;
         }
 
         public async Task UploadBackupAsync(BackupMode backupMode = BackupMode.Automatic)
         {
-            if(backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutouploadEnabled)
+            if (backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutouploadEnabled)
             {
                 logger.Info("Backup is in Automatic Mode but Auto Backup isn't enabled.");
+
                 return;
             }
 
-            if(!settingsFacade.IsLoggedInToBackupService)
+            if (!settingsFacade.IsLoggedInToBackupService)
             {
                 logger.Info("Upload started, but not loggedin. Try to login.");
                 await LoginAsync();
@@ -228,21 +173,64 @@
             settingsFacade.LastDatabaseUpdate = DateTime.Now;
         }
 
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private async Task<BackupRestoreResult> DownloadBackupAsync(BackupMode backupMode)
+        {
+            try
+            {
+                var backupDate = await GetBackupDateAsync();
+                if (settingsFacade.LastDatabaseUpdate > backupDate && backupMode == BackupMode.Automatic)
+                {
+                    logger.Info("Local backup is newer than remote. Don't download backup");
+
+                    return BackupRestoreResult.Canceled;
+                }
+
+                logger.Info("New backup found. Starting download.");
+                await using (var backupStream = await cloudBackupService.RestoreAsync())
+                {
+                    await fileStore.WriteFileAsync(path: TEMP_DOWNLOAD_PATH, contents: backupStream.ReadToEnd());
+                }
+
+                logger.Info("Backup downloaded. Replace current file.");
+                var moveSucceed = await fileStore.TryMoveAsync(@from: TEMP_DOWNLOAD_PATH, destination: dbPathProvider.GetDbPath(), overwrite: true);
+                if (!moveSucceed)
+                {
+                    throw new BackupException("Error Moving downloaded backup file");
+                }
+
+                logger.Info("Recreate database context.");
+                contextAdapter.RecreateContext();
+
+                return BackupRestoreResult.NewBackupRestored;
+            }
+            catch (BackupOperationCanceledException ex)
+            {
+                logger.Error(exception: ex, "Operation canceled during restore backup. Execute logout");
+                await LogoutAsync();
+                await toastService.ShowToastAsync(message: Strings.FailedToLoginToBackupMessage, title: Strings.FailedToLoginToBackupTitle);
+            }
+
+            return BackupRestoreResult.BackupNotFound;
+        }
+
         private async Task EnqueueBackupTaskAsync()
         {
-            if(!connectivity.IsConnected)
+            if (!connectivity.IsConnected)
             {
                 throw new NetworkConnectionException();
             }
 
             logger.Info("Enqueue Backup upload.");
-
-            await semaphoreSlim.WaitAsync(
-                BACKUP_OPERATION_TIMEOUT,
-                cancellationTokenSource.Token);
+            await semaphoreSlim.WaitAsync(millisecondsTimeout: BACKUP_OPERATION_TIMEOUT, cancellationToken: cancellationTokenSource.Token);
             try
             {
-                if(await cloudBackupService.UploadAsync(await fileStore.OpenReadAsync(dbPathProvider.GetDbPath())))
+                if (await cloudBackupService.UploadAsync(await fileStore.OpenReadAsync(dbPathProvider.GetDbPath())))
                 {
                     logger.Info("Upload complete. Release Semaphore.");
                     semaphoreSlim.Release();
@@ -253,43 +241,40 @@
                     cancellationTokenSource.Cancel();
                 }
             }
-            catch(FileNotFoundException ex)
+            catch (FileNotFoundException ex)
             {
-                logger.Error(ex, "Backup failed because database was not found.");
+                logger.Error(exception: ex, "Backup failed because database was not found.");
             }
-            catch(OperationCanceledException ex)
+            catch (OperationCanceledException ex)
             {
-                logger.Error(ex, "Enqueue Backup failed.");
+                logger.Error(exception: ex, "Enqueue Backup failed.");
                 await Task.Delay(BACKUP_REPEAT_DELAY);
                 await EnqueueBackupTaskAsync();
             }
-            catch(BackupAuthenticationFailedException ex)
+            catch (BackupAuthenticationFailedException ex)
             {
-                logger.Error(ex, "BackupAuthenticationFailedException when tried to enqueue Backup.");
+                logger.Error(exception: ex, "BackupAuthenticationFailedException when tried to enqueue Backup.");
+
                 throw;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                logger.Error(ex, "ServiceException when tried to enqueue Backup.");
+                logger.Error(exception: ex, "ServiceException when tried to enqueue Backup.");
+
                 throw;
             }
 
             logger.Warn("Enqueue Backup failed.");
         }
 
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
         private void Dispose(bool disposing)
         {
-            if(disposing)
+            if (disposing)
             {
                 cancellationTokenSource.Dispose();
                 semaphoreSlim.Dispose();
             }
         }
     }
+
 }

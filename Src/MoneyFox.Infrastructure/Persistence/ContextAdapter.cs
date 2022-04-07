@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Infrastructure.Persistence
 {
+
     using Core._Pending_.Common.Facades;
     using Core.Common.Interfaces;
     using Core.Interfaces;
@@ -15,8 +16,7 @@
         {
             this.publisher = publisher;
             this.settingsFacade = settingsFacade;
-
-            Context = EfCoreContextFactory.Create(publisher, settingsFacade, dbPathProvider.GetDbPath());
+            Context = EfCoreContextFactory.Create(publisher: publisher, settingsFacade: settingsFacade, dbPath: dbPathProvider.GetDbPath());
             this.dbPathProvider = dbPathProvider;
         }
 
@@ -25,7 +25,8 @@
         public void RecreateContext()
         {
             Context.Dispose();
-            Context = EfCoreContextFactory.Create(publisher, settingsFacade, dbPathProvider.GetDbPath());
+            Context = EfCoreContextFactory.Create(publisher: publisher, settingsFacade: settingsFacade, dbPath: dbPathProvider.GetDbPath());
         }
     }
+
 }

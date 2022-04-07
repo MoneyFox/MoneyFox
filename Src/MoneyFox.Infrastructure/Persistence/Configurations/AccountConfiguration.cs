@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Infrastructure.Persistence.Configurations
 {
+
     using Core.Aggregates;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -12,4 +13,5 @@
             builder.Property(b => b.Name).IsRequired();
         }
     }
+
 }

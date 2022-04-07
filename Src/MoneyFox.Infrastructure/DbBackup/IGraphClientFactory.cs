@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Infrastructure.DbBackup
 {
+
     using Microsoft.Graph;
     using Microsoft.Identity.Client;
 
@@ -8,4 +9,5 @@
     {
         GraphServiceClient CreateClient(AuthenticationResult authResult);
     }
+
 }

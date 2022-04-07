@@ -1,14 +1,14 @@
 ﻿namespace MoneyFox.Win.Infrastructure;
 
-using Microsoft.Identity.Client;
 using System.IO;
 using System.Security.Cryptography;
 using Windows.Storage;
+using Microsoft.Identity.Client;
 
 internal static class TokenCacheHelper
 {
     /// <summary>
-    /// Path to the token cache
+    ///     Path to the token cache
     /// </summary>
     private static readonly string CacheFilePath = ApplicationData.Current.LocalFolder.Path + ".msalcache.bin";
 
@@ -16,29 +16,26 @@ internal static class TokenCacheHelper
 
     private static void BeforeAccessNotification(TokenCacheNotificationArgs args)
     {
-        lock(FileLock)
+        lock (FileLock)
         {
-            args.TokenCache.DeserializeMsalV3(File.Exists(CacheFilePath)
-                ? ProtectedData.Unprotect(File.ReadAllBytes(CacheFilePath),
-                    null,
-                    DataProtectionScope.CurrentUser)
-                : null);
+            args.TokenCache.DeserializeMsalV3(
+                File.Exists(CacheFilePath)
+                    ? ProtectedData.Unprotect(encryptedData: File.ReadAllBytes(CacheFilePath), optionalEntropy: null, scope: DataProtectionScope.CurrentUser)
+                    : null);
         }
     }
 
     private static void AfterAccessNotification(TokenCacheNotificationArgs args)
     {
         // if the access operation resulted in a cache update
-        if(args.HasStateChanged)
+        if (args.HasStateChanged)
         {
-            lock(FileLock)
+            lock (FileLock)
             {
                 // reflect changes in the persistent store
-                File.WriteAllBytes(CacheFilePath,
-                    ProtectedData.Protect(args.TokenCache.SerializeMsalV3(),
-                        null,
-                        DataProtectionScope.CurrentUser)
-                );
+                File.WriteAllBytes(
+                    path: CacheFilePath,
+                    bytes: ProtectedData.Protect(userData: args.TokenCache.SerializeMsalV3(), optionalEntropy: null, scope: DataProtectionScope.CurrentUser));
             }
         }
     }

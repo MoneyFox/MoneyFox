@@ -1,8 +1,9 @@
 ﻿namespace MoneyFox.Mobile.Infrastructure.Adapters
 {
+
+    using System;
     using Core.Interfaces;
     using NLog;
-    using System;
     using Xamarin.Essentials;
 
     public class SettingsAdapter : ISettingsAdapter
@@ -13,12 +14,13 @@
         {
             try
             {
-                return Preferences.Get(key, defaultValue);
+                return Preferences.Get(key: key, defaultValue: defaultValue);
             }
-            catch(InvalidCastException)
+            catch (InvalidCastException)
             {
                 logManager.Error($"Value {key} couldn't be parsed to bool.");
-                Preferences.Set(key, defaultValue);
+                Preferences.Set(key: key, value: defaultValue);
+
                 return defaultValue;
             }
         }
@@ -27,13 +29,13 @@
         {
             try
             {
-                return Preferences.Get(key, defaultValue);
+                return Preferences.Get(key: key, defaultValue: defaultValue);
             }
-            catch(InvalidCastException)
+            catch (InvalidCastException)
             {
                 logManager.Error($"Value {key} couldn't be parsed to string.");
+                Preferences.Set(key: key, value: defaultValue);
 
-                Preferences.Set(key, defaultValue);
                 return defaultValue;
             }
         }
@@ -42,23 +44,36 @@
         {
             try
             {
-                return Preferences.Get(key, defaultValue);
+                return Preferences.Get(key: key, defaultValue: defaultValue);
             }
-            catch(InvalidCastException)
+            catch (InvalidCastException)
             {
                 logManager.Error($"Value {key} couldn't be parsed to int.");
+                Preferences.Set(key: key, value: defaultValue);
 
-                Preferences.Set(key, defaultValue);
                 return defaultValue;
             }
         }
 
-        public void AddOrUpdate(string key, bool value) => Preferences.Set(key, value);
+        public void AddOrUpdate(string key, bool value)
+        {
+            Preferences.Set(key: key, value: value);
+        }
 
-        public void AddOrUpdate(string key, string value) => Preferences.Set(key, value);
+        public void AddOrUpdate(string key, string value)
+        {
+            Preferences.Set(key: key, value: value);
+        }
 
-        public void AddOrUpdate(string key, int value) => Preferences.Set(key, value);
+        public void AddOrUpdate(string key, int value)
+        {
+            Preferences.Set(key: key, value: value);
+        }
 
-        public void Remove(string key) => Preferences.Remove(key);
+        public void Remove(string key)
+        {
+            Preferences.Remove(key);
+        }
     }
+
 }

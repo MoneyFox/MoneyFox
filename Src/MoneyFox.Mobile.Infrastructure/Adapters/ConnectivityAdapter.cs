@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Mobile.Infrastructure.Adapters
 {
+
     using Core.Interfaces;
     using NLog;
     using Xamarin.Essentials;
@@ -18,12 +19,14 @@
                 {
                     return Connectivity.NetworkAccess == NetworkAccess.Internet;
                 }
-                catch(PermissionException ex)
+                catch (PermissionException ex)
                 {
-                    logger.Error(ex, "Permission denied on check for connection");
+                    logger.Error(exception: ex, "Permission denied on check for connection");
+
                     return false;
                 }
             }
         }
     }
+
 }

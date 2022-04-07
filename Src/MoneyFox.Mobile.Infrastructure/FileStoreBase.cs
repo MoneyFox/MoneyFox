@@ -1,25 +1,28 @@
 ﻿namespace MoneyFox.Mobile.Infrastructure
 {
-    using Core.Interfaces;
+
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
+    using Core.Interfaces;
 
     public abstract class FileStoreBase : IFileStore
     {
-        public async Task WriteFileAsync(string path, IEnumerable<byte> contents) =>
+        public async Task WriteFileAsync(string path, IEnumerable<byte> contents)
+        {
             await WriteFileCommonAsync(
-                path,
-                stream =>
+                path: path,
+                streamAction: stream =>
                 {
-                    using(var binaryWriter = new BinaryWriter(stream))
+                    using (var binaryWriter = new BinaryWriter(stream))
                     {
                         binaryWriter.Write(contents.ToArray());
                         binaryWriter.Flush();
                     }
                 });
+        }
 
         public abstract Task<Stream> OpenReadAsync(string path);
 
@@ -27,4 +30,5 @@
 
         protected abstract Task WriteFileCommonAsync(string path, Action<Stream> streamAction);
     }
+
 }
