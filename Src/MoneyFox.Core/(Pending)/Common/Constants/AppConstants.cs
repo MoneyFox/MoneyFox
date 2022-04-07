@@ -36,11 +36,6 @@
         /// </summary>
         public static string GithubContributionUrl => "https://github.com/MoneyFox/MoneyFox/graphs/contributors";
 
-        /// <summary>
-        ///     ID string for add payment shortcuts
-        /// </summary>
-        public static string AddPaymentId => "AddIncomeId";
-
         public static string LogFileName => "moneyfox.log";
     }
 }
