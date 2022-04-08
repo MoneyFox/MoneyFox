@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
     using MediatR;
     using UseCases;
+    using UseCases.BackupUpload;
 
     internal sealed class DatabaseEntityCreatedHandler : INotificationHandler<DbEntityModifiedEvent>
     {
