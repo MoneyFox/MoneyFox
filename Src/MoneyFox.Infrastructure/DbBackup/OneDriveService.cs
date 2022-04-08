@@ -1,16 +1,17 @@
 ﻿namespace MoneyFox.Infrastructure.DbBackup
 {
-    using Core._Pending_.DbBackup;
-    using Core.Common.Exceptions;
-    using Microsoft.Graph;
-    using Microsoft.Identity.Client;
-    using NLog;
+
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
+    using Core._Pending_.DbBackup;
+    using Core.Common.Exceptions;
+    using Microsoft.Graph;
+    using Microsoft.Identity.Client;
+    using NLog;
     using Logger = NLog.Logger;
 
     internal class OneDriveService : ICloudBackupService
@@ -29,7 +30,6 @@
         public OneDriveService(IOneDriveAuthenticationService oneDriveAuthenticationService)
         {
             this.oneDriveAuthenticationService = oneDriveAuthenticationService;
-
             UserAccount = new UserAccount();
         }
 
@@ -40,23 +40,23 @@
         // TODO: Make private
         public UserAccount UserAccount { get; set; }
 
-        public async Task LoginAsync() => await oneDriveAuthenticationService.CreateServiceClient();
+        public async Task LoginAsync()
+        {
+            await oneDriveAuthenticationService.CreateServiceClient();
+        }
 
-        public async Task LogoutAsync() => await oneDriveAuthenticationService.LogoutAsync();
+        public async Task LogoutAsync()
+        {
+            await oneDriveAuthenticationService.LogoutAsync();
+        }
 
         public async Task<bool> UploadAsync(Stream dataToUpload)
         {
-            GraphServiceClient graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
+            var graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
             try
             {
-                var uploadedItem = await graphServiceClient
-                    .Me
-                    .Drive
-                    .Special
-                    .AppRoot
-                    .ItemWithPath(BACKUP_NAME_TEMP)
-                    .Content
-                    .Request()
+                var uploadedItem = await graphServiceClient.Me.Drive.Special.AppRoot.ItemWithPath(BACKUP_NAME_TEMP)
+                    .Content.Request()
                     .PutAsync<DriveItem>(dataToUpload);
 
                 await LoadArchiveFolderAsync(graphServiceClient);
@@ -66,69 +66,33 @@
 
                 return uploadedItem != null;
             }
-            catch(MsalClientException ex)
+            catch (MsalClientException ex)
             {
-                if(ex.ErrorCode == ERROR_CODE_CANCELED)
+                if (ex.ErrorCode == ERROR_CODE_CANCELED)
                 {
                     logManager.Info(ex);
                     await RestoreArchivedBackupInCaseOfErrorAsync(graphServiceClient);
+
                     throw new BackupOperationCanceledException(ex);
                 }
 
                 logManager.Error(ex);
                 await RestoreArchivedBackupInCaseOfErrorAsync(graphServiceClient);
+
                 throw;
             }
-            catch(OperationCanceledException ex)
+            catch (OperationCanceledException ex)
             {
                 logManager.Info(ex);
                 await RestoreArchivedBackupInCaseOfErrorAsync(graphServiceClient);
+
                 throw new BackupOperationCanceledException(ex);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logManager.Error(ex);
                 await RestoreArchivedBackupInCaseOfErrorAsync(graphServiceClient);
-                throw new BackupAuthenticationFailedException(ex);
-            }
-        }
 
-        public async Task<Stream> RestoreAsync(string backupName, string dbName)
-        {
-            try
-            {
-                GraphServiceClient graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
-                DriveItem? existingBackup = (await graphServiceClient
-                        .Me
-                        .Drive
-                        .Special
-                        .AppRoot
-                        .Children
-                        .Request()
-                        .GetAsync())
-                    .FirstOrDefault(x => x.Name == backupName);
-
-                if(existingBackup == null)
-                {
-                    throw new NoBackupFoundException($"No backup with the name {backupName} was found.");
-                }
-
-                return await graphServiceClient.Drive.Items[existingBackup.Id].Content.Request().GetAsync();
-            }
-            catch(MsalClientException ex)
-            {
-                if(ex.ErrorCode == ERROR_CODE_CANCELED)
-                {
-                    logManager.Info(ex);
-                    throw new BackupOperationCanceledException();
-                }
-
-                logManager.Error(ex);
-                throw;
-            }
-            catch(Exception ex)
-            {
-                logManager.Error(ex);
                 throw new BackupAuthenticationFailedException(ex);
             }
         }
@@ -137,27 +101,21 @@
         {
             try
             {
-                GraphServiceClient graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
-                DriveItem? existingBackup = (await graphServiceClient
-                        .Me
-                        .Drive
-                        .Special
-                        .AppRoot
-                        .Children
-                        .Request()
-                        .GetAsync())
-                    .FirstOrDefault(x => x.Name == BACKUP_NAME);
+                var graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
+                var existingBackup
+                    = (await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync()).FirstOrDefault(x => x.Name == BACKUP_NAME);
 
-                if(existingBackup != null)
+                if (existingBackup != null)
                 {
                     return existingBackup.LastModifiedDateTime?.DateTime ?? DateTime.MinValue;
                 }
 
                 return DateTime.MinValue;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logManager.Error(ex);
+
                 throw;
             }
         }
@@ -166,21 +124,49 @@
         {
             try
             {
-                GraphServiceClient graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
-                return (await graphServiceClient
-                        .Me
-                        .Drive
-                        .Special
-                        .AppRoot
-                        .Children
-                        .Request()
-                        .GetAsync())
-                    .Select(x => x.Name)
-                    .ToList();
+                var graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
+
+                return (await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync()).Select(x => x.Name).ToList();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logManager.Error(ex);
+
+                throw new BackupAuthenticationFailedException(ex);
+            }
+        }
+
+        public async Task<Stream> RestoreAsync()
+        {
+            try
+            {
+                var graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
+                var existingBackup = (await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync()).FirstOrDefault(x => x.Name == BACKUP_NAME);
+
+                if (existingBackup == null)
+                {
+                    throw new NoBackupFoundException();
+                }
+
+                return await graphServiceClient.Drive.Items[existingBackup.Id].Content.Request().GetAsync();
+            }
+            catch (MsalClientException ex)
+            {
+                if (ex.ErrorCode == ERROR_CODE_CANCELED)
+                {
+                    logManager.Info(ex);
+
+                    throw new BackupOperationCanceledException();
+                }
+
+                logManager.Error(ex);
+
+                throw;
+            }
+            catch (Exception ex)
+            {
+                logManager.Error(ex);
+
                 throw new BackupAuthenticationFailedException(ex);
             }
         }
@@ -190,84 +176,46 @@
             try
             {
                 logManager.Info("Restore archived Backup.");
-
-                IDriveItemChildrenCollectionPage archivedBackups = await graphServiceClient.Drive
-                    .Items[ArchiveFolder?.Id]
-                    .Children
-                    .Request()
-                    .GetAsync();
-
-                if(!archivedBackups.Any())
+                var archivedBackups = await graphServiceClient.Drive.Items[ArchiveFolder?.Id].Children.Request().GetAsync();
+                if (!archivedBackups.Any())
                 {
                     logManager.Info("No backups found.");
+
                     return;
                 }
 
-                DriveItem lastBackup = archivedBackups.OrderByDescending(x => x.CreatedDateTime).First();
-
-                DriveItem? appRoot = await graphServiceClient
-                    .Me
-                    .Drive
-                    .Special
-                    .AppRoot
-                    .Request()
-                    .GetAsync();
-
-                var updateItem = new DriveItem
-                {
-                    ParentReference = new ItemReference { Id = appRoot.Id }, Name = BACKUP_NAME
-                };
-
-                await graphServiceClient
-                    .Drive
-                    .Items[lastBackup.Id]
-                    .Request()
-                    .UpdateAsync(updateItem);
+                var lastBackup = archivedBackups.OrderByDescending(x => x.CreatedDateTime).First();
+                var appRoot = await graphServiceClient.Me.Drive.Special.AppRoot.Request().GetAsync();
+                var updateItem = new DriveItem { ParentReference = new ItemReference { Id = appRoot.Id }, Name = BACKUP_NAME };
+                await graphServiceClient.Drive.Items[lastBackup.Id].Request().UpdateAsync(updateItem);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                logManager.Error(ex, "Failed to restore database on fail.");
+                logManager.Error(exception: ex,"Failed to restore database on fail.");
             }
         }
 
         private async Task DeleteCleanupOldBackupsAsync(GraphServiceClient graphServiceClient)
         {
-            IDriveItemChildrenCollectionPage archiveBackups = await graphServiceClient.Drive
-                .Items[ArchiveFolder?.Id]
-                .Children
-                .Request()
-                .GetAsync();
-
-            if(archiveBackups.Count < BACKUP_ARCHIVE_COUNT)
+            var archiveBackups = await graphServiceClient.Drive.Items[ArchiveFolder?.Id].Children.Request().GetAsync();
+            if (archiveBackups.Count < BACKUP_ARCHIVE_COUNT)
             {
                 return;
             }
 
-            DriveItem oldestBackup = archiveBackups.OrderByDescending(x => x.CreatedDateTime).Last();
-
-            await graphServiceClient.Drive
-                .Items[oldestBackup?.Id]
-                .Request()
-                .DeleteAsync();
+            var oldestBackup = archiveBackups.OrderByDescending(x => x.CreatedDateTime).Last();
+            await graphServiceClient.Drive.Items[oldestBackup?.Id].Request().DeleteAsync();
         }
 
         private async Task ArchiveCurrentBackupAsync(GraphServiceClient graphServiceClient)
         {
-            if(ArchiveFolder == null)
+            if (ArchiveFolder == null)
             {
                 return;
             }
 
-            DriveItem? currentBackup = (await graphServiceClient
-                    .Me
-                    .Drive
-                    .Special
-                    .AppRoot.Children
-                    .Request()
-                    .GetAsync())
-                .FirstOrDefault(x => x.Name == BACKUP_NAME);
-
-            if(currentBackup == null)
+            var currentBackup = (await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync()).FirstOrDefault(x => x.Name == BACKUP_NAME);
+            if (currentBackup == null)
             {
                 return;
             }
@@ -276,63 +224,41 @@
             {
                 ParentReference = new ItemReference { Id = ArchiveFolder.Id },
                 Name = string.Format(
-                    CultureInfo.InvariantCulture,
-                    BACKUP_ARCHIVE_NAME_TEMPLATE,
-                    DateTime.Now.ToString("yyyy-M-d_hh-mm-ssss", CultureInfo.InvariantCulture))
+                    provider: CultureInfo.InvariantCulture,
+                    format: BACKUP_ARCHIVE_NAME_TEMPLATE,
+                    arg0: DateTime.Now.ToString(format: "yyyy-M-d_hh-mm-ssss", provider: CultureInfo.InvariantCulture))
             };
 
-            await graphServiceClient
-                .Drive
-                .Items[currentBackup.Id]
-                .Request()
-                .UpdateAsync(updateItem);
+            await graphServiceClient.Drive.Items[currentBackup.Id].Request().UpdateAsync(updateItem);
         }
 
         private async Task RenameUploadedBackupAsync(GraphServiceClient graphServiceClient)
         {
             logManager.Info("Rename backup_upload.");
+            var backupUpload
+                = (await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync()).FirstOrDefault(x => x.Name == BACKUP_NAME_TEMP);
 
-            DriveItem? backupUpload = (await graphServiceClient
-                    .Me
-                    .Drive
-                    .Special
-                    .AppRoot.Children
-                    .Request()
-                    .GetAsync())
-                .FirstOrDefault(x => x.Name == BACKUP_NAME_TEMP);
-
-            if(backupUpload == null)
+            if (backupUpload == null)
             {
                 return;
             }
 
             var updateItem = new DriveItem { Name = BACKUP_NAME };
-
-            await graphServiceClient
-                .Drive
-                .Items[backupUpload.Id]
-                .Request()
-                .UpdateAsync(updateItem);
+            await graphServiceClient.Drive.Items[backupUpload.Id].Request().UpdateAsync(updateItem);
         }
 
         private async Task LoadArchiveFolderAsync(GraphServiceClient graphServiceClient)
         {
-            if(ArchiveFolder != null)
+            if (ArchiveFolder != null)
             {
                 return;
             }
 
-            ArchiveFolder = (await graphServiceClient
-                    .Me
-                    .Drive
-                    .Special
-                    .AppRoot.Children
-                    .Request()
-                    .GetAsync())
-                .CurrentPage
-                .FirstOrDefault(x => x.Name == ARCHIVE_FOLDER_NAME);
+            ArchiveFolder
+                = (await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync()).CurrentPage.FirstOrDefault(
+                    x => x.Name == ARCHIVE_FOLDER_NAME);
 
-            if(ArchiveFolder == null)
+            if (ArchiveFolder == null)
             {
                 await CreateArchiveFolderAsync(graphServiceClient);
             }
@@ -341,15 +267,8 @@
         private async Task CreateArchiveFolderAsync(GraphServiceClient graphServiceClient)
         {
             var folderToCreate = new DriveItem { Name = ARCHIVE_FOLDER_NAME, Folder = new Folder() };
-
-            ArchiveFolder = await graphServiceClient
-                .Me
-                .Drive
-                .Special
-                .AppRoot
-                .Children
-                .Request()
-                .AddAsync(folderToCreate);
+            ArchiveFolder = await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().AddAsync(folderToCreate);
         }
     }
+
 }
