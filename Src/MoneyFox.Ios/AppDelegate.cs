@@ -22,7 +22,7 @@
     [UsedImplicitly]
     public class AppDelegate : FormsApplicationDelegate
     {
-        private Logger? logManager;
+        private Logger logManager;
 
         // You have 17 seconds to return from this method, or iOS will terminate your application.
         //
