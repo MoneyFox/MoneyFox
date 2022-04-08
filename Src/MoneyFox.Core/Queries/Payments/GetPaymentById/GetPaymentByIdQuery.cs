@@ -1,13 +1,14 @@
 ﻿namespace MoneyFox.Core.Queries.Payments.GetPaymentById
 {
+
+    using System.Threading;
+    using System.Threading.Tasks;
     using _Pending_.Exceptions;
     using Aggregates.Payments;
     using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
     using NLog;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     public class GetPaymentByIdQuery : IRequest<Payment>
     {
@@ -31,15 +32,16 @@
 
             public async Task<Payment> Handle(GetPaymentByIdQuery request, CancellationToken cancellationToken)
             {
-                Payment? payment = await contextAdapter.Context.Payments.Include(x => x.ChargedAccount)
+                var payment = await contextAdapter.Context.Payments.Include(x => x.ChargedAccount)
                     .Include(x => x.TargetAccount)
                     .Include(x => x.RecurringPayment)
                     .Include(x => x.Category)
                     .SingleOrDefaultAsync(x => x.Id == request.PaymentId);
 
-                if(payment == null)
+                if (payment == null)
                 {
-                    logger.Error("Payment with id {paymentId} not found.", request.PaymentId);
+                    logger.Error(message: "Payment with id {paymentId} not found.", argument: request.PaymentId);
+
                     throw new PaymentNotFoundException();
                 }
 
@@ -47,4 +49,5 @@
             }
         }
     }
+
 }

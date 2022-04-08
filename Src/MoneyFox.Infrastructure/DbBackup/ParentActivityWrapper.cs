@@ -1,6 +1,7 @@
 ﻿#nullable enable
 namespace MoneyFox.Infrastructure.DbBackup
 {
+
     public static class ParentActivityWrapper
     {
         /// <summary>
@@ -12,4 +13,5 @@ namespace MoneyFox.Infrastructure.DbBackup
         /// </remarks>
         public static object? ParentActivity { get; set; }
     }
+
 }

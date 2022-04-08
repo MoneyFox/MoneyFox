@@ -1,5 +1,12 @@
 ﻿namespace MoneyFox.Core.Queries.Statistics.Queries
 {
+
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.Immutable;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
     using _Pending_;
     using _Pending_.Common.QueryObjects;
     using _Pending_.Exceptions;
@@ -7,12 +14,6 @@
     using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.Immutable;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     public class GetCategoryProgressionQuery : IRequest<IImmutableList<StatisticEntry>>
     {
@@ -21,8 +22,7 @@
             CategoryId = categoryId;
             StartDate = startDate;
             EndDate = endDate;
-
-            if(startDate > EndDate)
+            if (startDate > EndDate)
             {
                 throw new StartAfterEnddateException();
             }
@@ -35,8 +35,7 @@
         public DateTime EndDate { get; }
     }
 
-    public class
-        GetCategoryProgressionHandler : IRequestHandler<GetCategoryProgressionQuery, IImmutableList<StatisticEntry>>
+    public class GetCategoryProgressionHandler : IRequestHandler<GetCategoryProgressionQuery, IImmutableList<StatisticEntry>>
     {
         private const string RED_HEX_CODE = "#cd3700";
         private const string BLUE_HEX_CODE = "#87cefa";
@@ -48,12 +47,9 @@
             this.contextAdapter = contextAdapter;
         }
 
-        public async Task<IImmutableList<StatisticEntry>> Handle(GetCategoryProgressionQuery request,
-            CancellationToken cancellationToken)
+        public async Task<IImmutableList<StatisticEntry>> Handle(GetCategoryProgressionQuery request, CancellationToken cancellationToken)
         {
-            List<Payment>? payments = await contextAdapter.Context
-                .Payments
-                .Include(x => x.Category)
+            var payments = await contextAdapter.Context.Payments.Include(x => x.Category)
                 .Include(x => x.ChargedAccount)
                 .HasCategoryId(request.CategoryId)
                 .HasDateLargerEqualsThan(request.StartDate.Date)
@@ -61,59 +57,54 @@
                 .ToListAsync(cancellationToken);
 
             var statisticList = new List<StatisticEntry>();
-            foreach(var group in payments.GroupBy(x => new {x.Date.Month, x.Date.Year}))
+            foreach (var group in payments.GroupBy(x => new { x.Date.Month, x.Date.Year }))
             {
                 var statisticEntry = new StatisticEntry(
-                    group.Sum(x => GetPaymentAmountForSum(x, request)),
-                    $"{group.Key.Month:d2} {group.Key.Year:d4}");
-                statisticEntry.ValueLabel = statisticEntry.Value.ToString("c", CultureHelper.CurrentCulture);
+                    value: group.Sum(x => GetPaymentAmountForSum(payment: x, request: request)),
+                    label: $"{group.Key.Month:d2} {group.Key.Year:d4}");
+
+                statisticEntry.ValueLabel = statisticEntry.Value.ToString(format: "c", provider: CultureHelper.CurrentCulture);
                 statisticEntry.Color = statisticEntry.Value >= 0 ? BLUE_HEX_CODE : RED_HEX_CODE;
                 statisticList.Add(statisticEntry);
             }
 
-            return FillReturnList(request, statisticList);
+            return FillReturnList(request: request, statisticEntries: statisticList);
         }
 
-        private static IImmutableList<StatisticEntry> FillReturnList(
-            GetCategoryProgressionQuery request,
-            IEnumerable<StatisticEntry> statisticEntries)
+        private static IImmutableList<StatisticEntry> FillReturnList(GetCategoryProgressionQuery request, IEnumerable<StatisticEntry> statisticEntries)
         {
             var returnList = new List<StatisticEntry>();
-            DateTime startDate = request.StartDate;
-            DateTime endDate = request.EndDate.AddMonths(1);
-
+            var startDate = request.StartDate;
+            var endDate = request.EndDate.AddMonths(1);
             do
             {
-                List<StatisticEntry>? items = statisticEntries
-                    .Where(x => x.Label == $"{startDate.Month:d2} {startDate.Year:d4}")
-                    .ToList();
-
+                var items = statisticEntries.Where(x => x.Label == $"{startDate.Month:d2} {startDate.Year:d4}").ToList();
                 returnList.AddRange(items);
-
-                if(!items.Any())
+                if (!items.Any())
                 {
-                    var placeholderItem = new StatisticEntry(0, $"{startDate.Month:d2} {startDate.Year:d4}");
-                    placeholderItem.ValueLabel = placeholderItem.Value.ToString("c", CultureHelper.CurrentCulture);
+                    var placeholderItem = new StatisticEntry(value: 0, label: $"{startDate.Month:d2} {startDate.Year:d4}");
+                    placeholderItem.ValueLabel = placeholderItem.Value.ToString(format: "c", provider: CultureHelper.CurrentCulture);
                     placeholderItem.Color = placeholderItem.Value >= 0 ? BLUE_HEX_CODE : RED_HEX_CODE;
-
                     returnList.Add(placeholderItem);
                 }
 
                 startDate = startDate.AddMonths(1);
-            } while(startDate.Month != endDate.Month || startDate.Year != endDate.Year);
+            }
+            while (startDate.Month != endDate.Month || startDate.Year != endDate.Year);
 
             return returnList.ToImmutableList();
         }
 
-        private static decimal GetPaymentAmountForSum(Payment payment, GetCategoryProgressionQuery request) =>
-            payment.Type switch
+        private static decimal GetPaymentAmountForSum(Payment payment, GetCategoryProgressionQuery request)
+        {
+            return payment.Type switch
             {
                 PaymentType.Expense => -payment.Amount,
                 PaymentType.Income => payment.Amount,
-                PaymentType.Transfer => payment.ChargedAccount.Id == request.CategoryId
-                    ? -payment.Amount
-                    : payment.Amount,
+                PaymentType.Transfer => payment.ChargedAccount.Id == request.CategoryId ? -payment.Amount : payment.Amount,
                 _ => 0
             };
+        }
     }
+
 }

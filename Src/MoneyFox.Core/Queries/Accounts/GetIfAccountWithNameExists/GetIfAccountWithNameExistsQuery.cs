@@ -1,10 +1,11 @@
 ﻿namespace MoneyFox.Core.Queries.Accounts.GetIfAccountWithNameExists
 {
+
+    using System.Threading;
+    using System.Threading.Tasks;
     using _Pending_.Common.QueryObjects;
     using Common.Interfaces;
     using MediatR;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     public class GetIfAccountWithNameExistsQuery : IRequest<bool>
     {
@@ -29,7 +30,10 @@
 
             /// <inheritdoc />
             public async Task<bool> Handle(GetIfAccountWithNameExistsQuery request, CancellationToken cancellationToken)
-                => await contextAdapter.Context.Accounts.AnyWithNameAsync(request.AccountName, request.AccountId);
+            {
+                return await contextAdapter.Context.Accounts.AnyWithNameAsync(name: request.AccountName, Id: request.AccountId);
+            }
         }
     }
+
 }

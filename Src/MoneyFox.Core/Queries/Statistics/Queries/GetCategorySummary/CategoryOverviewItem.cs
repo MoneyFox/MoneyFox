@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Core.Queries.Statistics.Queries.GetCategorySummary
 {
+
     public class CategoryOverviewItem
     {
         public int CategoryId { get; set; }
@@ -12,4 +13,5 @@
 
         public decimal Percentage { get; set; }
     }
+
 }

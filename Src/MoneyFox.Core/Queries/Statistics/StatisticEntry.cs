@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Core.Queries.Statistics
 {
+
     public class StatisticEntry
     {
         public StatisticEntry(decimal value, string label = "", string valueLabel = "")
@@ -17,4 +18,5 @@
 
         public string Color { get; set; } = string.Empty;
     }
+
 }

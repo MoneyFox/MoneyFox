@@ -1,14 +1,15 @@
 ﻿namespace MoneyFox.Core.Queries.Payments.GetMonthlyIncome
 {
+
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
     using _Pending_;
     using _Pending_.Common;
     using _Pending_.Common.QueryObjects;
     using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     public class GetMonthlyIncomeQuery : IRequest<decimal>
     {
@@ -23,15 +24,15 @@
                 this.systemDateHelper = systemDateHelper;
             }
 
-            public async Task<decimal> Handle(GetMonthlyIncomeQuery request, CancellationToken cancellationToken) =>
-                (await contextAdapter.Context
-                    .Payments
-                    .HasDateLargerEqualsThan(HelperFunctions.GetFirstDayMonth(systemDateHelper))
+            public async Task<decimal> Handle(GetMonthlyIncomeQuery request, CancellationToken cancellationToken)
+            {
+                return (await contextAdapter.Context.Payments.HasDateLargerEqualsThan(HelperFunctions.GetFirstDayMonth(systemDateHelper))
                     .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper))
                     .IsIncome()
                     .Select(x => x.Amount)
-                    .ToListAsync(cancellationToken))
-                .Sum();
+                    .ToListAsync(cancellationToken)).Sum();
+            }
         }
     }
+
 }

@@ -8,19 +8,20 @@ public static partial class Preferences
 
     private static bool PlatformContainsKey(string key, string sharedName)
     {
-        lock(locker)
+        lock (locker)
         {
-            ApplicationDataContainer appDataContainer = GetApplicationDataContainer(sharedName);
+            var appDataContainer = GetApplicationDataContainer(sharedName);
+
             return appDataContainer.Values.ContainsKey(key);
         }
     }
 
     private static void PlatformRemove(string key, string sharedName)
     {
-        lock(locker)
+        lock (locker)
         {
-            ApplicationDataContainer appDataContainer = GetApplicationDataContainer(sharedName);
-            if(appDataContainer.Values.ContainsKey(key))
+            var appDataContainer = GetApplicationDataContainer(sharedName);
+            if (appDataContainer.Values.ContainsKey(key))
             {
                 appDataContainer.Values.Remove(key);
             }
@@ -29,22 +30,21 @@ public static partial class Preferences
 
     private static void PlatformClear(string sharedName)
     {
-        lock(locker)
+        lock (locker)
         {
-            ApplicationDataContainer appDataContainer = GetApplicationDataContainer(sharedName);
+            var appDataContainer = GetApplicationDataContainer(sharedName);
             appDataContainer.Values.Clear();
         }
     }
 
     private static void PlatformSet<T>(string key, T value, string sharedName)
     {
-        lock(locker)
+        lock (locker)
         {
-            ApplicationDataContainer appDataContainer = GetApplicationDataContainer(sharedName);
-
-            if(value == null)
+            var appDataContainer = GetApplicationDataContainer(sharedName);
+            if (value == null)
             {
-                if(appDataContainer.Values.ContainsKey(key))
+                if (appDataContainer.Values.ContainsKey(key))
                 {
                     appDataContainer.Values.Remove(key);
                 }
@@ -58,13 +58,13 @@ public static partial class Preferences
 
     private static T PlatformGet<T>(string key, T defaultValue, string sharedName)
     {
-        lock(locker)
+        lock (locker)
         {
-            ApplicationDataContainer appDataContainer = GetApplicationDataContainer(sharedName);
-            if(appDataContainer.Values.ContainsKey(key))
+            var appDataContainer = GetApplicationDataContainer(sharedName);
+            if (appDataContainer.Values.ContainsKey(key))
             {
-                object tempValue = appDataContainer.Values[key];
-                if(tempValue != null)
+                var tempValue = appDataContainer.Values[key];
+                if (tempValue != null)
                 {
                     return (T)tempValue;
                 }
@@ -76,15 +76,15 @@ public static partial class Preferences
 
     private static ApplicationDataContainer GetApplicationDataContainer(string sharedName)
     {
-        ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
-        if(string.IsNullOrWhiteSpace(sharedName))
+        var localSettings = ApplicationData.Current.LocalSettings;
+        if (string.IsNullOrWhiteSpace(sharedName))
         {
             return localSettings;
         }
 
-        if(!localSettings.Containers.ContainsKey(sharedName))
+        if (!localSettings.Containers.ContainsKey(sharedName))
         {
-            localSettings.CreateContainer(sharedName, ApplicationDataCreateDisposition.Always);
+            localSettings.CreateContainer(name: sharedName, disposition: ApplicationDataCreateDisposition.Always);
         }
 
         return localSettings.Containers[sharedName];

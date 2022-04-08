@@ -1,14 +1,15 @@
 ﻿namespace MoneyFox.Core.Queries.Payments.GetPaymentsForCategory
 {
-    using Aggregates.Payments;
-    using Common.Interfaces;
-    using MediatR;
-    using Microsoft.EntityFrameworkCore;
+
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using Aggregates.Payments;
+    using Common.Interfaces;
+    using MediatR;
+    using Microsoft.EntityFrameworkCore;
 
     public class GetPaymentsForCategoryQuery : IRequest<List<Payment>>
     {
@@ -32,20 +33,14 @@
                 this.contextAdapter = contextAdapter;
             }
 
-            public async Task<List<Payment>> Handle(GetPaymentsForCategoryQuery request,
-                CancellationToken cancellationToken)
+            public async Task<List<Payment>> Handle(GetPaymentsForCategoryQuery request, CancellationToken cancellationToken)
             {
-                IQueryable<Payment> query = contextAdapter.Context.Payments
-                    .Include(x => x.Category);
+                IQueryable<Payment> query = contextAdapter.Context.Payments.Include(x => x.Category);
+                query = request.CategoryId == 0 ? query.Where(x => x.Category == null) : query.Where(x => x.Category!.Id == request.CategoryId);
 
-                query = request.CategoryId == 0
-                    ? query.Where(x => x.Category == null)
-                    : query.Where(x => x.Category!.Id == request.CategoryId);
-
-                return await query.Where(x => x.Date >= request.DateRangeFrom)
-                    .Where(x => x.Date <= request.DateRangeTo)
-                    .ToListAsync();
+                return await query.Where(x => x.Date >= request.DateRangeFrom).Where(x => x.Date <= request.DateRangeTo).ToListAsync();
             }
         }
     }
+
 }

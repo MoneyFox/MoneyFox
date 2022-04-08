@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Win.Services;
 
-using Core._Pending_.Common.Constants;
+using Core.Common;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
@@ -14,7 +14,7 @@ public static class LoggerService
         var config = new LoggingConfiguration();
         var logfile = new FileTarget("logfile")
         {
-            FileName = AppConstants.LogFileName, AutoFlush = true, ArchiveEvery = FileArchivePeriod.Month
+            FileName = LogConfiguration.FilePath, AutoFlush = true, ArchiveEvery = FileArchivePeriod.Month
         };
 
         // Configure console

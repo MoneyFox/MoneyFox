@@ -1,11 +1,12 @@
 ﻿namespace MoneyFox.Core.Queries.Accounts.GetAccountNameById
 {
-    using Common.Interfaces;
-    using MediatR;
-    using Microsoft.EntityFrameworkCore;
+
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using Common.Interfaces;
+    using MediatR;
+    using Microsoft.EntityFrameworkCore;
 
     public class GetAccountNameByIdQuery : IRequest<string>
     {
@@ -27,9 +28,7 @@
 
             public async Task<string> Handle(GetAccountNameByIdQuery request, CancellationToken cancellationToken)
             {
-                string? account = await contextAdapter.Context
-                    .Accounts
-                    .Where(x => x.Id == request.AccountId)
+                var account = await contextAdapter.Context.Accounts.Where(x => x.Id == request.AccountId)
                     .Select(x => x.Name)
                     .FirstOrDefaultAsync(cancellationToken);
 
@@ -37,4 +36,5 @@
             }
         }
     }
+
 }

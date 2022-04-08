@@ -1,10 +1,11 @@
 ﻿namespace MoneyFox.Core.Queries.Categories.GetCategoryById
 {
+
+    using System.Threading;
+    using System.Threading.Tasks;
     using Aggregates.Payments;
     using Common.Interfaces;
     using MediatR;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     public class GetCategoryByIdQuery : IRequest<Category>
     {
@@ -24,9 +25,11 @@
                 this.contextAdapter = contextAdapter;
             }
 
-            public async Task<Category> Handle(GetCategoryByIdQuery request,
-                CancellationToken cancellationToken) =>
-                await contextAdapter.Context.Categories.FindAsync(request.CategoryId);
+            public async Task<Category> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
+            {
+                return await contextAdapter.Context.Categories.FindAsync(request.CategoryId);
+            }
         }
     }
+
 }

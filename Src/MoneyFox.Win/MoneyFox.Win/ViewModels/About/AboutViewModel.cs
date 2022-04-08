@@ -2,24 +2,28 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Core._Pending_.Common.Constants;
 using Core.Common.Interfaces;
 using Core.Interfaces;
 using Core.Resources;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Core.Common;
 
 public class AboutViewModel : ObservableObject, IAboutViewModel
 {
+    private const string WEBSITE_URL = "https://www.apply-solutions.ch";
+    private const string SUPPORT_MAIL = "mobile.support@apply-solutions.ch";
+    private const string GITHUB_PROJECT_URL = "https://github.com/MoneyFox/MoneyFox";
+    private const string TRANSLATION_URL = "https://crowdin.com/project/money-fox";
+    private const string ICON_DESIGNER_URL = "https://twitter.com/vandert9";
+    private const string GITHUB_CONTRIBUTOR_URL = "https://github.com/MoneyFox/MoneyFox/graphs/contributors";
+
     private readonly IAppInformation appInformation;
     private readonly IBrowserAdapter browserAdapter;
     private readonly IEmailAdapter emailAdapter;
     private readonly IStoreOperations storeFeatures;
 
-    /// <summary>
-    ///     Creates an AboutViewModel Object
-    /// </summary>
     public AboutViewModel(IAppInformation appInformation,
         IEmailAdapter emailAdapter,
         IBrowserAdapter browserAdapter,
@@ -31,80 +35,50 @@ public class AboutViewModel : ObservableObject, IAboutViewModel
         storeFeatures = storeOperations;
     }
 
-    /// <summary>
-    ///     Opens the web browser and loads to the apply solutions     website
-    /// </summary>
     public RelayCommand GoToWebsiteCommand => new(async () => await GoToWebsiteAsync());
 
-    /// <summary>
-    ///     Sends a feedback mail to the apply solutions support     mail address
-    /// </summary>
     public RelayCommand SendMailCommand => new(async () => await SendMailAsync());
 
-    /// <summary>
-    ///     Opens the store to rate the app.
-    /// </summary>
     public RelayCommand RateAppCommand => new(RateApp);
 
-    /// <summary>
-    ///     Opens the web browser and loads repository page     on GitHub
-    /// </summary>
     public RelayCommand GoToRepositoryCommand => new(async () => await GoToRepositoryAsync());
 
-    /// <summary>
-    ///     Opens the web browser and loads the project on Crowdin.
-    /// </summary>
     public RelayCommand GoToTranslationProjectCommand
         => new(async () => await GoToTranslationProjectAsync());
 
-    /// <summary>
-    ///     Opens the webbrowser and loads the project on crowdin.
-    /// </summary>
     public RelayCommand GoToDesignerTwitterAccountCommand
         => new(async () => await GoToDesignerTwitterAccountAsync());
 
-    /// <summary>
-    ///     Opens the webbrowser loads the contribution page on Github.
-    /// </summary>
     public RelayCommand GoToContributionPageCommand
         => new(async () => await GoToContributionPageAsync());
 
-    /// <summary>
-    ///     Returns the Version of App
-    /// </summary>
     public string Version => appInformation.GetVersion;
 
-    /// <summary>
-    ///     Returns the apply solutions webite url from the     resource file
-    /// </summary>
-    public string Website => AppConstants.WebsiteUrl;
+    public string Website => WEBSITE_URL;
 
-    /// <summary>
-    ///     Returns the mailaddress for support cases from the     resource file
-    /// </summary>
-    public string SupportMail => AppConstants.SupportMail;
+    public string SupportMail => SUPPORT_MAIL;
 
     private async Task GoToWebsiteAsync()
-        => await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.WebsiteUrl));
+        => await browserAdapter.OpenWebsiteAsync(new Uri(WEBSITE_URL));
 
     private async Task SendMailAsync() => await emailAdapter.SendEmailAsync(
         Strings.FeedbackSubject,
         string.Empty,
-        new List<string> {AppConstants.SupportMail},
-        new List<string> {AppConstants.LogFileName});
+        new List<string> { SUPPORT_MAIL },
+        new List<string> { LogConfiguration.FilePath });
 
     private void RateApp()
         => storeFeatures.RateApp();
 
     private async Task GoToRepositoryAsync()
-        => await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.GitHubRepositoryUrl));
+        => await browserAdapter.OpenWebsiteAsync(new Uri(GITHUB_PROJECT_URL));
 
     private async Task GoToTranslationProjectAsync()
-        => await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.TranslationProjectUrl));
+        => await browserAdapter.OpenWebsiteAsync(new Uri(TRANSLATION_URL));
 
     private async Task GoToDesignerTwitterAccountAsync()
-        => await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.IconDesignerTwitterUrl));
+        => await browserAdapter.OpenWebsiteAsync(new Uri(ICON_DESIGNER_URL));
 
     private async Task GoToContributionPageAsync()
-        => await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.GithubContributionUrl));
+        => await browserAdapter.OpenWebsiteAsync(new Uri(GITHUB_CONTRIBUTOR_URL));
 }

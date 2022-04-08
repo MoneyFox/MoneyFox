@@ -1,13 +1,14 @@
 ﻿namespace MoneyFox.Core.Queries.Accounts.GetIncludedAccount
 {
+
+    using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
     using _Pending_.Common.QueryObjects;
     using Aggregates;
     using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using System.Collections.Generic;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     public class GetIncludedAccountQuery : IRequest<List<Account>>
     {
@@ -20,14 +21,11 @@
                 this.contextAdapter = contextAdapter;
             }
 
-            public async Task<List<Account>> Handle(GetIncludedAccountQuery request,
-                CancellationToken cancellationToken) =>
-                await contextAdapter.Context
-                    .Accounts
-                    .AreActive()
-                    .AreNotExcluded()
-                    .OrderByName()
-                    .ToListAsync(cancellationToken);
+            public async Task<List<Account>> Handle(GetIncludedAccountQuery request, CancellationToken cancellationToken)
+            {
+                return await contextAdapter.Context.Accounts.AreActive().AreNotExcluded().OrderByName().ToListAsync(cancellationToken);
+            }
         }
     }
+
 }

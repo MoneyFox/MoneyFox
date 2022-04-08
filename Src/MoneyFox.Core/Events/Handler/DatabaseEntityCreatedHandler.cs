@@ -1,9 +1,10 @@
 ﻿namespace MoneyFox.Core.Events.Handler
 {
-    using Commands.DatabaseBackup.UploadBackup;
-    using MediatR;
+
     using System.Threading;
     using System.Threading.Tasks;
+    using Commands.DatabaseBackup.UploadBackup;
+    using MediatR;
 
     internal sealed class DatabaseEntityCreatedHandler : INotificationHandler<DbEntityModifiedEvent>
     {
@@ -14,7 +15,10 @@
             this.sender = sender;
         }
 
-        public async Task Handle(DbEntityModifiedEvent notification, CancellationToken cancellationToken) =>
-            await sender.Send(new UploadBackupCommand(), cancellationToken);
+        public async Task Handle(DbEntityModifiedEvent notification, CancellationToken cancellationToken)
+        {
+            await sender.Send(request: new UploadBackupCommand(), cancellationToken: cancellationToken);
+        }
     }
+
 }

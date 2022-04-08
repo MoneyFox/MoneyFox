@@ -1,14 +1,15 @@
 ﻿namespace MoneyFox.Core.Queries.Categories.GetCategoryBySearchTerm
 {
+
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
     using _Pending_.Common.QueryObjects;
     using Aggregates.Payments;
     using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     public class GetCategoryBySearchTermQuery : IRequest<List<Category>>
     {
@@ -28,23 +29,18 @@
                 this.contextAdapter = contextAdapter;
             }
 
-            public async Task<List<Category>> Handle(GetCategoryBySearchTermQuery request,
-                CancellationToken cancellationToken)
+            public async Task<List<Category>> Handle(GetCategoryBySearchTermQuery request, CancellationToken cancellationToken)
             {
-                IOrderedQueryable<Category> categoriesQuery = contextAdapter.Context
-                    .Categories
-                    .OrderBy(x => x.Name);
-
-                List<Category>? categories = await categoriesQuery.ToListAsync(cancellationToken);
-
-                if(!string.IsNullOrEmpty(request.SearchTerm))
+                var categoriesQuery = contextAdapter.Context.Categories.OrderBy(x => x.Name);
+                var categories = await categoriesQuery.ToListAsync(cancellationToken);
+                if (!string.IsNullOrEmpty(request.SearchTerm))
                 {
-                    categories = categories.WhereNameContains(request.SearchTerm)
-                        .ToList();
+                    categories = categories.WhereNameContains(request.SearchTerm).ToList();
                 }
 
                 return categories;
             }
         }
     }
+
 }
