@@ -1,9 +1,10 @@
-﻿namespace MoneyFox.Core.Commands.DatabaseBackup.UploadBackup
+﻿namespace MoneyFox.Core.UseCases.DbBackup
 {
-    using Interfaces;
-    using MediatR;
+
     using System.Threading;
     using System.Threading.Tasks;
+    using Interfaces;
+    using MediatR;
 
     internal sealed class UploadBackupCommand : IRequest
     {

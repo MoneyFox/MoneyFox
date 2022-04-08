@@ -1,19 +1,19 @@
-namespace MoneyFox.Core._Pending_.DbBackup
+namespace MoneyFox.Core.UseCases.DbBackup
 {
-    using Core.Common.Exceptions;
-    using Exceptions;
+
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
+    using Common.Exceptions;
 
     /// <summary>
     ///     Provides Backup and Restore operations.
     /// </summary>
-    public interface ICloudBackupService
+    public interface IOneDriveBackupService
     {
         /// <summary>
-        ///     Informations about logged user.
+        ///     Information about logged user.
         /// </summary>
         UserAccount UserAccount { get; set; }
 

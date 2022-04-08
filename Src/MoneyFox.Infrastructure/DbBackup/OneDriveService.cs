@@ -7,14 +7,14 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using Core._Pending_.DbBackup;
     using Core.Common.Exceptions;
+    using Core.UseCases.DbBackup;
     using Microsoft.Graph;
     using Microsoft.Identity.Client;
     using NLog;
     using Logger = NLog.Logger;
 
-    internal class OneDriveService : ICloudBackupService
+    internal class OneDriveService : IOneDriveBackupService
     {
         private const string BACKUP_NAME = "backupmoneyfox3.db";
         private const string BACKUP_NAME_TEMP = "moneyfox.db_upload";

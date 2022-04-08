@@ -24,9 +24,6 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Threading.Tasks;
 
-/// <summary>
-///     Handles the logic of the ModifyPayment view
-/// </summary>
 public abstract class ModifyPaymentViewModel : ObservableRecipient, IModifyPaymentViewModel
 {
     private readonly Logger logger = LogManager.GetCurrentClassLogger();

@@ -11,12 +11,12 @@
     using Core._Pending_.Common.Extensions;
     using Core._Pending_.Common.Facades;
     using Core._Pending_.Common.Messages;
-    using Core._Pending_.DbBackup;
     using Core._Pending_.Exceptions;
     using Core.Common.Exceptions;
     using Core.Common.Interfaces;
     using Core.Interfaces;
     using Core.Resources;
+    using Core.UseCases.DbBackup;
     using Microsoft.AppCenter.Crashes;
     using NLog;
 
@@ -26,7 +26,7 @@
         private const int BACKUP_OPERATION_TIMEOUT = 10000;
         private const int BACKUP_REPEAT_DELAY = 2000;
 
-        private readonly ICloudBackupService cloudBackupService;
+        private readonly IOneDriveBackupService oneDriveBackupService;
         private readonly IFileStore fileStore;
         private readonly ISettingsFacade settingsFacade;
         private readonly IConnectivityAdapter connectivity;
@@ -39,7 +39,7 @@
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         public BackupService(
-            ICloudBackupService cloudBackupService,
+            IOneDriveBackupService oneDriveBackupService,
             IFileStore fileStore,
             ISettingsFacade settingsFacade,
             IConnectivityAdapter connectivity,
@@ -47,13 +47,13 @@
             IToastService toastService,
             IDbPathProvider dbPathProvider)
         {
-            this.cloudBackupService = cloudBackupService;
+            this.oneDriveBackupService = oneDriveBackupService;
             this.fileStore = fileStore;
             this.settingsFacade = settingsFacade;
             this.connectivity = connectivity;
             this.contextAdapter = contextAdapter;
             this.toastService = toastService;
-            UserAccount = cloudBackupService.UserAccount;
+            UserAccount = oneDriveBackupService.UserAccount;
             this.dbPathProvider = dbPathProvider;
         }
 
@@ -66,8 +66,8 @@
                 throw new NetworkConnectionException();
             }
 
-            await cloudBackupService.LoginAsync();
-            UserAccount = cloudBackupService.UserAccount.GetUserAccount();
+            await oneDriveBackupService.LoginAsync();
+            UserAccount = oneDriveBackupService.UserAccount.GetUserAccount();
             settingsFacade.IsLoggedInToBackupService = true;
             await toastService.ShowToastAsync(message: Strings.LoggedInMessage, title: Strings.LoggedInTitle);
             logger.Info("Successfully logged in.");
@@ -80,7 +80,7 @@
                 throw new NetworkConnectionException();
             }
 
-            await cloudBackupService.LogoutAsync();
+            await oneDriveBackupService.LogoutAsync();
             settingsFacade.IsLoggedInToBackupService = false;
             settingsFacade.IsBackupAutouploadEnabled = false;
             await toastService.ShowToastAsync(message: Strings.LoggedOutMessage, title: Strings.LoggedOutTitle);
@@ -94,7 +94,7 @@
                 return false;
             }
 
-            var files = await cloudBackupService.GetFileNamesAsync();
+            var files = await oneDriveBackupService.GetFileNamesAsync();
 
             return files.Any();
         }
@@ -108,7 +108,7 @@
 
             try
             {
-                var date = await cloudBackupService.GetBackupDateAsync();
+                var date = await oneDriveBackupService.GetBackupDateAsync();
 
                 return date.ToLocalTime();
             }
@@ -193,7 +193,7 @@
                 }
 
                 logger.Info("New backup found. Starting download.");
-                await using (var backupStream = await cloudBackupService.RestoreAsync())
+                await using (var backupStream = await oneDriveBackupService.RestoreAsync())
                 {
                     await fileStore.WriteFileAsync(path: TEMP_DOWNLOAD_PATH, contents: backupStream.ReadToEnd());
                 }
@@ -231,7 +231,7 @@
             await semaphoreSlim.WaitAsync(millisecondsTimeout: BACKUP_OPERATION_TIMEOUT, cancellationToken: cancellationTokenSource.Token);
             try
             {
-                if (await cloudBackupService.UploadAsync(await fileStore.OpenReadAsync(dbPathProvider.GetDbPath())))
+                if (await oneDriveBackupService.UploadAsync(await fileStore.OpenReadAsync(dbPathProvider.GetDbPath())))
                 {
                     logger.Info("Upload complete. Release Semaphore.");
                     semaphoreSlim.Release();

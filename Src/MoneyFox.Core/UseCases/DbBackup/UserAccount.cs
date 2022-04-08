@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core._Pending_.DbBackup
+﻿namespace MoneyFox.Core.UseCases.DbBackup
 {
     /// <summary>
     ///     Holds info about logged user.

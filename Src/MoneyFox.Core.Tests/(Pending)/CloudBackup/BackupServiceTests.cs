@@ -2,7 +2,6 @@
 {
 
     using Core._Pending_.Common.Facades;
-    using Core._Pending_.DbBackup;
     using Core._Pending_.Exceptions;
     using Core.Common.Interfaces;
     using FluentAssertions;
@@ -15,12 +14,13 @@
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Threading.Tasks;
+    using UseCases.DbBackup;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
     public class BackupServiceTests
     {
-        private readonly Mock<ICloudBackupService> cloudBackupServiceMock;
+        private readonly Mock<IOneDriveBackupService> cloudBackupServiceMock;
         private readonly Mock<IFileStore> fileStoreMock;
         private readonly Mock<ISettingsFacade> settingsFacadeMock;
         private readonly Mock<IConnectivityAdapter> connectivityAdapterMock;
@@ -31,7 +31,7 @@
 
         public BackupServiceTests()
         {
-            cloudBackupServiceMock = new Mock<ICloudBackupService>();
+            cloudBackupServiceMock = new Mock<IOneDriveBackupService>();
             cloudBackupServiceMock.SetupGet(x => x.UserAccount).Returns(new UserAccount());
 
             fileStoreMock = new Mock<IFileStore>();

@@ -3,7 +3,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Core._Pending_.Common.Facades;
-using Core._Pending_.DbBackup;
 using Core._Pending_.Exceptions;
 using Core.Common.Exceptions;
 using Core.Common.Interfaces;
@@ -13,6 +12,7 @@ using Microsoft.AppCenter.Crashes;
 using NLog;
 using System;
 using System.Threading.Tasks;
+using Core.UseCases.DbBackup;
 
 public class BackupViewModel : ObservableObject, IBackupViewModel
 {
