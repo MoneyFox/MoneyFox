@@ -3,7 +3,6 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
         <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
-        <LangVersion>8.0</LangVersion>
         <nullable>enable</nullable>
     </PropertyGroup>
 
