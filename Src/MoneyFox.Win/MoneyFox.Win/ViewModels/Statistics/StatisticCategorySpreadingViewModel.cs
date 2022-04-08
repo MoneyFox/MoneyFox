@@ -5,7 +5,6 @@ using Core._Pending_.Common.Extensions;
 using Core._Pending_.Common.Facades;
 using Core.Aggregates.Payments;
 using Core.Queries.Statistics;
-using Core.Queries.Statistics.Queries;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using MediatR;

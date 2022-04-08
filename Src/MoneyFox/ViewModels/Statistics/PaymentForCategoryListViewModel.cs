@@ -4,7 +4,6 @@
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
-    using Core.Queries.Payments.GetPaymentsForCategory;
     using Groups;
     using MediatR;
     using NLog;
@@ -13,6 +12,7 @@
     using System.Collections.ObjectModel;
     using System.Globalization;
     using System.Threading.Tasks;
+    using Core.Queries;
     using Views.Payments;
     using Xamarin.Forms;
 

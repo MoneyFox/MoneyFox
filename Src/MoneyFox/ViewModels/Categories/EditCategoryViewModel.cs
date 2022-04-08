@@ -4,9 +4,9 @@
     using Core.Aggregates.Payments;
     using Core.Commands.Categories.UpdateCategory;
     using Core.Common.Interfaces;
-    using Core.Queries.Categories.GetCategoryById;
     using MediatR;
     using System.Threading.Tasks;
+    using Core.Queries;
 
     public class EditCategoryViewModel : ModifyCategoryViewModel
     {

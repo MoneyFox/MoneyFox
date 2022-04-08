@@ -7,8 +7,6 @@
     using CommunityToolkit.Mvvm.Messaging;
     using Core._Pending_.Common.Messages;
     using Core.Aggregates.Payments;
-    using Core.Queries.Accounts.GetAccountById;
-    using Core.Queries.Payments.GetPaymentsForAccountId;
     using Core.Resources;
     using Extensions;
     using Groups;
@@ -18,6 +16,7 @@
     using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
+    using Core.Queries;
     using Views.Dialogs;
     using Views.Payments;
     using Xamarin.Forms;

@@ -6,11 +6,11 @@
     using Core.Commands.Payments.DeletePaymentById;
     using Core.Commands.Payments.UpdatePayment;
     using Core.Common.Interfaces;
-    using Core.Queries.Payments.GetPaymentById;
     using Core.Resources;
     using MediatR;
     using NLog;
     using System.Threading.Tasks;
+    using Core.Queries;
     using Xamarin.Forms;
 
     public class EditPaymentViewModel : ModifyPaymentViewModel

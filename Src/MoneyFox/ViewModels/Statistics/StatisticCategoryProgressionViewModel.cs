@@ -5,9 +5,7 @@
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
     using Core._Pending_.Common.Messages;
-    using Core.Queries.Categories.GetCategoryById;
     using Core.Queries.Statistics;
-    using Core.Queries.Statistics.Queries;
     using Extensions;
     using MediatR;
     using Microcharts;
@@ -16,6 +14,7 @@
     using System.Collections.Immutable;
     using System.Linq;
     using System.Threading.Tasks;
+    using Core.Queries;
     using Views.Statistics;
     using Xamarin.Essentials;
     using Xamarin.Forms;

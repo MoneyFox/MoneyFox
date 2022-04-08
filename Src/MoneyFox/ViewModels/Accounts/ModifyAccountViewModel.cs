@@ -5,11 +5,10 @@
     using CommunityToolkit.Mvvm.Messaging;
     using Core._Pending_.Common.Messages;
     using Core.Common.Interfaces;
-    using Core.Queries.Accounts.GetAccountNameById;
-    using Core.Queries.Accounts.GetIfAccountWithNameExists;
     using Core.Resources;
     using MediatR;
     using System.Threading.Tasks;
+    using Core.Queries;
     using Xamarin.Forms;
 
     public abstract class ModifyAccountViewModel : ObservableRecipient

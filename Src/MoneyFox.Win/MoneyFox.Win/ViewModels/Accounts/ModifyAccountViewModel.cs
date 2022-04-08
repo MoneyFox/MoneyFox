@@ -6,8 +6,6 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core._Pending_.Common.Messages;
 using Core.Common.Interfaces;
-using Core.Queries.Accounts.GetAccountNameById;
-using Core.Queries.Accounts.GetIfAccountWithNameExists;
 using Core.Resources;
 using MediatR;
 using Microsoft.UI.Xaml.Controls;
@@ -15,6 +13,7 @@ using NLog;
 using Services;
 using System.Globalization;
 using System.Threading.Tasks;
+using Core.Queries;
 
 public abstract class ModifyAccountViewModel : ObservableRecipient
 {

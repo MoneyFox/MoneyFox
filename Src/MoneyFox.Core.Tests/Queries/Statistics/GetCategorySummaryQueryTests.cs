@@ -3,7 +3,6 @@
     using Common.Interfaces;
     using Core.Aggregates;
     using Core.Aggregates.Payments;
-    using Core.Queries.Statistics.Queries.GetCategorySummary;
     using FluentAssertions;
     using Infrastructure;
     using MoneyFox.Infrastructure.Persistence;
@@ -13,6 +12,7 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
+    using Core.Queries.Statistics.GetCategorySummary;
     using Xunit;
 
     [ExcludeFromCodeCoverage]

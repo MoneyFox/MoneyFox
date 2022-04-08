@@ -1,9 +1,10 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Payments.GetPaymentsForCategory
 {
-    using Core.Queries.Payments.GetPaymentsForCategory;
+
     using FluentAssertions;
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using Core.Queries;
     using Xunit;
 
     [ExcludeFromCodeCoverage]

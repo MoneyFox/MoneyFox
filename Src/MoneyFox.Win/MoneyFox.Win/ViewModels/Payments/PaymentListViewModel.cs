@@ -9,8 +9,6 @@ using Core._Pending_.Common.Messages;
 using Core.Aggregates.Payments;
 using Core.Commands.Payments.DeletePaymentById;
 using Core.Common.Interfaces;
-using Core.Queries.Accounts.GetAccountNameById;
-using Core.Queries.Payments.GetPaymentsForAccountId;
 using Core.Resources;
 using Groups;
 using Interfaces;
@@ -22,6 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
+using Core.Queries;
 
 /// <summary>
 ///     Representation of the payment list view.

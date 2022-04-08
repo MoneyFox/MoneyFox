@@ -2,7 +2,6 @@
 {
     using Common.Interfaces;
     using Core.Aggregates;
-    using Core.Queries.Accounts.GetAccounts;
     using Infrastructure;
     using MoneyFox.Infrastructure.Persistence;
     using Moq;
@@ -10,6 +9,7 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
+    using Core.Queries;
     using Xunit;
 
     [ExcludeFromCodeCoverage]

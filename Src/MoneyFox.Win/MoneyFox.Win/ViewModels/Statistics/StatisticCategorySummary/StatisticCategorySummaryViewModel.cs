@@ -2,8 +2,6 @@
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
-using Core.Queries.Payments.GetPaymentsForCategory;
-using Core.Queries.Statistics.Queries.GetCategorySummary;
 using Groups;
 using MediatR;
 using NLog;
@@ -14,6 +12,8 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Queries;
+using Core.Queries.Statistics.GetCategorySummary;
 
 /// <inheritdoc cref="IStatisticCategorySummaryViewModel" />
 public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticCategorySummaryViewModel

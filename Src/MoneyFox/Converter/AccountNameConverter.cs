@@ -3,6 +3,7 @@
     using Core._Pending_;
     using System;
     using System.Globalization;
+    using Core.Common;
     using ViewModels.Accounts;
     using Xamarin.Forms;
 

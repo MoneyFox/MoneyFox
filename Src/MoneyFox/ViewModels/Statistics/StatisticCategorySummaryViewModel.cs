@@ -3,7 +3,6 @@
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
     using Core.Common.Interfaces;
-    using Core.Queries.Statistics.Queries.GetCategorySummary;
     using Extensions;
     using MediatR;
     using NLog;
@@ -11,6 +10,7 @@
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
+    using Core.Queries.Statistics.GetCategorySummary;
     using Xamarin.Forms;
 
     /// <inheritdoc cref="IStatisticCategorySummaryViewModel" />

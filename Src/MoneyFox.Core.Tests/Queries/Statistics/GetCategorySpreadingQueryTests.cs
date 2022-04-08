@@ -5,7 +5,6 @@
     using Core.Aggregates;
     using Core.Aggregates.Payments;
     using Core.Queries.Statistics;
-    using Core.Queries.Statistics.Queries;
     using FluentAssertions;
     using Infrastructure;
     using MoneyFox.Infrastructure.Persistence;
@@ -16,6 +15,7 @@
     using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
+    using Common;
     using Xunit;
 
     [ExcludeFromCodeCoverage]

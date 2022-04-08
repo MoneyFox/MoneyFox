@@ -6,7 +6,6 @@ using Core._Pending_.Exceptions;
 using Core.Aggregates.Payments;
 using Core.Commands.Payments.CreatePayment;
 using Core.Common.Interfaces;
-using Core.Queries.Accounts.GetAccountById;
 using Core.Resources;
 using MediatR;
 using NLog;
@@ -14,6 +13,7 @@ using Services;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Queries;
 using Utilities;
 
 public class AddPaymentViewModel : ModifyPaymentViewModel

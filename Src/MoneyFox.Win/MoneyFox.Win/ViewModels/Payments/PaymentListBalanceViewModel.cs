@@ -2,9 +2,9 @@
 
 using Accounts;
 using AutoMapper;
-using Core.Queries.Accounts.GetAccountById;
 using MediatR;
 using System.Threading.Tasks;
+using Core.Queries;
 
 /// <summary>
 ///     This ViewModel is for the usage in the payment list when a concrete account is selected

@@ -17,6 +17,7 @@
     using System;
     using System.Globalization;
     using System.Threading.Tasks;
+    using Core.Common;
     using Xamarin.Forms;
     using Device = Xamarin.Forms.Device;
 

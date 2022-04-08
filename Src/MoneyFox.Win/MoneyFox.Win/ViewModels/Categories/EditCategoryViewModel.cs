@@ -6,13 +6,13 @@ using Core.Aggregates.Payments;
 using Core.Commands.Categories.DeleteCategoryById;
 using Core.Commands.Categories.UpdateCategory;
 using Core.Common.Interfaces;
-using Core.Queries.Categories.GetCategoryById;
 using Core.Resources;
 using MediatR;
 using NLog;
 using Services;
 using System.Globalization;
 using System.Threading.Tasks;
+using Core.Queries;
 
 public class EditCategoryViewModel : ModifyCategoryViewModel
 {
