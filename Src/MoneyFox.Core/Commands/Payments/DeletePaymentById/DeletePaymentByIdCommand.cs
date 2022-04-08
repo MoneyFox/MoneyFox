@@ -25,8 +25,6 @@
 
         public class Handler : IRequestHandler<DeletePaymentByIdCommand>
         {
-            private readonly Logger logManager = LogManager.GetCurrentClassLogger();
-
             private readonly IContextAdapter contextAdapter;
 
             public Handler(IContextAdapter contextAdapter)

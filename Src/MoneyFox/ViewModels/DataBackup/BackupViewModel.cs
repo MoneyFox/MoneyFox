@@ -13,13 +13,13 @@
     using Core.Resources;
     using Microsoft.AppCenter.Crashes;
     using NLog;
+    using Serilog;
 
     public class BackupViewModel : ObservableObject, IBackupViewModel
     {
         private readonly IBackupService backupService;
         private readonly IConnectivityAdapter connectivity;
         private readonly IDialogService dialogService;
-        private readonly Logger logger = LogManager.GetCurrentClassLogger();
         private readonly ISettingsFacade settingsFacade;
         private readonly IToastService toastService;
         private bool backupAvailable;
@@ -174,7 +174,7 @@
             }
             catch (BackupAuthenticationFailedException ex)
             {
-                logger.Error(exception: ex, "Issue during Login process.");
+                Log.Error(exception: ex, "Issue during Login process");
                 await backupService.LogoutAsync();
                 await dialogService.ShowMessageAsync(title: Strings.AuthenticationFailedTitle, message: Strings.ErrorMessageAuthenticationFailed);
             }
@@ -186,7 +186,7 @@
                     await dialogService.ShowMessageAsync(title: Strings.AuthenticationFailedTitle, message: Strings.ErrorMessageAuthenticationFailed);
                 }
 
-                logger.Error(exception: ex, "Issue on loading backup view.");
+                Log.Error(exception: ex, "Issue on loading backup view");
             }
 
             IsLoadingBackupAvailability = false;
@@ -196,7 +196,7 @@
         {
             if (!connectivity.IsConnected)
             {
-                logger.Info("Tried to log in, but device isn't connected to the internet.");
+                Log.Information("Tried to log in, but device isn't connected to the internet.");
                 await dialogService.ShowMessageAsync(title: Strings.NoNetworkTitle, message: Strings.NoNetworkMessage);
             }
 
@@ -211,7 +211,7 @@
             }
             catch (Exception ex)
             {
-                logger.Error(exception: ex, "Login Failed.");
+                Log.Error(exception: ex, "Login Failed");
                 await dialogService.ShowMessageAsync(
                     title: Strings.LoginFailedTitle,
                     message: string.Format(format: Strings.UnknownErrorMessage, arg0: ex.Message));
@@ -235,7 +235,7 @@
             }
             catch (Exception ex)
             {
-                logger.Error(exception: ex, "Logout Failed.");
+                Log.Error(exception: ex, "Logout Failed");
                 await dialogService.ShowMessageAsync(title: Strings.GeneralErrorTitle, message: ex.Message);
                 Crashes.TrackError(ex);
             }
@@ -264,7 +264,7 @@
             }
             catch (Exception ex)
             {
-                logger.Error(exception: ex, "Create Backup failed.");
+                Log.Error(exception: ex, "Create Backup failed");
                 await dialogService.ShowMessageAsync(title: Strings.BackupFailedTitle, message: ex.Message);
                 Crashes.TrackError(ex);
             }
@@ -291,19 +291,19 @@
                 }
                 catch (BackupOperationCanceledException)
                 {
-                    logger.Info("Restoring the backup was canceled by the user.");
+                    Log.Information("Restoring the backup was canceled by the user");
                     await dialogService.ShowMessageAsync(title: Strings.CanceledTitle, message: Strings.RestoreBackupCanceledMessage);
                 }
                 catch (Exception ex)
                 {
-                    logger.Error(exception: ex, "Restore Backup failed.");
+                    Log.Error(exception: ex, "Restore Backup failed");
                     await dialogService.ShowMessageAsync(title: Strings.BackupFailedTitle, message: ex.Message);
                     Crashes.TrackError(ex);
                 }
             }
             else
             {
-                logger.Info("Restore Backup canceled by the user due to newer local data.");
+                Log.Information("Restore Backup canceled by the user due to newer local data");
             }
 
             await dialogService.HideLoadingDialogAsync();

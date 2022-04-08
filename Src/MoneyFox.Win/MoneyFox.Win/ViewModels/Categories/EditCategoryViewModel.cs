@@ -16,8 +16,6 @@ using Core.Queries;
 
 public class EditCategoryViewModel : ModifyCategoryViewModel
 {
-    private readonly Logger logManager = LogManager.GetCurrentClassLogger();
-
     private readonly IMediator mediator;
     private readonly IMapper mapper;
 
@@ -30,9 +28,6 @@ public class EditCategoryViewModel : ModifyCategoryViewModel
         this.mapper = mapper;
     }
 
-    /// <summary>
-    ///     Delete the selected CategoryViewModel from the database
-    /// </summary>
     public AsyncRelayCommand DeleteCommand => new(DeleteCategoryAsync);
 
     protected override async Task InitializeAsync()
@@ -57,7 +52,6 @@ public class EditCategoryViewModel : ModifyCategoryViewModel
                Strings.DeleteCategoryConfirmationMessage))
         {
             await mediator.Send(new DeleteCategoryByIdCommand(SelectedCategory.Id));
-            logManager.Info("Category with Id {id} deleted.", SelectedCategory.Id);
             await CancelCommand.ExecuteAsync(null);
         }
     }

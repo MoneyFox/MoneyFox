@@ -8,8 +8,6 @@
 
     public class IosModule : Module
     {
-        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
-
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<DbPathProvider>().AsImplementedInterfaces();
@@ -17,7 +15,7 @@
             builder.RegisterType<StoreOperations>().AsImplementedInterfaces();
             builder.RegisterType<AppInformation>().AsImplementedInterfaces();
             builder.Register(c => UserDialogs.Instance).As<IUserDialogs>();
-            builder.Register(c 
+            builder.Register(c
                     => new IosFileStore(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)))
                 .AsImplementedInterfaces();
 

@@ -21,14 +21,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
 using Core.Queries;
+using Serilog;
 
-/// <summary>
-///     Representation of the payment list view.
-/// </summary>
 public class PaymentListViewModel : ObservableRecipient
 {
-    private readonly Logger logManager = LogManager.GetCurrentClassLogger();
-
     private const int DEFAULT_YEAR_BACK = -2;
 
     private readonly IMediator mediator;
@@ -193,10 +189,6 @@ public class PaymentListViewModel : ObservableRecipient
             //Refresh balance control with the current account
             await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync(null);
         }
-        catch(Exception ex)
-        {
-            logManager.Error(ex);
-        }
         finally
         {
             IsBusy = false;
@@ -266,7 +258,7 @@ public class PaymentListViewModel : ObservableRecipient
         }
         catch(Exception ex)
         {
-            logManager.Error(ex, "Error during deleting payment.");
+            Log.Error(ex, "Error during deleting payment");
             await dialogService.ShowMessageAsync(Strings.GeneralErrorTitle, Strings.UnknownErrorMessage);
         }
         finally

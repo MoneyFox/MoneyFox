@@ -11,6 +11,7 @@ using Microsoft.UI.Xaml;
 using NLog;
 using System;
 using System.Threading.Tasks;
+using Serilog;
 
 #if !DEBUG
     using Microsoft.AppCenter;
@@ -20,7 +21,6 @@ using System.Threading.Tasks;
 
 public partial class App : Application
 {
-    private readonly Logger logger = LogManager.GetCurrentClassLogger();
     private bool isRunning;
 
     public App()
@@ -70,8 +70,6 @@ public partial class App : Application
             {
                 var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
                 await backupService.RestoreBackupAsync();
-
-                logger.Info("Backup synced.");
             }
 
             await mediator.Send(new ClearPaymentsCommand());
@@ -79,7 +77,7 @@ public partial class App : Application
         }
         catch(Exception ex)
         {
-            logger.Fatal(ex);
+            Log.Fatal(ex, "Error during startup tasks");
         }
         finally
         {

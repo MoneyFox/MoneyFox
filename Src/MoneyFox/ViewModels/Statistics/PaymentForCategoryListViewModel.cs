@@ -18,7 +18,6 @@
 
     public class PaymentForCategoryListViewModel : ObservableRecipient
     {
-        private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
         private readonly IMapper mapper;
 
         private readonly IMediator mediator;
@@ -64,8 +63,6 @@
 
         private async Task InitializeAsync(PaymentsForCategoryMessage receivedMessage)
         {
-            logger.Info($"Loading payments for category with id {receivedMessage.CategoryId}");
-
             var loadedPayments = mapper.Map<List<PaymentViewModel>>(
                 await mediator.Send(
                     new GetPaymentsForCategoryQuery(

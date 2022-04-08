@@ -45,12 +45,6 @@
             ViewModelLocator.RegisterServices(builder);
         }
 
-        public override void OnTerminate()
-        {
-            LogManager.Shutdown();
-            base.OnTerminate();
-        }
-
         private void InitLogger()
         {
             Log.Logger = new LoggerConfiguration().MinimumLevel.Debug()

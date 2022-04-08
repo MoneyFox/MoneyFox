@@ -14,12 +14,11 @@ using Services;
 using System;
 using System.Threading.Tasks;
 using Core.Queries;
+using Serilog;
 using Utilities;
 
 public class EditPaymentViewModel : ModifyPaymentViewModel
 {
-    private readonly Logger logger = LogManager.GetCurrentClassLogger();
-
     private readonly IMediator mediator;
     private readonly IMapper mapper;
     private readonly IDialogService dialogService;
@@ -40,9 +39,6 @@ public class EditPaymentViewModel : ModifyPaymentViewModel
         this.navigationService = navigationService;
     }
 
-    /// <summary>
-    ///     Delete the selected CategoryViewModel from the database
-    /// </summary>
     public AsyncRelayCommand DeleteCommand => new(DeletePaymentAsync);
 
     public RelayCommand<int> InitializeCommand => new(async paymentId => await InitializeAsync(paymentId));
@@ -141,7 +137,7 @@ public class EditPaymentViewModel : ModifyPaymentViewModel
             }
             catch(PaymentNotFoundException ex)
             {
-                logger.Warn(ex);
+                Log.Warning(ex, "Error during payment deletion");
             }
             finally
             {

@@ -24,8 +24,6 @@ using Core.Queries;
 
 public class AccountListViewModel : ObservableRecipient, IAccountListViewModel
 {
-    private readonly Logger logManager = LogManager.GetCurrentClassLogger();
-
     private readonly IMediator mediator;
     private readonly IMapper mapper;
     private readonly IDialogService dialogService;
@@ -138,7 +136,6 @@ public class AccountListViewModel : ObservableRecipient, IAccountListViewModel
         }
         catch(Exception ex)
         {
-            logManager.Error(ex);
             await dialogService.ShowMessageAsync(Strings.GeneralErrorTitle, ex.ToString());
         }
         finally
@@ -169,7 +166,6 @@ public class AccountListViewModel : ObservableRecipient, IAccountListViewModel
                Strings.DeleteAccountConfirmationMessage))
         {
             await mediator.Send(new DeactivateAccountByIdCommand(accountToDelete.Id));
-            logManager.Info("Account with Id {id} deleted.", accountToDelete.Id);
 
             Accounts.Clear();
             await LoadAsync();

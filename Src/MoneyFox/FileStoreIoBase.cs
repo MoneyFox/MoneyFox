@@ -5,11 +5,10 @@
     using System;
     using System.IO;
     using System.Threading.Tasks;
+    using Serilog;
 
     public class FileStoreIoBase : FileStoreBase
     {
-        private readonly Logger logger = LogManager.GetCurrentClassLogger();
-
         public FileStoreIoBase(string basePath)
         {
             BasePath = basePath;
@@ -38,7 +37,7 @@
 
                 if(!File.Exists(fullFrom))
                 {
-                    logger.Error("Error during file move {0} : {1}. File does not exist!", from, destination);
+                    Log.Error("Error during file move {0} : {1}. File does not exist!", from, destination);
 
                     return await Task.FromResult(false);
                 }
@@ -61,7 +60,7 @@
             }
             catch(Exception ex)
             {
-                logger.Error(ex.ToString);
+                Log.Error(ex, "Error during moving file");
                 return await Task.FromResult(false);
             }
         }
@@ -82,6 +81,9 @@
             return Task.CompletedTask;
         }
 
-        protected virtual string AppendPath(string path) => Path.Combine(BasePath, path);
+        protected virtual string AppendPath(string path)
+        {
+            return Path.Combine(BasePath, path);
+        }
     }
 }

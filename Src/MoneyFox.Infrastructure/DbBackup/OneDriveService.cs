@@ -12,6 +12,7 @@ namespace MoneyFox.Infrastructure.DbBackup
     using Microsoft.Graph;
     using Microsoft.Identity.Client;
     using NLog;
+    using Serilog;
     using Logger = NLog.Logger;
 
     internal class OneDriveService : IOneDriveBackupService
@@ -22,8 +23,6 @@ namespace MoneyFox.Infrastructure.DbBackup
         private const string BACKUP_ARCHIVE_NAME_TEMPLATE = "backupmoneyfox3_{0}.db";
         private const int BACKUP_ARCHIVE_COUNT = 15;
         private const string ERROR_CODE_CANCELED = "authentication_canceled";
-
-        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
         private readonly IOneDriveAuthenticationService oneDriveAuthenticationService;
 
@@ -64,27 +63,20 @@ namespace MoneyFox.Infrastructure.DbBackup
             {
                 if (ex.ErrorCode == ERROR_CODE_CANCELED)
                 {
-                    logManager.Info(ex);
                     await RestoreArchivedBackupInCaseOfErrorAsync(graphServiceClient);
-
                     throw new BackupOperationCanceledException(ex);
                 }
-
-                logManager.Error(ex);
                 await RestoreArchivedBackupInCaseOfErrorAsync(graphServiceClient);
-
                 throw;
             }
             catch (OperationCanceledException ex)
             {
-                logManager.Info(ex);
                 await RestoreArchivedBackupInCaseOfErrorAsync(graphServiceClient);
 
                 throw new BackupOperationCanceledException(ex);
             }
             catch (Exception ex)
             {
-                logManager.Error(ex);
                 await RestoreArchivedBackupInCaseOfErrorAsync(graphServiceClient);
 
                 throw new BackupAuthenticationFailedException(ex);
@@ -93,25 +85,16 @@ namespace MoneyFox.Infrastructure.DbBackup
 
         public async Task<DateTime> GetBackupDateAsync()
         {
-            try
+            var graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
+            var existingBackup
+                = (await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync()).FirstOrDefault(x => x.Name == BACKUP_NAME);
+
+            if (existingBackup != null)
             {
-                var graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
-                var existingBackup
-                    = (await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync()).FirstOrDefault(x => x.Name == BACKUP_NAME);
-
-                if (existingBackup != null)
-                {
-                    return existingBackup.LastModifiedDateTime?.DateTime ?? DateTime.MinValue;
-                }
-
-                return DateTime.MinValue;
+                return existingBackup.LastModifiedDateTime?.DateTime ?? DateTime.MinValue;
             }
-            catch (Exception ex)
-            {
-                logManager.Error(ex);
 
-                throw;
-            }
+            return DateTime.MinValue;
         }
 
         public async Task<List<string>> GetFileNamesAsync()
@@ -124,8 +107,6 @@ namespace MoneyFox.Infrastructure.DbBackup
             }
             catch (Exception ex)
             {
-                logManager.Error(ex);
-
                 throw new BackupAuthenticationFailedException(ex);
             }
         }
@@ -149,19 +130,12 @@ namespace MoneyFox.Infrastructure.DbBackup
             {
                 if (ex.ErrorCode == ERROR_CODE_CANCELED)
                 {
-                    logManager.Info(ex);
-
                     throw new BackupOperationCanceledException();
                 }
-
-                logManager.Error(ex);
-
                 throw;
             }
             catch (Exception ex)
             {
-                logManager.Error(ex);
-
                 throw new BackupAuthenticationFailedException(ex);
             }
         }
@@ -178,12 +152,9 @@ namespace MoneyFox.Infrastructure.DbBackup
         {
             try
             {
-                logManager.Info("Restore archived Backup.");
                 var archivedBackups = await graphServiceClient.Drive.Items[ArchiveFolder?.Id].Children.Request().GetAsync();
                 if (!archivedBackups.Any())
                 {
-                    logManager.Info("No backups found.");
-
                     return;
                 }
 
@@ -194,7 +165,7 @@ namespace MoneyFox.Infrastructure.DbBackup
             }
             catch (Exception ex)
             {
-                logManager.Error(exception: ex, "Failed to restore database on fail.");
+                Log.Error(exception: ex, "Failed to restore database on fail");
             }
         }
 
@@ -237,7 +208,6 @@ namespace MoneyFox.Infrastructure.DbBackup
 
         private async Task RenameUploadedBackupAsync(GraphServiceClient graphServiceClient)
         {
-            logManager.Info("Rename backup_upload.");
             var backupUpload
                 = (await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync()).FirstOrDefault(x => x.Name == BACKUP_NAME_TEMP);
 

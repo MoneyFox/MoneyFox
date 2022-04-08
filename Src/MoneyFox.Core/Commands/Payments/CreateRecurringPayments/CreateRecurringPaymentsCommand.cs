@@ -11,13 +11,12 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using Serilog;
 
     public class CreateRecurringPaymentsCommand : IRequest
     {
         public class Handler : IRequestHandler<CreateRecurringPaymentsCommand>
         {
-            private static readonly Logger logger = LogManager.GetCurrentClassLogger();
-
             private readonly IContextAdapter contextAdapter;
 
             public Handler(IContextAdapter contextAdapter)
@@ -58,10 +57,10 @@
 
                 recPaymentsToCreate.ForEach(x => x.RecurringPayment?.SetLastRecurrenceCreatedDate());
 
-                logger.Info($"Create {recPaymentsToCreate.Count} recurring payments.");
+                Log.Information("Create {Count} recurring payments", recPaymentsToCreate.Count);
 
                 contextAdapter.Context.Payments.AddRange(recPaymentsToCreate);
-                await contextAdapter.Context.SaveChangesAsync();
+                await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
             }

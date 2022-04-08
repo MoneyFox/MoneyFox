@@ -8,6 +8,7 @@
     using NLog;
     using System.Threading;
     using System.Threading.Tasks;
+    using Serilog;
 
     public class CreatePaymentCommand : IRequest
     {
@@ -16,12 +17,10 @@
             PaymentToSave = paymentToSave;
         }
 
-        public Payment PaymentToSave { get; }
+        private Payment PaymentToSave { get; }
 
         public class Handler : IRequestHandler<CreatePaymentCommand>
         {
-            private readonly Logger logger = LogManager.GetCurrentClassLogger();
-
             private readonly IContextAdapter contextAdapter;
 
             public Handler(IContextAdapter contextAdapter)
@@ -46,7 +45,7 @@
                     {
                         var exception = new RecurringPaymentNullException(
                             $"Recurring Payment for Payment {request.PaymentToSave.Id} is null, although payment is marked recurring.");
-                        logger.Error(exception);
+                        Log.Error(exception, "Error during Payment Creation");
                         throw exception;
                     }
 

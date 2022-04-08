@@ -17,8 +17,6 @@ using Core.Queries;
 
 public abstract class ModifyAccountViewModel : ObservableRecipient
 {
-    private readonly Logger logManager = LogManager.GetCurrentClassLogger();
-
     public int AccountId { get; set; }
 
     private string title = "";
@@ -128,7 +126,6 @@ public abstract class ModifyAccountViewModel : ObservableRecipient
         }
         else
         {
-            logManager.Warn($"Amount string {AmountString} could not be parsed to double.");
             DialogServiceClass.HideContentDialog(openContentDialog);
             await DialogService.ShowMessageAsync(
                 Strings.InvalidNumberTitle,

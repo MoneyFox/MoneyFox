@@ -16,7 +16,6 @@
     public class EditPaymentViewModel : ModifyPaymentViewModel
     {
         private readonly IDialogService dialogService;
-        private readonly Logger logger = LogManager.GetCurrentClassLogger();
         private readonly IMapper mapper;
 
         private readonly IMediator mediator;
@@ -61,15 +60,9 @@
                 SelectedPayment.Type,
                 SelectedPayment.Note,
                 SelectedPayment.IsRecurring,
-                SelectedPayment.Category != null
-                    ? SelectedPayment.Category.Id
-                    : 0,
-                SelectedPayment.ChargedAccount != null
-                    ? SelectedPayment.ChargedAccount.Id
-                    : 0,
-                SelectedPayment.TargetAccount != null
-                    ? SelectedPayment.TargetAccount.Id
-                    : 0,
+                SelectedPayment.Category?.Id ?? 0,
+                SelectedPayment.ChargedAccount?.Id ?? 0,
+                SelectedPayment.TargetAccount?.Id ?? 0,
                 updateRecurring,
                 SelectedPayment.RecurringPayment?.Recurrence,
                 SelectedPayment.RecurringPayment?.IsEndless,
@@ -97,10 +90,6 @@
                     await dialogService.ShowLoadingDialogAsync();
                     await mediator.Send(deleteCommand);
                     await Shell.Current.Navigation.PopModalAsync();
-                }
-                catch(PaymentNotFoundException ex)
-                {
-                    logger.Warn(ex);
                 }
                 finally
                 {

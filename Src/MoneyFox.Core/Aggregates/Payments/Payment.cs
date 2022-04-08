@@ -6,11 +6,10 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using Common.Interfaces;
+    using Serilog;
 
     public class Payment : EntityBase, IAggregateRoot
     {
-        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
-
         [UsedImplicitly]
         private Payment() { }
 
@@ -148,7 +147,7 @@
             {
                 if(TargetAccount == null)
                 {
-                    logManager.Warn($"Target Account on clearing was null for payment {Id}");
+                    Log.Warning("Target Account on clearing was null for payment {Id}", Id);
                     return;
                 }
 

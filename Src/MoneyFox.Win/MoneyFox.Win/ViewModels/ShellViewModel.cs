@@ -14,7 +14,6 @@ using System.Windows.Input;
 
 public class ShellViewModel : ObservableObject
 {
-    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
     private readonly INavigationService navigationService;
 
     public ShellViewModel(INavigationService navigationService)

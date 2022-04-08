@@ -18,8 +18,6 @@ using Utilities;
 
 public class AddPaymentViewModel : ModifyPaymentViewModel
 {
-    private readonly ILogger logger = LogManager.GetCurrentClassLogger();
-
     private readonly IMediator mediator;
     private readonly IMapper mapper;
     private readonly IDialogService dialogService;
@@ -87,11 +85,6 @@ public class AddPaymentViewModel : ModifyPaymentViewModel
         catch(InvalidEndDateException)
         {
             await dialogService.ShowMessageAsync(Strings.InvalidEnddateTitle, Strings.InvalidEnddateMessage);
-        }
-        catch(Exception ex)
-        {
-            logger.Error(ex);
-            throw;
         }
         finally
         {

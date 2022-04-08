@@ -23,7 +23,6 @@
     public abstract class ModifyPaymentViewModel : ObservableRecipient
     {
         private readonly IDialogService dialogService;
-        private readonly Logger logger = LogManager.GetCurrentClassLogger();
         private readonly IMapper mapper;
 
         private readonly IMediator mediator;
@@ -164,11 +163,6 @@
                 await SavePaymentAsync();
                 Messenger.Send(new ReloadMessage());
                 await Application.Current.MainPage.Navigation.PopModalAsync();
-            }
-            catch(Exception ex)
-            {
-                logger.Error(ex);
-                throw;
             }
             finally
             {

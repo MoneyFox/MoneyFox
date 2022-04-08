@@ -12,11 +12,10 @@ using NLog;
 using System;
 using System.Threading.Tasks;
 using Core.DbBackup;
+using Serilog;
 
 public class BackupViewModel : ObservableObject, IBackupViewModel
 {
-    private readonly Logger logger = LogManager.GetCurrentClassLogger();
-
     private readonly IBackupService backupService;
     private readonly IConnectivityAdapter connectivity;
     private readonly IDialogService dialogService;
@@ -153,7 +152,6 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
         }
         catch(BackupAuthenticationFailedException ex)
         {
-            logger.Error(ex, "Issue during Login process.");
             await backupService.LogoutAsync();
             await dialogService.ShowMessageAsync(
                 Strings.AuthenticationFailedTitle,
@@ -169,7 +167,7 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
                     Strings.ErrorMessageAuthenticationFailed);
             }
 
-            logger.Error(ex, "Issue on loading backup view.");
+            Log.Error(ex, "Issue on loading backup view");
         }
 
         IsLoadingBackupAvailability = false;
@@ -179,7 +177,6 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
     {
         if(!connectivity.IsConnected)
         {
-            logger.Info("Tried to log in, but device isn't connected to the internet.");
             await dialogService.ShowMessageAsync(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
         }
 
@@ -194,7 +191,6 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
         }
         catch(Exception ex)
         {
-            logger.Error(ex, "Login Failed.");
             await dialogService.ShowMessageAsync(
                 Strings.LoginFailedTitle,
                 string.Format(Strings.UnknownErrorMessage, ex.Message));
@@ -217,7 +213,6 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
         }
         catch(Exception ex)
         {
-            logger.Error(ex, "Logout Failed.");
             await dialogService.ShowMessageAsync(Strings.GeneralErrorTitle, ex.Message);
             Crashes.TrackError(ex);
         }
@@ -248,7 +243,6 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
         }
         catch(Exception ex)
         {
-            logger.Error(ex, "Create Backup failed.");
             await dialogService.ShowMessageAsync(Strings.BackupFailedTitle, ex.Message);
             Crashes.TrackError(ex);
         }
@@ -275,19 +269,17 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
             }
             catch(BackupOperationCanceledException)
             {
-                logger.Info("Restoring the backup was canceled by the user.");
                 await dialogService.ShowMessageAsync(Strings.CanceledTitle, Strings.RestoreBackupCanceledMessage);
             }
             catch(Exception ex)
             {
-                logger.Error(ex, "Restore Backup failed.");
                 await dialogService.ShowMessageAsync(Strings.BackupFailedTitle, ex.Message);
                 Crashes.TrackError(ex);
             }
         }
         else
         {
-            logger.Info("Restore Backup canceled by the user due to newer local data.");
+            Log.Information("Restore Backup canceled by the user due to newer local data");
         }
 
         await dialogService.HideLoadingDialogAsync();

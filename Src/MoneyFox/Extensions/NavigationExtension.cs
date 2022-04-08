@@ -4,13 +4,12 @@
     using NLog;
     using System;
     using System.Threading.Tasks;
+    using Serilog;
     using Xamarin.Essentials;
     using Xamarin.Forms;
 
     public static class NavigationExtension
     {
-        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
-
         public static Task GoToModalAsync(this Shell shell, string route)
         {
             try
@@ -30,7 +29,7 @@
             catch(Exception ex)
             {
                 var exception = new NavigationException($"Navigation to route {route} failed. ", ex);
-                logger.Error(exception);
+                Log.Error(exception, "Error during navigation");
                 throw exception;
             }
         }

@@ -18,12 +18,12 @@
     using System.Globalization;
     using System.Threading.Tasks;
     using Core.Common;
+    using Serilog;
     using Xamarin.Forms;
     using Device = Xamarin.Forms.Device;
 
     public partial class App
     {
-        private readonly Logger logger = LogManager.GetCurrentClassLogger();
         private bool isRunning;
 
         public App()
@@ -96,8 +96,6 @@
                 {
                     var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
                     await backupService.RestoreBackupAsync();
-
-                    logger.Info("Backup synced.");
                 }
 
                 await mediator.Send(new ClearPaymentsCommand());
@@ -105,7 +103,7 @@
             }
             catch(Exception ex)
             {
-                logger.Fatal(ex);
+                Log.Fatal(ex, "Error during startup");
             }
             finally
             {

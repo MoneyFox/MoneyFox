@@ -24,8 +24,6 @@ using Core.Queries;
 
 public abstract class ModifyPaymentViewModel : ObservableRecipient, IModifyPaymentViewModel
 {
-    private readonly Logger logger = LogManager.GetCurrentClassLogger();
-
     private readonly IMapper mapper;
     private readonly IMediator mediator;
     private readonly IDialogService dialogService;
@@ -256,7 +254,6 @@ public abstract class ModifyPaymentViewModel : ObservableRecipient, IModifyPayme
         }
         else
         {
-            logger.Warn($"Amount string {AmountString} could not be parsed to double.");
             await dialogService.ShowMessageAsync(
                 Strings.InvalidNumberTitle,
                 Strings.InvalidNumberCurrentBalanceMessage);
@@ -296,11 +293,6 @@ public abstract class ModifyPaymentViewModel : ObservableRecipient, IModifyPayme
             await SavePaymentAsync();
             Messenger.Send(new ReloadMessage());
             navigationService.GoBack();
-        }
-        catch(Exception ex)
-        {
-            logger.Error(ex);
-            throw;
         }
         finally
         {

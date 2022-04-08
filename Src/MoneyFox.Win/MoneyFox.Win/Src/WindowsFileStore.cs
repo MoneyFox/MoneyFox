@@ -7,11 +7,10 @@ using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Streams;
+using Serilog;
 
 public class WindowsFileStore : FileStoreBase
 {
-    private readonly Logger logger = LogManager.GetCurrentClassLogger();
-
     public override async Task<Stream> OpenReadAsync(string path)
     {
         try
@@ -23,7 +22,7 @@ public class WindowsFileStore : FileStoreBase
         }
         catch(Exception ex)
         {
-            logger.Error(ex);
+            Log.Error(ex, "Failed during read stream");
             return null;
         }
     }
@@ -49,7 +48,7 @@ public class WindowsFileStore : FileStoreBase
         }
         catch(Exception ex)
         {
-            logger.Error(ex);
+            Log.Error(ex, "Failed to move file");
             return false;
         }
     }
@@ -67,7 +66,7 @@ public class WindowsFileStore : FileStoreBase
         }
         catch(Exception ex)
         {
-            logger.Error(ex);
+            Log.Error(ex, "Failed to write file");
             throw;
         }
     }

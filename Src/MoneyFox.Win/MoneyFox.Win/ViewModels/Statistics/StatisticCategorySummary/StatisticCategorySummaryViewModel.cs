@@ -15,11 +15,8 @@ using System.Threading.Tasks;
 using Core.Queries;
 using Core.Queries.Statistics.GetCategorySummary;
 
-/// <inheritdoc cref="IStatisticCategorySummaryViewModel" />
 public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticCategorySummaryViewModel
 {
-    private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
-
     private ObservableCollection<CategoryOverviewViewModel> categorySummary = new();
 
     private readonly IMapper mapper;
@@ -84,8 +81,6 @@ public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticC
 
     private async Task SummaryEntrySelectedAsync(CategoryOverviewViewModel summaryItem)
     {
-        logger.Info($"Loading payments for category with id {summaryItem.CategoryId}");
-
         var loadedPayments = mapper.Map<List<PaymentViewModel>>(
             await Mediator.Send(new GetPaymentsForCategoryQuery(summaryItem.CategoryId, StartDate, EndDate)));
 
