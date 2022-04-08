@@ -5,9 +5,7 @@ using Categories;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core._Pending_.Common.Messages;
-using Core.Queries.Categories.GetCategoryById;
 using Core.Queries.Statistics;
-using Core.Queries.Statistics.Queries;
 using LiveChartsCore;
 using LiveChartsCore.Kernel.Sketches;
 using LiveChartsCore.SkiaSharpView;
@@ -21,6 +19,7 @@ using System.Collections.Immutable;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Queries;
 
 /// <summary>
 ///     Representation of the cash flow view.

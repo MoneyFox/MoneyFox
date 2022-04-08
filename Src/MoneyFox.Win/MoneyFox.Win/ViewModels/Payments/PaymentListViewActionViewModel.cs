@@ -8,13 +8,13 @@ using Core._Pending_.Common.Messages;
 using Core.Aggregates.Payments;
 using Core.Commands.Accounts.DeleteAccountById;
 using Core.Common.Interfaces;
-using Core.Queries.Accounts.GetAccountCount;
 using Core.Resources;
 using Interfaces;
 using MediatR;
 using Services;
 using System;
 using System.Threading.Tasks;
+using Core.Queries;
 
 /// <inheritdoc cref="IPaymentListViewActionViewModel" />
 /// />

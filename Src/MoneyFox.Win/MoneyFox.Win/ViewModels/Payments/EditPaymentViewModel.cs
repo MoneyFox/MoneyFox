@@ -6,7 +6,6 @@ using Core._Pending_.Exceptions;
 using Core.Commands.Payments.DeletePaymentById;
 using Core.Commands.Payments.UpdatePayment;
 using Core.Common.Interfaces;
-using Core.Queries.Payments.GetPaymentById;
 using Core.Resources;
 using MediatR;
 using Microsoft.AppCenter.Crashes;
@@ -14,6 +13,7 @@ using NLog;
 using Services;
 using System;
 using System.Threading.Tasks;
+using Core.Queries;
 using Utilities;
 
 public class EditPaymentViewModel : ModifyPaymentViewModel

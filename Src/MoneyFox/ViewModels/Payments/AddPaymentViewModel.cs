@@ -4,11 +4,11 @@
     using Core.Aggregates.Payments;
     using Core.Commands.Payments.CreatePayment;
     using Core.Common.Interfaces;
-    using Core.Queries.Accounts.GetAccountById;
     using JetBrains.Annotations;
     using MediatR;
     using System.Linq;
     using System.Threading.Tasks;
+    using Core.Queries;
 
     [UsedImplicitly]
     public class AddPaymentViewModel : ModifyPaymentViewModel

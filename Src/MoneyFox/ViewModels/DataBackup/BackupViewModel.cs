@@ -1,21 +1,19 @@
 ﻿namespace MoneyFox.ViewModels.DataBackup
 {
+
+    using System;
+    using System.Threading.Tasks;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using Core._Pending_.Common.Facades;
-    using Core._Pending_.DbBackup;
-    using Core._Pending_.Exceptions;
+    using Core.Common.Exceptions;
     using Core.Common.Interfaces;
+    using Core.DbBackup;
     using Core.Interfaces;
     using Core.Resources;
     using Microsoft.AppCenter.Crashes;
     using NLog;
-    using System;
-    using System.Threading.Tasks;
 
-    /// <summary>
-    ///     Representation of the backup view.
-    /// </summary>
     public class BackupViewModel : ObservableObject, IBackupViewModel
     {
         private readonly IBackupService backupService;
@@ -28,7 +26,7 @@
 
         private DateTime backupLastModified;
         private bool isLoadingBackupAvailability;
-        private UserAccount userAccount;
+        private UserAccount userAccount = new UserAccount(name: "", email: "");
 
         public BackupViewModel(
             IBackupService backupService,
@@ -42,16 +40,15 @@
             this.connectivity = connectivity;
             this.settingsFacade = settingsFacade;
             this.toastService = toastService;
-
-            userAccount = new UserAccount();
         }
 
         public UserAccount UserAccount
         {
             get => userAccount;
+
             set
             {
-                if(userAccount == value)
+                if (userAccount == value)
                 {
                     return;
                 }
@@ -61,30 +58,23 @@
             }
         }
 
-        /// <inheritdoc />
         public RelayCommand InitializeCommand => new RelayCommand(async () => await InitializeAsync());
 
-        /// <inheritdoc />
         public RelayCommand LoginCommand => new RelayCommand(async () => await LoginAsync());
 
-        /// <inheritdoc />
         public RelayCommand LogoutCommand => new RelayCommand(async () => await LogoutAsync());
 
-        /// <inheritdoc />
         public RelayCommand BackupCommand => new RelayCommand(async () => await CreateBackupAsync());
 
-        /// <inheritdoc />
         public RelayCommand RestoreCommand => new RelayCommand(async () => await RestoreBackupAsync());
 
-        /// <summary>
-        ///     The Date when the backup was modified the last time.
-        /// </summary>
         public DateTime BackupLastModified
         {
             get => backupLastModified;
+
             private set
             {
-                if(backupLastModified == value)
+                if (backupLastModified == value)
                 {
                     return;
                 }
@@ -100,9 +90,10 @@
         public bool IsLoadingBackupAvailability
         {
             get => isLoadingBackupAvailability;
+
             private set
             {
-                if(isLoadingBackupAvailability == value)
+                if (isLoadingBackupAvailability == value)
                 {
                     return;
                 }
@@ -123,9 +114,10 @@
         public bool BackupAvailable
         {
             get => backupAvailable;
+
             private set
             {
-                if(backupAvailable == value)
+                if (backupAvailable == value)
                 {
                     return;
                 }
@@ -139,9 +131,10 @@
         public bool IsAutoBackupEnabled
         {
             get => settingsFacade.IsBackupAutouploadEnabled;
+
             set
             {
-                if(settingsFacade.IsBackupAutouploadEnabled == value)
+                if (settingsFacade.IsBackupAutouploadEnabled == value)
                 {
                     return;
                 }
@@ -151,50 +144,49 @@
             }
         }
 
-        private async Task InitializeAsync() => await LoadedAsync();
+        private async Task InitializeAsync()
+        {
+            await LoadedAsync();
+        }
 
         private async Task LoadedAsync()
         {
-            if(!IsLoggedIn)
+            if (!IsLoggedIn)
             {
                 OnPropertyChanged(nameof(IsLoggedIn));
+
                 return;
             }
 
-            if(!connectivity.IsConnected)
+            if (!connectivity.IsConnected)
             {
-                await dialogService.ShowMessageAsync(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
+                await dialogService.ShowMessageAsync(title: Strings.NoNetworkTitle, message: Strings.NoNetworkMessage);
             }
 
             IsLoadingBackupAvailability = true;
+
             try
             {
                 BackupAvailable = await backupService.IsBackupExistingAsync();
                 BackupLastModified = await backupService.GetBackupDateAsync();
-                if(backupService.UserAccount != null)
-                {
-                    UserAccount = backupService.UserAccount.GetUserAccount();
-                }
+
+                UserAccount = await backupService.GetUserAccount();
             }
-            catch(BackupAuthenticationFailedException ex)
+            catch (BackupAuthenticationFailedException ex)
             {
-                logger.Error(ex, "Issue during Login process.");
+                logger.Error(exception: ex, "Issue during Login process.");
                 await backupService.LogoutAsync();
-                await dialogService.ShowMessageAsync(
-                    Strings.AuthenticationFailedTitle,
-                    Strings.ErrorMessageAuthenticationFailed);
+                await dialogService.ShowMessageAsync(title: Strings.AuthenticationFailedTitle, message: Strings.ErrorMessageAuthenticationFailed);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                if(ex.StackTrace == "4f37.717b")
+                if (ex.StackTrace == "4f37.717b")
                 {
                     await backupService.LogoutAsync();
-                    await dialogService.ShowMessageAsync(
-                        Strings.AuthenticationFailedTitle,
-                        Strings.ErrorMessageAuthenticationFailed);
+                    await dialogService.ShowMessageAsync(title: Strings.AuthenticationFailedTitle, message: Strings.ErrorMessageAuthenticationFailed);
                 }
 
-                logger.Error(ex, "Issue on loading backup view.");
+                logger.Error(exception: ex, "Issue on loading backup view.");
             }
 
             IsLoadingBackupAvailability = false;
@@ -202,27 +194,28 @@
 
         private async Task LoginAsync()
         {
-            if(!connectivity.IsConnected)
+            if (!connectivity.IsConnected)
             {
                 logger.Info("Tried to log in, but device isn't connected to the internet.");
-                await dialogService.ShowMessageAsync(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
+                await dialogService.ShowMessageAsync(title: Strings.NoNetworkTitle, message: Strings.NoNetworkMessage);
             }
 
             try
             {
                 await backupService.LoginAsync();
-                UserAccount = backupService.UserAccount.GetUserAccount();
+                UserAccount = await backupService.GetUserAccount();
             }
-            catch(BackupOperationCanceledException)
+            catch (BackupOperationCanceledException)
             {
-                await dialogService.ShowMessageAsync(Strings.CanceledTitle, Strings.LoginCanceledMessage);
+                await dialogService.ShowMessageAsync(title: Strings.CanceledTitle, message: Strings.LoginCanceledMessage);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                logger.Error(ex, "Login Failed.");
+                logger.Error(exception: ex, "Login Failed.");
                 await dialogService.ShowMessageAsync(
-                    Strings.LoginFailedTitle,
-                    string.Format(Strings.UnknownErrorMessage, ex.Message));
+                    title: Strings.LoginFailedTitle,
+                    message: string.Format(format: Strings.UnknownErrorMessage, arg0: ex.Message));
+
                 Crashes.TrackError(ex);
             }
 
@@ -236,14 +229,14 @@
             {
                 await backupService.LogoutAsync();
             }
-            catch(BackupOperationCanceledException)
+            catch (BackupOperationCanceledException)
             {
-                await dialogService.ShowMessageAsync(Strings.CanceledTitle, Strings.LogoutCanceledMessage);
+                await dialogService.ShowMessageAsync(title: Strings.CanceledTitle, message: Strings.LogoutCanceledMessage);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                logger.Error(ex, "Logout Failed.");
-                await dialogService.ShowMessageAsync(Strings.GeneralErrorTitle, ex.Message);
+                logger.Error(exception: ex, "Logout Failed.");
+                await dialogService.ShowMessageAsync(title: Strings.GeneralErrorTitle, message: ex.Message);
                 Crashes.TrackError(ex);
             }
 
@@ -253,28 +246,26 @@
 
         private async Task CreateBackupAsync()
         {
-            if(!await ShowOverwriteBackupInfoAsync())
+            if (!await ShowOverwriteBackupInfoAsync())
             {
                 return;
             }
 
             await dialogService.ShowLoadingDialogAsync();
-
             try
             {
                 await backupService.UploadBackupAsync(BackupMode.Manual);
                 await toastService.ShowToastAsync(Strings.BackupCreatedMessage);
-
                 BackupLastModified = DateTime.Now;
             }
-            catch(BackupOperationCanceledException)
+            catch (BackupOperationCanceledException)
             {
-                await dialogService.ShowMessageAsync(Strings.CanceledTitle, Strings.UploadBackupCanceledMessage);
+                await dialogService.ShowMessageAsync(title: Strings.CanceledTitle, message: Strings.UploadBackupCanceledMessage);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                logger.Error(ex, "Create Backup failed.");
-                await dialogService.ShowMessageAsync(Strings.BackupFailedTitle, ex.Message);
+                logger.Error(exception: ex, "Create Backup failed.");
+                await dialogService.ShowMessageAsync(title: Strings.BackupFailedTitle, message: ex.Message);
                 Crashes.TrackError(ex);
             }
 
@@ -283,31 +274,30 @@
 
         private async Task RestoreBackupAsync()
         {
-            if(!await ShowOverwriteDataInfoAsync())
+            if (!await ShowOverwriteDataInfoAsync())
             {
                 return;
             }
 
             await dialogService.ShowLoadingDialogAsync();
-            DateTime backupDate = await backupService.GetBackupDateAsync();
-            if(settingsFacade.LastDatabaseUpdate <= backupDate || await ShowForceOverrideConfirmationAsync())
+            var backupDate = await backupService.GetBackupDateAsync();
+            if (settingsFacade.LastDatabaseUpdate <= backupDate || await ShowForceOverrideConfirmationAsync())
             {
                 await dialogService.ShowLoadingDialogAsync();
-
                 try
                 {
                     await backupService.RestoreBackupAsync(BackupMode.Manual);
                     await toastService.ShowToastAsync(Strings.BackupRestoredMessage);
                 }
-                catch(BackupOperationCanceledException)
+                catch (BackupOperationCanceledException)
                 {
                     logger.Info("Restoring the backup was canceled by the user.");
-                    await dialogService.ShowMessageAsync(Strings.CanceledTitle, Strings.RestoreBackupCanceledMessage);
+                    await dialogService.ShowMessageAsync(title: Strings.CanceledTitle, message: Strings.RestoreBackupCanceledMessage);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
-                    logger.Error(ex, "Restore Backup failed.");
-                    await dialogService.ShowMessageAsync(Strings.BackupFailedTitle, ex.Message);
+                    logger.Error(exception: ex, "Restore Backup failed.");
+                    await dialogService.ShowMessageAsync(title: Strings.BackupFailedTitle, message: ex.Message);
                     Crashes.TrackError(ex);
                 }
             }
@@ -320,24 +310,30 @@
         }
 
         private async Task<bool> ShowOverwriteBackupInfoAsync()
-            => await dialogService.ShowConfirmMessageAsync(
-                Strings.OverwriteTitle,
-                Strings.OverwriteBackupMessage,
-                Strings.YesLabel,
-                Strings.NoLabel);
+        {
+            return await dialogService.ShowConfirmMessageAsync(
+                title: Strings.OverwriteTitle,
+                message: Strings.OverwriteBackupMessage,
+                positiveButtonText: Strings.YesLabel,
+                negativeButtonText: Strings.NoLabel);
+        }
 
         private async Task<bool> ShowOverwriteDataInfoAsync()
-            => await dialogService.ShowConfirmMessageAsync(
-                Strings.OverwriteTitle,
-                Strings.OverwriteDataMessage,
-                Strings.YesLabel,
-                Strings.NoLabel);
+        {
+            return await dialogService.ShowConfirmMessageAsync(
+                title: Strings.OverwriteTitle,
+                message: Strings.OverwriteDataMessage,
+                positiveButtonText: Strings.YesLabel,
+                negativeButtonText: Strings.NoLabel);
+        }
 
         private async Task<bool> ShowForceOverrideConfirmationAsync()
-            => await dialogService.ShowConfirmMessageAsync(
-                Strings.ForceOverrideBackupTitle,
-                Strings.ForceOverrideBackupMessage,
-                Strings.YesLabel,
-                Strings.NoLabel);
+        {
+            return await dialogService.ShowConfirmMessageAsync(
+                title: Strings.ForceOverrideBackupTitle,
+                message: Strings.ForceOverrideBackupMessage,
+                positiveButtonText: Strings.YesLabel,
+                negativeButtonText: Strings.NoLabel);
+        }
     }
 }

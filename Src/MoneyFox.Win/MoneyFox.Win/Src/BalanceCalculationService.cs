@@ -3,14 +3,12 @@
 using Core._Pending_.Exceptions;
 using Core.Aggregates;
 using Core.Aggregates.Payments;
-using Core.Queries.Accounts.GetExcludedAccount;
-using Core.Queries.Accounts.GetIncludedAccountBalanceSummary;
-using Core.Queries.Payments.GetUnclearedPaymentsOfThisMonth;
 using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Queries;
 using ViewModels.Accounts;
 
 /// <summary>

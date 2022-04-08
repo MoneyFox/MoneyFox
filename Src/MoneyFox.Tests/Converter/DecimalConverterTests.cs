@@ -6,6 +6,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Threading;
+    using Core.Common;
     using Xunit;
 
     [ExcludeFromCodeCoverage]

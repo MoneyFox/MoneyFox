@@ -2,6 +2,7 @@
 
 using Core._Pending_;
 using Core.Aggregates.Payments;
+using Core.Common;
 using ViewModels.Payments;
 
 public static class PaymentAmountConverterLogic

@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Common;
 
 public class SettingsViewModel : ObservableObject, ISettingsViewModel
 {

@@ -6,16 +6,11 @@
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
     using Core._Pending_.Common.Messages;
-    using Core.Queries.Accounts.GetAccountEndOfMonthBalance;
-    using Core.Queries.Accounts.GetAccounts;
-    using Core.Queries.Accounts.GetIncludedAccountBalanceSummary;
-    using Core.Queries.Accounts.GetTotalEndOfMonthBalance;
-    using Core.Queries.Payments.GetMonthlyExpense;
-    using Core.Queries.Payments.GetMonthlyIncome;
     using Extensions;
     using MediatR;
     using System.Collections.ObjectModel;
     using System.Threading.Tasks;
+    using Core.Queries;
     using Xamarin.Forms;
     using Xamarin.Forms.Internals;
 

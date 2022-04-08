@@ -3,9 +3,7 @@
     using Accounts;
     using AutoMapper;
     using CommunityToolkit.Mvvm.Input;
-    using Core.Queries.Accounts.GetAccounts;
     using Core.Queries.Statistics;
-    using Core.Queries.Statistics.Queries;
     using MediatR;
     using Microcharts;
     using SkiaSharp;
@@ -14,6 +12,7 @@
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
+    using Core.Queries;
     using Views.Statistics;
     using Xamarin.Essentials;
 

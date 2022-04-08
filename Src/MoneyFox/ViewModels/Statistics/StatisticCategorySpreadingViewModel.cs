@@ -3,7 +3,6 @@
     using CommunityToolkit.Mvvm.Input;
     using Core.Aggregates.Payments;
     using Core.Queries.Statistics;
-    using Core.Queries.Statistics.Queries;
     using MediatR;
     using Microcharts;
     using SkiaSharp;

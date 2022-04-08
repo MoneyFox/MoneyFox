@@ -6,6 +6,7 @@
     using Core.Resources;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Core.Enums;
     using Xamarin.Forms;
 
     public class StatisticSelectorViewModel : ObservableObject, IStatisticSelectorViewModel

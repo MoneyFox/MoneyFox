@@ -3,10 +3,10 @@
     using Dawn;
     using JetBrains.Annotations;
     using Payments;
-    using SharedKernel.Interface;
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using Common.Interfaces;
 
     public class Account : EntityBase, IAggregateRoot
     {

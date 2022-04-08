@@ -3,8 +3,8 @@
 
     using System.Threading;
     using System.Threading.Tasks;
-    using Commands.DatabaseBackup.UploadBackup;
     using MediatR;
+    using UseCases.BackupUpload;
 
     internal sealed class DatabaseEntityCreatedHandler : INotificationHandler<DbEntityModifiedEvent>
     {

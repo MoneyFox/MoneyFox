@@ -3,7 +3,6 @@
     using Common.Interfaces;
     using Core.Aggregates;
     using Core.Aggregates.Payments;
-    using Core.Queries.Payments.GetPaymentsForAccountId;
     using FluentAssertions;
     using Infrastructure;
     using MoneyFox.Infrastructure.Persistence;
@@ -13,6 +12,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
+    using Core.Queries;
     using Xunit;
 
     [ExcludeFromCodeCoverage]

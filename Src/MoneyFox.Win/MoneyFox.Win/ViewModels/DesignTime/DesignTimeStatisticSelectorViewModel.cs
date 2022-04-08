@@ -5,6 +5,7 @@ using Core;
 using Core.Resources;
 using Statistics;
 using System.Collections.Generic;
+using Core.Enums;
 
 public class DesignTimeStatisticSelectorViewModel : IStatisticSelectorViewModel
 {

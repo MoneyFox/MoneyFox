@@ -8,9 +8,6 @@ using Core._Pending_.Common.Facades;
 using Core._Pending_.Common.Messages;
 using Core.Commands.Accounts.DeleteAccountById;
 using Core.Common.Interfaces;
-using Core.Queries.Accounts.GetAccountEndOfMonthBalance;
-using Core.Queries.Accounts.GetExcludedAccount;
-using Core.Queries.Accounts.GetIncludedAccount;
 using Core.Resources;
 using Groups;
 using Interfaces;
@@ -23,6 +20,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Queries;
 
 public class AccountListViewModel : ObservableRecipient, IAccountListViewModel
 {

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core
+﻿namespace MoneyFox.Core.Enums
 {
     public enum StatisticType
     {

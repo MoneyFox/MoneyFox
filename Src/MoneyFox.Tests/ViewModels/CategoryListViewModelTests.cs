@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Tests.ViewModels
 {
     using Core.Aggregates.Payments;
-    using Core.Queries.Categories.GetCategoryBySearchTerm;
     using FluentAssertions;
     using AutoMapper;
     using Core.Common.Interfaces;
@@ -11,6 +10,7 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
+    using Core.Queries;
     using Xunit;
 
     [ExcludeFromCodeCoverage]

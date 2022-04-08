@@ -4,9 +4,9 @@
     using Core.Aggregates;
     using Core.Commands.Accounts.UpdateAccount;
     using Core.Common.Interfaces;
-    using Core.Queries.Accounts.GetAccountById;
     using MediatR;
     using System.Threading.Tasks;
+    using Core.Queries;
 
     public class EditAccountViewModel : ModifyAccountViewModel
     {

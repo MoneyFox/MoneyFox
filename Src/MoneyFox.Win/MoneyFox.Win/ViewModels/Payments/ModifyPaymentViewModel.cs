@@ -9,9 +9,6 @@ using CommunityToolkit.Mvvm.Messaging;
 using Core._Pending_.Common.Messages;
 using Core.Aggregates.Payments;
 using Core.Common.Interfaces;
-using Core.Queries.Accounts.GetAccounts;
-using Core.Queries.Categories.GetCategoryById;
-using Core.Queries.Categories.GetCategoryBySearchTerm;
 using Core.Resources;
 using MediatR;
 using NLog;
@@ -23,10 +20,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Threading.Tasks;
+using Core.Queries;
 
-/// <summary>
-///     Handles the logic of the ModifyPayment view
-/// </summary>
 public abstract class ModifyPaymentViewModel : ObservableRecipient, IModifyPaymentViewModel
 {
     private readonly Logger logger = LogManager.GetCurrentClassLogger();

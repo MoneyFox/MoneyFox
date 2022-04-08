@@ -1,6 +1,7 @@
 ﻿namespace MoneyFox.ViewModels.Statistics
 {
     using Core;
+    using Core.Enums;
 
     public class StatisticSelectorType
     {

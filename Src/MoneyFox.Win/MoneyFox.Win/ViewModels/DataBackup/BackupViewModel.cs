@@ -3,8 +3,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Core._Pending_.Common.Facades;
-using Core._Pending_.DbBackup;
-using Core._Pending_.Exceptions;
+using Core.Common.Exceptions;
 using Core.Common.Interfaces;
 using Core.Interfaces;
 using Core.Resources;
@@ -12,6 +11,7 @@ using Microsoft.AppCenter.Crashes;
 using NLog;
 using System;
 using System.Threading.Tasks;
+using Core.DbBackup;
 
 public class BackupViewModel : ObservableObject, IBackupViewModel
 {
@@ -40,28 +40,18 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
         this.connectivity = connectivity;
         this.settingsFacade = settingsFacade;
         this.toastService = toastService;
-
-        userAccount = new UserAccount();
     }
 
-    /// <inheritdoc />
     public AsyncRelayCommand InitializeCommand => new(async () => await InitializeAsync());
 
-    /// <inheritdoc />
     public AsyncRelayCommand LoginCommand => new(async () => await LoginAsync());
 
-    /// <inheritdoc />
     public AsyncRelayCommand LogoutCommand => new(async () => await LogoutAsync());
 
-    /// <inheritdoc />
     public AsyncRelayCommand BackupCommand => new(async () => await CreateBackupAsync());
 
-    /// <inheritdoc />
     public AsyncRelayCommand RestoreCommand => new(async () => await RestoreBackupAsync());
 
-    /// <summary>
-    ///     The Date when the backup was modified the last time.
-    /// </summary>
     public DateTime BackupLastModified
     {
         get => backupLastModified;
@@ -77,9 +67,6 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
         }
     }
 
-    /// <summary>
-    ///     Indicator that the app is checking if backups available.
-    /// </summary>
     public bool IsLoadingBackupAvailability
     {
         get => isLoadingBackupAvailability;
@@ -95,14 +82,8 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
         }
     }
 
-    /// <summary>
-    ///     Indicator that the user logged in to the backup service.
-    /// </summary>
     public bool IsLoggedIn => settingsFacade.IsLoggedInToBackupService;
 
-    /// <summary>
-    ///     Indicates if a backup is available for restore.
-    /// </summary>
     public bool BackupAvailable
     {
         get => backupAvailable;
@@ -118,7 +99,6 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
         }
     }
 
-    /// <inheritdoc />
     public bool IsAutoBackupEnabled
     {
         get => settingsFacade.IsBackupAutouploadEnabled;
@@ -169,10 +149,7 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
         {
             BackupAvailable = await backupService.IsBackupExistingAsync();
             BackupLastModified = await backupService.GetBackupDateAsync();
-            if(backupService.UserAccount != null)
-            {
-                UserAccount = backupService.UserAccount.GetUserAccount();
-            }
+            UserAccount = await backupService.GetUserAccount();
         }
         catch(BackupAuthenticationFailedException ex)
         {
@@ -209,7 +186,7 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
         try
         {
             await backupService.LoginAsync();
-            UserAccount = backupService.UserAccount.GetUserAccount();
+            UserAccount = await backupService.GetUserAccount();
         }
         catch(BackupOperationCanceledException)
         {

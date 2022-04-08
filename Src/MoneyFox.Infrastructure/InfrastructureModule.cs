@@ -14,6 +14,7 @@
             builder.RegisterType<ContextAdapter>().AsImplementedInterfaces();
             builder.RegisterType<BackupService>().AsImplementedInterfaces();
             builder.RegisterType<OneDriveService>().AsImplementedInterfaces();
+            builder.RegisterType<OneDriveAuthenticationService>().AsImplementedInterfaces();
         }
     }
 

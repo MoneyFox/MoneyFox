@@ -7,7 +7,6 @@
     using Core._Pending_.Common.Messages;
     using Core.Commands.Categories.DeleteCategoryById;
     using Core.Common.Interfaces;
-    using Core.Queries.Categories.GetCategoryBySearchTerm;
     using Core.Resources;
     using Extensions;
     using Groups;
@@ -16,6 +15,7 @@
     using System.Collections.ObjectModel;
     using System.Globalization;
     using System.Threading.Tasks;
+    using Core.Queries;
     using Views.Categories;
     using Xamarin.Forms;
 

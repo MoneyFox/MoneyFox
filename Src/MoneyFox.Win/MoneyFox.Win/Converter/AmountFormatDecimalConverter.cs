@@ -3,6 +3,7 @@
 using Core._Pending_;
 using Microsoft.UI.Xaml.Data;
 using System;
+using Core.Common;
 
 public class AmountFormatDecimalConverter : IValueConverter
 {

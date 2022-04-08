@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Win;
+namespace MoneyFox.Win;
 
 using Autofac;
 using Autofac.Extras.CommonServiceLocator;
@@ -89,7 +89,7 @@ public class ViewModelLocator
     {
         IContainer container = registrations.Build();
 
-        if(container != null)
+        if (container != null)
         {
             ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(container));
         }

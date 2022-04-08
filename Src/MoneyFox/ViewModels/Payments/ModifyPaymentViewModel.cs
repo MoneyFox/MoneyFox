@@ -9,8 +9,6 @@
     using Core._Pending_.Common.Messages;
     using Core.Aggregates.Payments;
     using Core.Common.Interfaces;
-    using Core.Queries.Accounts.GetAccounts;
-    using Core.Queries.Categories.GetCategoryById;
     using Core.Resources;
     using Extensions;
     using MediatR;
@@ -19,6 +17,7 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Threading.Tasks;
+    using Core.Queries;
     using Xamarin.Forms;
 
     public abstract class ModifyPaymentViewModel : ObservableRecipient

@@ -7,6 +7,7 @@ using Core.Resources;
 using Services;
 using StatisticCategorySummary;
 using System.Collections.Generic;
+using Core.Enums;
 
 public class StatisticSelectorViewModel : ObservableObject, IStatisticSelectorViewModel
 {

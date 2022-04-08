@@ -3,9 +3,7 @@
 using Accounts;
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
-using Core.Queries.Accounts.GetAccounts;
 using Core.Queries.Statistics;
-using Core.Queries.Statistics.Queries;
 using LiveChartsCore;
 using LiveChartsCore.Kernel.Sketches;
 using LiveChartsCore.SkiaSharpView;
@@ -17,6 +15,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Queries;
 
 /// <summary>
 ///     Representation of the cash flow view.

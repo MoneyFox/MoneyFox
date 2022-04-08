@@ -1,13 +1,13 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Categories.GetIfCategoryWithNameExists
 {
     using Core.Aggregates.Payments;
-    using Core.Queries.Categories.GetIfCategoryWithNameExists;
     using FluentAssertions;
     using Infrastructure;
     using MoneyFox.Infrastructure.Persistence;
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
+    using Core.Queries;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
