@@ -1,28 +1,24 @@
 ﻿namespace MoneyFox.Win.Services;
 
 using Core.Common;
-using NLog;
-using NLog.Config;
-using NLog.Targets;
+using Serilog;
+using Serilog.Events;
+using Serilog.Exceptions;
 
 public static class LoggerService
 {
-    public static string LogFileName => "moneyfox.log";
-
     public static void Initialize()
     {
-        var config = new LoggingConfiguration();
-        var logfile = new FileTarget("logfile")
-        {
-            FileName = LogConfiguration.FilePath, AutoFlush = true, ArchiveEvery = FileArchivePeriod.Month
-        };
-
-        // Configure console
-        var debugTarget = new DebugTarget("console");
-
-        config.AddRule(LogLevel.Info, LogLevel.Fatal, debugTarget);
-        config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);
-
-        LogManager.Configuration = config;
+        Log.Logger = new LoggerConfiguration().MinimumLevel.Debug()
+            .Enrich.FromLogContext()
+            .Enrich.WithExceptionDetails()
+            .WriteTo.File(
+                path: LogConfiguration.FileName,
+                restrictedToMinimumLevel: LogEventLevel.Information,
+                rollingInterval: RollingInterval.Month,
+                retainedFileCountLimit: 12,
+                outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz}\t[{Level:u3}]\t{Message:lj}\t{Exception}{NewLine}",
+                shared: true)
+            .CreateLogger();
     }
 }

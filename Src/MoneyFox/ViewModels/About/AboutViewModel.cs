@@ -65,7 +65,7 @@
                 subject: Strings.FeedbackSubject,
                 body: string.Empty,
                 recipients: new List<string> { SUPPORT_MAIL },
-                filePaths: new List<string> { Path.Combine(path1: FileSystem.CacheDirectory, path2: LogConfiguration.FilePath) });
+                filePaths: new List<string> { Path.Combine(path1: FileSystem.CacheDirectory, path2: LogConfiguration.FileName) });
         }
 
         private void RateApp()

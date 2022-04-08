@@ -65,7 +65,7 @@ public class AboutViewModel : ObservableObject, IAboutViewModel
         Strings.FeedbackSubject,
         string.Empty,
         new List<string> { SUPPORT_MAIL },
-        new List<string> { LogConfiguration.FilePath });
+        new List<string> { LogConfiguration.FileName });
 
     private void RateApp()
         => storeFeatures.RateApp();

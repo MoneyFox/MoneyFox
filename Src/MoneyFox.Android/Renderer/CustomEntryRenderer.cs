@@ -13,6 +13,7 @@ namespace MoneyFox.Droid.Renderer
     using Java.Lang.Reflect;
     using NLog;
     using System;
+    using Serilog;
     using Xamarin.Forms;
     using Xamarin.Forms.Material.Android;
     using Xamarin.Forms.Platform.Android;
@@ -22,8 +23,6 @@ namespace MoneyFox.Droid.Renderer
 
     public class CustomEntryRenderer : MaterialEntryRenderer
     {
-        private readonly Logger logger = LogManager.GetCurrentClassLogger();
-
         public CustomEntryRenderer(Context context) : base(context)
         {
         }
@@ -82,7 +81,7 @@ namespace MoneyFox.Droid.Renderer
             }
             catch(Exception ex)
             {
-                logger.Error(ex, "Error creating in the CustomEntry Renderer");
+                Log.Error(ex, "Error creating in the CustomEntry Renderer");
             }
         }
 
@@ -149,7 +148,7 @@ namespace MoneyFox.Droid.Renderer
             }
             catch(Exception ex)
             {
-                logger.Error(ex, "Error setting the cursor color for CustomEntry.");
+                Log.Error(ex, "Error setting the cursor color for CustomEntry");
             }
         }
     }

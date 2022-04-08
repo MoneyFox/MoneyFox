@@ -11,13 +11,12 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Core.Queries.Statistics.GetCategorySummary;
+    using Serilog;
     using Xamarin.Forms;
 
-    /// <inheritdoc cref="IStatisticCategorySummaryViewModel" />
     public class StatisticCategorySummaryViewModel : StatisticViewModel
     {
         private readonly IDialogService dialogService;
-        private readonly ILogger logger = LogManager.GetCurrentClassLogger();
 
         private ObservableCollection<CategoryOverviewViewModel> categorySummary =
             new ObservableCollection<CategoryOverviewViewModel>();
@@ -42,15 +41,11 @@
             }
         }
 
-        /// <inheritdoc />
         public bool HasData => CategorySummary.Any();
 
         public RelayCommand<CategoryOverviewViewModel> ShowCategoryPaymentsCommand
             => new RelayCommand<CategoryOverviewViewModel>(async vm => await ShowCategoryPaymentsAsync(vm));
 
-        /// <summary>
-        ///     Overrides the load method to load the category summary data.
-        /// </summary>
         protected override async Task LoadAsync()
         {
             try
@@ -73,7 +68,7 @@
             }
             catch(Exception ex)
             {
-                logger.Warn(ex, "Error during loading. {1}", ex);
+                Log.Warning(ex, "Error during loading");
                 await dialogService.ShowMessageAsync("Error", ex.ToString());
             }
         }
