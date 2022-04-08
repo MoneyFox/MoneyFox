@@ -3,9 +3,9 @@
     using _Pending_.Exceptions;
     using JetBrains.Annotations;
     using NLog;
-    using SharedKernel.Interface;
     using System;
     using System.ComponentModel.DataAnnotations;
+    using Common.Interfaces;
 
     public class Payment : EntityBase, IAggregateRoot
     {

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.SharedKernel.Interface
+﻿namespace MoneyFox.Core.Common.Interfaces
 {
 
     public interface IAggregateRoot { }

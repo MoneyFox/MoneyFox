@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.SharedKernel
+﻿namespace MoneyFox.Core.Common
 {
 
     using System;
