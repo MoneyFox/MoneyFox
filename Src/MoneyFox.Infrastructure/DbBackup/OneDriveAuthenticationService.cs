@@ -1,15 +1,15 @@
 ﻿namespace MoneyFox.Infrastructure.DbBackup
 {
-    using Core._Pending_.Exceptions;
-    using Core.Common.Exceptions;
-    using Microsoft.Graph;
-    using Microsoft.Identity.Client;
-    using NLog;
+
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using Core.Common.Exceptions;
+    using Microsoft.Graph;
+    using Microsoft.Identity.Client;
+    using NLog;
     using Logger = NLog.Logger;
 
     internal sealed class OneDriveAuthenticationService : IOneDriveAuthenticationService
@@ -22,9 +22,7 @@
         private readonly IPublicClientApplication publicClientApplication;
         private readonly IGraphClientFactory graphClientFactory;
 
-        public OneDriveAuthenticationService(
-            IPublicClientApplication publicClientApplication,
-            IGraphClientFactory graphClientFactory)
+        public OneDriveAuthenticationService(IPublicClientApplication publicClientApplication, IGraphClientFactory graphClientFactory)
         {
             this.publicClientApplication = publicClientApplication;
             this.graphClientFactory = graphClientFactory;
@@ -33,37 +31,32 @@
         public async Task<GraphServiceClient> CreateServiceClient(CancellationToken cancellationToken = default)
         {
             IEnumerable<IAccount> accounts = await publicClientApplication.GetAccountsAsync();
-
             try
             {
-                IAccount? firstAccount = accounts.FirstOrDefault();
-                AuthenticationResult authResult = firstAccount == null
+                var firstAccount = accounts.FirstOrDefault();
+                var authResult = firstAccount == null
                     ? await AcquireInteractive()
-                    : await publicClientApplication.AcquireTokenSilent(scopes, firstAccount)
-                        .ExecuteAsync(cancellationToken);
+                    : await publicClientApplication.AcquireTokenSilent(scopes: scopes, account: firstAccount).ExecuteAsync(cancellationToken);
 
                 return graphClientFactory.CreateClient(authResult);
-                // User user = await graphServiceClient.Me.Request().GetAsync();
-                // UserAccount.SetUserAccount(
-                //     user.DisplayName,
-                //     string.IsNullOrEmpty(user.Mail)
-                //         ? user.UserPrincipalName
-                //         : user.Mail);
             }
-            catch(MsalUiRequiredException ex)
+            catch (MsalUiRequiredException ex)
             {
                 logManager.Debug(ex);
+
                 throw;
             }
-            catch(MsalClientException ex)
+            catch (MsalClientException ex)
             {
-                if(ex.ErrorCode == ERROR_CODE_CANCELED)
+                if (ex.ErrorCode == ERROR_CODE_CANCELED)
                 {
                     logManager.Info(ex);
+
                     throw new BackupOperationCanceledException();
                 }
 
                 logManager.Error(ex);
+
                 throw;
             }
         }
@@ -73,38 +66,41 @@
             try
             {
                 logManager.Info("Logout.");
-
                 List<IAccount> accounts = (await publicClientApplication.GetAccountsAsync()).ToList();
-
-                while(accounts.Any())
+                while (accounts.Any())
                 {
                     await publicClientApplication.RemoveAsync(accounts.FirstOrDefault());
                     accounts = (await publicClientApplication.GetAccountsAsync()).ToList();
                 }
             }
-            catch(MsalClientException ex)
+            catch (MsalClientException ex)
             {
-                if(ex.ErrorCode == ERROR_CODE_CANCELED)
+                if (ex.ErrorCode == ERROR_CODE_CANCELED)
                 {
                     logManager.Info(ex);
+
                     throw new BackupOperationCanceledException();
                 }
 
                 logManager.Error(ex);
+
                 throw;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logManager.Error(ex);
+
                 throw new BackupAuthenticationFailedException(ex);
             }
         }
 
-        private async Task<AuthenticationResult> AcquireInteractive() =>
-            await publicClientApplication.AcquireTokenInteractive(scopes)
+        private async Task<AuthenticationResult> AcquireInteractive()
+        {
+            return await publicClientApplication.AcquireTokenInteractive(scopes)
                 .WithUseEmbeddedWebView(true)
-                .WithParentActivityOrWindow(ParentActivityWrapper
-                    .ParentActivity) // this is required for Android
+                .WithParentActivityOrWindow(ParentActivityWrapper.ParentActivity) // this is required for Android
                 .ExecuteAsync();
+        }
     }
+
 }

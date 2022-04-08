@@ -53,11 +53,8 @@
             this.connectivity = connectivity;
             this.contextAdapter = contextAdapter;
             this.toastService = toastService;
-            UserAccount = oneDriveBackupService.UserAccount;
             this.dbPathProvider = dbPathProvider;
         }
-
-        public UserAccount UserAccount { get; set; }
 
         public async Task LoginAsync()
         {
@@ -67,7 +64,6 @@
             }
 
             await oneDriveBackupService.LoginAsync();
-            UserAccount = oneDriveBackupService.UserAccount.GetUserAccount();
             settingsFacade.IsLoggedInToBackupService = true;
             await toastService.ShowToastAsync(message: Strings.LoggedInMessage, title: Strings.LoggedInTitle);
             logger.Info("Successfully logged in.");
@@ -85,6 +81,16 @@
             settingsFacade.IsBackupAutouploadEnabled = false;
             await toastService.ShowToastAsync(message: Strings.LoggedOutMessage, title: Strings.LoggedOutTitle);
             logger.Info("Successfully logged out.");
+        }
+
+        public Task<UserAccount> GetUserAccount()
+        {
+            if (!connectivity.IsConnected)
+            {
+                throw new NetworkConnectionException();
+            }
+
+            return oneDriveBackupService.GetUserAccountAsync();
         }
 
         public async Task<bool> IsBackupExistingAsync()
@@ -199,7 +205,7 @@
                 }
 
                 logger.Info("Backup downloaded. Replace current file.");
-                var moveSucceed = await fileStore.TryMoveAsync(@from: TEMP_DOWNLOAD_PATH, destination: dbPathProvider.GetDbPath(), overwrite: true);
+                var moveSucceed = await fileStore.TryMoveAsync(from: TEMP_DOWNLOAD_PATH, destination: dbPathProvider.GetDbPath(), overwrite: true);
                 if (!moveSucceed)
                 {
                     throw new BackupException("Error Moving downloaded backup file");

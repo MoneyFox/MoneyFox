@@ -32,7 +32,6 @@
         public BackupServiceTests()
         {
             cloudBackupServiceMock = new Mock<IOneDriveBackupService>();
-            cloudBackupServiceMock.SetupGet(x => x.UserAccount).Returns(new UserAccount());
 
             fileStoreMock = new Mock<IFileStore>();
             settingsFacadeMock = new Mock<ISettingsFacade>();

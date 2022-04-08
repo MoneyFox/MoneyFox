@@ -30,15 +30,11 @@
         public OneDriveService(IOneDriveAuthenticationService oneDriveAuthenticationService)
         {
             this.oneDriveAuthenticationService = oneDriveAuthenticationService;
-            UserAccount = new UserAccount();
         }
 
         //private GraphServiceClient? GraphServiceClient { get; set; }
 
         private DriveItem? ArchiveFolder { get; set; }
-
-        // TODO: Make private
-        public UserAccount UserAccount { get; set; }
 
         public async Task LoginAsync()
         {
@@ -141,7 +137,8 @@
             try
             {
                 var graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
-                var existingBackup = (await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync()).FirstOrDefault(x => x.Name == BACKUP_NAME);
+                var existingBackup
+                    = (await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync()).FirstOrDefault(x => x.Name == BACKUP_NAME);
 
                 if (existingBackup == null)
                 {
@@ -171,6 +168,14 @@
             }
         }
 
+        public async Task<UserAccount> GetUserAccountAsync()
+        {
+            var graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
+            var user = await graphServiceClient.Me.Request().GetAsync();
+
+            return new UserAccount(name: user.DisplayName, email: string.IsNullOrEmpty(user.Mail) ? user.UserPrincipalName : user.Mail);
+        }
+
         private async Task RestoreArchivedBackupInCaseOfErrorAsync(GraphServiceClient graphServiceClient)
         {
             try
@@ -191,7 +196,7 @@
             }
             catch (Exception ex)
             {
-                logManager.Error(exception: ex,"Failed to restore database on fail.");
+                logManager.Error(exception: ex, "Failed to restore database on fail.");
             }
         }
 
