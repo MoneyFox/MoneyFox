@@ -1,17 +1,18 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Accounts.GetTotalEndOfMonthBalance
 {
+
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
     using Common.Interfaces;
     using Core._Pending_;
     using Core.Aggregates;
     using Core.Aggregates.Payments;
+    using Core.Queries;
     using FluentAssertions;
     using Infrastructure;
     using MoneyFox.Infrastructure.Persistence;
     using NSubstitute;
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-    using Core.Queries;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -23,7 +24,6 @@
         public GetTotalEndOfMonthBalanceQueryTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-
             contextAdapterMock = Substitute.For<IContextAdapter>();
             contextAdapterMock.Context.Returns(context);
         }
@@ -34,27 +34,32 @@
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing)
+        {
+            InMemoryAppDbContextFactory.Destroy(context);
+        }
 
         [Fact]
         public async Task GetIncludedAccountBalanceSummary_CorrectSum()
         {
             // Arrange
             var systemDateHelper = Substitute.For<ISystemDateHelper>();
-            systemDateHelper.Today.Returns(new DateTime(2020, 09, 05));
-
-            var accountIncluded = new Account("test", 100);
-            var payment = new Payment(new DateTime(2020, 09, 25), 50, PaymentType.Expense, accountIncluded);
+            systemDateHelper.Today.Returns(new DateTime(year: 2020, month: 09, day: 05));
+            var accountIncluded = new Account(name: "test", initalBalance: 100);
+            var payment = new Payment(
+                date: new DateTime(year: 2020, month: 09, day: 25),
+                amount: 50,
+                type: PaymentType.Expense,
+                chargedAccount: accountIncluded);
 
             await context.AddAsync(accountIncluded);
             await context.AddAsync(payment);
             await context.SaveChangesAsync();
 
             // Act
-            decimal result =
-                await new GetTotalEndOfMonthBalanceQuery.Handler(contextAdapterMock, systemDateHelper).Handle(
-                    new GetTotalEndOfMonthBalanceQuery(),
-                    default);
+            var result = await new GetTotalEndOfMonthBalanceQuery.Handler(contextAdapter: contextAdapterMock, systemDateHelper: systemDateHelper).Handle(
+                request: new GetTotalEndOfMonthBalanceQuery(),
+                cancellationToken: default);
 
             // Assert
             result.Should().Be(50);
@@ -65,13 +70,15 @@
         {
             // Arrange
             var systemDateHelper = Substitute.For<ISystemDateHelper>();
-            systemDateHelper.Today.Returns(new DateTime(2020, 09, 05));
-
-            var accountIncluded = new Account("test", 100);
-            var accountDeactivated = new Account("test", 100);
+            systemDateHelper.Today.Returns(new DateTime(year: 2020, month: 09, day: 05));
+            var accountIncluded = new Account(name: "test", initalBalance: 100);
+            var accountDeactivated = new Account(name: "test", initalBalance: 100);
             accountDeactivated.Deactivate();
-
-            var payment = new Payment(new DateTime(2020, 09, 25), 50, PaymentType.Expense, accountIncluded);
+            var payment = new Payment(
+                date: new DateTime(year: 2020, month: 09, day: 25),
+                amount: 50,
+                type: PaymentType.Expense,
+                chargedAccount: accountIncluded);
 
             await context.AddAsync(accountIncluded);
             await context.AddAsync(accountDeactivated);
@@ -79,13 +86,13 @@
             await context.SaveChangesAsync();
 
             // Act
-            decimal result =
-                await new GetTotalEndOfMonthBalanceQuery.Handler(contextAdapterMock, systemDateHelper).Handle(
-                    new GetTotalEndOfMonthBalanceQuery(),
-                    default);
+            var result = await new GetTotalEndOfMonthBalanceQuery.Handler(contextAdapter: contextAdapterMock, systemDateHelper: systemDateHelper).Handle(
+                request: new GetTotalEndOfMonthBalanceQuery(),
+                cancellationToken: default);
 
             // Assert
             result.Should().Be(50);
         }
     }
+
 }

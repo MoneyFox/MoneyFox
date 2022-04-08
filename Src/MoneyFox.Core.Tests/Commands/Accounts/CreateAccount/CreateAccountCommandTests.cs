@@ -1,5 +1,9 @@
 ﻿namespace MoneyFox.Core.Tests.Commands.Accounts.CreateAccount
 {
+
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
     using Common.Interfaces;
     using Core._Pending_.Common.Facades;
     using Core.Commands.Accounts.CreateAccount;
@@ -7,9 +11,6 @@
     using MediatR;
     using MoneyFox.Infrastructure.Persistence;
     using Moq;
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -23,12 +24,9 @@
         public CreateAccountCommandTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-
             contextAdapterMock = new Mock<IContextAdapter>();
             contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-
             publisherMock = new Mock<IPublisher>();
-
             settingsFacadeMock = new Mock<ISettingsFacade>();
             settingsFacadeMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>());
         }
@@ -39,21 +37,23 @@
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing)
+        {
+            InMemoryAppDbContextFactory.Destroy(context);
+        }
 
         [Fact]
         public async Task GetAccountQuery_CorrectNumberLoaded()
         {
             // Arrange
             // Act
-            await new CreateAccountCommand.Handler(
-                    contextAdapterMock.Object)
-                .Handle(
-                    new CreateAccountCommand("test", 80),
-                    default);
+            await new CreateAccountCommand.Handler(contextAdapterMock.Object).Handle(
+                request: new CreateAccountCommand(name: "test", currentBalance: 80),
+                cancellationToken: default);
 
             // Assert
             Assert.Single(context.Accounts);
         }
     }
+
 }

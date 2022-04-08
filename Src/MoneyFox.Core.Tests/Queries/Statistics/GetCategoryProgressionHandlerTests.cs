@@ -1,5 +1,10 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Statistics
 {
+
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
     using Common.Interfaces;
     using Core.Aggregates;
     using Core.Aggregates.Payments;
@@ -8,11 +13,6 @@
     using Infrastructure;
     using MoneyFox.Infrastructure.Persistence;
     using Moq;
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.Immutable;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -25,7 +25,6 @@
         public GetCategoryProgressionHandlerTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-
             contextAdapterMock = new Mock<IContextAdapter>();
             contextAdapterMock.SetupGet(x => x.Context).Returns(context);
         }
@@ -36,7 +35,10 @@
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing)
+        {
+            InMemoryAppDbContextFactory.Destroy(context);
+        }
 
         [Fact]
         public async Task CalculateCorrectSums()
@@ -47,23 +49,40 @@
             context.AddRange(
                 new List<Payment>
                 {
-                    new Payment(DateTime.Today, 60, PaymentType.Income, account, category: category),
-                    new Payment(DateTime.Today, 20, PaymentType.Expense, account, category: category),
-                    new Payment(DateTime.Today.AddMonths(-1), 50, PaymentType.Expense, account, category: category),
-                    new Payment(DateTime.Today.AddMonths(-2), 40, PaymentType.Expense, account, category: category)
+                    new Payment(
+                        date: DateTime.Today,
+                        amount: 60,
+                        type: PaymentType.Income,
+                        chargedAccount: account,
+                        category: category),
+                    new Payment(
+                        date: DateTime.Today,
+                        amount: 20,
+                        type: PaymentType.Expense,
+                        chargedAccount: account,
+                        category: category),
+                    new Payment(
+                        date: DateTime.Today.AddMonths(-1),
+                        amount: 50,
+                        type: PaymentType.Expense,
+                        chargedAccount: account,
+                        category: category),
+                    new Payment(
+                        date: DateTime.Today.AddMonths(-2),
+                        amount: 40,
+                        type: PaymentType.Expense,
+                        chargedAccount: account,
+                        category: category)
                 });
+
             context.Add(account);
             context.Add(category);
             context.SaveChanges();
 
             // Act
-            IImmutableList<StatisticEntry> result =
-                await new GetCategoryProgressionHandler(contextAdapterMock.Object).Handle(
-                    new GetCategoryProgressionQuery(
-                        category.Id,
-                        DateTime.Today.AddYears(-1),
-                        DateTime.Today.AddDays(3)),
-                    default);
+            var result = await new GetCategoryProgressionHandler(contextAdapterMock.Object).Handle(
+                request: new GetCategoryProgressionQuery(categoryId: category.Id, startDate: DateTime.Today.AddYears(-1), endDate: DateTime.Today.AddDays(3)),
+                cancellationToken: default);
 
             // Assert
             result[12].Value.Should().Be(40);
@@ -80,23 +99,40 @@
             context.AddRange(
                 new List<Payment>
                 {
-                    new Payment(DateTime.Today, 60, PaymentType.Income, account, category: category),
-                    new Payment(DateTime.Today, 20, PaymentType.Expense, account, category: category),
-                    new Payment(DateTime.Today.AddMonths(-1), 50, PaymentType.Expense, account, category: category),
-                    new Payment(DateTime.Today.AddMonths(-2), 40, PaymentType.Expense, account, category: category)
+                    new Payment(
+                        date: DateTime.Today,
+                        amount: 60,
+                        type: PaymentType.Income,
+                        chargedAccount: account,
+                        category: category),
+                    new Payment(
+                        date: DateTime.Today,
+                        amount: 20,
+                        type: PaymentType.Expense,
+                        chargedAccount: account,
+                        category: category),
+                    new Payment(
+                        date: DateTime.Today.AddMonths(-1),
+                        amount: 50,
+                        type: PaymentType.Expense,
+                        chargedAccount: account,
+                        category: category),
+                    new Payment(
+                        date: DateTime.Today.AddMonths(-2),
+                        amount: 40,
+                        type: PaymentType.Expense,
+                        chargedAccount: account,
+                        category: category)
                 });
+
             context.Add(account);
             context.Add(category);
-
             context.SaveChanges();
 
             // Act
-            List<StatisticEntry> result = await new GetAccountProgressionHandler(contextAdapterMock.Object).Handle(
-                new GetAccountProgressionQuery(
-                    account.Id,
-                    DateTime.Today.AddYears(-1),
-                    DateTime.Today.AddDays(3)),
-                default);
+            var result = await new GetAccountProgressionHandler(contextAdapterMock.Object).Handle(
+                request: new GetAccountProgressionQuery(accountId: account.Id, startDate: DateTime.Today.AddYears(-1), endDate: DateTime.Today.AddDays(3)),
+                cancellationToken: default);
 
             // Assert
             result[0].Color.Should().Be("#87cefa");
@@ -104,4 +140,5 @@
             result[2].Color.Should().Be("#cd3700");
         }
     }
+
 }

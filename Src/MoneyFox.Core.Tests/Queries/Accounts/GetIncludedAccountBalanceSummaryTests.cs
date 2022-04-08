@@ -1,15 +1,16 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Accounts
 {
+
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
     using Common.Interfaces;
     using Core.Aggregates;
+    using Core.Queries;
     using FluentAssertions;
     using Infrastructure;
     using MoneyFox.Infrastructure.Persistence;
     using NSubstitute;
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-    using Core.Queries;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -21,7 +22,6 @@
         public GetIncludedAccountBalanceSummaryTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-
             contextAdapter = Substitute.For<IContextAdapter>();
             contextAdapter.Context.Returns(context);
         }
@@ -32,28 +32,31 @@
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing)
+        {
+            InMemoryAppDbContextFactory.Destroy(context);
+        }
 
         [Fact]
         public async Task GetIncludedAccountBalanceSummary_CorrectSum()
         {
             // Arrange
-            var accountExcluded = new Account("test", 80, isExcluded: true);
-            var accountIncluded1 = new Account("test", 100);
-            var accountIncluded2 = new Account("test", 120);
-
+            var accountExcluded = new Account(name: "test", initalBalance: 80, isExcluded: true);
+            var accountIncluded1 = new Account(name: "test", initalBalance: 100);
+            var accountIncluded2 = new Account(name: "test", initalBalance: 120);
             await context.AddAsync(accountExcluded);
             await context.AddAsync(accountIncluded1);
             await context.AddAsync(accountIncluded2);
             await context.SaveChangesAsync();
 
             // Act
-            decimal result =
-                await new GetIncludedAccountBalanceSummaryQuery.Handler(contextAdapter)
-                    .Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
+            var result = await new GetIncludedAccountBalanceSummaryQuery.Handler(contextAdapter).Handle(
+                request: new GetIncludedAccountBalanceSummaryQuery(),
+                cancellationToken: default);
 
             // Assert
             result.Should().Be(220);
         }
     }
+
 }

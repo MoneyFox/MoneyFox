@@ -1,17 +1,18 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Payments.GetMonthlyExpense
 {
+
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
     using Common.Interfaces;
     using Core._Pending_;
     using Core.Aggregates;
     using Core.Aggregates.Payments;
+    using Core.Queries;
     using FluentAssertions;
     using Infrastructure;
     using MoneyFox.Infrastructure.Persistence;
     using NSubstitute;
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-    using Core.Queries;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -23,7 +24,6 @@
         public GetMonthlyExpenseQueryTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-
             contextAdapter = Substitute.For<IContextAdapter>();
             contextAdapter.Context.Returns(context);
         }
@@ -34,35 +34,34 @@
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing)
+        {
+            InMemoryAppDbContextFactory.Destroy(context);
+        }
 
         [Fact]
         public async Task ReturnCorrectAmount()
         {
             // Arrange
-
             var systemDateHelper = Substitute.For<ISystemDateHelper>();
-            systemDateHelper.Today.Returns(new DateTime(2020, 09, 05));
-
-            var account = new Account("test", 80);
-
-            var payment1 = new Payment(new DateTime(2020, 09, 03), 50, PaymentType.Expense, account);
-            var payment2 = new Payment(new DateTime(2020, 09, 04), 20, PaymentType.Expense, account);
-            var payment3 = new Payment(new DateTime(2020, 09, 04), 30, PaymentType.Income, account);
-
+            systemDateHelper.Today.Returns(new DateTime(year: 2020, month: 09, day: 05));
+            var account = new Account(name: "test", initalBalance: 80);
+            var payment1 = new Payment(date: new DateTime(year: 2020, month: 09, day: 03), amount: 50, type: PaymentType.Expense, chargedAccount: account);
+            var payment2 = new Payment(date: new DateTime(year: 2020, month: 09, day: 04), amount: 20, type: PaymentType.Expense, chargedAccount: account);
+            var payment3 = new Payment(date: new DateTime(year: 2020, month: 09, day: 04), amount: 30, type: PaymentType.Income, chargedAccount: account);
             await context.AddAsync(payment1);
             await context.AddAsync(payment2);
             await context.AddAsync(payment3);
             await context.SaveChangesAsync();
 
             // Act
-            decimal sum =
-                await new GetMonthlyExpenseQuery.Handler(contextAdapter, systemDateHelper).Handle(
-                    new GetMonthlyExpenseQuery(),
-                    default);
+            var sum = await new GetMonthlyExpenseQuery.Handler(contextAdapter: contextAdapter, systemDateHelper: systemDateHelper).Handle(
+                request: new GetMonthlyExpenseQuery(),
+                cancellationToken: default);
 
             // Assert
             sum.Should().Be(70);
         }
     }
+
 }

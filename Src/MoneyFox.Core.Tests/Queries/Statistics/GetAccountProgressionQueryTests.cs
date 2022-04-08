@@ -1,32 +1,35 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Statistics
 {
-    using Core._Pending_.Exceptions;
-    using FluentAssertions;
+
     using System;
+    using Core._Pending_.Exceptions;
     using Core.Queries.Statistics;
+    using FluentAssertions;
     using Xunit;
 
     public class GetAccountProgressionQueryTests
     {
         [Fact]
-        public void ExceptionOnInvalidDates() =>
-            // Arrange
+        public void ExceptionOnInvalidDates()
+        {
             // Act / Assert
+            // Arrange
             Assert.Throws<StartAfterEnddateException>(
-                () =>
-                    new GetAccountProgressionQuery(0, DateTime.Today.AddYears(3), DateTime.Today));
+                () => new GetAccountProgressionQuery(accountId: 0, startDate: DateTime.Today.AddYears(3), endDate: DateTime.Today));
+        }
 
         [Fact]
         public void NoExceptionOnSameDate()
         {
             // Arrange
-            DateTime date = DateTime.Now;
+            var date = DateTime.Now;
 
             // Act
-            var query = new GetAccountProgressionQuery(0, date, date);
+            var query = new GetAccountProgressionQuery(accountId: 0, startDate: date, endDate: date);
 
             // Assert
             query.Should().NotBeNull();
         }
     }
+
 }

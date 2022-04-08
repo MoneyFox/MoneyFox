@@ -1,5 +1,9 @@
 ﻿namespace MoneyFox.Core.Tests.Commands.Accounts.DeleteAccountById
 {
+
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
     using Common.Interfaces;
     using Core.Aggregates;
     using Core.Commands.Accounts.DeleteAccountById;
@@ -8,9 +12,6 @@
     using Microsoft.EntityFrameworkCore;
     using MoneyFox.Infrastructure.Persistence;
     using Moq;
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -22,7 +23,6 @@
         public DeactivateAccountByIdCommandTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-
             contextAdapterMock = new Mock<IContextAdapter>();
             contextAdapterMock.SetupGet(x => x.Context).Returns(context);
         }
@@ -33,7 +33,10 @@
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing)
+        {
+            InMemoryAppDbContextFactory.Destroy(context);
+        }
 
         [Fact]
         public async Task DeactivatedAccountNotDeleted()
@@ -44,8 +47,9 @@
             await context.SaveChangesAsync();
 
             // Act
-            await new DeactivateAccountByIdCommand.Handler(contextAdapterMock.Object)
-                .Handle(new DeactivateAccountByIdCommand(account.Id), default);
+            await new DeactivateAccountByIdCommand.Handler(contextAdapterMock.Object).Handle(
+                request: new DeactivateAccountByIdCommand(account.Id),
+                cancellationToken: default);
 
             // Assert
             (await context.Accounts.FirstOrDefaultAsync(x => x.Id == account.Id)).Should().NotBeNull();
@@ -60,12 +64,13 @@
             await context.SaveChangesAsync();
 
             // Act
-            await new DeactivateAccountByIdCommand.Handler(
-                    contextAdapterMock.Object)
-                .Handle(new DeactivateAccountByIdCommand(account.Id), default);
+            await new DeactivateAccountByIdCommand.Handler(contextAdapterMock.Object).Handle(
+                request: new DeactivateAccountByIdCommand(account.Id),
+                cancellationToken: default);
 
             // Assert
             (await context.Accounts.FirstOrDefaultAsync(x => x.Id == account.Id)).IsDeactivated.Should().BeTrue();
         }
     }
+
 }

@@ -1,9 +1,10 @@
 ﻿namespace MoneyFox.Core.Tests.Aggregates
 {
-    using Core.Aggregates.Payments;
-    using FluentAssertions;
+
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using Core.Aggregates.Payments;
+    using FluentAssertions;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -12,11 +13,12 @@
         [Theory]
         [InlineData("")]
         [InlineData(" ")]
-        public void Ctor_NameEmpty_ArgumentNullException(string name) =>
-            // Arrange
-
+        public void Ctor_NameEmpty_ArgumentNullException(string name)
+        {
             // Act / Assert
+            // Arrange
             Assert.Throws<ArgumentException>(() => new Category(name));
+        }
 
         [Fact]
         public void Ctor_NoParams_DefaultValuesSet()
@@ -41,7 +43,7 @@
             const string testNote = "foo";
 
             // Act / Assert
-            var category = new Category(testName, testNote, true);
+            var category = new Category(name: testName, note: testNote, requireNote: true);
 
             // Assert
             category.Name.Should().Be(testName);
@@ -66,7 +68,6 @@
         {
             // Arrange
             const string testName = "test";
-
             var testCategory = new Category("Foo");
 
             // Act / Assert
@@ -84,11 +85,10 @@
             // Arrange
             const string testName = "test";
             const string testNote = "foo";
-
             var testCategory = new Category("Foo");
 
             // Act / Assert
-            testCategory.UpdateData(testName, testNote, true);
+            testCategory.UpdateData(name: testName, note: testNote, requireNote: true);
 
             // Assert
             testCategory.Name.Should().Be(testName);
@@ -96,4 +96,5 @@
             testCategory.RequireNote.Should().BeTrue();
         }
     }
+
 }

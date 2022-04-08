@@ -1,14 +1,6 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Statistics
 {
-    using Common.Interfaces;
-    using Core._Pending_;
-    using Core.Aggregates;
-    using Core.Aggregates.Payments;
-    using Core.Queries.Statistics;
-    using FluentAssertions;
-    using Infrastructure;
-    using MoneyFox.Infrastructure.Persistence;
-    using Moq;
+
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -16,6 +8,14 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Common;
+    using Common.Interfaces;
+    using Core.Aggregates;
+    using Core.Aggregates.Payments;
+    using Core.Queries.Statistics;
+    using FluentAssertions;
+    using Infrastructure;
+    using MoneyFox.Infrastructure.Persistence;
+    using Moq;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -28,7 +28,6 @@
         public GetCategorySpreadingQueryTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-
             contextAdapterMock = new Mock<IContextAdapter>();
             contextAdapterMock.SetupGet(x => x.Context).Returns(context);
         }
@@ -39,7 +38,10 @@
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing)
+        {
+            InMemoryAppDbContextFactory.Destroy(context);
+        }
 
         [Fact]
         public async Task GetValues_CorrectSums()
@@ -48,26 +50,42 @@
             var testCat1 = new Category("Ausgehen");
             var testCat2 = new Category("Rent");
             var testCat3 = new Category("Food");
-
             var account = new Account("test");
-
             var paymentList = new List<Payment>
             {
-                new Payment(DateTime.Today, 60, PaymentType.Income, account, category: testCat1),
-                new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat1),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: testCat3),
-                new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat2)
+                new Payment(
+                    date: DateTime.Today,
+                    amount: 60,
+                    type: PaymentType.Income,
+                    chargedAccount: account,
+                    category: testCat1),
+                new Payment(
+                    date: DateTime.Today,
+                    amount: 90,
+                    type: PaymentType.Expense,
+                    chargedAccount: account,
+                    category: testCat1),
+                new Payment(
+                    date: DateTime.Today,
+                    amount: 10,
+                    type: PaymentType.Expense,
+                    chargedAccount: account,
+                    category: testCat3),
+                new Payment(
+                    date: DateTime.Today,
+                    amount: 90,
+                    type: PaymentType.Expense,
+                    chargedAccount: account,
+                    category: testCat2)
             };
 
             context.Payments.AddRange(paymentList);
             context.SaveChanges();
 
             // Act
-            List<StatisticEntry> result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
-                    .Handle(
-                        new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)),
-                        default))
-                .ToList();
+            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(
+                request: new GetCategorySpreadingQuery(startDate: DateTime.Today.AddDays(-3), endDate: DateTime.Today.AddDays(3)),
+                cancellationToken: default)).ToList();
 
             // Assert
             result.Should().HaveCount(3);
@@ -83,24 +101,36 @@
             var testCat1 = new Category("Ausgehen");
             var testCat2 = new Category("Rent");
             var testCat3 = new Category("Food");
-
             var account = new Account("test");
             var paymentList = new List<Payment>
             {
-                new Payment(DateTime.Today, 60, PaymentType.Income, account, category: testCat1),
-                new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat2),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: testCat3)
+                new Payment(
+                    date: DateTime.Today,
+                    amount: 60,
+                    type: PaymentType.Income,
+                    chargedAccount: account,
+                    category: testCat1),
+                new Payment(
+                    date: DateTime.Today,
+                    amount: 90,
+                    type: PaymentType.Expense,
+                    chargedAccount: account,
+                    category: testCat2),
+                new Payment(
+                    date: DateTime.Today,
+                    amount: 10,
+                    type: PaymentType.Expense,
+                    chargedAccount: account,
+                    category: testCat3)
             };
 
             context.Payments.AddRange(paymentList);
             context.SaveChanges();
 
             // Act
-            List<StatisticEntry> result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
-                    .Handle(
-                        new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)),
-                        default))
-                .ToList();
+            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(
+                request: new GetCategorySpreadingQuery(startDate: DateTime.Today.AddDays(-3), endDate: DateTime.Today.AddDays(3)),
+                cancellationToken: default)).ToList();
 
             // Assert
             result.Should().HaveCount(2);
@@ -112,23 +142,30 @@
             // Arrange
             var testCat1 = new Category("Ausgehen");
             var testCat2 = new Category("Rent");
-
             var account = new Account("test");
             var paymentList = new List<Payment>
             {
-                new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat1),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: testCat2)
+                new Payment(
+                    date: DateTime.Today,
+                    amount: 90,
+                    type: PaymentType.Expense,
+                    chargedAccount: account,
+                    category: testCat1),
+                new Payment(
+                    date: DateTime.Today,
+                    amount: 10,
+                    type: PaymentType.Expense,
+                    chargedAccount: account,
+                    category: testCat2)
             };
 
             context.Payments.AddRange(paymentList);
             context.SaveChanges();
 
             // Act
-            List<StatisticEntry> result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
-                    .Handle(
-                        new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)),
-                        default))
-                .ToList();
+            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(
+                request: new GetCategorySpreadingQuery(startDate: DateTime.Today.AddDays(-3), endDate: DateTime.Today.AddDays(3)),
+                cancellationToken: default)).ToList();
 
             // Assert
             result[0].Label.Should().Be(testCat1.Name);
@@ -142,24 +179,57 @@
             var account = new Account("test");
             var paymentList = new List<Payment>
             {
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("a")),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("b")),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("c")),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("d")),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("e")),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("f")),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("g"))
+                new Payment(
+                    date: DateTime.Today,
+                    amount: 10,
+                    type: PaymentType.Expense,
+                    chargedAccount: account,
+                    category: new Category("a")),
+                new Payment(
+                    date: DateTime.Today,
+                    amount: 10,
+                    type: PaymentType.Expense,
+                    chargedAccount: account,
+                    category: new Category("b")),
+                new Payment(
+                    date: DateTime.Today,
+                    amount: 10,
+                    type: PaymentType.Expense,
+                    chargedAccount: account,
+                    category: new Category("c")),
+                new Payment(
+                    date: DateTime.Today,
+                    amount: 10,
+                    type: PaymentType.Expense,
+                    chargedAccount: account,
+                    category: new Category("d")),
+                new Payment(
+                    date: DateTime.Today,
+                    amount: 10,
+                    type: PaymentType.Expense,
+                    chargedAccount: account,
+                    category: new Category("e")),
+                new Payment(
+                    date: DateTime.Today,
+                    amount: 10,
+                    type: PaymentType.Expense,
+                    chargedAccount: account,
+                    category: new Category("f")),
+                new Payment(
+                    date: DateTime.Today,
+                    amount: 10,
+                    type: PaymentType.Expense,
+                    chargedAccount: account,
+                    category: new Category("g"))
             };
 
             context.Payments.AddRange(paymentList);
             context.SaveChanges();
 
             // Act
-            List<StatisticEntry> result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
-                    .Handle(
-                        new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)),
-                        default))
-                .ToList();
+            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(
+                request: new GetCategorySpreadingQuery(startDate: DateTime.Today.AddDays(-3), endDate: DateTime.Today.AddDays(3)),
+                cancellationToken: default)).ToList();
 
             // Assert
             result[0].Color.Should().Be("#266489");
@@ -179,24 +249,36 @@
             // Arrange
             var cultureInfo = new CultureInfo(culture);
             CultureHelper.CurrentCulture = cultureInfo;
-
             var account = new Account("test");
             var paymentList = new List<Payment>
             {
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("a")),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("b")),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("c"))
+                new Payment(
+                    date: DateTime.Today,
+                    amount: 10,
+                    type: PaymentType.Expense,
+                    chargedAccount: account,
+                    category: new Category("a")),
+                new Payment(
+                    date: DateTime.Today,
+                    amount: 10,
+                    type: PaymentType.Expense,
+                    chargedAccount: account,
+                    category: new Category("b")),
+                new Payment(
+                    date: DateTime.Today,
+                    amount: 10,
+                    type: PaymentType.Expense,
+                    chargedAccount: account,
+                    category: new Category("c"))
             };
 
             context.Payments.AddRange(paymentList);
             context.SaveChanges();
 
             // Act
-            List<StatisticEntry> result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
-                    .Handle(
-                        new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)),
-                        default))
-                .ToList();
+            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(
+                request: new GetCategorySpreadingQuery(startDate: DateTime.Today.AddDays(-3), endDate: DateTime.Today.AddDays(3)),
+                cancellationToken: default)).ToList();
 
             // Assert
             result[0].ValueLabel[0].Should().Be(expectedCurrencySymbol);
@@ -210,29 +292,45 @@
             // Arrange
             var testCat1 = new Category("Ausgehen");
             var testCat2 = new Category("Rent");
-
             var account = new Account("test");
-
             var paymentList = new List<Payment>
             {
-                new Payment(DateTime.Today, 90, PaymentType.Income, account, category: testCat1),
-                new Payment(DateTime.Today, 60, PaymentType.Expense, account, category: testCat1),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: testCat2),
-                new Payment(DateTime.Today, 90, PaymentType.Income, account, category: testCat2)
+                new Payment(
+                    date: DateTime.Today,
+                    amount: 90,
+                    type: PaymentType.Income,
+                    chargedAccount: account,
+                    category: testCat1),
+                new Payment(
+                    date: DateTime.Today,
+                    amount: 60,
+                    type: PaymentType.Expense,
+                    chargedAccount: account,
+                    category: testCat1),
+                new Payment(
+                    date: DateTime.Today,
+                    amount: 10,
+                    type: PaymentType.Expense,
+                    chargedAccount: account,
+                    category: testCat2),
+                new Payment(
+                    date: DateTime.Today,
+                    amount: 90,
+                    type: PaymentType.Income,
+                    chargedAccount: account,
+                    category: testCat2)
             };
 
             context.Payments.AddRange(paymentList);
             context.SaveChanges();
 
             // Act
-            List<StatisticEntry> result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
-                    .Handle(
-                        new GetCategorySpreadingQuery(
-                            DateTime.Today.AddDays(-3),
-                            DateTime.Today.AddDays(3),
-                            PaymentType.Income),
-                        default))
-                .ToList();
+            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(
+                request: new GetCategorySpreadingQuery(
+                    startDate: DateTime.Today.AddDays(-3),
+                    endDate: DateTime.Today.AddDays(3),
+                    paymentType: PaymentType.Income),
+                cancellationToken: default)).ToList();
 
             // Assert
             result.Should().HaveCount(2);
@@ -240,4 +338,5 @@
             result[1].Value.Should().Be(30);
         }
     }
+
 }

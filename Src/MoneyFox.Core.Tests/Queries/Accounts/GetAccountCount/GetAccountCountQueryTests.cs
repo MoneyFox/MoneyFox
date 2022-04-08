@@ -1,15 +1,16 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Accounts.GetAccountCount
 {
+
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
     using Common.Interfaces;
     using Core.Aggregates;
+    using Core.Queries;
     using FluentAssertions;
     using Infrastructure;
     using MoneyFox.Infrastructure.Persistence;
     using NSubstitute;
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-    using Core.Queries;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -21,7 +22,6 @@
         public GetAccountCountQueryTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-
             contextAdapter = Substitute.For<IContextAdapter>();
             contextAdapter.Context.Returns(context);
         }
@@ -32,21 +32,23 @@
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing)
+        {
+            InMemoryAppDbContextFactory.Destroy(context);
+        }
 
         [Fact]
         public async Task GetExcludedAccountQuery_CorrectNumberLoaded()
         {
             // Arrange
-            var accountExcluded = new Account("test", 80, isExcluded: true);
-            var accountIncluded = new Account("test", 80);
+            var accountExcluded = new Account(name: "test", initalBalance: 80, isExcluded: true);
+            var accountIncluded = new Account(name: "test", initalBalance: 80);
             await context.AddAsync(accountExcluded);
             await context.AddAsync(accountIncluded);
             await context.SaveChangesAsync();
 
             // Act
-            int result =
-                await new GetAccountCountQuery.Handler(contextAdapter).Handle(new GetAccountCountQuery(), default);
+            var result = await new GetAccountCountQuery.Handler(contextAdapter).Handle(request: new GetAccountCountQuery(), cancellationToken: default);
 
             // Assert
             result.Should().Be(2);
@@ -56,20 +58,19 @@
         public async Task HandleDeactivatedAccountsCorrectly()
         {
             // Arrange
-            var account = new Account("test", 80);
-            var accountDeactivated = new Account("test", 80);
+            var account = new Account(name: "test", initalBalance: 80);
+            var accountDeactivated = new Account(name: "test", initalBalance: 80);
             accountDeactivated.Deactivate();
-
             await context.AddAsync(accountDeactivated);
             await context.AddAsync(account);
             await context.SaveChangesAsync();
 
             // Act
-            int result =
-                await new GetAccountCountQuery.Handler(contextAdapter).Handle(new GetAccountCountQuery(), default);
+            var result = await new GetAccountCountQuery.Handler(contextAdapter).Handle(request: new GetAccountCountQuery(), cancellationToken: default);
 
             // Assert
             result.Should().Be(1);
         }
     }
+
 }

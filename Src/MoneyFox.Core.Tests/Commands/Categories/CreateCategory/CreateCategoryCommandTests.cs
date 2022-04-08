@@ -1,16 +1,16 @@
 ﻿namespace MoneyFox.Core.Tests.Commands.Categories.CreateCategory
 {
+
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Common.Interfaces;
-    using Core.Aggregates.Payments;
     using Core.Commands.Categories.CreateCategory;
     using FluentAssertions;
     using Infrastructure;
     using MoneyFox.Infrastructure.Persistence;
     using Moq;
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -22,7 +22,6 @@
         public CreateCategoryCommandTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-
             contextAdapterMock = new Mock<IContextAdapter>();
             contextAdapterMock.SetupGet(x => x.Context).Returns(context);
         }
@@ -33,16 +32,17 @@
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing)
+        {
+            InMemoryAppDbContextFactory.Destroy(context);
+        }
 
         [Fact]
         public async Task CreateCategoryCommand_CorrectNumberLoaded()
         {
             // Arrange
             // Act
-            await new CreateCategoryCommand.Handler(
-                    contextAdapterMock.Object)
-                .Handle(new CreateCategoryCommand("Test"), default);
+            await new CreateCategoryCommand.Handler(contextAdapterMock.Object).Handle(request: new CreateCategoryCommand("Test"), cancellationToken: default);
 
             // Assert
             Assert.Single(context.Categories);
@@ -53,14 +53,15 @@
         {
             // Arrange
             // Act
-            await new CreateCategoryCommand.Handler(
-                    contextAdapterMock.Object)
-                .Handle(new CreateCategoryCommand("Test", requireNote: true), default);
+            await new CreateCategoryCommand.Handler(contextAdapterMock.Object).Handle(
+                request: new CreateCategoryCommand(name: "Test", requireNote: true),
+                cancellationToken: default);
 
-            Category loadedCategory = context.Categories.First();
+            var loadedCategory = context.Categories.First();
 
             // Assert
             loadedCategory.RequireNote.Should().BeTrue();
         }
     }
+
 }

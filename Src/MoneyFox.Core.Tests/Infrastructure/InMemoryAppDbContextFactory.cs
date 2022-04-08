@@ -1,21 +1,18 @@
 ﻿namespace MoneyFox.Core.Tests.Infrastructure
 {
-    using Microsoft.EntityFrameworkCore;
-    using MoneyFox.Infrastructure.Persistence;
+
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using Microsoft.EntityFrameworkCore;
+    using MoneyFox.Infrastructure.Persistence;
 
     [ExcludeFromCodeCoverage]
     internal static class InMemoryAppDbContextFactory
     {
         public static AppDbContext Create()
         {
-            DbContextOptions<AppDbContext> options = new DbContextOptionsBuilder<AppDbContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString())
-                .Options;
-
-            var context = new AppDbContext(options, null, null);
-
+            var options = new DbContextOptionsBuilder<AppDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
+            var context = new AppDbContext(options: options, publisher: null, settingsFacade: null);
             context.Database.EnsureCreated();
             context.SaveChanges();
 
@@ -28,4 +25,5 @@
             context.Dispose();
         }
     }
+
 }

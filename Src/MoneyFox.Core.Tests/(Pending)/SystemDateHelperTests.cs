@@ -1,9 +1,10 @@
 ﻿namespace MoneyFox.Core.Tests._Pending_
 {
-    using Core._Pending_;
-    using FluentAssertions;
+
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using Core._Pending_;
+    using FluentAssertions;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -15,8 +16,10 @@
             // Arrange
             // Act
             var systemDateHelper = new SystemDateHelper();
+
             // Assert
             systemDateHelper.Today.Should().Be(DateTime.Today);
         }
     }
+
 }

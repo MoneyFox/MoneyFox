@@ -1,10 +1,11 @@
 ﻿namespace MoneyFox.Core.Tests._Pending_.QueryObjects
 {
-    using Core._Pending_.Common.QueryObjects;
-    using Core.Aggregates;
+
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using Core._Pending_.Common.QueryObjects;
+    using Core.Aggregates;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -14,17 +15,17 @@
         public void AreActive()
         {
             // Arrange
-            var accountQueryList = new List<Account> {new Account("Foo1"), new Account("Foo2"), new Account("absd")};
-
+            var accountQueryList = new List<Account> { new Account("Foo1"), new Account("Foo2"), new Account("absd") };
             accountQueryList[1].Deactivate();
 
             // Act
-            List<Account> resultList = accountQueryList.AsQueryable().AreActive().ToList();
+            var resultList = accountQueryList.AsQueryable().AreActive().ToList();
 
             // Assert
-            Assert.Equal(2, resultList.Count);
-            Assert.Equal("Foo1", resultList[0].Name);
-            Assert.Equal("absd", resultList[1].Name);
+            Assert.Equal(expected: 2, actual: resultList.Count);
+            Assert.Equal(expected: "Foo1", actual: resultList[0].Name);
+            Assert.Equal(expected: "absd", actual: resultList[1].Name);
         }
     }
+
 }

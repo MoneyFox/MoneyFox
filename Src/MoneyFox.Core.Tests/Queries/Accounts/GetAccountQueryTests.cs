@@ -1,15 +1,15 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Accounts
 {
+
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
     using Common.Interfaces;
     using Core.Aggregates;
+    using Core.Queries;
     using Infrastructure;
     using MoneyFox.Infrastructure.Persistence;
     using Moq;
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-    using Core.Queries;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -21,7 +21,6 @@
         public GetAccountQueryTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-
             contextAdapterMock = new Mock<IContextAdapter>();
             contextAdapterMock.SetupGet(x => x.Context).Returns(context);
         }
@@ -32,19 +31,21 @@
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing)
+        {
+            InMemoryAppDbContextFactory.Destroy(context);
+        }
 
         [Fact]
         public async Task GetAccountQuery_CorrectNumberLoaded()
         {
             // Arrange
-            var account = new Account("test", 80);
+            var account = new Account(name: "test", initalBalance: 80);
             await context.AddAsync(account);
             await context.SaveChangesAsync();
 
             // Act
-            List<Account> result =
-                await new GetAccountsQuery.Handler(contextAdapterMock.Object).Handle(new GetAccountsQuery(), default);
+            var result = await new GetAccountsQuery.Handler(contextAdapterMock.Object).Handle(request: new GetAccountsQuery(), cancellationToken: default);
 
             // Assert
             Assert.Single(result);
@@ -54,21 +55,19 @@
         public async Task DontLoadDeactivatedAccounts()
         {
             // Arrange
-            var account1 = new Account("test", 80);
-            var account2 = new Account("test", 80);
-
+            var account1 = new Account(name: "test", initalBalance: 80);
+            var account2 = new Account(name: "test", initalBalance: 80);
             account2.Deactivate();
-
             await context.AddAsync(account1);
             await context.AddAsync(account2);
             await context.SaveChangesAsync();
 
             // Act
-            List<Account> result =
-                await new GetAccountsQuery.Handler(contextAdapterMock.Object).Handle(new GetAccountsQuery(), default);
+            var result = await new GetAccountsQuery.Handler(contextAdapterMock.Object).Handle(request: new GetAccountsQuery(), cancellationToken: default);
 
             // Assert
             Assert.Single(result);
         }
     }
+
 }

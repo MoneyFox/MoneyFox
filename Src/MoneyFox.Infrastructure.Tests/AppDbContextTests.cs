@@ -1,5 +1,10 @@
 ﻿namespace MoneyFox.Infrastructure.Tests
 {
+
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Core._Pending_.Common.Facades;
     using Core.Aggregates;
     using Core.Events;
@@ -8,10 +13,6 @@
     using Microsoft.EntityFrameworkCore;
     using NSubstitute;
     using Persistence;
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -30,11 +31,8 @@
         public async Task DoesNotSendEvent_WhenNothingSaved()
         {
             // Arrange
-            DbContextOptions<AppDbContext> options = new DbContextOptionsBuilder<AppDbContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString())
-                .Options;
-
-            var context = new AppDbContext(options, publisher, settingsFacade);
+            var options = new DbContextOptionsBuilder<AppDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
+            var context = new AppDbContext(options: options, publisher: publisher, settingsFacade: settingsFacade);
 
             // Act
             await context.SaveChangesAsync();
@@ -48,11 +46,8 @@
         public async Task SetCreatedAndLastModifiedDateAndSendEventOnSaveChanges()
         {
             // Arrange
-            DbContextOptions<AppDbContext> options = new DbContextOptionsBuilder<AppDbContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString())
-                .Options;
-
-            var context = new AppDbContext(options, publisher, settingsFacade);
+            var options = new DbContextOptionsBuilder<AppDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
+            var context = new AppDbContext(options: options, publisher: publisher, settingsFacade: settingsFacade);
             var account = new Account("Test");
 
             // Act
@@ -60,25 +55,20 @@
             await context.SaveChangesAsync();
 
             // Assert
-            Account loadedAccount = context.Accounts.First();
-            loadedAccount.Created.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(5));
-
-            account.Created.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(5));
-            account.LastModified.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(5));
-
+            var loadedAccount = context.Accounts.First();
+            loadedAccount.Created.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
+            account.Created.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
+            account.LastModified.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
             await publisher.Received(1).Publish(Arg.Any<DbEntityModifiedEvent>());
-            settingsFacade.LastDatabaseUpdate.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(5));
+            settingsFacade.LastDatabaseUpdate.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
         }
 
         [Fact]
         public async Task SetModifiedDateAndSendEventOnSaveChanges()
         {
             // Arrange
-            DbContextOptions<AppDbContext> options = new DbContextOptionsBuilder<AppDbContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString())
-                .Options;
-
-            var context = new AppDbContext(options, publisher, settingsFacade);
+            var options = new DbContextOptionsBuilder<AppDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
+            var context = new AppDbContext(options: options, publisher: publisher, settingsFacade: settingsFacade);
             var account = new Account("Test");
             context.Add(account);
             await context.SaveChangesAsync();
@@ -88,13 +78,12 @@
             await context.SaveChangesAsync();
 
             // Assert
-            Account loadedAccount = context.Accounts.First();
-            loadedAccount.LastModified.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(5));
-
-            account.LastModified.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(5));
-
+            var loadedAccount = context.Accounts.First();
+            loadedAccount.LastModified.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
+            account.LastModified.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
             await publisher.Received().Publish(Arg.Any<DbEntityModifiedEvent>());
-            settingsFacade.LastDatabaseUpdate.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(5));
+            settingsFacade.LastDatabaseUpdate.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
         }
     }
+
 }

@@ -1,12 +1,13 @@
 ﻿namespace MoneyFox.Tests.ViewModels.Settings
 {
+
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
     using Core._Pending_.Common.Facades;
     using Core.Common.Interfaces;
     using FluentAssertions;
     using MoneyFox.ViewModels.Settings;
     using NSubstitute;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -20,7 +21,7 @@
             var dialogService = Substitute.For<IDialogService>();
 
             // Act
-            var viewModel = new SettingsViewModel(settingsFacade, dialogService);
+            var viewModel = new SettingsViewModel(settingsFacade: settingsFacade, dialogService: dialogService);
 
             // Assert
             viewModel.AvailableCultures.Should().NotBeNull();
@@ -32,7 +33,7 @@
             // Arrange
             var settingsFacade = Substitute.For<ISettingsFacade>();
             var dialogService = Substitute.For<IDialogService>();
-            var viewModel = new SettingsViewModel(settingsFacade, dialogService);
+            var viewModel = new SettingsViewModel(settingsFacade: settingsFacade, dialogService: dialogService);
 
             // Act
             var newCulture = new CultureInfo("de-CH");
@@ -42,4 +43,5 @@
             settingsFacade.Received(1).DefaultCulture = newCulture.Name;
         }
     }
+
 }
