@@ -9,8 +9,6 @@
     using Core.Common.Exceptions;
     using Microsoft.Graph;
     using Microsoft.Identity.Client;
-    using NLog;
-    using Logger = NLog.Logger;
 
     internal sealed class OneDriveAuthenticationService : IOneDriveAuthenticationService
     {
@@ -65,7 +63,6 @@
             {
                 if (ex.ErrorCode == ERROR_CODE_CANCELED)
                 {
-
                     throw new BackupOperationCanceledException();
                 }
 

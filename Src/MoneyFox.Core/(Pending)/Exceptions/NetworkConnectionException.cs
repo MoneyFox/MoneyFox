@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Core._Pending_.Exceptions
 {
+
     using System;
     using System.Runtime.Serialization;
 
@@ -12,29 +13,22 @@
         /// <summary>
         ///     Creates an network connection Exception
         /// </summary>
-        public NetworkConnectionException()
-        {
-        }
+        public NetworkConnectionException() { }
 
         /// <summary>
         ///     Creates an network connection Exception
         /// </summary>
         /// <param name="message">Exception message to show to the user.</param>
-        public NetworkConnectionException(string message) : base(message)
-        {
-        }
+        public NetworkConnectionException(string message) : base(message) { }
 
         /// <summary>
         ///     Creates an network connection Exception
         /// </summary>
         /// <param name="message">Exception message to show to the user.</param>
         /// <param name="exception">Inner Exception of the backup exception.</param>
-        public NetworkConnectionException(string message, Exception exception) : base(message, exception)
-        {
-        }
+        public NetworkConnectionException(string message, Exception exception) : base(message: message, innerException: exception) { }
 
-        protected NetworkConnectionException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
+        protected NetworkConnectionException(SerializationInfo info, StreamingContext context) : base(info: info, context: context) { }
     }
+
 }

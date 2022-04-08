@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Core.Interfaces
 {
+
     using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
@@ -12,4 +13,5 @@
 
         Task<Stream> OpenReadAsync(string path);
     }
+
 }

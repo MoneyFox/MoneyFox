@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Core._Pending_.Common
 {
+
     using System;
 
     /// <summary>
@@ -12,7 +13,9 @@
         /// </summary>
         /// <returns></returns>
         public static DateTime GetFirstDayMonth(ISystemDateHelper systemDateHelper)
-            => new DateTime(systemDateHelper.Today.Year, systemDateHelper.Today.Month, 1);
+        {
+            return new DateTime(year: systemDateHelper.Today.Year, month: systemDateHelper.Today.Month, day: 1);
+        }
 
         /// <summary>
         ///     Returns the last day of the month
@@ -20,8 +23,10 @@
         /// <returns>Last day of the month</returns>
         public static DateTime GetEndOfMonth(ISystemDateHelper systemDateHelper)
         {
-            DateTime today = systemDateHelper.Today;
-            return new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
+            var today = systemDateHelper.Today;
+
+            return new DateTime(year: today.Year, month: today.Month, day: DateTime.DaysInMonth(year: today.Year, month: today.Month));
         }
     }
+
 }

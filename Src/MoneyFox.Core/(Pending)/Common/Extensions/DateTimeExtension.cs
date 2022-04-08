@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Core._Pending_.Common.Extensions
 {
+
     using System;
 
     /// <summary>
@@ -10,12 +11,18 @@
         /// <summary>
         ///     Returns the first day of the current month.
         /// </summary>
-        public static DateTime GetFirstDayOfMonth(this DateTime self) => new DateTime(self.Year, self.Month, 1);
+        public static DateTime GetFirstDayOfMonth(this DateTime self)
+        {
+            return new DateTime(year: self.Year, month: self.Month, day: 1);
+        }
 
         /// <summary>
         ///     Returns the last day of the current month.
         /// </summary>
-        public static DateTime GetLastDayOfMonth(this DateTime self) =>
-            new DateTime(self.Year, self.Month, DateTime.DaysInMonth(self.Year, self.Month));
+        public static DateTime GetLastDayOfMonth(this DateTime self)
+        {
+            return new DateTime(year: self.Year, month: self.Month, day: DateTime.DaysInMonth(year: self.Year, month: self.Month));
+        }
     }
+
 }

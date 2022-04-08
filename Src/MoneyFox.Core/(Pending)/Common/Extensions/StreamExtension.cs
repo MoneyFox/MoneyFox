@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Core._Pending_.Common.Extensions
 {
+
     using System;
     using System.IO;
 
@@ -13,8 +14,7 @@
         public static byte[] ReadToEnd(this Stream stream)
         {
             long originalPosition = 0;
-
-            if(stream.CanSeek)
+            if (stream.CanSeek)
             {
                 originalPosition = stream.Position;
                 stream.Position = 0;
@@ -22,45 +22,54 @@
 
             try
             {
-                byte[]? readBuffer = new byte[4096];
-
-                int totalBytesRead = 0;
+                var readBuffer = new byte[4096];
+                var totalBytesRead = 0;
                 int bytesRead;
-
-                while((bytesRead = stream.Read(readBuffer, totalBytesRead, readBuffer.Length - totalBytesRead)) > 0)
+                while ((bytesRead = stream.Read(buffer: readBuffer, offset: totalBytesRead, count: readBuffer.Length - totalBytesRead)) > 0)
                 {
                     totalBytesRead += bytesRead;
-
-                    if(totalBytesRead == readBuffer.Length)
+                    if (totalBytesRead == readBuffer.Length)
                     {
-                        int nextByte = stream.ReadByte();
-                        if(nextByte != -1)
+                        var nextByte = stream.ReadByte();
+                        if (nextByte != -1)
                         {
-                            byte[]? temp = new byte[readBuffer.Length * 2];
-                            Buffer.BlockCopy(readBuffer, 0, temp, 0, readBuffer.Length);
-                            Buffer.SetByte(temp, totalBytesRead, (byte)nextByte);
+                            var temp = new byte[readBuffer.Length * 2];
+                            Buffer.BlockCopy(
+                                src: readBuffer,
+                                srcOffset: 0,
+                                dst: temp,
+                                dstOffset: 0,
+                                count: readBuffer.Length);
+
+                            Buffer.SetByte(array: temp, index: totalBytesRead, value: (byte)nextByte);
                             readBuffer = temp;
                             totalBytesRead++;
                         }
                     }
                 }
 
-                byte[] buffer = readBuffer;
-                if(readBuffer.Length != totalBytesRead)
+                var buffer = readBuffer;
+                if (readBuffer.Length != totalBytesRead)
                 {
                     buffer = new byte[totalBytesRead];
-                    Buffer.BlockCopy(readBuffer, 0, buffer, 0, totalBytesRead);
+                    Buffer.BlockCopy(
+                        src: readBuffer,
+                        srcOffset: 0,
+                        dst: buffer,
+                        dstOffset: 0,
+                        count: totalBytesRead);
                 }
 
                 return buffer;
             }
             finally
             {
-                if(stream.CanSeek)
+                if (stream.CanSeek)
                 {
                     stream.Position = originalPosition;
                 }
             }
         }
     }
+
 }

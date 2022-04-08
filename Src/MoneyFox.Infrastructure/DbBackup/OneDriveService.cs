@@ -11,9 +11,7 @@ namespace MoneyFox.Infrastructure.DbBackup
     using Core.DbBackup;
     using Microsoft.Graph;
     using Microsoft.Identity.Client;
-    using NLog;
     using Serilog;
-    using Logger = NLog.Logger;
 
     internal class OneDriveService : IOneDriveBackupService
     {
@@ -64,9 +62,12 @@ namespace MoneyFox.Infrastructure.DbBackup
                 if (ex.ErrorCode == ERROR_CODE_CANCELED)
                 {
                     await RestoreArchivedBackupInCaseOfErrorAsync(graphServiceClient);
+
                     throw new BackupOperationCanceledException(ex);
                 }
+
                 await RestoreArchivedBackupInCaseOfErrorAsync(graphServiceClient);
+
                 throw;
             }
             catch (OperationCanceledException ex)
@@ -86,9 +87,7 @@ namespace MoneyFox.Infrastructure.DbBackup
         public async Task<DateTime> GetBackupDateAsync()
         {
             var graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
-            var existingBackup
-                = (await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync()).FirstOrDefault(x => x.Name == BACKUP_NAME);
-
+            var existingBackup = (await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync()).FirstOrDefault(x => x.Name == BACKUP_NAME);
             if (existingBackup != null)
             {
                 return existingBackup.LastModifiedDateTime?.DateTime ?? DateTime.MinValue;
@@ -132,6 +131,7 @@ namespace MoneyFox.Infrastructure.DbBackup
                 {
                     throw new BackupOperationCanceledException();
                 }
+
                 throw;
             }
             catch (Exception ex)
@@ -165,7 +165,7 @@ namespace MoneyFox.Infrastructure.DbBackup
             }
             catch (Exception ex)
             {
-                Log.Error(exception: ex, "Failed to restore database on fail");
+                Log.Error(exception: ex, messageTemplate: "Failed to restore database on fail");
             }
         }
 

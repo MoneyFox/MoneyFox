@@ -1,10 +1,11 @@
 ﻿namespace MoneyFox.Core.Commands.Accounts.CreateAccount
 {
+
+    using System.Threading;
+    using System.Threading.Tasks;
     using Aggregates;
     using Common.Interfaces;
     using MediatR;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     public class CreateAccountCommand : IRequest
     {
@@ -33,17 +34,13 @@
             /// <inheritdoc />
             public async Task<Unit> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
             {
-                var account = new Account(
-                    request.Name,
-                    request.CurrentBalance,
-                    request.Note,
-                    request.IsExcluded);
-
-                await contextAdapter.Context.Accounts.AddAsync(account, cancellationToken);
+                var account = new Account(name: request.Name, initalBalance: request.CurrentBalance, note: request.Note, isExcluded: request.IsExcluded);
+                await contextAdapter.Context.Accounts.AddAsync(entity: account, cancellationToken: cancellationToken);
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
             }
         }
     }
+
 }

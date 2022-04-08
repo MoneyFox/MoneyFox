@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Core.Enums
 {
+
     public enum StatisticType
     {
         Cashflow,
@@ -9,4 +10,5 @@
         MonthlyAccountCashFlow,
         CategoryProgression
     }
+
 }

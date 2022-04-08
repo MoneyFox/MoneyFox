@@ -15,7 +15,6 @@
     using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using NLog;
 
     public class GetTotalEndOfMonthBalanceQuery : IRequest<decimal>
     {

@@ -1,11 +1,12 @@
 ﻿namespace MoneyFox.Core.Aggregates.Payments
 {
-    using Dawn;
-    using JetBrains.Annotations;
+
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using Dawn;
+    using JetBrains.Annotations;
 
     public class Category : EntityBase
     {
@@ -14,15 +15,22 @@
 
         public Category(string name, string note = "", bool requireNote = false)
         {
-            UpdateData(name, note, requireNote);
+            UpdateData(name: name, note: note, requireNote: requireNote);
             CreationTime = DateTime.Now;
         }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; [UsedImplicitly] private set; }
+        public int Id
+        {
+            get;
 
-        [Required] public string Name { get; private set; } = "";
+            [UsedImplicitly]
+            private set;
+        }
+
+        [Required]
+        public string Name { get; private set; } = "";
 
         public string? Note { get; private set; }
 
@@ -32,19 +40,30 @@
         public DateTime? ModificationDate { get; private set; }
 
         [Obsolete("Will be removed")]
-        public DateTime CreationTime { get; [UsedImplicitly] private set; }
+        public DateTime CreationTime
+        {
+            get;
 
-        public List<Payment> Payments { get; [UsedImplicitly] private set; } = new List<Payment>();
+            [UsedImplicitly]
+            private set;
+        }
+
+        public List<Payment> Payments
+        {
+            get;
+
+            [UsedImplicitly]
+            private set;
+        } = new List<Payment>();
 
         public void UpdateData(string name, string note = "", bool requireNote = false)
         {
-            Guard.Argument(name, nameof(name)).NotWhiteSpace();
-
+            Guard.Argument(value: name, name: nameof(name)).NotWhiteSpace();
             Name = name;
             Note = note;
             RequireNote = requireNote;
-
             ModificationDate = DateTime.Now;
         }
     }
+
 }

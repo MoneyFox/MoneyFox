@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Core._Pending_.Common.Helpers
 {
+
     using System;
     using Aggregates.Payments;
 
@@ -16,4 +17,5 @@
             };
         }
     }
+
 }

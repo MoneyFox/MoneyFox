@@ -1,5 +1,6 @@
 namespace MoneyFox.Core.Aggregates.Payments
 {
+
     public enum PaymentRecurrence
     {
         Daily = 0,
@@ -12,4 +13,5 @@ namespace MoneyFox.Core.Aggregates.Payments
         Quarterly = 7,
         Biannually = 8
     }
+
 }

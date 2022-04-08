@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Core.Interfaces;
-    using NLog;
     using Serilog;
     using Xamarin.Essentials;
 
@@ -19,7 +18,7 @@
             }
             catch (FeatureNotSupportedException ex)
             {
-                Log.Warning(ex, "Error during sending email");
+                Log.Warning(exception: ex, messageTemplate: "Error during sending email");
             }
         }
 
@@ -37,7 +36,7 @@
             }
             catch (FeatureNotSupportedException ex)
             {
-                Log.Warning(ex, "Error during sending email");
+                Log.Warning(exception: ex, messageTemplate: "Error during sending email");
             }
         }
     }

@@ -22,4 +22,5 @@ namespace MoneyFox.Core.DbBackup
 
         Task<DateTime> GetBackupDateAsync();
     }
+
 }

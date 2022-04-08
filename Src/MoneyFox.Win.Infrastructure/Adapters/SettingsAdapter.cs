@@ -3,7 +3,6 @@
 using System;
 using Core.Interfaces;
 using Desktop.Infrastructure;
-using NLog;
 using Serilog;
 
 public class SettingsAdapter : ISettingsAdapter
@@ -16,7 +15,7 @@ public class SettingsAdapter : ISettingsAdapter
         }
         catch (InvalidCastException)
         {
-            Log.Error("Value {Key} couldn't be parsed to bool", key);
+            Log.Error(messageTemplate: "Value {Key} couldn't be parsed to bool", propertyValue: key);
             Preferences.Set(key: key, value: defaultValue);
 
             return defaultValue;
@@ -31,7 +30,7 @@ public class SettingsAdapter : ISettingsAdapter
         }
         catch (InvalidCastException)
         {
-            Log.Error("Value {Key} couldn't be parsed to string", key);
+            Log.Error(messageTemplate: "Value {Key} couldn't be parsed to string", propertyValue: key);
             Preferences.Set(key: key, value: defaultValue);
 
             return defaultValue;
@@ -46,7 +45,7 @@ public class SettingsAdapter : ISettingsAdapter
         }
         catch (InvalidCastException)
         {
-            Log.Error("Value {Key} couldn't be parsed to int", key);
+            Log.Error(messageTemplate: "Value {Key} couldn't be parsed to int", propertyValue: key);
             Preferences.Set(key: key, value: defaultValue);
 
             return defaultValue;

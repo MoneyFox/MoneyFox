@@ -1,14 +1,13 @@
 ﻿namespace MoneyFox.Core.Commands.Payments.ClearPayments
 {
-    using _Pending_.Common.QueryObjects;
-    using Aggregates.Payments;
-    using Common.Interfaces;
-    using MediatR;
-    using Microsoft.EntityFrameworkCore;
-    using System.Collections.Generic;
+
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using _Pending_.Common.QueryObjects;
+    using Common.Interfaces;
+    using MediatR;
+    using Microsoft.EntityFrameworkCore;
 
     public class ClearPaymentsCommand : IRequest
     {
@@ -23,22 +22,22 @@
 
             public async Task<Unit> Handle(ClearPaymentsCommand request, CancellationToken cancellationToken)
             {
-                List<Payment> unclearedPayments = await contextAdapter.Context
-                    .Payments
-                    .Include(x => x.ChargedAccount)
+                var unclearedPayments = await contextAdapter.Context.Payments.Include(x => x.ChargedAccount)
                     .Include(x => x.TargetAccount)
                     .AsQueryable()
                     .AreNotCleared()
                     .ToListAsync();
 
-                foreach(Payment payment in unclearedPayments)
+                foreach (var payment in unclearedPayments)
                 {
                     payment.ClearPayment();
                 }
 
                 await contextAdapter.Context.SaveChangesAsync();
+
                 return Unit.Value;
             }
         }
     }
+
 }

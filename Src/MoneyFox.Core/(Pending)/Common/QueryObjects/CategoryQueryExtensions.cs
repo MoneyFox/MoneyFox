@@ -1,8 +1,9 @@
 ﻿namespace MoneyFox.Core._Pending_.Common.QueryObjects
 {
-    using Aggregates.Payments;
+
     using System.Collections.Generic;
     using System.Linq;
+    using Aggregates.Payments;
 
     /// <summary>
     ///     Provides Extensions for categories queries.
@@ -16,8 +17,10 @@
         /// <param name="searchterm">Search term to look for.</param>
         /// <returns>Query with the added filter.</returns>
         public static IEnumerable<Category> WhereNameContains(this IEnumerable<Category> query, string searchterm)
-            // ReSharper disable once StringIndexOfIsCultureSpecific.1
-            => query.Where(category => category.Name.ToUpper().IndexOf(searchterm.ToUpper()) >= 0);
+        // ReSharper disable once StringIndexOfIsCultureSpecific.1
+        {
+        return query.Where(category => category.Name.ToUpper().IndexOf(searchterm.ToUpper()) >= 0);
+        }
 
         /// <summary>
         ///     Orders a category query by name.
@@ -25,6 +28,9 @@
         /// <param name="query">Existing query.</param>
         /// <returns>Ordered Query</returns>
         public static IQueryable<Category> OrderByName(this IQueryable<Category> query)
-            => query.OrderBy(category => category.Name);
+        {
+            return query.OrderBy(category => category.Name);
+        }
     }
+
 }

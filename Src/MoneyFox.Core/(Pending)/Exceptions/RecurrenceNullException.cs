@@ -1,25 +1,19 @@
 ﻿namespace MoneyFox.Core._Pending_.Exceptions
 {
+
     using System;
     using System.Runtime.Serialization;
 
     [Serializable]
     public class RecurrenceNullException : Exception
     {
-        public RecurrenceNullException()
-        {
-        }
+        public RecurrenceNullException() { }
 
-        protected RecurrenceNullException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
+        protected RecurrenceNullException(SerializationInfo info, StreamingContext context) : base(info: info, context: context) { }
 
-        public RecurrenceNullException(string message) : base(message)
-        {
-        }
+        public RecurrenceNullException(string message) : base(message) { }
 
-        public RecurrenceNullException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
+        public RecurrenceNullException(string message, Exception innerException) : base(message: message, innerException: innerException) { }
     }
+
 }

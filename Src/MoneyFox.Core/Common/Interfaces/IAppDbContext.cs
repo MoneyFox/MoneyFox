@@ -1,12 +1,13 @@
 ﻿namespace MoneyFox.Core.Common.Interfaces
 {
+
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
     using Aggregates;
     using Aggregates.Payments;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.ChangeTracking;
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     public interface IAppDbContext : IDisposable
     {
@@ -28,4 +29,5 @@
 
         EntityEntry Entry(object entity);
     }
+
 }

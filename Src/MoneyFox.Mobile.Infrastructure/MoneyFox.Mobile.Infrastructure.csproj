@@ -5,21 +5,21 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Autofac" Version="6.3.0" />
-        <PackageReference Include="JetBrains.Annotations" Version="2021.3.0" />
-        <PackageReference Include="Serilog" Version="2.10.0" />
+        <PackageReference Include="Autofac" Version="6.3.0"/>
+        <PackageReference Include="JetBrains.Annotations" Version="2021.3.0"/>
+        <PackageReference Include="Serilog" Version="2.10.0"/>
         <PackageReference Include="SonarAnalyzer.CSharp" Version="8.37.0.45539">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Xamarin.Essentials" Version="1.7.2" />
-        <PackageReference Include="NLog" Version="4.7.15" />
-        <PackageReference Include="Xamarin.Essentials" Version="1.7.2" />
-        <PackageReference Include="NLog" Version="4.7.15" />
+        <PackageReference Include="Xamarin.Essentials" Version="1.7.2"/>
+        <PackageReference Include="NLog" Version="4.7.15"/>
+        <PackageReference Include="Xamarin.Essentials" Version="1.7.2"/>
+        <PackageReference Include="NLog" Version="4.7.15"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj" />
+        <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj"/>
     </ItemGroup>
 
 </Project>

@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Core.Common.Interfaces
 {
+
     public interface IStoreOperations
     {
         /// <summary>
@@ -7,4 +8,5 @@
         /// </summary>
         void RateApp();
     }
+
 }

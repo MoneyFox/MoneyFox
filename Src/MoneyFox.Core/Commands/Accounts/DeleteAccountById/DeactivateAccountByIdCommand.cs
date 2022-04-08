@@ -1,10 +1,10 @@
 ﻿namespace MoneyFox.Core.Commands.Accounts.DeleteAccountById
 {
-    using Aggregates;
-    using Common.Interfaces;
-    using MediatR;
+
     using System.Threading;
     using System.Threading.Tasks;
+    using Common.Interfaces;
+    using MediatR;
 
     public class DeactivateAccountByIdCommand : IRequest
     {
@@ -26,7 +26,7 @@
 
             public async Task<Unit> Handle(DeactivateAccountByIdCommand request, CancellationToken cancellationToken)
             {
-                Account entityToDeactivate = await contextAdapter.Context.Accounts.FindAsync(request.AccountId);
+                var entityToDeactivate = await contextAdapter.Context.Accounts.FindAsync(request.AccountId);
                 entityToDeactivate.Deactivate();
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
@@ -34,4 +34,5 @@
             }
         }
     }
+
 }

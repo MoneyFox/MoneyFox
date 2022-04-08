@@ -1,13 +1,13 @@
 ﻿namespace MoneyFox.Core.Commands.Payments.CreatePayment
 {
+
+    using System.Threading;
+    using System.Threading.Tasks;
     using _Pending_.Exceptions;
     using Aggregates.Payments;
     using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using NLog;
-    using System.Threading;
-    using System.Threading.Tasks;
     using Serilog;
 
     public class CreatePaymentCommand : IRequest
@@ -33,19 +33,20 @@
             {
                 contextAdapter.Context.Entry(request.PaymentToSave).State = EntityState.Added;
                 contextAdapter.Context.Entry(request.PaymentToSave.ChargedAccount).State = EntityState.Modified;
-
-                if(request.PaymentToSave.TargetAccount != null)
+                if (request.PaymentToSave.TargetAccount != null)
                 {
                     contextAdapter.Context.Entry(request.PaymentToSave.TargetAccount).State = EntityState.Modified;
                 }
 
-                if(request.PaymentToSave.IsRecurring)
+                if (request.PaymentToSave.IsRecurring)
                 {
-                    if(request.PaymentToSave.RecurringPayment == null)
+                    if (request.PaymentToSave.RecurringPayment == null)
                     {
                         var exception = new RecurringPaymentNullException(
                             $"Recurring Payment for Payment {request.PaymentToSave.Id} is null, although payment is marked recurring.");
-                        Log.Error(exception, "Error during Payment Creation");
+
+                        Log.Error(exception: exception, messageTemplate: "Error during Payment Creation");
+
                         throw exception;
                     }
 
@@ -53,8 +54,10 @@
                 }
 
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
+
                 return Unit.Value;
             }
         }
     }
+
 }

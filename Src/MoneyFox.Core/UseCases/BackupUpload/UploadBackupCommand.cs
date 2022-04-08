@@ -20,8 +20,10 @@
             public async Task<Unit> Handle(UploadBackupCommand request, CancellationToken cancellationToken)
             {
                 await backupService.UploadBackupAsync();
+
                 return Unit.Value;
             }
         }
     }
+
 }

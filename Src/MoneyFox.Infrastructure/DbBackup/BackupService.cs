@@ -18,7 +18,6 @@
     using Core.Interfaces;
     using Core.Resources;
     using Microsoft.AppCenter.Crashes;
-    using NLog;
     using Serilog;
 
     internal sealed class BackupService : ObservableRecipient, IBackupService, IDisposable
@@ -118,7 +117,7 @@
             }
             catch (Exception ex) when (ex is BackupOperationCanceledException || ex is BackupAuthenticationFailedException)
             {
-                Log.Error(exception: ex, "Operation canceled during get backup date. Execute logout");
+                Log.Error(exception: ex, messageTemplate: "Operation canceled during get backup date. Execute logout");
                 await LogoutAsync();
                 await toastService.ShowToastAsync(message: Strings.FailedToLoginToBackupMessage, title: Strings.FailedToLoginToBackupTitle);
                 Crashes.TrackError(ex);
@@ -153,7 +152,7 @@
             }
             catch (BackupOperationCanceledException ex)
             {
-                Log.Error(exception: ex, "Operation canceled during restore backup. Execute logout");
+                Log.Error(exception: ex, messageTemplate: "Operation canceled during restore backup. Execute logout");
                 await LogoutAsync();
                 await toastService.ShowToastAsync(message: Strings.FailedToLoginToBackupMessage, title: Strings.FailedToLoginToBackupTitle);
             }
@@ -213,7 +212,7 @@
             }
             catch (BackupOperationCanceledException ex)
             {
-                Log.Error(exception: ex, "Operation canceled during restore backup. Execute logout");
+                Log.Error(exception: ex, messageTemplate: "Operation canceled during restore backup. Execute logout");
                 await LogoutAsync();
                 await toastService.ShowToastAsync(message: Strings.FailedToLoginToBackupMessage, title: Strings.FailedToLoginToBackupTitle);
             }
@@ -243,11 +242,11 @@
             }
             catch (FileNotFoundException ex)
             {
-                Log.Error(exception: ex, "Backup failed because database was not found");
+                Log.Error(exception: ex, messageTemplate: "Backup failed because database was not found");
             }
             catch (OperationCanceledException ex)
             {
-                Log.Error(exception: ex, "Enqueue Backup failed");
+                Log.Error(exception: ex, messageTemplate: "Enqueue Backup failed");
                 await Task.Delay(BACKUP_REPEAT_DELAY);
                 await EnqueueBackupTaskAsync();
             }
