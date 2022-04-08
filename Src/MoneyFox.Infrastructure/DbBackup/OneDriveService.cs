@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Infrastructure.DbBackup
+namespace MoneyFox.Infrastructure.DbBackup
 {
 
     using System;
@@ -31,8 +31,6 @@
         {
             this.oneDriveAuthenticationService = oneDriveAuthenticationService;
         }
-
-        //private GraphServiceClient? GraphServiceClient { get; set; }
 
         private DriveItem? ArchiveFolder { get; set; }
 
