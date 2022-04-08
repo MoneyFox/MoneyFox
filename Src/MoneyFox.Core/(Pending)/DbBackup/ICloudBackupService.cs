@@ -1,5 +1,6 @@
 namespace MoneyFox.Core._Pending_.DbBackup
 {
+    using Core.Common.Exceptions;
     using Exceptions;
     using System;
     using System.Collections.Generic;

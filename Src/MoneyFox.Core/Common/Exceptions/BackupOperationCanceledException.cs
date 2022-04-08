@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core._Pending_.Exceptions
+﻿namespace MoneyFox.Core.Common.Exceptions
 {
     using System;
     using System.Runtime.Serialization;
