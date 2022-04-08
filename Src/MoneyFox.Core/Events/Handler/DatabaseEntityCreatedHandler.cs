@@ -4,7 +4,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using MediatR;
-    using UseCases.DbBackup;
+    using UseCases;
 
     internal sealed class DatabaseEntityCreatedHandler : INotificationHandler<DbEntityModifiedEvent>
     {

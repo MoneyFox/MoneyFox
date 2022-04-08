@@ -8,7 +8,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Core.Common.Exceptions;
-    using Core.UseCases.DbBackup;
+    using Core.DbBackup;
     using Microsoft.Graph;
     using Microsoft.Identity.Client;
     using NLog;

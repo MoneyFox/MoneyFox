@@ -12,7 +12,7 @@
     using NLog;
     using System;
     using System.Threading.Tasks;
-    using Core.UseCases.DbBackup;
+    using Core.DbBackup;
 
     /// <summary>
     ///     Representation of the backup view.

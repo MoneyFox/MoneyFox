@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.UseCases.DbBackup
+﻿namespace MoneyFox.Core.DbBackup
 {
     public enum BackupMode
     {

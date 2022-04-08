@@ -1,6 +1,7 @@
 ﻿namespace MoneyFox.Win.ViewModels.Statistics;
 
 using Core;
+using Core.Enums;
 
 /// <summary>
 ///     Represents a item for the selector to choose the statistic.

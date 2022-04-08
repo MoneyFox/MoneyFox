@@ -12,7 +12,7 @@ using Microsoft.AppCenter.Crashes;
 using NLog;
 using System;
 using System.Threading.Tasks;
-using Core.UseCases.DbBackup;
+using Core.DbBackup;
 
 public class BackupViewModel : ObservableObject, IBackupViewModel
 {

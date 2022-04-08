@@ -5,7 +5,7 @@
     using Common.Exceptions;
     using System;
     using System.Threading.Tasks;
-    using UseCases.DbBackup;
+    using DbBackup;
 
     // TODO Segregate interface
     public interface IBackupService

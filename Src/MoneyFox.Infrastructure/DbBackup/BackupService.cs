@@ -14,9 +14,9 @@
     using Core._Pending_.Exceptions;
     using Core.Common.Exceptions;
     using Core.Common.Interfaces;
+    using Core.DbBackup;
     using Core.Interfaces;
     using Core.Resources;
-    using Core.UseCases.DbBackup;
     using Microsoft.AppCenter.Crashes;
     using NLog;
 
