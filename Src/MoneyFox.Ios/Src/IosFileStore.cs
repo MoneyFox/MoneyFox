@@ -14,7 +14,7 @@
         {
             if(path.StartsWith(ResScheme, StringComparison.OrdinalIgnoreCase))
             {
-                return path[ResScheme.Length..];
+                return path.Substring(ResScheme.Length, path.Length - ResScheme.Length);
             }
 
             return base.AppendPath(path);
