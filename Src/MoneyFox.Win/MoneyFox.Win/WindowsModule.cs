@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Win;
+namespace MoneyFox.Win;
 
 using Autofac;
 using Core;

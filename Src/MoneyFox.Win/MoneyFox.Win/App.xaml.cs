@@ -1,5 +1,7 @@
-﻿namespace MoneyFox.Win;
+namespace MoneyFox.Win;
 
+using System;
+using System.Threading.Tasks;
 using Autofac;
 using CommonServiceLocator;
 using Core._Pending_.Common.Facades;
@@ -8,9 +10,7 @@ using Core.Commands.Payments.CreateRecurringPayments;
 using Core.Interfaces;
 using MediatR;
 using Microsoft.UI.Xaml;
-using NLog;
-using System;
-using System.Threading.Tasks;
+using MoneyFox.Win.Services;
 using Serilog;
 
 #if !DEBUG
@@ -25,6 +25,7 @@ public partial class App : Application
 
     public App()
     {
+        LoggerService.Initialize();
         InitializeComponent();
     }
 
@@ -54,7 +55,7 @@ public partial class App : Application
     private async Task StartupTasksAsync()
     {
         // Don't execute this again when already running
-        if(isRunning)
+        if (isRunning)
         {
             return;
         }
@@ -66,7 +67,7 @@ public partial class App : Application
 
         try
         {
-            if(settingsFacade.IsBackupAutouploadEnabled && settingsFacade.IsLoggedInToBackupService)
+            if (settingsFacade.IsBackupAutouploadEnabled && settingsFacade.IsLoggedInToBackupService)
             {
                 var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
                 await backupService.RestoreBackupAsync();
@@ -75,7 +76,7 @@ public partial class App : Application
             await mediator.Send(new ClearPaymentsCommand());
             await mediator.Send(new CreateRecurringPaymentsCommand());
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Log.Fatal(ex, "Error during startup tasks");
         }

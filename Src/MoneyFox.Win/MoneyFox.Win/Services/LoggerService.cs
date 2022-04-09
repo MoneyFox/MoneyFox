@@ -23,5 +23,7 @@ public static class LoggerService
                 outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz}\t[{Level:u3}]\t{Message:lj}\t{Exception}{NewLine}",
                 shared: true)
             .CreateLogger();
+
+        Log.Information("Application Startup");
     }
 }
