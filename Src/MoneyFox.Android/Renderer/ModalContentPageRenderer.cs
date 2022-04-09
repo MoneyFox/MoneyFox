@@ -1,4 +1,6 @@
-﻿using MoneyFox.Droid.Renderer;
+﻿
+using MoneyFox.Controls;
+using MoneyFox.Droid.Renderer;
 using Xamarin.Forms;
 
 [assembly: ExportRenderer(handler: typeof(ModalContentPage), target: typeof(ModalContentPageRenderer))]
@@ -13,5 +15,4 @@ namespace MoneyFox.Droid.Renderer
     {
         public ModalContentPageRenderer(Context context) : base(context) { }
     }
-
 }
