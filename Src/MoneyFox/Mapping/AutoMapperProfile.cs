@@ -1,8 +1,7 @@
 ﻿namespace MoneyFox.Mapping
 {
+
     using AutoMapper;
-    using Core.Common.Interfaces.Mapping;
-    using System.Collections.Generic;
     using ViewModels.Payments;
 
     public class AutoMapperProfile : Profile
@@ -15,22 +14,21 @@
 
         private void LoadStandardMappings()
         {
-            IList<Map> maps = MapperProfileHelper.LoadStandardMappings(typeof(PaymentViewModel).Assembly);
-
-            foreach(Map map in maps)
+            var maps = MapperProfileHelper.LoadStandardMappings(typeof(PaymentViewModel).Assembly);
+            foreach (var map in maps)
             {
-                CreateMap(map.Source, map.Destination).ReverseMap();
+                CreateMap(sourceType: map.Source, destinationType: map.Destination).ReverseMap();
             }
         }
 
         private void LoadCustomMappings()
         {
-            IList<IHaveCustomMapping> maps = MapperProfileHelper.LoadCustomMappings(typeof(PaymentViewModel).Assembly);
-
-            foreach(IHaveCustomMapping map in maps)
+            var maps = MapperProfileHelper.LoadCustomMappings(typeof(PaymentViewModel).Assembly);
+            foreach (var map in maps)
             {
                 map.CreateMappings(this);
             }
         }
     }
+
 }

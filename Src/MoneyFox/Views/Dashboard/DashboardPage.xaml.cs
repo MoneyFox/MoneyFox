@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Views.Dashboard
 {
+
     using ViewModels.Dashboard;
     using Xamarin.Forms;
 
@@ -13,6 +14,10 @@
 
         private DashboardViewModel ViewModel => (DashboardViewModel)BindingContext;
 
-        protected override async void OnAppearing() => await ViewModel.InitializeAsync();
+        protected override async void OnAppearing()
+        {
+            await ViewModel.InitializeAsync();
+        }
     }
+
 }

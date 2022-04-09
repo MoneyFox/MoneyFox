@@ -8,10 +8,8 @@ public class DesignTimeAppDbContext : IDesignTimeDbContextFactory<AppDbContext>
 {
     public AppDbContext CreateDbContext(string[] args)
     {
-        DbContextOptions<AppDbContext> options = new DbContextOptionsBuilder<AppDbContext>()
-            .UseSqlite("Data Source=moneyfox.db}")
-            .Options;
+        var options = new DbContextOptionsBuilder<AppDbContext>().UseSqlite("Data Source=moneyfox.db}").Options;
 
-        return new AppDbContext(options, null, null);
+        return new(options: options, publisher: null, settingsFacade: null);
     }
 }

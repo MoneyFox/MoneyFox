@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Converter
 {
-    using Core._Pending_;
+
     using System;
     using System.Globalization;
     using Core.Common;
@@ -9,12 +9,17 @@
 
     public class AccountNameConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) =>
-            !(value is AccountViewModel account)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return !(value is AccountViewModel account)
                 ? string.Empty
-                : $"{account.Name} ({account.CurrentBalance.ToString("C", CultureHelper.CurrentCulture)})";
+                : $"{account.Name} ({account.CurrentBalance.ToString(format: "C", provider: CultureHelper.CurrentCulture)})";
+        }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-            => throw new NotSupportedException();
+        {
+            throw new NotSupportedException();
+        }
     }
+
 }

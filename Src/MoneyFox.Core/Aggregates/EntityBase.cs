@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Core.Aggregates
 {
+
     using System;
 
     public class EntityBase
@@ -8,4 +9,5 @@
 
         public DateTime? LastModified { get; set; }
     }
+
 }

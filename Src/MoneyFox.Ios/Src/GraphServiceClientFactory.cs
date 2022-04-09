@@ -1,33 +1,35 @@
 ﻿namespace MoneyFox.iOS
 {
-    using Infrastructure.DbBackup;
-    using Microsoft.Graph;
-    using Microsoft.Identity.Client;
+
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Threading.Tasks;
+    using Infrastructure.DbBackup;
+    using Microsoft.Graph;
+    using Microsoft.Identity.Client;
 
     public class GraphServiceClientFactory : IGraphClientFactory
     {
-        private static NSUrlSessionHandler HttpMessageHandler =>
-            new NSUrlSessionHandler {BypassBackgroundSessionCheck = true};
+        private static NSUrlSessionHandler HttpMessageHandler => new NSUrlSessionHandler { BypassBackgroundSessionCheck = true };
 
         public GraphServiceClient CreateClient(AuthenticationResult authResult)
         {
             var authProvider = new DelegateAuthenticationProvider(
                 reqMsg =>
                 {
-                    reqMsg.Headers.Authorization = new AuthenticationHeaderValue("bearer", authResult.AccessToken);
+                    reqMsg.Headers.Authorization = new AuthenticationHeaderValue(scheme: "bearer", parameter: authResult.AccessToken);
+
                     return Task.CompletedTask;
                 });
 
-            HttpMessageHandler pipeline =
-                GraphClientFactory.CreatePipeline(
-                    GraphClientFactory.CreateDefaultHandlers(authProvider),
-                    HttpMessageHandler);
-            var httpProvider = new HttpProvider(pipeline, true, new Serializer());
+            var pipeline = GraphClientFactory.CreatePipeline(
+                handlers: GraphClientFactory.CreateDefaultHandlers(authProvider),
+                finalHandler: HttpMessageHandler);
 
-            return new GraphServiceClient(authProvider, httpProvider);
+            var httpProvider = new HttpProvider(httpMessageHandler: pipeline, disposeHandler: true, serializer: new Serializer());
+
+            return new GraphServiceClient(authenticationProvider: authProvider, httpProvider: httpProvider);
         }
     }
+
 }

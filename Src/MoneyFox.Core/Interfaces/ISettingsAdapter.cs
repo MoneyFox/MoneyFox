@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Core.Interfaces
 {
+
     public interface ISettingsAdapter
     {
         /// <summary>
@@ -53,4 +54,5 @@
         /// <param name="key">Settings key.</param>
         void Remove(string key);
     }
+
 }

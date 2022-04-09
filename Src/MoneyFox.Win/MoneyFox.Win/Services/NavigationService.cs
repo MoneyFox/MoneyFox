@@ -1,45 +1,14 @@
 ﻿namespace MoneyFox.Win.Services;
 
-using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Concurrent;
 using System.Linq;
+using Microsoft.UI.Xaml.Controls;
 using ViewModels.Accounts;
 
 public class NavigationService : INavigationService
 {
     private static readonly ConcurrentDictionary<Type, Type> ViewModelMap = new();
-
-    public static void Register<TViewModel, TView>() where TView : Page
-    {
-        if(!ViewModelMap.TryAdd(typeof(TViewModel), typeof(TView)))
-        {
-            throw new InvalidOperationException($"ViewModel already registered '{typeof(TViewModel).FullName}'");
-        }
-    }
-
-    public static Type GetView<TViewModel>() => GetView(typeof(TViewModel));
-
-    public static Type GetView(Type viewModel)
-    {
-        if(ViewModelMap.TryGetValue(viewModel, out Type view))
-        {
-            return view;
-        }
-
-        throw new InvalidOperationException($"View not registered for ViewModel '{viewModel.FullName}'");
-    }
-
-    public static Type GetViewModel(Type view)
-    {
-        Type type = ViewModelMap.Where(r => r.Value == view).Select(r => r.Key).FirstOrDefault();
-        if(type == null)
-        {
-            throw new InvalidOperationException($"View not registered for ViewModel '{view.FullName}'");
-        }
-
-        return type;
-    }
 
     public Frame? Frame { get; private set; }
 
@@ -47,9 +16,10 @@ public class NavigationService : INavigationService
 
     public bool GoBack()
     {
-        if(CanGoBack)
+        if (CanGoBack)
         {
             Frame?.GoBack();
+
             return true;
         }
 
@@ -58,9 +28,10 @@ public class NavigationService : INavigationService
 
     public bool GoForward()
     {
-        if(Frame != null && Frame.CanGoForward)
+        if (Frame != null && Frame.CanGoForward)
         {
             Frame.GoForward();
+
             return true;
         }
 
@@ -73,15 +44,52 @@ public class NavigationService : INavigationService
         Navigate<AccountListViewModel>();
     }
 
-    public bool Navigate<TViewModel>(object parameter = null) => Navigate(typeof(TViewModel), parameter);
+    public bool Navigate<TViewModel>(object parameter = null)
+    {
+        return Navigate(viewModelType: typeof(TViewModel), parameter: parameter);
+    }
 
     public bool Navigate(Type viewModelType, object parameter = null)
     {
-        if(Frame == null)
+        if (Frame == null)
         {
             throw new InvalidOperationException("Navigation frame not initialized.");
         }
 
-        return Frame.Navigate(GetView(viewModelType), parameter);
+        return Frame.Navigate(sourcePageType: GetView(viewModelType), parameter: parameter);
+    }
+
+    public static void Register<TViewModel, TView>() where TView : Page
+    {
+        if (!ViewModelMap.TryAdd(key: typeof(TViewModel), value: typeof(TView)))
+        {
+            throw new InvalidOperationException($"ViewModel already registered '{typeof(TViewModel).FullName}'");
+        }
+    }
+
+    public static Type GetView<TViewModel>()
+    {
+        return GetView(typeof(TViewModel));
+    }
+
+    public static Type GetView(Type viewModel)
+    {
+        if (ViewModelMap.TryGetValue(key: viewModel, value: out var view))
+        {
+            return view;
+        }
+
+        throw new InvalidOperationException($"View not registered for ViewModel '{viewModel.FullName}'");
+    }
+
+    public static Type GetViewModel(Type view)
+    {
+        var type = ViewModelMap.Where(r => r.Value == view).Select(r => r.Key).FirstOrDefault();
+        if (type == null)
+        {
+            throw new InvalidOperationException($"View not registered for ViewModel '{view.FullName}'");
+        }
+
+        return type;
     }
 }

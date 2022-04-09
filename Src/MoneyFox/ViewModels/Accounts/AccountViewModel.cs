@@ -1,9 +1,10 @@
 ﻿namespace MoneyFox.ViewModels.Accounts
 {
+
+    using System;
     using CommunityToolkit.Mvvm.ComponentModel;
     using Core.Aggregates;
     using Core.Common.Interfaces.Mapping;
-    using System;
 
     public sealed class AccountViewModel : ObservableObject, IMapFrom<Account>, IEquatable<AccountViewModel>
     {
@@ -25,9 +26,10 @@
         public int Id
         {
             get => id;
+
             set
             {
-                if(id == value)
+                if (id == value)
                 {
                     return;
                 }
@@ -43,9 +45,10 @@
         public string Name
         {
             get => name;
+
             set
             {
-                if(name == value)
+                if (name == value)
                 {
                     return;
                 }
@@ -61,9 +64,10 @@
         public decimal CurrentBalance
         {
             get => currentBalance;
+
             set
             {
-                if(Math.Abs(currentBalance - value) < DECIMAL_DELTA)
+                if (Math.Abs(currentBalance - value) < DECIMAL_DELTA)
                 {
                     return;
                 }
@@ -79,6 +83,7 @@
         public decimal EndOfMonthBalance
         {
             get => endOfMonthBalance;
+
             set
             {
                 endOfMonthBalance = value;
@@ -92,9 +97,10 @@
         public string Note
         {
             get => note;
+
             set
             {
-                if(note == value)
+                if (note == value)
                 {
                     return;
                 }
@@ -110,9 +116,10 @@
         public bool IsOverdrawn
         {
             get => isOverdrawn;
+
             set
             {
-                if(isOverdrawn == value)
+                if (isOverdrawn == value)
                 {
                     return;
                 }
@@ -128,9 +135,10 @@
         public bool IsExcluded
         {
             get => isExcluded;
+
             set
             {
-                if(isExcluded == value)
+                if (isExcluded == value)
                 {
                     return;
                 }
@@ -143,9 +151,10 @@
         public DateTime CreationTime
         {
             get => creationTime;
+
             set
             {
-                if(creationTime == value)
+                if (creationTime == value)
                 {
                     return;
                 }
@@ -158,9 +167,10 @@
         public DateTime ModificationDate
         {
             get => modificationDate;
+
             set
             {
-                if(modificationDate == value)
+                if (modificationDate == value)
                 {
                     return;
                 }
@@ -172,7 +182,7 @@
 
         public bool Equals(AccountViewModel other)
         {
-            if(other == null)
+            if (other == null)
             {
                 return false;
             }
@@ -180,4 +190,5 @@
             return Id.Equals(other.Id);
         }
     }
+
 }

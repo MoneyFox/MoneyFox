@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Views.Accounts
 {
+
     using Core.Resources;
     using ViewModels.Accounts;
     using Xamarin.Forms;
@@ -13,7 +14,6 @@
             InitializeComponent();
             BindingContext = ViewModelLocator.EditAccountViewModel;
             this.accountId = accountId;
-
             var cancelItem = new ToolbarItem
             {
                 Command = new Command(async () => await Navigation.PopModalAsync()),
@@ -36,6 +36,10 @@
 
         private EditAccountViewModel ViewModel => (EditAccountViewModel)BindingContext;
 
-        protected override async void OnAppearing() => await ViewModel.InitializeAsync(accountId);
+        protected override async void OnAppearing()
+        {
+            await ViewModel.InitializeAsync(accountId);
+        }
     }
+
 }

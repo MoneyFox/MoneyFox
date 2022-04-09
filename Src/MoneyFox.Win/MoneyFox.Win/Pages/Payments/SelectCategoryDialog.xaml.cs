@@ -5,8 +5,6 @@ using ViewModels.Categories;
 
 public sealed partial class SelectCategoryDialog
 {
-    private SelectCategoryListViewModel ViewModel => (SelectCategoryListViewModel)DataContext;
-
     public SelectCategoryDialog()
     {
         XamlRoot = MainWindow.RootFrame.XamlRoot;
@@ -14,6 +12,8 @@ public sealed partial class SelectCategoryDialog
         DataContext = ViewModelLocator.SelectCategoryListVm;
         ViewModel.AppearingCommand.Execute(null);
     }
+
+    private SelectCategoryListViewModel ViewModel => (SelectCategoryListViewModel)DataContext;
 
     private void ListView_ItemClick(object sender, ItemClickEventArgs e)
     {

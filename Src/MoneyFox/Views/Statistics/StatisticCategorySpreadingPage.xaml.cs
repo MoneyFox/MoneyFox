@@ -1,7 +1,8 @@
 ﻿namespace MoneyFox.Views.Statistics
 {
-    using Dialogs;
+
     using System;
+    using Dialogs;
     using ViewModels.Statistics;
 
     public partial class StatisticCategorySpreadingPage
@@ -10,13 +11,15 @@
         {
             InitializeComponent();
             BindingContext = ViewModelLocator.StatisticCategorySpreadingViewModel;
-
             ViewModel.LoadedCommand.Execute(null);
         }
 
         private StatisticCategorySpreadingViewModel ViewModel => (StatisticCategorySpreadingViewModel)BindingContext;
 
         private async void OpenFilterDialog(object sender, EventArgs e)
-            => await new DateSelectionPopup(ViewModel.StartDate, ViewModel.EndDate).ShowAsync();
+        {
+            await new DateSelectionPopup(dateFrom: ViewModel.StartDate, dateTo: ViewModel.EndDate).ShowAsync();
+        }
     }
+
 }

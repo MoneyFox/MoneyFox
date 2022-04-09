@@ -1,15 +1,16 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Categories.GetCategoryById
 {
+
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
     using Common.Interfaces;
     using Core.Aggregates.Payments;
+    using Core.Queries;
     using FluentAssertions;
     using Infrastructure;
     using MoneyFox.Infrastructure.Persistence;
     using Moq;
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-    using Core.Queries;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -21,7 +22,6 @@
         public GetCategoryByIdQueryTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-
             contextAdapterMock = new Mock<IContextAdapter>();
             contextAdapterMock.SetupGet(x => x.Context).Returns(context);
         }
@@ -32,7 +32,10 @@
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing)
+        {
+            InMemoryAppDbContextFactory.Destroy(context);
+        }
 
         [Fact]
         public async Task GetCategory_CategoryNotFound()
@@ -40,10 +43,9 @@
             // Arrange
 
             // Act
-            Category result =
-                await new GetCategoryByIdQuery.Handler(contextAdapterMock.Object).Handle(
-                    new GetCategoryByIdQuery(999),
-                    default);
+            var result = await new GetCategoryByIdQuery.Handler(contextAdapterMock.Object).Handle(
+                request: new GetCategoryByIdQuery(999),
+                cancellationToken: default);
 
             // Assert
             result.Should().BeNull();
@@ -58,14 +60,14 @@
             await context.SaveChangesAsync();
 
             // Act
-            Category result =
-                await new GetCategoryByIdQuery.Handler(contextAdapterMock.Object).Handle(
-                    new GetCategoryByIdQuery(testCat1.Id),
-                    default);
+            var result = await new GetCategoryByIdQuery.Handler(contextAdapterMock.Object).Handle(
+                request: new GetCategoryByIdQuery(testCat1.Id),
+                cancellationToken: default);
 
             // Assert
             result.Should().NotBeNull();
             result.Name.Should().Be(testCat1.Name);
         }
     }
+
 }

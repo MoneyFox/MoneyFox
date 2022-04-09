@@ -1,20 +1,20 @@
 ﻿namespace MoneyFox.Core.Aggregates.Payments
 {
-    using _Pending_.Exceptions;
-    using JetBrains.Annotations;
-    using NLog;
+
     using System;
     using System.ComponentModel.DataAnnotations;
+    using _Pending_.Exceptions;
     using Common.Interfaces;
+    using JetBrains.Annotations;
+    using Serilog;
 
     public class Payment : EntityBase, IAggregateRoot
     {
-        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
-
         [UsedImplicitly]
         private Payment() { }
 
-        public Payment(DateTime date,
+        public Payment(
+            DateTime date,
             decimal amount,
             PaymentType type,
             Account chargedAccount,
@@ -23,21 +23,40 @@
             string note = "",
             RecurringPayment? recurringPayment = null)
         {
-            AssignValues(date, amount, type, chargedAccount, targetAccount, category, note);
+            AssignValues(
+                date: date,
+                amount: amount,
+                type: type,
+                chargedAccount: chargedAccount,
+                targetAccount: targetAccount,
+                category: category,
+                note: note);
 
             ClearPayment();
-
-            if(recurringPayment != null)
+            if (recurringPayment != null)
             {
                 RecurringPayment = recurringPayment;
                 IsRecurring = true;
             }
+
             CreationTime = DateTime.Now;
         }
 
-        public int Id { get; [UsedImplicitly] private set; }
+        public int Id
+        {
+            get;
 
-        public int? CategoryId { get; [UsedImplicitly] private set; }
+            [UsedImplicitly]
+            private set;
+        }
+
+        public int? CategoryId
+        {
+            get;
+
+            [UsedImplicitly]
+            private set;
+        }
 
         public DateTime Date { get; private set; }
 
@@ -53,21 +72,27 @@
 
         public virtual Category? Category { get; private set; }
 
-        [Required] public virtual Account ChargedAccount { get; private set; } = null!;
+        [Required]
+        public virtual Account ChargedAccount { get; private set; } = null!;
 
         public virtual Account? TargetAccount { get; private set; }
 
         public virtual RecurringPayment? RecurringPayment { get; private set; }
 
-
-
         [Obsolete("Will be removed")]
         public DateTime? ModificationDate { get; private set; }
 
         [Obsolete("Will be removed")]
-        public DateTime CreationTime { get; [UsedImplicitly] private set; }
+        public DateTime CreationTime
+        {
+            get;
 
-        public void UpdatePayment(DateTime date,
+            [UsedImplicitly]
+            private set;
+        }
+
+        public void UpdatePayment(
+            DateTime date,
             decimal amount,
             PaymentType type,
             Account chargedAccount,
@@ -75,22 +100,28 @@
             Category? category = null,
             string note = "")
         {
-            if(ChargedAccount == null)
+            if (ChargedAccount == null)
             {
                 throw new InvalidOperationException("Uninitialized property: " + nameof(ChargedAccount));
             }
 
             ChargedAccount.RemovePaymentAmount(this);
             TargetAccount?.RemovePaymentAmount(this);
-
-            AssignValues(date, amount, type, chargedAccount, targetAccount, category, note);
+            AssignValues(
+                date: date,
+                amount: amount,
+                type: type,
+                chargedAccount: chargedAccount,
+                targetAccount: targetAccount,
+                category: category,
+                note: note);
 
             ClearPayment();
-
             ModificationDate = DateTime.Now;
         }
 
-        private void AssignValues(DateTime date,
+        private void AssignValues(
+            DateTime date,
             decimal amount,
             PaymentType type,
             Account chargedAccount,
@@ -105,25 +136,24 @@
             ChargedAccount = chargedAccount ?? throw new AccountNullException();
             TargetAccount = type == PaymentType.Transfer ? targetAccount : null;
             Category = category;
-
             ModificationDate = DateTime.Now;
         }
 
         public void AddRecurringPayment(PaymentRecurrence recurrence, DateTime? endDate = null)
         {
             RecurringPayment = new RecurringPayment(
-                Date,
-                Amount,
-                Type,
-                recurrence,
-                ChargedAccount,
-                Note ?? "",
-                endDate,
-                TargetAccount,
-                Category,
-                Date);
-            IsRecurring = true;
+                startDate: Date,
+                amount: Amount,
+                type: Type,
+                recurrence: recurrence,
+                chargedAccount: ChargedAccount,
+                note: Note ?? "",
+                endDate: endDate,
+                targetAccount: TargetAccount,
+                category: Category,
+                lastRecurrenceCreated: Date);
 
+            IsRecurring = true;
             ModificationDate = DateTime.Now;
         }
 
@@ -136,19 +166,18 @@
         public void ClearPayment()
         {
             IsCleared = Date.Date <= DateTime.Today.Date;
-
-            if(ChargedAccount == null)
+            if (ChargedAccount == null)
             {
                 throw new InvalidOperationException("Uninitialized property: " + nameof(ChargedAccount));
             }
 
             ChargedAccount.AddPaymentAmount(this);
-
-            if(Type == PaymentType.Transfer)
+            if (Type == PaymentType.Transfer)
             {
-                if(TargetAccount == null)
+                if (TargetAccount == null)
                 {
-                    logManager.Warn($"Target Account on clearing was null for payment {Id}");
+                    Log.Warning(messageTemplate: "Target Account on clearing was null for payment {Id}", propertyValue: Id);
+
                     return;
                 }
 
@@ -158,4 +187,5 @@
             ModificationDate = DateTime.Now;
         }
     }
+
 }

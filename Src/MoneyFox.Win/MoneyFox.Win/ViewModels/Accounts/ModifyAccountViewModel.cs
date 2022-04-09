@@ -1,42 +1,33 @@
 ﻿namespace MoneyFox.Win.ViewModels.Accounts;
 
-using DialogServiceClass = DialogService;
+using System.Globalization;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core._Pending_.Common.Messages;
 using Core.Common.Interfaces;
+using Core.Queries;
 using Core.Resources;
 using MediatR;
-using Microsoft.UI.Xaml.Controls;
-using NLog;
 using Services;
-using System.Globalization;
-using System.Threading.Tasks;
-using Core.Queries;
+using DialogServiceClass = DialogService;
 
 public abstract class ModifyAccountViewModel : ObservableRecipient
 {
-    private readonly Logger logManager = LogManager.GetCurrentClassLogger();
-
-    public int AccountId { get; set; }
-
     private string title = "";
     private AccountViewModel selectedAccount = new();
 
-    protected ModifyAccountViewModel(
-        IDialogService dialogService,
-        INavigationService navigationService,
-        IMediator mediator)
+    private string amountString = "";
+
+    protected ModifyAccountViewModel(IDialogService dialogService, INavigationService navigationService, IMediator mediator)
     {
         DialogService = dialogService;
         NavigationService = navigationService;
         Mediator = mediator;
     }
 
-    protected abstract Task SaveAccountAsync();
-
-    protected abstract Task InitializeAsync();
+    public int AccountId { get; set; }
 
     protected IDialogService DialogService { get; }
 
@@ -51,9 +42,10 @@ public abstract class ModifyAccountViewModel : ObservableRecipient
     public string Title
     {
         get => title;
+
         set
         {
-            if(title == value)
+            if (title == value)
             {
                 return;
             }
@@ -68,6 +60,7 @@ public abstract class ModifyAccountViewModel : ObservableRecipient
     public AccountViewModel SelectedAccount
     {
         get => selectedAccount;
+
         set
         {
             selectedAccount = value;
@@ -76,14 +69,13 @@ public abstract class ModifyAccountViewModel : ObservableRecipient
         }
     }
 
-    private string amountString = "";
-
     public string AmountString
     {
         get => amountString;
+
         set
         {
-            if(amountString == value)
+            if (amountString == value)
             {
                 return;
             }
@@ -93,47 +85,44 @@ public abstract class ModifyAccountViewModel : ObservableRecipient
         }
     }
 
+    protected abstract Task SaveAccountAsync();
+
+    protected abstract Task InitializeAsync();
+
     private async Task SaveAccountBaseAsync()
     {
-        ContentDialog? openContentDialog = DialogServiceClass.GetOpenContentDialog();
-
-        if(string.IsNullOrWhiteSpace(SelectedAccount.Name))
+        var openContentDialog = DialogServiceClass.GetOpenContentDialog();
+        if (string.IsNullOrWhiteSpace(SelectedAccount.Name))
         {
             DialogServiceClass.HideContentDialog(openContentDialog);
-            await DialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+            await DialogService.ShowMessageAsync(title: Strings.MandatoryFieldEmptyTitle, message: Strings.NameRequiredMessage);
             await DialogServiceClass.ShowContentDialog(openContentDialog);
 
             return;
         }
 
-        bool nameChanged = SelectedAccount.Id == 0
-                           || !SelectedAccount.Name.Equals(
-                               await Mediator.Send(new GetAccountNameByIdQuery(SelectedAccount.Id)));
-
-        if(nameChanged
-           && await Mediator.Send(new GetIfAccountWithNameExistsQuery(SelectedAccount.Name, SelectedAccount.Id)))
+        var nameChanged = SelectedAccount.Id == 0 || !SelectedAccount.Name.Equals(await Mediator.Send(new GetAccountNameByIdQuery(SelectedAccount.Id)));
+        if (nameChanged && await Mediator.Send(new GetIfAccountWithNameExistsQuery(accountName: SelectedAccount.Name, accountId: SelectedAccount.Id)))
         {
             DialogServiceClass.HideContentDialog(openContentDialog);
-            if(!await DialogService.ShowConfirmMessageAsync(Strings.DuplicatedNameTitle,
-                   Strings.DuplicateAccountMessage))
+            if (!await DialogService.ShowConfirmMessageAsync(title: Strings.DuplicatedNameTitle, message: Strings.DuplicateAccountMessage))
             {
                 await DialogServiceClass.ShowContentDialog(openContentDialog);
+
                 return;
             }
         }
 
-        if(decimal.TryParse(AmountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
+        if (decimal.TryParse(s: AmountString, style: NumberStyles.Any, provider: CultureInfo.CurrentCulture, result: out var convertedValue))
         {
             SelectedAccount.CurrentBalance = convertedValue;
         }
         else
         {
-            logManager.Warn($"Amount string {AmountString} could not be parsed to double.");
             DialogServiceClass.HideContentDialog(openContentDialog);
-            await DialogService.ShowMessageAsync(
-                Strings.InvalidNumberTitle,
-                Strings.InvalidNumberCurrentBalanceMessage);
+            await DialogService.ShowMessageAsync(title: Strings.InvalidNumberTitle, message: Strings.InvalidNumberCurrentBalanceMessage);
             await DialogServiceClass.ShowContentDialog(openContentDialog);
+
             return;
         }
 

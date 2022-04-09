@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Win.ViewModels.DesignTime;
 
-using CommunityToolkit.Mvvm.Input;
 using System;
+using CommunityToolkit.Mvvm.Input;
 
 public class DesignTimeSelectDateRangeDialogViewModel : ISelectDateRangeDialogViewModel
 {

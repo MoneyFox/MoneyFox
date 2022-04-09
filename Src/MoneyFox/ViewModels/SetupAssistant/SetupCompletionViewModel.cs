@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.ViewModels.SetupAssistant
 {
+
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using Core._Pending_.Common.Facades;
@@ -14,11 +15,9 @@
             this.settingsFacade = settingsFacade;
         }
 
-        public RelayCommand CompleteCommand
-            => new RelayCommand(CompleteSetup);
+        public RelayCommand CompleteCommand => new RelayCommand(CompleteSetup);
 
-        public RelayCommand BackCommand
-            => new RelayCommand(async () => await Shell.Current.Navigation.PopAsync());
+        public RelayCommand BackCommand => new RelayCommand(async () => await Shell.Current.Navigation.PopAsync());
 
         private void CompleteSetup()
         {
@@ -26,4 +25,5 @@
             Application.Current.MainPage = new AppShell();
         }
     }
+
 }

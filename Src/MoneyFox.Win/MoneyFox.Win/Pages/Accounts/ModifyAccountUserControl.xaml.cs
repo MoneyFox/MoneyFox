@@ -9,5 +9,8 @@ public sealed partial class ModifyAccountUserControl
         InitializeComponent();
     }
 
-    private void TextBoxOnFocus(object sender, RoutedEventArgs e) => TextBoxCurrentBalance.SelectAll();
+    private void TextBoxOnFocus(object sender, RoutedEventArgs e)
+    {
+        TextBoxCurrentBalance.SelectAll();
+    }
 }

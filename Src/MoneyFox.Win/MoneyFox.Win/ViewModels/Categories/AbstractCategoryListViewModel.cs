@@ -1,5 +1,11 @@
 ﻿namespace MoneyFox.Win.ViewModels.Categories;
 
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -7,27 +13,18 @@ using CommunityToolkit.Mvvm.Messaging;
 using Core._Pending_.Common.Messages;
 using Core.Commands.Categories.DeleteCategoryById;
 using Core.Common.Interfaces;
+using Core.Queries;
 using Core.Resources;
 using Groups;
 using MediatR;
 using Pages.Categories;
 using Services;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-using Core.Queries;
 
 public abstract class AbstractCategoryListViewModel : ObservableRecipient
 {
     private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> source = new();
 
-    protected AbstractCategoryListViewModel(IMediator mediator,
-        IMapper mapper,
-        IDialogService dialogService,
-        INavigationService navigationService)
+    protected AbstractCategoryListViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, INavigationService navigationService)
     {
         Mediator = mediator;
         Mapper = mapper;
@@ -50,9 +47,10 @@ public abstract class AbstractCategoryListViewModel : ObservableRecipient
     public ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CategoryList
     {
         get => source;
+
         private set
         {
-            if(source == value)
+            if (source == value)
             {
                 return;
             }
@@ -70,15 +68,12 @@ public abstract class AbstractCategoryListViewModel : ObservableRecipient
     /// <summary>
     ///     Deletes the passed CategoryViewModel after show a confirmation dialog.
     /// </summary>
-    public AsyncRelayCommand<CategoryViewModel> DeleteCategoryCommand
-        => new(DeleteCategoryAsync);
+    public AsyncRelayCommand<CategoryViewModel> DeleteCategoryCommand => new(DeleteCategoryAsync);
 
     /// <summary>
     ///     Edit the currently selected CategoryViewModel
     /// </summary>
-    public RelayCommand<CategoryViewModel> EditCategoryCommand
-        => new(
-            async vm => await new EditCategoryDialog(vm.Id).ShowAsync());
+    public RelayCommand<CategoryViewModel> EditCategoryCommand => new(async vm => await new EditCategoryDialog(vm.Id).ShowAsync());
 
     /// <summary>
     ///     Selects the clicked CategoryViewModel and sends it to the message hub.
@@ -90,46 +85,48 @@ public abstract class AbstractCategoryListViewModel : ObservableRecipient
     /// </summary>
     public AsyncRelayCommand<string> SearchCommand => new(SearchAsync);
 
-    protected override void OnActivated() =>
-        Messenger.Register<AbstractCategoryListViewModel, ReloadMessage>(
-            this,
-            (r, m) => r.SearchCommand.ExecuteAsync(""));
+    protected override void OnActivated()
+    {
+        Messenger.Register<AbstractCategoryListViewModel, ReloadMessage>(recipient: this, handler: (r, m) => r.SearchCommand.ExecuteAsync(""));
+    }
 
-    protected override void OnDeactivated() => Messenger.Unregister<ReloadMessage>(this);
+    protected override void OnDeactivated()
+    {
+        Messenger.Unregister<ReloadMessage>(this);
+    }
 
     /// <summary>
     ///     Handle the selection of a CategoryViewModel in the list
     /// </summary>
     protected abstract void ItemClick(CategoryViewModel category);
 
-    public async Task ViewAppearingAsync() => await SearchAsync();
+    public async Task ViewAppearingAsync()
+    {
+        await SearchAsync();
+    }
 
     /// <summary>
     ///     Performs a search with the text in the search text property
     /// </summary>
     public async Task SearchAsync(string searchText = "")
     {
-        var categoriesVms =
-            Mapper.Map<List<CategoryViewModel>>(await Mediator.Send(new GetCategoryBySearchTermQuery(searchText)));
+        var categoriesVms = Mapper.Map<List<CategoryViewModel>>(await Mediator.Send(new GetCategoryBySearchTermQuery(searchText)));
         CategoryList = CreateGroup(categoriesVms);
     }
 
-    private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(
-        IEnumerable<CategoryViewModel> categories) =>
-        new(
+    private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(IEnumerable<CategoryViewModel> categories)
+    {
+        return new(
             AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(
-                categories,
-                CultureInfo.CurrentUICulture,
-                s => string.IsNullOrEmpty(s.Name)
-                    ? "-"
-                    : s.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture),
+                items: categories,
+                ci: CultureInfo.CurrentUICulture,
+                getKey: s => string.IsNullOrEmpty(s.Name) ? "-" : s.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture),
                 itemClickCommand: ItemClickCommand));
+    }
 
     private async Task DeleteCategoryAsync(CategoryViewModel categoryToDelete)
     {
-        if(await DialogService.ShowConfirmMessageAsync(
-               Strings.DeleteTitle,
-               Strings.DeleteCategoryConfirmationMessage))
+        if (await DialogService.ShowConfirmMessageAsync(title: Strings.DeleteTitle, message: Strings.DeleteCategoryConfirmationMessage))
         {
             await Mediator.Send(new DeleteCategoryByIdCommand(categoryToDelete.Id));
             await SearchAsync();

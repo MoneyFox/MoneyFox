@@ -1,14 +1,15 @@
 ﻿namespace MoneyFox.ViewModels.Accounts
 {
+
+    using System.Threading.Tasks;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
     using Core._Pending_.Common.Messages;
     using Core.Common.Interfaces;
+    using Core.Queries;
     using Core.Resources;
     using MediatR;
-    using System.Threading.Tasks;
-    using Core.Queries;
     using Xamarin.Forms;
 
     public abstract class ModifyAccountViewModel : ObservableRecipient
@@ -17,9 +18,7 @@
 
         private AccountViewModel selectedAccountVm = new AccountViewModel();
 
-        protected ModifyAccountViewModel(
-            IDialogService dialogService,
-            IMediator mediator)
+        protected ModifyAccountViewModel(IDialogService dialogService, IMediator mediator)
         {
             this.dialogService = dialogService;
             Mediator = mediator;
@@ -35,6 +34,7 @@
         public AccountViewModel SelectedAccountVm
         {
             get => selectedAccountVm;
+
             set
             {
                 selectedAccountVm = value;
@@ -48,34 +48,30 @@
 
         private async Task SaveAccountBaseAsync()
         {
-            if(string.IsNullOrWhiteSpace(SelectedAccountVm.Name))
+            if (string.IsNullOrWhiteSpace(SelectedAccountVm.Name))
             {
-                await dialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+                await dialogService.ShowMessageAsync(title: Strings.MandatoryFieldEmptyTitle, message: Strings.NameRequiredMessage);
+
                 return;
             }
 
-            bool nameChanged = SelectedAccountVm.Id == 0
-                               || !SelectedAccountVm.Name.Equals(
-                                   await Mediator.Send(new GetAccountNameByIdQuery(SelectedAccountVm.Id)));
+            var nameChanged = SelectedAccountVm.Id == 0
+                              || !SelectedAccountVm.Name.Equals(await Mediator.Send(new GetAccountNameByIdQuery(SelectedAccountVm.Id)));
 
-            if(nameChanged
-               && await Mediator.Send(
-                   new GetIfAccountWithNameExistsQuery(SelectedAccountVm.Name, SelectedAccountVm.Id)))
+            if (nameChanged && await Mediator.Send(new GetIfAccountWithNameExistsQuery(accountName: SelectedAccountVm.Name, accountId: SelectedAccountVm.Id)))
             {
-                if(!await dialogService.ShowConfirmMessageAsync(Strings.DuplicatedNameTitle,
-                       Strings.DuplicateAccountMessage))
+                if (!await dialogService.ShowConfirmMessageAsync(title: Strings.DuplicatedNameTitle, message: Strings.DuplicateAccountMessage))
                 {
                     return;
                 }
             }
 
             await dialogService.ShowLoadingDialogAsync(Strings.SavingAccountMessage);
-
             await SaveAccountAsync();
             Messenger.Send(new ReloadMessage());
-
             await dialogService.HideLoadingDialogAsync();
             await Application.Current.MainPage.Navigation.PopModalAsync();
         }
     }
+
 }

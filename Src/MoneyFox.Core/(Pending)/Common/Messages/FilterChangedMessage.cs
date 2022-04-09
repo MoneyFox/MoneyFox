@@ -1,7 +1,8 @@
 ﻿namespace MoneyFox.Core._Pending_.Common.Messages
 {
+
     using System;
-    using MoneyFox.Core.Aggregates.Payments;
+    using Aggregates.Payments;
 
     /// <summary>
     ///     Used to notify the payment list that a filter changed.
@@ -40,4 +41,5 @@
         /// </summary>
         public DateTime TimeRangeEnd { get; set; } = DateTime.MaxValue;
     }
+
 }

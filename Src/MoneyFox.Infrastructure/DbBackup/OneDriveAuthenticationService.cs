@@ -9,13 +9,10 @@
     using Core.Common.Exceptions;
     using Microsoft.Graph;
     using Microsoft.Identity.Client;
-    using NLog;
-    using Logger = NLog.Logger;
 
     internal sealed class OneDriveAuthenticationService : IOneDriveAuthenticationService
     {
         private const string ERROR_CODE_CANCELED = "authentication_canceled";
-        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
         private readonly string[] scopes = { "Files.ReadWrite", "User.ReadBasic.All" };
 
@@ -40,22 +37,12 @@
 
                 return graphClientFactory.CreateClient(authResult);
             }
-            catch (MsalUiRequiredException ex)
-            {
-                logManager.Debug(ex);
-
-                throw;
-            }
             catch (MsalClientException ex)
             {
                 if (ex.ErrorCode == ERROR_CODE_CANCELED)
                 {
-                    logManager.Info(ex);
-
                     throw new BackupOperationCanceledException();
                 }
-
-                logManager.Error(ex);
 
                 throw;
             }
@@ -65,7 +52,6 @@
         {
             try
             {
-                logManager.Info("Logout.");
                 List<IAccount> accounts = (await publicClientApplication.GetAccountsAsync()).ToList();
                 while (accounts.Any())
                 {
@@ -77,19 +63,13 @@
             {
                 if (ex.ErrorCode == ERROR_CODE_CANCELED)
                 {
-                    logManager.Info(ex);
-
                     throw new BackupOperationCanceledException();
                 }
-
-                logManager.Error(ex);
 
                 throw;
             }
             catch (Exception ex)
             {
-                logManager.Error(ex);
-
                 throw new BackupAuthenticationFailedException(ex);
             }
         }

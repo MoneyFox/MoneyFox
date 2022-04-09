@@ -1,7 +1,8 @@
 ﻿namespace MoneyFox.Services
 {
-    using Core.Interfaces;
+
     using System.Threading.Tasks;
+    using Core.Interfaces;
     using Xamarin.Forms;
 
     internal sealed class NavigationService : INavigationService
@@ -11,4 +12,5 @@
             await Shell.Current.GoToAsync(typeof(T).Name);
         }
     }
+
 }

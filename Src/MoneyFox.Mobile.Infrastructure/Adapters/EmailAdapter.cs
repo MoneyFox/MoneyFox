@@ -4,13 +4,11 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Core.Interfaces;
-    using NLog;
+    using Serilog;
     using Xamarin.Essentials;
 
     public class EmailAdapter : IEmailAdapter
     {
-        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
-
         public async Task SendEmailAsync(string subject, string body, List<string> recipients)
         {
             try
@@ -20,7 +18,7 @@
             }
             catch (FeatureNotSupportedException ex)
             {
-                logManager.Warn(ex);
+                Log.Warning(exception: ex, messageTemplate: "Error during sending email");
             }
         }
 
@@ -38,7 +36,7 @@
             }
             catch (FeatureNotSupportedException ex)
             {
-                logManager.Warn(ex);
+                Log.Warning(exception: ex, messageTemplate: "Error during sending email");
             }
         }
     }

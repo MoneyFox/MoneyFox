@@ -1,7 +1,8 @@
 ﻿namespace MoneyFox.Views.Statistics
 {
-    using Core.Resources;
+
     using System.Threading.Tasks;
+    using Core.Resources;
     using Xamarin.Forms;
 
     public partial class PaymentForCategoryListPage : ContentPage
@@ -10,7 +11,6 @@
         {
             InitializeComponent();
             BindingContext = ViewModelLocator.PaymentForCategoryListViewModel;
-
             var doneItem = new ToolbarItem
             {
                 Command = new Command(async () => await CloseAsync()),
@@ -22,6 +22,10 @@
             ToolbarItems.Add(doneItem);
         }
 
-        private async Task CloseAsync() => await Navigation.PopModalAsync();
+        private async Task CloseAsync()
+        {
+            await Navigation.PopModalAsync();
+        }
     }
+
 }

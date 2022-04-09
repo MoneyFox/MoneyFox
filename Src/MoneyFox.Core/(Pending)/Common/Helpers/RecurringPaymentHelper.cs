@@ -1,8 +1,9 @@
 ﻿namespace MoneyFox.Core._Pending_.Common.Helpers
 {
+
+    using System;
     using Aggregates.Payments;
     using Exceptions;
-    using System;
 
     public static class RecurringPaymentHelper
     {
@@ -19,17 +20,17 @@
         /// <returns>True or False if the payment has to be repeated.</returns>
         public static bool CheckIfRepeatable(Payment payment)
         {
-            if(!payment.IsCleared)
+            if (!payment.IsCleared)
             {
                 return false;
             }
 
-            if(!payment.IsRecurring)
+            if (!payment.IsRecurring)
             {
                 return false;
             }
 
-            if(payment.RecurringPayment == null)
+            if (payment.RecurringPayment == null)
             {
                 throw new RecurringPaymentNullException();
             }
@@ -39,46 +40,36 @@
 
         private static bool CheckRecurrence(RecurringPayment recurringPayment)
         {
-            switch(recurringPayment.Recurrence)
+            switch (recurringPayment.Recurrence)
             {
                 case PaymentRecurrence.Daily:
                     return DateTime.Today.Date != recurringPayment.LastRecurrenceCreated.Date;
-
                 case PaymentRecurrence.DailyWithoutWeekend:
                     return DateTime.Today.Date != recurringPayment.LastRecurrenceCreated.Date
                            && DateTime.Today.DayOfWeek != DayOfWeek.Saturday
                            && DateTime.Today.DayOfWeek != DayOfWeek.Sunday;
-
                 case PaymentRecurrence.Weekly:
-                    TimeSpan daysWeekly = DateTime.Today.Date - recurringPayment.LastRecurrenceCreated.Date;
+                    var daysWeekly = DateTime.Today.Date - recurringPayment.LastRecurrenceCreated.Date;
 
                     return daysWeekly.Days >= WEEKLY_RECURRENCE_DAYS;
-
                 case PaymentRecurrence.Biweekly:
-                    TimeSpan daysBiweekly = DateTime.Today.Date - recurringPayment.LastRecurrenceCreated.Date;
+                    var daysBiweekly = DateTime.Today.Date - recurringPayment.LastRecurrenceCreated.Date;
 
                     return daysBiweekly.Days >= BIWEEKLY_RECURRENCE_DAYS;
-
                 case PaymentRecurrence.Monthly:
                     return DateTime.Now.Month != recurringPayment.LastRecurrenceCreated.Date.Month;
-
                 case PaymentRecurrence.Bimonthly:
-                    DateTime date = DateTime.Now.AddMonths(BIMONTHLY_RECURRENCE_MONTHS);
+                    var date = DateTime.Now.AddMonths(BIMONTHLY_RECURRENCE_MONTHS);
 
-                    return recurringPayment.LastRecurrenceCreated.Date.Month <= date.Month
-                           && recurringPayment.LastRecurrenceCreated.Date.Year == date.Year;
-
+                    return recurringPayment.LastRecurrenceCreated.Date.Month <= date.Month && recurringPayment.LastRecurrenceCreated.Date.Year == date.Year;
                 case PaymentRecurrence.Quarterly:
                     return CheckQuarterly(recurringPayment.LastRecurrenceCreated);
-
                 case PaymentRecurrence.Biannually:
                     return CheckBiannually(recurringPayment.LastRecurrenceCreated);
-
                 case PaymentRecurrence.Yearly:
-                    return (DateTime.Now.Year != recurringPayment.LastRecurrenceCreated.Date.Year
-                            && DateTime.Now.Month >= recurringPayment.LastRecurrenceCreated.Date.Month)
+                    return DateTime.Now.Year != recurringPayment.LastRecurrenceCreated.Date.Year
+                           && DateTime.Now.Month >= recurringPayment.LastRecurrenceCreated.Date.Month
                            || DateTime.Now.Year - recurringPayment.LastRecurrenceCreated.Date.Year > 1;
-
                 default:
                     return false;
             }
@@ -86,27 +77,27 @@
 
         private static bool CheckQuarterly(DateTime lastRecurrenceCreated)
         {
-            TimeSpan dateDiff = DateTime.Now - lastRecurrenceCreated.Date;
+            var dateDiff = DateTime.Now - lastRecurrenceCreated.Date;
+
             return dateDiff.TotalDays >= QUARTERLY_RECURRENCE_DAYS;
         }
 
         private static bool CheckBiannually(DateTime lastRecurrenceCreated)
         {
-            TimeSpan dateDiff = DateTime.Now - lastRecurrenceCreated.Date;
+            var dateDiff = DateTime.Now - lastRecurrenceCreated.Date;
+
             return dateDiff.TotalDays >= BIANNUALLY_RECURRENCE_DAYS;
         }
 
         public static DateTime GetPaymentDateFromRecurring(RecurringPayment recurringPayment)
         {
-            if(recurringPayment.Recurrence == PaymentRecurrence.Monthly)
+            if (recurringPayment.Recurrence == PaymentRecurrence.Monthly)
             {
-                DateTime date = DateTime.Today.AddDays(recurringPayment.StartDate.Day - DateTime.Today.Day);
-
-                int value = recurringPayment.StartDate.Day; //the Day value i.e. 31
-                int max = DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month);
+                var date = DateTime.Today.AddDays(recurringPayment.StartDate.Day - DateTime.Today.Day);
+                var value = recurringPayment.StartDate.Day; //the Day value i.e. 31
+                var max = DateTime.DaysInMonth(year: DateTime.Today.Year, month: DateTime.Today.Month);
                 double difference = -(value - max);
-
-                if(difference < 0)
+                if (difference < 0)
                 {
                     date = date.AddDays(difference);
                 }
@@ -117,4 +108,5 @@
             return DateTime.Today;
         }
     }
+
 }

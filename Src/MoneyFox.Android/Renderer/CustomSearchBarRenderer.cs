@@ -1,52 +1,43 @@
 ﻿using MoneyFox.Droid.Renderer;
 using Xamarin.Forms;
 
-[assembly: ExportRenderer(typeof(SearchBar), typeof(CustomSearchBarRenderer))]
+[assembly: ExportRenderer(handler: typeof(SearchBar), target: typeof(CustomSearchBarRenderer))]
+
 namespace MoneyFox.Droid.Renderer
 {
+
+    using System;
+    using System.Linq;
     using Android.Content;
     using Android.Graphics;
-    using Android.Graphics.Drawables;
     using Android.OS;
     using Android.Runtime;
     using Android.Widget;
-    using Java.Lang.Reflect;
     using Microsoft.AppCenter.Crashes;
-    using NLog;
-    using System;
-    using System.Linq;
+    using Serilog;
     using Xamarin.Forms;
     using Xamarin.Forms.Platform.Android;
     using Color = Xamarin.Forms.Color;
-    using Object = Java.Lang.Object;
     using Resource = Droid.Resource;
 
     public class CustomSearchBarRenderer : SearchBarRenderer
     {
-        private readonly Logger logger = LogManager.GetCurrentClassLogger();
-
-        public CustomSearchBarRenderer(Context context) : base(context)
-        {
-        }
+        public CustomSearchBarRenderer(Context context) : base(context) { }
 
         protected override void OnElementChanged(ElementChangedEventArgs<SearchBar> e)
         {
             base.OnElementChanged(e);
             try
             {
-                if(Control != null)
+                if (Control != null)
                 {
-                    SearchView searchView = Control;
+                    var searchView = Control;
                     searchView.Iconified = false;
                     searchView.SetIconifiedByDefault(false);
-
                     SetBackgroundColor(searchView);
-
-                    EditText editText = Control.GetChildrenOfType<EditText>().First();
-
+                    var editText = Control.GetChildrenOfType<EditText>().First();
                     editText.SetHighlightColor(Color.Accent.ToAndroid());
-
-                    if(Build.VERSION.SdkInt >= BuildVersionCodes.Q)
+                    if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
                     {
                         TrySetCursorPointerColorNew(editText);
                     }
@@ -59,7 +50,7 @@ namespace MoneyFox.Droid.Renderer
                     UpdateCancelButtonColor();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Crashes.TrackError(ex);
             }
@@ -67,18 +58,14 @@ namespace MoneyFox.Droid.Renderer
 
         private void SetBackgroundColor(SearchView searchView)
         {
-            if(Application.Current.UserAppTheme == OSAppTheme.Dark)
+            if (Application.Current.UserAppTheme == OSAppTheme.Dark)
             {
-                Application.Current.Resources.TryGetValue(
-                    "BackgroundColorSearchBarDark",
-                    out object darkTintColor);
+                Application.Current.Resources.TryGetValue(key: "BackgroundColorSearchBarDark", value: out var darkTintColor);
                 searchView.SetBackgroundColor(((Color)darkTintColor).ToAndroid());
             }
             else
             {
-                Application.Current.Resources.TryGetValue(
-                    "BackgroundColorSearchBarLight",
-                    out object lightTintColor);
+                Application.Current.Resources.TryGetValue(key: "BackgroundColorSearchBarLight", value: out var lightTintColor);
                 searchView.SetBackgroundColor(((Color)lightTintColor).ToAndroid());
             }
         }
@@ -88,32 +75,19 @@ namespace MoneyFox.Droid.Renderer
             try
             {
                 textView.SetTextCursorDrawable(Resource.Drawable.CustomCursor);
-
-                Drawable? textSelectHandleDrawable = textView.TextSelectHandle;
-
-                textSelectHandleDrawable?.SetColorFilter(
-                    new BlendModeColorFilter(
-                        Color.Accent.ToAndroid(),
-                        BlendMode.SrcIn!));
+                var textSelectHandleDrawable = textView.TextSelectHandle;
+                textSelectHandleDrawable?.SetColorFilter(new BlendModeColorFilter(color: Color.Accent.ToAndroid(), mode: BlendMode.SrcIn!));
                 textView.TextSelectHandle = textSelectHandleDrawable;
-
-                Drawable? textSelectHandleLeftDrawable = textView.TextSelectHandleLeft;
-                textSelectHandleLeftDrawable?.SetColorFilter(
-                    new BlendModeColorFilter(
-                        Color.Accent.ToAndroid(),
-                        BlendMode.SrcIn!));
+                var textSelectHandleLeftDrawable = textView.TextSelectHandleLeft;
+                textSelectHandleLeftDrawable?.SetColorFilter(new BlendModeColorFilter(color: Color.Accent.ToAndroid(), mode: BlendMode.SrcIn!));
                 textView.TextSelectHandle = textSelectHandleLeftDrawable;
-
-                Drawable? textSelectHandleRightDrawable = textView.TextSelectHandleRight;
-                textSelectHandleRightDrawable?.SetColorFilter(
-                    new BlendModeColorFilter(
-                        Color.Accent.ToAndroid(),
-                        BlendMode.SrcIn!));
+                var textSelectHandleRightDrawable = textView.TextSelectHandleRight;
+                textSelectHandleRightDrawable?.SetColorFilter(new BlendModeColorFilter(color: Color.Accent.ToAndroid(), mode: BlendMode.SrcIn!));
                 textView.TextSelectHandle = textSelectHandleRightDrawable;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                logger.Error(ex, "Issue in rendering custom search bar.");
+                Log.Error(exception: ex, messageTemplate: "Issue in rendering custom search bar");
             }
         }
 
@@ -122,72 +96,59 @@ namespace MoneyFox.Droid.Renderer
             try
             {
                 var textViewTemplate = new TextView(textView.Context);
-
-                Field field = textViewTemplate.Class.GetDeclaredField("mEditor");
+                var field = textViewTemplate.Class.GetDeclaredField("mEditor");
                 field.Accessible = true;
-                Object? editor = field.Get(textView);
-
-                if(editor == null)
+                var editor = field.Get(textView);
+                if (editor == null)
                 {
                     return;
                 }
 
-                string[] fieldsNames =
+                string[] fieldsNames = { "mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes" };
+                string[] drawableNames = { "mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter" };
+                for (var index = 0; index < fieldsNames.Length && index < drawableNames.Length; index++)
                 {
-                    "mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes"
-                };
-                string[] drawableNames = {"mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter"};
-
-                for(int index = 0; index < fieldsNames.Length && index < drawableNames.Length; index++)
-                {
-                    string fieldName = fieldsNames[index];
-                    string drawableName = drawableNames[index];
-
+                    var fieldName = fieldsNames[index];
+                    var drawableName = drawableNames[index];
                     field = textViewTemplate.Class.GetDeclaredField(fieldName);
                     field.Accessible = true;
-                    int handle = field.GetInt(textView);
-
-                    Drawable? handleDrawable = Resources?.GetDrawable(handle, null);
-
-                    if(handleDrawable == null)
+                    var handle = field.GetInt(textView);
+                    var handleDrawable = Resources?.GetDrawable(id: handle, theme: null);
+                    if (handleDrawable == null)
                     {
                         return;
                     }
 
-                    if(Build.VERSION.SdkInt >= BuildVersionCodes.Q)
+                    if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
                     {
-                        handleDrawable.SetColorFilter(
-                            new BlendModeColorFilter(
-                                Color.Accent.ToAndroid(),
-                                BlendMode.SrcIn!));
+                        handleDrawable.SetColorFilter(new BlendModeColorFilter(color: Color.Accent.ToAndroid(), mode: BlendMode.SrcIn!));
                     }
                     else
                     {
 #pragma warning disable CS0618 // Type or member is obsolete
-                        handleDrawable.SetColorFilter(Color.Accent.ToAndroid(), PorterDuff.Mode.SrcIn!);
+                        handleDrawable.SetColorFilter(color: Color.Accent.ToAndroid(), mode: PorterDuff.Mode.SrcIn!);
 #pragma warning restore CS0618 // Type or member is obsolete
                     }
 
                     field = editor.Class.GetDeclaredField(drawableName);
                     field.Accessible = true;
-                    field.Set(editor, handleDrawable);
+                    field.Set(obj: editor, value: handleDrawable);
                 }
 
-                IntPtr intPtrtextViewClass = JNIEnv.FindClass(typeof(TextView));
-                IntPtr mCursorDrawableResProperty = JNIEnv.GetFieldID(intPtrtextViewClass, "mCursorDrawableRes", "I");
-
-                JNIEnv.SetField(textView.Handle, mCursorDrawableResProperty, Resource.Drawable.CustomCursor);
+                var intPtrtextViewClass = JNIEnv.FindClass(typeof(TextView));
+                var mCursorDrawableResProperty = JNIEnv.GetFieldID(jclass: intPtrtextViewClass, name: "mCursorDrawableRes", sig: "I");
+                JNIEnv.SetField(jobject: textView.Handle, jfieldID: mCursorDrawableResProperty, val: Resource.Drawable.CustomCursor);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                logger.Error(ex, "Issue on setting the cursor color for custom search bar.");
+                Log.Error(exception: ex, messageTemplate: "Issue on setting the cursor color for custom search bar");
             }
         }
 
         private void UpdateSearchButtonColor()
         {
-            int? searchViewCloseButtonId = Control.Resources?.GetIdentifier("android:id/search_mag_icon", null, null);
-            if(searchViewCloseButtonId.HasValue && searchViewCloseButtonId != 0)
+            var searchViewCloseButtonId = Control.Resources?.GetIdentifier(name: "android:id/search_mag_icon", defType: null, defPackage: null);
+            if (searchViewCloseButtonId.HasValue && searchViewCloseButtonId != 0)
             {
                 SetColorGray(FindViewById<ImageView>(searchViewCloseButtonId.Value));
             }
@@ -195,8 +156,8 @@ namespace MoneyFox.Droid.Renderer
 
         private void UpdateCancelButtonColor()
         {
-            int? searchViewCloseButtonId = Control.Resources?.GetIdentifier("android:id/search_close_btn", null, null);
-            if(searchViewCloseButtonId.HasValue && searchViewCloseButtonId != 0)
+            var searchViewCloseButtonId = Control.Resources?.GetIdentifier(name: "android:id/search_close_btn", defType: null, defPackage: null);
+            if (searchViewCloseButtonId.HasValue && searchViewCloseButtonId != 0)
             {
                 SetColorGray(FindViewById<ImageView>(searchViewCloseButtonId.Value));
             }
@@ -204,19 +165,17 @@ namespace MoneyFox.Droid.Renderer
 
         private static void SetColorGray(ImageView? image)
         {
-            if(Build.VERSION.SdkInt >= BuildVersionCodes.Q)
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
             {
-                image?.Drawable?.SetColorFilter(
-                    new BlendModeColorFilter(
-                        Android.Graphics.Color.Gray,
-                        BlendMode.SrcIn!));
+                image?.Drawable?.SetColorFilter(new BlendModeColorFilter(color: Android.Graphics.Color.Gray, mode: BlendMode.SrcIn!));
             }
             else
             {
 #pragma warning disable CS0618 // Type or member is obsolete
-                image?.Drawable?.SetColorFilter(Android.Graphics.Color.Gray, PorterDuff.Mode.SrcIn!);
+                image?.Drawable?.SetColorFilter(color: Android.Graphics.Color.Gray, mode: PorterDuff.Mode.SrcIn!);
 #pragma warning restore CS0618 // Type or member is obsolete
             }
         }
     }
+
 }

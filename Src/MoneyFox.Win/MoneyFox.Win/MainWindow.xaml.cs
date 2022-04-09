@@ -6,17 +6,15 @@ using Pages;
 
 public sealed partial class MainWindow : Window
 {
-    // This is a temporary fix until WinUI Dialogs are fixed
-    public static Frame RootFrame { get; private set; }
-
     public MainWindow()
     {
         InitializeComponent();
-
         ExtendsContentIntoTitleBar = true;
         SetTitleBar(AppTitleBar);
-
         RootFrame = ShellFrame;
-        RootFrame.Navigate(typeof(ShellPage), null);
+        RootFrame.Navigate(sourcePageType: typeof(ShellPage), parameter: null);
     }
+
+    // This is a temporary fix until WinUI Dialogs are fixed
+    public static Frame RootFrame { get; private set; }
 }

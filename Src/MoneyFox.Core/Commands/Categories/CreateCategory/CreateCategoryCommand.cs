@@ -1,10 +1,11 @@
 ﻿namespace MoneyFox.Core.Commands.Categories.CreateCategory
 {
+
+    using System.Threading;
+    using System.Threading.Tasks;
     using Aggregates.Payments;
     using Common.Interfaces;
     using MediatR;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     public class CreateCategoryCommand : IRequest
     {
@@ -31,12 +32,13 @@
             /// <inheritdoc />
             public async Task<Unit> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
             {
-                var category = new Category(request.Name, request.Note, request.RequireNote);
-                await contextAdapter.Context.Categories.AddAsync(category, cancellationToken);
+                var category = new Category(name: request.Name, note: request.Note, requireNote: request.RequireNote);
+                await contextAdapter.Context.Categories.AddAsync(entity: category, cancellationToken: cancellationToken);
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
             }
         }
     }
+
 }

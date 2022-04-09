@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Views.Backup
 {
+
     using ViewModels.DataBackup;
 
     public partial class BackupPage
@@ -12,6 +13,10 @@
 
         public BackupViewModel ViewModel => (BackupViewModel)BindingContext;
 
-        protected override void OnAppearing() => ViewModel.InitializeCommand.Execute(null);
+        protected override void OnAppearing()
+        {
+            ViewModel.InitializeCommand.Execute(null);
+        }
     }
+
 }

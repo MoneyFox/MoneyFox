@@ -1,12 +1,12 @@
 ﻿namespace MoneyFox.Tests.Converter
 {
-    using Core._Pending_;
-    using FluentAssertions;
-    using MoneyFox.Converter;
+
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Threading;
     using Core.Common;
+    using FluentAssertions;
+    using MoneyFox.Converter;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -25,10 +25,11 @@
             var converter = new DecimalConverter();
 
             // Act
-            decimal result = (decimal)converter.ConvertBack(value, null, null, Thread.CurrentThread.CurrentUICulture);
+            var result = (decimal)converter.ConvertBack(value: value, targetType: null, parameter: null, culture: Thread.CurrentThread.CurrentUICulture);
 
             // Assert
             result.Should().Be(expectedResult);
         }
     }
+
 }

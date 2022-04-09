@@ -15,14 +15,11 @@
     using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using NLog;
 
     public class GetTotalEndOfMonthBalanceQuery : IRequest<decimal>
     {
         public class Handler : IRequestHandler<GetTotalEndOfMonthBalanceQuery, decimal>
         {
-            private readonly Logger logManager = LogManager.GetCurrentClassLogger();
-
             private readonly IContextAdapter contextAdapter;
             private readonly ISystemDateHelper systemDateHelper;
 
@@ -34,7 +31,6 @@
 
             public async Task<decimal> Handle(GetTotalEndOfMonthBalanceQuery request, CancellationToken cancellationToken)
             {
-                logManager.Info("Calculate EndOfMonth Balance.");
                 var excluded = await contextAdapter.Context.Accounts.AreActive().AreExcluded().ToListAsync();
                 var balance = await GetCurrentAccountBalanceAsync();
                 foreach (var payment in await GetUnclearedPaymentsForThisMonthAsync())

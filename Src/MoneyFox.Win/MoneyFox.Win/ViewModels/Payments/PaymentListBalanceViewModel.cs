@@ -1,10 +1,10 @@
 ﻿namespace MoneyFox.Win.ViewModels.Payments;
 
+using System.Threading.Tasks;
 using Accounts;
 using AutoMapper;
-using MediatR;
-using System.Threading.Tasks;
 using Core.Queries;
+using MediatR;
 
 /// <summary>
 ///     This ViewModel is for the usage in the payment list when a concrete account is selected
@@ -19,10 +19,8 @@ public class PaymentListBalanceViewModel : BalanceViewModel
     /// <summary>
     ///     Constructor
     /// </summary>
-    public PaymentListBalanceViewModel(IMediator mediator,
-        IMapper mapper,
-        IBalanceCalculationService balanceCalculationService,
-        int accountId) : base(balanceCalculationService)
+    public PaymentListBalanceViewModel(IMediator mediator, IMapper mapper, IBalanceCalculationService balanceCalculationService, int accountId) : base(
+        balanceCalculationService)
     {
         this.mediator = mediator;
         this.mapper = mapper;

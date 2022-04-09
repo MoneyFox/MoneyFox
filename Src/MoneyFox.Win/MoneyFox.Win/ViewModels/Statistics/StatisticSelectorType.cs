@@ -1,6 +1,5 @@
 ﻿namespace MoneyFox.Win.ViewModels.Statistics;
 
-using Core;
 using Core.Enums;
 
 /// <summary>

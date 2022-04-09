@@ -1,10 +1,11 @@
 ﻿namespace MoneyFox.Core.Commands.Accounts.UpdateAccount
 {
+
+    using System.Threading;
+    using System.Threading.Tasks;
     using Aggregates;
     using Common.Interfaces;
     using MediatR;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     public class UpdateAccountCommand : IRequest
     {
@@ -26,18 +27,13 @@
 
             public async Task<Unit> Handle(UpdateAccountCommand request, CancellationToken cancellationToken)
             {
-                Account existingAccount = await contextAdapter.Context
-                    .Accounts
-                    .FindAsync(request.Account.Id);
-
-                existingAccount.UpdateAccount(
-                    request.Account.Name,
-                    request.Account.Note ?? "",
-                    request.Account.IsExcluded);
-
+                var existingAccount = await contextAdapter.Context.Accounts.FindAsync(request.Account.Id);
+                existingAccount.UpdateAccount(name: request.Account.Name, note: request.Account.Note ?? "", isExcluded: request.Account.IsExcluded);
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
+
                 return Unit.Value;
             }
         }
     }
+
 }

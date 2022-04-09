@@ -1,15 +1,16 @@
 ﻿namespace MoneyFox.ViewModels.Statistics
 {
+
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+    using System.Threading.Tasks;
     using CommunityToolkit.Mvvm.Input;
     using Core.Aggregates.Payments;
     using Core.Queries.Statistics;
     using MediatR;
     using Microcharts;
     using SkiaSharp;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Views.Statistics;
     using Xamarin.Essentials;
 
@@ -21,18 +22,17 @@
         private DonutChart chart = new DonutChart();
         private PaymentType selectedPaymentType;
 
-        public StatisticCategorySpreadingViewModel(IMediator mediator) : base(mediator)
-        {
-        }
+        public StatisticCategorySpreadingViewModel(IMediator mediator) : base(mediator) { }
 
         public List<PaymentType> PaymentTypes => new List<PaymentType> { PaymentType.Expense, PaymentType.Income };
 
         public PaymentType SelectedPaymentType
         {
             get => selectedPaymentType;
+
             set
             {
-                if(selectedPaymentType == value)
+                if (selectedPaymentType == value)
                 {
                     return;
                 }
@@ -49,9 +49,10 @@
         public DonutChart Chart
         {
             get => chart;
+
             set
             {
-                if(chart == value)
+                if (chart == value)
                 {
                     return;
                 }
@@ -69,10 +70,9 @@
         protected override async Task LoadAsync()
         {
             var statisticItems = new ObservableCollection<StatisticEntry>(
-                await Mediator.Send(new GetCategorySpreadingQuery(StartDate, EndDate, SelectedPaymentType)));
+                await Mediator.Send(new GetCategorySpreadingQuery(startDate: StartDate, endDate: EndDate, paymentType: SelectedPaymentType)));
 
-            List<ChartEntry> microChartItems = statisticItems
-                .Select(
+            var microChartItems = statisticItems.Select(
                     x => new ChartEntry((float)x.Value)
                     {
                         Label = x.Label,
@@ -92,4 +92,5 @@
             };
         }
     }
+
 }

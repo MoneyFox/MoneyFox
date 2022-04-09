@@ -1,9 +1,6 @@
 namespace MoneyFox.Core.Aggregates.Payments
 {
-    public enum PaymentType
-    {
-        Expense,
-        Income,
-        Transfer
-    }
+
+    public enum PaymentType { Expense, Income, Transfer }
+
 }

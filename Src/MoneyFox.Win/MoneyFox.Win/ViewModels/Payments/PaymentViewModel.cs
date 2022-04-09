@@ -1,12 +1,12 @@
 ﻿namespace MoneyFox.Win.ViewModels.Payments;
 
+using System;
 using Accounts;
 using AutoMapper;
 using Categories;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Core.Aggregates.Payments;
 using Core.Common.Interfaces.Mapping;
-using System;
 
 public class PaymentViewModel : ObservableObject, IHaveCustomMapping
 {
@@ -29,6 +29,8 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     private CategoryViewModel? categoryViewModel;
     private RecurringPaymentViewModel? recurringPaymentViewModel;
 
+    private int currentAccountId;
+
     public PaymentViewModel()
     {
         Date = DateTime.Today;
@@ -37,9 +39,10 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public int Id
     {
         get => id;
+
         set
         {
-            if(id == value)
+            if (id == value)
             {
                 return;
             }
@@ -57,9 +60,10 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public int ChargedAccountId
     {
         get => chargedAccountId;
+
         set
         {
-            if(chargedAccountId == value)
+            if (chargedAccountId == value)
             {
                 return;
             }
@@ -75,9 +79,10 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public int? TargetAccountId
     {
         get => targetAccountId;
+
         set
         {
-            if(targetAccountId == value)
+            if (targetAccountId == value)
             {
                 return;
             }
@@ -93,9 +98,10 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public DateTime Date
     {
         get => date;
+
         set
         {
-            if(date == value)
+            if (date == value)
             {
                 return;
             }
@@ -111,9 +117,10 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public decimal Amount
     {
         get => amount;
+
         set
         {
-            if(Math.Abs(amount - value) < DECIMAL_DELTA)
+            if (Math.Abs(amount - value) < DECIMAL_DELTA)
             {
                 return;
             }
@@ -130,9 +137,10 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public bool IsCleared
     {
         get => isCleared;
+
         set
         {
-            if(isCleared == value)
+            if (isCleared == value)
             {
                 return;
             }
@@ -148,9 +156,10 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public PaymentType Type
     {
         get => type;
+
         set
         {
-            if(type == value)
+            if (type == value)
             {
                 return;
             }
@@ -167,9 +176,10 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public string Note
     {
         get => note;
+
         set
         {
-            if(note == value)
+            if (note == value)
             {
                 return;
             }
@@ -185,19 +195,16 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public bool IsRecurring
     {
         get => isRecurring;
+
         set
         {
-            if(isRecurring == value)
+            if (isRecurring == value)
             {
                 return;
             }
 
             isRecurring = value;
-
-            RecurringPayment = isRecurring
-                ? new RecurringPaymentViewModel()
-                : null;
-
+            RecurringPayment = isRecurring ? new RecurringPaymentViewModel() : null;
             OnPropertyChanged();
         }
     }
@@ -205,9 +212,10 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public DateTime Created
     {
         get => created;
+
         set
         {
-            if(created == value)
+            if (created == value)
             {
                 return;
             }
@@ -220,9 +228,10 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public DateTime LastModified
     {
         get => lastModified;
+
         set
         {
-            if(lastModified == value)
+            if (lastModified == value)
             {
                 return;
             }
@@ -239,9 +248,10 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public AccountViewModel ChargedAccount
     {
         get => chargedAccount;
+
         set
         {
-            if(chargedAccount == value)
+            if (chargedAccount == value)
             {
                 return;
             }
@@ -258,9 +268,10 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public AccountViewModel? TargetAccount
     {
         get => targetAccount;
+
         set
         {
-            if(targetAccount == value)
+            if (targetAccount == value)
             {
                 return;
             }
@@ -276,9 +287,10 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public CategoryViewModel? Category
     {
         get => categoryViewModel;
+
         set
         {
-            if(categoryViewModel == value)
+            if (categoryViewModel == value)
             {
                 return;
             }
@@ -294,9 +306,10 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public RecurringPaymentViewModel? RecurringPayment
     {
         get => recurringPaymentViewModel;
+
         set
         {
-            if(recurringPaymentViewModel == value)
+            if (recurringPaymentViewModel == value)
             {
                 return;
             }
@@ -311,17 +324,16 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     /// </summary>
     public bool IsTransfer => Type == PaymentType.Transfer;
 
-    private int currentAccountId;
-
     /// <summary>
     ///     Id of the account who currently is used for that view.
     /// </summary>
     public int CurrentAccountId
     {
         get => currentAccountId;
+
         set
         {
-            if(currentAccountId == value)
+            if (currentAccountId == value)
             {
                 return;
             }
@@ -331,9 +343,10 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
         }
     }
 
-    public void CreateMappings(Profile configuration) => configuration.CreateMap<Payment, PaymentViewModel>()
-        .ForMember(
-            x => x.CurrentAccountId,
-            opt => opt.Ignore())
-        .ReverseMap();
+    public void CreateMappings(Profile configuration)
+    {
+        configuration.CreateMap<Payment, PaymentViewModel>()
+            .ForMember(destinationMember: x => x.CurrentAccountId, memberOptions: opt => opt.Ignore())
+            .ReverseMap();
+    }
 }

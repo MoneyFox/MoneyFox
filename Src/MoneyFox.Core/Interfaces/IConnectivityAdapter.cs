@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Core.Interfaces
 {
+
     /// <summary>
     ///     Provides access to the connectivity state.
     /// </summary>
@@ -10,4 +11,5 @@
         /// </summary>
         bool IsConnected { get; }
     }
+
 }

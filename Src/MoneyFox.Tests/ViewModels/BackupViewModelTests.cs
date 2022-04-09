@@ -1,13 +1,14 @@
 ﻿namespace MoneyFox.Tests.ViewModels
 {
+
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
     using Core._Pending_.Common.Facades;
     using Core.Interfaces;
     using FluentAssertions;
     using MoneyFox.ViewModels.DataBackup;
     using NSubstitute;
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -19,17 +20,17 @@
             // Setup
             var connectivitySetup = Substitute.For<IConnectivityAdapter>();
             connectivitySetup.IsConnected.Returns(false);
-
             var settingsManagerMock = Substitute.For<ISettingsFacade>();
             var backupServiceMock = Substitute.For<IBackupService>();
 
             //execute
             var vm = new BackupViewModel(
-                backupServiceMock,
-                null,
-                connectivitySetup,
-                settingsManagerMock,
-                null);
+                backupService: backupServiceMock,
+                dialogService: null,
+                connectivity: connectivitySetup,
+                settingsFacade: settingsManagerMock,
+                toastService: null);
+
             vm.InitializeCommand.Execute(null);
 
             //assert
@@ -44,17 +45,17 @@
             // Setup
             var connectivitySetup = Substitute.For<IConnectivityAdapter>();
             connectivitySetup.IsConnected.Returns(true);
-
             var settingsManagerMock = Substitute.For<ISettingsFacade>();
             var backupServiceMock = Substitute.For<IBackupService>();
 
             //execute
             var vm = new BackupViewModel(
-                backupServiceMock,
-                null,
-                connectivitySetup,
-                settingsManagerMock,
-                null);
+                backupService: backupServiceMock,
+                dialogService: null,
+                connectivity: connectivitySetup,
+                settingsFacade: settingsManagerMock,
+                toastService: null);
+
             vm.InitializeCommand.Execute(null);
 
             //assert
@@ -69,23 +70,21 @@
             // Setup
             var connectivitySetup = Substitute.For<IConnectivityAdapter>();
             connectivitySetup.IsConnected.Returns(true);
-
             var settingsManagerMock = Substitute.For<ISettingsFacade>();
             settingsManagerMock.IsLoggedInToBackupService.Returns(true);
-
-            DateTime returnDate = DateTime.Today;
-
+            var returnDate = DateTime.Today;
             var backupServiceMock = Substitute.For<IBackupService>();
             backupServiceMock.IsBackupExistingAsync().Returns(true);
             backupServiceMock.GetBackupDateAsync().Returns(returnDate);
 
             //execute
             var vm = new BackupViewModel(
-                backupServiceMock,
-                null,
-                connectivitySetup,
-                settingsManagerMock,
-                null);
+                backupService: backupServiceMock,
+                dialogService: null,
+                connectivity: connectivitySetup,
+                settingsFacade: settingsManagerMock,
+                toastService: null);
+
             vm.InitializeCommand.Execute(null);
 
             //assert
@@ -100,20 +99,18 @@
             // Setup
             var connectivitySetup = Substitute.For<IConnectivityAdapter>();
             var settingsManagerMock = Substitute.For<ISettingsFacade>();
-
-            bool logoutCommandCalled = false;
-
+            var logoutCommandCalled = false;
             var backupServiceMock = Substitute.For<IBackupService>();
-            backupServiceMock.When(x => x.LogoutAsync())
-                .Do(x => logoutCommandCalled = true);
+            backupServiceMock.When(x => x.LogoutAsync()).Do(x => logoutCommandCalled = true);
 
             //execute
             var vm = new BackupViewModel(
-                backupServiceMock,
-                null,
-                connectivitySetup,
-                settingsManagerMock,
-                null);
+                backupService: backupServiceMock,
+                dialogService: null,
+                connectivity: connectivitySetup,
+                settingsFacade: settingsManagerMock,
+                toastService: null);
+
             vm.LogoutCommand.Execute(null);
 
             //assert
@@ -121,4 +118,5 @@
             settingsManagerMock.IsLoggedInToBackupService.Should().BeFalse();
         }
     }
+
 }

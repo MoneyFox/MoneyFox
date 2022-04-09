@@ -1,11 +1,12 @@
 ﻿namespace MoneyFox.Core.Tests.Aggregates
 {
-    using Core.Aggregates;
-    using Core.Aggregates.Payments;
-    using FluentAssertions;
+
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
+    using Core.Aggregates;
+    using Core.Aggregates.Payments;
+    using FluentAssertions;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -37,7 +38,7 @@
             const bool testExcluded = true;
 
             // Act / Assert
-            var account = new Account(testName, testBalance, testNote, testExcluded);
+            var account = new Account(name: testName, initalBalance: testBalance, note: testNote, isExcluded: testExcluded);
 
             // Assert
             account.Name.Should().Be(testName);
@@ -93,14 +94,10 @@
             const string testname = "test";
             const string testnote = "foo";
             const bool testExcluded = true;
-
             var testAccount = new Account("foo");
 
             // Act / Assert
-            testAccount.UpdateAccount(
-                testname,
-                testnote,
-                testExcluded);
+            testAccount.UpdateAccount(name: testname, note: testnote, isExcluded: testExcluded);
 
             // Assert
             testAccount.Name.Should().Be(testname);
@@ -111,19 +108,14 @@
         [Theory]
         [InlineData(PaymentType.Expense, 50)]
         [InlineData(PaymentType.Income, 150)]
-        public void AddPaymentAmount_IncomeExpense_CurrentBalanceAdjustedCorrectly(PaymentType paymentType,
-            decimal expectedBalance)
+        public void AddPaymentAmount_IncomeExpense_CurrentBalanceAdjustedCorrectly(PaymentType paymentType, decimal expectedBalance)
         {
             // Arrange
-            var account = new Account("Test", 100);
+            var account = new Account(name: "Test", initalBalance: 100);
 
             // Act
             // AddPaymentAmount executed in the clear method
-            new Payment(
-                DateTime.Today,
-                50,
-                paymentType,
-                account);
+            new Payment(date: DateTime.Today, amount: 50, type: paymentType, chargedAccount: account);
 
             // Assert
             account.CurrentBalance.Should().Be(expectedBalance);
@@ -135,8 +127,8 @@
         public void AddPaymentAmount_IncomeExpenseNotCleared_CurrentBalanceNotAdjusted(PaymentType paymentType)
         {
             // Arrange
-            var account = new Account("Test", 100);
-            var payment = new Payment(DateTime.Today.AddDays(2), 50, paymentType, account);
+            var account = new Account(name: "Test", initalBalance: 100);
+            var payment = new Payment(date: DateTime.Today.AddDays(2), amount: 50, type: paymentType, chargedAccount: account);
 
             // Act
             account.AddPaymentAmount(payment);
@@ -149,20 +141,21 @@
         public void AddPaymentAmount_Transfer_CurrentBalanceAdjustedCorrectly()
         {
             // Arrange
-            var chargedAccount = new Account("Test", 100);
-            var targetAccount = new Account("Test", 100);
-
-            FieldInfo chargedAccountId =
-                typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
-            chargedAccountId.SetValue(chargedAccount, 3);
-
-            FieldInfo targetAccountId =
-                typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
-            targetAccountId.SetValue(targetAccount, 4);
+            var chargedAccount = new Account(name: "Test", initalBalance: 100);
+            var targetAccount = new Account(name: "Test", initalBalance: 100);
+            var chargedAccountId = typeof(Account).GetField(name: "<Id>k__BackingField", bindingAttr: BindingFlags.Instance | BindingFlags.NonPublic);
+            chargedAccountId.SetValue(obj: chargedAccount, value: 3);
+            var targetAccountId = typeof(Account).GetField(name: "<Id>k__BackingField", bindingAttr: BindingFlags.Instance | BindingFlags.NonPublic);
+            targetAccountId.SetValue(obj: targetAccount, value: 4);
 
             // Act
             // AddPaymentAmount executed in the clear method
-            new Payment(DateTime.Today, 50, PaymentType.Transfer, chargedAccount, targetAccount);
+            new Payment(
+                date: DateTime.Today,
+                amount: 50,
+                type: PaymentType.Transfer,
+                chargedAccount: chargedAccount,
+                targetAccount: targetAccount);
 
             // Assert
             chargedAccount.CurrentBalance.Should().Be(50);
@@ -182,12 +175,11 @@
         [Theory]
         [InlineData(PaymentType.Expense, 100)]
         [InlineData(PaymentType.Income, 100)]
-        public void RemovePaymentAmount_IncomeExpense_CurrentBalanceAdjustedCorrectly(PaymentType paymentType,
-            decimal expectedBalance)
+        public void RemovePaymentAmount_IncomeExpense_CurrentBalanceAdjustedCorrectly(PaymentType paymentType, decimal expectedBalance)
         {
             // Arrange
-            var account = new Account("Test", 100);
-            var payment = new Payment(DateTime.Today, 50, paymentType, account);
+            var account = new Account(name: "Test", initalBalance: 100);
+            var payment = new Payment(date: DateTime.Today, amount: 50, type: paymentType, chargedAccount: account);
 
             // Act
             account.RemovePaymentAmount(payment);
@@ -200,18 +192,18 @@
         public void RemovePaymentAmount_Transfer_CurrentBalanceAdjustedCorrectly()
         {
             // Arrange
-            var chargedAccount = new Account("Test", 100);
-            var targetAccount = new Account("Test", 100);
-
-            FieldInfo chargedAccountId =
-                typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
-            chargedAccountId.SetValue(chargedAccount, 3);
-
-            FieldInfo targetAccountId =
-                typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
-            targetAccountId.SetValue(targetAccount, 4);
-
-            var payment = new Payment(DateTime.Today, 50, PaymentType.Transfer, chargedAccount, targetAccount);
+            var chargedAccount = new Account(name: "Test", initalBalance: 100);
+            var targetAccount = new Account(name: "Test", initalBalance: 100);
+            var chargedAccountId = typeof(Account).GetField(name: "<Id>k__BackingField", bindingAttr: BindingFlags.Instance | BindingFlags.NonPublic);
+            chargedAccountId.SetValue(obj: chargedAccount, value: 3);
+            var targetAccountId = typeof(Account).GetField(name: "<Id>k__BackingField", bindingAttr: BindingFlags.Instance | BindingFlags.NonPublic);
+            targetAccountId.SetValue(obj: targetAccount, value: 4);
+            var payment = new Payment(
+                date: DateTime.Today,
+                amount: 50,
+                type: PaymentType.Transfer,
+                chargedAccount: chargedAccount,
+                targetAccount: targetAccount);
 
             // Act
             chargedAccount.RemovePaymentAmount(payment);
@@ -228,25 +220,30 @@
         public void ChangePaymentType_TransferToOther_CurrentBalanceAdjustedCorrectly(PaymentType paymentType)
         {
             // Arrange
-            var chargedAccount = new Account("Test", 100);
-            var targetAccount = new Account("Test", 100);
-
-            FieldInfo chargedAccountId =
-                typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
-            chargedAccountId.SetValue(chargedAccount, 3);
-
-            FieldInfo targetAccountId =
-                typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
-            targetAccountId.SetValue(targetAccount, 4);
-
-            var payment = new Payment(DateTime.Today, 50, PaymentType.Transfer, chargedAccount, targetAccount);
+            var chargedAccount = new Account(name: "Test", initalBalance: 100);
+            var targetAccount = new Account(name: "Test", initalBalance: 100);
+            var chargedAccountId = typeof(Account).GetField(name: "<Id>k__BackingField", bindingAttr: BindingFlags.Instance | BindingFlags.NonPublic);
+            chargedAccountId.SetValue(obj: chargedAccount, value: 3);
+            var targetAccountId = typeof(Account).GetField(name: "<Id>k__BackingField", bindingAttr: BindingFlags.Instance | BindingFlags.NonPublic);
+            targetAccountId.SetValue(obj: targetAccount, value: 4);
+            var payment = new Payment(
+                date: DateTime.Today,
+                amount: 50,
+                type: PaymentType.Transfer,
+                chargedAccount: chargedAccount,
+                targetAccount: targetAccount);
 
             // Assert (Transfer)
             chargedAccount.CurrentBalance.Should().Be(50);
             targetAccount.CurrentBalance.Should().Be(150);
 
             // Change from Transfer to Expense/Income
-            payment.UpdatePayment(DateTime.Today, 50, paymentType, chargedAccount, targetAccount);
+            payment.UpdatePayment(
+                date: DateTime.Today,
+                amount: 50,
+                type: paymentType,
+                chargedAccount: chargedAccount,
+                targetAccount: targetAccount);
 
             // Assert (Expense/Income)
             chargedAccount.CurrentBalance.Should().Be(paymentType == PaymentType.Expense ? 50 : 150);
@@ -258,7 +255,6 @@
             // Assert
             chargedAccount.CurrentBalance.Should().Be(100);
         }
-
 
         [Fact]
         public void DisableAccountOnDeactivate()
@@ -273,4 +269,5 @@
             testAccount.IsDeactivated.Should().BeTrue();
         }
     }
+
 }

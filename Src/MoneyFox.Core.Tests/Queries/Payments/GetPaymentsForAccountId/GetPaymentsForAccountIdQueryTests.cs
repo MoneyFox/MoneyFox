@@ -1,18 +1,18 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Payments.GetPaymentsForAccountId
 {
+
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Common.Interfaces;
     using Core.Aggregates;
     using Core.Aggregates.Payments;
+    using Core.Queries;
     using FluentAssertions;
     using Infrastructure;
     using MoneyFox.Infrastructure.Persistence;
     using Moq;
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using Core.Queries;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -24,7 +24,6 @@
         public GetPaymentsForAccountIdQueryTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-
             contextAdapterMock = new Mock<IContextAdapter>();
             contextAdapterMock.SetupGet(x => x.Context).Returns(context);
         }
@@ -35,24 +34,29 @@
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing)
+        {
+            InMemoryAppDbContextFactory.Destroy(context);
+        }
 
         [Fact]
         public async Task GetPaymentsForAccountId_CorrectAccountId_PaymentFound()
         {
             // Arrange
-            var account = new Account("test", 80);
-
-            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, account);
-            var payment2 = new Payment(DateTime.Now, 20, PaymentType.Expense, new Account("test", 80));
+            var account = new Account(name: "test", initalBalance: 80);
+            var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: account);
+            var payment2 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new Account(name: "test", initalBalance: 80));
             await context.AddAsync(payment1);
             await context.AddAsync(payment2);
             await context.SaveChangesAsync();
 
             // Act
-            List<Payment> result = await new GetPaymentsForAccountIdQuery.Handler(contextAdapterMock.Object).Handle(
-                new GetPaymentsForAccountIdQuery(account.Id, DateTime.Now.AddDays(-1), DateTime.Now.AddDays(1)),
-                default);
+            var result = await new GetPaymentsForAccountIdQuery.Handler(contextAdapterMock.Object).Handle(
+                request: new GetPaymentsForAccountIdQuery(
+                    accountId: account.Id,
+                    timeRangeStart: DateTime.Now.AddDays(-1),
+                    timeRangeEnd: DateTime.Now.AddDays(1)),
+                cancellationToken: default);
 
             // Assert
             result.First().Id.Should().Be(payment1.Id);
@@ -62,18 +66,20 @@
         public async Task GetPaymentsForAccountId_CorrectDateRange_PaymentFound()
         {
             // Arrange
-            var account = new Account("test", 80);
-
-            var payment1 = new Payment(DateTime.Now.AddDays(-2), 20, PaymentType.Expense, account);
-            var payment2 = new Payment(DateTime.Now, 20, PaymentType.Expense, account);
+            var account = new Account(name: "test", initalBalance: 80);
+            var payment1 = new Payment(date: DateTime.Now.AddDays(-2), amount: 20, type: PaymentType.Expense, chargedAccount: account);
+            var payment2 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: account);
             await context.AddAsync(payment1);
             await context.AddAsync(payment2);
             await context.SaveChangesAsync();
 
             // Act
-            List<Payment> result = await new GetPaymentsForAccountIdQuery.Handler(contextAdapterMock.Object).Handle(
-                new GetPaymentsForAccountIdQuery(account.Id, DateTime.Now.AddDays(-1), DateTime.Now.AddDays(1)),
-                default);
+            var result = await new GetPaymentsForAccountIdQuery.Handler(contextAdapterMock.Object).Handle(
+                request: new GetPaymentsForAccountIdQuery(
+                    accountId: account.Id,
+                    timeRangeStart: DateTime.Now.AddDays(-1),
+                    timeRangeEnd: DateTime.Now.AddDays(1)),
+                cancellationToken: default);
 
             // Assert
             result.First().Id.Should().Be(payment2.Id);
@@ -87,21 +93,32 @@
         public async Task GetPaymentsForAccountId_CorrectPaymentType_PaymentFound(PaymentTypeFilter filteredPaymentType)
         {
             // Arrange
-            var account = new Account("test", 80);
-            var accountxfer = new Account("dest", 80);
+            var account = new Account(name: "test", initalBalance: 80);
+            var accountxfer = new Account(name: "dest", initalBalance: 80);
+            var payment1 = new Payment(date: DateTime.Now, amount: 10, type: PaymentType.Expense, chargedAccount: account);
+            var payment2 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Income, chargedAccount: account);
+            var payment3 = new Payment(
+                date: DateTime.Now,
+                amount: 30,
+                type: PaymentType.Transfer,
+                chargedAccount: account,
+                targetAccount: accountxfer);
 
-            var payment1 = new Payment(DateTime.Now, 10, PaymentType.Expense, account);
-            var payment2 = new Payment(DateTime.Now, 20, PaymentType.Income, account);
-            var payment3 = new Payment(DateTime.Now, 30, PaymentType.Transfer, account, accountxfer);
             await context.AddAsync(payment1);
             await context.AddAsync(payment2);
             await context.AddAsync(payment3);
             await context.SaveChangesAsync();
 
             // Act
-            List<Payment> result = await new GetPaymentsForAccountIdQuery.Handler(contextAdapterMock.Object).Handle(
-                new GetPaymentsForAccountIdQuery(account.Id, DateTime.Now.AddDays(-1), DateTime.Now.AddDays(1), default, default, filteredPaymentType),
-                default);
+            var result = await new GetPaymentsForAccountIdQuery.Handler(contextAdapterMock.Object).Handle(
+                request: new GetPaymentsForAccountIdQuery(
+                    accountId: account.Id,
+                    timeRangeStart: DateTime.Now.AddDays(-1),
+                    timeRangeEnd: DateTime.Now.AddDays(1),
+                    isClearedFilterActive: default,
+                    isRecurringFilterActive: default,
+                    filteredPaymentType: filteredPaymentType),
+                cancellationToken: default);
 
             var expectedamount = filteredPaymentType switch
             {
@@ -112,12 +129,12 @@
             };
 
             // Assert
-            Assert.Equal(result.Count, filteredPaymentType == PaymentTypeFilter.All ? 3 : 1);
-
-            if(filteredPaymentType != PaymentTypeFilter.All)
+            Assert.Equal(expected: result.Count, actual: filteredPaymentType == PaymentTypeFilter.All ? 3 : 1);
+            if (filteredPaymentType != PaymentTypeFilter.All)
             {
                 result.First().Amount.Should().Be(expectedamount);
             }
         }
     }
+
 }

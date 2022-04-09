@@ -1,14 +1,14 @@
 ﻿namespace MoneyFox.Win.ViewModels.About;
 
+using System.IO;
+using System.Threading.Tasks;
+using Windows.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Core.Common;
 using Core.Common.Interfaces;
 using Core.Interfaces;
 using Core.Resources;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Core.Common;
 
 public class AboutViewModel : ObservableObject, IAboutViewModel
 {
@@ -24,10 +24,7 @@ public class AboutViewModel : ObservableObject, IAboutViewModel
     private readonly IEmailAdapter emailAdapter;
     private readonly IStoreOperations storeFeatures;
 
-    public AboutViewModel(IAppInformation appInformation,
-        IEmailAdapter emailAdapter,
-        IBrowserAdapter browserAdapter,
-        IStoreOperations storeOperations)
+    public AboutViewModel(IAppInformation appInformation, IEmailAdapter emailAdapter, IBrowserAdapter browserAdapter, IStoreOperations storeOperations)
     {
         this.appInformation = appInformation;
         this.emailAdapter = emailAdapter;
@@ -43,14 +40,11 @@ public class AboutViewModel : ObservableObject, IAboutViewModel
 
     public RelayCommand GoToRepositoryCommand => new(async () => await GoToRepositoryAsync());
 
-    public RelayCommand GoToTranslationProjectCommand
-        => new(async () => await GoToTranslationProjectAsync());
+    public RelayCommand GoToTranslationProjectCommand => new(async () => await GoToTranslationProjectAsync());
 
-    public RelayCommand GoToDesignerTwitterAccountCommand
-        => new(async () => await GoToDesignerTwitterAccountAsync());
+    public RelayCommand GoToDesignerTwitterAccountCommand => new(async () => await GoToDesignerTwitterAccountAsync());
 
-    public RelayCommand GoToContributionPageCommand
-        => new(async () => await GoToContributionPageAsync());
+    public RelayCommand GoToContributionPageCommand => new(async () => await GoToContributionPageAsync());
 
     public string Version => appInformation.GetVersion;
 
@@ -59,26 +53,41 @@ public class AboutViewModel : ObservableObject, IAboutViewModel
     public string SupportMail => SUPPORT_MAIL;
 
     private async Task GoToWebsiteAsync()
-        => await browserAdapter.OpenWebsiteAsync(new Uri(WEBSITE_URL));
+    {
+        await browserAdapter.OpenWebsiteAsync(new(WEBSITE_URL));
+    }
 
-    private async Task SendMailAsync() => await emailAdapter.SendEmailAsync(
-        Strings.FeedbackSubject,
-        string.Empty,
-        new List<string> { SUPPORT_MAIL },
-        new List<string> { LogConfiguration.FilePath });
+    private async Task SendMailAsync()
+    {
+        await emailAdapter.SendEmailAsync(
+            subject: Strings.FeedbackSubject,
+            body: string.Empty,
+            recipients: new() { SUPPORT_MAIL },
+            filePaths: new() { Path.Combine(path1: ApplicationData.Current.LocalFolder.Path, path2: LogConfiguration.FileName) });
+    }
 
     private void RateApp()
-        => storeFeatures.RateApp();
+    {
+        storeFeatures.RateApp();
+    }
 
     private async Task GoToRepositoryAsync()
-        => await browserAdapter.OpenWebsiteAsync(new Uri(GITHUB_PROJECT_URL));
+    {
+        await browserAdapter.OpenWebsiteAsync(new(GITHUB_PROJECT_URL));
+    }
 
     private async Task GoToTranslationProjectAsync()
-        => await browserAdapter.OpenWebsiteAsync(new Uri(TRANSLATION_URL));
+    {
+        await browserAdapter.OpenWebsiteAsync(new(TRANSLATION_URL));
+    }
 
     private async Task GoToDesignerTwitterAccountAsync()
-        => await browserAdapter.OpenWebsiteAsync(new Uri(ICON_DESIGNER_URL));
+    {
+        await browserAdapter.OpenWebsiteAsync(new(ICON_DESIGNER_URL));
+    }
 
     private async Task GoToContributionPageAsync()
-        => await browserAdapter.OpenWebsiteAsync(new Uri(GITHUB_CONTRIBUTOR_URL));
+    {
+        await browserAdapter.OpenWebsiteAsync(new(GITHUB_CONTRIBUTOR_URL));
+    }
 }

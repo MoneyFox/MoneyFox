@@ -1,17 +1,18 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Payments.GetPaymentById
 {
+
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
     using Common.Interfaces;
     using Core._Pending_.Exceptions;
     using Core.Aggregates;
     using Core.Aggregates.Payments;
+    using Core.Queries;
     using FluentAssertions;
     using Infrastructure;
     using MoneyFox.Infrastructure.Persistence;
     using Moq;
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-    using Core.Queries;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -23,7 +24,6 @@
         public GetPaymentByIdQueryTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-
             contextAdapterMock = new Mock<IContextAdapter>();
             contextAdapterMock.SetupGet(x => x.Context).Returns(context);
         }
@@ -34,35 +34,39 @@
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing)
+        {
+            InMemoryAppDbContextFactory.Destroy(context);
+        }
 
         [Fact]
-        public async Task GetCategory_CategoryNotFound() =>
-            // Arrange
+        public async Task GetCategory_CategoryNotFound()
+        {
             // Act / Assert
+            // Arrange
             await Assert.ThrowsAsync<PaymentNotFoundException>(
-                async () =>
-                    await new GetPaymentByIdQuery.Handler(contextAdapterMock.Object).Handle(
-                        new GetPaymentByIdQuery(999),
-                        default));
+                async () => await new GetPaymentByIdQuery.Handler(contextAdapterMock.Object).Handle(
+                    request: new GetPaymentByIdQuery(999),
+                    cancellationToken: default));
+        }
 
         [Fact]
         public async Task GetCategory_CategoryFound()
         {
             // Arrange
-            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, new Account("test", 80));
+            var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new Account(name: "test", initalBalance: 80));
             await context.AddAsync(payment1);
             await context.SaveChangesAsync();
 
             // Act
-            Payment result =
-                await new GetPaymentByIdQuery.Handler(contextAdapterMock.Object).Handle(
-                    new GetPaymentByIdQuery(payment1.Id),
-                    default);
+            var result = await new GetPaymentByIdQuery.Handler(contextAdapterMock.Object).Handle(
+                request: new GetPaymentByIdQuery(payment1.Id),
+                cancellationToken: default);
 
             // Assert
             result.Should().NotBeNull();
             result.Id.Should().Be(payment1.Id);
         }
     }
+
 }

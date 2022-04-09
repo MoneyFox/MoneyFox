@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Core.Interfaces
 {
+
     using System;
     using System.Threading.Tasks;
 
@@ -7,4 +8,5 @@
     {
         Task OpenWebsiteAsync(Uri uri);
     }
+
 }

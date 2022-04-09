@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.ViewModels.Settings
 {
+
     using System.Collections.ObjectModel;
     using System.Globalization;
     using System.Threading.Tasks;
@@ -10,6 +11,10 @@
 
         public CultureInfo SelectedCulture { get; set; } = CultureInfo.CurrentCulture;
 
-        public Task InitializeAsync() => Task.CompletedTask;
+        public Task InitializeAsync()
+        {
+            return Task.CompletedTask;
+        }
     }
+
 }

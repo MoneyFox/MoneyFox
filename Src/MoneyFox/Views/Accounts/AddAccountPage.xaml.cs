@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Views.Accounts
 {
+
     using Core.Resources;
     using ViewModels.Accounts;
     using Xamarin.Forms;
@@ -9,9 +10,7 @@
         public AddAccountPage()
         {
             InitializeComponent();
-
             BindingContext = ViewModelLocator.AddAccountViewModel;
-
             var cancelItem = new ToolbarItem
             {
                 Command = new Command(async () => await Navigation.PopModalAsync()),
@@ -34,4 +33,5 @@
 
         private AddAccountViewModel ViewModel => (AddAccountViewModel)BindingContext;
     }
+
 }

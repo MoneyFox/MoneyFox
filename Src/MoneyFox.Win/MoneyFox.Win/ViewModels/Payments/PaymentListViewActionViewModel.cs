@@ -1,5 +1,7 @@
 ﻿namespace MoneyFox.Win.ViewModels.Payments;
 
+using System;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -8,13 +10,11 @@ using Core._Pending_.Common.Messages;
 using Core.Aggregates.Payments;
 using Core.Commands.Accounts.DeleteAccountById;
 using Core.Common.Interfaces;
+using Core.Queries;
 using Core.Resources;
 using Interfaces;
 using MediatR;
 using Services;
-using System;
-using System.Threading.Tasks;
-using Core.Queries;
 
 /// <inheritdoc cref="IPaymentListViewActionViewModel" />
 /// />
@@ -51,36 +51,25 @@ public class PaymentListViewActionViewModel : ObservableRecipient, IPaymentListV
         INavigationService navigationService)
     {
         this.accountId = accountId;
-
         this.mediator = mediator;
         this.settingsFacade = settingsFacade;
         this.dialogService = dialogService;
         this.balanceViewModel = balanceViewModel;
         this.navigationService = navigationService;
-
-        int accountCount = mediator.Send(new GetAccountCountQuery()).Result;
+        var accountCount = mediator.Send(new GetAccountCountQuery()).Result;
         IsTransferAvailable = accountCount >= TRANSFER_THRESHOLD;
         IsAddIncomeAvailable = accountCount >= 1;
         IsAddExpenseAvailable = accountCount >= 1;
     }
 
     /// <inheritdoc />
-    public RelayCommand GoToAddIncomeCommand
-        => new(() => navigationService.Navigate<AddPaymentViewModel>(PaymentType.Income));
+    public RelayCommand GoToAddIncomeCommand => new(() => navigationService.Navigate<AddPaymentViewModel>(PaymentType.Income));
 
     /// <inheritdoc />
-    public RelayCommand GoToAddExpenseCommand
-        => new(() => navigationService.Navigate<AddPaymentViewModel>(PaymentType.Expense));
+    public RelayCommand GoToAddExpenseCommand => new(() => navigationService.Navigate<AddPaymentViewModel>(PaymentType.Expense));
 
     /// <inheritdoc />
-    public RelayCommand GoToAddTransferCommand
-        => new(() => navigationService.Navigate<AddPaymentViewModel>(PaymentType.Transfer));
-
-    /// <inheritdoc />
-    public AsyncRelayCommand DeleteAccountCommand => new(DeleteAccountAsync);
-
-    /// <inheritdoc />
-    public RelayCommand ApplyFilterCommand => new(ApplyFilter);
+    public RelayCommand GoToAddTransferCommand => new(() => navigationService.Navigate<AddPaymentViewModel>(PaymentType.Transfer));
 
     /// <summary>
     ///     Indicates if the transfer option is available or if it shall be hidden.
@@ -88,9 +77,10 @@ public class PaymentListViewActionViewModel : ObservableRecipient, IPaymentListV
     public bool IsTransferAvailable
     {
         get => isTransferAvailable;
+
         set
         {
-            if(isTransferAvailable == value)
+            if (isTransferAvailable == value)
             {
                 return;
             }
@@ -106,9 +96,10 @@ public class PaymentListViewActionViewModel : ObservableRecipient, IPaymentListV
     public bool IsAddIncomeAvailable
     {
         get => isAddIncomeAvailable;
+
         set
         {
-            if(isAddIncomeAvailable == value)
+            if (isAddIncomeAvailable == value)
             {
                 return;
             }
@@ -124,9 +115,10 @@ public class PaymentListViewActionViewModel : ObservableRecipient, IPaymentListV
     public bool IsAddExpenseAvailable
     {
         get => isAddExpenseAvailable;
+
         set
         {
-            if(IsAddExpenseAvailable == value)
+            if (IsAddExpenseAvailable == value)
             {
                 return;
             }
@@ -137,12 +129,19 @@ public class PaymentListViewActionViewModel : ObservableRecipient, IPaymentListV
     }
 
     /// <inheritdoc />
+    public AsyncRelayCommand DeleteAccountCommand => new(DeleteAccountAsync);
+
+    /// <inheritdoc />
+    public RelayCommand ApplyFilterCommand => new(ApplyFilter);
+
+    /// <inheritdoc />
     public bool IsClearedFilterActive
     {
         get => isClearedFilterActive;
+
         set
         {
-            if(isClearedFilterActive == value)
+            if (isClearedFilterActive == value)
             {
                 return;
             }
@@ -156,9 +155,10 @@ public class PaymentListViewActionViewModel : ObservableRecipient, IPaymentListV
     public bool IsRecurringFilterActive
     {
         get => isRecurringFilterActive;
+
         set
         {
-            if(isRecurringFilterActive == value)
+            if (isRecurringFilterActive == value)
             {
                 return;
             }
@@ -172,9 +172,10 @@ public class PaymentListViewActionViewModel : ObservableRecipient, IPaymentListV
     public bool IsGrouped
     {
         get => isGrouped;
+
         set
         {
-            if(isGrouped == value)
+            if (isGrouped == value)
             {
                 return;
             }
@@ -188,9 +189,10 @@ public class PaymentListViewActionViewModel : ObservableRecipient, IPaymentListV
     public PaymentTypeFilter FilteredPaymentType
     {
         get => filteredPaymentType;
+
         set
         {
-            if(filteredPaymentType == value)
+            if (filteredPaymentType == value)
             {
                 return;
             }
@@ -204,9 +206,10 @@ public class PaymentListViewActionViewModel : ObservableRecipient, IPaymentListV
     public DateTime TimeRangeStart
     {
         get => timeRangeStart;
+
         set
         {
-            if(timeRangeStart == value)
+            if (timeRangeStart == value)
             {
                 return;
             }
@@ -220,9 +223,10 @@ public class PaymentListViewActionViewModel : ObservableRecipient, IPaymentListV
     public DateTime TimeRangeEnd
     {
         get => timeRangeEnd;
+
         set
         {
-            if(timeRangeEnd == value)
+            if (timeRangeEnd == value)
             {
                 return;
             }
@@ -234,9 +238,7 @@ public class PaymentListViewActionViewModel : ObservableRecipient, IPaymentListV
 
     private async Task DeleteAccountAsync()
     {
-        if(await dialogService.ShowConfirmMessageAsync(
-               Strings.DeleteTitle,
-               Strings.DeleteAccountConfirmationMessage))
+        if (await dialogService.ShowConfirmMessageAsync(title: Strings.DeleteTitle, message: Strings.DeleteAccountConfirmationMessage))
         {
             await mediator.Send(new DeactivateAccountByIdCommand(accountId));
             settingsFacade.LastDatabaseUpdate = DateTime.Now;
@@ -246,7 +248,8 @@ public class PaymentListViewActionViewModel : ObservableRecipient, IPaymentListV
         await balanceViewModel.UpdateBalanceCommand.ExecuteAsync(null);
     }
 
-    private void ApplyFilter() =>
+    private void ApplyFilter()
+    {
         Messenger.Send(
             new PaymentListFilterChangedMessage
             {
@@ -257,4 +260,5 @@ public class PaymentListViewActionViewModel : ObservableRecipient, IPaymentListV
                 IsGrouped = IsGrouped,
                 FilteredPaymentType = FilteredPaymentType
             });
+    }
 }

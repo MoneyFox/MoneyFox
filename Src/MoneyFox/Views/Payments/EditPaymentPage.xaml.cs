@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Views.Payments
 {
+
     using Core.Resources;
     using ViewModels.Payments;
     using Xamarin.Forms;
@@ -12,9 +13,7 @@
         {
             InitializeComponent();
             BindingContext = ViewModelLocator.EditPaymentViewModel;
-
             this.paymentId = paymentId;
-
             var cancelItem = new ToolbarItem
             {
                 Command = new Command(async () => await Navigation.PopModalAsync()),
@@ -37,6 +36,10 @@
 
         private EditPaymentViewModel ViewModel => (EditPaymentViewModel)BindingContext;
 
-        protected override async void OnAppearing() => await ViewModel.InitializeAsync(paymentId);
+        protected override async void OnAppearing()
+        {
+            await ViewModel.InitializeAsync(paymentId);
+        }
     }
+
 }

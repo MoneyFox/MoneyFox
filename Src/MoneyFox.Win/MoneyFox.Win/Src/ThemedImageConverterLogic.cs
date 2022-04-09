@@ -1,10 +1,10 @@
 ﻿namespace MoneyFox.Win;
 
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Media.Imaging;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media.Imaging;
 
 public static class ThemedImageConverterLogic
 {
@@ -12,25 +12,24 @@ public static class ThemedImageConverterLogic
 
     public static BitmapImage? GetImage(string path, bool negateResult = false)
     {
-        if(string.IsNullOrEmpty(path))
+        if (string.IsNullOrEmpty(path))
         {
             return null;
         }
 
-        bool isDarkTheme = Application.Current.RequestedTheme == ApplicationTheme.Dark;
-
-        if(negateResult)
+        var isDarkTheme = Application.Current.RequestedTheme == ApplicationTheme.Dark;
+        if (negateResult)
         {
             isDarkTheme = !isDarkTheme;
         }
 
-        path = $"ms-appx:{string.Format(CultureInfo.InvariantCulture, path, isDarkTheme ? "dark" : "light")}";
+        path = $"ms-appx:{string.Format(provider: CultureInfo.InvariantCulture, format: path, arg0: isDarkTheme ? "dark" : "light")}";
 
         // Check if we already cached the image
-        if(!ImageCache.TryGetValue(path, out BitmapImage result))
+        if (!ImageCache.TryGetValue(key: path, value: out var result))
         {
-            result = new BitmapImage(new Uri(path, UriKind.Absolute));
-            ImageCache.Add(path, result);
+            result = new(new(uriString: path, uriKind: UriKind.Absolute));
+            ImageCache.Add(key: path, value: result);
         }
 
         return result;

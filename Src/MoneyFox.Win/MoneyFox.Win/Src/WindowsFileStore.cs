@@ -1,29 +1,27 @@
 ﻿namespace MoneyFox.Win;
 
-using Infrastructure;
-using NLog;
 using System;
 using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
-using Windows.Storage.Streams;
+using Infrastructure;
+using Serilog;
 
 public class WindowsFileStore : FileStoreBase
 {
-    private readonly Logger logger = LogManager.GetCurrentClassLogger();
-
     public override async Task<Stream> OpenReadAsync(string path)
     {
         try
         {
-            StorageFile storageFile = await StorageFileFromRelativePathAsync(path);
-            IRandomAccessStreamWithContentType streamWithContentType = await storageFile.OpenReadAsync();
+            var storageFile = await StorageFileFromRelativePathAsync(path);
+            var streamWithContentType = await storageFile.OpenReadAsync();
 
             return streamWithContentType.AsStreamForRead();
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
-            logger.Error(ex);
+            Log.Error(exception: ex, messageTemplate: "Failed during read stream");
+
             return null;
         }
     }
@@ -32,24 +30,24 @@ public class WindowsFileStore : FileStoreBase
     {
         try
         {
-            StorageFile fromFile = await StorageFileFromRelativePathAsync(from);
-
-            if(overwrite && !await SafeDeleteFileAsync(destination))
+            var fromFile = await StorageFileFromRelativePathAsync(from);
+            if (overwrite && !await SafeDeleteFileAsync(destination))
             {
                 return false;
             }
 
-            string fullToPath = ToFullPath(destination);
-            string toDirectory = Path.GetDirectoryName(fullToPath);
-            string toFileName = Path.GetFileName(fullToPath);
-            StorageFolder toStorageFolder = await StorageFolder.GetFolderFromPathAsync(toDirectory);
-            await fromFile.MoveAsync(toStorageFolder, toFileName);
+            var fullToPath = ToFullPath(destination);
+            var toDirectory = Path.GetDirectoryName(fullToPath);
+            var toFileName = Path.GetFileName(fullToPath);
+            var toStorageFolder = await StorageFolder.GetFolderFromPathAsync(toDirectory);
+            await fromFile.MoveAsync(destinationFolder: toStorageFolder, desiredNewName: toFileName);
 
             return true;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
-            logger.Error(ex);
+            Log.Error(exception: ex, messageTemplate: "Failed to move file");
+
             return false;
         }
     }
@@ -57,25 +55,25 @@ public class WindowsFileStore : FileStoreBase
     protected override async Task WriteFileCommonAsync(string path, Action<Stream> streamAction)
     {
         await SafeDeleteFileAsync(path);
-
         try
         {
-            StorageFile storageFile = await CreateStorageFileFromRelativePathAsync(path);
-            using IRandomAccessStream streamWithContentType = await storageFile.OpenAsync(FileAccessMode.ReadWrite);
-            using Stream stream = streamWithContentType.AsStreamForWrite();
+            var storageFile = await CreateStorageFileFromRelativePathAsync(path);
+            using var streamWithContentType = await storageFile.OpenAsync(FileAccessMode.ReadWrite);
+            using var stream = streamWithContentType.AsStreamForWrite();
             streamAction(stream);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
-            logger.Error(ex);
+            Log.Error(exception: ex, messageTemplate: "Failed to write file");
+
             throw;
         }
     }
 
     private static async Task<StorageFile> StorageFileFromRelativePathAsync(string path)
     {
-        string fullPath = ToFullPath(path);
-        StorageFile storageFile = await StorageFile.GetFileFromPathAsync(fullPath);
+        var fullPath = ToFullPath(path);
+        var storageFile = await StorageFile.GetFileFromPathAsync(fullPath);
 
         return storageFile;
     }
@@ -84,16 +82,16 @@ public class WindowsFileStore : FileStoreBase
     {
         try
         {
-            StorageFile toFile = await StorageFileFromRelativePathAsync(path);
+            var toFile = await StorageFileFromRelativePathAsync(path);
             await toFile.DeleteAsync();
 
             return true;
         }
-        catch(FileNotFoundException)
+        catch (FileNotFoundException)
         {
             return true;
         }
-        catch(Exception)
+        catch (Exception)
         {
             return false;
         }
@@ -101,13 +99,11 @@ public class WindowsFileStore : FileStoreBase
 
     private static async Task<StorageFile> CreateStorageFileFromRelativePathAsync(string path)
     {
-        string fullPath = ToFullPath(path);
-        string directory = Path.GetDirectoryName(fullPath);
-        string fileName = Path.GetFileName(fullPath);
-        StorageFolder storageFolder =
-            await StorageFolder.GetFolderFromPathAsync(directory).AsTask().ConfigureAwait(false);
-        StorageFile storageFile = await storageFolder
-            .CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting)
+        var fullPath = ToFullPath(path);
+        var directory = Path.GetDirectoryName(fullPath);
+        var fileName = Path.GetFileName(fullPath);
+        var storageFolder = await StorageFolder.GetFolderFromPathAsync(directory).AsTask().ConfigureAwait(false);
+        var storageFile = await storageFolder.CreateFileAsync(desiredName: fileName, options: CreationCollisionOption.ReplaceExisting)
             .AsTask()
             .ConfigureAwait(false);
 
@@ -116,8 +112,8 @@ public class WindowsFileStore : FileStoreBase
 
     private static string ToFullPath(string path)
     {
-        string localFolderPath = ApplicationData.Current.LocalFolder.Path;
+        var localFolderPath = ApplicationData.Current.LocalFolder.Path;
 
-        return Path.Combine(localFolderPath, path);
+        return Path.Combine(path1: localFolderPath, path2: path);
     }
 }

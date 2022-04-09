@@ -1,7 +1,14 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Statistics
 {
+
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.Runtime.InteropServices;
+    using System.Threading.Tasks;
+    using Common;
     using Common.Interfaces;
-    using Core._Pending_;
     using Core.Aggregates;
     using Core.Aggregates.Payments;
     using Core.Queries.Statistics;
@@ -10,13 +17,6 @@
     using MoneyFox.Infrastructure.Persistence;
     using Moq;
     using Resources;
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
-    using System.Runtime.InteropServices;
-    using System.Threading.Tasks;
-    using Common;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -29,7 +29,6 @@
         public GetCashFlowQueryHandlerTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-
             contextAdapterMock = new Mock<IContextAdapter>();
             contextAdapterMock.SetupGet(x => x.Context).Returns(context);
         }
@@ -40,7 +39,10 @@
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing)
+        {
+            InMemoryAppDbContextFactory.Destroy(context);
+        }
 
         [Fact]
         public async Task GetValues_CorrectSums()
@@ -49,17 +51,18 @@
             context.AddRange(
                 new List<Payment>
                 {
-                    new Payment(DateTime.Today, 60, PaymentType.Income, new Account("Foo1")),
-                    new Payment(DateTime.Today, 20, PaymentType.Income, new Account("Foo2")),
-                    new Payment(DateTime.Today, 50, PaymentType.Expense, new Account("Foo3")),
-                    new Payment(DateTime.Today, 40, PaymentType.Expense, new Account("Foo3"))
+                    new Payment(date: DateTime.Today, amount: 60, type: PaymentType.Income, chargedAccount: new Account("Foo1")),
+                    new Payment(date: DateTime.Today, amount: 20, type: PaymentType.Income, chargedAccount: new Account("Foo2")),
+                    new Payment(date: DateTime.Today, amount: 50, type: PaymentType.Expense, chargedAccount: new Account("Foo3")),
+                    new Payment(date: DateTime.Today, amount: 40, type: PaymentType.Expense, chargedAccount: new Account("Foo3"))
                 });
+
             context.SaveChanges();
 
             // Act
-            List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
-                new GetCashFlowQuery {StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3)},
-                default);
+            var result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
+                request: new GetCashFlowQuery { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
+                cancellationToken: default);
 
             // Assert
             result[0].Value.Should().Be(80);
@@ -73,9 +76,9 @@
             // Arrange
 
             // Act
-            List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
-                new GetCashFlowQuery {StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3)},
-                default);
+            var result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
+                request: new GetCashFlowQuery { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
+                cancellationToken: default);
 
             // Assert
             result[0].Color.Should().Be("#9bcd9b");
@@ -89,9 +92,9 @@
             // Arrange
 
             // Act
-            List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
-                new GetCashFlowQuery {StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3)},
-                default);
+            var result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
+                request: new GetCashFlowQuery { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
+                cancellationToken: default);
 
             // Assert
             result[0].Label.Should().Be(Strings.RevenueLabel);
@@ -101,26 +104,23 @@
 
         [Theory]
         [InlineData("de-CH", 3, '-')]
-        public async Task GetValues_CorrectNegativeSign(string culture,
-            int indexNegativeSign,
-            char expectedNegativeSign)
+        public async Task GetValues_CorrectNegativeSign(string culture, int indexNegativeSign, char expectedNegativeSign)
         {
             // Arrange
             var cultureInfo = new CultureInfo(culture);
             CultureHelper.CurrentCulture = cultureInfo;
-
             context.AddRange(
-                new List<Payment> {new Payment(DateTime.Today, 40, PaymentType.Expense, new Account("Foo3"))});
+                new List<Payment> { new Payment(date: DateTime.Today, amount: 40, type: PaymentType.Expense, chargedAccount: new Account("Foo3")) });
+
             context.SaveChanges();
 
             // Act
-            List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
-                new GetCashFlowQuery {StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3)},
-                default);
+            var result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
+                request: new GetCashFlowQuery { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
+                cancellationToken: default);
 
             // Assert
             result[2].ValueLabel[indexNegativeSign].Should().Be(expectedNegativeSign);
-
             CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
         }
 
@@ -129,27 +129,20 @@
         {
             // Arrange
             context.AddRange(
-                new List<Payment> {new Payment(DateTime.Today, 40, PaymentType.Expense, new Account("Foo3"))});
-            context.SaveChanges();
+                new List<Payment> { new Payment(date: DateTime.Today, amount: 40, type: PaymentType.Expense, chargedAccount: new Account("Foo3")) });
 
+            context.SaveChanges();
             var cultureInfo = new CultureInfo("en-US");
             CultureHelper.CurrentCulture = cultureInfo;
 
             // Act
-            List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
-                new GetCashFlowQuery {StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3)},
-                default);
+            var result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
+                request: new GetCashFlowQuery { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
+                cancellationToken: default);
 
             // Assert
             // We have to test here for Mac since they have a different standard sign than Windows.
-            result[2]
-                .ValueLabel[0]
-                .Should()
-                .Be(
-                    RuntimeInformation.IsOSPlatform(OSPlatform.OSX)
-                        ? '-'
-                        : '(');
-
+            result[2].ValueLabel[0].Should().Be(RuntimeInformation.IsOSPlatform(OSPlatform.OSX) ? '-' : '(');
             CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
         }
 
@@ -163,9 +156,9 @@
             CultureHelper.CurrentCulture = cultureInfo;
 
             // Act
-            List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
-                new GetCashFlowQuery {StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3)},
-                default);
+            var result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
+                request: new GetCashFlowQuery { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
+                cancellationToken: default);
 
             // Assert
             result[0].ValueLabel[0].Should().Be(expectedCurrencySymbol);
@@ -173,4 +166,5 @@
             result[2].ValueLabel[0].Should().Be(expectedCurrencySymbol);
         }
     }
+
 }

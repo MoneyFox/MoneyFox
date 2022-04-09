@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Views.Categories
 {
+
     using ViewModels.Categories;
     using Xamarin.Forms;
 
@@ -13,6 +14,10 @@
 
         private CategoryListViewModel ViewModel => (CategoryListViewModel)BindingContext;
 
-        protected override async void OnAppearing() => await ViewModel.InitializeAsync();
+        protected override async void OnAppearing()
+        {
+            await ViewModel.InitializeAsync();
+        }
     }
+
 }

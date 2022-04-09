@@ -1,22 +1,20 @@
 ﻿namespace MoneyFox.Win.ViewModels.DataBackup;
 
+using System;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Core._Pending_.Common.Facades;
 using Core.Common.Exceptions;
 using Core.Common.Interfaces;
+using Core.DbBackup;
 using Core.Interfaces;
 using Core.Resources;
 using Microsoft.AppCenter.Crashes;
-using NLog;
-using System;
-using System.Threading.Tasks;
-using Core.DbBackup;
+using Serilog;
 
 public class BackupViewModel : ObservableObject, IBackupViewModel
 {
-    private readonly Logger logger = LogManager.GetCurrentClassLogger();
-
     private readonly IBackupService backupService;
     private readonly IConnectivityAdapter connectivity;
     private readonly IDialogService dialogService;
@@ -42,6 +40,22 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
         this.toastService = toastService;
     }
 
+    public UserAccount UserAccount
+    {
+        get => userAccount;
+
+        set
+        {
+            if (userAccount == value)
+            {
+                return;
+            }
+
+            userAccount = value;
+            OnPropertyChanged();
+        }
+    }
+
     public AsyncRelayCommand InitializeCommand => new(async () => await InitializeAsync());
 
     public AsyncRelayCommand LoginCommand => new(async () => await LoginAsync());
@@ -55,9 +69,10 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
     public DateTime BackupLastModified
     {
         get => backupLastModified;
+
         private set
         {
-            if(backupLastModified == value)
+            if (backupLastModified == value)
             {
                 return;
             }
@@ -70,9 +85,10 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
     public bool IsLoadingBackupAvailability
     {
         get => isLoadingBackupAvailability;
+
         private set
         {
-            if(isLoadingBackupAvailability == value)
+            if (isLoadingBackupAvailability == value)
             {
                 return;
             }
@@ -87,9 +103,10 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
     public bool BackupAvailable
     {
         get => backupAvailable;
+
         private set
         {
-            if(backupAvailable == value)
+            if (backupAvailable == value)
             {
                 return;
             }
@@ -102,9 +119,10 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
     public bool IsAutoBackupEnabled
     {
         get => settingsFacade.IsBackupAutouploadEnabled;
+
         set
         {
-            if(settingsFacade.IsBackupAutouploadEnabled == value)
+            if (settingsFacade.IsBackupAutouploadEnabled == value)
             {
                 return;
             }
@@ -114,34 +132,23 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
         }
     }
 
-    public UserAccount UserAccount
+    private async Task InitializeAsync()
     {
-        get => userAccount;
-        set
-        {
-            if(userAccount == value)
-            {
-                return;
-            }
-
-            userAccount = value;
-            OnPropertyChanged();
-        }
+        await LoadedAsync();
     }
-
-    private async Task InitializeAsync() => await LoadedAsync();
 
     private async Task LoadedAsync()
     {
-        if(!IsLoggedIn)
+        if (!IsLoggedIn)
         {
             OnPropertyChanged(nameof(IsLoggedIn));
+
             return;
         }
 
-        if(!connectivity.IsConnected)
+        if (!connectivity.IsConnected)
         {
-            await dialogService.ShowMessageAsync(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
+            await dialogService.ShowMessageAsync(title: Strings.NoNetworkTitle, message: Strings.NoNetworkMessage);
         }
 
         IsLoadingBackupAvailability = true;
@@ -151,25 +158,20 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
             BackupLastModified = await backupService.GetBackupDateAsync();
             UserAccount = await backupService.GetUserAccount();
         }
-        catch(BackupAuthenticationFailedException ex)
+        catch (BackupAuthenticationFailedException ex)
         {
-            logger.Error(ex, "Issue during Login process.");
             await backupService.LogoutAsync();
-            await dialogService.ShowMessageAsync(
-                Strings.AuthenticationFailedTitle,
-                Strings.ErrorMessageAuthenticationFailed);
+            await dialogService.ShowMessageAsync(title: Strings.AuthenticationFailedTitle, message: Strings.ErrorMessageAuthenticationFailed);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
-            if(ex.StackTrace == "4f37.717b")
+            if (ex.StackTrace == "4f37.717b")
             {
                 await backupService.LogoutAsync();
-                await dialogService.ShowMessageAsync(
-                    Strings.AuthenticationFailedTitle,
-                    Strings.ErrorMessageAuthenticationFailed);
+                await dialogService.ShowMessageAsync(title: Strings.AuthenticationFailedTitle, message: Strings.ErrorMessageAuthenticationFailed);
             }
 
-            logger.Error(ex, "Issue on loading backup view.");
+            Log.Error(exception: ex, messageTemplate: "Issue on loading backup view");
         }
 
         IsLoadingBackupAvailability = false;
@@ -177,10 +179,9 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
 
     private async Task LoginAsync()
     {
-        if(!connectivity.IsConnected)
+        if (!connectivity.IsConnected)
         {
-            logger.Info("Tried to log in, but device isn't connected to the internet.");
-            await dialogService.ShowMessageAsync(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
+            await dialogService.ShowMessageAsync(title: Strings.NoNetworkTitle, message: Strings.NoNetworkMessage);
         }
 
         try
@@ -188,16 +189,16 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
             await backupService.LoginAsync();
             UserAccount = await backupService.GetUserAccount();
         }
-        catch(BackupOperationCanceledException)
+        catch (BackupOperationCanceledException)
         {
-            await dialogService.ShowMessageAsync(Strings.CanceledTitle, Strings.LoginCanceledMessage);
+            await dialogService.ShowMessageAsync(title: Strings.CanceledTitle, message: Strings.LoginCanceledMessage);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
-            logger.Error(ex, "Login Failed.");
             await dialogService.ShowMessageAsync(
-                Strings.LoginFailedTitle,
-                string.Format(Strings.UnknownErrorMessage, ex.Message));
+                title: Strings.LoginFailedTitle,
+                message: string.Format(format: Strings.UnknownErrorMessage, arg0: ex.Message));
+
             Crashes.TrackError(ex);
         }
 
@@ -211,14 +212,13 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
         {
             await backupService.LogoutAsync();
         }
-        catch(BackupOperationCanceledException)
+        catch (BackupOperationCanceledException)
         {
-            await dialogService.ShowMessageAsync(Strings.CanceledTitle, Strings.LogoutCanceledMessage);
+            await dialogService.ShowMessageAsync(title: Strings.CanceledTitle, message: Strings.LogoutCanceledMessage);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
-            logger.Error(ex, "Logout Failed.");
-            await dialogService.ShowMessageAsync(Strings.GeneralErrorTitle, ex.Message);
+            await dialogService.ShowMessageAsync(title: Strings.GeneralErrorTitle, message: ex.Message);
             Crashes.TrackError(ex);
         }
 
@@ -228,28 +228,25 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
 
     private async Task CreateBackupAsync()
     {
-        if(!await ShowOverwriteBackupInfoAsync())
+        if (!await ShowOverwriteBackupInfoAsync())
         {
             return;
         }
 
         await dialogService.ShowLoadingDialogAsync();
-
         try
         {
             await backupService.UploadBackupAsync(BackupMode.Manual);
             await toastService.ShowToastAsync(Strings.BackupCreatedMessage);
-
             BackupLastModified = DateTime.Now;
         }
-        catch(BackupOperationCanceledException)
+        catch (BackupOperationCanceledException)
         {
-            await dialogService.ShowMessageAsync(Strings.CanceledTitle, Strings.UploadBackupCanceledMessage);
+            await dialogService.ShowMessageAsync(title: Strings.CanceledTitle, message: Strings.UploadBackupCanceledMessage);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
-            logger.Error(ex, "Create Backup failed.");
-            await dialogService.ShowMessageAsync(Strings.BackupFailedTitle, ex.Message);
+            await dialogService.ShowMessageAsync(title: Strings.BackupFailedTitle, message: ex.Message);
             Crashes.TrackError(ex);
         }
 
@@ -258,59 +255,62 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
 
     private async Task RestoreBackupAsync()
     {
-        if(!await ShowOverwriteDataInfoAsync())
+        if (!await ShowOverwriteDataInfoAsync())
         {
             return;
         }
 
-        DateTime backupDate = await backupService.GetBackupDateAsync();
-        if(settingsFacade.LastDatabaseUpdate <= backupDate || await ShowForceOverrideConfirmationAsync())
+        var backupDate = await backupService.GetBackupDateAsync();
+        if (settingsFacade.LastDatabaseUpdate <= backupDate || await ShowForceOverrideConfirmationAsync())
         {
             await dialogService.ShowLoadingDialogAsync();
-
             try
             {
                 await backupService.RestoreBackupAsync(BackupMode.Manual);
                 await toastService.ShowToastAsync(Strings.BackupRestoredMessage);
             }
-            catch(BackupOperationCanceledException)
+            catch (BackupOperationCanceledException)
             {
-                logger.Info("Restoring the backup was canceled by the user.");
-                await dialogService.ShowMessageAsync(Strings.CanceledTitle, Strings.RestoreBackupCanceledMessage);
+                await dialogService.ShowMessageAsync(title: Strings.CanceledTitle, message: Strings.RestoreBackupCanceledMessage);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                logger.Error(ex, "Restore Backup failed.");
-                await dialogService.ShowMessageAsync(Strings.BackupFailedTitle, ex.Message);
+                await dialogService.ShowMessageAsync(title: Strings.BackupFailedTitle, message: ex.Message);
                 Crashes.TrackError(ex);
             }
         }
         else
         {
-            logger.Info("Restore Backup canceled by the user due to newer local data.");
+            Log.Information("Restore Backup canceled by the user due to newer local data");
         }
 
         await dialogService.HideLoadingDialogAsync();
     }
 
     private async Task<bool> ShowOverwriteBackupInfoAsync()
-        => await dialogService.ShowConfirmMessageAsync(
-            Strings.OverwriteTitle,
-            Strings.OverwriteBackupMessage,
-            Strings.YesLabel,
-            Strings.NoLabel);
+    {
+        return await dialogService.ShowConfirmMessageAsync(
+            title: Strings.OverwriteTitle,
+            message: Strings.OverwriteBackupMessage,
+            positiveButtonText: Strings.YesLabel,
+            negativeButtonText: Strings.NoLabel);
+    }
 
     private async Task<bool> ShowOverwriteDataInfoAsync()
-        => await dialogService.ShowConfirmMessageAsync(
-            Strings.OverwriteTitle,
-            Strings.OverwriteDataMessage,
-            Strings.YesLabel,
-            Strings.NoLabel);
+    {
+        return await dialogService.ShowConfirmMessageAsync(
+            title: Strings.OverwriteTitle,
+            message: Strings.OverwriteDataMessage,
+            positiveButtonText: Strings.YesLabel,
+            negativeButtonText: Strings.NoLabel);
+    }
 
     private async Task<bool> ShowForceOverrideConfirmationAsync()
-        => await dialogService.ShowConfirmMessageAsync(
-            Strings.ForceOverrideBackupTitle,
-            Strings.ForceOverrideBackupMessage,
-            Strings.YesLabel,
-            Strings.NoLabel);
+    {
+        return await dialogService.ShowConfirmMessageAsync(
+            title: Strings.ForceOverrideBackupTitle,
+            message: Strings.ForceOverrideBackupMessage,
+            positiveButtonText: Strings.YesLabel,
+            negativeButtonText: Strings.NoLabel);
+    }
 }

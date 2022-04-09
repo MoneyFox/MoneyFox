@@ -1,20 +1,20 @@
 ﻿namespace MoneyFox.ViewModels.Statistics
 {
+
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
     using AutoMapper;
     using Categories;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
     using Core._Pending_.Common.Messages;
+    using Core.Queries;
     using Core.Queries.Statistics;
     using Extensions;
     using MediatR;
     using Microcharts;
     using SkiaSharp;
-    using System;
-    using System.Collections.Immutable;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using Core.Queries;
     using Views.Statistics;
     using Xamarin.Essentials;
     using Xamarin.Forms;
@@ -35,9 +35,10 @@
         public CategoryViewModel? SelectedCategory
         {
             get => selectedCategory;
+
             set
             {
-                if(selectedCategory == value)
+                if (selectedCategory == value)
                 {
                     return;
                 }
@@ -53,9 +54,10 @@
         public BarChart Chart
         {
             get => chart;
+
             set
             {
-                if(chart == value)
+                if (chart == value)
                 {
                     return;
                 }
@@ -71,9 +73,10 @@
         public bool HasNoData
         {
             get => hasNoData;
+
             set
             {
-                if(hasNoData == value)
+                if (hasNoData == value)
                 {
                     return;
                 }
@@ -85,35 +88,38 @@
 
         public RelayCommand LoadDataCommand => new RelayCommand(async () => await LoadAsync());
 
-        public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(
-            async () =>
-                await Shell.Current.GoToModalAsync(ViewModelLocator.SelectCategoryRoute));
+        public RelayCommand GoToSelectCategoryDialogCommand
+            => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.SelectCategoryRoute));
 
-        protected override void OnActivated() =>
+        protected override void OnActivated()
+        {
             Messenger.Register<StatisticCategoryProgressionViewModel, CategorySelectedMessage>(
-                this,
-                async (r, m) =>
+                recipient: this,
+                handler: async (r, m) =>
                 {
-                    SelectedCategory =
-                        mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(m.CategoryId)));
+                    SelectedCategory = mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(m.CategoryId)));
                     await r.LoadAsync();
                 });
+        }
 
-        protected override void OnDeactivated() => Messenger.Unregister<CategorySelectedMessage>(this);
+        protected override void OnDeactivated()
+        {
+            Messenger.Unregister<CategorySelectedMessage>(this);
+        }
 
         protected override async Task LoadAsync()
         {
-            if(SelectedCategory == null)
+            if (SelectedCategory == null)
             {
                 HasNoData = true;
+
                 return;
             }
 
-            IImmutableList<StatisticEntry> statisticItems =
-                await Mediator.Send(new GetCategoryProgressionQuery(SelectedCategory?.Id ?? 0, StartDate, EndDate));
+            var statisticItems = await Mediator.Send(
+                new GetCategoryProgressionQuery(categoryId: SelectedCategory?.Id ?? 0, startDate: StartDate, endDate: EndDate));
 
             HasNoData = !statisticItems.Any();
-
             Chart = new BarChart
             {
                 Entries = statisticItems.Select(
@@ -132,4 +138,5 @@
             };
         }
     }
+
 }

@@ -1,35 +1,20 @@
 ﻿namespace MoneyFox.Win.ViewModels.DesignTime;
 
+using System.Collections.Generic;
 using CommunityToolkit.Mvvm.Input;
-using Core;
+using Core.Enums;
 using Core.Resources;
 using Statistics;
-using System.Collections.Generic;
-using Core.Enums;
 
 public class DesignTimeStatisticSelectorViewModel : IStatisticSelectorViewModel
 {
-    public List<StatisticSelectorType> StatisticItems => new()
-    {
-        new StatisticSelectorType
+    public List<StatisticSelectorType> StatisticItems
+        => new()
         {
-            Name = Strings.CashflowLabel,
-            Description = Strings.CashflowDescription,
-            Type = StatisticType.Cashflow
-        },
-        new StatisticSelectorType
-        {
-            Name = Strings.CategorySpreadingLabel,
-            Description = Strings.CategorieSpreadingDescription,
-            Type = StatisticType.CategorySpreading
-        },
-        new StatisticSelectorType
-        {
-            Name = Strings.CategorySummaryLabel,
-            Description = Strings.CategorySummaryDescription,
-            Type = StatisticType.CategorySummary
-        }
-    };
+            new() { Name = Strings.CashflowLabel, Description = Strings.CashflowDescription, Type = StatisticType.Cashflow },
+            new() { Name = Strings.CategorySpreadingLabel, Description = Strings.CategorieSpreadingDescription, Type = StatisticType.CategorySpreading },
+            new() { Name = Strings.CategorySummaryLabel, Description = Strings.CategorySummaryDescription, Type = StatisticType.CategorySummary }
+        };
 
     public RelayCommand<StatisticSelectorType> GoToStatisticCommand { get; } = null!;
 }

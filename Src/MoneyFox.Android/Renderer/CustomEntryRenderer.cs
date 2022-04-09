@@ -1,40 +1,33 @@
 ﻿using MoneyFox.Droid.Renderer;
 using Xamarin.Forms;
 
-[assembly: ExportRenderer(typeof(Entry), typeof(CustomEntryRenderer), new[] {typeof(VisualMarker.MaterialVisual)})]
+[assembly: ExportRenderer(handler: typeof(Entry), target: typeof(CustomEntryRenderer), supportedVisuals: new[] { typeof(VisualMarker.MaterialVisual) })]
+
 namespace MoneyFox.Droid.Renderer
 {
+
+    using System;
     using Android.Content;
     using Android.Graphics;
-    using Android.Graphics.Drawables;
     using Android.OS;
     using Android.Runtime;
     using Android.Widget;
-    using Java.Lang.Reflect;
-    using NLog;
-    using System;
+    using Serilog;
     using Xamarin.Forms;
     using Xamarin.Forms.Material.Android;
     using Xamarin.Forms.Platform.Android;
     using Color = Xamarin.Forms.Color;
-    using Object = Java.Lang.Object;
     using Resource = Droid.Resource;
 
     public class CustomEntryRenderer : MaterialEntryRenderer
     {
-        private readonly Logger logger = LogManager.GetCurrentClassLogger();
-
-        public CustomEntryRenderer(Context context) : base(context)
-        {
-        }
+        public CustomEntryRenderer(Context context) : base(context) { }
 
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
         {
             base.OnElementChanged(e);
-
             Control.EditText.SetHighlightColor(Color.Accent.ToAndroid());
-
-            if(Build.VERSION.SdkInt >= BuildVersionCodes.Q)
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
             {
                 TrySetCursorPointerColorNew();
             }
@@ -49,40 +42,30 @@ namespace MoneyFox.Droid.Renderer
             try
             {
                 Control.EditText.SetTextCursorDrawable(Resource.Drawable.CustomCursor);
-
-                Drawable? textSelectHandleDrawable = Control.EditText.TextSelectHandle;
-                if(textSelectHandleDrawable != null)
+                var textSelectHandleDrawable = Control.EditText.TextSelectHandle;
+                if (textSelectHandleDrawable != null)
                 {
-                    textSelectHandleDrawable.SetColorFilter(
-                        new BlendModeColorFilter(
-                            Color.Accent.ToAndroid(),
-                            BlendMode.SrcIn!));
+                    textSelectHandleDrawable.SetColorFilter(new BlendModeColorFilter(color: Color.Accent.ToAndroid(), mode: BlendMode.SrcIn!));
                     Control.EditText.TextSelectHandle = textSelectHandleDrawable;
                 }
 
-                Drawable? textSelectHandleLeftDrawable = Control.EditText.TextSelectHandleLeft;
-                if(textSelectHandleLeftDrawable != null)
+                var textSelectHandleLeftDrawable = Control.EditText.TextSelectHandleLeft;
+                if (textSelectHandleLeftDrawable != null)
                 {
-                    textSelectHandleLeftDrawable.SetColorFilter(
-                        new BlendModeColorFilter(
-                            Color.Accent.ToAndroid(),
-                            BlendMode.SrcIn!));
+                    textSelectHandleLeftDrawable.SetColorFilter(new BlendModeColorFilter(color: Color.Accent.ToAndroid(), mode: BlendMode.SrcIn!));
                     Control.EditText.TextSelectHandle = textSelectHandleLeftDrawable;
                 }
 
-                Drawable? textSelectHandleRightDrawable = Control.EditText.TextSelectHandleRight;
-                if(textSelectHandleRightDrawable != null)
+                var textSelectHandleRightDrawable = Control.EditText.TextSelectHandleRight;
+                if (textSelectHandleRightDrawable != null)
                 {
-                    textSelectHandleRightDrawable.SetColorFilter(
-                        new BlendModeColorFilter(
-                            Color.Accent.ToAndroid(),
-                            BlendMode.SrcIn!));
+                    textSelectHandleRightDrawable.SetColorFilter(new BlendModeColorFilter(color: Color.Accent.ToAndroid(), mode: BlendMode.SrcIn!));
                     Control.EditText.TextSelectHandle = textSelectHandleRightDrawable;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                logger.Error(ex, "Error creating in the CustomEntry Renderer");
+                Log.Error(exception: ex, messageTemplate: "Error creating in the CustomEntry Renderer");
             }
         }
 
@@ -91,66 +74,54 @@ namespace MoneyFox.Droid.Renderer
             try
             {
                 var textViewTemplate = new TextView(Control.EditText.Context);
-
-                Field field = textViewTemplate.Class.GetDeclaredField("mEditor");
+                var field = textViewTemplate.Class.GetDeclaredField("mEditor");
                 field.Accessible = true;
-
-                Object? editor = field.Get(Control.EditText);
-                if(editor == null)
+                var editor = field.Get(Control.EditText);
+                if (editor == null)
                 {
                     return;
                 }
 
-                string[] fieldsNames =
+                string[] fieldsNames = { "mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes" };
+                string[] drawableNames = { "mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter" };
+                for (var index = 0; index < fieldsNames.Length && index < drawableNames.Length; index++)
                 {
-                    "mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes"
-                };
-                string[] drawableNames = {"mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter"};
-
-                for(int index = 0; index < fieldsNames.Length && index < drawableNames.Length; index++)
-                {
-                    string fieldName = fieldsNames[index];
-                    string drawableName = drawableNames[index];
-
+                    var fieldName = fieldsNames[index];
+                    var drawableName = drawableNames[index];
                     field = textViewTemplate.Class.GetDeclaredField(fieldName);
                     field.Accessible = true;
-                    int handle = field.GetInt(Control.EditText);
-
-                    Drawable? handleDrawable = Resources?.GetDrawable(handle, null);
-
-                    if(handleDrawable == null)
+                    var handle = field.GetInt(Control.EditText);
+                    var handleDrawable = Resources?.GetDrawable(id: handle, theme: null);
+                    if (handleDrawable == null)
                     {
                         return;
                     }
 
-                    if(Build.VERSION.SdkInt >= BuildVersionCodes.Q)
+                    if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
                     {
-                        handleDrawable.SetColorFilter(
-                            new BlendModeColorFilter(
-                                Color.Accent.ToAndroid(),
-                                BlendMode.SrcIn!));
+                        handleDrawable.SetColorFilter(new BlendModeColorFilter(color: Color.Accent.ToAndroid(), mode: BlendMode.SrcIn!));
                     }
                     else
                     {
 #pragma warning disable CS0618 // Type or member is obsolete
-                        handleDrawable.SetColorFilter(Color.Accent.ToAndroid(), PorterDuff.Mode.SrcIn!);
+                        handleDrawable.SetColorFilter(color: Color.Accent.ToAndroid(), mode: PorterDuff.Mode.SrcIn!);
 #pragma warning restore CS0618 // Type or member is obsolete
                     }
 
                     field = editor.Class.GetDeclaredField(drawableName);
                     field.Accessible = true;
-                    field.Set(editor, handleDrawable);
+                    field.Set(obj: editor, value: handleDrawable);
                 }
 
-                IntPtr intPtrtextViewClass = JNIEnv.FindClass(typeof(TextView));
-                IntPtr mCursorDrawableResProperty = JNIEnv.GetFieldID(intPtrtextViewClass, "mCursorDrawableRes", "I");
-
-                JNIEnv.SetField(Control.EditText.Handle, mCursorDrawableResProperty, Resource.Drawable.CustomCursor);
+                var intPtrtextViewClass = JNIEnv.FindClass(typeof(TextView));
+                var mCursorDrawableResProperty = JNIEnv.GetFieldID(jclass: intPtrtextViewClass, name: "mCursorDrawableRes", sig: "I");
+                JNIEnv.SetField(jobject: Control.EditText.Handle, jfieldID: mCursorDrawableResProperty, val: Resource.Drawable.CustomCursor);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                logger.Error(ex, "Error setting the cursor color for CustomEntry.");
+                Log.Error(exception: ex, messageTemplate: "Error setting the cursor color for CustomEntry");
             }
         }
     }
+
 }

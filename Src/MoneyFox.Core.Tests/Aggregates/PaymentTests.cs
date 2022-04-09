@@ -1,24 +1,30 @@
 ﻿namespace MoneyFox.Core.Tests.Aggregates
 {
+
+    using System;
+    using System.Diagnostics.CodeAnalysis;
     using Core._Pending_.Exceptions;
     using Core.Aggregates;
     using Core.Aggregates.Payments;
     using FluentAssertions;
-    using System;
-    using System.Diagnostics.CodeAnalysis;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
     public class PaymentTests
     {
         [Fact]
-        public void Ctor_ChargedAccountNull_ArgumentNullException() =>
-            // Arrange
-
+        public void Ctor_ChargedAccountNull_ArgumentNullException()
+        {
             // Act / Assert
+            // Arrange
             Assert.Throws<AccountNullException>(
-                () =>
-                    new Payment(DateTime.Now, 123, PaymentType.Expense, null, note: "note"));
+                () => new Payment(
+                    date: DateTime.Now,
+                    amount: 123,
+                    type: PaymentType.Expense,
+                    chargedAccount: null,
+                    note: "note"));
+        }
 
         [Theory]
         [InlineData(1, false)]
@@ -27,7 +33,7 @@
         public void Ctor_AddedDays_ClearedCorrect(int daysToAdd, bool expectedIsCleared)
         {
             // Arrange
-            var payment = new Payment(DateTime.Now.AddDays(daysToAdd), 123, PaymentType.Expense, new Account("foo"));
+            var payment = new Payment(date: DateTime.Now.AddDays(daysToAdd), amount: 123, type: PaymentType.Expense, chargedAccount: new Account("foo"));
 
             // Act
 
@@ -44,7 +50,7 @@
             // Arrange
 
             // Act
-            var payment = new Payment(DateTime.Now.AddDays(daysToAdd), 123, PaymentType.Expense, new Account("foo"));
+            var payment = new Payment(date: DateTime.Now.AddDays(daysToAdd), amount: 123, type: PaymentType.Expense, chargedAccount: new Account("foo"));
             payment.ClearPayment();
 
             // Assert
@@ -55,12 +61,11 @@
         public void UpdatePayment_ChargedAccountNull_ArgumentNullException()
         {
             // Arrange
-            var testPayment = new Payment(DateTime.Now, 123, PaymentType.Expense, new Account("foo"));
+            var testPayment = new Payment(date: DateTime.Now, amount: 123, type: PaymentType.Expense, chargedAccount: new Account("foo"));
 
             // Act / Assert
             Assert.Throws<AccountNullException>(
-                () =>
-                    testPayment.UpdatePayment(DateTime.Today, 123, PaymentType.Expense, null));
+                () => testPayment.UpdatePayment(date: DateTime.Today, amount: 123, type: PaymentType.Expense, chargedAccount: null));
         }
 
         [Theory]
@@ -70,13 +75,14 @@
         public void UpdatePayment_AddedDays_ClearedCorrect(int daysToAdd, bool expectedIsCleared)
         {
             // Arrange
-            var testPayment = new Payment(DateTime.Now, 123, PaymentType.Expense, new Account("foo"));
+            var testPayment = new Payment(date: DateTime.Now, amount: 123, type: PaymentType.Expense, chargedAccount: new Account("foo"));
 
             // Act
-            testPayment.UpdatePayment(DateTime.Now.AddDays(daysToAdd), 123, PaymentType.Expense, new Account("foo"));
+            testPayment.UpdatePayment(date: DateTime.Now.AddDays(daysToAdd), amount: 123, type: PaymentType.Expense, chargedAccount: new Account("foo"));
 
             // Assert
             testPayment.IsCleared.Should().Be(expectedIsCleared);
         }
     }
+
 }

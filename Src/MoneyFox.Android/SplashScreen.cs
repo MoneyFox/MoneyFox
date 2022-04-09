@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Droid
 {
+
     using Android.App;
     using Android.Content.PM;
     using AndroidX.AppCompat.App;
@@ -18,4 +19,5 @@
             StartActivity(typeof(MainActivity));
         }
     }
+
 }

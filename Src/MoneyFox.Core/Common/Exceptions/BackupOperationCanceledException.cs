@@ -1,35 +1,21 @@
 ﻿namespace MoneyFox.Core.Common.Exceptions
 {
+
     using System;
     using System.Runtime.Serialization;
 
     [Serializable]
     public class BackupOperationCanceledException : Exception
     {
-        public BackupOperationCanceledException()
-        {
-        }
+        public BackupOperationCanceledException() { }
 
-        public BackupOperationCanceledException(string message) : base(message)
-        {
-        }
+        public BackupOperationCanceledException(string message) : base(message) { }
 
-        public BackupOperationCanceledException(Exception innerException) : base(
-            "Backup Operation Canceled!",
-            innerException)
-        {
-        }
+        public BackupOperationCanceledException(Exception innerException) : base(message: "Backup Operation Canceled!", innerException: innerException) { }
 
-        public BackupOperationCanceledException(string message, Exception innerException) : base(
-            message,
-            innerException)
-        {
-        }
+        public BackupOperationCanceledException(string message, Exception innerException) : base(message: message, innerException: innerException) { }
 
-        protected BackupOperationCanceledException(SerializationInfo info, StreamingContext context) : base(
-            info,
-            context)
-        {
-        }
+        protected BackupOperationCanceledException(SerializationInfo info, StreamingContext context) : base(info: info, context: context) { }
     }
+
 }

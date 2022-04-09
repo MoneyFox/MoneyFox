@@ -2,15 +2,11 @@
 {
 
     using Core.Interfaces;
-    using NLog;
+    using Serilog;
     using Xamarin.Essentials;
 
-    /// <inheritdoc />
     public class ConnectivityAdapter : IConnectivityAdapter
     {
-        private readonly Logger logger = LogManager.GetCurrentClassLogger();
-
-        /// <inheritdoc />
         public bool IsConnected
         {
             get
@@ -21,7 +17,7 @@
                 }
                 catch (PermissionException ex)
                 {
-                    logger.Error(exception: ex, "Permission denied on check for connection");
+                    Log.Error(exception: ex, messageTemplate: "Permission denied on check for connection");
 
                     return false;
                 }

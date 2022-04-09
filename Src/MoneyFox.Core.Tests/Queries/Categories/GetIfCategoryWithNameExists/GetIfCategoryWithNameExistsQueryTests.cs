@@ -1,13 +1,14 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Categories.GetIfCategoryWithNameExists
 {
-    using Core.Aggregates.Payments;
-    using FluentAssertions;
-    using Infrastructure;
-    using MoneyFox.Infrastructure.Persistence;
+
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
+    using Core.Aggregates.Payments;
     using Core.Queries;
+    using FluentAssertions;
+    using Infrastructure;
+    using MoneyFox.Infrastructure.Persistence;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -26,7 +27,10 @@
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing)
+        {
+            InMemoryAppDbContextFactory.Destroy(context);
+        }
 
         [Fact]
         public async Task CategoryWithSameNameDontExist()
@@ -37,10 +41,9 @@
             await context.SaveChangesAsync();
 
             // Act
-            bool result =
-                await new GetIfCategoryWithNameExistsQuery.Handler(context).Handle(
-                    new GetIfCategoryWithNameExistsQuery("Foo"),
-                    default);
+            var result = await new GetIfCategoryWithNameExistsQuery.Handler(context).Handle(
+                request: new GetIfCategoryWithNameExistsQuery("Foo"),
+                cancellationToken: default);
 
             // Assert
             result.Should().BeFalse();
@@ -55,13 +58,13 @@
             await context.SaveChangesAsync();
 
             // Act
-            bool result =
-                await new GetIfCategoryWithNameExistsQuery.Handler(context).Handle(
-                    new GetIfCategoryWithNameExistsQuery(testCat1.Name),
-                    default);
+            var result = await new GetIfCategoryWithNameExistsQuery.Handler(context).Handle(
+                request: new GetIfCategoryWithNameExistsQuery(testCat1.Name),
+                cancellationToken: default);
 
             // Assert
             result.Should().BeTrue();
         }
     }
+
 }

@@ -1,12 +1,14 @@
 ﻿namespace MoneyFox.ConverterLogic
 {
+
     using Core.Aggregates.Payments;
     using Core.Resources;
 
     public static class RecurrenceTypeConverterLogic
     {
-        public static string GetStringForPaymentRecurrence(PaymentRecurrence passedEnum) =>
-            passedEnum switch
+        public static string GetStringForPaymentRecurrence(PaymentRecurrence passedEnum)
+        {
+            return passedEnum switch
             {
                 PaymentRecurrence.Daily => Strings.DailyLabel,
                 PaymentRecurrence.DailyWithoutWeekend => Strings.DailyWithoutWeekendLabel,
@@ -19,5 +21,7 @@
                 PaymentRecurrence.Yearly => Strings.YearlyLabel,
                 _ => string.Empty
             };
+        }
     }
+
 }

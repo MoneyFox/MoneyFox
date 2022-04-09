@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Core._Pending_.Common.Messages
 {
+
     using System;
 
     public class DateSelectedMessage
@@ -20,4 +21,5 @@
         /// </summary>
         public DateTime EndDate { get; }
     }
+
 }

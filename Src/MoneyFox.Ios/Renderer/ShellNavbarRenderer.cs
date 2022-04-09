@@ -2,10 +2,11 @@
 using MoneyFox.iOS.Renderer;
 using Xamarin.Forms;
 
-[assembly: ExportRenderer(typeof(AppShell), typeof(ShellNavbarRenderer))]
+[assembly: ExportRenderer(handler: typeof(AppShell), target: typeof(ShellNavbarRenderer))]
 
 namespace MoneyFox.iOS.Renderer
 {
+
     using UIKit;
     using Xamarin.Essentials;
     using Xamarin.Forms;
@@ -13,24 +14,21 @@ namespace MoneyFox.iOS.Renderer
 
     public class ShellNavbarRenderer : ShellRenderer
     {
-        protected override IShellNavBarAppearanceTracker CreateNavBarAppearanceTracker() =>
-            new NoLineAppearanceTracker();
+        protected override IShellNavBarAppearanceTracker CreateNavBarAppearanceTracker()
+        {
+            return new NoLineAppearanceTracker();
+        }
     }
 
     public class NoLineAppearanceTracker : IShellNavBarAppearanceTracker
     {
         public void SetAppearance(UINavigationController controller, ShellAppearance appearance)
         {
-            Color tintColor = AppInfo.RequestedTheme == AppTheme.Dark
-                ? Color.White
-                : Color.FromHex("#323130");
-
-            UINavigationBar navBar = controller.NavigationBar;
+            var tintColor = AppInfo.RequestedTheme == AppTheme.Dark ? Color.White : Color.FromHex("#323130");
+            var navBar = controller.NavigationBar;
             navBar.TintColor = tintColor.ToUIColor();
-
             var navigationBarAppearance = new UINavigationBarAppearance();
             navigationBarAppearance.ConfigureWithOpaqueBackground();
-
             navigationBarAppearance.ShadowColor = UIColor.Clear;
             navigationBarAppearance.BackgroundColor = UIColor.Clear;
             navBar.ScrollEdgeAppearance = navBar.StandardAppearance = navigationBarAppearance;
@@ -56,4 +54,5 @@ namespace MoneyFox.iOS.Renderer
             // Only needed for interface implementation.
         }
     }
+
 }

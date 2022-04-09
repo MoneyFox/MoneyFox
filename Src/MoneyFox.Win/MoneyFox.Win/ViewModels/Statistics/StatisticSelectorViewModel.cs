@@ -1,13 +1,12 @@
 ﻿namespace MoneyFox.Win.ViewModels.Statistics;
 
+using System.Collections.Generic;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Core;
+using Core.Enums;
 using Core.Resources;
 using Services;
 using StatisticCategorySummary;
-using System.Collections.Generic;
-using Core.Enums;
 
 public class StatisticSelectorViewModel : ObservableObject, IStatisticSelectorViewModel
 {
@@ -18,39 +17,18 @@ public class StatisticSelectorViewModel : ObservableObject, IStatisticSelectorVi
         this.navigationService = navigationService;
     }
 
-    public List<StatisticSelectorType> StatisticItems => new()
-    {
-        new StatisticSelectorType
+    public List<StatisticSelectorType> StatisticItems
+        => new()
         {
-            Name = Strings.CashflowLabel,
-            Description = Strings.CashflowDescription,
-            Type = StatisticType.Cashflow
-        },
-        new StatisticSelectorType
-        {
-            Name = Strings.MonthlyCashflowLabel,
-            Description = Strings.MonthlyCashflowDescription,
-            Type = StatisticType.MonthlyAccountCashFlow
-        },
-        new StatisticSelectorType
-        {
-            Name = Strings.CategoryProgressionLabel,
-            Description = Strings.CategoryProgressionDescription,
-            Type = StatisticType.CategoryProgression
-        },
-        new StatisticSelectorType
-        {
-            Name = Strings.CategorySpreadingLabel,
-            Description = Strings.CategorieSpreadingDescription,
-            Type = StatisticType.CategorySpreading
-        },
-        new StatisticSelectorType
-        {
-            Name = Strings.CategorySummaryLabel,
-            Description = Strings.CategorySummaryDescription,
-            Type = StatisticType.CategorySummary
-        }
-    };
+            new() { Name = Strings.CashflowLabel, Description = Strings.CashflowDescription, Type = StatisticType.Cashflow },
+            new() { Name = Strings.MonthlyCashflowLabel, Description = Strings.MonthlyCashflowDescription, Type = StatisticType.MonthlyAccountCashFlow },
+            new()
+            {
+                Name = Strings.CategoryProgressionLabel, Description = Strings.CategoryProgressionDescription, Type = StatisticType.CategoryProgression
+            },
+            new() { Name = Strings.CategorySpreadingLabel, Description = Strings.CategorieSpreadingDescription, Type = StatisticType.CategorySpreading },
+            new() { Name = Strings.CategorySummaryLabel, Description = Strings.CategorySummaryDescription, Type = StatisticType.CategorySummary }
+        };
 
     /// <summary>
     ///     Navigates to the statistic view and shows the selected statistic
@@ -59,23 +37,23 @@ public class StatisticSelectorViewModel : ObservableObject, IStatisticSelectorVi
 
     private void GoToStatistic(StatisticSelectorType item)
     {
-        if(item.Type == StatisticType.Cashflow)
+        if (item.Type == StatisticType.Cashflow)
         {
             navigationService.Navigate<StatisticCashFlowViewModel>();
         }
-        else if(item.Type == StatisticType.MonthlyAccountCashFlow)
+        else if (item.Type == StatisticType.MonthlyAccountCashFlow)
         {
             navigationService.Navigate<StatisticAccountMonthlyCashflowViewModel>();
         }
-        else if(item.Type == StatisticType.CategorySpreading)
+        else if (item.Type == StatisticType.CategorySpreading)
         {
             navigationService.Navigate<StatisticCategorySpreadingViewModel>();
         }
-        else if(item.Type == StatisticType.CategorySummary)
+        else if (item.Type == StatisticType.CategorySummary)
         {
             navigationService.Navigate<StatisticCategorySummaryViewModel>();
         }
-        else if(item.Type == StatisticType.CategoryProgression)
+        else if (item.Type == StatisticType.CategoryProgression)
         {
             navigationService.Navigate<StatisticCategoryProgressionViewModel>();
         }

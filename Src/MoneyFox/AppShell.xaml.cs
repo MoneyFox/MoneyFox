@@ -1,6 +1,7 @@
 ﻿namespace MoneyFox
 {
-    using MoneyFox.Views.About;
+
+    using Views.About;
     using Views.Accounts;
     using Views.Backup;
     using Views.Budget;
@@ -22,36 +23,30 @@
 
         private static void RegisterRoutes()
         {
-            Routing.RegisterRoute(ViewModelLocator.WelcomeViewRoute, typeof(WelcomePage));
-            Routing.RegisterRoute(ViewModelLocator.CategoryIntroductionRoute, typeof(CategoryIntroductionPage));
-            Routing.RegisterRoute(ViewModelLocator.SetupCompletionRoute, typeof(SetupCompletionPage));
-
-            Routing.RegisterRoute(ViewModelLocator.DashboardRoute, typeof(DashboardPage));
-            Routing.RegisterRoute(ViewModelLocator.AccountListRoute, typeof(AccountListPage));
-            Routing.RegisterRoute(ViewModelLocator.AddAccountRoute, typeof(AddAccountPage));
-            Routing.RegisterRoute(ViewModelLocator.EditAccountRoute, typeof(EditAccountPage));
-            Routing.RegisterRoute(ViewModelLocator.BudgetListRoute, typeof(BudgetListPage));
-            Routing.RegisterRoute(ViewModelLocator.PaymentListRoute, typeof(PaymentListPage));
-            Routing.RegisterRoute(ViewModelLocator.CategoryListRoute, typeof(CategoryListPage));
-            Routing.RegisterRoute(ViewModelLocator.SelectCategoryRoute, typeof(SelectCategoryPage));
-            Routing.RegisterRoute(ViewModelLocator.AddCategoryRoute, typeof(AddCategoryPage));
-            Routing.RegisterRoute(ViewModelLocator.AddPaymentRoute, typeof(AddPaymentPage));
-            Routing.RegisterRoute(ViewModelLocator.BackupRoute, typeof(BackupPage));
-            Routing.RegisterRoute(ViewModelLocator.SettingsRoute, typeof(SettingsPage));
-            Routing.RegisterRoute(ViewModelLocator.AboutRoute, typeof(AboutPage));
-            Routing.RegisterRoute(ViewModelLocator.StatisticCashFlowRoute, typeof(StatisticCashFlowPage));
-            Routing.RegisterRoute(
-                ViewModelLocator.StatisticAccountMonthlyCashflowRoute,
-                typeof(StatisticAccountMonthlyCashFlowPage));
-            Routing.RegisterRoute(
-                ViewModelLocator.StatisticCategoryProgressionRoute,
-                typeof(StatisticCategoryProgressionPage));
-            Routing.RegisterRoute(
-                ViewModelLocator.StatisticCategorySpreadingRoute,
-                typeof(StatisticCategorySpreadingPage));
-            Routing.RegisterRoute(ViewModelLocator.StatisticCategorySummaryRoute, typeof(StatisticCategorySummaryPage));
-            Routing.RegisterRoute(ViewModelLocator.StatisticSelectorRoute, typeof(StatisticSelectorPage));
-            Routing.RegisterRoute(ViewModelLocator.PaymentForCategoryListRoute, typeof(PaymentForCategoryListPage));
+            Routing.RegisterRoute(route: ViewModelLocator.WelcomeViewRoute, type: typeof(WelcomePage));
+            Routing.RegisterRoute(route: ViewModelLocator.CategoryIntroductionRoute, type: typeof(CategoryIntroductionPage));
+            Routing.RegisterRoute(route: ViewModelLocator.SetupCompletionRoute, type: typeof(SetupCompletionPage));
+            Routing.RegisterRoute(route: ViewModelLocator.DashboardRoute, type: typeof(DashboardPage));
+            Routing.RegisterRoute(route: ViewModelLocator.AccountListRoute, type: typeof(AccountListPage));
+            Routing.RegisterRoute(route: ViewModelLocator.AddAccountRoute, type: typeof(AddAccountPage));
+            Routing.RegisterRoute(route: ViewModelLocator.EditAccountRoute, type: typeof(EditAccountPage));
+            Routing.RegisterRoute(route: ViewModelLocator.BudgetListRoute, type: typeof(BudgetListPage));
+            Routing.RegisterRoute(route: ViewModelLocator.PaymentListRoute, type: typeof(PaymentListPage));
+            Routing.RegisterRoute(route: ViewModelLocator.CategoryListRoute, type: typeof(CategoryListPage));
+            Routing.RegisterRoute(route: ViewModelLocator.SelectCategoryRoute, type: typeof(SelectCategoryPage));
+            Routing.RegisterRoute(route: ViewModelLocator.AddCategoryRoute, type: typeof(AddCategoryPage));
+            Routing.RegisterRoute(route: ViewModelLocator.AddPaymentRoute, type: typeof(AddPaymentPage));
+            Routing.RegisterRoute(route: ViewModelLocator.BackupRoute, type: typeof(BackupPage));
+            Routing.RegisterRoute(route: ViewModelLocator.SettingsRoute, type: typeof(SettingsPage));
+            Routing.RegisterRoute(route: ViewModelLocator.AboutRoute, type: typeof(AboutPage));
+            Routing.RegisterRoute(route: ViewModelLocator.StatisticCashFlowRoute, type: typeof(StatisticCashFlowPage));
+            Routing.RegisterRoute(route: ViewModelLocator.StatisticAccountMonthlyCashflowRoute, type: typeof(StatisticAccountMonthlyCashFlowPage));
+            Routing.RegisterRoute(route: ViewModelLocator.StatisticCategoryProgressionRoute, type: typeof(StatisticCategoryProgressionPage));
+            Routing.RegisterRoute(route: ViewModelLocator.StatisticCategorySpreadingRoute, type: typeof(StatisticCategorySpreadingPage));
+            Routing.RegisterRoute(route: ViewModelLocator.StatisticCategorySummaryRoute, type: typeof(StatisticCategorySummaryPage));
+            Routing.RegisterRoute(route: ViewModelLocator.StatisticSelectorRoute, type: typeof(StatisticSelectorPage));
+            Routing.RegisterRoute(route: ViewModelLocator.PaymentForCategoryListRoute, type: typeof(PaymentForCategoryListPage));
         }
     }
+
 }

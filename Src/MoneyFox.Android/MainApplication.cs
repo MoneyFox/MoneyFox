@@ -1,78 +1,60 @@
 ﻿namespace MoneyFox.Droid
 {
+
+    using System;
+    using System.IO;
     using Android.App;
     using Android.Runtime;
     using Autofac;
-    using NLog;
-    using NLog.Config;
-    using NLog.Targets;
-    using System;
-    using System.IO;
     using Core.Common;
+    using Serilog;
+    using Serilog.Events;
+    using Serilog.Exceptions;
     using Xamarin.Essentials;
 
     [Application]
     public class MainApplication : Application
     {
-        private Logger? logManager;
-
-        public MainApplication(IntPtr handle, JniHandleOwnership transer) : base(handle, transer)
-        {
-        }
+        public MainApplication(IntPtr handle, JniHandleOwnership transer) : base(javaReference: handle, transfer: transer) { }
 
         public override void OnCreate()
         {
             InitLogger();
 
-            logManager?.Info("Application Started.");
-            logManager?.Info("App Version: {Version}", new DroidAppInformation().GetVersion);
-
             // Setup handler for uncaught exceptions.
             AndroidEnvironment.UnhandledExceptionRaiser += HandleAndroidException;
-
             RegisterServices();
             base.OnCreate();
         }
 
         private void HandleAndroidException(object sender, RaiseThrowableEventArgs e)
-            => logManager?.Fatal(e.Exception, "Application Terminating. 1");
+        {
+            Log.Fatal(exception: e.Exception, messageTemplate: "Application Terminating");
+        }
 
         private void RegisterServices()
         {
-            logManager?.Debug("Register Services.");
-
             var builder = new ContainerBuilder();
             builder.RegisterModule<AndroidModule>();
-
             ViewModelLocator.RegisterServices(builder);
-
-            logManager?.Debug("Register Services finished.");
-        }
-
-        public override void OnTerminate()
-        {
-            logManager?.Info("Application Terminating.");
-            LogManager.Shutdown();
-            base.OnTerminate();
         }
 
         private void InitLogger()
         {
-            var config = new LoggingConfiguration();
+            Log.Logger = new LoggerConfiguration().MinimumLevel.Debug()
+                .Enrich.FromLogContext()
+                .Enrich.WithExceptionDetails()
+                .WriteTo.File(
+                    path: Path.Combine(path1: FileSystem.AppDataDirectory, path2: LogConfiguration.FileName),
+                    restrictedToMinimumLevel: LogEventLevel.Information,
+                    rollingInterval: RollingInterval.Month,
+                    retainedFileCountLimit: 12,
+                    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz}\t[{Level:u3}]\t{Message:lj}\t{Exception}{NewLine}",
+                    shared: true)
+                .CreateLogger();
 
-            var logfile = new FileTarget("logfile")
-            {
-                FileName = Path.Combine(FileSystem.CacheDirectory, LogConfiguration.FilePath),
-                AutoFlush = true,
-                ArchiveEvery = FileArchivePeriod.Month
-            };
-            var debugTarget = new DebugTarget("console");
-
-            config.AddRule(LogLevel.Info, LogLevel.Fatal, debugTarget);
-            config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);
-
-            LogManager.Configuration = config;
-            logManager = LogManager.GetCurrentClassLogger();
+            Log.Information("Application Startup");
         }
     }
+
 }

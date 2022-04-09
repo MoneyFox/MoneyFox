@@ -1,9 +1,10 @@
 ﻿namespace MoneyFox.Tests.ViewModels.OverflowMenu
 {
+
+    using System.Threading.Tasks;
     using Core.Interfaces;
     using MoneyFox.ViewModels.OverflowMenu;
     using NSubstitute;
-    using System.Threading.Tasks;
     using Views.About;
     using Views.Backup;
     using Views.Categories;
@@ -80,4 +81,5 @@
             await navigationService.Received(1).NavigateTo<AboutPage>();
         }
     }
+
 }

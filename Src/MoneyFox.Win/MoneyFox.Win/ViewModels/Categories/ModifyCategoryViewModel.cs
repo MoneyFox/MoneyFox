@@ -1,18 +1,17 @@
 ﻿namespace MoneyFox.Win.ViewModels.Categories;
 
-using DialogServiceClass = DialogService;
+using System.Threading.Tasks;
 using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core._Pending_.Common.Messages;
 using Core.Common.Interfaces;
+using Core.Queries;
 using Core.Resources;
 using MediatR;
-using Microsoft.UI.Xaml.Controls;
-using MoneyFox.Win.Services;
-using System.Threading.Tasks;
-using Core.Queries;
+using Services;
+using DialogServiceClass = DialogService;
 
 /// <summary>
 ///     View Model for creating and editing Categories without dialog
@@ -28,27 +27,40 @@ public abstract class ModifyCategoryViewModel : ObservableRecipient, IModifyCate
     /// <summary>
     ///     Constructor
     /// </summary>
-    protected ModifyCategoryViewModel(IMediator mediator,
-        INavigationService navigationService,
-        IMapper mapper,
-        IDialogService dialogService)
+    protected ModifyCategoryViewModel(IMediator mediator, INavigationService navigationService, IMapper mapper, IDialogService dialogService)
     {
         this.mediator = mediator;
         this.mapper = mapper;
-
         NavigationService = navigationService;
         DialogService = dialogService;
     }
-
-    protected abstract Task InitializeAsync();
-
-    protected abstract Task SaveCategoryAsync();
 
     protected INavigationService NavigationService { get; }
 
     protected IDialogService DialogService { get; }
 
     public AsyncRelayCommand InitializeCommand => new(InitializeAsync);
+
+    /// <summary>
+    ///     Returns the Title based on whether a CategoryViewModel is being created or edited
+    /// </summary>
+    public string Title
+    {
+        get => title;
+
+        set
+        {
+            if (title == value)
+            {
+                return;
+            }
+
+            title = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public int CategoryId { get; set; }
 
     public AsyncRelayCommand SaveCommand => new(SaveCategoryBaseAsync);
 
@@ -63,6 +75,7 @@ public abstract class ModifyCategoryViewModel : ObservableRecipient, IModifyCate
     public CategoryViewModel SelectedCategory
     {
         get => selectedCategory;
+
         set
         {
             selectedCategory = value;
@@ -70,43 +83,28 @@ public abstract class ModifyCategoryViewModel : ObservableRecipient, IModifyCate
         }
     }
 
-    /// <summary>
-    ///     Returns the Title based on whether a CategoryViewModel is being created or edited
-    /// </summary>
-    public string Title
-    {
-        get => title;
-        set
-        {
-            if(title == value)
-            {
-                return;
-            }
+    protected abstract Task InitializeAsync();
 
-            title = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public int CategoryId { get; set; }
+    protected abstract Task SaveCategoryAsync();
 
     private async Task SaveCategoryBaseAsync()
     {
-        ContentDialog? openContentDialog = DialogServiceClass.GetOpenContentDialog();
-
-        if(string.IsNullOrEmpty(SelectedCategory.Name))
+        var openContentDialog = DialogServiceClass.GetOpenContentDialog();
+        if (string.IsNullOrEmpty(SelectedCategory.Name))
         {
             DialogServiceClass.HideContentDialog(openContentDialog);
-            await DialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+            await DialogService.ShowMessageAsync(title: Strings.MandatoryFieldEmptyTitle, message: Strings.NameRequiredMessage);
             await DialogServiceClass.ShowContentDialog(openContentDialog);
+
             return;
         }
 
-        if(await mediator.Send(new GetIfCategoryWithNameExistsQuery(SelectedCategory.Name)))
+        if (await mediator.Send(new GetIfCategoryWithNameExistsQuery(SelectedCategory.Name)))
         {
             DialogServiceClass.HideContentDialog(openContentDialog);
-            await DialogService.ShowMessageAsync(Strings.DuplicatedNameTitle, Strings.DuplicateCategoryMessage);
+            await DialogService.ShowMessageAsync(title: Strings.DuplicatedNameTitle, message: Strings.DuplicateCategoryMessage);
             await DialogServiceClass.ShowContentDialog(openContentDialog);
+
             return;
         }
 
@@ -114,6 +112,8 @@ public abstract class ModifyCategoryViewModel : ObservableRecipient, IModifyCate
         Messenger.Send(new ReloadMessage());
     }
 
-    private async Task CancelAsync() => SelectedCategory =
-        mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(SelectedCategory.Id)));
+    private async Task CancelAsync()
+    {
+        SelectedCategory = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(SelectedCategory.Id)));
+    }
 }

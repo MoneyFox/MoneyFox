@@ -1,16 +1,16 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Categories.GetCategoryBySearchTerm
 {
+
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
     using Common.Interfaces;
     using Core.Aggregates.Payments;
+    using Core.Queries;
     using FluentAssertions;
     using Infrastructure;
     using MoneyFox.Infrastructure.Persistence;
     using Moq;
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-    using Core.Queries;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -22,7 +22,6 @@
         public GetCategoryBySearchTermQueryTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-
             contextAdapterMock = new Mock<IContextAdapter>();
             contextAdapterMock.SetupGet(x => x.Context).Returns(context);
         }
@@ -33,7 +32,10 @@
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing)
+        {
+            InMemoryAppDbContextFactory.Destroy(context);
+        }
 
         [Fact]
         public async Task GetExcludedAccountQuery_WithoutFilter_CorrectNumberLoaded()
@@ -46,10 +48,9 @@
             await context.SaveChangesAsync();
 
             // Act
-            List<Category> result =
-                await new GetCategoryBySearchTermQuery.Handler(contextAdapterMock.Object).Handle(
-                    new GetCategoryBySearchTermQuery(),
-                    default);
+            var result = await new GetCategoryBySearchTermQuery.Handler(contextAdapterMock.Object).Handle(
+                request: new GetCategoryBySearchTermQuery(),
+                cancellationToken: default);
 
             // Assert
             result.Should().HaveCount(2);
@@ -66,13 +67,13 @@
             await context.SaveChangesAsync();
 
             // Act
-            List<Category> result =
-                await new GetCategoryBySearchTermQuery.Handler(contextAdapterMock.Object).Handle(
-                    new GetCategoryBySearchTermQuery("guid"),
-                    default);
+            var result = await new GetCategoryBySearchTermQuery.Handler(contextAdapterMock.Object).Handle(
+                request: new GetCategoryBySearchTermQuery("guid"),
+                cancellationToken: default);
 
             // Assert
             Assert.Single(result);
         }
     }
+
 }

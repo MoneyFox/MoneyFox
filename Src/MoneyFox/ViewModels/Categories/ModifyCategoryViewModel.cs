@@ -1,14 +1,15 @@
 ﻿namespace MoneyFox.ViewModels.Categories
 {
+
+    using System.Threading.Tasks;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
     using Core._Pending_.Common.Messages;
     using Core.Common.Interfaces;
+    using Core.Queries;
     using Core.Resources;
     using MediatR;
-    using System.Threading.Tasks;
-    using Core.Queries;
     using Xamarin.Forms;
 
     public abstract class ModifyCategoryViewModel : ObservableRecipient
@@ -18,9 +19,7 @@
 
         private CategoryViewModel selectedCategory = new CategoryViewModel();
 
-        protected ModifyCategoryViewModel(
-            IMediator mediator,
-            IDialogService dialogService)
+        protected ModifyCategoryViewModel(IMediator mediator, IDialogService dialogService)
         {
             this.mediator = mediator;
             this.dialogService = dialogService;
@@ -34,6 +33,7 @@
         public CategoryViewModel SelectedCategory
         {
             get => selectedCategory;
+
             set
             {
                 selectedCategory = value;
@@ -45,15 +45,17 @@
 
         protected virtual async Task SaveCategoryBaseAsync()
         {
-            if(string.IsNullOrEmpty(SelectedCategory.Name))
+            if (string.IsNullOrEmpty(SelectedCategory.Name))
             {
-                await dialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+                await dialogService.ShowMessageAsync(title: Strings.MandatoryFieldEmptyTitle, message: Strings.NameRequiredMessage);
+
                 return;
             }
 
-            if(await mediator.Send(new GetIfCategoryWithNameExistsQuery(SelectedCategory.Name)))
+            if (await mediator.Send(new GetIfCategoryWithNameExistsQuery(SelectedCategory.Name)))
             {
-                await dialogService.ShowMessageAsync(Strings.DuplicatedNameTitle, Strings.DuplicateCategoryMessage);
+                await dialogService.ShowMessageAsync(title: Strings.DuplicatedNameTitle, message: Strings.DuplicateCategoryMessage);
+
                 return;
             }
 
@@ -61,8 +63,8 @@
             await SaveCategoryAsync();
             Messenger.Send(new ReloadMessage());
             await dialogService.HideLoadingDialogAsync();
-
             await Application.Current.MainPage.Navigation.PopModalAsync();
         }
     }
+
 }

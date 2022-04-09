@@ -1,18 +1,22 @@
 ﻿namespace MoneyFox.Win.ViewModels.DesignTime;
 
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Accounts;
 using CommunityToolkit.Mvvm.Input;
 using Core.Aggregates.Payments;
 using Payments;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 public class DesignTimeModifyPaymentViewModel : IModifyPaymentViewModel
 {
     public bool IsTransfer { get; }
 
     public DateTime EndDate { get; } = DateTime.Now;
+
+    public DateTime Date { get; }
+
+    public RelayCommand DeleteCommand { get; } = null!;
 
     public PaymentRecurrence Recurrence { get; } = PaymentRecurrence.Monthly;
 
@@ -42,15 +46,11 @@ public class DesignTimeModifyPaymentViewModel : IModifyPaymentViewModel
 
     public string AccountHeader { get; } = "";
 
-    public DateTime Date { get; }
-
     public RelayCommand SelectedItemChangedCommand { get; } = null!;
 
     public RelayCommand SaveCommand { get; } = null!;
 
     public AsyncRelayCommand GoToSelectCategoryDialogCommand { get; } = null!;
-
-    public RelayCommand DeleteCommand { get; } = null!;
 
     public RelayCommand CancelCommand { get; } = null!;
 

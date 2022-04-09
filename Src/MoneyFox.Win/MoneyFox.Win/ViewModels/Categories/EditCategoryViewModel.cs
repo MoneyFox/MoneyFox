@@ -1,63 +1,57 @@
 ﻿namespace MoneyFox.Win.ViewModels.Categories;
 
+using System.Globalization;
+using System.Threading.Tasks;
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using Core.Aggregates.Payments;
 using Core.Commands.Categories.DeleteCategoryById;
 using Core.Commands.Categories.UpdateCategory;
 using Core.Common.Interfaces;
+using Core.Queries;
 using Core.Resources;
 using MediatR;
-using NLog;
 using Services;
-using System.Globalization;
-using System.Threading.Tasks;
-using Core.Queries;
 
 public class EditCategoryViewModel : ModifyCategoryViewModel
 {
-    private readonly Logger logManager = LogManager.GetCurrentClassLogger();
-
     private readonly IMediator mediator;
     private readonly IMapper mapper;
 
-    public EditCategoryViewModel(IMediator mediator,
-        IDialogService dialogService,
-        INavigationService navigationService,
-        IMapper mapper) : base(mediator, navigationService, mapper, dialogService)
+    public EditCategoryViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService, IMapper mapper) : base(
+        mediator: mediator,
+        navigationService: navigationService,
+        mapper: mapper,
+        dialogService: dialogService)
     {
         this.mediator = mediator;
         this.mapper = mapper;
     }
 
-    /// <summary>
-    ///     Delete the selected CategoryViewModel from the database
-    /// </summary>
     public AsyncRelayCommand DeleteCommand => new(DeleteCategoryAsync);
 
     protected override async Task InitializeAsync()
     {
-        Category category = await mediator.Send(new GetCategoryByIdQuery(CategoryId));
+        var category = await mediator.Send(new GetCategoryByIdQuery(CategoryId));
         SelectedCategory = mapper.Map<CategoryViewModel>(category);
-        Title = string.Format(CultureInfo.InvariantCulture, Strings.EditCategoryTitle, SelectedCategory.Name);
+        Title = string.Format(provider: CultureInfo.InvariantCulture, format: Strings.EditCategoryTitle, arg0: SelectedCategory.Name);
     }
 
-    protected override async Task SaveCategoryAsync() =>
+    protected override async Task SaveCategoryAsync()
+    {
         await mediator.Send(new UpdateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
+    }
 
     private async Task DeleteCategoryAsync()
     {
-        if(SelectedCategory == null)
+        if (SelectedCategory == null)
         {
             return;
         }
 
-        if(await DialogService.ShowConfirmMessageAsync(
-               Strings.DeleteTitle,
-               Strings.DeleteCategoryConfirmationMessage))
+        if (await DialogService.ShowConfirmMessageAsync(title: Strings.DeleteTitle, message: Strings.DeleteCategoryConfirmationMessage))
         {
             await mediator.Send(new DeleteCategoryByIdCommand(SelectedCategory.Id));
-            logManager.Info("Category with Id {id} deleted.", SelectedCategory.Id);
             await CancelCommand.ExecuteAsync(null);
         }
     }

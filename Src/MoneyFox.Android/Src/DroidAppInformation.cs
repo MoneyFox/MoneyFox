@@ -1,7 +1,7 @@
 namespace MoneyFox.Droid
 {
+
     using Android.App;
-    using Android.Content;
     using Core.Common.Interfaces;
 
     public class DroidAppInformation : IAppInformation
@@ -10,18 +10,15 @@ namespace MoneyFox.Droid
         {
             get
             {
-                Context? context = Application.Context;
-
-                if(context == null)
+                var context = Application.Context;
+                if (context == null)
                 {
                     return string.Empty;
                 }
 
-                return context.PackageManager
-                           ?.GetPackageInfo(context.PackageName ?? string.Empty, 0)
-                           ?.VersionName
-                       ?? string.Empty;
+                return context.PackageManager?.GetPackageInfo(packageName: context.PackageName ?? string.Empty, flags: 0)?.VersionName ?? string.Empty;
             }
         }
     }
+
 }

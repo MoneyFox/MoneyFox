@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.ViewModels.About
 {
+
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -65,7 +66,7 @@
                 subject: Strings.FeedbackSubject,
                 body: string.Empty,
                 recipients: new List<string> { SUPPORT_MAIL },
-                filePaths: new List<string> { Path.Combine(path1: FileSystem.CacheDirectory, path2: LogConfiguration.FilePath) });
+                filePaths: new List<string> { Path.Combine(path1: FileSystem.AppDataDirectory, path2: LogConfiguration.FileName) });
         }
 
         private void RateApp()
@@ -93,4 +94,5 @@
             await browserAdapter.OpenWebsiteAsync(new Uri(GITHUB_CONTRIBUTOR_URL));
         }
     }
+
 }

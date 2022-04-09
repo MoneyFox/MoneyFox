@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Droid
 {
+
     using Acr.UserDialogs;
     using Android.App;
     using Autofac;
@@ -14,10 +15,9 @@
             builder.RegisterType<PlayStoreOperations>().AsImplementedInterfaces();
             builder.RegisterType<DroidAppInformation>().AsImplementedInterfaces();
             builder.Register(c => UserDialogs.Instance).As<IUserDialogs>();
-            builder.Register(c => new FileStoreIoBase(Application.Context.FilesDir?.Path ?? ""))
-                .AsImplementedInterfaces();
-
+            builder.Register(c => new FileStoreIoBase(Application.Context.FilesDir?.Path ?? "")).AsImplementedInterfaces();
             builder.RegisterModule<MoneyFoxModule>();
         }
     }
+
 }

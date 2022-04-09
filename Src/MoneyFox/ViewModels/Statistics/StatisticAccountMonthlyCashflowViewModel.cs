@@ -1,18 +1,19 @@
 ﻿namespace MoneyFox.ViewModels.Statistics
 {
-    using Accounts;
-    using AutoMapper;
-    using CommunityToolkit.Mvvm.Input;
-    using Core.Queries.Statistics;
-    using MediatR;
-    using Microcharts;
-    using SkiaSharp;
+
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
+    using Accounts;
+    using AutoMapper;
+    using CommunityToolkit.Mvvm.Input;
     using Core.Queries;
+    using Core.Queries.Statistics;
+    using MediatR;
+    using Microcharts;
+    using SkiaSharp;
     using Views.Statistics;
     using Xamarin.Essentials;
 
@@ -26,12 +27,9 @@
         private bool hasNoData;
         private AccountViewModel selectedAccount = null!;
 
-        public StatisticAccountMonthlyCashflowViewModel(
-            IMediator mediator,
-            IMapper mapper) : base(mediator)
+        public StatisticAccountMonthlyCashflowViewModel(IMediator mediator, IMapper mapper) : base(mediator)
         {
             this.mapper = mapper;
-
             StartDate = DateTime.Now.AddYears(-1);
         }
 
@@ -41,9 +39,10 @@
         public BarChart Chart
         {
             get => chart;
+
             set
             {
-                if(chart == value)
+                if (chart == value)
                 {
                     return;
                 }
@@ -59,9 +58,10 @@
         public bool HasNoData
         {
             get => hasNoData;
+
             set
             {
-                if(hasNoData == value)
+                if (hasNoData == value)
                 {
                     return;
                 }
@@ -76,9 +76,10 @@
         public AccountViewModel SelectedAccount
         {
             get => selectedAccount;
+
             set
             {
-                if(selectedAccount == value)
+                if (selectedAccount == value)
                 {
                     return;
                 }
@@ -98,8 +99,7 @@
             Accounts.Clear();
             var accounts = mapper.Map<List<AccountViewModel>>(await Mediator.Send(new GetAccountsQuery()));
             accounts.ForEach(Accounts.Add);
-
-            if(Accounts.Any())
+            if (Accounts.Any())
             {
                 SelectedAccount = Accounts.First();
                 await LoadAsync();
@@ -108,11 +108,10 @@
 
         protected override async Task LoadAsync()
         {
-            List<StatisticEntry> statisticItems =
-                await Mediator.Send(new GetAccountProgressionQuery(SelectedAccount?.Id ?? 0, StartDate, EndDate));
+            var statisticItems = await Mediator.Send(
+                new GetAccountProgressionQuery(accountId: SelectedAccount?.Id ?? 0, startDate: StartDate, endDate: EndDate));
 
             HasNoData = !statisticItems.Any();
-
             Chart = new BarChart
             {
                 Entries = statisticItems.Select(
@@ -131,4 +130,5 @@
             };
         }
     }
+
 }

@@ -10,9 +10,10 @@ public class IncomeExpenseBalanceViewModel : ObservableObject
     public decimal TotalEarned
     {
         get => totalEarned;
+
         set
         {
-            if(totalEarned == value)
+            if (totalEarned == value)
             {
                 return;
             }
@@ -25,9 +26,10 @@ public class IncomeExpenseBalanceViewModel : ObservableObject
     public decimal TotalSpent
     {
         get => totalSpent;
+
         set
         {
-            if(totalSpent == value)
+            if (totalSpent == value)
             {
                 return;
             }

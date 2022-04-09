@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Views.Categories
 {
+
     using CommonServiceLocator;
     using Core.Resources;
     using ViewModels.Categories;
@@ -13,9 +14,7 @@
         {
             InitializeComponent();
             BindingContext = ServiceLocator.Current.GetInstance<EditCategoryViewModel>();
-
             this.categoryId = categoryId;
-
             var cancelItem = new ToolbarItem
             {
                 Command = new Command(async () => await Navigation.PopModalAsync()),
@@ -38,6 +37,10 @@
 
         private EditCategoryViewModel ViewModel => (EditCategoryViewModel)BindingContext;
 
-        protected override async void OnAppearing() => await ViewModel.InitializeAsync(categoryId);
+        protected override async void OnAppearing()
+        {
+            await ViewModel.InitializeAsync(categoryId);
+        }
     }
+
 }

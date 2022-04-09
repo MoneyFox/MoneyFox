@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Utilities
 {
+
     using System.Globalization;
 
     /// <summary>
@@ -12,6 +13,10 @@
         /// </summary>
         /// <param name="value">decimal who shall be converted</param>
         /// <returns>Formated string.</returns>
-        public static string FormatLargeNumbers(decimal value) => value.ToString("N2", CultureInfo.CurrentCulture);
+        public static string FormatLargeNumbers(decimal value)
+        {
+            return value.ToString(format: "N2", provider: CultureInfo.CurrentCulture);
+        }
     }
+
 }

@@ -1,5 +1,9 @@
 ﻿namespace MoneyFox.Win.ViewModels.Payments;
 
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Threading.Tasks;
 using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -9,26 +13,17 @@ using Core._Pending_.Common.Messages;
 using Core.Aggregates.Payments;
 using Core.Commands.Payments.DeletePaymentById;
 using Core.Common.Interfaces;
+using Core.Queries;
 using Core.Resources;
 using Groups;
 using Interfaces;
 using MediatR;
 using Microsoft.UI.Xaml.Data;
-using NLog;
+using Serilog;
 using Services;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Threading.Tasks;
-using Core.Queries;
 
-/// <summary>
-///     Representation of the payment list view.
-/// </summary>
 public class PaymentListViewModel : ObservableRecipient
 {
-    private readonly Logger logManager = LogManager.GetCurrentClassLogger();
-
     private const int DEFAULT_YEAR_BACK = -2;
 
     private readonly IMediator mediator;
@@ -45,8 +40,7 @@ public class PaymentListViewModel : ObservableRecipient
     private bool isBusy;
     private IPaymentListViewActionViewModel? viewActionViewModel;
 
-    public List<PaymentTypeFilter> PaymentTypeFilterList => new() { PaymentTypeFilter.All, PaymentTypeFilter.Expense, PaymentTypeFilter.Income, PaymentTypeFilter.Transfer };
-
+    private CollectionViewSource? groupedPayments;
 
     /// <summary>
     ///     Default constructor
@@ -67,38 +61,25 @@ public class PaymentListViewModel : ObservableRecipient
         this.navigationService = navigationService;
     }
 
-    protected override void OnActivated()
-    {
-        Messenger.Register<PaymentListViewModel, PaymentListFilterChangedMessage>(
-            this,
-            (r, m)
-                => r.LoadDataAsync(m));
-        Messenger.Register<PaymentListViewModel, ReloadMessage>(
-            this,
-            (r, m)
-                => r.LoadDataCommand.Execute(null));
-    }
-
-    protected override void OnDeactivated()
-    {
-        Messenger.Unregister<PaymentListFilterChangedMessage>(this);
-        Messenger.Unregister<ReloadMessage>(this);
-    }
+    public List<PaymentTypeFilter> PaymentTypeFilterList
+        => new()
+        {
+            PaymentTypeFilter.All,
+            PaymentTypeFilter.Expense,
+            PaymentTypeFilter.Income,
+            PaymentTypeFilter.Transfer
+        };
 
     public AsyncRelayCommand InitializeCommand => new(async () => await InitializeAsync());
 
-    public AsyncRelayCommand LoadDataCommand => new(
-        async () => await LoadDataAsync(
-            new PaymentListFilterChangedMessage { TimeRangeStart = DateTime.Now.AddYears(DEFAULT_YEAR_BACK) }));
+    public AsyncRelayCommand LoadDataCommand => new(async () => await LoadDataAsync(new() { TimeRangeStart = DateTime.Now.AddYears(DEFAULT_YEAR_BACK) }));
 
-    public RelayCommand<PaymentViewModel> EditPaymentCommand
-        => new(vm => navigationService.Navigate<EditPaymentViewModel>(vm));
+    public RelayCommand<PaymentViewModel> EditPaymentCommand => new(vm => navigationService.Navigate<EditPaymentViewModel>(vm));
 
     /// <summary>
     ///     Deletes the passed PaymentViewModel.
     /// </summary>
-    public RelayCommand<PaymentViewModel> DeletePaymentCommand =>
-        new(async vm => await DeletePaymentAsync(vm));
+    public RelayCommand<PaymentViewModel> DeletePaymentCommand => new(async vm => await DeletePaymentAsync(vm));
 
     /// <summary>
     ///     Id for the current account.
@@ -106,7 +87,7 @@ public class PaymentListViewModel : ObservableRecipient
     public int AccountId
     {
         get => accountId;
-        set => SetProperty(ref accountId, value);
+        set => SetProperty(field: ref accountId, newValue: value);
     }
 
     /// <summary>
@@ -115,7 +96,7 @@ public class PaymentListViewModel : ObservableRecipient
     public IBalanceViewModel BalanceViewModel
     {
         get => balanceViewModel;
-        private set => SetProperty(ref balanceViewModel, value);
+        private set => SetProperty(field: ref balanceViewModel, newValue: value);
     }
 
     /// <summary>
@@ -124,10 +105,8 @@ public class PaymentListViewModel : ObservableRecipient
     public IPaymentListViewActionViewModel? ViewActionViewModel
     {
         get => viewActionViewModel;
-        private set => SetProperty(ref viewActionViewModel, value);
+        private set => SetProperty(field: ref viewActionViewModel, newValue: value);
     }
-
-    private CollectionViewSource? groupedPayments;
 
     /// <summary>
     ///     Returns grouped related payments
@@ -135,7 +114,7 @@ public class PaymentListViewModel : ObservableRecipient
     public CollectionViewSource? GroupedPayments
     {
         get => groupedPayments;
-        private set => SetProperty(ref groupedPayments, value);
+        private set => SetProperty(field: ref groupedPayments, newValue: value);
     }
 
     /// <summary>
@@ -144,43 +123,53 @@ public class PaymentListViewModel : ObservableRecipient
     public string Title
     {
         get => title;
-        private set => SetProperty(ref title, value);
+        private set => SetProperty(field: ref title, newValue: value);
     }
 
     public bool IsBusy
     {
         get => isBusy;
-        private set => SetProperty(ref isBusy, value);
+        private set => SetProperty(field: ref isBusy, newValue: value);
+    }
+
+    protected override void OnActivated()
+    {
+        Messenger.Register<PaymentListViewModel, PaymentListFilterChangedMessage>(recipient: this, handler: (r, m) => r.LoadDataAsync(m));
+        Messenger.Register<PaymentListViewModel, ReloadMessage>(recipient: this, handler: (r, m) => r.LoadDataCommand.Execute(null));
+    }
+
+    protected override void OnDeactivated()
+    {
+        Messenger.Unregister<PaymentListFilterChangedMessage>(this);
+        Messenger.Unregister<ReloadMessage>(this);
     }
 
     private async Task InitializeAsync()
     {
         IsActive = true;
         IsBusy = true;
-
         Title = await mediator.Send(new GetAccountNameByIdQuery(accountId));
-
         BalanceViewModel = new PaymentListBalanceViewModel(
-            mediator,
-            mapper,
-            balanceCalculationService,
-            AccountId);
-        ViewActionViewModel = new PaymentListViewActionViewModel(
-            AccountId,
-            mediator,
-            settingsFacade,
-            dialogService,
-            BalanceViewModel,
-            navigationService);
+            mediator: mediator,
+            mapper: mapper,
+            balanceCalculationService: balanceCalculationService,
+            accountId: AccountId);
 
-        await LoadDataAsync(
-            new PaymentListFilterChangedMessage { TimeRangeStart = DateTime.Now.AddYears(DEFAULT_YEAR_BACK) });
+        ViewActionViewModel = new PaymentListViewActionViewModel(
+            accountId: AccountId,
+            mediator: mediator,
+            settingsFacade: settingsFacade,
+            dialogService: dialogService,
+            balanceViewModel: BalanceViewModel,
+            navigationService: navigationService);
+
+        await LoadDataAsync(new() { TimeRangeStart = DateTime.Now.AddYears(DEFAULT_YEAR_BACK) });
         IsBusy = false;
     }
 
     private async Task LoadDataAsync(PaymentListFilterChangedMessage paymentListFilterChangedMessage)
     {
-        if(AccountId == 0)
+        if (AccountId == 0)
         {
             return;
         }
@@ -193,10 +182,6 @@ public class PaymentListViewModel : ObservableRecipient
             //Refresh balance control with the current account
             await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync(null);
         }
-        catch(Exception ex)
-        {
-            logManager.Error(ex);
-        }
         finally
         {
             IsBusy = false;
@@ -206,28 +191,24 @@ public class PaymentListViewModel : ObservableRecipient
     private async Task LoadPaymentsAsync(PaymentListFilterChangedMessage filterMessage)
     {
         var getPaymentsForAccountIdQuery = new GetPaymentsForAccountIdQuery(
-            AccountId,
-            filterMessage.TimeRangeStart,
-            filterMessage.TimeRangeEnd,
-            filterMessage.IsClearedFilterActive,
-            filterMessage.IsRecurringFilterActive,
-            filterMessage.FilteredPaymentType
-            );
+            accountId: AccountId,
+            timeRangeStart: filterMessage.TimeRangeStart,
+            timeRangeEnd: filterMessage.TimeRangeEnd,
+            isClearedFilterActive: filterMessage.IsClearedFilterActive,
+            isRecurringFilterActive: filterMessage.IsRecurringFilterActive,
+            filteredPaymentType: filterMessage.FilteredPaymentType);
 
-        List<Payment> loadedPayments = await mediator.Send(getPaymentsForAccountIdQuery);
+        var loadedPayments = await mediator.Send(getPaymentsForAccountIdQuery);
         var payments = mapper.Map<List<PaymentViewModel>>(loadedPayments);
-
         payments.ForEach(x => x.CurrentAccountId = AccountId);
-
         var source = new CollectionViewSource { IsSourceGrouped = filterMessage.IsGrouped };
-
-        if(filterMessage.IsGrouped)
+        if (filterMessage.IsGrouped)
         {
-            List<DateListGroupCollection<PaymentViewModel>> group = DateListGroupCollection<PaymentViewModel>
-                .CreateGroups(
-                    payments,
-                    s => s.Date.ToString("D", CultureInfo.CurrentCulture),
-                    s => s.Date);
+            var group = DateListGroupCollection<PaymentViewModel>.CreateGroups(
+                items: payments,
+                getKey: s => s.Date.ToString(format: "D", provider: CultureInfo.CurrentCulture),
+                getSortKey: s => s.Date);
+
             source.Source = group;
         }
         else
@@ -240,11 +221,11 @@ public class PaymentListViewModel : ObservableRecipient
 
     private async Task DeletePaymentAsync(PaymentViewModel payment)
     {
-        if(!await dialogService.ShowConfirmMessageAsync(
-               Strings.DeleteTitle,
-               Strings.DeletePaymentConfirmationMessage,
-               Strings.YesLabel,
-               Strings.NoLabel))
+        if (!await dialogService.ShowConfirmMessageAsync(
+                title: Strings.DeleteTitle,
+                message: Strings.DeletePaymentConfirmationMessage,
+                positiveButtonText: Strings.YesLabel,
+                negativeButtonText: Strings.NoLabel))
         {
             return;
         }
@@ -253,21 +234,20 @@ public class PaymentListViewModel : ObservableRecipient
         {
             IsBusy = true;
             var command = new DeletePaymentByIdCommand(payment.Id);
-
-            if(payment.IsRecurring)
+            if (payment.IsRecurring)
             {
                 command.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(
-                    Strings.DeleteRecurringPaymentTitle,
-                    Strings.DeleteRecurringPaymentMessage);
+                    title: Strings.DeleteRecurringPaymentTitle,
+                    message: Strings.DeleteRecurringPaymentMessage);
             }
 
             await mediator.Send(command);
             Messenger.Send(new ReloadMessage());
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
-            logManager.Error(ex, "Error during deleting payment.");
-            await dialogService.ShowMessageAsync(Strings.GeneralErrorTitle, Strings.UnknownErrorMessage);
+            Log.Error(exception: ex, messageTemplate: "Error during deleting payment");
+            await dialogService.ShowMessageAsync(title: Strings.GeneralErrorTitle, message: Strings.UnknownErrorMessage);
         }
         finally
         {

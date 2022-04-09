@@ -1,16 +1,17 @@
 ﻿namespace MoneyFox.Droid.Src
 {
 
-    using Core.Interfaces;
     using System;
     using System.IO;
     using Core.Common;
+    using Core.Interfaces;
 
     public class DbPathProvider : IDbPathProvider
     {
-        public string GetDbPath() =>
-            Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.Personal),
-                DatabaseConfiguration.DatabaseName);
+        public string GetDbPath()
+        {
+            return Path.Combine(path1: Environment.GetFolderPath(Environment.SpecialFolder.Personal), path2: DatabaseConfiguration.DatabaseName);
+        }
     }
+
 }

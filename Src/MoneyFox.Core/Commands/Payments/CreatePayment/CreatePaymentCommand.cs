@@ -1,13 +1,14 @@
 ﻿namespace MoneyFox.Core.Commands.Payments.CreatePayment
 {
+
+    using System.Threading;
+    using System.Threading.Tasks;
     using _Pending_.Exceptions;
     using Aggregates.Payments;
     using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using NLog;
-    using System.Threading;
-    using System.Threading.Tasks;
+    using Serilog;
 
     public class CreatePaymentCommand : IRequest
     {
@@ -16,12 +17,10 @@
             PaymentToSave = paymentToSave;
         }
 
-        public Payment PaymentToSave { get; }
+        private Payment PaymentToSave { get; }
 
         public class Handler : IRequestHandler<CreatePaymentCommand>
         {
-            private readonly Logger logger = LogManager.GetCurrentClassLogger();
-
             private readonly IContextAdapter contextAdapter;
 
             public Handler(IContextAdapter contextAdapter)
@@ -34,19 +33,20 @@
             {
                 contextAdapter.Context.Entry(request.PaymentToSave).State = EntityState.Added;
                 contextAdapter.Context.Entry(request.PaymentToSave.ChargedAccount).State = EntityState.Modified;
-
-                if(request.PaymentToSave.TargetAccount != null)
+                if (request.PaymentToSave.TargetAccount != null)
                 {
                     contextAdapter.Context.Entry(request.PaymentToSave.TargetAccount).State = EntityState.Modified;
                 }
 
-                if(request.PaymentToSave.IsRecurring)
+                if (request.PaymentToSave.IsRecurring)
                 {
-                    if(request.PaymentToSave.RecurringPayment == null)
+                    if (request.PaymentToSave.RecurringPayment == null)
                     {
                         var exception = new RecurringPaymentNullException(
                             $"Recurring Payment for Payment {request.PaymentToSave.Id} is null, although payment is marked recurring.");
-                        logger.Error(exception);
+
+                        Log.Error(exception: exception, messageTemplate: "Error during Payment Creation");
+
                         throw exception;
                     }
 
@@ -54,8 +54,10 @@
                 }
 
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
+
                 return Unit.Value;
             }
         }
     }
+
 }

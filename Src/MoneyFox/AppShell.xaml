@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <Shell x:Class="MoneyFox.AppShell"
        xmlns="http://xamarin.com/schemas/2014/forms"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -35,7 +36,7 @@
 
         <Tab Title="{x:Static resources:Strings.SettingsTitle}"
              Icon="{AppThemeBinding Dark=ic_settings_white, Light=ic_settings_black}">
-            <ShellContent >
+            <ShellContent>
                 <overflow:OverflowMenuPage />
             </ShellContent>
         </Tab>

@@ -1,10 +1,11 @@
 ﻿namespace MoneyFox.ViewModels.SetupAssistant
 {
+
+    using System.Threading.Tasks;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using Core._Pending_.Common.Facades;
     using Extensions;
-    using System.Threading.Tasks;
     using Xamarin.Forms;
 
     public class WelcomeViewModel : ObservableObject
@@ -16,18 +17,15 @@
             this.settingsFacade = settingsFacade;
         }
 
-        public RelayCommand GoToAddAccountCommand
-            => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddAccountRoute));
+        public RelayCommand GoToAddAccountCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddAccountRoute));
 
-        public RelayCommand NextStepCommand => new RelayCommand(
-            async ()
-                => await Shell.Current.GoToAsync(ViewModelLocator.CategoryIntroductionRoute));
+        public RelayCommand NextStepCommand => new RelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.CategoryIntroductionRoute));
 
         public RelayCommand SkipCommand => new RelayCommand(SkipSetup);
 
         public async Task InitAsync()
         {
-            if(settingsFacade.IsSetupCompleted)
+            if (settingsFacade.IsSetupCompleted)
             {
                 await Shell.Current.GoToAsync(ViewModelLocator.DashboardRoute);
             }
@@ -39,4 +37,5 @@
             Application.Current.MainPage = new AppShell();
         }
     }
+
 }

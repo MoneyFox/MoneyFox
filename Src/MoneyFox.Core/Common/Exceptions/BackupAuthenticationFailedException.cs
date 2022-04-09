@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Core.Common.Exceptions
 {
+
     using System;
     using System.Runtime.Serialization;
 
@@ -9,28 +10,15 @@
     [Serializable]
     public class BackupAuthenticationFailedException : Exception
     {
-        public BackupAuthenticationFailedException()
-        {
-        }
+        public BackupAuthenticationFailedException() { }
 
-        public BackupAuthenticationFailedException(string message) : base(message)
-        {
-        }
+        public BackupAuthenticationFailedException(string message) : base(message) { }
 
-        public BackupAuthenticationFailedException(Exception exception) : base(
-            "Backup Authentication Failed",
-            exception)
-        {
-        }
+        public BackupAuthenticationFailedException(Exception exception) : base(message: "Backup Authentication Failed", innerException: exception) { }
 
-        public BackupAuthenticationFailedException(string message, Exception exception) : base(message, exception)
-        {
-        }
+        public BackupAuthenticationFailedException(string message, Exception exception) : base(message: message, innerException: exception) { }
 
-        protected BackupAuthenticationFailedException(SerializationInfo info, StreamingContext context) : base(
-            info,
-            context)
-        {
-        }
+        protected BackupAuthenticationFailedException(SerializationInfo info, StreamingContext context) : base(info: info, context: context) { }
     }
+
 }

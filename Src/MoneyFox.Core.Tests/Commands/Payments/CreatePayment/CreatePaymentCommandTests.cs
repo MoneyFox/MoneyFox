@@ -1,5 +1,9 @@
 ﻿namespace MoneyFox.Core.Tests.Commands.Payments.CreatePayment
 {
+
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
     using Common.Interfaces;
     using Core.Aggregates;
     using Core.Aggregates.Payments;
@@ -8,9 +12,6 @@
     using Infrastructure;
     using MoneyFox.Infrastructure.Persistence;
     using Moq;
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -22,7 +23,6 @@
         public CreatePaymentCommandTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-
             contextAdapterMock = new Mock<IContextAdapter>();
             contextAdapterMock.SetupGet(x => x.Context).Returns(context);
         }
@@ -33,22 +33,22 @@
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing)
+        {
+            InMemoryAppDbContextFactory.Destroy(context);
+        }
 
         [Fact]
         public async Task CreatePayment_PaymentSaved()
         {
             // Arrange
-            var account = new Account("test", 80);
+            var account = new Account(name: "test", initalBalance: 80);
             context.Add(account);
             context.SaveChanges();
-
-            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, account);
+            var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: account);
 
             // Act
-            await new CreatePaymentCommand.Handler(
-                    contextAdapterMock.Object)
-                .Handle(new CreatePaymentCommand(payment1), default);
+            await new CreatePaymentCommand.Handler(contextAdapterMock.Object).Handle(request: new CreatePaymentCommand(payment1), cancellationToken: default);
 
             // Assert
             Assert.Single(context.Payments);
@@ -61,18 +61,16 @@
         public async Task CreatePayment_AccountCurrentBalanceUpdated(PaymentType paymentType, decimal newCurrentBalance)
         {
             // Arrange
-            var account = new Account("test", 80);
+            var account = new Account(name: "test", initalBalance: 80);
             context.Add(account);
             await context.SaveChangesAsync();
-
-            var payment1 = new Payment(DateTime.Now, 20, paymentType, account);
+            var payment1 = new Payment(date: DateTime.Now, amount: 20, type: paymentType, chargedAccount: account);
 
             // Act
-            await new CreatePaymentCommand.Handler(
-                contextAdapterMock.Object).Handle(new CreatePaymentCommand(payment1), default);
+            await new CreatePaymentCommand.Handler(contextAdapterMock.Object).Handle(request: new CreatePaymentCommand(payment1), cancellationToken: default);
 
             // Assert
-            Account loadedAccount = await context.Accounts.FindAsync(account.Id);
+            var loadedAccount = await context.Accounts.FindAsync(account.Id);
             loadedAccount.Should().NotBeNull();
             loadedAccount.CurrentBalance.Should().Be(newCurrentBalance);
         }
@@ -81,17 +79,14 @@
         public async Task CreatePaymentWithRecurring_PaymentSaved()
         {
             // Arrange
-            var account = new Account("test", 80);
+            var account = new Account(name: "test", initalBalance: 80);
             context.Add(account);
             context.SaveChanges();
-
-            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, account);
-
+            var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: account);
             payment1.AddRecurringPayment(PaymentRecurrence.Monthly);
 
             // Act
-            await new CreatePaymentCommand.Handler(
-                contextAdapterMock.Object).Handle(new CreatePaymentCommand(payment1), default);
+            await new CreatePaymentCommand.Handler(contextAdapterMock.Object).Handle(request: new CreatePaymentCommand(payment1), cancellationToken: default);
 
             // Assert
             Assert.Single(context.Payments);
@@ -100,4 +95,5 @@
             (await context.RecurringPayments.FindAsync(payment1.RecurringPayment.Id)).Should().NotBeNull();
         }
     }
+
 }

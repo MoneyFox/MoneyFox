@@ -6,12 +6,9 @@ using Core.Common.Interfaces;
 
 public class WindowsSettingsViewModel : SettingsViewModel, IWindowsSettingsViewModel
 {
-    public WindowsSettingsViewModel(
-        ISettingsFacade settingsFacade,
-        IDialogService dialogService)
-        : base(settingsFacade, dialogService)
-    {
-    }
+    public WindowsSettingsViewModel(ISettingsFacade settingsFacade, IDialogService dialogService) : base(
+        settingsFacade: settingsFacade,
+        dialogService: dialogService) { }
 
     public AsyncRelayCommand InitializeCommand => new(async () => await InitializeAsync());
 }

@@ -8,7 +8,6 @@
     using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using NLog;
 
     public class GetPaymentByIdQuery : IRequest<Payment>
     {
@@ -17,12 +16,10 @@
             PaymentId = paymentId;
         }
 
-        public int PaymentId { get; }
+        private int PaymentId { get; }
 
         public class Handler : IRequestHandler<GetPaymentByIdQuery, Payment>
         {
-            private readonly ILogger logger = LogManager.GetCurrentClassLogger();
-
             private readonly IContextAdapter contextAdapter;
 
             public Handler(IContextAdapter contextAdapter)
@@ -36,12 +33,10 @@
                     .Include(x => x.TargetAccount)
                     .Include(x => x.RecurringPayment)
                     .Include(x => x.Category)
-                    .SingleOrDefaultAsync(x => x.Id == request.PaymentId);
+                    .SingleOrDefaultAsync(predicate: x => x.Id == request.PaymentId, cancellationToken: cancellationToken);
 
                 if (payment == null)
                 {
-                    logger.Error(message: "Payment with id {paymentId} not found.", argument: request.PaymentId);
-
                     throw new PaymentNotFoundException();
                 }
 

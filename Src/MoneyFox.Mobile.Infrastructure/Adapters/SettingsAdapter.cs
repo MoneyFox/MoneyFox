@@ -3,13 +3,11 @@
 
     using System;
     using Core.Interfaces;
-    using NLog;
+    using Serilog;
     using Xamarin.Essentials;
 
     public class SettingsAdapter : ISettingsAdapter
     {
-        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
-
         public bool GetValue(string key, bool defaultValue)
         {
             try
@@ -18,7 +16,7 @@
             }
             catch (InvalidCastException)
             {
-                logManager.Error($"Value {key} couldn't be parsed to bool.");
+                Log.Error(messageTemplate: "Value {Key} couldn't be parsed to bool", propertyValue: key);
                 Preferences.Set(key: key, value: defaultValue);
 
                 return defaultValue;
@@ -33,7 +31,7 @@
             }
             catch (InvalidCastException)
             {
-                logManager.Error($"Value {key} couldn't be parsed to string.");
+                Log.Error(messageTemplate: "Value {Key} couldn't be parsed to string", propertyValue: key);
                 Preferences.Set(key: key, value: defaultValue);
 
                 return defaultValue;
@@ -48,7 +46,7 @@
             }
             catch (InvalidCastException)
             {
-                logManager.Error($"Value {key} couldn't be parsed to int.");
+                Log.Error(messageTemplate: "Value {Key} couldn't be parsed to int", propertyValue: key);
                 Preferences.Set(key: key, value: defaultValue);
 
                 return defaultValue;

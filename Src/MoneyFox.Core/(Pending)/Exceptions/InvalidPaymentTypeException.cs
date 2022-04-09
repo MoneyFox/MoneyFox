@@ -1,25 +1,19 @@
 ﻿namespace MoneyFox.Core._Pending_.Exceptions
 {
+
     using System;
     using System.Runtime.Serialization;
 
     [Serializable]
     public class InvalidPaymentTypeException : Exception
     {
-        public InvalidPaymentTypeException()
-        {
-        }
+        public InvalidPaymentTypeException() { }
 
-        public InvalidPaymentTypeException(string message) : base(message)
-        {
-        }
+        public InvalidPaymentTypeException(string message) : base(message) { }
 
-        public InvalidPaymentTypeException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
+        public InvalidPaymentTypeException(string message, Exception innerException) : base(message: message, innerException: innerException) { }
 
-        protected InvalidPaymentTypeException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
+        protected InvalidPaymentTypeException(SerializationInfo info, StreamingContext context) : base(info: info, context: context) { }
     }
+
 }

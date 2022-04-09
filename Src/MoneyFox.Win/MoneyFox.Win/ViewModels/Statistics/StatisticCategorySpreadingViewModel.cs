@@ -1,5 +1,9 @@
 ﻿namespace MoneyFox.Win.ViewModels.Statistics;
 
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using Core._Pending_.Common.Extensions;
 using Core._Pending_.Common.Facades;
@@ -8,10 +12,6 @@ using Core.Queries.Statistics;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using MediatR;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 
 /// <summary>
 ///     Representation of the category Spreading View
@@ -26,12 +26,12 @@ public class StatisticCategorySpreadingViewModel : StatisticViewModel
         this.settingsFacade = settingsFacade;
     }
 
-    public List<PaymentType> PaymentTypes => new() {PaymentType.Expense, PaymentType.Income};
+    public List<PaymentType> PaymentTypes => new() { PaymentType.Expense, PaymentType.Income };
 
     public PaymentType SelectedPaymentType
     {
         get => selectedPaymentType;
-        set => SetProperty(ref selectedPaymentType, value);
+        set => SetProperty(field: ref selectedPaymentType, newValue: value);
     }
 
     public ObservableCollection<ISeries> Series { get; } = new();
@@ -42,9 +42,10 @@ public class StatisticCategorySpreadingViewModel : StatisticViewModel
     public int NumberOfCategoriesToShow
     {
         get => settingsFacade.CategorySpreadingNumber;
+
         set
         {
-            if(settingsFacade.CategorySpreadingNumber == value)
+            if (settingsFacade.CategorySpreadingNumber == value)
             {
                 return;
             }
@@ -61,22 +62,23 @@ public class StatisticCategorySpreadingViewModel : StatisticViewModel
     /// </summary>
     protected override async Task LoadAsync()
     {
-        IEnumerable<StatisticEntry> statisticEntries = await Mediator.Send(
+        var statisticEntries = await Mediator.Send(
             new GetCategorySpreadingQuery(
-                StartDate,
-                EndDate,
-                SelectedPaymentType,
-                NumberOfCategoriesToShow));
+                startDate: StartDate,
+                endDate: EndDate,
+                paymentType: SelectedPaymentType,
+                numberOfCategoriesToShow: NumberOfCategoriesToShow));
 
-        IEnumerable<PieSeries<decimal>> pieSeries = statisticEntries.Select(x =>
-            new PieSeries<decimal>
+        var pieSeries = statisticEntries.Select(
+            x => new PieSeries<decimal>
             {
                 Name = x.Label,
                 TooltipLabelFormatter = point => $"{point.Context.Series.Name}: {point.PrimaryValue:C}",
                 DataLabelsFormatter = point => $"{point.Context.Series.Name}: {point.PrimaryValue:C}",
-                Values = new List<decimal> {x.Value},
+                Values = new List<decimal> { x.Value },
                 InnerRadius = 150
             });
+
         Series.Clear();
         Series.AddRange(pieSeries);
     }

@@ -1,15 +1,16 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Accounts.GetAccountNameById
 {
+
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
     using Common.Interfaces;
     using Core.Aggregates;
+    using Core.Queries;
     using FluentAssertions;
     using Infrastructure;
     using MoneyFox.Infrastructure.Persistence;
     using Moq;
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-    using Core.Queries;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -21,7 +22,6 @@
         public GetAccountNameByIdQueryTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-
             contextAdapterMock = new Mock<IContextAdapter>();
             contextAdapterMock.SetupGet(x => x.Context).Returns(context);
         }
@@ -32,21 +32,23 @@
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing)
+        {
+            InMemoryAppDbContextFactory.Destroy(context);
+        }
 
         [Fact]
         public async Task GetAccountByIdQuery_CorrectNumberLoaded()
         {
             // Arrange
-            var account1 = new Account("test2", 80);
+            var account1 = new Account(name: "test2", initalBalance: 80);
             await context.AddAsync(account1);
             await context.SaveChangesAsync();
 
             // Act
-            string result =
-                await new GetAccountNameByIdQuery.Handler(contextAdapterMock.Object).Handle(
-                    new GetAccountNameByIdQuery(account1.Id),
-                    default);
+            var result = await new GetAccountNameByIdQuery.Handler(contextAdapterMock.Object).Handle(
+                request: new GetAccountNameByIdQuery(account1.Id),
+                cancellationToken: default);
 
             // Assert
             result.Should().Be(account1.Name);
@@ -57,13 +59,13 @@
         {
             // Arrange
             // Act
-            string result =
-                await new GetAccountNameByIdQuery.Handler(contextAdapterMock.Object).Handle(
-                    new GetAccountNameByIdQuery(33),
-                    default);
+            var result = await new GetAccountNameByIdQuery.Handler(contextAdapterMock.Object).Handle(
+                request: new GetAccountNameByIdQuery(33),
+                cancellationToken: default);
 
             // Assert
             result.Should().Be(string.Empty);
         }
     }
+
 }

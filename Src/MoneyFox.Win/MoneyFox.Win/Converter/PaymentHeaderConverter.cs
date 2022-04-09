@@ -1,15 +1,16 @@
 ﻿namespace MoneyFox.Win.Converter;
 
+using System;
 using Core.Aggregates.Payments;
 using Core.Resources;
 using Microsoft.UI.Xaml.Data;
-using System;
 
 public class PaymentHeaderConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, string language)
     {
         var pType = (PaymentType)value;
+
         return pType switch
         {
             PaymentType.Expense => Strings.ExpenseHeader,
@@ -18,6 +19,8 @@ public class PaymentHeaderConverter : IValueConverter
         };
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, string language) =>
+    public object ConvertBack(object value, Type targetType, object parameter, string language)
+    {
         throw new NotSupportedException();
+    }
 }

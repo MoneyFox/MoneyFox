@@ -1,12 +1,13 @@
 ﻿namespace MoneyFox.ViewModels.Dialogs
 {
+
+    using System;
+    using System.Collections.Generic;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
     using Core._Pending_.Common.Messages;
     using Core.Aggregates.Payments;
-    using System;
-    using System.Collections.Generic;
 
     public interface ISelectFilterDialogViewModel
     {
@@ -29,11 +30,18 @@
         private DateTime timeRangeEnd = DateTime.Now.AddMonths(6);
         private DateTime timeRangeStart = DateTime.Now.AddMonths(-2);
 
-        public List<PaymentTypeFilter> PaymentTypeFilterList => new List<PaymentTypeFilter>() { PaymentTypeFilter.All, PaymentTypeFilter.Expense, PaymentTypeFilter.Income, PaymentTypeFilter.Transfer };
+        public List<PaymentTypeFilter> PaymentTypeFilterList
+            => new List<PaymentTypeFilter>
+            {
+                PaymentTypeFilter.All,
+                PaymentTypeFilter.Expense,
+                PaymentTypeFilter.Income,
+                PaymentTypeFilter.Transfer
+            };
 
-        public RelayCommand FilterSelectedCommand => new RelayCommand(
-            () =>
-                Messenger.Send(
+        public RelayCommand FilterSelectedCommand
+            => new RelayCommand(
+                () => Messenger.Send(
                     new PaymentListFilterChangedMessage
                     {
                         IsClearedFilterActive = IsClearedFilterActive,
@@ -49,9 +57,10 @@
         public bool IsClearedFilterActive
         {
             get => isClearedFilterActive;
+
             set
             {
-                if(isClearedFilterActive == value)
+                if (isClearedFilterActive == value)
                 {
                     return;
                 }
@@ -67,9 +76,10 @@
         public bool IsRecurringFilterActive
         {
             get => isRecurringFilterActive;
+
             set
             {
-                if(isRecurringFilterActive == value)
+                if (isRecurringFilterActive == value)
                 {
                     return;
                 }
@@ -85,9 +95,10 @@
         public PaymentTypeFilter FilteredPaymentType
         {
             get => filteredPaymentType;
+
             set
             {
-                if(filteredPaymentType == value)
+                if (filteredPaymentType == value)
                 {
                     return;
                 }
@@ -103,9 +114,10 @@
         public DateTime TimeRangeStart
         {
             get => timeRangeStart;
+
             set
             {
-                if(timeRangeStart == value)
+                if (timeRangeStart == value)
                 {
                     return;
                 }
@@ -121,9 +133,10 @@
         public DateTime TimeRangeEnd
         {
             get => timeRangeEnd;
+
             set
             {
-                if(timeRangeEnd == value)
+                if (timeRangeEnd == value)
                 {
                     return;
                 }
@@ -145,4 +158,5 @@
             FilteredPaymentType = message.FilteredPaymentType;
         }
     }
+
 }

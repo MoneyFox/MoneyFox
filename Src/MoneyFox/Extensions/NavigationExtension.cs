@@ -1,49 +1,49 @@
 ﻿namespace MoneyFox.Extensions
 {
-    using Core._Pending_.Exceptions;
-    using NLog;
+
     using System;
     using System.Threading.Tasks;
+    using Core._Pending_.Exceptions;
+    using Serilog;
     using Xamarin.Essentials;
     using Xamarin.Forms;
 
     public static class NavigationExtension
     {
-        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
-
         public static Task GoToModalAsync(this Shell shell, string route)
         {
             try
             {
-                if(!(Routing.GetOrCreateContent(route) is Page page))
+                if (!(Routing.GetOrCreateContent(route) is Page page))
                 {
                     return Task.CompletedTask;
                 }
 
                 return shell.Navigation.PushModalAsync(
-                    new NavigationPage(page)
-                    {
-                        BarBackgroundColor = Color.Transparent,
-                        BarTextColor = GetCurrentForegroundColor()
-                    });
+                    new NavigationPage(page) { BarBackgroundColor = Color.Transparent, BarTextColor = GetCurrentForegroundColor() });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                var exception = new NavigationException($"Navigation to route {route} failed. ", ex);
-                logger.Error(exception);
+                var exception = new NavigationException(message: $"Navigation to route {route} failed. ", innerException: ex);
+                Log.Error(exception: exception, messageTemplate: "Error during navigation");
+
                 throw exception;
             }
         }
 
         private static Color GetCurrentForegroundColor()
         {
-            if(AppInfo.RequestedTheme == AppTheme.Dark)
+            if (AppInfo.RequestedTheme == AppTheme.Dark)
             {
-                Application.Current.Resources.TryGetValue("TextPrimaryColor_Dark", out var colorDark);
-                return (Color) colorDark;
+                Application.Current.Resources.TryGetValue(key: "TextPrimaryColor_Dark", value: out var colorDark);
+
+                return (Color)colorDark;
             }
-            Application.Current.Resources.TryGetValue("TextPrimaryColor_Light", out var colorLight);
+
+            Application.Current.Resources.TryGetValue(key: "TextPrimaryColor_Light", value: out var colorLight);
+
             return (Color)colorLight;
         }
     }
+
 }

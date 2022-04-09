@@ -1,7 +1,8 @@
 ﻿namespace MoneyFox.Views.Statistics
 {
-    using Dialogs;
+
     using System;
+    using Dialogs;
     using ViewModels.Statistics;
 
     public partial class StatisticCategorySummaryPage
@@ -16,6 +17,9 @@
         private StatisticCategorySummaryViewModel ViewModel => (StatisticCategorySummaryViewModel)BindingContext;
 
         private async void OpenFilterDialog(object sender, EventArgs e)
-            => await new DateSelectionPopup(ViewModel.StartDate, ViewModel.EndDate).ShowAsync();
+        {
+            await new DateSelectionPopup(dateFrom: ViewModel.StartDate, dateTo: ViewModel.EndDate).ShowAsync();
+        }
     }
+
 }

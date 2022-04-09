@@ -1,5 +1,10 @@
 ﻿namespace MoneyFox.Win.ViewModels.Payments;
 
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Threading.Tasks;
 using Accounts;
 using AutoMapper;
 using Categories;
@@ -9,23 +14,15 @@ using CommunityToolkit.Mvvm.Messaging;
 using Core._Pending_.Common.Messages;
 using Core.Aggregates.Payments;
 using Core.Common.Interfaces;
+using Core.Queries;
 using Core.Resources;
 using MediatR;
-using NLog;
 using Pages.Categories;
 using Pages.Payments;
 using Services;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Threading.Tasks;
-using Core.Queries;
 
 public abstract class ModifyPaymentViewModel : ObservableRecipient, IModifyPaymentViewModel
 {
-    private readonly Logger logger = LogManager.GetCurrentClassLogger();
-
     private readonly IMapper mapper;
     private readonly IMediator mediator;
     private readonly IDialogService dialogService;
@@ -37,13 +34,16 @@ public abstract class ModifyPaymentViewModel : ObservableRecipient, IModifyPayme
     private ObservableCollection<AccountViewModel> targetAccounts = new();
     private string title = Strings.AddPaymentLabel;
 
+    private string amountString = "";
+
+    private ObservableCollection<CategoryViewModel> categories = new();
+
+    private bool isBusy;
+
     /// <summary>
     ///     Default constructor
     /// </summary>
-    protected ModifyPaymentViewModel(IMediator mediator,
-        IMapper mapper,
-        IDialogService dialogService,
-        INavigationService navigationService)
+    protected ModifyPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, INavigationService navigationService)
     {
         this.dialogService = dialogService;
         this.navigationService = navigationService;
@@ -51,34 +51,34 @@ public abstract class ModifyPaymentViewModel : ObservableRecipient, IModifyPayme
         this.mapper = mapper;
     }
 
-    protected virtual async Task InitializeAsync()
-    {
-        var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
+    /// <summary>
+    ///     Opens the create category dialog.
+    /// </summary>
+    public AsyncRelayCommand AddNewCategoryCommand => new(async () => await new AddCategoryDialog().ShowAsync());
 
-        ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
-        TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
-        Categories = new ObservableCollection<CategoryViewModel>(
-            mapper.Map<List<CategoryViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery())));
-        IsActive = true;
+    public List<PaymentType> PaymentTypeList => new() { PaymentType.Expense, PaymentType.Income, PaymentType.Transfer };
+
+    public ObservableCollection<CategoryViewModel> Categories
+    {
+        get => categories;
+
+        private set
+        {
+            categories = value;
+            OnPropertyChanged();
+        }
     }
 
-    protected override void OnActivated() =>
-        Messenger.Register<ModifyPaymentViewModel, CategorySelectedMessage>(
-            this,
-            (r, m) => r.ReceiveMessageAsync(m));
-
-    protected override void OnDeactivated() => Messenger.Unregister<CategorySelectedMessage>(this);
+    public bool IsBusy
+    {
+        get => isBusy;
+        set => SetProperty(field: ref isBusy, newValue: value);
+    }
 
     /// <summary>
     ///     Updates the targetAccountViewModel and chargedAccountViewModel Comboboxes' dropdown lists.
     /// </summary>
     public RelayCommand SelectedItemChangedCommand => new(UpdateOtherComboBox);
-
-    /// <summary>
-    ///     Opens the create category dialog.
-    /// </summary>
-    public AsyncRelayCommand AddNewCategoryCommand
-        => new(async () => await new AddCategoryDialog().ShowAsync());
 
     /// <summary>
     ///     Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.
@@ -89,15 +89,12 @@ public abstract class ModifyPaymentViewModel : ObservableRecipient, IModifyPayme
     public RelayCommand CancelCommand => new(Cancel);
 
     /// <inheritdoc />
-    public AsyncRelayCommand GoToSelectCategoryDialogCommand => new(async ()
-        => await new SelectCategoryDialog().ShowAsync());
+    public AsyncRelayCommand GoToSelectCategoryDialogCommand => new(async () => await new SelectCategoryDialog().ShowAsync());
 
     /// <summary>
     ///     Resets the CategoryViewModel of the currently selected PaymentViewModel
     /// </summary>
     public RelayCommand ResetCategoryCommand => new(ResetSelection);
-
-    public List<PaymentType> PaymentTypeList => new() {PaymentType.Expense, PaymentType.Income, PaymentType.Transfer};
 
     /// <summary>
     ///     The selected recurrence
@@ -105,9 +102,10 @@ public abstract class ModifyPaymentViewModel : ObservableRecipient, IModifyPayme
     public PaymentRecurrence Recurrence
     {
         get => recurrence;
+
         set
         {
-            if(recurrence == value)
+            if (recurrence == value)
             {
                 return;
             }
@@ -140,9 +138,10 @@ public abstract class ModifyPaymentViewModel : ObservableRecipient, IModifyPayme
     public PaymentViewModel SelectedPayment
     {
         get => selectedPayment;
+
         set
         {
-            if(selectedPayment == value)
+            if (selectedPayment == value)
             {
                 return;
             }
@@ -154,14 +153,13 @@ public abstract class ModifyPaymentViewModel : ObservableRecipient, IModifyPayme
         }
     }
 
-    private string amountString = "";
-
     public string AmountString
     {
         get => amountString;
+
         set
         {
-            if(amountString == value)
+            if (amountString == value)
             {
                 return;
             }
@@ -177,6 +175,7 @@ public abstract class ModifyPaymentViewModel : ObservableRecipient, IModifyPayme
     public ObservableCollection<AccountViewModel> ChargedAccounts
     {
         get => chargedAccounts;
+
         private set
         {
             chargedAccounts = value;
@@ -190,6 +189,7 @@ public abstract class ModifyPaymentViewModel : ObservableRecipient, IModifyPayme
     public ObservableCollection<AccountViewModel> TargetAccounts
     {
         get => targetAccounts;
+
         private set
         {
             targetAccounts = value;
@@ -197,24 +197,13 @@ public abstract class ModifyPaymentViewModel : ObservableRecipient, IModifyPayme
         }
     }
 
-    private ObservableCollection<CategoryViewModel> categories = new();
-
-    public ObservableCollection<CategoryViewModel> Categories
-    {
-        get => categories;
-        private set
-        {
-            categories = value;
-            OnPropertyChanged();
-        }
-    }
-
     public virtual string Title
     {
         get => title;
+
         set
         {
-            if(title == value)
+            if (title == value)
             {
                 return;
             }
@@ -227,66 +216,70 @@ public abstract class ModifyPaymentViewModel : ObservableRecipient, IModifyPayme
     /// <summary>
     ///     Returns the Header for the AccountViewModel field
     /// </summary>
-    public string AccountHeader
-        => SelectedPayment.Type == PaymentType.Income
-            ? Strings.TargetAccountLabel
-            : Strings.ChargedAccountLabel;
+    public string AccountHeader => SelectedPayment.Type == PaymentType.Income ? Strings.TargetAccountLabel : Strings.ChargedAccountLabel;
 
-    private bool isBusy;
-
-    public bool IsBusy
+    protected virtual async Task InitializeAsync()
     {
-        get => isBusy;
-        set => SetProperty(ref isBusy, value);
+        var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
+        ChargedAccounts = new(accounts);
+        TargetAccounts = new(accounts);
+        Categories = new(mapper.Map<List<CategoryViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery())));
+        IsActive = true;
+    }
+
+    protected override void OnActivated()
+    {
+        Messenger.Register<ModifyPaymentViewModel, CategorySelectedMessage>(recipient: this, handler: (r, m) => r.ReceiveMessageAsync(m));
+    }
+
+    protected override void OnDeactivated()
+    {
+        Messenger.Unregister<CategorySelectedMessage>(this);
     }
 
     protected abstract Task SavePaymentAsync();
 
     private async Task SavePaymentBaseAsync()
     {
-        if(SelectedPayment.ChargedAccount == null)
+        if (SelectedPayment.ChargedAccount == null)
         {
-            await dialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.AccountRequiredMessage);
+            await dialogService.ShowMessageAsync(title: Strings.MandatoryFieldEmptyTitle, message: Strings.AccountRequiredMessage);
+
             return;
         }
 
-        if(decimal.TryParse(AmountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
+        if (decimal.TryParse(s: AmountString, style: NumberStyles.Any, provider: CultureInfo.CurrentCulture, result: out var convertedValue))
         {
             SelectedPayment.Amount = convertedValue;
         }
         else
         {
-            logger.Warn($"Amount string {AmountString} could not be parsed to double.");
-            await dialogService.ShowMessageAsync(
-                Strings.InvalidNumberTitle,
-                Strings.InvalidNumberCurrentBalanceMessage);
+            await dialogService.ShowMessageAsync(title: Strings.InvalidNumberTitle, message: Strings.InvalidNumberCurrentBalanceMessage);
+
             return;
         }
 
-        if(SelectedPayment.Amount < 0)
+        if (SelectedPayment.Amount < 0)
         {
-            await dialogService.ShowMessageAsync(
-                Strings.AmountMayNotBeNegativeTitle,
-                Strings.AmountMayNotBeNegativeMessage);
+            await dialogService.ShowMessageAsync(title: Strings.AmountMayNotBeNegativeTitle, message: Strings.AmountMayNotBeNegativeMessage);
+
             return;
         }
 
-        if(SelectedPayment.Category != null
-           && SelectedPayment.Category.RequireNote
-           && string.IsNullOrEmpty(SelectedPayment.Note))
+        if (SelectedPayment.Category != null && SelectedPayment.Category.RequireNote && string.IsNullOrEmpty(SelectedPayment.Note))
         {
-            await dialogService.ShowMessageAsync(
-                Strings.MandatoryFieldEmptyTitle,
-                Strings.ANoteForPaymentIsRequired);
+            await dialogService.ShowMessageAsync(title: Strings.MandatoryFieldEmptyTitle, message: Strings.ANoteForPaymentIsRequired);
+
             return;
         }
 
-        if(SelectedPayment.IsRecurring
-           && !SelectedPayment.RecurringPayment!.IsEndless
-           && SelectedPayment.RecurringPayment.EndDate != null
-           && SelectedPayment.RecurringPayment.EndDate < DateTime.Now)
+        if (SelectedPayment.IsRecurring
+            && !SelectedPayment.RecurringPayment!.IsEndless
+            && SelectedPayment.RecurringPayment.EndDate != null
+            && SelectedPayment.RecurringPayment.EndDate < DateTime.Now)
         {
-            await dialogService.ShowMessageAsync(Strings.InvalidEnddateTitle, Strings.InvalidEnddateMessage);
+            await dialogService.ShowMessageAsync(title: Strings.InvalidEnddateTitle, message: Strings.InvalidEnddateMessage);
+
             return;
         }
 
@@ -297,53 +290,53 @@ public abstract class ModifyPaymentViewModel : ObservableRecipient, IModifyPayme
             Messenger.Send(new ReloadMessage());
             navigationService.GoBack();
         }
-        catch(Exception ex)
-        {
-            logger.Error(ex);
-            throw;
-        }
         finally
         {
             IsBusy = false;
         }
     }
 
-    public void Cancel() => navigationService.GoBack();
+    public void Cancel()
+    {
+        navigationService.GoBack();
+    }
 
     public async Task ReceiveMessageAsync(CategorySelectedMessage message)
     {
-        if(SelectedPayment == null || message == null)
+        if (SelectedPayment == null || message == null)
         {
             return;
         }
 
-        SelectedPayment.Category =
-            mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.CategoryId)));
+        SelectedPayment.Category = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.CategoryId)));
     }
 
-    private void ResetSelection() => SelectedPayment.Category = null;
+    private void ResetSelection()
+    {
+        SelectedPayment.Category = null;
+    }
 
     private void UpdateOtherComboBox()
     {
         var tempCollection = new ObservableCollection<AccountViewModel>(ChargedAccounts);
-        foreach(AccountViewModel account in TargetAccounts)
+        foreach (var account in TargetAccounts)
         {
-            if(!tempCollection.Contains(account))
+            if (!tempCollection.Contains(account))
             {
                 tempCollection.Add(account);
             }
         }
 
-        foreach(AccountViewModel account in tempCollection)
+        foreach (var account in tempCollection)
         {
             //fills target accounts
-            if(!TargetAccounts.Contains(account))
+            if (!TargetAccounts.Contains(account))
             {
                 TargetAccounts.Add(account);
             }
 
             //fills charged accounts
-            if(!ChargedAccounts.Contains(account))
+            if (!ChargedAccounts.Contains(account))
             {
                 ChargedAccounts.Add(account);
             }

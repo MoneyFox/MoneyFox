@@ -54,11 +54,11 @@
         {
             var webBrowserTaskSetup = Substitute.For<IBrowserAdapter>();
             webBrowserTaskSetup.OpenWebsiteAsync(Arg.Any<Uri>()).Returns(Task.CompletedTask);
-
             new AboutViewModel(
                 appInformation: Substitute.For<IAppInformation>(),
                 emailAdapter: Substitute.For<IEmailAdapter>(),
                 browserAdapter: webBrowserTaskSetup,
+
                 // ReSharper disable once MethodHasAsyncOverload
                 storeOperations: Substitute.For<IStoreOperations>()).GoToWebsiteCommand.Execute(null);
 

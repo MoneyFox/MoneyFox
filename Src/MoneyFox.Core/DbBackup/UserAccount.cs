@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Core.DbBackup
 {
+
     public class UserAccount
     {
         public UserAccount(string name, string email)
@@ -8,13 +9,14 @@
             Email = email;
         }
 
-        public string Name { get; private set; }
+        public string Name { get; }
 
-        public string Email { get; private set; }
+        public string Email { get; }
 
         public UserAccount GetUserAccount()
         {
             return this;
         }
     }
+
 }

@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Core._Pending_.Common.Facades
 {
+
     public interface IConnectivityFacade
     {
         /// <summary>
@@ -19,4 +20,5 @@
 
         public bool IsConnected => connectivityFacade.IsConnected;
     }
+
 }

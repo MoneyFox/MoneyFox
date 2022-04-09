@@ -1,9 +1,10 @@
 ﻿namespace MoneyFox.Converter
 {
-    using ConverterLogic;
-    using Core.Aggregates.Payments;
+
     using System;
     using System.Globalization;
+    using ConverterLogic;
+    using Core.Aggregates.Payments;
     using Xamarin.Forms;
 
     /// <summary>
@@ -19,13 +20,18 @@
         /// <param name="parameter">Is not used.</param>
         /// <param name="culture">Is not used.</param>
         /// <returns>String for the RecurrenceType.</returns>
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) =>
-            RecurrenceTypeConverterLogic.GetStringForPaymentRecurrence((PaymentRecurrence)value);
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return RecurrenceTypeConverterLogic.GetStringForPaymentRecurrence((PaymentRecurrence)value);
+        }
 
         /// <summary>
         ///     Not implemented.
         /// </summary>
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
             throw new NotSupportedException();
+        }
     }
+
 }

@@ -1,10 +1,10 @@
 ﻿namespace MoneyFox.Win.Groups;
 
-using CommunityToolkit.Mvvm.Input;
-using Core._Pending_.Exceptions;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using CommunityToolkit.Mvvm.Input;
+using Core._Pending_.Exceptions;
 
 /// <summary>
 ///     Can be used for a alphanumeric grouping. It will show the whole key as title.     This can be a single name or a
@@ -60,36 +60,34 @@ public class AlphaGroupListGroupCollection<T> : List<T>
     /// <param name="sort">Will sort the data if true.</param>
     /// <param name="itemClickCommand">The command to execute on a click</param>
     /// <returns>An items source for a LongListSelector</returns>
-    public static List<AlphaGroupListGroupCollection<T>> CreateGroups(IEnumerable<T> items,
+    public static List<AlphaGroupListGroupCollection<T>> CreateGroups(
+        IEnumerable<T> items,
         CultureInfo ci,
         GetKeyDelegate getKey,
         bool sort = true,
         RelayCommand<T>? itemClickCommand = null)
     {
         ThrowIfNull(items);
-
         var list = new List<AlphaGroupListGroupCollection<T>>();
-
-        foreach(T item in items)
+        foreach (var item in items)
         {
-            string index = getKey(item);
-
-            if(list.All(a => a.Key != index))
+            var index = getKey(item);
+            if (list.All(a => a.Key != index))
             {
-                list.Add(new AlphaGroupListGroupCollection<T>(index, itemClickCommand));
+                list.Add(new(key: index, itemClickCommand: itemClickCommand));
             }
 
-            if(!string.IsNullOrEmpty(index))
+            if (!string.IsNullOrEmpty(index))
             {
                 list.Find(a => a.Key == index).Add(item);
             }
         }
 
-        if(sort)
+        if (sort)
         {
-            foreach(AlphaGroupListGroupCollection<T> group in list)
+            foreach (var group in list)
             {
-                group.Sort((c0, c1) => ci.CompareInfo.Compare(getKey(c0), getKey(c1)));
+                group.Sort((c0, c1) => ci.CompareInfo.Compare(string1: getKey(c0), string2: getKey(c1)));
             }
         }
 
@@ -98,7 +96,7 @@ public class AlphaGroupListGroupCollection<T> : List<T>
 
     private static void ThrowIfNull(object parameter)
     {
-        if(parameter == null)
+        if (parameter == null)
         {
             throw new GroupListParameterNullException();
         }

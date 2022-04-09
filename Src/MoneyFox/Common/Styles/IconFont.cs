@@ -4,6 +4,7 @@
 
 namespace MoneyFox.Common.Styles
 {
+
     internal static class IconFont
     {
         // FontAwesome
@@ -922,4 +923,5 @@ namespace MoneyFox.Common.Styles
         public const string YenSign = "\uf157";
         public const string YinYang = "\uf6ad";
     }
+
 }

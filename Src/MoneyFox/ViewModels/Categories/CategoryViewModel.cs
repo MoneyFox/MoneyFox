@@ -1,9 +1,10 @@
 ﻿namespace MoneyFox.ViewModels.Categories
 {
+
+    using System;
     using CommunityToolkit.Mvvm.ComponentModel;
     using Core.Aggregates.Payments;
     using Core.Common.Interfaces.Mapping;
-    using System;
 
     public class CategoryViewModel : ObservableObject, IMapFrom<Category>
     {
@@ -17,9 +18,10 @@
         public int Id
         {
             get => id;
+
             set
             {
-                if(id == value)
+                if (id == value)
                 {
                     return;
                 }
@@ -32,9 +34,10 @@
         public string Name
         {
             get => name;
+
             set
             {
-                if(name == value)
+                if (name == value)
                 {
                     return;
                 }
@@ -47,9 +50,10 @@
         public bool RequireNote
         {
             get => requireNote;
+
             set
             {
-                if(requireNote == value)
+                if (requireNote == value)
                 {
                     return;
                 }
@@ -62,9 +66,10 @@
         public DateTime CreationTime
         {
             get => creationTime;
+
             set
             {
-                if(creationTime == value)
+                if (creationTime == value)
                 {
                     return;
                 }
@@ -77,9 +82,10 @@
         public DateTime ModificationDate
         {
             get => modificationDate;
+
             set
             {
-                if(modificationDate == value)
+                if (modificationDate == value)
                 {
                     return;
                 }
@@ -95,9 +101,10 @@
         public string Note
         {
             get => note;
+
             set
             {
-                if(note == value)
+                if (note == value)
                 {
                     return;
                 }
@@ -107,4 +114,5 @@
             }
         }
     }
+
 }

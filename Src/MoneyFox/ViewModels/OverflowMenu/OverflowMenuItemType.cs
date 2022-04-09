@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.ViewModels.OverflowMenu
 {
+
     public enum OverflowMenuItemType
     {
         Categories,
@@ -7,4 +8,5 @@
         Settings,
         About
     }
+
 }
