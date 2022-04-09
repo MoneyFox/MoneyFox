@@ -15,13 +15,11 @@ public class SelectCategoryListViewModel : AbstractCategoryListViewModel, ISelec
     /// <summary>
     ///     Creates an CategoryListViewModel for the usage of providing a CategoryViewModel selection.
     /// </summary>
-    public SelectCategoryListViewModel(IMediator mediator,
-        IMapper mapper,
-        IDialogService dialogService,
-        INavigationService navigationService)
-        : base(mediator, mapper, dialogService, navigationService)
-    {
-    }
+    public SelectCategoryListViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, INavigationService navigationService) : base(
+        mediator: mediator,
+        mapper: mapper,
+        dialogService: dialogService,
+        navigationService: navigationService) { }
 
     /// <summary>
     ///     CategoryViewModel currently selected in the view.
@@ -29,6 +27,7 @@ public class SelectCategoryListViewModel : AbstractCategoryListViewModel, ISelec
     public CategoryViewModel? SelectedCategory
     {
         get => selectedCategory;
+
         set
         {
             selectedCategory = value;
@@ -39,6 +38,8 @@ public class SelectCategoryListViewModel : AbstractCategoryListViewModel, ISelec
     /// <summary>
     ///     Post selected CategoryViewModel to message hub
     /// </summary>
-    protected override void ItemClick(CategoryViewModel category) =>
+    protected override void ItemClick(CategoryViewModel category)
+    {
         Messenger.Send(new CategorySelectedMessage(category.Id));
+    }
 }

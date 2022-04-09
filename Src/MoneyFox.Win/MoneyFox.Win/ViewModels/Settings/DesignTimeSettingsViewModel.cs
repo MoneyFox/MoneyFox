@@ -10,5 +10,8 @@ public class DesignTimeSettingsViewModel : ISettingsViewModel
 
     public CultureInfo SelectedCulture { get; set; } = CultureInfo.CurrentCulture;
 
-    public Task InitializeAsync() => Task.CompletedTask;
+    public Task InitializeAsync()
+    {
+        return Task.CompletedTask;
+    }
 }

@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Converter
 {
-    using Core._Pending_;
+
     using System;
     using System.Globalization;
     using Core.Common;
@@ -12,9 +12,14 @@
     public class DateFormatConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-            => ((DateTime)value).ToString("d", CultureHelper.CurrentCulture);
+        {
+            return ((DateTime)value).ToString(format: "d", provider: CultureHelper.CurrentCulture);
+        }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-            => throw new NotSupportedException();
+        {
+            throw new NotSupportedException();
+        }
     }
+
 }

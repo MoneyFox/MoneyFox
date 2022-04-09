@@ -1,5 +1,9 @@
 namespace MoneyFox.ViewModels.Statistics
 {
+
+    using System;
+    using System.Globalization;
+    using System.Threading.Tasks;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
@@ -7,9 +11,6 @@ namespace MoneyFox.ViewModels.Statistics
     using Core._Pending_.Common.Messages;
     using Core.Resources;
     using MediatR;
-    using System;
-    using System.Globalization;
-    using System.Threading.Tasks;
 
     /// <summary>
     ///     Represents the statistic view.
@@ -24,21 +25,15 @@ namespace MoneyFox.ViewModels.Statistics
         ///     Creates a StatisticViewModel Object and passes the first and last day of the current month     as a start
         ///     and end date.
         /// </summary>
-        protected StatisticViewModel(IMediator mediator)
-            : this(
-                DateTime.Today.GetFirstDayOfMonth(),
-                DateTime.Today.GetLastDayOfMonth(),
-                mediator)
-        {
-        }
+        protected StatisticViewModel(IMediator mediator) : this(
+            startDate: DateTime.Today.GetFirstDayOfMonth(),
+            endDate: DateTime.Today.GetLastDayOfMonth(),
+            mediator: mediator) { }
 
         /// <summary>
         ///     Creates a Statistic ViewModel with custom start and end date
         /// </summary>
-        protected StatisticViewModel(
-            DateTime startDate,
-            DateTime endDate,
-            IMediator mediator)
+        protected StatisticViewModel(DateTime startDate, DateTime endDate, IMediator mediator)
         {
             StartDate = startDate;
             EndDate = endDate;
@@ -54,10 +49,12 @@ namespace MoneyFox.ViewModels.Statistics
         public DateTime StartDate
         {
             get => startDate;
+
             set
             {
                 startDate = value;
                 OnPropertyChanged();
+
                 // ReSharper disable once ExplicitCallerInfoArgument
                 OnPropertyChanged(nameof(Title));
             }
@@ -69,10 +66,12 @@ namespace MoneyFox.ViewModels.Statistics
         public DateTime EndDate
         {
             get => endDate;
+
             set
             {
                 endDate = value;
                 OnPropertyChanged();
+
                 // ReSharper disable once ExplicitCallerInfoArgument
                 OnPropertyChanged(nameof(Title));
             }
@@ -81,20 +80,27 @@ namespace MoneyFox.ViewModels.Statistics
         /// <summary>
         ///     Returns the title for the CategoryViewModel view
         /// </summary>
-        public string Title =>
-            $"{Strings.StatisticsTimeRangeTitle} {StartDate.ToString("d", CultureInfo.InvariantCulture)} - {EndDate.ToString("d", CultureInfo.InvariantCulture)}";
+        public string Title
+            => $"{Strings.StatisticsTimeRangeTitle} {StartDate.ToString(format: "d", provider: CultureInfo.InvariantCulture)} - {EndDate.ToString(format: "d", provider: CultureInfo.InvariantCulture)}";
 
-        protected override void OnActivated() => Messenger.Register<StatisticViewModel, DateSelectedMessage>(
-            this,
-            (r, m) =>
-            {
-                r.StartDate = m.StartDate;
-                r.EndDate = m.EndDate;
-                LoadAsync();
-            });
+        protected override void OnActivated()
+        {
+            Messenger.Register<StatisticViewModel, DateSelectedMessage>(
+                recipient: this,
+                handler: (r, m) =>
+                {
+                    r.StartDate = m.StartDate;
+                    r.EndDate = m.EndDate;
+                    LoadAsync();
+                });
+        }
 
-        protected override void OnDeactivated() => Messenger.Unregister<DateSelectedMessage>(this);
+        protected override void OnDeactivated()
+        {
+            Messenger.Unregister<DateSelectedMessage>(this);
+        }
 
         protected abstract Task LoadAsync();
     }
+
 }

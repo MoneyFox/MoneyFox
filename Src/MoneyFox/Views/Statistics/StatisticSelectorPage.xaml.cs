@@ -1,5 +1,6 @@
 namespace MoneyFox.Views.Statistics
 {
+
     public partial class StatisticSelectorPage
     {
         public StatisticSelectorPage()
@@ -8,4 +9,5 @@ namespace MoneyFox.Views.Statistics
             BindingContext = ViewModelLocator.StatisticSelectorViewModel;
         }
     }
+
 }

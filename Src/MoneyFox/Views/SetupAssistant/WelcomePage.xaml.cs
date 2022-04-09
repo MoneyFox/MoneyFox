@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Views.SetupAssistant
 {
+
     using CommonServiceLocator;
     using ViewModels.SetupAssistant;
     using Xamarin.Forms;
@@ -16,6 +17,10 @@
 
         private WelcomeViewModel ViewModel => (WelcomeViewModel)BindingContext;
 
-        protected override async void OnAppearing() => await ViewModel.InitAsync();
+        protected override async void OnAppearing()
+        {
+            await ViewModel.InitAsync();
+        }
     }
+
 }

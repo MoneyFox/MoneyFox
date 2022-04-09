@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Views.Accounts
 {
+
     using ViewModels.Accounts;
     using Xamarin.Forms;
 
@@ -13,6 +14,10 @@
 
         private AccountListViewModel ViewModel => (AccountListViewModel)BindingContext;
 
-        protected override async void OnAppearing() => await ViewModel.OnAppearingAsync();
+        protected override async void OnAppearing()
+        {
+            await ViewModel.OnAppearingAsync();
+        }
     }
+
 }

@@ -1,7 +1,8 @@
 ﻿namespace MoneyFox.ViewModels.Statistics
 {
-    using CommunityToolkit.Mvvm.ComponentModel;
+
     using System;
+    using CommunityToolkit.Mvvm.ComponentModel;
 
     public class CategoryOverviewViewModel : ObservableObject
     {
@@ -19,9 +20,10 @@
         public int CategoryId
         {
             get => categoryId;
+
             set
             {
-                if(categoryId == value)
+                if (categoryId == value)
                 {
                     return;
                 }
@@ -37,9 +39,10 @@
         public decimal Value
         {
             get => value;
+
             set
             {
-                if(Math.Abs(this.value - value) < DECIMAL_DELTA)
+                if (Math.Abs(this.value - value) < DECIMAL_DELTA)
                 {
                     return;
                 }
@@ -55,9 +58,10 @@
         public decimal Average
         {
             get => average;
+
             set
             {
-                if(Math.Abs(average - value) < DECIMAL_DELTA)
+                if (Math.Abs(average - value) < DECIMAL_DELTA)
                 {
                     return;
                 }
@@ -73,9 +77,10 @@
         public decimal Percentage
         {
             get => percentage;
+
             set
             {
-                if(Math.Abs(this.value - value) < DECIMAL_DELTA)
+                if (Math.Abs(this.value - value) < DECIMAL_DELTA)
                 {
                     return;
                 }
@@ -91,9 +96,10 @@
         public string Label
         {
             get => label;
+
             set
             {
-                if(label == value)
+                if (label == value)
                 {
                     return;
                 }
@@ -103,4 +109,5 @@
             }
         }
     }
+
 }

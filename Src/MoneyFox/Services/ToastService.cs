@@ -1,9 +1,10 @@
 ﻿namespace MoneyFox.Services
 {
+
+    using System.Threading.Tasks;
     using Acr.UserDialogs;
     using Core.Common.Interfaces;
     using JetBrains.Annotations;
-    using System.Threading.Tasks;
 
     [UsedImplicitly]
     public class ToastService : IToastService
@@ -18,7 +19,9 @@
         public Task ShowToastAsync(string message, string title = "")
         {
             userDialogs.Toast(new ToastConfig(message));
+
             return Task.CompletedTask;
         }
     }
+
 }

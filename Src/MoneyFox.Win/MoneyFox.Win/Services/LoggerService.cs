@@ -1,11 +1,11 @@
-namespace MoneyFox.Win.Services;
+﻿namespace MoneyFox.Win.Services;
 
 using System.IO;
+using Windows.Storage;
 using Core.Common;
 using Serilog;
 using Serilog.Events;
 using Serilog.Exceptions;
-using Windows.Storage;
 
 public static class LoggerService
 {

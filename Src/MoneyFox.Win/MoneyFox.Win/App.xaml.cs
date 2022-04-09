@@ -10,8 +10,8 @@ using Core.Commands.Payments.CreateRecurringPayments;
 using Core.Interfaces;
 using MediatR;
 using Microsoft.UI.Xaml;
-using MoneyFox.Win.Services;
 using Serilog;
+using Services;
 
 #if !DEBUG
     using Microsoft.AppCenter;
@@ -34,10 +34,8 @@ public partial class App : Application
         var builder = new ContainerBuilder();
         builder.RegisterModule<WindowsModule>();
         ViewModelLocator.RegisterServices(builder);
-
         var m_window = new MainWindow();
         m_window.Activate();
-
 #if !DEBUG
             var appConfig = new AppConfig();
             AppCenter.Start(appConfig.AppCenter.Secret, typeof(Analytics), typeof(Crashes));
@@ -45,12 +43,10 @@ public partial class App : Application
         ExecuteStartupTasks();
     }
 
-    private void ExecuteStartupTasks() =>
-        Task.Run(async () =>
-            {
-                await StartupTasksAsync();
-            })
-            .ConfigureAwait(false);
+    private void ExecuteStartupTasks()
+    {
+        Task.Run(async () => { await StartupTasksAsync(); }).ConfigureAwait(false);
+    }
 
     private async Task StartupTasksAsync()
     {
@@ -61,10 +57,8 @@ public partial class App : Application
         }
 
         isRunning = true;
-
         var settingsFacade = ServiceLocator.Current.GetInstance<ISettingsFacade>();
         var mediator = ServiceLocator.Current.GetInstance<IMediator>();
-
         try
         {
             if (settingsFacade.IsBackupAutouploadEnabled && settingsFacade.IsLoggedInToBackupService)
@@ -78,7 +72,7 @@ public partial class App : Application
         }
         catch (Exception ex)
         {
-            Log.Fatal(ex, "Error during startup tasks");
+            Log.Fatal(exception: ex, messageTemplate: "Error during startup tasks");
         }
         finally
         {

@@ -1,17 +1,17 @@
-﻿using Android.Content;
-using MoneyFox.Controls;
-using MoneyFox.Droid.Renderer;
+﻿using MoneyFox.Droid.Renderer;
 using Xamarin.Forms;
-using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(ModalContentPage), typeof(ModalContentPageRenderer))]
+[assembly: ExportRenderer(handler: typeof(ModalContentPage), target: typeof(ModalContentPageRenderer))]
 
 namespace MoneyFox.Droid.Renderer
 {
+
+    using Android.Content;
+    using Xamarin.Forms.Platform.Android;
+
     public class ModalContentPageRenderer : PageRenderer
     {
-        public ModalContentPageRenderer(Context context) : base(context)
-        {
-        }
+        public ModalContentPageRenderer(Context context) : base(context) { }
     }
+
 }

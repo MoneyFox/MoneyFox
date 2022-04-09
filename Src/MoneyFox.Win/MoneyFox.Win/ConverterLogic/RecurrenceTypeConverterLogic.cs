@@ -5,8 +5,9 @@ using Core.Resources;
 
 public static class RecurrenceTypeConverterLogic
 {
-    public static string GetStringForPaymentRecurrence(PaymentRecurrence passedEnum) =>
-        passedEnum switch
+    public static string GetStringForPaymentRecurrence(PaymentRecurrence passedEnum)
+    {
+        return passedEnum switch
         {
             PaymentRecurrence.Daily => Strings.DailyLabel,
             PaymentRecurrence.DailyWithoutWeekend => Strings.DailyWithoutWeekendLabel,
@@ -19,4 +20,5 @@ public static class RecurrenceTypeConverterLogic
             PaymentRecurrence.Yearly => Strings.YearlyLabel,
             _ => string.Empty
         };
+    }
 }

@@ -1,18 +1,18 @@
 ﻿namespace MoneyFox.ViewModels.Statistics
 {
-    using AutoMapper;
-    using CommunityToolkit.Mvvm.ComponentModel;
-    using CommunityToolkit.Mvvm.Input;
-    using CommunityToolkit.Mvvm.Messaging;
-    using Groups;
-    using MediatR;
-    using NLog;
-    using Payments;
+
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Globalization;
     using System.Threading.Tasks;
+    using AutoMapper;
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using CommunityToolkit.Mvvm.Input;
+    using CommunityToolkit.Mvvm.Messaging;
     using Core.Queries;
+    using Groups;
+    using MediatR;
+    using Payments;
     using Views.Payments;
     using Xamarin.Forms;
 
@@ -22,22 +22,21 @@
 
         private readonly IMediator mediator;
 
-        private ObservableCollection<DateListGroupCollection<PaymentViewModel>> paymentList =
-            new ObservableCollection<DateListGroupCollection<PaymentViewModel>>();
+        private ObservableCollection<DateListGroupCollection<PaymentViewModel>> paymentList
+            = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>();
 
         public PaymentForCategoryListViewModel(IMediator mediator, IMapper mapper)
         {
             this.mediator = mediator;
             this.mapper = mapper;
-
             PaymentList = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>();
-
             IsActive = true;
         }
 
         public ObservableCollection<DateListGroupCollection<PaymentViewModel>> PaymentList
         {
             get => paymentList;
+
             private set
             {
                 paymentList = value;
@@ -47,36 +46,35 @@
 
         public RelayCommand<PaymentViewModel> GoToEditPaymentCommand
             => new RelayCommand<PaymentViewModel>(
-                async paymentViewModel
-                    => await Shell.Current.Navigation.PushModalAsync(
-                        new NavigationPage(new EditPaymentPage(paymentViewModel.Id))
-                        {
-                            BarBackgroundColor = Color.Transparent
-                        }));
+                async paymentViewModel => await Shell.Current.Navigation.PushModalAsync(
+                    new NavigationPage(new EditPaymentPage(paymentViewModel.Id)) { BarBackgroundColor = Color.Transparent }));
 
         protected override void OnActivated()
-            => Messenger.Register<PaymentForCategoryListViewModel, PaymentsForCategoryMessage>(
-                this,
-                (r, m) => r.InitializeAsync(m));
+        {
+            Messenger.Register<PaymentForCategoryListViewModel, PaymentsForCategoryMessage>(recipient: this, handler: (r, m) => r.InitializeAsync(m));
+        }
 
-        protected override void OnDeactivated() => Messenger.Unregister<PaymentsForCategoryMessage>(this);
+        protected override void OnDeactivated()
+        {
+            Messenger.Unregister<PaymentsForCategoryMessage>(this);
+        }
 
         private async Task InitializeAsync(PaymentsForCategoryMessage receivedMessage)
         {
             var loadedPayments = mapper.Map<List<PaymentViewModel>>(
                 await mediator.Send(
                     new GetPaymentsForCategoryQuery(
-                        receivedMessage.CategoryId,
-                        receivedMessage.StartDate,
-                        receivedMessage.EndDate)));
+                        categoryId: receivedMessage.CategoryId,
+                        dateRangeFrom: receivedMessage.StartDate,
+                        dateRangeTo: receivedMessage.EndDate)));
 
-            List<DateListGroupCollection<PaymentViewModel>> dailyItems
-                = DateListGroupCollection<PaymentViewModel>.CreateGroups(
-                    loadedPayments,
-                    s => s.Date.ToString("D", CultureInfo.CurrentCulture),
-                    s => s.Date);
+            var dailyItems = DateListGroupCollection<PaymentViewModel>.CreateGroups(
+                items: loadedPayments,
+                getKey: s => s.Date.ToString(format: "D", provider: CultureInfo.CurrentCulture),
+                getSortKey: s => s.Date);
 
             PaymentList = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>(dailyItems);
         }
     }
+
 }

@@ -1,11 +1,11 @@
 ﻿namespace MoneyFox.Win.ViewModels;
 
+using System;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Interfaces;
 using Microsoft.AppCenter.Crashes;
-using System;
-using System.Threading.Tasks;
 
 /// <summary>
 ///     Representation of the BalanceView
@@ -28,6 +28,7 @@ public class BalanceViewModel : ObservableObject, IBalanceViewModel
     public decimal TotalBalance
     {
         get => totalBalance;
+
         set
         {
             totalBalance = value;
@@ -41,6 +42,7 @@ public class BalanceViewModel : ObservableObject, IBalanceViewModel
     public decimal EndOfMonthBalance
     {
         get => endOfMonthBalance;
+
         set
         {
             endOfMonthBalance = value;
@@ -65,7 +67,7 @@ public class BalanceViewModel : ObservableObject, IBalanceViewModel
             TotalBalance = await CalculateTotalBalanceAsync();
             EndOfMonthBalance = await GetEndOfMonthValueAsync();
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Crashes.TrackError(ex);
         }
@@ -75,13 +77,17 @@ public class BalanceViewModel : ObservableObject, IBalanceViewModel
     ///     Calculates the sum of all accounts at the current moment.
     /// </summary>
     /// <returns>Sum of the balance of all accounts.</returns>
-    protected virtual async Task<decimal> CalculateTotalBalanceAsync() =>
-        await balanceCalculationService.GetTotalBalanceAsync();
+    protected virtual async Task<decimal> CalculateTotalBalanceAsync()
+    {
+        return await balanceCalculationService.GetTotalBalanceAsync();
+    }
 
     /// <summary>
     ///     Calculates the sum of all accounts at the end of the month.
     /// </summary>
     /// <returns>Sum of all balances including all payments to come till end of month.</returns>
-    protected virtual async Task<decimal> GetEndOfMonthValueAsync() =>
-        await balanceCalculationService.GetTotalEndOfMonthBalanceAsync();
+    protected virtual async Task<decimal> GetEndOfMonthValueAsync()
+    {
+        return await balanceCalculationService.GetTotalEndOfMonthBalanceAsync();
+    }
 }

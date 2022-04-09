@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.ViewModels.Statistics
 {
+
     using System;
 
     public class PaymentsForCategoryMessage
@@ -15,4 +16,5 @@
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
     }
+
 }

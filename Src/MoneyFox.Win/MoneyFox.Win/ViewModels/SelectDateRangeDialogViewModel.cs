@@ -1,11 +1,11 @@
 ﻿namespace MoneyFox.Win.ViewModels;
 
+using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core._Pending_.Common.Extensions;
 using Core._Pending_.Common.Messages;
-using System;
 
 public class SelectDateRangeDialogViewModel : ObservableRecipient
 {
@@ -14,7 +14,7 @@ public class SelectDateRangeDialogViewModel : ObservableRecipient
 
     public SelectDateRangeDialogViewModel()
     {
-        StartDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+        StartDate = new(year: DateTime.Today.Year, month: DateTime.Today.Month, day: 1);
         EndDate = DateTime.Today.GetLastDayOfMonth();
     }
 
@@ -24,6 +24,7 @@ public class SelectDateRangeDialogViewModel : ObservableRecipient
     public DateTime StartDate
     {
         get => startDate;
+
         set
         {
             startDate = value;
@@ -37,6 +38,7 @@ public class SelectDateRangeDialogViewModel : ObservableRecipient
     public DateTime EndDate
     {
         get => endDate;
+
         set
         {
             endDate = value;
@@ -49,5 +51,8 @@ public class SelectDateRangeDialogViewModel : ObservableRecipient
     /// </summary>
     public RelayCommand DoneCommand => new(Done);
 
-    private void Done() => Messenger.Send(new DateSelectedMessage(StartDate, EndDate));
+    private void Done()
+    {
+        Messenger.Send(new DateSelectedMessage(startDate: StartDate, endDate: EndDate));
+    }
 }

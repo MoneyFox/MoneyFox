@@ -1,5 +1,10 @@
 ﻿namespace MoneyFox.ViewModels.Accounts
 {
+
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+    using System.Threading.Tasks;
     using AutoMapper;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
@@ -7,15 +12,11 @@
     using Core._Pending_.Common.Messages;
     using Core.Commands.Accounts.DeleteAccountById;
     using Core.Common.Interfaces;
+    using Core.Queries;
     using Core.Resources;
     using Extensions;
     using Groups;
     using MediatR;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using Core.Queries;
     using Views.Accounts;
     using Xamarin.Forms;
 
@@ -26,8 +27,8 @@
 
         private readonly IMediator mediator;
 
-        private ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> accounts =
-            new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
+        private ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> accounts
+            = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
 
         private bool isRunning;
 
@@ -41,6 +42,7 @@
         public ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> Accounts
         {
             get => accounts;
+
             private set
             {
                 accounts = value;
@@ -48,67 +50,53 @@
             }
         }
 
-        public RelayCommand GoToAddAccountCommand => new RelayCommand(
-            async () =>
-                await Shell.Current.GoToModalAsync(ViewModelLocator.AddAccountRoute));
+        public RelayCommand GoToAddAccountCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddAccountRoute));
 
         public RelayCommand<AccountViewModel> GoToEditAccountCommand
             => new RelayCommand<AccountViewModel>(
-                async accountViewModel
-                    => await Shell.Current.Navigation.PushModalAsync(
-                        new NavigationPage(new EditAccountPage(accountViewModel.Id))
-                        {
-                            BarBackgroundColor = Color.Transparent
-                        }));
+                async accountViewModel => await Shell.Current.Navigation.PushModalAsync(
+                    new NavigationPage(new EditAccountPage(accountViewModel.Id)) { BarBackgroundColor = Color.Transparent }));
 
         public RelayCommand<AccountViewModel> GoToTransactionListCommand
             => new RelayCommand<AccountViewModel>(
-                async accountViewModel
-                    => await Shell.Current.GoToAsync(
-                        $"{ViewModelLocator.PaymentListRoute}?accountId={accountViewModel.Id}"));
+                async accountViewModel => await Shell.Current.GoToAsync($"{ViewModelLocator.PaymentListRoute}?accountId={accountViewModel.Id}"));
 
         public RelayCommand<AccountViewModel> DeleteAccountCommand
-            => new RelayCommand<AccountViewModel>(
-                async accountViewModel
-                    => await DeleteAccountAsync(accountViewModel));
+            => new RelayCommand<AccountViewModel>(async accountViewModel => await DeleteAccountAsync(accountViewModel));
 
         protected override void OnActivated()
-            => Messenger.Register<AccountListViewModel, ReloadMessage>(this, (r, m) => r.OnAppearingAsync());
+        {
+            Messenger.Register<AccountListViewModel, ReloadMessage>(recipient: this, handler: (r, m) => r.OnAppearingAsync());
+        }
 
-        protected override void OnDeactivated() => Messenger.Unregister<ReloadMessage>(this);
+        protected override void OnDeactivated()
+        {
+            Messenger.Unregister<ReloadMessage>(this);
+        }
 
         public async Task OnAppearingAsync()
         {
             try
             {
-                if(isRunning)
+                if (isRunning)
                 {
                     return;
                 }
 
                 isRunning = true;
-
                 var accountVms = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
-                accountVms.ForEach(
-                    async x =>
-                        x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
-
-                var includedAccountGroup =
-                    new AlphaGroupListGroupCollection<AccountViewModel>(Strings.IncludedAccountsHeader);
-                var excludedAccountGroup =
-                    new AlphaGroupListGroupCollection<AccountViewModel>(Strings.ExcludedAccountsHeader);
-
+                accountVms.ForEach(async x => x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
+                var includedAccountGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.IncludedAccountsHeader);
+                var excludedAccountGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.ExcludedAccountsHeader);
                 includedAccountGroup.AddRange(accountVms.Where(x => !x.IsExcluded));
                 excludedAccountGroup.AddRange(accountVms.Where(x => x.IsExcluded));
-
                 var newAccountCollection = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
-
-                if(includedAccountGroup.Any())
+                if (includedAccountGroup.Any())
                 {
                     newAccountCollection.Add(includedAccountGroup);
                 }
 
-                if(excludedAccountGroup.Any())
+                if (excludedAccountGroup.Any())
                 {
                     newAccountCollection.Add(excludedAccountGroup);
                 }
@@ -126,15 +114,16 @@
 
         private async Task DeleteAccountAsync(AccountViewModel accountViewModel)
         {
-            if(await dialogService.ShowConfirmMessageAsync(
-                   Strings.DeleteTitle,
-                   Strings.DeleteAccountConfirmationMessage,
-                   Strings.YesLabel,
-                   Strings.NoLabel))
+            if (await dialogService.ShowConfirmMessageAsync(
+                    title: Strings.DeleteTitle,
+                    message: Strings.DeleteAccountConfirmationMessage,
+                    positiveButtonText: Strings.YesLabel,
+                    negativeButtonText: Strings.NoLabel))
             {
                 await mediator.Send(new DeactivateAccountByIdCommand(accountViewModel.Id));
                 await OnAppearingAsync();
             }
         }
     }
+
 }

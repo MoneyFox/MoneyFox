@@ -1,26 +1,26 @@
 ﻿namespace MoneyFox.Views.Dialogs
 {
-    using Rg.Plugins.Popup.Extensions;
+
     using System;
     using System.Threading.Tasks;
+    using Rg.Plugins.Popup.Extensions;
     using Xamarin.Forms;
 
     public partial class MessageDialog
     {
         public static readonly BindableProperty PopupTitleProperty = BindableProperty.Create(
-            nameof(PopupTitle),
-            typeof(string),
-            typeof(MessageDialog));
+            propertyName: nameof(PopupTitle),
+            returnType: typeof(string),
+            declaringType: typeof(MessageDialog));
 
         public static readonly BindableProperty PopupMessageProperty = BindableProperty.Create(
-            nameof(PopupMessage),
-            typeof(string),
-            typeof(MessageDialog));
+            propertyName: nameof(PopupMessage),
+            returnType: typeof(string),
+            declaringType: typeof(MessageDialog));
 
         public MessageDialog(string title, string message)
         {
             InitializeComponent();
-
             PopupTitle = title;
             PopupMessage = message;
         }
@@ -28,21 +28,29 @@
         public string PopupTitle
         {
             get => (string)GetValue(PopupTitleProperty);
-            set => SetValue(PopupTitleProperty, value);
+            set => SetValue(property: PopupTitleProperty, value: value);
         }
 
         public string PopupMessage
         {
             get => (string)GetValue(PopupMessageProperty);
-            set => SetValue(PopupMessageProperty, value);
+            set => SetValue(property: PopupMessageProperty, value: value);
         }
 
-        public async Task ShowAsync() =>
+        public async Task ShowAsync()
+        {
             await Application.Current.MainPage.Navigation.PushPopupAsync(this);
+        }
 
-        public static async Task DismissAsync() =>
+        public static async Task DismissAsync()
+        {
             await Application.Current.MainPage.Navigation.PopPopupAsync();
+        }
 
-        private async void OnOkClick(object sender, EventArgs e) => await DismissAsync();
+        private async void OnOkClick(object sender, EventArgs e)
+        {
+            await DismissAsync();
+        }
     }
+
 }

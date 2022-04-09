@@ -1,9 +1,8 @@
 namespace MoneyFox.Win.Converter;
 
-using Core._Pending_;
-using Microsoft.UI.Xaml.Data;
 using System;
 using Core.Common;
+using Microsoft.UI.Xaml.Data;
 
 public class DateTimeToDateTimeOffsetConverter : IValueConverter
 {
@@ -11,10 +10,11 @@ public class DateTimeToDateTimeOffsetConverter : IValueConverter
     {
         try
         {
-            var date = System.Convert.ToDateTime(value, CultureHelper.CurrentCulture);
+            var date = System.Convert.ToDateTime(value: value, provider: CultureHelper.CurrentCulture);
+
             return new DateTimeOffset(date);
         }
-        catch(ArgumentOutOfRangeException)
+        catch (ArgumentOutOfRangeException)
         {
             return DateTimeOffset.MinValue;
         }
@@ -28,7 +28,7 @@ public class DateTimeToDateTimeOffsetConverter : IValueConverter
 
             return dto.DateTime;
         }
-        catch(Exception)
+        catch (Exception)
         {
             return DateTime.MinValue;
         }

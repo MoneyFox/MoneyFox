@@ -12,7 +12,6 @@
     using Core.Interfaces;
     using Core.Resources;
     using Microsoft.AppCenter.Crashes;
-    using NLog;
     using Serilog;
 
     public class BackupViewModel : ObservableObject, IBackupViewModel
@@ -164,17 +163,15 @@
             }
 
             IsLoadingBackupAvailability = true;
-
             try
             {
                 BackupAvailable = await backupService.IsBackupExistingAsync();
                 BackupLastModified = await backupService.GetBackupDateAsync();
-
                 UserAccount = await backupService.GetUserAccount();
             }
             catch (BackupAuthenticationFailedException ex)
             {
-                Log.Error(exception: ex, "Issue during Login process");
+                Log.Error(exception: ex, messageTemplate: "Issue during Login process");
                 await backupService.LogoutAsync();
                 await dialogService.ShowMessageAsync(title: Strings.AuthenticationFailedTitle, message: Strings.ErrorMessageAuthenticationFailed);
             }
@@ -186,7 +183,7 @@
                     await dialogService.ShowMessageAsync(title: Strings.AuthenticationFailedTitle, message: Strings.ErrorMessageAuthenticationFailed);
                 }
 
-                Log.Error(exception: ex, "Issue on loading backup view");
+                Log.Error(exception: ex, messageTemplate: "Issue on loading backup view");
             }
 
             IsLoadingBackupAvailability = false;
@@ -211,7 +208,7 @@
             }
             catch (Exception ex)
             {
-                Log.Error(exception: ex, "Login Failed");
+                Log.Error(exception: ex, messageTemplate: "Login Failed");
                 await dialogService.ShowMessageAsync(
                     title: Strings.LoginFailedTitle,
                     message: string.Format(format: Strings.UnknownErrorMessage, arg0: ex.Message));
@@ -235,7 +232,7 @@
             }
             catch (Exception ex)
             {
-                Log.Error(exception: ex, "Logout Failed");
+                Log.Error(exception: ex, messageTemplate: "Logout Failed");
                 await dialogService.ShowMessageAsync(title: Strings.GeneralErrorTitle, message: ex.Message);
                 Crashes.TrackError(ex);
             }
@@ -264,7 +261,7 @@
             }
             catch (Exception ex)
             {
-                Log.Error(exception: ex, "Create Backup failed");
+                Log.Error(exception: ex, messageTemplate: "Create Backup failed");
                 await dialogService.ShowMessageAsync(title: Strings.BackupFailedTitle, message: ex.Message);
                 Crashes.TrackError(ex);
             }
@@ -296,7 +293,7 @@
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(exception: ex, "Restore Backup failed");
+                    Log.Error(exception: ex, messageTemplate: "Restore Backup failed");
                     await dialogService.ShowMessageAsync(title: Strings.BackupFailedTitle, message: ex.Message);
                     Crashes.TrackError(ex);
                 }
@@ -336,4 +333,5 @@
                 negativeButtonText: Strings.NoLabel);
         }
     }
+
 }

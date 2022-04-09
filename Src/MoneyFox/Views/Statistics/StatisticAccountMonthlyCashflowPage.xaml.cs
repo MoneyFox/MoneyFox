@@ -1,7 +1,8 @@
 ﻿namespace MoneyFox.Views.Statistics
 {
-    using Dialogs;
+
     using System;
+    using Dialogs;
     using ViewModels.Statistics;
 
     public partial class StatisticAccountMonthlyCashFlowPage
@@ -12,12 +13,17 @@
             BindingContext = ViewModelLocator.StatistcAccountMonthlyCashflowViewModel;
         }
 
-        private StatisticAccountMonthlyCashflowViewModel ViewModel =>
-            (StatisticAccountMonthlyCashflowViewModel)BindingContext;
+        private StatisticAccountMonthlyCashflowViewModel ViewModel => (StatisticAccountMonthlyCashflowViewModel)BindingContext;
 
-        protected override void OnAppearing() => ViewModel.InitCommand.Execute(null);
+        protected override void OnAppearing()
+        {
+            ViewModel.InitCommand.Execute(null);
+        }
 
         private async void OpenFilterDialog(object sender, EventArgs e)
-            => await new DateSelectionPopup(ViewModel.StartDate, ViewModel.EndDate).ShowAsync();
+        {
+            await new DateSelectionPopup(dateFrom: ViewModel.StartDate, dateTo: ViewModel.EndDate).ShowAsync();
+        }
     }
+
 }

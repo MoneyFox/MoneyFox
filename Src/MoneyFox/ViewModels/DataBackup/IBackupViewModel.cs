@@ -1,7 +1,8 @@
 ﻿namespace MoneyFox.ViewModels.DataBackup
 {
-    using CommunityToolkit.Mvvm.Input;
+
     using System;
+    using CommunityToolkit.Mvvm.Input;
 
     public interface IBackupViewModel
     {
@@ -44,4 +45,5 @@
         /// </summary>
         bool IsAutoBackupEnabled { get; }
     }
+
 }

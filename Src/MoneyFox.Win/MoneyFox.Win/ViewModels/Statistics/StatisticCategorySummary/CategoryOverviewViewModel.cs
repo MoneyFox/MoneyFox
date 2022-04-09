@@ -1,10 +1,10 @@
 ﻿namespace MoneyFox.Win.ViewModels.Statistics.StatisticCategorySummary;
 
+using System;
+using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Groups;
 using Payments;
-using System;
-using System.Collections.ObjectModel;
 
 public class CategoryOverviewViewModel : ObservableObject
 {
@@ -15,15 +15,18 @@ public class CategoryOverviewViewModel : ObservableObject
     private decimal average;
     private decimal percentage;
 
+    private ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> source = new();
+
     /// <summary>
     ///     Value of this item
     /// </summary>
     public int CategoryId
     {
         get => categoryId;
+
         set
         {
-            if(categoryId == value)
+            if (categoryId == value)
             {
                 return;
             }
@@ -39,9 +42,10 @@ public class CategoryOverviewViewModel : ObservableObject
     public decimal Value
     {
         get => value;
+
         set
         {
-            if(Math.Abs(this.value - value) < DECIMAL_DELTA)
+            if (Math.Abs(this.value - value) < DECIMAL_DELTA)
             {
                 return;
             }
@@ -57,9 +61,10 @@ public class CategoryOverviewViewModel : ObservableObject
     public decimal Average
     {
         get => average;
+
         set
         {
-            if(Math.Abs(average - value) < DECIMAL_DELTA)
+            if (Math.Abs(average - value) < DECIMAL_DELTA)
             {
                 return;
             }
@@ -75,9 +80,10 @@ public class CategoryOverviewViewModel : ObservableObject
     public decimal Percentage
     {
         get => percentage;
+
         set
         {
-            if(Math.Abs(this.value - value) < DECIMAL_DELTA)
+            if (Math.Abs(this.value - value) < DECIMAL_DELTA)
             {
                 return;
             }
@@ -93,9 +99,10 @@ public class CategoryOverviewViewModel : ObservableObject
     public string Label
     {
         get => label;
+
         set
         {
-            if(label == value)
+            if (label == value)
             {
                 return;
             }
@@ -105,17 +112,16 @@ public class CategoryOverviewViewModel : ObservableObject
         }
     }
 
-    private ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> source = new();
-
     /// <summary>
     ///     Source for the payment list
     /// </summary>
     public ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source
     {
         get => source;
+
         private set
         {
-            if(source == value)
+            if (source == value)
             {
                 return;
             }

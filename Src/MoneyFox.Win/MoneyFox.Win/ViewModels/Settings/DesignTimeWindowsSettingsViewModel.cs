@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Win.ViewModels.Settings;
 
-using CommunityToolkit.Mvvm.Input;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
 
 public class DesignTimeWindowsSettingsViewModel : DesignTimeSettingsViewModel, IWindowsSettingsViewModel
 {

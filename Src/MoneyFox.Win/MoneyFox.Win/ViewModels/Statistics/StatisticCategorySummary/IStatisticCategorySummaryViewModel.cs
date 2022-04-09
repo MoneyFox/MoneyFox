@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Win.ViewModels.Statistics.StatisticCategorySummary;
 
-using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.Input;
 
 public interface IStatisticCategorySummaryViewModel
 {

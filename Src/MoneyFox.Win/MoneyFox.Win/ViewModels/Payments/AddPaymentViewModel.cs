@@ -1,19 +1,17 @@
 ﻿namespace MoneyFox.Win.ViewModels.Payments;
 
+using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using Core._Pending_.Exceptions;
 using Core.Aggregates.Payments;
 using Core.Commands.Payments.CreatePayment;
 using Core.Common.Interfaces;
+using Core.Queries;
 using Core.Resources;
 using MediatR;
-using NLog;
 using Services;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Core.Queries;
 using Utilities;
 
 public class AddPaymentViewModel : ModifyPaymentViewModel
@@ -22,11 +20,11 @@ public class AddPaymentViewModel : ModifyPaymentViewModel
     private readonly IMapper mapper;
     private readonly IDialogService dialogService;
 
-    public AddPaymentViewModel(
-        IMediator mediator,
-        IMapper mapper,
-        IDialogService dialogService,
-        INavigationService navigationService) : base(mediator, mapper, dialogService, navigationService)
+    public AddPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, INavigationService navigationService) : base(
+        mediator: mediator,
+        mapper: mapper,
+        dialogService: dialogService,
+        navigationService: navigationService)
     {
         this.mediator = mediator;
         this.mapper = mapper;
@@ -39,15 +37,12 @@ public class AddPaymentViewModel : ModifyPaymentViewModel
 
     protected override async Task InitializeAsync()
     {
-        Title = PaymentTypeHelper.GetViewTitleForType(PaymentType, false);
+        Title = PaymentTypeHelper.GetViewTitleForType(type: PaymentType, isEditMode: false);
         AmountString = HelperFunctions.FormatLargeNumbers(SelectedPayment.Amount);
         SelectedPayment.Type = PaymentType;
-
         await base.InitializeAsync();
-
         SelectedPayment.ChargedAccount = ChargedAccounts.FirstOrDefault();
-
-        if(SelectedPayment.IsTransfer)
+        if (SelectedPayment.IsTransfer)
         {
             SelectedItemChangedCommand.Execute(null);
             SelectedPayment.TargetAccount = TargetAccounts.FirstOrDefault();
@@ -60,31 +55,26 @@ public class AddPaymentViewModel : ModifyPaymentViewModel
         {
             IsBusy = true;
             var payment = new Payment(
-                SelectedPayment.Date,
-                SelectedPayment.Amount,
-                SelectedPayment.Type,
-                await mediator.Send(new GetAccountByIdQuery(
-                    SelectedPayment.ChargedAccount.Id)),
-                SelectedPayment.TargetAccount != null
-                    ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id))
-                    : null,
-                mapper.Map<Category>(SelectedPayment.Category),
-                SelectedPayment.Note);
+                date: SelectedPayment.Date,
+                amount: SelectedPayment.Amount,
+                type: SelectedPayment.Type,
+                chargedAccount: await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id)),
+                targetAccount: SelectedPayment.TargetAccount != null ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id)) : null,
+                category: mapper.Map<Category>(SelectedPayment.Category),
+                note: SelectedPayment.Note);
 
-            if(SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment != null)
+            if (SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment != null)
             {
                 payment.AddRecurringPayment(
-                    SelectedPayment.RecurringPayment.Recurrence,
-                    SelectedPayment.RecurringPayment.IsEndless
-                        ? null
-                        : SelectedPayment.RecurringPayment.EndDate);
+                    recurrence: SelectedPayment.RecurringPayment.Recurrence,
+                    endDate: SelectedPayment.RecurringPayment.IsEndless ? null : SelectedPayment.RecurringPayment.EndDate);
             }
 
             await mediator.Send(new CreatePaymentCommand(payment));
         }
-        catch(InvalidEndDateException)
+        catch (InvalidEndDateException)
         {
-            await dialogService.ShowMessageAsync(Strings.InvalidEnddateTitle, Strings.InvalidEnddateMessage);
+            await dialogService.ShowMessageAsync(title: Strings.InvalidEnddateTitle, message: Strings.InvalidEnddateMessage);
         }
         finally
         {

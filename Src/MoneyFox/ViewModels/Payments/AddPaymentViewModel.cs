@@ -1,14 +1,15 @@
 ﻿namespace MoneyFox.ViewModels.Payments
 {
+
+    using System.Linq;
+    using System.Threading.Tasks;
     using AutoMapper;
     using Core.Aggregates.Payments;
     using Core.Commands.Payments.CreatePayment;
     using Core.Common.Interfaces;
+    using Core.Queries;
     using JetBrains.Annotations;
     using MediatR;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using Core.Queries;
 
     [UsedImplicitly]
     public class AddPaymentViewModel : ModifyPaymentViewModel
@@ -16,11 +17,10 @@
         private readonly IMapper mapper;
         private readonly IMediator mediator;
 
-        public AddPaymentViewModel(
-            IMediator mediator,
-            IMapper mapper,
-            IDialogService dialogService)
-            : base(mediator, mapper, dialogService)
+        public AddPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService) : base(
+            mediator: mediator,
+            mapper: mapper,
+            dialogService: dialogService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
@@ -35,26 +35,23 @@
         protected override async Task SavePaymentAsync()
         {
             var payment = new Payment(
-                SelectedPayment.Date,
-                SelectedPayment.Amount,
-                SelectedPayment.Type,
-                await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id)),
-                SelectedPayment.TargetAccount != null
-                    ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id))
-                    : null,
-                mapper.Map<Category>(SelectedPayment.Category),
-                SelectedPayment.Note);
+                date: SelectedPayment.Date,
+                amount: SelectedPayment.Amount,
+                type: SelectedPayment.Type,
+                chargedAccount: await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id)),
+                targetAccount: SelectedPayment.TargetAccount != null ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id)) : null,
+                category: mapper.Map<Category>(SelectedPayment.Category),
+                note: SelectedPayment.Note);
 
-            if(SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment != null)
+            if (SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment != null)
             {
                 payment.AddRecurringPayment(
-                    SelectedPayment.RecurringPayment.Recurrence,
-                    SelectedPayment.RecurringPayment.IsEndless
-                        ? null
-                        : SelectedPayment.RecurringPayment.EndDate);
+                    recurrence: SelectedPayment.RecurringPayment.Recurrence,
+                    endDate: SelectedPayment.RecurringPayment.IsEndless ? null : SelectedPayment.RecurringPayment.EndDate);
             }
 
             await mediator.Send(new CreatePaymentCommand(payment));
         }
     }
+
 }

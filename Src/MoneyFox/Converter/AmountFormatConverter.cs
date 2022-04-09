@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Converter
 {
-    using Core._Pending_;
+
     using System;
     using System.Globalization;
     using Core.Common;
@@ -21,14 +21,19 @@
         /// <returns>Converted currency string.</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            decimal currencyValue = (decimal)value;
-            return currencyValue.ToString("C", CultureHelper.CurrentCulture);
+            var currencyValue = (decimal)value;
+
+            return currencyValue.ToString(format: "C", provider: CultureHelper.CurrentCulture);
         }
 
         /// <summary>
         ///     Returns the value.
         /// </summary>
         /// <returns>Passed value.</returns>
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => value;
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
     }
+
 }

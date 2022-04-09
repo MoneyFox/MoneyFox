@@ -1,10 +1,10 @@
 ﻿namespace MoneyFox.Win.ViewModels;
 
+using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using Core._Pending_.Common.Messages;
 using Core.Aggregates.Payments;
-using System;
 
 public class SelectFilterDialogViewModel : ObservableRecipient, ISelectFilterDialogViewModel
 {
@@ -20,9 +20,10 @@ public class SelectFilterDialogViewModel : ObservableRecipient, ISelectFilterDia
     public bool IsClearedFilterActive
     {
         get => isClearedFilterActive;
+
         set
         {
-            if(isClearedFilterActive == value)
+            if (isClearedFilterActive == value)
             {
                 return;
             }
@@ -39,9 +40,10 @@ public class SelectFilterDialogViewModel : ObservableRecipient, ISelectFilterDia
     public bool IsRecurringFilterActive
     {
         get => isRecurringFilterActive;
+
         set
         {
-            if(isRecurringFilterActive == value)
+            if (isRecurringFilterActive == value)
             {
                 return;
             }
@@ -58,9 +60,10 @@ public class SelectFilterDialogViewModel : ObservableRecipient, ISelectFilterDia
     public PaymentTypeFilter FilteredPaymentType
     {
         get => filteredPaymentType;
+
         set
         {
-            if(filteredPaymentType == value)
+            if (filteredPaymentType == value)
             {
                 return;
             }
@@ -77,9 +80,10 @@ public class SelectFilterDialogViewModel : ObservableRecipient, ISelectFilterDia
     public DateTime TimeRangeStart
     {
         get => timeRangeStart;
+
         set
         {
-            if(timeRangeStart == value)
+            if (timeRangeStart == value)
             {
                 return;
             }
@@ -96,9 +100,10 @@ public class SelectFilterDialogViewModel : ObservableRecipient, ISelectFilterDia
     public DateTime TimeRangeEnd
     {
         get => timeRangeEnd;
+
         set
         {
-            if(timeRangeEnd == value)
+            if (timeRangeEnd == value)
             {
                 return;
             }
@@ -109,7 +114,8 @@ public class SelectFilterDialogViewModel : ObservableRecipient, ISelectFilterDia
         }
     }
 
-    private void UpdateList() =>
+    private void UpdateList()
+    {
         Messenger.Send(
             new PaymentListFilterChangedMessage
             {
@@ -119,4 +125,5 @@ public class SelectFilterDialogViewModel : ObservableRecipient, ISelectFilterDia
                 TimeRangeEnd = TimeRangeEnd,
                 FilteredPaymentType = FilteredPaymentType
             });
+    }
 }

@@ -6,6 +6,12 @@ using ViewModels.Payments;
 
 public sealed partial class CategorySelectionControl : UserControl
 {
+    public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(
+        name: "ViewModel",
+        propertyType: typeof(ModifyPaymentViewModel),
+        ownerType: typeof(CategorySelectionControl),
+        typeMetadata: new(null));
+
     public CategorySelectionControl()
     {
         InitializeComponent();
@@ -14,12 +20,6 @@ public sealed partial class CategorySelectionControl : UserControl
     public ModifyPaymentViewModel ViewModel
     {
         get => (ModifyPaymentViewModel)GetValue(ViewModelProperty);
-        set => SetValue(ViewModelProperty, value);
+        set => SetValue(dp: ViewModelProperty, value: value);
     }
-
-    public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(
-        "ViewModel",
-        typeof(ModifyPaymentViewModel),
-        typeof(CategorySelectionControl),
-        new PropertyMetadata(null));
 }

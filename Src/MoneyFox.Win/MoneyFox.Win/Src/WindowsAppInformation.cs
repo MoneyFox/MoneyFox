@@ -1,8 +1,8 @@
 ﻿namespace MoneyFox.Win;
 
-using Core.Common.Interfaces;
 using System.Globalization;
 using Windows.ApplicationModel;
+using Core.Common.Interfaces;
 
 public class WindowsAppInformation : IAppInformation
 {
@@ -13,10 +13,11 @@ public class WindowsAppInformation : IAppInformation
     {
         get
         {
-            PackageVersion version = Package.Current.Id.Version;
+            var version = Package.Current.Id.Version;
+
             return string.Format(
-                CultureInfo.InvariantCulture,
-                "{0}.{1}.{2}.{3}",
+                provider: CultureInfo.InvariantCulture,
+                format: "{0}.{1}.{2}.{3}",
                 version.Major,
                 version.Minor,
                 version.Build,

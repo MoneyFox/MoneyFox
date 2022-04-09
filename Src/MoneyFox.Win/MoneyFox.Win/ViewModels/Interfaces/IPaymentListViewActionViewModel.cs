@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Win.ViewModels.Interfaces;
 
-using CommunityToolkit.Mvvm.Input;
 using System;
+using CommunityToolkit.Mvvm.Input;
 using Core.Aggregates.Payments;
 
 /// <summary>

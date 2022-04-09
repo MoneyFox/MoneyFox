@@ -1,10 +1,11 @@
 ﻿namespace MoneyFox.Views.Payments
 {
+
     using System;
     using ViewModels.Payments;
     using Xamarin.Forms;
 
-    [QueryProperty("AccountId", "accountId")]
+    [QueryProperty(name: "AccountId", queryId: "accountId")]
     public partial class PaymentListPage : ContentPage
     {
         public PaymentListPage()
@@ -15,7 +16,10 @@
 
         private PaymentListViewModel ViewModel => (PaymentListViewModel)BindingContext;
 
-        protected override async void OnAppearing() => await ViewModel.OnAppearingAsync(accountId);
+        protected override async void OnAppearing()
+        {
+            await ViewModel.OnAppearingAsync(accountId);
+        }
 #pragma warning disable S2376 // Write-only properties should not be used
         private int accountId;
         public string AccountId
@@ -24,4 +28,5 @@
         }
 #pragma warning restore S2376 // Write-only properties should not be used
     }
+
 }

@@ -1,9 +1,9 @@
 ﻿namespace MoneyFox.Win.ViewModels.Accounts;
 
+using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Core.Aggregates;
 using Core.Common.Interfaces.Mapping;
-using System;
 
 public sealed class AccountViewModel : ObservableObject, IMapFrom<Account>, IEquatable<AccountViewModel>
 {
@@ -22,9 +22,10 @@ public sealed class AccountViewModel : ObservableObject, IMapFrom<Account>, IEqu
     public int Id
     {
         get => id;
+
         set
         {
-            if(id == value)
+            if (id == value)
             {
                 return;
             }
@@ -37,9 +38,10 @@ public sealed class AccountViewModel : ObservableObject, IMapFrom<Account>, IEqu
     public string Name
     {
         get => name;
+
         set
         {
-            if(name == value)
+            if (name == value)
             {
                 return;
             }
@@ -52,9 +54,10 @@ public sealed class AccountViewModel : ObservableObject, IMapFrom<Account>, IEqu
     public decimal CurrentBalance
     {
         get => currentBalance;
+
         set
         {
-            if(Math.Abs(currentBalance - value) < DECIMAL_DELTA)
+            if (Math.Abs(currentBalance - value) < DECIMAL_DELTA)
             {
                 return;
             }
@@ -67,6 +70,7 @@ public sealed class AccountViewModel : ObservableObject, IMapFrom<Account>, IEqu
     public decimal EndOfMonthBalance
     {
         get => endOfMonthBalance;
+
         set
         {
             endOfMonthBalance = value;
@@ -77,9 +81,10 @@ public sealed class AccountViewModel : ObservableObject, IMapFrom<Account>, IEqu
     public string Note
     {
         get => note;
+
         set
         {
-            if(note == value)
+            if (note == value)
             {
                 return;
             }
@@ -92,9 +97,10 @@ public sealed class AccountViewModel : ObservableObject, IMapFrom<Account>, IEqu
     public bool IsOverdrawn
     {
         get => isOverdrawn;
+
         set
         {
-            if(isOverdrawn == value)
+            if (isOverdrawn == value)
             {
                 return;
             }
@@ -107,9 +113,10 @@ public sealed class AccountViewModel : ObservableObject, IMapFrom<Account>, IEqu
     public bool IsExcluded
     {
         get => isExcluded;
+
         set
         {
-            if(isExcluded == value)
+            if (isExcluded == value)
             {
                 return;
             }
@@ -122,9 +129,10 @@ public sealed class AccountViewModel : ObservableObject, IMapFrom<Account>, IEqu
     public DateTime Created
     {
         get => created;
+
         set
         {
-            if(created == value)
+            if (created == value)
             {
                 return;
             }
@@ -137,9 +145,10 @@ public sealed class AccountViewModel : ObservableObject, IMapFrom<Account>, IEqu
     public DateTime LastModified
     {
         get => lastModified;
+
         set
         {
-            if(lastModified == value)
+            if (lastModified == value)
             {
                 return;
             }
@@ -151,7 +160,7 @@ public sealed class AccountViewModel : ObservableObject, IMapFrom<Account>, IEqu
 
     public bool Equals(AccountViewModel other)
     {
-        if(other == null)
+        if (other == null)
         {
             return false;
         }
@@ -161,7 +170,7 @@ public sealed class AccountViewModel : ObservableObject, IMapFrom<Account>, IEqu
 
     public override bool Equals(object obj)
     {
-        if(obj is AccountViewModel vm)
+        if (obj is AccountViewModel vm)
         {
             return Equals(vm);
         }
@@ -181,6 +190,7 @@ public sealed class AccountViewModel : ObservableObject, IMapFrom<Account>, IEqu
         hash.Add(IsExcluded);
         hash.Add(Created);
         hash.Add(LastModified);
+
         return hash.ToHashCode();
     }
 }

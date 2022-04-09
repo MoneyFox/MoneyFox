@@ -1,9 +1,9 @@
 ﻿namespace MoneyFox.Win.ViewModels.Payments;
 
+using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Core.Aggregates.Payments;
 using Core.Common.Interfaces.Mapping;
-using System;
 
 public class RecurringPaymentViewModel : ObservableObject, IMapFrom<RecurringPayment>
 {
@@ -22,30 +22,28 @@ public class RecurringPaymentViewModel : ObservableObject, IMapFrom<RecurringPay
     public int Id
     {
         get => id;
-        set => SetProperty(ref id, value);
+        set => SetProperty(field: ref id, newValue: value);
     }
 
     public DateTime? EndDate
     {
         get => endDate;
-        set => SetProperty(ref endDate, value);
+        set => SetProperty(field: ref endDate, newValue: value);
     }
 
     public bool IsEndless
     {
         get => isEndless;
+
         set
         {
-            if(isEndless == value)
+            if (isEndless == value)
             {
                 return;
             }
 
             isEndless = value;
-            EndDate = isEndless is false
-                ? EndDate = DateTime.Today
-                : null;
-
+            EndDate = isEndless is false ? EndDate = DateTime.Today : null;
             OnPropertyChanged();
         }
     }
@@ -53,6 +51,6 @@ public class RecurringPaymentViewModel : ObservableObject, IMapFrom<RecurringPay
     public PaymentRecurrence Recurrence
     {
         get => recurrence;
-        set => SetProperty(ref recurrence, value);
+        set => SetProperty(field: ref recurrence, newValue: value);
     }
 }

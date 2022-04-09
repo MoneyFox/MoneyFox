@@ -1,9 +1,9 @@
 ﻿namespace MoneyFox.Win.ViewModels.Categories;
 
+using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Core.Aggregates.Payments;
 using Core.Common.Interfaces.Mapping;
-using System;
 
 public class CategoryViewModel : ObservableObject, IMapFrom<Category>
 {
@@ -17,9 +17,10 @@ public class CategoryViewModel : ObservableObject, IMapFrom<Category>
     public int Id
     {
         get => id;
+
         set
         {
-            if(id == value)
+            if (id == value)
             {
                 return;
             }
@@ -32,9 +33,10 @@ public class CategoryViewModel : ObservableObject, IMapFrom<Category>
     public string Name
     {
         get => name;
+
         set
         {
-            if(name == value)
+            if (name == value)
             {
                 return;
             }
@@ -47,9 +49,10 @@ public class CategoryViewModel : ObservableObject, IMapFrom<Category>
     public bool RequireNote
     {
         get => requireNote;
+
         set
         {
-            if(requireNote == value)
+            if (requireNote == value)
             {
                 return;
             }
@@ -62,9 +65,10 @@ public class CategoryViewModel : ObservableObject, IMapFrom<Category>
     public DateTime Created
     {
         get => created;
+
         set
         {
-            if(created == value)
+            if (created == value)
             {
                 return;
             }
@@ -77,9 +81,10 @@ public class CategoryViewModel : ObservableObject, IMapFrom<Category>
     public DateTime LastModified
     {
         get => lastModified;
+
         set
         {
-            if(lastModified == value)
+            if (lastModified == value)
             {
                 return;
             }
@@ -95,9 +100,10 @@ public class CategoryViewModel : ObservableObject, IMapFrom<Category>
     public string Note
     {
         get => note;
+
         set
         {
-            if(note == value)
+            if (note == value)
             {
                 return;
             }

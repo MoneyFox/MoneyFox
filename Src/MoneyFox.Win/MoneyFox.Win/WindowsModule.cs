@@ -1,5 +1,6 @@
 namespace MoneyFox.Win;
 
+using System;
 using Autofac;
 using Core;
 using Core.Interfaces;
@@ -14,7 +15,6 @@ using Pages.Settings;
 using Pages.Statistics;
 using Pages.Statistics.StatisticCategorySummary;
 using Services;
-using System;
 using ViewModels;
 using ViewModels.Accounts;
 using ViewModels.Categories;
@@ -30,7 +30,6 @@ internal class WindowsModule : Module
     {
         builder.RegisterModule<CoreModule>();
         builder.RegisterModule<WinuiInfrastructureModule>();
-
         builder.RegisterType<NavigationService>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<GraphClientFactory>().AsImplementedInterfaces();
         builder.RegisterType<ToastService>().AsImplementedInterfaces();
@@ -38,18 +37,16 @@ internal class WindowsModule : Module
         builder.RegisterType<WindowsAppInformation>().AsImplementedInterfaces();
         builder.RegisterType<MarketplaceOperations>().AsImplementedInterfaces();
         builder.RegisterType<WindowsFileStore>().As<IFileStore>();
-
         builder.RegisterType<Mediator>().As<IMediator>().InstancePerLifetimeScope();
         builder.RegisterInstance(AutoMapperFactory.Create());
-
         builder.RegisterAssemblyTypes(ThisAssembly)
-            .Where(t => t.Name.EndsWith("Service", StringComparison.CurrentCultureIgnoreCase))
-            .Where(t => !t.Name.Equals("NavigationService", StringComparison.CurrentCultureIgnoreCase))
+            .Where(t => t.Name.EndsWith(value: "Service", comparisonType: StringComparison.CurrentCultureIgnoreCase))
+            .Where(t => !t.Name.Equals(value: "NavigationService", comparisonType: StringComparison.CurrentCultureIgnoreCase))
             .AsImplementedInterfaces();
 
         builder.RegisterAssemblyTypes(ThisAssembly)
-            .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
-            .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
+            .Where(t => !t.Name.StartsWith(value: "DesignTime", comparisonType: StringComparison.CurrentCultureIgnoreCase))
+            .Where(t => t.Name.EndsWith(value: "ViewModel", comparisonType: StringComparison.CurrentCultureIgnoreCase))
             .AsImplementedInterfaces()
             .AsSelf();
 

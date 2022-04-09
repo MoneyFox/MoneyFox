@@ -1,16 +1,17 @@
 ﻿namespace MoneyFox.Converter
 {
-    using Core.Aggregates.Payments;
-    using Core.Resources;
+
     using System;
     using System.Globalization;
+    using Core.Aggregates.Payments;
+    using Core.Resources;
     using Xamarin.Forms;
 
     public class PaymentTypeFilterConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var filteredPaymentType = (PaymentTypeFilter)Enum.ToObject(typeof(PaymentTypeFilter), value);
+            var filteredPaymentType = (PaymentTypeFilter)Enum.ToObject(enumType: typeof(PaymentTypeFilter), value: value);
 
             return filteredPaymentType switch
             {
@@ -22,8 +23,10 @@
             };
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
             throw new NotSupportedException();
+        }
     }
 
 }

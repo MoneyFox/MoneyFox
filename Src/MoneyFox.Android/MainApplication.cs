@@ -1,13 +1,11 @@
-namespace MoneyFox.Droid
+﻿namespace MoneyFox.Droid
 {
+
+    using System;
+    using System.IO;
     using Android.App;
     using Android.Runtime;
     using Autofac;
-    using NLog;
-    using NLog.Config;
-    using NLog.Targets;
-    using System;
-    using System.IO;
     using Core.Common;
     using Serilog;
     using Serilog.Events;
@@ -17,9 +15,7 @@ namespace MoneyFox.Droid
     [Application]
     public class MainApplication : Application
     {
-        public MainApplication(IntPtr handle, JniHandleOwnership transer) : base(handle, transer)
-        {
-        }
+        public MainApplication(IntPtr handle, JniHandleOwnership transer) : base(javaReference: handle, transfer: transer) { }
 
         public override void OnCreate()
         {
@@ -27,21 +23,19 @@ namespace MoneyFox.Droid
 
             // Setup handler for uncaught exceptions.
             AndroidEnvironment.UnhandledExceptionRaiser += HandleAndroidException;
-
             RegisterServices();
             base.OnCreate();
         }
 
         private void HandleAndroidException(object sender, RaiseThrowableEventArgs e)
         {
-            Log.Fatal(e.Exception, "Application Terminating");
+            Log.Fatal(exception: e.Exception, messageTemplate: "Application Terminating");
         }
 
         private void RegisterServices()
         {
             var builder = new ContainerBuilder();
             builder.RegisterModule<AndroidModule>();
-
             ViewModelLocator.RegisterServices(builder);
         }
 
@@ -51,7 +45,7 @@ namespace MoneyFox.Droid
                 .Enrich.FromLogContext()
                 .Enrich.WithExceptionDetails()
                 .WriteTo.File(
-                    path: Path.Combine(FileSystem.AppDataDirectory, LogConfiguration.FileName),
+                    path: Path.Combine(path1: FileSystem.AppDataDirectory, path2: LogConfiguration.FileName),
                     restrictedToMinimumLevel: LogEventLevel.Information,
                     rollingInterval: RollingInterval.Month,
                     retainedFileCountLimit: 12,
@@ -62,4 +56,5 @@ namespace MoneyFox.Droid
             Log.Information("Application Startup");
         }
     }
+
 }

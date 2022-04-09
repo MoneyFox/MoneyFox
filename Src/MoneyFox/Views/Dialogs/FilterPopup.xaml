@@ -59,13 +59,13 @@
                     <Switch IsToggled="{Binding IsRecurringFilterActive}"
                             HorizontalOptions="End" />
                 </Grid>
-                
+
                 <Label Style="{DynamicResource BaseLabel}"
                        Text="{x:Static resources:Strings.PaymentTypeLabel}" />
                 <Picker Title="{x:Static resources:Strings.PaymentTypeLabel}"
-                    ItemsSource="{Binding PaymentTypeFilterList}"
-                    SelectedItem="{Binding FilteredPaymentType}"
-                    ItemDisplayBinding="{Binding ., Converter={StaticResource PaymentTypeFilterConverter}}" />
+                        ItemsSource="{Binding PaymentTypeFilterList}"
+                        SelectedItem="{Binding FilteredPaymentType}"
+                        ItemDisplayBinding="{Binding ., Converter={StaticResource PaymentTypeFilterConverter}}" />
 
                 <Label Style="{DynamicResource BaseLabel}"
                        Text="{x:Static resources:Strings.TimeRangeStartLabel}" />

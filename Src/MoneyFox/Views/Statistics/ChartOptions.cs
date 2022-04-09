@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Views.Statistics
 {
+
     using System.Drawing;
 
     /// <summary>
@@ -13,4 +14,5 @@
         public static Color BackgroundColor { get; set; } = Color.Transparent;
         public static string TypeFace { get; set; } = "Lobster-Regular";
     }
+
 }

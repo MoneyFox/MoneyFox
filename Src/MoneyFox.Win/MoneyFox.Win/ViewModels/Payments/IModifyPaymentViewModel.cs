@@ -1,10 +1,10 @@
 ﻿namespace MoneyFox.Win.ViewModels.Payments;
 
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Accounts;
 using CommunityToolkit.Mvvm.Input;
 using Core.Aggregates.Payments;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 public interface IModifyPaymentViewModel
 {

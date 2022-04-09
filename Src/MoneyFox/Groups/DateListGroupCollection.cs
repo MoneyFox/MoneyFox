@@ -1,10 +1,11 @@
 ﻿namespace MoneyFox.Groups
 {
-    using CommunityToolkit.Mvvm.Input;
-    using Core._Pending_.Exceptions;
+
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using CommunityToolkit.Mvvm.Input;
+    using Core._Pending_.Exceptions;
 
     public class DateListGroupCollection<T> : List<T>
     {
@@ -72,27 +73,24 @@
             RelayCommand<T>? itemClickCommand = null)
         {
             ThrowIfNull(items);
-
             var list = new List<DateListGroupCollection<T>>();
-
-            foreach(T item in items)
+            foreach (var item in items)
             {
-                string index = getKey(item);
-
-                if(list.All(a => a.Key != index))
+                var index = getKey(item);
+                if (list.All(a => a.Key != index))
                 {
-                    list.Add(new DateListGroupCollection<T>(index, itemClickCommand));
+                    list.Add(new DateListGroupCollection<T>(key: index, itemClickCommand: itemClickCommand));
                 }
 
-                if(!string.IsNullOrEmpty(index))
+                if (!string.IsNullOrEmpty(index))
                 {
                     list.Find(a => a.Key == index).Add(item);
                 }
             }
 
-            if(sort)
+            if (sort)
             {
-                foreach(DateListGroupCollection<T> group in list)
+                foreach (var group in list)
                 {
                     group.Sort((c0, c1) => getSortKey(c1).Date.Day.CompareTo(getSortKey(c0).Date.Day));
                 }
@@ -103,10 +101,11 @@
 
         private static void ThrowIfNull(object parameter)
         {
-            if(parameter == null)
+            if (parameter == null)
             {
                 throw new GroupListParameterNullException();
             }
         }
     }
+
 }

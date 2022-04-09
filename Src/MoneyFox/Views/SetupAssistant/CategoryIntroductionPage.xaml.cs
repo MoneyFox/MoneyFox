@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Views.SetupAssistant
 {
+
     using CommonServiceLocator;
     using ViewModels.SetupAssistant;
     using Xamarin.Forms;
@@ -14,4 +15,5 @@
             BindingContext = ServiceLocator.Current.GetInstance<CategoryIntroductionViewModel>();
         }
     }
+
 }

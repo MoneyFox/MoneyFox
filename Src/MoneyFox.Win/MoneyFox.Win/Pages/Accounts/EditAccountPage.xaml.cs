@@ -5,8 +5,6 @@ using ViewModels.Accounts;
 
 public sealed partial class EditAccountPage : ContentDialog
 {
-    private EditAccountViewModel ViewModel => (EditAccountViewModel)DataContext;
-
     public EditAccountPage(int accountId)
     {
         XamlRoot = MainWindow.RootFrame.XamlRoot;
@@ -14,4 +12,6 @@ public sealed partial class EditAccountPage : ContentDialog
         DataContext = ViewModelLocator.EditAccountVm;
         ViewModel.AccountId = accountId;
     }
+
+    private EditAccountViewModel ViewModel => (EditAccountViewModel)DataContext;
 }

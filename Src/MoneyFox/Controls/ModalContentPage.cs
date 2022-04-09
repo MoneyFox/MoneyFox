@@ -1,8 +1,8 @@
 ﻿namespace MoneyFox.Controls
 {
+
     using Xamarin.Forms;
 
-    public class ModalContentPage : ContentPage
-    {
-    }
+    public class ModalContentPage : ContentPage { }
+
 }

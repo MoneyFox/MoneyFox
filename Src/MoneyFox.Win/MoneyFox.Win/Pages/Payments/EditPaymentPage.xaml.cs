@@ -6,15 +6,15 @@ using ViewModels.Payments;
 
 public sealed partial class EditPaymentPage
 {
-    public override string Header => Strings.EditPaymentTitle;
-
-    private EditPaymentViewModel ViewModel => (EditPaymentViewModel)DataContext;
-
     public EditPaymentPage()
     {
         InitializeComponent();
         DataContext = ViewModelLocator.EditPaymentVm;
     }
+
+    public override string Header => Strings.EditPaymentTitle;
+
+    private EditPaymentViewModel ViewModel => (EditPaymentViewModel)DataContext;
 
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {

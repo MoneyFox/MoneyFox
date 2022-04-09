@@ -1,15 +1,15 @@
 ﻿namespace MoneyFox.Win.Converter;
 
+using System;
 using Core.Aggregates.Payments;
 using Core.Resources;
 using Microsoft.UI.Xaml.Data;
-using System;
 
 public class PaymentTypeFilterConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, string language)
     {
-        var filteredPaymentType = (PaymentTypeFilter)Enum.ToObject(typeof(PaymentTypeFilter), value);
+        var filteredPaymentType = (PaymentTypeFilter)Enum.ToObject(enumType: typeof(PaymentTypeFilter), value: value);
 
         return filteredPaymentType switch
         {
@@ -21,6 +21,8 @@ public class PaymentTypeFilterConverter : IValueConverter
         };
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, string language) =>
+    public object ConvertBack(object value, Type targetType, object parameter, string language)
+    {
         throw new NotSupportedException();
+    }
 }

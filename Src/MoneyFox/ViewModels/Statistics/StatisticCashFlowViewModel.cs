@@ -1,12 +1,12 @@
 ﻿namespace MoneyFox.ViewModels.Statistics
 {
+
+    using System.Linq;
+    using System.Threading.Tasks;
     using Core.Queries.Statistics;
     using MediatR;
     using Microcharts;
     using SkiaSharp;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Views.Statistics;
     using Xamarin.Essentials;
 
@@ -17,9 +17,7 @@
     {
         private BarChart chart = new BarChart();
 
-        public StatisticCashFlowViewModel(IMediator mediator) : base(mediator)
-        {
-        }
+        public StatisticCashFlowViewModel(IMediator mediator) : base(mediator) { }
 
         /// <summary>
         ///     Chart to render.
@@ -27,9 +25,10 @@
         public BarChart Chart
         {
             get => chart;
+
             set
             {
-                if(chart == value)
+                if (chart == value)
                 {
                     return;
                 }
@@ -41,9 +40,7 @@
 
         protected override async Task LoadAsync()
         {
-            List<StatisticEntry>? statisticItems =
-                await Mediator.Send(new GetCashFlowQuery { EndDate = EndDate, StartDate = StartDate });
-
+            var statisticItems = await Mediator.Send(new GetCashFlowQuery { EndDate = EndDate, StartDate = StartDate });
             Chart = new BarChart
             {
                 Entries = statisticItems.Select(
@@ -62,4 +59,5 @@
             };
         }
     }
+
 }

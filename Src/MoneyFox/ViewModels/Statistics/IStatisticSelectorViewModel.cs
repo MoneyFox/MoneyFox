@@ -1,7 +1,8 @@
 ﻿namespace MoneyFox.ViewModels.Statistics
 {
-    using CommunityToolkit.Mvvm.Input;
+
     using System.Collections.Generic;
+    using CommunityToolkit.Mvvm.Input;
 
     public interface IStatisticSelectorViewModel
     {
@@ -9,4 +10,5 @@
 
         RelayCommand<StatisticSelectorType> GoToStatisticCommand { get; }
     }
+
 }

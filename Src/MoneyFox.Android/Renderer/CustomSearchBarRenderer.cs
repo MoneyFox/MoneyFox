@@ -17,8 +17,8 @@ namespace MoneyFox.Droid.Renderer
     using Serilog;
     using Xamarin.Forms;
     using Xamarin.Forms.Platform.Android;
-    using Color = Color;
-    using Resource = Resource;
+    using Color = Xamarin.Forms.Color;
+    using Resource = Droid.Resource;
 
     public class CustomSearchBarRenderer : SearchBarRenderer
     {

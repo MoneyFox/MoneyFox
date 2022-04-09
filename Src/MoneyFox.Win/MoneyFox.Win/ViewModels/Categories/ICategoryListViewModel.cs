@@ -1,8 +1,8 @@
 ﻿namespace MoneyFox.Win.ViewModels.Categories;
 
+using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using Groups;
-using System.Collections.ObjectModel;
 
 /// <summary>
 ///     Defines the interface for a category list.

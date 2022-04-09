@@ -1,9 +1,9 @@
 ﻿namespace MoneyFox.Win.ViewModels.Interfaces;
 
+using System.Collections.ObjectModel;
 using Accounts;
 using CommunityToolkit.Mvvm.Input;
 using Groups;
-using System.Collections.ObjectModel;
 
 /// <summary>
 ///     Representation of the AccountListView.

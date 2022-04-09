@@ -1,10 +1,10 @@
 ﻿namespace MoneyFox.iOS
 {
+
+    using System;
     using Acr.UserDialogs;
     using Autofac;
-    using NLog;
     using Src;
-    using System;
 
     public class IosModule : Module
     {
@@ -15,11 +15,9 @@
             builder.RegisterType<StoreOperations>().AsImplementedInterfaces();
             builder.RegisterType<AppInformation>().AsImplementedInterfaces();
             builder.Register(c => UserDialogs.Instance).As<IUserDialogs>();
-            builder.Register(c
-                    => new IosFileStore(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)))
-                .AsImplementedInterfaces();
-
+            builder.Register(c => new IosFileStore(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments))).AsImplementedInterfaces();
             builder.RegisterModule<MoneyFoxModule>();
         }
     }
+
 }

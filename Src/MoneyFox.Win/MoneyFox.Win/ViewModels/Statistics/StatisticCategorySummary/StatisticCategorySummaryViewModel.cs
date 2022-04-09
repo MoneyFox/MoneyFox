@@ -1,41 +1,51 @@
 ﻿namespace MoneyFox.Win.ViewModels.Statistics.StatisticCategorySummary;
 
-using AutoMapper;
-using CommunityToolkit.Mvvm.Input;
-using Groups;
-using MediatR;
-using NLog;
-using Payments;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using CommunityToolkit.Mvvm.Input;
 using Core.Queries;
 using Core.Queries.Statistics.GetCategorySummary;
+using Groups;
+using MediatR;
+using Payments;
 
 public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticCategorySummaryViewModel
 {
+    private readonly IMapper mapper;
     private ObservableCollection<CategoryOverviewViewModel> categorySummary = new();
 
-    private readonly IMapper mapper;
+    private IncomeExpenseBalanceViewModel incomeExpenseBalance = new();
 
-    public StatisticCategorySummaryViewModel(IMediator mediator,
-        IMapper mapper)
-        : base(mediator)
+    private CategoryOverviewViewModel? selectedOverviewItem;
+
+    public StatisticCategorySummaryViewModel(IMediator mediator, IMapper mapper) : base(mediator)
     {
         this.mapper = mapper;
     }
 
-    private IncomeExpenseBalanceViewModel incomeExpenseBalance = new();
+    public CategoryOverviewViewModel? SelectedOverviewItem
+    {
+        get => selectedOverviewItem;
+
+        set
+        {
+            selectedOverviewItem = value;
+            OnPropertyChanged();
+        }
+    }
 
     public IncomeExpenseBalanceViewModel IncomeExpenseBalance
     {
         get => incomeExpenseBalance;
+
         set
         {
-            if(incomeExpenseBalance == value)
+            if (incomeExpenseBalance == value)
             {
                 return;
             }
@@ -48,9 +58,10 @@ public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticC
     public ObservableCollection<CategoryOverviewViewModel> CategorySummary
     {
         get => categorySummary;
+
         private set
         {
-            if(categorySummary == value)
+            if (categorySummary == value)
             {
                 return;
             }
@@ -64,47 +75,28 @@ public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticC
     /// <inheritdoc />
     public bool HasData => CategorySummary.Any();
 
-    public RelayCommand<CategoryOverviewViewModel> SummaryEntrySelectedCommand =>
-        new(async c => await SummaryEntrySelectedAsync(c));
-
-    private CategoryOverviewViewModel? selectedOverviewItem;
-
-    public CategoryOverviewViewModel? SelectedOverviewItem
-    {
-        get => selectedOverviewItem;
-        set
-        {
-            selectedOverviewItem = value;
-            OnPropertyChanged();
-        }
-    }
+    public RelayCommand<CategoryOverviewViewModel> SummaryEntrySelectedCommand => new(async c => await SummaryEntrySelectedAsync(c));
 
     private async Task SummaryEntrySelectedAsync(CategoryOverviewViewModel summaryItem)
     {
         var loadedPayments = mapper.Map<List<PaymentViewModel>>(
-            await Mediator.Send(new GetPaymentsForCategoryQuery(summaryItem.CategoryId, StartDate, EndDate)));
+            await Mediator.Send(new GetPaymentsForCategoryQuery(categoryId: summaryItem.CategoryId, dateRangeFrom: StartDate, dateRangeTo: EndDate)));
 
-        List<DateListGroupCollection<PaymentViewModel>> dailyItems = DateListGroupCollection<PaymentViewModel>
-            .CreateGroups(
-                loadedPayments,
-                s => s.Date.ToString("D", CultureInfo.CurrentCulture),
-                s => s.Date);
+        var dailyItems = DateListGroupCollection<PaymentViewModel>.CreateGroups(
+            items: loadedPayments,
+            getKey: s => s.Date.ToString(format: "D", provider: CultureInfo.CurrentCulture),
+            getSortKey: s => s.Date);
 
         summaryItem.Source.Clear();
-
         DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>.CreateGroups(
-                dailyItems,
-                s =>
+                items: dailyItems,
+                getKey: s =>
                 {
-                    var date = Convert.ToDateTime(
-                        s.Key,
-                        CultureInfo.CurrentCulture);
-                    return
-                        $"{date.ToString("MMMM", CultureInfo.CurrentCulture)} {date.Year}";
+                    var date = Convert.ToDateTime(value: s.Key, provider: CultureInfo.CurrentCulture);
+
+                    return $"{date.ToString(format: "MMMM", provider: CultureInfo.CurrentCulture)} {date.Year}";
                 },
-                s => Convert.ToDateTime(
-                    s.Key,
-                    CultureInfo.CurrentCulture))
+                getSortKey: s => Convert.ToDateTime(value: s.Key, provider: CultureInfo.CurrentCulture))
             .ForEach(summaryItem.Source.Add);
 
         SelectedOverviewItem = summaryItem;
@@ -115,12 +107,9 @@ public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticC
     /// </summary>
     protected override async Task LoadAsync()
     {
-        CategorySummaryModel categorySummaryModel =
-            await Mediator.Send(new GetCategorySummaryQuery {EndDate = EndDate, StartDate = StartDate});
-
+        var categorySummaryModel = await Mediator.Send(new GetCategorySummaryQuery { EndDate = EndDate, StartDate = StartDate });
         CategorySummary.Clear();
-        categorySummaryModel.CategoryOverviewItems
-            .Select(
+        categorySummaryModel.CategoryOverviewItems.Select(
                 x => new CategoryOverviewViewModel
                 {
                     CategoryId = x.CategoryId,

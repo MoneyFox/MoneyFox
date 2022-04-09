@@ -1,18 +1,18 @@
 ﻿namespace MoneyFox.Win.Pages.Accounts;
 
+using System;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
-using System;
 using ViewModels.Interfaces;
 
 public sealed partial class AccountListToolbar : UserControl
 {
-    public IAccountListViewActionViewModel ViewModel => (IAccountListViewActionViewModel)DataContext;
-
     public AccountListToolbar()
     {
         InitializeComponent();
     }
+
+    public IAccountListViewActionViewModel ViewModel => (IAccountListViewActionViewModel)DataContext;
 
     private async void AddAccountTapped(object sender, TappedRoutedEventArgs e)
     {

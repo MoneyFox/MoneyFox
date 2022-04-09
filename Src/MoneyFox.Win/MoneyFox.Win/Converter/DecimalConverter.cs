@@ -1,15 +1,18 @@
 ﻿namespace MoneyFox.Win.Converter;
 
-using Microsoft.UI.Xaml.Data;
 using System;
+using Microsoft.UI.Xaml.Data;
 
 public class DecimalConverter : IValueConverter
 {
-    public object Convert(object value, Type targetType, object parameter, string language) => value;
+    public object Convert(object value, Type targetType, object parameter, string language)
+    {
+        return value;
+    }
 
     public object ConvertBack(object value, Type targetType, object parameter, string language)
     {
-        decimal.TryParse((string)value, out decimal result);
+        decimal.TryParse(s: (string)value, result: out var result);
 
         return result;
     }

@@ -1,5 +1,6 @@
-namespace MoneyFox.ViewModels.About
+﻿namespace MoneyFox.ViewModels.About
 {
+
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -93,4 +94,5 @@ namespace MoneyFox.ViewModels.About
             await browserAdapter.OpenWebsiteAsync(new Uri(GITHUB_CONTRIBUTOR_URL));
         }
     }
+
 }

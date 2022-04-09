@@ -5,21 +5,20 @@ using Microsoft.UI.Xaml.Controls;
 
 public sealed partial class Loading : UserControl
 {
+    public static readonly DependencyProperty IsLoadingProperty = DependencyProperty.Register(
+        name: "IsLoading",
+        propertyType: typeof(bool),
+        ownerType: typeof(Loading),
+        typeMetadata: new(false));
+
     public Loading()
     {
         InitializeComponent();
     }
 
-    public static readonly DependencyProperty IsLoadingProperty = DependencyProperty.Register(
-        "IsLoading",
-        typeof(bool),
-        typeof(Loading),
-        new PropertyMetadata(false)
-    );
-
     public bool IsLoading
     {
         get => (bool)GetValue(IsLoadingProperty);
-        set => SetValue(IsLoadingProperty, value);
+        set => SetValue(dp: IsLoadingProperty, value: value);
     }
 }

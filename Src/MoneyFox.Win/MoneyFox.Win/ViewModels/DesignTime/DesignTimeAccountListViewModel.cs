@@ -1,22 +1,19 @@
 ﻿namespace MoneyFox.Win.ViewModels.DesignTime;
 
+using System.Collections.ObjectModel;
 using Accounts;
 using CommunityToolkit.Mvvm.Input;
 using Groups;
 using Interfaces;
-using System.Collections.ObjectModel;
 
 public class DesignTimeAccountListViewModel : IAccountListViewModel
 {
-    public ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> Accounts
+    public RelayCommand GoToAddAccountCommand { get; } = null!;
+
+    public ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> Accounts { get; } = new()
     {
-        get;
-    } =
-        new()
-        {
-            new("Included") {new AccountViewModel {Name = "Income", CurrentBalance = 1234}},
-            new("Excluded") {new AccountViewModel {Name = "Savings", CurrentBalance = 4325}}
-        };
+        new("Included") { new() { Name = "Income", CurrentBalance = 1234 } }, new("Excluded") { new() { Name = "Savings", CurrentBalance = 4325 } }
+    };
 
     public bool HasNoAccounts { get; }
 
@@ -31,6 +28,4 @@ public class DesignTimeAccountListViewModel : IAccountListViewModel
     public RelayCommand<AccountViewModel> EditAccountCommand { get; } = null!;
 
     public AsyncRelayCommand<AccountViewModel> DeleteAccountCommand { get; } = null!;
-
-    public RelayCommand GoToAddAccountCommand { get; } = null!;
 }

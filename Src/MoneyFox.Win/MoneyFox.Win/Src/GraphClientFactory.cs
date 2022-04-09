@@ -1,20 +1,21 @@
 ﻿namespace MoneyFox.Win;
 
+using System.Threading.Tasks;
 using Microsoft.Graph;
 using Microsoft.Identity.Client;
 using MoneyFox.Infrastructure.DbBackup;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
 
 public class GraphClientFactory : IGraphClientFactory
 {
-    public GraphServiceClient CreateClient(AuthenticationResult authResult) =>
-        new(
+    public GraphServiceClient CreateClient(AuthenticationResult authResult)
+    {
+        return new(
             new DelegateAuthenticationProvider(
                 requestMessage =>
                 {
-                    requestMessage.Headers.Authorization =
-                        new AuthenticationHeaderValue("bearer", authResult.AccessToken);
+                    requestMessage.Headers.Authorization = new(scheme: "bearer", parameter: authResult.AccessToken);
+
                     return Task.CompletedTask;
                 }));
+    }
 }

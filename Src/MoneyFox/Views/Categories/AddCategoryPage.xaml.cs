@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Views.Categories
 {
+
     using Core.Resources;
     using ViewModels.Categories;
     using Xamarin.Forms;
@@ -10,7 +11,6 @@
         {
             InitializeComponent();
             BindingContext = ViewModelLocator.AddCategoryViewModel;
-
             var cancelItem = new ToolbarItem
             {
                 Command = new Command(async () => await Navigation.PopModalAsync()),
@@ -33,4 +33,5 @@
 
         private AddCategoryViewModel ViewModel => (AddCategoryViewModel)BindingContext;
     }
+
 }

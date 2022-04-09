@@ -1,11 +1,12 @@
 ﻿namespace MoneyFox.ViewModels.Payments
 {
+
+    using System;
     using Accounts;
     using Categories;
     using CommunityToolkit.Mvvm.ComponentModel;
     using Core.Aggregates.Payments;
     using Core.Common.Interfaces.Mapping;
-    using System;
 
     public class RecurringPaymentViewModel : ObservableObject, IMapFrom<RecurringPayment>
     {
@@ -33,9 +34,10 @@
         public int Id
         {
             get => id;
+
             set
             {
-                if(id == value)
+                if (id == value)
                 {
                     return;
                 }
@@ -48,9 +50,10 @@
         public DateTime StartDate
         {
             get => startDate;
+
             set
             {
-                if(startDate == value)
+                if (startDate == value)
                 {
                     return;
                 }
@@ -63,9 +66,10 @@
         public DateTime? EndDate
         {
             get => endDate;
+
             set
             {
-                if(endDate == value)
+                if (endDate == value)
                 {
                     return;
                 }
@@ -78,18 +82,16 @@
         public bool IsEndless
         {
             get => isEndless;
+
             set
             {
-                if(isEndless == value)
+                if (isEndless == value)
                 {
                     return;
                 }
 
                 isEndless = value;
-                EndDate = isEndless is false
-                    ? EndDate = DateTime.Today
-                    : null;
-
+                EndDate = isEndless is false ? EndDate = DateTime.Today : null;
                 OnPropertyChanged();
             }
         }
@@ -100,9 +102,10 @@
         public decimal Amount
         {
             get => amount;
+
             set
             {
-                if(Math.Abs(amount - value) < DECIMAL_DELTA)
+                if (Math.Abs(amount - value) < DECIMAL_DELTA)
                 {
                     return;
                 }
@@ -118,9 +121,10 @@
         public PaymentType Type
         {
             get => type;
+
             set
             {
-                if(type == value)
+                if (type == value)
                 {
                     return;
                 }
@@ -133,9 +137,10 @@
         public PaymentRecurrence Recurrence
         {
             get => recurrence;
+
             set
             {
-                if(recurrence == value)
+                if (recurrence == value)
                 {
                     return;
                 }
@@ -151,9 +156,10 @@
         public string Note
         {
             get => note;
+
             set
             {
-                if(note == value)
+                if (note == value)
                 {
                     return;
                 }
@@ -170,9 +176,10 @@
         public AccountViewModel ChargedAccount
         {
             get => chargedAccount;
+
             set
             {
-                if(chargedAccount == value)
+                if (chargedAccount == value)
                 {
                     return;
                 }
@@ -188,9 +195,10 @@
         public CategoryViewModel? Category
         {
             get => categoryViewModel;
+
             set
             {
-                if(categoryViewModel == value)
+                if (categoryViewModel == value)
                 {
                     return;
                 }
@@ -200,4 +208,5 @@
             }
         }
     }
+
 }

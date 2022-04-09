@@ -2,7 +2,7 @@ trigger:
   batch: true
   branches:
     include:
-    - master
+      - master
 
 pr: none
 
@@ -14,113 +14,113 @@ variables:
   Minor: '6'
 
 steps:
-- task: UseDotNet@2
-  displayName: 'Use correct .Net sdk'
-  inputs:
-    version: 3.1.x
+  - task: UseDotNet@2
+    displayName: 'Use correct .Net sdk'
+    inputs:
+      version: 3.1.x
+  
+  #- script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_12_0
+  #  displayName: 'Select the Xamarin SDK version 6.12.0'
+  
+  #- script: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_12.1.app;sudo xcode-select --switch /Applications/Xcode_12.app/Contents/Developer
+  #  displayName: 'Updating xcode version'
 
-#- script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_12_0
-#  displayName: 'Select the Xamarin SDK version 6.12.0'
+  - bash: |
+      # Write your commands here
+      
+      echo "Build Script started.."
+      
+      echo 'Updating fastlane...'
+      sudo gem install fastlane
+      
+      echo $Major
+      echo $Minor
+      echo $BUILD_BUILDNUMBER
+      
+      VERSION=$Major.$Minor.$BUILD_BUILDID
+      echo $VERSION
+      
+      INFO_PLIST_FILE=$BUILD_REPOSITORY_LOCALPATH/Src/MoneyFox.Ios/Info.plist
+      echo $INFO_PLIST_FILE
+      
+      echo "Updating version name to $VERSION_NAME in Info.plist"
+      plutil -replace CFBundleShortVersionString -string $BUILD_BUILDNUMBER $INFO_PLIST_FILE
+      plutil -replace CFBundleVersion -string $VERSION $INFO_PLIST_FILE
+    displayName: 'Set App Version'
+    env:
+      Major: $(Major)
+      Minor: $(Minor)
 
-#- script: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_12.1.app;sudo xcode-select --switch /Applications/Xcode_12.app/Contents/Developer
-#  displayName: 'Updating xcode version'
+  - task: InstallAppleCertificate@2
+    displayName: 'Install an Apple certificate'
+    inputs:
+      certSecureFile: 'Apple Distribution MoneyFox 2021.p12'
+      certPwd: '$(P12password)'
+      keychain: temp
 
-- bash: |
-   # Write your commands here
+  - task: InstallAppleProvisioningProfile@1
+    displayName: 'Install an Apple provisioning profile'
+    inputs:
+      provProfileSecureFile: 'MoneyFox_Distribution_2021.mobileprovision'
 
-   echo "Build Script started.."
+  - task: NuGetToolInstaller@1
+    displayName: 'Use NuGet'
+    inputs:
+      versionSpec: 6.x
 
-   echo 'Updating fastlane...'
-   sudo gem install fastlane
+  - task: NuGetCommand@2
+    displayName: 'NuGet restore'
+    inputs:
+      restoreSolution: '**/MoneyFox.Mobile.sln'
 
-   echo $Major
-   echo $Minor
-   echo $BUILD_BUILDNUMBER
+  - task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
+    displayName: 'Replace tokens in Src/MoneyFox'
+    inputs:
+      sourcePath: Src/MoneyFox
+      filePattern: App.config
 
-   VERSION=$Major.$Minor.$BUILD_BUILDID
-   echo $VERSION
+  - task: DotNetCoreCLI@2
+    displayName: 'Run Tests'
+    inputs:
+      command: 'test'
+      projects: |
+        **/*.Tests.csproj
 
-   INFO_PLIST_FILE=$BUILD_REPOSITORY_LOCALPATH/Src/MoneyFox.Ios/Info.plist
-   echo $INFO_PLIST_FILE
+  - task: XamariniOS@2
+    displayName: 'Build Xamarin.iOS '
+    inputs:
+      solutionFile: Src/MoneyFox.Ios/MoneyFox.iOS.csproj
+      configuration: $(BuildConfiguration)
+      signingIdentity: $(APPLE_CERTIFICATE_SIGNING_IDENTITY)
+      signingProvisioningProfileID: $(APPLE_PROV_PROFILE_UUID)
 
-   echo "Updating version name to $VERSION_NAME in Info.plist"
-   plutil -replace CFBundleShortVersionString -string $BUILD_BUILDNUMBER $INFO_PLIST_FILE
-   plutil -replace CFBundleVersion -string $VERSION $INFO_PLIST_FILE
-  displayName: 'Set App Version'
-  env:
-    Major: $(Major)
-    Minor: $(Minor)
+  - task: CopyFiles@2
+    displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+    inputs:
+      SourceFolder: '$(system.defaultworkingdirectory)'
+      Contents: '**/*.ipa'
+      TargetFolder: '$(build.artifactstagingdirectory)'
+      flattenFolders: true
 
-- task: InstallAppleCertificate@2
-  displayName: 'Install an Apple certificate'
-  inputs:
-    certSecureFile: 'Apple Distribution MoneyFox 2021.p12'
-    certPwd: '$(P12password)'
-    keychain: temp
+  - task: PowerShell@2
+    inputs:
+      targetType: 'inline'
+      script: |
+        $sourceRoot = '$(system.defaultworkingdirectory)/assets/metadata'
+        Copy-Item -Path $sourceRoot  -Destination $(build.artifactstagingdirectory) -Recurse
 
-- task: InstallAppleProvisioningProfile@1
-  displayName: 'Install an Apple provisioning profile'
-  inputs:
-    provProfileSecureFile: 'MoneyFox_Distribution_2021.mobileprovision'
+  - task: CopyFiles@2
+    enabled: false
+    displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+    inputs:
+      SourceFolder: '$(system.defaultworkingdirectory)'
+      Contents: '**/release_notes.txt'
+      TargetFolder: 'default'
+      CleanTargetFolder: true
+      OverWrite: true
+      flattenFolders: true
 
-- task: NuGetToolInstaller@1
-  displayName: 'Use NuGet'
-  inputs:
-    versionSpec: 6.x
-
-- task: NuGetCommand@2
-  displayName: 'NuGet restore'
-  inputs:
-    restoreSolution: '**/MoneyFox.Mobile.sln'
-
-- task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
-  displayName: 'Replace tokens in Src/MoneyFox'
-  inputs:
-    sourcePath: Src/MoneyFox
-    filePattern: App.config
-
-- task: DotNetCoreCLI@2
-  displayName: 'Run Tests'
-  inputs:
-    command: 'test'
-    projects: |
-      **/*.Tests.csproj
-
-- task: XamariniOS@2
-  displayName: 'Build Xamarin.iOS '
-  inputs:
-    solutionFile: Src/MoneyFox.Ios/MoneyFox.iOS.csproj
-    configuration: $(BuildConfiguration)
-    signingIdentity: $(APPLE_CERTIFICATE_SIGNING_IDENTITY)
-    signingProvisioningProfileID: $(APPLE_PROV_PROFILE_UUID)
-
-- task: CopyFiles@2
-  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
-  inputs:
-    SourceFolder: '$(system.defaultworkingdirectory)'
-    Contents: '**/*.ipa'
-    TargetFolder: '$(build.artifactstagingdirectory)'
-    flattenFolders: true
-
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: |
-      $sourceRoot = '$(system.defaultworkingdirectory)/assets/metadata'
-      Copy-Item -Path $sourceRoot  -Destination $(build.artifactstagingdirectory) -Recurse
-
-- task: CopyFiles@2
-  enabled: false
-  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
-  inputs:
-    SourceFolder: '$(system.defaultworkingdirectory)'
-    Contents: '**/release_notes.txt'
-    TargetFolder: 'default'
-    CleanTargetFolder: true
-    OverWrite: true
-    flattenFolders: true
-
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: drop'
-  inputs:
-    PathtoPublish: '$(build.artifactstagingdirectory)'
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: drop'
+    inputs:
+      PathtoPublish: '$(build.artifactstagingdirectory)'
