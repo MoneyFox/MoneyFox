@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.iOS
+namespace MoneyFox.iOS
 {
 
     using System.IO;
@@ -67,7 +67,7 @@
                 .Enrich.FromLogContext()
                 .Enrich.WithExceptionDetails()
                 .WriteTo.File(
-                    path: Path.Combine(path1: FileSystem.CacheDirectory, path2: LogConfiguration.FileName),
+                    path: Path.Combine(path1: FileSystem.AppDataDirectory, , path2: LogConfiguration.FileName),
                     restrictedToMinimumLevel: LogEventLevel.Information,
                     rollingInterval: RollingInterval.Month,
                     retainedFileCountLimit: 12,

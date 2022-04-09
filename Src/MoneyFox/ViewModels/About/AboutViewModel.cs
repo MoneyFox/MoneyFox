@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.About
+namespace MoneyFox.ViewModels.About
 {
     using System;
     using System.Collections.Generic;
@@ -65,7 +65,7 @@
                 subject: Strings.FeedbackSubject,
                 body: string.Empty,
                 recipients: new List<string> { SUPPORT_MAIL },
-                filePaths: new List<string> { Path.Combine(path1: FileSystem.CacheDirectory, path2: LogConfiguration.FileName) });
+                filePaths: new List<string> { Path.Combine(path1: FileSystem.AppDataDirectory, path2: LogConfiguration.FileName) });
         }
 
         private void RateApp()

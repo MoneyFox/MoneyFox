@@ -1,19 +1,22 @@
-﻿namespace MoneyFox.Win.Services;
+namespace MoneyFox.Win.Services;
 
+using System.IO;
 using Core.Common;
 using Serilog;
 using Serilog.Events;
 using Serilog.Exceptions;
+using Windows.Storage;
 
 public static class LoggerService
 {
     public static void Initialize()
     {
+        var logPath = Path.Combine(path1: ApplicationData.Current.LocalFolder.Path, path2: LogConfiguration.FileName);
         Log.Logger = new LoggerConfiguration().MinimumLevel.Debug()
             .Enrich.FromLogContext()
             .Enrich.WithExceptionDetails()
             .WriteTo.File(
-                path: LogConfiguration.FileName,
+                path: logPath,
                 restrictedToMinimumLevel: LogEventLevel.Information,
                 rollingInterval: RollingInterval.Month,
                 retainedFileCountLimit: 12,

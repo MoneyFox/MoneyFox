@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Droid
+namespace MoneyFox.Droid
 {
     using Android.App;
     using Android.Runtime;
@@ -51,7 +51,7 @@
                 .Enrich.FromLogContext()
                 .Enrich.WithExceptionDetails()
                 .WriteTo.File(
-                    path: Path.Combine(FileSystem.CacheDirectory, LogConfiguration.FileName),
+                    path: Path.Combine(FileSystem.AppDataDirectory, LogConfiguration.FileName),
                     restrictedToMinimumLevel: LogEventLevel.Information,
                     rollingInterval: RollingInterval.Month,
                     retainedFileCountLimit: 12,

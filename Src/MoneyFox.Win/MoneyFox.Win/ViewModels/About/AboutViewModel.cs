@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Win.ViewModels.About;
+namespace MoneyFox.Win.ViewModels.About;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -9,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Core.Common;
+using Windows.Storage;
+using System.IO;
 
 public class AboutViewModel : ObservableObject, IAboutViewModel
 {
@@ -65,7 +67,7 @@ public class AboutViewModel : ObservableObject, IAboutViewModel
         Strings.FeedbackSubject,
         string.Empty,
         new List<string> { SUPPORT_MAIL },
-        new List<string> { LogConfiguration.FileName });
+        new List<string> { Path.Combine(ApplicationData.Current.LocalFolder.Path, LogConfiguration.FileName) });
 
     private void RateApp()
         => storeFeatures.RateApp();
