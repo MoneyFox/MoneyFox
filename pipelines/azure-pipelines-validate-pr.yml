@@ -78,6 +78,13 @@ jobs:
         displayName: 'Install NDK'
         enabled: false
 
+      - task: JavaToolInstaller@0
+        displayName: 'Install Java 17'
+        inputs:
+          versionSpec: '17'
+          jdkArchitectureOption: 'x64'
+          jdkSourceOption: 'PreInstalled'
+
       - task: NuGetToolInstaller@1
         displayName: 'Use NuGet'
         inputs:
