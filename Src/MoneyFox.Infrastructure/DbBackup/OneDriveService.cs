@@ -15,10 +15,7 @@ namespace MoneyFox.Infrastructure.DbBackup
 
     internal class OneDriveService : IOneDriveBackupService
     {
-        private const string BACKUP_NAME = "backupmoneyfox3.db";
-        private const string BACKUP_NAME_TEMP = "moneyfox.db_upload";
         private const string ARCHIVE_FOLDER_NAME = "Archive";
-        private const string BACKUP_ARCHIVE_NAME_TEMPLATE = "backupmoneyfox3_{0}.db";
         private const string BACKUP_NAME_TEMPLATE = "backupmoneyfox3_{0}.db";
         private const int BACKUP_ARCHIVE_COUNT = 15;
         private const string ERROR_CODE_CANCELED = "authentication_canceled";
@@ -154,46 +151,7 @@ namespace MoneyFox.Infrastructure.DbBackup
             await graphServiceClient.Drive.Items[oldestBackup?.Id].Request().DeleteAsync();
         }
 
-        private async Task ArchiveCurrentBackupAsync(GraphServiceClient graphServiceClient)
-        {
-            if (ArchiveFolder == null)
-            {
-                return;
-            }
-
-            var currentBackup = (await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync()).FirstOrDefault(x => x.Name == BACKUP_NAME);
-            if (currentBackup == null)
-            {
-                return;
-            }
-
-            var updateItem = new DriveItem
-            {
-                ParentReference = new ItemReference { Id = ArchiveFolder.Id },
-                Name = string.Format(
-                    provider: CultureInfo.InvariantCulture,
-                    format: BACKUP_ARCHIVE_NAME_TEMPLATE,
-                    arg0: DateTime.Now.ToString(format: "yyyy-M-d_hh-mm-ssss", provider: CultureInfo.InvariantCulture))
-            };
-
-            await graphServiceClient.Drive.Items[currentBackup.Id].Request().UpdateAsync(updateItem);
-        }
-
-        private async Task RenameUploadedBackupAsync(GraphServiceClient graphServiceClient)
-        {
-            var backupUpload
-                = (await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync()).FirstOrDefault(x => x.Name == BACKUP_NAME_TEMP);
-
-            if (backupUpload == null)
-            {
-                return;
-            }
-
-            var updateItem = new DriveItem { Name = BACKUP_NAME };
-            await graphServiceClient.Drive.Items[backupUpload.Id].Request().UpdateAsync(updateItem);
-        }
-
-        private async Task DeleteExistingFolderAsync(GraphServiceClient graphServiceClient)
+        private static async Task DeleteExistingFolderAsync(GraphServiceClient graphServiceClient)
         {
             var archiveFolder = (await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync()).CurrentPage.FirstOrDefault(
                     x => x.Name == ARCHIVE_FOLDER_NAME);
@@ -202,12 +160,6 @@ namespace MoneyFox.Infrastructure.DbBackup
             {
                 await graphServiceClient.Me.Drive.Items[archiveFolder.Id].Request().DeleteAsync();
             }
-        }
-
-        private async Task CreateArchiveFolderAsync(GraphServiceClient graphServiceClient)
-        {
-            var folderToCreate = new DriveItem { Name = ARCHIVE_FOLDER_NAME, Folder = new Folder() };
-            ArchiveFolder = await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().AddAsync(folderToCreate);
         }
     }
 
