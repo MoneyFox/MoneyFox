@@ -69,7 +69,7 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Acr.UserDialogs">
-            <Version>7.2.0.562</Version>
+            <Version>7.2.0.564</Version>
         </PackageReference>
         <PackageReference Include="Autofac">
             <Version>6.3.0</Version>
