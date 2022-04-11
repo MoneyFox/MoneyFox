@@ -130,8 +130,12 @@
                                                      Binding="{Binding IsCleared}" />
                     <controls:DataGridCheckBoxColumn Header="{x:Bind resources:Strings.IsRecurringLabel}"
                                                      Binding="{Binding IsRecurring}" />
+                    
                     <controls:DataGridTextColumn Header="{x:Bind resources:Strings.RecurrenceLabel}"
                                                  Binding="{Binding RecurringPayment.Recurrence, Converter={StaticResource RecurrenceTypeConverter}}" />
+                   
+                    <controls:DataGridTextColumn Header="{x:Bind resources:Strings.NoteLabel}"
+                                                 Binding="{Binding Note}" />
 
                     <controls:DataGridTextColumn Header="{x:Bind resources:Strings.ModificationDateHeader}"
                                                  Binding="{Binding LastModified, Converter={StaticResource DateTimeToStringConverter}}" />
