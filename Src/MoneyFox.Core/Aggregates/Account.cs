@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Core.Aggregates
 {
 
-    using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using Common.Interfaces;
@@ -21,7 +20,6 @@
             CurrentBalance = initalBalance;
             Note = note;
             IsExcluded = isExcluded;
-            CreationTime = DateTime.Now;
         }
 
         [Key]
@@ -44,22 +42,12 @@
 
         public bool IsDeactivated { get; private set; }
 
-        [Obsolete("Will be removed")]
-        public bool IsOverdrawn { get; private set; }
-
-        [Obsolete("Will be removed")]
-        public DateTime? ModificationDate { get; private set; }
-
-        [Obsolete("Will be removed")]
-        public DateTime CreationTime { get; }
-
         public void UpdateAccount(string name, string note = "", bool isExcluded = false)
         {
             Guard.Argument(value: name, name: nameof(name)).NotNull().NotWhiteSpace();
             Name = name;
             Note = note;
             IsExcluded = isExcluded;
-            ModificationDate = DateTime.Now;
         }
 
         public void AddPaymentAmount(Payment payment)
@@ -77,8 +65,6 @@
             {
                 CurrentBalance += payment.Amount;
             }
-
-            ModificationDate = DateTime.Now;
         }
 
         public void RemovePaymentAmount(Payment payment)
@@ -97,8 +83,6 @@
             {
                 CurrentBalance += -payment.Amount;
             }
-
-            ModificationDate = DateTime.Now;
         }
 
         public void Deactivate()
