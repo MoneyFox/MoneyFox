@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MoneyFox.Infrastructure.Persistence;
 
 namespace MoneyFox.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220403234051_AddIsLastDayOfMonthToRecurringPayment")]
+    partial class AddIsLastDayOfMonthToRecurringPayment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,9 +27,6 @@ namespace MoneyFox.Persistence.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("TEXT");
-
                     b.Property<decimal>("CurrentBalance")
                         .HasColumnType("TEXT");
 
@@ -37,13 +36,7 @@ namespace MoneyFox.Persistence.Migrations
                     b.Property<bool>("IsExcluded")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("IsOverdrawn")
-                        .HasColumnType("INTEGER");
-
                     b.Property<DateTime?>("LastModified")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("ModificationDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -69,13 +62,7 @@ namespace MoneyFox.Persistence.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("TEXT");
-
                     b.Property<DateTime?>("LastModified")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("ModificationDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -113,9 +100,6 @@ namespace MoneyFox.Persistence.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("TEXT");
-
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
@@ -126,9 +110,6 @@ namespace MoneyFox.Persistence.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("LastModified")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("ModificationDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Note")
@@ -174,9 +155,6 @@ namespace MoneyFox.Persistence.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("TEXT");
-
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("TEXT");
 
@@ -190,9 +168,6 @@ namespace MoneyFox.Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("LastRecurrenceCreated")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("ModificationDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Note")

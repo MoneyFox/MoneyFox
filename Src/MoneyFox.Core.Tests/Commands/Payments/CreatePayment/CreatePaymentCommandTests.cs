@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Tests.Commands.Payments.CreatePayment
+namespace MoneyFox.Core.Tests.Commands.Payments.CreatePayment
 {
 
     using System;
@@ -83,7 +83,7 @@
             context.Add(account);
             context.SaveChanges();
             var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: account);
-            payment1.AddRecurringPayment(PaymentRecurrence.Monthly);
+            payment1.AddRecurringPayment(recurrence: PaymentRecurrence.Monthly, isLastDayOfMonth: false);
 
             // Act
             await new CreatePaymentCommand.Handler(contextAdapterMock.Object).Handle(request: new CreatePaymentCommand(payment1), cancellationToken: default);

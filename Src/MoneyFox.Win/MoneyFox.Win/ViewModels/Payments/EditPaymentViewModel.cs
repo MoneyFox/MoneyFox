@@ -85,13 +85,14 @@ public class EditPaymentViewModel : ModifyPaymentViewModel
                 type: SelectedPayment.Type,
                 note: SelectedPayment.Note,
                 isRecurring: SelectedPayment.IsRecurring,
-                categoryId: SelectedPayment.Category != null ? SelectedPayment.Category.Id : 0,
-                chargedAccountId: SelectedPayment.ChargedAccount != null ? SelectedPayment.ChargedAccount.Id : 0,
-                targetAccountId: SelectedPayment.TargetAccount != null ? SelectedPayment.TargetAccount.Id : 0,
+                categoryId: SelectedPayment.Category?.Id ?? 0,
+                chargedAccountId: SelectedPayment.ChargedAccount?.Id ?? 0,
+                targetAccountId: SelectedPayment.TargetAccount?.Id ?? 0,
                 updateRecurringPayment: updateRecurring,
                 recurrence: SelectedPayment.RecurringPayment?.Recurrence,
                 isEndless: SelectedPayment.RecurringPayment?.IsEndless,
-                endDate: SelectedPayment.RecurringPayment?.EndDate);
+                endDate: SelectedPayment.RecurringPayment?.EndDate,
+                isLastDayOfMonth: SelectedPayment.RecurringPayment?.IsLastDayOfMonth ?? false);
 
             await mediator.Send(command);
         }

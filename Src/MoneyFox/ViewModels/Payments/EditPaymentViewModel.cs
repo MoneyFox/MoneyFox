@@ -63,7 +63,8 @@
                 updateRecurringPayment: updateRecurring,
                 recurrence: SelectedPayment.RecurringPayment?.Recurrence,
                 isEndless: SelectedPayment.RecurringPayment?.IsEndless,
-                endDate: SelectedPayment.RecurringPayment?.EndDate);
+                endDate: SelectedPayment.RecurringPayment?.EndDate,
+                isLastDayOfMonth: SelectedPayment.RecurringPayment?.IsLastDayOfMonth ?? false);
 
             await mediator.Send(command);
         }

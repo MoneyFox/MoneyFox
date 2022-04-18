@@ -1,15 +1,17 @@
-﻿namespace MoneyFox.Win.ViewModels.Payments;
+namespace MoneyFox.Win.ViewModels.Payments;
 
 using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Core.Aggregates.Payments;
 using Core.Common.Interfaces.Mapping;
+using Core._Pending_.Common.Helpers;
 
 public class RecurringPaymentViewModel : ObservableObject, IMapFrom<RecurringPayment>
 {
     private DateTime? endDate;
     private int id;
     private bool isEndless;
+    private bool isLastDayOfMonth;
     private PaymentRecurrence recurrence;
 
     public RecurringPaymentViewModel()
@@ -17,6 +19,7 @@ public class RecurringPaymentViewModel : ObservableObject, IMapFrom<RecurringPay
         Recurrence = PaymentRecurrence.Daily;
         EndDate = null;
         IsEndless = true;
+        isLastDayOfMonth = false;
     }
 
     public int Id
@@ -48,9 +51,41 @@ public class RecurringPaymentViewModel : ObservableObject, IMapFrom<RecurringPay
         }
     }
 
+    public bool IsLastDayOfMonth
+    {
+        get => isLastDayOfMonth;
+        set
+        {
+            if (isLastDayOfMonth == value)
+            {
+                return;
+            }
+
+            isLastDayOfMonth = value;
+            OnPropertyChanged();
+        }
+    }
     public PaymentRecurrence Recurrence
     {
         get => recurrence;
-        set => SetProperty(field: ref recurrence, newValue: value);
+        set
+        {
+            if (recurrence == value)
+            {
+                return;
+            }
+
+            recurrence = value;
+
+            // If recurrence is changed to a type that doesn't allow the Last Day of Month flag, force the flag to false if it's true
+            if (IsLastDayOfMonth && !RecurringPaymentHelper.AllowLastDayOfMonth(recurrence))
+            {
+                IsLastDayOfMonth = false;
+            }
+
+            OnPropertyChanged();
+
+        }
     }
+
 }

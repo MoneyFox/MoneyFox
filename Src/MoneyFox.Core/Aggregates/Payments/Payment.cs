@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Aggregates.Payments
+namespace MoneyFox.Core.Aggregates.Payments
 {
 
     using System;
@@ -123,7 +123,7 @@
             Category = category;
         }
 
-        public void AddRecurringPayment(PaymentRecurrence recurrence, DateTime? endDate = null)
+        public void AddRecurringPayment(PaymentRecurrence recurrence, bool isLastDayOfMonth = false, DateTime? endDate = null)
         {
             RecurringPayment = new RecurringPayment(
                 startDate: Date,
@@ -131,6 +131,7 @@
                 type: Type,
                 recurrence: recurrence,
                 chargedAccount: ChargedAccount,
+                isLastDayOfMonth: isLastDayOfMonth,
                 note: Note ?? "",
                 endDate: endDate,
                 targetAccount: TargetAccount,

@@ -17,6 +17,7 @@
             <converter:PaymentTypeStringConverter x:Key="PaymentTypeStringConverter" />
             <converter:NoCategorySelectedConverter x:Key="NoCategorySelectedConverter" />
             <converter:DecimalConverter x:Key="DecimalConverter" />
+            <converter:LastDayOfMonthVisibilityConverter x:Key="LastDateOfMonthVisibilityConverter" />
         </ResourceDictionary>
     </ContentView.Resources>
 
@@ -99,6 +100,22 @@
                        Margin="0,5,0,0" />
                 <Picker ItemsSource="{Binding RecurrenceList}"
                         SelectedItem="{Binding SelectedPayment.RecurringPayment.Recurrence}" />
+
+                <Grid HorizontalOptions="FillAndExpand"
+                    IsVisible="{Binding SelectedPayment.RecurringPayment.Recurrence, Converter={StaticResource LastDateOfMonthVisibilityConverter}}">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70*" />
+                        <ColumnDefinition Width="15*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0"
+                           Text="{x:Static resources:Strings.LastDayOfMonthLabel}" />
+
+                    <Switch Grid.Column="1"
+                            HorizontalOptions="End"
+                            IsToggled="{Binding SelectedPayment.RecurringPayment.IsLastDayOfMonth}" />
+                </Grid>
 
                 <Grid HorizontalOptions="FillAndExpand">
 
