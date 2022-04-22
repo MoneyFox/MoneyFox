@@ -27,8 +27,6 @@ namespace MoneyFox.Infrastructure.DbBackup
             this.oneDriveAuthenticationService = oneDriveAuthenticationService;
         }
 
-        private DriveItem? ArchiveFolder { get; set; }
-
         public async Task LoginAsync()
         {
             await oneDriveAuthenticationService.CreateServiceClient();
