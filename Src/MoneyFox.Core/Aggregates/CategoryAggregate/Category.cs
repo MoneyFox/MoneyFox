@@ -14,7 +14,7 @@
         [UsedImplicitly]
         private Category() { }
 
-        public Category(string name, string note = "", bool requireNote = false)
+        public Category(string name, string? note = null, bool requireNote = false)
         {
             UpdateData(name: name, note: note, requireNote: requireNote);
         }
@@ -44,7 +44,7 @@
             private set;
         } = new List<Payment>();
 
-        public void UpdateData(string name, string note = "", bool requireNote = false)
+        public void UpdateData(string name, string? note = "", bool requireNote = false)
         {
             Guard.Argument(value: name, name: nameof(name)).NotWhiteSpace();
             Name = name;
