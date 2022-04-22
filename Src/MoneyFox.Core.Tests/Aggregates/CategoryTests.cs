@@ -3,7 +3,7 @@
 
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using Core.Aggregates.Payments;
+    using Core.Aggregates;
     using FluentAssertions;
     using Xunit;
 

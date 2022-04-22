@@ -2,7 +2,7 @@
 {
 
     using System.Diagnostics.CodeAnalysis;
-    using Core.Aggregates.Payments;
+    using Core.Aggregates.AccountAggregate;
     using FluentAssertions;
     using MoneyFox.ConverterLogic;
     using MoneyFox.ViewModels.Payments;

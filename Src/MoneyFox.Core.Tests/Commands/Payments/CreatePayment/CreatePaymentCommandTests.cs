@@ -6,7 +6,7 @@ namespace MoneyFox.Core.Tests.Commands.Payments.CreatePayment
     using System.Threading.Tasks;
     using Common.Interfaces;
     using Core.Aggregates;
-    using Core.Aggregates.Payments;
+    using Core.Aggregates.AccountAggregate;
     using Core.Commands.Payments.CreatePayment;
     using FluentAssertions;
     using Infrastructure;

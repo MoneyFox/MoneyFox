@@ -1,14 +1,13 @@
-namespace MoneyFox.Core.Aggregates.Payments
+namespace MoneyFox.Core.Aggregates.AccountAggregate
 {
 
     using System;
     using System.ComponentModel.DataAnnotations;
-    using _Pending_.Exceptions;
-    using Common.Interfaces;
     using JetBrains.Annotations;
+    using MoneyFox.Core._Pending_.Exceptions;
     using Serilog;
 
-    public class Payment : EntityBase, IAggregateRoot
+    public class Payment : EntityBase
     {
         [UsedImplicitly]
         private Payment() { }

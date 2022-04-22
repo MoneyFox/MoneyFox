@@ -11,7 +11,7 @@
     using _Pending_.Common.QueryObjects;
     using _Pending_.Exceptions;
     using Aggregates;
-    using Aggregates.Payments;
+    using Aggregates.AccountAggregate;
     using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;

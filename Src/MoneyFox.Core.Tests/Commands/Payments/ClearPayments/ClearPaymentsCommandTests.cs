@@ -8,7 +8,7 @@
     using System.Threading.Tasks;
     using Common.Interfaces;
     using Core.Aggregates;
-    using Core.Aggregates.Payments;
+    using Core.Aggregates.AccountAggregate;
     using Core.Commands.Payments.ClearPayments;
     using FluentAssertions;
     using Infrastructure;

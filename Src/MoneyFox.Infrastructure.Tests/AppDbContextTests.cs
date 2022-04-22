@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
     using Core._Pending_.Common.Facades;
     using Core.Aggregates;
+    using Core.Aggregates.AccountAggregate;
     using Core.Events;
     using FluentAssertions;
     using MediatR;

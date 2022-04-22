@@ -2,7 +2,8 @@ namespace MoneyFox.Core._Pending_.Common.Helpers
 {
 
     using System;
-    using Aggregates.Payments;
+    using Aggregates;
+    using Aggregates.AccountAggregate;
     using Exceptions;
     using Extensions;
     using Resources;

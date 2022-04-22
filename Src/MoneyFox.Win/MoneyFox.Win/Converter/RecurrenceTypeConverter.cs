@@ -2,7 +2,7 @@
 
 using System;
 using ConverterLogic;
-using Core.Aggregates.Payments;
+using Core.Aggregates.AccountAggregate;
 using Microsoft.UI.Xaml.Data;
 
 public class RecurrenceTypeConverter : IValueConverter

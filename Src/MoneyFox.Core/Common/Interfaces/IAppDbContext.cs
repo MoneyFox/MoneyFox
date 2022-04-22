@@ -5,7 +5,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Aggregates;
-    using Aggregates.Payments;
+    using Aggregates.AccountAggregate;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.ChangeTracking;
 

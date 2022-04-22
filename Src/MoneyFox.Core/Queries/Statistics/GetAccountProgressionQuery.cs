@@ -8,7 +8,7 @@
     using System.Threading.Tasks;
     using _Pending_.Common.QueryObjects;
     using _Pending_.Exceptions;
-    using Aggregates.Payments;
+    using Aggregates.AccountAggregate;
     using Common;
     using Common.Interfaces;
     using MediatR;

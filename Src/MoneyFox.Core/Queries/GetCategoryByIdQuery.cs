@@ -3,7 +3,7 @@
 
     using System.Threading;
     using System.Threading.Tasks;
-    using Aggregates.Payments;
+    using Aggregates;
     using Common.Interfaces;
     using MediatR;
 

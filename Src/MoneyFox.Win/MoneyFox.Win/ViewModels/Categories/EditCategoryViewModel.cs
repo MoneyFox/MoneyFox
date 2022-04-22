@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Threading.Tasks;
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
-using Core.Aggregates.Payments;
+using Core.Aggregates;
 using Core.Commands.Categories.DeleteCategoryById;
 using Core.Commands.Categories.UpdateCategory;
 using Core.Common.Interfaces;

@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
     using Core._Pending_.Common.Facades;
     using Core.Aggregates;
-    using Core.Aggregates.Payments;
+    using Core.Aggregates.AccountAggregate;
     using Core.Common.Interfaces;
     using Core.Events;
     using MediatR;

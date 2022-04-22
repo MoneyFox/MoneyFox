@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Accounts;
 using CommunityToolkit.Mvvm.Input;
-using Core.Aggregates.Payments;
+using Core.Aggregates.AccountAggregate;
 using Payments;
 
 public class DesignTimeModifyPaymentViewModel : IModifyPaymentViewModel
