@@ -27,7 +27,8 @@
             bool updateRecurringPayment,
             PaymentRecurrence? recurrence,
             bool? isEndless,
-            DateTime? endDate)
+            DateTime? endDate,
+            bool isLastDayOfMonth)
         {
             Id = id;
             Date = date;
@@ -43,6 +44,7 @@
             PaymentRecurrence = recurrence;
             IsEndless = isEndless;
             EndDate = endDate;
+            IsLastDayOfMonth = isLastDayOfMonth;
         }
 
         public int Id { get; }
@@ -70,6 +72,8 @@
         public bool? IsEndless { get; }
 
         public DateTime? EndDate { get; }
+
+        public bool IsLastDayOfMonth { get; }
 
         public bool UpdateRecurringPayment { get; }
 
@@ -133,6 +137,7 @@
                         amount: request.Amount,
                         recurrence: request.PaymentRecurrence ?? existingPayment.RecurringPayment.Recurrence,
                         chargedAccount: existingPayment.ChargedAccount,
+                        isLastDayOfMonth: request.IsLastDayOfMonth,
                         note: request.Note,
                         endDate: request.IsEndless.HasValue && request.IsEndless.Value ? null : request.EndDate,
                         targetAccount: existingPayment.TargetAccount,
@@ -147,6 +152,7 @@
 
                     existingPayment.AddRecurringPayment(
                         recurrence: request.PaymentRecurrence.Value,
+                        isLastDayOfMonth: request.IsLastDayOfMonth,
                         endDate: request.IsEndless.HasValue && request.IsEndless.Value ? null : request.EndDate);
                 }
             }

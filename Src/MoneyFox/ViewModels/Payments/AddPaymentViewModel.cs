@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.Payments
+namespace MoneyFox.ViewModels.Payments
 {
 
     using System.Linq;
@@ -47,6 +47,7 @@
             {
                 payment.AddRecurringPayment(
                     recurrence: SelectedPayment.RecurringPayment.Recurrence,
+                    isLastDayOfMonth: SelectedPayment.RecurringPayment.IsLastDayOfMonth,
                     endDate: SelectedPayment.RecurringPayment.IsEndless ? null : SelectedPayment.RecurringPayment.EndDate);
             }
 

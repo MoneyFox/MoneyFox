@@ -1,18 +1,14 @@
-﻿namespace MoneyFox.Core._Pending_.Common.Helpers
+namespace MoneyFox.Core._Pending_.Common.Helpers
 {
 
     using System;
     using Aggregates.Payments;
     using Exceptions;
+    using Resources;
+    using Extensions;
 
     public static class RecurringPaymentHelper
     {
-        private const int WEEKLY_RECURRENCE_DAYS = 7;
-        private const int BIWEEKLY_RECURRENCE_DAYS = 14;
-        private const int QUARTERLY_RECURRENCE_DAYS = 93;
-        private const int BIANNUALLY_RECURRENCE_DAYS = 184;
-        private const int BIMONTHLY_RECURRENCE_MONTHS = -2;
-
         /// <summary>
         ///     Checks if the recurring PaymentViewModel is up for a repetition based on the passed PaymentViewModel
         /// </summary>
@@ -38,74 +34,103 @@
             return CheckRecurrence(payment.RecurringPayment);
         }
 
+        /// <summary>
+        ///     Returns a boolean indicating whether the recurrence period of the supplied RecurringPayment object
+        ///     has been exceeded and a new payment needs to be generated.
+        /// </summary>
+        /// <param name="recurringPayment">RecurringPayment object to be tested.</param>
+        /// <returns>True if the duration since the LastRecurrenceCreated date of the RecurringPayment object exceeds the recurrence period, false otherwise.</returns>
         private static bool CheckRecurrence(RecurringPayment recurringPayment)
         {
+            var currDate = DateTime.Today;
+            var lastRecurCreated = recurringPayment.LastRecurrenceCreated.Date;
+
             switch (recurringPayment.Recurrence)
             {
                 case PaymentRecurrence.Daily:
-                    return DateTime.Today.Date != recurringPayment.LastRecurrenceCreated.Date;
+                    return currDate != lastRecurCreated;
+
                 case PaymentRecurrence.DailyWithoutWeekend:
-                    return DateTime.Today.Date != recurringPayment.LastRecurrenceCreated.Date
-                           && DateTime.Today.DayOfWeek != DayOfWeek.Saturday
-                           && DateTime.Today.DayOfWeek != DayOfWeek.Sunday;
+                    return currDate != lastRecurCreated
+                           && currDate.DayOfWeek != DayOfWeek.Saturday
+                           && currDate.DayOfWeek != DayOfWeek.Sunday;
+
                 case PaymentRecurrence.Weekly:
-                    var daysWeekly = DateTime.Today.Date - recurringPayment.LastRecurrenceCreated.Date;
+                    return currDate.AddDays(-7) >= lastRecurCreated;
 
-                    return daysWeekly.Days >= WEEKLY_RECURRENCE_DAYS;
                 case PaymentRecurrence.Biweekly:
-                    var daysBiweekly = DateTime.Today.Date - recurringPayment.LastRecurrenceCreated.Date;
+                    return currDate.AddDays(-14) >= lastRecurCreated;
 
-                    return daysBiweekly.Days >= BIWEEKLY_RECURRENCE_DAYS;
                 case PaymentRecurrence.Monthly:
-                    return DateTime.Now.Month != recurringPayment.LastRecurrenceCreated.Date.Month;
-                case PaymentRecurrence.Bimonthly:
-                    var date = DateTime.Now.AddMonths(BIMONTHLY_RECURRENCE_MONTHS);
+                    return currDate.AddMonths(-1).GetFirstDayOfMonth() >= lastRecurCreated.GetFirstDayOfMonth();
 
-                    return recurringPayment.LastRecurrenceCreated.Date.Month <= date.Month && recurringPayment.LastRecurrenceCreated.Date.Year == date.Year;
+                case PaymentRecurrence.Bimonthly:
+                    return currDate.AddMonths(-2).GetFirstDayOfMonth() >= lastRecurCreated.GetFirstDayOfMonth();
+
                 case PaymentRecurrence.Quarterly:
-                    return CheckQuarterly(recurringPayment.LastRecurrenceCreated);
+                    return currDate.AddMonths(-3).GetFirstDayOfMonth() >= lastRecurCreated.GetFirstDayOfMonth();
+
                 case PaymentRecurrence.Biannually:
-                    return CheckBiannually(recurringPayment.LastRecurrenceCreated);
+                    return currDate.AddMonths(-6).GetFirstDayOfMonth() >= lastRecurCreated.GetFirstDayOfMonth();
+
                 case PaymentRecurrence.Yearly:
-                    return DateTime.Now.Year != recurringPayment.LastRecurrenceCreated.Date.Year
-                           && DateTime.Now.Month >= recurringPayment.LastRecurrenceCreated.Date.Month
-                           || DateTime.Now.Year - recurringPayment.LastRecurrenceCreated.Date.Year > 1;
+                    return currDate.AddYears(-1).GetFirstDayOfMonth() >= lastRecurCreated.GetFirstDayOfMonth();
+
                 default:
                     return false;
             }
         }
 
-        private static bool CheckQuarterly(DateTime lastRecurrenceCreated)
-        {
-            var dateDiff = DateTime.Now - lastRecurrenceCreated.Date;
-
-            return dateDiff.TotalDays >= QUARTERLY_RECURRENCE_DAYS;
-        }
-
-        private static bool CheckBiannually(DateTime lastRecurrenceCreated)
-        {
-            var dateDiff = DateTime.Now - lastRecurrenceCreated.Date;
-
-            return dateDiff.TotalDays >= BIANNUALLY_RECURRENCE_DAYS;
-        }
-
+        /// <summary>
+        ///     Returns the Date of the next recurrence instance of the supplied RecurringPayment object.
+        /// </summary>
+        /// <param name="recurringPayment">RecurringPayment object to be evaluated.</param>
+        /// <returns>Date of the next recurrence instance.</returns>
         public static DateTime GetPaymentDateFromRecurring(RecurringPayment recurringPayment)
         {
-            if (recurringPayment.Recurrence == PaymentRecurrence.Monthly)
+            var currDate = DateTime.Today;
+
+            switch (recurringPayment.Recurrence)
             {
-                var date = DateTime.Today.AddDays(recurringPayment.StartDate.Day - DateTime.Today.Day);
-                var value = recurringPayment.StartDate.Day; //the Day value i.e. 31
-                var max = DateTime.DaysInMonth(year: DateTime.Today.Year, month: DateTime.Today.Month);
-                double difference = -(value - max);
-                if (difference < 0)
-                {
-                    date = date.AddDays(difference);
-                }
+                case PaymentRecurrence.Daily:
+                case PaymentRecurrence.Weekly:
+                case PaymentRecurrence.Biweekly:
+                    return currDate;
 
-                return date;
+                case PaymentRecurrence.DailyWithoutWeekend:
+                    if (currDate.DayOfWeek == DayOfWeek.Saturday || currDate.DayOfWeek == DayOfWeek.Sunday)
+                    {
+                        throw new InvalidOperationException($"Unable to create a {Strings.DailyWithoutWeekendLabel} recurring payment on a {currDate.DayOfWeek}.");
+                    }
+                    return currDate;
+
+                case PaymentRecurrence.Monthly:
+                case PaymentRecurrence.Bimonthly:
+                case PaymentRecurrence.Quarterly:
+                case PaymentRecurrence.Biannually:
+                case PaymentRecurrence.Yearly:
+                    var dayOfMonth = recurringPayment.IsLastDayOfMonth ? DateTime.DaysInMonth(currDate.Year, currDate.Month) : Math.Min(DateTime.DaysInMonth(currDate.Year, currDate.Month), recurringPayment.StartDate.Day);
+                    return new DateTime(currDate.Year, currDate.Month, dayOfMonth);
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(recurringPayment), $"Unable to determine the payment date for recurrence type {recurringPayment.Recurrence}.");
             }
+        }
 
-            return DateTime.Today;
+        public static bool AllowLastDayOfMonth(PaymentRecurrence passedEnum)
+        {
+            // TODO: Change to a switch expression using 'or' for the multiple condition matches when the project is upgraded to C# 9.
+            switch (passedEnum)
+            {
+                case PaymentRecurrence.Monthly:
+                case PaymentRecurrence.Bimonthly:
+                case PaymentRecurrence.Quarterly:
+                case PaymentRecurrence.Biannually:
+                case PaymentRecurrence.Yearly:
+                    return true;
+                default:
+                    return false;
+            }
         }
     }
 

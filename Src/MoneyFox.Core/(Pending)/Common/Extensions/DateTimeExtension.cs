@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core._Pending_.Common.Extensions
+namespace MoneyFox.Core._Pending_.Common.Extensions
 {
 
     using System;
@@ -23,6 +23,12 @@
         {
             return new DateTime(year: self.Year, month: self.Month, day: DateTime.DaysInMonth(year: self.Year, month: self.Month));
         }
+
+        /// <summary>
+        ///     Returns number of days between Today and the specified date. The return value is positive for future dates and negative for past dates.
+        /// </summary>
+        public static int GetDaysFromToday(this DateTime self) =>
+             (self - DateTime.Today).Days;
     }
 
 }

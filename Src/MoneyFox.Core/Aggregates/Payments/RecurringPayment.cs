@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Aggregates.Payments
+namespace MoneyFox.Core.Aggregates.Payments
 {
 
     using System;
@@ -19,6 +19,7 @@
             PaymentType type,
             PaymentRecurrence recurrence,
             Account chargedAccount,
+            bool isLastDayOfMonth = false,
             string note = "",
             DateTime? endDate = null,
             Account? targetAccount = null,
@@ -37,6 +38,7 @@
             Type = type;
             Recurrence = recurrence;
             Note = note;
+            IsLastDayOfMonth = isLastDayOfMonth;
             Category = category;
             TargetAccount = type == PaymentType.Transfer ? targetAccount : null;
             IsEndless = endDate == null;
@@ -93,6 +95,8 @@
 
         public Account? TargetAccount { get; private set; }
 
+        public bool IsLastDayOfMonth { get; private set; }
+
         public virtual List<Payment> RelatedPayments
         {
             get;
@@ -105,6 +109,7 @@
             decimal amount,
             PaymentRecurrence recurrence,
             Account chargedAccount,
+            bool isLastDayOfMonth,
             string note = "",
             DateTime? endDate = null,
             Account? targetAccount = null,
@@ -123,6 +128,7 @@
             Category = category;
             TargetAccount = Type == PaymentType.Transfer ? targetAccount : null;
             IsEndless = endDate == null;
+            IsLastDayOfMonth = isLastDayOfMonth;
         }
 
         public void SetLastRecurrenceCreatedDate()

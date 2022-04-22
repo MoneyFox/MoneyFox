@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Tests.Commands.Payments.UpdatePaymentById
+namespace MoneyFox.Core.Tests.Commands.Payments.UpdatePaymentById
 {
 
     using System;
@@ -63,7 +63,8 @@
                     updateRecurringPayment: false,
                     recurrence: null,
                     isEndless: null,
-                    endDate: null),
+                    endDate: null,
+                    isLastDayOfMonth: false),
                 cancellationToken: default);
 
             // Assert
@@ -75,7 +76,7 @@
         {
             // Arrange
             var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new Account(name: "test", initalBalance: 80));
-            payment1.AddRecurringPayment(PaymentRecurrence.Monthly);
+            payment1.AddRecurringPayment(recurrence: PaymentRecurrence.Monthly, isLastDayOfMonth: false);
             await context.AddAsync(payment1);
             await context.SaveChangesAsync();
             var category = new Category("Test");
@@ -104,7 +105,8 @@
                     updateRecurringPayment: true,
                     recurrence: PaymentRecurrence.Monthly,
                     isEndless: null,
-                    endDate: null),
+                    endDate: null,
+                    isLastDayOfMonth: false),
                 cancellationToken: default);
 
             // Assert
@@ -116,7 +118,7 @@
         {
             // Arrange
             var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new Account(name: "test", initalBalance: 80));
-            payment1.AddRecurringPayment(PaymentRecurrence.Monthly);
+            payment1.AddRecurringPayment(recurrence: PaymentRecurrence.Monthly, isLastDayOfMonth: false);
             await context.AddAsync(payment1);
             await context.SaveChangesAsync();
             var category = new Category("Test");
@@ -145,7 +147,8 @@
                     updateRecurringPayment: true,
                     recurrence: PaymentRecurrence.Daily,
                     isEndless: null,
-                    endDate: null),
+                    endDate: null,
+                    isLastDayOfMonth: false),
                 cancellationToken: default);
 
             // Assert

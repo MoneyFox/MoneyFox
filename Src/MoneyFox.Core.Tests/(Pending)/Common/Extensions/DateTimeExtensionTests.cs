@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Tests._Pending_.Common.Extensions
+namespace MoneyFox.Core.Tests._Pending_.Common.Extensions
 {
 
     using System;
@@ -25,6 +25,18 @@
                 expected: new DateTime(year: 2017, month: month, day: expectedDay),
                 actual: new DateTime(year: 2017, month: month, day: 15).GetLastDayOfMonth());
         }
+
+        [Theory]
+        [InlineData(-7)]
+        [InlineData(0)]
+        [InlineData(7)]
+        public void GetDaysFromToday(int dayOffset)
+        {
+            Assert.Equal(
+                expected: dayOffset,
+                actual: DateTime.Today.AddDays(dayOffset).GetDaysFromToday());
+        }
+
     }
 
 }

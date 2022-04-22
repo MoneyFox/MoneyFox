@@ -25,7 +25,7 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <converter:RecurrenceTypeConverter x:Key="RecurrenceTypeConverter" />
         <converter:PaymentTypeToStringConverter x:Key="PaymentTypeToStringConverter" />
-
+        
         <DataTemplate x:Key="ComboBoxAccountTemplate" x:DataType="accounts:AccountViewModel">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{x:Bind Name}" />
@@ -113,6 +113,11 @@
                 ItemTemplate="{StaticResource ComboBoxRecurrenceTemplate}"
                 ItemsSource="{x:Bind ViewModel.RecurrenceList}"
                 SelectedItem="{x:Bind ViewModel.SelectedPayment.RecurringPayment.Recurrence, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <CheckBox
+                Margin="{StaticResource SmallTitleContentMargin}"
+                Content="{x:Bind resources:Strings.LastDayOfMonthLabel}"
+                IsChecked="{x:Bind ViewModel.SelectedPayment.RecurringPayment.IsLastDayOfMonth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Visibility="{x:Bind ViewModel.SelectedPayment.RecurringPayment.AllowLastDayOfMonth, Converter={StaticResource BooleanVisibilityConverter}, Mode=OneWay}" />
             <CheckBox
                 Margin="{StaticResource SmallTitleContentMargin}"
                 Content="{x:Bind resources:Strings.EndlessLabel}"

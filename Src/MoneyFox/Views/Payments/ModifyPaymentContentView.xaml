@@ -100,6 +100,22 @@
                 <Picker ItemsSource="{Binding RecurrenceList}"
                         SelectedItem="{Binding SelectedPayment.RecurringPayment.Recurrence}" />
 
+                <Grid HorizontalOptions="FillAndExpand"
+                    IsVisible="{Binding SelectedPayment.RecurringPayment.AllowLastDayOfMonth}">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70*" />
+                        <ColumnDefinition Width="15*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0"
+                           Text="{x:Static resources:Strings.LastDayOfMonthLabel}" />
+
+                    <Switch Grid.Column="1"
+                            HorizontalOptions="End"
+                            IsToggled="{Binding SelectedPayment.RecurringPayment.IsLastDayOfMonth}" />
+                </Grid>
+
                 <Grid HorizontalOptions="FillAndExpand">
 
                     <Grid.ColumnDefinitions>

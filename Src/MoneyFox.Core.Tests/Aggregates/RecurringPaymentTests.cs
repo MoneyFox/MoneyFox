@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Tests.Aggregates
+namespace MoneyFox.Core.Tests.Aggregates
 {
 
     using System;
@@ -24,6 +24,7 @@
                     type: PaymentType.Expense,
                     recurrence: PaymentRecurrence.Daily,
                     chargedAccount: null,
+                    isLastDayOfMonth: false,
                     note: "note"));
         }
 
@@ -38,6 +39,7 @@
                 type: PaymentType.Expense,
                 recurrence: PaymentRecurrence.Daily,
                 chargedAccount: new Account("Foo"),
+                isLastDayOfMonth: false,
                 note: "note");
 
             // Assert
@@ -62,6 +64,7 @@
                 type: type,
                 recurrence: recurrence,
                 chargedAccount: account,
+                isLastDayOfMonth: true,
                 note: note);
 
             // Assert
@@ -71,6 +74,7 @@
             recurringPayment.Type.Should().Be(type);
             recurringPayment.Recurrence.Should().Be(recurrence);
             recurringPayment.ChargedAccount.Should().Be(account);
+            recurringPayment.IsLastDayOfMonth.Should().BeTrue();
             recurringPayment.Note.Should().Be(note);
         }
 
@@ -85,6 +89,7 @@
                 type: PaymentType.Expense,
                 recurrence: PaymentRecurrence.Daily,
                 chargedAccount: new Account("Foo"),
+                isLastDayOfMonth: false,
                 note: "note");
 
             // Assert
@@ -102,6 +107,7 @@
                 type: PaymentType.Expense,
                 recurrence: PaymentRecurrence.Daily,
                 chargedAccount: new Account("Foo"),
+                isLastDayOfMonth: false,
                 note: "note",
                 endDate: DateTime.Today);
 
@@ -122,6 +128,7 @@
                     type: PaymentType.Expense,
                     recurrence: PaymentRecurrence.Daily,
                     chargedAccount: new Account("Foo"),
+                    isLastDayOfMonth: false,
                     note: "note",
                     endDate: DateTime.Today.AddDays(-1)));
         }
@@ -137,6 +144,7 @@
                 type: PaymentType.Expense,
                 recurrence: PaymentRecurrence.Daily,
                 chargedAccount: new Account("Foo"),
+                isLastDayOfMonth: false,
                 note: "note");
 
             // Assert
@@ -153,10 +161,11 @@
                 type: PaymentType.Expense,
                 recurrence: PaymentRecurrence.Daily,
                 chargedAccount: new Account("Foo"),
+                isLastDayOfMonth: false,
                 note: "note");
 
             // Act
-            payment.UpdateRecurringPayment(amount: 111, recurrence: PaymentRecurrence.Daily, chargedAccount: payment.ChargedAccount, endDate: null);
+            payment.UpdateRecurringPayment(amount: 111, recurrence: PaymentRecurrence.Daily, chargedAccount: payment.ChargedAccount, isLastDayOfMonth: false, endDate: null);
 
             // Assert
             payment.Should().NotBeNull();
@@ -172,6 +181,7 @@
                 type: PaymentType.Expense,
                 recurrence: PaymentRecurrence.Daily,
                 chargedAccount: new Account("Foo"),
+                isLastDayOfMonth: false,
                 note: "note");
 
             // Act
@@ -179,6 +189,7 @@
                 amount: 111,
                 recurrence: PaymentRecurrence.Daily,
                 chargedAccount: payment.ChargedAccount,
+                isLastDayOfMonth: false,
                 endDate: DateTime.MinValue);
 
             // Assert
@@ -202,6 +213,7 @@
                 type: type,
                 recurrence: PaymentRecurrence.Monthly,
                 chargedAccount: new Account("1111"),
+                isLastDayOfMonth: false,
                 note: "foo");
 
             // Act
@@ -210,6 +222,7 @@
                 recurrence: recurrence,
                 chargedAccount: account,
                 note: note,
+                isLastDayOfMonth: true,
                 endDate: endDate);
 
             // Assert
@@ -219,6 +232,7 @@
             recurringPayment.Type.Should().Be(type);
             recurringPayment.Recurrence.Should().Be(recurrence);
             recurringPayment.ChargedAccount.Should().Be(account);
+            recurringPayment.IsLastDayOfMonth.Should().BeTrue();
             recurringPayment.Note.Should().Be(note);
         }
 
@@ -232,10 +246,11 @@
                 type: PaymentType.Income,
                 recurrence: PaymentRecurrence.Monthly,
                 chargedAccount: new Account("1111"),
+                isLastDayOfMonth: false,
                 note: "foo");
 
             // Act
-            recurringPayment.UpdateRecurringPayment(amount: 123, recurrence: PaymentRecurrence.Daily, chargedAccount: new Account("123"));
+            recurringPayment.UpdateRecurringPayment(amount: 123, recurrence: PaymentRecurrence.Daily, chargedAccount: new Account("123"), isLastDayOfMonth: false);
 
             // Assert
             recurringPayment.IsEndless.Should().BeTrue();
@@ -251,6 +266,7 @@
                 type: PaymentType.Income,
                 recurrence: PaymentRecurrence.Monthly,
                 chargedAccount: new Account("1111"),
+                isLastDayOfMonth: false,
                 note: "foo");
 
             // Act
@@ -258,6 +274,7 @@
                 amount: 123,
                 recurrence: PaymentRecurrence.Daily,
                 chargedAccount: new Account("123"),
+                isLastDayOfMonth: false,
                 note: string.Empty,
                 endDate: DateTime.Now);
 
@@ -281,6 +298,7 @@
                 type: type,
                 recurrence: recurrence,
                 chargedAccount: account,
+                isLastDayOfMonth: false,
                 note: note);
 
             // Act

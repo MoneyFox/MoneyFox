@@ -67,6 +67,7 @@ public class AddPaymentViewModel : ModifyPaymentViewModel
             {
                 payment.AddRecurringPayment(
                     recurrence: SelectedPayment.RecurringPayment.Recurrence,
+                    isLastDayOfMonth: SelectedPayment.RecurringPayment.IsLastDayOfMonth,
                     endDate: SelectedPayment.RecurringPayment.IsEndless ? null : SelectedPayment.RecurringPayment.EndDate);
             }
 
