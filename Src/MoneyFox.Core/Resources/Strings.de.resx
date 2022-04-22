@@ -386,7 +386,7 @@
     <value>Email</value>
   </data>
     <data name="EnddateLabel" xml:space="preserve">
-    <value>Enddatum</value>
+    <value>End Date</value>
   </data>
     <data name="EndlessLabel" xml:space="preserve">
     <value>Ohne Endtermin</value>
@@ -803,5 +803,8 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
   </data>
     <data name="MenuTitle" xml:space="preserve">
     <value>Menu</value>
+  </data>
+  <data name="LastDayOfMonthLabel" xml:space="preserve">
+    <value>Last Day of Month</value>
   </data>
 </root>
