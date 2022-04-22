@@ -1,10 +1,11 @@
-namespace MoneyFox.Core.ApplicationCore.UseCases.DbBackup
+namespace MoneyFox.Infrastructure.DbBackup
 {
 
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
+    using Core.ApplicationCore.UseCases.DbBackup;
 
     public interface IOneDriveBackupService
     {

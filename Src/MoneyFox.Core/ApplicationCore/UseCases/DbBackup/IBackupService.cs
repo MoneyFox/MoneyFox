@@ -1,9 +1,8 @@
-﻿namespace MoneyFox.Core.Interfaces
+﻿namespace MoneyFox.Core.ApplicationCore.UseCases.DbBackup
 {
 
     using System;
     using System.Threading.Tasks;
-    using ApplicationCore.UseCases.DbBackup;
 
     // TODO Segregate interface
     public interface IBackupService

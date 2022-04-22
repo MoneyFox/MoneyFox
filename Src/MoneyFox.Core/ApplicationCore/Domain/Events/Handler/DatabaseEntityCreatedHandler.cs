@@ -1,10 +1,10 @@
-﻿namespace MoneyFox.Core.Events.Handler
+﻿namespace MoneyFox.Core.ApplicationCore.Domain.Events.Handler
 {
 
     using System.Threading;
     using System.Threading.Tasks;
-    using ApplicationCore.UseCases.BackupUpload;
     using MediatR;
+    using MoneyFox.Core.ApplicationCore.UseCases.DbBackup.BackupUpload;
 
     internal sealed class DatabaseEntityCreatedHandler : INotificationHandler<DbEntityModifiedEvent>
     {

@@ -4,6 +4,7 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
+    using Core.ApplicationCore.UseCases.DbBackup;
     using FluentAssertions;
     using MoneyFox.Core._Pending_.Common.Facades;
     using MoneyFox.Core.Interfaces;
