@@ -32,7 +32,7 @@
 
             // Assert
             category.Name.Should().Be(testName);
-            category.Note.Should().BeEmpty();
+            category.Note.Should().BeNull();
             category.RequireNote.Should().BeFalse();
         }
 
