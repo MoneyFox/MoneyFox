@@ -2,6 +2,7 @@
 {
 
     using System;
+    using Core.Common;
 
     /// <summary>
     ///     Utility methods

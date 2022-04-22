@@ -3,7 +3,7 @@
 
     using System;
     using System.Linq;
-    using Aggregates.Payments;
+    using Aggregates;
 
     public static class RecurringPaymentQueryObjects
     {

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.Input;
-using Core._Pending_.Exceptions;
+using Core.Common.Exceptions;
 
 public class DateListGroupCollection<T> : List<T>
 {

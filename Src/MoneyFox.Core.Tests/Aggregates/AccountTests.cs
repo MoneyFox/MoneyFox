@@ -5,7 +5,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using Core.Aggregates;
-    using Core.Aggregates.Payments;
+    using Core.Aggregates.AccountAggregate;
     using FluentAssertions;
     using Xunit;
 

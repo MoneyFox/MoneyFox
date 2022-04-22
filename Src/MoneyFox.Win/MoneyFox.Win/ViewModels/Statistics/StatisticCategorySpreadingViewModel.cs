@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using Core._Pending_.Common.Extensions;
 using Core._Pending_.Common.Facades;
-using Core.Aggregates.Payments;
+using Core.Aggregates.AccountAggregate;
 using Core.Queries.Statistics;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;

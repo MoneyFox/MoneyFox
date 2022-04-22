@@ -3,7 +3,7 @@
 
     using System.Collections.Generic;
     using System.Linq;
-    using Aggregates.Payments;
+    using Aggregates;
 
     /// <summary>
     ///     Provides Extensions for categories queries.

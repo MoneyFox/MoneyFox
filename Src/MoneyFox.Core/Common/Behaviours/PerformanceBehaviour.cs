@@ -1,18 +1,17 @@
-﻿namespace MoneyFox.Core.Common.Behaviours
+namespace MoneyFox.Core.Common.Behaviours
 {
 
     using System.Diagnostics;
     using System.Threading;
     using System.Threading.Tasks;
+    using JetBrains.Annotations;
     using MediatR;
-    using NLog;
+    using Serilog;
 
-#pragma warning disable CS8714 // The type cannot be used as type parameter in the generic type or method. Nullability of type argument doesn't match 'notnull' constraint.
+    [UsedImplicitly]
     public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
-#pragma warning restore CS8714 // The type cannot be used as type parameter in the generic type or method. Nullability of type argument doesn't match 'notnull' constraint.
     {
         private const int THRESHOLD_LONG_RUNNING_REQUEST_MS = 500;
-        private readonly Logger logger = LogManager.GetCurrentClassLogger();
         private readonly Stopwatch timer;
 
         public PerformanceBehaviour()
@@ -29,11 +28,11 @@
             if (elapsedMilliseconds > THRESHOLD_LONG_RUNNING_REQUEST_MS)
             {
                 var requestName = typeof(TRequest).Name;
-                logger.Warn(
-                    message: "MoneyFox Long Running Request: {Name} \tElapsedTime: ({ElapsedMilliseconds} milliseconds) \tRequestData: {@Request}",
-                    argument1: requestName,
-                    argument2: elapsedMilliseconds,
-                    argument3: request);
+                Log.Warning(
+                    messageTemplate: "MoneyFox Long Running Request: {Name} \tElapsedTime: ({ElapsedMilliseconds} milliseconds) \tRequestData: {@Request}",
+                    propertyValue0: requestName,
+                    propertyValue1: elapsedMilliseconds,
+                    propertyValue2: request);
             }
 
             return response;

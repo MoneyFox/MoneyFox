@@ -1,12 +1,11 @@
-﻿namespace MoneyFox.Core.Aggregates
+﻿namespace MoneyFox.Core.Aggregates.AccountAggregate
 {
 
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using Common.Interfaces;
     using Dawn;
     using JetBrains.Annotations;
-    using Payments;
+    using MoneyFox.Core.Common.Interfaces;
 
     public class Account : EntityBase, IAggregateRoot
     {

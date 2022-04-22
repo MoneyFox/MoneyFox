@@ -7,7 +7,6 @@ namespace MoneyFox.Core.Tests.Commands.Payments.CreateRecurringPayments
     using System.Threading.Tasks;
     using Common.Interfaces;
     using Core.Aggregates;
-    using Core.Aggregates.Payments;
     using Core.Commands.Payments.CreateRecurringPayments;
     using FluentAssertions;
     using Infrastructure;
@@ -15,6 +14,7 @@ namespace MoneyFox.Core.Tests.Commands.Payments.CreateRecurringPayments
     using Moq;
     using Xunit;
     using Core._Pending_.Common.Extensions;
+    using Core.Aggregates.AccountAggregate;
 
     [ExcludeFromCodeCoverage]
     public class CreateRecurringPaymentsCommandTests : IDisposable

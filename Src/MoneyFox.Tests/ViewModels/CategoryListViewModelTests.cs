@@ -5,7 +5,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
     using AutoMapper;
-    using Core.Aggregates.Payments;
+    using Core.Aggregates;
     using Core.Common.Interfaces;
     using Core.Queries;
     using FluentAssertions;

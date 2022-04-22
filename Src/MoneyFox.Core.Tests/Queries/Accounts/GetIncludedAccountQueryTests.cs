@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using Common.Interfaces;
     using Core.Aggregates;
+    using Core.Aggregates.AccountAggregate;
     using Core.Queries;
     using Infrastructure;
     using MoneyFox.Infrastructure.Persistence;

@@ -2,7 +2,7 @@
 
 using System;
 using CommunityToolkit.Mvvm.Input;
-using Core.Aggregates.Payments;
+using Core.Aggregates.AccountAggregate;
 
 /// <summary>
 ///     Represents the Actions for a view.

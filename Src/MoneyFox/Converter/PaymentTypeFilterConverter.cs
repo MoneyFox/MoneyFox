@@ -3,7 +3,7 @@
 
     using System;
     using System.Globalization;
-    using Core.Aggregates.Payments;
+    using Core.Aggregates.AccountAggregate;
     using Core.Resources;
     using Xamarin.Forms;
 
