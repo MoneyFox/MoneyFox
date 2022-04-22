@@ -12,6 +12,7 @@
     using _Pending_.Exceptions;
     using Aggregates;
     using Aggregates.AccountAggregate;
+    using Common;
     using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
