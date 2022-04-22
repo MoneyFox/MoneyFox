@@ -15,7 +15,7 @@
     [Application]
     public class MainApplication : Application
     {
-        public MainApplication(IntPtr handle, JniHandleOwnership transer) : base(javaReference: handle, transfer: transer) { }
+        public MainApplication(IntPtr handle, JniHandleOwnership transfer) : base(javaReference: handle, transfer: transfer) { }
 
         public override void OnCreate()
         {
@@ -32,7 +32,7 @@
             Log.Fatal(exception: e.Exception, messageTemplate: "Application Terminating");
         }
 
-        private void RegisterServices()
+        private static void RegisterServices()
         {
             var builder = new ContainerBuilder();
             builder.RegisterModule<AndroidModule>();

@@ -142,6 +142,10 @@
     <AndroidResource Include="Resources\values\colors.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.Core\MoneyFox.Core.csproj">
+      <Project>{e593affa-ee19-4f42-8cc1-77b86acf25a5}</Project>
+      <Name>MoneyFox.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj">
       <Project>{0429508E-AFD9-4F1C-900A-EA1997FC8567}</Project>
       <Name>MoneyFox.Infrastructure</Name>
