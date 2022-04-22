@@ -9,6 +9,7 @@
     using _Pending_.Common.QueryObjects;
     using Aggregates;
     using Aggregates.AccountAggregate;
+    using Aggregates.CategoryAggregate;
     using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;

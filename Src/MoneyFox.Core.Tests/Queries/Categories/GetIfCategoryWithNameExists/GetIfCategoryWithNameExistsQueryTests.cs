@@ -5,6 +5,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
     using Core.Aggregates;
+    using Core.Aggregates.CategoryAggregate;
     using Core.Queries;
     using FluentAssertions;
     using Infrastructure;

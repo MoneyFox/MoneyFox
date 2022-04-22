@@ -6,6 +6,7 @@ namespace MoneyFox.ViewModels.Payments
     using AutoMapper;
     using Core.Aggregates;
     using Core.Aggregates.AccountAggregate;
+    using Core.Aggregates.CategoryAggregate;
     using Core.Commands.Payments.CreatePayment;
     using Core.Common.Interfaces;
     using Core.Queries;

@@ -4,6 +4,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Aggregates;
+    using Aggregates.CategoryAggregate;
     using Common.Interfaces;
     using MediatR;
 

@@ -6,6 +6,7 @@ namespace MoneyFox.Core.Aggregates
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using AccountAggregate;
+    using CategoryAggregate;
     using Common.Exceptions;
     using JetBrains.Annotations;
 

@@ -7,6 +7,7 @@
     using Common.Interfaces;
     using Core.Aggregates;
     using Core.Aggregates.AccountAggregate;
+    using Core.Aggregates.CategoryAggregate;
     using Core.Queries;
     using FluentAssertions;
     using Infrastructure;

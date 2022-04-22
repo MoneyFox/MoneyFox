@@ -3,6 +3,7 @@ namespace MoneyFox.Core.Aggregates.AccountAggregate
 
     using System;
     using System.ComponentModel.DataAnnotations;
+    using CategoryAggregate;
     using Common.Exceptions;
     using JetBrains.Annotations;
     using Serilog;

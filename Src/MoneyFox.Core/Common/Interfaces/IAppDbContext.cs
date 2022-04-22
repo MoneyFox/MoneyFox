@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using Aggregates;
     using Aggregates.AccountAggregate;
+    using Aggregates.CategoryAggregate;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.ChangeTracking;
 

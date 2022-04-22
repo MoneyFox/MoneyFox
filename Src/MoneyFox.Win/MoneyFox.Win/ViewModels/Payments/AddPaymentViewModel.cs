@@ -6,6 +6,7 @@ using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using Core.Aggregates;
 using Core.Aggregates.AccountAggregate;
+using Core.Aggregates.CategoryAggregate;
 using Core.Commands.Payments.CreatePayment;
 using Core.Common.Exceptions;
 using Core.Common.Interfaces;

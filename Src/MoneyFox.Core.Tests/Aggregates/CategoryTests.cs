@@ -4,6 +4,7 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using Core.Aggregates;
+    using Core.Aggregates.CategoryAggregate;
     using FluentAssertions;
     using Xunit;
 

@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using AutoMapper;
     using Core.Aggregates;
+    using Core.Aggregates.CategoryAggregate;
     using Core.Commands.Categories.UpdateCategory;
     using Core.Common.Interfaces;
     using Core.Queries;

@@ -8,6 +8,7 @@
     using Core._Pending_.Common.Facades;
     using Core.Aggregates;
     using Core.Aggregates.AccountAggregate;
+    using Core.Aggregates.CategoryAggregate;
     using Core.Common.Interfaces;
     using Core.Events;
     using MediatR;

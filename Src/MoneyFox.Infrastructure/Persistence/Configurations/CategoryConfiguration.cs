@@ -2,6 +2,7 @@
 {
 
     using Core.Aggregates;
+    using Core.Aggregates.CategoryAggregate;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

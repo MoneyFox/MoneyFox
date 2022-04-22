@@ -16,7 +16,6 @@
     using Persistence;
     using Xunit;
 
-    [ExcludeFromCodeCoverage]
     public sealed class AppDbContextTests
     {
         private readonly IPublisher publisher;

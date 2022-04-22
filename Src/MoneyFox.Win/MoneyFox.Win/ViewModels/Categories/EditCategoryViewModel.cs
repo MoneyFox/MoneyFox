@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using Core.Aggregates;
+using Core.Aggregates.CategoryAggregate;
 using Core.Commands.Categories.DeleteCategoryById;
 using Core.Commands.Categories.UpdateCategory;
 using Core.Common.Interfaces;

@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using AutoMapper;
     using Core.Aggregates;
+    using Core.Aggregates.CategoryAggregate;
     using Core.Common.Interfaces;
     using Core.Queries;
     using FluentAssertions;
