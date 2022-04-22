@@ -5,10 +5,10 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
     using AutoMapper;
-    using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
-    using Core.ApplicationCore.Queries;
     using FluentAssertions;
     using MediatR;
+    using MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
+    using MoneyFox.Core.ApplicationCore.Queries;
     using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.ViewModels.Categories;
     using NSubstitute;

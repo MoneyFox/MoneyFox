@@ -2,9 +2,9 @@
 {
 
     using System.Diagnostics.CodeAnalysis;
-    using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using FluentAssertions;
     using MoneyFox.ConverterLogic;
+    using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using MoneyFox.ViewModels.Payments;
     using Xunit;
 

@@ -3,12 +3,13 @@
 
     using System.Linq;
     using System.Threading.Tasks;
-    using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using FluentAssertions;
     using FluentAssertions.Execution;
+    using MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using MoneyFox.Infrastructure.DataAccess;
     using MoneyFox.Infrastructure.Persistence;
     using TestFramework;
+    using TestFramework.Category;
     using Xunit;
 
     public class CategoryRepositoryTest

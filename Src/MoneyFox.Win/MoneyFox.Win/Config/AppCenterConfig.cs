@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Win;
+﻿namespace MoneyFox.Win.Config;
 
 internal partial class AppConfig
 {

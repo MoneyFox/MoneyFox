@@ -38,12 +38,4 @@
         <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-        <Folder Include="Commands\Accounts" />
-        <Folder Include="Commands\Categories" />
-        <Folder Include="Commands\Payments" />
-        <Folder Include="Queries\Categories" />
-        <Folder Include="Queries\Payments" />
-    </ItemGroup>
-
 </Project>

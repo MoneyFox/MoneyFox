@@ -4,7 +4,6 @@
     using Acr.UserDialogs;
     using Android.App;
     using Autofac;
-    using Src;
 
     public class AndroidModule : Module
     {
