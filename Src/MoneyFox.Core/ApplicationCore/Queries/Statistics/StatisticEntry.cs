@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Queries.Statistics
+﻿namespace MoneyFox.Core.ApplicationCore.Queries.Statistics
 {
 
     public class StatisticEntry

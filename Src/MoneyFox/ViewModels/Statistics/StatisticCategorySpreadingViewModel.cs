@@ -6,8 +6,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using CommunityToolkit.Mvvm.Input;
-    using Core.Aggregates.AccountAggregate;
-    using Core.Queries.Statistics;
+    using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+    using Core.ApplicationCore.Queries.Statistics;
     using MediatR;
     using Microcharts;
     using SkiaSharp;

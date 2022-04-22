@@ -3,7 +3,7 @@
 
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using Core.Queries;
+    using ApplicationCore.Queries;
     using FluentAssertions;
     using Xunit;
 

@@ -4,9 +4,8 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
+    using ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using Common.Interfaces;
-    using Core.Aggregates;
-    using Core.Aggregates.CategoryAggregate;
     using Core.Commands.Categories.UpdateCategory;
     using FluentAssertions;
     using Infrastructure;

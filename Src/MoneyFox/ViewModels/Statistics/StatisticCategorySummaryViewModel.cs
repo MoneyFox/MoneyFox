@@ -7,8 +7,8 @@
     using System.Threading.Tasks;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
+    using Core.ApplicationCore.Queries.Statistics.GetCategorySummary;
     using Core.Common.Interfaces;
-    using Core.Queries.Statistics.GetCategorySummary;
     using Extensions;
     using MediatR;
     using Serilog;

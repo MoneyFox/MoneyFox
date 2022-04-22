@@ -1,13 +1,13 @@
-﻿namespace MoneyFox.Core.Queries
+﻿namespace MoneyFox.Core.ApplicationCore.Queries
 {
 
     using System.Threading;
     using System.Threading.Tasks;
-    using Aggregates.AccountAggregate;
-    using Common.Exceptions;
-    using Common.Interfaces;
+    using Domain.Aggregates.AccountAggregate;
+    using Domain.Exceptions;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
+    using MoneyFox.Core.Common.Interfaces;
 
     public class GetPaymentByIdQuery : IRequest<Payment>
     {

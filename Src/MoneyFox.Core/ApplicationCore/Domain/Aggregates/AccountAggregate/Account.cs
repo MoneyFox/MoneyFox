@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Aggregates.AccountAggregate
+﻿namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate
 {
 
     using System.ComponentModel.DataAnnotations;

@@ -3,7 +3,7 @@
 
     using System;
     using System.Threading.Tasks;
-    using DbBackup;
+    using ApplicationCore.UseCases.DbBackup;
 
     // TODO Segregate interface
     public interface IBackupService

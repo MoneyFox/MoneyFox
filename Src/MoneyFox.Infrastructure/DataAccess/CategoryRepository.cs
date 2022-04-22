@@ -3,7 +3,7 @@
 
     using System.Threading;
     using System.Threading.Tasks;
-    using Core.Aggregates.CategoryAggregate;
+    using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using Persistence;
 
     internal sealed class CategoryRepository : ICategoryRepository

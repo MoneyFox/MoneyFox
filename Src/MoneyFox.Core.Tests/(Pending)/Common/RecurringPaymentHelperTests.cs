@@ -4,10 +4,9 @@ namespace MoneyFox.Core.Tests._Pending_.Common
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using ApplicationCore.Domain.Aggregates.AccountAggregate;
     using Core._Pending_.Common.Extensions;
     using Core._Pending_.Common.Helpers;
-    using Core.Aggregates;
-    using Core.Aggregates.AccountAggregate;
     using FluentAssertions;
     using Xunit;
 

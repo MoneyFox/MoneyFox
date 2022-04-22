@@ -1,12 +1,11 @@
-﻿namespace MoneyFox.Core.Queries
+﻿namespace MoneyFox.Core.ApplicationCore.Queries
 {
 
     using System.Threading;
     using System.Threading.Tasks;
-    using Aggregates;
-    using Aggregates.AccountAggregate;
-    using Common.Interfaces;
+    using Domain.Aggregates.AccountAggregate;
     using MediatR;
+    using MoneyFox.Core.Common.Interfaces;
 
     public class GetAccountByIdQuery : IRequest<Account>
     {

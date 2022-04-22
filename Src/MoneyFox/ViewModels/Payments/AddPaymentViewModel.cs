@@ -4,12 +4,11 @@ namespace MoneyFox.ViewModels.Payments
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
-    using Core.Aggregates;
-    using Core.Aggregates.AccountAggregate;
-    using Core.Aggregates.CategoryAggregate;
+    using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+    using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
+    using Core.ApplicationCore.Queries;
     using Core.Commands.Payments.CreatePayment;
     using Core.Common.Interfaces;
-    using Core.Queries;
     using JetBrains.Annotations;
     using MediatR;
 

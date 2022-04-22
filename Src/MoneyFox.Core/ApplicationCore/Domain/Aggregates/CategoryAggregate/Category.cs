@@ -1,12 +1,12 @@
-﻿namespace MoneyFox.Core.Aggregates.CategoryAggregate
+﻿namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate
 {
 
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using AccountAggregate;
     using Dawn;
     using JetBrains.Annotations;
-    using MoneyFox.Core.Aggregates.AccountAggregate;
     using MoneyFox.Core.Common.Interfaces;
 
     public class Category : EntityBase, IAggregateRoot

@@ -7,12 +7,11 @@
     using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
+    using ApplicationCore.Domain.Aggregates.AccountAggregate;
+    using ApplicationCore.Domain.Aggregates.CategoryAggregate;
+    using ApplicationCore.Queries.Statistics;
     using Common;
     using Common.Interfaces;
-    using Core.Aggregates;
-    using Core.Aggregates.AccountAggregate;
-    using Core.Aggregates.CategoryAggregate;
-    using Core.Queries.Statistics;
     using FluentAssertions;
     using Infrastructure;
     using MoneyFox.Infrastructure.Persistence;

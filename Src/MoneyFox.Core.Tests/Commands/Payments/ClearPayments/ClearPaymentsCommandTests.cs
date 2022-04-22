@@ -6,9 +6,8 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
+    using ApplicationCore.Domain.Aggregates.AccountAggregate;
     using Common.Interfaces;
-    using Core.Aggregates;
-    using Core.Aggregates.AccountAggregate;
     using Core.Commands.Payments.ClearPayments;
     using FluentAssertions;
     using Infrastructure;

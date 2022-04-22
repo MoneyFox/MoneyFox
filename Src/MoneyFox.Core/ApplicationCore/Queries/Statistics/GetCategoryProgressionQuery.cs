@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Queries.Statistics
+﻿namespace MoneyFox.Core.ApplicationCore.Queries.Statistics
 {
 
     using System;
@@ -7,13 +7,13 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using _Pending_.Common.QueryObjects;
-    using Aggregates.AccountAggregate;
-    using Common;
-    using Common.Exceptions;
-    using Common.Interfaces;
+    using Domain.Aggregates.AccountAggregate;
+    using Domain.Exceptions;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
+    using MoneyFox.Core._Pending_.Common.QueryObjects;
+    using MoneyFox.Core.Common;
+    using MoneyFox.Core.Common.Interfaces;
 
     public class GetCategoryProgressionQuery : IRequest<IImmutableList<StatisticEntry>>
     {

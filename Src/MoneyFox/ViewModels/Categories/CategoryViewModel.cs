@@ -3,8 +3,7 @@
 
     using System;
     using CommunityToolkit.Mvvm.ComponentModel;
-    using Core.Aggregates;
-    using Core.Aggregates.CategoryAggregate;
+    using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using Core.Common.Interfaces.Mapping;
 
     public class CategoryViewModel : ObservableObject, IMapFrom<Category>

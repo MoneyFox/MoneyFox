@@ -4,10 +4,9 @@ namespace MoneyFox.Core.Tests.Commands.Payments.UpdatePaymentById
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
+    using ApplicationCore.Domain.Aggregates.AccountAggregate;
+    using ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using Common.Interfaces;
-    using Core.Aggregates;
-    using Core.Aggregates.AccountAggregate;
-    using Core.Aggregates.CategoryAggregate;
     using Core.Commands.Payments.UpdatePayment;
     using FluentAssertions;
     using Infrastructure;

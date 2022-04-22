@@ -4,9 +4,8 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
+    using ApplicationCore.Domain.Aggregates.AccountAggregate;
     using Common.Interfaces;
-    using Core.Aggregates;
-    using Core.Aggregates.AccountAggregate;
     using Core.Commands.Accounts.UpdateAccount;
     using FluentAssertions;
     using Infrastructure;

@@ -5,10 +5,9 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
+    using ApplicationCore.Domain.Aggregates.AccountAggregate;
+    using ApplicationCore.Queries;
     using Common.Interfaces;
-    using Core.Aggregates;
-    using Core.Aggregates.AccountAggregate;
-    using Core.Queries;
     using FluentAssertions;
     using Infrastructure;
     using MoneyFox.Infrastructure.Persistence;

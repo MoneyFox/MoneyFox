@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Common.Exceptions
+﻿namespace MoneyFox.Core.ApplicationCore.Domain.Exceptions
 {
 
     using System;

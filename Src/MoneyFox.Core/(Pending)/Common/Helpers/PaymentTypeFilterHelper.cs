@@ -2,7 +2,7 @@
 {
 
     using System;
-    using Aggregates.AccountAggregate;
+    using ApplicationCore.Domain.Aggregates.AccountAggregate;
 
     public static class PaymentTypeFilterHelper
     {

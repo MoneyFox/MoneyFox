@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Aggregates
+﻿namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates
 {
 
     using System;

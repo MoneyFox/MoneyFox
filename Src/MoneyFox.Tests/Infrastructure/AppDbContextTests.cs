@@ -4,11 +4,11 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using FluentAssertions;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
     using MoneyFox.Core._Pending_.Common.Facades;
-    using MoneyFox.Core.Aggregates.AccountAggregate;
     using MoneyFox.Core.Events;
     using MoneyFox.Infrastructure.Persistence;
     using NSubstitute;

@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Win.Pages.Payments;
 
-using Core.Aggregates.AccountAggregate;
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Resources;
 using Microsoft.UI.Xaml.Navigation;
 using ViewModels.Payments;

@@ -10,9 +10,9 @@
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
     using Core._Pending_.Common.Messages;
+    using Core.ApplicationCore.Queries;
     using Core.Commands.Categories.DeleteCategoryById;
     using Core.Common.Interfaces;
-    using Core.Queries;
     using Core.Resources;
     using Extensions;
     using Groups;

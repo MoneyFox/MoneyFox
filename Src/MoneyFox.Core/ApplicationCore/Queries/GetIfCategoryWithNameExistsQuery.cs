@@ -1,11 +1,11 @@
-﻿namespace MoneyFox.Core.Queries
+﻿namespace MoneyFox.Core.ApplicationCore.Queries
 {
 
     using System.Threading;
     using System.Threading.Tasks;
-    using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
+    using MoneyFox.Core.Common.Interfaces;
 
     public class GetIfCategoryWithNameExistsQuery : IRequest<bool>
     {

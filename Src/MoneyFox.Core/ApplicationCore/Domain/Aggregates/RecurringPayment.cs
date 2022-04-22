@@ -1,4 +1,4 @@
-namespace MoneyFox.Core.Aggregates
+namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates
 {
 
     using System;
@@ -7,7 +7,7 @@ namespace MoneyFox.Core.Aggregates
     using System.ComponentModel.DataAnnotations.Schema;
     using AccountAggregate;
     using CategoryAggregate;
-    using Common.Exceptions;
+    using Exceptions;
     using JetBrains.Annotations;
 
     public class RecurringPayment : EntityBase

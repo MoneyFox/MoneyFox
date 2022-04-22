@@ -6,10 +6,10 @@
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Threading.Tasks;
+    using ApplicationCore.Domain.Exceptions;
+    using ApplicationCore.UseCases.DbBackup;
     using Core._Pending_.Common.Facades;
-    using Core.Common.Exceptions;
     using Core.Common.Interfaces;
-    using DbBackup;
     using FluentAssertions;
     using Interfaces;
     using MoneyFox.Infrastructure.DbBackup;

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Queries.Statistics.GetCategorySummary
+﻿namespace MoneyFox.Core.ApplicationCore.Queries.Statistics.GetCategorySummary
 {
 
     using System;
@@ -6,14 +6,13 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using _Pending_.Common.QueryObjects;
-    using Aggregates;
-    using Aggregates.AccountAggregate;
-    using Aggregates.CategoryAggregate;
-    using Common.Interfaces;
+    using Domain.Aggregates.AccountAggregate;
+    using Domain.Aggregates.CategoryAggregate;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using Resources;
+    using MoneyFox.Core._Pending_.Common.QueryObjects;
+    using MoneyFox.Core.Common.Interfaces;
+    using MoneyFox.Core.Resources;
 
     public class GetCategorySummaryQuery : IRequest<CategorySummaryModel>
     {

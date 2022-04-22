@@ -2,8 +2,8 @@
 {
 
     using System;
-    using Common.Exceptions;
-    using Core.Queries.Statistics;
+    using ApplicationCore.Domain.Exceptions;
+    using ApplicationCore.Queries.Statistics;
     using FluentAssertions;
     using Xunit;
 

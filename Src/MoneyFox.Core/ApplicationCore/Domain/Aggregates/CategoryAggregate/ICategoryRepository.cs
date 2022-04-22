@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Aggregates.CategoryAggregate
+﻿namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate
 {
 
     using System.Threading;

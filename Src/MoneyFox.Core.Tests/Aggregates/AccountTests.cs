@@ -4,8 +4,7 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
-    using Core.Aggregates;
-    using Core.Aggregates.AccountAggregate;
+    using ApplicationCore.Domain.Aggregates.AccountAggregate;
     using FluentAssertions;
     using Xunit;
 

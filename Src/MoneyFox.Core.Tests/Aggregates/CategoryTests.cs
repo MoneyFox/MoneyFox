@@ -3,7 +3,7 @@
 
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using Core.Aggregates.CategoryAggregate;
+    using ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using FluentAssertions;
     using Xunit;
 

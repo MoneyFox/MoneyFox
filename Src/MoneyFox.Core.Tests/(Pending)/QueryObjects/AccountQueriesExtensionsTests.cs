@@ -4,9 +4,8 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using ApplicationCore.Domain.Aggregates.AccountAggregate;
     using Core._Pending_.Common.QueryObjects;
-    using Core.Aggregates;
-    using Core.Aggregates.AccountAggregate;
     using Xunit;
 
     [ExcludeFromCodeCoverage]

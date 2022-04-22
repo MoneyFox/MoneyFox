@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Queries
+﻿namespace MoneyFox.Core.ApplicationCore.Queries
 {
 
     using System;
@@ -6,10 +6,10 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using Aggregates.AccountAggregate;
-    using Common.Interfaces;
+    using Domain.Aggregates.AccountAggregate;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
+    using MoneyFox.Core.Common.Interfaces;
 
     public class GetPaymentsForCategoryQuery : IRequest<List<Payment>>
     {

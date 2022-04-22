@@ -3,7 +3,7 @@
 
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using MoneyFox.Core.Aggregates.AccountAggregate;
+    using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using MoneyFox.Core.Resources;
     using MoneyFox.Utilities;
     using Xunit;

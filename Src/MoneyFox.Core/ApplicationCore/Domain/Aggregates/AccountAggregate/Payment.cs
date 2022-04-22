@@ -1,10 +1,10 @@
-namespace MoneyFox.Core.Aggregates.AccountAggregate
+namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate
 {
 
     using System;
     using System.ComponentModel.DataAnnotations;
     using CategoryAggregate;
-    using Common.Exceptions;
+    using Exceptions;
     using JetBrains.Annotations;
     using Serilog;
 

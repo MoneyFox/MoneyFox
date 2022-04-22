@@ -12,8 +12,8 @@
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
     using Core._Pending_.Common.Messages;
-    using Core.Aggregates.AccountAggregate;
-    using Core.Queries;
+    using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+    using Core.ApplicationCore.Queries;
     using Core.Resources;
     using Extensions;
     using Groups;

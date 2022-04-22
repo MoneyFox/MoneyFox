@@ -3,9 +3,9 @@ namespace MoneyFox.Core.Tests.Aggregates
 
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using Common.Exceptions;
-    using Core.Aggregates;
-    using Core.Aggregates.AccountAggregate;
+    using ApplicationCore.Domain.Aggregates;
+    using ApplicationCore.Domain.Aggregates.AccountAggregate;
+    using ApplicationCore.Domain.Exceptions;
     using FluentAssertions;
     using Xunit;
 

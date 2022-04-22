@@ -4,9 +4,8 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-    using Core.Aggregates;
-    using Core.Aggregates.CategoryAggregate;
-    using Core.Queries;
+    using ApplicationCore.Domain.Aggregates.CategoryAggregate;
+    using ApplicationCore.Queries;
     using FluentAssertions;
     using Infrastructure;
     using MoneyFox.Infrastructure.Persistence;
