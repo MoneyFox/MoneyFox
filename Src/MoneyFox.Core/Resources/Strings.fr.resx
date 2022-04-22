@@ -386,7 +386,7 @@
     <value>Email</value>
   </data>
     <data name="EnddateLabel" xml:space="preserve">
-    <value>Date de fin</value>
+    <value>End Date</value>
   </data>
     <data name="EndlessLabel" xml:space="preserve">
     <value>Sans fin</value>
@@ -801,5 +801,8 @@ Pour commencer, créez un nouveau compte. Les comptes sont utilisés pour organi
   </data>
     <data name="MenuTitle" xml:space="preserve">
     <value>Menu</value>
+  </data>
+  <data name="LastDayOfMonthLabel" xml:space="preserve">
+    <value>Last Day of Month</value>
   </data>
 </root>
