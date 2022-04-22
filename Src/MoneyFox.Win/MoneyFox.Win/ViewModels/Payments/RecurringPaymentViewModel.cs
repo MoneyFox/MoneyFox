@@ -78,14 +78,25 @@ public class RecurringPaymentViewModel : ObservableObject, IMapFrom<RecurringPay
             recurrence = value;
 
             // If recurrence is changed to a type that doesn't allow the Last Day of Month flag, force the flag to false if it's true
-            if (IsLastDayOfMonth && !RecurringPaymentHelper.AllowLastDayOfMonth(recurrence))
+            if (IsLastDayOfMonth && !AllowLastDayOfMonth)
             {
                 IsLastDayOfMonth = false;
             }
 
             OnPropertyChanged();
 
+            // Notify that the calculated AllowLastDayOfMonth property has changed so the control visibility is refreshed.
+            OnPropertyChanged("AllowLastDayOfMonth");
         }
     }
+
+    /// <summary>
+    ///     Boolean indicating whether or not the Last Day Of Month option should be permitted
+    /// </summary>
+    public bool AllowLastDayOfMonth
+    {
+        get => RecurringPaymentHelper.AllowLastDayOfMonth(Recurrence);
+    }
+
 
 }
