@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Infrastructure.Tests.TestFramework
+﻿namespace MoneyFox.Tests.Infrastructure.TestFramework
 {
 
     internal static class TestData

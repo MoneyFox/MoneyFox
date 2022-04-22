@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Infrastructure.Tests
+﻿namespace MoneyFox.Tests.Infrastructure
 {
 
     using System;

@@ -1,10 +1,10 @@
-﻿namespace MoneyFox.Tests.Utilities
+﻿namespace MoneyFox.Tests.Presentation.Utilities
 {
 
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using Core.Aggregates.AccountAggregate;
-    using Core.Resources;
+    using MoneyFox.Core.Aggregates.AccountAggregate;
+    using MoneyFox.Core.Resources;
     using MoneyFox.Utilities;
     using Xunit;
 

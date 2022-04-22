@@ -1,14 +1,14 @@
-﻿namespace MoneyFox.Tests.ViewModels.OverflowMenu
+﻿namespace MoneyFox.Tests.Presentation.ViewModels.OverflowMenu
 {
 
     using System.Threading.Tasks;
-    using Core.Interfaces;
+    using MoneyFox.Core.Interfaces;
     using MoneyFox.ViewModels.OverflowMenu;
+    using MoneyFox.Views.About;
+    using MoneyFox.Views.Backup;
+    using MoneyFox.Views.Categories;
+    using MoneyFox.Views.Settings;
     using NSubstitute;
-    using Views.About;
-    using Views.Backup;
-    using Views.Categories;
-    using Views.Settings;
     using Xunit;
 
     public class OverflowMenuViewModelTests

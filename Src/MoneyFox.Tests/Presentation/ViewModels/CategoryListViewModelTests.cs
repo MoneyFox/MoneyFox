@@ -1,16 +1,15 @@
-﻿namespace MoneyFox.Tests.ViewModels
+﻿namespace MoneyFox.Tests.Presentation.ViewModels
 {
 
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
     using AutoMapper;
-    using Core.Aggregates;
-    using Core.Aggregates.CategoryAggregate;
-    using Core.Common.Interfaces;
-    using Core.Queries;
     using FluentAssertions;
     using MediatR;
+    using MoneyFox.Core.Aggregates.CategoryAggregate;
+    using MoneyFox.Core.Common.Interfaces;
+    using MoneyFox.Core.Queries;
     using MoneyFox.ViewModels.Categories;
     using NSubstitute;
     using Xunit;

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Utilities
+﻿namespace MoneyFox.Tests.Presentation.Utilities
 {
 
     using System.Diagnostics.CodeAnalysis;

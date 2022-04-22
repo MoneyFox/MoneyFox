@@ -1,13 +1,13 @@
-﻿namespace MoneyFox.Infrastructure.Tests.DataAccess
+﻿namespace MoneyFox.Tests.Infrastructure.DataAccess
 {
 
     using System.Linq;
     using System.Threading.Tasks;
-    using Core.Aggregates.CategoryAggregate;
     using FluentAssertions;
     using FluentAssertions.Execution;
-    using Infrastructure.DataAccess;
-    using Persistence;
+    using MoneyFox.Core.Aggregates.CategoryAggregate;
+    using MoneyFox.Infrastructure.DataAccess;
+    using MoneyFox.Infrastructure.Persistence;
     using TestFramework;
     using Xunit;
 

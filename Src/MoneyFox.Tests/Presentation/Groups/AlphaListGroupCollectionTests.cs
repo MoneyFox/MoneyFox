@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Groups
+﻿namespace MoneyFox.Tests.Presentation.Groups
 {
 
     using System.Collections.Generic;

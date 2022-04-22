@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Collections
+﻿namespace MoneyFox.Tests.Presentation.Collections
 {
 
     using Xunit;

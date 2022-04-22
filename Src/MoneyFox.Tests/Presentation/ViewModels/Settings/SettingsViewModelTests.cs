@@ -1,11 +1,11 @@
-﻿namespace MoneyFox.Tests.ViewModels.Settings
+﻿namespace MoneyFox.Tests.Presentation.ViewModels.Settings
 {
 
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
-    using Core._Pending_.Common.Facades;
-    using Core.Common.Interfaces;
     using FluentAssertions;
+    using MoneyFox.Core._Pending_.Common.Facades;
+    using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.ViewModels.Settings;
     using NSubstitute;
     using Xunit;

@@ -1,7 +1,7 @@
-﻿namespace MoneyFox.Infrastructure.Tests.TestFramework
+﻿namespace MoneyFox.Tests.Infrastructure.TestFramework
 {
 
-    using Persistence;
+    using MoneyFox.Infrastructure.Persistence;
 
     internal static class TestCategoryDbExtensions
     {

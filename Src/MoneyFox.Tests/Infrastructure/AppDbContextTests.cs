@@ -1,19 +1,17 @@
-﻿namespace MoneyFox.Infrastructure.Tests
+﻿namespace MoneyFox.Tests.Infrastructure
 {
 
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
-    using Core._Pending_.Common.Facades;
-    using Core.Aggregates;
-    using Core.Aggregates.AccountAggregate;
-    using Core.Events;
     using FluentAssertions;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
+    using MoneyFox.Core._Pending_.Common.Facades;
+    using MoneyFox.Core.Aggregates.AccountAggregate;
+    using MoneyFox.Core.Events;
+    using MoneyFox.Infrastructure.Persistence;
     using NSubstitute;
-    using Persistence;
     using Xunit;
 
     public sealed class AppDbContextTests

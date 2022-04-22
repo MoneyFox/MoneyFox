@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.ViewModels.Accounts
+﻿namespace MoneyFox.Tests.Presentation.ViewModels.Accounts
 {
 
     using System.Collections.Generic;

@@ -1,12 +1,12 @@
-﻿namespace MoneyFox.Tests.Converter
+﻿namespace MoneyFox.Tests.Presentation.Converter
 {
 
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Threading;
-    using Core.Common;
     using FluentAssertions;
     using MoneyFox.Converter;
+    using MoneyFox.Core.Common;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
