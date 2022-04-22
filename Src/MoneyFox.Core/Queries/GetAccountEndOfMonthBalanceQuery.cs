@@ -9,10 +9,10 @@
     using _Pending_;
     using _Pending_.Common;
     using _Pending_.Common.QueryObjects;
-    using _Pending_.Exceptions;
     using Aggregates;
     using Aggregates.AccountAggregate;
     using Common;
+    using Common.Exceptions;
     using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;

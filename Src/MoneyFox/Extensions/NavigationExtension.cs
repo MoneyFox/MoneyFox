@@ -3,7 +3,7 @@
 
     using System;
     using System.Threading.Tasks;
-    using Core._Pending_.Exceptions;
+    using Core.Common.Exceptions;
     using Serilog;
     using Xamarin.Essentials;
     using Xamarin.Forms;

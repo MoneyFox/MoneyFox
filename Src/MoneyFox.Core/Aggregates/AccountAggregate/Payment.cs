@@ -5,7 +5,6 @@ namespace MoneyFox.Core.Aggregates.AccountAggregate
     using System.ComponentModel.DataAnnotations;
     using Common.Exceptions;
     using JetBrains.Annotations;
-    using MoneyFox.Core._Pending_.Exceptions;
     using Serilog;
 
     public class Payment : EntityBase

@@ -4,7 +4,7 @@ namespace MoneyFox.Core._Pending_.Common.Helpers
     using System;
     using Aggregates;
     using Aggregates.AccountAggregate;
-    using Exceptions;
+    using Core.Common.Exceptions;
     using Extensions;
     using Resources;
 

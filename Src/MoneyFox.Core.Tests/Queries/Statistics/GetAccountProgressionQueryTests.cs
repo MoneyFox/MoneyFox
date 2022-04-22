@@ -2,7 +2,7 @@
 {
 
     using System;
-    using Core._Pending_.Exceptions;
+    using Common.Exceptions;
     using Core.Queries.Statistics;
     using FluentAssertions;
     using Xunit;

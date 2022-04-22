@@ -7,7 +7,7 @@
     using System.IO;
     using System.Threading.Tasks;
     using Core._Pending_.Common.Facades;
-    using Core._Pending_.Exceptions;
+    using Core.Common.Exceptions;
     using Core.Common.Interfaces;
     using DbBackup;
     using FluentAssertions;

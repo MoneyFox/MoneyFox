@@ -6,8 +6,8 @@ namespace MoneyFox.Core.Aggregates
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using AccountAggregate;
+    using Common.Exceptions;
     using JetBrains.Annotations;
-    using MoneyFox.Core._Pending_.Exceptions;
 
     public class RecurringPayment : EntityBase
     {

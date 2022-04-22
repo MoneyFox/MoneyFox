@@ -11,7 +11,6 @@
     using Core._Pending_.Common.Extensions;
     using Core._Pending_.Common.Facades;
     using Core._Pending_.Common.Messages;
-    using Core._Pending_.Exceptions;
     using Core.Common.Exceptions;
     using Core.Common.Interfaces;
     using Core.DbBackup;
