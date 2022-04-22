@@ -27,8 +27,10 @@ namespace MoneyFox.Core._Pending_.Common.Extensions
         /// <summary>
         ///     Returns number of days between Today and the specified date. The return value is positive for future dates and negative for past dates.
         /// </summary>
-        public static int GetDaysFromToday(this DateTime self) =>
-             (self - DateTime.Today).Days;
+        public static int GetDaysFromToday(this DateTime self)
+        {
+            return (self - DateTime.Today).Days;
+        }
     }
 
 }

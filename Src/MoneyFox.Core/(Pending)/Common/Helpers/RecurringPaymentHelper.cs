@@ -4,8 +4,8 @@ namespace MoneyFox.Core._Pending_.Common.Helpers
     using System;
     using Aggregates.Payments;
     using Exceptions;
-    using Resources;
     using Extensions;
+    using Resources;
 
     public static class RecurringPaymentHelper
     {
@@ -44,38 +44,26 @@ namespace MoneyFox.Core._Pending_.Common.Helpers
         {
             var currDate = DateTime.Today;
             var lastRecurCreated = recurringPayment.LastRecurrenceCreated.Date;
-
             switch (recurringPayment.Recurrence)
             {
                 case PaymentRecurrence.Daily:
                     return currDate != lastRecurCreated;
-
                 case PaymentRecurrence.DailyWithoutWeekend:
-                    return currDate != lastRecurCreated
-                           && currDate.DayOfWeek != DayOfWeek.Saturday
-                           && currDate.DayOfWeek != DayOfWeek.Sunday;
-
+                    return currDate != lastRecurCreated && currDate.DayOfWeek != DayOfWeek.Saturday && currDate.DayOfWeek != DayOfWeek.Sunday;
                 case PaymentRecurrence.Weekly:
                     return currDate.AddDays(-7) >= lastRecurCreated;
-
                 case PaymentRecurrence.Biweekly:
                     return currDate.AddDays(-14) >= lastRecurCreated;
-
                 case PaymentRecurrence.Monthly:
                     return currDate.AddMonths(-1).GetFirstDayOfMonth() >= lastRecurCreated.GetFirstDayOfMonth();
-
                 case PaymentRecurrence.Bimonthly:
                     return currDate.AddMonths(-2).GetFirstDayOfMonth() >= lastRecurCreated.GetFirstDayOfMonth();
-
                 case PaymentRecurrence.Quarterly:
                     return currDate.AddMonths(-3).GetFirstDayOfMonth() >= lastRecurCreated.GetFirstDayOfMonth();
-
                 case PaymentRecurrence.Biannually:
                     return currDate.AddMonths(-6).GetFirstDayOfMonth() >= lastRecurCreated.GetFirstDayOfMonth();
-
                 case PaymentRecurrence.Yearly:
                     return currDate.AddYears(-1).GetFirstDayOfMonth() >= lastRecurCreated.GetFirstDayOfMonth();
-
                 default:
                     return false;
             }
@@ -89,31 +77,34 @@ namespace MoneyFox.Core._Pending_.Common.Helpers
         public static DateTime GetPaymentDateFromRecurring(RecurringPayment recurringPayment)
         {
             var currDate = DateTime.Today;
-
             switch (recurringPayment.Recurrence)
             {
                 case PaymentRecurrence.Daily:
                 case PaymentRecurrence.Weekly:
                 case PaymentRecurrence.Biweekly:
                     return currDate;
-
                 case PaymentRecurrence.DailyWithoutWeekend:
                     if (currDate.DayOfWeek == DayOfWeek.Saturday || currDate.DayOfWeek == DayOfWeek.Sunday)
                     {
-                        throw new InvalidOperationException($"Unable to create a {Strings.DailyWithoutWeekendLabel} recurring payment on a {currDate.DayOfWeek}.");
+                        throw new InvalidOperationException(
+                            $"Unable to create a {Strings.DailyWithoutWeekendLabel} recurring payment on a {currDate.DayOfWeek}.");
                     }
-                    return currDate;
 
+                    return currDate;
                 case PaymentRecurrence.Monthly:
                 case PaymentRecurrence.Bimonthly:
                 case PaymentRecurrence.Quarterly:
                 case PaymentRecurrence.Biannually:
                 case PaymentRecurrence.Yearly:
-                    var dayOfMonth = recurringPayment.IsLastDayOfMonth ? DateTime.DaysInMonth(currDate.Year, currDate.Month) : Math.Min(DateTime.DaysInMonth(currDate.Year, currDate.Month), recurringPayment.StartDate.Day);
-                    return new DateTime(currDate.Year, currDate.Month, dayOfMonth);
+                    var dayOfMonth = recurringPayment.IsLastDayOfMonth
+                        ? DateTime.DaysInMonth(year: currDate.Year, month: currDate.Month)
+                        : Math.Min(val1: DateTime.DaysInMonth(year: currDate.Year, month: currDate.Month), val2: recurringPayment.StartDate.Day);
 
+                    return new DateTime(year: currDate.Year, month: currDate.Month, day: dayOfMonth);
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(recurringPayment), $"Unable to determine the payment date for recurrence type {recurringPayment.Recurrence}.");
+                    throw new ArgumentOutOfRangeException(
+                        paramName: nameof(recurringPayment),
+                        message: $"Unable to determine the payment date for recurrence type {recurringPayment.Recurrence}.");
             }
         }
 
