@@ -3,7 +3,6 @@
 
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using Core.Aggregates;
     using Core.Aggregates.CategoryAggregate;
     using FluentAssertions;
     using Xunit;
@@ -16,9 +15,11 @@
         [InlineData(" ")]
         public void Ctor_NameEmpty_ArgumentNullException(string name)
         {
-            // Act / Assert
+            // Act
+            Action act = () => _ = new Category(name);
+
             // Arrange
-            Assert.Throws<ArgumentException>(() => new Category(name));
+            act.Should().Throw<ArgumentException>();
         }
 
         [Fact]
@@ -27,7 +28,7 @@
             // Arrange
             const string testName = "test";
 
-            // Act / Assert
+            // Act
             var category = new Category(testName);
 
             // Assert
@@ -43,7 +44,7 @@
             const string testName = "test";
             const string testNote = "foo";
 
-            // Act / Assert
+            // Act
             var category = new Category(name: testName, note: testNote, requireNote: true);
 
             // Assert
@@ -60,8 +61,11 @@
             // Arrange
             var testCategory = new Category("Foo");
 
-            // Act / Assert
-            Assert.Throws<ArgumentException>(() => testCategory.UpdateData(name));
+            // Act
+            Action act = () => testCategory.UpdateData(name);
+
+            // Assert
+            act.Should().Throw<ArgumentException>();
         }
 
         [Fact]
@@ -71,7 +75,7 @@
             const string testName = "test";
             var testCategory = new Category("Foo");
 
-            // Act / Assert
+            // Act
             testCategory.UpdateData(testName);
 
             // Assert
@@ -88,7 +92,7 @@
             const string testNote = "foo";
             var testCategory = new Category("Foo");
 
-            // Act / Assert
+            // Act
             testCategory.UpdateData(name: testName, note: testNote, requireNote: true);
 
             // Assert
