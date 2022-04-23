@@ -4,7 +4,7 @@
     using System;
     using System.Globalization;
     using ConverterLogic;
-    using Core.Aggregates.Payments;
+    using Core.Aggregates.AccountAggregate;
     using Xamarin.Forms;
 
     /// <summary>

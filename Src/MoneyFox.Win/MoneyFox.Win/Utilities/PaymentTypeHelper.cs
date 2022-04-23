@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Win.Utilities;
 
 using System;
-using Core.Aggregates.Payments;
+using Core.Aggregates.AccountAggregate;
 using Core.Resources;
 
 /// <summary>

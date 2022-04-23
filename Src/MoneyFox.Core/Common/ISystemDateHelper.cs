@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core._Pending_
+﻿namespace MoneyFox.Core.Common
 {
 
     using System;

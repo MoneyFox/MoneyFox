@@ -1,4 +1,4 @@
-namespace MoneyFox.Core.Aggregates.Payments
+namespace MoneyFox.Core.Aggregates.AccountAggregate
 {
 
     public enum PaymentRecurrence

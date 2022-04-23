@@ -4,10 +4,11 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
+    using Common;
     using Common.Interfaces;
     using Core._Pending_;
     using Core.Aggregates;
-    using Core.Aggregates.Payments;
+    using Core.Aggregates.AccountAggregate;
     using Core.Queries;
     using FluentAssertions;
     using Infrastructure;

@@ -6,7 +6,7 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using Aggregates.Payments;
+    using Aggregates.AccountAggregate;
     using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;

@@ -6,7 +6,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using CommunityToolkit.Mvvm.Input;
-    using Core.Aggregates.Payments;
+    using Core.Aggregates.AccountAggregate;
     using Core.Queries.Statistics;
     using MediatR;
     using Microcharts;

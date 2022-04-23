@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Win.Converter;
 
 using System;
-using Core.Aggregates.Payments;
+using Core.Aggregates.AccountAggregate;
 using Core.Resources;
 using Microsoft.UI.Xaml.Data;
 

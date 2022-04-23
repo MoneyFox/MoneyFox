@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Win.ConverterLogic;
 
-using Core.Aggregates.Payments;
+using Core.Aggregates.AccountAggregate;
 using Core.Common;
 using ViewModels.Payments;
 

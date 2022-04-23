@@ -804,4 +804,7 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
     <data name="MenuTitle" xml:space="preserve">
     <value>Menu</value>
   </data>
+  <data name="LastDayOfMonthLabel" xml:space="preserve">
+    <value>Letzter Tag des Monats</value>
+  </data>
 </root>

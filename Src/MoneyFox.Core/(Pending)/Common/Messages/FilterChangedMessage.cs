@@ -2,7 +2,7 @@
 {
 
     using System;
-    using Aggregates.Payments;
+    using Aggregates.AccountAggregate;
 
     /// <summary>
     ///     Used to notify the payment list that a filter changed.

@@ -5,7 +5,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using Core._Pending_.Common.QueryObjects;
-    using Core.Aggregates.Payments;
+    using Core.Aggregates;
     using Xunit;
 
     [ExcludeFromCodeCoverage]

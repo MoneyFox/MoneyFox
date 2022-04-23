@@ -6,6 +6,7 @@
     using System.Linq;
     using Core._Pending_.Common.QueryObjects;
     using Core.Aggregates;
+    using Core.Aggregates.AccountAggregate;
     using Xunit;
 
     [ExcludeFromCodeCoverage]

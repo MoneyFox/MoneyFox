@@ -1,13 +1,15 @@
-﻿namespace MoneyFox.Core.Aggregates.Payments
+﻿namespace MoneyFox.Core.Aggregates
 {
 
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using AccountAggregate;
     using Dawn;
     using JetBrains.Annotations;
+    using MoneyFox.Core.Common.Interfaces;
 
-    public class Category : EntityBase
+    public class Category : EntityBase, IAggregateRoot
     {
         [UsedImplicitly]
         private Category() { }

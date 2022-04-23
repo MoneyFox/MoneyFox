@@ -386,7 +386,7 @@
     <value>电子邮件</value>
   </data>
     <data name="EnddateLabel" xml:space="preserve">
-    <value>截止日期</value>
+    <value>End Date</value>
   </data>
     <data name="EndlessLabel" xml:space="preserve">
     <value>无期限</value>
@@ -803,5 +803,8 @@ To start create a new account. Accounts are used to organize payments and money 
   </data>
     <data name="MenuTitle" xml:space="preserve">
     <value>Menu</value>
+  </data>
+  <data name="LastDayOfMonthLabel" xml:space="preserve">
+    <value>Last Day of Month</value>
   </data>
 </root>

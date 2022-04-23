@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using Core.Aggregates;
+using Core.Aggregates.AccountAggregate;
 using Core.Commands.Accounts.DeleteAccountById;
 using Core.Commands.Accounts.UpdateAccount;
 using Core.Common.Interfaces;

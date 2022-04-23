@@ -7,7 +7,7 @@ namespace MoneyFox.Core.Tests._Pending_.Common
     using Core._Pending_.Common.Extensions;
     using Core._Pending_.Common.Helpers;
     using Core.Aggregates;
-    using Core.Aggregates.Payments;
+    using Core.Aggregates.AccountAggregate;
     using FluentAssertions;
     using Xunit;
 

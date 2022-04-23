@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using AutoMapper;
     using Core.Aggregates;
+    using Core.Aggregates.AccountAggregate;
     using Core.Commands.Accounts.UpdateAccount;
     using Core.Common.Interfaces;
     using Core.Queries;

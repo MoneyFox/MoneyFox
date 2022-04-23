@@ -9,9 +9,10 @@
     using _Pending_;
     using _Pending_.Common;
     using _Pending_.Common.QueryObjects;
-    using _Pending_.Exceptions;
     using Aggregates;
-    using Aggregates.Payments;
+    using Aggregates.AccountAggregate;
+    using Common;
+    using Common.Exceptions;
     using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
@@ -31,7 +32,7 @@
 
             public async Task<decimal> Handle(GetTotalEndOfMonthBalanceQuery request, CancellationToken cancellationToken)
             {
-                var excluded = await contextAdapter.Context.Accounts.AreActive().AreExcluded().ToListAsync();
+                var excluded = await contextAdapter.Context.Accounts.AreActive().AreExcluded().ToListAsync(cancellationToken: cancellationToken);
                 var balance = await GetCurrentAccountBalanceAsync();
                 foreach (var payment in await GetUnclearedPaymentsForThisMonthAsync())
                 {
@@ -46,7 +47,7 @@
                 return balance;
             }
 
-            public static decimal AddPaymentToBalance(Payment payment, List<Account> excluded, decimal currentBalance)
+            private static decimal AddPaymentToBalance(Payment payment, List<Account> excluded, decimal currentBalance)
             {
                 switch (payment.Type)
                 {
@@ -109,5 +110,4 @@
             }
         }
     }
-
 }

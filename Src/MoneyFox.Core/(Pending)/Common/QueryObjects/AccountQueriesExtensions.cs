@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Aggregates;
+    using Aggregates.AccountAggregate;
     using Microsoft.EntityFrameworkCore;
 
     /// <summary>

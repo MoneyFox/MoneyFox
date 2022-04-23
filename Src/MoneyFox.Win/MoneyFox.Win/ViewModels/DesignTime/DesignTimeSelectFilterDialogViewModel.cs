@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Win.ViewModels.DesignTime;
 
 using System;
-using Core.Aggregates.Payments;
+using Core.Aggregates.AccountAggregate;
 
 public class DesignTimeSelectFilterDialogViewModel : ISelectFilterDialogViewModel
 {

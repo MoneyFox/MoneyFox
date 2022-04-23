@@ -10,7 +10,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core._Pending_.Common.Facades;
 using Core._Pending_.Common.Messages;
-using Core.Aggregates.Payments;
+using Core.Aggregates.AccountAggregate;
 using Core.Commands.Payments.DeletePaymentById;
 using Core.Common.Interfaces;
 using Core.Queries;
