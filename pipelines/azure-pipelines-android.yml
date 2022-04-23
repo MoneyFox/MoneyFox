@@ -50,12 +50,6 @@ steps:
       projects: '**/*.Tests.csproj'
       arguments: '--configuration $(BuildConfiguration)'
 
-  - task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
-    displayName: 'Replace tokens in Src/MoneyFox/'
-    inputs:
-      sourcePath: Src/MoneyFox
-      filePattern: App.config
-
   - task: DownloadSecureFile@1
     displayName: 'Download secure file'
     name: KeyStore
