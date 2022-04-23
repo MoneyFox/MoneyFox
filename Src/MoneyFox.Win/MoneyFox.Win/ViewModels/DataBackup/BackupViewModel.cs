@@ -10,7 +10,6 @@ using Core.ApplicationCore.UseCases.DbBackup;
 using Core.Common.Interfaces;
 using Core.Interfaces;
 using Core.Resources;
-using Microsoft.AppCenter.Crashes;
 using Serilog;
 
 public class BackupViewModel : ObservableObject, IBackupViewModel
@@ -198,8 +197,6 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
             await dialogService.ShowMessageAsync(
                 title: Strings.LoginFailedTitle,
                 message: string.Format(format: Strings.UnknownErrorMessage, arg0: ex.Message));
-
-            Crashes.TrackError(ex);
         }
 
         OnPropertyChanged(nameof(IsLoggedIn));
@@ -219,7 +216,6 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
         catch (Exception ex)
         {
             await dialogService.ShowMessageAsync(title: Strings.GeneralErrorTitle, message: ex.Message);
-            Crashes.TrackError(ex);
         }
 
         // ReSharper disable once ExplicitCallerInfoArgument
@@ -247,7 +243,6 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
         catch (Exception ex)
         {
             await dialogService.ShowMessageAsync(title: Strings.BackupFailedTitle, message: ex.Message);
-            Crashes.TrackError(ex);
         }
 
         await dialogService.HideLoadingDialogAsync();
@@ -276,7 +271,6 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
             catch (Exception ex)
             {
                 await dialogService.ShowMessageAsync(title: Strings.BackupFailedTitle, message: ex.Message);
-                Crashes.TrackError(ex);
             }
         }
         else
