@@ -8,16 +8,15 @@ using Core._Pending_.Common.Facades;
 using Core.ApplicationCore.UseCases.DbBackup;
 using Core.Commands.Payments.ClearPayments;
 using Core.Commands.Payments.CreateRecurringPayments;
-using Core.Interfaces;
 using MediatR;
 using Microsoft.UI.Xaml;
 using Serilog;
 using Services;
-
 #if !DEBUG
-    using Microsoft.AppCenter;
-    using Microsoft.AppCenter.Analytics;
-    using Microsoft.AppCenter.Crashes;
+using Config;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 #endif
 
 public partial class App : Application
@@ -35,11 +34,11 @@ public partial class App : Application
         var builder = new ContainerBuilder();
         builder.RegisterModule<WindowsModule>();
         ViewModelLocator.RegisterServices(builder);
-        var m_window = new MainWindow();
-        m_window.Activate();
+        var mainWindow = new MainWindow();
+        mainWindow.Activate();
 #if !DEBUG
-            var appConfig = new AppConfig();
-            AppCenter.Start(appConfig.AppCenter.Secret, typeof(Analytics), typeof(Crashes));
+        var appConfig = new AppConfig();
+        AppCenter.Start(appSecret: appConfig.AppCenter.Secret, typeof(Analytics), typeof(Crashes));
 #endif
         ExecuteStartupTasks();
     }
