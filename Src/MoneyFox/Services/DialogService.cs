@@ -24,22 +24,24 @@
         }
 
         /// <inheritdoc />
-        public async Task HideLoadingDialogAsync()
+        public Task HideLoadingDialogAsync()
         {
             if (loadingDialog == null)
             {
-                return;
+                return Task.CompletedTask;
             }
 
             try
             {
-                await LoadingDialog.DismissAsync();
+                loadingDialog.Dismiss(null);
                 loadingDialog = null;
             }
             catch (IndexOutOfRangeException)
             {
                 // catch and swallow out of range exceptions when dismissing dialogs.
             }
+
+            return Task.CompletedTask;
         }
 
         public async Task ShowMessageAsync(string title, string message)

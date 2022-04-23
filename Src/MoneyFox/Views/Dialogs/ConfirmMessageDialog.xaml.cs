@@ -1,9 +1,9 @@
-﻿namespace MoneyFox.Views.Dialogs
+namespace MoneyFox.Views.Dialogs
 {
 
     using System;
     using System.Threading.Tasks;
-    using Rg.Plugins.Popup.Extensions;
+    using Xamarin.CommunityToolkit.Extensions;
     using Xamarin.Forms;
 
     public partial class ConfirmMessageDialog
@@ -27,8 +27,6 @@
             propertyName: nameof(NegativeText),
             returnType: typeof(string),
             declaringType: typeof(ConfirmMessageDialog));
-
-        private TaskCompletionSource<bool>? confirmTaskCompletionSource;
 
         public ConfirmMessageDialog(string title, string message, string positiveText = "", string negativeText = "")
         {
@@ -65,27 +63,19 @@
 
         public async Task<bool> ShowAsync()
         {
-            confirmTaskCompletionSource = new TaskCompletionSource<bool>();
-            await Application.Current.MainPage.Navigation.PushPopupAsync(this);
+            var result = await Application.Current.MainPage.Navigation.ShowPopupAsync(this);
 
-            return await confirmTaskCompletionSource.Task;
+            return (bool)result;
         }
 
-        private async void PositiveHandlerClicked(object sender, EventArgs e)
+        private void PositiveHandlerClicked(object sender, EventArgs e)
         {
-            await DismissAsync();
-            confirmTaskCompletionSource?.SetResult(true);
+            Dismiss(true);
         }
 
-        private async void NegativeHandlerClicked(object sender, EventArgs e)
+        private void NegativeHandlerClicked(object sender, EventArgs e)
         {
-            await DismissAsync();
-            confirmTaskCompletionSource?.SetResult(false);
-        }
-
-        private static async Task DismissAsync()
-        {
-            await Application.Current.MainPage.Navigation.PopPopupAsync();
+            Dismiss(false);
         }
     }
 
