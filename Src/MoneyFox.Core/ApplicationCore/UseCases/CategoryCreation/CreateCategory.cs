@@ -8,9 +8,9 @@
 
     public static class CreateCategory
     {
-        public sealed class Query : IRequest
+        public sealed class Command : IRequest
         {
-            public Query(string name, string? note = null, bool requireNote = false)
+            public Command(string name, string? note = null, bool requireNote = false)
             {
                 Name = name;
                 Note = note;
@@ -22,7 +22,7 @@
             public bool RequireNote { get; }
         }
 
-        public sealed class Handler : IRequestHandler<Query>
+        public sealed class Handler : IRequestHandler<Command>
         {
             private readonly ICategoryRepository repository;
 
@@ -31,7 +31,7 @@
                 this.repository = repository;
             }
 
-            public async Task<Unit> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
                 var category = new Category(name: request.Name, note: request.Note, requireNote: request.RequireNote);
                 await repository.AddAsync(category: category, cancellationToken: cancellationToken);

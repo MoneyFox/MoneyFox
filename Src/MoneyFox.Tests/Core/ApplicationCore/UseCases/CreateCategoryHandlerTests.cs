@@ -30,8 +30,8 @@
             var testCategory = new TestData.DefaultCategory();
 
             // Act
-            var query = new CreateCategory.Query(testCategory.Name, testCategory.Note, testCategory.RequireNote);
-            await new CreateCategory.Handler(repository).Handle(query, CancellationToken.None);
+            var command = new CreateCategory.Command(testCategory.Name, testCategory.Note, testCategory.RequireNote);
+            await new CreateCategory.Handler(repository).Handle(command, CancellationToken.None);
 
             // Assert
             await repository.Received().AddAsync(Arg.Any<Category>(), Arg.Any<CancellationToken>());

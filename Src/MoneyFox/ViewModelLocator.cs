@@ -71,7 +71,7 @@
 
         public static SelectCategoryViewModel SelectCategoryViewModel => ServiceLocator.Current.GetInstance<SelectCategoryViewModel>();
 
-        public static AddCategoryViewModel AddCategoryViewModel => ServiceLocator.Current.GetInstance<AddCategoryViewModel>();
+        internal static AddCategoryViewModel AddCategoryViewModel => ServiceLocator.Current.GetInstance<AddCategoryViewModel>();
 
         public static EditCategoryViewModel EditCategoryViewModel => ServiceLocator.Current.GetInstance<EditCategoryViewModel>();
 
