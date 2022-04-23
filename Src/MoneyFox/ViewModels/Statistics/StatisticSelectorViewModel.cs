@@ -59,7 +59,7 @@
             }
             else if (item.Type == StatisticType.MonthlyAccountCashFlow)
             {
-                await Shell.Current.GoToAsync(ViewModelLocator.StatisticAccountMonthlyCashflowRoute);
+                await Shell.Current.GoToAsync(ViewModelLocator.StatisticAccountMonthlyCashFlowRoute);
             }
             else if (item.Type == StatisticType.CategoryProgression)
             {

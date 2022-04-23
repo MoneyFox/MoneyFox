@@ -44,7 +44,7 @@
         public static string StatisticCashFlowRoute => nameof(StatisticCashFlowPage);
         public static string StatisticCategorySpreadingRoute => nameof(StatisticCategorySpreadingPage);
         public static string StatisticCategorySummaryRoute => nameof(StatisticCategorySummaryPage);
-        public static string StatisticAccountMonthlyCashflowRoute => nameof(StatisticAccountMonthlyCashFlowPage);
+        public static string StatisticAccountMonthlyCashFlowRoute => nameof(StatisticAccountMonthlyCashFlowPage);
         public static string StatisticCategoryProgressionRoute => nameof(StatisticCategoryProgressionPage);
         public static string StatisticSelectorRoute => nameof(StatisticSelectorPage);
         public static string PaymentForCategoryListRoute => nameof(PaymentForCategoryListPage);
