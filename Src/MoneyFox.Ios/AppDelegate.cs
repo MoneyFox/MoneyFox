@@ -7,7 +7,6 @@ namespace MoneyFox.iOS
     using Foundation;
     using JetBrains.Annotations;
     using Microsoft.Identity.Client;
-    using Rg.Plugins.Popup;
     using Serilog;
     using Serilog.Events;
     using Serilog.Exceptions;
@@ -27,7 +26,6 @@ namespace MoneyFox.iOS
         {
             InitLogger();
             RegisterServices();
-            Popup.Init();
             Forms.Init();
             FormsMaterial.Init();
             LoadApplication(new App());
