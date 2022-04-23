@@ -107,7 +107,7 @@ jobs:
       - task: Powershell@2
         displayName: 'Run dotnet-stryker'
         inputs:
-          workingDirectory: '$(Build.Repository.LocalPath)\src\MoneyFox.Core.Tests'
+          workingDirectory: '$(Build.Repository.LocalPath)\src\MoneyFox.Tests'
           targetType: 'inline'
           pwsh: true
           script: $(Agent.BuildDirectory)/tools/dotnet-stryker --dashboard-api-key $(StrykerDashboardApiKey) --version master

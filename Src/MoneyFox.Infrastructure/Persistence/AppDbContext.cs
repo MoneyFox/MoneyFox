@@ -6,10 +6,11 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Core._Pending_.Common.Facades;
-    using Core.Aggregates;
-    using Core.Aggregates.AccountAggregate;
+    using Core.ApplicationCore.Domain.Aggregates;
+    using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+    using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
+    using Core.ApplicationCore.Domain.Events;
     using Core.Common.Interfaces;
-    using Core.Events;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
 

@@ -5,8 +5,8 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using Aggregates.AccountAggregate;
-    using Common.Exceptions;
+    using ApplicationCore.Domain.Aggregates.AccountAggregate;
+    using ApplicationCore.Domain.Exceptions;
     using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;

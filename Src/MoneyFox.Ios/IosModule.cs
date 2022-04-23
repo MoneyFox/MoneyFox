@@ -4,7 +4,6 @@
     using System;
     using Acr.UserDialogs;
     using Autofac;
-    using Src;
 
     public class IosModule : Module
     {

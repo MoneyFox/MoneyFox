@@ -4,8 +4,9 @@
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using Aggregates;
-    using Aggregates.AccountAggregate;
+    using ApplicationCore.Domain.Aggregates;
+    using ApplicationCore.Domain.Aggregates.AccountAggregate;
+    using ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.ChangeTracking;
 

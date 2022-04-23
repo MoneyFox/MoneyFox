@@ -3,11 +3,10 @@
 
     using System.Threading.Tasks;
     using AutoMapper;
-    using Core.Aggregates;
-    using Core.Aggregates.AccountAggregate;
+    using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+    using Core.ApplicationCore.Queries;
     using Core.Commands.Accounts.UpdateAccount;
     using Core.Common.Interfaces;
-    using Core.Queries;
     using MediatR;
 
     public class EditAccountViewModel : ModifyAccountViewModel

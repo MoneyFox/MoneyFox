@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Desktop.Infrastructure;
+﻿namespace MoneyFox.Win.Infrastructure;
 
 using System;
 

@@ -4,7 +4,7 @@ using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using Core._Pending_.Common.Messages;
-using Core.Aggregates.AccountAggregate;
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 
 public class SelectFilterDialogViewModel : ObservableRecipient, ISelectFilterDialogViewModel
 {

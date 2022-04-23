@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Infrastructure.Persistence.Configurations
 {
 
-    using Core.Aggregates;
+    using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

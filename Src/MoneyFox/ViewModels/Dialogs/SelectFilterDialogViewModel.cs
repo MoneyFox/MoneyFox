@@ -7,7 +7,7 @@
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
     using Core._Pending_.Common.Messages;
-    using Core.Aggregates.AccountAggregate;
+    using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 
     public interface ISelectFilterDialogViewModel
     {

@@ -2,11 +2,13 @@
 {
 
     using System.Threading.Tasks;
-    using Core.Commands.Categories.CreateCategory;
+    using Core.ApplicationCore.UseCases.CategoryCreation;
     using Core.Common.Interfaces;
+    using JetBrains.Annotations;
     using MediatR;
 
-    public class AddCategoryViewModel : ModifyCategoryViewModel
+    [UsedImplicitly]
+    internal sealed class AddCategoryViewModel : ModifyCategoryViewModel
     {
         private readonly IMediator mediator;
 
@@ -17,7 +19,8 @@
 
         protected override async Task SaveCategoryAsync()
         {
-            await mediator.Send(new CreateCategoryCommand(name: SelectedCategory.Name, note: SelectedCategory.Note, requireNote: SelectedCategory.RequireNote));
+            var command = new CreateCategory.Command(name: SelectedCategory.Name, note: SelectedCategory.Note, requireNote: SelectedCategory.RequireNote);
+            await mediator.Send(command);
         }
     }
 

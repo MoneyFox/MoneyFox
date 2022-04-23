@@ -9,7 +9,7 @@
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
-    using Core.Queries;
+    using Core.ApplicationCore.Queries;
     using Groups;
     using MediatR;
     using Payments;

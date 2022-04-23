@@ -10,7 +10,7 @@
         public StatisticAccountMonthlyCashFlowPage()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.StatistcAccountMonthlyCashflowViewModel;
+            BindingContext = ViewModelLocator.StatisticAccountMonthlyCashFlowViewModel;
         }
 
         private StatisticAccountMonthlyCashflowViewModel ViewModel => (StatisticAccountMonthlyCashflowViewModel)BindingContext;

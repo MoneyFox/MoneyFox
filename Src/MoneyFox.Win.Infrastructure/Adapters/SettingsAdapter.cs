@@ -2,7 +2,6 @@
 
 using System;
 using Core.Interfaces;
-using Desktop.Infrastructure;
 using Serilog;
 
 public class SettingsAdapter : ISettingsAdapter

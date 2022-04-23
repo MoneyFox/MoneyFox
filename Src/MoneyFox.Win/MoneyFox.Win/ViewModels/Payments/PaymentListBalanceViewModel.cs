@@ -3,7 +3,7 @@
 using System.Threading.Tasks;
 using Accounts;
 using AutoMapper;
-using Core.Queries;
+using Core.ApplicationCore.Queries;
 using MediatR;
 
 /// <summary>

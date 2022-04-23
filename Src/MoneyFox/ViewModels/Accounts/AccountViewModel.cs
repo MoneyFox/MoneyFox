@@ -3,8 +3,7 @@
 
     using System;
     using CommunityToolkit.Mvvm.ComponentModel;
-    using Core.Aggregates;
-    using Core.Aggregates.AccountAggregate;
+    using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using Core.Common.Interfaces.Mapping;
 
     public sealed class AccountViewModel : ObservableObject, IMapFrom<Account>, IEquatable<AccountViewModel>

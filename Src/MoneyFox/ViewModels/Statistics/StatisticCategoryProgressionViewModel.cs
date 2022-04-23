@@ -9,8 +9,8 @@
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
     using Core._Pending_.Common.Messages;
-    using Core.Queries;
-    using Core.Queries.Statistics;
+    using Core.ApplicationCore.Queries;
+    using Core.ApplicationCore.Queries.Statistics;
     using Extensions;
     using MediatR;
     using Microcharts;

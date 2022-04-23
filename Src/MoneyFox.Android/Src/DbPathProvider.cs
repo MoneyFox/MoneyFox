@@ -1,10 +1,10 @@
-﻿namespace MoneyFox.Droid.Src
+﻿namespace MoneyFox.Droid
 {
 
     using System;
     using System.IO;
-    using Core.Common;
-    using Core.Interfaces;
+    using MoneyFox.Core.Common;
+    using MoneyFox.Core.Interfaces;
 
     public class DbPathProvider : IDbPathProvider
     {

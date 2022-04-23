@@ -6,7 +6,7 @@
     using AutoMapper;
     using Categories;
     using CommunityToolkit.Mvvm.ComponentModel;
-    using Core.Aggregates.AccountAggregate;
+    using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using Core.Common.Interfaces.Mapping;
 
     public class PaymentViewModel : ObservableObject, IHaveCustomMapping

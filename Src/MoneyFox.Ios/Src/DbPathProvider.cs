@@ -1,10 +1,10 @@
-﻿namespace MoneyFox.iOS.Src
+﻿namespace MoneyFox.iOS
 {
 
     using System;
     using System.IO;
-    using Core.Common;
-    using Core.Interfaces;
+    using MoneyFox.Core.Common;
+    using MoneyFox.Core.Interfaces;
     using SQLitePCL;
 
     public class DbPathProvider : IDbPathProvider

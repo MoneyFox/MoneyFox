@@ -7,8 +7,8 @@ namespace MoneyFox.Infrastructure.DbBackup
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using Core.Common.Exceptions;
-    using Core.DbBackup;
+    using Core.ApplicationCore.Domain.Exceptions;
+    using Core.ApplicationCore.UseCases.DbBackup;
     using Microsoft.Graph;
     using Microsoft.Identity.Client;
     using Serilog;
@@ -26,8 +26,6 @@ namespace MoneyFox.Infrastructure.DbBackup
         {
             this.oneDriveAuthenticationService = oneDriveAuthenticationService;
         }
-
-        private DriveItem? ArchiveFolder { get; set; }
 
         public async Task LoginAsync()
         {

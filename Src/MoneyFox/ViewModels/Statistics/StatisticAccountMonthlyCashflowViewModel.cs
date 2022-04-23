@@ -9,8 +9,8 @@
     using Accounts;
     using AutoMapper;
     using CommunityToolkit.Mvvm.Input;
-    using Core.Queries;
-    using Core.Queries.Statistics;
+    using Core.ApplicationCore.Queries;
+    using Core.ApplicationCore.Queries.Statistics;
     using MediatR;
     using Microcharts;
     using SkiaSharp;

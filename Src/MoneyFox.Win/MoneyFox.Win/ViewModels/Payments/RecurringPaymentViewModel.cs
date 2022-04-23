@@ -4,8 +4,8 @@ using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Core.Common.Interfaces.Mapping;
 using Core._Pending_.Common.Helpers;
-using Core.Aggregates;
-using Core.Aggregates.AccountAggregate;
+using Core.ApplicationCore.Domain.Aggregates;
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 
 public class RecurringPaymentViewModel : ObservableObject, IMapFrom<RecurringPayment>
 {

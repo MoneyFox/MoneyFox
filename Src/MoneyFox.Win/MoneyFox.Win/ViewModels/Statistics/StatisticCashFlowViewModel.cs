@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Core._Pending_.Common.Extensions;
-using Core.Queries.Statistics;
+using Core.ApplicationCore.Queries.Statistics;
 using LiveChartsCore;
 using LiveChartsCore.Kernel.Sketches;
 using LiveChartsCore.SkiaSharpView;
