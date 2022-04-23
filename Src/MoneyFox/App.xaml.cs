@@ -1,4 +1,4 @@
-﻿namespace MoneyFox
+namespace MoneyFox
 {
 
     using System;
@@ -10,7 +10,6 @@
     using Core.Commands.Payments.ClearPayments;
     using Core.Commands.Payments.CreateRecurringPayments;
     using Core.Common;
-    using Core.Interfaces;
     using MediatR;
     using Microsoft.AppCenter;
     using Microsoft.AppCenter.Analytics;
