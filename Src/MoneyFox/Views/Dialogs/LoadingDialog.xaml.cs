@@ -20,9 +20,10 @@ namespace MoneyFox.Views.Dialogs
             return dialog;
         }
 
-        public async Task ShowAsync()
+        public Task ShowAsync()
         {
-            await Application.Current.MainPage.Navigation.ShowPopupAsync(this);
+            Application.Current.MainPage.Navigation.ShowPopup(this);
+            return Task.CompletedTask;
         }
     }
 

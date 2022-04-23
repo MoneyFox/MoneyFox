@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Services
+namespace MoneyFox.Services
 {
 
     using System;
@@ -11,7 +11,6 @@
     {
         private LoadingDialog? loadingDialog;
 
-        /// <inheritdoc />
         public async Task ShowLoadingDialogAsync(string? message = null)
         {
             if (loadingDialog != null)
@@ -23,7 +22,6 @@
             await loadingDialog.ShowAsync();
         }
 
-        /// <inheritdoc />
         public Task HideLoadingDialogAsync()
         {
             if (loadingDialog == null)
