@@ -7,7 +7,8 @@
     {
         internal static Category CreateDbCategory(this TestData.ICategory category)
         {
-            return new Category(category.Name, category.Note, category.RequireNote);
+            return new Category(name: category.Name, note: category.Note, requireNote: category.RequireNote);
         }
     }
+
 }

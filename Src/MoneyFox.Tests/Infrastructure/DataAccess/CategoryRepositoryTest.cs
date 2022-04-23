@@ -4,13 +4,12 @@
     using System.Linq;
     using System.Threading.Tasks;
     using FluentAssertions;
-    using FluentAssertions.Execution;
-    using MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using MoneyFox.Infrastructure.DataAccess;
     using MoneyFox.Infrastructure.Persistence;
     using TestFramework;
     using TestFramework.Category;
     using Xunit;
+    using static TestFramework.Category.CategoryAssertion;
 
     public class CategoryRepositoryTest
     {
@@ -36,16 +35,6 @@
             appDbContext.Categories.Should().ContainSingle();
             var loadedCategory = appDbContext.Categories.Single();
             AssertCategory(actual: loadedCategory, expected: testCategory);
-        }
-
-        private static void AssertCategory(Category actual, TestData.DefaultCategory expected)
-        {
-            using (new AssertionScope())
-            {
-                actual.Name.Should().Be(expected.Name);
-                actual.Note.Should().Be(expected.Note);
-                actual.RequireNote.Should().Be(expected.RequireNote);
-            }
         }
     }
 
