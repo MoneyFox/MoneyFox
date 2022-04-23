@@ -86,7 +86,7 @@
         public static StatisticCategoryProgressionViewModel StatisticCategoryProgressionViewModel
             => ServiceLocator.Current.GetInstance<StatisticCategoryProgressionViewModel>();
 
-        public static StatisticAccountMonthlyCashflowViewModel StatistcAccountMonthlyCashflowViewModel
+        public static StatisticAccountMonthlyCashflowViewModel StatisticAccountMonthlyCashFlowViewModel
             => ServiceLocator.Current.GetInstance<StatisticAccountMonthlyCashflowViewModel>();
 
         public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingViewModel
