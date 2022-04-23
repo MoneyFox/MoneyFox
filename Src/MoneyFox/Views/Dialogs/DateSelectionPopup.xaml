@@ -1,39 +1,39 @@
 ﻿<xct:Popup xmlns="http://xamarin.com/schemas/2014/forms"
-           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-           xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-           xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-           xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-           Color="Transparent"
-           Visual="Material"
-           x:Class="MoneyFox.Views.Dialogs.DateSelectionPopup">
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+       xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+       xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+       Color="Transparent"
+       Visual="Material"
+       x:Class="MoneyFox.Views.Dialogs.DateSelectionPopup">
 
-    <Grid>
-        <yummy:PancakeView
-            BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                             Light={StaticResource CardBackgroundLight}}"
-            CornerRadius="10"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            Padding="16"
-            WidthRequest="300">
+<Grid>
+    <yummy:PancakeView
+        BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                         Light={StaticResource CardBackgroundLight}}"
+        CornerRadius="10"
+        VerticalOptions="Center"
+        HorizontalOptions="Center"
+        Padding="16"
+        WidthRequest="300">
 
-            <StackLayout>
-                <Label Text="{x:Static resources:Strings.SelectDateLabel}"
-                       Style="{DynamicResource TextHead}" />
+        <StackLayout>
+            <Label Text="{x:Static resources:Strings.SelectDateLabel}"
+                   Style="{DynamicResource TextHead}" />
 
-                <Label Style="{DynamicResource BaseLabel}"
-                       Text="{x:Static resources:Strings.TimeRangeStartLabel}"
-                       HorizontalOptions="StartAndExpand" />
+            <Label Style="{DynamicResource BaseLabel}"
+                   Text="{x:Static resources:Strings.TimeRangeStartLabel}"
+                   HorizontalOptions="StartAndExpand" />
 
-                <DatePicker Date="{Binding StartDate}" />
+            <DatePicker Date="{Binding StartDate}" />
 
-                <Label Style="{DynamicResource BaseLabel}" />
-                <DatePicker Date="{Binding EndDate}" />
+            <Label Style="{DynamicResource BaseLabel}" />
+            <DatePicker Date="{Binding EndDate}" />
 
-                <Button Text="{x:Static resources:Strings.DoneLabel}"
-                        Clicked="Button_OnClicked" />
-            </StackLayout>
+            <Button Text="{x:Static resources:Strings.DoneLabel}"
+                    Clicked="Button_OnClicked" />
+        </StackLayout>
 
-        </yummy:PancakeView>
-    </Grid>
+    </yummy:PancakeView>
+</Grid>
 </xct:Popup>
