@@ -38,7 +38,6 @@
         <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.0" />
         <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
         <PackageReference Include="PCLAppConfig" Version="1.0.1" />
-        <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
         <PackageReference Include="Serilog" Version="2.10.0" />
         <PackageReference Include="SonarAnalyzer.CSharp" Version="8.37.0.45539">
             <PrivateAssets>all</PrivateAssets>

@@ -3,7 +3,6 @@
 
     using System;
     using System.Threading.Tasks;
-    using Rg.Plugins.Popup.Extensions;
     using Xamarin.CommunityToolkit.Extensions;
     using Xamarin.Forms;
 

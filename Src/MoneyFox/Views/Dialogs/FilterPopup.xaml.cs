@@ -3,8 +3,6 @@
 
     using System;
     using System.Threading.Tasks;
-    using Core._Pending_.Common.Messages;
-    using Rg.Plugins.Popup.Extensions;
     using ViewModels.Dialogs;
     using Xamarin.CommunityToolkit.Extensions;
     using Xamarin.Forms;
