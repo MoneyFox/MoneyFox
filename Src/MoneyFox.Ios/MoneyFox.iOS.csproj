@@ -92,9 +92,6 @@
     <Compile Include="Src\GraphServiceClientFactory.cs" />
     <Compile Include="Src\IosFileStore.cs" />
     <Compile Include="Src\StoreOperations.cs" />
-    <None Include="..\MoneyFox\App.config">
-      <Link>App.config</Link>
-    </None>
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />

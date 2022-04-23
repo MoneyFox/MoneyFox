@@ -121,10 +121,6 @@
     <Compile Include="Src\PlayStoreOperations.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="..\MoneyFox\App.config">
-      <Link>App.config</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
