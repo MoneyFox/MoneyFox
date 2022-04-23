@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Droid
 {
 
-    using Acr.UserDialogs;
     using Android.App;
     using Android.Content;
     using Android.Content.PM;
@@ -29,7 +28,6 @@
             Platform.Init(activity: this, bundle: savedInstanceState);
             Forms.Init(activity: this, bundle: savedInstanceState);
             FormsMaterial.Init(context: this, bundle: savedInstanceState);
-            UserDialogs.Init(this);
             LoadApplication(new App());
         }
 
