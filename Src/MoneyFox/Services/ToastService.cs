@@ -2,25 +2,17 @@
 {
 
     using System.Threading.Tasks;
-    using Acr.UserDialogs;
     using Core.Common.Interfaces;
     using JetBrains.Annotations;
+    using Xamarin.CommunityToolkit.Extensions;
+    using Xamarin.Forms;
 
     [UsedImplicitly]
     public class ToastService : IToastService
     {
-        private readonly IUserDialogs userDialogs;
-
-        public ToastService(IUserDialogs userDialogs)
+        public async Task ShowToastAsync(string message, string title = "")
         {
-            this.userDialogs = userDialogs;
-        }
-
-        public Task ShowToastAsync(string message, string title = "")
-        {
-            userDialogs.Toast(new ToastConfig(message));
-
-            return Task.CompletedTask;
+            await Application.Current.MainPage.DisplayToastAsync(message);
         }
     }
 
