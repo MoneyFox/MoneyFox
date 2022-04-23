@@ -1,0 +1,35 @@
+﻿namespace MoneyFox.Core.ApplicationCore.Queries
+{
+
+    using System.Threading;
+    using System.Threading.Tasks;
+    using MediatR;
+    using Microsoft.EntityFrameworkCore;
+    using MoneyFox.Core.Common.Interfaces;
+
+    public class GetIfCategoryWithNameExistsQuery : IRequest<bool>
+    {
+        public GetIfCategoryWithNameExistsQuery(string categoryName)
+        {
+            CategoryName = categoryName;
+        }
+
+        public string CategoryName { get; }
+
+        public class Handler : IRequestHandler<GetIfCategoryWithNameExistsQuery, bool>
+        {
+            private readonly IAppDbContext context;
+
+            public Handler(IAppDbContext context)
+            {
+                this.context = context;
+            }
+
+            public async Task<bool> Handle(GetIfCategoryWithNameExistsQuery request, CancellationToken cancellationToken)
+            {
+                return await context.Categories.AnyAsync(predicate: x => x.Name == request.CategoryName, cancellationToken: cancellationToken);
+            }
+        }
+    }
+
+}

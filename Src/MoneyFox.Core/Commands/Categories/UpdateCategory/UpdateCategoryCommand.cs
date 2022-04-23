@@ -3,7 +3,7 @@
 
     using System.Threading;
     using System.Threading.Tasks;
-    using Aggregates;
+    using ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using Common.Interfaces;
     using MediatR;
 

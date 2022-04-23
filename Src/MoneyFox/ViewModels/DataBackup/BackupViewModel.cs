@@ -6,9 +6,9 @@ namespace MoneyFox.ViewModels.DataBackup
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using Core._Pending_.Common.Facades;
-    using Core.Common.Exceptions;
+    using Core.ApplicationCore.Domain.Exceptions;
+    using Core.ApplicationCore.UseCases.DbBackup;
     using Core.Common.Interfaces;
-    using Core.DbBackup;
     using Core.Interfaces;
     using Core.Resources;
     using Microsoft.AppCenter.Crashes;

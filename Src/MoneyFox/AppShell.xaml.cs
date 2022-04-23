@@ -40,7 +40,7 @@
             Routing.RegisterRoute(route: ViewModelLocator.SettingsRoute, type: typeof(SettingsPage));
             Routing.RegisterRoute(route: ViewModelLocator.AboutRoute, type: typeof(AboutPage));
             Routing.RegisterRoute(route: ViewModelLocator.StatisticCashFlowRoute, type: typeof(StatisticCashFlowPage));
-            Routing.RegisterRoute(route: ViewModelLocator.StatisticAccountMonthlyCashflowRoute, type: typeof(StatisticAccountMonthlyCashFlowPage));
+            Routing.RegisterRoute(route: ViewModelLocator.StatisticAccountMonthlyCashFlowRoute, type: typeof(StatisticAccountMonthlyCashFlowPage));
             Routing.RegisterRoute(route: ViewModelLocator.StatisticCategoryProgressionRoute, type: typeof(StatisticCategoryProgressionPage));
             Routing.RegisterRoute(route: ViewModelLocator.StatisticCategorySpreadingRoute, type: typeof(StatisticCategorySpreadingPage));
             Routing.RegisterRoute(route: ViewModelLocator.StatisticCategorySummaryRoute, type: typeof(StatisticCategorySummaryPage));

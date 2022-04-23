@@ -2,7 +2,7 @@
 
 using System;
 using CommunityToolkit.Mvvm.Input;
-using Core.Aggregates.AccountAggregate;
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 
 /// <summary>
 ///     Represents the Actions for a view.

@@ -4,10 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Core.Aggregates;
-using Core.Aggregates.AccountAggregate;
-using Core.Common.Exceptions;
-using Core.Queries;
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Core.ApplicationCore.Domain.Exceptions;
+using Core.ApplicationCore.Queries;
 using MediatR;
 using ViewModels.Accounts;
 

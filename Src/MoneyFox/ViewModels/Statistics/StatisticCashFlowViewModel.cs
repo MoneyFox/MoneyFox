@@ -3,7 +3,7 @@
 
     using System.Linq;
     using System.Threading.Tasks;
-    using Core.Queries.Statistics;
+    using Core.ApplicationCore.Queries.Statistics;
     using MediatR;
     using Microcharts;
     using SkiaSharp;

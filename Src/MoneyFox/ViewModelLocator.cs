@@ -44,7 +44,7 @@
         public static string StatisticCashFlowRoute => nameof(StatisticCashFlowPage);
         public static string StatisticCategorySpreadingRoute => nameof(StatisticCategorySpreadingPage);
         public static string StatisticCategorySummaryRoute => nameof(StatisticCategorySummaryPage);
-        public static string StatisticAccountMonthlyCashflowRoute => nameof(StatisticAccountMonthlyCashFlowPage);
+        public static string StatisticAccountMonthlyCashFlowRoute => nameof(StatisticAccountMonthlyCashFlowPage);
         public static string StatisticCategoryProgressionRoute => nameof(StatisticCategoryProgressionPage);
         public static string StatisticSelectorRoute => nameof(StatisticSelectorPage);
         public static string PaymentForCategoryListRoute => nameof(PaymentForCategoryListPage);
@@ -71,7 +71,7 @@
 
         public static SelectCategoryViewModel SelectCategoryViewModel => ServiceLocator.Current.GetInstance<SelectCategoryViewModel>();
 
-        public static AddCategoryViewModel AddCategoryViewModel => ServiceLocator.Current.GetInstance<AddCategoryViewModel>();
+        internal static AddCategoryViewModel AddCategoryViewModel => ServiceLocator.Current.GetInstance<AddCategoryViewModel>();
 
         public static EditCategoryViewModel EditCategoryViewModel => ServiceLocator.Current.GetInstance<EditCategoryViewModel>();
 
@@ -86,7 +86,7 @@
         public static StatisticCategoryProgressionViewModel StatisticCategoryProgressionViewModel
             => ServiceLocator.Current.GetInstance<StatisticCategoryProgressionViewModel>();
 
-        public static StatisticAccountMonthlyCashflowViewModel StatistcAccountMonthlyCashflowViewModel
+        public static StatisticAccountMonthlyCashflowViewModel StatisticAccountMonthlyCashFlowViewModel
             => ServiceLocator.Current.GetInstance<StatisticAccountMonthlyCashflowViewModel>();
 
         public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingViewModel

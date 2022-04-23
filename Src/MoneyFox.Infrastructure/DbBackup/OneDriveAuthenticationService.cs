@@ -6,7 +6,7 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using Core.Common.Exceptions;
+    using Core.ApplicationCore.Domain.Exceptions;
     using Microsoft.Graph;
     using Microsoft.Identity.Client;
 

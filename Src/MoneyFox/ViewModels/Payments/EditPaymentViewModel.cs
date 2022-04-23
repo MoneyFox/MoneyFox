@@ -4,10 +4,10 @@
     using System.Threading.Tasks;
     using AutoMapper;
     using CommunityToolkit.Mvvm.Input;
+    using Core.ApplicationCore.Queries;
     using Core.Commands.Payments.DeletePaymentById;
     using Core.Commands.Payments.UpdatePayment;
     using Core.Common.Interfaces;
-    using Core.Queries;
     using Core.Resources;
     using MediatR;
     using Xamarin.Forms;

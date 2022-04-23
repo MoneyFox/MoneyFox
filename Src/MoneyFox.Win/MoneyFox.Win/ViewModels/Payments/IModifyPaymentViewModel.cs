@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Accounts;
 using CommunityToolkit.Mvvm.Input;
-using Core.Aggregates.AccountAggregate;
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 
 public interface IModifyPaymentViewModel
 {

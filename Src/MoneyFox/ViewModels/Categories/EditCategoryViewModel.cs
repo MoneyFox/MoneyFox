@@ -3,10 +3,10 @@
 
     using System.Threading.Tasks;
     using AutoMapper;
-    using Core.Aggregates;
+    using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
+    using Core.ApplicationCore.Queries;
     using Core.Commands.Categories.UpdateCategory;
     using Core.Common.Interfaces;
-    using Core.Queries;
     using MediatR;
 
     public class EditCategoryViewModel : ModifyCategoryViewModel

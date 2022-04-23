@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using _Pending_.Common.Helpers;
     using _Pending_.Common.QueryObjects;
-    using Aggregates.AccountAggregate;
+    using ApplicationCore.Domain.Aggregates.AccountAggregate;
     using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;

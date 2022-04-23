@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Win;
+﻿namespace MoneyFox.Win.Config;
 
 using Windows.ApplicationModel;
 using Microsoft.Extensions.Configuration;

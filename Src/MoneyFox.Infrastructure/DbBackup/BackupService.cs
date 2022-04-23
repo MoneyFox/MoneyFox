@@ -11,9 +11,9 @@
     using Core._Pending_.Common.Extensions;
     using Core._Pending_.Common.Facades;
     using Core._Pending_.Common.Messages;
-    using Core.Common.Exceptions;
+    using Core.ApplicationCore.Domain.Exceptions;
+    using Core.ApplicationCore.UseCases.DbBackup;
     using Core.Common.Interfaces;
-    using Core.DbBackup;
     using Core.Interfaces;
     using Core.Resources;
     using Microsoft.AppCenter.Crashes;

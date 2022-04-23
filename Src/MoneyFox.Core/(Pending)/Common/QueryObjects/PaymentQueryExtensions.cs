@@ -3,7 +3,7 @@
 
     using System;
     using System.Linq;
-    using Aggregates.AccountAggregate;
+    using ApplicationCore.Domain.Aggregates.AccountAggregate;
 
     /// <summary>
     ///     Provides Extensions for payments queries.

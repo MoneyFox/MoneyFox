@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Win.ViewModels;
 
 using System;
-using Core.Aggregates.AccountAggregate;
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 
 public interface ISelectFilterDialogViewModel
 {
