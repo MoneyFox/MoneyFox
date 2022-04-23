@@ -64,7 +64,6 @@ namespace MoneyFox.Views.Dialogs
         public async Task<bool> ShowAsync()
         {
             var result = await Application.Current.MainPage.Navigation.ShowPopupAsync(this);
-
             return (bool)result;
         }
 
