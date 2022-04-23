@@ -54,16 +54,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="appsettings.json">
-            <CopyToOutputDirectory>"BuildInfo": {
-                "Environment": "Dev",
-                "Version": "1.0.0 Beta"
-                }
-            </CopyToOutputDirectory>
-        </Content>
-    </ItemGroup>
-
-    <ItemGroup>
         <PackageReference Include="Autofac" Version="6.3.0" />
         <PackageReference Include="Autofac.Extras.CommonServiceLocator" Version="6.0.1" />
         <PackageReference Include="CommonServiceLocator" Version="2.0.6" />
@@ -72,10 +62,6 @@
         <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Media" Version="7.1.2" />
         <PackageReference Include="LiveChartsCore.SkiaSharpView.WinUI" Version="2.0.0-beta.101" />
         <PackageReference Include="MediatR" Version="10.0.1" />
-        <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.0" />
-        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.0" />
-        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
-        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
         <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.3" />
         <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.8" />
         <PackageReference Include="CommunityToolkit.Mvvm" Version="7.1.2" />

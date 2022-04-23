@@ -11,7 +11,6 @@ using Core.Commands.Payments.UpdatePayment;
 using Core.Common.Interfaces;
 using Core.Resources;
 using MediatR;
-using Microsoft.AppCenter.Crashes;
 using Serilog;
 using Services;
 using Utilities;
@@ -39,27 +38,20 @@ public class EditPaymentViewModel : ModifyPaymentViewModel
 
     public RelayCommand<int> InitializeCommand => new(async paymentId => await InitializeAsync(paymentId));
 
-    protected async Task InitializeAsync(int paymentId)
+    private async Task InitializeAsync(int paymentId)
     {
-        try
-        {
-            await base.InitializeAsync();
-            SelectedPayment = mapper.Map<PaymentViewModel>(await mediator.Send(new GetPaymentByIdQuery(paymentId)));
-            AmountString = HelperFunctions.FormatLargeNumbers(SelectedPayment.Amount);
+        await base.InitializeAsync();
+        SelectedPayment = mapper.Map<PaymentViewModel>(await mediator.Send(new GetPaymentByIdQuery(paymentId)));
+        AmountString = HelperFunctions.FormatLargeNumbers(SelectedPayment.Amount);
 
-            // We have to set this here since otherwise the end date is null. This causes a crash on android.
-            // Also it's user unfriendly if you the default end date is the 1.1.0001.
-            if (SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment != null && SelectedPayment.RecurringPayment.IsEndless)
-            {
-                SelectedPayment.RecurringPayment.EndDate = DateTime.Today;
-            }
-
-            Title = PaymentTypeHelper.GetViewTitleForType(type: SelectedPayment.Type, isEditMode: true);
-        }
-        catch (PaymentNotFoundException ex)
+        // We have to set this here since otherwise the end date is null. This causes a crash on android.
+        // Also it's user unfriendly if you the default end date is the 1.1.0001.
+        if (SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment != null && SelectedPayment.RecurringPayment.IsEndless)
         {
-            Crashes.TrackError(ex);
+            SelectedPayment.RecurringPayment.EndDate = DateTime.Today;
         }
+
+        Title = PaymentTypeHelper.GetViewTitleForType(type: SelectedPayment.Type, isEditMode: true);
     }
 
     protected override async Task SavePaymentAsync()

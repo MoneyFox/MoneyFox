@@ -1,11 +1,9 @@
 ﻿namespace MoneyFox.Win.ViewModels;
 
-using System;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Interfaces;
-using Microsoft.AppCenter.Crashes;
 
 /// <summary>
 ///     Representation of the BalanceView
@@ -29,7 +27,7 @@ public class BalanceViewModel : ObservableObject, IBalanceViewModel
     {
         get => totalBalance;
 
-        set
+        private set
         {
             totalBalance = value;
             OnPropertyChanged();
@@ -43,7 +41,7 @@ public class BalanceViewModel : ObservableObject, IBalanceViewModel
     {
         get => endOfMonthBalance;
 
-        set
+        private set
         {
             endOfMonthBalance = value;
             OnPropertyChanged();
@@ -62,15 +60,8 @@ public class BalanceViewModel : ObservableObject, IBalanceViewModel
     /// </summary>
     private async Task UpdateBalanceAsync()
     {
-        try
-        {
-            TotalBalance = await CalculateTotalBalanceAsync();
-            EndOfMonthBalance = await GetEndOfMonthValueAsync();
-        }
-        catch (Exception ex)
-        {
-            Crashes.TrackError(ex);
-        }
+        TotalBalance = await CalculateTotalBalanceAsync();
+        EndOfMonthBalance = await GetEndOfMonthValueAsync();
     }
 
     /// <summary>

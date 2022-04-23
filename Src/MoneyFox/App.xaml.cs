@@ -10,14 +10,8 @@
     using Core.Commands.Payments.ClearPayments;
     using Core.Commands.Payments.CreateRecurringPayments;
     using Core.Common;
-    using Core.Interfaces;
     using MediatR;
-    using Microsoft.AppCenter;
-    using Microsoft.AppCenter.Analytics;
-    using Microsoft.AppCenter.Crashes;
     using Mobile.Infrastructure.Adapters;
-    using PCLAppConfig;
-    using PCLAppConfig.FileSystemStream;
     using Serilog;
     using Xamarin.Forms;
     using Device = Xamarin.Forms.Device;
@@ -41,28 +35,12 @@
 
         protected override void OnStart()
         {
-            if (ConfigurationManager.AppSettings == null)
-            {
-                ConfigurationManager.Initialise(PortableStream.Current);
-            }
-
-            InitializeAppCenter();
             ExecuteStartupTasks();
         }
 
         protected override void OnResume()
         {
             ExecuteStartupTasks();
-        }
-
-        private static void InitializeAppCenter()
-        {
-            if (ConfigurationManager.AppSettings != null)
-            {
-                var iosAppCenterSecret = ConfigurationManager.AppSettings["IosAppcenterSecret"];
-                var androidAppCenterSecret = ConfigurationManager.AppSettings["AndroidAppcenterSecret"];
-                AppCenter.Start(appSecret: $"android={androidAppCenterSecret};" + $"ios={iosAppCenterSecret}", typeof(Analytics), typeof(Crashes));
-            }
         }
 
         private void ExecuteStartupTasks()

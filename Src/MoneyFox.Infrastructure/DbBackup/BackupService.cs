@@ -16,7 +16,6 @@
     using Core.Common.Interfaces;
     using Core.Interfaces;
     using Core.Resources;
-    using Microsoft.AppCenter.Crashes;
     using Serilog;
 
     internal sealed class BackupService : ObservableRecipient, IBackupService, IDisposable
@@ -119,7 +118,6 @@
                 Log.Error(exception: ex, messageTemplate: "Operation canceled during get backup date. Execute logout");
                 await LogoutAsync();
                 await toastService.ShowToastAsync(message: Strings.FailedToLoginToBackupMessage, title: Strings.FailedToLoginToBackupTitle);
-                Crashes.TrackError(ex);
             }
 
             return DateTime.MinValue.ToLocalTime();

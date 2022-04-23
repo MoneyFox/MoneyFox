@@ -15,12 +15,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="App.config">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-    </ItemGroup>
-
-    <ItemGroup>
         <EmbeddedResource Include="Common\Fonts\fa-solid-900.ttf" />
         <EmbeddedResource Include="Common\Fonts\norwester.otf" />
         <EmbeddedResource Include="Common\Fonts\ProductSans-Regular.ttf" />
@@ -28,14 +22,12 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Acr.UserDialogs" Version="7.2.0.564" />
         <PackageReference Include="Autofac" Version="6.3.0" />
         <PackageReference Include="Autofac.Extras.CommonServiceLocator" Version="6.0.1" />
         <PackageReference Include="CommunityToolkit.Mvvm" Version="7.1.2" />
         <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
         <PackageReference Include="Microcharts.Forms" Version="0.9.5.9" />
         <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.0" />
-        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.0" />
         <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
         <PackageReference Include="PCLAppConfig" Version="1.0.1" />
         <PackageReference Include="Serilog" Version="2.10.0" />
@@ -48,7 +40,6 @@
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
         <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
         <PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.2401" />
-        <PackageReference Include="NLog" Version="4.7.15" />
         <PackageReference Include="MediatR" Version="10.0.1" />
     </ItemGroup>
 
