@@ -36,6 +36,22 @@
             var loadedCategory = appDbContext.Categories.Single();
             AssertCategory(actual: loadedCategory, expected: testCategory);
         }
+
+        [Fact]
+        public async Task Foo()
+        {
+            // Arrange
+            var testDbCategory = new TestData.DefaultCategory().CreateDbCategory();
+            appDbContext.Add(testDbCategory);
+
+            // Act
+            await categoryRepository.AddAsync(testDbCategory);
+
+            // Assert
+            appDbContext.Categories.Should().ContainSingle();
+            var loadedCategory = appDbContext.Categories.Single();
+            //AssertCategory(actual: loadedCategory, expected: testCategory);
+        }
     }
 
 }
