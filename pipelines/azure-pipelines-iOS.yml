@@ -73,12 +73,6 @@ steps:
     inputs:
       restoreSolution: '**/MoneyFox.Mobile.sln'
 
-  - task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
-    displayName: 'Replace tokens in Src/MoneyFox'
-    inputs:
-      sourcePath: Src/MoneyFox
-      filePattern: App.config
-
   - task: DotNetCoreCLI@2
     displayName: 'Run Tests'
     inputs:

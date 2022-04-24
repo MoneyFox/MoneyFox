@@ -12,12 +12,6 @@ using MediatR;
 using Microsoft.UI.Xaml;
 using Serilog;
 using Services;
-#if !DEBUG
-using Config;
-using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
-#endif
 
 public partial class App : Application
 {
@@ -36,10 +30,6 @@ public partial class App : Application
         ViewModelLocator.RegisterServices(builder);
         var mainWindow = new MainWindow();
         mainWindow.Activate();
-#if !DEBUG
-        var appConfig = new AppConfig();
-        AppCenter.Start(appSecret: appConfig.AppCenter.Secret, typeof(Analytics), typeof(Crashes));
-#endif
         ExecuteStartupTasks();
     }
 
