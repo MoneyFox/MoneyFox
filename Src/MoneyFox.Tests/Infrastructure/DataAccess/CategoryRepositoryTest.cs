@@ -46,7 +46,7 @@
             var testDbCategory = appDbContext.RegisterCategory(testCategory);
 
             // Act
-            var act = async () => await categoryRepository.AddAsync(testDbCategory);
+            Func<Task> act = async () => await categoryRepository.AddAsync(testDbCategory);
 
             // Assert
             await act.Should().ThrowAsync<ArgumentException>().WithMessage("An item with the same key has already been added. Key: 1");
