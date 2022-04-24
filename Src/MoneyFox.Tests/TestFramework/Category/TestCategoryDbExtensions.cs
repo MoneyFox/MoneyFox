@@ -1,6 +1,7 @@
 ﻿namespace MoneyFox.Tests.TestFramework.Category
 {
 
+    using MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using MoneyFox.Infrastructure.Persistence;
 
     internal static class TestCategoryDbExtensions
@@ -13,6 +14,15 @@
             }
 
             db.SaveChanges();
+        }
+
+        public static Category RegisterCategory(this AppDbContext db, TestData.ICategory testCategory)
+        {
+            var dbCategory = testCategory.CreateDbCategory();
+            db.Add(dbCategory);
+            db.SaveChanges();
+
+            return dbCategory;
         }
     }
 
