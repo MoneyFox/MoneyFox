@@ -8,6 +8,7 @@
     using Android.Runtime;
     using Infrastructure.DbBackup;
     using Microsoft.Identity.Client;
+    using Rg.Plugins.Popup;
     using Xamarin.Forms;
     using Xamarin.Forms.Platform.Android;
     using Platform = Xamarin.Essentials.Platform;
@@ -25,6 +26,7 @@
             ToolbarResource = Resource.Layout.Toolbar;
             SetStatusBarColor(Color.Black.ToAndroid());
             base.OnCreate(savedInstanceState);
+            Popup.Init(this);
             Platform.Init(activity: this, bundle: savedInstanceState);
             Forms.Init(activity: this, bundle: savedInstanceState);
             FormsMaterial.Init(context: this, bundle: savedInstanceState);
@@ -42,6 +44,11 @@
         {
             Platform.OnRequestPermissionsResult(requestCode: requestCode, permissions: permissions, grantResults: grantResults);
             base.OnRequestPermissionsResult(requestCode: requestCode, permissions: permissions, grantResults: grantResults);
+        }
+
+        public override void OnBackPressed()
+        {
+            Popup.SendBackPressed(base.OnBackPressed);
         }
     }
 
