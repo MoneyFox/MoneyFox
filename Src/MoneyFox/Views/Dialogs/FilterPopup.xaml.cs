@@ -31,15 +31,10 @@ namespace MoneyFox.Views.Dialogs
             await Application.Current.MainPage.Navigation.PushPopupAsync(this);
         }
 
-        private static async Task DismissAsync()
-        {
-            await Application.Current.MainPage.Navigation.PopPopupAsync();
-        }
-
-        private void Button_OnClicked(object sender, EventArgs e)
+        private async void Button_OnClicked(object sender, EventArgs e)
         {
             ViewModel.FilterSelectedCommand.Execute(null);
-            await DismissAsync();
+            await Application.Current.MainPage.Navigation.PopPopupAsync();
         }
     }
 
