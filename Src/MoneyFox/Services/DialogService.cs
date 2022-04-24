@@ -1,4 +1,4 @@
-namespace MoneyFox.Services
+﻿namespace MoneyFox.Services
 {
 
     using System;
@@ -11,6 +11,7 @@ namespace MoneyFox.Services
     {
         private LoadingDialog? loadingDialog;
 
+        /// <inheritdoc />
         public async Task ShowLoadingDialogAsync(string? message = null)
         {
             if (loadingDialog != null)
@@ -22,24 +23,23 @@ namespace MoneyFox.Services
             await loadingDialog.ShowAsync();
         }
 
-        public Task HideLoadingDialogAsync()
+        /// <inheritdoc />
+        public async Task HideLoadingDialogAsync()
         {
             if (loadingDialog == null)
             {
-                return Task.CompletedTask;
+                return;
             }
 
             try
             {
-                loadingDialog.Dismiss(null);
+                await LoadingDialog.DismissAsync();
                 loadingDialog = null;
             }
             catch (IndexOutOfRangeException)
             {
                 // catch and swallow out of range exceptions when dismissing dialogs.
             }
-
-            return Task.CompletedTask;
         }
 
         public async Task ShowMessageAsync(string title, string message)
