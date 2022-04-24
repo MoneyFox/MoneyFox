@@ -1,4 +1,4 @@
-namespace MoneyFox.Infrastructure.Persistence.Configurations
+﻿namespace MoneyFox.Infrastructure.Persistence.Configurations
 {
 
     using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
@@ -11,10 +11,8 @@ namespace MoneyFox.Infrastructure.Persistence.Configurations
         {
             builder.HasKey(c => c.Id);
             builder.Property(c => c.Name).IsRequired();
-
             builder.HasIndex(c => c.Name);
-
-            builder.HasMany(m => m.Payments).WithOne(t => t.Category!).HasForeignKey(m => m.CategoryId).OnDelete(DeleteBehavior.SetNull);
+            builder.HasMany(c => c.Payments).WithOne(t => t.Category!).HasForeignKey(p => p.CategoryId).OnDelete(DeleteBehavior.SetNull);
         }
     }
 

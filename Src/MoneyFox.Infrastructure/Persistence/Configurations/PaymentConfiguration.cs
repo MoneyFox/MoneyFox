@@ -2,6 +2,7 @@ namespace MoneyFox.Infrastructure.Persistence.Configurations
 {
 
     using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+    using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -10,8 +11,6 @@ namespace MoneyFox.Infrastructure.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Payment> builder)
         {
             builder.HasKey(b => b.Id);
-
-            builder.Property(p => p.ChargedAccount).IsRequired();
         }
     }
 
