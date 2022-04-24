@@ -31,11 +31,12 @@
         <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
         <PackageReference Include="PCLAppConfig" Version="1.0.1" />
         <PackageReference Include="Serilog" Version="2.11.0" />
+        <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
+        <PackageReference Include="Serilog" Version="2.10.0" />
         <PackageReference Include="SonarAnalyzer.CSharp" Version="8.37.0.45539">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.1" />
         <PackageReference Include="Xamarin.Essentials" Version="1.7.2" />
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
         <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />

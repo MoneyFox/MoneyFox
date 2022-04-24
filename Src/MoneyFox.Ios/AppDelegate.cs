@@ -7,6 +7,7 @@ namespace MoneyFox.iOS
     using Foundation;
     using JetBrains.Annotations;
     using Microsoft.Identity.Client;
+    using Rg.Plugins.Popup;
     using Serilog;
     using Serilog.Events;
     using Serilog.Exceptions;
@@ -26,6 +27,7 @@ namespace MoneyFox.iOS
         {
             InitLogger();
             RegisterServices();
+            Popup.Init();
             Forms.Init();
             FormsMaterial.Init();
             LoadApplication(new App());
@@ -42,7 +44,7 @@ namespace MoneyFox.iOS
             return true;
         }
 
-        private static void RequestToastPermissions()
+        private void RequestToastPermissions()
         {
             UNUserNotificationCenter.Current.RequestAuthorization(
                 options: UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound,
@@ -52,14 +54,14 @@ namespace MoneyFox.iOS
                 });
         }
 
-        private static void RegisterServices()
+        private void RegisterServices()
         {
             var builder = new ContainerBuilder();
             builder.RegisterModule<IosModule>();
             ViewModelLocator.RegisterServices(builder);
         }
 
-        private static void InitLogger()
+        private void InitLogger()
         {
             Log.Logger = new LoggerConfiguration().MinimumLevel.Debug()
                 .Enrich.FromLogContext()

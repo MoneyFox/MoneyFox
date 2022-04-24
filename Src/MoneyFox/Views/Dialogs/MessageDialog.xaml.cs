@@ -3,7 +3,7 @@
 
     using System;
     using System.Threading.Tasks;
-    using Xamarin.CommunityToolkit.Extensions;
+    using Rg.Plugins.Popup.Extensions;
     using Xamarin.Forms;
 
     public partial class MessageDialog
@@ -39,12 +39,17 @@
 
         public async Task ShowAsync()
         {
-            await Application.Current.MainPage.Navigation.ShowPopupAsync(this);
+            await Application.Current.MainPage.Navigation.PushPopupAsync(this);
         }
 
-        private void OnOkClick(object sender, EventArgs e)
+        public static async Task DismissAsync()
         {
-            Dismiss(null);
+            await Application.Current.MainPage.Navigation.PopPopupAsync();
+        }
+
+        private async void OnOkClick(object sender, EventArgs e)
+        {
+            await DismissAsync();
         }
     }
 

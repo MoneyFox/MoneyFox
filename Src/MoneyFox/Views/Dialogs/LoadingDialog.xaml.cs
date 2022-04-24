@@ -1,8 +1,8 @@
-namespace MoneyFox.Views.Dialogs
+﻿namespace MoneyFox.Views.Dialogs
 {
 
     using System.Threading.Tasks;
-    using Xamarin.CommunityToolkit.Extensions;
+    using Rg.Plugins.Popup.Extensions;
     using Xamarin.Forms;
 
     public partial class LoadingDialog
@@ -20,10 +20,14 @@ namespace MoneyFox.Views.Dialogs
             return dialog;
         }
 
-        public Task ShowAsync()
+        public async Task ShowAsync()
         {
-            Application.Current.MainPage.Navigation.ShowPopup(this);
-            return Task.CompletedTask;
+            await Application.Current.MainPage.Navigation.PushPopupAsync(this);
+        }
+
+        public static async Task DismissAsync()
+        {
+            await Application.Current.MainPage.Navigation.PopPopupAsync();
         }
     }
 
