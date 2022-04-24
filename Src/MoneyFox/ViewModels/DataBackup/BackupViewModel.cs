@@ -11,7 +11,6 @@ namespace MoneyFox.ViewModels.DataBackup
     using Core.Common.Interfaces;
     using Core.Interfaces;
     using Core.Resources;
-    using Microsoft.AppCenter.Crashes;
     using Serilog;
 
     public class BackupViewModel : ObservableObject, IBackupViewModel
@@ -193,7 +192,7 @@ namespace MoneyFox.ViewModels.DataBackup
         {
             if (!connectivity.IsConnected)
             {
-                Log.Information("Tried to log in, but device isn't connected to the internet.");
+                Log.Information("Tried to log in, but device isn't connected to the internet");
                 await dialogService.ShowMessageAsync(title: Strings.NoNetworkTitle, message: Strings.NoNetworkMessage);
             }
 
@@ -212,8 +211,6 @@ namespace MoneyFox.ViewModels.DataBackup
                 await dialogService.ShowMessageAsync(
                     title: Strings.LoginFailedTitle,
                     message: string.Format(format: Strings.UnknownErrorMessage, arg0: ex.Message));
-
-                Crashes.TrackError(ex);
             }
 
             OnPropertyChanged(nameof(IsLoggedIn));
@@ -234,7 +231,6 @@ namespace MoneyFox.ViewModels.DataBackup
             {
                 Log.Error(exception: ex, messageTemplate: "Logout Failed");
                 await dialogService.ShowMessageAsync(title: Strings.GeneralErrorTitle, message: ex.Message);
-                Crashes.TrackError(ex);
             }
 
             // ReSharper disable once ExplicitCallerInfoArgument
@@ -263,7 +259,6 @@ namespace MoneyFox.ViewModels.DataBackup
             {
                 Log.Error(exception: ex, messageTemplate: "Create Backup failed");
                 await dialogService.ShowMessageAsync(title: Strings.BackupFailedTitle, message: ex.Message);
-                Crashes.TrackError(ex);
             }
 
             await dialogService.HideLoadingDialogAsync();
@@ -295,7 +290,6 @@ namespace MoneyFox.ViewModels.DataBackup
                 {
                     Log.Error(exception: ex, messageTemplate: "Restore Backup failed");
                     await dialogService.ShowMessageAsync(title: Strings.BackupFailedTitle, message: ex.Message);
-                    Crashes.TrackError(ex);
                 }
             }
             else
