@@ -37,7 +37,7 @@
             const bool testExcluded = true;
 
             // Act / Assert
-            var account = new Account(name: testName, initalBalance: testBalance, note: testNote, isExcluded: testExcluded);
+            var account = new Account(name: testName, initialBalance: testBalance, note: testNote, isExcluded: testExcluded);
 
             // Assert
             account.Name.Should().Be(testName);
@@ -110,7 +110,7 @@
         public void AddPaymentAmount_IncomeExpense_CurrentBalanceAdjustedCorrectly(PaymentType paymentType, decimal expectedBalance)
         {
             // Arrange
-            var account = new Account(name: "Test", initalBalance: 100);
+            var account = new Account(name: "Test", initialBalance: 100);
 
             // Act
             // AddPaymentAmount executed in the clear method
@@ -126,7 +126,7 @@
         public void AddPaymentAmount_IncomeExpenseNotCleared_CurrentBalanceNotAdjusted(PaymentType paymentType)
         {
             // Arrange
-            var account = new Account(name: "Test", initalBalance: 100);
+            var account = new Account(name: "Test", initialBalance: 100);
             var payment = new Payment(date: DateTime.Today.AddDays(2), amount: 50, type: paymentType, chargedAccount: account);
 
             // Act
@@ -140,8 +140,8 @@
         public void AddPaymentAmount_Transfer_CurrentBalanceAdjustedCorrectly()
         {
             // Arrange
-            var chargedAccount = new Account(name: "Test", initalBalance: 100);
-            var targetAccount = new Account(name: "Test", initalBalance: 100);
+            var chargedAccount = new Account(name: "Test", initialBalance: 100);
+            var targetAccount = new Account(name: "Test", initialBalance: 100);
             var chargedAccountId = typeof(Account).GetField(name: "<Id>k__BackingField", bindingAttr: BindingFlags.Instance | BindingFlags.NonPublic);
             chargedAccountId.SetValue(obj: chargedAccount, value: 3);
             var targetAccountId = typeof(Account).GetField(name: "<Id>k__BackingField", bindingAttr: BindingFlags.Instance | BindingFlags.NonPublic);
@@ -177,7 +177,7 @@
         public void RemovePaymentAmount_IncomeExpense_CurrentBalanceAdjustedCorrectly(PaymentType paymentType, decimal expectedBalance)
         {
             // Arrange
-            var account = new Account(name: "Test", initalBalance: 100);
+            var account = new Account(name: "Test", initialBalance: 100);
             var payment = new Payment(date: DateTime.Today, amount: 50, type: paymentType, chargedAccount: account);
 
             // Act
@@ -191,8 +191,8 @@
         public void RemovePaymentAmount_Transfer_CurrentBalanceAdjustedCorrectly()
         {
             // Arrange
-            var chargedAccount = new Account(name: "Test", initalBalance: 100);
-            var targetAccount = new Account(name: "Test", initalBalance: 100);
+            var chargedAccount = new Account(name: "Test", initialBalance: 100);
+            var targetAccount = new Account(name: "Test", initialBalance: 100);
             var chargedAccountId = typeof(Account).GetField(name: "<Id>k__BackingField", bindingAttr: BindingFlags.Instance | BindingFlags.NonPublic);
             chargedAccountId.SetValue(obj: chargedAccount, value: 3);
             var targetAccountId = typeof(Account).GetField(name: "<Id>k__BackingField", bindingAttr: BindingFlags.Instance | BindingFlags.NonPublic);
@@ -219,8 +219,8 @@
         public void ChangePaymentType_TransferToOther_CurrentBalanceAdjustedCorrectly(PaymentType paymentType)
         {
             // Arrange
-            var chargedAccount = new Account(name: "Test", initalBalance: 100);
-            var targetAccount = new Account(name: "Test", initalBalance: 100);
+            var chargedAccount = new Account(name: "Test", initialBalance: 100);
+            var targetAccount = new Account(name: "Test", initialBalance: 100);
             var chargedAccountId = typeof(Account).GetField(name: "<Id>k__BackingField", bindingAttr: BindingFlags.Instance | BindingFlags.NonPublic);
             chargedAccountId.SetValue(obj: chargedAccount, value: 3);
             var targetAccountId = typeof(Account).GetField(name: "<Id>k__BackingField", bindingAttr: BindingFlags.Instance | BindingFlags.NonPublic);

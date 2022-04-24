@@ -9,9 +9,10 @@
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
-            // Set FK from category to payment with cascade with cascade
-            builder.HasMany(m => m.Payments).WithOne(t => t.Category!).HasForeignKey(m => m.CategoryId).OnDelete(DeleteBehavior.SetNull);
-            builder.HasIndex(b => b.Name);
+            builder.HasKey(c => c.Id);
+            builder.Property(c => c.Name).IsRequired();
+            builder.HasIndex(c => c.Name);
+            builder.HasMany(c => c.Payments).WithOne(t => t.Category!).HasForeignKey(p => p.CategoryId).OnDelete(DeleteBehavior.SetNull);
         }
     }
 

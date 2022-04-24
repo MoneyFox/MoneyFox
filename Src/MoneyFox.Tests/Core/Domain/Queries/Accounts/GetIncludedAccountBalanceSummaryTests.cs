@@ -41,9 +41,9 @@
         public async Task GetIncludedAccountBalanceSummary_CorrectSum()
         {
             // Arrange
-            var accountExcluded = new Account(name: "test", initalBalance: 80, isExcluded: true);
-            var accountIncluded1 = new Account(name: "test", initalBalance: 100);
-            var accountIncluded2 = new Account(name: "test", initalBalance: 120);
+            var accountExcluded = new Account(name: "test", initialBalance: 80, isExcluded: true);
+            var accountIncluded1 = new Account(name: "test", initialBalance: 100);
+            var accountIncluded2 = new Account(name: "test", initialBalance: 120);
             await context.AddAsync(accountExcluded);
             await context.AddAsync(accountIncluded1);
             await context.AddAsync(accountIncluded2);

@@ -44,7 +44,7 @@
             // Arrange
             var systemDateHelper = Substitute.For<ISystemDateHelper>();
             systemDateHelper.Today.Returns(new DateTime(year: 2020, month: 09, day: 05));
-            var account = new Account(name: "test", initalBalance: 80);
+            var account = new Account(name: "test", initialBalance: 80);
             var payment1 = new Payment(date: new DateTime(year: 2020, month: 09, day: 10), amount: 50, type: PaymentType.Income, chargedAccount: account);
             var payment2 = new Payment(date: new DateTime(year: 2020, month: 09, day: 18), amount: 20, type: PaymentType.Income, chargedAccount: account);
             var payment3 = new Payment(date: new DateTime(year: 2020, month: 09, day: 4), amount: 30, type: PaymentType.Expense, chargedAccount: account);

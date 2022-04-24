@@ -19,8 +19,6 @@
             UpdateData(name: name, note: note, requireNote: requireNote);
         }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id
         {
             get;
@@ -29,7 +27,6 @@
             private set;
         }
 
-        [Required]
         public string Name { get; private set; } = "";
 
         public string? Note { get; private set; }

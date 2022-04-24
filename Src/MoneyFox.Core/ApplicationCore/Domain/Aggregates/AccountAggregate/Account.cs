@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate
+namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate
 {
 
     using System.ComponentModel.DataAnnotations;
@@ -12,17 +12,15 @@
         [UsedImplicitly]
         private Account() { }
 
-        public Account(string name, decimal initalBalance = 0, string note = "", bool isExcluded = false)
+        public Account(string name, decimal initialBalance = 0, string note = "", bool isExcluded = false)
         {
             Guard.Argument(value: name, name: nameof(name)).NotNull().NotWhiteSpace();
             Name = name;
-            CurrentBalance = initalBalance;
+            CurrentBalance = initialBalance;
             Note = note;
             IsExcluded = isExcluded;
         }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id
         {
             get;

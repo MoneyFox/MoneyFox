@@ -44,8 +44,8 @@
             // Arrange
             var systemDateHelper = Substitute.For<ISystemDateHelper>();
             systemDateHelper.Today.Returns(new DateTime(year: 2020, month: 09, day: 05));
-            var account1 = new Account(name: "test", initalBalance: 100);
-            var account2 = new Account(name: "test", initalBalance: 200);
+            var account1 = new Account(name: "test", initialBalance: 100);
+            var account2 = new Account(name: "test", initialBalance: 200);
             var payment1 = new Payment(date: new DateTime(year: 2020, month: 09, day: 15), amount: 50, type: PaymentType.Income, chargedAccount: account1);
             var payment2 = new Payment(date: new DateTime(year: 2020, month: 09, day: 25), amount: 50, type: PaymentType.Expense, chargedAccount: account2);
             await context.AddAsync(account1);
@@ -69,9 +69,9 @@
             // Arrange
             var systemDateHelper = Substitute.For<ISystemDateHelper>();
             systemDateHelper.Today.Returns(new DateTime(year: 2020, month: 09, day: 05));
-            var account1 = new Account(name: "test", initalBalance: 100);
-            var account2 = new Account(name: "test", initalBalance: 200);
-            var account3 = new Account(name: "test", initalBalance: 200);
+            var account1 = new Account(name: "test", initialBalance: 100);
+            var account2 = new Account(name: "test", initialBalance: 200);
+            var account3 = new Account(name: "test", initialBalance: 200);
             var payment1 = new Payment(date: new DateTime(year: 2020, month: 09, day: 15), amount: 50, type: PaymentType.Income, chargedAccount: account1);
             var payment2 = new Payment(date: new DateTime(year: 2020, month: 09, day: 25), amount: 50, type: PaymentType.Expense, chargedAccount: account2);
             account3.Deactivate();

@@ -2,7 +2,6 @@ namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate
 {
 
     using System;
-    using System.ComponentModel.DataAnnotations;
     using CategoryAggregate;
     using Exceptions;
     using JetBrains.Annotations;
@@ -70,7 +69,6 @@ namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate
 
         public virtual Category? Category { get; private set; }
 
-        [Required]
         public virtual Account ChargedAccount { get; private set; } = null!;
 
         public virtual Account? TargetAccount { get; private set; }

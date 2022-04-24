@@ -44,8 +44,8 @@
         public async Task GetExcludedAccountQuery_CorrectNumberLoaded(string name, bool expectedResult)
         {
             // Arrange
-            var accountExcluded = new Account(name: "Foo", initalBalance: 80, isExcluded: true);
-            var accountIncluded = new Account(name: "test", initalBalance: 80);
+            var accountExcluded = new Account(name: "Foo", initialBalance: 80, isExcluded: true);
+            var accountIncluded = new Account(name: "test", initialBalance: 80);
             await context.AddAsync(accountExcluded);
             await context.AddAsync(accountIncluded);
             await context.SaveChangesAsync();

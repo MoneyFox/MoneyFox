@@ -3,8 +3,6 @@ namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates
 
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
     using AccountAggregate;
     using CategoryAggregate;
     using Exceptions;
@@ -47,8 +45,6 @@ namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates
             LastRecurrenceCreated = lastRecurrenceCreated ?? DateTime.Now;
         }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id
         {
             get;
