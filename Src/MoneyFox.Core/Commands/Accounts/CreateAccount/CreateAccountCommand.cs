@@ -34,7 +34,7 @@
             /// <inheritdoc />
             public async Task<Unit> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
             {
-                var account = new Account(name: request.Name, initalBalance: request.CurrentBalance, note: request.Note, isExcluded: request.IsExcluded);
+                var account = new Account(name: request.Name, initialBalance: request.CurrentBalance, note: request.Note, isExcluded: request.IsExcluded);
                 await contextAdapter.Context.Accounts.AddAsync(entity: account, cancellationToken: cancellationToken);
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 

@@ -5,14 +5,11 @@ namespace MoneyFox.Infrastructure.Persistence.Configurations
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-    internal class AccountConfiguration : IEntityTypeConfiguration<Account>
+    internal class PaymentConfiguration : IEntityTypeConfiguration<Payment>
     {
-        public void Configure(EntityTypeBuilder<Account> builder)
+        public void Configure(EntityTypeBuilder<Payment> builder)
         {
             builder.HasKey(b => b.Id);
-
-            builder.HasIndex(b => b.Name);
-            builder.Property(b => b.Name).IsRequired();
         }
     }
 
