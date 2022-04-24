@@ -44,7 +44,7 @@
             // Arrange
             var systemDateHelper = Substitute.For<ISystemDateHelper>();
             systemDateHelper.Today.Returns(new DateTime(year: 2020, month: 09, day: 05));
-            var accountIncluded = new Account(name: "test", initalBalance: 100);
+            var accountIncluded = new Account(name: "test", initialBalance: 100);
             var payment = new Payment(
                 date: new DateTime(year: 2020, month: 09, day: 25),
                 amount: 50,
@@ -70,8 +70,8 @@
             // Arrange
             var systemDateHelper = Substitute.For<ISystemDateHelper>();
             systemDateHelper.Today.Returns(new DateTime(year: 2020, month: 09, day: 05));
-            var accountIncluded = new Account(name: "test", initalBalance: 100);
-            var accountDeactivated = new Account(name: "test", initalBalance: 100);
+            var accountIncluded = new Account(name: "test", initialBalance: 100);
+            var accountDeactivated = new Account(name: "test", initialBalance: 100);
             accountDeactivated.Deactivate();
             var payment = new Payment(
                 date: new DateTime(year: 2020, month: 09, day: 25),

@@ -42,7 +42,7 @@ namespace MoneyFox.Tests.Core.Commands.Payments.UpdatePaymentById
         public async Task UpdatePayment_PaymentFound()
         {
             // Arrange
-            var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new Account(name: "test", initalBalance: 80));
+            var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new Account(name: "test", initialBalance: 80));
             await context.AddAsync(payment1);
             await context.SaveChangesAsync();
             payment1.UpdatePayment(date: payment1.Date, amount: 100, type: payment1.Type, chargedAccount: payment1.ChargedAccount);
@@ -75,7 +75,7 @@ namespace MoneyFox.Tests.Core.Commands.Payments.UpdatePaymentById
         public async Task CategoryForRecurringPaymentUpdated()
         {
             // Arrange
-            var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new Account(name: "test", initalBalance: 80));
+            var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new Account(name: "test", initialBalance: 80));
             payment1.AddRecurringPayment(recurrence: PaymentRecurrence.Monthly, isLastDayOfMonth: false);
             await context.AddAsync(payment1);
             await context.SaveChangesAsync();
@@ -117,7 +117,7 @@ namespace MoneyFox.Tests.Core.Commands.Payments.UpdatePaymentById
         public async Task RecurrenceForRecurringPaymentUpdated()
         {
             // Arrange
-            var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new Account(name: "test", initalBalance: 80));
+            var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new Account(name: "test", initialBalance: 80));
             payment1.AddRecurringPayment(recurrence: PaymentRecurrence.Monthly, isLastDayOfMonth: false);
             await context.AddAsync(payment1);
             await context.SaveChangesAsync();

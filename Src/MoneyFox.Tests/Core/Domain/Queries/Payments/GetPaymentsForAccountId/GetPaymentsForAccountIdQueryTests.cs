@@ -42,9 +42,9 @@
         public async Task GetPaymentsForAccountId_CorrectAccountId_PaymentFound()
         {
             // Arrange
-            var account = new Account(name: "test", initalBalance: 80);
+            var account = new Account(name: "test", initialBalance: 80);
             var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: account);
-            var payment2 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new Account(name: "test", initalBalance: 80));
+            var payment2 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new Account(name: "test", initialBalance: 80));
             await context.AddAsync(payment1);
             await context.AddAsync(payment2);
             await context.SaveChangesAsync();
@@ -65,7 +65,7 @@
         public async Task GetPaymentsForAccountId_CorrectDateRange_PaymentFound()
         {
             // Arrange
-            var account = new Account(name: "test", initalBalance: 80);
+            var account = new Account(name: "test", initialBalance: 80);
             var payment1 = new Payment(date: DateTime.Now.AddDays(-2), amount: 20, type: PaymentType.Expense, chargedAccount: account);
             var payment2 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: account);
             await context.AddAsync(payment1);
@@ -92,8 +92,8 @@
         public async Task GetPaymentsForAccountId_CorrectPaymentType_PaymentFound(PaymentTypeFilter filteredPaymentType)
         {
             // Arrange
-            var account = new Account(name: "test", initalBalance: 80);
-            var accountxfer = new Account(name: "dest", initalBalance: 80);
+            var account = new Account(name: "test", initialBalance: 80);
+            var accountxfer = new Account(name: "dest", initialBalance: 80);
             var payment1 = new Payment(date: DateTime.Now, amount: 10, type: PaymentType.Expense, chargedAccount: account);
             var payment2 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Income, chargedAccount: account);
             var payment3 = new Payment(

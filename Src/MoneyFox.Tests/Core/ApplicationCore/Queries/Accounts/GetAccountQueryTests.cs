@@ -40,7 +40,7 @@
         public async Task GetAccountQuery_CorrectNumberLoaded()
         {
             // Arrange
-            var account = new Account(name: "test", initalBalance: 80);
+            var account = new Account(name: "test", initialBalance: 80);
             await context.AddAsync(account);
             await context.SaveChangesAsync();
 
@@ -55,8 +55,8 @@
         public async Task DontLoadDeactivatedAccounts()
         {
             // Arrange
-            var account1 = new Account(name: "test", initalBalance: 80);
-            var account2 = new Account(name: "test", initalBalance: 80);
+            var account1 = new Account(name: "test", initialBalance: 80);
+            var account2 = new Account(name: "test", initialBalance: 80);
             account2.Deactivate();
             await context.AddAsync(account1);
             await context.AddAsync(account2);

@@ -41,7 +41,7 @@ namespace MoneyFox.Tests.Core.Commands.Payments.CreatePayment
         public async Task CreatePayment_PaymentSaved()
         {
             // Arrange
-            var account = new Account(name: "test", initalBalance: 80);
+            var account = new Account(name: "test", initialBalance: 80);
             context.Add(account);
             context.SaveChanges();
             var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: account);
@@ -60,7 +60,7 @@ namespace MoneyFox.Tests.Core.Commands.Payments.CreatePayment
         public async Task CreatePayment_AccountCurrentBalanceUpdated(PaymentType paymentType, decimal newCurrentBalance)
         {
             // Arrange
-            var account = new Account(name: "test", initalBalance: 80);
+            var account = new Account(name: "test", initialBalance: 80);
             context.Add(account);
             await context.SaveChangesAsync();
             var payment1 = new Payment(date: DateTime.Now, amount: 20, type: paymentType, chargedAccount: account);
@@ -78,7 +78,7 @@ namespace MoneyFox.Tests.Core.Commands.Payments.CreatePayment
         public async Task CreatePaymentWithRecurring_PaymentSaved()
         {
             // Arrange
-            var account = new Account(name: "test", initalBalance: 80);
+            var account = new Account(name: "test", initialBalance: 80);
             context.Add(account);
             context.SaveChanges();
             var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: account);

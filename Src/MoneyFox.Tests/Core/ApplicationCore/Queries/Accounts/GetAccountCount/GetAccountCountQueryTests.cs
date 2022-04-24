@@ -41,8 +41,8 @@
         public async Task GetExcludedAccountQuery_CorrectNumberLoaded()
         {
             // Arrange
-            var accountExcluded = new Account(name: "test", initalBalance: 80, isExcluded: true);
-            var accountIncluded = new Account(name: "test", initalBalance: 80);
+            var accountExcluded = new Account(name: "test", initialBalance: 80, isExcluded: true);
+            var accountIncluded = new Account(name: "test", initialBalance: 80);
             await context.AddAsync(accountExcluded);
             await context.AddAsync(accountIncluded);
             await context.SaveChangesAsync();
@@ -58,8 +58,8 @@
         public async Task HandleDeactivatedAccountsCorrectly()
         {
             // Arrange
-            var account = new Account(name: "test", initalBalance: 80);
-            var accountDeactivated = new Account(name: "test", initalBalance: 80);
+            var account = new Account(name: "test", initialBalance: 80);
+            var accountDeactivated = new Account(name: "test", initialBalance: 80);
             accountDeactivated.Deactivate();
             await context.AddAsync(accountDeactivated);
             await context.AddAsync(account);

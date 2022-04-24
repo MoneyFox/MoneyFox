@@ -41,8 +41,8 @@
         public async Task GetAccountByIdQuery_CorrectNumberLoaded()
         {
             // Arrange
-            var account1 = new Account(name: "test2", initalBalance: 80);
-            var account2 = new Account(name: "test3", initalBalance: 80);
+            var account1 = new Account(name: "test2", initialBalance: 80);
+            var account2 = new Account(name: "test3", initialBalance: 80);
             await context.AddAsync(account1);
             await context.AddAsync(account2);
             await context.SaveChangesAsync();

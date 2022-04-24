@@ -52,7 +52,7 @@
         public async Task DeletePayment_PaymentDeleted()
         {
             // Arrange
-            var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new Account(name: "test", initalBalance: 80));
+            var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new Account(name: "test", initialBalance: 80));
             await context.AddAsync(payment1);
             await context.SaveChangesAsync();
 

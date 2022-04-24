@@ -41,7 +41,7 @@
         public async Task UpdateCategoryCommand_CorrectNumberLoaded()
         {
             // Arrange
-            var account = new Account(name: "test", initalBalance: 80);
+            var account = new Account(name: "test", initialBalance: 80);
             await context.AddAsync(account);
             await context.SaveChangesAsync();
 
