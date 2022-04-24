@@ -13,7 +13,6 @@ namespace MoneyFox.Droid.Renderer
     using Android.OS;
     using Android.Runtime;
     using Android.Widget;
-    using Microsoft.AppCenter.Crashes;
     using Serilog;
     using Xamarin.Forms;
     using Xamarin.Forms.Platform.Android;
@@ -27,32 +26,26 @@ namespace MoneyFox.Droid.Renderer
         protected override void OnElementChanged(ElementChangedEventArgs<SearchBar> e)
         {
             base.OnElementChanged(e);
-            try
-            {
-                if (Control != null)
-                {
-                    var searchView = Control;
-                    searchView.Iconified = false;
-                    searchView.SetIconifiedByDefault(false);
-                    SetBackgroundColor(searchView);
-                    var editText = Control.GetChildrenOfType<EditText>().First();
-                    editText.SetHighlightColor(Color.Accent.ToAndroid());
-                    if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
-                    {
-                        TrySetCursorPointerColorNew(editText);
-                    }
-                    else
-                    {
-                        TrySetCursorPointerColor(editText);
-                    }
 
-                    UpdateSearchButtonColor();
-                    UpdateCancelButtonColor();
-                }
-            }
-            catch (Exception ex)
+            if (Control != null)
             {
-                Crashes.TrackError(ex);
+                var searchView = Control;
+                searchView.Iconified = false;
+                searchView.SetIconifiedByDefault(false);
+                SetBackgroundColor(searchView);
+                var editText = Control.GetChildrenOfType<EditText>().First();
+                editText.SetHighlightColor(Color.Accent.ToAndroid());
+                if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
+                {
+                    TrySetCursorPointerColorNew(editText);
+                }
+                else
+                {
+                    TrySetCursorPointerColor(editText);
+                }
+
+                UpdateSearchButtonColor();
+                UpdateCancelButtonColor();
             }
         }
 
