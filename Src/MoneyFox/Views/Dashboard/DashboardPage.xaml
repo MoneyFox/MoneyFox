@@ -16,6 +16,7 @@
 
     <ContentPage.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:BalanceColorConverter x:Key="BalanceColorConverter" />
     </ContentPage.Resources>
 
     <Shell.TitleView>
@@ -76,6 +77,7 @@
                             FontFamily="Product"
                             FontSize="22"
                             HorizontalTextAlignment="Center"
+                            Style="{Binding Assets, Converter={StaticResource BalanceColorConverter}}"
                             Text="{Binding Assets, Converter={StaticResource AmountFormatConverter}}"
                             VerticalTextAlignment="Center" />
 
@@ -95,6 +97,7 @@
                                 FontFamily="Product"
                                 FontSize="15"
                                 HorizontalTextAlignment="End"
+                                Style="{Binding EndOfMonthBalance, Converter={StaticResource BalanceColorConverter}}"
                                 Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}"
                                 VerticalTextAlignment="End" />
                         </StackLayout>
@@ -145,6 +148,7 @@
                                                 FontFamily="Product"
                                                 FontSize="20"
                                                 HorizontalTextAlignment="Center"
+                                                Style="{Binding CurrentBalance, Converter={StaticResource BalanceColorConverter}}"
                                                 Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
                                                 VerticalTextAlignment="Center" />
 
@@ -164,6 +168,7 @@
                                                     FontFamily="Product"
                                                     FontSize="10"
                                                     HorizontalTextAlignment="End"
+                                                    Style="{Binding EndOfMonthBalance, Converter={StaticResource BalanceColorConverter}}"
                                                     Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}"
                                                     VerticalTextAlignment="End" />
                                             </StackLayout>

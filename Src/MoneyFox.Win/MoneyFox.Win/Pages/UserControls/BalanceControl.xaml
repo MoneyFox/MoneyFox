@@ -12,6 +12,7 @@
 
     <UserControl.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:BalanceColorConverter x:Key="BalanceColorConverter" />
     </UserControl.Resources>
 
     <Grid>
@@ -27,7 +28,8 @@
                 <TextBlock
                     Margin="0,0,5,0"
                     Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                    Text="{Binding TotalBalance, Mode=TwoWay, Converter={StaticResource AmountFormatConverter}, UpdateSourceTrigger=PropertyChanged}" />
+                    Text="{Binding TotalBalance, Mode=TwoWay, Converter={StaticResource AmountFormatConverter}, UpdateSourceTrigger=PropertyChanged}"
+                    Foreground="{Binding TotalBalance, Converter={StaticResource BalanceColorConverter}}" />
             </StackPanel>
 
             <StackPanel
@@ -42,7 +44,8 @@
                 <TextBlock
                     Margin="0,0,5,0"
                     Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                    Text="{Binding EndOfMonthBalance, Mode=TwoWay, Converter={StaticResource AmountFormatConverter}, UpdateSourceTrigger=PropertyChanged}" />
+                    Text="{Binding EndOfMonthBalance, Mode=TwoWay, Converter={StaticResource AmountFormatConverter}, UpdateSourceTrigger=PropertyChanged}"
+                    Foreground="{Binding EndOfMonthBalance, Converter={StaticResource BalanceColorConverter}}" />
             </StackPanel>
         </StackPanel>
     </Grid>
