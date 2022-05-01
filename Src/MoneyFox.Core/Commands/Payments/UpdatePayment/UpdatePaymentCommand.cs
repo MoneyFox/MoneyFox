@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Commands.Payments.UpdatePayment
+namespace MoneyFox.Core.Commands.Payments.UpdatePayment
 {
 
     using System;
@@ -116,10 +116,10 @@
                 }
                 else if (!request.IsRecurring && existingPayment.RecurringPayment != null)
                 {
-                    contextAdapter.Context.RecurringPayments.Remove(existingPayment.RecurringPayment!);
                     var linkedPayments = contextAdapter.Context.Payments.Where(x => x.IsRecurring)
                         .Where(x => x.RecurringPayment!.Id == existingPayment.RecurringPayment!.Id)
                         .ToList();
+                    contextAdapter.Context.RecurringPayments.Remove(existingPayment.RecurringPayment!);
 
                     linkedPayments.ForEach(x => x.RemoveRecurringPayment());
                 }
