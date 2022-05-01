@@ -9,10 +9,12 @@ namespace MoneyFox.Tests.Core.Commands.Payments.UpdatePaymentById
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using MoneyFox.Core.Commands.Payments.UpdatePayment;
     using MoneyFox.Core.Common.Interfaces;
+    using MoneyFox.Core.Commands.Payments.CreateRecurringPayments;
     using MoneyFox.Infrastructure.Persistence;
     using Moq;
     using TestFramework;
     using Xunit;
+    using System.Linq;
 
     [ExcludeFromCodeCoverage]
     public class UpdatePaymentCommandTests : IDisposable
@@ -154,6 +156,49 @@ namespace MoneyFox.Tests.Core.Commands.Payments.UpdatePaymentById
             // Assert
             (await context.RecurringPayments.FindAsync(payment1.RecurringPayment.Id)).Recurrence.Should().Be(PaymentRecurrence.Daily);
         }
+
+
+        [Fact]
+        public async Task ChangeRecurringToNonRecurringPayment()
+        {
+            // Arrange
+            var payment1 = new Payment(date: DateTime.Now.AddDays(-1), amount: 20, type: PaymentType.Expense, chargedAccount: new Account(name: "test", initialBalance: 80));
+            payment1.AddRecurringPayment(recurrence: PaymentRecurrence.Daily);
+            await context.AddAsync(payment1);
+            await context.SaveChangesAsync();
+
+            // Trigger creation of recurring payment transactions
+            await new CreateRecurringPaymentsCommand.Handler(contextAdapterMock.Object).Handle(
+                request: new CreateRecurringPaymentsCommand(),
+                cancellationToken: default);
+
+            // Disable recurrence on the payment
+            await new UpdatePaymentCommand.Handler(contextAdapterMock.Object).Handle(
+                request: new UpdatePaymentCommand(
+                    id: payment1.Id,
+                    date: payment1.Date,
+                    amount: payment1.Amount,
+                    isCleared: payment1.IsCleared,
+                    type: payment1.Type,
+                    note: payment1.Note,
+                    isRecurring: false,
+                    categoryId: 0,
+                    chargedAccountId: payment1.ChargedAccount != null ? payment1.ChargedAccount.Id : 0,
+                    targetAccountId: payment1.TargetAccount != null ? payment1.TargetAccount.Id : 0,
+                    updateRecurringPayment: true,
+                    recurrence: PaymentRecurrence.Daily,
+                    isEndless: null,
+                    endDate: null,
+                    isLastDayOfMonth: false),
+                cancellationToken: default);
+
+            // Assert
+            var loadedPayments = context.Payments.ToList();
+
+            loadedPayments.Should().HaveCount(2);
+            loadedPayments.ForEach(x => x.IsRecurring.Should().BeFalse());
+        }
+
     }
 
 }
