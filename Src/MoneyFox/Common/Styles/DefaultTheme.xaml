@@ -161,6 +161,14 @@
         <Setter Property="TextColor" Value="{DynamicResource ThemePrimary}" />
     </Style>
 
+    <Style x:Key="BalanceLabelPositive" TargetType="Label">
+        <Setter Property="TextColor"
+                Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+    </Style>
+
+    <Style x:Key="BalanceLabelNegative" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource Warning}" />
+    </Style>
 
     <!-- Buttons -->
     <Style TargetType="Button">
