@@ -29,6 +29,7 @@
     <Page.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converter:BalanceColorConverter x:Key="BalanceColorConverter" />
 
         <DataTemplate x:Key="AccountItemTemplate" x:DataType="accounts:AccountViewModel">
             <Grid Height="100" Width="250"
@@ -59,13 +60,14 @@
                     VerticalAlignment="Center"
                     Style="{ThemeResource CustomSubtitleTextBlockStyle}"
                     Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
-                    TextAlignment="Center" />
+                    TextAlignment="Center"
+                    Foreground="{x:Bind CurrentBalance, Converter={StaticResource BalanceColorConverter}}"/>
 
                 <StackPanel Orientation="Horizontal"
                             VerticalAlignment="Bottom"
                             HorizontalAlignment="Right">
                     <TextBlock Text="{x:Bind resources:Strings.EndOfMonthLabel}" Margin="0,0,6,0" />
-                    <TextBlock
+                    <TextBlock Foreground="{x:Bind EndOfMonthBalance, Converter={StaticResource BalanceColorConverter}}"
                         Text="{x:Bind EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}" />
                 </StackPanel>
             </Grid>

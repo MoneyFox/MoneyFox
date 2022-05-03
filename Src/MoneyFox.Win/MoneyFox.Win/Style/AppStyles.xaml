@@ -53,4 +53,5 @@
         Color="{ThemeResource SystemAccentColor}" />
     <SolidColorBrush x:Key="SystemControlHyperlinkTextBrush" Color="{ThemeResource SystemAccentColor}" />
     <SolidColorBrush x:Key="JumpListDefaultEnabledBackground" Color="{ThemeResource SystemAccentColor}" />
+    <SolidColorBrush x:Key="NegativeBalanceColorBrush" Color="{StaticResource WarningColor}" />
 </ResourceDictionary>
