@@ -5,14 +5,12 @@ namespace MoneyFox.ViewModels.Statistics
     using System.Linq;
     using System.Threading.Tasks;
     using Core.ApplicationCore.Queries.Statistics;
-    using JetBrains.Annotations;
     using LiveChartsCore;
     using LiveChartsCore.Kernel.Sketches;
     using LiveChartsCore.SkiaSharpView;
     using MediatR;
     using MoneyFox.Core._Pending_.Common.Extensions;
 
-    [UsedImplicitly]
     public class StatisticCashFlowViewModel : StatisticViewModel
     {
 

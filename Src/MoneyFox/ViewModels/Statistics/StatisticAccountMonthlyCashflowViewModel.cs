@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.Statistics
+namespace MoneyFox.ViewModels.Statistics
 {
 
     using System;
@@ -11,72 +11,37 @@
     using CommunityToolkit.Mvvm.Input;
     using Core.ApplicationCore.Queries;
     using Core.ApplicationCore.Queries.Statistics;
+    using LiveChartsCore;
+    using LiveChartsCore.Kernel.Sketches;
+    using LiveChartsCore.SkiaSharpView;
+    using LiveChartsCore.SkiaSharpView.Painting;
     using MediatR;
-    using Microcharts;
     using SkiaSharp;
-    using Views.Statistics;
-    using Xamarin.Essentials;
 
-    /// <summary>
-    ///     Representation of the cash flow view.
-    /// </summary>
-    public class StatisticAccountMonthlyCashflowViewModel : StatisticViewModel
+    public class StatisticAccountMonthlyCashFlowViewModel : StatisticViewModel
     {
-        private readonly IMapper mapper;
-        private BarChart chart = new BarChart();
-        private bool hasNoData;
         private AccountViewModel selectedAccount = null!;
+        private readonly IMapper mapper;
 
-        public StatisticAccountMonthlyCashflowViewModel(IMediator mediator, IMapper mapper) : base(mediator)
+        public StatisticAccountMonthlyCashFlowViewModel(IMediator mediator, IMapper mapper) : base(mediator)
         {
             this.mapper = mapper;
+
             StartDate = DateTime.Now.AddYears(-1);
         }
 
-        /// <summary>
-        ///     Chart to render.
-        /// </summary>
-        public BarChart Chart
+        public ObservableCollection<ISeries> Series { get; } = new ObservableCollection<ISeries>();
+
+        public List<ICartesianAxis> XAxis { get; } = new List<ICartesianAxis>
         {
-            get => chart;
-
-            set
-            {
-                if (chart == value)
-                {
-                    return;
-                }
-
-                chart = value;
-                OnPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        ///     Chart to render.
-        /// </summary>
-        public bool HasNoData
-        {
-            get => hasNoData;
-
-            set
-            {
-                if (hasNoData == value)
-                {
-                    return;
-                }
-
-                hasNoData = value;
-                OnPropertyChanged();
-            }
-        }
+            new Axis()
+        };
 
         public ObservableCollection<AccountViewModel> Accounts { get; } = new ObservableCollection<AccountViewModel>();
 
         public AccountViewModel SelectedAccount
         {
             get => selectedAccount;
-
             set
             {
                 if (selectedAccount == value)
@@ -90,15 +55,16 @@
             }
         }
 
-        public RelayCommand InitCommand => new RelayCommand(async () => await InitAsync());
+        public AsyncRelayCommand InitCommand => new AsyncRelayCommand(async () => await InitAsync());
 
-        public RelayCommand LoadDataCommand => new RelayCommand(async () => await LoadAsync());
+        public AsyncRelayCommand LoadDataCommand => new AsyncRelayCommand(async () => await LoadAsync());
 
         private async Task InitAsync()
         {
             Accounts.Clear();
             var accounts = mapper.Map<List<AccountViewModel>>(await Mediator.Send(new GetAccountsQuery()));
             accounts.ForEach(Accounts.Add);
+
             if (Accounts.Any())
             {
                 SelectedAccount = Accounts.First();
@@ -108,27 +74,19 @@
 
         protected override async Task LoadAsync()
         {
-            var statisticItems = await Mediator.Send(
-                new GetAccountProgressionQuery(accountId: SelectedAccount?.Id ?? 0, startDate: StartDate, endDate: EndDate));
+            List<StatisticEntry> statisticItems =
+                await Mediator.Send(new GetAccountProgressionQuery(SelectedAccount?.Id ?? 0, StartDate, EndDate));
 
-            HasNoData = !statisticItems.Any();
-            Chart = new BarChart
+            var columnSeries = new ColumnSeries<decimal>
             {
-                Entries = statisticItems.Select(
-                        x => new ChartEntry((float)x.Value)
-                        {
-                            Label = x.Label,
-                            ValueLabel = x.ValueLabel,
-                            Color = SKColor.Parse(x.Color),
-                            ValueLabelColor = SKColor.Parse(x.Color)
-                        })
-                    .ToList(),
-                BackgroundColor = new SKColor(ChartOptions.BackgroundColor.ToUInt()),
-                Margin = ChartOptions.Margin,
-                LabelTextSize = ChartOptions.LabelTextSize,
-                Typeface = SKTypeface.FromFamilyName(ChartOptions.TypeFace)
+                TooltipLabelFormatter = point => $"{point.PrimaryValue:C}",
+                DataLabelsFormatter = point => $"{point.PrimaryValue:C}",
+                DataLabelsPaint = new SolidColorPaint(SKColor.Parse("b4b2b0")),
+                Values = statisticItems.Select(x => x.Value)
             };
+
+            Series.Clear();
+            Series.Add(columnSeries);
         }
     }
-
 }

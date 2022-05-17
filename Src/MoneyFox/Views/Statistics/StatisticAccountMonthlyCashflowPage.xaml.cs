@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Views.Statistics
+namespace MoneyFox.Views.Statistics
 {
 
     using System;
@@ -13,7 +13,7 @@
             BindingContext = ViewModelLocator.StatisticAccountMonthlyCashFlowViewModel;
         }
 
-        private StatisticAccountMonthlyCashflowViewModel ViewModel => (StatisticAccountMonthlyCashflowViewModel)BindingContext;
+        private StatisticAccountMonthlyCashFlowViewModel ViewModel => (StatisticAccountMonthlyCashFlowViewModel)BindingContext;
 
         protected override void OnAppearing()
         {
