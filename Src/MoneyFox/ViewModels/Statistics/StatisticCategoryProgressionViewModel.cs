@@ -1,7 +1,9 @@
-﻿namespace MoneyFox.ViewModels.Statistics
+namespace MoneyFox.ViewModels.Statistics
 {
-
     using System;
+    using System.Collections.Generic;
+    using System.Collections.Immutable;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
@@ -12,19 +14,20 @@
     using Core.ApplicationCore.Queries;
     using Core.ApplicationCore.Queries.Statistics;
     using Extensions;
+    using LiveChartsCore;
+    using LiveChartsCore.Kernel.Sketches;
+    using LiveChartsCore.SkiaSharpView;
+    using LiveChartsCore.SkiaSharpView.Painting;
     using MediatR;
-    using Microcharts;
     using SkiaSharp;
-    using Views.Statistics;
-    using Xamarin.Essentials;
     using Xamarin.Forms;
 
     public class StatisticCategoryProgressionViewModel : StatisticViewModel
     {
-        private readonly IMapper mapper;
-        private BarChart chart = new BarChart();
         private bool hasNoData = true;
         private CategoryViewModel? selectedCategory;
+
+        private readonly IMapper mapper;
 
         public StatisticCategoryProgressionViewModel(IMediator mediator, IMapper mapper) : base(mediator)
         {
@@ -32,48 +35,38 @@
             StartDate = DateTime.Now.AddYears(-1);
         }
 
+        protected override void OnActivated()
+        {
+            Messenger.Register<StatisticCategoryProgressionViewModel, CategorySelectedMessage>(
+                this,
+                async (r, m) =>
+                {
+                    SelectedCategory = mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(m.CategoryId)));
+                    await r.LoadAsync();
+                });
+        }
+
+        protected override void OnDeactivated()
+        {
+            Messenger.Unregister<CategorySelectedMessage>(this);
+        }
+
         public CategoryViewModel? SelectedCategory
         {
             get => selectedCategory;
-
-            set
-            {
-                if (selectedCategory == value)
-                {
-                    return;
-                }
-
-                selectedCategory = value;
-                OnPropertyChanged();
-            }
+            private set => SetProperty(ref selectedCategory, value);
         }
 
-        /// <summary>
-        ///     Chart to render.
-        /// </summary>
-        public BarChart Chart
+        public ObservableCollection<ISeries> Series { get; } = new ObservableCollection<ISeries>();
+
+        public List<ICartesianAxis> XAxis { get; } = new List<ICartesianAxis>
         {
-            get => chart;
+            new Axis { IsVisible = false }
+        };
 
-            set
-            {
-                if (chart == value)
-                {
-                    return;
-                }
-
-                chart = value;
-                OnPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        ///     Chart to render.
-        /// </summary>
         public bool HasNoData
         {
             get => hasNoData;
-
             set
             {
                 if (hasNoData == value)
@@ -86,57 +79,37 @@
             }
         }
 
-        public RelayCommand LoadDataCommand => new RelayCommand(async () => await LoadAsync());
+        public AsyncRelayCommand LoadDataCommand => new AsyncRelayCommand(async () => await LoadAsync());
 
-        public RelayCommand GoToSelectCategoryDialogCommand
-            => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.SelectCategoryRoute));
-
-        protected override void OnActivated()
-        {
-            Messenger.Register<StatisticCategoryProgressionViewModel, CategorySelectedMessage>(
-                recipient: this,
-                handler: async (r, m) =>
-                {
-                    SelectedCategory = mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(m.CategoryId)));
-                    await r.LoadAsync();
-                });
-        }
-
-        protected override void OnDeactivated()
-        {
-            Messenger.Unregister<CategorySelectedMessage>(this);
-        }
+        public AsyncRelayCommand GoToSelectCategoryDialogCommand => new AsyncRelayCommand(
+            async () =>
+                await Shell.Current.GoToModalAsync(ViewModelLocator.SelectCategoryRoute));
 
         protected override async Task LoadAsync()
         {
             if (SelectedCategory == null)
             {
                 HasNoData = true;
-
                 return;
             }
 
-            var statisticItems = await Mediator.Send(
-                new GetCategoryProgressionQuery(categoryId: SelectedCategory?.Id ?? 0, startDate: StartDate, endDate: EndDate));
+            IImmutableList<StatisticEntry> statisticItems =
+                await Mediator.Send(new GetCategoryProgressionQuery(SelectedCategory.Id, StartDate, EndDate));
 
             HasNoData = !statisticItems.Any();
-            Chart = new BarChart
+
+            var columnSeries = new ColumnSeries<decimal>
             {
-                Entries = statisticItems.Select(
-                        x => new ChartEntry((float)x.Value)
-                        {
-                            Label = x.Label,
-                            ValueLabel = x.ValueLabel,
-                            Color = SKColor.Parse(x.Color),
-                            ValueLabelColor = SKColor.Parse(x.Color)
-                        })
-                    .ToList(),
-                BackgroundColor = new SKColor(ChartOptions.BackgroundColor.ToUInt()),
-                Margin = ChartOptions.Margin,
-                LabelTextSize = ChartOptions.LabelTextSize,
-                Typeface = SKTypeface.FromFamilyName(ChartOptions.TypeFace)
+                Name = SelectedCategory.Name,
+                TooltipLabelFormatter = point => $"{point.PrimaryValue:C}",
+                DataLabelsFormatter = point => $"{point.PrimaryValue:C}",
+                DataLabelsPaint = new SolidColorPaint(SKColor.Parse("b4b2b0")),
+                Values = statisticItems.Select(x => x.Value),
+                Stroke = new SolidColorPaint(SKColors.DarkRed)
             };
+
+            Series.Clear();
+            Series.Add(columnSeries);
         }
     }
-
 }
