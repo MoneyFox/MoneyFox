@@ -55,9 +55,9 @@ namespace MoneyFox.ViewModels.Statistics
             }
         }
 
-        public AsyncRelayCommand InitCommand => new AsyncRelayCommand(async () => await InitAsync());
+        public AsyncRelayCommand InitCommand => new AsyncRelayCommand(InitAsync);
 
-        public AsyncRelayCommand LoadDataCommand => new AsyncRelayCommand(async () => await LoadAsync());
+        public AsyncRelayCommand LoadDataCommand => new AsyncRelayCommand(LoadAsync);
 
         private async Task InitAsync()
         {

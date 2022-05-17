@@ -50,8 +50,7 @@
             <forms:CartesianChart Grid.Row="3"
                                   Series="{Binding Series, Mode=OneWay}"
                                   XAxes="{Binding XAxis, Mode=OneWay}"
-                                  LegendPosition="Bottom"
-                                  LegendTextBrush="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+                                  LegendPosition="Hidden" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

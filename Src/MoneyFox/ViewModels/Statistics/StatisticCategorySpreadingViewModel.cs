@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.Statistics
+namespace MoneyFox.ViewModels.Statistics
 {
 
     using System.Collections.Generic;
@@ -8,28 +8,26 @@
     using CommunityToolkit.Mvvm.Input;
     using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using Core.ApplicationCore.Queries.Statistics;
+    using LiveChartsCore;
+    using LiveChartsCore.SkiaSharpView;
     using MediatR;
-    using Microcharts;
-    using SkiaSharp;
-    using Views.Statistics;
-    using Xamarin.Essentials;
+    using MoneyFox.Core._Pending_.Common.Extensions;
 
-    /// <summary>
-    ///     Representation of the category Spreading View
-    /// </summary>
     public class StatisticCategorySpreadingViewModel : StatisticViewModel
     {
-        private DonutChart chart = new DonutChart();
         private PaymentType selectedPaymentType;
 
-        public StatisticCategorySpreadingViewModel(IMediator mediator) : base(mediator) { }
+        public StatisticCategorySpreadingViewModel(IMediator mediator) : base(mediator)
+        {
+        }
 
         public List<PaymentType> PaymentTypes => new List<PaymentType> { PaymentType.Expense, PaymentType.Income };
+
+        public ObservableCollection<ISeries> Series { get; } = new ObservableCollection<ISeries>();
 
         public PaymentType SelectedPaymentType
         {
             get => selectedPaymentType;
-
             set
             {
                 if (selectedPaymentType == value)
@@ -43,54 +41,27 @@
             }
         }
 
-        /// <summary>
-        ///     Chart to render.
-        /// </summary>
-        public DonutChart Chart
-        {
-            get => chart;
+        public AsyncRelayCommand LoadDataCommand => new AsyncRelayCommand(LoadAsync);
 
-            set
-            {
-                if (chart == value)
-                {
-                    return;
-                }
-
-                chart = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public RelayCommand LoadDataCommand => new RelayCommand(async () => await LoadAsync());
-
-        /// <summary>
-        ///     Set a custom CategorySpreadingModel with the set Start and End date
-        /// </summary>
         protected override async Task LoadAsync()
         {
-            var statisticItems = new ObservableCollection<StatisticEntry>(
-                await Mediator.Send(new GetCategorySpreadingQuery(startDate: StartDate, endDate: EndDate, paymentType: SelectedPaymentType)));
+            IEnumerable<StatisticEntry> statisticEntries = await Mediator.Send(
+                new GetCategorySpreadingQuery(
+                    StartDate,
+                    EndDate,
+                    SelectedPaymentType));
 
-            var microChartItems = statisticItems.Select(
-                    x => new ChartEntry((float)x.Value)
-                    {
-                        Label = x.Label,
-                        ValueLabel = x.ValueLabel,
-                        Color = SKColor.Parse(x.Color),
-                        ValueLabelColor = SKColor.Parse(x.Color)
-                    })
-                .ToList();
-
-            Chart = new DonutChart
-            {
-                Entries = microChartItems,
-                BackgroundColor = new SKColor(ChartOptions.BackgroundColor.ToUInt()),
-                Margin = ChartOptions.Margin,
-                LabelTextSize = ChartOptions.LabelTextSize,
-                Typeface = SKTypeface.FromFamilyName(ChartOptions.TypeFace)
-            };
+            IEnumerable<PieSeries<decimal>> pieSeries = statisticEntries.Select(x =>
+                new PieSeries<decimal>
+                {
+                    Name = x.Label,
+                    TooltipLabelFormatter = point => $"{point.Context.Series.Name}: {point.PrimaryValue:C}",
+                    DataLabelsFormatter = point => $"{point.Context.Series.Name}: {point.PrimaryValue:C}",
+                    Values = new List<decimal> { x.Value },
+                    InnerRadius = 150
+                });
+            Series.Clear();
+            Series.AddRange(pieSeries);
         }
     }
-
 }

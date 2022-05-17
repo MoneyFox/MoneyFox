@@ -61,7 +61,7 @@ namespace MoneyFox.ViewModels.Statistics
 
         public List<ICartesianAxis> XAxis { get; } = new List<ICartesianAxis>
         {
-            new Axis { IsVisible = false }
+            new Axis()
         };
 
         public bool HasNoData
@@ -79,7 +79,7 @@ namespace MoneyFox.ViewModels.Statistics
             }
         }
 
-        public AsyncRelayCommand LoadDataCommand => new AsyncRelayCommand(async () => await LoadAsync());
+        public AsyncRelayCommand LoadDataCommand => new AsyncRelayCommand(LoadAsync);
 
         public AsyncRelayCommand GoToSelectCategoryDialogCommand => new AsyncRelayCommand(
             async () =>
