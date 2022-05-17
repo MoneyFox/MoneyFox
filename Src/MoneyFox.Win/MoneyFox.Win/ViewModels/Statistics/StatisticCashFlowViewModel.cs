@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Win.ViewModels.Statistics;
+namespace MoneyFox.Win.ViewModels.Statistics;
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,7 +17,7 @@ public class StatisticCashFlowViewModel : StatisticViewModel
 
     public ObservableCollection<ISeries> Series { get; } = new();
 
-    public List<ICartesianAxis> XAxis { get; } = new() { new Axis { IsVisible = false } };
+    public List<ICartesianAxis> XAxis { get; } = new() { new Axis() };
 
     protected override async Task LoadAsync()
     {
