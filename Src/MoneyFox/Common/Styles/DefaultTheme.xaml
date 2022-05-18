@@ -50,6 +50,9 @@
 
     <Color x:Key="ButtonBackgroundDark">#212121</Color>
     <Color x:Key="ButtonBackgroundLight">#ffffff</Color>
+    
+    <Color x:Key="StatisticLegendDark">#2d2d30</Color>
+    <Color x:Key="StatisticLegendLight">#ffffff</Color>
 
     <!-- Semantic Colors -->
     <Color x:Key="Success">#FF3300</Color>
