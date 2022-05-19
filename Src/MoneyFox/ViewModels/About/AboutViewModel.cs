@@ -49,6 +49,9 @@
 
         public AsyncRelayCommand GoToContributionPageCommand => new AsyncRelayCommand(async () => await GoToContributionPageAsync());
 
+        public AsyncRelayCommand OpenLogFileCommand => new AsyncRelayCommand(async () => await OpenLogFile());
+
+
         public string Version => appInformation.GetVersion;
 
         public string Website => WEBSITE_URL;
@@ -92,6 +95,16 @@
         private async Task GoToContributionPageAsync()
         {
             await browserAdapter.OpenWebsiteAsync(new Uri(GITHUB_CONTRIBUTOR_URL));
+        }
+
+        private async Task OpenLogFile()
+        {
+            var logPath = Path.Combine(path1: FileSystem.AppDataDirectory, path2: LogConfiguration.FileName);
+            await Launcher.OpenAsync(new OpenFileRequest()
+            {
+                File = new ReadOnlyFile(logPath)
+            }
+           );
         }
     }
 
