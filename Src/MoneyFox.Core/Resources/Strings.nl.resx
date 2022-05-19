@@ -811,4 +811,7 @@ Maak een nieuw account aan om hier dan uw budgetten op een gemakkelijke manier b
   <data name="LastDayOfMonthLabel" xml:space="preserve">
     <value>Last Day of Month</value>
   </data>
+  <data name="OpenLogLabel" xml:space="preserve">
+    <value>Open Log</value>
+  </data>
 </root>
