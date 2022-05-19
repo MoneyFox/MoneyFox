@@ -58,7 +58,6 @@ jobs:
           signingIdentity: $(APPLE_CERTIFICATE_SIGNING_IDENTITY)
           signingProvisioningProfileID: $(APPLE_PROV_PROFILE_UUID)
 
-
   - job: BuildAndroid
     displayName: "Build Android"
     pool:
@@ -104,7 +103,6 @@ jobs:
           msbuildVersionOption: latest
           msbuildArchitectureOption: x64
           msbuildArguments: '/p:JavaSdkDirectory="$(JAVA_HOME)/"'
-
 
   - job: BuildAndTestWinUI
     displayName: "Build WinUI and Run Tests"
@@ -193,30 +191,3 @@ jobs:
           msbuildArgs: '/p:AppxBundlePlatforms="x86|x64|arm64" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=CI'
           platform: x64
           configuration: '$(BuildConfiguration)'
-
-
-  - job: RunMutationTests
-    displayName: "Run Mutation Tests"
-    pool:
-      vmImage: windows-2022
-
-    steps:
-
-      - task: DotNetCoreCLI@2
-        displayName: 'Install dotnet-stryker'
-        inputs:
-          command: custom
-          custom: tool
-          arguments: install dotnet-stryker --tool-path $(Agent.BuildDirectory)/tools
-
-      - task: Powershell@2
-        displayName: 'Run dotnet-stryker'
-        inputs:
-          workingDirectory: '$(Build.Repository.LocalPath)\src\MoneyFox.Tests'
-          targetType: 'inline'
-          pwsh: true
-          script: $(Agent.BuildDirectory)/tools/dotnet-stryker --dashboard-api-key $(StrykerDashboardApiKey) --version $(System.PullRequest.SourceBranch)
-
-      - task: PublishMutationReport@1
-        inputs:
-          reportPattern: '**/mutation-report.html'
