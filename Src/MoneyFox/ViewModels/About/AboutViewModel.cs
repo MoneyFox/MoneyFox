@@ -4,6 +4,7 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Threading.Tasks;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
@@ -50,7 +51,6 @@
         public AsyncRelayCommand GoToContributionPageCommand => new AsyncRelayCommand(async () => await GoToContributionPageAsync());
 
         public AsyncRelayCommand OpenLogFileCommand => new AsyncRelayCommand(async () => await OpenLogFile());
-
 
         public string Version => appInformation.GetVersion;
 
@@ -99,12 +99,12 @@
 
         private async Task OpenLogFile()
         {
-            var logPath = Path.Combine(path1: FileSystem.AppDataDirectory, path2: LogConfiguration.FileName);
-            await Launcher.OpenAsync(new OpenFileRequest()
+            var logFilePaths = Directory.GetFiles(path: FileSystem.AppDataDirectory, searchPattern: "moneyfox*").OrderByDescending(x => x);
+            var latestLogFile = logFilePaths.Select(logFilePath => new FileInfo(logFilePath)).OrderByDescending(fi => fi.LastWriteTime).FirstOrDefault();
+            if (latestLogFile != null)
             {
-                File = new ReadOnlyFile(logPath)
+                await Launcher.OpenAsync(new OpenFileRequest { File = new ReadOnlyFile(latestLogFile.FullName) });
             }
-           );
         }
     }
 
