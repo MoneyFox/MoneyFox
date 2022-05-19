@@ -805,4 +805,7 @@ Pour commencer, créez un nouveau compte. Les comptes sont utilisés pour organi
   <data name="LastDayOfMonthLabel" xml:space="preserve">
     <value>Last Day of Month</value>
   </data>
+  <data name="OpenLogLabel" xml:space="preserve">
+    <value>Open Log</value>
+  </data>
 </root>
