@@ -1,4 +1,4 @@
-﻿namespace MoneyFox
+namespace MoneyFox
 {
 
     using Autofac;
@@ -86,8 +86,8 @@
         public static StatisticCategoryProgressionViewModel StatisticCategoryProgressionViewModel
             => ServiceLocator.Current.GetInstance<StatisticCategoryProgressionViewModel>();
 
-        public static StatisticAccountMonthlyCashflowViewModel StatisticAccountMonthlyCashFlowViewModel
-            => ServiceLocator.Current.GetInstance<StatisticAccountMonthlyCashflowViewModel>();
+        public static StatisticAccountMonthlyCashFlowViewModel StatisticAccountMonthlyCashFlowViewModel
+            => ServiceLocator.Current.GetInstance<StatisticAccountMonthlyCashFlowViewModel>();
 
         public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingViewModel
             => ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
