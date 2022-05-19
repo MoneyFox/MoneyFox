@@ -63,16 +63,15 @@ namespace MoneyFox.iOS
 
         private void InitLogger()
         {
+            var logFile = Path.Combine(path1: FileSystem.AppDataDirectory, path2: LogConfiguration.FileName);
             Log.Logger = new LoggerConfiguration().MinimumLevel.Debug()
                 .Enrich.FromLogContext()
                 .Enrich.WithExceptionDetails()
                 .WriteTo.File(
-                    path: Path.Combine(path1: FileSystem.AppDataDirectory, path2: LogConfiguration.FileName),
-                    restrictedToMinimumLevel: LogEventLevel.Information,
+                    path: logFile,
                     rollingInterval: RollingInterval.Month,
-                    retainedFileCountLimit: 12,
-                    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz}\t[{Level:u3}]\t{Message:lj}\t{Exception}{NewLine}",
-                    shared: true)
+                    retainedFileCountLimit: 6,
+                    restrictedToMinimumLevel: LogEventLevel.Information)
                 .CreateLogger();
 
             Log.Information("Application Startup");

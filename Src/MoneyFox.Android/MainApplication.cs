@@ -46,11 +46,9 @@
                 .Enrich.WithExceptionDetails()
                 .WriteTo.File(
                     path: Path.Combine(path1: FileSystem.AppDataDirectory, path2: LogConfiguration.FileName),
-                    restrictedToMinimumLevel: LogEventLevel.Information,
                     rollingInterval: RollingInterval.Month,
-                    retainedFileCountLimit: 12,
-                    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz}\t[{Level:u3}]\t{Message:lj}\t{Exception}{NewLine}",
-                    shared: true)
+                    retainedFileCountLimit: 6,
+                    restrictedToMinimumLevel: LogEventLevel.Information)
                 .CreateLogger();
 
             Log.Information("Application Startup");

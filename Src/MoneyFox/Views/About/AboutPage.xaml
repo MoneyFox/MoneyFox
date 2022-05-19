@@ -32,6 +32,10 @@
                     Command="{Binding RateAppCommand}"
                     Text="{x:Static resources:Strings.RateLabel}" />
 
+                <Button
+                    Command="{Binding OpenLogFileCommand}"
+                    Text="{x:Static resources:Strings.OpenLogLabel}" />
+
                 <Label Text="{x:Static resources:Strings.TranslationLabel}" />
                 <Label
                     HorizontalOptions="CenterAndExpand"
