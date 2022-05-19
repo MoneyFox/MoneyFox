@@ -7,7 +7,7 @@ trigger:
 pr: none
 
 pool:
-  vmImage: 'macOS-11'
+  vmImage: 'macOS-12'
 
 variables:
   Major: '7'
@@ -18,31 +18,31 @@ steps:
     displayName: 'Use correct .Net sdk'
     inputs:
       version: 3.1.x
-  
+
   #- script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_12_0
   #  displayName: 'Select the Xamarin SDK version 6.12.0'
-  
+
   #- script: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_12.1.app;sudo xcode-select --switch /Applications/Xcode_12.app/Contents/Developer
   #  displayName: 'Updating xcode version'
 
   - bash: |
       # Write your commands here
-      
+
       echo "Build Script started.."
-      
+
       echo 'Updating fastlane...'
       sudo gem install fastlane
-      
+
       echo $Major
       echo $Minor
       echo $BUILD_BUILDNUMBER
-      
+
       VERSION=$Major.$Minor.$BUILD_BUILDID
       echo $VERSION
-      
+
       INFO_PLIST_FILE=$BUILD_REPOSITORY_LOCALPATH/Src/MoneyFox.Ios/Info.plist
       echo $INFO_PLIST_FILE
-      
+
       echo "Updating version name to $VERSION_NAME in Info.plist"
       plutil -replace CFBundleShortVersionString -string $BUILD_BUILDNUMBER $INFO_PLIST_FILE
       plutil -replace CFBundleVersion -string $VERSION $INFO_PLIST_FILE
