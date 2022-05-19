@@ -45,7 +45,7 @@
 
         private void ExecuteStartupTasks()
         {
-            Task.Run(async () => { await StartupTasksAsync(); }).ConfigureAwait(false);
+            StartupTasksAsync().ConfigureAwait(false);
         }
 
         private async Task StartupTasksAsync()
@@ -59,6 +59,7 @@
             isRunning = true;
             var settingsFacade = ServiceLocator.Current.GetInstance<ISettingsFacade>();
             var mediator = ServiceLocator.Current.GetInstance<IMediator>();
+
             try
             {
                 if (settingsFacade.IsBackupAutouploadEnabled && settingsFacade.IsLoggedInToBackupService)
