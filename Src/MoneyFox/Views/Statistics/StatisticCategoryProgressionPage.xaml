@@ -5,7 +5,7 @@
              xmlns:statistics="clr-namespace:MoneyFox.ViewModels.Statistics"
              xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-             xmlns:forms="clr-namespace:LiveChartsCore.SkiaSharpView.Xamarin.Forms;assembly=LiveChartsCore.SkiaSharpView.XamarinForms"
+             xmlns:forms="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
              x:DataType="statistics:StatisticCategoryProgressionViewModel"
              Visual="Material">
 

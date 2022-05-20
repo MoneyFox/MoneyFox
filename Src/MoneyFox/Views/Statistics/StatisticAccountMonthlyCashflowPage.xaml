@@ -4,7 +4,7 @@
              xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
              xmlns:statistics="clr-namespace:MoneyFox.ViewModels.Statistics;assembly=MoneyFox"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-             xmlns:forms="clr-namespace:LiveChartsCore.SkiaSharpView.Xamarin.Forms;assembly=LiveChartsCore.SkiaSharpView.XamarinForms"
+             xmlns:forms="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
              x:DataType="statistics:StatisticAccountMonthlyCashFlowViewModel"
              Visual="Material">
 

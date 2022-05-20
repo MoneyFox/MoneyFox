@@ -4,7 +4,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              mc:Ignorable="d"
              Visual="Material"
              xmlns:categories="clr-namespace:MoneyFox.ViewModels.Categories;assembly=MoneyFox"
@@ -55,13 +54,16 @@
                                     CommandParameter="{Binding .}" />
                             </Grid.GestureRecognizers>
 
-                            <yummy:PancakeView CornerRadius="10"
+                            <Border StrokeShape="RoundRectangle 10,10,10,10"
                                                HeightRequest="45"
                                                HorizontalOptions="FillAndExpand">
 
-                                <yummy:PancakeView.Shadow>
-                                    <yummy:DropShadow />
-                                </yummy:PancakeView.Shadow>
+                                <Border.Shadow>
+                                    <Shadow Brush="Black"
+                                        Offset="20,20"
+                                        Radius="40"
+                                        Opacity="0.8" />
+                                </Border.Shadow>
 
                                 <SwipeView
                                     BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
@@ -91,7 +93,7 @@
                                                Text="{Binding Name}" />
                                     </Grid>
                                 </SwipeView>
-                            </yummy:PancakeView>
+                            </Border>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

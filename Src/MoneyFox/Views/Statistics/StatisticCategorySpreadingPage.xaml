@@ -6,7 +6,8 @@
              xmlns:converter="clr-namespace:MoneyFox.Converter"
              xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-             xmlns:statistics="clr-namespace:MoneyFox.ViewModels.Statistics" xmlns:forms="clr-namespace:LiveChartsCore.SkiaSharpView.Xamarin.Forms;assembly=LiveChartsCore.SkiaSharpView.XamarinForms"
+             xmlns:statistics="clr-namespace:MoneyFox.ViewModels.Statistics"
+             xmlns:forms="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
              Visual="Material"
              x:DataType="statistics:StatisticCategorySpreadingViewModel"
              x:Class="MoneyFox.Views.Statistics.StatisticCategorySpreadingPage">

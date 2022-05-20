@@ -54,7 +54,7 @@ namespace MoneyFox
             }
 
             isRunning = true;
-            var settingsFacade =  ServiceLocator.Current.GetInstance<ISettingsFacade>();
+            var settingsFacade = ServiceLocator.Current.GetInstance<ISettingsFacade>();
             var mediator = ServiceLocator.Current.GetInstance<IMediator>();
 
             try

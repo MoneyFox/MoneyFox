@@ -2,7 +2,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:statistics="clr-namespace:MoneyFox.ViewModels.Statistics;assembly=MoneyFox"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              Title="{x:Static resources:Strings.SelectStatisticTitle}"
@@ -26,24 +25,27 @@
                                     CommandParameter="{Binding .}" />
                             </Grid.GestureRecognizers>
 
-                            <yummy:PancakeView
+                            <Border
                                 BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                                  Light={StaticResource CardBackgroundLight}}"
                                 Padding="15"
-                                CornerRadius="10"
+                                StrokeShape="RoundRectangle 10,10,10,10"
                                 MinimumHeightRequest="45"
                                 HorizontalOptions="FillAndExpand">
 
-                                <yummy:PancakeView.Shadow>
-                                    <yummy:DropShadow />
-                                </yummy:PancakeView.Shadow>
+                                <Border.Shadow>
+                                    <Shadow Brush="Black"
+                                        Offset="20,20"
+                                        Radius="40"
+                                        Opacity="0.8" />
+                                </Border.Shadow>
 
                                 <StackLayout Orientation="Vertical" x:DataType="statistics:StatisticSelectorType">
                                     <Label Text="{Binding Name}" Style="{DynamicResource TextSubHead}" />
                                     <Label Text="{Binding Description}"
                                            Style="{DynamicResource DeemphasizedLabelStyle}" />
                                 </StackLayout>
-                            </yummy:PancakeView>
+                            </Border>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox
+namespace MoneyFox
 {
 
     using System;
@@ -9,12 +9,7 @@
 
     public class FileStoreIoBase : FileStoreBase
     {
-        public FileStoreIoBase(string basePath)
-        {
-            BasePath = basePath;
-        }
-
-        protected string BasePath { get; }
+        protected string BasePath { get; } = FileSystem.AppDataDirectory;
 
         public override async Task<Stream> OpenReadAsync(string path)
         {

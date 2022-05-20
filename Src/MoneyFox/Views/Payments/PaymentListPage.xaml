@@ -79,16 +79,19 @@
                                    Style="{StaticResource TextBodySecondary}"
                                    Text="{Binding Subtitle}" />
 
-                            <yummy:PancakeView
+                            <Border
                                 BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                                  Light={StaticResource CardBackgroundLight}}"
-                                CornerRadius="10"
+                                StrokeShape="RoundRectangle 10,10,10,10"
                                 Grid.Row="2"
                                 HorizontalOptions="FillAndExpand">
 
-                                <yummy:PancakeView.Shadow>
-                                    <yummy:DropShadow />
-                                </yummy:PancakeView.Shadow>
+                                <Border.Shadow>
+                                    <Shadow Brush="Black"
+                                        Offset="20,20"
+                                        Radius="40"
+                                        Opacity="0.8" />
+                                </Border.Shadow>
 
                                 <StackLayout BindableLayout.ItemsSource="{Binding .}">
                                     <BindableLayout.ItemTemplate>
@@ -159,7 +162,7 @@
                                         </DataTemplate>
                                     </BindableLayout.ItemTemplate>
                                 </StackLayout>
-                            </yummy:PancakeView>
+                            </Border>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

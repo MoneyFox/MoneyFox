@@ -4,7 +4,6 @@
              xmlns:converter="clr-namespace:MoneyFox.Converter"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              x:Name="StatisticCategorySummary"
@@ -62,17 +61,20 @@
                                     CommandParameter="{Binding .}" />
                             </Grid.GestureRecognizers>
 
-                            <yummy:PancakeView
+                            <Border
                                 BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                                  Light={StaticResource CardBackgroundLight}}"
-                                CornerRadius="10"
+                                StrokeShape="RoundRectangle 10,10,10,10"
                                 Padding="15"
                                 HeightRequest="45"
                                 HorizontalOptions="FillAndExpand">
 
-                                <yummy:PancakeView.Shadow>
-                                    <yummy:DropShadow />
-                                </yummy:PancakeView.Shadow>
+                                <Border.Shadow>
+                                    <Shadow Brush="Black"
+                                        Offset="20,20"
+                                        Radius="40"
+                                        Opacity="0.8" />
+                                </Border.Shadow>
 
                                 <StackLayout HorizontalOptions="FillAndExpand">
                                     <Grid>
@@ -105,7 +107,7 @@
                                             Text="{Binding Average, Converter={StaticResource AmountValueConverter}}" />
                                     </StackLayout>
                                 </StackLayout>
-                            </yummy:PancakeView>
+                            </Border>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

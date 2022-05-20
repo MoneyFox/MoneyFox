@@ -1,9 +1,9 @@
 namespace MoneyFox.Droid
 {
 
-    using Android.App;
-    using Android.Content;
-    using Android.Net;
+    using global::Android.App;
+    using global::Android.Content;
+    using global::Android.Net;
     using Core.Common.Interfaces;
 
     /// <summary>

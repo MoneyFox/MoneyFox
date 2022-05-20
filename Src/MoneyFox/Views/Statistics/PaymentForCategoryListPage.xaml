@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:converter="clr-namespace:MoneyFox.Converter"
              xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
              xmlns:payments="clr-namespace:MoneyFox.ViewModels.Payments;assembly=MoneyFox"
@@ -37,16 +36,19 @@
                                    Style="{StaticResource TextBodySecondary}"
                                    Text="{Binding Subtitle}" />
 
-                            <yummy:PancakeView
+                            <Border
                                 BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                                  Light={StaticResource CardBackgroundLight}}"
-                                CornerRadius="10"
+                                StrokeShape="RoundRectangle 10,10,10,10"
                                 Grid.Row="2"
                                 HorizontalOptions="FillAndExpand">
 
-                                <yummy:PancakeView.Shadow>
-                                    <yummy:DropShadow />
-                                </yummy:PancakeView.Shadow>
+                                <Border.Shadow>
+                                    <Shadow Brush="Black"
+                                        Offset="20,20"
+                                        Radius="40"
+                                        Opacity="0.8" />
+                                </Border.Shadow>
 
                                 <StackLayout BindableLayout.ItemsSource="{Binding .}">
                                     <BindableLayout.ItemTemplate>
@@ -117,7 +119,7 @@
                                         </DataTemplate>
                                     </BindableLayout.ItemTemplate>
                                 </StackLayout>
-                            </yummy:PancakeView>
+                            </Border>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

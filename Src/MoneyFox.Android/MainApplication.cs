@@ -5,7 +5,11 @@ namespace MoneyFox.Droid
     using System.IO;
     using Autofac;
     using Core.Common;
+    using global::Android.App;
     using global::Android.Runtime;
+    using Microsoft.Maui;
+    using Microsoft.Maui.Hosting;
+    using Microsoft.Maui.Storage;
     using Serilog;
     using Serilog.Events;
     using Serilog.Exceptions;
@@ -13,7 +17,7 @@ namespace MoneyFox.Droid
     [Application]
     public class MainApplication : MauiApplication
     {
-        public MainApplication(IntPtr handle, JniHandleOwnership transfer) : base(javaReference: handle, transfer: transfer) { }
+        public MainApplication(IntPtr handle, JniHandleOwnership transfer) : base(handle, transfer) { }
 
         protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
 
