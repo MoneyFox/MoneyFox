@@ -1,11 +1,10 @@
-﻿namespace MoneyFox.Converter
+namespace MoneyFox.Converter
 {
 
     using System;
     using System.Globalization;
     using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using Core.Resources;
-    using Xamarin.Forms;
 
     public class PaymentTypeStringConverter : IValueConverter
     {

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.Categories
+namespace MoneyFox.ViewModels.Categories
 {
 
     using System.Collections.Generic;
@@ -18,7 +18,6 @@
     using Groups;
     using MediatR;
     using Views.Categories;
-    using Xamarin.Forms;
 
     public class CategoryListViewModel : ObservableRecipient
     {

@@ -1,10 +1,8 @@
-﻿namespace MoneyFox.Views.Dialogs
+namespace MoneyFox.Views.Dialogs
 {
 
     using System;
     using System.Threading.Tasks;
-    using Rg.Plugins.Popup.Extensions;
-    using Xamarin.Forms;
 
     public partial class MessageDialog
     {

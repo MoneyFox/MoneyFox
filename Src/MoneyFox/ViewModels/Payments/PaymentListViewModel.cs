@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.Payments
+namespace MoneyFox.ViewModels.Payments
 {
 
     using System.Collections.Generic;
@@ -20,7 +20,6 @@
     using MediatR;
     using Views.Dialogs;
     using Views.Payments;
-    using Xamarin.Forms;
 
     public class PaymentListViewModel : ObservableRecipient
     {

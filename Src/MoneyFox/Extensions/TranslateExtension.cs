@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Extensions
+namespace MoneyFox.Extensions
 {
 
     using System;
@@ -6,8 +6,6 @@
     using System.Resources;
     using Core.Common;
     using Core.Resources;
-    using Xamarin.Forms;
-    using Xamarin.Forms.Xaml;
 
     [ContentProperty("Text")]
     public class TranslateExtension : IMarkupExtension

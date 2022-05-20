@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.Statistics
+namespace MoneyFox.ViewModels.Statistics
 {
 
     using System.Collections.Generic;
@@ -7,7 +7,6 @@
     using CommunityToolkit.Mvvm.Input;
     using Core.Enums;
     using Core.Resources;
-    using Xamarin.Forms;
 
     public class StatisticSelectorViewModel : ObservableObject, IStatisticSelectorViewModel
     {

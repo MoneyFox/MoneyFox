@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.Accounts
+namespace MoneyFox.ViewModels.Accounts
 {
 
     using System.Collections.Generic;
@@ -18,7 +18,6 @@
     using Groups;
     using MediatR;
     using Views.Accounts;
-    using Xamarin.Forms;
 
     public class AccountListViewModel : ObservableRecipient
     {
@@ -28,7 +27,7 @@
         private readonly IMediator mediator;
 
         private ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> accounts
-            = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
+            = new();
 
         private bool isRunning;
 
@@ -55,7 +54,7 @@
         public RelayCommand<AccountViewModel> GoToEditAccountCommand
             => new RelayCommand<AccountViewModel>(
                 async accountViewModel => await Shell.Current.Navigation.PushModalAsync(
-                    new NavigationPage(new EditAccountPage(accountViewModel.Id)) { BarBackgroundColor = Color.Transparent }));
+                    new NavigationPage(new EditAccountPage(accountViewModel.Id)) { BarBackgroundColor = Colors.Transparent }));
 
         public RelayCommand<AccountViewModel> GoToTransactionListCommand
             => new RelayCommand<AccountViewModel>(

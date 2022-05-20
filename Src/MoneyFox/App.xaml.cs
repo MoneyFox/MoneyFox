@@ -1,10 +1,9 @@
-﻿namespace MoneyFox
+namespace MoneyFox
 {
 
     using System;
     using System.Globalization;
     using System.Threading.Tasks;
-    using CommonServiceLocator;
     using Core._Pending_.Common.Facades;
     using Core.ApplicationCore.UseCases.DbBackup;
     using Core.Commands.Payments.ClearPayments;
@@ -13,16 +12,13 @@
     using MediatR;
     using Mobile.Infrastructure.Adapters;
     using Serilog;
-    using Xamarin.Forms;
-    using Device = Xamarin.Forms.Device;
 
-    public partial class App
+    public partial class App : Application
     {
         private bool isRunning;
 
         public App()
         {
-            Device.SetFlags(new[] { "AppTheme_Experimental", "SwipeView_Experimental" });
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
             CultureHelper.CurrentCulture = new CultureInfo(settingsFacade.DefaultCulture);
             InitializeComponent();
@@ -57,7 +53,7 @@
             }
 
             isRunning = true;
-            var settingsFacade = ServiceLocator.Current.GetInstance<ISettingsFacade>();
+            var settingsFacade =  ServiceLocator.Current.GetInstance<ISettingsFacade>();
             var mediator = ServiceLocator.Current.GetInstance<IMediator>();
 
             try

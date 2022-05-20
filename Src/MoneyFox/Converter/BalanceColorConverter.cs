@@ -3,7 +3,6 @@ namespace MoneyFox.Converter
 
     using System;
     using System.Globalization;
-    using Xamarin.Forms;
 
     public class BalanceColorConverter : IValueConverter
     {

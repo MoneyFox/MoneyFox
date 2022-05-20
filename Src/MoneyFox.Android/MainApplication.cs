@@ -1,21 +1,21 @@
-﻿namespace MoneyFox.Droid
+namespace MoneyFox.Droid
 {
 
     using System;
     using System.IO;
-    using Android.App;
-    using Android.Runtime;
     using Autofac;
     using Core.Common;
+    using global::Android.Runtime;
     using Serilog;
     using Serilog.Events;
     using Serilog.Exceptions;
-    using Xamarin.Essentials;
 
     [Application]
-    public class MainApplication : Application
+    public class MainApplication : MauiApplication
     {
         public MainApplication(IntPtr handle, JniHandleOwnership transfer) : base(javaReference: handle, transfer: transfer) { }
+
+        protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
 
         public override void OnCreate()
         {

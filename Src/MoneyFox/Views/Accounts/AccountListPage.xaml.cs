@@ -1,8 +1,7 @@
-﻿namespace MoneyFox.Views.Accounts
+namespace MoneyFox.Views.Accounts
 {
 
     using ViewModels.Accounts;
-    using Xamarin.Forms;
 
     public partial class AccountListPage : ContentPage
     {

@@ -1,11 +1,10 @@
-﻿namespace MoneyFox.Converter
+namespace MoneyFox.Converter
 {
 
     using System;
     using System.Globalization;
     using Core.Resources;
     using ViewModels.Categories;
-    using Xamarin.Forms;
 
     public class NoCategorySelectedConverter : IValueConverter
     {

@@ -1,10 +1,9 @@
-﻿namespace MoneyFox.Converter
+namespace MoneyFox.Converter
 {
 
     using System;
     using System.Globalization;
     using Core.Common;
-    using Xamarin.Forms;
 
     /// <summary>
     ///     Displays the amount as currency of the current culture.

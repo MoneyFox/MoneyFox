@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.Statistics
+namespace MoneyFox.ViewModels.Statistics
 {
 
     using System;
@@ -12,7 +12,6 @@
     using Extensions;
     using MediatR;
     using Serilog;
-    using Xamarin.Forms;
 
     public class StatisticCategorySummaryViewModel : StatisticViewModel
     {

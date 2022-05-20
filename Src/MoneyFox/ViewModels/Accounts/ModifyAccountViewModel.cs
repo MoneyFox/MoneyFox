@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.Accounts
+namespace MoneyFox.ViewModels.Accounts
 {
 
     using System.Threading.Tasks;
@@ -10,7 +10,6 @@
     using Core.Common.Interfaces;
     using Core.Resources;
     using MediatR;
-    using Xamarin.Forms;
 
     public abstract class ModifyAccountViewModel : ObservableRecipient
     {

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.About
+namespace MoneyFox.ViewModels.About
 {
 
     using System;
@@ -12,7 +12,6 @@
     using Core.Common.Interfaces;
     using Core.Interfaces;
     using Core.Resources;
-    using Xamarin.Essentials;
 
     public class AboutViewModel : ObservableObject
     {

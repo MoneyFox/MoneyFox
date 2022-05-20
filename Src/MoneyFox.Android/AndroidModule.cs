@@ -1,7 +1,7 @@
-﻿namespace MoneyFox.Droid
+namespace MoneyFox.Droid
 {
-    using Android.App;
     using Autofac;
+    using global::Android.Content;
 
     public class AndroidModule : Module
     {
@@ -11,7 +11,7 @@
             builder.RegisterType<GraphClientFactory>().AsImplementedInterfaces();
             builder.RegisterType<PlayStoreOperations>().AsImplementedInterfaces();
             builder.RegisterType<DroidAppInformation>().AsImplementedInterfaces();
-            builder.Register(c => new FileStoreIoBase(Application.Context.FilesDir?.Path ?? "")).AsImplementedInterfaces();
+            builder.Register(c => new FileStoreIoBase(Context.FilesDir?.Path ?? "")).AsImplementedInterfaces();
             builder.RegisterModule<MoneyFoxModule>();
         }
     }

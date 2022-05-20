@@ -1,9 +1,5 @@
-﻿namespace MoneyFox.Views.Payments
-{
-
-    using Xamarin.Forms;
-
-    public partial class ModifyPaymentContentView : ContentView
+namespace MoneyFox.Views.Payments
+{    public partial class ModifyPaymentContentView : ContentView
     {
         public ModifyPaymentContentView()
         {

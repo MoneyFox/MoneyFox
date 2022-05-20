@@ -1,9 +1,8 @@
-﻿namespace MoneyFox.Views.Statistics
+namespace MoneyFox.Views.Statistics
 {
 
     using System.Threading.Tasks;
     using Core.Resources;
-    using Xamarin.Forms;
 
     public partial class PaymentForCategoryListPage : ContentPage
     {

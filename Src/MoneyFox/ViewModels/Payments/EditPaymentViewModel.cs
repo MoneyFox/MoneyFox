@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.Payments
+namespace MoneyFox.ViewModels.Payments
 {
 
     using System.Threading.Tasks;
@@ -10,7 +10,6 @@
     using Core.Common.Interfaces;
     using Core.Resources;
     using MediatR;
-    using Xamarin.Forms;
 
     public class EditPaymentViewModel : ModifyPaymentViewModel
     {

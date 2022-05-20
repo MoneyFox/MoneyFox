@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.Dashboard
+namespace MoneyFox.ViewModels.Dashboard
 {
 
     using System.Collections.ObjectModel;
@@ -12,8 +12,6 @@
     using Core.ApplicationCore.Queries;
     using Extensions;
     using MediatR;
-    using Xamarin.Forms;
-    using Xamarin.Forms.Internals;
 
     public class DashboardViewModel : ObservableRecipient
     {

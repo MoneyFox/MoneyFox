@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.Categories
+namespace MoneyFox.ViewModels.Categories
 {
 
     using AutoMapper;
@@ -7,7 +7,6 @@
     using Core._Pending_.Common.Messages;
     using Core.Common.Interfaces;
     using MediatR;
-    using Xamarin.Forms;
 
     public class SelectCategoryViewModel : CategoryListViewModel
     {

@@ -1,9 +1,8 @@
-﻿namespace MoneyFox.Views.Categories
+namespace MoneyFox.Views.Categories
 {
 
     using Core.Resources;
     using ViewModels.Categories;
-    using Xamarin.Forms;
 
     public partial class AddCategoryPage
     {

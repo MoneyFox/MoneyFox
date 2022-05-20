@@ -1,9 +1,8 @@
-﻿namespace MoneyFox.Services
+namespace MoneyFox.Services
 {
 
     using System.Threading.Tasks;
     using Core.Interfaces;
-    using Xamarin.Forms;
 
     internal sealed class NavigationService : INavigationService
     {

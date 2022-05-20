@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.SetupAssistant
+namespace MoneyFox.ViewModels.SetupAssistant
 {
 
     using System.Threading.Tasks;
@@ -6,7 +6,6 @@
     using CommunityToolkit.Mvvm.Input;
     using Core._Pending_.Common.Facades;
     using Extensions;
-    using Xamarin.Forms;
 
     public class WelcomeViewModel : ObservableObject
     {

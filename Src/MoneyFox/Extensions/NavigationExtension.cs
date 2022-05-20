@@ -1,12 +1,10 @@
-﻿namespace MoneyFox.Extensions
+namespace MoneyFox.Extensions
 {
 
     using System;
     using System.Threading.Tasks;
     using Core.ApplicationCore.Domain.Exceptions;
     using Serilog;
-    using Xamarin.Essentials;
-    using Xamarin.Forms;
 
     public static class NavigationExtension
     {

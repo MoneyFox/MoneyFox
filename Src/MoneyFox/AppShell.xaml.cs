@@ -1,4 +1,4 @@
-﻿namespace MoneyFox
+namespace MoneyFox
 {
 
     using Views.About;
@@ -11,7 +11,6 @@
     using Views.Settings;
     using Views.SetupAssistant;
     using Views.Statistics;
-    using Xamarin.Forms;
 
     public partial class AppShell : Shell
     {

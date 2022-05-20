@@ -1,9 +1,8 @@
-﻿namespace MoneyFox.Mobile.Infrastructure.Adapters
+namespace MoneyFox.Mobile.Infrastructure.Adapters
 {
 
     using Core.Interfaces;
     using Serilog;
-    using Xamarin.Essentials;
 
     public class ConnectivityAdapter : IConnectivityAdapter
     {
@@ -11,16 +10,17 @@
         {
             get
             {
-                try
-                {
-                    return Connectivity.NetworkAccess == NetworkAccess.Internet;
-                }
-                catch (PermissionException ex)
-                {
-                    Log.Error(exception: ex, messageTemplate: "Permission denied on check for connection");
+                //try
+                //{
+                //    return Connectivity.NetworkAccess == NetworkAccess.Internet;
+                //}
+                //catch (PermissionException ex)
+                //{
+                //    Log.Error(exception: ex, messageTemplate: "Permission denied on check for connection");
 
-                    return false;
-                }
+                //    return false;
+                //}
+                return false;
             }
         }
     }

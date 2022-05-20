@@ -1,11 +1,9 @@
-﻿namespace MoneyFox.Services
+namespace MoneyFox.Services
 {
 
     using System.Threading.Tasks;
     using Core.Common.Interfaces;
     using JetBrains.Annotations;
-    using Xamarin.CommunityToolkit.Extensions;
-    using Xamarin.Forms;
 
     [UsedImplicitly]
     public class ToastService : IToastService

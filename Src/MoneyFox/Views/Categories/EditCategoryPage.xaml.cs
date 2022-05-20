@@ -1,10 +1,9 @@
-﻿namespace MoneyFox.Views.Categories
+namespace MoneyFox.Views.Categories
 {
 
     using CommonServiceLocator;
     using Core.Resources;
     using ViewModels.Categories;
-    using Xamarin.Forms;
 
     public partial class EditCategoryPage
     {

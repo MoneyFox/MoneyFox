@@ -1,8 +1,5 @@
-﻿namespace MoneyFox.Views.Accounts
+namespace MoneyFox.Views.Accounts
 {
-
-    using Xamarin.Forms;
-
     public partial class ModifyAccountContentView : ContentView
     {
         public ModifyAccountContentView()

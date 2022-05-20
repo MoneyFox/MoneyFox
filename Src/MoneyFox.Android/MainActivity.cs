@@ -1,36 +1,20 @@
-﻿namespace MoneyFox.Droid
+namespace MoneyFox.Droid
 {
-
-    using Android.App;
-    using Android.Content;
-    using Android.Content.PM;
-    using Android.OS;
-    using Android.Runtime;
-    using Infrastructure.DbBackup;
-    using Microsoft.Identity.Client;
-    using Rg.Plugins.Popup;
-    using Xamarin.Forms;
-    using Xamarin.Forms.Platform.Android;
-    using Platform = Xamarin.Essentials.Platform;
+    using global::Android.App;
+    using global::Android.Content;
+    using global::Android.Content.PM;
+    using global::Android.OS;
+    using global::Android.Runtime;
 
     [Activity(
         Label = "MoneyFox",
         Theme = "@style/MainTheme",
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.UiMode | ConfigChanges.Orientation)]
-    public class MainActivity : FormsAppCompatActivity
+    public class MainActivity : MauiAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            ParentActivityWrapper.ParentActivity = this;
-            TabLayoutResource = Resource.Layout.Tabbar;
-            ToolbarResource = Resource.Layout.Toolbar;
-            SetStatusBarColor(Color.Black.ToAndroid());
             base.OnCreate(savedInstanceState);
-            Popup.Init(this);
-            Platform.Init(activity: this, bundle: savedInstanceState);
-            Forms.Init(activity: this, bundle: savedInstanceState);
-            FormsMaterial.Init(context: this, bundle: savedInstanceState);
-            LoadApplication(new App());
         }
 
         // Needed for auth, so that MSAL can intercept the response from the browser
@@ -44,11 +28,6 @@
         {
             Platform.OnRequestPermissionsResult(requestCode: requestCode, permissions: permissions, grantResults: grantResults);
             base.OnRequestPermissionsResult(requestCode: requestCode, permissions: permissions, grantResults: grantResults);
-        }
-
-        public override void OnBackPressed()
-        {
-            Popup.SendBackPressed(base.OnBackPressed);
         }
     }
 

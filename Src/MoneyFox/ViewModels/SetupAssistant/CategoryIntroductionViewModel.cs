@@ -1,10 +1,9 @@
-﻿namespace MoneyFox.ViewModels.SetupAssistant
+namespace MoneyFox.ViewModels.SetupAssistant
 {
 
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using Extensions;
-    using Xamarin.Forms;
 
     public class CategoryIntroductionViewModel : ObservableObject
     {

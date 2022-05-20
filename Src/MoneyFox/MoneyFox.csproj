@@ -1,10 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>netstandard2.1</TargetFramework>
-        <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
-        <nullable>enable</nullable>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworks>net6.0-ios;net6.0-android</TargetFrameworks>
+    <UseMaui>True</UseMaui>
+    <OutputType>Library</OutputType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <!-- Required for C# Hot Reload -->
+    <UseInterpreter Condition="'$(Configuration)' == 'Debug'">True</UseInterpreter>
+
+    <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-ios'">15.4</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-android'">31.0</SupportedOSPlatformVersion>
+
+  </PropertyGroup>
 
     <ItemGroup>
         <None Remove="App.config" />
@@ -12,6 +21,7 @@
         <None Remove="Common\Fonts\norwester.otf" />
         <None Remove="Common\Fonts\ProductSans-Regular.ttf" />
         <None Remove="Common\Fonts\RobotoMono-Regular.ttf" />
+        <None Remove="Resources\materialdesignicons-webfont.ttf" />
     </ItemGroup>
 
     <ItemGroup>
@@ -24,20 +34,16 @@
     <ItemGroup>
         <PackageReference Include="Autofac" Version="6.3.0" />
         <PackageReference Include="Autofac.Extras.CommonServiceLocator" Version="6.0.1" />
+        <PackageReference Include="CommunityToolkit.Maui" Version="1.0.0-rc3" />
         <PackageReference Include="CommunityToolkit.Mvvm" Version="7.1.2" />
         <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
-        <PackageReference Include="LiveChartsCore.SkiaSharpView.XamarinForms" Version="2.0.0-beta.230" />
+        <PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-beta.230" />
         <PackageReference Include="Serilog" Version="2.11.0" />
-        <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
+        <PackageReference Include="CommonServiceLocator" Version="2.0.6" />
         <PackageReference Include="SonarAnalyzer.CSharp" Version="8.39.0.47922">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.2" />
-        <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
-        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
-        <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
-        <PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.2401" />
         <PackageReference Include="MediatR" Version="10.0.1" />
     </ItemGroup>
 

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.Statistics
+namespace MoneyFox.ViewModels.Statistics
 {
 
     using System.Collections.Generic;
@@ -14,7 +14,6 @@
     using MediatR;
     using Payments;
     using Views.Payments;
-    using Xamarin.Forms;
 
     public class PaymentForCategoryListViewModel : ObservableRecipient
     {

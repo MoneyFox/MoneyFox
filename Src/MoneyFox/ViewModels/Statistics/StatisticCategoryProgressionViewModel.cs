@@ -20,7 +20,6 @@ namespace MoneyFox.ViewModels.Statistics
     using LiveChartsCore.SkiaSharpView.Painting;
     using MediatR;
     using SkiaSharp;
-    using Xamarin.Forms;
 
     public class StatisticCategoryProgressionViewModel : StatisticViewModel
     {

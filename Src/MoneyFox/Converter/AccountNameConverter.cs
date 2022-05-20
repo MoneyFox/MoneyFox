@@ -1,11 +1,10 @@
-﻿namespace MoneyFox.Converter
+namespace MoneyFox.Converter
 {
 
     using System;
     using System.Globalization;
     using Core.Common;
     using ViewModels.Accounts;
-    using Xamarin.Forms;
 
     public class AccountNameConverter : IValueConverter
     {

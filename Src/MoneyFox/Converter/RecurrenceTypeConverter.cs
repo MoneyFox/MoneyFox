@@ -1,11 +1,10 @@
-﻿namespace MoneyFox.Converter
+namespace MoneyFox.Converter
 {
 
     using System;
     using System.Globalization;
     using ConverterLogic;
     using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-    using Xamarin.Forms;
 
     /// <summary>
     ///     Converts the RecurrenceType to a string.

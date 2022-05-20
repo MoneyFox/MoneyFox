@@ -1,8 +1,7 @@
-﻿namespace MoneyFox.Views.Categories
+namespace MoneyFox.Views.Categories
 {
 
     using ViewModels.Categories;
-    using Xamarin.Forms;
 
     public partial class CategoryListPage : ContentPage
     {
