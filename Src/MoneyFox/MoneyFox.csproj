@@ -16,7 +16,6 @@
   </PropertyGroup>
 
     <ItemGroup>
-        <None Remove="App.config" />
         <None Remove="Common\Fonts\fa-solid-900.ttf" />
         <None Remove="Common\Fonts\norwester.otf" />
         <None Remove="Common\Fonts\ProductSans-Regular.ttf" />
@@ -50,7 +49,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\MoneyFox.Core\MoneyFox.Core.csproj" />
-        <ProjectReference Include="..\MoneyFox.Mobile.Infrastructure\MoneyFox.Mobile.Infrastructure.csproj" />
+        <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>

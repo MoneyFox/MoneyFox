@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Mobile.Infrastructure
+namespace MoneyFox.Mobile.Infrastructure
 {
 
     using System;
