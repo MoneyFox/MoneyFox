@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Statistics
+namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Statistics
 {
 
     using System;
@@ -143,6 +143,26 @@
             // We have to test here for Mac since they have a different standard sign than Windows.
             result[2].ValueLabel[0].Should().Be(RuntimeInformation.IsOSPlatform(OSPlatform.OSX) ? '-' : '(');
             CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
+        }
+
+        [Theory]
+        [InlineData("en-US", '$')]
+        [InlineData("de-CH", 'C')]
+        public async Task GetValues_CorrectCurrency(string culture, char expectedCurrencySymbol)
+        {
+            // Arrange
+            var cultureInfo = new CultureInfo(culture);
+            CultureHelper.CurrentCulture = cultureInfo;
+
+            // Act
+            var result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
+                request: new GetCashFlowQuery { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
+                cancellationToken: default);
+
+            // Assert
+            result[0].ValueLabel[0].Should().Be(expectedCurrencySymbol);
+            result[1].ValueLabel[0].Should().Be(expectedCurrencySymbol);
+            result[2].ValueLabel[0].Should().Be(expectedCurrencySymbol);
         }
     }
 
