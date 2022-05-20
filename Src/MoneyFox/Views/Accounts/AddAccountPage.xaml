@@ -9,7 +9,6 @@
                            xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
                            Title="{x:Static resources:Strings.AddAccountLabel}"
                            mc:Ignorable="d"
-                           Visual="Material"
                            x:Class="MoneyFox.Views.Accounts.AddAccountPage">
 
     <ContentPage.Content>

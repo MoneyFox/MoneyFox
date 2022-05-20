@@ -8,8 +8,7 @@
              xmlns:categories="clr-namespace:MoneyFox.ViewModels.Categories;assembly=MoneyFox"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              Title="{x:Static resources:Strings.CategoriesTitle}"
-             mc:Ignorable="d"
-             Visual="Material">
+             mc:Ignorable="d">
 
     <ContentPage.Content>
         <Grid IsClippedToBounds="False"

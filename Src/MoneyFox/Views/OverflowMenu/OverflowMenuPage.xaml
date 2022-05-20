@@ -5,8 +5,7 @@
              x:Class="MoneyFox.Views.OverflowMenu.OverflowMenuPage"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              xmlns:overflowmenu="clr-namespace:MoneyFox.ViewModels.OverflowMenu"
-             Title="{x:Static resources:Strings.MenuTitle}"
-             Visual="Material">
+             Title="{x:Static resources:Strings.MenuTitle}">
 
     <ContentPage.Content>
         <StackLayout>

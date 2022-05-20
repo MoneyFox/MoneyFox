@@ -9,7 +9,6 @@
                            xmlns:accounts="clr-namespace:MoneyFox.Views.Accounts"
                            xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
                            Title="{Binding Title}"
-                           Visual="Material"
                            x:Class="MoneyFox.Views.Accounts.EditAccountPage">
     <ContentPage.Content>
         <ScrollView>

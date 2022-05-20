@@ -7,7 +7,6 @@
              Title="{x:Static resources:Strings.SelectStatisticTitle}"
              mc:Ignorable="d"
              x:Class="MoneyFox.Views.Statistics.StatisticSelectorPage"
-             Visual="Material"
              x:Name="root">
 
     <ContentPage.Content>

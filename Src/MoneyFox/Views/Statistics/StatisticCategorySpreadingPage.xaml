@@ -8,7 +8,6 @@
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              xmlns:statistics="clr-namespace:MoneyFox.ViewModels.Statistics"
              xmlns:forms="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
-             Visual="Material"
              x:DataType="statistics:StatisticCategorySpreadingViewModel"
              x:Class="MoneyFox.Views.Statistics.StatisticCategorySpreadingPage">
 

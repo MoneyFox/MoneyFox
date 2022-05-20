@@ -33,20 +33,6 @@ namespace MoneyFox.Droid
             Platform.OnRequestPermissionsResult(requestCode: requestCode, permissions: permissions, grantResults: grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-
-
-        //// Needed for auth, so that MSAL can intercept the response from the browser
-        //protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
-        //{
-        //    base.OnActivityResult(requestCode: requestCode, resultCode: resultCode, data: data);
-        //    AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(requestCode: requestCode, resultCode: resultCode, data: data);
-        //}
-
-        //public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
-        //{
-        //    Platform.OnRequestPermissionsResult(requestCode: requestCode, permissions: permissions, grantResults: grantResults);
-        //    base.OnRequestPermissionsResult(requestCode: requestCode, permissions: permissions, grantResults: grantResults);
-        //}
     }
 
 }
