@@ -4,21 +4,20 @@
     <UsingMauiEssentials>true</UsingMauiEssentials>
     <TargetFramework>net6.0-android</TargetFramework>
     <OutputType>Exe</OutputType>
-    <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-android'">31.0</SupportedOSPlatformVersion>
+    <!--<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-android'">31.0</SupportedOSPlatformVersion>-->
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <PropertyGroup>
+  <!--<PropertyGroup>
     <UseInterpreter Condition="$(TargetFramework.Contains('-android'))">True</UseInterpreter>
     <SupportedOSPlatformVersion>28.0</SupportedOSPlatformVersion>
-  </PropertyGroup>
+  </PropertyGroup>-->
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'" />
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'" />
 
   <ItemGroup>
-    <ProjectReference Include="..\MoneyFox.Core\MoneyFox.Core.csproj" />
     <ProjectReference Include="..\MoneyFox\MoneyFox.csproj" />
   </ItemGroup>
 
