@@ -807,4 +807,7 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
   <data name="LastDayOfMonthLabel" xml:space="preserve">
     <value>Letzter Tag des Monats</value>
   </data>
+  <data name="OpenLogLabel" xml:space="preserve">
+    <value>Logdatei Öffnen</value>
+  </data>
 </root>
