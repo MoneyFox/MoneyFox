@@ -46,7 +46,7 @@ namespace MoneyFox.ViewModels.Statistics
         public RelayCommand<PaymentViewModel> GoToEditPaymentCommand
             => new RelayCommand<PaymentViewModel>(
                 async paymentViewModel => await Shell.Current.Navigation.PushModalAsync(
-                    new NavigationPage(new EditPaymentPage(paymentViewModel.Id)) { BarBackgroundColor = Color.Transparent }));
+                    new NavigationPage(new EditPaymentPage(paymentViewModel.Id)) { BarBackgroundColor = Colors.Transparent }));
 
         protected override void OnActivated()
         {

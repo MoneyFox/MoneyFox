@@ -4,6 +4,7 @@ namespace MoneyFox.Views.Dialogs
     using System;
     using System.Threading.Tasks;
 
+
     public partial class ConfirmMessageDialog
     {
         public static readonly BindableProperty PopupTitleProperty = BindableProperty.Create(
@@ -25,8 +26,6 @@ namespace MoneyFox.Views.Dialogs
             propertyName: nameof(NegativeText),
             returnType: typeof(string),
             declaringType: typeof(ConfirmMessageDialog));
-
-        private TaskCompletionSource<bool>? confirmTaskCompletionSource;
 
         public ConfirmMessageDialog(string title, string message, string positiveText = "", string negativeText = "")
         {
@@ -61,29 +60,14 @@ namespace MoneyFox.Views.Dialogs
             set => SetValue(property: NegativeTextProperty, value: value);
         }
 
-        public async Task<bool> ShowAsync()
+        private void PositiveHandlerClicked(object sender, EventArgs e)
         {
-            confirmTaskCompletionSource = new TaskCompletionSource<bool>();
-            await Application.Current.MainPage.Navigation.PushPopupAsync(this);
-
-            return await confirmTaskCompletionSource.Task;
+            Close(true);
         }
 
-        private async void PositiveHandlerClicked(object sender, EventArgs e)
+        private void NegativeHandlerClicked(object sender, EventArgs e)
         {
-            await DismissAsync();
-            confirmTaskCompletionSource?.SetResult(true);
-        }
-
-        private async void NegativeHandlerClicked(object sender, EventArgs e)
-        {
-            await DismissAsync();
-            confirmTaskCompletionSource?.SetResult(false);
-        }
-
-        private static async Task DismissAsync()
-        {
-            await Application.Current.MainPage.Navigation.PopPopupAsync();
+            Close(false);
         }
     }
 

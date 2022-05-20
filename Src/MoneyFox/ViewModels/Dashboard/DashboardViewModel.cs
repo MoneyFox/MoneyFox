@@ -142,7 +142,12 @@ namespace MoneyFox.ViewModels.Dashboard
             {
                 isRunning = true;
                 Accounts = mapper.Map<ObservableCollection<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
-                Accounts.ForEach(async x => x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
+
+                foreach (var account in accounts)
+                {
+                    account.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(account.Id));
+                }
+
                 Assets = await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
                 EndOfMonthBalance = await mediator.Send(new GetTotalEndOfMonthBalanceQuery());
                 MonthlyExpenses = await mediator.Send(new GetMonthlyExpenseQuery());

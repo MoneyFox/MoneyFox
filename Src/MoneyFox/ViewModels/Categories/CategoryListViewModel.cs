@@ -67,7 +67,7 @@ namespace MoneyFox.ViewModels.Categories
         public AsyncRelayCommand<CategoryViewModel> GoToEditCategoryCommand
             => new AsyncRelayCommand<CategoryViewModel>(
                 async categoryViewModel => await Shell.Current.Navigation.PushModalAsync(
-                    new NavigationPage(new EditCategoryPage(categoryViewModel.Id)) { BarBackgroundColor = Color.Transparent }));
+                    new NavigationPage(new EditCategoryPage(categoryViewModel.Id)) { BarBackgroundColor = Colors.Transparent }));
 
         public AsyncRelayCommand<CategoryViewModel> DeleteCategoryCommand
             => new AsyncRelayCommand<CategoryViewModel>(async categoryViewModel => await DeleteAccountAsync(categoryViewModel));

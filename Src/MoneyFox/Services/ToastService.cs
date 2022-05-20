@@ -1,7 +1,7 @@
 namespace MoneyFox.Services
 {
-
     using System.Threading.Tasks;
+    using CommunityToolkit.Maui.Alerts;
     using Core.Common.Interfaces;
     using JetBrains.Annotations;
 
@@ -10,7 +10,8 @@ namespace MoneyFox.Services
     {
         public async Task ShowToastAsync(string message, string title = "")
         {
-            await Application.Current.MainPage.DisplayToastAsync(message);
+            var toast = Toast.Make(message);
+            await toast.Show();
         }
     }
 

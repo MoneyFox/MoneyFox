@@ -3,7 +3,6 @@ namespace MoneyFox.Views.Dialogs
 
     using System;
     using System.Threading.Tasks;
-    using Core._Pending_.Common.Messages;
     using ViewModels.Dialogs;
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -17,29 +16,12 @@ namespace MoneyFox.Views.Dialogs
             ViewModel.EndDate = dateTo;
         }
 
-        public DateSelectionPopup(DateSelectedMessage message)
-        {
-            InitializeComponent();
-            BindingContext = ViewModelLocator.SelectDateRangeDialogViewModel;
-            ViewModel.Initialize(message);
-        }
-
         private SelectDateRangeDialogViewModel ViewModel => (SelectDateRangeDialogViewModel)BindingContext;
 
-        public async Task ShowAsync()
-        {
-            await Application.Current.MainPage.Navigation.PushPopupAsync(this);
-        }
-
-        private static async Task DismissAsync()
-        {
-            await Application.Current.MainPage.Navigation.PopPopupAsync();
-        }
-
-        private async void Button_OnClicked(object sender, EventArgs e)
+        private void Button_OnClicked(object sender, EventArgs e)
         {
             ViewModel.DoneCommand.Execute(null);
-            await DismissAsync();
+            Close();
         }
     }
 

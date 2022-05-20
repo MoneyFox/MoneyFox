@@ -33,7 +33,7 @@
                 Text="{x:Static styles:IconFont.Filter}"
                 VerticalOptions="Center"
                 TextColor="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}"
-                Command="{Binding ShowFilterDialogCommand}" />
+                Clicked="ShowFilter" />
 
             <Button
                 Style="{StaticResource PrimaryButton}"

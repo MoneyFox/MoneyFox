@@ -1,13 +1,14 @@
-﻿namespace MoneyFox.Services
+namespace MoneyFox.Services
 {
 
     using System;
     using System.Threading.Tasks;
+    using CommunityToolkit.Maui.Views;
     using Core.Common.Interfaces;
     using Core.Resources;
     using Views.Dialogs;
 
-    public class DialogService : IDialogService
+    public class DialogService : Page, IDialogService
     {
         private LoadingDialog? loadingDialog;
 
@@ -20,7 +21,7 @@
             }
 
             loadingDialog = new LoadingDialog();
-            await loadingDialog.ShowAsync();
+            await this.ShowPopupAsync(loadingDialog);
         }
 
         /// <inheritdoc />
@@ -33,13 +34,14 @@
 
             try
             {
-                await LoadingDialog.DismissAsync();
+                loadingDialog.Close();
                 loadingDialog = null;
             }
             catch (IndexOutOfRangeException)
             {
                 // catch and swallow out of range exceptions when dismissing dialogs.
             }
+            await Task.CompletedTask;
         }
 
         public async Task ShowMessageAsync(string title, string message)
@@ -51,7 +53,7 @@
             }
 
             var messageDialog = new MessageDialog(title: title, message: message);
-            await messageDialog.ShowAsync();
+            await this.ShowPopupAsync(messageDialog);
         }
 
         public async Task<bool> ShowConfirmMessageAsync(string title, string message, string? positiveButtonText = null, string? negativeButtonText = null)
@@ -68,7 +70,7 @@
                 positiveText: positiveButtonText ?? Strings.YesLabel,
                 negativeText: negativeButtonText ?? Strings.NoLabel);
 
-            return await confirmDialog.ShowAsync();
+            return (bool)await this.ShowPopupAsync(confirmDialog);
         }
     }
 

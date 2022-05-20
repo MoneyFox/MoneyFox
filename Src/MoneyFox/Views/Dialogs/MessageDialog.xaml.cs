@@ -35,19 +35,9 @@ namespace MoneyFox.Views.Dialogs
             set => SetValue(property: PopupMessageProperty, value: value);
         }
 
-        public async Task ShowAsync()
+        private void OnOkClick(object sender, EventArgs e)
         {
-            await Application.Current.MainPage.Navigation.PushPopupAsync(this);
-        }
-
-        public static async Task DismissAsync()
-        {
-            await Application.Current.MainPage.Navigation.PopPopupAsync();
-        }
-
-        private async void OnOkClick(object sender, EventArgs e)
-        {
-            await DismissAsync();
+            Close();
         }
     }
 

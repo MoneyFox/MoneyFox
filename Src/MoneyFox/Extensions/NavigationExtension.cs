@@ -18,7 +18,7 @@ namespace MoneyFox.Extensions
                 }
 
                 return shell.Navigation.PushModalAsync(
-                    new NavigationPage(page) { BarBackgroundColor = Color.Transparent, BarTextColor = GetCurrentForegroundColor() });
+                    new NavigationPage(page) { BarBackgroundColor = Colors.Transparent, BarTextColor = GetCurrentForegroundColor() });
             }
             catch (Exception ex)
             {

@@ -1,56 +1,32 @@
-﻿<pages:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
-                 xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-                 xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-                 Visual="Material"
-                 CloseWhenBackgroundIsClicked="false"
-                 x:Class="MoneyFox.Views.Dialogs.DateSelectionPopup">
+﻿<xct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+       xmlns:xct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+       Color="Transparent"
+       x:Class="MoneyFox.Views.Dialogs.DateSelectionPopup">
 
-    <!--You can set an animation in the xaml file or in the csharp code behind-->
-    <pages:PopupPage.Animation>
-        <animations:ScaleAnimation
-            PositionIn="Center"
-            PositionOut="Center"
-            ScaleIn="1.2"
-            ScaleOut="0.8"
-            DurationIn="400"
-            DurationOut="300"
-            EasingIn="SinOut"
-            EasingOut="SinIn"
-            HasBackgroundAnimation="True" />
-    </pages:PopupPage.Animation>
+    <Grid BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
+          VerticalOptions="Center"
+          HorizontalOptions="Center"
+          Padding="16"
+          WidthRequest="300">
 
-    <ContentPage.Content>
-        <yummy:PancakeView
-            BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                             Light={StaticResource CardBackgroundLight}}"
-            CornerRadius="10"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            Padding="16"
-            WidthRequest="300">
+        <StackLayout>
+            <Label Text="{x:Static resources:Strings.SelectDateLabel}"
+                Style="{DynamicResource TextHead}" />
 
-            <!--You can use any elements here which are extended from Xamarin.Forms.View-->
-            <StackLayout>
+            <Label Style="{DynamicResource BaseLabel}"
+                Text="{x:Static resources:Strings.TimeRangeStartLabel}"
+                HorizontalOptions="StartAndExpand" />
 
-                <Label Text="{x:Static resources:Strings.SelectDateLabel}"
-                       Style="{DynamicResource TextHead}" />
+            <DatePicker Date="{Binding StartDate}" />
 
-                <Label Style="{DynamicResource BaseLabel}"
-                       Text="{x:Static resources:Strings.TimeRangeStartLabel}"
-                       HorizontalOptions="StartAndExpand" />
+            <Label Style="{DynamicResource BaseLabel}" />
+            <DatePicker Date="{Binding EndDate}" />
 
-                <DatePicker Date="{Binding StartDate}" />
+            <Button Text="{x:Static resources:Strings.DoneLabel}"
+                Clicked="Button_OnClicked" />
+        </StackLayout>
 
-                <Label Style="{DynamicResource BaseLabel}" />
-                <DatePicker Date="{Binding EndDate}" />
-
-                <Button Text="{x:Static resources:Strings.DoneLabel}"
-                        Clicked="Button_OnClicked" />
-            </StackLayout>
-
-        </yummy:PancakeView>
-    </ContentPage.Content>
-</pages:PopupPage>
+    </Grid>
+</xct:Popup>

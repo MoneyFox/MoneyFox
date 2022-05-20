@@ -81,14 +81,12 @@ namespace MoneyFox.ViewModels.Payments
                 PaymentRecurrence.Yearly
             };
 
-        public RelayCommand ShowFilterDialogCommand => new RelayCommand(async () => await new FilterPopup().ShowAsync());
-
         public RelayCommand GoToAddPaymentCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
 
         public RelayCommand<PaymentViewModel> GoToEditPaymentCommand
             => new RelayCommand<PaymentViewModel>(
                 async paymentViewModel => await Shell.Current.Navigation.PushModalAsync(
-                    new NavigationPage(new EditPaymentPage(paymentViewModel.Id)) { BarBackgroundColor = Color.Transparent }));
+                    new NavigationPage(new EditPaymentPage(paymentViewModel.Id)) { BarBackgroundColor = Colors.Transparent }));
 
         protected override void OnActivated()
         {

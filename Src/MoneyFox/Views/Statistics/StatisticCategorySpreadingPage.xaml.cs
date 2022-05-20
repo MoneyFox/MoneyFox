@@ -1,7 +1,7 @@
-﻿namespace MoneyFox.Views.Statistics
+namespace MoneyFox.Views.Statistics
 {
-
     using System;
+    using CommunityToolkit.Maui.Views;
     using Dialogs;
     using ViewModels.Statistics;
 
@@ -16,9 +16,9 @@
 
         private StatisticCategorySpreadingViewModel ViewModel => (StatisticCategorySpreadingViewModel)BindingContext;
 
-        private async void OpenFilterDialog(object sender, EventArgs e)
+        private void OpenFilterDialog(object sender, EventArgs e)
         {
-            await new DateSelectionPopup(dateFrom: ViewModel.StartDate, dateTo: ViewModel.EndDate).ShowAsync();
+            this.ShowPopup(new DateSelectionPopup(dateFrom: ViewModel.StartDate, dateTo: ViewModel.EndDate));
         }
     }
 
