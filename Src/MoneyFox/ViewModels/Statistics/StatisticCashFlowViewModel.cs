@@ -22,7 +22,7 @@ namespace MoneyFox.ViewModels.Statistics
 
         public List<ICartesianAxis> XAxis { get; } = new List<ICartesianAxis>
         {
-            new Axis()
+            new Axis {IsVisible = false }
         };
 
         protected override async Task LoadAsync()
