@@ -17,7 +17,7 @@ public class StatisticCashFlowViewModel : StatisticViewModel
 
     public ObservableCollection<ISeries> Series { get; } = new();
 
-    public List<ICartesianAxis> XAxis { get; } = new() { new Axis() };
+    public List<ICartesianAxis> XAxis { get; } = new() { new Axis { IsVisible = false } };
 
     protected override async Task LoadAsync()
     {
