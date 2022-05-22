@@ -7,7 +7,7 @@
     using MediatR;
     using MoneyFox.Core.Common.Interfaces;
 
-    public class GetAccountByIdQuery : IRequest<Account>
+    public class GetAccountByIdQuery : IRequest<Account?>
     {
         public GetAccountByIdQuery(int accountId)
         {
@@ -16,7 +16,7 @@
 
         public int AccountId { get; }
 
-        public class Handler : IRequestHandler<GetAccountByIdQuery, Account>
+        public class Handler : IRequestHandler<GetAccountByIdQuery, Account?>
         {
             private readonly IContextAdapter contextAdapter;
 
@@ -25,7 +25,7 @@
                 this.contextAdapter = contextAdapter;
             }
 
-            public async Task<Account> Handle(GetAccountByIdQuery request, CancellationToken cancellationToken)
+            public async Task<Account?> Handle(GetAccountByIdQuery request, CancellationToken cancellationToken)
             {
                 return await contextAdapter.Context.Accounts.FindAsync(request.AccountId);
             }

@@ -28,7 +28,7 @@
             public async Task<Unit> Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
             {
                 var existingCategory = await contextAdapter.Context.Categories.FindAsync(request.Category.Id);
-                existingCategory.UpdateData(name: request.Category.Name, note: request.Category.Note ?? "", requireNote: request.Category.RequireNote);
+                existingCategory?.UpdateData(name: request.Category.Name, note: request.Category.Note ?? "", requireNote: request.Category.RequireNote);
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;

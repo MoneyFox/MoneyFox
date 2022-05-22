@@ -27,7 +27,7 @@
             public async Task<Unit> Handle(DeactivateAccountByIdCommand request, CancellationToken cancellationToken)
             {
                 var entityToDeactivate = await contextAdapter.Context.Accounts.FindAsync(request.AccountId);
-                entityToDeactivate.Deactivate();
+                entityToDeactivate?.Deactivate();
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
