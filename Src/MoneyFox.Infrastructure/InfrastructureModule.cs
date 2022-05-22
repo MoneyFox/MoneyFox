@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Infrastructure
+namespace MoneyFox.Infrastructure
 {
 
     using Autofac;
@@ -11,8 +11,8 @@
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(c => c.Resolve<IContextAdapter>().Context).AsImplementedInterfaces();
             builder.RegisterType<ContextAdapter>().AsImplementedInterfaces();
+            builder.Register(c => c.Resolve<IContextAdapter>().Context).AsImplementedInterfaces();
 
             RegisterOneDriveServices(builder);
             RegisterRepositories(builder);
