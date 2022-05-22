@@ -3,6 +3,7 @@ namespace MoneyFox.Mobile.Infrastructure.Adapters
 
     using System;
     using Core.Interfaces;
+    using Microsoft.Maui.Storage;
     using Serilog;
 
     public class SettingsAdapter : ISettingsAdapter

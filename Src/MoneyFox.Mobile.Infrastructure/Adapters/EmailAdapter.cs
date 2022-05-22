@@ -4,6 +4,8 @@ namespace MoneyFox.Mobile.Infrastructure.Adapters
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Core.Interfaces;
+    using Microsoft.Maui.ApplicationModel;
+    using Microsoft.Maui.ApplicationModel.Communication;
     using Serilog;
 
     public class EmailAdapter : IEmailAdapter
