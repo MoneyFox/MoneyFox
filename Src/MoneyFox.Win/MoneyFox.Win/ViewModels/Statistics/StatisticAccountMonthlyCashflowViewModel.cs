@@ -17,9 +17,6 @@ using LiveChartsCore.SkiaSharpView.Painting;
 using MediatR;
 using SkiaSharp;
 
-/// <summary>
-///     Representation of the cash flow view.
-/// </summary>
 public class StatisticAccountMonthlyCashflowViewModel : StatisticViewModel
 {
     private readonly IMapper mapper;
