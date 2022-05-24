@@ -7,8 +7,6 @@
     {
         private const string ResScheme = "res:";
 
-        public IosFileStore(string basePath) : base(basePath) { }
-
         protected override string AppendPath(string path)
         {
             if (path.StartsWith(value: ResScheme, comparisonType: StringComparison.OrdinalIgnoreCase))

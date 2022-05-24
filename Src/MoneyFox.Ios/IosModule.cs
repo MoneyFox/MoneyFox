@@ -12,7 +12,7 @@
             builder.RegisterType<GraphServiceClientFactory>().AsImplementedInterfaces();
             builder.RegisterType<StoreOperations>().AsImplementedInterfaces();
             builder.RegisterType<AppInformation>().AsImplementedInterfaces();
-            builder.Register(c => new IosFileStore(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments))).AsImplementedInterfaces();
+            builder.Register(c => new IosFileStore()).AsImplementedInterfaces(); // Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
             builder.RegisterModule<MoneyFoxModule>();
         }
     }
