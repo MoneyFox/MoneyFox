@@ -1,17 +1,22 @@
-﻿namespace MoneyFox.Infrastructure
+namespace MoneyFox.Infrastructure
 {
 
     using Autofac;
-    using Core.Common.Interfaces;
     using DataAccess;
     using DbBackup;
+    using MediatR;
+    using MoneyFox.Core._Pending_.Common.Facades;
+    using MoneyFox.Core.Interfaces;
     using Persistence;
 
     public class InfrastructureModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(c => c.Resolve<IContextAdapter>().Context).AsImplementedInterfaces();
+            builder.Register(c => EfCoreContextFactory.Create(
+                c.Resolve<IPublisher>(),
+                c.Resolve<ISettingsFacade>(),
+                c.Resolve<IDbPathProvider>().GetDbPath())).AsSelf().AsImplementedInterfaces();
             builder.RegisterType<ContextAdapter>().AsImplementedInterfaces();
 
             RegisterOneDriveServices(builder);
