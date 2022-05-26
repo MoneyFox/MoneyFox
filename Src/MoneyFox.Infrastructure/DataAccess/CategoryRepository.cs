@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Infrastructure.DataAccess
+namespace MoneyFox.Infrastructure.DataAccess
 {
 
     using System.Threading;
