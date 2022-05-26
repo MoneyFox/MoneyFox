@@ -17,8 +17,7 @@ namespace MoneyFox.Extensions
                     return Task.CompletedTask;
                 }
 
-                return shell.Navigation.PushModalAsync(
-                    new NavigationPage(page) { BarBackgroundColor = Colors.Transparent, BarTextColor = GetCurrentForegroundColor() });
+                return shell.Navigation.PushModalAsync(page);
             }
             catch (Exception ex)
             {
@@ -27,20 +26,6 @@ namespace MoneyFox.Extensions
 
                 throw exception;
             }
-        }
-
-        private static Color GetCurrentForegroundColor()
-        {
-            if (AppInfo.RequestedTheme == AppTheme.Dark)
-            {
-                Application.Current.Resources.TryGetValue(key: "TextPrimaryColor_Dark", value: out var colorDark);
-
-                return (Color)colorDark;
-            }
-
-            Application.Current.Resources.TryGetValue(key: "TextPrimaryColor_Light", value: out var colorLight);
-
-            return (Color)colorLight;
         }
     }
 

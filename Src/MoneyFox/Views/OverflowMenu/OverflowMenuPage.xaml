@@ -25,14 +25,16 @@
                             <Border
                                 BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
                                 Padding="15"
-                                StrokeShape="RoundRectangle 10,10,10,10"
+                                Stroke="black"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 10"
                                 MinimumHeightRequest="45"
                                 HorizontalOptions="FillAndExpand">
 
                                 <Border.Shadow>
                                     <Shadow Brush="Black"
-                                        Offset="20,20"
-                                        Radius="40"
+                                        Offset="5,5"
+                                        Radius="30"
                                         Opacity="0.8" />
                                 </Border.Shadow>
 
