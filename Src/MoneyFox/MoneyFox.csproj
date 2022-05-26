@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0-ios;net6.0-android</TargetFrameworks>
+    <TargetFramework>net6.0</TargetFramework>
     <UseMaui>True</UseMaui>
     <OutputType>Library</OutputType>
     <ImplicitUsings>enable</ImplicitUsings>
