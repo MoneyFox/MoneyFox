@@ -8,7 +8,7 @@ namespace MoneyFox.Services
     using Core.Resources;
     using Views.Dialogs;
 
-    public class DialogService : Page, IDialogService
+    public class DialogService : IDialogService
     {
         private LoadingDialog? loadingDialog;
 
@@ -21,7 +21,7 @@ namespace MoneyFox.Services
             }
 
             loadingDialog = new LoadingDialog();
-            await this.ShowPopupAsync(loadingDialog);
+            await Application.Current.MainPage.ShowPopupAsync(loadingDialog);
         }
 
         /// <inheritdoc />
@@ -53,7 +53,7 @@ namespace MoneyFox.Services
             }
 
             var messageDialog = new MessageDialog(title: title, message: message);
-            await this.ShowPopupAsync(messageDialog);
+            await Application.Current.MainPage.ShowPopupAsync(messageDialog);
         }
 
         public async Task<bool> ShowConfirmMessageAsync(string title, string message, string? positiveButtonText = null, string? negativeButtonText = null)
@@ -70,7 +70,7 @@ namespace MoneyFox.Services
                 positiveText: positiveButtonText ?? Strings.YesLabel,
                 negativeText: negativeButtonText ?? Strings.NoLabel);
 
-            return (bool)await this.ShowPopupAsync(confirmDialog);
+            return (bool)await Application.Current.MainPage.ShowPopupAsync(confirmDialog);
         }
     }
 
