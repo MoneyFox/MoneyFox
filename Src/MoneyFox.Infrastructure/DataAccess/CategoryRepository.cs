@@ -8,14 +8,16 @@ namespace MoneyFox.Infrastructure.DataAccess
 
     internal sealed class CategoryRepository : ICategoryRepository
     {
-        private readonly AppDbContext appDbContext;
-        public CategoryRepository(AppDbContext appDbContext)
+        private readonly ContextAdapter contextAdapter;
+        public CategoryRepository(ContextAdapter contextAdapter)
         {
-            this.appDbContext = appDbContext;
+            this.contextAdapter = contextAdapter;
         }
 
         public async Task AddAsync(Category category, CancellationToken cancellationToken = default)
         {
+            var appDbContext = contextAdapter.Context;
+
             await appDbContext.AddAsync(category, cancellationToken);
             await appDbContext.SaveChangesAsync(cancellationToken:cancellationToken);
         }
