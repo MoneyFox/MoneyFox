@@ -10,6 +10,7 @@
     using JetBrains.Annotations;
     using Views.About;
     using Views.Backup;
+    using Views.Budget;
     using Views.Categories;
     using Views.Settings;
 
@@ -28,6 +29,7 @@
         public List<OverflowItem> OverflowEntries
             => new List<OverflowItem>
             {
+                new OverflowItem { Name = Strings.BudgetsTitle, Type = OverflowMenuItemType.Budgets },
                 new OverflowItem { Name = Strings.CategoriesTitle, Type = OverflowMenuItemType.Categories },
                 new OverflowItem { Name = Strings.BackupTitle, Type = OverflowMenuItemType.Backup },
                 new OverflowItem { Name = Strings.SettingsTitle, Type = OverflowMenuItemType.Settings },
@@ -38,6 +40,10 @@
         {
             switch (menuType)
             {
+                case OverflowMenuItemType.Budgets:
+                    await navigationService.NavigateTo<BudgetListPage>();
+
+                    break;
                 case OverflowMenuItemType.Categories:
                     await navigationService.NavigateTo<CategoryListPage>();
 
