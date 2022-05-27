@@ -26,14 +26,17 @@
                        Text="{x:Static resources:Strings.WelcomePageText}" />
 
                 <Button Grid.Row="3"
+                        VerticalOptions="Center"
                         Text="{x:Static resources:Strings.CreateAccountNowLabel}"
                         Command="{Binding GoToAddAccountCommand}" />
 
                 <Button Grid.Row="5"
+                        VerticalOptions="Center"
                         Text="{x:Static resources:Strings.NextLabel}"
                         Command="{Binding NextStepCommand}" />
 
                 <Button Grid.Row="6"
+                        VerticalOptions="Center"
                         Style="{StaticResource LinkButton}"
                         Text="{x:Static resources:Strings.SkipLabel}"
                         Command="{Binding SkipCommand}" />

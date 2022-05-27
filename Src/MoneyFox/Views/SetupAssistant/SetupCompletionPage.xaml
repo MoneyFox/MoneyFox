@@ -20,12 +20,14 @@
                 <Label Grid.Row="2"
                        Text="{x:Static resources:Strings.CompletedText}" />
 
-                <Grid Grid.Row="4" ColumnDefinitions="*, 2*">
+                <Grid Grid.Row="4" ColumnDefinitions="*, 6, 2*">
                     <Button Grid.Column="0"
+                            VerticalOptions="Center"
                             Text="{x:Static resources:Strings.BackLabel}"
                             Command="{Binding BackCommand}" />
 
                     <Button Grid.Column="1"
+                            VerticalOptions="Center"
                             Text="{x:Static resources:Strings.CompleteLabel}"
                             Command="{Binding CompleteCommand}" />
                 </Grid>

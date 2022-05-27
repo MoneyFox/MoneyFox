@@ -21,18 +21,21 @@
                        Text="{x:Static resources:Strings.CategorieIntroductionText}" />
 
                 <Button Grid.Row="3"
+                        VerticalOptions="Center"
                         Text="{x:Static resources:Strings.CreateCategoryNowLabel}"
                         Command="{Binding GoToAddCategoryCommand}" />
 
                 <Label Grid.Row="4"
                        Text="{x:Static resources:Strings.PaymentIntroductionText}" />
 
-                <Grid Grid.Row="6" ColumnDefinitions="*, 2*">
+                <Grid Grid.Row="6" ColumnDefinitions="*, 6, 2*">
                     <Button Grid.Column="0"
+                            VerticalOptions="Center"
                             Text="{x:Static resources:Strings.BackLabel}"
                             Command="{Binding BackCommand}" />
 
-                    <Button Grid.Column="1"
+                    <Button Grid.Column="2"
+                            VerticalOptions="Center"
                             Text="{x:Static resources:Strings.NextLabel}"
                             Command="{Binding NextStepCommand}" />
                 </Grid>
