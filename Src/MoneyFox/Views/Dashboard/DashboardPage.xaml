@@ -75,13 +75,14 @@
                             FontAttributes="Bold"
                             FontFamily="Product"
                             FontSize="22"
-                            HorizontalTextAlignment="Center"
+                            HorizontalOptions="Center"
                             Style="{Binding Assets, Converter={StaticResource BalanceColorConverter}}"
                             Text="{Binding Assets, Converter={StaticResource AmountFormatConverter}}"
                             VerticalTextAlignment="Center" />
 
                         <StackLayout Orientation="Horizontal"
                                      VerticalOptions="End"
+                                     Spacing="6"
                                      HorizontalOptions="End">
                             <Label
                                 Margin="0,0,0,2"
@@ -142,7 +143,6 @@
                                         <Grid>
                                             <Label
                                                 Margin="10,2,0,0"
-                                                HorizontalTextAlignment="Start"
                                                 Style="{StaticResource TextHead}"
                                                 Text="{Binding Name}"
                                                 VerticalTextAlignment="Start" />
@@ -151,30 +151,29 @@
                                                 Margin="0,0,6,2"
                                                 FontFamily="Product"
                                                 FontSize="20"
-                                                HorizontalTextAlignment="Center"
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center"
                                                 Style="{Binding CurrentBalance, Converter={StaticResource BalanceColorConverter}}"
-                                                Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
-                                                VerticalTextAlignment="Center" />
+                                                Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}" />
 
                                             <StackLayout Orientation="Horizontal"
                                                          VerticalOptions="End"
+                                                         Spacing="6"
                                                          HorizontalOptions="End">
                                                 <Label
                                                     Margin="0,0,0,2"
                                                     FontFamily="Product"
                                                     FontSize="10"
-                                                    HorizontalTextAlignment="End"
-                                                    Text="{x:Static resources:Strings.EndOfMonthLabel}"
-                                                    VerticalTextAlignment="End" />
+                                                    VerticalOptions="End"
+                                                    Text="{x:Static resources:Strings.EndOfMonthLabel}" />
 
                                                 <Label
                                                     Margin="0,0,6,2"
                                                     FontFamily="Product"
                                                     FontSize="10"
-                                                    HorizontalTextAlignment="End"
+                                                    VerticalOptions="End"
                                                     Style="{Binding EndOfMonthBalance, Converter={StaticResource BalanceColorConverter}}"
-                                                    Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}"
-                                                    VerticalTextAlignment="End" />
+                                                    Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}" />
                                             </StackLayout>
                                         </Grid>
                                     </Border>
@@ -225,9 +224,9 @@
                                     FontAttributes="Bold"
                                     FontFamily="Product"
                                     FontSize="18"
-                                    HorizontalTextAlignment="Center"
-                                    Text="{Binding MonthlyIncomes, StringFormat='+ {0:C}', Converter={StaticResource AmountFormatConverter}}"
-                                    VerticalTextAlignment="Center" />
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    Text="{Binding MonthlyIncomes, StringFormat='+ {0:C}', Converter={StaticResource AmountFormatConverter}}" />
                             </Grid>
                         </Border>
 
@@ -253,9 +252,9 @@
                                     FontAttributes="Bold"
                                     FontFamily="Product"
                                     FontSize="18"
-                                    HorizontalTextAlignment="Center"
-                                    Text="{Binding MonthlyExpenses, StringFormat='- {0:C}', Converter={StaticResource AmountFormatConverter}}"
-                                    VerticalTextAlignment="Center" />
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    Text="{Binding MonthlyExpenses, StringFormat='- {0:C}', Converter={StaticResource AmountFormatConverter}}" />
                             </Grid>
                         </Border>
                     </Grid>
