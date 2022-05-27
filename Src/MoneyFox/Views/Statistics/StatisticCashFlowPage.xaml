@@ -6,8 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-    xmlns:forms="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
     xmlns:statistics="clr-namespace:MoneyFox.ViewModels.Statistics"
+    xmlns:maui="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
     x:DataType="statistics:StatisticCashFlowViewModel"
     mc:Ignorable="d">
 
@@ -43,7 +43,7 @@
                    Style="{StaticResource TextBodySecondary}"
                    Text="{Binding Title}" />
 
-            <forms:CartesianChart Grid.Row="2"
+            <maui:CartesianChart Grid.Row="2"
                                   Series="{Binding Series, Mode=OneWay}"
                                   XAxes="{Binding XAxis, Mode=OneWay}"
                                   LegendPosition="Bottom"
