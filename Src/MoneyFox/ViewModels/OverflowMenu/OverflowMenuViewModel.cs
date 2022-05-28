@@ -23,15 +23,15 @@
             this.navigationService = navigationService;
         }
 
-        public AsyncRelayCommand<OverflowItem> GoToSelectedItemCommand => new AsyncRelayCommand<OverflowItem>(async s => await GoToSelectedItem(s.Type));
+        public AsyncRelayCommand<OverflowItemViewModel> GoToSelectedItemCommand => new AsyncRelayCommand<OverflowItemViewModel>(async s => await GoToSelectedItem(s.Type));
 
-        public List<OverflowItem> OverflowEntries
-            => new List<OverflowItem>
+        public List<OverflowItemViewModel> OverflowEntries
+            => new List<OverflowItemViewModel>
             {
-                new OverflowItem { Name = Strings.CategoriesTitle, Type = OverflowMenuItemType.Categories },
-                new OverflowItem { Name = Strings.BackupTitle, Type = OverflowMenuItemType.Backup },
-                new OverflowItem { Name = Strings.SettingsTitle, Type = OverflowMenuItemType.Settings },
-                new OverflowItem { Name = Strings.AboutTitle, Type = OverflowMenuItemType.About }
+                new OverflowItemViewModel { IconGlyph = "label",Name = Strings.CategoriesTitle, Type = OverflowMenuItemType.Categories },
+                new OverflowItemViewModel { IconGlyph = "backup",Name = Strings.BackupTitle, Type = OverflowMenuItemType.Backup },
+                new OverflowItemViewModel { IconGlyph = "settings",Name = Strings.SettingsTitle, Type = OverflowMenuItemType.Settings },
+                new OverflowItemViewModel { IconGlyph = "info",Name = Strings.AboutTitle, Type = OverflowMenuItemType.About }
             };
 
         private async Task GoToSelectedItem(OverflowMenuItemType menuType)

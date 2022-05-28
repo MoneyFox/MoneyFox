@@ -813,4 +813,7 @@ To start create a new account. Accounts are used to organize payments and money 
   <data name="OpenLogLabel" xml:space="preserve">
     <value>Open Log</value>
   </data>
+    <data name="MoreTitle" xml:space="preserve">
+        <value>More</value>
+    </data>
 </root>
