@@ -6,9 +6,9 @@
 
     public interface IStatisticSelectorViewModel
     {
-        List<StatisticSelectorType> StatisticItems { get; }
+        List<StatisticSelectorTypeViewModel> StatisticItems { get; }
 
-        RelayCommand<StatisticSelectorType> GoToStatisticCommand { get; }
+        RelayCommand<StatisticSelectorTypeViewModel> GoToStatisticCommand { get; }
     }
 
 }

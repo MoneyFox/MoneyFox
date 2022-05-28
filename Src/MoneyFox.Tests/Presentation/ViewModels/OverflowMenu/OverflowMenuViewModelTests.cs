@@ -20,7 +20,7 @@
             var navigationService = Substitute.For<INavigationService>();
 
             // Arrange
-            var overflowItem = new OverflowItem { Name = "Some Name", Type = OverflowMenuItemType.Categories };
+            var overflowItem = new OverflowItemViewModel { Name = "Some Name", Type = OverflowMenuItemType.Categories };
 
             // Act
             var viewModel = new OverflowMenuViewModel(navigationService);
@@ -37,7 +37,7 @@
             var navigationService = Substitute.For<INavigationService>();
 
             // Arrange
-            var overflowItem = new OverflowItem { Name = "Some Name", Type = OverflowMenuItemType.Backup };
+            var overflowItem = new OverflowItemViewModel { Name = "Some Name", Type = OverflowMenuItemType.Backup };
 
             // Act
             var viewModel = new OverflowMenuViewModel(navigationService);
@@ -54,7 +54,7 @@
             var navigationService = Substitute.For<INavigationService>();
 
             // Arrange
-            var overflowItem = new OverflowItem { Name = "Some Name", Type = OverflowMenuItemType.Settings };
+            var overflowItem = new OverflowItemViewModel { Name = "Some Name", Type = OverflowMenuItemType.Settings };
 
             // Act
             var viewModel = new OverflowMenuViewModel(navigationService);
@@ -71,7 +71,7 @@
             var navigationService = Substitute.For<INavigationService>();
 
             // Arrange
-            var overflowItem = new OverflowItem { Name = "Some Name", Type = OverflowMenuItemType.About };
+            var overflowItem = new OverflowItemViewModel { Name = "Some Name", Type = OverflowMenuItemType.About };
 
             // Act
             var viewModel = new OverflowMenuViewModel(navigationService);

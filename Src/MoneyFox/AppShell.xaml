@@ -20,22 +20,28 @@
        mc:Ignorable="d">
 
     <TabBar>
-        <Tab Title="{x:Static resources:Strings.HomeTitle}"
-             Icon="{AppThemeBinding Dark=ic_dashboard_white, Light=ic_dashboard_black}">
+        <Tab Title="{x:Static resources:Strings.HomeTitle}" >
+            <Tab.Icon>
+                <FontImageSource FontFamily="MaterialIconsRound" Glyph="home" />
+            </Tab.Icon>
             <ShellContent>
                 <dashboard:DashboardPage />
             </ShellContent>
         </Tab>
 
-        <Tab Title="{x:Static resources:Strings.StatisticsTitle}"
-             Icon="{AppThemeBinding Dark=ic_bar_chart_white, Light=ic_bar_chart_black}">
+        <Tab Title="{x:Static resources:Strings.StatisticsTitle}" >
+            <Tab.Icon>
+                <FontImageSource FontFamily="MaterialIconsRound" Glyph="donut_small" />
+            </Tab.Icon>
             <ShellContent Title="{x:Static resources:Strings.StatisticsTitle}">
                 <statistic:StatisticSelectorPage />
             </ShellContent>
         </Tab>
 
-        <Tab Title="{x:Static resources:Strings.SettingsTitle}"
-             Icon="{AppThemeBinding Dark=ic_settings_white, Light=ic_settings_black}">
+        <Tab Title="{x:Static resources:Strings.MoreTitle}" >
+            <Tab.Icon>
+                <FontImageSource FontFamily="MaterialIconsRound" Glyph="more_horiz" />
+            </Tab.Icon>
             <ShellContent>
                 <overflow:OverflowMenuPage />
             </ShellContent>
