@@ -18,23 +18,11 @@
       "packagePatterns": [
         "*"
       ],
-      "excludePackagePatterns": [
-        "^Microsoft.EntityFrameworkCore"
-      ],
       "updateTypes": [
         "major"
       ],
       "groupName": "all major dependencies",
       "groupSlug": "all-major"
-    },
-    {
-      "matchPackagePatterns": [
-        "^Microsoft.EntityFrameworkCore"
-      ],
-      "updateTypes": [
-        "major"
-      ],
-      "enabled": false
     }
   ]
 }
