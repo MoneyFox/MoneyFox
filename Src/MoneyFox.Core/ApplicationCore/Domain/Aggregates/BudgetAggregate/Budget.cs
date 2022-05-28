@@ -10,7 +10,7 @@
         [UsedImplicitly]
         private Budget() { }
 
-        private Budget(string name, double spendingLimit, List<int> includedCategories)
+        public Budget(string name, double spendingLimit, List<int> includedCategories)
         {
             Name = name;
             SpendingLimit = spendingLimit;

@@ -32,15 +32,15 @@
             var testData = new TestData.DefaultBudget();
 
             // Act
-            var query = new CreateBudget.Query(testData.Name, testData.SpendingLimit);
-            await handler.Handle(query, CancellationToken.None);
+            var query = new CreateBudget.Query(name: testData.Name, spendingLimit: testData.SpendingLimit, categories: testData.Categories);
+            await handler.Handle(request: query, cancellationToken: CancellationToken.None);
 
             // Assert
             await budgetRepository.AddAsync(Arg.Any<Budget>());
-
             capturedBudget.Should().NotBeNull();
             capturedBudget!.Name.Should().Be(testData.Name);
             capturedBudget.SpendingLimit.Should().Be(testData.SpendingLimit);
+            capturedBudget.IncludedCategories.Should().BeEquivalentTo(testData.Categories);
         }
     }
 

@@ -1,6 +1,8 @@
 ﻿namespace MoneyFox.Core.ApplicationCore.UseCases.BudgetCreation
 {
 
+    using System;
+    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
     using Domain.Aggregates.BudgetAggregate;
@@ -10,17 +12,19 @@
     {
         public class Query : IRequest
         {
-            public Query(string name, double spendingLimit)
+            public Query(string name, double spendingLimit, List<int> categories)
             {
                 Name = name;
                 SpendingLimit = spendingLimit;
+                Categories = categories;
             }
 
             public string Name { get; }
             public double SpendingLimit { get; }
+            public List<int> Categories { get; }
         }
 
-        public class Handler : IRequestHandler<CreateBudget.Query>
+        public class Handler : IRequestHandler<Query>
         {
             private IBudgetRepository repository;
 
@@ -29,9 +33,12 @@
                 this.repository = repository;
             }
 
-            public Task<Unit> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(Query request, CancellationToken cancellationToken)
             {
-                throw new System.NotImplementedException();
+                var budget = new Budget(request.Name, request.SpendingLimit, request.Categories);
+                await repository.AddAsync(budget);
+
+                return Unit.Value;
             }
         }
     }
