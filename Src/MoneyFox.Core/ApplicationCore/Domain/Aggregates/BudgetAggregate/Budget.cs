@@ -1,7 +1,9 @@
-﻿namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate
+namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate
 {
 
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using AutoMapper.Configuration.Annotations;
     using JetBrains.Annotations;
     using MoneyFox.Core.Common.Interfaces;
 
@@ -41,7 +43,7 @@
             private set;
         }
 
-        public List<int> IncludedCategories
+        public IList<int> IncludedCategories
         {
             get;
 

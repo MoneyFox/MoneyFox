@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Infrastructure.Persistence
+namespace MoneyFox.Infrastructure.Persistence
 {
 
     using System;
