@@ -12,12 +12,12 @@
     using Xunit;
     using static TestFramework.Category.CategoryAssertion;
 
-    public class CategoryRepositoryTest
+    public class CategoryRepositoryTests
     {
         private readonly CategoryRepository categoryRepository;
         private readonly AppDbContext appDbContext;
 
-        public CategoryRepositoryTest()
+        public CategoryRepositoryTests()
         {
             appDbContext = InMemoryAppDbContextFactory.Create();
             categoryRepository = new CategoryRepository(appDbContext);

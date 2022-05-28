@@ -8,6 +8,7 @@
     using Core._Pending_.Common.Facades;
     using Core.ApplicationCore.Domain.Aggregates;
     using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+    using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
     using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using Core.ApplicationCore.Domain.Events;
     using Core.Common.Interfaces;
@@ -32,6 +33,8 @@
         public DbSet<RecurringPayment> RecurringPayments { get; set; } = null!;
 
         public DbSet<Category> Categories { get; set; } = null!;
+
+        public DbSet<Budget> Budgets { get; set; } = null!;
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
