@@ -83,9 +83,7 @@
                                                                IsVisible="{Binding IsTransfer}"
                                                                WidthRequest="15">
                                                             <Image.Source>
-                                                                <FontImageSource FontFamily="FontAwesome"
-                                                                    Glyph="{x:Static styles:IconFont.ExchangeAlt}"
-                                                                    Color="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+                                                                <FontImageSource FontFamily="MaterialIconsRound" Glyph="sync_alt" />
                                                             </Image.Source>
                                                         </Image>
 
@@ -93,9 +91,7 @@
                                                                IsVisible="{Binding IsRecurring}"
                                                                WidthRequest="15">
                                                             <Image.Source>
-                                                                <FontImageSource FontFamily="FontAwesome"
-                                                                    Glyph="{x:Static styles:IconFont.Redo}"
-                                                                    Color="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+                                                                <FontImageSource FontFamily="MaterialIconsRound" Glyph="repeat" />
                                                             </Image.Source>
                                                         </Image>
 
@@ -103,9 +99,7 @@
                                                                IsVisible="{Binding IsCleared}"
                                                                WidthRequest="15">
                                                             <Image.Source>
-                                                                <FontImageSource FontFamily="FontAwesome"
-                                                                    Glyph="{x:Static styles:IconFont.Check}"
-                                                                    Color="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+                                                                <FontImageSource FontFamily="MaterialIconsRound" Glyph="done" />
                                                             </Image.Source>
                                                         </Image>
                                                     </StackLayout>
