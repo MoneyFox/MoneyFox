@@ -27,6 +27,9 @@
                        Placeholder="{x:Static resources:Strings.SpendingLimitLabel}"
                        Text="{Binding SelectedBudget.SpendingLimit, Converter={StaticResource DecimalConverter}}" />
 
+
+                <Button Text="{x:Static resources:Strings.SelectCategoryLabel}"
+                        Command="{Binding SelectCategoryCommand}" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

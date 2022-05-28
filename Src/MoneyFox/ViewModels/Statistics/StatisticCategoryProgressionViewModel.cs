@@ -41,7 +41,7 @@ namespace MoneyFox.ViewModels.Statistics
                 this,
                 async (r, m) =>
                 {
-                    SelectedCategory = mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(m.CategoryId)));
+                    SelectedCategory = mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(m.Value.CategoryId)));
                     await r.LoadAsync();
                 });
         }

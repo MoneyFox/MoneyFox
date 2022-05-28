@@ -16,11 +16,12 @@
             mapper: mapper,
             dialogService: dialogService) { }
 
-        public RelayCommand<CategoryViewModel> SelectCategoryCommand
-            => new RelayCommand<CategoryViewModel>(
+        public AsyncRelayCommand<CategoryViewModel> SelectCategoryCommand
+            => new AsyncRelayCommand<CategoryViewModel>(
                 async c =>
                 {
-                    Messenger.Send(new CategorySelectedMessage(c.Id));
+                    var dataSet = new CategorySelectedDataSet(c.Id, c.Name);
+                    Messenger.Send(new CategorySelectedMessage(dataSet));
                     await Application.Current.MainPage.Navigation.PopModalAsync();
                 });
     }

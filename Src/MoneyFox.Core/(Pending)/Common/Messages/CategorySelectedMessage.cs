@@ -3,14 +3,24 @@
 
     using CommunityToolkit.Mvvm.Messaging.Messages;
 
-    public class CategorySelectedMessage : ValueChangedMessage<int>
+    public class CategorySelectedMessage : ValueChangedMessage<CategorySelectedDataSet>
     {
-        public CategorySelectedMessage(int categoryId) : base(categoryId)
+        public CategorySelectedMessage(CategorySelectedDataSet dataSet) : base(dataSet)
+        {
+        }
+    }
+
+    public class CategorySelectedDataSet
+    {
+        public CategorySelectedDataSet(int categoryId, string name)
         {
             CategoryId = categoryId;
+            Name = name;
         }
 
-        public int CategoryId { get; set; }
+        public int CategoryId { get; }
+
+        public string Name { get; }
     }
 
 }
