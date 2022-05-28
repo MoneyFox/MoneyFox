@@ -809,4 +809,7 @@ Para empezar crea una nueva cuenta. Las cuentas se utilizan para organizar en gr
   <data name="OpenLogLabel" xml:space="preserve">
     <value>Open Log</value>
   </data>
+    <data name="MoreTitle" xml:space="preserve">
+        <value>More</value>
+    </data>
 </root>
