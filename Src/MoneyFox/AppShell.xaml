@@ -22,7 +22,7 @@
     <TabBar>
         <Tab Title="{x:Static resources:Strings.HomeTitle}" >
             <Tab.Icon>
-                <FontImageSource FontFamily="MaterialIconsRound" Glyph="home" Size="Small"/>
+                <FontImageSource FontFamily="MaterialIconsRound" Glyph="home" />
             </Tab.Icon>
             <ShellContent>
                 <dashboard:DashboardPage />
@@ -31,7 +31,7 @@
 
         <Tab Title="{x:Static resources:Strings.StatisticsTitle}" >
             <Tab.Icon>
-                <FontImageSource FontFamily="MaterialIconsRound" Glyph="donut_small" Size="Small"/>
+                <FontImageSource FontFamily="MaterialIconsRound" Glyph="donut_small" />
             </Tab.Icon>
             <ShellContent Title="{x:Static resources:Strings.StatisticsTitle}">
                 <statistic:StatisticSelectorPage />
@@ -40,7 +40,7 @@
 
         <Tab Title="{x:Static resources:Strings.SettingsTitle}" >
             <Tab.Icon>
-                <FontImageSource FontFamily="MaterialIconsRound" Glyph="settings" Size="Small"/>
+                <FontImageSource FontFamily="MaterialIconsRound" Glyph="settings" />
             </Tab.Icon>
             <ShellContent>
                 <overflow:OverflowMenuPage />

@@ -52,22 +52,20 @@
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="70*" />
-                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="40" />
                 </Grid.ColumnDefinitions>
 
                 <Button Grid.Column="0"
                         Text="{Binding SelectedPayment.Category, Converter={StaticResource NoCategorySelectedConverter}}"
                         Command="{Binding GoToSelectCategoryDialogCommand}" />
 
-                <Label Grid.Column="1"
-                       VerticalOptions="Center"
-                       Text="{x:Static styles:IconFont.Trash}"
-                       FontSize="30"
-                       FontFamily="FontAwesome">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ResetCategoryCommand}" />
-                    </Label.GestureRecognizers>
-                </Label>
+                <ImageButton Grid.Column="1"
+                             BackgroundColor="Transparent"
+                             Command="{Binding ResetCategoryCommand}" >
+                    <ImageButton.Source>
+                        <FontImageSource FontFamily="MaterialIconsRound" Glyph="delete" />
+                    </ImageButton.Source>
+                </ImageButton>
             </Grid>
 
             <Label Text="{x:Static resources:Strings.DateLabel}"
