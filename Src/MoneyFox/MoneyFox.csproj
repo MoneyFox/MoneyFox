@@ -26,7 +26,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <EmbeddedResource Include="Common\Fonts\fa-solid-900.ttf" />
         <EmbeddedResource Include="Common\Fonts\norwester.otf" />
         <EmbeddedResource Include="Common\Fonts\ProductSans-Regular.ttf" />
         <EmbeddedResource Include="Common\Fonts\RobotoMono-Regular.ttf" />
