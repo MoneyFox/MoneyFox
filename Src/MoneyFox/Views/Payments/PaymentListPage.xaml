@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             Visual="Material"
              Shell.NavBarHasShadow="False"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:converter="clr-namespace:MoneyFox.Converter"
              xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
              xmlns:payments="clr-namespace:MoneyFox.ViewModels.Payments;assembly=MoneyFox"
@@ -19,7 +21,7 @@
 
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,Auto,66,66,0">
-
+            
             <ImageButton Margin="0,0,5,0"
                          Grid.Column="2"
                          Padding="0"
@@ -33,7 +35,7 @@
                     <FontImageSource FontFamily="MaterialIconsRound" Glyph="filter_alt" />
                 </ImageButton.Source>
             </ImageButton>
-
+            
             <ImageButton Margin="0,0,5,0"
                          Grid.Column="3"
                          Padding="0"
@@ -78,19 +80,16 @@
                                    Style="{StaticResource TextBodySecondary}"
                                    Text="{Binding Subtitle}" />
 
-                            <Border
+                            <yummy:PancakeView
                                 BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                                  Light={StaticResource CardBackgroundLight}}"
-                                StrokeShape="RoundRectangle 10,10,10,10"
+                                CornerRadius="10"
                                 Grid.Row="2"
                                 HorizontalOptions="FillAndExpand">
 
-                                <Border.Shadow>
-                                    <Shadow Brush="Black"
-                                        Offset="20,20"
-                                        Radius="40"
-                                        Opacity="0.8" />
-                                </Border.Shadow>
+                                <yummy:PancakeView.Shadow>
+                                    <yummy:DropShadow />
+                                </yummy:PancakeView.Shadow>
 
                                 <StackLayout BindableLayout.ItemsSource="{Binding .}">
                                     <BindableLayout.ItemTemplate>
@@ -155,7 +154,7 @@
                                         </DataTemplate>
                                     </BindableLayout.ItemTemplate>
                                 </StackLayout>
-                            </Border>
+                            </yummy:PancakeView>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
