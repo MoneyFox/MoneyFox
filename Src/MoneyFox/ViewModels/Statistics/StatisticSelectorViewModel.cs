@@ -13,36 +13,53 @@ namespace MoneyFox.ViewModels.Statistics
         /// <summary>
         ///     All possible statistic to choose from
         /// </summary>
-        public List<StatisticSelectorType> StatisticItems
-            => new List<StatisticSelectorType>
+        public List<StatisticSelectorTypeViewModel> StatisticItems
+            => new List<StatisticSelectorTypeViewModel>
             {
-                new StatisticSelectorType { Name = Strings.CashflowLabel, Description = Strings.CashflowDescription, Type = StatisticType.Cashflow },
-                new StatisticSelectorType
+                new StatisticSelectorTypeViewModel
                 {
-                    Name = Strings.MonthlyCashflowLabel, Description = Strings.MonthlyCashflowDescription, Type = StatisticType.MonthlyAccountCashFlow
+                    IconGlyph = "bar_chart",
+                    Name = Strings.CashflowLabel,
+                    Description = Strings.CashflowDescription,
+                    Type = StatisticType.Cashflow
                 },
-                new StatisticSelectorType
+                new StatisticSelectorTypeViewModel
                 {
+                    IconGlyph = "bar_chart",
+                    Name = Strings.MonthlyCashflowLabel,
+                    Description = Strings.MonthlyCashflowDescription,
+                    Type = StatisticType.MonthlyAccountCashFlow
+                },
+                new StatisticSelectorTypeViewModel
+                {
+                    IconGlyph = "bar_chart",
                     Name = Strings.CategoryProgressionLabel,
                     Description = Strings.CategoryProgressionDescription,
                     Type = StatisticType.CategoryProgression
                 },
-                new StatisticSelectorType
+                new StatisticSelectorTypeViewModel
                 {
-                    Name = Strings.CategorySpreadingLabel, Description = Strings.CategorieSpreadingDescription, Type = StatisticType.CategorySpreading
+                    IconGlyph = "donut_large",
+                    Name = Strings.CategorySpreadingLabel,
+                    Description = Strings.CategorieSpreadingDescription,
+                    Type = StatisticType.CategorySpreading
                 },
-                new StatisticSelectorType
+                new StatisticSelectorTypeViewModel
                 {
-                    Name = Strings.CategorySummaryLabel, Description = Strings.CategorySummaryDescription, Type = StatisticType.CategorySummary
+                    IconGlyph = "format_list_bulleted",
+                    Name = Strings.CategorySummaryLabel,
+                    Description = Strings.CategorySummaryDescription,
+                    Type = StatisticType.CategorySummary
                 }
             };
 
         /// <summary>
         ///     Navigates to the statistic view and shows the selected statistic
         /// </summary>
-        public RelayCommand<StatisticSelectorType> GoToStatisticCommand => new RelayCommand<StatisticSelectorType>(async s => await GoToStatisticAsync(s));
+        public RelayCommand<StatisticSelectorTypeViewModel> GoToStatisticCommand
+            => new RelayCommand<StatisticSelectorTypeViewModel>(async s => await GoToStatisticAsync(s));
 
-        private static async Task GoToStatisticAsync(StatisticSelectorType item)
+        private static async Task GoToStatisticAsync(StatisticSelectorTypeViewModel item)
         {
             if (item.Type == StatisticType.Cashflow)
             {
