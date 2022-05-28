@@ -6,6 +6,7 @@ namespace MoneyFox
     using CommonServiceLocator;
     using ViewModels.About;
     using ViewModels.Accounts;
+    using ViewModels.Budget;
     using ViewModels.Categories;
     using ViewModels.Dashboard;
     using ViewModels.DataBackup;
@@ -32,7 +33,6 @@ namespace MoneyFox
         public static string AccountListRoute => nameof(AccountListPage);
         public static string AddAccountRoute => nameof(AddAccountPage);
         public static string EditAccountRoute => nameof(EditAccountPage);
-        public static string BudgetListRoute => nameof(BudgetListPage);
         public static string PaymentListRoute => nameof(PaymentListPage);
         public static string AddPaymentRoute => nameof(AddPaymentPage);
         public static string CategoryListRoute => nameof(CategoryListPage);
@@ -51,6 +51,8 @@ namespace MoneyFox
         public static string WelcomeViewRoute => nameof(WelcomePage);
         public static string CategoryIntroductionRoute => nameof(CategoryIntroductionPage);
         public static string SetupCompletionRoute => nameof(SetupCompletionPage);
+        public static string BudgetListRoute => nameof(BudgetListPage);
+        public static string AddBudgetRoute => nameof(AddBudgetPage);
 
         // ViewModels
         public static DashboardViewModel DashboardViewModel => ServiceLocator.Current.GetInstance<DashboardViewModel>();
@@ -103,6 +105,9 @@ namespace MoneyFox
         public static AboutViewModel AboutViewModel => ServiceLocator.Current.GetInstance<AboutViewModel>();
 
         public static OverflowMenuViewModel OverflowMenuViewModel => ServiceLocator.Current.GetInstance<OverflowMenuViewModel>();
+
+        public static BudgetListViewModel BudgetListViewModel => ServiceLocator.Current.GetInstance<BudgetListViewModel>();
+        public static AddBudgetViewModel AddBudgetViewModel => ServiceLocator.Current.GetInstance<AddBudgetViewModel>();
 
         public static void RegisterServices(ContainerBuilder registrations)
         {

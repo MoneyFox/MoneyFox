@@ -3,7 +3,7 @@
 
     using CommunityToolkit.Mvvm.ComponentModel;
 
-    internal sealed class BudgetViewModel : ObservableObject
+    public sealed class BudgetViewModel : ObservableObject
     {
         private string name = null!;
 
@@ -13,7 +13,7 @@
             set => SetProperty(field: ref name, newValue: value);
         }
 
-        private double currentSpending = null!;
+        private double currentSpending;
 
         public double CurrentSpending
         {

@@ -8,8 +8,7 @@
     using JetBrains.Annotations;
     using MediatR;
 
-    [UsedImplicitly]
-    internal sealed class BudgetListViewModel : ObservableRecipient
+    public sealed class BudgetListViewModel : ObservableRecipient
     {
         private readonly IMediator mediator;
 

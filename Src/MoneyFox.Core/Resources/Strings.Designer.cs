@@ -1430,5 +1430,17 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AddBudgetLabel", resourceCulture);
             }
         }
+        
+        public static string AddBudgetTitle {
+            get {
+                return ResourceManager.GetString("AddBudgetTitle", resourceCulture);
+            }
+        }
+        
+        public static string SpendingLimitLabel {
+            get {
+                return ResourceManager.GetString("SpendingLimitLabel", resourceCulture);
+            }
+        }
     }
 }
