@@ -807,10 +807,10 @@ To start create a new account. Accounts are used to organize payments and money 
     <data name="MenuTitle" xml:space="preserve">
     <value>Menu</value>
   </data>
-  <data name="LastDayOfMonthLabel" xml:space="preserve">
+    <data name="LastDayOfMonthLabel" xml:space="preserve">
     <value>Last Day of Month</value>
   </data>
-  <data name="OpenLogLabel" xml:space="preserve">
+    <data name="OpenLogLabel" xml:space="preserve">
     <value>Open Log</value>
   </data>
     <data name="BudgetsTitle" xml:space="preserve">
@@ -830,5 +830,8 @@ To start create a new account. Accounts are used to organize payments and money 
     </data>
     <data name="BudgetNameLabel" xml:space="preserve">
         <value>Budget Name</value>
+    </data>
+    <data name="MoreTitle" xml:space="preserve">
+        <value>More</value>
     </data>
 </root>

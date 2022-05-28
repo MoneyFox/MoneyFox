@@ -15,7 +15,7 @@
                             ItemsSource="{Binding OverflowEntries}">
 
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="overflowmenu:OverflowItem">
+                    <DataTemplate x:DataType="overflowmenu:OverflowItemViewModel">
                         <Grid Padding="15,6,15,8">
 
                             <Grid.GestureRecognizers>
@@ -35,7 +35,13 @@
                                     <yummy:DropShadow />
                                 </yummy:PancakeView.Shadow>
 
-                                <StackLayout Orientation="Vertical" x:DataType="overflowmenu:OverflowItem">
+                                <StackLayout Orientation="Horizontal" x:DataType="overflowmenu:OverflowItemViewModel">
+                                    <Image HeightRequest="15"
+                                           WidthRequest="15">
+                                        <Image.Source>
+                                            <FontImageSource FontFamily="MaterialIconsRound" Glyph="{Binding IconGlyph}" />
+                                        </Image.Source>
+                                    </Image>
                                     <Label Text="{Binding Name}" Style="{DynamicResource TextSubHead}" />
                                 </StackLayout>
                             </yummy:PancakeView>

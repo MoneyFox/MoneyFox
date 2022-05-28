@@ -1547,6 +1547,15 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to More.
+        /// </summary>
+        public static string MoreTitle {
+            get {
+                return ResourceManager.GetString("MoreTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please insert a name..
         /// </summary>
         public static string NameRequiredMessage {

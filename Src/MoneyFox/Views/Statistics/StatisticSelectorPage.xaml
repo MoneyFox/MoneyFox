@@ -38,8 +38,16 @@
                                     <yummy:DropShadow />
                                 </yummy:PancakeView.Shadow>
 
-                                <StackLayout Orientation="Vertical" x:DataType="statistics:StatisticSelectorType">
+                                <StackLayout Orientation="Vertical" x:DataType="statistics:StatisticSelectorTypeViewModel">
+                                    <StackLayout Orientation="Horizontal">
+                                    <Image HeightRequest="15"
+                                           WidthRequest="15">
+                                        <Image.Source>
+                                            <FontImageSource FontFamily="MaterialIconsRound" Glyph="{Binding IconGlyph}" />
+                                        </Image.Source>
+                                    </Image>
                                     <Label Text="{Binding Name}" Style="{DynamicResource TextSubHead}" />
+                                    </StackLayout>
                                     <Label Text="{Binding Description}"
                                            Style="{DynamicResource DeemphasizedLabelStyle}" />
                                 </StackLayout>
