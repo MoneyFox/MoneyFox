@@ -33,6 +33,7 @@ namespace MoneyFox.Infrastructure
         private static void RegisterRepositories(ContainerBuilder builder)
         {
             builder.RegisterType<CategoryRepository>().AsImplementedInterfaces();
+            builder.RegisterType<BudgetRepository>().AsImplementedInterfaces();
         }
     }
 

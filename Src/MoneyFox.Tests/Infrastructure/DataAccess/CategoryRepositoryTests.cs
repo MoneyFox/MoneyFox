@@ -52,5 +52,4 @@
             await act.Should().ThrowAsync<ArgumentException>().WithMessage("An item with the same key has already been added. Key: 1");
         }
     }
-
 }

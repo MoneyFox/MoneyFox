@@ -34,8 +34,8 @@
 
             // Assert
             appDbContext.Budgets.Should().ContainSingle();
-            var loadedCategory = appDbContext.Budgets.Single();
-            AssertBudget(actual: loadedCategory, expected: testBudget);
+            var loadedBudget = appDbContext.Budgets.Single();
+            AssertBudget(actual: loadedBudget, expected: testBudget);
         }
 
         [Fact]
@@ -51,6 +51,41 @@
             // Assert
             await act.Should().ThrowAsync<ArgumentException>().WithMessage("An item with the same key has already been added. Key: 1");
         }
-    }
 
+        [Fact]
+        public async Task ReturnsBudgetForId()
+        {
+            // Arrange
+            var testBudget = new TestData.DefaultBudget();
+            var dbBudget = testBudget.CreateDbBudget();
+            await budgetRepository.AddAsync(dbBudget);
+
+            // Act
+            var result = await budgetRepository.GetAsync(dbBudget.Id);
+
+            // Assert
+            AssertBudget(actual: result, expected: testBudget);
+        }
+
+        [Fact]
+        public async Task ReturnsAllBudgets()
+        {
+            // Arrange
+            var testBudget = new TestData.DefaultBudget();
+            var dbBudget1 = testBudget.CreateDbBudget();
+            var dbBudget2 = testBudget.CreateDbBudget();
+            await budgetRepository.AddAsync(dbBudget1);
+            await budgetRepository.AddAsync(dbBudget2);
+
+            // Act
+            var budgetList = await budgetRepository.GetAsync();
+
+            // Assert
+            budgetList.Should().HaveCount(2);
+            foreach (var budget in budgetList)
+            {
+                AssertBudget(actual: budget, expected: testBudget);
+            }
+        }
+    }
 }
