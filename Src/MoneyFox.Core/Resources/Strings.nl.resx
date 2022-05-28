@@ -814,4 +814,7 @@ Maak een nieuw account aan om hier dan uw budgetten op een gemakkelijke manier b
   <data name="OpenLogLabel" xml:space="preserve">
     <value>Open Log</value>
   </data>
+    <data name="MoreTitle" xml:space="preserve">
+        <value>More</value>
+    </data>
 </root>
