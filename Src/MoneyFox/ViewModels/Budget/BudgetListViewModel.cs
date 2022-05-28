@@ -9,7 +9,6 @@
     using Extensions;
     using MediatR;
     using Views.Accounts;
-    using Views.Budget;
     using Xamarin.Forms;
 
     public sealed class BudgetListViewModel : ObservableRecipient

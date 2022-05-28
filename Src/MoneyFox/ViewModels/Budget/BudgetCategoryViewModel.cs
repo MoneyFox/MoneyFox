@@ -5,6 +5,8 @@ namespace MoneyFox.ViewModels.Budget
 
     public sealed class BudgetCategoryViewModel : ObservableObject
     {
+        private string name;
+
         public BudgetCategoryViewModel(int categoryId, string name)
         {
             CategoryId = categoryId;
@@ -12,8 +14,6 @@ namespace MoneyFox.ViewModels.Budget
         }
 
         public int CategoryId { get; }
-
-        private string name;
 
         public string Name
         {

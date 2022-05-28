@@ -12,8 +12,8 @@ namespace MoneyFox.ViewModels.Budget
 
     public sealed class AddBudgetViewModel : ObservableRecipient, IRecipient<CategorySelectedMessage>
     {
-
         private BudgetViewModel selectedBudget = new BudgetViewModel();
+
         public BudgetViewModel SelectedBudget
         {
             get => selectedBudget;
@@ -24,15 +24,15 @@ namespace MoneyFox.ViewModels.Budget
 
         public AsyncRelayCommand SelectCategoryCommand => new AsyncRelayCommand(SelectCategory);
 
-        private static async Task SelectCategory()
-        {
-            await Shell.Current.GoToModalAsync(ViewModelLocator.SelectCategoryRoute);
-        }
-
         public void Receive(CategorySelectedMessage message)
         {
             var categorySelectedDataSet = message.Value;
-            SelectedCategories.Add(new BudgetCategoryViewModel(categorySelectedDataSet.CategoryId, categorySelectedDataSet.Name));
+            SelectedCategories.Add(new BudgetCategoryViewModel(categoryId: categorySelectedDataSet.CategoryId, name: categorySelectedDataSet.Name));
+        }
+
+        private static async Task SelectCategory()
+        {
+            await Shell.Current.GoToModalAsync(ViewModelLocator.SelectCategoryRoute);
         }
     }
 

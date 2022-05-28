@@ -5,9 +5,12 @@
 
     public sealed class BudgetViewModel : ObservableObject
     {
-        public int Id { get; set; }
-
         private string name = null!;
+
+        private double currentSpending;
+
+        private double spendingLimit;
+        public int Id { get; set; }
 
         public string Name
         {
@@ -15,15 +18,11 @@
             set => SetProperty(field: ref name, newValue: value);
         }
 
-        private double currentSpending;
-
         public double CurrentSpending
         {
             get => currentSpending;
             set => SetProperty(field: ref currentSpending, newValue: value);
         }
-
-        private double spendingLimit;
 
         public double SpendingLimit
         {
