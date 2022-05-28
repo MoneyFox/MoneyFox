@@ -308,7 +308,7 @@ public abstract class ModifyPaymentViewModel : ObservableRecipient, IModifyPayme
             return;
         }
 
-        SelectedPayment.Category = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.CategoryId)));
+        SelectedPayment.Category = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId)));
     }
 
     private void ResetSelection()

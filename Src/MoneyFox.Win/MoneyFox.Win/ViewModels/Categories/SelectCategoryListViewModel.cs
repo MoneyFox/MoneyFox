@@ -35,11 +35,9 @@ public class SelectCategoryListViewModel : AbstractCategoryListViewModel, ISelec
         }
     }
 
-    /// <summary>
-    ///     Post selected CategoryViewModel to message hub
-    /// </summary>
     protected override void ItemClick(CategoryViewModel category)
     {
-        Messenger.Send(new CategorySelectedMessage(category.Id));
+        var dataSet = new CategorySelectedDataSet(category.Id, category.Name);
+        Messenger.Send(new CategorySelectedMessage(dataSet));
     }
 }

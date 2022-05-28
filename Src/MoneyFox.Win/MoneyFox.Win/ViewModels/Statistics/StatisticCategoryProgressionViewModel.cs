@@ -79,7 +79,7 @@ public class StatisticCategoryProgressionViewModel : StatisticViewModel
             recipient: this,
             handler: async (r, m) =>
             {
-                SelectedCategory = mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(m.CategoryId)));
+                SelectedCategory = mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(m.Value.CategoryId)));
                 await r.LoadAsync();
             });
     }
