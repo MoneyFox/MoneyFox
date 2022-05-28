@@ -7,11 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Remove="App.config" />
         <None Remove="Common\Fonts\fa-solid-900.ttf" />
         <None Remove="Common\Fonts\norwester.otf" />
         <None Remove="Common\Fonts\ProductSans-Regular.ttf" />
         <None Remove="Common\Fonts\RobotoMono-Regular.ttf" />
+        <None Remove="Common\Fonts\materialdesignicons-webfont.ttf" />
+        <None Remove="Common\Fonts\MaterialIconsRound-Regular.otf" />
     </ItemGroup>
 
     <ItemGroup>
@@ -19,6 +20,7 @@
         <EmbeddedResource Include="Common\Fonts\norwester.otf" />
         <EmbeddedResource Include="Common\Fonts\ProductSans-Regular.ttf" />
         <EmbeddedResource Include="Common\Fonts\RobotoMono-Regular.ttf" />
+        <EmbeddedResource Include="Common\Fonts\MaterialIconsRound-Regular.otf" />
     </ItemGroup>
 
     <ItemGroup>
