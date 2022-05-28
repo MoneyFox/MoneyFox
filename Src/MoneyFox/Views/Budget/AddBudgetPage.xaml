@@ -7,7 +7,8 @@
              xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
              Title="{x:Static resources:Strings.AddBudgetTitle}"
              x:DataType="budget:AddBudgetViewModel"
-             x:Class="MoneyFox.Views.Budget.AddBudgetPage">
+             x:Class="MoneyFox.Views.Budget.AddBudgetPage"
+             Visual="Material">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -17,8 +18,8 @@
 
     <ContentPage.Content>
         <ScrollView Padding="15,0,15,0">
-            <StackLayout>
-                <Entry Placeholder="{x:Static resources:Strings.AccountNameLabel}"
+            <StackLayout Spacing="6">
+                <Entry Placeholder="{x:Static resources:Strings.BudgetNameLabel}"
                        Text="{Binding SelectedBudget.Name}" />
 
                 <Entry x:Name="AmountEntry"
@@ -26,7 +27,6 @@
                        Focused="AmountFieldGotFocus"
                        Placeholder="{x:Static resources:Strings.SpendingLimitLabel}"
                        Text="{Binding SelectedBudget.SpendingLimit, Converter={StaticResource DecimalConverter}}" />
-
 
                 <Button Text="{x:Static resources:Strings.SelectCategoryLabel}"
                         Command="{Binding SelectCategoryCommand}" />

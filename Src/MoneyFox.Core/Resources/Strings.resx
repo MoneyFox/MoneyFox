@@ -828,4 +828,7 @@ To start create a new account. Accounts are used to organize payments and money 
     <data name="SpendingLimitLabel" xml:space="preserve">
       <value>Spending Limit</value>
     </data>
+    <data name="BudgetNameLabel" xml:space="preserve">
+        <value>Budget Name</value>
+    </data>
 </root>

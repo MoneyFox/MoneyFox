@@ -1,23 +1,28 @@
 ﻿namespace MoneyFox.ViewModels.Budget
 {
 
+    using System;
     using System.Collections.ObjectModel;
     using System.Threading.Tasks;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
-    using JetBrains.Annotations;
+    using Extensions;
     using MediatR;
+    using Views.Accounts;
+    using Views.Budget;
+    using Xamarin.Forms;
 
     public sealed class BudgetListViewModel : ObservableRecipient
     {
         private readonly IMediator mediator;
+
+        private ObservableCollection<BudgetViewModel> budgets = new ObservableCollection<BudgetViewModel>();
 
         public BudgetListViewModel(IMediator mediator)
         {
             this.mediator = mediator;
         }
 
-        private ObservableCollection<BudgetViewModel> budgets = new ObservableCollection<BudgetViewModel>();
         public ObservableCollection<BudgetViewModel> Budgets
         {
             get => budgets;
@@ -30,16 +35,22 @@
         }
 
         public AsyncRelayCommand GoToAddBudgetCommand => new AsyncRelayCommand(GoToAddBudget);
-        public AsyncRelayCommand EditBudgetCommand => new AsyncRelayCommand(EditBudget);
+        public AsyncRelayCommand<BudgetViewModel> EditBudgetCommand => new AsyncRelayCommand<BudgetViewModel>(EditBudgetAsync);
 
-        private Task GoToAddBudget()
+        private static async Task GoToAddBudget()
         {
-            throw new System.NotImplementedException();
+            await Shell.Current.GoToModalAsync(ViewModelLocator.AddBudgetRoute);
         }
 
-        private Task EditBudget()
+        private static async Task EditBudgetAsync(BudgetViewModel? budgetViewModel)
         {
-            throw new System.NotImplementedException();
+            if (budgetViewModel == null)
+            {
+                throw new ArgumentNullException(nameof(budgetViewModel));
+            }
+
+            await Shell.Current.Navigation.PushModalAsync(
+                new NavigationPage(new EditAccountPage(budgetViewModel.Id)) { BarBackgroundColor = Color.Transparent });
         }
     }
 

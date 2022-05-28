@@ -52,17 +52,17 @@
 
         public RelayCommand GoToAddAccountCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddAccountRoute));
 
-        public RelayCommand<AccountViewModel> GoToEditAccountCommand
-            => new RelayCommand<AccountViewModel>(
+        public AsyncRelayCommand<AccountViewModel> GoToEditAccountCommand
+            => new AsyncRelayCommand<AccountViewModel>(
                 async accountViewModel => await Shell.Current.Navigation.PushModalAsync(
                     new NavigationPage(new EditAccountPage(accountViewModel.Id)) { BarBackgroundColor = Color.Transparent }));
 
-        public RelayCommand<AccountViewModel> GoToTransactionListCommand
-            => new RelayCommand<AccountViewModel>(
+        public AsyncRelayCommand<AccountViewModel> GoToTransactionListCommand
+            => new AsyncRelayCommand<AccountViewModel>(
                 async accountViewModel => await Shell.Current.GoToAsync($"{ViewModelLocator.PaymentListRoute}?accountId={accountViewModel.Id}"));
 
-        public RelayCommand<AccountViewModel> DeleteAccountCommand
-            => new RelayCommand<AccountViewModel>(async accountViewModel => await DeleteAccountAsync(accountViewModel));
+        public AsyncRelayCommand<AccountViewModel> DeleteAccountCommand
+            => new AsyncRelayCommand<AccountViewModel>(async accountViewModel => await DeleteAccountAsync(accountViewModel));
 
         protected override void OnActivated()
         {

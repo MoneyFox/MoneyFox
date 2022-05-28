@@ -8,6 +8,7 @@
         public BudgetListPage()
         {
             InitializeComponent();
+            BindingContext = ViewModelLocator.BudgetListViewModel;
         }
     }
 

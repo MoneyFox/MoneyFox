@@ -5,6 +5,8 @@
 
     public sealed class BudgetViewModel : ObservableObject
     {
+        public int Id { get; set; }
+
         private string name = null!;
 
         public string Name
