@@ -12,6 +12,22 @@
             get => name;
             set => SetProperty(field: ref name, newValue: value);
         }
+
+        private double currentSpending = null!;
+
+        public double CurrentSpending
+        {
+            get => currentSpending;
+            set => SetProperty(field: ref currentSpending, newValue: value);
+        }
+
+        private double spendingLimit;
+
+        public double SpendingLimit
+        {
+            get => spendingLimit;
+            set => SetProperty(field: ref spendingLimit, newValue: value);
+        }
     }
 
 }
