@@ -7,7 +7,6 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converter="clr-namespace:MoneyFox.Converter"
-    xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
     xmlns:accounts="clr-namespace:MoneyFox.ViewModels.Accounts;assembly=MoneyFox"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     mc:Ignorable="d">
@@ -19,20 +18,19 @@
 
     <Shell.TitleView>
         <Grid>
-            <Button
-                Margin="0,0,5,0"
-                Padding="0"
-                BorderWidth="0"
-                Command="{Binding GoToAddPaymentCommand}"
-                FontFamily="FontAwesome"
-                FontSize="24"
-                HeightRequest="44"
-                HorizontalOptions="End"
-                Style="{StaticResource PrimaryButton}"
-                Text="{x:Static styles:IconFont.Plus}"
-                TextColor="White"
-                VerticalOptions="Center"
-                WidthRequest="66" />
+            <ImageButton Margin="0,0,5,0"
+                         Padding="0"
+                         BorderWidth="0"
+                         Command="{Binding GoToAddPaymentCommand}"
+                         HeightRequest="44"
+                         HorizontalOptions="End"
+                         VerticalOptions="Center"
+                         WidthRequest="66"
+                         Style="{StaticResource PrimaryImageButton}" >
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="MaterialIconsRound" Glyph="add" />
+                </ImageButton.Source>
+            </ImageButton>
         </Grid>
     </Shell.TitleView>
 
