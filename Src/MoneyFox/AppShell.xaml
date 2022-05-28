@@ -38,9 +38,9 @@
             </ShellContent>
         </Tab>
 
-        <Tab Title="{x:Static resources:Strings.SettingsTitle}" >
+        <Tab Title="{x:Static resources:Strings.MoreTitle}" >
             <Tab.Icon>
-                <FontImageSource FontFamily="MaterialIconsRound" Glyph="settings" />
+                <FontImageSource FontFamily="MaterialIconsRound" Glyph="more_horiz" />
             </Tab.Icon>
             <ShellContent>
                 <overflow:OverflowMenuPage />
