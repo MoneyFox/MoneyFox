@@ -167,7 +167,7 @@
     <value>Montant négatif</value>
   </data>
     <data name="ANoteForPaymentIsRequired" xml:space="preserve">
-    <value>A note for payment is required</value>
+    <value>Le paiement est requis</value>
   </data>
     <data name="ApplyFilterLabel" xml:space="preserve">
     <value>Appliquer Filtre</value>
@@ -233,7 +233,7 @@
     <value>Trésorerie</value>
   </data>
     <data name="CategorieIntroductionText" xml:space="preserve">
-    <value>Categories can help order your payments. Also they make it easier to analyze your spendings and incomes in the statistics.</value>
+    <value>Les catégories peuvent aider à trier vos paiements. Cela facilite également les analyses statistiques.</value>
   </data>
     <data name="CategorieSpreadingDescription" xml:space="preserve">
     <value>Report des dépenses aux catégories.</value>
@@ -296,7 +296,7 @@
     <value>Créer une catégorie</value>
   </data>
     <data name="CreationDateHeader" xml:space="preserve">
-    <value>Creation Date</value>
+    <value>Date création</value>
   </data>
     <data name="CreationDateLabel" xml:space="preserve">
     <value>Date de création :</value>
@@ -356,7 +356,7 @@
     <value>Terminé</value>
   </data>
     <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>An account with that name already exists. Continue with saving?</value>
+    <value>Un compte portant ce nom existe déjà. Continuer l'enregistrement ?</value>
   </data>
     <data name="DuplicateCategoryMessage" xml:space="preserve">
     <value>Une catégorie avec ce nom existe déjà.</value>
@@ -386,7 +386,7 @@
     <value>Email</value>
   </data>
     <data name="EnddateLabel" xml:space="preserve">
-    <value>End Date</value>
+    <value>Date de fin</value>
   </data>
     <data name="EndlessLabel" xml:space="preserve">
     <value>Sans fin</value>
@@ -404,7 +404,7 @@
     <value>Comptes exclus</value>
   </data>
     <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
-    <value>Expense: {0} / Income: {1}</value>
+    <value>Dépense {1} / Revenue: {0}</value>
   </data>
     <data name="ExpenseHeader" xml:space="preserve">
     <value>Ajouter une dépense</value>
@@ -497,7 +497,7 @@
     <value>Chargement en cours...</value>
   </data>
     <data name="LoggedInMessage" xml:space="preserve">
-    <value>Loggedin successfully.</value>
+    <value>Déconnexion réussie.</value>
   </data>
     <data name="LoggedOutMessage" xml:space="preserve">
     <value>Déconnexion réussie.</value>
@@ -524,7 +524,7 @@
     <value>Champ obligatoire</value>
   </data>
     <data name="ModificationDateHeader" xml:space="preserve">
-    <value>Modification Date</value>
+    <value>Date de modification</value>
   </data>
     <data name="ModificationDateLabel" xml:space="preserve">
     <value>Date de modification :</value>
@@ -542,13 +542,13 @@
     <value>Moyenne mensuelle de l'année dernière: </value>
   </data>
     <data name="MonthlyCashflowDescription" xml:space="preserve">
-    <value>Shows the monthly cashflow for the selected account.</value>
+    <value>Affiche le flux de trésorerie mensuel pour le compte sélectionné.</value>
   </data>
     <data name="MonthlyCashflowLabel" xml:space="preserve">
-    <value>Monthly Cashflow</value>
+    <value>Flux de trésorerie mensuel</value>
   </data>
     <data name="MonthlyCashflowTitle" xml:space="preserve">
-    <value>Monthly Cashflow</value>
+    <value>Flux de trésorerie mensuel</value>
   </data>
     <data name="MonthlyLabel" xml:space="preserve">
     <value>Mensuel</value>
@@ -637,7 +637,7 @@ Pour y arriver, allez dans la liste des comptes et sélectionnez le compte respe
     <value>Récurrent</value>
   </data>
     <data name="RequireNoteCheckbox" xml:space="preserve">
-    <value>Note required</value>
+    <value>Note obligatoire</value>
   </data>
     <data name="RestoreBackupCanceledMessage" xml:space="preserve">
     <value>La restauration de la sauvegarde a été annulée.</value>
@@ -673,7 +673,7 @@ Pour y arriver, allez dans la liste des comptes et sélectionnez le compte respe
     <value>Sélectionner la date</value>
   </data>
     <data name="SelectedAccountHeader" xml:space="preserve">
-    <value>Selected Account</value>
+    <value>Compte sélectionné</value>
   </data>
     <data name="SelectFilterTitle" xml:space="preserve">
     <value>Choisir un Filtre</value>
@@ -746,69 +746,69 @@ Pour commencer, créez un nouveau compte. Les comptes sont utilisés pour organi
     <value>Oui</value>
   </data>
     <data name="AccountsToolTip" xml:space="preserve">
-    <value>Manage your Accounts</value>
+    <value>Gérez votre compte</value>
   </data>
     <data name="AddPaymentTitle" xml:space="preserve">
-    <value>Add Payment</value>
+    <value>Ajouter un paiement</value>
   </data>
     <data name="AddPaymentToolTip" xml:space="preserve">
-    <value>Add a Payment with details</value>
+    <value>Ajouter un paiement avec les détails</value>
   </data>
     <data name="BackupToolTip" xml:space="preserve">
-    <value>Backup your information</value>
+    <value>Informations du fichier de sauvegarde</value>
   </data>
     <data name="CategoriesToolTip" xml:space="preserve">
-    <value>Manage your Categories</value>
+    <value>Gérer vos catégories</value>
   </data>
     <data name="StatisticsToolTip" xml:space="preserve">
-    <value>View your Statistics</value>
+    <value>Voir les stats du forum</value>
   </data>
     <data name="FailedToLoginToBackupMessage" xml:space="preserve">
-    <value>Failed to login to your backup service. Automatic backup upload was disabled. Please login and enable it again.</value>
+    <value>Impossible de se connecter à votre service de sauvegarde. Le téléchargement automatique de la sauvegarde a été désactivé. Veuillez vous connecter et l'activer à nouveau.</value>
   </data>
     <data name="FailedToLoginToBackupTitle" xml:space="preserve">
-    <value>Login failed!</value>
+    <value>Échec de la connexion !</value>
   </data>
     <data name="LoggedInTitle" xml:space="preserve">
-    <value>Logged in!</value>
+    <value>Connecté le</value>
   </data>
     <data name="SelectedPaymentTypeHeader" xml:space="preserve">
-    <value>Selected Payment Type</value>
+    <value>Sélectionner un mode de paiement</value>
   </data>
     <data name="CategoryProgressionDescription" xml:space="preserve">
-    <value>Shows the progression of a category by month.</value>
+    <value>Affiche la progression d'une catégorie par mois.</value>
   </data>
     <data name="CategoryProgressionLabel" xml:space="preserve">
-    <value>Category Progression</value>
+    <value>Progression de la catégorie</value>
   </data>
     <data name="SelectCategoryLabel" xml:space="preserve">
-    <value>Select category..</value>
+    <value>Entrez une catégorie...</value>
   </data>
     <data name="CategoryProgressionTitle" xml:space="preserve">
-    <value>Category Progression</value>
+    <value>Progression de la catégorie</value>
   </data>
     <data name="EditPaymentTitle" xml:space="preserve">
-    <value>Edit Payment</value>
+    <value>Modifier le paiement</value>
   </data>
     <data name="InitialBalanceLabel" xml:space="preserve">
-    <value>Initial Balance</value>
+    <value>Solde initial</value>
   </data>
     <data name="AllLabel" xml:space="preserve">
-    <value>All</value>
+    <value>Tout</value>
   </data>
     <data name="HomeTitle" xml:space="preserve">
-    <value>Home</value>
+    <value>Accueil</value>
   </data>
     <data name="MenuTitle" xml:space="preserve">
     <value>Menu</value>
   </data>
   <data name="LastDayOfMonthLabel" xml:space="preserve">
-    <value>Last Day of Month</value>
+    <value>Dernier jour du mois</value>
   </data>
   <data name="OpenLogLabel" xml:space="preserve">
-    <value>Open Log</value>
+    <value>Ouvrir le journal</value>
   </data>
     <data name="MoreTitle" xml:space="preserve">
-        <value>More</value>
+        <value>Plus</value>
     </data>
 </root>
