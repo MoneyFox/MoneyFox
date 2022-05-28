@@ -19,34 +19,35 @@
 
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,Auto,66,66,0">
-            <Button
-                Margin="0,0,5,0"
-                Padding="0"
-                Grid.Column="2"
-                BorderWidth="0"
-                FontFamily="FontAwesome"
-                FontSize="24"
-                HeightRequest="44"
-                WidthRequest="66"
-                Text="{x:Static styles:IconFont.Filter}"
-                VerticalOptions="Center"
-                TextColor="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}"
-                Clicked="ShowFilter" />
 
-            <Button
-                Style="{StaticResource PrimaryButton}"
-                Margin="0,0,5,0"
-                Padding="0"
-                Grid.Column="3"
-                BorderWidth="0"
-                FontFamily="FontAwesome"
-                FontSize="24"
-                HeightRequest="44"
-                WidthRequest="66"
-                Text="{x:Static styles:IconFont.Plus}"
-                TextColor="White"
-                VerticalOptions="Center"
-                Command="{Binding GoToAddPaymentCommand}" />
+            <ImageButton Margin="0,0,5,0"
+                         Grid.Column="2"
+                         Padding="0"
+                         BorderWidth="0"
+                         Command="{Binding ShowFilterDialogCommand}"
+                         HeightRequest="44"
+                         HorizontalOptions="End"
+                         VerticalOptions="Center"
+                         WidthRequest="66" >
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="MaterialIconsRound" Glyph="filter_alt" />
+                </ImageButton.Source>
+            </ImageButton>
+
+            <ImageButton Margin="0,0,5,0"
+                         Grid.Column="3"
+                         Padding="0"
+                         BorderWidth="0"
+                         Command="{Binding GoToAddPaymentCommand}"
+                         HeightRequest="44"
+                         HorizontalOptions="End"
+                         VerticalOptions="Center"
+                         WidthRequest="66"
+                         Style="{StaticResource PrimaryImageButton}" >
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="MaterialIconsRound" Glyph="add" />
+                </ImageButton.Source>
+            </ImageButton>
         </Grid>
     </Shell.TitleView>
 
@@ -124,9 +125,7 @@
                                                                IsVisible="{Binding IsTransfer}"
                                                                WidthRequest="15">
                                                             <Image.Source>
-                                                                <FontImageSource FontFamily="FontAwesome"
-                                                                    Glyph="{x:Static styles:IconFont.ExchangeAlt}"
-                                                                    Color="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+                                                                <FontImageSource FontFamily="MaterialIconsRound" Glyph="sync_alt" />
                                                             </Image.Source>
                                                         </Image>
 
@@ -134,9 +133,7 @@
                                                                IsVisible="{Binding IsRecurring}"
                                                                WidthRequest="15">
                                                             <Image.Source>
-                                                                <FontImageSource FontFamily="FontAwesome"
-                                                                    Glyph="{x:Static styles:IconFont.Redo}"
-                                                                    Color="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+                                                                <FontImageSource FontFamily="MaterialIconsRound" Glyph="repeat" />
                                                             </Image.Source>
                                                         </Image>
 
@@ -144,9 +141,7 @@
                                                                IsVisible="{Binding IsCleared}"
                                                                WidthRequest="15">
                                                             <Image.Source>
-                                                                <FontImageSource FontFamily="FontAwesome"
-                                                                    Glyph="{x:Static styles:IconFont.Check}"
-                                                                    Color="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+                                                                <FontImageSource FontFamily="MaterialIconsRound" Glyph="done" />
                                                             </Image.Source>
                                                         </Image>
                                                     </StackLayout>

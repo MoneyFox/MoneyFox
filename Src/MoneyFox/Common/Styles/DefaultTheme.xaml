@@ -202,6 +202,11 @@
             </VisualStateGroupList>
         </Setter>
     </Style>
+    
+    <Style TargetType="ImageButton">
+        <Setter Property="BackgroundColor"
+                Value="{AppThemeBinding Dark={StaticResource ButtonBackgroundDark}, Light={StaticResource ButtonBackgroundLight}}" />
+    </Style>
 
     <Style x:Key="PrimaryImageButton" TargetType="ImageButton">
         <Setter Property="BorderColor" Value="Transparent" />
