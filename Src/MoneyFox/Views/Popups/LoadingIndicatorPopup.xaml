@@ -8,6 +8,7 @@
            Visual="Material"
            IsLightDismissEnabled="False"
            Size="200, 80"
+           Color="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
            x:Class="MoneyFox.Views.Popups.LoadingIndicatorPopup">
 
     <Grid ColumnDefinitions="40, 10, *" Padding="20">

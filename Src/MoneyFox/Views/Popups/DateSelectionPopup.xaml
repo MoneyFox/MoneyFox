@@ -4,22 +4,26 @@
            xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
            Visual="Material"
            IsLightDismissEnabled="false"
+           Size="330, 400"
+           Color="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
            x:Class="MoneyFox.Views.Popups.DateSelectionPopup">
 
-    <Grid RowDefinitions="*, 40" >
+    <Grid RowDefinitions="*, 40">
 
-        <StackLayout Padding="15" Spacing="6">
+        <StackLayout Padding="15" Spacing="6" >
             <Label Text="{x:Static resources:Strings.SelectDateLabel}"
-                   Style="{DynamicResource TextHead}" />
+                   Style="{DynamicResource TextTitle}" />
 
-            <Label Style="{DynamicResource BaseLabel}"
+            <Label Margin="0,6,0,0"
+                   Style="{DynamicResource BaseLabel}"
                    Text="{x:Static resources:Strings.TimeRangeStartLabel}"
                    HorizontalOptions="StartAndExpand" />
 
             <DatePicker Date="{Binding StartDate}" />
 
-            <Label Style="{DynamicResource BaseLabel}"
-                   Text="{x:Static resources:Strings.TimeRangeEndLabel}"/>
+            <Label Margin="0,6,0,0"
+                   Style="{DynamicResource BaseLabel}"
+                   Text="{x:Static resources:Strings.TimeRangeEndLabel}" />
             <DatePicker Date="{Binding EndDate}" />
         </StackLayout>
 
