@@ -9,7 +9,6 @@ namespace MoneyFox.Infrastructure.Persistence
     using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
     using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
-    using Core.ApplicationCore.Domain.Events;
     using Core.Common.Facades;
     using Core.Common.Interfaces;
     using MediatR;
@@ -26,6 +25,8 @@ namespace MoneyFox.Infrastructure.Persistence
             this.settingsFacade = settingsFacade;
         }
 
+        public DbSet<Budget> Budgets { get; set; } = null!;
+
         public DbSet<Account> Accounts { get; set; } = null!;
 
         public DbSet<Payment> Payments { get; set; } = null!;
@@ -33,8 +34,6 @@ namespace MoneyFox.Infrastructure.Persistence
         public DbSet<RecurringPayment> RecurringPayments { get; set; } = null!;
 
         public DbSet<Category> Categories { get; set; } = null!;
-
-        public DbSet<Budget> Budgets { get; set; } = null!;
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
@@ -66,7 +65,6 @@ namespace MoneyFox.Infrastructure.Persistence
             if (ChangeTracker.Entries().Any())
             {
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
-                await publisher.Publish(notification: new DbEntityModifiedEvent(), cancellationToken: cancellationToken);
             }
 
             return result;
