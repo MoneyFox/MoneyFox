@@ -5,11 +5,13 @@
     using System.Threading.Tasks;
     using Core.Common.Interfaces;
     using Core.Resources;
-    using Views.Dialogs;
+    using Views.Popups;
+    using Xamarin.CommunityToolkit.Extensions;
+    using Xamarin.Forms;
 
     public class DialogService : IDialogService
     {
-        private LoadingDialog? loadingDialog;
+        private LoadingIndicatorPopup? loadingDialog;
 
         /// <inheritdoc />
         public async Task ShowLoadingDialogAsync(string? message = null)
@@ -19,8 +21,8 @@
                 await HideLoadingDialogAsync();
             }
 
-            loadingDialog = new LoadingDialog();
-            await loadingDialog.ShowAsync();
+            loadingDialog = new LoadingIndicatorPopup();
+            Shell.Current.ShowPopup(loadingDialog);
         }
 
         /// <inheritdoc />
@@ -33,7 +35,7 @@
 
             try
             {
-                await LoadingDialog.DismissAsync();
+                loadingDialog.Dismiss(null);
                 loadingDialog = null;
             }
             catch (IndexOutOfRangeException)
@@ -44,31 +46,17 @@
 
         public async Task ShowMessageAsync(string title, string message)
         {
-            if (loadingDialog != null)
-            {
-                // Only 1 dialog can be open at a time. Close the Loading dialog sow the message can be displayed.
-                await HideLoadingDialogAsync();
-            }
-
-            var messageDialog = new MessageDialog(title: title, message: message);
-            await messageDialog.ShowAsync();
+            await Shell.Current.DisplayAlert(title: title, message: message, cancel: Strings.OkLabel);
         }
 
         public async Task<bool> ShowConfirmMessageAsync(string title, string message, string? positiveButtonText = null, string? negativeButtonText = null)
         {
-            if (loadingDialog != null)
-            {
-                // Only 1 dialog can be open at a time. Close the Loading dialog sow the message can be displayed.
-                await HideLoadingDialogAsync();
-            }
-
-            var confirmDialog = new ConfirmMessageDialog(
+            return await Shell.Current.DisplayAlert(
                 title: title,
                 message: message,
-                positiveText: positiveButtonText ?? Strings.YesLabel,
-                negativeText: negativeButtonText ?? Strings.NoLabel);
+                accept: positiveButtonText ?? Strings.YesLabel,
+                cancel: negativeButtonText ?? Strings.NoLabel);
 
-            return await confirmDialog.ShowAsync();
         }
     }
 

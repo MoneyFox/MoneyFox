@@ -2,7 +2,9 @@
 {
 
     using System;
+    using Popups;
     using ViewModels.Payments;
+    using Xamarin.CommunityToolkit.Extensions;
     using Xamarin.Forms;
 
     [QueryProperty(name: "AccountId", queryId: "accountId")]
@@ -27,6 +29,12 @@
             set => accountId = Convert.ToInt32(Uri.UnescapeDataString(value));
         }
 #pragma warning restore S2376 // Write-only properties should not be used
+
+        private void ShowFilterPopup(object sender, EventArgs e)
+        {
+            var popup = new FilterPopup();
+            Shell.Current.ShowPopup(popup);
+        }
     }
 
 }

@@ -10,7 +10,7 @@
     <style name="MainTheme" parent="MainTheme.Base">
     </style>
     <!-- Base theme applied no matter what API -->
-    <style name="MainTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="MainTheme.Base" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <!--If you are using revision 22.1 please use just windowNoTitle. Without android:-->
         <item name="windowNoTitle">true</item>
         <!--We will be using the toolbar so no need to show ActionBar-->
@@ -27,19 +27,13 @@
              colorControlHighlight and colorSwitchThumbNormal. -->
         <item name="windowActionModeOverlay">true</item>
 
-        <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
-
         <item name="android:colorLongPressedHighlight">@color/colorAccent</item>
         <item name="android:actionMenuTextColor">@color/colorAccent</item>
 
         <item name="android:editTextStyle">@style/myEditText</item>
     </style>
 
-    <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
-        <item name="colorAccent">#FF4081</item>
-    </style>
-
-    <style name="myEditText" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="myEditText" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <item name="android:textCursorDrawable">@drawable/CustomCursor</item>
     </style>
 </resources>

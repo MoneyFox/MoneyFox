@@ -1,15 +1,10 @@
-﻿namespace MoneyFox.Views.Dialogs
+﻿namespace MoneyFox.Views.Popups
 {
 
     using System;
-    using System.Threading.Tasks;
-    using Core._Pending_.Common.Messages;
-    using Rg.Plugins.Popup.Extensions;
-    using ViewModels.Dialogs;
-    using Xamarin.Forms;
-    using Xamarin.Forms.Xaml;
+    using MoneyFox.Core._Pending_.Common.Messages;
+    using MoneyFox.ViewModels.Dialogs;
 
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DateSelectionPopup
     {
         public DateSelectionPopup(DateTime dateFrom, DateTime dateTo)
@@ -29,20 +24,10 @@
 
         private SelectDateRangeDialogViewModel ViewModel => (SelectDateRangeDialogViewModel)BindingContext;
 
-        public async Task ShowAsync()
-        {
-            await Application.Current.MainPage.Navigation.PushPopupAsync(this);
-        }
-
-        private static async Task DismissAsync()
-        {
-            await Application.Current.MainPage.Navigation.PopPopupAsync();
-        }
-
-        private async void Button_OnClicked(object sender, EventArgs e)
+        private void Button_OnClicked(object sender, EventArgs e)
         {
             ViewModel.DoneCommand.Execute(null);
-            await DismissAsync();
+            Dismiss(null);
         }
     }
 

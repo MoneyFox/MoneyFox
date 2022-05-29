@@ -9,7 +9,6 @@
              Shell.NavBarHasShadow="False"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:converter="clr-namespace:MoneyFox.Converter"
-             xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
              xmlns:payments="clr-namespace:MoneyFox.ViewModels.Payments;assembly=MoneyFox"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              x:Class="MoneyFox.Views.Payments.PaymentListPage">
@@ -21,21 +20,22 @@
 
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,Auto,66,66,0">
-            
-            <ImageButton Margin="0,0,5,0"
-                         Grid.Column="2"
+
+            <ImageButton Grid.Column="2"
+                         x:Name="ShowFilterButton"
+                         Clicked="ShowFilterPopup"
+                         Margin="0,0,5,0"
                          Padding="0"
                          BorderWidth="0"
-                         Command="{Binding ShowFilterDialogCommand}"
                          HeightRequest="44"
                          HorizontalOptions="End"
                          VerticalOptions="Center"
-                         WidthRequest="66" >
+                         WidthRequest="66">
                 <ImageButton.Source>
                     <FontImageSource FontFamily="MaterialIconsRound" Glyph="filter_alt" />
                 </ImageButton.Source>
             </ImageButton>
-            
+
             <ImageButton Margin="0,0,5,0"
                          Grid.Column="3"
                          Padding="0"
@@ -45,9 +45,9 @@
                          HorizontalOptions="End"
                          VerticalOptions="Center"
                          WidthRequest="66"
-                         Style="{StaticResource PrimaryImageButton}" >
+                         Style="{StaticResource PrimaryImageButton}">
                 <ImageButton.Source>
-                    <FontImageSource FontFamily="MaterialIconsRound" Glyph="add" />
+                    <FontImageSource FontFamily="MaterialIconsRound" Glyph="add" Color="White" />
                 </ImageButton.Source>
             </ImageButton>
         </Grid>
