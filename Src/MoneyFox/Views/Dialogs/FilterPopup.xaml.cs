@@ -7,7 +7,6 @@ namespace MoneyFox.Views.Dialogs
     using Rg.Plugins.Popup.Extensions;
     using ViewModels.Dialogs;
     using Xamarin.Forms;
-    using Xamarin.Forms.Xaml;
 
     public partial class FilterPopup
     {
@@ -26,15 +25,10 @@ namespace MoneyFox.Views.Dialogs
 
         private SelectFilterDialogViewModel ViewModel => (SelectFilterDialogViewModel)BindingContext;
 
-        public async Task ShowAsync()
-        {
-            await Application.Current.MainPage.Navigation.PushPopupAsync(this);
-        }
-
-        private async void Button_OnClicked(object sender, EventArgs e)
+        private void Button_OnClicked(object sender, EventArgs e)
         {
             ViewModel.FilterSelectedCommand.Execute(null);
-            await Application.Current.MainPage.Navigation.PopPopupAsync();
+            Dismiss(null);
         }
     }
 

@@ -20,6 +20,7 @@
     using MediatR;
     using Views.Dialogs;
     using Views.Payments;
+    using Xamarin.CommunityToolkit.Extensions;
     using Xamarin.Forms;
 
     public class PaymentListViewModel : ObservableRecipient
@@ -82,7 +83,7 @@
                 PaymentRecurrence.Yearly
             };
 
-        public RelayCommand ShowFilterDialogCommand => new RelayCommand(async () => await new FilterPopup().ShowAsync());
+        public RelayCommand ShowFilterDialogCommand => new RelayCommand(ShowFilterDialog);
 
         public RelayCommand GoToAddPaymentCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
 
@@ -154,6 +155,12 @@
                         x => x.Type == PaymentType.Income
                              || x.Type == PaymentType.Transfer && x.TargetAccount != null && x.TargetAccount.Id == SelectedAccount.Id)
                     .Sum(x => x.Amount));
+        }
+
+        private void ShowFilterDialog()
+        {
+            var popup = new FilterPopup();
+            Shell.Current.ShowPopup(popup);
         }
     }
 
