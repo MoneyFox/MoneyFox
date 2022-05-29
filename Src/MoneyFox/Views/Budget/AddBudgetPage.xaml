@@ -5,6 +5,7 @@
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              xmlns:budget="clr-namespace:MoneyFox.ViewModels.Budget;assembly=MoneyFox"
              xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
+             xmlns:views="http://xamarin.com/schemas/2020/toolkit"
              Title="{x:Static resources:Strings.AddBudgetTitle}"
              x:DataType="budget:AddBudgetViewModel"
              x:Class="MoneyFox.Views.Budget.AddBudgetPage"
@@ -30,6 +31,19 @@
 
                 <Button Text="{x:Static resources:Strings.SelectCategoryLabel}"
                         Command="{Binding SelectCategoryCommand}" />
+                
+                <Label Text="{x:Static resources:Strings.SelectedCategoriesLabel}" />
+                
+                <CollectionView ItemsLayout="VerticalGrid, 2" ItemsSource="{Binding SelectedCategories}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="budget:BudgetCategoryViewModel">
+                            <Grid Padding="3" HeightRequest="60">
+                            <Frame>
+                                <Label Text="{Binding Name}" />
+                            </Frame></Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

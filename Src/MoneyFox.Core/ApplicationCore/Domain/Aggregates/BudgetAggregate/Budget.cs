@@ -12,7 +12,7 @@ namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate
         [UsedImplicitly]
         private Budget() { }
 
-        public Budget(string name, double spendingLimit, List<int> includedCategories)
+        public Budget(string name, double spendingLimit, IList<int> includedCategories)
         {
             Name = name;
             SpendingLimit = spendingLimit;

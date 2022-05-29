@@ -8,6 +8,7 @@ namespace MoneyFox.Views.Budget
         public AddBudgetPage()
         {
             InitializeComponent();
+            BindingContext = ViewModelLocator.AddBudgetViewModel;
         }
 
         private void AmountFieldGotFocus(object sender, FocusEventArgs e)

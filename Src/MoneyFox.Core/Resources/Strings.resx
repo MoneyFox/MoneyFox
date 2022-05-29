@@ -834,4 +834,7 @@ To start create a new account. Accounts are used to organize payments and money 
     <data name="MoreTitle" xml:space="preserve">
         <value>More</value>
     </data>
+    <data name="SelectedCategoriesLabel" xml:space="preserve">
+        <value>Selected Categories</value>
+    </data>
 </root>

@@ -1947,6 +1947,15 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selected Categories.
+        /// </summary>
+        public static string SelectedCategoriesLabel {
+            get {
+                return ResourceManager.GetString("SelectedCategoriesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Selected Payment Type.
         /// </summary>
         public static string SelectedPaymentTypeHeader {

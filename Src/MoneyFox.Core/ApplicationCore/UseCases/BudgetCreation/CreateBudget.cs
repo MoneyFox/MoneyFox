@@ -21,7 +21,7 @@
 
             public string Name { get; }
             public double SpendingLimit { get; }
-            public List<int> Categories { get; }
+            public IList<int> Categories { get; }
         }
 
         public class Handler : IRequestHandler<Query>

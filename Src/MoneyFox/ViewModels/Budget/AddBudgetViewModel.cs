@@ -12,6 +12,11 @@ namespace MoneyFox.ViewModels.Budget
 
     public sealed class AddBudgetViewModel : ObservableRecipient, IRecipient<CategorySelectedMessage>
     {
+        public AddBudgetViewModel()
+        {
+            WeakReferenceMessenger.Default.Register(this);
+        }
+
         private BudgetViewModel selectedBudget = new BudgetViewModel();
 
         public BudgetViewModel SelectedBudget
