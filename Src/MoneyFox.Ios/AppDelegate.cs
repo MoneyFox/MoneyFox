@@ -4,7 +4,6 @@ using Autofac;
 using Core.Common;
 using Foundation;
 using JetBrains.Annotations;
-using Microsoft.Identity.Client;
 using Serilog;
 using Serilog.Events;
 using Serilog.Exceptions;

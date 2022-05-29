@@ -1,25 +1,23 @@
-namespace MoneyFox.Views.Statistics
+﻿namespace MoneyFox.Views.Statistics;
+
+using CommunityToolkit.Maui.Views;
+using Popups;
+using ViewModels.Statistics;
+
+public partial class StatisticCategorySpreadingPage
 {
-    using System;
-    using CommunityToolkit.Maui.Views;
-    using Dialogs;
-    using ViewModels.Statistics;
-
-    public partial class StatisticCategorySpreadingPage
+    public StatisticCategorySpreadingPage()
     {
-        public StatisticCategorySpreadingPage()
-        {
-            InitializeComponent();
-            BindingContext = ViewModelLocator.StatisticCategorySpreadingViewModel;
-            ViewModel.LoadedCommand.Execute(null);
-        }
-
-        private StatisticCategorySpreadingViewModel ViewModel => (StatisticCategorySpreadingViewModel)BindingContext;
-
-        private void OpenFilterDialog(object sender, EventArgs e)
-        {
-            this.ShowPopup(new DateSelectionPopup(dateFrom: ViewModel.StartDate, dateTo: ViewModel.EndDate));
-        }
+        InitializeComponent();
+        BindingContext = ViewModelLocator.StatisticCategorySpreadingViewModel;
+        ViewModel.LoadedCommand.Execute(null);
     }
 
+    private StatisticCategorySpreadingViewModel ViewModel => (StatisticCategorySpreadingViewModel)BindingContext;
+
+    private void OpenFilterDialog(object sender, EventArgs e)
+    {
+        var popup = new DateSelectionPopup(dateFrom: ViewModel.StartDate, dateTo: ViewModel.EndDate);
+        Shell.Current.ShowPopup(popup);
+    }
 }

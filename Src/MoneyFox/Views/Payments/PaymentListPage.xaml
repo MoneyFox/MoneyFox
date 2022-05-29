@@ -5,10 +5,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             Visual="Material"
              Shell.NavBarHasShadow="False"
              xmlns:converter="clr-namespace:MoneyFox.Converter"
-             xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
              xmlns:payments="clr-namespace:MoneyFox.ViewModels.Payments;assembly=MoneyFox"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              x:Class="MoneyFox.Views.Payments.PaymentListPage">
@@ -20,15 +18,16 @@
 
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,Auto,66,66,0">
-            <ImageButton Margin="0,0,5,0"
-                         Grid.Column="2"
+
+            <ImageButton Grid.Column="2"
+                         Clicked="ShowFilterPopup"
+                         Margin="0,0,5,0"
                          Padding="0"
                          BorderWidth="0"
-                         Command="{Binding ShowFilterDialogCommand}"
                          HeightRequest="44"
                          HorizontalOptions="End"
                          VerticalOptions="Center"
-                         WidthRequest="66" >
+                         WidthRequest="66">
                 <ImageButton.Source>
                     <FontImageSource FontFamily="MaterialIconsRound" Glyph="filter_alt" />
                 </ImageButton.Source>
@@ -43,9 +42,9 @@
                          HorizontalOptions="End"
                          VerticalOptions="Center"
                          WidthRequest="66"
-                         Style="{StaticResource PrimaryImageButton}" >
+                         Style="{StaticResource PrimaryImageButton}">
                 <ImageButton.Source>
-                    <FontImageSource FontFamily="MaterialIconsRound" Glyph="add" />
+                    <FontImageSource FontFamily="MaterialIconsRound" Glyph="add" Color="White" />
                 </ImageButton.Source>
             </ImageButton>
         </Grid>
@@ -78,18 +77,18 @@
                                    Style="{StaticResource TextBodySecondary}"
                                    Text="{Binding Subtitle}" />
 
-                            <Border BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                            <Border Grid.Row="2"
+                                    BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                                  Light={StaticResource CardBackgroundLight}}"
-                                Stroke="black"
-                                StrokeThickness="0"
-                                StrokeShape="RoundRectangle 10"
-                                Grid.Row="2"
-                                HorizontalOptions="FillAndExpand">
+                                    Stroke="black"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 10"
+                                    HorizontalOptions="FillAndExpand">
 
                                 <Border.Shadow>
                                     <Shadow Brush="Black"
-                                            Offset="5,5"
-                                            Radius="30"
+                                            Offset="20,20"
+                                            Radius="40"
                                             Opacity="0.8" />
                                 </Border.Shadow>
 
@@ -126,7 +125,8 @@
                                                                IsVisible="{Binding IsTransfer}"
                                                                WidthRequest="15">
                                                             <Image.Source>
-                                                                <FontImageSource FontFamily="MaterialIconsRound" Glyph="sync_alt" />
+                                                                <FontImageSource FontFamily="MaterialIconsRound"
+                                                                    Glyph="sync_alt" />
                                                             </Image.Source>
                                                         </Image>
 
@@ -134,7 +134,8 @@
                                                                IsVisible="{Binding IsRecurring}"
                                                                WidthRequest="15">
                                                             <Image.Source>
-                                                                <FontImageSource FontFamily="MaterialIconsRound" Glyph="repeat" />
+                                                                <FontImageSource FontFamily="MaterialIconsRound"
+                                                                    Glyph="repeat" />
                                                             </Image.Source>
                                                         </Image>
 
@@ -142,7 +143,8 @@
                                                                IsVisible="{Binding IsCleared}"
                                                                WidthRequest="15">
                                                             <Image.Source>
-                                                                <FontImageSource FontFamily="MaterialIconsRound" Glyph="done" />
+                                                                <FontImageSource FontFamily="MaterialIconsRound"
+                                                                    Glyph="done" />
                                                             </Image.Source>
                                                         </Image>
                                                     </StackLayout>

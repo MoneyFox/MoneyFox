@@ -1,77 +1,56 @@
-namespace MoneyFox.Services
+﻿namespace MoneyFox.Services;
+
+using CommunityToolkit.Maui.Views;
+using Core.Common.Interfaces;
+using Core.Resources;
+using Views.Popups;
+
+public class DialogService : IDialogService
 {
+    private LoadingIndicatorPopup? loadingDialog;
 
-    using System;
-    using System.Threading.Tasks;
-    using CommunityToolkit.Maui.Views;
-    using Core.Common.Interfaces;
-    using Core.Resources;
-    using Views.Dialogs;
-
-    public class DialogService : IDialogService
+    /// <inheritdoc />
+    public async Task ShowLoadingDialogAsync(string? message = null)
     {
-        private LoadingDialog? loadingDialog;
-
-        /// <inheritdoc />
-        public async Task ShowLoadingDialogAsync(string? message = null)
+        if (loadingDialog != null)
         {
-            if (loadingDialog != null)
-            {
-                await HideLoadingDialogAsync();
-            }
-
-            loadingDialog = new LoadingDialog();
-            await Application.Current.MainPage.ShowPopupAsync(loadingDialog);
+            await HideLoadingDialogAsync();
         }
 
-        /// <inheritdoc />
-        public async Task HideLoadingDialogAsync()
-        {
-            if (loadingDialog == null)
-            {
-                return;
-            }
+        loadingDialog = new();
+        Shell.Current.ShowPopup(loadingDialog);
+    }
 
-            try
-            {
-                loadingDialog.Close();
-                loadingDialog = null;
-            }
-            catch (IndexOutOfRangeException)
-            {
-                // catch and swallow out of range exceptions when dismissing dialogs.
-            }
-            await Task.CompletedTask;
+    /// <inheritdoc />
+    public async Task HideLoadingDialogAsync()
+    {
+        if (loadingDialog == null)
+        {
+            return;
         }
 
-        public async Task ShowMessageAsync(string title, string message)
+        try
         {
-            if (loadingDialog != null)
-            {
-                // Only 1 dialog can be open at a time. Close the Loading dialog sow the message can be displayed.
-                await HideLoadingDialogAsync();
-            }
-
-            var messageDialog = new MessageDialog(title: title, message: message);
-            await Application.Current.MainPage.ShowPopupAsync(messageDialog);
+            loadingDialog.Close(null);
+            loadingDialog = null;
         }
-
-        public async Task<bool> ShowConfirmMessageAsync(string title, string message, string? positiveButtonText = null, string? negativeButtonText = null)
+        catch (IndexOutOfRangeException)
         {
-            if (loadingDialog != null)
-            {
-                // Only 1 dialog can be open at a time. Close the Loading dialog sow the message can be displayed.
-                await HideLoadingDialogAsync();
-            }
-
-            var confirmDialog = new ConfirmMessageDialog(
-                title: title,
-                message: message,
-                positiveText: positiveButtonText ?? Strings.YesLabel,
-                negativeText: negativeButtonText ?? Strings.NoLabel);
-
-            return (bool)await Application.Current.MainPage.ShowPopupAsync(confirmDialog);
+            // catch and swallow out of range exceptions when dismissing dialogs.
         }
     }
 
+    public async Task ShowMessageAsync(string title, string message)
+    {
+        await Shell.Current.DisplayAlert(title: title, message: message, cancel: Strings.OkLabel);
+    }
+
+    public async Task<bool> ShowConfirmMessageAsync(string title, string message, string? positiveButtonText = null, string? negativeButtonText = null)
+    {
+        return await Shell.Current.DisplayAlert(
+            title: title,
+            message: message,
+            accept: positiveButtonText ?? Strings.YesLabel,
+            cancel: negativeButtonText ?? Strings.NoLabel);
+    }
 }

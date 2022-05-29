@@ -1,0 +1,17 @@
+﻿<views:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+           xmlns:views="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+           mc:Ignorable="d"
+           CanBeDismissedByTappingOutsideOfPopup="false"
+           Size="200, 80"
+           x:Class="MoneyFox.Views.Popups.LoadingIndicatorPopup">
+
+    <Grid ColumnDefinitions="40, 10, *" Padding="20">
+        <ActivityIndicator IsRunning="True" Grid.Column="0" />
+        <Label Text="{x:Static resources:Strings.LoadingLabel}" Style="{DynamicResource BaseLabel}"
+               Grid.Column="2" VerticalOptions="Center" />
+    </Grid>
+</views:Popup>

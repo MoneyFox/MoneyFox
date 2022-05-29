@@ -1,0 +1,56 @@
+﻿<views:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+             xmlns:converter="clr-namespace:MoneyFox.Converter"
+             xmlns:views="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             CanBeDismissedByTappingOutsideOfPopup="false"
+             x:Class="MoneyFox.Views.Popups.FilterPopup">
+
+    <Grid RowDefinitions="*, 40">
+        <Grid.Resources>
+            <ResourceDictionary>
+                <converter:PaymentTypeFilterConverter x:Key="PaymentTypeFilterConverter" />
+            </ResourceDictionary>
+        </Grid.Resources>
+        
+        <StackLayout Padding="15" Spacing="6">
+            <Label Text="{x:Static resources:Strings.SelectFilterTitle}"
+                   Style="{DynamicResource TextHead}" />
+
+            <Grid>
+                <Label Text="{x:Static resources:Strings.IsClearedLabel}"
+                       Style="{DynamicResource BaseLabel}"
+                       HorizontalOptions="Start" />
+                <Switch IsToggled="{Binding IsClearedFilterActive}"
+                        HorizontalOptions="End" />
+            </Grid>
+
+            <Grid>
+                <Label Text="{x:Static resources:Strings.IsRecurringLabel}"
+                       Style="{DynamicResource BaseLabel}"
+                       HorizontalOptions="Start" />
+                <Switch IsToggled="{Binding IsRecurringFilterActive}"
+                        HorizontalOptions="End" />
+            </Grid>
+
+            <Label Style="{DynamicResource BaseLabel}"
+                   Text="{x:Static resources:Strings.PaymentTypeLabel}" />
+            <Picker Title="{x:Static resources:Strings.PaymentTypeLabel}"
+                    ItemsSource="{Binding PaymentTypeFilterList}"
+                    SelectedItem="{Binding FilteredPaymentType}"
+                    ItemDisplayBinding="{Binding ., Converter={StaticResource PaymentTypeFilterConverter}}" />
+
+            <Label Style="{DynamicResource BaseLabel}"
+                   Text="{x:Static resources:Strings.TimeRangeStartLabel}" />
+            <DatePicker Date="{Binding TimeRangeStart}" />
+
+            <Label Style="{DynamicResource BaseLabel}"
+                   Text="{x:Static resources:Strings.TimeRangeEndLabel}" />
+            <DatePicker Date="{Binding TimeRangeEnd}" />
+        </StackLayout>
+
+        <Button Grid.Row="1"
+                Text="{x:Static resources:Strings.DoneLabel}"
+                Clicked="Button_OnClicked" />
+    </Grid>
+</views:Popup>
