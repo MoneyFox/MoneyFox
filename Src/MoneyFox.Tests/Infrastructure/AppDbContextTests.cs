@@ -9,7 +9,6 @@
     using Microsoft.EntityFrameworkCore;
     using MoneyFox.Core._Pending_.Common.Facades;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-    using MoneyFox.Core.ApplicationCore.Domain.Events;
     using MoneyFox.Infrastructure.Persistence;
     using NSubstitute;
     using Xunit;
@@ -26,22 +25,7 @@
         }
 
         [Fact]
-        public async Task DoesNotSendEvent_WhenNothingSaved()
-        {
-            // Arrange
-            var options = new DbContextOptionsBuilder<AppDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
-            var context = new AppDbContext(options: options, publisher: publisher, settingsFacade: settingsFacade);
-
-            // Act
-            await context.SaveChangesAsync();
-
-            // Assert
-            await publisher.DidNotReceive().Publish(Arg.Any<DbEntityModifiedEvent>());
-            _ = settingsFacade.DidNotReceive().LastDatabaseUpdate;
-        }
-
-        [Fact]
-        public async Task SetCreatedAndLastModifiedDateAndSendEventOnSaveChanges()
+        public async Task SetCreatedAndLastModifiedDate_OnSaveChanges()
         {
             // Arrange
             var options = new DbContextOptionsBuilder<AppDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
@@ -57,12 +41,11 @@
             loadedAccount.Created.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
             account.Created.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
             account.LastModified.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
-            await publisher.Received(1).Publish(Arg.Any<DbEntityModifiedEvent>());
             settingsFacade.LastDatabaseUpdate.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
         }
 
         [Fact]
-        public async Task SetModifiedDateAndSendEventOnSaveChanges()
+        public async Task SetModifiedDate_OnSaveChanges()
         {
             // Arrange
             var options = new DbContextOptionsBuilder<AppDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
@@ -79,7 +62,6 @@
             var loadedAccount = context.Accounts.First();
             loadedAccount.LastModified.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
             account.LastModified.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
-            await publisher.Received().Publish(Arg.Any<DbEntityModifiedEvent>());
             settingsFacade.LastDatabaseUpdate.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
         }
     }
