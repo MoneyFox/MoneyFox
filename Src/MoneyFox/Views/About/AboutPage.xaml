@@ -9,11 +9,11 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Padding="15">
-                <StackLayout Orientation="Horizontal">
+            <VerticalStackLayout Padding="15" Spacing="6">
+                <HorizontalStackLayout>
                     <Label Text="{x:Static resources:Strings.VersionLabel}" />
                     <Label Text="{Binding Version}" />
-                </StackLayout>
+                </HorizontalStackLayout>
 
                 <Label
                     HorizontalOptions="Start"
@@ -70,7 +70,7 @@
                         <TapGestureRecognizer Command="{Binding GoToDesignerTwitterAccountCommand}" />
                     </Label.GestureRecognizers>
                 </Label>
-            </StackLayout>
+            </VerticalStackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
