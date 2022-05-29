@@ -272,19 +272,22 @@
 
     <!-- Picker -->
     <Style TargetType="Picker">
+        <Setter Property="Visual" Value="Material" />
         <Setter Property="TitleColor" Value="{StaticResource NeutralSecondary}" />
         <Setter Property="TextColor"
                 Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
     </Style>
 
-    <!-- Picker -->
+    <!-- DatePicker -->
     <Style TargetType="DatePicker">
+        <Setter Property="Visual" Value="Material" />
         <Setter Property="TextColor"
                 Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
     </Style>
 
     <!-- Switch -->
     <Style TargetType="Switch">
+        <Setter Property="Visual" Value="Material" />
         <Setter Property="HorizontalOptions" Value="Start" />
         <Setter Property="OnColor" Value="{StaticResource ThemePrimary}" />
         <Setter Property="VisualStateManager.VisualStateGroups">
