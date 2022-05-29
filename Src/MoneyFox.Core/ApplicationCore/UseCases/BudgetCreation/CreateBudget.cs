@@ -8,7 +8,7 @@
     using Domain.Aggregates.BudgetAggregate;
     using MediatR;
 
-    internal sealed class CreateBudget
+    public static class CreateBudget
     {
         public class Query : IRequest
         {
