@@ -4,7 +4,7 @@
            xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
            Visual="Material"
            IsLightDismissEnabled="false"
-           x:Class="MoneyFox.Views.Dialogs.DateSelectionPopup">
+           x:Class="MoneyFox.Views.Popups.DateSelectionPopup">
 
     <Grid RowDefinitions="*, 40" >
 

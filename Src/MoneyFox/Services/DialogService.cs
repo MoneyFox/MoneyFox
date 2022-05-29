@@ -5,13 +5,13 @@
     using System.Threading.Tasks;
     using Core.Common.Interfaces;
     using Core.Resources;
-    using Views.Dialogs;
+    using Views.Popups;
     using Xamarin.CommunityToolkit.Extensions;
     using Xamarin.Forms;
 
     public class DialogService : IDialogService
     {
-        private LoadingDialog? loadingDialog;
+        private LoadingIndicatorPopup? loadingDialog;
 
         /// <inheritdoc />
         public async Task ShowLoadingDialogAsync(string? message = null)
@@ -21,7 +21,7 @@
                 await HideLoadingDialogAsync();
             }
 
-            loadingDialog = new LoadingDialog();
+            loadingDialog = new LoadingIndicatorPopup();
             Shell.Current.ShowPopup(loadingDialog);
         }
 

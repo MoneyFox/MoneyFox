@@ -5,7 +5,7 @@
            xmlns:converter="clr-namespace:MoneyFox.Converter"
            Visual="Material"
            IsLightDismissEnabled="false"
-           x:Class="MoneyFox.Views.Dialogs.FilterPopup">
+           x:Class="MoneyFox.Views.Popups.FilterPopup">
 
     <xct:Popup.Resources>
         <ResourceDictionary>

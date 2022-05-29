@@ -2,7 +2,7 @@
 {
 
     using System;
-    using Dialogs;
+    using Popups;
     using ViewModels.Statistics;
     using Xamarin.CommunityToolkit.Extensions;
     using Xamarin.Forms;

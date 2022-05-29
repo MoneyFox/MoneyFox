@@ -8,7 +8,7 @@
            Visual="Material"
            IsLightDismissEnabled="False"
            Size="200, 80"
-           x:Class="MoneyFox.Views.Dialogs.LoadingDialog">
+           x:Class="MoneyFox.Views.Popups.LoadingIndicatorPopup">
 
     <Grid ColumnDefinitions="40, 10, *" Padding="20">
         <ActivityIndicator IsRunning="True" Grid.Column="0" />

@@ -1,14 +1,9 @@
-﻿namespace MoneyFox.Views.Dialogs
+﻿namespace MoneyFox.Views.Popups
 {
 
     using System;
-    using System.Threading.Tasks;
-    using Core._Pending_.Common.Messages;
-    using Rg.Plugins.Popup.Extensions;
-    using ViewModels.Dialogs;
-    using Xamarin.CommunityToolkit.Extensions;
-    using Xamarin.Forms;
-    using Xamarin.Forms.Xaml;
+    using MoneyFox.Core._Pending_.Common.Messages;
+    using MoneyFox.ViewModels.Dialogs;
 
     public partial class DateSelectionPopup
     {

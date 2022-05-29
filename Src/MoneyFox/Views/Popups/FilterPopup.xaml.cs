@@ -1,9 +1,9 @@
-namespace MoneyFox.Views.Dialogs
+namespace MoneyFox.Views.Popups
 {
 
     using System;
-    using Core._Pending_.Common.Messages;
-    using ViewModels.Dialogs;
+    using MoneyFox.Core._Pending_.Common.Messages;
+    using MoneyFox.ViewModels.Dialogs;
 
     public partial class FilterPopup
     {

@@ -13,7 +13,7 @@
     using Core.Common.Interfaces;
     using Extensions;
     using MediatR;
-    using Views.Dialogs;
+    using Views.Popups;
     using Xamarin.CommunityToolkit.Extensions;
     using Xamarin.Forms;
     using Xamarin.Forms.Internals;
@@ -118,7 +118,7 @@
             }
         }
 
-        public RelayCommand GoToAddPaymentCommand => new RelayCommand(() => Shell.Current.ShowPopup(new LoadingDialog()));
+        public RelayCommand GoToAddPaymentCommand => new RelayCommand(() => Shell.Current.ShowPopup(new LoadingIndicatorPopup()));
 
         public RelayCommand GoToAccountsCommand => new RelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.AccountListRoute));
 
