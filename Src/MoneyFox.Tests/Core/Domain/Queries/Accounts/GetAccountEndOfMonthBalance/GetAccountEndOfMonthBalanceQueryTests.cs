@@ -8,6 +8,7 @@
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using MoneyFox.Core.ApplicationCore.Queries;
     using MoneyFox.Core.Common;
+    using MoneyFox.Core.Common.Helpers;
     using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Infrastructure.Persistence;
     using NSubstitute;

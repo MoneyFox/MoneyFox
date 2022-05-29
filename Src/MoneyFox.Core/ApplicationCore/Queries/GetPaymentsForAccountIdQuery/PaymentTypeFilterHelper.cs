@@ -1,8 +1,8 @@
-﻿namespace MoneyFox.Core._Pending_.Common.Helpers
+﻿namespace MoneyFox.Core.ApplicationCore.Queries.GetPaymentsForAccountIdQuery
 {
 
     using System;
-    using ApplicationCore.Domain.Aggregates.AccountAggregate;
+    using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 
     public static class PaymentTypeFilterHelper
     {

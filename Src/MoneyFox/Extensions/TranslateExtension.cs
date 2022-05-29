@@ -5,6 +5,7 @@
     using System.Reflection;
     using System.Resources;
     using Core.Common;
+    using Core.Common.Helpers;
     using Core.Resources;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;

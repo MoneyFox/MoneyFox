@@ -1,10 +1,11 @@
-﻿namespace MoneyFox.Tests.Core._Pending_
+﻿namespace MoneyFox.Tests.Core.Common.Helper
 {
 
     using System;
     using System.Diagnostics.CodeAnalysis;
     using FluentAssertions;
     using MoneyFox.Core.Common;
+    using MoneyFox.Core.Common.Helpers;
     using Xunit;
 
     [ExcludeFromCodeCoverage]

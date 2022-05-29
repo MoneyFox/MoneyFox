@@ -1,9 +1,9 @@
-namespace MoneyFox.Tests.Core._Pending_.Common.Extensions
+namespace MoneyFox.Tests.Core.Common.Extensions
 {
 
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using MoneyFox.Core._Pending_.Common.Extensions;
+    using MoneyFox.Core.Common.Extensions;
     using Xunit;
 
     [ExcludeFromCodeCoverage]

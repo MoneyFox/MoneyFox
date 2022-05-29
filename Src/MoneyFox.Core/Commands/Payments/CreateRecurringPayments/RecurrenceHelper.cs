@@ -1,14 +1,14 @@
-namespace MoneyFox.Core._Pending_.Common.Helpers
+﻿namespace MoneyFox.Core.Commands.Payments.CreateRecurringPayments
 {
 
     using System;
     using ApplicationCore.Domain.Aggregates;
     using ApplicationCore.Domain.Aggregates.AccountAggregate;
     using ApplicationCore.Domain.Exceptions;
-    using Extensions;
+    using Common.Extensions;
     using Resources;
 
-    public static class RecurringPaymentHelper
+    internal static class RecurrenceHelper
     {
         /// <summary>
         ///     Checks if the recurring PaymentViewModel is up for a repetition based on the passed PaymentViewModel
@@ -88,7 +88,7 @@ namespace MoneyFox.Core._Pending_.Common.Helpers
                     if (currDate.DayOfWeek == DayOfWeek.Saturday || currDate.DayOfWeek == DayOfWeek.Sunday)
                     {
                         throw new InvalidOperationException(
-                            $"Unable to create a {Strings.DailyWithoutWeekendLabel} recurring payment on a {currDate.DayOfWeek}.");
+                            $"Unable to create a {Strings.DailyWithoutWeekendLabel} recurring payment on a {currDate.DayOfWeek}");
                     }
 
                     return currDate;
@@ -105,23 +105,7 @@ namespace MoneyFox.Core._Pending_.Common.Helpers
                 default:
                     throw new ArgumentOutOfRangeException(
                         paramName: nameof(recurringPayment),
-                        message: $"Unable to determine the payment date for recurrence type {recurringPayment.Recurrence}.");
-            }
-        }
-
-        public static bool AllowLastDayOfMonth(PaymentRecurrence passedEnum)
-        {
-            // TODO: Change to a switch expression using 'or' for the multiple condition matches when the project is upgraded to C# 9.
-            switch (passedEnum)
-            {
-                case PaymentRecurrence.Monthly:
-                case PaymentRecurrence.Bimonthly:
-                case PaymentRecurrence.Quarterly:
-                case PaymentRecurrence.Biannually:
-                case PaymentRecurrence.Yearly:
-                    return true;
-                default:
-                    return false;
+                        message: $"Unable to determine the payment date for recurrence type {recurringPayment.Recurrence}");
             }
         }
     }

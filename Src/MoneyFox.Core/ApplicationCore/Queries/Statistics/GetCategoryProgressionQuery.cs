@@ -7,6 +7,7 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using Common.Helpers;
     using Domain.Aggregates.AccountAggregate;
     using Domain.Exceptions;
     using MediatR;

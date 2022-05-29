@@ -12,6 +12,7 @@
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using MoneyFox.Core.ApplicationCore.Queries.Statistics;
     using MoneyFox.Core.Common;
+    using MoneyFox.Core.Common.Helpers;
     using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Infrastructure.Persistence;
     using Moq;

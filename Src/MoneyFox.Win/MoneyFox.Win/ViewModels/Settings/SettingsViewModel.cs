@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Core.Common;
 using Core.Common.Facades;
+using Core.Common.Helpers;
 using Core.Common.Interfaces;
 
 public class SettingsViewModel : ObservableObject, ISettingsViewModel

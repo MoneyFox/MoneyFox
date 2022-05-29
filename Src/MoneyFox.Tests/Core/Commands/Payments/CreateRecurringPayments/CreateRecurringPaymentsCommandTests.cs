@@ -6,9 +6,9 @@ namespace MoneyFox.Tests.Core.Commands.Payments.CreateRecurringPayments
     using System.Linq;
     using System.Threading.Tasks;
     using FluentAssertions;
-    using MoneyFox.Core._Pending_.Common.Extensions;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using MoneyFox.Core.Commands.Payments.CreateRecurringPayments;
+    using MoneyFox.Core.Common.Extensions;
     using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Infrastructure.Persistence;
     using Moq;

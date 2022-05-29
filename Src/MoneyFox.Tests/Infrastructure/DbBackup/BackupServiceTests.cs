@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core._Pending_.CloudBackup
+﻿namespace MoneyFox.Tests.Infrastructure.DbBackup
 {
 
     using System;

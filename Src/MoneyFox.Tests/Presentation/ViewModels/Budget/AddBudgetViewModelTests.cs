@@ -5,8 +5,8 @@
     using System.Threading.Tasks;
     using FluentAssertions;
     using MediatR;
-    using MoneyFox.Core._Pending_.Common.Extensions;
     using MoneyFox.Core.ApplicationCore.UseCases.BudgetCreation;
+    using MoneyFox.Core.Common.Extensions;
     using MoneyFox.Core.Common.Messages;
     using MoneyFox.ViewModels.Budget;
     using NSubstitute;

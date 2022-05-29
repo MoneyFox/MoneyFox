@@ -8,6 +8,7 @@
     using FluentAssertions;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using MoneyFox.Core.ApplicationCore.Queries;
+    using MoneyFox.Core.ApplicationCore.Queries.GetPaymentsForAccountIdQuery;
     using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Infrastructure.Persistence;
     using Moq;

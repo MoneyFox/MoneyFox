@@ -10,6 +10,7 @@
     using Core.Commands.Payments.CreateRecurringPayments;
     using Core.Common;
     using Core.Common.Facades;
+    using Core.Common.Helpers;
     using MediatR;
     using Mobile.Infrastructure.Adapters;
     using Serilog;

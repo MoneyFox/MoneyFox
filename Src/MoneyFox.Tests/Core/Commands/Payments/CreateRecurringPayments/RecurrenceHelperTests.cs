@@ -1,19 +1,18 @@
-namespace MoneyFox.Tests.Core._Pending_.Common
+namespace MoneyFox.Tests.Core.Commands.Payments.CreateRecurringPayments
 {
 
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using FluentAssertions;
-    using MoneyFox.Core._Pending_.Common.Extensions;
-    using MoneyFox.Core._Pending_.Common.Helpers;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+    using MoneyFox.Core.Commands.Payments.CreateRecurringPayments;
+    using MoneyFox.Core.Common.Extensions;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class RecurringPaymentHelperTests
+    public class RecurrenceHelperTests
     {
-        #region RecurringPayment Test Data
         public class RecurringPaymentTestData
         {
             public PaymentRecurrence RecurrenceType { get; set; }
@@ -64,7 +63,6 @@ namespace MoneyFox.Tests.Core._Pending_.Common
             yield return new[] { new RecurringPaymentTestData { RecurrenceType = PaymentRecurrence.Yearly, PaymentDate = DateTime.Today.AddMonths(-11).GetFirstDayOfMonth().AddDays(-10), ExpectedRecurrenceResult = true, ExpectedNewPaymentDate = DateTime.Today.GetLastDayOfMonth(), IsLastDayOfMonth = true } };
 
         }
-        #endregion
 
         [Theory, MemberData(nameof(CheckIfRepeatableTestData))]
         public void CheckIfRepeatable_ValidatedRecurrence(RecurringPaymentTestData recurringPaymentTestData)
@@ -72,7 +70,7 @@ namespace MoneyFox.Tests.Core._Pending_.Common
             var account = new Account("foo");
             var payment = new Payment(date: recurringPaymentTestData.PaymentDate, amount: 105, type: PaymentType.Expense, chargedAccount: account);
             payment.AddRecurringPayment(recurrence: recurringPaymentTestData.RecurrenceType, isLastDayOfMonth: recurringPaymentTestData.IsLastDayOfMonth, endDate: DateTime.Today);
-            RecurringPaymentHelper.CheckIfRepeatable(payment).Should().Be(recurringPaymentTestData.ExpectedRecurrenceResult);
+            RecurrenceHelper.CheckIfRepeatable(payment).Should().Be(recurringPaymentTestData.ExpectedRecurrenceResult);
         }
 
         [Theory]
@@ -89,7 +87,7 @@ namespace MoneyFox.Tests.Core._Pending_.Common
             var account = new Account("foo");
             var payment = new Payment(date: DateTime.Today.AddDays(amountOfDaysUntilRepeat), amount: 105, type: PaymentType.Expense, chargedAccount: account);
             payment.AddRecurringPayment(recurrence: recurrence, isLastDayOfMonth: false, endDate: DateTime.Today);
-            RecurringPaymentHelper.CheckIfRepeatable(payment).Should().BeFalse();
+            RecurrenceHelper.CheckIfRepeatable(payment).Should().BeFalse();
         }
 
         [Theory, MemberData(nameof(CheckIfRepeatableTestData))]
@@ -98,22 +96,9 @@ namespace MoneyFox.Tests.Core._Pending_.Common
             var account = new Account("foo");
             var payment = new Payment(date: recurringPaymentTestData.PaymentDate, amount: 105, type: PaymentType.Expense, chargedAccount: account);
             payment.AddRecurringPayment(recurrence: recurringPaymentTestData.RecurrenceType, isLastDayOfMonth: recurringPaymentTestData.IsLastDayOfMonth, endDate: DateTime.Today);
-            RecurringPaymentHelper.GetPaymentDateFromRecurring(payment.RecurringPayment).Should().Be(recurringPaymentTestData.ExpectedNewPaymentDate);
+            RecurrenceHelper.GetPaymentDateFromRecurring(payment.RecurringPayment).Should().Be(recurringPaymentTestData.ExpectedNewPaymentDate);
         }
 
-        [Theory]
-        [InlineData(PaymentRecurrence.Daily, false)]
-        [InlineData(PaymentRecurrence.Weekly, false)]
-        [InlineData(PaymentRecurrence.Biweekly, false)]
-        [InlineData(PaymentRecurrence.Monthly, true)]
-        [InlineData(PaymentRecurrence.Bimonthly, true)]
-        [InlineData(PaymentRecurrence.Quarterly, true)]
-        [InlineData(PaymentRecurrence.Biannually, true)]
-        [InlineData(PaymentRecurrence.Yearly, true)]
-        public void CheckAllowLastDayOfMonth(PaymentRecurrence recurrence, bool expectedAllowLastDayOfMonth)
-        {
-            RecurringPaymentHelper.AllowLastDayOfMonth(recurrence).Should().Be(expectedAllowLastDayOfMonth);
-        }
     }
 
 }

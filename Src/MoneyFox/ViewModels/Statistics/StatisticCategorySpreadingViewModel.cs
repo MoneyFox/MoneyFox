@@ -8,10 +8,10 @@ namespace MoneyFox.ViewModels.Statistics
     using CommunityToolkit.Mvvm.Input;
     using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using Core.ApplicationCore.Queries.Statistics;
+    using Core.Common.Extensions;
     using LiveChartsCore;
     using LiveChartsCore.SkiaSharpView;
     using MediatR;
-    using MoneyFox.Core._Pending_.Common.Extensions;
 
     public class StatisticCategorySpreadingViewModel : StatisticViewModel
     {
