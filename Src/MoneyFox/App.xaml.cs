@@ -32,17 +32,17 @@ namespace MoneyFox
 
         protected override void OnStart()
         {
-            ExecuteStartupTasks();
+            StartupTasksAsync().ConfigureAwait(false);
         }
 
         protected override void OnResume()
         {
-            ExecuteStartupTasks();
+            StartupTasksAsync().ConfigureAwait(false);
         }
 
-        private void ExecuteStartupTasks()
+        protected override async void OnSleep()
         {
-            StartupTasksAsync().ConfigureAwait(false);
+            await StartupTasksAsync();
         }
 
         private async Task StartupTasksAsync()

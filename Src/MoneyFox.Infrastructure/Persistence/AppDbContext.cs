@@ -9,7 +9,6 @@
     using Core.ApplicationCore.Domain.Aggregates;
     using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
-    using Core.ApplicationCore.Domain.Events;
     using Core.Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
@@ -63,7 +62,6 @@
             if (ChangeTracker.Entries().Any())
             {
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
-                await publisher.Publish(notification: new DbEntityModifiedEvent(), cancellationToken: cancellationToken);
             }
 
             return result;
