@@ -4,7 +4,9 @@
            xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
            xmlns:converter="clr-namespace:MoneyFox.Converter"
            Visual="Material"
+           Size="330, 400"
            IsLightDismissEnabled="false"
+           Color="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
            x:Class="MoneyFox.Views.Popups.FilterPopup">
 
     <xct:Popup.Resources>
@@ -13,8 +15,8 @@
         </ResourceDictionary>
     </xct:Popup.Resources>
 
-    <Grid RowDefinitions="*, 40">
-        <StackLayout Padding="15" Spacing="6">
+    <Grid RowDefinitions="*, 40" >
+        <StackLayout Padding="15" Spacing="6" >
             <Label Text="{x:Static resources:Strings.SelectFilterTitle}"
                    Style="{DynamicResource TextHead}" />
 
