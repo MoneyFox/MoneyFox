@@ -83,8 +83,6 @@
                 PaymentRecurrence.Yearly
             };
 
-        public RelayCommand ShowFilterDialogCommand => new RelayCommand(ShowFilterDialog);
-
         public RelayCommand GoToAddPaymentCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
 
         public RelayCommand<PaymentViewModel> GoToEditPaymentCommand
@@ -155,12 +153,6 @@
                         x => x.Type == PaymentType.Income
                              || x.Type == PaymentType.Transfer && x.TargetAccount != null && x.TargetAccount.Id == SelectedAccount.Id)
                     .Sum(x => x.Amount));
-        }
-
-        private void ShowFilterDialog()
-        {
-            var popup = new FilterPopup();
-            Shell.Current.ShowPopup(popup);
         }
     }
 
