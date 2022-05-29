@@ -29,7 +29,7 @@
                        Text="{Binding SelectedBudget.SpendingLimit, Converter={StaticResource DecimalConverter}}" />
 
                 <Button Text="{x:Static resources:Strings.SelectCategoryLabel}"
-                        Command="{Binding SelectCategoryCommand}" />
+                        Clicked="SelectCategory"/>
 
                 <Label Text="{x:Static resources:Strings.SelectedCategoriesLabel}" />
 

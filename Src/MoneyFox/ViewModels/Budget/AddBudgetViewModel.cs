@@ -9,9 +9,7 @@ namespace MoneyFox.ViewModels.Budget
     using CommunityToolkit.Mvvm.Messaging;
     using Core._Pending_.Common.Messages;
     using Core.ApplicationCore.UseCases.BudgetCreation;
-    using Extensions;
     using MediatR;
-    using Xamarin.Forms;
 
     public sealed class AddBudgetViewModel : ObservableRecipient, IRecipient<CategorySelectedMessage>
     {
@@ -32,8 +30,6 @@ namespace MoneyFox.ViewModels.Budget
 
         public ObservableCollection<BudgetCategoryViewModel> SelectedCategories { get; set; } = new ObservableCollection<BudgetCategoryViewModel>();
 
-        public AsyncRelayCommand SelectCategoryCommand => new AsyncRelayCommand(SelectCategory);
-
         public AsyncRelayCommand SaveBudgetCommand => new AsyncRelayCommand(SaveBudgetAsync);
 
         public void Receive(CategorySelectedMessage message)
@@ -43,11 +39,6 @@ namespace MoneyFox.ViewModels.Budget
             {
                 SelectedCategories.Add(new BudgetCategoryViewModel(categoryId: categorySelectedDataSet.CategoryId, name: categorySelectedDataSet.Name));
             }
-        }
-
-        private static async Task SelectCategory()
-        {
-            await Shell.Current.GoToModalAsync(ViewModelLocator.SelectCategoryRoute);
         }
 
         private async Task SaveBudgetAsync()
