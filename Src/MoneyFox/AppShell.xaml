@@ -3,8 +3,6 @@
 <Shell x:Class="MoneyFox.AppShell"
        xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
        xmlns:dashboard="clr-namespace:MoneyFox.Views.Dashboard"
        xmlns:statistic="clr-namespace:MoneyFox.Views.Statistics"
        xmlns:setup="clr-namespace:MoneyFox.Views.SetupAssistant"
@@ -16,11 +14,10 @@
        Shell.TabBarBackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundTabColorDark}, Light={StaticResource BackgroundTabColorLight}}"
        Shell.NavBarHasShadow="False"
        Shell.TabBarUnselectedColor="DarkGray"
-       Title="MoneyFox"
-       mc:Ignorable="d">
+       Title="MoneyFox">
 
     <TabBar>
-        <Tab Title="{x:Static resources:Strings.HomeTitle}" >
+        <Tab Title="{x:Static resources:Strings.HomeTitle}">
             <Tab.Icon>
                 <FontImageSource FontFamily="MaterialIconsRound" Glyph="home" />
             </Tab.Icon>
@@ -29,7 +26,7 @@
             </ShellContent>
         </Tab>
 
-        <Tab Title="{x:Static resources:Strings.StatisticsTitle}" >
+        <Tab Title="{x:Static resources:Strings.StatisticsTitle}">
             <Tab.Icon>
                 <FontImageSource FontFamily="MaterialIconsRound" Glyph="donut_small" />
             </Tab.Icon>
@@ -38,7 +35,7 @@
             </ShellContent>
         </Tab>
 
-        <Tab Title="{x:Static resources:Strings.MoreTitle}" >
+        <Tab Title="{x:Static resources:Strings.MoreTitle}">
             <Tab.Icon>
                 <FontImageSource FontFamily="MaterialIconsRound" Glyph="more_horiz" />
             </Tab.Icon>
