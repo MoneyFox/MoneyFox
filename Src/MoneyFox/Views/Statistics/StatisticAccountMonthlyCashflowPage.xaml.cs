@@ -4,6 +4,8 @@ namespace MoneyFox.Views.Statistics
     using System;
     using Dialogs;
     using ViewModels.Statistics;
+    using Xamarin.CommunityToolkit.Extensions;
+    using Xamarin.Forms;
 
     public partial class StatisticAccountMonthlyCashFlowPage
     {
@@ -22,7 +24,8 @@ namespace MoneyFox.Views.Statistics
 
         private async void OpenFilterDialog(object sender, EventArgs e)
         {
-            await new DateSelectionPopup(dateFrom: ViewModel.StartDate, dateTo: ViewModel.EndDate).ShowAsync();
+            var popup = new DateSelectionPopup(dateFrom: ViewModel.StartDate, dateTo: ViewModel.EndDate);
+            Shell.Current.ShowPopup(popup);
         }
     }
 
