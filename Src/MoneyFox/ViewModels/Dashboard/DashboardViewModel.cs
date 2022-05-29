@@ -118,14 +118,14 @@
             }
         }
 
-        public RelayCommand GoToAddPaymentCommand => new RelayCommand(() => Shell.Current.ShowPopup(new LoadingIndicatorPopup()));
+        public AsyncRelayCommand GoToAddPaymentCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.AddPaymentRoute));
 
-        public RelayCommand GoToAccountsCommand => new RelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.AccountListRoute));
+        public AsyncRelayCommand GoToAccountsCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.AccountListRoute));
 
-        public RelayCommand GoToBudgetsCommand => new RelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.BudgetListRoute));
+        public AsyncRelayCommand GoToBudgetsCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.BudgetListRoute));
 
-        public RelayCommand<AccountViewModel> GoToTransactionListCommand
-            => new RelayCommand<AccountViewModel>(
+        public AsyncRelayCommand<AccountViewModel> GoToTransactionListCommand
+            => new AsyncRelayCommand<AccountViewModel>(
                 async accountViewModel => await Shell.Current.GoToAsync($"{ViewModelLocator.PaymentListRoute}?accountId={accountViewModel.Id}"));
 
         protected override void OnActivated()
