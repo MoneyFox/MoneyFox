@@ -1,9 +1,9 @@
-﻿namespace MoneyFox.Core._Pending_.Common.Facades
+﻿namespace MoneyFox.Core.Common.Facades
 {
 
     using System;
     using System.Globalization;
-    using Interfaces;
+    using MoneyFox.Core.Interfaces;
 
     /// <summary>
     ///     Provides access to the app settings.

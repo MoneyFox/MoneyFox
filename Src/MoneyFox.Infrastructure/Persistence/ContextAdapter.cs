@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Infrastructure.Persistence
 {
 
-    using Core._Pending_.Common.Facades;
+    using Core.Common.Facades;
     using Core.Common.Interfaces;
     using Core.Interfaces;
     using MediatR;

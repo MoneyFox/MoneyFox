@@ -5,8 +5,8 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
     using MediatR;
-    using MoneyFox.Core._Pending_.Common.Facades;
     using MoneyFox.Core.Commands.Accounts.CreateAccount;
+    using MoneyFox.Core.Common.Facades;
     using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Infrastructure.Persistence;
     using Moq;

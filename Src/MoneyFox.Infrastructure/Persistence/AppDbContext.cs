@@ -5,12 +5,12 @@ namespace MoneyFox.Infrastructure.Persistence
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using Core._Pending_.Common.Facades;
     using Core.ApplicationCore.Domain.Aggregates;
     using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
     using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using Core.ApplicationCore.Domain.Events;
+    using Core.Common.Facades;
     using Core.Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;

@@ -2,10 +2,10 @@ namespace MoneyFox.Infrastructure
 {
 
     using Autofac;
+    using Core.Common.Facades;
     using DataAccess;
     using DbBackup;
     using MediatR;
-    using MoneyFox.Core._Pending_.Common.Facades;
     using MoneyFox.Core.Interfaces;
     using Persistence;
 

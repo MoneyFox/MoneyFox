@@ -7,9 +7,9 @@
     using FluentAssertions;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using MoneyFox.Core._Pending_.Common.Facades;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using MoneyFox.Core.ApplicationCore.Domain.Events;
+    using MoneyFox.Core.Common.Facades;
     using MoneyFox.Infrastructure.Persistence;
     using NSubstitute;
     using Xunit;
