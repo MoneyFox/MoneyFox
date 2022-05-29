@@ -7,8 +7,8 @@ namespace MoneyFox.ViewModels.Budget
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
-    using Core._Pending_.Common.Messages;
     using Core.ApplicationCore.UseCases.BudgetCreation;
+    using Core.Common.Messages;
     using MediatR;
 
     public sealed class AddBudgetViewModel : ObservableRecipient, IRecipient<CategorySelectedMessage>

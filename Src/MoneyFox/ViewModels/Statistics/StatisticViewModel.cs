@@ -8,7 +8,7 @@ namespace MoneyFox.ViewModels.Statistics
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
     using Core._Pending_.Common.Extensions;
-    using Core._Pending_.Common.Messages;
+    using Core.Common.Messages;
     using Core.Resources;
     using MediatR;
 

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core._Pending_.Common.Messages
+﻿namespace MoneyFox.Core.Common.Messages
 {
 
     using CommunityToolkit.Mvvm.Messaging.Messages;

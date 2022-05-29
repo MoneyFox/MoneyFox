@@ -1,8 +1,8 @@
-﻿namespace MoneyFox.Core._Pending_.Common.Messages
+﻿namespace MoneyFox.Core.Common.Messages
 {
 
     using System;
-    using ApplicationCore.Domain.Aggregates.AccountAggregate;
+    using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 
     /// <summary>
     ///     Used to notify the payment list that a filter changed.
