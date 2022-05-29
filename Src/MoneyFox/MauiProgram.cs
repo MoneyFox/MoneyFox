@@ -13,6 +13,7 @@ public class MauiProgram
             .UseMauiApp<App>()
             .ConfigureFonts(fonts =>
             {
+                fonts.AddFont("ProductSans-Regular.ttf", "Product");
                 fonts.AddFont("MaterialIconsRound-Regular.otf", "MaterialIconsRound");
                 fonts.AddFont("RobotoMono-Regular.ttf", "Roboto");
             })

@@ -19,9 +19,6 @@
         <MauiFont Include="Resources\MaterialIconsRound-Regular.otf">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </MauiFont>
-        <MauiFont Include="Resources\norwester.otf">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </MauiFont>
         <MauiFont Include="Resources\ProductSans-Regular.ttf">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </MauiFont>
