@@ -1,11 +1,16 @@
 ﻿namespace MoneyFox.Tests.Presentation.ViewModels.Budget
 {
 
+    using System.Linq;
+    using System.Threading.Tasks;
     using FluentAssertions;
     using MediatR;
+    using MoneyFox.Core._Pending_.Common.Extensions;
     using MoneyFox.Core._Pending_.Common.Messages;
+    using MoneyFox.Core.ApplicationCore.UseCases.BudgetCreation;
     using MoneyFox.ViewModels.Budget;
     using NSubstitute;
+    using TestFramework.Budget;
     using Xunit;
 
     public class AddBudgetViewModelTests
@@ -47,6 +52,28 @@
             // Assert
             vm.SelectedCategories.Should().HaveCount(1);
             vm.SelectedCategories.Should().Contain(c => c.CategoryId == CATEGORY_ID);
+        }
+
+        [Fact]
+        public async Task SendsCorrectSaveCommand()
+        {
+            // Capture
+            CreateBudget.Query? passedQuery = null;
+            await sender.Send(Arg.Do<CreateBudget.Query>(q => passedQuery = q));
+
+            // Arrange
+            var testBudget = new TestData.DefaultBudget();
+
+            // Act
+            var vm = new AddBudgetViewModel(sender) { SelectedBudget = { Name = testBudget.Name, SpendingLimit = testBudget.SpendingLimit } };
+            vm.SelectedCategories.AddRange(testBudget.Categories.Select(c => new BudgetCategoryViewModel(c, "Category")));
+            await vm.SaveBudgetCommand.ExecuteAsync(null);
+
+            // Assert
+            passedQuery.Should().NotBeNull();
+            passedQuery!.Name.Should().Be(testBudget.Name);
+            passedQuery.SpendingLimit.Should().Be(testBudget.SpendingLimit);
+            passedQuery.Categories.Should().BeEquivalentTo(testBudget.Categories);
         }
     }
 
