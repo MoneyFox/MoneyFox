@@ -10,8 +10,11 @@
     using CommunityToolkit.Mvvm.Messaging;
     using Core._Pending_.Common.Messages;
     using Core.ApplicationCore.Queries;
+    using Core.Common.Interfaces;
     using Extensions;
     using MediatR;
+    using Views.Dialogs;
+    using Xamarin.CommunityToolkit.Extensions;
     using Xamarin.Forms;
     using Xamarin.Forms.Internals;
 
@@ -20,6 +23,7 @@
         private readonly IMapper mapper;
 
         private readonly IMediator mediator;
+        private readonly IDialogService dialogService;
         private ObservableCollection<AccountViewModel> accounts = new ObservableCollection<AccountViewModel>();
         private decimal assets;
 
@@ -31,10 +35,11 @@
         private decimal monthlyExpenses;
         private decimal monthlyIncomes;
 
-        public DashboardViewModel(IMediator mediator, IMapper mapper)
+        public DashboardViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
+            this.dialogService = dialogService;
         }
 
         public decimal Assets
@@ -113,7 +118,7 @@
             }
         }
 
-        public RelayCommand GoToAddPaymentCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
+        public RelayCommand GoToAddPaymentCommand => new RelayCommand(() => Shell.Current.ShowPopup(new LoadingDialog()));
 
         public RelayCommand GoToAccountsCommand => new RelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.AccountListRoute));
 

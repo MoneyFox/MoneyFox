@@ -6,6 +6,7 @@
     using Core.Common.Interfaces;
     using Core.Resources;
     using Views.Dialogs;
+    using Xamarin.CommunityToolkit.Extensions;
     using Xamarin.Forms;
 
     public class DialogService : IDialogService
@@ -21,7 +22,7 @@
             }
 
             loadingDialog = new LoadingDialog();
-            await loadingDialog.ShowAsync();
+            Shell.Current.ShowPopup(loadingDialog);
         }
 
         /// <inheritdoc />
@@ -34,7 +35,7 @@
 
             try
             {
-                await LoadingDialog.DismissAsync();
+                loadingDialog.Dismiss(null);
                 loadingDialog = null;
             }
             catch (IndexOutOfRangeException)
