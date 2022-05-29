@@ -12,7 +12,7 @@ using Microsoft.Maui.ApplicationModel;
 [Activity(Label = "MoneyFox", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.UiMode | ConfigChanges.Orientation)]
 public class MainActivity : MauiAppCompatActivity
 {
-    protected override void OnCreate(Bundle savedInstanceState)
+    protected override void OnCreate(Bundle? savedInstanceState)
     {
         ParentActivityWrapper.ParentActivity = this;
         base.OnCreate(savedInstanceState);

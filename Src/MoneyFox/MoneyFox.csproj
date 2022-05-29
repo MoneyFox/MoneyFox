@@ -14,22 +14,12 @@
     <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-android'">31.0</SupportedOSPlatformVersion>
 
   </PropertyGroup>
-
+    
     <ItemGroup>
-        <None Remove="Common\Fonts\fa-solid-900.ttf" />
-        <None Remove="Common\Fonts\norwester.otf" />
-        <None Remove="Common\Fonts\ProductSans-Regular.ttf" />
-        <None Remove="Common\Fonts\RobotoMono-Regular.ttf" />
-        <None Remove="Resources\materialdesignicons-webfont.ttf" />
-        <None Remove="Common\Fonts\materialdesignicons-webfont.ttf" />
-        <None Remove="Common\Fonts\MaterialIconsRound-Regular.otf" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <EmbeddedResource Include="Common\Fonts\norwester.otf" />
-        <EmbeddedResource Include="Common\Fonts\ProductSans-Regular.ttf" />
-        <EmbeddedResource Include="Common\Fonts\RobotoMono-Regular.ttf" />
-        <EmbeddedResource Include="Common\Fonts\MaterialIconsRound-Regular.otf" />
+        <EmbeddedResource Include="Resources\MaterialIconsRound-Regular.otf" />
+        <EmbeddedResource Include="Resources\norwester.otf" />
+        <EmbeddedResource Include="Resources\ProductSans-Regular.ttf" />
+        <EmbeddedResource Include="Resources\RobotoMono-Regular.ttf" />
     </ItemGroup>
 
     <ItemGroup>
@@ -144,16 +134,5 @@
     <ItemGroup>
         <Folder Include="Views\About\" />
     </ItemGroup>
-
-    <ItemGroup>
-        <Compile Update="Views\OverflowMenu\OverflowMenuPage.xaml.cs">
-            <DependentUpon>OverflowMenuPage.xaml</DependentUpon>
-        </Compile>
-        <Compile Update="Views\Statistics\StatisticCategoryProgressionPage.xaml.cs">
-            <DependentUpon>StatisticCategoryProgressionPage.xaml</DependentUpon>
-        </Compile>
-        <Compile Update="Views\Statistics\StatisticAccountMonthlyCashflowPage.xaml.cs">
-            <DependentUpon>StatisticAccountMonthlyCashFlowPage.xaml</DependentUpon>
-        </Compile>
-    </ItemGroup>
+    
 </Project>
