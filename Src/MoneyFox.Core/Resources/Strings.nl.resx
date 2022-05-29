@@ -167,7 +167,7 @@
     <value>Negatief bedrag</value>
   </data>
     <data name="ANoteForPaymentIsRequired" xml:space="preserve">
-    <value>A note for payment is required</value>
+    <value>Betaling is vereist</value>
   </data>
     <data name="ApplyFilterLabel" xml:space="preserve">
     <value>Voeg filter toe</value>
@@ -297,7 +297,7 @@
     <value>Maak een nieuwe categorie</value>
   </data>
     <data name="CreationDateHeader" xml:space="preserve">
-    <value>Creation Date</value>
+    <value>Gemaakt op</value>
   </data>
     <data name="CreationDateLabel" xml:space="preserve">
     <value>creëer datum</value>
@@ -357,7 +357,7 @@
     <value>Klaar</value>
   </data>
     <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>An account with that name already exists. Continue with saving?</value>
+    <value>Er bestaat al een account met deze naam. Doorgaan met opslaan?</value>
   </data>
     <data name="DuplicateCategoryMessage" xml:space="preserve">
     <value>Een categorie met deze naam bestaat reeds.</value>
@@ -387,7 +387,7 @@
     <value>e-mail</value>
   </data>
     <data name="EnddateLabel" xml:space="preserve">
-    <value>End Date</value>
+    <value>Einddatum</value>
   </data>
     <data name="EndlessLabel" xml:space="preserve">
     <value>Is eindeloos</value>
@@ -526,7 +526,7 @@ Tik hier om jou bijdrage te leveren.</value>
     <value>Verplichte velden</value>
   </data>
     <data name="ModificationDateHeader" xml:space="preserve">
-    <value>Modification Date</value>
+    <value>Wijzigingsdatum</value>
   </data>
     <data name="ModificationDateLabel" xml:space="preserve">
     <value>Wijzigingsdatum:</value>
@@ -544,13 +544,13 @@ Tik hier om jou bijdrage te leveren.</value>
     <value>Maandelijks gemiddelde, van vorig jaar.</value>
   </data>
     <data name="MonthlyCashflowDescription" xml:space="preserve">
-    <value>Shows the monthly cashflow for the selected account.</value>
+    <value>Toont de maandelijkse cashflow van de geselecteerde rekening.</value>
   </data>
     <data name="MonthlyCashflowLabel" xml:space="preserve">
-    <value>Monthly Cashflow</value>
+    <value>Maandelijkse Cashflow</value>
   </data>
     <data name="MonthlyCashflowTitle" xml:space="preserve">
-    <value>Monthly Cashflow</value>
+    <value>Maandelijkse Cashflow</value>
   </data>
     <data name="MonthlyLabel" xml:space="preserve">
     <value>Maandelijks</value>
@@ -640,7 +640,7 @@ Wil je naar de store om te om ons te beoordelen?</value>
     <value>Is terugkerend</value>
   </data>
     <data name="RequireNoteCheckbox" xml:space="preserve">
-    <value>Note required</value>
+    <value>Opmerking verplicht.</value>
   </data>
     <data name="RestoreBackupCanceledMessage" xml:space="preserve">
     <value>Herstellen van backup is geanuleerd</value>
@@ -679,7 +679,7 @@ Categorie opslaan ...</value>
     <value>selecteer datum</value>
   </data>
     <data name="SelectedAccountHeader" xml:space="preserve">
-    <value>Selected Account</value>
+    <value>Geselecteerde account</value>
   </data>
     <data name="SelectFilterTitle" xml:space="preserve">
     <value>Selecteer filter</value>
@@ -752,66 +752,69 @@ Maak een nieuw account aan om hier dan uw budgetten op een gemakkelijke manier b
     <value>Ja</value>
   </data>
     <data name="AccountsToolTip" xml:space="preserve">
-    <value>Manage your Accounts</value>
+    <value>Je account beheren</value>
   </data>
     <data name="AddPaymentTitle" xml:space="preserve">
-    <value>Add Payment</value>
+    <value>Betaling toevoegen</value>
   </data>
     <data name="AddPaymentToolTip" xml:space="preserve">
-    <value>Add a Payment with details</value>
+    <value>Voeg een betaling met details toe</value>
   </data>
     <data name="BackupToolTip" xml:space="preserve">
-    <value>Backup your information</value>
+    <value>Back-up informatie</value>
   </data>
     <data name="CategoriesToolTip" xml:space="preserve">
-    <value>Manage your Categories</value>
+    <value>Beheer categorieën</value>
   </data>
     <data name="StatisticsToolTip" xml:space="preserve">
-    <value>View your Statistics</value>
+    <value>Bekijk de forumstatistieken</value>
   </data>
     <data name="FailedToLoginToBackupMessage" xml:space="preserve">
-    <value>Failed to login to your backup service. Automatic backup upload was disabled. Please login and enable it again.</value>
+    <value>Kan niet inloggen op uw back-upservice. Automatische back-up uploaden is uitgeschakeld. Gelieve in te loggen en opnieuw in te schakelen.</value>
   </data>
     <data name="FailedToLoginToBackupTitle" xml:space="preserve">
-    <value>Login failed!</value>
+    <value>inloggen faalde</value>
   </data>
     <data name="LoggedInTitle" xml:space="preserve">
-    <value>Logged in!</value>
+    <value>Ingelogd</value>
   </data>
     <data name="SelectedPaymentTypeHeader" xml:space="preserve">
-    <value>Selected Payment Type</value>
+    <value>Selecteer betaaltype</value>
   </data>
     <data name="CategoryProgressionDescription" xml:space="preserve">
-    <value>Shows the progression of a category by month.</value>
+    <value>Toont de progressie van een categorie per maand.</value>
   </data>
     <data name="CategoryProgressionLabel" xml:space="preserve">
-    <value>Category Progression</value>
+    <value>Categorie vooruitgang</value>
   </data>
     <data name="SelectCategoryLabel" xml:space="preserve">
-    <value>Select category..</value>
+    <value>Tik om categorieën te zoeken …</value>
   </data>
     <data name="CategoryProgressionTitle" xml:space="preserve">
-    <value>Category Progression</value>
+    <value>Categorie vooruitgang</value>
   </data>
     <data name="EditPaymentTitle" xml:space="preserve">
-    <value>Edit Payment</value>
+    <value>Betaling bewerken</value>
   </data>
     <data name="InitialBalanceLabel" xml:space="preserve">
-    <value>Initial Balance</value>
+    <value>Beginbalans</value>
   </data>
     <data name="AllLabel" xml:space="preserve">
-    <value>All</value>
+    <value>Alles</value>
   </data>
     <data name="HomeTitle" xml:space="preserve">
-    <value>Home</value>
+    <value>Startscherm</value>
   </data>
     <data name="MenuTitle" xml:space="preserve">
     <value>Menu</value>
   </data>
   <data name="LastDayOfMonthLabel" xml:space="preserve">
-    <value>Last Day of Month</value>
+    <value>Laatste dag van de maand</value>
   </data>
   <data name="OpenLogLabel" xml:space="preserve">
-    <value>Open Log</value>
+    <value>Open logbestand</value>
   </data>
+    <data name="MoreTitle" xml:space="preserve">
+        <value>Meer</value>
+    </data>
 </root>
