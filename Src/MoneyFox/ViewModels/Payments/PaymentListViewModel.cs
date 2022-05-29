@@ -18,7 +18,6 @@
     using Extensions;
     using Groups;
     using MediatR;
-    using Views.Dialogs;
     using Views.Payments;
     using Xamarin.Forms;
 
@@ -82,12 +81,11 @@
                 PaymentRecurrence.Yearly
             };
 
-        public RelayCommand ShowFilterDialogCommand => new RelayCommand(async () => await new FilterPopup().ShowAsync());
+        public AsyncRelayCommand GoToAddPaymentCommand
+            => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
 
-        public RelayCommand GoToAddPaymentCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
-
-        public RelayCommand<PaymentViewModel> GoToEditPaymentCommand
-            => new RelayCommand<PaymentViewModel>(
+        public AsyncRelayCommand<PaymentViewModel> GoToEditPaymentCommand
+            => new AsyncRelayCommand<PaymentViewModel>(
                 async paymentViewModel => await Shell.Current.Navigation.PushModalAsync(
                     new NavigationPage(new EditPaymentPage(paymentViewModel.Id)) { BarBackgroundColor = Color.Transparent }));
 

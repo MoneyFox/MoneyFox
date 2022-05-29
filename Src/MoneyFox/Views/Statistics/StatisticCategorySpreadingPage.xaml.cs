@@ -2,8 +2,10 @@
 {
 
     using System;
-    using Dialogs;
+    using Popups;
     using ViewModels.Statistics;
+    using Xamarin.CommunityToolkit.Extensions;
+    using Xamarin.Forms;
 
     public partial class StatisticCategorySpreadingPage
     {
@@ -16,9 +18,10 @@
 
         private StatisticCategorySpreadingViewModel ViewModel => (StatisticCategorySpreadingViewModel)BindingContext;
 
-        private async void OpenFilterDialog(object sender, EventArgs e)
+        private void OpenFilterDialog(object sender, EventArgs e)
         {
-            await new DateSelectionPopup(dateFrom: ViewModel.StartDate, dateTo: ViewModel.EndDate).ShowAsync();
+            var popup = new DateSelectionPopup(dateFrom: ViewModel.StartDate, dateTo: ViewModel.EndDate);
+            Shell.Current.ShowPopup(popup);
         }
     }
 

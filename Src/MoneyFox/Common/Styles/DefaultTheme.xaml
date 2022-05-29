@@ -50,7 +50,7 @@
 
     <Color x:Key="ButtonBackgroundDark">#212121</Color>
     <Color x:Key="ButtonBackgroundLight">#ffffff</Color>
-    
+
     <Color x:Key="StatisticLegendDark">#2d2d30</Color>
     <Color x:Key="StatisticLegendLight">#ffffff</Color>
 
@@ -207,7 +207,7 @@
             </VisualStateGroupList>
         </Setter>
     </Style>
-    
+
     <Style TargetType="ImageButton">
         <Setter Property="BackgroundColor"
                 Value="{AppThemeBinding Dark={StaticResource ButtonBackgroundDark}, Light={StaticResource ButtonBackgroundLight}}" />

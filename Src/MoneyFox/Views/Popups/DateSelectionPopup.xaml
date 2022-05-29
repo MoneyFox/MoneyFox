@@ -1,0 +1,31 @@
+﻿<xct:Popup xmlns="http://xamarin.com/schemas/2014/forms"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+           xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
+           Visual="Material"
+           IsLightDismissEnabled="false"
+           x:Class="MoneyFox.Views.Popups.DateSelectionPopup">
+
+    <Grid RowDefinitions="*, 40" >
+
+        <StackLayout Padding="15" Spacing="6">
+            <Label Text="{x:Static resources:Strings.SelectDateLabel}"
+                   Style="{DynamicResource TextHead}" />
+
+            <Label Style="{DynamicResource BaseLabel}"
+                   Text="{x:Static resources:Strings.TimeRangeStartLabel}"
+                   HorizontalOptions="StartAndExpand" />
+
+            <DatePicker Date="{Binding StartDate}" />
+
+            <Label Style="{DynamicResource BaseLabel}"
+                   Text="{x:Static resources:Strings.TimeRangeEndLabel}"/>
+            <DatePicker Date="{Binding EndDate}" />
+        </StackLayout>
+
+
+        <Button Grid.Row="1"
+                Text="{x:Static resources:Strings.DoneLabel}"
+                Clicked="Button_OnClicked" />
+    </Grid>
+</xct:Popup>
