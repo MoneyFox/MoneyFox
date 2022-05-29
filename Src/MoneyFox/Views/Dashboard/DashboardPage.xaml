@@ -30,7 +30,7 @@
                          WidthRequest="66"
                          Style="{StaticResource PrimaryImageButton}" >
                 <ImageButton.Source>
-                    <FontImageSource FontFamily="MaterialIconsRound" Glyph="add" />
+                    <FontImageSource FontFamily="MaterialIconsRound" Glyph="add" Color="White" />
                 </ImageButton.Source>
             </ImageButton>
         </Grid>

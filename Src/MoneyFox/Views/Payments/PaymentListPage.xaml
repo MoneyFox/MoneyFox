@@ -21,7 +21,7 @@
 
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,Auto,66,66,0">
-            
+
             <ImageButton Margin="0,0,5,0"
                          Grid.Column="2"
                          Padding="0"
@@ -35,7 +35,7 @@
                     <FontImageSource FontFamily="MaterialIconsRound" Glyph="filter_alt" />
                 </ImageButton.Source>
             </ImageButton>
-            
+
             <ImageButton Margin="0,0,5,0"
                          Grid.Column="3"
                          Padding="0"
@@ -47,7 +47,7 @@
                          WidthRequest="66"
                          Style="{StaticResource PrimaryImageButton}" >
                 <ImageButton.Source>
-                    <FontImageSource FontFamily="MaterialIconsRound" Glyph="add" />
+                    <FontImageSource FontFamily="MaterialIconsRound" Glyph="add" Color="White" />
                 </ImageButton.Source>
             </ImageButton>
         </Grid>
