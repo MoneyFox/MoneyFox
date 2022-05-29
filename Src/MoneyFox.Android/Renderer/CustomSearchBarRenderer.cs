@@ -51,7 +51,7 @@ namespace MoneyFox.Droid.Renderer
 
         private void SetBackgroundColor(SearchView searchView)
         {
-            if (Application.Current.UserAppTheme == OSAppTheme.Dark)
+            if (Application.Current.RequestedTheme == OSAppTheme.Dark)
             {
                 Application.Current.Resources.TryGetValue(key: "BackgroundColorSearchBarDark", value: out var darkTintColor);
                 searchView.SetBackgroundColor(((Color)darkTintColor).ToAndroid());
