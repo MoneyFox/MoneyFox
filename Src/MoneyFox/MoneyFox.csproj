@@ -16,10 +16,18 @@
   </PropertyGroup>
     
     <ItemGroup>
-        <EmbeddedResource Include="Resources\MaterialIconsRound-Regular.otf" />
-        <EmbeddedResource Include="Resources\norwester.otf" />
-        <EmbeddedResource Include="Resources\ProductSans-Regular.ttf" />
-        <EmbeddedResource Include="Resources\RobotoMono-Regular.ttf" />
+        <MauiFont Include="Resources\MaterialIconsRound-Regular.otf">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </MauiFont>
+        <MauiFont Include="Resources\norwester.otf">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </MauiFont>
+        <MauiFont Include="Resources\ProductSans-Regular.ttf">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </MauiFont>
+        <MauiFont Include="Resources\RobotoMono-Regular.ttf">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </MauiFont>
     </ItemGroup>
 
     <ItemGroup>
@@ -130,9 +138,4 @@
             <Generator>MSBuild:Compile</Generator>
         </EmbeddedResource>
     </ItemGroup>
-
-    <ItemGroup>
-        <Folder Include="Views\About\" />
-    </ItemGroup>
-    
 </Project>
