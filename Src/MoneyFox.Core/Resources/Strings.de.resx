@@ -810,4 +810,7 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
   <data name="OpenLogLabel" xml:space="preserve">
     <value>Logdatei Öffnen</value>
   </data>
+    <data name="MoreTitle" xml:space="preserve">
+        <value>Mehr</value>
+    </data>
 </root>

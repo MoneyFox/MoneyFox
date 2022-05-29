@@ -167,7 +167,7 @@
     <value>Отрицательная сумма</value>
   </data>
     <data name="ANoteForPaymentIsRequired" xml:space="preserve">
-    <value>A note for payment is required</value>
+    <value>Требуется заметка для оплаты</value>
   </data>
     <data name="ApplyFilterLabel" xml:space="preserve">
     <value>Применить фильтр</value>
@@ -296,7 +296,7 @@
     <value>Создать категорию</value>
   </data>
     <data name="CreationDateHeader" xml:space="preserve">
-    <value>Creation Date</value>
+    <value>Дата создания</value>
   </data>
     <data name="CreationDateLabel" xml:space="preserve">
     <value>Дата создания:</value>
@@ -356,7 +356,7 @@
     <value>Готово</value>
   </data>
     <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>An account with that name already exists. Continue with saving?</value>
+    <value>Аккаунт с таким именем уже существует. Продолжить сохранение?</value>
   </data>
     <data name="DuplicateCategoryMessage" xml:space="preserve">
     <value>Категория с таким названием уже существует.</value>
@@ -386,7 +386,7 @@
     <value>Email</value>
   </data>
     <data name="EnddateLabel" xml:space="preserve">
-    <value>End Date</value>
+    <value>Дата окончания публикации</value>
   </data>
     <data name="EndlessLabel" xml:space="preserve">
     <value>Бесконечный</value>
@@ -525,7 +525,7 @@
     <value>Обязательные поля</value>
   </data>
     <data name="ModificationDateHeader" xml:space="preserve">
-    <value>Modification Date</value>
+    <value>Изменение даты</value>
   </data>
     <data name="ModificationDateLabel" xml:space="preserve">
     <value>Дата изменения:</value>
@@ -543,13 +543,13 @@
     <value>Средний показатель за прошлый год: </value>
   </data>
     <data name="MonthlyCashflowDescription" xml:space="preserve">
-    <value>Shows the monthly cashflow for the selected account.</value>
+    <value>Показывает ежемесячный денежный поток для выбранного счета.</value>
   </data>
     <data name="MonthlyCashflowLabel" xml:space="preserve">
-    <value>Monthly Cashflow</value>
+    <value>Ежемесячный доход</value>
   </data>
     <data name="MonthlyCashflowTitle" xml:space="preserve">
-    <value>Monthly Cashflow</value>
+    <value>Ежемесячный доход</value>
   </data>
     <data name="MonthlyLabel" xml:space="preserve">
     <value>Ежемесячно</value>
@@ -639,7 +639,7 @@
     <value>Переодический</value>
   </data>
     <data name="RequireNoteCheckbox" xml:space="preserve">
-    <value>Note required</value>
+    <value>Заметка обязательна</value>
   </data>
     <data name="RestoreBackupCanceledMessage" xml:space="preserve">
     <value>Восстановление резервной копии отменено.</value>
@@ -676,7 +676,7 @@
     <value>Выбрать дату</value>
   </data>
     <data name="SelectedAccountHeader" xml:space="preserve">
-    <value>Selected Account</value>
+    <value>Выбранный аккаунт</value>
   </data>
     <data name="SelectFilterTitle" xml:space="preserve">
     <value>Фильтр</value>
@@ -749,66 +749,69 @@
     <value>Да</value>
   </data>
     <data name="AccountsToolTip" xml:space="preserve">
-    <value>Manage your Accounts</value>
+    <value>Управление своим Аккаунтом</value>
   </data>
     <data name="AddPaymentTitle" xml:space="preserve">
-    <value>Add Payment</value>
+    <value>Добавить операцию</value>
   </data>
     <data name="AddPaymentToolTip" xml:space="preserve">
-    <value>Add a Payment with details</value>
+    <value>Добавить платеж с подробностями</value>
   </data>
     <data name="BackupToolTip" xml:space="preserve">
-    <value>Backup your information</value>
+    <value>Данные о файле резервной копии</value>
   </data>
     <data name="CategoriesToolTip" xml:space="preserve">
-    <value>Manage your Categories</value>
+    <value>Управление категориями</value>
   </data>
     <data name="StatisticsToolTip" xml:space="preserve">
-    <value>View your Statistics</value>
+    <value>Просмотр статистики форума</value>
   </data>
     <data name="FailedToLoginToBackupMessage" xml:space="preserve">
-    <value>Failed to login to your backup service. Automatic backup upload was disabled. Please login and enable it again.</value>
+    <value>Не удалось войти в службу резервного копирования. Автоматическая загрузка резервного копирования была отключена. Пожалуйста, войдите в систему и включите её снова.</value>
   </data>
     <data name="FailedToLoginToBackupTitle" xml:space="preserve">
-    <value>Login failed!</value>
+    <value>Ошибка входа</value>
   </data>
     <data name="LoggedInTitle" xml:space="preserve">
-    <value>Logged in!</value>
+    <value>Осуществлен вход</value>
   </data>
     <data name="SelectedPaymentTypeHeader" xml:space="preserve">
-    <value>Selected Payment Type</value>
+    <value>Выбрать вид платежа</value>
   </data>
     <data name="CategoryProgressionDescription" xml:space="preserve">
-    <value>Shows the progression of a category by month.</value>
+    <value>Показывает прогресс категории по месяцам.</value>
   </data>
     <data name="CategoryProgressionLabel" xml:space="preserve">
-    <value>Category Progression</value>
+    <value>Прогресс категории</value>
   </data>
     <data name="SelectCategoryLabel" xml:space="preserve">
-    <value>Select category..</value>
+    <value>Выберите категорию</value>
   </data>
     <data name="CategoryProgressionTitle" xml:space="preserve">
-    <value>Category Progression</value>
+    <value>Прогресс категории</value>
   </data>
     <data name="EditPaymentTitle" xml:space="preserve">
-    <value>Edit Payment</value>
+    <value>Изменить платеж</value>
   </data>
     <data name="InitialBalanceLabel" xml:space="preserve">
-    <value>Initial Balance</value>
+    <value>Начальный баланс</value>
   </data>
     <data name="AllLabel" xml:space="preserve">
-    <value>All</value>
+    <value>Все</value>
   </data>
     <data name="HomeTitle" xml:space="preserve">
-    <value>Home</value>
+    <value>Главная</value>
   </data>
     <data name="MenuTitle" xml:space="preserve">
-    <value>Menu</value>
+    <value>Меню</value>
   </data>
   <data name="LastDayOfMonthLabel" xml:space="preserve">
-    <value>Last Day of Month</value>
+    <value>Последняя работа cron</value>
   </data>
   <data name="OpenLogLabel" xml:space="preserve">
-    <value>Open Log</value>
+    <value>Открыть лог</value>
   </data>
+    <data name="MoreTitle" xml:space="preserve">
+        <value>Другое</value>
+    </data>
 </root>
