@@ -66,8 +66,8 @@
                 {
                     var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
 
-                    await backupService.UploadBackupAsync();
                     await backupService.RestoreBackupAsync();
+                    await backupService.UploadBackupAsync();
                 }
 
                 await mediator.Send(new ClearPaymentsCommand());

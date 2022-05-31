@@ -142,7 +142,6 @@
                 var result = await DownloadBackupAsync(backupMode);
                 if (result == BackupRestoreResult.NewBackupRestored)
                 {
-                    settingsFacade.LastDatabaseUpdate = DateTime.Now;
                     await toastService.ShowToastAsync(Strings.BackupRestoredMessage);
                     Messenger.Send(new ReloadMessage());
                 }
@@ -170,8 +169,7 @@
                 await LoginAsync();
             }
 
-            await EnqueueBackupTaskAsync();
-            settingsFacade.LastDatabaseUpdate = DateTime.Now;
+            await EnqueueBackupTaskAsync(backupMode);
         }
 
         public void Dispose()
@@ -194,6 +192,7 @@
 
                 await using (var backupStream = await oneDriveBackupService.RestoreAsync())
                 {
+                    settingsFacade.LastDatabaseUpdate = backupDate;
                     await fileStore.WriteFileAsync(path: TEMP_DOWNLOAD_PATH, contents: backupStream.ReadToEnd());
                 }
 
@@ -217,11 +216,19 @@
             return BackupRestoreResult.BackupNotFound;
         }
 
-        private async Task EnqueueBackupTaskAsync()
+        private async Task EnqueueBackupTaskAsync(BackupMode backupMode)
         {
             if (!connectivity.IsConnected)
             {
                 throw new NetworkConnectionException();
+            }
+
+            var backupDate = await GetBackupDateAsync();
+            if (backupDate >= settingsFacade.LastDatabaseUpdate && backupMode == BackupMode.Automatic)
+            {
+                Log.Information("Nothing to backup. Upload skipped");
+
+                return;
             }
 
             await semaphoreSlim.WaitAsync(millisecondsTimeout: BACKUP_OPERATION_TIMEOUT, cancellationToken: cancellationTokenSource.Token);
@@ -231,6 +238,7 @@
                 {
                     semaphoreSlim.Release();
                     await toastService.ShowToastAsync(Strings.BackupCreatedMessage);
+                    settingsFacade.LastDatabaseUpdate = backupDate;
                 }
                 else
                 {
@@ -245,7 +253,7 @@
             {
                 Log.Error(exception: ex, messageTemplate: "Enqueue Backup failed");
                 await Task.Delay(BACKUP_REPEAT_DELAY);
-                await EnqueueBackupTaskAsync();
+                await EnqueueBackupTaskAsync(backupMode);
             }
         }
 
