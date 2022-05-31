@@ -18,7 +18,7 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Serilog" Version="2.11.0" />
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.39.0.47922">
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.40.0.48530">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
