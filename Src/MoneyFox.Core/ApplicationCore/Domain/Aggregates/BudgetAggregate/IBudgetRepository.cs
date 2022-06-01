@@ -3,8 +3,9 @@
 
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Common.Interfaces;
 
-    public interface IBudgetRepository
+    public interface IBudgetRepository : IRepository<Budget>
     {
         Task AddAsync(Budget budget);
 
