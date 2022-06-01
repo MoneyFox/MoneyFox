@@ -5,6 +5,7 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
+    using FluentAssertions;
     using MediatR;
     using MoneyFox.Core._Pending_.Common.Facades;
     using MoneyFox.Core.Interfaces;
@@ -62,6 +63,36 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
             // Assert
             await backupService.Received(0).UploadAsync(Arg.Any<Stream>());
         }
+
+        [Fact]
+        public async Task Upload_FileStream_When_LoggedIn_And_LocalBackup_Newer()
+        {
+            // Assert
+            var expectedDate = DateTime.Now;
+
+
+            var backupService = Substitute.For<UploadBackup.IBackupServiceNEW>();
+            backupService.GetBackupDateAsync().Returns(x => DateTime.Today.AddMinutes(-2), x => DateTime.Now);
+            var settingsFacade = Substitute.For<ISettingsFacade>();
+            settingsFacade.IsLoggedInToBackupService.Returns(true);
+            settingsFacade.LastDatabaseUpdate.Returns(DateTime.Today.AddMinutes(-1));
+            var fileStore = Substitute.For<IFileStore>();
+            fileStore.OpenReadAsync(Arg.Any<string>()).Returns(Stream.Null);
+
+            var handler = new UploadBackup.Handler(
+                backupService: backupService,
+                settingsFacade: settingsFacade,
+                fileStore: fileStore,
+                dbPathProvider: Substitute.For<IDbPathProvider>());
+
+            // Act
+            var command = new UploadBackup.Command();
+            await handler.Handle(request: command, cancellationToken: CancellationToken.None);
+
+            // Assert
+            await backupService.Received(1).UploadAsync(Arg.Any<Stream>());
+            settingsFacade.LastDatabaseUpdate.Should().BeWithin(TimeSpan.FromSeconds(3)).Before(DateTime.Now);
+        }
     }
 
     public static class UploadBackup
@@ -94,7 +125,7 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
                 {
                     var dbAsStream = await fileStore.OpenReadAsync(dbPathProvider.GetDbPath());
                     await backupService.UploadAsync(dbAsStream);
-                    settingsFacade.LastDatabaseUpdate = backupDate;
+                    settingsFacade.LastDatabaseUpdate = await backupService.GetBackupDateAsync();;
                 }
 
                 return Unit.Value;
