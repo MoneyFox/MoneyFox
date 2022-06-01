@@ -9,19 +9,46 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
     using MoneyFox.Core._Pending_.Common.Facades;
     using MoneyFox.Core.Interfaces;
     using MoneyFox.Infrastructure.DbBackup;
+    using Moq;
     using NSubstitute;
     using Xunit;
 
     public class UploadBackupShould
     {
         [Fact]
+        public async Task DoNothing_When_NotLoggedIn_ToBackupLocation()
+        {
+            // Assert
+            var backupService = Substitute.For<UploadBackup.IBackupServiceNEW>();
+            backupService.GetBackupDateAsync().Returns(DateTime.Today.AddMinutes(-2));
+            var settingsFacade = Substitute.For<ISettingsFacade>();
+            settingsFacade.IsLoggedInToBackupService.Returns(false);
+            settingsFacade.LastDatabaseUpdate.Returns(DateTime.Today);
+            var fileStore = Substitute.For<IFileStore>();
+
+            var handler = new UploadBackup.Handler(
+                backupService: backupService,
+                settingsFacade: settingsFacade,
+                fileStore: fileStore,
+                dbPathProvider: Substitute.For<IDbPathProvider>());
+
+            // Act
+            var command = new UploadBackup.Command();
+            await handler.Handle(request: command, cancellationToken: CancellationToken.None);
+
+            // Assert
+            await backupService.Received(0).UploadAsync(Arg.Any<Stream>());
+        }
+
+        [Fact]
         public async Task DoNothing_When_RemoteModificationDate_NewerThan_Local()
         {
             // Assert
             var backupService = Substitute.For<UploadBackup.IBackupServiceNEW>();
-            backupService.GetBackupDateAsync().Returns(DateTime.Now.AddMinutes(-2));
+            backupService.GetBackupDateAsync().Returns(DateTime.Now);
             var settingsFacade = Substitute.For<ISettingsFacade>();
-            settingsFacade.LastDatabaseUpdate.Returns(DateTime.Now);
+            settingsFacade.LastDatabaseUpdate.Returns(DateTime.Now.AddMinutes(-2));
+
             var handler = new UploadBackup.Handler(
                 backupService: backupService,
                 settingsFacade: settingsFacade,
@@ -58,6 +85,10 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
+                if (settingsFacade.IsLoggedInToBackupService is false)
+                {
+                    return Unit.Value;
+                }
                 var backupDate = await backupService.GetBackupDateAsync();
                 if (settingsFacade.LastDatabaseUpdate > backupDate)
                 {
