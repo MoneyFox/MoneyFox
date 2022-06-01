@@ -26,9 +26,11 @@ namespace MoneyFox.Infrastructure
 
         private static void RegisterOneDriveServices(ContainerBuilder builder)
         {
-            builder.RegisterType<BackupService>().AsImplementedInterfaces();
-            builder.RegisterType<OneDriveService>().AsImplementedInterfaces();
             builder.RegisterType<OneDriveAuthenticationService>().AsImplementedInterfaces();
+            builder.RegisterType<OneDriveBackupUploadService>().AsImplementedInterfaces();
+
+            builder.RegisterType<OneDriveService>().AsImplementedInterfaces();
+            builder.RegisterType<BackupService>().AsImplementedInterfaces();
         }
 
         private static void RegisterRepositories(ContainerBuilder builder)
