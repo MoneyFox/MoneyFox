@@ -17,14 +17,14 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
         public async Task DoNothing_When_NotLoggedIn_ToBackupLocation()
         {
             // Assert
-            var backupService = Substitute.For<IBackupServiceNew>();
+            var backupService = Substitute.For<IBackupUploadService>();
             backupService.GetBackupDateAsync().Returns(DateTime.Today.AddMinutes(-2));
             var settingsFacade = Substitute.For<ISettingsFacade>();
             settingsFacade.IsLoggedInToBackupService.Returns(false);
             settingsFacade.LastDatabaseUpdate.Returns(DateTime.Today);
             var fileStore = Substitute.For<IFileStore>();
             var handler = new UploadBackup.Handler(
-                backupService: backupService,
+                backupUploadService: backupService,
                 settingsFacade: settingsFacade,
                 fileStore: fileStore,
                 dbPathProvider: Substitute.For<IDbPathProvider>());
@@ -41,12 +41,12 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
         public async Task DoNothing_When_RemoteModificationDate_NewerThan_Local()
         {
             // Assert
-            var backupService = Substitute.For<IBackupServiceNew>();
+            var backupService = Substitute.For<IBackupUploadService>();
             backupService.GetBackupDateAsync().Returns(DateTime.Now);
             var settingsFacade = Substitute.For<ISettingsFacade>();
             settingsFacade.LastDatabaseUpdate.Returns(DateTime.Now.AddMinutes(-2));
             var handler = new UploadBackup.Handler(
-                backupService: backupService,
+                backupUploadService: backupService,
                 settingsFacade: settingsFacade,
                 fileStore: Substitute.For<IFileStore>(),
                 dbPathProvider: Substitute.For<IDbPathProvider>());
@@ -63,7 +63,7 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
         public async Task Upload_FileStream_When_LoggedIn_And_LocalBackup_Newer()
         {
             // Assert
-            var backupService = Substitute.For<IBackupServiceNew>();
+            var backupService = Substitute.For<IBackupUploadService>();
             backupService.GetBackupDateAsync().Returns(returnThis: x => DateTime.Today.AddMinutes(-2), x => DateTime.Now);
             backupService.GetBackupCount().Returns(3);
             var settingsFacade = Substitute.For<ISettingsFacade>();
@@ -72,7 +72,7 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
             var fileStore = Substitute.For<IFileStore>();
             fileStore.OpenReadAsync(Arg.Any<string>()).Returns(Stream.Null);
             var handler = new UploadBackup.Handler(
-                backupService: backupService,
+                backupUploadService: backupService,
                 settingsFacade: settingsFacade,
                 fileStore: fileStore,
                 dbPathProvider: Substitute.For<IDbPathProvider>());
@@ -91,7 +91,7 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
         public async Task Upload_FileStream_AndDeleteOldestEntry_When_LoggedIn_And_LocalBackup_Newer_And_ArchiveThreshold_Reached()
         {
             // Assert
-            var backupService = Substitute.For<IBackupServiceNew>();
+            var backupService = Substitute.For<IBackupUploadService>();
             backupService.GetBackupDateAsync().Returns(returnThis: x => DateTime.Today.AddMinutes(-2), x => DateTime.Now);
             backupService.GetBackupCount().Returns(15);
             var settingsFacade = Substitute.For<ISettingsFacade>();
@@ -100,7 +100,7 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
             var fileStore = Substitute.For<IFileStore>();
             fileStore.OpenReadAsync(Arg.Any<string>()).Returns(Stream.Null);
             var handler = new UploadBackup.Handler(
-                backupService: backupService,
+                backupUploadService: backupService,
                 settingsFacade: settingsFacade,
                 fileStore: fileStore,
                 dbPathProvider: Substitute.For<IDbPathProvider>());

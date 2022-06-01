@@ -23,13 +23,7 @@
         {
             this.publicClientApplication = publicClientApplication;
             this.graphClientFactory = graphClientFactory;
-
-            // TODO check this awaiter again.
-            IEnumerable<IAccount> accounts = publicClientApplication.GetAccountsAsync().GetAwaiter().GetResult();
-            IsLoggedIn = accounts.Any();
         }
-
-        public bool IsLoggedIn { get; }
 
         public async Task<GraphServiceClient> CreateServiceClient(CancellationToken cancellationToken = default)
         {

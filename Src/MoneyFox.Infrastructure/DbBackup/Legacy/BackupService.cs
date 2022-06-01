@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Infrastructure.DbBackup
+﻿namespace MoneyFox.Infrastructure.DbBackup.Legacy
 {
 
     using System;
@@ -8,14 +8,14 @@
     using System.Threading.Tasks;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Messaging;
-    using Core._Pending_.Common.Extensions;
-    using Core._Pending_.Common.Facades;
-    using Core._Pending_.Common.Messages;
-    using Core.ApplicationCore.Domain.Exceptions;
-    using Core.ApplicationCore.UseCases.DbBackup;
-    using Core.Common.Interfaces;
-    using Core.Interfaces;
-    using Core.Resources;
+    using MoneyFox.Core._Pending_.Common.Extensions;
+    using MoneyFox.Core._Pending_.Common.Facades;
+    using MoneyFox.Core._Pending_.Common.Messages;
+    using MoneyFox.Core.ApplicationCore.Domain.Exceptions;
+    using MoneyFox.Core.ApplicationCore.UseCases.DbBackup;
+    using MoneyFox.Core.Common.Interfaces;
+    using MoneyFox.Core.Interfaces;
+    using MoneyFox.Core.Resources;
     using Serilog;
 
     internal sealed class BackupService : ObservableRecipient, IBackupService, IDisposable

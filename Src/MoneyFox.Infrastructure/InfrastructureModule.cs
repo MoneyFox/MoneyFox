@@ -4,6 +4,7 @@ namespace MoneyFox.Infrastructure
     using Autofac;
     using DataAccess;
     using DbBackup;
+    using DbBackup.Legacy;
     using MediatR;
     using MoneyFox.Core._Pending_.Common.Facades;
     using MoneyFox.Core.Interfaces;

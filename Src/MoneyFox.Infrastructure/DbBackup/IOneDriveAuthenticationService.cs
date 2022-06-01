@@ -7,8 +7,6 @@
 
     internal interface IOneDriveAuthenticationService
     {
-        bool IsLoggedIn { get; }
-
         Task<GraphServiceClient> CreateServiceClient(CancellationToken cancellationToken = default);
 
         Task LogoutAsync(CancellationToken cancellationToken = default);
