@@ -101,28 +101,6 @@
             result[2].Label.Should().Be(Strings.IncreaseLabel);
         }
 
-        [Theory]
-        [InlineData("de-CH", 3, '-')]
-        public async Task GetValues_CorrectNegativeSign(string culture, int indexNegativeSign, char expectedNegativeSign)
-        {
-            // Arrange
-            var cultureInfo = new CultureInfo(culture);
-            CultureHelper.CurrentCulture = cultureInfo;
-            context.AddRange(
-                new List<Payment> { new Payment(date: DateTime.Today, amount: 40, type: PaymentType.Expense, chargedAccount: new Account("Foo3")) });
-
-            context.SaveChanges();
-
-            // Act
-            var result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
-                request: new GetCashFlowQuery { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
-                cancellationToken: default);
-
-            // Assert
-            result[2].ValueLabel[indexNegativeSign].Should().Be(expectedNegativeSign);
-            CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
-        }
-
         [Fact]
         public async Task GetValues_USVersion_CorrectNegativeSign()
         {
@@ -130,7 +108,7 @@
             context.AddRange(
                 new List<Payment> { new Payment(date: DateTime.Today, amount: 40, type: PaymentType.Expense, chargedAccount: new Account("Foo3")) });
 
-            context.SaveChanges();
+            await context.SaveChangesAsync();
             var cultureInfo = new CultureInfo("en-US");
             CultureHelper.CurrentCulture = cultureInfo;
 
