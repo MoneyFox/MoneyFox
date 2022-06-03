@@ -837,4 +837,7 @@ To start create a new account. Accounts are used to organize payments and money 
     <data name="SelectedCategoriesLabel" xml:space="preserve">
         <value>Selected Categories</value>
     </data>
+    <data name="BackupUploadSkippedMessage" xml:space="preserve">
+        <value>Upload of backup skipped, since remote version was already up to date.</value>
+    </data>
 </root>

@@ -7,6 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Core.ApplicationCore.Domain.Exceptions;
+    using Legacy;
     using Microsoft.Graph;
     using Microsoft.Identity.Client;
 

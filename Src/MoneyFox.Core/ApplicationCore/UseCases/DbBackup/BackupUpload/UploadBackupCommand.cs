@@ -3,8 +3,10 @@
 
     using System.Threading;
     using System.Threading.Tasks;
+    using JetBrains.Annotations;
     using MediatR;
 
+    [UsedImplicitly]
     internal sealed class UploadBackupCommand : IRequest
     {
         public class Handler : IRequestHandler<UploadBackupCommand, Unit>

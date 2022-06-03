@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core.ApplicationCore.UseCases
+﻿namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.CategoryCreation
 {
 
     using System.Threading;
@@ -6,8 +6,8 @@
     using FluentAssertions;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using MoneyFox.Core.ApplicationCore.UseCases.CategoryCreation;
+    using MoneyFox.Tests.TestFramework.Category;
     using NSubstitute;
-    using TestFramework.Category;
     using Xunit;
     using static TestFramework.Category.CategoryAssertion;
 

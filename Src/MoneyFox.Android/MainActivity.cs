@@ -7,6 +7,7 @@
     using Android.OS;
     using Android.Runtime;
     using Infrastructure.DbBackup;
+    using Infrastructure.DbBackup.Legacy;
     using Microsoft.Identity.Client;
     using Xamarin.Forms;
     using Xamarin.Forms.Platform.Android;

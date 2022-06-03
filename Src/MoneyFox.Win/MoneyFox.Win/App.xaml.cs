@@ -4,10 +4,11 @@ using System;
 using System.Threading.Tasks;
 using Autofac;
 using CommonServiceLocator;
+using Core._Pending_.Common.Facades;
+using Core.ApplicationCore.UseCases.BackupUpload;
 using Core.ApplicationCore.UseCases.DbBackup;
 using Core.Commands.Payments.ClearPayments;
 using Core.Commands.Payments.CreateRecurringPayments;
-using Core.Common.Facades;
 using MediatR;
 using Microsoft.UI.Xaml;
 using Serilog;
@@ -54,7 +55,7 @@ public partial class App : Application
             if (settingsFacade.IsBackupAutouploadEnabled && settingsFacade.IsLoggedInToBackupService)
             {
                 var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
-                await backupService.UploadBackupAsync();
+                await mediator.Send(new UploadBackup.Command());
                 await backupService.RestoreBackupAsync();
             }
 

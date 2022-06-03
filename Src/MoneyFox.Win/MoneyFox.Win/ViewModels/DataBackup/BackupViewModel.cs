@@ -5,15 +5,18 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Core.ApplicationCore.Domain.Exceptions;
+using Core.ApplicationCore.UseCases.BackupUpload;
 using Core.ApplicationCore.UseCases.DbBackup;
 using Core.Common.Facades;
 using Core.Common.Interfaces;
 using Core.Interfaces;
 using Core.Resources;
+using MediatR;
 using Serilog;
 
 public class BackupViewModel : ObservableObject, IBackupViewModel
 {
+    private readonly IMediator mediator;
     private readonly IBackupService backupService;
     private readonly IConnectivityAdapter connectivity;
     private readonly IDialogService dialogService;
@@ -26,12 +29,14 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
     private bool isLoadingBackupAvailability;
 
     public BackupViewModel(
+        IMediator mediator,
         IBackupService backupService,
         IDialogService dialogService,
         IConnectivityAdapter connectivity,
         ISettingsFacade settingsFacade,
         IToastService toastService)
     {
+        this.mediator = mediator;
         this.backupService = backupService;
         this.dialogService = dialogService;
         this.connectivity = connectivity;
@@ -232,9 +237,14 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
         await dialogService.ShowLoadingDialogAsync();
         try
         {
-            await backupService.UploadBackupAsync(BackupMode.Manual);
-            await toastService.ShowToastAsync(Strings.BackupCreatedMessage);
-            BackupLastModified = DateTime.Now;
+            var result = await mediator.Send(new UploadBackup.Command());
+            if (result == UploadBackup.UploadResult.Successful)
+            {
+                await toastService.ShowToastAsync(Strings.BackupCreatedMessage);
+                BackupLastModified = DateTime.Now;
+            }
+
+            await ShowUploadResult(result);
         }
         catch (BackupOperationCanceledException)
         {
@@ -246,6 +256,22 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
         }
 
         await dialogService.HideLoadingDialogAsync();
+    }
+
+    private async Task ShowUploadResult(UploadBackup.UploadResult uploadResult)
+    {
+        switch (uploadResult)
+        {
+            case UploadBackup.UploadResult.Successful:
+                await toastService.ShowToastAsync(Strings.BackupCreatedMessage);
+                BackupLastModified = DateTime.Now;
+
+                break;
+            case UploadBackup.UploadResult.Skipped:
+                await toastService.ShowToastAsync(Strings.BackupUploadSkippedMessage);
+
+                break;
+        }
     }
 
     private async Task RestoreBackupAsync()

@@ -12,6 +12,7 @@
     using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Core.Interfaces;
     using MoneyFox.Infrastructure.DbBackup;
+    using MoneyFox.Infrastructure.DbBackup.Legacy;
     using Moq;
     using NSubstitute;
     using Xunit;
