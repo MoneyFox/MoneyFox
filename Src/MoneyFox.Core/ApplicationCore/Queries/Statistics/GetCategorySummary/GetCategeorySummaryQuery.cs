@@ -143,7 +143,7 @@
                 return sumForCategory;
             }
 
-            return Math.Round(d: sumForCategory / (timeDiff.Days / DAY_DIVIDER), decimals: POSITIONS_TO_ROUND, mode: MidpointRounding.ToEven);
+            return Math.Round(d: (decimal)(sumForCategory) / (timeDiff.Days / DAY_DIVIDER), decimals: POSITIONS_TO_ROUND, mode: MidpointRounding.ToEven);
         }
     }
 
