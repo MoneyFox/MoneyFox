@@ -224,13 +224,6 @@
             }
 
             var backupDate = await GetBackupDateAsync();
-            if (backupDate >= settingsFacade.LastDatabaseUpdate && backupMode == BackupMode.Automatic)
-            {
-                Log.Information("Nothing to backup. Upload skipped");
-
-                return;
-            }
-
             await semaphoreSlim.WaitAsync(millisecondsTimeout: BACKUP_OPERATION_TIMEOUT, cancellationToken: cancellationTokenSource.Token);
             try
             {
