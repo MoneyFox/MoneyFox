@@ -8,6 +8,7 @@
     using MediatR;
     using MoneyFox.Core._Pending_.Common.Facades;
     using MoneyFox.Core.ApplicationCore.UseCases.DbBackup;
+    using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Core.Interfaces;
     using MoneyFox.ViewModels.DataBackup;
     using NSubstitute;
@@ -17,105 +18,128 @@
     public class BackupViewModelTests
     {
         private readonly IMediator mediator;
-        private readonly IConnectivityAdapter connectivitySetup;
-        private readonly ISettingsFacade? settingsManagerMock1;
-        private readonly IBackupService? backupServiceMock1;
+        private readonly IConnectivityAdapter connectivityAdapter;
+        private readonly ISettingsFacade settingsManager;
+        private readonly IBackupService backupService;
+        private readonly IToastService toastService;
+        private readonly IDialogService dialogService;
 
-        public BackupViewModelTests()
+        protected BackupViewModelTests()
         {
             mediator = Substitute.For<IMediator>();
-            connectivitySetup = Substitute.For<IConnectivityAdapter>();
-            settingsManagerMock1 = Substitute.For<ISettingsFacade>();
-            backupServiceMock1 = Substitute.For<IBackupService>();
+            connectivityAdapter = Substitute.For<IConnectivityAdapter>();
+            settingsManager = Substitute.For<ISettingsFacade>();
+            backupService = Substitute.For<IBackupService>();
+            toastService = Substitute.For<IToastService>();
+            dialogService = Substitute.For<IDialogService>();
         }
 
-        [Fact]
-        public async Task CallsNothing_OnInitialize_WhenDeviceIsDisconnected()
+        public sealed class InitializeCommand : BackupViewModelTests
         {
-            // Setup
-            connectivitySetup.IsConnected.Returns(false);
+            [Fact]
+            public async Task CallsNothing_OnInitialize_WhenDeviceIsDisconnected()
+            {
+                // Arrange
+                connectivityAdapter.IsConnected.Returns(false);
 
-            //execute
-            var vm = new BackupViewModel(mediator, backupService: backupServiceMock1, dialogService: null, connectivity: connectivitySetup,
-                settingsFacade: settingsManagerMock1,
-                toastService: null);
+                // Act
+                var vm = new BackupViewModel(
+                    mediator: mediator,
+                    backupService: backupService,
+                    dialogService: dialogService,
+                    connectivity: connectivityAdapter,
+                    settingsFacade: settingsManager,
+                    toastService: toastService);
 
-            vm.InitializeCommand.Execute(null);
+                vm.InitializeCommand.Execute(null);
 
-            //assert
-            vm.IsLoadingBackupAvailability.Should().BeFalse();
-            await backupServiceMock1.Received(0).IsBackupExistingAsync();
-            await backupServiceMock1.Received(0).GetBackupDateAsync();
+                // Assert
+                vm.IsLoadingBackupAvailability.Should().BeFalse();
+                await backupService.Received(0).IsBackupExistingAsync();
+                await backupService.Received(0).GetBackupDateAsync();
+            }
+
+            [Fact]
+            public async Task CallsNothing_OnInitialize_WhenNotLoggedIn()
+            {
+                // Arrange
+                var connectivitySetup = Substitute.For<IConnectivityAdapter>();
+                connectivitySetup.IsConnected.Returns(true);
+                var settingsManagerMock = Substitute.For<ISettingsFacade>();
+                var backupServiceMock = Substitute.For<IBackupService>();
+
+                // Act
+                var vm = new BackupViewModel(
+                    mediator: mediator,
+                    backupService: backupServiceMock,
+                    dialogService: dialogService,
+                    connectivity: connectivitySetup,
+                    settingsFacade: settingsManagerMock,
+                    toastService: toastService);
+
+                vm.InitializeCommand.Execute(null);
+
+                // Assert
+                vm.IsLoadingBackupAvailability.Should().BeFalse();
+                await backupServiceMock.Received(0).IsBackupExistingAsync();
+                await backupServiceMock.Received(0).GetBackupDateAsync();
+            }
+
+            [Fact]
+            public void CallsInitializations_WhenConnectivitySet_AndUserLoggedIn()
+            {
+                // Arrange
+                var connectivitySetup = Substitute.For<IConnectivityAdapter>();
+                connectivitySetup.IsConnected.Returns(true);
+                var settingsManagerMock = Substitute.For<ISettingsFacade>();
+                settingsManagerMock.IsLoggedInToBackupService.Returns(true);
+                var returnDate = DateTime.Today;
+                var backupServiceMock = Substitute.For<IBackupService>();
+                backupServiceMock.IsBackupExistingAsync().Returns(true);
+                backupServiceMock.GetBackupDateAsync().Returns(returnDate);
+
+                // Act
+                var vm = new BackupViewModel(
+                    mediator: mediator,
+                    backupService: backupServiceMock,
+                    dialogService: dialogService,
+                    connectivity: connectivitySetup,
+                    settingsFacade: settingsManagerMock,
+                    toastService: toastService);
+
+                vm.InitializeCommand.Execute(null);
+
+                // Assert
+                vm.IsLoadingBackupAvailability.Should().BeFalse();
+                vm.BackupAvailable.Should().BeTrue();
+                vm.BackupLastModified.Should().Be(returnDate);
+            }
         }
 
-        [Fact]
-        public async Task CallsNothing_OnInitialize_WhenNotLoggedIn)
+        public class LogoutCommand : BackupViewModelTests
         {
-            // Setup
-            var connectivitySetup = Substitute.For<IConnectivityAdapter>();
-            connectivitySetup.IsConnected.Returns(true);
-            var settingsManagerMock = Substitute.For<ISettingsFacade>();
-            var backupServiceMock = Substitute.For<IBackupService>();
+            [Fact]
+            public void UpdatesSettingsCorrectly_OnLogout()
+            {
+                // Arrange
+                var logoutCommandCalled = false;
+                backupService.When(x => x.LogoutAsync()).Do(x => logoutCommandCalled = true);
 
-            //execute
-            var vm = new BackupViewModel(mediator, backupService: backupServiceMock, dialogService: null, connectivity: connectivitySetup,
-                settingsFacade: settingsManagerMock,
-                toastService: null);
+                // Act
+                var vm = new BackupViewModel(
+                    mediator: mediator,
+                    backupService: backupService,
+                    dialogService: dialogService,
+                    connectivity: connectivityAdapter,
+                    settingsFacade: settingsManager,
+                    toastService: toastService);
 
-            vm.InitializeCommand.Execute(null);
+                vm.LogoutCommand.Execute(null);
 
-            //assert
-            vm.IsLoadingBackupAvailability.Should().BeFalse();
-            await backupServiceMock.Received(0).IsBackupExistingAsync();
-            await backupServiceMock.Received(0).GetBackupDateAsync();
-        }
-
-        [Fact]
-        public void CallsInitializations_WhenConnectivitySet_AndUserLoggedIn()
-        {
-            // Setup
-            var connectivitySetup = Substitute.For<IConnectivityAdapter>();
-            connectivitySetup.IsConnected.Returns(true);
-            var settingsManagerMock = Substitute.For<ISettingsFacade>();
-            settingsManagerMock.IsLoggedInToBackupService.Returns(true);
-            var returnDate = DateTime.Today;
-            var backupServiceMock = Substitute.For<IBackupService>();
-            backupServiceMock.IsBackupExistingAsync().Returns(true);
-            backupServiceMock.GetBackupDateAsync().Returns(returnDate);
-
-            //execute
-            var vm = new BackupViewModel(mediator, backupService: backupServiceMock, dialogService: null, connectivity: connectivitySetup,
-                settingsFacade: settingsManagerMock,
-                toastService: null);
-
-            vm.InitializeCommand.Execute(null);
-
-            //assert
-            vm.IsLoadingBackupAvailability.Should().BeFalse();
-            vm.BackupAvailable.Should().BeTrue();
-            vm.BackupLastModified.Should().Be(returnDate);
-        }
-
-        [Fact]
-        public void UpdatesSettingsCorrectly_OnLogout()
-        {
-            // Setup
-            var connectivitySetup = Substitute.For<IConnectivityAdapter>();
-            var settingsManagerMock = Substitute.For<ISettingsFacade>();
-            var logoutCommandCalled = false;
-            var backupServiceMock = Substitute.For<IBackupService>();
-            backupServiceMock.When(x => x.LogoutAsync()).Do(x => logoutCommandCalled = true);
-
-            //execute
-            var vm = new BackupViewModel(mediator, backupService: backupServiceMock, dialogService: null, connectivity: connectivitySetup,
-                settingsFacade: settingsManagerMock,
-                toastService: null);
-
-            vm.LogoutCommand.Execute(null);
-
-            //assert
-            logoutCommandCalled.Should().BeTrue();
-            settingsManagerMock.IsLoggedInToBackupService.Should().BeFalse();
+                // Assert
+                logoutCommandCalled.Should().BeTrue();
+                settingsManager.IsLoggedInToBackupService.Should().BeFalse();
+            }
         }
     }
 
