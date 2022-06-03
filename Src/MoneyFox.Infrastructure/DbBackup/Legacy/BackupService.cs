@@ -7,16 +7,16 @@
     using System.Threading;
     using System.Threading.Tasks;
     using CommunityToolkit.Mvvm.ComponentModel;
-    using CommunityToolkit.Mvvm.Messaging;
-    using MoneyFox.Core._Pending_.Common.Extensions;
-    using MoneyFox.Core._Pending_.Common.Facades;
-    using MoneyFox.Core._Pending_.Common.Messages;
-    using MoneyFox.Core.ApplicationCore.Domain.Exceptions;
-    using MoneyFox.Core.ApplicationCore.UseCases.DbBackup;
-    using MoneyFox.Core.Common.Interfaces;
-    using MoneyFox.Core.Interfaces;
-    using MoneyFox.Core.Resources;
+    using Core.ApplicationCore.Domain.Exceptions;
+    using Core.ApplicationCore.UseCases.DbBackup;
+    using Core.Common.Extensions;
+    using Core.Common.Facades;
+    using Core.Common.Interfaces;
+    using Core.Common.Messages;
+    using Core.Interfaces;
+    using Core.Resources;
     using Serilog;
+    using CommunityToolkit.Mvvm.Messaging;
 
     internal sealed class BackupService : ObservableRecipient, IBackupService, IDisposable
     {

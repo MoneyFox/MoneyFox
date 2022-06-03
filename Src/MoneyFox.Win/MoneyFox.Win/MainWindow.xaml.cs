@@ -2,11 +2,11 @@ namespace MoneyFox.Win;
 
 using System;
 using CommonServiceLocator;
+using Core.ApplicationCore.UseCases.DbBackup;
+using Core.Common.Facades;
 using MediatR;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using MoneyFox.Core._Pending_.Common.Facades;
-using MoneyFox.Core.ApplicationCore.UseCases.DbBackup;
 using Pages;
 using Serilog;
 
@@ -21,7 +21,6 @@ public sealed partial class MainWindow : Window
         SetTitleBar(AppTitleBar);
         RootFrame = ShellFrame;
         RootFrame.Navigate(sourcePageType: typeof(ShellPage), parameter: null);
-
         Closed += OnClosed;
     }
 

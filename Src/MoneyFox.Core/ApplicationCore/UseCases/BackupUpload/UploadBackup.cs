@@ -4,12 +4,14 @@
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using _Pending_.Common.Facades;
+    using Common.Facades;
     using Interfaces;
     using MediatR;
 
     public static class UploadBackup
     {
+        public enum UploadResult { Successful, Skipped }
+
         public sealed class Command : IRequest<UploadResult> { }
 
         public class Handler : IRequestHandler<Command, UploadResult>
@@ -46,7 +48,6 @@
                 var backupName = string.Format(format: BACKUP_NAME_TEMPLATE, arg0: DateTime.UtcNow.ToString(format: "yyyy-M-d_hh-mm-ssss"));
                 var dbAsStream = await fileStore.OpenReadAsync(dbPathProvider.GetDbPath());
                 await backupUploadService.UploadAsync(backupName: backupName, dataToUpload: dbAsStream);
-
                 var currentBackupDate = await backupUploadService.GetBackupDateAsync();
                 settingsFacade.LastDatabaseUpdate = currentBackupDate.ToLocalTime();
                 if (await backupUploadService.GetBackupCount() >= BACKUP_ARCHIVE_THRESHOLD)
@@ -56,12 +57,6 @@
 
                 return UploadResult.Successful;
             }
-        }
-
-        public enum UploadResult
-        {
-            Successful,
-            Skipped
         }
     }
 
