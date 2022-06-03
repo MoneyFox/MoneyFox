@@ -10,9 +10,9 @@
 
     public static class UploadBackup
     {
-        public sealed class Command : IRequest { }
+        public sealed class Command : IRequest<UploadResult> { }
 
-        public class Handler : IRequestHandler<Command, Unit>
+        public class Handler : IRequestHandler<Command, UploadResult>
         {
             private const string BACKUP_NAME_TEMPLATE = "backupmoneyfox3_{0}.db";
             private const int BACKUP_ARCHIVE_THRESHOLD = 15;
@@ -30,17 +30,17 @@
                 this.dbPathProvider = dbPathProvider;
             }
 
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<UploadResult> Handle(Command request, CancellationToken cancellationToken)
             {
                 if (settingsFacade.IsLoggedInToBackupService is false)
                 {
-                    return Unit.Value;
+                    return UploadResult.Skipped;
                 }
 
                 var backupDate = await backupUploadService.GetBackupDateAsync();
                 if (settingsFacade.LastDatabaseUpdate <= backupDate.ToLocalTime())
                 {
-                    return Unit.Value;
+                    return UploadResult.Skipped;
                 }
 
                 var backupName = string.Format(format: BACKUP_NAME_TEMPLATE, arg0: DateTime.UtcNow.ToString(format: "yyyy-M-d_hh-mm-ssss"));
@@ -54,8 +54,14 @@
                     await backupUploadService.DeleteOldest();
                 }
 
-                return Unit.Value;
+                return UploadResult.Successful;
             }
+        }
+
+        public enum UploadResult
+        {
+            Successful,
+            Skipped
         }
     }
 
