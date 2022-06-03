@@ -15,7 +15,7 @@
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class BackupViewModelTests
+    public class BackupViewModelShould
     {
         private readonly IMediator mediator;
         private readonly IConnectivityAdapter connectivityAdapter;
@@ -24,7 +24,7 @@
         private readonly IToastService toastService;
         private readonly IDialogService dialogService;
 
-        protected BackupViewModelTests()
+        protected BackupViewModelShould()
         {
             mediator = Substitute.For<IMediator>();
             connectivityAdapter = Substitute.For<IConnectivityAdapter>();
@@ -34,10 +34,10 @@
             dialogService = Substitute.For<IDialogService>();
         }
 
-        public sealed class InitializeCommand : BackupViewModelTests
+        public sealed class InitializeCommand : BackupViewModelShould
         {
             [Fact]
-            public async Task CallsNothing_OnInitialize_WhenDeviceIsDisconnected()
+            public async Task CallNothing_OnInitialize_WhenDeviceIsDisconnected()
             {
                 // Arrange
                 connectivityAdapter.IsConnected.Returns(false);
@@ -60,7 +60,7 @@
             }
 
             [Fact]
-            public async Task CallsNothing_OnInitialize_WhenNotLoggedIn()
+            public async Task CallNothing_OnInitialize_WhenNotLoggedIn()
             {
                 // Arrange
                 var connectivitySetup = Substitute.For<IConnectivityAdapter>();
@@ -86,7 +86,7 @@
             }
 
             [Fact]
-            public void CallsInitializations_WhenConnectivitySet_AndUserLoggedIn()
+            public void CallInitializations_WhenConnectivitySet_AndUserLoggedIn()
             {
                 // Arrange
                 var connectivitySetup = Substitute.For<IConnectivityAdapter>();
@@ -116,10 +116,10 @@
             }
         }
 
-        public class LogoutCommand : BackupViewModelTests
+        public class LogoutCommand : BackupViewModelShould
         {
             [Fact]
-            public void UpdatesSettingsCorrectly_OnLogout()
+            public void UpdateSettingsCorrectly_OnLogout()
             {
                 // Arrange
                 var logoutCommandCalled = false;
