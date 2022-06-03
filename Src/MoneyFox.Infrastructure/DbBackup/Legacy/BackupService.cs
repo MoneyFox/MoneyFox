@@ -183,7 +183,7 @@
             try
             {
                 var backupDate = await GetBackupDateAsync();
-                if (settingsFacade.LastDatabaseUpdate > backupDate && backupMode == BackupMode.Automatic)
+                if (settingsFacade.LastDatabaseUpdate > backupDate.ToLocalTime() && backupMode == BackupMode.Automatic)
                 {
                     Log.Information("Local backup is newer than remote. Don't download backup");
 
@@ -192,7 +192,7 @@
 
                 await using (var backupStream = await oneDriveBackupService.RestoreAsync())
                 {
-                    settingsFacade.LastDatabaseUpdate = backupDate;
+                    settingsFacade.LastDatabaseUpdate = backupDate.ToLocalTime();
                     await fileStore.WriteFileAsync(path: TEMP_DOWNLOAD_PATH, contents: backupStream.ReadToEnd());
                 }
 
