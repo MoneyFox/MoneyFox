@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Infrastructure.DbBackup
+﻿namespace MoneyFox.Infrastructure.DbBackup.Legacy
 {
 
     public enum BackupRestoreResult { Canceled, BackupNotFound, NewBackupRestored }

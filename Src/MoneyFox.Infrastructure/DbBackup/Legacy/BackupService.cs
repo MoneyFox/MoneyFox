@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Infrastructure.DbBackup
+﻿namespace MoneyFox.Infrastructure.DbBackup.Legacy
 {
 
     using System;
@@ -8,14 +8,14 @@
     using System.Threading.Tasks;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Messaging;
-    using Core._Pending_.Common.Extensions;
-    using Core._Pending_.Common.Facades;
-    using Core._Pending_.Common.Messages;
-    using Core.ApplicationCore.Domain.Exceptions;
-    using Core.ApplicationCore.UseCases.DbBackup;
-    using Core.Common.Interfaces;
-    using Core.Interfaces;
-    using Core.Resources;
+    using MoneyFox.Core._Pending_.Common.Extensions;
+    using MoneyFox.Core._Pending_.Common.Facades;
+    using MoneyFox.Core._Pending_.Common.Messages;
+    using MoneyFox.Core.ApplicationCore.Domain.Exceptions;
+    using MoneyFox.Core.ApplicationCore.UseCases.DbBackup;
+    using MoneyFox.Core.Common.Interfaces;
+    using MoneyFox.Core.Interfaces;
+    using MoneyFox.Core.Resources;
     using Serilog;
 
     internal sealed class BackupService : ObservableRecipient, IBackupService, IDisposable
@@ -142,7 +142,6 @@
                 var result = await DownloadBackupAsync(backupMode);
                 if (result == BackupRestoreResult.NewBackupRestored)
                 {
-                    settingsFacade.LastDatabaseUpdate = DateTime.Now;
                     await toastService.ShowToastAsync(Strings.BackupRestoredMessage);
                     Messenger.Send(new ReloadMessage());
                 }
@@ -170,8 +169,7 @@
                 await LoginAsync();
             }
 
-            await EnqueueBackupTaskAsync();
-            settingsFacade.LastDatabaseUpdate = DateTime.Now;
+            await EnqueueBackupTaskAsync(backupMode);
         }
 
         public void Dispose()
@@ -185,7 +183,7 @@
             try
             {
                 var backupDate = await GetBackupDateAsync();
-                if (settingsFacade.LastDatabaseUpdate > backupDate && backupMode == BackupMode.Automatic)
+                if (settingsFacade.LastDatabaseUpdate > backupDate.ToLocalTime() && backupMode == BackupMode.Automatic)
                 {
                     Log.Information("Local backup is newer than remote. Don't download backup");
 
@@ -194,6 +192,7 @@
 
                 await using (var backupStream = await oneDriveBackupService.RestoreAsync())
                 {
+                    settingsFacade.LastDatabaseUpdate = backupDate.ToLocalTime();
                     await fileStore.WriteFileAsync(path: TEMP_DOWNLOAD_PATH, contents: backupStream.ReadToEnd());
                 }
 
@@ -217,13 +216,14 @@
             return BackupRestoreResult.BackupNotFound;
         }
 
-        private async Task EnqueueBackupTaskAsync()
+        private async Task EnqueueBackupTaskAsync(BackupMode backupMode)
         {
             if (!connectivity.IsConnected)
             {
                 throw new NetworkConnectionException();
             }
 
+            var backupDate = await GetBackupDateAsync();
             await semaphoreSlim.WaitAsync(millisecondsTimeout: BACKUP_OPERATION_TIMEOUT, cancellationToken: cancellationTokenSource.Token);
             try
             {
@@ -231,6 +231,7 @@
                 {
                     semaphoreSlim.Release();
                     await toastService.ShowToastAsync(Strings.BackupCreatedMessage);
+                    settingsFacade.LastDatabaseUpdate = backupDate;
                 }
                 else
                 {
@@ -245,7 +246,7 @@
             {
                 Log.Error(exception: ex, messageTemplate: "Enqueue Backup failed");
                 await Task.Delay(BACKUP_REPEAT_DELAY);
-                await EnqueueBackupTaskAsync();
+                await EnqueueBackupTaskAsync(backupMode);
             }
         }
 

@@ -37,6 +37,7 @@
             {
                 loadingDialog.Dismiss(null);
                 loadingDialog = null;
+                await Task.CompletedTask;
             }
             catch (IndexOutOfRangeException)
             {
@@ -56,7 +57,6 @@
                 message: message,
                 accept: positiveButtonText ?? Strings.YesLabel,
                 cancel: negativeButtonText ?? Strings.NoLabel);
-
         }
     }
 

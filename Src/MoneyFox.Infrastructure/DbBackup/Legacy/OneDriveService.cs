@@ -1,17 +1,15 @@
-namespace MoneyFox.Infrastructure.DbBackup
+namespace MoneyFox.Infrastructure.DbBackup.Legacy
 {
 
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using Core.ApplicationCore.Domain.Exceptions;
-    using Core.ApplicationCore.UseCases.DbBackup;
     using Microsoft.Graph;
     using Microsoft.Identity.Client;
-    using Serilog;
+    using MoneyFox.Core.ApplicationCore.Domain.Exceptions;
+    using MoneyFox.Core.ApplicationCore.UseCases.DbBackup;
 
     internal class OneDriveService : IOneDriveBackupService
     {
