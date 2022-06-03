@@ -253,11 +253,7 @@
             try
             {
                 var result = await mediator.Send(new UploadBackup.Command());
-                if (result == UploadBackup.UploadResult.Successful)
-                {
-                    await toastService.ShowToastAsync(Strings.BackupCreatedMessage);
-                    BackupLastModified = DateTime.Now;
-                }
+                await ShowUploadResult(result);
             }
             catch (BackupOperationCanceledException)
             {
@@ -270,6 +266,22 @@
             }
 
             await dialogService.HideLoadingDialogAsync();
+        }
+
+        private async Task ShowUploadResult(UploadBackup.UploadResult uploadResult)
+        {
+            switch (uploadResult)
+            {
+                case UploadBackup.UploadResult.Successful:
+                    await toastService.ShowToastAsync(Strings.BackupCreatedMessage);
+                    BackupLastModified = DateTime.Now;
+
+                    break;
+                case UploadBackup.UploadResult.Skipped:
+                    await toastService.ShowToastAsync(Strings.BackupUploadSkippedMessage);
+
+                    break;
+            }
         }
 
         private async Task RestoreBackupAsync()

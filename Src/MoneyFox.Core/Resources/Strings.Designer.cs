@@ -358,6 +358,15 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Upload of backup skipped, since remote version was already up to date..
+        /// </summary>
+        public static string BackupUploadSkippedMessage {
+            get {
+                return ResourceManager.GetString("BackupUploadSkippedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Biannually.
         /// </summary>
         public static string BiannuallyLabel {
