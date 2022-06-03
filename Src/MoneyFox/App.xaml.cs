@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using CommonServiceLocator;
     using Core._Pending_.Common.Facades;
+    using Core.ApplicationCore.UseCases.BackupUpload;
     using Core.ApplicationCore.UseCases.DbBackup;
     using Core.Commands.Payments.ClearPayments;
     using Core.Commands.Payments.CreateRecurringPayments;
@@ -66,8 +67,8 @@
                 {
                     var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
 
+                    await mediator.Send(new UploadBackup.Command());
                     await backupService.RestoreBackupAsync();
-                    await backupService.UploadBackupAsync();
                 }
 
                 await mediator.Send(new ClearPaymentsCommand());
