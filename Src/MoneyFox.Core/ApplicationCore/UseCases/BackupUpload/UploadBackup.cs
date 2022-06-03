@@ -38,7 +38,7 @@
                 }
 
                 var backupDate = await backupUploadService.GetBackupDateAsync();
-                if (settingsFacade.LastDatabaseUpdate <= backupDate)
+                if (settingsFacade.LastDatabaseUpdate <= backupDate.ToLocalTime())
                 {
                     return Unit.Value;
                 }
@@ -46,7 +46,9 @@
                 var backupName = string.Format(format: BACKUP_NAME_TEMPLATE, arg0: DateTime.UtcNow.ToString(format: "yyyy-M-d_hh-mm-ssss"));
                 var dbAsStream = await fileStore.OpenReadAsync(dbPathProvider.GetDbPath());
                 await backupUploadService.UploadAsync(backupName: backupName, dataToUpload: dbAsStream);
-                settingsFacade.LastDatabaseUpdate = await backupUploadService.GetBackupDateAsync();
+
+                var currentBackupDate = await backupUploadService.GetBackupDateAsync();
+                settingsFacade.LastDatabaseUpdate = currentBackupDate.ToLocalTime();
                 if (await backupUploadService.GetBackupCount() >= BACKUP_ARCHIVE_THRESHOLD)
                 {
                     await backupUploadService.DeleteOldest();
