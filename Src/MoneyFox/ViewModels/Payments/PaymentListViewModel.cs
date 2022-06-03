@@ -146,7 +146,7 @@
         {
             group.Subtitle = string.Format(
                 format: Strings.ExpenseAndIncomeTemplate,
-                arg0: group.Where(x => x.Type is not PaymentType.Income && x.ChargedAccount.Id == SelectedAccount.Id)
+                arg0: group.Where(x => x.Type != PaymentType.Income && x.ChargedAccount.Id == SelectedAccount.Id)
                     .Sum(x => x.Amount),
                 arg1: group.Where(
                         x => x.Type == PaymentType.Income

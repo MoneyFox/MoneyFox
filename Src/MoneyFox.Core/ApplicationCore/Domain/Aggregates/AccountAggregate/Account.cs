@@ -54,7 +54,7 @@ namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate
                 return;
             }
 
-            if (payment.Type is not PaymentType.Income && payment.ChargedAccount.Id == Id)
+            if (payment.Type != PaymentType.Income && payment.ChargedAccount.Id == Id)
             {
                 CurrentBalance -= payment.Amount;
             }
@@ -72,7 +72,7 @@ namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate
                 return;
             }
 
-            if (payment.Type is not PaymentType.Income && payment.ChargedAccount.Id == Id)
+            if (payment.Type != PaymentType.Income && payment.ChargedAccount.Id == Id)
             {
                 CurrentBalance -= -payment.Amount;
             }
