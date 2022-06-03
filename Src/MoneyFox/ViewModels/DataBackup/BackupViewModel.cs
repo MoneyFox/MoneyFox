@@ -7,14 +7,17 @@
     using CommunityToolkit.Mvvm.Input;
     using Core._Pending_.Common.Facades;
     using Core.ApplicationCore.Domain.Exceptions;
+    using Core.ApplicationCore.UseCases.BackupUpload;
     using Core.ApplicationCore.UseCases.DbBackup;
     using Core.Common.Interfaces;
     using Core.Interfaces;
     using Core.Resources;
+    using MediatR;
     using Serilog;
 
     public class BackupViewModel : ObservableObject, IBackupViewModel
     {
+        private readonly IMediator mediator;
         private readonly IBackupService backupService;
         private readonly IConnectivityAdapter connectivity;
         private readonly IDialogService dialogService;
@@ -27,6 +30,7 @@
         private UserAccount userAccount = new UserAccount(name: "", email: "");
 
         public BackupViewModel(
+            IMediator mediator,
             IBackupService backupService,
             IDialogService dialogService,
             IConnectivityAdapter connectivity,
@@ -38,6 +42,7 @@
             this.connectivity = connectivity;
             this.settingsFacade = settingsFacade;
             this.toastService = toastService;
+            this.mediator = mediator;
         }
 
         public UserAccount UserAccount
@@ -247,9 +252,12 @@
             await dialogService.ShowLoadingDialogAsync();
             try
             {
-                await backupService.UploadBackupAsync(BackupMode.Manual);
-                await toastService.ShowToastAsync(Strings.BackupCreatedMessage);
-                BackupLastModified = DateTime.Now;
+                var result = await mediator.Send(new UploadBackup.Command());
+                if (result == UploadBackup.UploadResult.Successful)
+                {
+                    await toastService.ShowToastAsync(Strings.BackupCreatedMessage);
+                    BackupLastModified = DateTime.Now;
+                }
             }
             catch (BackupOperationCanceledException)
             {

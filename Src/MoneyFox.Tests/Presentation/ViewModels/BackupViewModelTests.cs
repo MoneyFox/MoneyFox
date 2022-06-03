@@ -5,6 +5,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
     using FluentAssertions;
+    using MediatR;
     using MoneyFox.Core._Pending_.Common.Facades;
     using MoneyFox.Core.ApplicationCore.UseCases.DbBackup;
     using MoneyFox.Core.Interfaces;
@@ -15,29 +16,36 @@
     [ExcludeFromCodeCoverage]
     public class BackupViewModelTests
     {
+        private readonly IMediator mediator;
+        private readonly IConnectivityAdapter connectivitySetup;
+        private readonly ISettingsFacade? settingsManagerMock1;
+        private readonly IBackupService? backupServiceMock1;
+
+        public BackupViewModelTests()
+        {
+            mediator = Substitute.For<IMediator>();
+            connectivitySetup = Substitute.For<IConnectivityAdapter>();
+            settingsManagerMock1 = Substitute.For<ISettingsFacade>();
+            backupServiceMock1 = Substitute.For<IBackupService>();
+        }
+
         [Fact]
         public async Task Initialize_NoConnectivity_NothingCalled()
         {
             // Setup
-            var connectivitySetup = Substitute.For<IConnectivityAdapter>();
             connectivitySetup.IsConnected.Returns(false);
-            var settingsManagerMock = Substitute.For<ISettingsFacade>();
-            var backupServiceMock = Substitute.For<IBackupService>();
 
             //execute
-            var vm = new BackupViewModel(
-                backupService: backupServiceMock,
-                dialogService: null,
-                connectivity: connectivitySetup,
-                settingsFacade: settingsManagerMock,
+            var vm = new BackupViewModel(mediator, backupService: backupServiceMock1, dialogService: null, connectivity: connectivitySetup,
+                settingsFacade: settingsManagerMock1,
                 toastService: null);
 
             vm.InitializeCommand.Execute(null);
 
             //assert
             vm.IsLoadingBackupAvailability.Should().BeFalse();
-            await backupServiceMock.Received(0).IsBackupExistingAsync();
-            await backupServiceMock.Received(0).GetBackupDateAsync();
+            await backupServiceMock1.Received(0).IsBackupExistingAsync();
+            await backupServiceMock1.Received(0).GetBackupDateAsync();
         }
 
         [Fact]
@@ -50,10 +58,7 @@
             var backupServiceMock = Substitute.For<IBackupService>();
 
             //execute
-            var vm = new BackupViewModel(
-                backupService: backupServiceMock,
-                dialogService: null,
-                connectivity: connectivitySetup,
+            var vm = new BackupViewModel(mediator, backupService: backupServiceMock, dialogService: null, connectivity: connectivitySetup,
                 settingsFacade: settingsManagerMock,
                 toastService: null);
 
@@ -79,10 +84,7 @@
             backupServiceMock.GetBackupDateAsync().Returns(returnDate);
 
             //execute
-            var vm = new BackupViewModel(
-                backupService: backupServiceMock,
-                dialogService: null,
-                connectivity: connectivitySetup,
+            var vm = new BackupViewModel(mediator, backupService: backupServiceMock, dialogService: null, connectivity: connectivitySetup,
                 settingsFacade: settingsManagerMock,
                 toastService: null);
 
@@ -105,10 +107,7 @@
             backupServiceMock.When(x => x.LogoutAsync()).Do(x => logoutCommandCalled = true);
 
             //execute
-            var vm = new BackupViewModel(
-                backupService: backupServiceMock,
-                dialogService: null,
-                connectivity: connectivitySetup,
+            var vm = new BackupViewModel(mediator, backupService: backupServiceMock, dialogService: null, connectivity: connectivitySetup,
                 settingsFacade: settingsManagerMock,
                 toastService: null);
 
