@@ -30,7 +30,7 @@
         }
 
         [Fact]
-        public async Task Initialize_NoConnectivity_NothingCalled()
+        public async Task CallsNothing_OnInitialize_WhenDeviceIsDisconnected()
         {
             // Setup
             connectivitySetup.IsConnected.Returns(false);
@@ -49,7 +49,7 @@
         }
 
         [Fact]
-        public async Task Initialize_ConnectivityNotLoggedIn_NothingCalled()
+        public async Task CallsNothing_OnInitialize_WhenNotLoggedIn)
         {
             // Setup
             var connectivitySetup = Substitute.For<IConnectivityAdapter>();
@@ -71,7 +71,7 @@
         }
 
         [Fact]
-        public void Initialize_ConnectivityLoggedIn_MethodsCalled()
+        public void CallsInitializations_WhenConnectivitySet_AndUserLoggedIn()
         {
             // Setup
             var connectivitySetup = Substitute.For<IConnectivityAdapter>();
@@ -97,7 +97,7 @@
         }
 
         [Fact]
-        public void Logout_PropertiesSet()
+        public void UpdatesSettingsCorrectly_OnLogout()
         {
             // Setup
             var connectivitySetup = Substitute.For<IConnectivityAdapter>();
