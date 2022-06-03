@@ -54,6 +54,7 @@ public partial class App : Application
             if (settingsFacade.IsBackupAutouploadEnabled && settingsFacade.IsLoggedInToBackupService)
             {
                 var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
+                await backupService.UploadBackupAsync();
                 await backupService.RestoreBackupAsync();
             }
 

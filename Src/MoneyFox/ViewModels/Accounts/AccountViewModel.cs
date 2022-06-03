@@ -189,6 +189,11 @@
 
             return Id.Equals(other.Id);
         }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
     }
 
 }
