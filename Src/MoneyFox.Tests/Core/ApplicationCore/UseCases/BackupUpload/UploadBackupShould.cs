@@ -46,24 +46,52 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
             result.Should().Be(UploadBackup.UploadResult.Skipped);
         }
 
-        [Fact]
-        public async Task DoNothing_When_RemoteModificationDate_NewerThan_Local()
+        public class LoggedInBackupService : UploadBackupShould
         {
-            // Assert
-            backupService.GetBackupDateAsync().Returns(DateTime.Now);
-            settingsFacade.LastDatabaseUpdate.Returns(DateTime.Now.AddMinutes(-2));
-            var handler = new UploadBackup.Handler(
-                backupUploadService: backupService,
-                settingsFacade: settingsFacade,
-                fileStore: Substitute.For<IFileStore>(),
-                dbPathProvider: Substitute.For<IDbPathProvider>());
+            public LoggedInBackupService()
+            {
+                settingsFacade.IsLoggedInToBackupService.Returns(true);
+            }
 
-            // Act
-            var command = new UploadBackup.Command();
-            var result = await handler.Handle(request: command, cancellationToken: CancellationToken.None);
+            [Fact]
+            public async Task DoNothing_When_RemoteModificationDate_NewerThan_Local()
+            {
+                // Assert
+                backupService.GetBackupDateAsync().Returns(DateTime.Now);
+                settingsFacade.LastDatabaseUpdate.Returns(DateTime.Now.AddMinutes(-2));
+                var handler = new UploadBackup.Handler(
+                    backupUploadService: backupService,
+                    settingsFacade: settingsFacade,
+                    fileStore: Substitute.For<IFileStore>(),
+                    dbPathProvider: Substitute.For<IDbPathProvider>());
 
-            // Assert
-            result.Should().Be(UploadBackup.UploadResult.Skipped);
+                // Act
+                var command = new UploadBackup.Command();
+                var result = await handler.Handle(request: command, cancellationToken: CancellationToken.None);
+
+                // Assert
+                result.Should().Be(UploadBackup.UploadResult.Skipped);
+            }
+
+            [Fact]
+            public async Task DoNothing_When_RemoteModificationDate_LessThanHalfASecond_NewerThan_Local()
+            {
+                // Assert
+                backupService.GetBackupDateAsync().Returns(DateTime.Now);
+                settingsFacade.LastDatabaseUpdate.Returns(DateTime.Now.AddSeconds(0.5));
+                var handler = new UploadBackup.Handler(
+                    backupUploadService: backupService,
+                    settingsFacade: settingsFacade,
+                    fileStore: Substitute.For<IFileStore>(),
+                    dbPathProvider: Substitute.For<IDbPathProvider>());
+
+                // Act
+                var command = new UploadBackup.Command();
+                var result = await handler.Handle(request: command, cancellationToken: CancellationToken.None);
+
+                // Assert
+                result.Should().Be(UploadBackup.UploadResult.Skipped);
+            }
         }
 
         [Fact]
