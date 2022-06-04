@@ -6,24 +6,32 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
     using System.Threading;
     using System.Threading.Tasks;
     using FluentAssertions;
+    using MoneyFox.Core._Pending_.Common.Facades;
     using MoneyFox.Core.ApplicationCore.UseCases.BackupUpload;
-    using MoneyFox.Core.Common.Facades;
     using MoneyFox.Core.Interfaces;
     using NSubstitute;
     using Xunit;
 
     public class UploadBackupShould
     {
+        private readonly IBackupUploadService backupService;
+        private readonly ISettingsFacade settingsFacade;
+        private readonly IFileStore fileStore;
+
+        public UploadBackupShould()
+        {
+            backupService = Substitute.For<IBackupUploadService>();
+            settingsFacade = Substitute.For<ISettingsFacade>();
+            fileStore = Substitute.For<IFileStore>();
+        }
+
         [Fact]
         public async Task DoNothing_When_NotLoggedIn_ToBackupLocation()
         {
             // Assert
-            var backupService = Substitute.For<IBackupUploadService>();
             backupService.GetBackupDateAsync().Returns(DateTime.Today.AddMinutes(-2));
-            var settingsFacade = Substitute.For<ISettingsFacade>();
             settingsFacade.IsLoggedInToBackupService.Returns(false);
             settingsFacade.LastDatabaseUpdate.Returns(DateTime.Today);
-            var fileStore = Substitute.For<IFileStore>();
             var handler = new UploadBackup.Handler(
                 backupUploadService: backupService,
                 settingsFacade: settingsFacade,
@@ -42,9 +50,7 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
         public async Task DoNothing_When_RemoteModificationDate_NewerThan_Local()
         {
             // Assert
-            var backupService = Substitute.For<IBackupUploadService>();
             backupService.GetBackupDateAsync().Returns(DateTime.Now);
-            var settingsFacade = Substitute.For<ISettingsFacade>();
             settingsFacade.LastDatabaseUpdate.Returns(DateTime.Now.AddMinutes(-2));
             var handler = new UploadBackup.Handler(
                 backupUploadService: backupService,
@@ -64,13 +70,10 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
         public async Task Upload_FileStream_When_LoggedIn_And_LocalBackup_Newer()
         {
             // Assert
-            var backupService = Substitute.For<IBackupUploadService>();
             backupService.GetBackupDateAsync().Returns(returnThis: x => DateTime.Today.AddMinutes(-2), x => DateTime.Now);
             backupService.GetBackupCount().Returns(3);
-            var settingsFacade = Substitute.For<ISettingsFacade>();
             settingsFacade.IsLoggedInToBackupService.Returns(true);
             settingsFacade.LastDatabaseUpdate.Returns(DateTime.Today.AddMinutes(-1));
-            var fileStore = Substitute.For<IFileStore>();
             fileStore.OpenReadAsync(Arg.Any<string>()).Returns(Stream.Null);
             var handler = new UploadBackup.Handler(
                 backupUploadService: backupService,
@@ -93,13 +96,10 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
         public async Task Upload_FileStream_AndDeleteOldestEntry_When_LoggedIn_And_LocalBackup_Newer_And_ArchiveThreshold_Reached()
         {
             // Assert
-            var backupService = Substitute.For<IBackupUploadService>();
             backupService.GetBackupDateAsync().Returns(returnThis: x => DateTime.Today.AddMinutes(-2), x => DateTime.Now);
             backupService.GetBackupCount().Returns(15);
-            var settingsFacade = Substitute.For<ISettingsFacade>();
             settingsFacade.IsLoggedInToBackupService.Returns(true);
             settingsFacade.LastDatabaseUpdate.Returns(DateTime.Today.AddMinutes(-1));
-            var fileStore = Substitute.For<IFileStore>();
             fileStore.OpenReadAsync(Arg.Any<string>()).Returns(Stream.Null);
             var handler = new UploadBackup.Handler(
                 backupUploadService: backupService,
