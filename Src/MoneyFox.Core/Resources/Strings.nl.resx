@@ -817,4 +817,7 @@ Maak een nieuw account aan om hier dan uw budgetten op een gemakkelijke manier b
     <data name="MoreTitle" xml:space="preserve">
         <value>Meer</value>
     </data>
+    <data name="BackupUploadSkippedMessage" xml:space="preserve">
+        <value>Uploaden van de back-up overgeslagen, omdat de externe versie al up-to-date was.</value>
+    </data>
 </root>
