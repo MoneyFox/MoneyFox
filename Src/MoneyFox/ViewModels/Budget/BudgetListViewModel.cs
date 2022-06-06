@@ -18,27 +18,17 @@
     {
         private readonly ISender sender;
 
-        private ObservableCollection<BudgetViewModel> budgets = new ObservableCollection<BudgetViewModel>();
-
         public BudgetListViewModel(ISender sender)
         {
             this.sender = sender;
         }
 
-        public ObservableCollection<BudgetViewModel> Budgets
-        {
-            get => budgets;
-
-            private set
-            {
-                budgets = value;
-                OnPropertyChanged();
-            }
-        }
+        public ObservableCollection<BudgetViewModel> Budgets { get; } = new ObservableCollection<BudgetViewModel>();
 
         public AsyncRelayCommand InitializeCommand => new AsyncRelayCommand(Initialize);
 
         public AsyncRelayCommand GoToAddBudgetCommand => new AsyncRelayCommand(GoToAddBudget);
+
         public AsyncRelayCommand<BudgetViewModel> EditBudgetCommand => new AsyncRelayCommand<BudgetViewModel>(EditBudgetAsync);
 
         private async Task Initialize()
