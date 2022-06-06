@@ -9,7 +9,9 @@ namespace MoneyFox.ViewModels.Budget
     using CommunityToolkit.Mvvm.Messaging;
     using Core.ApplicationCore.UseCases.BudgetCreation;
     using Core.Common.Messages;
+    using Extensions;
     using MediatR;
+    using Xamarin.Forms;
 
     public sealed class AddBudgetViewModel : ObservableRecipient, IRecipient<CategorySelectedMessage>
     {
@@ -49,6 +51,7 @@ namespace MoneyFox.ViewModels.Budget
                 categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
 
             await sender.Send(query);
+            await Application.Current.MainPage.Navigation.PopModalAsync();
         }
     }
 
