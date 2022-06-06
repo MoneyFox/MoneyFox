@@ -14,7 +14,7 @@ namespace MoneyFox.Persistence.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.17");
+                .HasAnnotation("ProductVersion", "5.0.16");
 
             modelBuilder.Entity("MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate.Account", b =>
                 {
@@ -104,34 +104,6 @@ namespace MoneyFox.Persistence.Migrations
                     b.HasIndex("TargetAccountId");
 
                     b.ToTable("Payments");
-                });
-
-            modelBuilder.Entity("MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate.Budget", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("IncludedCategories")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("LastModified")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("SpendingLimit")
-                        .HasColumnType("REAL");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Budgets");
                 });
 
             modelBuilder.Entity("MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate.Category", b =>
