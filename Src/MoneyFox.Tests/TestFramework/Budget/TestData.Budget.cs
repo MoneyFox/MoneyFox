@@ -8,7 +8,7 @@
         internal sealed class DefaultBudget : IBudget
         {
             public string Name { get; } = "Beverages";
-            public double SpendingLimit { get; } = 100.50;
+            public decimal SpendingLimit { get; } = 100.50m;
 
             public List<int> Categories { get; } = new List<int> { 11 };
         }
@@ -16,7 +16,7 @@
         internal interface IBudget
         {
             string Name { get; }
-            double SpendingLimit { get; }
+            decimal SpendingLimit { get; }
             List<int> Categories { get; }
         }
     }

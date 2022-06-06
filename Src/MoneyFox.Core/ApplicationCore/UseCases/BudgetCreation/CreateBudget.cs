@@ -12,7 +12,7 @@
     {
         public class Query : IRequest
         {
-            public Query(string name, double spendingLimit, List<int> categories)
+            public Query(string name, decimal spendingLimit, List<int> categories)
             {
                 Name = name;
                 SpendingLimit = spendingLimit;
@@ -20,7 +20,7 @@
             }
 
             public string Name { get; }
-            public double SpendingLimit { get; }
+            public decimal SpendingLimit { get; }
             public IList<int> Categories { get; }
         }
 

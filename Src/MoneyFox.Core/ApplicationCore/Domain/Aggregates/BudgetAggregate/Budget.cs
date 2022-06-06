@@ -12,7 +12,7 @@ namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate
         [UsedImplicitly]
         private Budget() { }
 
-        public Budget(string name, double spendingLimit, IList<int> includedCategories)
+        public Budget(string name, decimal spendingLimit, IList<int> includedCategories)
         {
             Name = name;
             SpendingLimit = spendingLimit;
@@ -35,7 +35,7 @@ namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate
             private set;
         } = string.Empty;
 
-        public double SpendingLimit
+        public decimal SpendingLimit
         {
             get;
 
