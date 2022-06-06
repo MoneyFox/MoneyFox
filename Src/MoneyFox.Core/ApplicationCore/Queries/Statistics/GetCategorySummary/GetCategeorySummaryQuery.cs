@@ -126,12 +126,8 @@
         private decimal CalculateAverageForPaymentsWithoutCategory()
         {
             var payments = paymentLastTwelveMonths.Where(x => x.Category == null).OrderByDescending(x => x.Date).ToList();
-            if (payments.Count == 0)
-            {
-                return 0;
-            }
 
-            return AverageSumFor(payments);
+            return payments.Count == 0 ? 0 : AverageSumFor(payments);
         }
 
         private static decimal AverageSumFor(IEnumerable<Payment> payments)
