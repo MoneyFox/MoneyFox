@@ -52,8 +52,14 @@
             // Assert
             result.Should().HaveCount(1);
             var loadedBudget = result.Single();
-            loadedBudget.Name.Should().Be(testBudget.Name);
-            loadedBudget.SpendingLimit.Should().BeApproximately(testBudget.SpendingLimit, 0.01m);
+            AssertBudgetListData(actualBudgetListData: loadedBudget, expectedBudgetTestData: testBudget);
+        }
+
+        private static void AssertBudgetListData(BudgetListData actualBudgetListData, TestData.IBudget expectedBudgetTestData)
+        {
+            actualBudgetListData.Id.Should().Be(expectedBudgetTestData.Id);
+            actualBudgetListData.Name.Should().Be(expectedBudgetTestData.Name);
+            actualBudgetListData.SpendingLimit.Should().BeApproximately(expectedBudgetTestData.SpendingLimit, 0.01m);
         }
     }
 
