@@ -55,7 +55,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            account.UpdateAccount("NewTest");
+            account.Change("NewTest");
             await context.SaveChangesAsync();
 
             // Assert

@@ -46,7 +46,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            account.UpdateAccount("foo");
+            account.Change("foo");
             await new UpdateAccountCommand.Handler(contextAdapterMock.Object).Handle(request: new UpdateAccountCommand(account), cancellationToken: default);
             var loadedAccount = await context.Accounts.FindAsync(account.Id);
 

@@ -5,9 +5,9 @@
     {
         public sealed class DefaultCategory : ICategory
         {
-            public string Name { get; } = "Beverages";
-            public string? Note { get; } = "Water, Beer, Wine and those..";
-            public bool RequireNote { get; } = false;
+            public string Name => "Beverages";
+            public string Note => "Water, Beer, Wine and those..";
+            public bool RequireNote => false;
         }
 
         public interface ICategory

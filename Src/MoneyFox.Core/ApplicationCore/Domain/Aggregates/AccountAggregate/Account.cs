@@ -1,11 +1,9 @@
 namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate
 {
 
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
+    using Common.Interfaces;
     using Dawn;
     using JetBrains.Annotations;
-    using MoneyFox.Core.Common.Interfaces;
 
     public class Account : EntityBase, IAggregateRoot
     {
@@ -39,7 +37,7 @@ namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate
 
         public bool IsDeactivated { get; private set; }
 
-        public void UpdateAccount(string name, string note = "", bool isExcluded = false)
+        public void Change(string name, string note = "", bool isExcluded = false)
         {
             Guard.Argument(value: name, name: nameof(name)).NotNull().NotWhiteSpace();
             Name = name;
