@@ -2,6 +2,7 @@ namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate
 {
 
     using System.Collections.Generic;
+    using System.Collections.Immutable;
     using System.ComponentModel.DataAnnotations.Schema;
     using AutoMapper.Configuration.Annotations;
     using JetBrains.Annotations;
@@ -12,7 +13,7 @@ namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate
         [UsedImplicitly]
         private Budget() { }
 
-        public Budget(string name, decimal spendingLimit, IList<int> includedCategories)
+        public Budget(string name, decimal spendingLimit, IReadOnlyList<int> includedCategories)
         {
             Name = name;
             SpendingLimit = spendingLimit;
@@ -43,7 +44,7 @@ namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate
             private set;
         }
 
-        public IList<int> IncludedCategories
+        public IReadOnlyList<int> IncludedCategories
         {
             get;
 

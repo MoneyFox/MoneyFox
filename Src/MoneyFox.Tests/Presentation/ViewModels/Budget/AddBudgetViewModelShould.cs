@@ -11,7 +11,7 @@
     using MoneyFox.Core.Interfaces;
     using MoneyFox.ViewModels.Budget;
     using NSubstitute;
-    using TestFramework.Budget;
+    using TestFramework;
     using Xunit;
 
     public class AddBudgetViewModelShould

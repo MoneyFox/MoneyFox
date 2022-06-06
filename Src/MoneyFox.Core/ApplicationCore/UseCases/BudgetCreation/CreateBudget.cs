@@ -12,7 +12,7 @@
     {
         public class Query : IRequest
         {
-            public Query(string name, decimal spendingLimit, List<int> categories)
+            public Query(string name, decimal spendingLimit, IReadOnlyList<int> categories)
             {
                 Name = name;
                 SpendingLimit = spendingLimit;
@@ -21,12 +21,12 @@
 
             public string Name { get; }
             public decimal SpendingLimit { get; }
-            public IList<int> Categories { get; }
+            public IReadOnlyList<int> Categories { get; }
         }
 
         public class Handler : IRequestHandler<Query>
         {
-            private IBudgetRepository repository;
+            private readonly IBudgetRepository repository;
 
             public Handler(IBudgetRepository repository)
             {

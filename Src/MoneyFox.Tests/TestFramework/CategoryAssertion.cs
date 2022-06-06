@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.TestFramework.Category
+﻿namespace MoneyFox.Tests.TestFramework
 {
 
     using FluentAssertions;

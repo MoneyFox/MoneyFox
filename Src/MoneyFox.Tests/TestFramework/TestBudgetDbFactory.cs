@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.TestFramework.Budget
+﻿namespace MoneyFox.Tests.TestFramework
 {
 
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;

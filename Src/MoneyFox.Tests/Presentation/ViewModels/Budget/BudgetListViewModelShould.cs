@@ -9,7 +9,7 @@
     using MoneyFox.Core.ApplicationCore.Queries.BudgetListLoading;
     using MoneyFox.ViewModels.Budget;
     using NSubstitute;
-    using TestFramework.Budget;
+    using TestFramework;
     using Xunit;
 
     public class BudgetListViewModelShould
@@ -53,7 +53,11 @@
                 sender.Send(Arg.Any<LoadBudgets.Query>())
                     .Returns(
                         ImmutableList.Create(
-                            new BudgetListData(id: budgetTestData.Id, name: budgetTestData.Name, spendingLimit: budgetTestData.SpendingLimit)));
+                            new BudgetListData(
+                                id: budgetTestData.Id,
+                                name: budgetTestData.Name,
+                                spendingLimit: budgetTestData.SpendingLimit,
+                                budgetTestData.CurrentSpending)));
             }
 
             [Fact]

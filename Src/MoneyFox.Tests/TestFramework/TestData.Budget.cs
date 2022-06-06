@@ -1,17 +1,19 @@
-﻿namespace MoneyFox.Tests.TestFramework.Budget
+﻿namespace MoneyFox.Tests.TestFramework
 {
 
     using System.Collections.Generic;
+    using System.Collections.Immutable;
 
-    internal static class TestData
+    internal static partial class TestData
     {
         internal sealed class DefaultBudget : IBudget
         {
             public int Id => 10;
             public string Name => "Beverages";
             public decimal SpendingLimit => 100.50m;
+            public decimal CurrentSpending => 60.20m;
 
-            public List<int> Categories { get; } = new List<int> { 11 };
+            public IReadOnlyList<int> Categories { get; set;  } = ImmutableList.Create(11);
         }
 
         internal interface IBudget
@@ -19,7 +21,7 @@
             int Id { get; }
             string Name { get; }
             decimal SpendingLimit { get; }
-            List<int> Categories { get; }
+            IReadOnlyList<int> Categories { get; }
         }
     }
 

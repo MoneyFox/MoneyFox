@@ -1,23 +1,23 @@
-﻿namespace MoneyFox.Tests.TestFramework.Payment
+﻿namespace MoneyFox.Tests.TestFramework
 {
 
     using System;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 
-    internal sealed class TestData
+    internal static partial class TestData
     {
         internal static DateTime DefaultDate = new DateTime(year: 2022, month: 06, day: 06);
 
         internal sealed class DefaultExpense : IPayment
         {
-            public int Id => 10;
+            public int Id { get; set; } = 10;
             public IAccount ChargedAccount => new DefaultAccount();
             public IAccount? TargetAccount => null;
             public string CategoryName => "Wine";
             public DateTime Date => DefaultDate;
-            public decimal Amount => 105.50m;
+            public decimal Amount { get; set; } = 105.50m;
             public bool IsCleared { get; }
-            public PaymentType Type { get; } = PaymentType.Expense;
+            public PaymentType Type { get; set; } = PaymentType.Expense;
             public string? Note { get; }
             public bool IsRecurring { get; }
         }

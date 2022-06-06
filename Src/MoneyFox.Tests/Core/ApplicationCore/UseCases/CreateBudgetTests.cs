@@ -7,7 +7,7 @@
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
     using MoneyFox.Core.ApplicationCore.UseCases.BudgetCreation;
     using NSubstitute;
-    using TestFramework.Budget;
+    using TestFramework;
     using Xunit;
 
     public class CreateBudgetTests

@@ -8,9 +8,8 @@
     using MoneyFox.Infrastructure.DataAccess;
     using MoneyFox.Infrastructure.Persistence;
     using TestFramework;
-    using TestFramework.Category;
     using Xunit;
-    using static TestFramework.Category.CategoryAssertion;
+    using static TestFramework.CategoryAssertion;
 
     public class CategoryRepositoryTests
     {

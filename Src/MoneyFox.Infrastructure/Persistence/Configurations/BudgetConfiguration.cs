@@ -1,5 +1,7 @@
 namespace MoneyFox.Infrastructure.Persistence.Configurations
 {
+
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
@@ -13,9 +15,9 @@ namespace MoneyFox.Infrastructure.Persistence.Configurations
         {
             builder.HasKey(c => c.Id);
 
-            var splitStringConverter = new ValueConverter<IList<int>, string>(
+            var splitStringConverter = new ValueConverter<IReadOnlyList<int>, string>(
                 i => string.Join(";", i),
-                s => string.IsNullOrWhiteSpace(s) ? new int[0] : s.Split(new[] { ';' }).Select(v => int.Parse(v)).ToArray());
+                s => string.IsNullOrWhiteSpace(s) ? Array.Empty<int>() : s.Split(new[] { ';' }).Select(int.Parse).ToArray());
             builder.Property(nameof(Budget.IncludedCategories)).HasConversion(splitStringConverter);
         }
     }

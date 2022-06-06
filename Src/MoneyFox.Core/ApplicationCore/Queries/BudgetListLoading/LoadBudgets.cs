@@ -6,6 +6,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Common.Interfaces;
+    using Domain.Aggregates.AccountAggregate;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
 
@@ -24,7 +25,20 @@
 
             public async Task<IReadOnlyCollection<BudgetListData>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await contextAdapter.Context.Budgets.Select(b => new BudgetListData(b.Id, b.Name, b.SpendingLimit)).ToListAsync(cancellationToken);
+                var dbContext = contextAdapter.Context;
+                var budgets = await dbContext.Budgets.ToListAsync(cancellationToken);
+                var budgetListDataList = new List<BudgetListData>();
+                foreach (var budget in budgets)
+                {
+                    var currentSpending = await dbContext.Payments.Where(p => p.CategoryId != null)
+                        .Where(p => budget.IncludedCategories.Contains(p.CategoryId!.Value))
+                        .SumAsync(selector: p => p.Type == PaymentType.Expense ? p.Amount : -p.Amount, cancellationToken: cancellationToken);
+
+                    budgetListDataList.Add(
+                        new BudgetListData(id: budget.Id, name: budget.Name, spendingLimit: budget.SpendingLimit, currentSpending: currentSpending));
+                }
+
+                return budgetListDataList;
             }
         }
     }

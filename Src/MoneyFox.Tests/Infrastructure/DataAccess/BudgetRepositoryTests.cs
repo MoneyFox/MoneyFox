@@ -8,9 +8,8 @@
     using MoneyFox.Infrastructure.DataAccess;
     using MoneyFox.Infrastructure.Persistence;
     using TestFramework;
-    using TestFramework.Budget;
     using Xunit;
-    using static TestFramework.Budget.BudgetAssertion;
+    using static TestFramework.BudgetAssertion;
 
     public class BudgetRepositoryTests
     {

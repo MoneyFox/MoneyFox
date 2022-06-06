@@ -1,7 +1,7 @@
-﻿namespace MoneyFox.Tests.TestFramework.Category
+﻿namespace MoneyFox.Tests.TestFramework
 {
 
-    internal static class TestData
+    internal static partial class TestData
     {
         public sealed class DefaultCategory : ICategory
         {

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.TestFramework.Payment
+﻿namespace MoneyFox.Tests.TestFramework
 {
 
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
@@ -16,7 +16,7 @@
             db.SaveChanges();
         }
 
-        public static Payment RegisterCategory(this AppDbContext db, TestData.IPayment testCategory)
+        public static Payment RegisterPayment(this AppDbContext db, TestData.IPayment testCategory)
         {
             var dbPayment = testCategory.CreateDbPayment();
             db.Add(dbPayment);

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.TestFramework.Payment
+﻿namespace MoneyFox.Tests.TestFramework
 {
 
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
