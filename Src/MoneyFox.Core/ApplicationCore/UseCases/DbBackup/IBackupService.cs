@@ -18,8 +18,6 @@
         Task<DateTime> GetBackupDateAsync();
 
         Task RestoreBackupAsync(BackupMode backupMode = BackupMode.Automatic);
-
-        Task UploadBackupAsync(BackupMode backupMode = BackupMode.Automatic);
     }
 
 }
