@@ -3,13 +3,25 @@
              x:Name="BudgetProgress"
              x:Class="MoneyFox.Views.Budget.BudgetProgressControl">
 
-    <Grid BindingContext="{x:Reference BudgetProgress}">
-        <Label Text="{Binding CurrentSpending}"
-               HorizontalOptions="Start"
-               Style="{StaticResource TextBodySecondary}" />
+    <StackLayout BindingContext="{x:Reference BudgetProgress}">
+        <Grid>
+            <Rectangle x:Name="SpendingLimitBar" Fill="#314A9B"
+                       HeightRequest="20"
+                       HorizontalOptions="FillAndExpand" />
 
-        <Label Text="{Binding SpendingLimit}"
-               HorizontalOptions="End"
-               Style="{StaticResource TextBodySecondary}" />
-    </Grid>
+            <Rectangle x:Name="CurrentSpendingBar" Fill="#FF8671"
+                       HeightRequest="20"
+                       HorizontalOptions="Start" />
+        </Grid>
+        
+        <Grid>
+            <Label Text="{Binding CurrentSpending}"
+                   HorizontalOptions="Start"
+                   Style="{StaticResource TextBodySecondary}" />
+
+            <Label Text="{Binding SpendingLimit}"
+                   HorizontalOptions="End"
+                   Style="{StaticResource TextBodySecondary}" />
+        </Grid>
+    </StackLayout>
 </ContentView>

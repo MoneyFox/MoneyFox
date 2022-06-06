@@ -28,6 +28,7 @@
             actualBudgetVm.Id.Should().Be(expectedBudgetData.Id);
             actualBudgetVm.Name.Should().Be(expectedBudgetData.Name);
             actualBudgetVm.SpendingLimit.Should().Be(expectedBudgetData.SpendingLimit);
+            actualBudgetVm.CurrentSpending.Should().Be(expectedBudgetData.CurrentSpending);
         }
 
         public class WithNoBudgetsAvailable : BudgetListViewModelShould
@@ -57,7 +58,7 @@
                                 id: budgetTestData.Id,
                                 name: budgetTestData.Name,
                                 spendingLimit: budgetTestData.SpendingLimit,
-                                budgetTestData.CurrentSpending)));
+                                currentSpending: budgetTestData.CurrentSpending)));
             }
 
             [Fact]

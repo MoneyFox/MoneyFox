@@ -21,6 +21,7 @@
             int Id { get; }
             string Name { get; }
             decimal SpendingLimit { get; }
+            decimal CurrentSpending { get; }
             IReadOnlyList<int> Categories { get; }
         }
     }

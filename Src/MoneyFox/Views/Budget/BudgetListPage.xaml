@@ -40,17 +40,7 @@
                             <StackLayout>
                                 <Label Style="{StaticResource TextHead}"
                                        Text="{Binding Name}" />
-
-                                <Grid>
-                                    <Rectangle Fill="#314A9B"
-                                               HeightRequest="20"
-                                               HorizontalOptions="FillAndExpand" />
-
-                                    <Rectangle Fill="#FF8671"
-                                               HeightRequest="20"
-                                               WidthRequest="100"
-                                               HorizontalOptions="Start" />
-                                </Grid>
+                                
 
                                 <budgetControl:BudgetProgressControl CurrentSpending="{Binding CurrentSpending}"
                                                                      SpendingLimit="{Binding SpendingLimit}" />

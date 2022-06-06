@@ -42,7 +42,7 @@
                         Id = bld.Id,
                         Name = bld.Name,
                         SpendingLimit = bld.SpendingLimit,
-                        CurrentSpending = 0
+                        CurrentSpending = bld.CurrentSpending
                     }));
         }
 
