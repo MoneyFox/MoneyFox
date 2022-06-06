@@ -28,23 +28,40 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="budget:BudgetViewModel">
-                        <Grid>
-                            <yummy:PancakeView Padding="15,6,15,12"
+                            <yummy:PancakeView Padding="15,21,15,12"
                                                CornerRadius="10"
-                                               HeightRequest="80"
                                                HorizontalOptions="FillAndExpand">
-
+                                               
                                 <yummy:PancakeView.Shadow>
                                     <yummy:DropShadow />
                                 </yummy:PancakeView.Shadow>
-
-                                <Grid>
-                                    <Label HorizontalTextAlignment="Start"
-                                           Style="{StaticResource TextHead}"
+                                
+                                <StackLayout >
+                                    <Label Style="{StaticResource TextHead}"
                                            Text="{Binding Name}" />
-                                </Grid>
+                                    
+                                    <Grid>
+                                        <Rectangle Fill="#314A9B"
+                                                   HeightRequest="20"
+                                                   HorizontalOptions="FillAndExpand" />
+                                        
+                                        <Rectangle Fill="#FF8671"
+                                                   HeightRequest="20"
+                                                   WidthRequest="100"
+                                                   HorizontalOptions="Start"/>
+                                    </Grid>
+                                    <Grid>
+                                        
+                                        <Label Text="{Binding CurrentSpending}" 
+                                               HorizontalOptions="Start" 
+                                               Style="{StaticResource TextBodySecondary}" />
+                                               
+                                        <Label Text="{Binding SpendingLimit}" 
+                                               HorizontalOptions="End"
+                                               Style="{StaticResource TextBodySecondary}" />
+                                    </Grid>
+                                </StackLayout>
                             </yummy:PancakeView>
-                        </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
 
