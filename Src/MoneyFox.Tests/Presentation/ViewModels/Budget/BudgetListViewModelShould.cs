@@ -50,6 +50,24 @@
             AssertBudgetViewModel(actualBudgetVm: loadedBudget, expectedBudgetData: budgetTestData);
         }
 
+        [Fact]
+        public async Task HasTheRightCount_WhenInitializeIsCalledMultipleTimes()
+        {
+            // Arrange
+            var budgetTestData = new TestData.DefaultBudget();
+            sender.Send(Arg.Any<LoadBudgets.Query>())
+                .Returns(ImmutableList.Create(new BudgetListData(name: budgetTestData.Name, spendingLimit: budgetTestData.SpendingLimit)));
+
+            // Act
+            await viewModel.InitializeCommand.ExecuteAsync(null);
+            await viewModel.InitializeCommand.ExecuteAsync(null);
+
+            // Assert
+            viewModel.Budgets.Should().HaveCount(1);
+            var loadedBudget = viewModel.Budgets.Single();
+            AssertBudgetViewModel(actualBudgetVm: loadedBudget, expectedBudgetData: budgetTestData);
+        }
+
         private static void AssertBudgetViewModel(BudgetViewModel actualBudgetVm, TestData.IBudget expectedBudgetData)
         {
             actualBudgetVm.Name.Should().Be(expectedBudgetData.Name);

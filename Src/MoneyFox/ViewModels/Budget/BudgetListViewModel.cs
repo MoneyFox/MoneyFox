@@ -34,6 +34,7 @@
         private async Task Initialize()
         {
             var budgetsListData = await sender.Send(new LoadBudgets.Query());
+            Budgets.Clear();
             Budgets.AddRange(budgetsListData.Select(bld => new BudgetViewModel { Name = bld.Name, SpendingLimit = bld.SpendingLimit, CurrentSpending = 0 }));
         }
 

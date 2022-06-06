@@ -23,29 +23,25 @@
                 Command="{Binding GoToAddBudgetCommand}" />
 
             <CollectionView Grid.Row="1"
-                            IsGrouped="true"
                             ItemsSource="{Binding Budgets}"
                             SelectionChangedCommand="{Binding EditBudgetCommand}">
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="budget:BudgetViewModel">
-                        <Grid Padding="15,6,15,12">
-                            <yummy:PancakeView
-                                CornerRadius="10"
-                                HeightRequest="80"
-                                HorizontalOptions="FillAndExpand">
+                        <Grid>
+                            <yummy:PancakeView Padding="15,6,15,12"
+                                               CornerRadius="10"
+                                               HeightRequest="80"
+                                               HorizontalOptions="FillAndExpand">
 
                                 <yummy:PancakeView.Shadow>
                                     <yummy:DropShadow />
                                 </yummy:PancakeView.Shadow>
 
                                 <Grid>
-                                    <Label
-                                        Margin="10,2,0,0"
-                                        HorizontalTextAlignment="Start"
-                                        Style="{StaticResource TextHead}"
-                                        Text="{Binding Name}"
-                                        VerticalTextAlignment="Start" />
+                                    <Label HorizontalTextAlignment="Start"
+                                           Style="{StaticResource TextHead}"
+                                           Text="{Binding Name}" />
                                 </Grid>
                             </yummy:PancakeView>
                         </Grid>
