@@ -3,9 +3,12 @@
 
     using System;
     using System.Collections.ObjectModel;
+    using System.Linq;
     using System.Threading.Tasks;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
+    using Core.ApplicationCore.Queries.BudgetListLoading;
+    using Core.Common.Extensions;
     using Extensions;
     using MediatR;
     using Views.Accounts;
@@ -13,13 +16,13 @@
 
     public sealed class BudgetListViewModel : ObservableRecipient
     {
-        private readonly IMediator mediator;
+        private readonly ISender sender;
 
         private ObservableCollection<BudgetViewModel> budgets = new ObservableCollection<BudgetViewModel>();
 
-        public BudgetListViewModel(IMediator mediator)
+        public BudgetListViewModel(ISender sender)
         {
-            this.mediator = mediator;
+            this.sender = sender;
         }
 
         public ObservableCollection<BudgetViewModel> Budgets
@@ -33,8 +36,16 @@
             }
         }
 
+        public AsyncRelayCommand InitializeCommand => new AsyncRelayCommand(Initialize);
+
         public AsyncRelayCommand GoToAddBudgetCommand => new AsyncRelayCommand(GoToAddBudget);
         public AsyncRelayCommand<BudgetViewModel> EditBudgetCommand => new AsyncRelayCommand<BudgetViewModel>(EditBudgetAsync);
+
+        private async Task Initialize()
+        {
+            var budgetsListData = await sender.Send(new LoadBudgets.Query());
+            Budgets.AddRange(budgetsListData.Select(bld => new BudgetViewModel { Name = bld.Name, SpendingLimit = bld.SpendingLimit, CurrentSpending = 0 }));
+        }
 
         private static async Task GoToAddBudget()
         {
