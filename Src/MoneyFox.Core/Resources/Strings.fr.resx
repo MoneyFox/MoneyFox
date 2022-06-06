@@ -812,6 +812,6 @@ Pour commencer, créez un nouveau compte. Les comptes sont utilisés pour organi
         <value>Plus</value>
     </data>
     <data name="BackupUploadSkippedMessage" xml:space="preserve">
-        <value>Upload of backup skipped, since remote version was already up to date.</value>
+        <value>Téléchargement de sauvegarde ignoré, car la version distante était déjà à jour.</value>
     </data>
 </root>
