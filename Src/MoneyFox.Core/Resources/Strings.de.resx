@@ -814,6 +814,6 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
         <value>Mehr</value>
     </data>
     <data name="BackupUploadSkippedMessage" xml:space="preserve">
-        <value>Upload of backup skipped, since remote version was already up to date.</value>
+        <value>Hochladen der Sicherung wurde übersprungen, da die Sicherung bereits aktuell war.</value>
     </data>
 </root>
