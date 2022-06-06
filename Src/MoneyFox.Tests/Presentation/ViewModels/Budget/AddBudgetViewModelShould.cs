@@ -14,18 +14,17 @@
     using TestFramework.Budget;
     using Xunit;
 
-    public class AddBudgetViewModelTests
+    public class AddBudgetViewModelShould
     {
         private const int CATEGORY_ID = 10;
         private readonly ISender sender;
-        private readonly INavigationService navigationService;
 
         private readonly AddBudgetViewModel viewModel;
 
-        public AddBudgetViewModelTests()
+        public AddBudgetViewModelShould()
         {
             sender = Substitute.For<ISender>();
-            navigationService = Substitute.For<INavigationService>();
+            var navigationService = Substitute.For<INavigationService>();
             viewModel = new AddBudgetViewModel(sender: sender, navigationService: navigationService);
         }
 
