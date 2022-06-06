@@ -2,11 +2,14 @@ namespace MoneyFox.Win;
 
 using System;
 using CommonServiceLocator;
+using Core._Pending_.Common.Facades;
+using Core.ApplicationCore.UseCases.BackupUpload;
+using Core.ApplicationCore.UseCases.DbBackup;
+using Core.Commands.Payments.ClearPayments;
+using Core.Commands.Payments.CreateRecurringPayments;
 using MediatR;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using MoneyFox.Core._Pending_.Common.Facades;
-using MoneyFox.Core.ApplicationCore.UseCases.DbBackup;
 using Pages;
 using Serilog;
 
@@ -21,7 +24,6 @@ public sealed partial class MainWindow : Window
         SetTitleBar(AppTitleBar);
         RootFrame = ShellFrame;
         RootFrame.Navigate(sourcePageType: typeof(ShellPage), parameter: null);
-
         Closed += OnClosed;
     }
 
@@ -44,13 +46,16 @@ public sealed partial class MainWindow : Window
             if (settingsFacade.IsBackupAutouploadEnabled && settingsFacade.IsLoggedInToBackupService)
             {
                 var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
-                await backupService.UploadBackupAsync();
                 await backupService.RestoreBackupAsync();
             }
+
+            await mediator.Send(new ClearPaymentsCommand());
+            await mediator.Send(new CreateRecurringPaymentsCommand());
+            await mediator.Send(new UploadBackup.Command());
         }
         catch (Exception ex)
         {
-            Log.Fatal(exception: ex, messageTemplate: "Error during startup tasks");
+            Log.Fatal(exception: ex, messageTemplate: "Error during startup");
         }
         finally
         {

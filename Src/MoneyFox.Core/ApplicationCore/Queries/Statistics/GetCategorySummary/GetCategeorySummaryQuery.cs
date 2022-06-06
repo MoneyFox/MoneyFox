@@ -6,13 +6,13 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using _Pending_.Common.QueryObjects;
+    using Common.Interfaces;
     using Domain.Aggregates.AccountAggregate;
     using Domain.Aggregates.CategoryAggregate;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using MoneyFox.Core._Pending_.Common.QueryObjects;
-    using MoneyFox.Core.Common.Interfaces;
-    using MoneyFox.Core.Resources;
+    using Resources;
 
     public class GetCategorySummaryQuery : IRequest<CategorySummaryModel>
     {
@@ -120,30 +120,28 @@
                 return 0;
             }
 
-            return SumForCategory(payments);
+            return AverageSumFor(payments);
         }
 
         private decimal CalculateAverageForPaymentsWithoutCategory()
         {
             var payments = paymentLastTwelveMonths.Where(x => x.Category == null).OrderByDescending(x => x.Date).ToList();
-            if (payments.Count == 0)
-            {
-                return 0;
-            }
 
-            return SumForCategory(payments);
+            return payments.Count == 0 ? 0 : AverageSumFor(payments);
         }
 
-        private static decimal SumForCategory(IEnumerable<Payment> payments)
+        private static decimal AverageSumFor(IEnumerable<Payment> payments)
         {
-            var sumForCategory = payments.Sum(x => x.Amount);
+            var totalSumForPayments = payments.Sum(x => x.Amount);
             var timeDiff = DateTime.Today - DateTime.Today.AddYears(-1);
-            if (timeDiff.Days < DAY_DIVIDER)
-            {
-                return sumForCategory;
-            }
 
-            return Math.Round(d: (decimal)(sumForCategory) / (timeDiff.Days / DAY_DIVIDER), decimals: POSITIONS_TO_ROUND, mode: MidpointRounding.ToEven);
+            return timeDiff.Days < DAY_DIVIDER ? totalSumForPayments : CalculateAverageByMonth(totalSumForPayments: totalSumForPayments, timeDiff: timeDiff);
+        }
+
+        private static decimal CalculateAverageByMonth(decimal totalSumForPayments, TimeSpan timeDiff)
+        {
+            // ReSharper disable once PossibleLossOfFraction
+            return Math.Round(d: totalSumForPayments / (timeDiff.Days / DAY_DIVIDER), decimals: POSITIONS_TO_ROUND, mode: MidpointRounding.ToEven);
         }
     }
 

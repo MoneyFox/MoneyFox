@@ -17,7 +17,6 @@
     using Mobile.Infrastructure.Adapters;
     using Serilog;
     using Xamarin.Forms;
-    using Device = Xamarin.Forms.Device;
 
     public partial class App
     {
@@ -63,7 +62,6 @@
             var toastService = ServiceLocator.Current.GetInstance<IToastService>();
             var settingsFacade = ServiceLocator.Current.GetInstance<ISettingsFacade>();
             var mediator = ServiceLocator.Current.GetInstance<IMediator>();
-
             try
             {
                 if (settingsFacade.IsBackupAutouploadEnabled && settingsFacade.IsLoggedInToBackupService)
@@ -74,11 +72,10 @@
 
                 await mediator.Send(new ClearPaymentsCommand());
                 await mediator.Send(new CreateRecurringPaymentsCommand());
-
                 var uploadResult = await mediator.Send(new UploadBackup.Command());
                 if (uploadResult == UploadBackup.UploadResult.Successful)
                 {
-                    toastService.ShowToastAsync(Strings.BackupCreatedMessage);
+                    await toastService.ShowToastAsync(Strings.BackupCreatedMessage);
                 }
             }
             catch (Exception ex)
