@@ -3,9 +3,15 @@
 
     public class BudgetListData
     {
-        public string Name { get; set; }
+        public BudgetListData(string name, decimal spendingLimit)
+        {
+            Name = name;
+            SpendingLimit = spendingLimit;
+        }
 
-        public decimal SpendingLimit { get; set; }
+        public string Name { get; }
+
+        public decimal SpendingLimit { get; }
     }
 
 }

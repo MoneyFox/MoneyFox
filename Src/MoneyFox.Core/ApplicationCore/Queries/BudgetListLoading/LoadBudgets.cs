@@ -1,14 +1,13 @@
 ﻿namespace MoneyFox.Core.ApplicationCore.Queries.BudgetListLoading
 {
 
-    using System;
     using System.Collections.Generic;
-    using System.Collections.Immutable;
-    using System.Collections.ObjectModel;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using Common.Interfaces;
     using MediatR;
+    using Microsoft.EntityFrameworkCore;
 
     public static class LoadBudgets
     {
@@ -25,8 +24,7 @@
 
             public async Task<IReadOnlyCollection<BudgetListData>> Handle(Query request, CancellationToken cancellationToken)
             {
-                await Task.CompletedTask;
-                return ImmutableList<BudgetListData>.Empty;
+                return await contextAdapter.Context.Budgets.Select(b => new BudgetListData(b.Name, b.SpendingLimit)).ToListAsync(cancellationToken);
             }
         }
     }

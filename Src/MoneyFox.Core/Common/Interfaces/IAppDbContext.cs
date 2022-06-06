@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using ApplicationCore.Domain.Aggregates;
     using ApplicationCore.Domain.Aggregates.AccountAggregate;
+    using ApplicationCore.Domain.Aggregates.BudgetAggregate;
     using ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -19,6 +20,8 @@
         DbSet<RecurringPayment> RecurringPayments { get; }
 
         DbSet<Category> Categories { get; }
+
+        DbSet<Budget> Budgets { get; }
 
         ValueTask<EntityEntry> AddAsync(object entity, CancellationToken cancellationToken = default);
 

@@ -1,6 +1,7 @@
 ﻿namespace MoneyFox.Tests.Core.ApplicationCore.Queries
 {
 
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using FluentAssertions;
@@ -9,6 +10,7 @@
     using MoneyFox.Infrastructure.Persistence;
     using NSubstitute;
     using TestFramework;
+    using TestFramework.Budget;
     using Xunit;
 
     public sealed class LoadBudgetsShould
@@ -19,7 +21,7 @@
 
         public LoadBudgetsShould()
         {
-            var dbContext = InMemoryAppDbContextFactory.Create();
+            dbContext = InMemoryAppDbContextFactory.Create();
             contextAdapter = Substitute.For<IContextAdapter>();
             contextAdapter.Context.Returns(dbContext);
             handler = new LoadBudgets.Handler(contextAdapter);
@@ -34,6 +36,24 @@
 
             // Assert
             result.Should().BeEmpty();
+        }
+
+        [Fact]
+        public async Task ReturnBudgets()
+        {
+            // Arrange
+            var testBudget = new TestData.DefaultBudget();
+            dbContext.RegisterBudget(testBudget);
+
+            // Act
+            var query = new LoadBudgets.Query();
+            var result = await handler.Handle(request: query, cancellationToken: CancellationToken.None);
+
+            // Assert
+            result.Should().HaveCount(1);
+            var loadedBudget = result.Single();
+            loadedBudget.Name.Should().Be(testBudget.Name);
+            loadedBudget.SpendingLimit.Should().BeApproximately(testBudget.SpendingLimit, 0.01m);
         }
     }
 
