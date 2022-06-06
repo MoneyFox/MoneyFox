@@ -8,6 +8,7 @@
     using MoneyFox.Core.ApplicationCore.UseCases.BudgetCreation;
     using MoneyFox.Core.Common.Extensions;
     using MoneyFox.Core.Common.Messages;
+    using MoneyFox.Core.Interfaces;
     using MoneyFox.ViewModels.Budget;
     using NSubstitute;
     using TestFramework.Budget;
@@ -17,41 +18,40 @@
     {
         private const int CATEGORY_ID = 10;
         private readonly ISender sender;
+        private readonly INavigationService navigationService;
+
+        private readonly AddBudgetViewModel viewModel;
 
         public AddBudgetViewModelTests()
         {
             sender = Substitute.For<ISender>();
+            navigationService = Substitute.For<INavigationService>();
+            viewModel = new AddBudgetViewModel(sender: sender, navigationService: navigationService);
         }
 
         [Fact]
         public void AddsSelectedCategoryToList()
         {
-            // Arrange
-            var vm = new AddBudgetViewModel(sender);
-
             // Act
             var categorySelectedMessage = new CategorySelectedMessage(new CategorySelectedDataSet(categoryId: CATEGORY_ID, name: "Beer"));
-            vm.Receive(categorySelectedMessage);
+            viewModel.Receive(categorySelectedMessage);
 
             // Assert
-            vm.SelectedCategories.Should().HaveCount(1);
-            vm.SelectedCategories.Should().Contain(c => c.CategoryId == CATEGORY_ID);
+            viewModel.SelectedCategories.Should().HaveCount(1);
+            viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CATEGORY_ID);
         }
 
         [Fact]
         public void IgnoresSelectedCategory_WhenEntryWithSameIdAlreadyInList()
         {
-            // Arrange
-            var vm = new AddBudgetViewModel(sender);
-
             // Act
             var categorySelectedMessage = new CategorySelectedMessage(new CategorySelectedDataSet(categoryId: CATEGORY_ID, name: "Beer"));
-            vm.Receive(categorySelectedMessage);
-            vm.Receive(categorySelectedMessage);
+            viewModel.Receive(categorySelectedMessage);
+            viewModel.Receive(categorySelectedMessage);
 
             // Assert
-            vm.SelectedCategories.Should().HaveCount(1);
-            vm.SelectedCategories.Should().Contain(c => c.CategoryId == CATEGORY_ID);
+            viewModel.SelectedCategories.Should().HaveCount(1);
+            viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CATEGORY_ID);
         }
 
         [Fact]
@@ -63,11 +63,12 @@
 
             // Arrange
             var testBudget = new TestData.DefaultBudget();
+            viewModel.SelectedBudget.Name = testBudget.Name;
+            viewModel.SelectedBudget.SpendingLimit = testBudget.SpendingLimit;
 
             // Act
-            var vm = new AddBudgetViewModel(sender) { SelectedBudget = { Name = testBudget.Name, SpendingLimit = testBudget.SpendingLimit } };
-            vm.SelectedCategories.AddRange(testBudget.Categories.Select(c => new BudgetCategoryViewModel(c, "Category")));
-            await vm.SaveBudgetCommand.ExecuteAsync(null);
+            viewModel.SelectedCategories.AddRange(testBudget.Categories.Select(c => new BudgetCategoryViewModel(categoryId: c, name: "Category")));
+            await viewModel.SaveBudgetCommand.ExecuteAsync(null);
 
             // Assert
             passedQuery.Should().NotBeNull();

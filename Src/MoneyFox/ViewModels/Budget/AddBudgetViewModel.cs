@@ -9,25 +9,27 @@ namespace MoneyFox.ViewModels.Budget
     using CommunityToolkit.Mvvm.Messaging;
     using Core.ApplicationCore.UseCases.BudgetCreation;
     using Core.Common.Messages;
-    using Extensions;
+    using Core.Interfaces;
     using MediatR;
-    using Xamarin.Forms;
 
     public sealed class AddBudgetViewModel : ObservableRecipient, IRecipient<CategorySelectedMessage>
     {
-        private readonly ISender sender;
         private BudgetViewModel selectedBudget = new BudgetViewModel();
 
-        public AddBudgetViewModel(ISender sender)
+        private readonly ISender sender;
+        private readonly INavigationService navigationService;
+
+        public AddBudgetViewModel(ISender sender, INavigationService navigationService)
         {
             this.sender = sender;
+            this.navigationService = navigationService;
             WeakReferenceMessenger.Default.Register(this);
         }
 
         public BudgetViewModel SelectedBudget
         {
             get => selectedBudget;
-            set => SetProperty(field: ref selectedBudget, newValue: value);
+            private set => SetProperty(field: ref selectedBudget, newValue: value);
         }
 
         public ObservableCollection<BudgetCategoryViewModel> SelectedCategories { get; set; } = new ObservableCollection<BudgetCategoryViewModel>();
@@ -51,7 +53,7 @@ namespace MoneyFox.ViewModels.Budget
                 categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
 
             await sender.Send(query);
-            await Application.Current.MainPage.Navigation.PopModalAsync();
+            await navigationService.GoBackFromModal();
         }
     }
 

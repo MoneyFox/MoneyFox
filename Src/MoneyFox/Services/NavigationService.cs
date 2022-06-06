@@ -11,6 +11,11 @@
         {
             await Shell.Current.GoToAsync(typeof(T).Name);
         }
+
+        public async Task GoBackFromModal()
+        {
+            await Shell.Current?.Navigation?.PopModalAsync();
+        }
     }
 
 }

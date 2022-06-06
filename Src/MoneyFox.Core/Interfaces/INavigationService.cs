@@ -6,6 +6,8 @@
     public interface INavigationService
     {
         Task NavigateTo<T>();
+
+        Task GoBackFromModal();
     }
 
 }
