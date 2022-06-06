@@ -10,13 +10,15 @@
             propertyName: "CurrentSpending",
             returnType: typeof(decimal),
             declaringType: typeof(BudgetProgressControl),
-            defaultValue: 0m,);
+            defaultValue: 0m,
+            propertyChanged: CurrentSpendingChanged);
 
         public static readonly BindableProperty SpendingLimitProperty = BindableProperty.Create(
             propertyName: "SpendingLimit",
             returnType: typeof(decimal),
             declaringType: typeof(BudgetProgressControl),
-            defaultValue: 0m);
+            defaultValue: 0m,
+            propertyChanged: CurrentSpendingChanged);
 
         public BudgetProgressControl()
         {
@@ -26,23 +28,19 @@
         public decimal CurrentSpending
         {
             get => (decimal)GetValue(CurrentSpendingProperty);
-
-            set
-            {
-                SetValue(property: CurrentSpendingProperty, value: value);
-                UpdateProgressBar();
-            }
+            set => SetValue(property: CurrentSpendingProperty, value: value);
         }
 
         public decimal SpendingLimit
         {
             get => (decimal)GetValue(SpendingLimitProperty);
+            set => SetValue(property: SpendingLimitProperty, value: value);
+        }
 
-            set
-            {
-                SetValue(property: SpendingLimitProperty, value: value);
-                UpdateProgressBar();
-            }
+        private static void CurrentSpendingChanged(BindableObject bindable, object oldvalue, object newvalue)
+        {
+            var control = bindable as BudgetProgressControl;
+            control.UpdateProgressBar();
         }
 
         private void UpdateProgressBar()
