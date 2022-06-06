@@ -818,6 +818,6 @@ Maak een nieuw account aan om hier dan uw budgetten op een gemakkelijke manier b
         <value>Meer</value>
     </data>
     <data name="BackupUploadSkippedMessage" xml:space="preserve">
-        <value>Upload of backup skipped, since remote version was already up to date.</value>
+        <value>Uploaden van de back-up overgeslagen, omdat de externe versie al up-to-date was.</value>
     </data>
 </root>
