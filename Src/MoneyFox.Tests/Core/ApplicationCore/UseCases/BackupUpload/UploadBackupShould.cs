@@ -6,8 +6,8 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
     using System.Threading;
     using System.Threading.Tasks;
     using FluentAssertions;
-    using MoneyFox.Core._Pending_.Common.Facades;
     using MoneyFox.Core.ApplicationCore.UseCases.BackupUpload;
+    using MoneyFox.Core.Common.Facades;
     using MoneyFox.Core.Interfaces;
     using NSubstitute;
     using Xunit;
