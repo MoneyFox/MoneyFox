@@ -40,7 +40,7 @@
                 }
 
                 var backupDate = await backupUploadService.GetBackupDateAsync();
-                if (settingsFacade.LastDatabaseUpdate <= backupDate.ToLocalTime())
+                if (settingsFacade.LastDatabaseUpdate - backupDate.ToLocalTime() < TimeSpan.FromSeconds(1))
                 {
                     return UploadResult.Skipped;
                 }

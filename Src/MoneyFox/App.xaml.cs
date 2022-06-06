@@ -67,17 +67,16 @@
                 if (settingsFacade.IsBackupAutouploadEnabled && settingsFacade.IsLoggedInToBackupService)
                 {
                     var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
-                    var uploadResult = await mediator.Send(new UploadBackup.Command());
-                    if (uploadResult == UploadBackup.UploadResult.Successful)
-                    {
-                        toastService.ShowToastAsync(Strings.BackupCreatedMessage);
-                    }
-
                     await backupService.RestoreBackupAsync();
                 }
 
                 await mediator.Send(new ClearPaymentsCommand());
                 await mediator.Send(new CreateRecurringPaymentsCommand());
+                var uploadResult = await mediator.Send(new UploadBackup.Command());
+                if (uploadResult == UploadBackup.UploadResult.Successful)
+                {
+                    toastService.ShowToastAsync(Strings.BackupCreatedMessage);
+                }
             }
             catch (Exception ex)
             {
