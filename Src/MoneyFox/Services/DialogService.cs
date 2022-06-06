@@ -1,56 +1,63 @@
-﻿namespace MoneyFox.Services;
-
-using CommunityToolkit.Maui.Views;
-using Core.Common.Interfaces;
-using Core.Resources;
-using Views.Popups;
-
-public class DialogService : IDialogService
+﻿namespace MoneyFox.Services
 {
-    private LoadingIndicatorPopup? loadingDialog;
 
-    /// <inheritdoc />
-    public async Task ShowLoadingDialogAsync(string? message = null)
+    using System;
+    using System.Threading.Tasks;
+    using CommunityToolkit.Maui.Views;
+    using Core.Common.Interfaces;
+    using Core.Resources;
+    using Views.Popups;
+    using Xamarin.Forms;
+
+    public class DialogService : IDialogService
     {
-        if (loadingDialog != null)
+        private LoadingIndicatorPopup? loadingDialog;
+
+        /// <inheritdoc />
+        public async Task ShowLoadingDialogAsync(string? message = null)
         {
-            await HideLoadingDialogAsync();
+            if (loadingDialog != null)
+            {
+                await HideLoadingDialogAsync();
+            }
+
+            loadingDialog = new LoadingIndicatorPopup();
+            Shell.Current.ShowPopup(loadingDialog);
         }
 
-        loadingDialog = new();
-        Shell.Current.ShowPopup(loadingDialog);
-    }
-
-    /// <inheritdoc />
-    public async Task HideLoadingDialogAsync()
-    {
-        if (loadingDialog == null)
+        /// <inheritdoc />
+        public async Task HideLoadingDialogAsync()
         {
-            return;
+            if (loadingDialog == null)
+            {
+                return;
+            }
+
+            try
+            {
+                loadingDialog.Close(null);
+                loadingDialog = null;
+                await Task.CompletedTask;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                // catch and swallow out of range exceptions when dismissing dialogs.
+            }
         }
 
-        try
+        public async Task ShowMessageAsync(string title, string message)
         {
-            loadingDialog.Close(null);
-            loadingDialog = null;
+            await Shell.Current.DisplayAlert(title: title, message: message, cancel: Strings.OkLabel);
         }
-        catch (IndexOutOfRangeException)
+
+        public async Task<bool> ShowConfirmMessageAsync(string title, string message, string? positiveButtonText = null, string? negativeButtonText = null)
         {
-            // catch and swallow out of range exceptions when dismissing dialogs.
+            return await Shell.Current.DisplayAlert(
+                title: title,
+                message: message,
+                accept: positiveButtonText ?? Strings.YesLabel,
+                cancel: negativeButtonText ?? Strings.NoLabel);
         }
     }
 
-    public async Task ShowMessageAsync(string title, string message)
-    {
-        await Shell.Current.DisplayAlert(title: title, message: message, cancel: Strings.OkLabel);
-    }
-
-    public async Task<bool> ShowConfirmMessageAsync(string title, string message, string? positiveButtonText = null, string? negativeButtonText = null)
-    {
-        return await Shell.Current.DisplayAlert(
-            title: title,
-            message: message,
-            accept: positiveButtonText ?? Strings.YesLabel,
-            cancel: negativeButtonText ?? Strings.NoLabel);
-    }
 }

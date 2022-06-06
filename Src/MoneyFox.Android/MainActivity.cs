@@ -5,6 +5,7 @@ using global::Android.Content;
 using global::Android.Content.PM;
 using global::Android.OS;
 using Infrastructure.DbBackup;
+using Infrastructure.DbBackup.Legacy;
 using Microsoft.Identity.Client;
 using Microsoft.Maui;
 using Microsoft.Maui.ApplicationModel;

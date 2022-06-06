@@ -811,4 +811,7 @@ Pour commencer, créez un nouveau compte. Les comptes sont utilisés pour organi
     <data name="MoreTitle" xml:space="preserve">
         <value>Plus</value>
     </data>
+    <data name="BackupUploadSkippedMessage" xml:space="preserve">
+        <value>Téléchargement de sauvegarde ignoré, car la version distante était déjà à jour.</value>
+    </data>
 </root>

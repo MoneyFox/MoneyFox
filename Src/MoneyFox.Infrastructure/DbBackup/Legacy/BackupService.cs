@@ -1,8 +1,7 @@
-﻿namespace MoneyFox.Infrastructure.DbBackup
+﻿namespace MoneyFox.Infrastructure.DbBackup.Legacy
 {
 
     using System;
-    using System.IO;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
@@ -21,8 +20,6 @@
     internal sealed class BackupService : ObservableRecipient, IBackupService, IDisposable
     {
         private const string TEMP_DOWNLOAD_PATH = "backupmoneyfox3.db";
-        private const int BACKUP_OPERATION_TIMEOUT = 10000;
-        private const int BACKUP_REPEAT_DELAY = 2000;
 
         private readonly IOneDriveBackupService oneDriveBackupService;
         private readonly IFileStore fileStore;
@@ -142,7 +139,6 @@
                 var result = await DownloadBackupAsync(backupMode);
                 if (result == BackupRestoreResult.NewBackupRestored)
                 {
-                    settingsFacade.LastDatabaseUpdate = DateTime.Now;
                     await toastService.ShowToastAsync(Strings.BackupRestoredMessage);
                     Messenger.Send(new ReloadMessage());
                 }
@@ -153,25 +149,6 @@
                 await LogoutAsync();
                 await toastService.ShowToastAsync(message: Strings.FailedToLoginToBackupMessage, title: Strings.FailedToLoginToBackupTitle);
             }
-        }
-
-        public async Task UploadBackupAsync(BackupMode backupMode = BackupMode.Automatic)
-        {
-            if (backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutouploadEnabled)
-            {
-                Log.Information("Backup is in Automatic Mode but Auto Backup isn't enabled");
-
-                return;
-            }
-
-            if (!settingsFacade.IsLoggedInToBackupService)
-            {
-                Log.Information("Upload started, but not logged in. Try to login");
-                await LoginAsync();
-            }
-
-            await EnqueueBackupTaskAsync();
-            settingsFacade.LastDatabaseUpdate = DateTime.Now;
         }
 
         public void Dispose()
@@ -185,7 +162,7 @@
             try
             {
                 var backupDate = await GetBackupDateAsync();
-                if (settingsFacade.LastDatabaseUpdate > backupDate && backupMode == BackupMode.Automatic)
+                if (backupDate.ToLocalTime() - settingsFacade.LastDatabaseUpdate < TimeSpan.FromSeconds(1) && backupMode == BackupMode.Automatic)
                 {
                     Log.Information("Local backup is newer than remote. Don't download backup");
 
@@ -194,6 +171,7 @@
 
                 await using (var backupStream = await oneDriveBackupService.RestoreAsync())
                 {
+                    settingsFacade.LastDatabaseUpdate = backupDate.ToLocalTime();
                     await fileStore.WriteFileAsync(path: TEMP_DOWNLOAD_PATH, contents: backupStream.ReadToEnd());
                 }
 
@@ -215,38 +193,6 @@
             }
 
             return BackupRestoreResult.BackupNotFound;
-        }
-
-        private async Task EnqueueBackupTaskAsync()
-        {
-            if (!connectivity.IsConnected)
-            {
-                throw new NetworkConnectionException();
-            }
-
-            await semaphoreSlim.WaitAsync(millisecondsTimeout: BACKUP_OPERATION_TIMEOUT, cancellationToken: cancellationTokenSource.Token);
-            try
-            {
-                if (await oneDriveBackupService.UploadAsync(await fileStore.OpenReadAsync(dbPathProvider.GetDbPath())))
-                {
-                    semaphoreSlim.Release();
-                    await toastService.ShowToastAsync(Strings.BackupCreatedMessage);
-                }
-                else
-                {
-                    cancellationTokenSource.Cancel();
-                }
-            }
-            catch (FileNotFoundException ex)
-            {
-                Log.Error(exception: ex, messageTemplate: "Backup failed because database was not found");
-            }
-            catch (OperationCanceledException ex)
-            {
-                Log.Error(exception: ex, messageTemplate: "Enqueue Backup failed");
-                await Task.Delay(BACKUP_REPEAT_DELAY);
-                await EnqueueBackupTaskAsync();
-            }
         }
 
         private void Dispose(bool disposing)

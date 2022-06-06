@@ -1,5 +1,5 @@
 ﻿#nullable enable
-namespace MoneyFox.Infrastructure.DbBackup
+namespace MoneyFox.Infrastructure.DbBackup.Legacy
 {
 
     public static class ParentActivityWrapper

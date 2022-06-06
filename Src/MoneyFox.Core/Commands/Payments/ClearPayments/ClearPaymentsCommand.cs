@@ -26,14 +26,14 @@
                     .Include(x => x.TargetAccount)
                     .AsQueryable()
                     .AreNotCleared()
-                    .ToListAsync();
+                    .ToListAsync(cancellationToken: cancellationToken);
 
                 foreach (var payment in unclearedPayments)
                 {
                     payment.ClearPayment();
                 }
 
-                await contextAdapter.Context.SaveChangesAsync();
+                await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
             }

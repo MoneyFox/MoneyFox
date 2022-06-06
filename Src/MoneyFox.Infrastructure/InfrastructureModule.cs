@@ -4,6 +4,7 @@ namespace MoneyFox.Infrastructure
     using Autofac;
     using DataAccess;
     using DbBackup;
+    using DbBackup.Legacy;
     using MediatR;
     using MoneyFox.Core._Pending_.Common.Facades;
     using MoneyFox.Core.Interfaces;
@@ -25,9 +26,11 @@ namespace MoneyFox.Infrastructure
 
         private static void RegisterOneDriveServices(ContainerBuilder builder)
         {
-            builder.RegisterType<BackupService>().AsImplementedInterfaces();
-            builder.RegisterType<OneDriveService>().AsImplementedInterfaces();
             builder.RegisterType<OneDriveAuthenticationService>().AsImplementedInterfaces();
+            builder.RegisterType<OneDriveBackupUploadService>().AsImplementedInterfaces();
+
+            builder.RegisterType<OneDriveService>().AsImplementedInterfaces();
+            builder.RegisterType<BackupService>().AsImplementedInterfaces();
         }
 
         private static void RegisterRepositories(ContainerBuilder builder)
