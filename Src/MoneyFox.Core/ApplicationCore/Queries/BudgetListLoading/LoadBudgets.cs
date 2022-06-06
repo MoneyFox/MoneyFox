@@ -24,7 +24,7 @@
 
             public async Task<IReadOnlyCollection<BudgetListData>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await contextAdapter.Context.Budgets.Select(b => new BudgetListData(b.Name, b.SpendingLimit)).ToListAsync(cancellationToken);
+                return await contextAdapter.Context.Budgets.Select(b => new BudgetListData(b.Id, b.Name, b.SpendingLimit)).ToListAsync(cancellationToken);
             }
         }
     }
