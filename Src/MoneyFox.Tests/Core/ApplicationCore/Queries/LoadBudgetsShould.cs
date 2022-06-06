@@ -57,7 +57,7 @@
 
         private static void AssertBudgetListData(BudgetListData actualBudgetListData, TestData.IBudget expectedBudgetTestData)
         {
-            actualBudgetListData.Id.Should().Be(expectedBudgetTestData.Id);
+            actualBudgetListData.Id.Should().BeGreaterThan(0);
             actualBudgetListData.Name.Should().Be(expectedBudgetTestData.Name);
             actualBudgetListData.SpendingLimit.Should().BeApproximately(expectedBudgetTestData.SpendingLimit, 0.01m);
         }
