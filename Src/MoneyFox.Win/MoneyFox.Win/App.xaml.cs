@@ -9,6 +9,8 @@ using Core.ApplicationCore.UseCases.DbBackup;
 using Core.Commands.Payments.ClearPayments;
 using Core.Commands.Payments.CreateRecurringPayments;
 using Core.Common.Facades;
+using Core.Common.Interfaces;
+using Core.Resources;
 using MediatR;
 using Microsoft.UI.Xaml;
 using Serilog;
@@ -48,6 +50,7 @@ public partial class App : Application
         }
 
         isRunning = true;
+        var toastService = ServiceLocator.Current.GetInstance<IToastService>();
         var settingsFacade = ServiceLocator.Current.GetInstance<ISettingsFacade>();
         var mediator = ServiceLocator.Current.GetInstance<IMediator>();
         try
@@ -55,16 +58,20 @@ public partial class App : Application
             if (settingsFacade.IsBackupAutouploadEnabled && settingsFacade.IsLoggedInToBackupService)
             {
                 var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
-                await mediator.Send(new UploadBackup.Command());
                 await backupService.RestoreBackupAsync();
             }
 
             await mediator.Send(new ClearPaymentsCommand());
             await mediator.Send(new CreateRecurringPaymentsCommand());
+            var uploadResult = await mediator.Send(new UploadBackup.Command());
+            if (uploadResult == UploadBackup.UploadResult.Successful)
+            {
+                await toastService.ShowToastAsync(Strings.BackupCreatedMessage);
+            }
         }
         catch (Exception ex)
         {
-            Log.Fatal(exception: ex, messageTemplate: "Error during startup tasks");
+            Log.Fatal(exception: ex, messageTemplate: "Error during startup");
         }
         finally
         {

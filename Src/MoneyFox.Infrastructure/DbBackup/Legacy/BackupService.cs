@@ -2,11 +2,11 @@
 {
 
     using System;
-    using System.IO;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using CommunityToolkit.Mvvm.ComponentModel;
+    using CommunityToolkit.Mvvm.Messaging;
     using Core.ApplicationCore.Domain.Exceptions;
     using Core.ApplicationCore.UseCases.DbBackup;
     using Core.Common.Extensions;
@@ -16,13 +16,10 @@
     using Core.Interfaces;
     using Core.Resources;
     using Serilog;
-    using CommunityToolkit.Mvvm.Messaging;
 
     internal sealed class BackupService : ObservableRecipient, IBackupService, IDisposable
     {
         private const string TEMP_DOWNLOAD_PATH = "backupmoneyfox3.db";
-        private const int BACKUP_OPERATION_TIMEOUT = 10000;
-        private const int BACKUP_REPEAT_DELAY = 2000;
 
         private readonly IOneDriveBackupService oneDriveBackupService;
         private readonly IFileStore fileStore;
@@ -154,24 +151,6 @@
             }
         }
 
-        public async Task UploadBackupAsync(BackupMode backupMode = BackupMode.Automatic)
-        {
-            if (backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutouploadEnabled)
-            {
-                Log.Information("Backup is in Automatic Mode but Auto Backup isn't enabled");
-
-                return;
-            }
-
-            if (!settingsFacade.IsLoggedInToBackupService)
-            {
-                Log.Information("Upload started, but not logged in. Try to login");
-                await LoginAsync();
-            }
-
-            await EnqueueBackupTaskAsync(backupMode);
-        }
-
         public void Dispose()
         {
             Dispose(true);
@@ -214,40 +193,6 @@
             }
 
             return BackupRestoreResult.BackupNotFound;
-        }
-
-        private async Task EnqueueBackupTaskAsync(BackupMode backupMode)
-        {
-            if (!connectivity.IsConnected)
-            {
-                throw new NetworkConnectionException();
-            }
-
-            var backupDate = await GetBackupDateAsync();
-            await semaphoreSlim.WaitAsync(millisecondsTimeout: BACKUP_OPERATION_TIMEOUT, cancellationToken: cancellationTokenSource.Token);
-            try
-            {
-                if (await oneDriveBackupService.UploadAsync(await fileStore.OpenReadAsync(dbPathProvider.GetDbPath())))
-                {
-                    semaphoreSlim.Release();
-                    await toastService.ShowToastAsync(Strings.BackupCreatedMessage);
-                    settingsFacade.LastDatabaseUpdate = backupDate;
-                }
-                else
-                {
-                    cancellationTokenSource.Cancel();
-                }
-            }
-            catch (FileNotFoundException ex)
-            {
-                Log.Error(exception: ex, messageTemplate: "Backup failed because database was not found");
-            }
-            catch (OperationCanceledException ex)
-            {
-                Log.Error(exception: ex, messageTemplate: "Enqueue Backup failed");
-                await Task.Delay(BACKUP_REPEAT_DELAY);
-                await EnqueueBackupTaskAsync(backupMode);
-            }
         }
 
         private void Dispose(bool disposing)

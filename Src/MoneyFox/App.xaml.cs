@@ -75,7 +75,7 @@
                 var uploadResult = await mediator.Send(new UploadBackup.Command());
                 if (uploadResult == UploadBackup.UploadResult.Successful)
                 {
-                    toastService.ShowToastAsync(Strings.BackupCreatedMessage);
+                    await toastService.ShowToastAsync(Strings.BackupCreatedMessage);
                 }
             }
             catch (Exception ex)
