@@ -18,7 +18,7 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
         private readonly ISettingsFacade settingsFacade;
         private readonly IFileStore fileStore;
 
-        public UploadBackupShould()
+        protected UploadBackupShould()
         {
             backupService = Substitute.For<IBackupUploadService>();
             settingsFacade = Substitute.For<ISettingsFacade>();
@@ -106,7 +106,6 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
                 // Assert
                 backupService.GetBackupDateAsync().Returns(returnThis: x => DateTime.Today.AddMinutes(-2), x => DateTime.Now);
                 backupService.GetBackupCount().Returns(3);
-                settingsFacade.IsLoggedInToBackupService.Returns(true);
                 settingsFacade.LastDatabaseUpdate.Returns(DateTime.Today.AddMinutes(-1));
                 fileStore.OpenReadAsync(Arg.Any<string>()).Returns(Stream.Null);
                 var handler = new UploadBackup.Handler(
@@ -132,7 +131,6 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
                 // Assert
                 backupService.GetBackupDateAsync().Returns(returnThis: x => DateTime.Today.AddMinutes(-2), x => DateTime.Now);
                 backupService.GetBackupCount().Returns(15);
-                settingsFacade.IsLoggedInToBackupService.Returns(true);
                 settingsFacade.LastDatabaseUpdate.Returns(DateTime.Today.AddMinutes(-1));
                 fileStore.OpenReadAsync(Arg.Any<string>()).Returns(Stream.Null);
                 var handler = new UploadBackup.Handler(
