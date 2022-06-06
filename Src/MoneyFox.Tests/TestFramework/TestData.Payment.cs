@@ -6,7 +6,7 @@
 
     internal static partial class TestData
     {
-        internal static DateTime DefaultDate = new DateTime(year: 2022, month: 06, day: 06);
+        internal static DateTime DefaultDate = new DateTime(year: 2022, month: 04, day: 06);
 
         internal sealed class DefaultExpense : IPayment
         {
@@ -14,7 +14,7 @@
             public IAccount ChargedAccount => new DefaultAccount();
             public IAccount? TargetAccount => null;
             public string CategoryName => "Wine";
-            public DateTime Date => DefaultDate;
+            public DateTime Date { get; set; } = DefaultDate;
             public decimal Amount { get; set; } = 105.50m;
             public bool IsCleared { get; }
             public PaymentType Type { get; set; } = PaymentType.Expense;
