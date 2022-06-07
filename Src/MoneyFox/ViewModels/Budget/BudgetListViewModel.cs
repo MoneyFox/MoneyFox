@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.ViewModels.Budget
 {
 
-    using System;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
@@ -11,7 +10,7 @@
     using Core.Common.Extensions;
     using Extensions;
     using MediatR;
-    using Views.Accounts;
+    using Views.Budget;
     using Xamarin.Forms;
 
     public sealed class BudgetListViewModel : ObservableRecipient
@@ -51,15 +50,14 @@
             await Shell.Current.GoToModalAsync(ViewModelLocator.AddBudgetRoute);
         }
 
-        private static async Task EditBudgetAsync(BudgetViewModel? budgetViewModel)
+        private async Task EditBudgetAsync(BudgetViewModel selectedBudget)
         {
-            if (budgetViewModel == null)
+            if (selectedBudget == null)
             {
-                throw new ArgumentNullException(nameof(budgetViewModel));
+                return;
             }
 
-            await Shell.Current.Navigation.PushModalAsync(
-                new NavigationPage(new EditAccountPage(budgetViewModel.Id)) { BarBackgroundColor = Color.Transparent });
+            await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new EditBudgetPage(selectedBudget.Id)) { BarBackgroundColor = Color.Transparent });
         }
     }
 

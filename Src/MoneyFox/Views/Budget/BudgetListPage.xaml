@@ -24,8 +24,11 @@
                 Command="{Binding GoToAddBudgetCommand}" />
 
             <CollectionView Grid.Row="1"
+                            x:Name="BudgetCollectionView"
+                            SelectionMode="Single"
                             ItemsSource="{Binding Budgets}"
-                            SelectionChangedCommand="{Binding EditBudgetCommand}">
+                            SelectionChangedCommand="{Binding EditBudgetCommand}"
+                            SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference BudgetCollectionView}}" >
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="budgetViewModel:BudgetViewModel">
