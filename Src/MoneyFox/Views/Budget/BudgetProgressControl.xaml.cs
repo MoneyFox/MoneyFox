@@ -10,15 +10,13 @@
             propertyName: "CurrentSpending",
             returnType: typeof(decimal),
             declaringType: typeof(BudgetProgressControl),
-            defaultValue: 0m,
-            propertyChanged: CurrentSpendingChanged);
+            defaultValue: 0m);
 
         public static readonly BindableProperty SpendingLimitProperty = BindableProperty.Create(
             propertyName: "SpendingLimit",
             returnType: typeof(decimal),
             declaringType: typeof(BudgetProgressControl),
-            defaultValue: 0m,
-            propertyChanged: CurrentSpendingChanged);
+            defaultValue: 0m);
 
         public BudgetProgressControl()
         {
@@ -37,22 +35,12 @@
             set => SetValue(property: SpendingLimitProperty, value: value);
         }
 
-        private static void CurrentSpendingChanged(BindableObject bindable, object oldvalue, object newvalue)
+        private void UpdateCurrentSpendingBar(object sender, EventArgs e)
         {
-            var control = bindable as BudgetProgressControl;
-            control.UpdateProgressBar();
-        }
-
-        private void UpdateProgressBar()
-        {
-            if (SpendingLimit == 0 || SpendingLimitBar == null)
-            {
-                return;
-            }
-
             var totalWidth = SpendingLimitBar.Width;
             var ratioSpendingLimitToSpending = Convert.ToDouble(CurrentSpending / SpendingLimit);
             CurrentSpendingBar.WidthRequest = totalWidth * ratioSpendingLimitToSpending;
+            InvalidateLayout();
         }
     }
 

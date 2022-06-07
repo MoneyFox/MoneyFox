@@ -4,13 +4,17 @@
              x:Class="MoneyFox.Views.Budget.BudgetProgressControl">
 
     <StackLayout BindingContext="{x:Reference BudgetProgress}">
-        <Grid>
+        <Grid >
             <Rectangle x:Name="SpendingLimitBar" Fill="#314A9B"
-                       HeightRequest="20"
-                       HorizontalOptions="FillAndExpand" />
+                       HeightRequest="10"
+                       RadiusX="50"
+                       RadiusY="50"
+                       HorizontalOptions="FillAndExpand" SizeChanged="UpdateCurrentSpendingBar" />
 
             <Rectangle x:Name="CurrentSpendingBar" Fill="#FF8671"
-                       HeightRequest="20"
+                       HeightRequest="10"
+                       RadiusX="50"
+                       RadiusY="50"
                        HorizontalOptions="Start" />
         </Grid>
         
