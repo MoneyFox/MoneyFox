@@ -2,6 +2,7 @@
 {
 
     using System.Linq;
+    using System.Runtime.Intrinsics.X86;
     using System.Threading.Tasks;
     using FluentAssertions;
     using MediatR;
@@ -74,6 +75,20 @@
             passedQuery!.Name.Should().Be(testBudget.Name);
             passedQuery.SpendingLimit.Should().Be(testBudget.SpendingLimit);
             passedQuery.Categories.Should().BeEquivalentTo(testBudget.Categories);
+        }
+
+        [Fact]
+        public void Removes_SelectedCategory_OnCommand()
+        {
+            // Arrange
+            var budgetCategoryViewModel = new BudgetCategoryViewModel(1, "test");
+            viewModel.SelectedCategories.Add(budgetCategoryViewModel);
+
+            // Act
+            viewModel.RemoveCategoryCommand.Execute(budgetCategoryViewModel);
+
+            // Assert
+            viewModel.SelectedCategories.Should().BeEmpty();
         }
     }
 

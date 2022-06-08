@@ -32,7 +32,10 @@ namespace MoneyFox.ViewModels.Budget
             private set => SetProperty(field: ref selectedBudget, newValue: value);
         }
 
+        // Todo: use ReadOnly Collection?
         public ObservableCollection<BudgetCategoryViewModel> SelectedCategories { get; set; } = new ObservableCollection<BudgetCategoryViewModel>();
+
+        public RelayCommand<BudgetCategoryViewModel> RemoveCategoryCommand => new RelayCommand<BudgetCategoryViewModel>(RemoveCategory);
 
         public AsyncRelayCommand SaveBudgetCommand => new AsyncRelayCommand(SaveBudgetAsync);
 
@@ -43,6 +46,11 @@ namespace MoneyFox.ViewModels.Budget
             {
                 SelectedCategories.Add(new BudgetCategoryViewModel(categoryId: categorySelectedDataSet.CategoryId, name: categorySelectedDataSet.Name));
             }
+        }
+
+        private void RemoveCategory(BudgetCategoryViewModel budgetCategory)
+        {
+            SelectedCategories.Remove(budgetCategory);
         }
 
         private async Task SaveBudgetAsync()
