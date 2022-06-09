@@ -29,11 +29,16 @@
                        Text="{Binding SelectedBudget.SpendingLimit, Converter={StaticResource DecimalConverter}}" />
 
                 <Button Text="{x:Static resources:Strings.SelectCategoryLabel}"
-                        Clicked="SelectCategory"/>
+                        Clicked="SelectCategory" />
 
                 <Label Text="{x:Static resources:Strings.SelectedCategoriesLabel}" />
 
-                <CollectionView ItemsLayout="VerticalGrid, 2" ItemsSource="{Binding SelectedCategories}">
+                <CollectionView x:Name="BudgetCategoryCollectionView" 
+                                SelectionMode="Single"
+                                ItemsLayout="VerticalGrid, 2" 
+                                ItemsSource="{Binding SelectedCategories}"
+                                SelectionChangedCommand="{Binding RemoveCategoryCommand}"
+                                SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference BudgetCategoryCollectionView}}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="budget:BudgetCategoryViewModel">
                             <Grid Padding="3" HeightRequest="60">
