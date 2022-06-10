@@ -37,32 +37,32 @@
 
     public class SettingsFacade : ISettingsFacade
     {
-        private const string AUTOUPLOAD_BACKUP_KEYNAME = "AutoUploadBackup";
-        private const bool AUTOUPLOAD_BACKUP_KEYDEFAULT = false;
+        private const string AutoUploadBackupKeyName = "AutoUploadBackup";
+        private const bool AutoUploadBackupKeyDefault = false;
 
-        private const string BACKUP_LOGGEDIN_KEYNAME = "BackupLoggedIn";
-        private const bool BACKUP_LOGGEDIN_KEY_DEFAULT = false;
+        private const string BackupLoggedInKeyName = "BackupLoggedIn";
+        private const bool BackupLoggedInKeyDefault = false;
 
-        private const string LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME = "LastExecutionTimeStampSyncBackup";
-        private const string LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_DEFAULT = "";
+        private const string LastExecutionTimeStampSyncBackupKeyName = "LastExecutionTimeStampSyncBackup";
+        private const string LastExecutionTimeStampSyncBackupKeyDefault = "";
 
-        private const string LAST_EXECUTION_TIME_STAMP_CLEAR_PAYMENTS_KEY_NAME = "LastExecutionTimeStampClearPayments";
-        private const string LAST_EXECUTION_TIME_STAMP_CLEAR_PAYMENTS_KEY_DEFAULT = "";
+        private const string LastExecutionTimeStampClearPaymentsKeyName = "LastExecutionTimeStampClearPayments";
+        private const string LastExecutionTimeStampClearPaymentsKeyDefault = "";
 
-        private const string LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_NAME = "LastExecutionTimeStampRecurringPayments";
+        private const string LastExecutionTimeStampRecurringPaymentsKeyName = "LastExecutionTimeStampRecurringPayments";
 
-        private const string LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_DEFAULT = "";
+        private const string LastExecutionTimeStampRecurringPaymentsKeyDefault = "";
 
-        private const string DEFAULT_CULTURE_KEY_NAME = "DefaultCulture";
+        private const string DefaultCultureKeyName = "DefaultCulture";
 
-        private const string DATABASE_LAST_UPDATE_KEY_NAME = "DatabaseLastUpdate";
+        private const string DatabaseLastUpdateKeyName = "DatabaseLastUpdate";
 
-        private const string IS_SETUP_COMPLETED_KEY_NAME = "IsSetupCompleted";
-        private const bool IS_SETUP_COMPLETED_KEY_DEFAULT = false;
+        private const string IsSetupCompletedKeyName = "IsSetupCompleted";
+        private const bool IsSetupCompletedKeyDefault = false;
 
-        private const string CATEGORY_SPREADING_NUMBER_KEY_NAME = "CategorySpreadingNumber";
-        private const int CATEGORY_SPREADING_NUMBER_DEFAULT = 6;
-        private readonly string DEFAULT_CULTURE_KEY_DEFAULT = CultureInfo.CurrentCulture.Name;
+        private const string CategorySpreadingNumberKeyName = "CategorySpreadingNumber";
+        private const int CategorySpreadingNumberDefault = 6;
+        private readonly string defaultCultureKeyDefault = CultureInfo.CurrentCulture.Name;
 
         private readonly ISettingsAdapter settingsAdapter;
 
@@ -71,15 +71,14 @@
             this.settingsAdapter = settingsAdapter;
         }
 
-        /// <inheritdoc />
         public DateTime LastExecutionTimeStampClearPayments
         {
             get
             {
                 if (DateTime.TryParse(
                         s: settingsAdapter.GetValue(
-                            key: LAST_EXECUTION_TIME_STAMP_CLEAR_PAYMENTS_KEY_NAME,
-                            defaultValue: LAST_EXECUTION_TIME_STAMP_CLEAR_PAYMENTS_KEY_DEFAULT),
+                            key: LastExecutionTimeStampClearPaymentsKeyName,
+                            defaultValue: LastExecutionTimeStampClearPaymentsKeyDefault),
                         provider: CultureInfo.InvariantCulture,
                         styles: DateTimeStyles.None,
                         result: out var outValue))
@@ -90,7 +89,7 @@
                 return DateTime.MinValue;
             }
 
-            set => settingsAdapter.AddOrUpdate(key: LAST_EXECUTION_TIME_STAMP_CLEAR_PAYMENTS_KEY_NAME, value: value.ToString(CultureInfo.InvariantCulture));
+            set => settingsAdapter.AddOrUpdate(key: LastExecutionTimeStampClearPaymentsKeyName, value: value.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <inheritdoc />
@@ -100,8 +99,8 @@
             {
                 if (DateTime.TryParse(
                         s: settingsAdapter.GetValue(
-                            key: LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_NAME,
-                            defaultValue: LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_DEFAULT),
+                            key: LastExecutionTimeStampRecurringPaymentsKeyName,
+                            defaultValue: LastExecutionTimeStampRecurringPaymentsKeyDefault),
                         provider: CultureInfo.InvariantCulture,
                         styles: DateTimeStyles.None,
                         result: out var outValue))
@@ -112,14 +111,14 @@
                 return DateTime.MinValue;
             }
 
-            set => settingsAdapter.AddOrUpdate(key: LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_NAME, value: value.ToString(CultureInfo.InvariantCulture));
+            set => settingsAdapter.AddOrUpdate(key: LastExecutionTimeStampRecurringPaymentsKeyName, value: value.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <inheritdoc />
         public bool IsBackupAutouploadEnabled
         {
-            get => settingsAdapter.GetValue(key: AUTOUPLOAD_BACKUP_KEYNAME, defaultValue: AUTOUPLOAD_BACKUP_KEYDEFAULT);
-            set => settingsAdapter.AddOrUpdate(key: AUTOUPLOAD_BACKUP_KEYNAME, value: value);
+            get => settingsAdapter.GetValue(key: AutoUploadBackupKeyName, defaultValue: AutoUploadBackupKeyDefault);
+            set => settingsAdapter.AddOrUpdate(key: AutoUploadBackupKeyName, value: value);
         }
 
         /// <inheritdoc />
@@ -128,20 +127,20 @@
             get
             {
                 var dateString = settingsAdapter.GetValue(
-                    key: DATABASE_LAST_UPDATE_KEY_NAME,
+                    key: DatabaseLastUpdateKeyName,
                     defaultValue: DateTime.MinValue.ToString(CultureInfo.InvariantCulture));
 
                 return Convert.ToDateTime(value: dateString, provider: CultureInfo.InvariantCulture);
             }
 
-            set => settingsAdapter.AddOrUpdate(key: DATABASE_LAST_UPDATE_KEY_NAME, value: value.ToString(CultureInfo.InvariantCulture));
+            set => settingsAdapter.AddOrUpdate(key: DatabaseLastUpdateKeyName, value: value.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <inheritdoc />
         public bool IsLoggedInToBackupService
         {
-            get => settingsAdapter.GetValue(key: BACKUP_LOGGEDIN_KEYNAME, defaultValue: BACKUP_LOGGEDIN_KEY_DEFAULT);
-            set => settingsAdapter.AddOrUpdate(key: BACKUP_LOGGEDIN_KEYNAME, value: value);
+            get => settingsAdapter.GetValue(key: BackupLoggedInKeyName, defaultValue: BackupLoggedInKeyDefault);
+            set => settingsAdapter.AddOrUpdate(key: BackupLoggedInKeyName, value: value);
         }
 
         /// <inheritdoc />
@@ -150,9 +149,7 @@
             get
             {
                 if (DateTime.TryParse(
-                        s: settingsAdapter.GetValue(
-                            key: LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME,
-                            defaultValue: LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_DEFAULT),
+                        s: settingsAdapter.GetValue(key: LastExecutionTimeStampSyncBackupKeyName, defaultValue: LastExecutionTimeStampSyncBackupKeyDefault),
                         provider: CultureInfo.InvariantCulture,
                         styles: DateTimeStyles.None,
                         result: out var outValue))
@@ -163,27 +160,27 @@
                 return DateTime.MinValue;
             }
 
-            set => settingsAdapter.AddOrUpdate(key: LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME, value: value.ToString(CultureInfo.InvariantCulture));
+            set => settingsAdapter.AddOrUpdate(key: LastExecutionTimeStampSyncBackupKeyName, value: value.ToString(CultureInfo.InvariantCulture));
         }
 
         public string DefaultCulture
         {
-            get => settingsAdapter.GetValue(key: DEFAULT_CULTURE_KEY_NAME, defaultValue: DEFAULT_CULTURE_KEY_DEFAULT);
-            set => settingsAdapter.AddOrUpdate(key: DEFAULT_CULTURE_KEY_NAME, value: value);
+            get => settingsAdapter.GetValue(key: DefaultCultureKeyName, defaultValue: defaultCultureKeyDefault);
+            set => settingsAdapter.AddOrUpdate(key: DefaultCultureKeyName, value: value);
         }
 
         /// <inheritdoc />
         public bool IsSetupCompleted
         {
-            get => settingsAdapter.GetValue(key: IS_SETUP_COMPLETED_KEY_NAME, defaultValue: IS_SETUP_COMPLETED_KEY_DEFAULT);
-            set => settingsAdapter.AddOrUpdate(key: IS_SETUP_COMPLETED_KEY_NAME, value: value);
+            get => settingsAdapter.GetValue(key: IsSetupCompletedKeyName, defaultValue: IsSetupCompletedKeyDefault);
+            set => settingsAdapter.AddOrUpdate(key: IsSetupCompletedKeyName, value: value);
         }
 
         /// <inheritdoc />
         public int CategorySpreadingNumber
         {
-            get => settingsAdapter.GetValue(key: CATEGORY_SPREADING_NUMBER_KEY_NAME, defaultValue: CATEGORY_SPREADING_NUMBER_DEFAULT);
-            set => settingsAdapter.AddOrUpdate(key: CATEGORY_SPREADING_NUMBER_KEY_NAME, value: value);
+            get => settingsAdapter.GetValue(key: CategorySpreadingNumberKeyName, defaultValue: CategorySpreadingNumberDefault);
+            set => settingsAdapter.AddOrUpdate(key: CategorySpreadingNumberKeyName, value: value);
         }
     }
 
