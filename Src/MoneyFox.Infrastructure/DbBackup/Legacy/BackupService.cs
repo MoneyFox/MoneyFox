@@ -71,7 +71,7 @@
 
             await oneDriveBackupService.LogoutAsync();
             settingsFacade.IsLoggedInToBackupService = false;
-            settingsFacade.IsBackupAutouploadEnabled = false;
+            settingsFacade.IsBackupAutoUploadEnabled = false;
             await toastService.ShowToastAsync(message: Strings.LoggedOutMessage, title: Strings.LoggedOutTitle);
         }
 
@@ -106,9 +106,7 @@
 
             try
             {
-                var date = await oneDriveBackupService.GetBackupDateAsync();
-
-                return date.ToLocalTime();
+                return await oneDriveBackupService.GetBackupDateAsync();
             }
             catch (Exception ex) when (ex is BackupOperationCanceledException || ex is BackupAuthenticationFailedException)
             {
@@ -122,7 +120,7 @@
 
         public async Task RestoreBackupAsync(BackupMode backupMode = BackupMode.Automatic)
         {
-            if (backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutouploadEnabled)
+            if (backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutoUploadEnabled)
             {
                 Log.Information("Backup is in Automatic Mode but Auto Backup isn't enabled");
 
@@ -162,7 +160,7 @@
             try
             {
                 var backupDate = await GetBackupDateAsync();
-                if (backupDate.ToLocalTime() - settingsFacade.LastDatabaseUpdate < TimeSpan.FromSeconds(1) && backupMode == BackupMode.Automatic)
+                if (backupDate - settingsFacade.LastDatabaseUpdate < TimeSpan.FromSeconds(1) && backupMode == BackupMode.Automatic)
                 {
                     Log.Information("Local backup is newer than remote. Don't download backup");
 
