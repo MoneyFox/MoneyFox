@@ -43,7 +43,7 @@ public sealed partial class MainWindow : Window
         var mediator = ServiceLocator.Current.GetInstance<IMediator>();
         try
         {
-            if (settingsFacade.IsBackupAutouploadEnabled && settingsFacade.IsLoggedInToBackupService)
+            if (settingsFacade.IsBackupAutoUploadEnabled && settingsFacade.IsLoggedInToBackupService)
             {
                 var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
                 await backupService.RestoreBackupAsync();
