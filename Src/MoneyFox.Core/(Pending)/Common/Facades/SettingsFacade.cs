@@ -10,20 +10,10 @@
     /// </summary>
     public interface ISettingsFacade
     {
-        /// <summary>
-        ///     Indicates if the backup shall be synchronized automatically.
-        /// </summary>
-        bool IsBackupAutouploadEnabled { get; set; }
+        bool IsBackupAutoUploadEnabled { get; set; }
 
-        /// <summary>
-        ///     Timestamp when the database was updated the last time.
-        /// </summary>
-        /// <value>The last database update.</value>
         DateTime LastDatabaseUpdate { get; set; }
 
-        /// <summary>
-        ///     Indicates if the user is logged in to the backup service.
-        /// </summary>
         bool IsLoggedInToBackupService { get; set; }
 
         string DefaultCulture { get; set; }
@@ -92,7 +82,6 @@
             set => settingsAdapter.AddOrUpdate(key: LastExecutionTimeStampClearPaymentsKeyName, value: value.ToString(CultureInfo.InvariantCulture));
         }
 
-        /// <inheritdoc />
         public DateTime LastExecutionTimeStampRecurringPayments
         {
             get
@@ -114,14 +103,12 @@
             set => settingsAdapter.AddOrUpdate(key: LastExecutionTimeStampRecurringPaymentsKeyName, value: value.ToString(CultureInfo.InvariantCulture));
         }
 
-        /// <inheritdoc />
-        public bool IsBackupAutouploadEnabled
+        public bool IsBackupAutoUploadEnabled
         {
             get => settingsAdapter.GetValue(key: AutoUploadBackupKeyName, defaultValue: AutoUploadBackupKeyDefault);
             set => settingsAdapter.AddOrUpdate(key: AutoUploadBackupKeyName, value: value);
         }
 
-        /// <inheritdoc />
         public DateTime LastDatabaseUpdate
         {
             get
@@ -136,14 +123,12 @@
             set => settingsAdapter.AddOrUpdate(key: DatabaseLastUpdateKeyName, value: value.ToString(CultureInfo.InvariantCulture));
         }
 
-        /// <inheritdoc />
         public bool IsLoggedInToBackupService
         {
             get => settingsAdapter.GetValue(key: BackupLoggedInKeyName, defaultValue: BackupLoggedInKeyDefault);
             set => settingsAdapter.AddOrUpdate(key: BackupLoggedInKeyName, value: value);
         }
 
-        /// <inheritdoc />
         public DateTime LastExecutionTimeStampSyncBackup
         {
             get
@@ -169,14 +154,12 @@
             set => settingsAdapter.AddOrUpdate(key: DefaultCultureKeyName, value: value);
         }
 
-        /// <inheritdoc />
         public bool IsSetupCompleted
         {
             get => settingsAdapter.GetValue(key: IsSetupCompletedKeyName, defaultValue: IsSetupCompletedKeyDefault);
             set => settingsAdapter.AddOrUpdate(key: IsSetupCompletedKeyName, value: value);
         }
 
-        /// <inheritdoc />
         public int CategorySpreadingNumber
         {
             get => settingsAdapter.GetValue(key: CategorySpreadingNumberKeyName, defaultValue: CategorySpreadingNumberDefault);

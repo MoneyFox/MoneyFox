@@ -71,7 +71,7 @@
 
             await oneDriveBackupService.LogoutAsync();
             settingsFacade.IsLoggedInToBackupService = false;
-            settingsFacade.IsBackupAutouploadEnabled = false;
+            settingsFacade.IsBackupAutoUploadEnabled = false;
             await toastService.ShowToastAsync(message: Strings.LoggedOutMessage, title: Strings.LoggedOutTitle);
         }
 
@@ -122,7 +122,7 @@
 
         public async Task RestoreBackupAsync(BackupMode backupMode = BackupMode.Automatic)
         {
-            if (backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutouploadEnabled)
+            if (backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutoUploadEnabled)
             {
                 Log.Information("Backup is in Automatic Mode but Auto Backup isn't enabled");
 
