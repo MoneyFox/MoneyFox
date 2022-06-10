@@ -53,21 +53,21 @@ namespace MoneyFox.Infrastructure.Persistence
                 }
             }
 
-            var result = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+            var changeCount = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
             // ignore events if no dispatcher provided
             if (publisher == null || settingsFacade == null)
             {
-                return result;
+                return changeCount;
             }
 
             // dispatch events only if save was successful
-            if (ChangeTracker.Entries().Any())
+            if (changeCount > 0)
             {
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
             }
 
-            return result;
+            return changeCount;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

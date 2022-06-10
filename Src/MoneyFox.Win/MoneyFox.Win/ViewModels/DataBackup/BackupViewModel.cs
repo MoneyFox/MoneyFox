@@ -122,16 +122,16 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
 
     public bool IsAutoBackupEnabled
     {
-        get => settingsFacade.IsBackupAutouploadEnabled;
+        get => settingsFacade.IsBackupAutoUploadEnabled;
 
         set
         {
-            if (settingsFacade.IsBackupAutouploadEnabled == value)
+            if (settingsFacade.IsBackupAutoUploadEnabled == value)
             {
                 return;
             }
 
-            settingsFacade.IsBackupAutouploadEnabled = value;
+            settingsFacade.IsBackupAutoUploadEnabled = value;
             OnPropertyChanged();
         }
     }
