@@ -15,7 +15,7 @@
     {
         private const string ERROR_CODE_CANCELED = "authentication_canceled";
 
-        private readonly string[] scopes = { "Files.ReadWrite", "User.ReadBasic.All" };
+        private readonly string[] scopes = { "Files.ReadWrite" };
 
         private readonly IPublicClientApplication publicClientApplication;
         private readonly IGraphClientFactory graphClientFactory;
