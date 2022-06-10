@@ -106,9 +106,7 @@
 
             try
             {
-                var date = await oneDriveBackupService.GetBackupDateAsync();
-
-                return date.ToLocalTime();
+                return await oneDriveBackupService.GetBackupDateAsync();
             }
             catch (Exception ex) when (ex is BackupOperationCanceledException || ex is BackupAuthenticationFailedException)
             {

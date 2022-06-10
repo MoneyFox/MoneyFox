@@ -6,10 +6,10 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
+    using Core.ApplicationCore.Domain.Exceptions;
+    using Core.ApplicationCore.UseCases.DbBackup;
     using Microsoft.Graph;
     using Microsoft.Identity.Client;
-    using MoneyFox.Core.ApplicationCore.Domain.Exceptions;
-    using MoneyFox.Core.ApplicationCore.UseCases.DbBackup;
 
     internal class OneDriveService : IOneDriveBackupService
     {
@@ -73,10 +73,10 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
         {
             var graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
             var existingBackups = await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync();
-
             if (existingBackups.Any())
             {
-                return existingBackups.OrderByDescending(di => di.LastModifiedDateTime).First().LastModifiedDateTime?.DateTime ?? DateTime.MinValue;
+                return existingBackups.OrderByDescending(di => di.LastModifiedDateTime).First().LastModifiedDateTime?.DateTime.ToLocalTime()
+                       ?? DateTime.MinValue;
             }
 
             return DateTime.MinValue;
@@ -137,7 +137,6 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
         private static async Task CleanupOldBackupsAsync(GraphServiceClient graphServiceClient)
         {
             var existingBackups = await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync();
-
             if (existingBackups.Count < BACKUP_ARCHIVE_COUNT)
             {
                 return;
@@ -150,7 +149,7 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
         private static async Task DeleteExistingFolderAsync(GraphServiceClient graphServiceClient)
         {
             var archiveFolder = (await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync()).CurrentPage.FirstOrDefault(
-                    x => x.Name == ARCHIVE_FOLDER_NAME);
+                x => x.Name == ARCHIVE_FOLDER_NAME);
 
             if (archiveFolder != null)
             {
