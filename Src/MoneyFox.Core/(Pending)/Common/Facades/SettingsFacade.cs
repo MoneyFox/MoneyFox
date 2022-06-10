@@ -5,9 +5,6 @@
     using System.Globalization;
     using Interfaces;
 
-    /// <summary>
-    ///     Provides access to the app settings.
-    /// </summary>
     public interface ISettingsFacade
     {
         bool IsBackupAutoUploadEnabled { get; set; }
@@ -36,13 +33,6 @@
         private const string LastExecutionTimeStampSyncBackupKeyName = "LastExecutionTimeStampSyncBackup";
         private const string LastExecutionTimeStampSyncBackupKeyDefault = "";
 
-        private const string LastExecutionTimeStampClearPaymentsKeyName = "LastExecutionTimeStampClearPayments";
-        private const string LastExecutionTimeStampClearPaymentsKeyDefault = "";
-
-        private const string LastExecutionTimeStampRecurringPaymentsKeyName = "LastExecutionTimeStampRecurringPayments";
-
-        private const string LastExecutionTimeStampRecurringPaymentsKeyDefault = "";
-
         private const string DefaultCultureKeyName = "DefaultCulture";
 
         private const string DatabaseLastUpdateKeyName = "DatabaseLastUpdate";
@@ -59,48 +49,6 @@
         public SettingsFacade(ISettingsAdapter settingsAdapter)
         {
             this.settingsAdapter = settingsAdapter;
-        }
-
-        public DateTime LastExecutionTimeStampClearPayments
-        {
-            get
-            {
-                if (DateTime.TryParse(
-                        s: settingsAdapter.GetValue(
-                            key: LastExecutionTimeStampClearPaymentsKeyName,
-                            defaultValue: LastExecutionTimeStampClearPaymentsKeyDefault),
-                        provider: CultureInfo.InvariantCulture,
-                        styles: DateTimeStyles.None,
-                        result: out var outValue))
-                {
-                    return outValue;
-                }
-
-                return DateTime.MinValue;
-            }
-
-            set => settingsAdapter.AddOrUpdate(key: LastExecutionTimeStampClearPaymentsKeyName, value: value.ToString(CultureInfo.InvariantCulture));
-        }
-
-        public DateTime LastExecutionTimeStampRecurringPayments
-        {
-            get
-            {
-                if (DateTime.TryParse(
-                        s: settingsAdapter.GetValue(
-                            key: LastExecutionTimeStampRecurringPaymentsKeyName,
-                            defaultValue: LastExecutionTimeStampRecurringPaymentsKeyDefault),
-                        provider: CultureInfo.InvariantCulture,
-                        styles: DateTimeStyles.None,
-                        result: out var outValue))
-                {
-                    return outValue;
-                }
-
-                return DateTime.MinValue;
-            }
-
-            set => settingsAdapter.AddOrUpdate(key: LastExecutionTimeStampRecurringPaymentsKeyName, value: value.ToString(CultureInfo.InvariantCulture));
         }
 
         public bool IsBackupAutoUploadEnabled
