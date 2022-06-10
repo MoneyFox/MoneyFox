@@ -10,6 +10,7 @@
     using Legacy;
     using Microsoft.Graph;
     using Microsoft.Identity.Client;
+    using Serilog;
 
     internal sealed class OneDriveAuthenticationService : IOneDriveAuthenticationService
     {
@@ -17,26 +18,37 @@
 
         private readonly string[] scopes = { "Files.ReadWrite" };
 
-        private readonly IPublicClientApplication publicClientApplication;
+        private readonly IPublicClientApplication clientApp;
         private readonly IGraphClientFactory graphClientFactory;
 
-        public OneDriveAuthenticationService(IPublicClientApplication publicClientApplication, IGraphClientFactory graphClientFactory)
+        public OneDriveAuthenticationService(IPublicClientApplication clientApp, IGraphClientFactory graphClientFactory)
         {
-            this.publicClientApplication = publicClientApplication;
+            this.clientApp = clientApp;
             this.graphClientFactory = graphClientFactory;
         }
 
         public async Task<GraphServiceClient> CreateServiceClient(CancellationToken cancellationToken = default)
         {
-            IEnumerable<IAccount> accounts = await publicClientApplication.GetAccountsAsync();
+            var accounts = await clientApp.GetAccountsAsync();
+            AuthenticationResult? result;
             try
             {
-                var firstAccount = accounts.FirstOrDefault();
-                var authResult = firstAccount == null
-                    ? await AcquireInteractive()
-                    : await publicClientApplication.AcquireTokenSilent(scopes: scopes, account: firstAccount).ExecuteAsync(cancellationToken);
-
-                return graphClientFactory.CreateClient(authResult);
+                result = await clientApp.AcquireTokenSilent(scopes: scopes, account: accounts.FirstOrDefault()).ExecuteAsync(cancellationToken);
+            }
+            catch (MsalUiRequiredException ex)
+            {
+                Log.Information(exception: ex, messageTemplate: "Acquire Token Silent failed");
+                try
+                {
+                    result = await clientApp.AcquireTokenInteractive(scopes)
+                        .WithUseEmbeddedWebView(true)
+                        .WithParentActivityOrWindow(ParentActivityWrapper.ParentActivity) // this is required for Android
+                        .ExecuteAsync(cancellationToken);
+                }
+                catch (MsalException)
+                {
+                    throw new BackupAuthenticationFailedException();
+                }
             }
             catch (MsalClientException ex)
             {
@@ -47,17 +59,19 @@
 
                 throw;
             }
+
+            return result != null ? graphClientFactory.CreateClient(result) : throw new BackupAuthenticationFailedException();
         }
 
         public async Task LogoutAsync(CancellationToken cancellationToken = default)
         {
             try
             {
-                List<IAccount> accounts = (await publicClientApplication.GetAccountsAsync()).ToList();
+                List<IAccount> accounts = (await clientApp.GetAccountsAsync()).ToList();
                 while (accounts.Any())
                 {
-                    await publicClientApplication.RemoveAsync(accounts.FirstOrDefault());
-                    accounts = (await publicClientApplication.GetAccountsAsync()).ToList();
+                    await clientApp.RemoveAsync(accounts.FirstOrDefault());
+                    accounts = (await clientApp.GetAccountsAsync()).ToList();
                 }
             }
             catch (MsalClientException ex)
@@ -77,7 +91,7 @@
 
         private async Task<AuthenticationResult> AcquireInteractive()
         {
-            return await publicClientApplication.AcquireTokenInteractive(scopes)
+            return await clientApp.AcquireTokenInteractive(scopes)
                 .WithUseEmbeddedWebView(true)
                 .WithParentActivityOrWindow(ParentActivityWrapper.ParentActivity) // this is required for Android
                 .ExecuteAsync();
