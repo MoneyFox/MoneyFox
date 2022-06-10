@@ -59,7 +59,7 @@
             }
 
             // dispatch events only if save was successful
-            if (ChangeTracker.Entries().Any())
+            if (ChangeTracker.HasChanges())
             {
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
             }

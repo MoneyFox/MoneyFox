@@ -162,7 +162,7 @@
             try
             {
                 var backupDate = await GetBackupDateAsync();
-                if (backupDate.ToLocalTime() - settingsFacade.LastDatabaseUpdate < TimeSpan.FromSeconds(1) && backupMode == BackupMode.Automatic)
+                if (backupDate - settingsFacade.LastDatabaseUpdate < TimeSpan.FromSeconds(1) && backupMode == BackupMode.Automatic)
                 {
                     Log.Information("Local backup is newer than remote. Don't download backup");
 
