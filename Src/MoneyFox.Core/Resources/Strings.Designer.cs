@@ -925,6 +925,15 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Budget.
+        /// </summary>
+        public static string EditBudgetTitle {
+            get {
+                return ResourceManager.GetString("EditBudgetTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Category.
         /// </summary>
         public static string EditCategoryTitle {

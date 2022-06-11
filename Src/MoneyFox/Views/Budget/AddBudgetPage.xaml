@@ -11,11 +11,7 @@
              x:Class="MoneyFox.Views.Budget.AddBudgetPage"
              Visual="Material">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <converter:DecimalConverter x:Key="DecimalConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
+
 
     <ContentPage.Content>
         <budgetViews:ModifyBudgetView />
