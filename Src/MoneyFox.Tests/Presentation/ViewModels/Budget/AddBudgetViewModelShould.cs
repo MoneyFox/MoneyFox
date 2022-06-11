@@ -59,8 +59,8 @@
         public async Task SendsCorrectSaveCommand()
         {
             // Capture
-            CreateBudget.Query? passedQuery = null;
-            await sender.Send(Arg.Do<CreateBudget.Query>(q => passedQuery = q));
+            CreateBudget.Command? passedQuery = null;
+            await sender.Send(Arg.Do<CreateBudget.Command>(q => passedQuery = q));
 
             // Arrange
             var testBudget = new TestData.DefaultBudget();

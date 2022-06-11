@@ -32,7 +32,7 @@
             var testData = new TestData.DefaultBudget();
 
             // Act
-            var query = new CreateBudget.Query(name: testData.Name, spendingLimit: testData.SpendingLimit, categories: testData.Categories);
+            var query = new CreateBudget.Command(name: testData.Name, spendingLimit: testData.SpendingLimit, categories: testData.Categories);
             await handler.Handle(request: query, cancellationToken: CancellationToken.None);
 
             // Assert

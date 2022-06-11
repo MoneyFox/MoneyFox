@@ -1,13 +1,17 @@
 ﻿namespace MoneyFox.Tests.Presentation.ViewModels.Budget
 {
 
+    using System.Linq;
     using System.Threading.Tasks;
     using FluentAssertions;
     using MediatR;
+    using MoneyFox.Core.ApplicationCore.UseCases.BudgetUpdate;
+    using MoneyFox.Core.Common.Extensions;
     using MoneyFox.Core.Common.Messages;
     using MoneyFox.Core.Interfaces;
     using MoneyFox.ViewModels.Budget;
     using NSubstitute;
+    using TestFramework;
     using Views.Categories;
     using Xunit;
 
@@ -78,7 +82,25 @@
         [Fact]
         public async Task SendsCorrectSaveCommand()
         {
+            // Capture
+            UpdateBudget.Command? capturedCommand = null;
+            await sender.Send(Arg.Do<UpdateBudget.Command>(q => capturedCommand = q));
 
+            // Arrange
+            var testBudget = new TestData.DefaultBudget();
+            viewModel.SelectedBudget.Name = testBudget.Name;
+            viewModel.SelectedBudget.SpendingLimit = testBudget.SpendingLimit;
+
+            // Act
+            viewModel.SelectedCategories.AddRange(testBudget.Categories.Select(c => new BudgetCategoryViewModel(categoryId: c, name: "Category")));
+            await viewModel.SaveBudgetCommand.ExecuteAsync(null);
+
+            // Assert
+            capturedCommand.Should().NotBeNull();
+            capturedCommand!.Name.Should().Be(testBudget.Name);
+            capturedCommand.SpendingLimit.Should().Be(testBudget.SpendingLimit);
+            capturedCommand.Categories.Should().BeEquivalentTo(testBudget.Categories);
+            await navigationService.Received(1).GoBackFromModal();
         }
     }
 

@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Core.ApplicationCore.UseCases.BudgetCreation
 {
 
-    using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
@@ -10,9 +9,9 @@
 
     public static class CreateBudget
     {
-        public class Query : IRequest
+        public class Command : IRequest
         {
-            public Query(string name, decimal spendingLimit, IReadOnlyList<int> categories)
+            public Command(string name, decimal spendingLimit, IReadOnlyList<int> categories)
             {
                 Name = name;
                 SpendingLimit = spendingLimit;
@@ -24,7 +23,7 @@
             public IReadOnlyList<int> Categories { get; }
         }
 
-        public class Handler : IRequestHandler<Query>
+        public class Handler : IRequestHandler<Command>
         {
             private readonly IBudgetRepository repository;
 
@@ -33,9 +32,9 @@
                 this.repository = repository;
             }
 
-            public async Task<Unit> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var budget = new Budget(request.Name, request.SpendingLimit, request.Categories);
+                var budget = new Budget(name: request.Name, spendingLimit: request.SpendingLimit, includedCategories: request.Categories);
                 await repository.AddAsync(budget);
 
                 return Unit.Value;

@@ -20,7 +20,7 @@ namespace MoneyFox.ViewModels.Budget
 
         protected override async Task SaveBudgetAsync()
         {
-            var query = new CreateBudget.Query(
+            var query = new CreateBudget.Command(
                 name: SelectedBudget.Name,
                 spendingLimit: SelectedBudget.SpendingLimit,
                 categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
