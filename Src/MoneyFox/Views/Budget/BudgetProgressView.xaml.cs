@@ -4,21 +4,21 @@
     using System;
     using Xamarin.Forms;
 
-    public partial class BudgetProgressControl
+    public partial class BudgetProgressView
     {
         public static readonly BindableProperty CurrentSpendingProperty = BindableProperty.Create(
             propertyName: "CurrentSpending",
             returnType: typeof(decimal),
-            declaringType: typeof(BudgetProgressControl),
+            declaringType: typeof(BudgetProgressView),
             defaultValue: 0m);
 
         public static readonly BindableProperty SpendingLimitProperty = BindableProperty.Create(
             propertyName: "SpendingLimit",
             returnType: typeof(decimal),
-            declaringType: typeof(BudgetProgressControl),
+            declaringType: typeof(BudgetProgressView),
             defaultValue: 0m);
 
-        public BudgetProgressControl()
+        public BudgetProgressView()
         {
             InitializeComponent();
         }

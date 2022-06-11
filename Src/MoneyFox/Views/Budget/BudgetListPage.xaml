@@ -47,7 +47,7 @@
                                            Text="{Binding Name}" />
 
 
-                                    <budgetControl:BudgetProgressControl CurrentSpending="{Binding CurrentSpending}"
+                                    <budgetControl:BudgetProgressView CurrentSpending="{Binding CurrentSpending}"
                                                                          SpendingLimit="{Binding SpendingLimit}" />
                                 </StackLayout>
                             </yummy:PancakeView>
