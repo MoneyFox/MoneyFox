@@ -34,21 +34,6 @@ namespace MoneyFox.Views.Budget
         }
 
         private AddBudgetViewModel ViewModel => (AddBudgetViewModel)BindingContext;
-
-        private void AmountFieldGotFocus(object sender, FocusEventArgs e)
-        {
-            Dispatcher.BeginInvokeOnMainThread(
-                () =>
-                {
-                    AmountEntry.CursorPosition = 0;
-                    AmountEntry.SelectionLength = AmountEntry.Text != null ? AmountEntry.Text.Length : 0;
-                });
-        }
-
-        private async void SelectCategory(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToModalAsync(ViewModelLocator.SelectCategoryRoute);
-        }
     }
 
 }

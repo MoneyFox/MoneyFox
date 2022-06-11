@@ -3,10 +3,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-             xmlns:budget="clr-namespace:MoneyFox.ViewModels.Budget;assembly=MoneyFox"
+             xmlns:budgetVms="clr-namespace:MoneyFox.ViewModels.Budget;assembly=MoneyFox"
              xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
+             xmlns:budgetViews="clr-namespace:MoneyFox.Views.Budget;assembly=MoneyFox"
              Title="{x:Static resources:Strings.AddBudgetTitle}"
-             x:DataType="budget:AddBudgetViewModel"
+             x:DataType="budgetVms:AddBudgetViewModel"
              x:Class="MoneyFox.Views.Budget.AddBudgetPage"
              Visual="Material">
 
@@ -17,39 +18,6 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <ScrollView Padding="15,0,15,0">
-            <StackLayout Spacing="6">
-                <Entry Placeholder="{x:Static resources:Strings.BudgetNameLabel}"
-                       Text="{Binding SelectedBudget.Name}" />
-
-                <Entry x:Name="AmountEntry"
-                       Keyboard="Numeric"
-                       Focused="AmountFieldGotFocus"
-                       Placeholder="{x:Static resources:Strings.SpendingLimitLabel}"
-                       Text="{Binding SelectedBudget.SpendingLimit, Converter={StaticResource DecimalConverter}}" />
-
-                <Button Text="{x:Static resources:Strings.SelectCategoryLabel}"
-                        Clicked="SelectCategory" />
-
-                <Label Text="{x:Static resources:Strings.SelectedCategoriesLabel}" />
-
-                <CollectionView x:Name="BudgetCategoryCollectionView" 
-                                SelectionMode="Single"
-                                ItemsLayout="VerticalGrid, 2" 
-                                ItemsSource="{Binding SelectedCategories}"
-                                SelectionChangedCommand="{Binding RemoveCategoryCommand}"
-                                SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference BudgetCategoryCollectionView}}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="budget:BudgetCategoryViewModel">
-                            <Grid Padding="3" HeightRequest="60">
-                                <Frame>
-                                    <Label Text="{Binding Name}" />
-                                </Frame>
-                            </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </StackLayout>
-        </ScrollView>
+        <budgetViews:ModifyBudgetView />
     </ContentPage.Content>
 </ContentPage>

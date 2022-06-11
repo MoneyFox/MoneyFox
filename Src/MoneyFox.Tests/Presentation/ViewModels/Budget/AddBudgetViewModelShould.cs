@@ -12,7 +12,9 @@
     using MoneyFox.Core.Interfaces;
     using MoneyFox.ViewModels.Budget;
     using NSubstitute;
+    using NSubstitute.ReceivedExtensions;
     using TestFramework;
+    using Views.Categories;
     using Xunit;
 
     public class AddBudgetViewModelShould
@@ -21,11 +23,12 @@
         private readonly ISender sender;
 
         private readonly AddBudgetViewModel viewModel;
+        private readonly INavigationService navigationService;
 
         public AddBudgetViewModelShould()
         {
             sender = Substitute.For<ISender>();
-            var navigationService = Substitute.For<INavigationService>();
+            navigationService = Substitute.For<INavigationService>();
             viewModel = new AddBudgetViewModel(sender: sender, navigationService: navigationService);
         }
 
@@ -75,6 +78,8 @@
             passedQuery!.Name.Should().Be(testBudget.Name);
             passedQuery.SpendingLimit.Should().Be(testBudget.SpendingLimit);
             passedQuery.Categories.Should().BeEquivalentTo(testBudget.Categories);
+
+            await navigationService.Received(1).GoBackFromModal();
         }
 
         [Fact]
@@ -89,6 +94,16 @@
 
             // Assert
             viewModel.SelectedCategories.Should().BeEmpty();
+        }
+
+        [Fact]
+        public async Task CallNavigationToCategorySelection()
+        {
+            // Act
+            await viewModel.OpenCategorySelectionCommand.ExecuteAsync(null);
+
+            // Assert
+            await navigationService.Received(1).OpenModal<SelectCategoryPage>();
         }
     }
 

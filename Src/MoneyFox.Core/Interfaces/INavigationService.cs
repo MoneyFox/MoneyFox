@@ -7,6 +7,8 @@
     {
         Task NavigateTo<T>();
 
+        Task OpenModal<T>();
+
         Task GoBackFromModal();
     }
 
