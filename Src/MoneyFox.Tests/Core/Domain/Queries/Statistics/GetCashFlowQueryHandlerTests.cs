@@ -101,28 +101,6 @@
             result[1].Label.Should().Be(Strings.ExpenseLabel);
             result[2].Label.Should().Be(Strings.IncreaseLabel);
         }
-
-        [Fact]
-        public async Task GetValues_USVersion_CorrectNegativeSign()
-        {
-            // Arrange
-            context.AddRange(
-                new List<Payment> { new Payment(date: DateTime.Today, amount: 40, type: PaymentType.Expense, chargedAccount: new Account("Foo3")) });
-
-            await context.SaveChangesAsync();
-            var cultureInfo = new CultureInfo("en-US");
-            CultureHelper.CurrentCulture = cultureInfo;
-
-            // Act
-            var result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
-                request: new GetCashFlowQuery { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
-                cancellationToken: default);
-
-            // Assert
-            // We have to test here for Mac since they have a different standard sign than Windows.
-            result[2].ValueLabel[0].Should().Be(RuntimeInformation.IsOSPlatform(OSPlatform.OSX) ? '-' : '(');
-            CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
-        }
     }
 
 }
