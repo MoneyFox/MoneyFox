@@ -14,11 +14,14 @@ namespace MoneyFox.Infrastructure.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Budget> builder)
         {
             builder.HasKey(c => c.Id);
+            builder.Property(nameof(Budget.IncludedCategories)).HasConversion(GetSplitStringConverter());
+        }
 
-            var splitStringConverter = new ValueConverter<IReadOnlyList<int>, string>(
-                i => string.Join(";", i),
-                s => string.IsNullOrWhiteSpace(s) ? Array.Empty<int>() : s.Split(new[] { ';' }).Select(int.Parse).ToArray());
-            builder.Property(nameof(Budget.IncludedCategories)).HasConversion(splitStringConverter);
+        private static ValueConverter<IReadOnlyList<int>, string> GetSplitStringConverter()
+        {
+            return new ValueConverter<IReadOnlyList<int>, string>(
+                convertToProviderExpression: i => string.Join(";", i),
+                convertFromProviderExpression: s => string.IsNullOrWhiteSpace(s) ? Array.Empty<int>() : s.Split(new[] { ';' }).Select(int.Parse).ToArray());
         }
     }
 
