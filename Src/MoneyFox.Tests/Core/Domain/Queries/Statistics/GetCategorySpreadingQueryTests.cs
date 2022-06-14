@@ -21,7 +21,7 @@
 
     [ExcludeFromCodeCoverage]
     [Collection("CultureCollection")]
-    public class GetCategorySpreadingQueryTests : IDisposable
+    public class GetCategorySpreadingQueryTests
     {
         private readonly AppDbContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
@@ -31,17 +31,6 @@
             context = InMemoryAppDbContextFactory.Create();
             contextAdapterMock = new Mock<IContextAdapter>();
             contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryAppDbContextFactory.Destroy(context);
         }
 
         [Fact]
@@ -81,7 +70,7 @@
             };
 
             context.Payments.AddRange(paymentList);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
 
             // Act
             var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(
@@ -126,7 +115,7 @@
             };
 
             context.Payments.AddRange(paymentList);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
 
             // Act
             var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(
@@ -161,7 +150,7 @@
             };
 
             context.Payments.AddRange(paymentList);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
 
             // Act
             var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(
@@ -225,7 +214,7 @@
             };
 
             context.Payments.AddRange(paymentList);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
 
             // Act
             var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(
@@ -274,7 +263,7 @@
             };
 
             context.Payments.AddRange(paymentList);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
 
             // Act
             var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(
@@ -323,7 +312,7 @@
             };
 
             context.Payments.AddRange(paymentList);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
 
             // Act
             var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(
