@@ -231,51 +231,6 @@
             result[6].Color.Should().Be("#8F97A4");
         }
 
-        [Theory]
-        [InlineData("en-US", '$')]
-        [InlineData("de-CH", 'C')]
-        public async Task GetValues_CorrectCurrency(string culture, char expectedCurrencySymbol)
-        {
-            // Arrange
-            var cultureInfo = new CultureInfo(culture);
-            CultureHelper.CurrentCulture = cultureInfo;
-            var account = new Account("test");
-            var paymentList = new List<Payment>
-            {
-                new Payment(
-                    date: DateTime.Today,
-                    amount: 10,
-                    type: PaymentType.Expense,
-                    chargedAccount: account,
-                    category: new Category("a")),
-                new Payment(
-                    date: DateTime.Today,
-                    amount: 10,
-                    type: PaymentType.Expense,
-                    chargedAccount: account,
-                    category: new Category("b")),
-                new Payment(
-                    date: DateTime.Today,
-                    amount: 10,
-                    type: PaymentType.Expense,
-                    chargedAccount: account,
-                    category: new Category("c"))
-            };
-
-            context.Payments.AddRange(paymentList);
-            await context.SaveChangesAsync();
-
-            // Act
-            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(
-                request: new GetCategorySpreadingQuery(startDate: DateTime.Today.AddDays(-3), endDate: DateTime.Today.AddDays(3)),
-                cancellationToken: default)).ToList();
-
-            // Assert
-            result[0].ValueLabel[0].Should().Be(expectedCurrencySymbol);
-            result[1].ValueLabel[0].Should().Be(expectedCurrencySymbol);
-            result[2].ValueLabel[0].Should().Be(expectedCurrencySymbol);
-        }
-
         [Fact]
         public async Task CorrectSumsForIncome()
         {
