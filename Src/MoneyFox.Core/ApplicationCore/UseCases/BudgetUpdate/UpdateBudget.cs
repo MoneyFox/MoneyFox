@@ -38,9 +38,9 @@
             {
                 var loadedBudget = await budgetRepository.GetAsync(request.BudgetId);
                 loadedBudget.Change(
-                    testBudgetName: request.Name,
-                    testBudgetSpendingLimit: request.SpendingLimit,
-                    testBudgetIncludedCategories: request.Categories);
+                    budgetName: request.Name,
+                    spendingLimit: request.SpendingLimit,
+                    includedCategories: request.Categories);
 
                 await budgetRepository.UpdateAsync(loadedBudget);
 

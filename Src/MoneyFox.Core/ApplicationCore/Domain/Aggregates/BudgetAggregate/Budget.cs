@@ -49,11 +49,11 @@ namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate
             private set;
         } = new List<int>();
 
-        public void Change(string testBudgetName, decimal testBudgetSpendingLimit, IReadOnlyList<int> testBudgetIncludedCategories)
+        public void Change(string budgetName, decimal spendingLimit, IReadOnlyList<int> includedCategories)
         {
-            Name = testBudgetName;
-            SpendingLimit = testBudgetSpendingLimit;
-            IncludedCategories = testBudgetIncludedCategories;
+            Name = budgetName;
+            SpendingLimit = spendingLimit;
+            IncludedCategories = includedCategories;
         }
     }
 
