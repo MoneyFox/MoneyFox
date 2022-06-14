@@ -12,7 +12,7 @@
             using (new AssertionScope())
             {
                 actual.Name.Should().Be(expected.Name);
-                actual.SpendingLimit.Should().Be(expected.SpendingLimit);
+                actual.SpendingLimit.Value.Should().Be(expected.SpendingLimit);
                 actual.IncludedCategories.Should().BeEquivalentTo(expected.Categories);
             }
         }

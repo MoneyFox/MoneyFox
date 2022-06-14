@@ -14,6 +14,8 @@ namespace MoneyFox.Infrastructure.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Budget> builder)
         {
             builder.HasKey(c => c.Id);
+            builder.OwnsOne(b => b.SpendingLimit)
+                .Property(sl => sl.Value).HasColumnName("SpendingLimit");
             builder.Property(nameof(Budget.IncludedCategories)).HasConversion(GetSplitStringConverter());
         }
 

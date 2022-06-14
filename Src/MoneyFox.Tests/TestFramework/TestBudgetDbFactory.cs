@@ -5,9 +5,10 @@
 
     internal static class TestBudgetDbFactory
     {
-        internal static Budget CreateDbBudget(this TestData.IBudget category)
+        internal static Budget CreateDbBudget(this TestData.IBudget budget)
         {
-            return new Budget(name: category.Name, spendingLimit: category.SpendingLimit, includedCategories: category.Categories);
+            var spendingLimit = new SpendingLimit(budget.SpendingLimit);
+            return new Budget(name: budget.Name, spendingLimit: spendingLimit, includedCategories: budget.Categories);
         }
     }
 

@@ -9,6 +9,7 @@
     using NSubstitute;
     using TestFramework;
     using Xunit;
+    using static TestFramework.BudgetAssertion;
 
     public sealed class CreateBudgetShould
     {
@@ -36,11 +37,8 @@
             await handler.Handle(request: query, cancellationToken: CancellationToken.None);
 
             // Assert
-            await budgetRepository.AddAsync(Arg.Any<Budget>());
             capturedBudget.Should().NotBeNull();
-            capturedBudget!.Name.Should().Be(testData.Name);
-            capturedBudget.SpendingLimit.Should().Be(testData.SpendingLimit);
-            capturedBudget.IncludedCategories.Should().BeEquivalentTo(testData.Categories);
+            AssertBudget(capturedBudget!, testData);
         }
     }
 

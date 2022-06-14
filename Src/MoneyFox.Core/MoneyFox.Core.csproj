@@ -50,8 +50,4 @@
             <DependentUpon>Strings.resx</DependentUpon>
         </Compile>
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="ApplicationCore\Domain" />
-    </ItemGroup>
 </Project>
