@@ -2,11 +2,8 @@ namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate
 {
 
     using System.Collections.Generic;
-    using System.Collections.Immutable;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using AutoMapper.Configuration.Annotations;
+    using Common.Interfaces;
     using JetBrains.Annotations;
-    using MoneyFox.Core.Common.Interfaces;
 
     public class Budget : EntityBase, IAggregateRoot
     {
