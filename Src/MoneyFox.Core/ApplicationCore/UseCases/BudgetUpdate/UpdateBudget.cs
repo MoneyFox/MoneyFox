@@ -37,6 +37,11 @@
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
                 var loadedBudget = await budgetRepository.GetAsync(request.BudgetId);
+                loadedBudget.Change(
+                    testBudgetName: request.Name,
+                    testBudgetSpendingLimit: request.SpendingLimit,
+                    testBudgetIncludedCategories: request.Categories);
+
                 await budgetRepository.UpdateAsync(loadedBudget);
 
                 return Unit.Value;
