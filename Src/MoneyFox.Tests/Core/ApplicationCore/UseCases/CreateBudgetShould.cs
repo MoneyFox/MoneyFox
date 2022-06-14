@@ -10,19 +10,19 @@
     using TestFramework;
     using Xunit;
 
-    public class CreateBudgetTests
+    public sealed class CreateBudgetShould
     {
         private readonly IBudgetRepository budgetRepository;
         private readonly CreateBudget.Handler handler;
 
-        public CreateBudgetTests()
+        public CreateBudgetShould()
         {
             budgetRepository = Substitute.For<IBudgetRepository>();
             handler = new CreateBudget.Handler(budgetRepository);
         }
 
         [Fact]
-        public async Task AddsBudgetToRepository()
+        public async Task AddBudgetToRepository()
         {
             // Capture
             Budget? capturedBudget = null;
