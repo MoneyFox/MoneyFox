@@ -4,32 +4,44 @@
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
+    using Domain.Aggregates.BudgetAggregate;
     using MediatR;
 
     public static class UpdateBudget
     {
         public class Command : IRequest
         {
-            public Command(string name, decimal spendingLimit, IReadOnlyList<int> categories)
+            public Command(int budgetId, string name, decimal spendingLimit, IReadOnlyList<int> categories)
             {
+                BudgetId = budgetId;
                 Name = name;
                 SpendingLimit = spendingLimit;
                 Categories = categories;
             }
 
+            public int BudgetId { get; }
             public string Name { get; }
             public decimal SpendingLimit { get; }
             public IReadOnlyList<int> Categories { get; }
         }
 
-        public class Handler : IRequestHandler<UpdateBudget.Command, Unit>
+        public class Handler : IRequestHandler<Command, Unit>
         {
-            public Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+            private readonly IBudgetRepository budgetRepository;
+
+            public Handler(IBudgetRepository budgetRepository)
             {
-                throw new System.NotImplementedException();
+                this.budgetRepository = budgetRepository;
+            }
+
+            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+            {
+                var loadedBudget = await budgetRepository.GetAsync(request.BudgetId);
+                await budgetRepository.UpdateAsync(loadedBudget);
+
+                return Unit.Value;
             }
         }
-
     }
 
 }

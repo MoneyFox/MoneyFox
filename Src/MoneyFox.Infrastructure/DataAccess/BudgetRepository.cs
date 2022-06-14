@@ -33,6 +33,11 @@
         {
             return await appDbContext.Budgets.ToListAsync();
         }
+
+        public Task UpdateAsync(Budget budget)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 
 }

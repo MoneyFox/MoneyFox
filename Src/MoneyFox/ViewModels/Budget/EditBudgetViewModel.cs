@@ -21,6 +21,7 @@
         protected override async Task SaveBudgetAsync()
         {
             var query = new UpdateBudget.Command(
+                budgetId: SelectedBudget.Id,
                 name: SelectedBudget.Name,
                 spendingLimit: SelectedBudget.SpendingLimit,
                 categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());

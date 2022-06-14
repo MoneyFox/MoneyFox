@@ -13,6 +13,7 @@
 
         Task<IReadOnlyCollection<Budget>> GetAsync();
 
+        Task UpdateAsync(Budget budget);
     }
 
 }
