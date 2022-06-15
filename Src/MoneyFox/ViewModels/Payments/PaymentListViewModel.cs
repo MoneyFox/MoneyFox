@@ -19,7 +19,6 @@
     using Groups;
     using MediatR;
     using Views.Payments;
-    using Xamarin.Forms;
 
     public class PaymentListViewModel : ObservableRecipient
     {
@@ -87,7 +86,7 @@
         public AsyncRelayCommand<PaymentViewModel> GoToEditPaymentCommand
             => new AsyncRelayCommand<PaymentViewModel>(
                 async paymentViewModel => await Shell.Current.Navigation.PushModalAsync(
-                    new NavigationPage(new EditPaymentPage(paymentViewModel.Id)) { BarBackgroundColor = Color.Transparent }));
+                    new NavigationPage(new EditPaymentPage(paymentViewModel.Id)) { BarBackgroundColor = Colors.Transparent }));
 
         protected override void OnActivated()
         {

@@ -7,7 +7,6 @@
     using Core.Common.Interfaces;
     using Core.Resources;
     using Views.Popups;
-    using Xamarin.Forms;
 
     public class DialogService : IDialogService
     {
