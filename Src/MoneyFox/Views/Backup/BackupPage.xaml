@@ -7,6 +7,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converter="clr-namespace:MoneyFox.Converter"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
              BackgroundColor="{DynamicResource WindowBackgroundColor}"
              Title="{x:Static resources:Strings.BackupTitle}"
              Shell.NavBarHasShadow="False"
@@ -64,7 +65,7 @@
                                        IsVisible="{Binding IsLoadingBackupAvailability}"
                                        VerticalOptions="CenterAndExpand">
                         <ActivityIndicator.WidthRequest>
-                            <OnPlatform x:TypeArguments="x:Double">
+                            <OnPlatform x:TypeArguments="system:Double">
                                 <On Value="20" Platform="iOS" />
                                 <On Value="80" Platform="UWP" />
                                 <On Value="20" Platform="Android" />
