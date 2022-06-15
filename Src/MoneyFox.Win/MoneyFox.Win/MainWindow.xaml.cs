@@ -8,6 +8,7 @@ using Core.ApplicationCore.UseCases.DbBackup;
 using Core.Commands.Payments.ClearPayments;
 using Core.Commands.Payments.CreateRecurringPayments;
 using MediatR;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Pages;
@@ -24,13 +25,36 @@ public sealed partial class MainWindow : Window
         SetTitleBar(AppTitleBar);
         RootFrame = ShellFrame;
         RootFrame.Navigate(sourcePageType: typeof(ShellPage), parameter: null);
-        Closed += OnClosed;
+        RegisterOnClosing();
     }
 
     // This is a temporary fix until WinUI Dialogs are fixed
     public static Frame RootFrame { get; private set; }
 
-    private async void OnClosed(object sender, WindowEventArgs args)
+    private void RegisterOnClosing()
+    {
+
+        // Retrieve the window handle (HWND) of the current (XAML) WinUI 3 window.
+        var hWnd =
+            WinRT.Interop.WindowNative.GetWindowHandle(this);
+
+        // Retrieve the WindowId that corresponds to hWnd.
+        Microsoft.UI.WindowId windowId =
+            Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
+
+        // Lastly, retrieve the AppWindow for the current (XAML) WinUI 3 window.
+        Microsoft.UI.Windowing.AppWindow appWindow =
+            Microsoft.UI.Windowing.AppWindow.GetFromWindowId(windowId);
+
+        if (appWindow != null)
+        {
+            // You now have an AppWindow object, and you can call its methods to manipulate the window.
+            // As an example, let's change the title text of the window.
+            appWindow.Closing += OnClosing;
+        }
+    }
+
+    private async void OnClosing(AppWindow sender, AppWindowClosingEventArgs args)
     {
         // Don't execute this again when already running
         if (isRunning)
