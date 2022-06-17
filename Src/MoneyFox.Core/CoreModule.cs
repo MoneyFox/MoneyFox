@@ -4,6 +4,7 @@
     using System;
     using System.Reflection;
     using Autofac;
+    using Common.Mediatr;
     using MediatR;
     using MediatR.Pipeline;
     using Module = Autofac.Module;
@@ -38,7 +39,7 @@
 
         private void RegisterMediatr(ContainerBuilder builder)
         {
-            builder.RegisterAssemblyTypes(typeof(IMediator).GetTypeInfo().Assembly).AsImplementedInterfaces();
+            builder.RegisterType<CustomMediator>().AsImplementedInterfaces();
             Type[] mediatrOpenTypes =
             {
                 typeof(IRequestHandler<,>),

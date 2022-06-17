@@ -68,8 +68,4 @@
             await publisher.Received().Publish(Arg.Any<DatabaseChangedNotification>(), Arg.Any<CancellationToken>());
         }
     }
-
-
-
-    //settingsFacade.LastDatabaseUpdate.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
 }
