@@ -3,16 +3,17 @@
 
     using Core._Pending_.Common.Facades;
     using Core.Common.Interfaces;
+    using Core.Common.Mediatr;
     using Core.Interfaces;
     using MediatR;
 
     public class ContextAdapter : IContextAdapter
     {
-        private readonly IPublisher publisher;
+        private readonly ICustomPublisher publisher;
         private readonly IDbPathProvider dbPathProvider;
         private readonly ISettingsFacade settingsFacade;
 
-        public ContextAdapter(IPublisher publisher, IDbPathProvider dbPathProvider, ISettingsFacade settingsFacade)
+        public ContextAdapter(ICustomPublisher publisher, IDbPathProvider dbPathProvider, ISettingsFacade settingsFacade)
         {
             this.publisher = publisher;
             this.settingsFacade = settingsFacade;

@@ -16,10 +16,10 @@
 
     public class AppDbContext : DbContext, IAppDbContext
     {
-        private readonly IPublisher? publisher;
+        private readonly ICustomPublisher? publisher;
         private readonly ISettingsFacade? settingsFacade;
 
-        public AppDbContext(DbContextOptions options, IPublisher? publisher, ISettingsFacade? settingsFacade) : base(options)
+        public AppDbContext(DbContextOptions options, ICustomPublisher? publisher, ISettingsFacade? settingsFacade) : base(options)
         {
             this.publisher = publisher;
             this.settingsFacade = settingsFacade;
@@ -62,7 +62,7 @@
             // dispatch events only if save was successful
             if (changeCount > 0)
             {
-                await publisher.Publish(new DatabaseChangedNotification(), PublishStrategy.ParallelNoWait, cancellationToken);
+                await publisher.Publish(new DataBaseChanged.Notification(), PublishStrategy.ParallelNoWait, cancellationToken);
             }
 
             return changeCount;

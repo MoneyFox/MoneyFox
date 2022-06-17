@@ -2,6 +2,7 @@ namespace MoneyFox.Infrastructure
 {
 
     using Autofac;
+    using Core.Common.Mediatr;
     using DataAccess;
     using DbBackup;
     using DbBackup.Legacy;
@@ -15,7 +16,7 @@ namespace MoneyFox.Infrastructure
         protected override void Load(ContainerBuilder builder)
         {
             builder.Register(c => EfCoreContextFactory.Create(
-                c.Resolve<IPublisher>(),
+                c.Resolve<ICustomPublisher>(),
                 c.Resolve<ISettingsFacade>(),
                 c.Resolve<IDbPathProvider>().GetDbPath())).AsSelf().AsImplementedInterfaces();
             builder.RegisterType<ContextAdapter>().AsImplementedInterfaces();

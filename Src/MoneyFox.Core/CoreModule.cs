@@ -40,6 +40,8 @@
         private void RegisterMediatr(ContainerBuilder builder)
         {
             builder.RegisterType<CustomMediator>().AsImplementedInterfaces();
+            builder.RegisterType<CustomPublisher>().AsImplementedInterfaces();
+
             Type[] mediatrOpenTypes =
             {
                 typeof(IRequestHandler<,>),
