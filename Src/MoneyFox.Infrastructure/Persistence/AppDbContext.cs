@@ -2,7 +2,6 @@
 {
 
     using System;
-    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using Core._Pending_.Common.Facades;
@@ -10,6 +9,7 @@
     using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using Core.Common.Interfaces;
+    using Core.Notifications.DatabaseChanged;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
 
@@ -61,7 +61,7 @@
             // dispatch events only if save was successful
             if (changeCount > 0)
             {
-                settingsFacade.LastDatabaseUpdate = DateTime.Now;
+                await publisher.Publish(new DatabaseChangedNotification(), cancellationToken);
             }
 
             return changeCount;
@@ -69,7 +69,7 @@
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder?.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
         }
 
         public override int SaveChanges()
