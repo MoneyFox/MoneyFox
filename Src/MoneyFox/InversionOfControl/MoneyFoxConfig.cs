@@ -1,8 +1,10 @@
 namespace MoneyFox.InversionOfControl
 {
 
-    using System.ComponentModel;
+    using Core.InversionOfControl;
+    using Mapping;
     using Microsoft.Extensions.DependencyInjection;
+    using Mobile.Infrastructure.InversionOfControl;
     using ViewModels.About;
     using ViewModels.Accounts;
     using ViewModels.Categories;
@@ -15,11 +17,14 @@ namespace MoneyFox.InversionOfControl
     using ViewModels.SetupAssistant;
     using ViewModels.Statistics;
 
-    internal sealed class MoneyFoxConfig
+    public sealed class MoneyFoxConfig
     {
         public void Register(ServiceCollection serviceCollection)
         {
             RegisterViewModels(serviceCollection);
+            serviceCollection.AddSingleton(_ => AutoMapperFactory.Create());
+            new CoreConfig().Register(serviceCollection);
+            new InfrastructureMobileConfig().Register(serviceCollection);
         }
 
         private static void RegisterViewModels(ServiceCollection serviceCollection)
