@@ -8,10 +8,10 @@
 
     public static class MediatorExtensions
     {
-        public static Task Publish<TNotification>(this IMediator mediator, TNotification notification, PublishStrategy strategy, CancellationToken cancellationToken)
+        public static Task Publish<TNotification>(this IPublisher publisher, TNotification notification, PublishStrategy strategy, CancellationToken cancellationToken)
             where TNotification : INotification
         {
-            if (mediator is CustomMediator customMediator)
+            if (publisher is CustomMediator customMediator)
             {
                 return customMediator.Publish(notification, strategy, cancellationToken);
             }

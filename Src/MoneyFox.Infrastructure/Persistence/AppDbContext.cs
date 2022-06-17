@@ -9,6 +9,7 @@
     using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using Core.Common.Interfaces;
+    using Core.Common.Mediatr;
     using Core.Notifications.DatabaseChanged;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
@@ -61,7 +62,7 @@
             // dispatch events only if save was successful
             if (changeCount > 0)
             {
-                await publisher.Publish(new DatabaseChangedNotification(), cancellationToken);
+                await publisher.Publish(new DatabaseChangedNotification(), PublishStrategy.ParallelNoWait, cancellationToken);
             }
 
             return changeCount;
