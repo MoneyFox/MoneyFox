@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Common.Mediatr
+namespace MoneyFox.Core.Common.Mediatr
 {
 
     using System;
@@ -12,7 +12,7 @@
     {
         private readonly ServiceFactory serviceFactory;
 
-        private IDictionary<PublishStrategy, IMediator> PublishStrategies = new Dictionary<PublishStrategy, IMediator>();
+        private readonly IDictionary<PublishStrategy, IMediator> PublishStrategies = new Dictionary<PublishStrategy, IMediator>();
 
         public CustomPublisher(ServiceFactory serviceFactory)
         {
