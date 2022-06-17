@@ -40,11 +40,11 @@
             }
         }
 
-        protected static IServiceProvider ServiceProvider { get; set; }
+        private static IServiceProvider? ServiceProvider { get; set; }
 
         internal static BaseViewModel GetViewModel<TViewModel>() where TViewModel : BaseViewModel
         {
-            return ServiceProvider.GetService<TViewModel>() ?? throw new ResolveViewModeException<TViewModel>();
+            return ServiceProvider?.GetService<TViewModel>() ?? throw new ResolveViewModeException<TViewModel>();
         }
 
         protected override void OnStart()
