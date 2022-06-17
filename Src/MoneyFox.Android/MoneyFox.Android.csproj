@@ -136,6 +136,10 @@
       <ReferenceSourceTarget>
       </ReferenceSourceTarget>
     </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Mobile.Infrastructure\MoneyFox.Mobile.Infrastructure.csproj">
+      <Project>{0d7b5bce-3cb6-4fe4-806a-81bcaeff18a1}</Project>
+      <Name>MoneyFox.Mobile.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox\MoneyFox.csproj">
       <Project>{ac88bcf6-97ed-4410-a61b-19ca5e3737f8}</Project>
       <Name>MoneyFox</Name>

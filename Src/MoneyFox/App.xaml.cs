@@ -13,7 +13,9 @@
     using Core.Common;
     using Core.Common.Interfaces;
     using Core.Resources;
+    using InversionOfControl;
     using MediatR;
+    using Microsoft.Extensions.DependencyInjection;
     using Mobile.Infrastructure.Adapters;
     using Serilog;
     using Xamarin.Forms;
@@ -22,18 +24,21 @@
     {
         private bool isRunning;
 
-        public App()
+        public App(Action<IServiceCollection> addPlatformServices = null)
         {
             Device.SetFlags(new[] { "AppTheme_Experimental", "SwipeView_Experimental" });
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
             CultureHelper.CurrentCulture = new CultureInfo(settingsFacade.DefaultCulture);
             InitializeComponent();
+            SetupServices(addPlatformServices);
             MainPage = new AppShell();
             if (!settingsFacade.IsSetupCompleted)
             {
                 Shell.Current.GoToAsync(ViewModelLocator.WelcomeViewRoute).Wait();
             }
         }
+
+        protected static IServiceProvider ServiceProvider { get; set; }
 
         protected override void OnStart()
         {
@@ -48,6 +53,17 @@
         protected override async void OnSleep()
         {
             await StartupTasksAsync();
+        }
+
+        private static void SetupServices(Action<IServiceCollection>? addPlatformServices)
+        {
+            var services = new ServiceCollection();
+
+            addPlatformServices?.Invoke(services);
+
+            new MoneyFoxConfig().Register(services);
+
+            ServiceProvider = services.BuildServiceProvider();
         }
 
         private async Task StartupTasksAsync()

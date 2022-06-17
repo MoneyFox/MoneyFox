@@ -1,11 +1,18 @@
 namespace MoneyFox.iOS
 {
 
+    using System;
     using System.IO;
+    using System.Runtime.Remoting.Contexts;
     using Autofac;
     using Core.Common;
+    using Core.Common.Interfaces;
+    using Core.Interfaces;
     using Foundation;
+    using Infrastructure.DbBackup;
     using JetBrains.Annotations;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Graph;
     using Microsoft.Identity.Client;
     using Serilog;
     using Serilog.Events;
@@ -32,6 +39,15 @@ namespace MoneyFox.iOS
             RequestToastPermissions();
 
             return base.FinishedLaunching(uiApplication: uiApplication, launchOptions: launchOptions);
+        }
+
+        private static void AddServices(IServiceCollection services)
+        {
+            services.AddSingleton<IDbPathProvider, DbPathProvider>();
+            services.AddSingleton<IGraphClientFactory, GraphServiceClientFactory>();
+            services.AddSingleton<IStoreOperations, StoreOperations>();
+            services.AddSingleton<IAppInformation, AppInformation>();
+            services.AddTransient<IFileStore>(_ => new IosFileStore(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)));
         }
 
         // Needed for auth
