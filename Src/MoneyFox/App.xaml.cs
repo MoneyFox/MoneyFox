@@ -4,6 +4,7 @@
     using System;
     using System.Globalization;
     using System.Threading.Tasks;
+    using Common.Exceptions;
     using CommonServiceLocator;
     using Core._Pending_.Common.Facades;
     using Core.ApplicationCore.UseCases.BackupUpload;
@@ -18,6 +19,7 @@
     using Microsoft.Extensions.DependencyInjection;
     using Mobile.Infrastructure.Adapters;
     using Serilog;
+    using ViewModels;
     using Xamarin.Forms;
 
     public partial class App
@@ -40,6 +42,11 @@
 
         protected static IServiceProvider ServiceProvider { get; set; }
 
+        internal static BaseViewModel GetViewModel<TViewModel>() where TViewModel : BaseViewModel
+        {
+            return ServiceProvider.GetService<TViewModel>() ?? throw new ResolveViewModeException<TViewModel>();
+        }
+
         protected override void OnStart()
         {
             StartupTasksAsync().ConfigureAwait(false);
@@ -58,11 +65,8 @@
         private static void SetupServices(Action<IServiceCollection>? addPlatformServices)
         {
             var services = new ServiceCollection();
-
             addPlatformServices?.Invoke(services);
-
             new MoneyFoxConfig().Register(services);
-
             ServiceProvider = services.BuildServiceProvider();
         }
 

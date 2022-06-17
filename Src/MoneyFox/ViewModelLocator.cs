@@ -100,7 +100,6 @@ namespace MoneyFox
         public static PaymentForCategoryListViewModel PaymentForCategoryListViewModel => ServiceLocator.Current.GetInstance<PaymentForCategoryListViewModel>();
 
         public static SettingsViewModel SettingsViewModel => ServiceLocator.Current.GetInstance<SettingsViewModel>();
-        public static AboutViewModel AboutViewModel => ServiceLocator.Current.GetInstance<AboutViewModel>();
 
         public static OverflowMenuViewModel OverflowMenuViewModel => ServiceLocator.Current.GetInstance<OverflowMenuViewModel>();
 
