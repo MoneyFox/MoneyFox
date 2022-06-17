@@ -13,19 +13,19 @@
     using NSubstitute;
     using Xunit;
 
-    public sealed class AppDbContextTests
+    public sealed class AppDbContextShould
     {
         private readonly IPublisher publisher;
         private readonly ISettingsFacade settingsFacade;
 
-        public AppDbContextTests()
+        public AppDbContextShould()
         {
             publisher = Substitute.For<IPublisher>();
             settingsFacade = Substitute.For<ISettingsFacade>();
         }
 
         [Fact]
-        public async Task SetCreatedAndLastModifiedDate_OnSaveChanges()
+        public async Task SetCreatedAndLastModifiedDate_OnEntity_WhenNewEntityIsAdded()
         {
             // Arrange
             var options = new DbContextOptionsBuilder<AppDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
@@ -45,7 +45,7 @@
         }
 
         [Fact]
-        public async Task SetModifiedDate_OnSaveChanges()
+        public async Task SetModifiedDate_OnEntity_WhenExistingEntityIsUpdated()
         {
             // Arrange
             var options = new DbContextOptionsBuilder<AppDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
