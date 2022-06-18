@@ -53,8 +53,6 @@ namespace MoneyFox
         public static string SetupCompletionRoute => nameof(SetupCompletionPage);
 
         // ViewModels
-        public static DashboardViewModel DashboardViewModel => ServiceLocator.Current.GetInstance<DashboardViewModel>();
-
         public static AccountListViewModel AccountListViewModel => ServiceLocator.Current.GetInstance<AccountListViewModel>();
 
         public static AddAccountViewModel AddAccountViewModel => ServiceLocator.Current.GetInstance<AddAccountViewModel>();

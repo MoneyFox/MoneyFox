@@ -132,11 +132,7 @@
             <Generator>MSBuild:Compile</Generator>
         </EmbeddedResource>
     </ItemGroup>
-
-    <ItemGroup>
-        <Folder Include="Views\About\" />
-    </ItemGroup>
-
+  
     <ItemGroup>
         <Compile Update="Views\OverflowMenu\OverflowMenuPage.xaml.cs">
             <DependentUpon>OverflowMenuPage.xaml</DependentUpon>
@@ -147,5 +143,11 @@
         <Compile Update="Views\Statistics\StatisticAccountMonthlyCashflowPage.xaml.cs">
             <DependentUpon>StatisticAccountMonthlyCashFlowPage.xaml</DependentUpon>
         </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+        <_Parameter1>MoneyFox.Tests</_Parameter1>
+      </AssemblyAttribute>
     </ItemGroup>
 </Project>

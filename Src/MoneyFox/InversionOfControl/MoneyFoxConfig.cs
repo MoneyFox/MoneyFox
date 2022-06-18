@@ -1,10 +1,13 @@
 namespace MoneyFox.InversionOfControl
 {
 
+    using Core.Common.Interfaces;
+    using Core.Interfaces;
     using Core.InversionOfControl;
     using Mapping;
     using Microsoft.Extensions.DependencyInjection;
     using Mobile.Infrastructure.InversionOfControl;
+    using Services;
     using ViewModels.About;
     using ViewModels.Accounts;
     using ViewModels.Categories;
@@ -21,10 +24,19 @@ namespace MoneyFox.InversionOfControl
     {
         public void Register(ServiceCollection serviceCollection)
         {
+            RegisterServices(serviceCollection);
             RegisterViewModels(serviceCollection);
             serviceCollection.AddSingleton(_ => AutoMapperFactory.Create());
+
             new CoreConfig().Register(serviceCollection);
             new InfrastructureMobileConfig().Register(serviceCollection);
+        }
+
+        private static void RegisterServices(ServiceCollection serviceCollection)
+        {
+            serviceCollection.AddTransient<IDialogService, DialogService>();
+            serviceCollection.AddTransient<INavigationService, NavigationService>();
+            serviceCollection.AddTransient<IToastService, ToastService>();
         }
 
         private static void RegisterViewModels(ServiceCollection serviceCollection)

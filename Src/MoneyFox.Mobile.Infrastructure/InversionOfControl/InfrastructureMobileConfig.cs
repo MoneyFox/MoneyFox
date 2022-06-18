@@ -15,7 +15,7 @@ namespace MoneyFox.Mobile.Infrastructure.InversionOfControl
             serviceCollection.AddTransient<IEmailAdapter, EmailAdapter>();
             serviceCollection.AddTransient<ISettingsAdapter, SettingsAdapter>();
 
-            new InfrastructureConfig().Register(serviceCollection);
+            InfrastructureConfig.Register(serviceCollection);
         }
     }
 

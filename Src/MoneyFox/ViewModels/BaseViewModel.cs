@@ -3,7 +3,7 @@ namespace MoneyFox.ViewModels
 
     using CommunityToolkit.Mvvm.ComponentModel;
 
-    internal class BaseViewModel : ObservableObject
+    internal class BaseViewModel : ObservableRecipient
     {
 
     }
