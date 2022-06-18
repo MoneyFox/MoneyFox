@@ -10,7 +10,7 @@ namespace MoneyFox.Core.InversionOfControl
     {
         public void Register(ServiceCollection serviceCollection)
         {
-            serviceCollection.AddMediatR(configuration: options => options.Using<CustomMediator>().AsSingleton(), typeof(CustomMediator));
+            serviceCollection.AddMediatR(typeof(CustomMediator));
             serviceCollection.AddTransient<ICustomPublisher, CustomPublisher>();
             RegisterFacades(serviceCollection);
         }
