@@ -14,7 +14,7 @@
     using Serilog;
     using Xamarin.Forms;
 
-    public class StatisticCategorySummaryViewModel : StatisticViewModel
+    internal sealed class StatisticCategorySummaryViewModel : StatisticViewModel
     {
         private readonly IDialogService dialogService;
 

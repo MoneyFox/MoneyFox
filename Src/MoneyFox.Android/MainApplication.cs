@@ -10,6 +10,7 @@
     using Core.Common.Interfaces;
     using Core.Interfaces;
     using Infrastructure.DbBackup;
+    using JetBrains.Annotations;
     using Microsoft.Extensions.DependencyInjection;
     using Serilog;
     using Serilog.Events;
@@ -17,6 +18,7 @@
     using Xamarin.Essentials;
 
     [Application]
+    [UsedImplicitly]
     public class MainApplication : Application
     {
         public MainApplication(IntPtr handle, JniHandleOwnership transfer) : base(javaReference: handle, transfer: transfer) { }
@@ -27,20 +29,12 @@
 
             // Setup handler for uncaught exceptions.
             AndroidEnvironment.UnhandledExceptionRaiser += HandleAndroidException;
-            RegisterServices();
             base.OnCreate();
         }
 
         private void HandleAndroidException(object sender, RaiseThrowableEventArgs e)
         {
             Log.Fatal(exception: e.Exception, messageTemplate: "Application Terminating");
-        }
-
-        private static void RegisterServices()
-        {
-            var builder = new ContainerBuilder();
-            builder.RegisterModule<AndroidModule>();
-            ViewModelLocator.RegisterServices(builder);
         }
 
         private void InitLogger()

@@ -1,19 +1,6 @@
 namespace MoneyFox
 {
 
-    using Autofac;
-    using Autofac.Extras.CommonServiceLocator;
-    using CommonServiceLocator;
-    using ViewModels.About;
-    using ViewModels.Accounts;
-    using ViewModels.Categories;
-    using ViewModels.Dashboard;
-    using ViewModels.DataBackup;
-    using ViewModels.Dialogs;
-    using ViewModels.OverflowMenu;
-    using ViewModels.Payments;
-    using ViewModels.Settings;
-    using ViewModels.Statistics;
     using Views.About;
     using Views.Accounts;
     using Views.Backup;
@@ -51,32 +38,6 @@ namespace MoneyFox
         public static string WelcomeViewRoute => nameof(WelcomePage);
         public static string CategoryIntroductionRoute => nameof(CategoryIntroductionPage);
         public static string SetupCompletionRoute => nameof(SetupCompletionPage);
-
-        // ViewModels
-        public static StatisticCashFlowViewModel StatisticCashFlowViewModel => ServiceLocator.Current.GetInstance<StatisticCashFlowViewModel>();
-
-        public static StatisticCategoryProgressionViewModel StatisticCategoryProgressionViewModel
-            => ServiceLocator.Current.GetInstance<StatisticCategoryProgressionViewModel>();
-
-        public static StatisticAccountMonthlyCashFlowViewModel StatisticAccountMonthlyCashFlowViewModel
-            => ServiceLocator.Current.GetInstance<StatisticAccountMonthlyCashFlowViewModel>();
-
-        public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingViewModel
-            => ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
-
-        public static StatisticCategorySummaryViewModel StatisticCategorySummaryViewModel
-            => ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
-
-        public static StatisticSelectorViewModel StatisticSelectorViewModel => ServiceLocator.Current.GetInstance<StatisticSelectorViewModel>();
-
-        public static void RegisterServices(ContainerBuilder registrations)
-        {
-            var container = registrations.Build();
-            if (container != null)
-            {
-                ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(container));
-            }
-        }
     }
 
 }

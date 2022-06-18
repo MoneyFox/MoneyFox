@@ -32,7 +32,6 @@ namespace MoneyFox.iOS
         public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
         {
             InitLogger();
-            RegisterServices();
             Forms.Init();
             FormsMaterial.Init();
             LoadApplication(new App(AddServices));
@@ -66,13 +65,6 @@ namespace MoneyFox.iOS
                 {
                     // Do something if needed
                 });
-        }
-
-        private void RegisterServices()
-        {
-            var builder = new ContainerBuilder();
-            builder.RegisterModule<IosModule>();
-            ViewModelLocator.RegisterServices(builder);
         }
 
         private void InitLogger()
