@@ -15,7 +15,7 @@ namespace MoneyFox.Infrastructure.InversionOfControl
 
     public static class InfrastructureConfig
     {
-        public static void Register(ServiceCollection serviceCollection)
+        public static void Register(IServiceCollection serviceCollection)
         {
             serviceCollection.AddSingleton(
                 sp => new DbContextOptionsBuilder<AppDbContext>().UseSqlite($"Data Source={sp.GetService<IDbPathProvider>()?.GetDbPath()}").Options);

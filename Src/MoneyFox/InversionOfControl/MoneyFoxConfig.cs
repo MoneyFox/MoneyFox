@@ -32,14 +32,14 @@ namespace MoneyFox.InversionOfControl
             new InfrastructureMobileConfig().Register(serviceCollection);
         }
 
-        private static void RegisterServices(ServiceCollection serviceCollection)
+        private static void RegisterServices(IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<IDialogService, DialogService>();
             serviceCollection.AddTransient<INavigationService, NavigationService>();
             serviceCollection.AddTransient<IToastService, ToastService>();
         }
 
-        private static void RegisterViewModels(ServiceCollection serviceCollection)
+        private static void RegisterViewModels(IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<AboutViewModel>();
             serviceCollection.AddTransient<AccountListViewModel>();

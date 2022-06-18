@@ -2,4 +2,4 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 
-internal sealed class BaseViewModel : ObservableRecipient { }
+internal class BaseViewModel : ObservableRecipient { }

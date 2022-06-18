@@ -3,6 +3,7 @@ namespace MoneyFox.Win;
 using System;
 using System.Threading.Tasks;
 using Autofac;
+using Common.Exceptions;
 using CommonServiceLocator;
 using Core._Pending_.Common.Facades;
 using Core.ApplicationCore.UseCases.BackupUpload;

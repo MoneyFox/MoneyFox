@@ -9,25 +9,25 @@ namespace MoneyFox.Core.InversionOfControl
 
     public sealed class CoreConfig
     {
-        public void Register(ServiceCollection serviceCollection)
+        public void Register(IServiceCollection serviceCollection)
         {
             RegisterHelper(serviceCollection);
             RegisterMediatr(serviceCollection);
             RegisterFacades(serviceCollection);
         }
 
-        private static void RegisterHelper(ServiceCollection serviceCollection)
+        private static void RegisterHelper(IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<ISystemDateHelper, SystemDateHelper>();
         }
 
-        private static void RegisterMediatr(ServiceCollection serviceCollection)
+        private static void RegisterMediatr(IServiceCollection serviceCollection)
         {
             serviceCollection.AddMediatR(typeof(CustomMediator));
             serviceCollection.AddTransient<ICustomPublisher, CustomPublisher>();
         }
 
-        private static void RegisterFacades(ServiceCollection serviceCollection)
+        private static void RegisterFacades(IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<ISettingsFacade, SettingsFacade>();
             serviceCollection.AddTransient<IConnectivityFacade, ConnectivityFacade>();
