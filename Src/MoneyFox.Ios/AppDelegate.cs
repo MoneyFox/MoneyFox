@@ -35,7 +35,7 @@ namespace MoneyFox.iOS
             RegisterServices();
             Forms.Init();
             FormsMaterial.Init();
-            LoadApplication(new App());
+            LoadApplication(new App(AddServices));
             RequestToastPermissions();
 
             return base.FinishedLaunching(uiApplication: uiApplication, launchOptions: launchOptions);
