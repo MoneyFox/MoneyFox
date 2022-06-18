@@ -9,7 +9,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Autofac" Version="6.4.0" />
         <PackageReference Include="AutoMapper" Version="11.0.1" />
         <PackageReference Include="CommunityToolkit.Mvvm" Version="7.1.2" />
         <PackageReference Include="Dawn.Guard" Version="1.12.0" />
