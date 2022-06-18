@@ -6,7 +6,6 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using Core.Common;
     using Core.Common.Interfaces;

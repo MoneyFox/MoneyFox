@@ -13,7 +13,7 @@
         public PaymentListPage()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.PaymentListViewModel;
+            BindingContext = App.GetViewModel<PaymentListViewModel>();
         }
 
         private PaymentListViewModel ViewModel => (PaymentListViewModel)BindingContext;

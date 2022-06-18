@@ -8,7 +8,7 @@
     using Extensions;
     using Xamarin.Forms;
 
-    public class WelcomeViewModel : ObservableObject
+    internal sealed class WelcomeViewModel : BaseViewModel
     {
         private readonly ISettingsFacade settingsFacade;
 
@@ -17,9 +17,9 @@
             this.settingsFacade = settingsFacade;
         }
 
-        public RelayCommand GoToAddAccountCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddAccountRoute));
+        public AsyncRelayCommand GoToAddAccountCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddAccountRoute));
 
-        public RelayCommand NextStepCommand => new RelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.CategoryIntroductionRoute));
+        public AsyncRelayCommand NextStepCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.CategoryIntroductionRoute));
 
         public RelayCommand SkipCommand => new RelayCommand(SkipSetup);
 

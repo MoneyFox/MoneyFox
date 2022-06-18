@@ -10,13 +10,13 @@ namespace MoneyFox.Views.Popups
         public FilterPopup()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.SelectFilterDialogViewModel;
+            BindingContext = App.GetViewModel<SelectFilterDialogViewModel>();
         }
 
         public FilterPopup(PaymentListFilterChangedMessage message)
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.SelectFilterDialogViewModel;
+            BindingContext = App.GetViewModel<SelectFilterDialogViewModel>();
             ViewModel.Initialize(message);
         }
 

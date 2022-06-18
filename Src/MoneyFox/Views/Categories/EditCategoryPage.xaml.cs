@@ -13,7 +13,7 @@
         public EditCategoryPage(int categoryId)
         {
             InitializeComponent();
-            BindingContext = ServiceLocator.Current.GetInstance<EditCategoryViewModel>();
+            BindingContext = App.GetViewModel<EditCategoryViewModel>();
             this.categoryId = categoryId;
             var cancelItem = new ToolbarItem
             {

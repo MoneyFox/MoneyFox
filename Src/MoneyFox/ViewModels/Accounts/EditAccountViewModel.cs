@@ -9,7 +9,7 @@
     using Core.Common.Interfaces;
     using MediatR;
 
-    public class EditAccountViewModel : ModifyAccountViewModel
+    internal class EditAccountViewModel : ModifyAccountViewModel
     {
         private readonly IMapper mapper;
         private readonly IMediator mediator;

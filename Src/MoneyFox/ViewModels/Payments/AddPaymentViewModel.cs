@@ -13,7 +13,7 @@ namespace MoneyFox.ViewModels.Payments
     using MediatR;
 
     [UsedImplicitly]
-    public class AddPaymentViewModel : ModifyPaymentViewModel
+    internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
     {
         private readonly IMapper mapper;
         private readonly IMediator mediator;

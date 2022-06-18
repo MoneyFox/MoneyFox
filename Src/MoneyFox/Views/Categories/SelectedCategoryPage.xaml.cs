@@ -10,7 +10,7 @@
         public SelectCategoryPage()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.SelectCategoryViewModel;
+            BindingContext = App.GetViewModel<SelectCategoryViewModel>();
             var cancelItem = new ToolbarItem
             {
                 Command = new Command(async () => await Navigation.PopModalAsync()),

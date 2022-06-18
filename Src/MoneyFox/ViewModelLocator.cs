@@ -53,32 +53,6 @@ namespace MoneyFox
         public static string SetupCompletionRoute => nameof(SetupCompletionPage);
 
         // ViewModels
-        public static AccountListViewModel AccountListViewModel => ServiceLocator.Current.GetInstance<AccountListViewModel>();
-
-        public static AddAccountViewModel AddAccountViewModel => ServiceLocator.Current.GetInstance<AddAccountViewModel>();
-
-        public static EditAccountViewModel EditAccountViewModel => ServiceLocator.Current.GetInstance<EditAccountViewModel>();
-
-        public static PaymentListViewModel PaymentListViewModel => ServiceLocator.Current.GetInstance<PaymentListViewModel>();
-
-        public static AddPaymentViewModel AddPaymentViewModel => ServiceLocator.Current.GetInstance<AddPaymentViewModel>();
-
-        public static EditPaymentViewModel EditPaymentViewModel => ServiceLocator.Current.GetInstance<EditPaymentViewModel>();
-
-        public static CategoryListViewModel CategoryListViewModel => ServiceLocator.Current.GetInstance<CategoryListViewModel>();
-
-        public static SelectCategoryViewModel SelectCategoryViewModel => ServiceLocator.Current.GetInstance<SelectCategoryViewModel>();
-
-        internal static AddCategoryViewModel AddCategoryViewModel => ServiceLocator.Current.GetInstance<AddCategoryViewModel>();
-
-        public static EditCategoryViewModel EditCategoryViewModel => ServiceLocator.Current.GetInstance<EditCategoryViewModel>();
-
-        public static SelectDateRangeDialogViewModel SelectDateRangeDialogViewModel => ServiceLocator.Current.GetInstance<SelectDateRangeDialogViewModel>();
-
-        public static SelectFilterDialogViewModel SelectFilterDialogViewModel => ServiceLocator.Current.GetInstance<SelectFilterDialogViewModel>();
-
-        public static BackupViewModel BackupViewModel => ServiceLocator.Current.GetInstance<BackupViewModel>();
-
         public static StatisticCashFlowViewModel StatisticCashFlowViewModel => ServiceLocator.Current.GetInstance<StatisticCashFlowViewModel>();
 
         public static StatisticCategoryProgressionViewModel StatisticCategoryProgressionViewModel
@@ -94,12 +68,6 @@ namespace MoneyFox
             => ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
 
         public static StatisticSelectorViewModel StatisticSelectorViewModel => ServiceLocator.Current.GetInstance<StatisticSelectorViewModel>();
-
-        public static PaymentForCategoryListViewModel PaymentForCategoryListViewModel => ServiceLocator.Current.GetInstance<PaymentForCategoryListViewModel>();
-
-        public static SettingsViewModel SettingsViewModel => ServiceLocator.Current.GetInstance<SettingsViewModel>();
-
-        public static OverflowMenuViewModel OverflowMenuViewModel => ServiceLocator.Current.GetInstance<OverflowMenuViewModel>();
 
         public static void RegisterServices(ContainerBuilder registrations)
         {
