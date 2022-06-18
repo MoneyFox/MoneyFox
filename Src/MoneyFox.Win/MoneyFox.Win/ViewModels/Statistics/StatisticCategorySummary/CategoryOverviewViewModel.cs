@@ -2,8 +2,8 @@
 
 using System;
 using System.Collections.ObjectModel;
+using Common.Groups;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Groups;
 using Payments;
 
 public class CategoryOverviewViewModel : ObservableObject

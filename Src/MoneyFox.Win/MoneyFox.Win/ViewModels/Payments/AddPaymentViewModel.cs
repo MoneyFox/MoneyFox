@@ -3,6 +3,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Common.Helpers;
 using CommunityToolkit.Mvvm.Input;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
@@ -13,7 +14,6 @@ using Core.Common.Interfaces;
 using Core.Resources;
 using MediatR;
 using Services;
-using Utilities;
 
 public class AddPaymentViewModel : ModifyPaymentViewModel
 {

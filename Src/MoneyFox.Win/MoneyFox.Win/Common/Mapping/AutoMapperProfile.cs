@@ -1,8 +1,8 @@
-﻿namespace MoneyFox.Win.Mapping;
+﻿namespace MoneyFox.Win.Common.Mapping;
 
 using AutoMapper;
-using ViewModels.Accounts;
-using ViewModels.Payments;
+using MoneyFox.Win.ViewModels.Accounts;
+using MoneyFox.Win.ViewModels.Payments;
 
 public class AutoMapperProfile : Profile
 {

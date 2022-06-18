@@ -1,12 +1,12 @@
 ﻿namespace MoneyFox.Win.ViewModels.Accounts;
 
 using System.Threading.Tasks;
+using Common.Helpers;
 using Core.Commands.Accounts.CreateAccount;
 using Core.Common.Interfaces;
 using Core.Resources;
 using MediatR;
 using Services;
-using Utilities;
 
 public class AddAccountViewModel : ModifyAccountViewModel
 {

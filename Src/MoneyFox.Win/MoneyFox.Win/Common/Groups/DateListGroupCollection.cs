@@ -1,10 +1,10 @@
-﻿namespace MoneyFox.Win.Groups;
+﻿namespace MoneyFox.Win.Common.Groups;
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.Input;
-using Core.ApplicationCore.Domain.Exceptions;
+using MoneyFox.Core.ApplicationCore.Domain.Exceptions;
 
 public class DateListGroupCollection<T> : List<T>
 {

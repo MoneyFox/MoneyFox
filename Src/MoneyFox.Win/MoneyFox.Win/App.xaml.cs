@@ -11,10 +11,13 @@ using Core.Commands.Payments.ClearPayments;
 using Core.Commands.Payments.CreateRecurringPayments;
 using Core.Common.Interfaces;
 using Core.Resources;
+using InversionOfControl;
 using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Serilog;
 using Services;
+using ViewModels;
 
 public partial class App : Application
 {
@@ -24,6 +27,23 @@ public partial class App : Application
     {
         LoggerService.Initialize();
         InitializeComponent();
+    }
+
+
+    private static IServiceProvider? ServiceProvider { get; set; }
+
+    internal static BaseViewModel GetViewModel<TViewModel>() where TViewModel : BaseViewModel
+    {
+        return ServiceProvider?.GetService<TViewModel>() ?? throw new ResolveViewModeException<TViewModel>();
+    }
+
+
+    private static void SetupServices(Action<IServiceCollection>? addPlatformServices)
+    {
+        var services = new ServiceCollection();
+        addPlatformServices?.Invoke(services);
+        new WindowsConfig().Register(services);
+        ServiceProvider = services.BuildServiceProvider();
     }
 
     protected override void OnLaunched(LaunchActivatedEventArgs args)

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Win.Mapping;
+﻿namespace MoneyFox.Win.Common.Mapping;
 
 using AutoMapper;
 

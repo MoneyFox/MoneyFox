@@ -2,8 +2,8 @@
 
 using System.Collections.ObjectModel;
 using Categories;
+using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
-using Groups;
 
 public class DesignTimeCategoryListViewModel : ICategoryListViewModel
 {

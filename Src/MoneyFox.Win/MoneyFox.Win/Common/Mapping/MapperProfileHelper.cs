@@ -1,10 +1,10 @@
-﻿namespace MoneyFox.Win.Mapping;
+﻿namespace MoneyFox.Win.Common.Mapping;
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Core.Common.Interfaces.Mapping;
+using MoneyFox.Core.Common.Interfaces.Mapping;
 
 public sealed class Map
 {

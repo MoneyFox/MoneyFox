@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Win.Utilities;
+﻿namespace MoneyFox.Win.Common.Helpers;
 
 using System.Globalization;
 

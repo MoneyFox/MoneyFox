@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Win.Helpers;
+﻿namespace MoneyFox.Win.Common.Helpers;
 
 using Windows.Storage;
 

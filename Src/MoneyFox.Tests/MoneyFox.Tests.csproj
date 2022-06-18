@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Remove="xunit.runner.json" />
+        <None Remove="xunit.runner.json"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -18,15 +18,15 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper" Version="11.0.1" />
-        <PackageReference Include="FluentAssertions" Version="6.7.0" />
-        <PackageReference Include="FluentAssertions.Analyzers" Version="0.17.2" />
-        <PackageReference Include="MediatR" Version="10.0.1" />
-        <PackageReference Include="Moq" Version="4.18.1" />
-        <PackageReference Include="NSubstitute" Version="4.3.0" />
-        <PackageReference Include="NSubstitute.Analyzers.CSharp" Version="1.0.15" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
-        <PackageReference Include="xunit" Version="2.4.1" />
+        <PackageReference Include="AutoMapper" Version="11.0.1"/>
+        <PackageReference Include="FluentAssertions" Version="6.7.0"/>
+        <PackageReference Include="FluentAssertions.Analyzers" Version="0.17.2"/>
+        <PackageReference Include="MediatR" Version="10.0.1"/>
+        <PackageReference Include="Moq" Version="4.18.1"/>
+        <PackageReference Include="NSubstitute" Version="4.3.0"/>
+        <PackageReference Include="NSubstitute.Analyzers.CSharp" Version="1.0.15"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0"/>
+        <PackageReference Include="xunit" Version="2.4.1"/>
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
@@ -38,13 +38,13 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\MoneyFox.Core\MoneyFox.Core.csproj" />
-        <ProjectReference Include="..\MoneyFox\MoneyFox.csproj" />
+        <ProjectReference Include="..\MoneyFox.Core\MoneyFox.Core.csproj"/>
+        <ProjectReference Include="..\MoneyFox\MoneyFox.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Core\Domain" />
-      <Folder Include="Presentation" />
+        <Folder Include="Core\Domain"/>
+        <Folder Include="Presentation"/>
     </ItemGroup>
 
 </Project>

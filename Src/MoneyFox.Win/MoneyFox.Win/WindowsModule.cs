@@ -2,10 +2,10 @@ namespace MoneyFox.Win;
 
 using System;
 using Autofac;
+using Common.Mapping;
 using Core;
 using Core.Interfaces;
 using Infrastructure;
-using Mapping;
 using MediatR;
 using Pages;
 using Pages.Accounts;
