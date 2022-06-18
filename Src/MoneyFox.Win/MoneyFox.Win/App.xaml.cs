@@ -16,6 +16,20 @@ using InversionOfControl;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
+using MoneyFox.Win.Pages;
+using MoneyFox.Win.Pages.Accounts;
+using MoneyFox.Win.Pages.Categories;
+using MoneyFox.Win.Pages.Payments;
+using MoneyFox.Win.Pages.Settings;
+using MoneyFox.Win.Pages.Statistics;
+using MoneyFox.Win.Pages.Statistics.StatisticCategorySummary;
+using MoneyFox.Win.ViewModels.Accounts;
+using MoneyFox.Win.ViewModels.Categories;
+using MoneyFox.Win.ViewModels.DataBackup;
+using MoneyFox.Win.ViewModels.Payments;
+using MoneyFox.Win.ViewModels.Settings;
+using MoneyFox.Win.ViewModels.Statistics;
+using MoneyFox.Win.ViewModels.Statistics.StatisticCategorySummary;
 using Serilog;
 using Services;
 using ViewModels;
@@ -28,6 +42,23 @@ public partial class App : Application
     {
         LoggerService.Initialize();
         SetupServices();
+
+        NavigationService.Register<ShellViewModel, ShellPage>();
+        NavigationService.Register<AccountListViewModel, AccountListPage>();
+        NavigationService.Register<PaymentListViewModel, PaymentListPage>();
+        NavigationService.Register<AddPaymentViewModel, AddPaymentPage>();
+        NavigationService.Register<EditPaymentViewModel, EditPaymentPage>();
+        NavigationService.Register<CategoryListViewModel, CategoryListPage>();
+        NavigationService.Register<SettingsViewModel, SettingsHostPage>();
+        NavigationService.Register<StatisticCashFlowViewModel, StatisticCashFlowPage>();
+        NavigationService.Register<StatisticCategoryProgressionViewModel, StatisticCategoryProgressionPage>();
+        NavigationService.Register<StatisticAccountMonthlyCashflowViewModel, StatisticAccountMonthlyCashFlowPage>();
+        NavigationService.Register<StatisticCategorySpreadingViewModel, StatisticCategorySpreadingPage>();
+        NavigationService.Register<StatisticCategorySummaryViewModel, StatisticCategorySummaryPage>();
+        NavigationService.Register<StatisticSelectorViewModel, StatisticSelectorPage>();
+        NavigationService.Register<BackupViewModel, BackupPage>();
+        NavigationService.Register<WindowsSettingsViewModel, SettingsHostPage>();
+
         InitializeComponent();
     }
 

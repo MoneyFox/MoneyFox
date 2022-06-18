@@ -43,8 +43,7 @@ public sealed partial class MainWindow : Window
             Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
 
         // Lastly, retrieve the AppWindow for the current (XAML) WinUI 3 window.
-        Microsoft.UI.Windowing.AppWindow appWindow =
-            Microsoft.UI.Windowing.AppWindow.GetFromWindowId(windowId);
+        AppWindow appWindow = AppWindow.GetFromWindowId(windowId);
 
         if (appWindow != null)
         {

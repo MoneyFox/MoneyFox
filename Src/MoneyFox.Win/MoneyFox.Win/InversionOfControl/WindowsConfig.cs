@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Win.InversionOfControl;
+namespace MoneyFox.Win.InversionOfControl;
 
 using Common.Mapping;
 using Core.Common.Interfaces;
@@ -22,6 +22,8 @@ internal sealed class WindowsConfig
     public void Register(IServiceCollection serviceCollection)
     {
         RegisterViewModels(serviceCollection);
+        RegisterWindowsServices(serviceCollection);
+
         serviceCollection.AddSingleton(_ => AutoMapperFactory.Create());
         new CoreConfig().Register(serviceCollection);
         new InfrastructureWinConfig().Register(serviceCollection);
@@ -30,11 +32,12 @@ internal sealed class WindowsConfig
     private static void RegisterWindowsServices(IServiceCollection serviceCollection)
     {
         serviceCollection.AddTransient<IDialogService, DialogService>();
-        serviceCollection.AddTransient<INavigationService, NavigationService>();
+        serviceCollection.AddSingleton<INavigationService, NavigationService>();
         serviceCollection.AddTransient<IToastService, ToastService>();
         serviceCollection.AddTransient<IGraphClientFactory, GraphClientFactory>();
         serviceCollection.AddTransient<IAppInformation, WindowsAppInformation>();
         serviceCollection.AddTransient<IStoreOperations, MarketplaceOperations>();
+        serviceCollection.AddTransient<IBalanceCalculationService, BalanceCalculationService>();
     }
 
     private static void RegisterViewModels(IServiceCollection serviceCollection)

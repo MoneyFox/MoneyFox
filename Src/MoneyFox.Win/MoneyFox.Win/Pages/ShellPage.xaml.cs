@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Win.Pages;
+namespace MoneyFox.Win.Pages;
 
 using Windows.System;
 using Windows.UI.Core;
@@ -18,12 +18,13 @@ public sealed partial class ShellPage : Page
     public ShellPage()
     {
         InitializeComponent();
+
         DataContext = App.GetViewModel<ShellViewModel>();
+        ViewModel.InitNavigationService(MainContentFrame);
+
         MainContentFrame.Navigated += MainContentFrame_Navigated;
         NavView.BackRequested += MenuNav_BackRequested;
         PointerPressed += OnMouseButtonClicked;
-        var navigationService = ServiceLocator.Current.GetInstance<INavigationService>();
-        navigationService.Initialize(MainContentFrame);
     }
 
     private ShellViewModel ViewModel => (ShellViewModel)DataContext;

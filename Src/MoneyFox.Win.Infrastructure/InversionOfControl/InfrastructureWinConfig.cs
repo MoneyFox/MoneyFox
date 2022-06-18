@@ -12,6 +12,8 @@ public sealed class InfrastructureWinConfig
 
     public void Register(IServiceCollection serviceCollection)
     {
+        serviceCollection.AddTransient<IDbPathProvider, DbPathProvider>();
+
         RegisterAdapters(serviceCollection);
         RegisterIdentityClient(serviceCollection);
         InfrastructureConfig.Register(serviceCollection);
