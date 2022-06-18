@@ -1,10 +1,14 @@
 namespace MoneyFox.Infrastructure.InversionOfControl
 {
 
+    using System;
+    using Core._Pending_.Common.Facades;
     using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using Core.ApplicationCore.UseCases.BackupUpload;
     using Core.ApplicationCore.UseCases.DbBackup;
     using Core.Common.Interfaces;
+    using Core.Common.Mediatr;
+    using Core.Interfaces;
     using DataAccess;
     using DbBackup;
     using DbBackup.Legacy;
@@ -15,8 +19,14 @@ namespace MoneyFox.Infrastructure.InversionOfControl
     {
         public static void Register(ServiceCollection serviceCollection)
         {
-            serviceCollection.AddTransient<IAppDbContext, AppDbContext>();
+            // TODO should this be a singleton? Would that work with the backup restore?
+            serviceCollection.AddTransient<IAppDbContext>(
+                sp => EfCoreContextFactory.Create(
+                    publisher: sp.GetService<ICustomPublisher>() ?? throw new InvalidOperationException(),
+                    settingsFacade: sp.GetService<ISettingsFacade>() ?? throw new InvalidOperationException(),
+                    dbPath: sp.GetService<IDbPathProvider>()?.GetDbPath() ?? throw new InvalidOperationException()));
 
+            serviceCollection.AddTransient<IContextAdapter, ContextAdapter>();
             RegisterRepositories(serviceCollection);
             RegisterBackupServices(serviceCollection);
         }
@@ -31,7 +41,6 @@ namespace MoneyFox.Infrastructure.InversionOfControl
             serviceCollection.AddTransient<IBackupUploadService, OneDriveBackupUploadService>();
             serviceCollection.AddTransient<IOneDriveAuthenticationService, OneDriveAuthenticationService>();
             serviceCollection.AddTransient<IBackupUploadService, OneDriveBackupUploadService>();
-
             serviceCollection.AddTransient<IBackupService, BackupService>();
             serviceCollection.AddTransient<IOneDriveBackupService, OneDriveService>();
         }

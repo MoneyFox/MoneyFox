@@ -1,24 +1,23 @@
 ﻿namespace MoneyFox.Core._Pending_.Common.Facades
 {
 
+    using Interfaces;
+
     public interface IConnectivityFacade
     {
-        /// <summary>
-        ///     returns if the device is connected to the internet.
-        /// </summary>
         bool IsConnected { get; }
     }
 
     public class ConnectivityFacade : IConnectivityFacade
     {
-        private readonly IConnectivityFacade connectivityFacade;
+        private readonly IConnectivityAdapter connectivityAdapter;
 
-        public ConnectivityFacade(IConnectivityFacade connectivityFacade)
+        public ConnectivityFacade(IConnectivityAdapter connectivityAdapter)
         {
-            this.connectivityFacade = connectivityFacade;
+            this.connectivityAdapter = connectivityAdapter;
         }
 
-        public bool IsConnected => connectivityFacade.IsConnected;
+        public bool IsConnected => connectivityAdapter.IsConnected;
     }
 
 }
