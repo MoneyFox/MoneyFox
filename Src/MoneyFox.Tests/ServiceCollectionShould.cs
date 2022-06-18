@@ -34,7 +34,7 @@ namespace MoneyFox.Tests
             foreach (var serviceDescriptor in serviceCollection)
             {
                 var serviceType = serviceDescriptor.ServiceType;
-                if (serviceType.Namespace.StartsWith("MoneyFox"))
+                if (serviceType.Namespace!.StartsWith("MoneyFox"))
                 {
                     try
                     {
