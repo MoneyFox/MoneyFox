@@ -13,7 +13,7 @@ public sealed partial class PaymentListPage
     public PaymentListPage()
     {
         InitializeComponent();
-        DataContext = ViewModelLocator.PaymentListVm;
+        DataContext = App.GetViewModel<PaymentListViewModel>();
     }
 
     public override bool ShowHeader => false;

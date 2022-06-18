@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Win.Services;
+namespace MoneyFox.Win.Services;
 
 using System;
 using System.Collections.Concurrent;
@@ -85,11 +85,6 @@ public class NavigationService : INavigationService
     public static Type GetViewModel(Type view)
     {
         var type = ViewModelMap.Where(r => r.Value == view).Select(r => r.Key).FirstOrDefault();
-        if (type == null)
-        {
-            throw new InvalidOperationException($"View not registered for ViewModel '{view.FullName}'");
-        }
-
-        return type;
+        return type ?? throw new InvalidOperationException($"View not registered for ViewModel '{view.FullName}'");
     }
 }

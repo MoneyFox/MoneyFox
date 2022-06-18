@@ -21,7 +21,7 @@ using MediatR;
 using Payments;
 using Services;
 
-public class AccountListViewModel : ObservableRecipient, IAccountListViewModel
+internal sealed class AccountListViewModel : BaseViewModel, IAccountListViewModel
 {
     private readonly IMediator mediator;
     private readonly IMapper mapper;

@@ -22,7 +22,7 @@ using Microsoft.UI.Xaml.Data;
 using Serilog;
 using Services;
 
-public class PaymentListViewModel : ObservableRecipient
+internal sealed class PaymentListViewModel : BaseViewModel
 {
     private const int DEFAULT_YEAR_BACK = -2;
 

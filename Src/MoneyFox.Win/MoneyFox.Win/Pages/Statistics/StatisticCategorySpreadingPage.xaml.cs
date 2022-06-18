@@ -10,12 +10,12 @@ public sealed partial class StatisticCategorySpreadingPage
     public StatisticCategorySpreadingPage()
     {
         InitializeComponent();
-        DataContext = ViewModelLocator.StatisticCategorySpreadingVm;
+        DataContext = App.GetViewModel<StatisticCategorySpreadingViewModel>();
     }
 
     public override bool ShowHeader => false;
 
-    public StatisticCategorySpreadingViewModel ViewModel => (StatisticCategorySpreadingViewModel)DataContext;
+    internal StatisticCategorySpreadingViewModel ViewModel => (StatisticCategorySpreadingViewModel)DataContext;
 
     public override string Header => Strings.CategorySpreadingTitle;
 

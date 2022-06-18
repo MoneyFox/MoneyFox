@@ -63,7 +63,6 @@ internal sealed class WindowsConfig
         serviceCollection.AddTransient<StatisticSelectorViewModel>();
 
         serviceCollection.AddTransient<IncomeExpenseBalanceViewModel>();
-        serviceCollection.AddTransient<SelectDateRangeDialogViewModel>();
         serviceCollection.AddTransient<SelectFilterDialogViewModel>();
         serviceCollection.AddTransient<ShellViewModel>();
     }

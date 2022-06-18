@@ -14,7 +14,7 @@ using Core.Resources;
 using MediatR;
 using Services;
 
-public class EditAccountViewModel : ModifyAccountViewModel
+internal sealed class EditAccountViewModel : ModifyAccountViewModel
 {
     private readonly IMapper mapper;
 

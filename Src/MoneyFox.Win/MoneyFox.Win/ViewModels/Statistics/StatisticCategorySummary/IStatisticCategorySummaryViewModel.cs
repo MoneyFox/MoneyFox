@@ -3,7 +3,7 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 
-public interface IStatisticCategorySummaryViewModel
+internal interface IStatisticCategorySummaryViewModel
 {
     ObservableCollection<CategoryOverviewViewModel> CategorySummary { get; }
     bool HasData { get; }

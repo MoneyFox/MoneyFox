@@ -17,7 +17,7 @@ using LiveChartsCore.SkiaSharpView.Painting;
 using MediatR;
 using SkiaSharp;
 
-public class StatisticAccountMonthlyCashflowViewModel : StatisticViewModel
+internal class StatisticAccountMonthlyCashflowViewModel : StatisticViewModel
 {
     private readonly IMapper mapper;
     private AccountViewModel selectedAccount = null!;

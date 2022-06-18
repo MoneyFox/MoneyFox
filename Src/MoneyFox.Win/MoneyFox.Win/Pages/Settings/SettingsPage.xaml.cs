@@ -7,7 +7,7 @@ public sealed partial class SettingsPage : BasePage
     public SettingsPage()
     {
         InitializeComponent();
-        DataContext = ViewModelLocator.SettingsVm;
+        DataContext = App.GetViewModel<WindowsSettingsViewModel>();
     }
 
     private WindowsSettingsViewModel ViewModel => (WindowsSettingsViewModel)DataContext;

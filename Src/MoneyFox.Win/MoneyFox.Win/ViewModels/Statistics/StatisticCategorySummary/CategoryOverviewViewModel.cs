@@ -6,7 +6,7 @@ using Common.Groups;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Payments;
 
-public class CategoryOverviewViewModel : ObservableObject
+internal class CategoryOverviewViewModel : ObservableObject
 {
     private const decimal DECIMAL_DELTA = 0.01m;
     private int categoryId;

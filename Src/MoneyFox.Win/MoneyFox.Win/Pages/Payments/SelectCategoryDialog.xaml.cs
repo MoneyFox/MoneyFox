@@ -9,7 +9,7 @@ public sealed partial class SelectCategoryDialog
     {
         XamlRoot = MainWindow.RootFrame.XamlRoot;
         InitializeComponent();
-        DataContext = ViewModelLocator.SelectCategoryListVm;
+        DataContext = App.GetViewModel<SelectCategoryListViewModel>();
         ViewModel.AppearingCommand.Execute(null);
     }
 

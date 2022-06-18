@@ -27,9 +27,9 @@ public partial class App : Application
     public App()
     {
         LoggerService.Initialize();
+        SetupServices();
         InitializeComponent();
     }
-
 
     private static IServiceProvider? ServiceProvider { get; set; }
 
@@ -39,19 +39,15 @@ public partial class App : Application
     }
 
 
-    private static void SetupServices(Action<IServiceCollection>? addPlatformServices)
+    private static void SetupServices()
     {
         var services = new ServiceCollection();
-        addPlatformServices?.Invoke(services);
         new WindowsConfig().Register(services);
         ServiceProvider = services.BuildServiceProvider();
     }
 
     protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
-        var builder = new ContainerBuilder();
-        builder.RegisterModule<WindowsModule>();
-        ViewModelLocator.RegisterServices(builder);
         var mainWindow = new MainWindow();
         mainWindow.Activate();
         ExecuteStartupTasks();

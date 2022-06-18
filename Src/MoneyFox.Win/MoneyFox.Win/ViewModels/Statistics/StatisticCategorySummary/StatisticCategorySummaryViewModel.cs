@@ -14,7 +14,7 @@ using Core.ApplicationCore.Queries.Statistics.GetCategorySummary;
 using MediatR;
 using Payments;
 
-public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticCategorySummaryViewModel
+internal sealed class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticCategorySummaryViewModel
 {
     private readonly IMapper mapper;
     private ObservableCollection<CategoryOverviewViewModel> categorySummary = new();

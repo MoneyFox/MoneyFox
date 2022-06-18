@@ -11,7 +11,7 @@ using DataBackup;
 using Services;
 using Statistics;
 
-public class ShellViewModel : ObservableObject
+internal sealed class ShellViewModel : BaseViewModel
 {
     private readonly INavigationService navigationService;
 

@@ -20,7 +20,7 @@ using MediatR;
 using Pages.Categories;
 using Services;
 
-public abstract class AbstractCategoryListViewModel : ObservableRecipient
+internal abstract class AbstractCategoryListViewModel : BaseViewModel
 {
     private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> source = new();
 

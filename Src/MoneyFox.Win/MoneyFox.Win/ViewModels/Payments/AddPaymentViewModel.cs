@@ -15,7 +15,7 @@ using Core.Resources;
 using MediatR;
 using Services;
 
-public class AddPaymentViewModel : ModifyPaymentViewModel
+internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
 {
     private readonly IMediator mediator;
     private readonly IMapper mapper;

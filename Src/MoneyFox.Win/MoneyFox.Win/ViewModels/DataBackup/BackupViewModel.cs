@@ -14,7 +14,7 @@ using Core.Resources;
 using MediatR;
 using Serilog;
 
-public class BackupViewModel : ObservableObject, IBackupViewModel
+internal sealed class BackupViewModel : BaseViewModel, IBackupViewModel
 {
     private readonly IMediator mediator;
     private readonly IBackupService backupService;

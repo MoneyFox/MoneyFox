@@ -10,7 +10,7 @@ public sealed partial class CategoryListPage
     public CategoryListPage()
     {
         InitializeComponent();
-        DataContext = ViewModelLocator.CategoryListVm;
+        DataContext = App.GetViewModel<CategoryListViewModel>();
     }
 
     public override string Header => Strings.CategoriesTitle;

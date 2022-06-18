@@ -12,7 +12,7 @@ public sealed partial class ModifyPaymentUserControl
         InitializeComponent();
     }
 
-    public ModifyPaymentViewModel ViewModel => (ModifyPaymentViewModel)DataContext;
+    private ModifyPaymentViewModel ViewModel => (ModifyPaymentViewModel)DataContext;
 
     private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {

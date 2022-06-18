@@ -8,7 +8,7 @@ using Core.Resources;
 using MediatR;
 using Services;
 
-public class AddAccountViewModel : ModifyAccountViewModel
+internal sealed class AddAccountViewModel : ModifyAccountViewModel
 {
     public AddAccountViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService) : base(
         dialogService: dialogService,

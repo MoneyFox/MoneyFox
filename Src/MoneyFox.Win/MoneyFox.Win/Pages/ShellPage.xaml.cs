@@ -18,7 +18,7 @@ public sealed partial class ShellPage : Page
     public ShellPage()
     {
         InitializeComponent();
-        DataContext = ViewModelLocator.ShellVm;
+        DataContext = App.GetViewModel<ShellViewModel>();
         MainContentFrame.Navigated += MainContentFrame_Navigated;
         NavView.BackRequested += MenuNav_BackRequested;
         PointerPressed += OnMouseButtonClicked;

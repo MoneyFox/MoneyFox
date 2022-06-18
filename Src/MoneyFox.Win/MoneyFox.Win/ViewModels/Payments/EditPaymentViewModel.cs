@@ -15,7 +15,7 @@ using MediatR;
 using Serilog;
 using Services;
 
-public class EditPaymentViewModel : ModifyPaymentViewModel
+internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
 {
     private readonly IMediator mediator;
     private readonly IMapper mapper;
