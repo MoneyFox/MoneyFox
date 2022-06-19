@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Accounts
 {
 
-    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
@@ -13,27 +12,15 @@
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class GetIncludedAccountQueryTests : IDisposable
+    public class GetIncludedAccountQueryTests
     {
         private readonly AppDbContext context;
-        private readonly Mock<IContextAdapter> contextAdapterMock;
+        private readonly GetIncludedAccountQuery.Handler handler;
 
         public GetIncludedAccountQueryTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-            contextAdapterMock = new Mock<IContextAdapter>();
-            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryAppDbContextFactory.Destroy(context);
+            handler = new GetIncludedAccountQuery.Handler(context);
         }
 
         [Fact]
@@ -47,9 +34,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetIncludedAccountQuery.Handler(contextAdapterMock.Object).Handle(
-                request: new GetIncludedAccountQuery(),
-                cancellationToken: default);
+            var result = await handler.Handle(request: new GetIncludedAccountQuery(), cancellationToken: default);
 
             // Assert
             Assert.Single(result);
@@ -69,9 +54,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetIncludedAccountQuery.Handler(contextAdapterMock.Object).Handle(
-                request: new GetIncludedAccountQuery(),
-                cancellationToken: default);
+            var result = await handler.Handle(request: new GetIncludedAccountQuery(), cancellationToken: default);
 
             // Assert
             Assert.Single(result);

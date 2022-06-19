@@ -4,26 +4,26 @@
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
+    using _Pending_.Common.QueryObjects;
+    using Common.Interfaces;
     using Domain.Aggregates.AccountAggregate;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using MoneyFox.Core._Pending_.Common.QueryObjects;
-    using MoneyFox.Core.Common.Interfaces;
 
     public class GetIncludedAccountQuery : IRequest<List<Account>>
     {
         public class Handler : IRequestHandler<GetIncludedAccountQuery, List<Account>>
         {
-            private readonly IContextAdapter contextAdapter;
+            private readonly IAppDbContext appDbContext;
 
-            public Handler(IContextAdapter contextAdapter)
+            public Handler(IAppDbContext appDbContext)
             {
-                this.contextAdapter = contextAdapter;
+                this.appDbContext = appDbContext;
             }
 
             public async Task<List<Account>> Handle(GetIncludedAccountQuery request, CancellationToken cancellationToken)
             {
-                return await contextAdapter.Context.Accounts.AreActive().AreNotExcluded().OrderByName().ToListAsync(cancellationToken);
+                return await appDbContext.Accounts.AreActive().AreNotExcluded().OrderByName().ToListAsync(cancellationToken);
             }
         }
     }
