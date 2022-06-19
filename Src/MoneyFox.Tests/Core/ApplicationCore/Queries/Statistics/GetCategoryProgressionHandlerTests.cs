@@ -9,9 +9,7 @@
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using MoneyFox.Core.ApplicationCore.Queries.Statistics;
-    using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Infrastructure.Persistence;
-    using Moq;
     using TestFramework;
     using Xunit;
 
@@ -20,15 +18,12 @@
     public class GetCategoryProgressionHandlerTests
     {
         private readonly AppDbContext context;
-        private readonly Mock<IContextAdapter> contextAdapterMock;
         private readonly GetCategoryProgressionHandler handler;
 
         public GetCategoryProgressionHandlerTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-            contextAdapterMock = new Mock<IContextAdapter>();
-            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-            handler = new GetCategoryProgressionHandler(contextAdapterMock.Object);
+            handler = new GetCategoryProgressionHandler(context);
         }
 
         [Fact]
