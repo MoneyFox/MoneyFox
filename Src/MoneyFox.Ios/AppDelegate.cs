@@ -3,8 +3,6 @@ namespace MoneyFox.iOS
 
     using System;
     using System.IO;
-    using System.Runtime.Remoting.Contexts;
-    using Autofac;
     using Core.Common;
     using Core.Common.Interfaces;
     using Core.Interfaces;
@@ -12,7 +10,6 @@ namespace MoneyFox.iOS
     using Infrastructure.DbBackup;
     using JetBrains.Annotations;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Graph;
     using Microsoft.Identity.Client;
     using Serilog;
     using Serilog.Events;
