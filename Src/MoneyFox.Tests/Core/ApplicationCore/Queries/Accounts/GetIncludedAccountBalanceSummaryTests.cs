@@ -14,27 +14,15 @@
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class GetIncludedAccountBalanceSummaryTests : IDisposable
+    public class GetIncludedAccountBalanceSummaryTests
     {
         private readonly AppDbContext context;
-        private readonly IContextAdapter contextAdapter;
+        private readonly GetIncludedAccountBalanceSummaryQuery.Handler handler;
 
         public GetIncludedAccountBalanceSummaryTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-            contextAdapter = Substitute.For<IContextAdapter>();
-            contextAdapter.Context.Returns(context);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryAppDbContextFactory.Destroy(context);
+            handler = new GetIncludedAccountBalanceSummaryQuery.Handler(context);
         }
 
         [Fact]
@@ -50,9 +38,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetIncludedAccountBalanceSummaryQuery.Handler(contextAdapter).Handle(
-                request: new GetIncludedAccountBalanceSummaryQuery(),
-                cancellationToken: default);
+            var result = await handler.Handle(request: new GetIncludedAccountBalanceSummaryQuery(), cancellationToken: default);
 
             // Assert
             result.Should().Be(220);
