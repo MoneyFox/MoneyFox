@@ -5,13 +5,8 @@
     using System.IO;
     using Android.App;
     using Android.Runtime;
-    using Autofac;
     using Core.Common;
-    using Core.Common.Interfaces;
-    using Core.Interfaces;
-    using Infrastructure.DbBackup;
     using JetBrains.Annotations;
-    using Microsoft.Extensions.DependencyInjection;
     using Serilog;
     using Serilog.Events;
     using Serilog.Exceptions;

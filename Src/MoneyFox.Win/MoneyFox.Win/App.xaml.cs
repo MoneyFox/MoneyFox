@@ -2,9 +2,7 @@ namespace MoneyFox.Win;
 
 using System;
 using System.Threading.Tasks;
-using Autofac;
 using Common.Exceptions;
-using CommonServiceLocator;
 using Core._Pending_.Common.Facades;
 using Core.ApplicationCore.UseCases.BackupUpload;
 using Core.ApplicationCore.UseCases.DbBackup;
@@ -16,23 +14,23 @@ using InversionOfControl;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
-using MoneyFox.Win.Pages;
-using MoneyFox.Win.Pages.Accounts;
-using MoneyFox.Win.Pages.Categories;
-using MoneyFox.Win.Pages.Payments;
-using MoneyFox.Win.Pages.Settings;
-using MoneyFox.Win.Pages.Statistics;
-using MoneyFox.Win.Pages.Statistics.StatisticCategorySummary;
-using MoneyFox.Win.ViewModels.Accounts;
-using MoneyFox.Win.ViewModels.Categories;
-using MoneyFox.Win.ViewModels.DataBackup;
-using MoneyFox.Win.ViewModels.Payments;
-using MoneyFox.Win.ViewModels.Settings;
-using MoneyFox.Win.ViewModels.Statistics;
-using MoneyFox.Win.ViewModels.Statistics.StatisticCategorySummary;
+using Pages;
+using Pages.Accounts;
+using Pages.Categories;
+using Pages.Payments;
+using Pages.Settings;
+using Pages.Statistics;
+using Pages.Statistics.StatisticCategorySummary;
 using Serilog;
 using Services;
 using ViewModels;
+using ViewModels.Accounts;
+using ViewModels.Categories;
+using ViewModels.DataBackup;
+using ViewModels.Payments;
+using ViewModels.Settings;
+using ViewModels.Statistics;
+using ViewModels.Statistics.StatisticCategorySummary;
 
 public partial class App : Application
 {
@@ -42,7 +40,6 @@ public partial class App : Application
     {
         LoggerService.Initialize();
         SetupServices();
-
         NavigationService.Register<ShellViewModel, ShellPage>();
         NavigationService.Register<AccountListViewModel, AccountListPage>();
         NavigationService.Register<PaymentListViewModel, PaymentListPage>();
@@ -58,7 +55,6 @@ public partial class App : Application
         NavigationService.Register<StatisticSelectorViewModel, StatisticSelectorPage>();
         NavigationService.Register<BackupViewModel, BackupPage>();
         NavigationService.Register<WindowsSettingsViewModel, SettingsHostPage>();
-
         InitializeComponent();
     }
 
@@ -68,7 +64,6 @@ public partial class App : Application
     {
         return ServiceProvider?.GetService<TViewModel>() ?? throw new ResolveViewModeException<TViewModel>();
     }
-
 
     private static void SetupServices()
     {
@@ -97,22 +92,25 @@ public partial class App : Application
             return;
         }
 
-        isRunning = true;
-        var toastService = ServiceLocator.Current.GetInstance<IToastService>();
-        var settingsFacade = ServiceLocator.Current.GetInstance<ISettingsFacade>();
-        var mediator = ServiceLocator.Current.GetInstance<IMediator>();
+        if (ServiceProvider == null)
+        {
+            return;
+        }
 
+        isRunning = true;
+        var toastService = ServiceProvider.GetService<IToastService>();
+        var settingsFacade = ServiceProvider.GetService<ISettingsFacade>();
+        var mediator = ServiceProvider.GetService<IMediator>();
         try
         {
             if (settingsFacade.IsBackupAutoUploadEnabled && settingsFacade.IsLoggedInToBackupService)
             {
-                var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
+                var backupService = ServiceProvider.GetService<IBackupService>();
                 await backupService.RestoreBackupAsync();
             }
 
             await mediator.Send(new ClearPaymentsCommand());
             await mediator.Send(new CreateRecurringPaymentsCommand());
-
             var uploadResult = await mediator.Send(new UploadBackup.Command());
             if (uploadResult == UploadBackup.UploadResult.Successful)
             {

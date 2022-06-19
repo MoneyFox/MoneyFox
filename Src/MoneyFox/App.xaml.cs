@@ -5,7 +5,6 @@
     using System.Globalization;
     using System.Threading.Tasks;
     using Common.Exceptions;
-    using CommonServiceLocator;
     using Core._Pending_.Common.Facades;
     using Core.ApplicationCore.UseCases.BackupUpload;
     using Core.ApplicationCore.UseCases.DbBackup;
@@ -78,15 +77,20 @@
                 return;
             }
 
+            if (ServiceProvider == null)
+            {
+                return;
+            }
+
             isRunning = true;
-            var toastService = ServiceLocator.Current.GetInstance<IToastService>();
-            var settingsFacade = ServiceLocator.Current.GetInstance<ISettingsFacade>();
-            var mediator = ServiceLocator.Current.GetInstance<IMediator>();
+            var toastService = ServiceProvider.GetService<IToastService>();
+            var settingsFacade = ServiceProvider.GetService<ISettingsFacade>();
+            var mediator = ServiceProvider.GetService<IMediator>();
             try
             {
                 if (settingsFacade.IsBackupAutoUploadEnabled && settingsFacade.IsLoggedInToBackupService)
                 {
-                    var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
+                    var backupService = ServiceProvider.GetService<IBackupService>();
                     await backupService.RestoreBackupAsync();
                 }
 
