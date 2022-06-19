@@ -19,13 +19,12 @@
     public class ClearPaymentsCommandTests
     {
         private readonly AppDbContext context;
-        private readonly Mock<IContextAdapter> contextAdapterMock;
+        private readonly ClearPaymentsCommand.Handler handler;
 
         public ClearPaymentsCommandTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-            contextAdapterMock = new Mock<IContextAdapter>();
-            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
+            handler = new ClearPaymentsCommand.Handler(context);
         }
 
         [Fact]
@@ -43,7 +42,8 @@
             await context.SaveChangesAsync();
 
             // Act
-            await new ClearPaymentsCommand.Handler(contextAdapterMock.Object).Handle(request: new ClearPaymentsCommand(), cancellationToken: default);
+            var command = new ClearPaymentsCommand();
+            await handler.Handle(request: command, cancellationToken: default);
 
             // Assert
             paymentList[0].IsCleared.Should().BeFalse();
@@ -66,7 +66,8 @@
             await context.SaveChangesAsync();
 
             // Act
-            await new ClearPaymentsCommand.Handler(contextAdapterMock.Object).Handle(request: new ClearPaymentsCommand(), cancellationToken: default);
+            var command = new ClearPaymentsCommand();
+            await handler.Handle(request: command, cancellationToken: default);
             var loadedPayments = context.Payments.ToList();
 
             // Assert
