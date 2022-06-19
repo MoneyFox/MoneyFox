@@ -6,13 +6,13 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using _Pending_.Common.QueryObjects;
+    using Common;
+    using Common.Interfaces;
     using Domain.Aggregates.AccountAggregate;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using MoneyFox.Core._Pending_.Common.QueryObjects;
-    using MoneyFox.Core.Common;
-    using MoneyFox.Core.Common.Interfaces;
-    using MoneyFox.Core.Resources;
+    using Resources;
 
     public class GetCashFlowQuery : IRequest<List<StatisticEntry>>
     {

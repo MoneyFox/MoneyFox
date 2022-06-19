@@ -11,10 +11,8 @@ namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Statistics
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using MoneyFox.Core.ApplicationCore.Queries.Statistics;
     using MoneyFox.Core.Common;
-    using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Core.Resources;
     using MoneyFox.Infrastructure.Persistence;
-    using Moq;
     using TestFramework;
     using Xunit;
 
