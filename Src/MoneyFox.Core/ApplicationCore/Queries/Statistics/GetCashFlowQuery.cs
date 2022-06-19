@@ -27,16 +27,16 @@
         private const string RED_HEX_CODE = "#cd3700";
         private const string BLUE_HEX_CODE = "#87cefa";
 
-        private readonly IContextAdapter contextAdapter;
+        private readonly IAppDbContext appDbContext;
 
-        public GetCashFlowQueryHandler(IContextAdapter contextAdapter)
+        public GetCashFlowQueryHandler(IAppDbContext appDbContext)
         {
-            this.contextAdapter = contextAdapter;
+            this.appDbContext = appDbContext;
         }
 
         public async Task<List<StatisticEntry>> Handle(GetCashFlowQuery request, CancellationToken cancellationToken)
         {
-            var payments = await contextAdapter.Context.Payments.Include(x => x.Category)
+            var payments = await appDbContext.Payments.Include(x => x.Category)
                 .WithoutTransfers()
                 .HasDateLargerEqualsThan(request.StartDate.Date)
                 .HasDateSmallerEqualsThan(request.EndDate.Date)
