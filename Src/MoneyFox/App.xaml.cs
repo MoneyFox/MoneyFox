@@ -6,13 +6,10 @@
     using System.Threading.Tasks;
     using Common.Exceptions;
     using Core._Pending_.Common.Facades;
-    using Core.ApplicationCore.UseCases.BackupUpload;
     using Core.ApplicationCore.UseCases.DbBackup;
     using Core.Commands.Payments.ClearPayments;
     using Core.Commands.Payments.CreateRecurringPayments;
     using Core.Common;
-    using Core.Common.Interfaces;
-    using Core.Resources;
     using Infrastructure.Persistence;
     using InversionOfControl;
     using MediatR;
@@ -45,7 +42,7 @@
 
         internal static BaseViewModel GetViewModel<TViewModel>() where TViewModel : BaseViewModel
         {
-            return ServiceProvider?.GetService<TViewModel>() ?? throw new ResolveViewModeException<TViewModel>();
+            return ServiceProvider?.GetService<TViewModel>() ?? throw new ResolveViewModelException<TViewModel>();
         }
 
         protected override void OnStart()
@@ -81,24 +78,18 @@
             }
 
             isRunning = true;
-            var toastService = ServiceProvider.GetService<IToastService>();
-            var settingsFacade = ServiceProvider.GetService<ISettingsFacade>();
-            var mediator = ServiceProvider.GetService<IMediator>();
+            var settingsFacade = ServiceProvider.GetService<ISettingsFacade>() ?? throw new ResolveDependencyException<ISettingsFacade>();
+            var mediator = ServiceProvider.GetService<IMediator>() ?? throw new ResolveDependencyException<IMediator>();
             try
             {
                 if (settingsFacade.IsBackupAutoUploadEnabled && settingsFacade.IsLoggedInToBackupService)
                 {
-                    var backupService = ServiceProvider.GetService<IBackupService>();
+                    var backupService = ServiceProvider.GetService<IBackupService>() ?? throw new ResolveDependencyException<IBackupService>();
                     await backupService.RestoreBackupAsync();
                 }
 
                 await mediator.Send(new ClearPaymentsCommand());
                 await mediator.Send(new CreateRecurringPaymentsCommand());
-                var uploadResult = await mediator.Send(new UploadBackup.Command());
-                if (uploadResult == UploadBackup.UploadResult.Successful)
-                {
-                    await toastService.ShowToastAsync(Strings.BackupCreatedMessage);
-                }
             }
             catch (Exception ex)
             {
