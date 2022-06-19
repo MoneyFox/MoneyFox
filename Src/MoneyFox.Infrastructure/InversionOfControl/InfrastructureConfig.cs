@@ -21,7 +21,6 @@ namespace MoneyFox.Infrastructure.InversionOfControl
                 sp => new DbContextOptionsBuilder<AppDbContext>().UseSqlite($"Data Source={sp.GetService<IDbPathProvider>()?.GetDbPath()}").Options);
 
             serviceCollection.AddTransient<IAppDbContext, AppDbContext>();
-            serviceCollection.AddTransient<IContextAdapter, ContextAdapter>();
             RegisterRepositories(serviceCollection);
             RegisterBackupServices(serviceCollection);
         }

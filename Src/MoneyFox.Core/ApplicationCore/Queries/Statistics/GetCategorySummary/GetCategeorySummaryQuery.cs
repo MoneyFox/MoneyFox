@@ -29,25 +29,25 @@
         private const decimal DECIMAL_DELTA = 0.1m;
         private const int POSITIONS_TO_ROUND = 2;
 
-        private readonly IContextAdapter contextAdapter;
+        private readonly IAppDbContext appDbContext;
 
         private List<Payment> paymentLastTwelveMonths = new List<Payment>();
         private List<CategoryOverviewItem> categoryOverviewItems = new List<CategoryOverviewItem>();
 
-        public GetCategorySummaryQueryHandler(IContextAdapter contextAdapter)
+        public GetCategorySummaryQueryHandler(IAppDbContext appDbContext)
         {
-            this.contextAdapter = contextAdapter;
+            this.appDbContext = appDbContext;
         }
 
         public async Task<CategorySummaryModel> Handle(GetCategorySummaryQuery request, CancellationToken cancellationToken)
         {
             categoryOverviewItems = new List<CategoryOverviewItem>();
-            paymentLastTwelveMonths = await contextAdapter.Context.Payments.Include(x => x.Category)
+            paymentLastTwelveMonths = await appDbContext.Payments.Include(x => x.Category)
                 .Where(x => x.Date.Date >= DateTime.Today.AddMonths(NUMBERS_OF_MONTHS_TO_LOAD))
                 .WithoutTransfers()
                 .ToListAsync(cancellationToken);
 
-            var paymentsInTimeRange = await contextAdapter.Context.Payments.Include(x => x.Category)
+            var paymentsInTimeRange = await appDbContext.Payments.Include(x => x.Category)
                 .HasDateLargerEqualsThan(request.StartDate.Date)
                 .HasDateSmallerEqualsThan(request.EndDate.Date)
                 .Where(x => x.Type != PaymentType.Transfer)
