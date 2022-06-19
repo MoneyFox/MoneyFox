@@ -14,16 +14,16 @@
     {
         public class Handler : IRequestHandler<GetAccountsQuery, List<Account>>
         {
-            private readonly IContextAdapter contextAdapter;
+            private readonly IAppDbContext appDbContext;
 
-            public Handler(IContextAdapter contextAdapter)
+            public Handler(IAppDbContext appDbContext)
             {
-                this.contextAdapter = contextAdapter;
+                this.appDbContext = appDbContext;
             }
 
             public async Task<List<Account>> Handle(GetAccountsQuery request, CancellationToken cancellationToken)
             {
-                var accounts = await contextAdapter.Context.Accounts.AreActive().OrderByInclusion().OrderByName().ToListAsync(cancellationToken);
+                var accounts = await appDbContext.Accounts.AreActive().OrderByInclusion().OrderByName().ToListAsync(cancellationToken);
 
                 return accounts;
             }
