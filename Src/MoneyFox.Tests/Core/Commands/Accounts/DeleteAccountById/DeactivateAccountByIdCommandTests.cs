@@ -15,7 +15,7 @@
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class DeactivateAccountByIdCommandTests : IDisposable
+    public class DeactivateAccountByIdCommandTests
     {
         private readonly AppDbContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
