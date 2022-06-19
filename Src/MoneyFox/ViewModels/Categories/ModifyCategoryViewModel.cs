@@ -12,7 +12,7 @@
     using MediatR;
     using Xamarin.Forms;
 
-    public abstract class ModifyCategoryViewModel : ObservableRecipient
+    internal abstract class ModifyCategoryViewModel : BaseViewModel
     {
         private readonly IDialogService dialogService;
         private readonly IMediator mediator;

@@ -43,8 +43,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Core\Domain" />
-      <Folder Include="Presentation" />
+        <Folder Include="Core\Domain" />
+        <Folder Include="Presentation" />
     </ItemGroup>
 
 </Project>

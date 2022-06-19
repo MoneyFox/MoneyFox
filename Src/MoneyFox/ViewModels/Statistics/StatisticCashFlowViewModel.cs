@@ -11,7 +11,7 @@ namespace MoneyFox.ViewModels.Statistics
     using MediatR;
     using MoneyFox.Core._Pending_.Common.Extensions;
 
-    public class StatisticCashFlowViewModel : StatisticViewModel
+    internal sealed class StatisticCashFlowViewModel : StatisticViewModel
     {
 
         public StatisticCashFlowViewModel(IMediator mediator) : base(mediator)

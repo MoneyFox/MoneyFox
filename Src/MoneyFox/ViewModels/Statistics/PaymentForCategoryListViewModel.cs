@@ -16,7 +16,7 @@
     using Views.Payments;
     using Xamarin.Forms;
 
-    public class PaymentForCategoryListViewModel : ObservableRecipient
+    internal sealed class PaymentForCategoryListViewModel : BaseViewModel
     {
         private readonly IMapper mapper;
 

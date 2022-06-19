@@ -39,16 +39,16 @@
         private const string RED_HEX_CODE = "#cd3700";
         private const string BLUE_HEX_CODE = "#87cefa";
 
-        private readonly IContextAdapter contextAdapter;
+        private readonly IAppDbContext appDbContext;
 
-        public GetAccountProgressionHandler(IContextAdapter contextAdapter)
+        public GetAccountProgressionHandler(IAppDbContext appDbContext)
         {
-            this.contextAdapter = contextAdapter;
+            this.appDbContext = appDbContext;
         }
 
         public async Task<List<StatisticEntry>> Handle(GetAccountProgressionQuery request, CancellationToken cancellationToken)
         {
-            var payments = await contextAdapter.Context.Payments.Include(x => x.Category)
+            var payments = await appDbContext.Payments.Include(x => x.Category)
                 .Include(x => x.ChargedAccount)
                 .HasAccountId(request.AccountId)
                 .HasDateLargerEqualsThan(request.StartDate.Date)

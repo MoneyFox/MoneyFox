@@ -1,19 +1,6 @@
 namespace MoneyFox
 {
 
-    using Autofac;
-    using Autofac.Extras.CommonServiceLocator;
-    using CommonServiceLocator;
-    using ViewModels.About;
-    using ViewModels.Accounts;
-    using ViewModels.Categories;
-    using ViewModels.Dashboard;
-    using ViewModels.DataBackup;
-    using ViewModels.Dialogs;
-    using ViewModels.OverflowMenu;
-    using ViewModels.Payments;
-    using ViewModels.Settings;
-    using ViewModels.Statistics;
     using Views.About;
     using Views.Accounts;
     using Views.Backup;
@@ -51,67 +38,6 @@ namespace MoneyFox
         public static string WelcomeViewRoute => nameof(WelcomePage);
         public static string CategoryIntroductionRoute => nameof(CategoryIntroductionPage);
         public static string SetupCompletionRoute => nameof(SetupCompletionPage);
-
-        // ViewModels
-        public static DashboardViewModel DashboardViewModel => ServiceLocator.Current.GetInstance<DashboardViewModel>();
-
-        public static AccountListViewModel AccountListViewModel => ServiceLocator.Current.GetInstance<AccountListViewModel>();
-
-        public static AddAccountViewModel AddAccountViewModel => ServiceLocator.Current.GetInstance<AddAccountViewModel>();
-
-        public static EditAccountViewModel EditAccountViewModel => ServiceLocator.Current.GetInstance<EditAccountViewModel>();
-
-        public static PaymentListViewModel PaymentListViewModel => ServiceLocator.Current.GetInstance<PaymentListViewModel>();
-
-        public static AddPaymentViewModel AddPaymentViewModel => ServiceLocator.Current.GetInstance<AddPaymentViewModel>();
-
-        public static EditPaymentViewModel EditPaymentViewModel => ServiceLocator.Current.GetInstance<EditPaymentViewModel>();
-
-        public static CategoryListViewModel CategoryListViewModel => ServiceLocator.Current.GetInstance<CategoryListViewModel>();
-
-        public static SelectCategoryViewModel SelectCategoryViewModel => ServiceLocator.Current.GetInstance<SelectCategoryViewModel>();
-
-        internal static AddCategoryViewModel AddCategoryViewModel => ServiceLocator.Current.GetInstance<AddCategoryViewModel>();
-
-        public static EditCategoryViewModel EditCategoryViewModel => ServiceLocator.Current.GetInstance<EditCategoryViewModel>();
-
-        public static SelectDateRangeDialogViewModel SelectDateRangeDialogViewModel => ServiceLocator.Current.GetInstance<SelectDateRangeDialogViewModel>();
-
-        public static SelectFilterDialogViewModel SelectFilterDialogViewModel => ServiceLocator.Current.GetInstance<SelectFilterDialogViewModel>();
-
-        public static BackupViewModel BackupViewModel => ServiceLocator.Current.GetInstance<BackupViewModel>();
-
-        public static StatisticCashFlowViewModel StatisticCashFlowViewModel => ServiceLocator.Current.GetInstance<StatisticCashFlowViewModel>();
-
-        public static StatisticCategoryProgressionViewModel StatisticCategoryProgressionViewModel
-            => ServiceLocator.Current.GetInstance<StatisticCategoryProgressionViewModel>();
-
-        public static StatisticAccountMonthlyCashFlowViewModel StatisticAccountMonthlyCashFlowViewModel
-            => ServiceLocator.Current.GetInstance<StatisticAccountMonthlyCashFlowViewModel>();
-
-        public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingViewModel
-            => ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
-
-        public static StatisticCategorySummaryViewModel StatisticCategorySummaryViewModel
-            => ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
-
-        public static StatisticSelectorViewModel StatisticSelectorViewModel => ServiceLocator.Current.GetInstance<StatisticSelectorViewModel>();
-
-        public static PaymentForCategoryListViewModel PaymentForCategoryListViewModel => ServiceLocator.Current.GetInstance<PaymentForCategoryListViewModel>();
-
-        public static SettingsViewModel SettingsViewModel => ServiceLocator.Current.GetInstance<SettingsViewModel>();
-        public static AboutViewModel AboutViewModel => ServiceLocator.Current.GetInstance<AboutViewModel>();
-
-        public static OverflowMenuViewModel OverflowMenuViewModel => ServiceLocator.Current.GetInstance<OverflowMenuViewModel>();
-
-        public static void RegisterServices(ContainerBuilder registrations)
-        {
-            var container = registrations.Build();
-            if (container != null)
-            {
-                ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(container));
-            }
-        }
     }
 
 }

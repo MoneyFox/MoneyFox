@@ -12,7 +12,7 @@
         public StatisticCategorySummaryPage()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.StatisticCategorySummaryViewModel;
+            BindingContext = App.GetViewModel<StatisticCategorySummaryViewModel>();
             ViewModel.LoadedCommand.Execute(null);
         }
 

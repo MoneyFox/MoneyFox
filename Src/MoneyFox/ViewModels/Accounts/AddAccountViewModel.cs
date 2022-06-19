@@ -6,7 +6,7 @@
     using Core.Common.Interfaces;
     using MediatR;
 
-    public class AddAccountViewModel : ModifyAccountViewModel
+    internal sealed class AddAccountViewModel : ModifyAccountViewModel
     {
         private readonly IDialogService dialogService;
         private readonly IMediator mediator;

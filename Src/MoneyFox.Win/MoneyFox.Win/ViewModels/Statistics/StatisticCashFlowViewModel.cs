@@ -11,7 +11,7 @@ using LiveChartsCore.Kernel.Sketches;
 using LiveChartsCore.SkiaSharpView;
 using MediatR;
 
-public class StatisticCashFlowViewModel : StatisticViewModel
+internal class StatisticCashFlowViewModel : StatisticViewModel
 {
     public StatisticCashFlowViewModel(IMediator mediator) : base(mediator) { }
 

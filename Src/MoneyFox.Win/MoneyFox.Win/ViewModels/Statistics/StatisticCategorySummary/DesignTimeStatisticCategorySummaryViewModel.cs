@@ -5,7 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 using JetBrains.Annotations;
 
 [UsedImplicitly]
-public class DesignTimeStatisticCategorySummaryViewModel : IStatisticCategorySummaryViewModel
+internal class DesignTimeStatisticCategorySummaryViewModel : IStatisticCategorySummaryViewModel
 {
     public RelayCommand LoadedCommand { get; } = null!;
 

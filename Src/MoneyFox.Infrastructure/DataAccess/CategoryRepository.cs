@@ -4,12 +4,13 @@ namespace MoneyFox.Infrastructure.DataAccess
     using System.Threading;
     using System.Threading.Tasks;
     using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
+    using Core.Common.Interfaces;
     using Persistence;
 
     internal sealed class CategoryRepository : ICategoryRepository
     {
-        private readonly AppDbContext appDbContext;
-        public CategoryRepository(AppDbContext appDbContext)
+        private readonly IAppDbContext appDbContext;
+        public CategoryRepository(IAppDbContext appDbContext)
         {
             this.appDbContext = appDbContext;
         }

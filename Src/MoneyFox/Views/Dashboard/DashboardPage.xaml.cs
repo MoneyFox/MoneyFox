@@ -9,7 +9,7 @@
         public DashboardPage()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.DashboardViewModel;
+            BindingContext = App.GetViewModel<DashboardViewModel>();
         }
 
         private DashboardViewModel ViewModel => (DashboardViewModel)BindingContext;

@@ -12,7 +12,7 @@
     using MediatR;
     using Xamarin.Forms;
 
-    public abstract class ModifyAccountViewModel : ObservableRecipient
+    internal abstract class ModifyAccountViewModel : BaseViewModel
     {
         private readonly IDialogService dialogService;
 

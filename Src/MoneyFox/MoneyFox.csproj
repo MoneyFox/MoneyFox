@@ -23,8 +23,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Autofac" Version="6.4.0" />
-        <PackageReference Include="Autofac.Extras.CommonServiceLocator" Version="6.0.1" />
         <PackageReference Include="CommunityToolkit.Mvvm" Version="7.1.2" />
         <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
         <PackageReference Include="LiveChartsCore.SkiaSharpView.XamarinForms" Version="2.0.0-beta.300" />
@@ -134,10 +132,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Views\About\" />
-    </ItemGroup>
-
-    <ItemGroup>
         <Compile Update="Views\OverflowMenu\OverflowMenuPage.xaml.cs">
             <DependentUpon>OverflowMenuPage.xaml</DependentUpon>
         </Compile>
@@ -147,5 +141,11 @@
         <Compile Update="Views\Statistics\StatisticAccountMonthlyCashflowPage.xaml.cs">
             <DependentUpon>StatisticAccountMonthlyCashFlowPage.xaml</DependentUpon>
         </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+            <_Parameter1>MoneyFox.Tests</_Parameter1>
+        </AssemblyAttribute>
     </ItemGroup>
 </Project>

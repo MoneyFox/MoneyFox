@@ -13,10 +13,7 @@ using MediatR;
 using Services;
 using DialogServiceClass = DialogService;
 
-/// <summary>
-///     View Model for creating and editing Categories without dialog
-/// </summary>
-public abstract class ModifyCategoryViewModel : ObservableRecipient, IModifyCategoryViewModel
+internal abstract class ModifyCategoryViewModel : BaseViewModel, IModifyCategoryViewModel
 {
     private readonly IMediator mediator;
     private readonly IMapper mapper;

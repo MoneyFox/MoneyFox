@@ -4,12 +4,12 @@
     using ViewModels.Accounts;
     using Xamarin.Forms;
 
-    public partial class AccountListPage : ContentPage
+    public partial class AccountListPage
     {
         public AccountListPage()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.AccountListViewModel;
+            BindingContext = App.GetViewModel<AccountListViewModel>();
         }
 
         private AccountListViewModel ViewModel => (AccountListViewModel)BindingContext;

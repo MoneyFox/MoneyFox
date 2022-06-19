@@ -13,27 +13,15 @@
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class GetAccountQueryTests : IDisposable
+    public class GetAccountQueryTests
     {
         private readonly AppDbContext context;
-        private readonly Mock<IContextAdapter> contextAdapterMock;
+        private readonly GetAccountsQuery.Handler handler;
 
         public GetAccountQueryTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-            contextAdapterMock = new Mock<IContextAdapter>();
-            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryAppDbContextFactory.Destroy(context);
+            handler = new GetAccountsQuery.Handler(context);
         }
 
         [Fact]
@@ -45,7 +33,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetAccountsQuery.Handler(contextAdapterMock.Object).Handle(request: new GetAccountsQuery(), cancellationToken: default);
+            var result = await handler.Handle(request: new GetAccountsQuery(), cancellationToken: default);
 
             // Assert
             Assert.Single(result);
@@ -63,7 +51,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetAccountsQuery.Handler(contextAdapterMock.Object).Handle(request: new GetAccountsQuery(), cancellationToken: default);
+            var result = await handler.Handle(request: new GetAccountsQuery(), cancellationToken: default);
 
             // Assert
             Assert.Single(result);

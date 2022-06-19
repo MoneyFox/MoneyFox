@@ -21,7 +21,7 @@ using Pages.Categories;
 using Pages.Payments;
 using Services;
 
-public abstract class ModifyPaymentViewModel : ObservableRecipient, IModifyPaymentViewModel
+public abstract class ModifyPaymentViewModel : BaseViewModel, IModifyPaymentViewModel
 {
     private readonly IMapper mapper;
     private readonly IMediator mediator;
@@ -40,9 +40,6 @@ public abstract class ModifyPaymentViewModel : ObservableRecipient, IModifyPayme
 
     private bool isBusy;
 
-    /// <summary>
-    ///     Default constructor
-    /// </summary>
     protected ModifyPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, INavigationService navigationService)
     {
         this.dialogService = dialogService;

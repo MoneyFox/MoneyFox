@@ -10,12 +10,12 @@ public sealed partial class AddPaymentPage
     public AddPaymentPage()
     {
         InitializeComponent();
-        DataContext = ViewModelLocator.AddPaymentVm;
+        DataContext = App.GetViewModel<AddPaymentViewModel>();
     }
 
     public override string Header => Strings.AddPaymentTitle;
 
-    public AddPaymentViewModel ViewModel => (AddPaymentViewModel)DataContext;
+    internal AddPaymentViewModel ViewModel => (AddPaymentViewModel)DataContext;
 
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {

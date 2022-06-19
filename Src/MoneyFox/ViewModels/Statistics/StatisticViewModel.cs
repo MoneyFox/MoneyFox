@@ -12,10 +12,7 @@ namespace MoneyFox.ViewModels.Statistics
     using Core.Resources;
     using MediatR;
 
-    /// <summary>
-    ///     Represents the statistic view.
-    /// </summary>
-    public abstract class StatisticViewModel : ObservableRecipient
+    internal abstract class StatisticViewModel : BaseViewModel
     {
         protected readonly IMediator Mediator;
         private DateTime endDate;

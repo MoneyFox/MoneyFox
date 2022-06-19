@@ -12,7 +12,7 @@
         public StatisticCashFlowPage()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.StatisticCashFlowViewModel;
+            BindingContext = App.GetViewModel<StatisticCashFlowViewModel>();
             ViewModel.LoadedCommand.Execute(null);
         }
 

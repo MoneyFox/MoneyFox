@@ -13,7 +13,7 @@ namespace MoneyFox.ViewModels.Statistics
     using MediatR;
     using MoneyFox.Core._Pending_.Common.Extensions;
 
-    public class StatisticCategorySpreadingViewModel : StatisticViewModel
+    internal sealed class StatisticCategorySpreadingViewModel : StatisticViewModel
     {
         private PaymentType selectedPaymentType;
 

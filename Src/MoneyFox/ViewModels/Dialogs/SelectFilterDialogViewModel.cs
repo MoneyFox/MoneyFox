@@ -22,7 +22,7 @@
         DateTime TimeRangeEnd { get; set; }
     }
 
-    public class SelectFilterDialogViewModel : ObservableRecipient, ISelectFilterDialogViewModel
+    internal sealed class SelectFilterDialogViewModel : BaseViewModel, ISelectFilterDialogViewModel
     {
         private bool isClearedFilterActive;
         private bool isRecurringFilterActive;

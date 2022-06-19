@@ -2,7 +2,6 @@
 {
 
     using System;
-    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using Core._Pending_.Common.Facades;
@@ -10,15 +9,16 @@
     using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using Core.Common.Interfaces;
-    using MediatR;
+    using Core.Common.Mediatr;
+    using Core.Notifications.DatabaseChanged;
     using Microsoft.EntityFrameworkCore;
 
     public class AppDbContext : DbContext, IAppDbContext
     {
-        private readonly IPublisher? publisher;
+        private readonly ICustomPublisher? publisher;
         private readonly ISettingsFacade? settingsFacade;
 
-        public AppDbContext(DbContextOptions options, IPublisher? publisher, ISettingsFacade? settingsFacade) : base(options)
+        public AppDbContext(DbContextOptions options, ICustomPublisher? publisher, ISettingsFacade? settingsFacade) : base(options)
         {
             this.publisher = publisher;
             this.settingsFacade = settingsFacade;
@@ -61,7 +61,10 @@
             // dispatch events only if save was successful
             if (changeCount > 0)
             {
-                settingsFacade.LastDatabaseUpdate = DateTime.Now;
+                await publisher.Publish(
+                    notification: new DataBaseChanged.Notification(),
+                    strategy: PublishStrategy.ParallelNoWait,
+                    cancellationToken: cancellationToken);
             }
 
             return changeCount;
@@ -69,7 +72,7 @@
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder?.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
         }
 
         public override int SaveChanges()

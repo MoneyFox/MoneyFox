@@ -10,10 +10,10 @@ public sealed partial class StatisticCategoryProgressionPage
     public StatisticCategoryProgressionPage()
     {
         InitializeComponent();
-        DataContext = ViewModelLocator.StatisticCategoryProgressionVm;
+        DataContext = App.GetViewModel<StatisticCategoryProgressionViewModel>();
     }
 
-    public StatisticCategoryProgressionViewModel ViewModel => (StatisticCategoryProgressionViewModel)DataContext;
+    internal StatisticCategoryProgressionViewModel ViewModel => (StatisticCategoryProgressionViewModel)DataContext;
 
     public override string Header => Strings.MonthlyCashflowTitle;
 

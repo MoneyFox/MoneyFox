@@ -26,21 +26,21 @@
 
         public class Handler : IRequestHandler<GetAccountEndOfMonthBalanceQuery, decimal>
         {
-            private readonly IContextAdapter contextAdapter;
+            private readonly IAppDbContext appDbContext;
             private readonly ISystemDateHelper systemDateHelper;
 
             private int accountId;
 
-            public Handler(IContextAdapter contextAdapter, ISystemDateHelper systemDateHelper)
+            public Handler(IAppDbContext appDbContext, ISystemDateHelper systemDateHelper)
             {
-                this.contextAdapter = contextAdapter;
+                this.appDbContext = appDbContext;
                 this.systemDateHelper = systemDateHelper;
             }
 
             public async Task<decimal> Handle(GetAccountEndOfMonthBalanceQuery request, CancellationToken cancellationToken)
             {
                 accountId = request.AccountId;
-                var account = await contextAdapter.Context.Accounts.WithId(accountId).FirstAsync();
+                var account = await appDbContext.Accounts.WithId(accountId).FirstAsync();
                 var balance = await GetCurrentAccountBalanceAsync();
                 foreach (var payment in await GetUnclearedPaymentsForThisMonthAsync())
                 {
@@ -102,12 +102,12 @@
 
             private async Task<decimal> GetCurrentAccountBalanceAsync()
             {
-                return (await contextAdapter.Context.Accounts.WithId(accountId).Select(x => x.CurrentBalance).ToListAsync()).Sum();
+                return (await appDbContext.Accounts.WithId(accountId).Select(x => x.CurrentBalance).ToListAsync()).Sum();
             }
 
             private async Task<List<Payment>> GetUnclearedPaymentsForThisMonthAsync()
             {
-                return await contextAdapter.Context.Payments.HasAccountId(accountId)
+                return await appDbContext.Payments.HasAccountId(accountId)
                     .Include(x => x.ChargedAccount)
                     .Include(x => x.TargetAccount)
                     .AreNotCleared()

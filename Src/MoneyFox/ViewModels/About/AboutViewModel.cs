@@ -6,7 +6,6 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using Core.Common;
     using Core.Common.Interfaces;
@@ -14,7 +13,7 @@
     using Core.Resources;
     using Xamarin.Essentials;
 
-    public class AboutViewModel : ObservableObject
+    internal class AboutViewModel : BaseViewModel
     {
         private const string WEBSITE_URL = "https://www.apply-solutions.ch";
         private const string SUPPORT_MAIL = "mobile.support@apply-solutions.ch";

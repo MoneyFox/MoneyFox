@@ -14,27 +14,15 @@
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class GetCategoryByIdQueryTests : IDisposable
+    public class GetCategoryByIdQueryTests
     {
         private readonly AppDbContext context;
-        private readonly Mock<IContextAdapter> contextAdapterMock;
+        private readonly GetCategoryByIdQuery.Handler handler;
 
         public GetCategoryByIdQueryTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-            contextAdapterMock = new Mock<IContextAdapter>();
-            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryAppDbContextFactory.Destroy(context);
+            handler = new GetCategoryByIdQuery.Handler(context);
         }
 
         [Fact]
@@ -43,7 +31,7 @@
             // Arrange
 
             // Act
-            var result = await new GetCategoryByIdQuery.Handler(contextAdapterMock.Object).Handle(
+            var result = await handler.Handle(
                 request: new GetCategoryByIdQuery(999),
                 cancellationToken: default);
 
@@ -60,7 +48,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetCategoryByIdQuery.Handler(contextAdapterMock.Object).Handle(
+            var result = await handler.Handle(
                 request: new GetCategoryByIdQuery(testCat1.Id),
                 cancellationToken: default);
 

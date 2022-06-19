@@ -10,7 +10,7 @@
     using Core.Common;
     using Core.Common.Interfaces;
 
-    public class SettingsViewModel : ObservableObject, ISettingsViewModel
+    internal sealed class SettingsViewModel : BaseViewModel, ISettingsViewModel
     {
         private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;

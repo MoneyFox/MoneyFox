@@ -19,18 +19,18 @@
     {
         public class Handler : IRequestHandler<GetTotalEndOfMonthBalanceQuery, decimal>
         {
-            private readonly IContextAdapter contextAdapter;
+            private readonly IAppDbContext appDbContext;
             private readonly ISystemDateHelper systemDateHelper;
 
-            public Handler(IContextAdapter contextAdapter, ISystemDateHelper systemDateHelper)
+            public Handler(IAppDbContext appDbContext, ISystemDateHelper systemDateHelper)
             {
-                this.contextAdapter = contextAdapter;
+                this.appDbContext = appDbContext;
                 this.systemDateHelper = systemDateHelper;
             }
 
             public async Task<decimal> Handle(GetTotalEndOfMonthBalanceQuery request, CancellationToken cancellationToken)
             {
-                var excluded = await contextAdapter.Context.Accounts.AreActive().AreExcluded().ToListAsync(cancellationToken: cancellationToken);
+                var excluded = await appDbContext.Accounts.AreActive().AreExcluded().ToListAsync(cancellationToken: cancellationToken);
                 var balance = await GetCurrentAccountBalanceAsync();
                 foreach (var payment in await GetUnclearedPaymentsForThisMonthAsync())
                 {
@@ -95,12 +95,12 @@
 
             private async Task<decimal> GetCurrentAccountBalanceAsync()
             {
-                return (await contextAdapter.Context.Accounts.AreActive().AreNotExcluded().Select(x => x.CurrentBalance).ToListAsync()).Sum();
+                return (await appDbContext.Accounts.AreActive().AreNotExcluded().Select(x => x.CurrentBalance).ToListAsync()).Sum();
             }
 
             private async Task<List<Payment>> GetUnclearedPaymentsForThisMonthAsync()
             {
-                return await contextAdapter.Context.Payments.Include(x => x.ChargedAccount)
+                return await appDbContext.Payments.Include(x => x.ChargedAccount)
                     .Include(x => x.TargetAccount)
                     .AreNotCleared()
                     .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper))

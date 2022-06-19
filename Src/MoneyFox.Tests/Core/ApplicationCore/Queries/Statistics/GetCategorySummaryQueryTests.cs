@@ -9,35 +9,21 @@
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using MoneyFox.Core.ApplicationCore.Queries.Statistics.GetCategorySummary;
-    using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Core.Resources;
     using MoneyFox.Infrastructure.Persistence;
-    using Moq;
     using TestFramework;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class GetCategorySummaryQueryTests : IDisposable
+    public class GetCategorySummaryQueryTests
     {
         private readonly AppDbContext context;
-        private readonly Mock<IContextAdapter> contextAdapterMock;
+        private readonly GetCategorySummaryQueryHandler handler;
 
         public GetCategorySummaryQueryTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-            contextAdapterMock = new Mock<IContextAdapter>();
-            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryAppDbContextFactory.Destroy(context);
+            handler = new GetCategorySummaryQueryHandler(context);
         }
 
         [Fact]
@@ -87,7 +73,7 @@
             context.SaveChanges();
 
             // Act
-            var result = await new GetCategorySummaryQueryHandler(contextAdapterMock.Object).Handle(
+            var result = await handler.Handle(
                 request: new GetCategorySummaryQuery { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
                 cancellationToken: default);
 
@@ -140,7 +126,7 @@
             context.SaveChanges();
 
             // Act
-            var result = await new GetCategorySummaryQueryHandler(contextAdapterMock.Object).Handle(
+            var result = await handler.Handle(
                 request: new GetCategorySummaryQuery { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
                 cancellationToken: default);
 
@@ -185,7 +171,7 @@
             context.SaveChanges();
 
             // Act
-            var result = await new GetCategorySummaryQueryHandler(contextAdapterMock.Object).Handle(
+            var result = await handler.Handle(
                 request: new GetCategorySummaryQuery { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
                 cancellationToken: default);
 
@@ -205,7 +191,7 @@
             context.SaveChanges();
 
             // Act
-            var result = await new GetCategorySummaryQueryHandler(contextAdapterMock.Object).Handle(
+            var result = await handler.Handle(
                 request: new GetCategorySummaryQuery { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
                 cancellationToken: default);
 
@@ -223,7 +209,7 @@
             context.SaveChanges();
 
             // Act
-            var result = await new GetCategorySummaryQueryHandler(contextAdapterMock.Object).Handle(
+            var result = await handler.Handle(
                 request: new GetCategorySummaryQuery { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
                 cancellationToken: default);
 

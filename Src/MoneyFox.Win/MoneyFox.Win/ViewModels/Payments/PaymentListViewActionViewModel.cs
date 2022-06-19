@@ -16,9 +16,7 @@ using Interfaces;
 using MediatR;
 using Services;
 
-/// <inheritdoc cref="IPaymentListViewActionViewModel" />
-/// />
-public class PaymentListViewActionViewModel : ObservableRecipient, IPaymentListViewActionViewModel
+internal sealed class PaymentListViewActionViewModel : BaseViewModel, IPaymentListViewActionViewModel
 {
     private const int TRANSFER_THRESHOLD = 2;
 

@@ -1,14 +1,12 @@
-﻿namespace MoneyFox.Win.Pages;
+namespace MoneyFox.Win.Pages;
 
 using Windows.System;
 using Windows.UI.Core;
-using CommonServiceLocator;
 using Microsoft.UI.Input;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Navigation;
 using Payments;
-using Services;
 using Settings;
 using ViewModels;
 using static ViewModels.ShellViewModel;
@@ -18,12 +16,11 @@ public sealed partial class ShellPage : Page
     public ShellPage()
     {
         InitializeComponent();
-        DataContext = ViewModelLocator.ShellVm;
+        DataContext = App.GetViewModel<ShellViewModel>();
+        ViewModel.InitNavigationService(MainContentFrame);
         MainContentFrame.Navigated += MainContentFrame_Navigated;
         NavView.BackRequested += MenuNav_BackRequested;
         PointerPressed += OnMouseButtonClicked;
-        var navigationService = ServiceLocator.Current.GetInstance<INavigationService>();
-        navigationService.Initialize(MainContentFrame);
     }
 
     private ShellViewModel ViewModel => (ShellViewModel)DataContext;

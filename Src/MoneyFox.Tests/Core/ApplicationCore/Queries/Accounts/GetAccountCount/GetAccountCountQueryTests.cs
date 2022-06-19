@@ -14,27 +14,15 @@
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class GetAccountCountQueryTests : IDisposable
+    public class GetAccountCountQueryTests
     {
         private readonly AppDbContext context;
-        private readonly IContextAdapter contextAdapter;
+        private readonly GetAccountCountQuery.Handler handler;
 
         public GetAccountCountQueryTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-            contextAdapter = Substitute.For<IContextAdapter>();
-            contextAdapter.Context.Returns(context);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryAppDbContextFactory.Destroy(context);
+            handler = new GetAccountCountQuery.Handler(context);
         }
 
         [Fact]
@@ -48,7 +36,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetAccountCountQuery.Handler(contextAdapter).Handle(request: new GetAccountCountQuery(), cancellationToken: default);
+            var result = await handler.Handle(request: new GetAccountCountQuery(), cancellationToken: default);
 
             // Assert
             result.Should().Be(2);
@@ -66,7 +54,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetAccountCountQuery.Handler(contextAdapter).Handle(request: new GetAccountCountQuery(), cancellationToken: default);
+            var result = await handler.Handle(request: new GetAccountCountQuery(), cancellationToken: default);
 
             // Assert
             result.Should().Be(1);

@@ -8,7 +8,7 @@ public sealed partial class EditCategoryDialog
     {
         XamlRoot = MainWindow.RootFrame.XamlRoot;
         InitializeComponent();
-        DataContext = ViewModelLocator.EditCategoryVm;
+        DataContext = App.GetViewModel<EditCategoryViewModel>();
         ViewModel.CategoryId = categoryId;
     }
 

@@ -20,27 +20,15 @@ namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Statistics
 
     [ExcludeFromCodeCoverage]
     [Collection("CultureCollection")]
-    public class GetCategorySpreadingQueryTests : IDisposable
+    public class GetCategorySpreadingQueryTests
     {
         private readonly AppDbContext context;
-        private readonly Mock<IContextAdapter> contextAdapterMock;
+        private readonly GetCategorySpreadingQueryHandler handler;
 
         public GetCategorySpreadingQueryTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-            contextAdapterMock = new Mock<IContextAdapter>();
-            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryAppDbContextFactory.Destroy(context);
+            handler = new GetCategorySpreadingQueryHandler(context);
         }
 
         [Fact]
@@ -83,7 +71,7 @@ namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Statistics
             context.SaveChanges();
 
             // Act
-            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(
+            var result = (await handler.Handle(
                 request: new GetCategorySpreadingQuery(startDate: DateTime.Today.AddDays(-3), endDate: DateTime.Today.AddDays(3)),
                 cancellationToken: default)).ToList();
 
@@ -128,7 +116,7 @@ namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Statistics
             context.SaveChanges();
 
             // Act
-            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(
+            var result = (await handler.Handle(
                 request: new GetCategorySpreadingQuery(startDate: DateTime.Today.AddDays(-3), endDate: DateTime.Today.AddDays(3)),
                 cancellationToken: default)).ToList();
 
@@ -163,7 +151,7 @@ namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Statistics
             context.SaveChanges();
 
             // Act
-            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(
+            var result = (await handler.Handle(
                 request: new GetCategorySpreadingQuery(startDate: DateTime.Today.AddDays(-3), endDate: DateTime.Today.AddDays(3)),
                 cancellationToken: default)).ToList();
 
@@ -227,7 +215,7 @@ namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Statistics
             context.SaveChanges();
 
             // Act
-            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(
+            var result = (await handler.Handle(
                 request: new GetCategorySpreadingQuery(startDate: DateTime.Today.AddDays(-3), endDate: DateTime.Today.AddDays(3)),
                 cancellationToken: default)).ToList();
 
@@ -280,7 +268,7 @@ namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Statistics
             context.SaveChanges();
 
             // Act
-            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(
+            var result = (await handler.Handle(
                 request: new GetCategorySpreadingQuery(
                     startDate: DateTime.Today.AddDays(-3),
                     endDate: DateTime.Today.AddDays(3),

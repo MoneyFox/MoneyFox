@@ -20,7 +20,7 @@
     using MediatR;
     using Xamarin.Forms;
 
-    public abstract class ModifyPaymentViewModel : ObservableRecipient
+    internal abstract class ModifyPaymentViewModel : BaseViewModel
     {
         private readonly IDialogService dialogService;
         private readonly IMapper mapper;

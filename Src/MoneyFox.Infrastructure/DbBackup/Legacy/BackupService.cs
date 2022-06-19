@@ -25,7 +25,6 @@
         private readonly IFileStore fileStore;
         private readonly ISettingsFacade settingsFacade;
         private readonly IConnectivityAdapter connectivity;
-        private readonly IContextAdapter contextAdapter;
         private readonly IToastService toastService;
         private readonly IDbPathProvider dbPathProvider;
 
@@ -37,7 +36,6 @@
             IFileStore fileStore,
             ISettingsFacade settingsFacade,
             IConnectivityAdapter connectivity,
-            IContextAdapter contextAdapter,
             IToastService toastService,
             IDbPathProvider dbPathProvider)
         {
@@ -45,7 +43,6 @@
             this.fileStore = fileStore;
             this.settingsFacade = settingsFacade;
             this.connectivity = connectivity;
-            this.contextAdapter = contextAdapter;
             this.toastService = toastService;
             this.dbPathProvider = dbPathProvider;
         }
@@ -178,8 +175,6 @@
                 {
                     throw new BackupException("Error Moving downloaded backup file");
                 }
-
-                contextAdapter.RecreateContext();
 
                 return BackupRestoreResult.NewBackupRestored;
             }

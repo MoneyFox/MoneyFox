@@ -19,16 +19,16 @@
 
         public class Handler : IRequestHandler<GetAccountNameByIdQuery, string>
         {
-            private readonly IContextAdapter contextAdapter;
+            private readonly IAppDbContext appDbContext;
 
-            public Handler(IContextAdapter contextAdapter)
+            public Handler(IAppDbContext appDbContext)
             {
-                this.contextAdapter = contextAdapter;
+                this.appDbContext = appDbContext;
             }
 
             public async Task<string> Handle(GetAccountNameByIdQuery request, CancellationToken cancellationToken)
             {
-                var account = await contextAdapter.Context.Accounts.Where(x => x.Id == request.AccountId)
+                var account = await appDbContext.Accounts.Where(x => x.Id == request.AccountId)
                     .Select(x => x.Name)
                     .FirstOrDefaultAsync(cancellationToken);
 
