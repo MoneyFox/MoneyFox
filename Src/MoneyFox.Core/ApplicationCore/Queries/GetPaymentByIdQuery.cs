@@ -3,11 +3,11 @@
 
     using System.Threading;
     using System.Threading.Tasks;
+    using Common.Interfaces;
     using Domain.Aggregates.AccountAggregate;
     using Domain.Exceptions;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using MoneyFox.Core.Common.Interfaces;
 
     public class GetPaymentByIdQuery : IRequest<Payment>
     {
@@ -20,16 +20,16 @@
 
         public class Handler : IRequestHandler<GetPaymentByIdQuery, Payment>
         {
-            private readonly IContextAdapter contextAdapter;
+            private readonly IAppDbContext appDbContext;
 
-            public Handler(IContextAdapter contextAdapter)
+            public Handler(IAppDbContext appDbContext)
             {
-                this.contextAdapter = contextAdapter;
+                this.appDbContext = appDbContext;
             }
 
             public async Task<Payment> Handle(GetPaymentByIdQuery request, CancellationToken cancellationToken)
             {
-                var payment = await contextAdapter.Context.Payments.Include(x => x.ChargedAccount)
+                var payment = await appDbContext.Payments.Include(x => x.ChargedAccount)
                     .Include(x => x.TargetAccount)
                     .Include(x => x.RecurringPayment)
                     .Include(x => x.Category)
