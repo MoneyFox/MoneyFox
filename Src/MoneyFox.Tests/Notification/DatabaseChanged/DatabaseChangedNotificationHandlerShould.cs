@@ -10,10 +10,9 @@
     using MoneyFox.Core.ApplicationCore.UseCases.BackupUpload;
     using MoneyFox.Core.Notifications.DatabaseChanged;
     using NSubstitute;
-    using NSubstitute.ReceivedExtensions;
     using Xunit;
 
-    public sealed class DatabaseChangedNotificationHandlerShould
+    public class DatabaseChangedNotificationHandlerShould
     {
         private readonly ISender sender;
         private readonly ISettingsFacade settingsFacade;
@@ -23,22 +22,65 @@
         {
             sender = Substitute.For<ISender>();
             settingsFacade = Substitute.For<ISettingsFacade>();
-            handler = new DataBaseChanged.Handler(sender, settingsFacade);
+            handler = new DataBaseChanged.Handler(sender: sender, settingsFacade: settingsFacade);
         }
 
-        [Fact]
-        public async Task UploadBackup_WhenLoggedIn_And_BackupAutoUpload_Enabled()
+        public class GivenBackupAutoUploadEnabled : DatabaseChangedNotificationHandlerShould
         {
-            // Arrange
-            settingsFacade.IsBackupAutoUploadEnabled.Returns(true);
+            public GivenBackupAutoUploadEnabled()
+            {
+                settingsFacade.IsBackupAutoUploadEnabled.Returns(true);
+            }
 
-            // Act
-            var notification = new DataBaseChanged.Notification();
-            await handler.Handle(notification: notification, cancellationToken: CancellationToken.None);
+            [Fact]
+            public async Task UploadBackup_WhenLoggedIn()
+            {
+                // Arrange
+                settingsFacade.IsLoggedInToBackupService.Returns(true);
 
-            // Assert
-            await sender.Received().Send(Arg.Any<UploadBackup.Command>(), CancellationToken.None);
-            settingsFacade.LastDatabaseUpdate.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
+                // Act
+                var notification = new DataBaseChanged.Notification();
+                await handler.Handle(notification: notification, cancellationToken: CancellationToken.None);
+
+                // Assert
+                await sender.Received().Send(request: Arg.Any<UploadBackup.Command>(), cancellationToken: CancellationToken.None);
+                settingsFacade.LastDatabaseUpdate.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
+            }
+
+            [Fact]
+            public async Task Skip_UploadBackup_WhenNotLoggedIn()
+            {
+                // Arrange
+                settingsFacade.IsLoggedInToBackupService.Returns(false);
+
+                // Act
+                var notification = new DataBaseChanged.Notification();
+                await handler.Handle(notification: notification, cancellationToken: CancellationToken.None);
+
+                // Assert
+                await sender.Received(0).Send(request: Arg.Any<UploadBackup.Command>(), cancellationToken: CancellationToken.None);
+                settingsFacade.LastDatabaseUpdate.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
+            }
+        }
+
+        public class GivenBackupAutoUploadDisabled : DatabaseChangedNotificationHandlerShould
+        {
+            public GivenBackupAutoUploadDisabled()
+            {
+                settingsFacade.IsBackupAutoUploadEnabled.Returns(false);
+            }
+
+            [Fact]
+            public async Task UploadBackup_WhenLoggedIn()
+            {
+                // Act
+                var notification = new DataBaseChanged.Notification();
+                await handler.Handle(notification: notification, cancellationToken: CancellationToken.None);
+
+                // Assert
+                await sender.Received(0).Send(request: Arg.Any<UploadBackup.Command>(), cancellationToken: CancellationToken.None);
+                settingsFacade.LastDatabaseUpdate.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
+            }
         }
     }
 

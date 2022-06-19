@@ -26,7 +26,10 @@
             public async Task Handle(Notification notification, CancellationToken cancellationToken)
             {
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
-                await sender.Send(new UploadBackup.Command(), cancellationToken);
+                if (settingsFacade.IsBackupAutoUploadEnabled && settingsFacade.IsLoggedInToBackupService)
+                {
+                    await sender.Send(new UploadBackup.Command(), cancellationToken);
+                }
             }
         }
     }
