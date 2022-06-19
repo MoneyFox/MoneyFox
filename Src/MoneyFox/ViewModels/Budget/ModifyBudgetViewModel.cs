@@ -52,8 +52,13 @@
             }
         }
 
-        private void RemoveCategory(BudgetCategoryViewModel budgetCategory)
+        private void RemoveCategory(BudgetCategoryViewModel? budgetCategory)
         {
+            if (budgetCategory == null)
+            {
+                return;
+            }
+            
             SelectedCategories.Remove(budgetCategory);
         }
 
