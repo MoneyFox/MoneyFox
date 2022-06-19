@@ -1,10 +1,12 @@
 ﻿namespace MoneyFox.Tests.Presentation.ViewModels.Budget
 {
 
+    using System.Collections.Immutable;
     using System.Linq;
     using System.Threading.Tasks;
     using FluentAssertions;
     using MediatR;
+    using MoneyFox.Core.ApplicationCore.Queries.BudgetLoading;
     using MoneyFox.Core.ApplicationCore.UseCases.BudgetUpdate;
     using MoneyFox.Core.Common.Extensions;
     using MoneyFox.Core.Common.Messages;
@@ -18,12 +20,12 @@
     public class EditBudgetViewModelShould
     {
         private const int CATEGORY_ID = 10;
+        private readonly INavigationService navigationService;
         private readonly ISender sender;
 
         private readonly EditBudgetViewModel viewModel;
-        private readonly INavigationService navigationService;
 
-        public EditBudgetViewModelShould()
+        protected EditBudgetViewModelShould()
         {
             sender = Substitute.For<ISender>();
             navigationService = Substitute.For<INavigationService>();
@@ -113,6 +115,56 @@
                 capturedCommand.Categories.Should().BeEquivalentTo(testBudget.Categories);
                 await navigationService.Received(1).GoBackFromModal();
             }
+        }
+
+        public class OnInitialize : EditBudgetViewModelShould
+        {
+            [Fact]
+            public async Task SendCorrectLoadingCommand()
+            {
+                // Capture
+                var testBudget = new TestData.DefaultBudget();
+                var categories = testBudget.Categories.Select(c => new BudgetData.BudgetCategory(id: c, name: "category")).ToImmutableList();
+                LoadBudget.Query? capturedQuery = null;
+                sender.Send(Arg.Do<LoadBudget.Query>(q => capturedQuery = q))
+                      .Returns(new BudgetData(id: testBudget.Id, name: testBudget.Name, spendingLimit: testBudget.SpendingLimit, categories: categories));
+
+                // Arrange
+
+                // Act
+                await viewModel.InitializeCommand.ExecuteAsync(testBudget.Id);
+
+                // Assert
+                capturedQuery.Should().NotBeNull();
+                capturedQuery!.BudgetId.Should().Be(testBudget.Id);
+                viewModel.SelectedBudget.Id.Should().Be(testBudget.Id);
+                viewModel.SelectedBudget.Name.Should().Be(testBudget.Name);
+                viewModel.SelectedBudget.SpendingLimit.Should().Be(testBudget.SpendingLimit);
+
+                viewModel.SelectedCategories[0].CategoryId.Should().Be(categories[0].Id);
+                viewModel.SelectedCategories[0].Name.Should().Be(categories[0].Name);
+            }
+        }
+
+        public class OnDelete : EditBudgetViewModelShould
+        {
+            // [Fact]
+            // public async Task SendsCorrectDeleteCommand()
+            // {
+            //     // Capture
+            //     DeleteBudget.Command? capturedCommand = null;
+            //     await sender.Send(Arg.Do<DeleteBudget.Command>(q => capturedCommand = q));
+            //
+            //     // Arrange
+            //     //viewModel.SelectedBudget = new BudgetViewModel { Id = 10 };
+            //
+            //     // Act
+            //     await viewModel.DeleteBudgetCommand.ExecuteAsync(null);
+            //
+            //     // Assert
+            //     capturedCommand.Should().NotBeNull();
+            //     capturedCommand!.BudgetId.Should().Be(budgetViewModel.Id);
+            // }
         }
     }
 

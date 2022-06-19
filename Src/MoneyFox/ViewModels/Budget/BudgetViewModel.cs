@@ -7,8 +7,6 @@
     {
         private string name = null!;
 
-        private decimal currentSpending;
-
         private decimal spendingLimit;
         public int Id { get; set; }
 
@@ -16,12 +14,6 @@
         {
             get => name;
             set => SetProperty(field: ref name, newValue: value);
-        }
-
-        public decimal CurrentSpending
-        {
-            get => currentSpending;
-            set => SetProperty(field: ref currentSpending, newValue: value);
         }
 
         public decimal SpendingLimit

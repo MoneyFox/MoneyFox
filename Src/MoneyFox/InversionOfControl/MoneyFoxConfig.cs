@@ -71,7 +71,7 @@ namespace MoneyFox.InversionOfControl
 
             serviceCollection.AddTransient<AddBudgetViewModel>();
             serviceCollection.AddTransient<EditBudgetViewModel>();
-            serviceCollection.AddTransient<BudgetListViewModel>();
+            serviceCollection.AddTransient<BudgetListPageViewModel>();
         }
     }
 

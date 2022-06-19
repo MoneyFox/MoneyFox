@@ -14,16 +14,16 @@
 
     public class BudgetListViewModelShould
     {
-        private readonly BudgetListViewModel viewModel;
+        private readonly BudgetListPageViewModel pageViewModel;
         private readonly ISender sender;
 
         protected BudgetListViewModelShould()
         {
             sender = Substitute.For<ISender>();
-            viewModel = new BudgetListViewModel(sender);
+            pageViewModel = new BudgetListPageViewModel(sender);
         }
 
-        private static void AssertBudgetViewModel(BudgetViewModel actualBudgetVm, TestData.IBudget expectedBudgetData)
+        private static void AssertBudgetListViewModel(BudgetListViewModel actualBudgetVm, TestData.IBudget expectedBudgetData)
         {
             actualBudgetVm.Id.Should().Be(expectedBudgetData.Id);
             actualBudgetVm.Name.Should().Be(expectedBudgetData.Name);
@@ -37,10 +37,10 @@
             public async Task InitializeBudgetsCollectionEmpty_WhenNotItemsFound()
             {
                 // Act
-                await viewModel.InitializeCommand.ExecuteAsync(null);
+                await pageViewModel.InitializeCommand.ExecuteAsync(null);
 
                 // Assert
-                viewModel.Budgets.Should().BeEmpty();
+                pageViewModel.Budgets.Should().BeEmpty();
             }
         }
 
@@ -65,25 +65,25 @@
             public async Task InitializeBudgetsCollection_WithLoadedBudgets()
             {
                 // Act
-                await viewModel.InitializeCommand.ExecuteAsync(null);
+                await pageViewModel.InitializeCommand.ExecuteAsync(null);
 
                 // Assert
-                viewModel.Budgets.Should().HaveCount(1);
-                var loadedBudget = viewModel.Budgets.Single();
-                AssertBudgetViewModel(actualBudgetVm: loadedBudget, expectedBudgetData: budgetTestData);
+                pageViewModel.Budgets.Should().HaveCount(1);
+                var loadedBudget = pageViewModel.Budgets.Single();
+                AssertBudgetListViewModel(actualBudgetVm: loadedBudget, expectedBudgetData: budgetTestData);
             }
 
             [Fact]
             public async Task HasTheRightCount_WhenInitializeIsCalledMultipleTimes()
             {
                 // Act
-                await viewModel.InitializeCommand.ExecuteAsync(null);
-                await viewModel.InitializeCommand.ExecuteAsync(null);
+                await pageViewModel.InitializeCommand.ExecuteAsync(null);
+                await pageViewModel.InitializeCommand.ExecuteAsync(null);
 
                 // Assert
-                viewModel.Budgets.Should().HaveCount(1);
-                var loadedBudget = viewModel.Budgets.Single();
-                AssertBudgetViewModel(actualBudgetVm: loadedBudget, expectedBudgetData: budgetTestData);
+                pageViewModel.Budgets.Should().HaveCount(1);
+                var loadedBudget = pageViewModel.Budgets.Single();
+                AssertBudgetListViewModel(actualBudgetVm: loadedBudget, expectedBudgetData: budgetTestData);
             }
         }
     }

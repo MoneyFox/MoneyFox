@@ -9,15 +9,15 @@
         public BudgetListPage()
         {
             InitializeComponent();
-            BindingContext = App.GetViewModel<BudgetListViewModel>();
+            BindingContext = App.GetViewModel<BudgetListPageViewModel>();
         }
 
-        private BudgetListViewModel ViewModel => (BudgetListViewModel)BindingContext;
+        private BudgetListPageViewModel PageViewModel => (BudgetListPageViewModel)BindingContext;
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            await ViewModel.InitializeCommand.ExecuteAsync(null);
+            await PageViewModel.InitializeCommand.ExecuteAsync(null);
         }
     }
 

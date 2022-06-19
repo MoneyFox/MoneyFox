@@ -11,7 +11,7 @@
              xmlns:budgetControl="clr-namespace:MoneyFox.Views.Budget;assembly=MoneyFox"
              mc:Ignorable="d"
              Visual="Material"
-             x:DataType="budgetViewModel:BudgetListViewModel"
+             x:DataType="budgetViewModel:BudgetListPageViewModel"
              Title="{x:Static resources:Strings.BudgetsTitle}">
 
     <ContentPage.Content>
@@ -31,7 +31,7 @@
                             SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference BudgetCollectionView}}" >
 
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="budgetViewModel:BudgetViewModel">
+                    <DataTemplate x:DataType="budgetViewModel:BudgetListViewModel">
                         <Grid Padding="15,6,15,8">
                             <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
                                                Padding="15"

@@ -1,63 +1,33 @@
 ﻿namespace MoneyFox.ViewModels.Budget
 {
 
-    using System.Collections.ObjectModel;
-    using System.Linq;
-    using System.Threading.Tasks;
     using CommunityToolkit.Mvvm.ComponentModel;
-    using CommunityToolkit.Mvvm.Input;
-    using Core.ApplicationCore.Queries.BudgetListLoading;
-    using Core.Common.Extensions;
-    using Extensions;
-    using MediatR;
-    using Views.Budget;
-    using Xamarin.Forms;
 
-    internal sealed class BudgetListViewModel : BaseViewModel
+    public sealed class BudgetListViewModel : ObservableObject
     {
-        private readonly ISender sender;
+        private string name = null!;
 
-        public BudgetListViewModel(ISender sender)
+        private decimal currentSpending;
+
+        private decimal spendingLimit;
+        public int Id { get; set; }
+
+        public string Name
         {
-            this.sender = sender;
+            get => name;
+            set => SetProperty(field: ref name, newValue: value);
         }
 
-        public ObservableCollection<BudgetViewModel> Budgets { get; } = new ObservableCollection<BudgetViewModel>();
-
-        public AsyncRelayCommand InitializeCommand => new AsyncRelayCommand(Initialize);
-
-        public AsyncRelayCommand GoToAddBudgetCommand => new AsyncRelayCommand(GoToAddBudget);
-
-        public AsyncRelayCommand<BudgetViewModel> EditBudgetCommand => new AsyncRelayCommand<BudgetViewModel>(EditBudgetAsync);
-
-        private async Task Initialize()
+        public decimal CurrentSpending
         {
-            var budgetsListData = await sender.Send(new LoadBudgets.Query());
-            Budgets.Clear();
-            Budgets.AddRange(
-                budgetsListData.Select(
-                    bld => new BudgetViewModel
-                    {
-                        Id = bld.Id,
-                        Name = bld.Name,
-                        SpendingLimit = bld.SpendingLimit,
-                        CurrentSpending = bld.CurrentSpending
-                    }));
+            get => currentSpending;
+            set => SetProperty(field: ref currentSpending, newValue: value);
         }
 
-        private static async Task GoToAddBudget()
+        public decimal SpendingLimit
         {
-            await Shell.Current.GoToModalAsync(ViewModelLocator.AddBudgetRoute);
-        }
-
-        private async Task EditBudgetAsync(BudgetViewModel selectedBudget)
-        {
-            if (selectedBudget == null)
-            {
-                return;
-            }
-
-            await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new EditBudgetPage(selectedBudget.Id)) { BarBackgroundColor = Color.Transparent });
+            get => spendingLimit;
+            set => SetProperty(field: ref spendingLimit, newValue: value);
         }
     }
 
