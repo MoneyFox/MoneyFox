@@ -162,7 +162,7 @@ internal sealed class BackupViewModel : BaseViewModel, IBackupViewModel
             BackupLastModified = await backupService.GetBackupDateAsync();
             UserAccount = await backupService.GetUserAccount();
         }
-        catch (BackupAuthenticationFailedException ex)
+        catch (BackupAuthenticationFailedException)
         {
             await backupService.LogoutAsync();
             await dialogService.ShowMessageAsync(title: Strings.AuthenticationFailedTitle, message: Strings.ErrorMessageAuthenticationFailed);
