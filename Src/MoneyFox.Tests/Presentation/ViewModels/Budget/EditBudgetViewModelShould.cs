@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using FluentAssertions;
     using MediatR;
-    using MoneyFox.Core.ApplicationCore.Queries.BudgetLoading;
+    using MoneyFox.Core.ApplicationCore.Queries.BudgetEntryLoading;
     using MoneyFox.Core.ApplicationCore.UseCases.BudgetUpdate;
     using MoneyFox.Core.Common.Extensions;
     using MoneyFox.Core.Common.Messages;
@@ -124,10 +124,10 @@
             {
                 // Capture
                 var testBudget = new TestData.DefaultBudget();
-                var categories = testBudget.Categories.Select(c => new BudgetData.BudgetCategory(id: c, name: "category")).ToImmutableList();
-                LoadBudget.Query? capturedQuery = null;
-                sender.Send(Arg.Do<LoadBudget.Query>(q => capturedQuery = q))
-                      .Returns(new BudgetData(id: testBudget.Id, name: testBudget.Name, spendingLimit: testBudget.SpendingLimit, categories: categories));
+                var categories = testBudget.Categories.Select(c => new BudgetEntryData.BudgetCategory(id: c, name: "category")).ToImmutableList();
+                LoadBudgetEntry.Query? capturedQuery = null;
+                sender.Send(Arg.Do<LoadBudgetEntry.Query>(q => capturedQuery = q))
+                      .Returns(new BudgetEntryData(id: testBudget.Id, name: testBudget.Name, spendingLimit: testBudget.SpendingLimit, categories: categories));
 
                 // Arrange
 

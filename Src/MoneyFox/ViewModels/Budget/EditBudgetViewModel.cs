@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using CommunityToolkit.Mvvm.Input;
-    using Core.ApplicationCore.Queries.BudgetLoading;
+    using Core.ApplicationCore.Queries.BudgetEntryLoading;
     using Core.ApplicationCore.UseCases.BudgetDeletion;
     using Core.ApplicationCore.UseCases.BudgetUpdate;
     using Core.Common.Extensions;
@@ -28,7 +28,7 @@
 
         private async Task InitializeAsync(int budgetId)
         {
-            var query = new LoadBudget.Query(budgetId: budgetId);
+            var query = new LoadBudgetEntry.Query(budgetId: budgetId);
             var budgetData = await sender.Send(query);
             SelectedBudget.Id = budgetData.Id;
             SelectedBudget.Name = budgetData.Name;

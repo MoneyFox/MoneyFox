@@ -1,11 +1,11 @@
-﻿namespace MoneyFox.Core.ApplicationCore.Queries.BudgetLoading
+﻿namespace MoneyFox.Core.ApplicationCore.Queries.BudgetEntryLoading
 {
 
     using System.Collections.Generic;
 
-    public sealed class BudgetData
+    public sealed class BudgetEntryData
     {
-        public BudgetData(int id, string name, decimal spendingLimit, IReadOnlyList<BudgetCategory> categories)
+        public BudgetEntryData(int id, string name, decimal spendingLimit, IReadOnlyList<BudgetCategory> categories)
         {
             Id = id;
             Name = name;

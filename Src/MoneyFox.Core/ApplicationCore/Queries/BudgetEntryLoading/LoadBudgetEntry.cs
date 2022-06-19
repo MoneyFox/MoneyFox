@@ -1,11 +1,11 @@
-﻿namespace MoneyFox.Core.ApplicationCore.Queries.BudgetLoading
+﻿namespace MoneyFox.Core.ApplicationCore.Queries.BudgetEntryLoading
 {
 
     using MediatR;
 
-    public static class LoadBudget
+    public static class LoadBudgetEntry
     {
-        public class Query : IRequest<BudgetData>
+        public class Query : IRequest<BudgetEntryData>
         {
             public Query(int budgetId)
             {
