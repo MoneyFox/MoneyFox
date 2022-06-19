@@ -13,8 +13,10 @@
     using Core.Common;
     using Core.Common.Interfaces;
     using Core.Resources;
+    using Infrastructure.Persistence;
     using InversionOfControl;
     using MediatR;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
     using Mobile.Infrastructure.Adapters;
     using Serilog;
@@ -62,6 +64,7 @@
             addPlatformServices?.Invoke(services);
             new MoneyFoxConfig().Register(services);
             ServiceProvider = services.BuildServiceProvider();
+            ServiceProvider.GetService<AppDbContext>()?.Database.Migrate();
         }
 
         private async Task StartupTasksAsync()

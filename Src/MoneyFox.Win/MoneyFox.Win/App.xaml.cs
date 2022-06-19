@@ -12,8 +12,10 @@ using Core.Common.Interfaces;
 using Core.Resources;
 using InversionOfControl;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
+using MoneyFox.Infrastructure.Persistence;
 using Pages;
 using Pages.Accounts;
 using Pages.Categories;
@@ -70,6 +72,7 @@ public partial class App : Application
         var services = new ServiceCollection();
         new WindowsConfig().Register(services);
         ServiceProvider = services.BuildServiceProvider();
+        ServiceProvider.GetService<AppDbContext>()?.Database.Migrate();
     }
 
     protected override void OnLaunched(LaunchActivatedEventArgs args)

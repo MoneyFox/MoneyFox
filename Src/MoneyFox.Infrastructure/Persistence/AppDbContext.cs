@@ -11,7 +11,6 @@
     using Core.Common.Interfaces;
     using Core.Common.Mediatr;
     using Core.Notifications.DatabaseChanged;
-    using MediatR;
     using Microsoft.EntityFrameworkCore;
 
     public class AppDbContext : DbContext, IAppDbContext
@@ -62,7 +61,10 @@
             // dispatch events only if save was successful
             if (changeCount > 0)
             {
-                await publisher.Publish(new DataBaseChanged.Notification(), PublishStrategy.ParallelNoWait, cancellationToken);
+                await publisher.Publish(
+                    notification: new DataBaseChanged.Notification(),
+                    strategy: PublishStrategy.ParallelNoWait,
+                    cancellationToken: cancellationToken);
             }
 
             return changeCount;
