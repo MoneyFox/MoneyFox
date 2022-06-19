@@ -1,10 +1,9 @@
 namespace MoneyFox.Win;
 
-using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Pages;
 
-public sealed partial class MainWindow : Window
+public sealed partial class MainWindow
 {
     public MainWindow()
     {
