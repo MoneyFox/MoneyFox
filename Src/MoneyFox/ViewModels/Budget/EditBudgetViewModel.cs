@@ -3,6 +3,7 @@
 
     using System.Linq;
     using System.Threading.Tasks;
+    using CommunityToolkit.Mvvm.Input;
     using Core.ApplicationCore.UseCases.BudgetUpdate;
     using Core.Interfaces;
     using MediatR;
@@ -16,6 +17,13 @@
         {
             this.sender = sender;
             this.navigationService = navigationService;
+        }
+
+        public AsyncRelayCommand DeleteBudgetCommand => new AsyncRelayCommand(DeleteBudgetAsync);
+
+        private Task DeleteBudgetAsync()
+        {
+            throw new System.NotImplementedException();
         }
 
         protected override async Task SaveBudgetAsync()

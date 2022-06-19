@@ -30,77 +30,89 @@
             viewModel = new EditBudgetViewModel(sender: sender, navigationService: navigationService);
         }
 
-        [Fact]
-        public void AddsSelectedCategoryToList()
+        public class OnReceiveMessage : EditBudgetViewModelShould
         {
-            // Act
-            var categorySelectedMessage = new CategorySelectedMessage(new CategorySelectedDataSet(categoryId: CATEGORY_ID, name: "Beer"));
-            viewModel.Receive(categorySelectedMessage);
+            [Fact]
+            public void AddsSelectedCategoryToList()
+            {
+                // Act
+                var categorySelectedMessage = new CategorySelectedMessage(new CategorySelectedDataSet(categoryId: CATEGORY_ID, name: "Beer"));
+                viewModel.Receive(categorySelectedMessage);
 
-            // Assert
-            viewModel.SelectedCategories.Should().HaveCount(1);
-            viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CATEGORY_ID);
+                // Assert
+                viewModel.SelectedCategories.Should().HaveCount(1);
+                viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CATEGORY_ID);
+            }
+
+            [Fact]
+            public void IgnoresSelectedCategory_WhenEntryWithSameIdAlreadyInList()
+            {
+                // Act
+                var categorySelectedMessage = new CategorySelectedMessage(new CategorySelectedDataSet(categoryId: CATEGORY_ID, name: "Beer"));
+                viewModel.Receive(categorySelectedMessage);
+                viewModel.Receive(categorySelectedMessage);
+
+                // Assert
+                viewModel.SelectedCategories.Should().HaveCount(1);
+                viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CATEGORY_ID);
+            }
         }
 
-        [Fact]
-        public void IgnoresSelectedCategory_WhenEntryWithSameIdAlreadyInList()
+        public class OnRemoveCategory : EditBudgetViewModelShould
         {
-            // Act
-            var categorySelectedMessage = new CategorySelectedMessage(new CategorySelectedDataSet(categoryId: CATEGORY_ID, name: "Beer"));
-            viewModel.Receive(categorySelectedMessage);
-            viewModel.Receive(categorySelectedMessage);
+            [Fact]
+            public void Removes_SelectedCategory_OnCommand()
+            {
+                // Arrange
+                var budgetCategoryViewModel = new BudgetCategoryViewModel(categoryId: 1, name: "test");
+                viewModel.SelectedCategories.Add(budgetCategoryViewModel);
 
-            // Assert
-            viewModel.SelectedCategories.Should().HaveCount(1);
-            viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CATEGORY_ID);
+                // Act
+                viewModel.RemoveCategoryCommand.Execute(budgetCategoryViewModel);
+
+                // Assert
+                viewModel.SelectedCategories.Should().BeEmpty();
+            }
         }
 
-        [Fact]
-        public void Removes_SelectedCategory_OnCommand()
+        public class OnOpenCategorySelection : EditBudgetViewModelShould
         {
-            // Arrange
-            var budgetCategoryViewModel = new BudgetCategoryViewModel(categoryId: 1, name: "test");
-            viewModel.SelectedCategories.Add(budgetCategoryViewModel);
+            [Fact]
+            public async Task CallNavigationToCategorySelection()
+            {
+                // Act
+                await viewModel.OpenCategorySelectionCommand.ExecuteAsync(null);
 
-            // Act
-            viewModel.RemoveCategoryCommand.Execute(budgetCategoryViewModel);
-
-            // Assert
-            viewModel.SelectedCategories.Should().BeEmpty();
+                // Assert
+                await navigationService.Received(1).OpenModal<SelectCategoryPage>();
+            }
         }
 
-        [Fact]
-        public async Task CallNavigationToCategorySelection()
+        public class OnSaveBudget : EditBudgetViewModelShould
         {
-            // Act
-            await viewModel.OpenCategorySelectionCommand.ExecuteAsync(null);
+            [Fact]
+            public async Task SendsCorrectSaveCommand()
+            {
+                // Capture
+                UpdateBudget.Command? capturedCommand = null;
+                await sender.Send(Arg.Do<UpdateBudget.Command>(q => capturedCommand = q));
 
-            // Assert
-            await navigationService.Received(1).OpenModal<SelectCategoryPage>();
-        }
+                // Arrange
+                var testBudget = new TestData.DefaultBudget();
+                viewModel.SelectedBudget.Name = testBudget.Name;
+                viewModel.SelectedBudget.SpendingLimit = testBudget.SpendingLimit;
 
-        [Fact]
-        public async Task SendsCorrectSaveCommand()
-        {
-            // Capture
-            UpdateBudget.Command? capturedCommand = null;
-            await sender.Send(Arg.Do<UpdateBudget.Command>(q => capturedCommand = q));
+                // Act
+                viewModel.SelectedCategories.AddRange(testBudget.Categories.Select(c => new BudgetCategoryViewModel(categoryId: c, name: "Category")));
+                await viewModel.SaveBudgetCommand.ExecuteAsync(null);
 
-            // Arrange
-            var testBudget = new TestData.DefaultBudget();
-            viewModel.SelectedBudget.Name = testBudget.Name;
-            viewModel.SelectedBudget.SpendingLimit = testBudget.SpendingLimit;
-
-            // Act
-            viewModel.SelectedCategories.AddRange(testBudget.Categories.Select(c => new BudgetCategoryViewModel(categoryId: c, name: "Category")));
-            await viewModel.SaveBudgetCommand.ExecuteAsync(null);
-
-            // Assert
-            capturedCommand.Should().NotBeNull();
-            capturedCommand!.Name.Should().Be(testBudget.Name);
-            capturedCommand.SpendingLimit.Should().Be(testBudget.SpendingLimit);
-            capturedCommand.Categories.Should().BeEquivalentTo(testBudget.Categories);
-            await navigationService.Received(1).GoBackFromModal();
+                // Assert
+                capturedCommand.Should().NotBeNull();
+                capturedCommand!.Name.Should().Be(testBudget.Name);
+                capturedCommand.SpendingLimit.Should().Be(testBudget.SpendingLimit);
+                capturedCommand.Categories.Should().BeEquivalentTo(testBudget.Categories);
+                await navigationService.Received(1).GoBackFromModal();
+            }
         }
     }
 

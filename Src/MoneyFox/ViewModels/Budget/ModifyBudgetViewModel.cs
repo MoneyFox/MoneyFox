@@ -58,11 +58,12 @@
             {
                 return;
             }
-            
+
             SelectedCategories.Remove(budgetCategory);
         }
 
         protected abstract Task SaveBudgetAsync();
+
     }
 
 }
