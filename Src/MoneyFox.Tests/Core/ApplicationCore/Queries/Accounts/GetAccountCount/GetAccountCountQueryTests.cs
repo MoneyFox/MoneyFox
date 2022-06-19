@@ -14,7 +14,7 @@
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class GetAccountCountQueryTests : IDisposable
+    public class GetAccountCountQueryTests
     {
         private readonly AppDbContext context;
         private readonly IContextAdapter contextAdapter;
@@ -24,17 +24,6 @@
             context = InMemoryAppDbContextFactory.Create();
             contextAdapter = Substitute.For<IContextAdapter>();
             contextAdapter.Context.Returns(context);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryAppDbContextFactory.Destroy(context);
         }
 
         [Fact]
