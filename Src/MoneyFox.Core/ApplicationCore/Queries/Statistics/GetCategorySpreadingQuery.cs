@@ -6,13 +6,13 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using _Pending_.Common.QueryObjects;
+    using Common;
+    using Common.Interfaces;
     using Domain.Aggregates.AccountAggregate;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using MoneyFox.Core._Pending_.Common.QueryObjects;
-    using MoneyFox.Core.Common;
-    using MoneyFox.Core.Common.Interfaces;
-    using MoneyFox.Core.Resources;
+    using Resources;
 
     public class GetCategorySpreadingQuery : IRequest<IEnumerable<StatisticEntry>>
     {
@@ -60,13 +60,13 @@
             "#9BE582"
         };
 
-        private readonly IContextAdapter contextAdapter;
+        private readonly IAppDbContext appDbContext;
 
         private GetCategorySpreadingQuery currentRequest = null!;
 
-        public GetCategorySpreadingQueryHandler(IContextAdapter contextAdapter)
+        public GetCategorySpreadingQueryHandler(IAppDbContext appDbContext)
         {
-            this.contextAdapter = contextAdapter;
+            this.appDbContext = appDbContext;
         }
 
         public async Task<IEnumerable<StatisticEntry>> Handle(GetCategorySpreadingQuery request, CancellationToken cancellationToken)
@@ -80,7 +80,7 @@
 
         private async Task<IEnumerable<Payment>> GetPaymentsWithoutTransferAsync(CancellationToken cancellationToken)
         {
-            return await contextAdapter.Context.Payments.Include(x => x.Category)
+            return await appDbContext.Payments.Include(x => x.Category)
                 .WithoutTransfers()
                 .HasDateLargerEqualsThan(currentRequest.StartDate.Date)
                 .HasDateSmallerEqualsThan(currentRequest.EndDate.Date)
