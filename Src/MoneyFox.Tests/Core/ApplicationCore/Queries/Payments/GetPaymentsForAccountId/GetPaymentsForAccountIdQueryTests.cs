@@ -15,27 +15,15 @@
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class GetPaymentsForAccountIdQueryTests : IDisposable
+    public class GetPaymentsForAccountIdQueryTests
     {
         private readonly AppDbContext context;
-        private readonly Mock<IContextAdapter> contextAdapterMock;
+        private readonly GetPaymentsForAccountIdQuery.Handler handler;
 
         public GetPaymentsForAccountIdQueryTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-            contextAdapterMock = new Mock<IContextAdapter>();
-            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryAppDbContextFactory.Destroy(context);
+            handler = new GetPaymentsForAccountIdQuery.Handler(context);
         }
 
         [Fact]
@@ -50,7 +38,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetPaymentsForAccountIdQuery.Handler(contextAdapterMock.Object).Handle(
+            var result = await handler.Handle(
                 request: new GetPaymentsForAccountIdQuery(
                     accountId: account.Id,
                     timeRangeStart: DateTime.Now.AddDays(-1),
@@ -73,7 +61,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetPaymentsForAccountIdQuery.Handler(contextAdapterMock.Object).Handle(
+            var result = await handler.Handle(
                 request: new GetPaymentsForAccountIdQuery(
                     accountId: account.Id,
                     timeRangeStart: DateTime.Now.AddDays(-1),
@@ -109,7 +97,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetPaymentsForAccountIdQuery.Handler(contextAdapterMock.Object).Handle(
+            var result = await handler.Handle(
                 request: new GetPaymentsForAccountIdQuery(
                     accountId: account.Id,
                     timeRangeStart: DateTime.Now.AddDays(-1),
