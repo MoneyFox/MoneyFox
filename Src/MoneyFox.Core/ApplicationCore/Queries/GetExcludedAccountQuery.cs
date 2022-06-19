@@ -14,16 +14,16 @@
     {
         public class Handler : IRequestHandler<GetExcludedAccountQuery, List<Account>>
         {
-            private readonly IContextAdapter contextAdapter;
+            private readonly IAppDbContext appDbContext;
 
-            public Handler(IContextAdapter contextAdapter)
+            public Handler(IAppDbContext appDbContext)
             {
-                this.contextAdapter = contextAdapter;
+                this.appDbContext = appDbContext;
             }
 
             public async Task<List<Account>> Handle(GetExcludedAccountQuery request, CancellationToken cancellationToken)
             {
-                return await contextAdapter.Context.Accounts.AreActive().AreExcluded().OrderByName().ToListAsync(cancellationToken);
+                return await appDbContext.Accounts.AreActive().AreExcluded().OrderByName().ToListAsync(cancellationToken);
             }
         }
     }
