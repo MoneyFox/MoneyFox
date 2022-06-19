@@ -15,27 +15,15 @@
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class DeleteCategoryByIdCommandTests : IDisposable
+    public class DeleteCategoryByIdCommandTests
     {
         private readonly AppDbContext context;
-        private readonly Mock<IContextAdapter> contextAdapterMock;
+        private readonly DeleteCategoryByIdCommand.Handler handler;
 
         public DeleteCategoryByIdCommandTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-            contextAdapterMock = new Mock<IContextAdapter>();
-            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryAppDbContextFactory.Destroy(context);
+            handler = new DeleteCategoryByIdCommand.Handler(context);
         }
 
         [Fact]
@@ -47,7 +35,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            await new DeleteCategoryByIdCommand.Handler(contextAdapterMock.Object).Handle(
+            await handler.Handle(
                 request: new DeleteCategoryByIdCommand(category1.Id),
                 cancellationToken: default);
 

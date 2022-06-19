@@ -14,7 +14,7 @@
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class GetExcludedAccountQueryTests : IDisposable
+    public class GetExcludedAccountQueryTests
     {
         private readonly AppDbContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
@@ -24,17 +24,6 @@
             context = InMemoryAppDbContextFactory.Create();
             contextAdapterMock = new Mock<IContextAdapter>();
             contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryAppDbContextFactory.Destroy(context);
         }
 
         [Fact]

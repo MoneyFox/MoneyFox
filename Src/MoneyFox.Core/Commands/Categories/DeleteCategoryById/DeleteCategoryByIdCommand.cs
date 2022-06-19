@@ -17,18 +17,18 @@
 
         public class Handler : IRequestHandler<DeleteCategoryByIdCommand>
         {
-            private readonly IContextAdapter contextAdapter;
+            private readonly IAppDbContext appDbContext;
 
-            public Handler(IContextAdapter contextAdapter)
+            public Handler(IAppDbContext appDbContext)
             {
-                this.contextAdapter = contextAdapter;
+                this.appDbContext = appDbContext;
             }
 
             public async Task<Unit> Handle(DeleteCategoryByIdCommand request, CancellationToken cancellationToken)
             {
-                var entityToDelete = await contextAdapter.Context.Categories.FindAsync(request.CategoryId);
-                contextAdapter.Context.Categories.Remove(entityToDelete);
-                await contextAdapter.Context.SaveChangesAsync(cancellationToken);
+                var entityToDelete = await appDbContext.Categories.FindAsync(request.CategoryId);
+                appDbContext.Categories.Remove(entityToDelete);
+                await appDbContext.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
             }
