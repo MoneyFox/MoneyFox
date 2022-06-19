@@ -6,7 +6,7 @@
     using Core.Common.Facades;
     using Xamarin.Forms;
 
-    public class SetupCompletionViewModel : ObservableObject
+    internal sealed class SetupCompletionViewModel : BaseViewModel
     {
         private readonly ISettingsFacade settingsFacade;
 

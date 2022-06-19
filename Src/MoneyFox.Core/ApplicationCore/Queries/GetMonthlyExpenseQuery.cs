@@ -16,18 +16,18 @@
     {
         public class Handler : IRequestHandler<GetMonthlyExpenseQuery, decimal>
         {
-            private readonly IContextAdapter contextAdapter;
+            private readonly IAppDbContext appDbContext;
             private readonly ISystemDateHelper systemDateHelper;
 
-            public Handler(IContextAdapter contextAdapter, ISystemDateHelper systemDateHelper)
+            public Handler(IAppDbContext appDbContext, ISystemDateHelper systemDateHelper)
             {
-                this.contextAdapter = contextAdapter;
+                this.appDbContext = appDbContext;
                 this.systemDateHelper = systemDateHelper;
             }
 
             public async Task<decimal> Handle(GetMonthlyExpenseQuery request, CancellationToken cancellationToken)
             {
-                return (await contextAdapter.Context.Payments.HasDateLargerEqualsThan(HelperFunctions.GetFirstDayMonth(systemDateHelper))
+                return (await appDbContext.Payments.HasDateLargerEqualsThan(HelperFunctions.GetFirstDayMonth(systemDateHelper))
                     .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper))
                     .IsExpense()
                     .Select(x => x.Amount)

@@ -7,9 +7,9 @@ public sealed partial class BackupPage
     public BackupPage()
     {
         InitializeComponent();
-        DataContext = ViewModelLocator.BackupVm;
+        DataContext = App.GetViewModel<BackupViewModel>();
     }
 
     public override bool ShowHeader => false;
-    public BackupViewModel ViewModel => (BackupViewModel)DataContext;
+    internal BackupViewModel ViewModel => (BackupViewModel)DataContext;
 }

@@ -12,7 +12,7 @@ namespace MoneyFox.Views.Statistics
         public StatisticAccountMonthlyCashFlowPage()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.StatisticAccountMonthlyCashFlowViewModel;
+            BindingContext = App.GetViewModel<StatisticAccountMonthlyCashFlowViewModel>();
         }
 
         private StatisticAccountMonthlyCashFlowViewModel ViewModel => (StatisticAccountMonthlyCashFlowViewModel)BindingContext;

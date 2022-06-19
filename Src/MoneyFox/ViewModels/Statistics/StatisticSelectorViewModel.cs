@@ -9,7 +9,7 @@
     using Core.Resources;
     using Xamarin.Forms;
 
-    public class StatisticSelectorViewModel : ObservableObject, IStatisticSelectorViewModel
+    internal sealed class StatisticSelectorViewModel : BaseViewModel, IStatisticSelectorViewModel
     {
         /// <summary>
         ///     All possible statistic to choose from

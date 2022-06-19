@@ -4,42 +4,24 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-    using MediatR;
     using MoneyFox.Core.Commands.Accounts.CreateAccount;
     using MoneyFox.Core.Common.Facades;
-    using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Infrastructure.Persistence;
     using Moq;
     using TestFramework;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class CreateAccountCommandTests : IDisposable
+    public class CreateAccountCommandTests
     {
         private readonly AppDbContext context;
-        private readonly Mock<IContextAdapter> contextAdapterMock;
-        private readonly Mock<IPublisher> publisherMock;
-        private readonly Mock<ISettingsFacade> settingsFacadeMock;
+        private readonly CreateAccountCommand.Handler handler;
 
         public CreateAccountCommandTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-            contextAdapterMock = new Mock<IContextAdapter>();
-            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-            publisherMock = new Mock<IPublisher>();
-            settingsFacadeMock = new Mock<ISettingsFacade>();
-            settingsFacadeMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>());
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryAppDbContextFactory.Destroy(context);
+            new Mock<ISettingsFacade>().SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>());
+            handler = new CreateAccountCommand.Handler(context);
         }
 
         [Fact]
@@ -47,9 +29,7 @@
         {
             // Arrange
             // Act
-            await new CreateAccountCommand.Handler(contextAdapterMock.Object).Handle(
-                request: new CreateAccountCommand(name: "test", currentBalance: 80),
-                cancellationToken: default);
+            await handler.Handle(request: new CreateAccountCommand(name: "test", currentBalance: 80), cancellationToken: default);
 
             // Assert
             Assert.Single(context.Accounts);

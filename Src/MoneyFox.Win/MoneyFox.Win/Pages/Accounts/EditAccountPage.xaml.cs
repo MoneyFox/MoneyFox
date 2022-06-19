@@ -9,7 +9,7 @@ public sealed partial class EditAccountPage : ContentDialog
     {
         XamlRoot = MainWindow.RootFrame.XamlRoot;
         InitializeComponent();
-        DataContext = ViewModelLocator.EditAccountVm;
+        DataContext = App.GetViewModel<EditAccountViewModel>();
         ViewModel.AccountId = accountId;
     }
 

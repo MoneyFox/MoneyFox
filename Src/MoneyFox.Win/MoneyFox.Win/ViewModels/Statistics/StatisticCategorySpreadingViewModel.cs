@@ -13,10 +13,7 @@ using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using MediatR;
 
-/// <summary>
-///     Representation of the category Spreading View
-/// </summary>
-public class StatisticCategorySpreadingViewModel : StatisticViewModel
+internal class StatisticCategorySpreadingViewModel : StatisticViewModel
 {
     private readonly ISettingsFacade settingsFacade;
     private PaymentType selectedPaymentType;

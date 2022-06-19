@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Common.Groups;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -15,13 +16,12 @@ using Core.Common.Facades;
 using Core.Common.Interfaces;
 using Core.Common.Messages;
 using Core.Resources;
-using Groups;
 using Interfaces;
 using MediatR;
 using Payments;
 using Services;
 
-public class AccountListViewModel : ObservableRecipient, IAccountListViewModel
+internal sealed class AccountListViewModel : BaseViewModel, IAccountListViewModel
 {
     private readonly IMediator mediator;
     private readonly IMapper mapper;

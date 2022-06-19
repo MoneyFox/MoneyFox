@@ -15,7 +15,7 @@
     using Views.Settings;
 
     [UsedImplicitly]
-    public class OverflowMenuViewModel : ObservableObject
+    internal sealed class OverflowMenuViewModel : BaseViewModel
     {
         private readonly INavigationService navigationService;
 

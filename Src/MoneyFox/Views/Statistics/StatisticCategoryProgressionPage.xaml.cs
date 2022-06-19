@@ -12,7 +12,7 @@
         public StatisticCategoryProgressionPage()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.StatisticCategoryProgressionViewModel;
+            BindingContext = App.GetViewModel<StatisticCategoryProgressionViewModel>();
         }
 
         private StatisticCategoryProgressionViewModel ViewModel => (StatisticCategoryProgressionViewModel)BindingContext;

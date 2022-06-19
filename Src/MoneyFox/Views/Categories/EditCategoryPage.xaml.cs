@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Views.Categories
 {
 
-    using CommonServiceLocator;
     using Core.Resources;
     using ViewModels.Categories;
     using Xamarin.Forms;
@@ -13,7 +12,7 @@
         public EditCategoryPage(int categoryId)
         {
             InitializeComponent();
-            BindingContext = ServiceLocator.Current.GetInstance<EditCategoryViewModel>();
+            BindingContext = App.GetViewModel<EditCategoryViewModel>();
             this.categoryId = categoryId;
             var cancelItem = new ToolbarItem
             {

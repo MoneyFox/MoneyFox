@@ -13,7 +13,7 @@
     using Views.Budget;
     using Xamarin.Forms;
 
-    public sealed class BudgetListViewModel : ObservableRecipient
+    internal sealed class BudgetListViewModel : BaseViewModel
     {
         private readonly ISender sender;
 

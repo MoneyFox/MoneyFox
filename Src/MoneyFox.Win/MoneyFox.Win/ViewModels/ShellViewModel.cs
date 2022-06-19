@@ -1,17 +1,17 @@
-﻿namespace MoneyFox.Win.ViewModels;
+namespace MoneyFox.Win.ViewModels;
 
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Accounts;
 using Categories;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Core.Resources;
 using DataBackup;
+using Microsoft.UI.Xaml.Controls;
 using Services;
 using Statistics;
 
-public class ShellViewModel : ObservableObject
+internal sealed class ShellViewModel : BaseViewModel
 {
     private readonly INavigationService navigationService;
 
@@ -25,13 +25,20 @@ public class ShellViewModel : ObservableObject
 
     public ICommand SelectedPageChangedCommand => new RelayCommand<MenuItem>(value => NavigateToMenuItem(value));
 
-    public void LoadMenuItems()
+    public void InitNavigationService(Frame frame)
     {
-        MenuItems = new();
-        MenuItems.Add(new() { Name = Strings.AccountsTitle, Icon = "\uE80F", ViewModelType = nameof(AccountListViewModel) });
-        MenuItems.Add(new() { Name = Strings.StatisticsTitle, Icon = "\uE904", ViewModelType = nameof(StatisticSelectorViewModel) });
-        MenuItems.Add(new() { Name = Strings.CategoriesTitle, Icon = "\uE8EC", ViewModelType = nameof(CategoryListViewModel) });
-        MenuItems.Add(new() { Name = Strings.BackupTitle, Icon = "\uEA35", ViewModelType = nameof(BackupViewModel) });
+        navigationService.Initialize(frame);
+    }
+
+    private void LoadMenuItems()
+    {
+        MenuItems = new()
+        {
+            new() { Name = Strings.AccountsTitle, Icon = "\uE80F", ViewModelType = nameof(AccountListViewModel) },
+            new() { Name = Strings.StatisticsTitle, Icon = "\uE904", ViewModelType = nameof(StatisticSelectorViewModel) },
+            new() { Name = Strings.CategoriesTitle, Icon = "\uE8EC", ViewModelType = nameof(CategoryListViewModel) },
+            new() { Name = Strings.BackupTitle, Icon = "\uEA35", ViewModelType = nameof(BackupViewModel) }
+        };
     }
 
     private void NavigateToMenuItem(MenuItem item)

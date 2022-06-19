@@ -6,13 +6,13 @@
     using Extensions;
     using Xamarin.Forms;
 
-    public class CategoryIntroductionViewModel : ObservableObject
+    internal sealed class CategoryIntroductionViewModel : BaseViewModel
     {
-        public RelayCommand GoToAddCategoryCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddCategoryRoute));
+        public AsyncRelayCommand GoToAddCategoryCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddCategoryRoute));
 
-        public RelayCommand NextStepCommand => new RelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.SetupCompletionRoute));
+        public AsyncRelayCommand NextStepCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.SetupCompletionRoute));
 
-        public RelayCommand BackCommand => new RelayCommand(async () => await Shell.Current.Navigation.PopAsync());
+        public AsyncRelayCommand BackCommand => new AsyncRelayCommand(async () => await Shell.Current.Navigation.PopAsync());
     }
 
 }

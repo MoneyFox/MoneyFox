@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Common.Groups;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -15,12 +16,11 @@ using Core.Commands.Categories.DeleteCategoryById;
 using Core.Common.Interfaces;
 using Core.Common.Messages;
 using Core.Resources;
-using Groups;
 using MediatR;
 using Pages.Categories;
 using Services;
 
-public abstract class AbstractCategoryListViewModel : ObservableRecipient
+internal abstract class AbstractCategoryListViewModel : BaseViewModel
 {
     private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> source = new();
 

@@ -16,27 +16,15 @@
 
     [ExcludeFromCodeCoverage]
     [Collection("CultureCollection")]
-    public class GetAccountProgressionHandlerTests : IDisposable
+    public class GetAccountProgressionHandlerTests
     {
         private readonly AppDbContext context;
-        private readonly Mock<IContextAdapter> contextAdapterMock;
+        private readonly GetAccountProgressionHandler getAccountProgressionHandler;
 
         public GetAccountProgressionHandlerTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-            contextAdapterMock = new Mock<IContextAdapter>();
-            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryAppDbContextFactory.Destroy(context);
+            getAccountProgressionHandler = new GetAccountProgressionHandler(context);
         }
 
         [Fact]
@@ -57,7 +45,7 @@
             context.SaveChanges();
 
             // Act
-            var result = await new GetAccountProgressionHandler(contextAdapterMock.Object).Handle(
+            var result = await getAccountProgressionHandler.Handle(
                 request: new GetAccountProgressionQuery(accountId: account.Id, startDate: DateTime.Today.AddYears(-1), endDate: DateTime.Today.AddDays(3)),
                 cancellationToken: default);
 
@@ -85,7 +73,7 @@
             context.SaveChanges();
 
             // Act
-            var result = await new GetAccountProgressionHandler(contextAdapterMock.Object).Handle(
+            var result = await getAccountProgressionHandler.Handle(
                 request: new GetAccountProgressionQuery(accountId: account.Id, startDate: DateTime.Today.AddYears(-1), endDate: DateTime.Today.AddDays(3)),
                 cancellationToken: default);
 

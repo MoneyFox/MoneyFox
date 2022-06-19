@@ -13,7 +13,7 @@ using Core.Resources;
 using MediatR;
 using Services;
 
-public class EditCategoryViewModel : ModifyCategoryViewModel
+internal sealed class EditCategoryViewModel : ModifyCategoryViewModel
 {
     private readonly IMediator mediator;
     private readonly IMapper mapper;

@@ -21,21 +21,21 @@
 
         public class Handler : IRequestHandler<CreatePaymentCommand>
         {
-            private readonly IContextAdapter contextAdapter;
+            private readonly IAppDbContext appDbContext;
 
-            public Handler(IContextAdapter contextAdapter)
+            public Handler(IAppDbContext appDbContext)
             {
-                this.contextAdapter = contextAdapter;
+                this.appDbContext = appDbContext;
             }
 
             /// <inheritdoc />
             public async Task<Unit> Handle(CreatePaymentCommand request, CancellationToken cancellationToken)
             {
-                contextAdapter.Context.Entry(request.PaymentToSave).State = EntityState.Added;
-                contextAdapter.Context.Entry(request.PaymentToSave.ChargedAccount).State = EntityState.Modified;
+                appDbContext.Entry(request.PaymentToSave).State = EntityState.Added;
+                appDbContext.Entry(request.PaymentToSave.ChargedAccount).State = EntityState.Modified;
                 if (request.PaymentToSave.TargetAccount != null)
                 {
-                    contextAdapter.Context.Entry(request.PaymentToSave.TargetAccount).State = EntityState.Modified;
+                    appDbContext.Entry(request.PaymentToSave.TargetAccount).State = EntityState.Modified;
                 }
 
                 if (request.PaymentToSave.IsRecurring)
@@ -50,10 +50,10 @@
                         throw exception;
                     }
 
-                    contextAdapter.Context.Entry(request.PaymentToSave.RecurringPayment).State = EntityState.Added;
+                    appDbContext.Entry(request.PaymentToSave.RecurringPayment).State = EntityState.Added;
                 }
 
-                await contextAdapter.Context.SaveChangesAsync(cancellationToken);
+                await appDbContext.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
             }

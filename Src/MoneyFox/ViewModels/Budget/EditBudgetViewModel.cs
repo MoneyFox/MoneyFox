@@ -7,7 +7,7 @@
     using Core.Interfaces;
     using MediatR;
 
-    public sealed class EditBudgetViewModel : ModifyBudgetViewModel
+    internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
     {
         private readonly ISender sender;
         private readonly INavigationService navigationService;

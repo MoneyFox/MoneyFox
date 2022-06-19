@@ -18,18 +18,18 @@
 
         public class Handler : IRequestHandler<UpdateCategoryCommand>
         {
-            private readonly IContextAdapter contextAdapter;
+            private readonly IAppDbContext appDbContext;
 
-            public Handler(IContextAdapter contextAdapter)
+            public Handler(IAppDbContext appDbContext)
             {
-                this.contextAdapter = contextAdapter;
+                this.appDbContext = appDbContext;
             }
 
             public async Task<Unit> Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
             {
-                var existingCategory = await contextAdapter.Context.Categories.FindAsync(request.Category.Id);
+                var existingCategory = await appDbContext.Categories.FindAsync(request.Category.Id);
                 existingCategory.UpdateData(name: request.Category.Name, note: request.Category.Note ?? "", requireNote: request.Category.RequireNote);
-                await contextAdapter.Context.SaveChangesAsync(cancellationToken);
+                await appDbContext.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
             }

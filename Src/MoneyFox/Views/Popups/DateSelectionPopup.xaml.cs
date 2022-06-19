@@ -10,7 +10,7 @@
         public DateSelectionPopup(DateTime dateFrom, DateTime dateTo)
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.SelectDateRangeDialogViewModel;
+            BindingContext = App.GetViewModel<SelectDateRangeDialogViewModel>();
             ViewModel.StartDate = dateFrom;
             ViewModel.EndDate = dateTo;
         }
@@ -18,7 +18,7 @@
         public DateSelectionPopup(DateSelectedMessage message)
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.SelectDateRangeDialogViewModel;
+            BindingContext = App.GetViewModel<SelectDateRangeDialogViewModel>();
             ViewModel.Initialize(message);
         }
 

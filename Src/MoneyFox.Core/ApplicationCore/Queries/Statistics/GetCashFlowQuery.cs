@@ -6,14 +6,13 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using _Pending_.Common.QueryObjects;
     using Common.Helpers;
+    using Common.Interfaces;
     using Domain.Aggregates.AccountAggregate;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using MoneyFox.Core._Pending_.Common.QueryObjects;
-    using MoneyFox.Core.Common;
-    using MoneyFox.Core.Common.Interfaces;
-    using MoneyFox.Core.Resources;
+    using Resources;
 
     public class GetCashFlowQuery : IRequest<List<StatisticEntry>>
     {
@@ -28,16 +27,16 @@
         private const string RED_HEX_CODE = "#cd3700";
         private const string BLUE_HEX_CODE = "#87cefa";
 
-        private readonly IContextAdapter contextAdapter;
+        private readonly IAppDbContext appDbContext;
 
-        public GetCashFlowQueryHandler(IContextAdapter contextAdapter)
+        public GetCashFlowQueryHandler(IAppDbContext appDbContext)
         {
-            this.contextAdapter = contextAdapter;
+            this.appDbContext = appDbContext;
         }
 
         public async Task<List<StatisticEntry>> Handle(GetCashFlowQuery request, CancellationToken cancellationToken)
         {
-            var payments = await contextAdapter.Context.Payments.Include(x => x.Category)
+            var payments = await appDbContext.Payments.Include(x => x.Category)
                 .WithoutTransfers()
                 .HasDateLargerEqualsThan(request.StartDate.Date)
                 .HasDateSmallerEqualsThan(request.EndDate.Date)

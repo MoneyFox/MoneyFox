@@ -18,18 +18,18 @@
 
         public class Handler : IRequestHandler<UpdateAccountCommand>
         {
-            private readonly IContextAdapter contextAdapter;
+            private readonly IAppDbContext appDbContext;
 
-            public Handler(IContextAdapter contextAdapter)
+            public Handler(IAppDbContext appDbContext)
             {
-                this.contextAdapter = contextAdapter;
+                this.appDbContext = appDbContext;
             }
 
             public async Task<Unit> Handle(UpdateAccountCommand request, CancellationToken cancellationToken)
             {
-                var existingAccount = await contextAdapter.Context.Accounts.FindAsync(request.Account.Id);
+                var existingAccount = await appDbContext.Accounts.FindAsync(request.Account.Id);
                 existingAccount.Change(name: request.Account.Name, note: request.Account.Note ?? "", isExcluded: request.Account.IsExcluded);
-                await contextAdapter.Context.SaveChangesAsync(cancellationToken);
+                await appDbContext.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
             }

@@ -5,14 +5,15 @@
     using System.IO;
     using Android.App;
     using Android.Runtime;
-    using Autofac;
     using Core.Common;
+    using JetBrains.Annotations;
     using Serilog;
     using Serilog.Events;
     using Serilog.Exceptions;
     using Xamarin.Essentials;
 
     [Application]
+    [UsedImplicitly]
     public class MainApplication : Application
     {
         public MainApplication(IntPtr handle, JniHandleOwnership transfer) : base(javaReference: handle, transfer: transfer) { }
@@ -23,20 +24,12 @@
 
             // Setup handler for uncaught exceptions.
             AndroidEnvironment.UnhandledExceptionRaiser += HandleAndroidException;
-            RegisterServices();
             base.OnCreate();
         }
 
         private void HandleAndroidException(object sender, RaiseThrowableEventArgs e)
         {
             Log.Fatal(exception: e.Exception, messageTemplate: "Application Terminating");
-        }
-
-        private static void RegisterServices()
-        {
-            var builder = new ContainerBuilder();
-            builder.RegisterModule<AndroidModule>();
-            ViewModelLocator.RegisterServices(builder);
         }
 
         private void InitLogger()

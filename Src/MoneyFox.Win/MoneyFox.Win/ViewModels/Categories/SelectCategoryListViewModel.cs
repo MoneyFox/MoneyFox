@@ -7,8 +7,7 @@ using Core.Common.Messages;
 using MediatR;
 using Services;
 
-/// <inheritdoc cref="ISelectCategoryListViewModel" />
-public class SelectCategoryListViewModel : AbstractCategoryListViewModel, ISelectCategoryListViewModel
+internal class SelectCategoryListViewModel : AbstractCategoryListViewModel, ISelectCategoryListViewModel
 {
     private CategoryViewModel? selectedCategory;
 

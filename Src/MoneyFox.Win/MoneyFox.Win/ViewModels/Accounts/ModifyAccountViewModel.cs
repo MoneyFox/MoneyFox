@@ -13,7 +13,7 @@ using MediatR;
 using Services;
 using DialogServiceClass = DialogService;
 
-public abstract class ModifyAccountViewModel : ObservableRecipient
+internal abstract class ModifyAccountViewModel : BaseViewModel
 {
     private string title = "";
     private AccountViewModel selectedAccount = new();

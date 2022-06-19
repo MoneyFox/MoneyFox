@@ -2,8 +2,8 @@
 
 using System.Collections.ObjectModel;
 using Accounts;
+using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
-using Groups;
 
 /// <summary>
 ///     Representation of the AccountListView.

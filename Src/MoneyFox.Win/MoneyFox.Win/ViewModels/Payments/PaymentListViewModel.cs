@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
 using AutoMapper;
+using Common.Groups;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -16,14 +17,13 @@ using Core.Common.Facades;
 using Core.Common.Interfaces;
 using Core.Common.Messages;
 using Core.Resources;
-using Groups;
 using Interfaces;
 using MediatR;
 using Microsoft.UI.Xaml.Data;
 using Serilog;
 using Services;
 
-public class PaymentListViewModel : ObservableRecipient
+internal sealed class PaymentListViewModel : BaseViewModel
 {
     private const int DEFAULT_YEAR_BACK = -2;
 

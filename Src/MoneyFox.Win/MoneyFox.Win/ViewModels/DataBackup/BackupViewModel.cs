@@ -14,7 +14,7 @@ using Core.Resources;
 using MediatR;
 using Serilog;
 
-public class BackupViewModel : ObservableObject, IBackupViewModel
+internal sealed class BackupViewModel : BaseViewModel, IBackupViewModel
 {
     private readonly IMediator mediator;
     private readonly IBackupService backupService;
@@ -162,7 +162,7 @@ public class BackupViewModel : ObservableObject, IBackupViewModel
             BackupLastModified = await backupService.GetBackupDateAsync();
             UserAccount = await backupService.GetUserAccount();
         }
-        catch (BackupAuthenticationFailedException ex)
+        catch (BackupAuthenticationFailedException)
         {
             await backupService.LogoutAsync();
             await dialogService.ShowMessageAsync(title: Strings.AuthenticationFailedTitle, message: Strings.ErrorMessageAuthenticationFailed);

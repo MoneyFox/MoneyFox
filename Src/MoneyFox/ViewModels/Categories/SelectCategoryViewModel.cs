@@ -9,7 +9,7 @@
     using MediatR;
     using Xamarin.Forms;
 
-    public class SelectCategoryViewModel : CategoryListViewModel
+    internal sealed class SelectCategoryViewModel : CategoryListViewModel
     {
         public SelectCategoryViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService) : base(
             mediator: mediator,

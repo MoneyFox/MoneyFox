@@ -20,7 +20,7 @@
     using Views.Categories;
     using Xamarin.Forms;
 
-    public class CategoryListViewModel : ObservableRecipient
+    internal class CategoryListViewModel : BaseViewModel
     {
         private readonly IDialogService dialogService;
         private readonly IMapper mapper;

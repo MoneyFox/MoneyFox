@@ -18,7 +18,7 @@ namespace MoneyFox.ViewModels.Statistics
     using MediatR;
     using SkiaSharp;
 
-    public class StatisticAccountMonthlyCashFlowViewModel : StatisticViewModel
+    internal sealed class StatisticAccountMonthlyCashFlowViewModel : StatisticViewModel
     {
         private AccountViewModel selectedAccount = null!;
         private readonly IMapper mapper;

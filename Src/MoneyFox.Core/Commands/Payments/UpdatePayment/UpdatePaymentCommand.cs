@@ -79,16 +79,16 @@ namespace MoneyFox.Core.Commands.Payments.UpdatePayment
 
         public class Handler : IRequestHandler<UpdatePaymentCommand>
         {
-            private readonly IContextAdapter contextAdapter;
+            private readonly IAppDbContext appDbContext;
 
-            public Handler(IContextAdapter contextAdapter)
+            public Handler(IAppDbContext appDbContext)
             {
-                this.contextAdapter = contextAdapter;
+                this.appDbContext = appDbContext;
             }
 
             public async Task<Unit> Handle(UpdatePaymentCommand request, CancellationToken cancellationToken)
             {
-                var existingPayment = await contextAdapter.Context.Payments.Include(x => x.ChargedAccount)
+                var existingPayment = await appDbContext.Payments.Include(x => x.ChargedAccount)
                     .Include(x => x.TargetAccount)
                     .Include(x => x.Category)
                     .Include(x => x.RecurringPayment)
@@ -99,15 +99,15 @@ namespace MoneyFox.Core.Commands.Payments.UpdatePayment
                     return Unit.Value;
                 }
 
-                var chargedAccount = await contextAdapter.Context.Accounts.FindAsync(request.ChargedAccountId);
-                var targetAccount = await contextAdapter.Context.Accounts.FindAsync(request.TargetAccountId);
+                var chargedAccount = await appDbContext.Accounts.FindAsync(request.ChargedAccountId);
+                var targetAccount = await appDbContext.Accounts.FindAsync(request.TargetAccountId);
                 existingPayment.UpdatePayment(
                     date: request.Date,
                     amount: request.Amount,
                     type: request.Type,
                     chargedAccount: chargedAccount,
                     targetAccount: targetAccount,
-                    category: await contextAdapter.Context.Categories.FindAsync(request.CategoryId),
+                    category: await appDbContext.Categories.FindAsync(request.CategoryId),
                     note: request.Note);
 
                 if (request.IsRecurring && request.UpdateRecurringPayment && request.PaymentRecurrence.HasValue)
@@ -116,15 +116,15 @@ namespace MoneyFox.Core.Commands.Payments.UpdatePayment
                 }
                 else if (!request.IsRecurring && existingPayment.RecurringPayment != null)
                 {
-                    var linkedPayments = contextAdapter.Context.Payments.Where(x => x.IsRecurring)
+                    var linkedPayments = appDbContext.Payments.Where(x => x.IsRecurring)
                         .Where(x => x.RecurringPayment!.Id == existingPayment.RecurringPayment!.Id)
                         .ToList();
-                    contextAdapter.Context.RecurringPayments.Remove(existingPayment.RecurringPayment!);
+                    appDbContext.RecurringPayments.Remove(existingPayment.RecurringPayment!);
 
                     linkedPayments.ForEach(x => x.RemoveRecurringPayment());
                 }
 
-                await contextAdapter.Context.SaveChangesAsync(cancellationToken);
+                await appDbContext.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
             }

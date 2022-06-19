@@ -16,34 +16,23 @@
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class GetAccountEndOfMonthBalanceQueryTests : IDisposable
+    public class GetAccountEndOfMonthBalanceQueryTests
     {
         private readonly AppDbContext context;
-        private readonly IContextAdapter contextAdapterMock;
+        private readonly GetAccountEndOfMonthBalanceQuery.Handler handler;
+        private readonly ISystemDateHelper systemDateHelper;
 
         public GetAccountEndOfMonthBalanceQueryTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-            contextAdapterMock = Substitute.For<IContextAdapter>();
-            contextAdapterMock.Context.Returns(context);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryAppDbContextFactory.Destroy(context);
+            systemDateHelper = Substitute.For<ISystemDateHelper>();
+            handler = new GetAccountEndOfMonthBalanceQuery.Handler(context, systemDateHelper: systemDateHelper);
         }
 
         [Fact]
         public async Task GetCorrectSumForSingleAccount()
         {
             // Arrange
-            var systemDateHelper = Substitute.For<ISystemDateHelper>();
             systemDateHelper.Today.Returns(new DateTime(year: 2020, month: 09, day: 05));
             var account1 = new Account(name: "test", initialBalance: 100);
             var account2 = new Account(name: "test", initialBalance: 200);
@@ -56,7 +45,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetAccountEndOfMonthBalanceQuery.Handler(contextAdapter: contextAdapterMock, systemDateHelper: systemDateHelper).Handle(
+            var result = await handler.Handle(
                 request: new GetAccountEndOfMonthBalanceQuery(account1.Id),
                 cancellationToken: default);
 
@@ -68,7 +57,6 @@
         public async Task GetCorrectSumForWithDeactivatedAccount()
         {
             // Arrange
-            var systemDateHelper = Substitute.For<ISystemDateHelper>();
             systemDateHelper.Today.Returns(new DateTime(year: 2020, month: 09, day: 05));
             var account1 = new Account(name: "test", initialBalance: 100);
             var account2 = new Account(name: "test", initialBalance: 200);
@@ -84,7 +72,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetAccountEndOfMonthBalanceQuery.Handler(contextAdapter: contextAdapterMock, systemDateHelper: systemDateHelper).Handle(
+            var result = await handler.Handle(
                 request: new GetAccountEndOfMonthBalanceQuery(account1.Id),
                 cancellationToken: default);
 

@@ -3,6 +3,7 @@
 using System;
 using System.Threading.Tasks;
 using AutoMapper;
+using Common.Helpers;
 using CommunityToolkit.Mvvm.Input;
 using Core.ApplicationCore.Domain.Exceptions;
 using Core.ApplicationCore.Queries;
@@ -13,9 +14,8 @@ using Core.Resources;
 using MediatR;
 using Serilog;
 using Services;
-using Utilities;
 
-public class EditPaymentViewModel : ModifyPaymentViewModel
+internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
 {
     private readonly IMediator mediator;
     private readonly IMapper mapper;

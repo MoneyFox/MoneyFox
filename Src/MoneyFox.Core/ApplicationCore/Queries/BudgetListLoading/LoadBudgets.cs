@@ -18,23 +18,22 @@
 
         public class Handler : IRequestHandler<Query, IReadOnlyCollection<BudgetListData>>
         {
-            private readonly IContextAdapter contextAdapter;
+            private readonly IAppDbContext appDbContext;
 
-            public Handler(IContextAdapter contextAdapter)
+            public Handler(IAppDbContext appDbContext)
             {
-                this.contextAdapter = contextAdapter;
+                this.appDbContext = appDbContext;
             }
 
             public async Task<IReadOnlyCollection<BudgetListData>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var dbContext = contextAdapter.Context;
-                var budgets = await dbContext.Budgets.ToListAsync(cancellationToken);
+                var budgets = await appDbContext.Budgets.ToListAsync(cancellationToken);
                 var budgetListDataList = new List<BudgetListData>();
                 var firstDayOfCurrentMonth = DateTime.Now.GetFirstDayOfMonth();
                 var lastDayOfCurrentMonth = DateTime.Now.GetLastDayOfMonth();
                 foreach (var budget in budgets)
                 {
-                    var payments = await dbContext.Payments.Where(p => p.CategoryId != null)
+                    var payments = await appDbContext.Payments.Where(p => p.CategoryId != null)
                         .Where(p => p.Date >= firstDayOfCurrentMonth && p.Date <= lastDayOfCurrentMonth)
                         .Where(p => budget.IncludedCategories.Contains(p.CategoryId!.Value))
                         .ToListAsync(cancellationToken);

@@ -9,7 +9,7 @@
         public CategoryListPage()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.CategoryListViewModel;
+            BindingContext = App.GetViewModel<CategoryListViewModel>();
         }
 
         private CategoryListViewModel ViewModel => (CategoryListViewModel)BindingContext;

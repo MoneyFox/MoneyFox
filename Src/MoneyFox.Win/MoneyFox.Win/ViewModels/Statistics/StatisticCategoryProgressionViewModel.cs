@@ -20,10 +20,7 @@ using MediatR;
 using Pages.Payments;
 using SkiaSharp;
 
-/// <summary>
-///     Representation of the cash flow view.
-/// </summary>
-public class StatisticCategoryProgressionViewModel : StatisticViewModel
+internal class StatisticCategoryProgressionViewModel : StatisticViewModel
 {
     private readonly IMapper mapper;
     private bool hasNoData = true;

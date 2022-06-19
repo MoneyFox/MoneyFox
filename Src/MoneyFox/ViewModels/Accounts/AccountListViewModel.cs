@@ -20,7 +20,7 @@
     using Views.Accounts;
     using Xamarin.Forms;
 
-    public class AccountListViewModel : ObservableRecipient
+    internal sealed class AccountListViewModel : BaseViewModel
     {
         private readonly IDialogService dialogService;
         private readonly IMapper mapper;

@@ -7,14 +7,14 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using Core.ApplicationCore.Queries;
 using Core.ApplicationCore.Queries.Statistics.GetCategorySummary;
-using Groups;
 using MediatR;
 using Payments;
 
-public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticCategorySummaryViewModel
+internal sealed class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticCategorySummaryViewModel
 {
     private readonly IMapper mapper;
     private ObservableCollection<CategoryOverviewViewModel> categorySummary = new();

@@ -11,7 +11,7 @@ public partial class PaymentListUserControl
         DataContextChanged += PaymentListUserControl_DataContextChanged;
     }
 
-    public CategoryOverviewViewModel? ViewModel { get; set; }
+    private CategoryOverviewViewModel? ViewModel { get; set; }
 
     private void PaymentListUserControl_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
     {

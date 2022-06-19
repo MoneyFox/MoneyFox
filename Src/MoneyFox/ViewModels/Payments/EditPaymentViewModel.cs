@@ -12,7 +12,7 @@
     using MediatR;
     using Xamarin.Forms;
 
-    public class EditPaymentViewModel : ModifyPaymentViewModel
+    internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
     {
         private readonly IDialogService dialogService;
         private readonly IMapper mapper;

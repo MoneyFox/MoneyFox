@@ -2,19 +2,34 @@ namespace MoneyFox.Win;
 
 using System;
 using System.Threading.Tasks;
-using Autofac;
-using CommonServiceLocator;
-using Core.ApplicationCore.UseCases.BackupUpload;
+using Common.Exceptions;
 using Core.ApplicationCore.UseCases.DbBackup;
 using Core.Commands.Payments.ClearPayments;
 using Core.Commands.Payments.CreateRecurringPayments;
 using Core.Common.Facades;
-using Core.Common.Interfaces;
-using Core.Resources;
+using InversionOfControl;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
+using MoneyFox.Infrastructure.Persistence;
+using Pages;
+using Pages.Accounts;
+using Pages.Categories;
+using Pages.Payments;
+using Pages.Settings;
+using Pages.Statistics;
+using Pages.Statistics.StatisticCategorySummary;
 using Serilog;
 using Services;
+using ViewModels;
+using ViewModels.Accounts;
+using ViewModels.Categories;
+using ViewModels.DataBackup;
+using ViewModels.Payments;
+using ViewModels.Settings;
+using ViewModels.Statistics;
+using ViewModels.Statistics.StatisticCategorySummary;
 
 public partial class App : Application
 {
@@ -23,14 +38,42 @@ public partial class App : Application
     public App()
     {
         LoggerService.Initialize();
+        SetupServices();
+        NavigationService.Register<ShellViewModel, ShellPage>();
+        NavigationService.Register<AccountListViewModel, AccountListPage>();
+        NavigationService.Register<PaymentListViewModel, PaymentListPage>();
+        NavigationService.Register<AddPaymentViewModel, AddPaymentPage>();
+        NavigationService.Register<EditPaymentViewModel, EditPaymentPage>();
+        NavigationService.Register<CategoryListViewModel, CategoryListPage>();
+        NavigationService.Register<SettingsViewModel, SettingsHostPage>();
+        NavigationService.Register<StatisticCashFlowViewModel, StatisticCashFlowPage>();
+        NavigationService.Register<StatisticCategoryProgressionViewModel, StatisticCategoryProgressionPage>();
+        NavigationService.Register<StatisticAccountMonthlyCashflowViewModel, StatisticAccountMonthlyCashFlowPage>();
+        NavigationService.Register<StatisticCategorySpreadingViewModel, StatisticCategorySpreadingPage>();
+        NavigationService.Register<StatisticCategorySummaryViewModel, StatisticCategorySummaryPage>();
+        NavigationService.Register<StatisticSelectorViewModel, StatisticSelectorPage>();
+        NavigationService.Register<BackupViewModel, BackupPage>();
+        NavigationService.Register<WindowsSettingsViewModel, SettingsHostPage>();
         InitializeComponent();
+    }
+
+    private static IServiceProvider? ServiceProvider { get; set; }
+
+    internal static BaseViewModel GetViewModel<TViewModel>() where TViewModel : BaseViewModel
+    {
+        return ServiceProvider?.GetService<TViewModel>() ?? throw new ResolveViewModeException<TViewModel>();
+    }
+
+    private static void SetupServices()
+    {
+        var services = new ServiceCollection();
+        new WindowsConfig().Register(services);
+        ServiceProvider = services.BuildServiceProvider();
+        ServiceProvider.GetService<AppDbContext>()?.Database.Migrate();
     }
 
     protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
-        var builder = new ContainerBuilder();
-        builder.RegisterModule<WindowsModule>();
-        ViewModelLocator.RegisterServices(builder);
         var mainWindow = new MainWindow();
         mainWindow.Activate();
         ExecuteStartupTasks();
@@ -49,25 +92,24 @@ public partial class App : Application
             return;
         }
 
+        if (ServiceProvider == null)
+        {
+            return;
+        }
+
         isRunning = true;
-        var toastService = ServiceLocator.Current.GetInstance<IToastService>();
-        var settingsFacade = ServiceLocator.Current.GetInstance<ISettingsFacade>();
-        var mediator = ServiceLocator.Current.GetInstance<IMediator>();
+        var settingsFacade = ServiceProvider.GetService<ISettingsFacade>() ?? throw new ResolveDependencyException<ISettingsFacade>();
+        var mediator = ServiceProvider.GetService<IMediator>() ?? throw new ResolveDependencyException<IMediator>();
         try
         {
             if (settingsFacade.IsBackupAutoUploadEnabled && settingsFacade.IsLoggedInToBackupService)
             {
-                var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
+                var backupService = ServiceProvider.GetService<IBackupService>() ?? throw new ResolveDependencyException<IMediator>();
                 await backupService.RestoreBackupAsync();
             }
 
             await mediator.Send(new ClearPaymentsCommand());
             await mediator.Send(new CreateRecurringPaymentsCommand());
-            var uploadResult = await mediator.Send(new UploadBackup.Command());
-            if (uploadResult == UploadBackup.UploadResult.Successful)
-            {
-                await toastService.ShowToastAsync(Strings.BackupCreatedMessage);
-            }
         }
         catch (Exception ex)
         {

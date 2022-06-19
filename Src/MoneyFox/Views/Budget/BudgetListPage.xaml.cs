@@ -9,7 +9,7 @@
         public BudgetListPage()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.BudgetListViewModel;
+            BindingContext = App.GetViewModel<BudgetListViewModel>();
         }
 
         private BudgetListViewModel ViewModel => (BudgetListViewModel)BindingContext;

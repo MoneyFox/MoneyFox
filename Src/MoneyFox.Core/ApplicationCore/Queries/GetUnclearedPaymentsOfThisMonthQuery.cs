@@ -19,18 +19,18 @@
 
         public class Handler : IRequestHandler<GetUnclearedPaymentsOfThisMonthQuery, List<Payment>>
         {
-            private readonly IContextAdapter contextAdapter;
+            private readonly IAppDbContext appDbContext;
             private readonly ISystemDateHelper systemDateHelper;
 
-            public Handler(IContextAdapter contextAdapter, ISystemDateHelper systemDateHelper)
+            public Handler(IAppDbContext appDbContext, ISystemDateHelper systemDateHelper)
             {
-                this.contextAdapter = contextAdapter;
+                this.appDbContext = appDbContext;
                 this.systemDateHelper = systemDateHelper;
             }
 
             public async Task<List<Payment>> Handle(GetUnclearedPaymentsOfThisMonthQuery request, CancellationToken cancellationToken)
             {
-                var query = contextAdapter.Context.Payments.Include(x => x.ChargedAccount)
+                var query = appDbContext.Payments.Include(x => x.ChargedAccount)
                     .Include(x => x.TargetAccount)
                     .AreNotCleared()
                     .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper));

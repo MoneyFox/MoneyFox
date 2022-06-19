@@ -22,7 +22,7 @@ namespace MoneyFox.ViewModels.Statistics
     using SkiaSharp;
     using Xamarin.Forms;
 
-    public class StatisticCategoryProgressionViewModel : StatisticViewModel
+    internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
     {
         private bool hasNoData = true;
         private CategoryViewModel? selectedCategory;

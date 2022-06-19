@@ -12,7 +12,7 @@
         public EditPaymentPage(int paymentId)
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.EditPaymentViewModel;
+            BindingContext = App.GetViewModel<EditPaymentViewModel>();
             this.paymentId = paymentId;
             var cancelItem = new ToolbarItem
             {

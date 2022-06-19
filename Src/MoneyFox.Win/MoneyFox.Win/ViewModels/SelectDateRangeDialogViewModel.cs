@@ -7,7 +7,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;
 using Core.Common.Messages;
 
-public class SelectDateRangeDialogViewModel : ObservableRecipient
+internal sealed class SelectDateRangeDialogViewModel : BaseViewModel
 {
     private DateTime startDate;
     private DateTime endDate;

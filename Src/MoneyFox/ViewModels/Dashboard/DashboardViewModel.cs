@@ -18,7 +18,7 @@
     using Xamarin.Forms;
     using Xamarin.Forms.Internals;
 
-    public class DashboardViewModel : ObservableRecipient
+    internal class DashboardViewModel : BaseViewModel
     {
         private readonly IMapper mapper;
 

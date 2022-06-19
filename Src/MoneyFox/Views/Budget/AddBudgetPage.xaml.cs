@@ -12,7 +12,7 @@ namespace MoneyFox.Views.Budget
         public AddBudgetPage()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.AddBudgetViewModel;
+            BindingContext = App.GetViewModel<AddBudgetViewModel>();
             var cancelItem = new ToolbarItem
             {
                 Command = new Command(async () => await Navigation.PopModalAsync()),

@@ -11,7 +11,7 @@ namespace MoneyFox.ViewModels.Statistics
     using LiveChartsCore.SkiaSharpView;
     using MediatR;
 
-    public class StatisticCashFlowViewModel : StatisticViewModel
+    internal sealed class StatisticCashFlowViewModel : StatisticViewModel
     {
 
         public StatisticCashFlowViewModel(IMediator mediator) : base(mediator)

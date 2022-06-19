@@ -3,54 +3,47 @@ namespace MoneyFox.Tests.Core.Commands.Payments.UpdatePaymentById
 
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using System.Threading.Tasks;
     using FluentAssertions;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
+    using MoneyFox.Core.Commands.Payments.CreateRecurringPayments;
     using MoneyFox.Core.Commands.Payments.UpdatePayment;
     using MoneyFox.Core.Common.Interfaces;
-    using MoneyFox.Core.Commands.Payments.CreateRecurringPayments;
     using MoneyFox.Infrastructure.Persistence;
     using Moq;
     using TestFramework;
     using Xunit;
-    using System.Linq;
 
     [ExcludeFromCodeCoverage]
-    public class UpdatePaymentCommandTests : IDisposable
+    public class UpdatePaymentCommandTests
     {
         private readonly AppDbContext context;
-        private readonly Mock<IContextAdapter> contextAdapterMock;
+        private readonly UpdatePaymentCommand.Handler handler;
 
         public UpdatePaymentCommandTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-            contextAdapterMock = new Mock<IContextAdapter>();
-            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryAppDbContextFactory.Destroy(context);
+            handler = new UpdatePaymentCommand.Handler(context);
         }
 
         [Fact]
         public async Task UpdatePayment_PaymentFound()
         {
             // Arrange
-            var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new Account(name: "test", initialBalance: 80));
+            var payment1 = new Payment(
+                date: DateTime.Now,
+                amount: 20,
+                type: PaymentType.Expense,
+                chargedAccount: new Account(name: "test", initialBalance: 80));
+
             await context.AddAsync(payment1);
             await context.SaveChangesAsync();
             payment1.UpdatePayment(date: payment1.Date, amount: 100, type: payment1.Type, chargedAccount: payment1.ChargedAccount);
 
             // Act
-            await new UpdatePaymentCommand.Handler(contextAdapterMock.Object).Handle(
+            await handler.Handle(
                 request: new UpdatePaymentCommand(
                     id: payment1.Id,
                     date: payment1.Date,
@@ -77,7 +70,12 @@ namespace MoneyFox.Tests.Core.Commands.Payments.UpdatePaymentById
         public async Task CategoryForRecurringPaymentUpdated()
         {
             // Arrange
-            var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new Account(name: "test", initialBalance: 80));
+            var payment1 = new Payment(
+                date: DateTime.Now,
+                amount: 20,
+                type: PaymentType.Expense,
+                chargedAccount: new Account(name: "test", initialBalance: 80));
+
             payment1.AddRecurringPayment(recurrence: PaymentRecurrence.Monthly, isLastDayOfMonth: false);
             await context.AddAsync(payment1);
             await context.SaveChangesAsync();
@@ -92,7 +90,7 @@ namespace MoneyFox.Tests.Core.Commands.Payments.UpdatePaymentById
                 category: category);
 
             // Act
-            await new UpdatePaymentCommand.Handler(contextAdapterMock.Object).Handle(
+            await handler.Handle(
                 request: new UpdatePaymentCommand(
                     id: payment1.Id,
                     date: payment1.Date,
@@ -119,7 +117,12 @@ namespace MoneyFox.Tests.Core.Commands.Payments.UpdatePaymentById
         public async Task RecurrenceForRecurringPaymentUpdated()
         {
             // Arrange
-            var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new Account(name: "test", initialBalance: 80));
+            var payment1 = new Payment(
+                date: DateTime.Now,
+                amount: 20,
+                type: PaymentType.Expense,
+                chargedAccount: new Account(name: "test", initialBalance: 80));
+
             payment1.AddRecurringPayment(recurrence: PaymentRecurrence.Monthly, isLastDayOfMonth: false);
             await context.AddAsync(payment1);
             await context.SaveChangesAsync();
@@ -134,7 +137,7 @@ namespace MoneyFox.Tests.Core.Commands.Payments.UpdatePaymentById
                 category: category);
 
             // Act
-            await new UpdatePaymentCommand.Handler(contextAdapterMock.Object).Handle(
+            await handler.Handle(
                 request: new UpdatePaymentCommand(
                     id: payment1.Id,
                     date: payment1.Date,
@@ -157,23 +160,25 @@ namespace MoneyFox.Tests.Core.Commands.Payments.UpdatePaymentById
             (await context.RecurringPayments.FindAsync(payment1.RecurringPayment.Id)).Recurrence.Should().Be(PaymentRecurrence.Daily);
         }
 
-
         [Fact]
         public async Task ChangeRecurringToNonRecurringPayment()
         {
             // Arrange
-            var payment1 = new Payment(date: DateTime.Now.AddDays(-1), amount: 20, type: PaymentType.Expense, chargedAccount: new Account(name: "test", initialBalance: 80));
+            var payment1 = new Payment(
+                date: DateTime.Now.AddDays(-1),
+                amount: 20,
+                type: PaymentType.Expense,
+                chargedAccount: new Account(name: "test", initialBalance: 80));
+
             payment1.AddRecurringPayment(recurrence: PaymentRecurrence.Daily);
             await context.AddAsync(payment1);
             await context.SaveChangesAsync();
 
             // Trigger creation of recurring payment transactions
-            await new CreateRecurringPaymentsCommand.Handler(contextAdapterMock.Object).Handle(
-                request: new CreateRecurringPaymentsCommand(),
-                cancellationToken: default);
+            await new CreateRecurringPaymentsCommand.Handler(context).Handle(request: new CreateRecurringPaymentsCommand(), cancellationToken: default);
 
             // Disable recurrence on the payment
-            await new UpdatePaymentCommand.Handler(contextAdapterMock.Object).Handle(
+            await handler.Handle(
                 request: new UpdatePaymentCommand(
                     id: payment1.Id,
                     date: payment1.Date,
@@ -194,11 +199,9 @@ namespace MoneyFox.Tests.Core.Commands.Payments.UpdatePaymentById
 
             // Assert
             var loadedPayments = context.Payments.ToList();
-
             loadedPayments.Should().HaveCount(2);
             loadedPayments.ForEach(x => x.IsRecurring.Should().BeFalse());
         }
-
     }
 
 }

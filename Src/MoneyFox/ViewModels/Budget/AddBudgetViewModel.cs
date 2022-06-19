@@ -7,7 +7,7 @@ namespace MoneyFox.ViewModels.Budget
     using Core.Interfaces;
     using MediatR;
 
-    public sealed class AddBudgetViewModel : ModifyBudgetViewModel
+    internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
     {
         private readonly ISender sender;
         private readonly INavigationService navigationService;

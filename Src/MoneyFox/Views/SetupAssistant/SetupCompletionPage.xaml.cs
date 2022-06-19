@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Views.SetupAssistant
 {
 
-    using CommonServiceLocator;
     using ViewModels.SetupAssistant;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
@@ -12,7 +11,7 @@
         public SetupCompletionPage()
         {
             InitializeComponent();
-            BindingContext = ServiceLocator.Current.GetInstance<SetupCompletionViewModel>();
+            BindingContext = App.GetViewModel<SetupCompletionViewModel>();
         }
     }
 

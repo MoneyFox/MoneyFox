@@ -9,34 +9,20 @@ namespace MoneyFox.Tests.Core.Commands.Payments.CreateRecurringPayments
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using MoneyFox.Core.Commands.Payments.CreateRecurringPayments;
     using MoneyFox.Core.Common.Extensions;
-    using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Infrastructure.Persistence;
-    using Moq;
     using TestFramework;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class CreateRecurringPaymentsCommandTests : IDisposable
+    public class CreateRecurringPaymentsCommandTests
     {
         private readonly AppDbContext context;
-        private readonly Mock<IContextAdapter> contextAdapterMock;
+        private readonly CreateRecurringPaymentsCommand.Handler handler;
 
         public CreateRecurringPaymentsCommandTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-            contextAdapterMock = new Mock<IContextAdapter>();
-            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryAppDbContextFactory.Destroy(context);
+            handler = new CreateRecurringPaymentsCommand.Handler(context);
         }
 
         [Fact]
@@ -49,10 +35,7 @@ namespace MoneyFox.Tests.Core.Commands.Payments.CreateRecurringPayments
             await context.SaveChangesAsync();
 
             // Act
-            await new CreateRecurringPaymentsCommand.Handler(contextAdapterMock.Object).Handle(
-                request: new CreateRecurringPaymentsCommand(),
-                cancellationToken: default);
-
+            await handler.Handle(request: new CreateRecurringPaymentsCommand(), cancellationToken: default);
             var loadedPayments = context.Payments.ToList();
 
             // Assert
@@ -74,16 +57,18 @@ namespace MoneyFox.Tests.Core.Commands.Payments.CreateRecurringPayments
         public async Task LastDayOfMonthValidation(PaymentRecurrence recurrence, int paymentDateMonthsBack, bool isLastDayOfMonth)
         {
             // Arrange
-            var payment = new Payment(date: DateTime.Today.AddMonths(-paymentDateMonthsBack).GetFirstDayOfMonth(), amount: 333, type: PaymentType.Expense, chargedAccount: new Account("Foo"));
+            var payment = new Payment(
+                date: DateTime.Today.AddMonths(-paymentDateMonthsBack).GetFirstDayOfMonth(),
+                amount: 333,
+                type: PaymentType.Expense,
+                chargedAccount: new Account("Foo"));
+
             payment.AddRecurringPayment(recurrence: recurrence, isLastDayOfMonth: isLastDayOfMonth);
             context.AddRange(payment);
             await context.SaveChangesAsync();
 
             // Act
-            await new CreateRecurringPaymentsCommand.Handler(contextAdapterMock.Object).Handle(
-                request: new CreateRecurringPaymentsCommand(),
-                cancellationToken: default);
-
+            await handler.Handle(request: new CreateRecurringPaymentsCommand(), cancellationToken: default);
             var loadedPayments = context.Payments.ToList();
 
             // Assert
@@ -91,7 +76,6 @@ namespace MoneyFox.Tests.Core.Commands.Payments.CreateRecurringPayments
             loadedPayments.ForEach(x => x.Amount.Should().Be(333));
             loadedPayments[1].Date.Should().Be(isLastDayOfMonth ? DateTime.Today.GetLastDayOfMonth() : DateTime.Today.GetFirstDayOfMonth());
         }
-
     }
 
 }

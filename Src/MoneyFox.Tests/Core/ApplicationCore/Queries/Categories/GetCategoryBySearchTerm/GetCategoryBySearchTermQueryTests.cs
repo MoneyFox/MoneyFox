@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Categories.GetCategoryBySearchTerm
 {
 
-    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
     using FluentAssertions;
@@ -14,27 +13,15 @@
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class GetCategoryBySearchTermQueryTests : IDisposable
+    public class GetCategoryBySearchTermQueryTests
     {
         private readonly AppDbContext context;
-        private readonly Mock<IContextAdapter> contextAdapterMock;
+        private readonly GetCategoryBySearchTermQuery.Handler handler;
 
         public GetCategoryBySearchTermQueryTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-            contextAdapterMock = new Mock<IContextAdapter>();
-            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryAppDbContextFactory.Destroy(context);
+            handler = new GetCategoryBySearchTermQuery.Handler(context);
         }
 
         [Fact]
@@ -48,9 +35,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetCategoryBySearchTermQuery.Handler(contextAdapterMock.Object).Handle(
-                request: new GetCategoryBySearchTermQuery(),
-                cancellationToken: default);
+            var result = await handler.Handle(request: new GetCategoryBySearchTermQuery(), cancellationToken: default);
 
             // Assert
             result.Should().HaveCount(2);
@@ -67,9 +52,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetCategoryBySearchTermQuery.Handler(contextAdapterMock.Object).Handle(
-                request: new GetCategoryBySearchTermQuery("guid"),
-                cancellationToken: default);
+            var result = await handler.Handle(request: new GetCategoryBySearchTermQuery("guid"), cancellationToken: default);
 
             // Assert
             Assert.Single(result);

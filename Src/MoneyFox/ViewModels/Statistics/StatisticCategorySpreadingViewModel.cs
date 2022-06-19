@@ -13,7 +13,7 @@ namespace MoneyFox.ViewModels.Statistics
     using LiveChartsCore.SkiaSharpView;
     using MediatR;
 
-    public class StatisticCategorySpreadingViewModel : StatisticViewModel
+    internal sealed class StatisticCategorySpreadingViewModel : StatisticViewModel
     {
         private PaymentType selectedPaymentType;
 

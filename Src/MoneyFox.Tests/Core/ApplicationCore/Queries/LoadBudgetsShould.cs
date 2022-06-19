@@ -18,15 +18,12 @@
     public sealed class LoadBudgetsShould
     {
         private readonly AppDbContext dbContext;
-        private readonly IContextAdapter contextAdapter;
         private readonly LoadBudgets.Handler handler;
 
         public LoadBudgetsShould()
         {
             dbContext = InMemoryAppDbContextFactory.Create();
-            contextAdapter = Substitute.For<IContextAdapter>();
-            contextAdapter.Context.Returns(dbContext);
-            handler = new LoadBudgets.Handler(contextAdapter);
+            handler = new LoadBudgets.Handler(dbContext);
         }
 
         [Fact]

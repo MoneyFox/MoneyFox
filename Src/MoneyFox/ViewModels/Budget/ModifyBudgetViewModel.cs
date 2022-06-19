@@ -11,7 +11,7 @@
     using Core.Interfaces;
     using Views.Categories;
 
-    public abstract class ModifyBudgetViewModel : ObservableRecipient, IRecipient<CategorySelectedMessage>
+    internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<CategorySelectedMessage>
     {
         private BudgetViewModel selectedBudget = new BudgetViewModel();
 

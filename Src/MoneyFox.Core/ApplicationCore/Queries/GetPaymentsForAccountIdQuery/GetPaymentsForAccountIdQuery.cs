@@ -44,16 +44,16 @@
 
         public class Handler : IRequestHandler<GetPaymentsForAccountIdQuery, List<Payment>>
         {
-            private readonly IContextAdapter contextAdapter;
+            private readonly IAppDbContext appDbContext;
 
-            public Handler(IContextAdapter contextAdapter)
+            public Handler(IAppDbContext appDbContext)
             {
-                this.contextAdapter = contextAdapter;
+                this.appDbContext = appDbContext;
             }
 
             public async Task<List<Payment>> Handle(GetPaymentsForAccountIdQuery request, CancellationToken cancellationToken)
             {
-                var paymentQuery = contextAdapter.Context.Payments.Include(x => x.ChargedAccount)
+                var paymentQuery = appDbContext.Payments.Include(x => x.ChargedAccount)
                     .Include(x => x.TargetAccount)
                     .Include(x => x.Category)
                     .Include(x => x.RecurringPayment)

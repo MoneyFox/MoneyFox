@@ -12,7 +12,7 @@
         public StatisticCategorySpreadingPage()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.StatisticCategorySpreadingViewModel;
+            BindingContext = App.GetViewModel<StatisticCategorySpreadingViewModel>();
             ViewModel.LoadedCommand.Execute(null);
         }
 

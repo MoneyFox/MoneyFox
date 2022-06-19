@@ -8,7 +8,7 @@ using Interfaces;
 /// <summary>
 ///     Representation of the BalanceView
 /// </summary>
-public class BalanceViewModel : ObservableObject, IBalanceViewModel
+internal class BalanceViewModel : BaseViewModel, IBalanceViewModel
 {
     private readonly IBalanceCalculationService balanceCalculationService;
 

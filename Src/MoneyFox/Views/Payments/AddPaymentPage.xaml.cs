@@ -10,7 +10,7 @@
         public AddPaymentPage()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.AddPaymentViewModel;
+            BindingContext = App.GetViewModel<AddPaymentViewModel>();
             var cancelItem = new ToolbarItem
             {
                 Command = new Command(async () => await Navigation.PopModalAsync()),

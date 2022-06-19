@@ -21,24 +21,27 @@
     public class BackupServiceTests
     {
         private readonly Mock<IOneDriveBackupService> cloudBackupServiceMock;
-        private readonly Mock<IFileStore> fileStoreMock;
         private readonly Mock<ISettingsFacade> settingsFacadeMock;
         private readonly Mock<IConnectivityAdapter> connectivityAdapterMock;
-        private readonly Mock<IContextAdapter> contextAdapterMock;
 
-        private readonly IDbPathProvider dbPathProvider;
-        private readonly IToastService toastService;
+        private readonly BackupService backupService;
 
         public BackupServiceTests()
         {
             cloudBackupServiceMock = new Mock<IOneDriveBackupService>();
-            fileStoreMock = new Mock<IFileStore>();
             settingsFacadeMock = new Mock<ISettingsFacade>();
             connectivityAdapterMock = new Mock<IConnectivityAdapter>();
-            contextAdapterMock = new Mock<IContextAdapter>();
-            toastService = Substitute.For<IToastService>();
-            dbPathProvider = Substitute.For<IDbPathProvider>();
+
+            IDbPathProvider dbPathProvider = Substitute.For<IDbPathProvider>();
             dbPathProvider.GetDbPath().Returns(Path.GetTempFileName());
+
+            backupService = new BackupService(
+                oneDriveBackupService: cloudBackupServiceMock.Object,
+                fileStore: new Mock<IFileStore>().Object,
+                settingsFacade: settingsFacadeMock.Object,
+                connectivity: connectivityAdapterMock.Object,
+                toastService: Substitute.For<IToastService>(),
+                dbPathProvider: dbPathProvider);
         }
 
         [Fact]
@@ -46,14 +49,6 @@
         {
             // Arrange
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(false);
-            var backupService = new BackupService(
-                oneDriveBackupService: cloudBackupServiceMock.Object,
-                fileStore: fileStoreMock.Object,
-                settingsFacade: settingsFacadeMock.Object,
-                connectivity: connectivityAdapterMock.Object,
-                contextAdapter: contextAdapterMock.Object,
-                toastService: toastService,
-                dbPathProvider: dbPathProvider);
 
             // Act / Assert
             await Assert.ThrowsAsync<NetworkConnectionException>(async () => await backupService.LoginAsync());
@@ -66,14 +61,6 @@
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
             cloudBackupServiceMock.Setup(x => x.LoginAsync()).Callback(() => throw new BackupException());
             settingsFacadeMock.SetupAllProperties();
-            var backupService = new BackupService(
-                oneDriveBackupService: cloudBackupServiceMock.Object,
-                fileStore: fileStoreMock.Object,
-                settingsFacade: settingsFacadeMock.Object,
-                connectivity: connectivityAdapterMock.Object,
-                contextAdapter: contextAdapterMock.Object,
-                toastService: toastService,
-                dbPathProvider: dbPathProvider);
 
             // Act
             await Assert.ThrowsAsync<BackupException>(async () => await backupService.LoginAsync());
@@ -91,14 +78,6 @@
             cloudBackupServiceMock.Setup(x => x.LoginAsync()).Returns(Task.CompletedTask);
             settingsFacadeMock.SetupAllProperties();
             var expectedAutoBackupFlag = settingsFacadeMock.Object.IsBackupAutoUploadEnabled;
-            var backupService = new BackupService(
-                oneDriveBackupService: cloudBackupServiceMock.Object,
-                fileStore: fileStoreMock.Object,
-                settingsFacade: settingsFacadeMock.Object,
-                connectivity: connectivityAdapterMock.Object,
-                contextAdapter: contextAdapterMock.Object,
-                toastService: toastService,
-                dbPathProvider: dbPathProvider);
 
             // Act
             await backupService.LoginAsync();
@@ -113,14 +92,6 @@
         {
             // Arrange
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(false);
-            var backupService = new BackupService(
-                oneDriveBackupService: cloudBackupServiceMock.Object,
-                fileStore: fileStoreMock.Object,
-                settingsFacade: settingsFacadeMock.Object,
-                connectivity: connectivityAdapterMock.Object,
-                contextAdapter: contextAdapterMock.Object,
-                toastService: toastService,
-                dbPathProvider: dbPathProvider);
 
             // Act / Assert
             await Assert.ThrowsAsync<NetworkConnectionException>(async () => await backupService.LogoutAsync());
@@ -135,14 +106,6 @@
             settingsFacadeMock.SetupAllProperties();
             settingsFacadeMock.Object.IsBackupAutoUploadEnabled = true;
             settingsFacadeMock.Object.IsLoggedInToBackupService = true;
-            var backupService = new BackupService(
-                oneDriveBackupService: cloudBackupServiceMock.Object,
-                fileStore: fileStoreMock.Object,
-                settingsFacade: settingsFacadeMock.Object,
-                connectivity: connectivityAdapterMock.Object,
-                contextAdapter: contextAdapterMock.Object,
-                toastService: toastService,
-                dbPathProvider: dbPathProvider);
 
             // Act
             await Assert.ThrowsAsync<BackupException>(async () => await backupService.LogoutAsync());
@@ -159,14 +122,6 @@
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
             cloudBackupServiceMock.Setup(x => x.LogoutAsync()).Returns(Task.CompletedTask);
             settingsFacadeMock.SetupAllProperties();
-            var backupService = new BackupService(
-                oneDriveBackupService: cloudBackupServiceMock.Object,
-                fileStore: fileStoreMock.Object,
-                settingsFacade: settingsFacadeMock.Object,
-                connectivity: connectivityAdapterMock.Object,
-                contextAdapter: contextAdapterMock.Object,
-                toastService: toastService,
-                dbPathProvider: dbPathProvider);
 
             // Act
             await backupService.LogoutAsync();
@@ -181,14 +136,6 @@
         {
             // Arrange
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(false);
-            var backupService = new BackupService(
-                oneDriveBackupService: cloudBackupServiceMock.Object,
-                fileStore: fileStoreMock.Object,
-                settingsFacade: settingsFacadeMock.Object,
-                connectivity: connectivityAdapterMock.Object,
-                contextAdapter: contextAdapterMock.Object,
-                toastService: toastService,
-                dbPathProvider: dbPathProvider);
 
             // Act
             var result = await backupService.IsBackupExistingAsync();
@@ -203,14 +150,6 @@
             // Arrange
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
             cloudBackupServiceMock.Setup(x => x.GetFileNamesAsync()).ReturnsAsync(new List<string>());
-            var backupService = new BackupService(
-                oneDriveBackupService: cloudBackupServiceMock.Object,
-                fileStore: fileStoreMock.Object,
-                settingsFacade: settingsFacadeMock.Object,
-                connectivity: connectivityAdapterMock.Object,
-                contextAdapter: contextAdapterMock.Object,
-                toastService: toastService,
-                dbPathProvider: dbPathProvider);
 
             // Act
             var result = await backupService.IsBackupExistingAsync();
@@ -225,14 +164,6 @@
             // Arrange
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
             cloudBackupServiceMock.Setup(x => x.GetFileNamesAsync()).ReturnsAsync(new List<string> { "asd" });
-            var backupService = new BackupService(
-                oneDriveBackupService: cloudBackupServiceMock.Object,
-                fileStore: fileStoreMock.Object,
-                settingsFacade: settingsFacadeMock.Object,
-                connectivity: connectivityAdapterMock.Object,
-                contextAdapter: contextAdapterMock.Object,
-                toastService: toastService,
-                dbPathProvider: dbPathProvider);
 
             // Act
             var result = await backupService.IsBackupExistingAsync();
@@ -246,14 +177,6 @@
         {
             // Arrange
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(false);
-            var backupService = new BackupService(
-                oneDriveBackupService: cloudBackupServiceMock.Object,
-                fileStore: fileStoreMock.Object,
-                settingsFacade: settingsFacadeMock.Object,
-                connectivity: connectivityAdapterMock.Object,
-                contextAdapter: contextAdapterMock.Object,
-                toastService: toastService,
-                dbPathProvider: dbPathProvider);
 
             // Act
             var result = await backupService.GetBackupDateAsync();
@@ -270,14 +193,6 @@
             settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(true);
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
             cloudBackupServiceMock.Setup(x => x.GetBackupDateAsync()).ReturnsAsync(DateTime.Today);
-            var backupService = new BackupService(
-                oneDriveBackupService: cloudBackupServiceMock.Object,
-                fileStore: fileStoreMock.Object,
-                settingsFacade: settingsFacadeMock.Object,
-                connectivity: connectivityAdapterMock.Object,
-                contextAdapter: contextAdapterMock.Object,
-                toastService: toastService,
-                dbPathProvider: dbPathProvider);
 
             // Act
             var result = await backupService.GetBackupDateAsync();
@@ -293,14 +208,6 @@
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(false);
             settingsFacadeMock.SetupGet(x => x.IsBackupAutoUploadEnabled).Returns(true);
             settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(true);
-            var backupService = new BackupService(
-                oneDriveBackupService: cloudBackupServiceMock.Object,
-                fileStore: fileStoreMock.Object,
-                settingsFacade: settingsFacadeMock.Object,
-                connectivity: connectivityAdapterMock.Object,
-                contextAdapter: contextAdapterMock.Object,
-                toastService: toastService,
-                dbPathProvider: dbPathProvider);
 
             // Act / Assert
             await Assert.ThrowsAsync<NetworkConnectionException>(async () => await backupService.RestoreBackupAsync());
@@ -318,14 +225,6 @@
             settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(true);
             cloudBackupServiceMock.Setup(x => x.RestoreAsync()).ReturnsAsync(new Mock<Stream>().Object);
             cloudBackupServiceMock.Setup(x => x.GetFileNamesAsync()).ReturnsAsync(new List<string> { "asd" });
-            var backupService = new BackupService(
-                oneDriveBackupService: cloudBackupServiceMock.Object,
-                fileStore: fileStoreMock.Object,
-                settingsFacade: settingsFacadeMock.Object,
-                connectivity: connectivityAdapterMock.Object,
-                contextAdapter: contextAdapterMock.Object,
-                toastService: toastService,
-                dbPathProvider: dbPathProvider);
 
             // Act
             await backupService.RestoreBackupAsync();
@@ -346,14 +245,6 @@
             settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(true);
             cloudBackupServiceMock.Setup(x => x.RestoreAsync()).Callback(() => throw new BackupException());
             cloudBackupServiceMock.Setup(x => x.GetBackupDateAsync()).ReturnsAsync(DateTime.Now);
-            var backupService = new BackupService(
-                oneDriveBackupService: cloudBackupServiceMock.Object,
-                fileStore: fileStoreMock.Object,
-                settingsFacade: settingsFacadeMock.Object,
-                connectivity: connectivityAdapterMock.Object,
-                contextAdapter: contextAdapterMock.Object,
-                toastService: toastService,
-                dbPathProvider: dbPathProvider);
 
             // Act
             await Assert.ThrowsAsync<BackupException>(async () => await backupService.RestoreBackupAsync());

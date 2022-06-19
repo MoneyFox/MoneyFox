@@ -8,7 +8,7 @@
     using Core.Common.Extensions;
     using Core.Common.Messages;
 
-    public class SelectDateRangeDialogViewModel : ObservableRecipient
+    internal sealed class SelectDateRangeDialogViewModel : BaseViewModel
     {
         private DateTime endDate;
         private DateTime startDate;

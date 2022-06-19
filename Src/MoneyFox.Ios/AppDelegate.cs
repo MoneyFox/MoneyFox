@@ -1,11 +1,15 @@
 namespace MoneyFox.iOS
 {
 
+    using System;
     using System.IO;
-    using Autofac;
     using Core.Common;
+    using Core.Common.Interfaces;
+    using Core.Interfaces;
     using Foundation;
+    using Infrastructure.DbBackup;
     using JetBrains.Annotations;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Identity.Client;
     using Serilog;
     using Serilog.Events;
@@ -25,13 +29,21 @@ namespace MoneyFox.iOS
         public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
         {
             InitLogger();
-            RegisterServices();
             Forms.Init();
             FormsMaterial.Init();
-            LoadApplication(new App());
+            LoadApplication(new App(AddServices));
             RequestToastPermissions();
 
             return base.FinishedLaunching(uiApplication: uiApplication, launchOptions: launchOptions);
+        }
+
+        private static void AddServices(IServiceCollection services)
+        {
+            services.AddSingleton<IDbPathProvider, DbPathProvider>();
+            services.AddSingleton<IGraphClientFactory, GraphServiceClientFactory>();
+            services.AddSingleton<IStoreOperations, StoreOperations>();
+            services.AddSingleton<IAppInformation, AppInformation>();
+            services.AddTransient<IFileStore>(_ => new IosFileStore(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)));
         }
 
         // Needed for auth
@@ -50,13 +62,6 @@ namespace MoneyFox.iOS
                 {
                     // Do something if needed
                 });
-        }
-
-        private void RegisterServices()
-        {
-            var builder = new ContainerBuilder();
-            builder.RegisterModule<IosModule>();
-            ViewModelLocator.RegisterServices(builder);
         }
 
         private void InitLogger()

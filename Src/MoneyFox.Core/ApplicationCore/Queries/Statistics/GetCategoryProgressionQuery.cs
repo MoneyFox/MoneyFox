@@ -7,14 +7,13 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using _Pending_.Common.QueryObjects;
     using Common.Helpers;
+    using Common.Interfaces;
     using Domain.Aggregates.AccountAggregate;
     using Domain.Exceptions;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using MoneyFox.Core._Pending_.Common.QueryObjects;
-    using MoneyFox.Core.Common;
-    using MoneyFox.Core.Common.Interfaces;
 
     public class GetCategoryProgressionQuery : IRequest<IImmutableList<StatisticEntry>>
     {
@@ -41,16 +40,16 @@
         private const string RED_HEX_CODE = "#cd3700";
         private const string BLUE_HEX_CODE = "#87cefa";
 
-        private readonly IContextAdapter contextAdapter;
+        private readonly IAppDbContext appDbContext;
 
-        public GetCategoryProgressionHandler(IContextAdapter contextAdapter)
+        public GetCategoryProgressionHandler(IAppDbContext appDbContext)
         {
-            this.contextAdapter = contextAdapter;
+            this.appDbContext = appDbContext;
         }
 
         public async Task<IImmutableList<StatisticEntry>> Handle(GetCategoryProgressionQuery request, CancellationToken cancellationToken)
         {
-            var payments = await contextAdapter.Context.Payments.Include(x => x.Category)
+            var payments = await appDbContext.Payments.Include(x => x.Category)
                 .Include(x => x.ChargedAccount)
                 .HasCategoryId(request.CategoryId)
                 .HasDateLargerEqualsThan(request.StartDate.Date)

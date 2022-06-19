@@ -22,7 +22,7 @@
     using Views.Payments;
     using Xamarin.Forms;
 
-    public class PaymentListViewModel : ObservableRecipient
+    internal sealed class PaymentListViewModel : BaseViewModel
     {
         private readonly IMapper mapper;
 

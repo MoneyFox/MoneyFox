@@ -5,7 +5,7 @@ using Core.Common.Interfaces;
 using MediatR;
 using Services;
 
-public class CategoryListViewModel : AbstractCategoryListViewModel, ICategoryListViewModel
+internal sealed class CategoryListViewModel : AbstractCategoryListViewModel, ICategoryListViewModel
 {
     /// <summary>
     ///     Creates an CategoryListViewModel for usage when the list including the option is needed.

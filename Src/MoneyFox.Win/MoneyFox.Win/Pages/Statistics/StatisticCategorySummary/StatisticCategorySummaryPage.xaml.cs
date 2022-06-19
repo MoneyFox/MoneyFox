@@ -11,10 +11,10 @@ public sealed partial class StatisticCategorySummaryPage
     public StatisticCategorySummaryPage()
     {
         InitializeComponent();
-        DataContext = ViewModelLocator.StatisticCategorySummaryVm;
+        DataContext = App.GetViewModel<StatisticCategorySummaryViewModel>();
     }
 
-    public StatisticCategorySummaryViewModel ViewModel => (StatisticCategorySummaryViewModel)DataContext;
+    internal StatisticCategorySummaryViewModel ViewModel => (StatisticCategorySummaryViewModel)DataContext;
 
     public override string Header => Strings.CategorySummaryTitle;
 
