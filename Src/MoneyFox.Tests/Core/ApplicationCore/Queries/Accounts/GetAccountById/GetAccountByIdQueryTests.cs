@@ -17,13 +17,10 @@
     public class GetAccountByIdQueryTests : IDisposable
     {
         private readonly AppDbContext context;
-        private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public GetAccountByIdQueryTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-            contextAdapterMock = new Mock<IContextAdapter>();
-            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
         }
 
         public void Dispose()
@@ -48,7 +45,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetAccountByIdQuery.Handler(contextAdapterMock.Object).Handle(
+            var result = await new GetAccountByIdQuery.Handler(context).Handle(
                 request: new GetAccountByIdQuery(account1.Id),
                 cancellationToken: default);
 
