@@ -56,11 +56,6 @@
             StartupTasksAsync().ConfigureAwait(false);
         }
 
-        protected override async void OnSleep()
-        {
-            await StartupTasksAsync();
-        }
-
         private static void SetupServices(Action<IServiceCollection>? addPlatformServices)
         {
             var services = new ServiceCollection();
