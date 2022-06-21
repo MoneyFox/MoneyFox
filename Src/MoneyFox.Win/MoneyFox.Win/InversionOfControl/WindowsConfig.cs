@@ -5,6 +5,7 @@ using Core.Common.Interfaces;
 using Core.InversionOfControl;
 using Infrastructure.InversionOfControl;
 using Microsoft.Extensions.DependencyInjection;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.Infrastructure.DbBackup;
 using Services;
 using ViewModels;
@@ -31,13 +32,14 @@ internal sealed class WindowsConfig
 
     private static void RegisterWindowsServices(IServiceCollection serviceCollection)
     {
+        serviceCollection.AddSingleton<Services.INavigationService, NavigationService>();
         serviceCollection.AddTransient<IDialogService, DialogService>();
-        serviceCollection.AddSingleton<INavigationService, NavigationService>();
         serviceCollection.AddTransient<IToastService, ToastService>();
         serviceCollection.AddTransient<IGraphClientFactory, GraphClientFactory>();
         serviceCollection.AddTransient<IAppInformation, WindowsAppInformation>();
         serviceCollection.AddTransient<IStoreOperations, MarketplaceOperations>();
         serviceCollection.AddTransient<IBalanceCalculationService, BalanceCalculationService>();
+        serviceCollection.AddTransient<IFileStore, WindowsFileStore>();
     }
 
     private static void RegisterViewModels(IServiceCollection serviceCollection)
