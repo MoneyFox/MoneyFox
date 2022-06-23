@@ -34,9 +34,16 @@
             return await appDbContext.Budgets.ToListAsync();
         }
 
-        public Task UpdateAsync(Budget budget)
+        public async Task UpdateAsync(Budget budget)
         {
-            throw new System.NotImplementedException();
+            await appDbContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(int testBudgetId)
+        {
+            var budget = await GetAsync(testBudgetId);
+            appDbContext.Budgets.Remove(budget);
+            await appDbContext.SaveChangesAsync();
         }
     }
 

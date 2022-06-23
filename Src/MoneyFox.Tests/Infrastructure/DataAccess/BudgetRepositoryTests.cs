@@ -2,9 +2,11 @@
 {
 
     using System;
+    using System.Collections.Immutable;
     using System.Linq;
     using System.Threading.Tasks;
     using FluentAssertions;
+    using MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
     using MoneyFox.Infrastructure.DataAccess;
     using MoneyFox.Infrastructure.Persistence;
     using TestFramework;
@@ -57,7 +59,24 @@
         public sealed class GetAsync : BudgetRepositoryTests
         {
             [Fact]
-            public async Task ReturnsBudgetForId()
+            public async Task CorrectBudget()
+            {
+                // Arrange
+                var testBudget = new TestData.DefaultBudget();
+                var dbBudget = appDbContext.RegisterBudget(testBudget);
+
+                // Act
+                var loadedBudget = await budgetRepository.GetAsync(dbBudget.Id);
+
+                // Assert
+                AssertBudget(actual: loadedBudget, expected: testBudget);
+            }
+        }
+
+        public sealed class UpdateAsync : BudgetRepositoryTests
+        {
+            [Fact]
+            public async Task SaveUpdateCorrectly()
             {
                 // Arrange
                 var testBudget = new TestData.DefaultBudget();
@@ -65,31 +84,32 @@
                 await budgetRepository.AddAsync(dbBudget);
 
                 // Act
-                var result = await budgetRepository.GetAsync(dbBudget.Id);
+                dbBudget.Change("Updated Name", new SpendingLimit(500), ImmutableList.Create(33));
+                await budgetRepository.UpdateAsync(dbBudget);
 
                 // Assert
-                AssertBudget(actual: result, expected: testBudget);
+                var loadedBudget = await budgetRepository.GetAsync(dbBudget.Id);
+                loadedBudget.Name.Should().Be(dbBudget.Name);
+                loadedBudget.SpendingLimit.Should().Be(dbBudget.SpendingLimit);
+                loadedBudget.IncludedCategories.Should().BeEquivalentTo(dbBudget.IncludedCategories);
             }
+        }
 
+        public sealed class DeleteAsync : BudgetRepositoryTests
+        {
             [Fact]
-            public async Task ReturnsAllBudgets()
+            public async Task SaveUpdateCorrectly()
             {
                 // Arrange
                 var testBudget = new TestData.DefaultBudget();
-                var dbBudget1 = testBudget.CreateDbBudget();
-                var dbBudget2 = testBudget.CreateDbBudget();
-                await budgetRepository.AddAsync(dbBudget1);
-                await budgetRepository.AddAsync(dbBudget2);
+                var dbBudget = testBudget.CreateDbBudget();
+                await budgetRepository.AddAsync(dbBudget);
 
                 // Act
-                var budgetList = await budgetRepository.GetAsync();
+                await budgetRepository.DeleteAsync(dbBudget.Id);
 
                 // Assert
-                budgetList.Should().HaveCount(2);
-                foreach (var budget in budgetList)
-                {
-                    AssertBudget(actual: budget, expected: testBudget);
-                }
+                appDbContext.Budgets.Should().BeEmpty();
             }
         }
     }

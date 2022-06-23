@@ -14,6 +14,8 @@
         Task<IReadOnlyCollection<Budget>> GetAsync();
 
         Task UpdateAsync(Budget budget);
+
+        Task DeleteAsync(int testBudgetId);
     }
 
 }
