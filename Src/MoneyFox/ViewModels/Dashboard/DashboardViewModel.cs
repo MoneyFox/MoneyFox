@@ -5,7 +5,6 @@
     using System.Threading.Tasks;
     using Accounts;
     using AutoMapper;
-    using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
     using Core.ApplicationCore.Queries;
@@ -13,8 +12,6 @@
     using Core.Common.Messages;
     using Extensions;
     using MediatR;
-    using Views.Popups;
-    using Xamarin.CommunityToolkit.Extensions;
     using Xamarin.Forms;
     using Xamarin.Forms.Internals;
 
@@ -118,7 +115,8 @@
             }
         }
 
-        public AsyncRelayCommand GoToAddPaymentCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
+        public AsyncRelayCommand GoToAddPaymentCommand
+            => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
 
         public AsyncRelayCommand GoToAccountsCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.AccountListRoute));
 

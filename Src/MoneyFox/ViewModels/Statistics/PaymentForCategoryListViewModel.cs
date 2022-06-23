@@ -6,7 +6,6 @@
     using System.Globalization;
     using System.Threading.Tasks;
     using AutoMapper;
-    using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
     using Core.ApplicationCore.Queries;

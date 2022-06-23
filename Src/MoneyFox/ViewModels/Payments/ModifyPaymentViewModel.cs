@@ -8,7 +8,6 @@
     using Accounts;
     using AutoMapper;
     using Categories;
-    using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
     using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;

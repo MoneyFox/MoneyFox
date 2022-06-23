@@ -8,7 +8,6 @@
     using System.Threading.Tasks;
     using Accounts;
     using AutoMapper;
-    using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
     using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
@@ -147,8 +146,7 @@
         {
             group.Subtitle = string.Format(
                 format: Strings.ExpenseAndIncomeTemplate,
-                arg0: group.Where(x => x.Type != PaymentType.Income && x.ChargedAccount.Id == SelectedAccount.Id)
-                    .Sum(x => x.Amount),
+                arg0: group.Where(x => x.Type != PaymentType.Income && x.ChargedAccount.Id == SelectedAccount.Id).Sum(x => x.Amount),
                 arg1: group.Where(
                         x => x.Type == PaymentType.Income
                              || x.Type == PaymentType.Transfer && x.TargetAccount != null && x.TargetAccount.Id == SelectedAccount.Id)

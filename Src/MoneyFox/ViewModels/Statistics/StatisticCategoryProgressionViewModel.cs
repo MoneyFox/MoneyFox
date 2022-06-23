@@ -1,8 +1,8 @@
 namespace MoneyFox.ViewModels.Statistics
 {
+
     using System;
     using System.Collections.Generic;
-    using System.Collections.Immutable;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
@@ -24,10 +24,9 @@ namespace MoneyFox.ViewModels.Statistics
 
     internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
     {
+        private readonly IMapper mapper;
         private bool hasNoData = true;
         private CategoryViewModel? selectedCategory;
-
-        private readonly IMapper mapper;
 
         public StatisticCategoryProgressionViewModel(IMediator mediator, IMapper mapper) : base(mediator)
         {
@@ -35,38 +34,20 @@ namespace MoneyFox.ViewModels.Statistics
             StartDate = DateTime.Now.AddYears(-1);
         }
 
-        protected override void OnActivated()
-        {
-            Messenger.Register<StatisticCategoryProgressionViewModel, CategorySelectedMessage>(
-                this,
-                async (r, m) =>
-                {
-                    SelectedCategory = mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(m.Value.CategoryId)));
-                    await r.LoadAsync();
-                });
-        }
-
-        protected override void OnDeactivated()
-        {
-            Messenger.Unregister<CategorySelectedMessage>(this);
-        }
-
         public CategoryViewModel? SelectedCategory
         {
             get => selectedCategory;
-            private set => SetProperty(ref selectedCategory, value);
+            private set => SetProperty(field: ref selectedCategory, newValue: value);
         }
 
         public ObservableCollection<ISeries> Series { get; } = new ObservableCollection<ISeries>();
 
-        public List<ICartesianAxis> XAxis { get; } = new List<ICartesianAxis>
-        {
-            new Axis()
-        };
+        public List<ICartesianAxis> XAxis { get; } = new List<ICartesianAxis> { new Axis() };
 
         public bool HasNoData
         {
             get => hasNoData;
+
             set
             {
                 if (hasNoData == value)
@@ -81,23 +62,36 @@ namespace MoneyFox.ViewModels.Statistics
 
         public AsyncRelayCommand LoadDataCommand => new AsyncRelayCommand(LoadAsync);
 
-        public AsyncRelayCommand GoToSelectCategoryDialogCommand => new AsyncRelayCommand(
-            async () =>
-                await Shell.Current.GoToModalAsync(ViewModelLocator.SelectCategoryRoute));
+        public AsyncRelayCommand GoToSelectCategoryDialogCommand
+            => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.SelectCategoryRoute));
+
+        protected override void OnActivated()
+        {
+            Messenger.Register<StatisticCategoryProgressionViewModel, CategorySelectedMessage>(
+                recipient: this,
+                handler: async (r, m) =>
+                {
+                    SelectedCategory = mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(m.Value.CategoryId)));
+                    await r.LoadAsync();
+                });
+        }
+
+        protected override void OnDeactivated()
+        {
+            Messenger.Unregister<CategorySelectedMessage>(this);
+        }
 
         protected override async Task LoadAsync()
         {
             if (SelectedCategory == null)
             {
                 HasNoData = true;
+
                 return;
             }
 
-            IImmutableList<StatisticEntry> statisticItems =
-                await Mediator.Send(new GetCategoryProgressionQuery(SelectedCategory.Id, StartDate, EndDate));
-
+            var statisticItems = await Mediator.Send(new GetCategoryProgressionQuery(categoryId: SelectedCategory.Id, startDate: StartDate, endDate: EndDate));
             HasNoData = !statisticItems.Any();
-
             var columnSeries = new ColumnSeries<decimal>
             {
                 Name = SelectedCategory.Name,
@@ -112,4 +106,5 @@ namespace MoneyFox.ViewModels.Statistics
             Series.Add(columnSeries);
         }
     }
+
 }

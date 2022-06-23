@@ -2,7 +2,6 @@
 {
 
     using System.Threading.Tasks;
-    using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using Core.Common.Facades;
     using Extensions;
@@ -17,9 +16,11 @@
             this.settingsFacade = settingsFacade;
         }
 
-        public AsyncRelayCommand GoToAddAccountCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddAccountRoute));
+        public AsyncRelayCommand GoToAddAccountCommand
+            => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddAccountRoute));
 
-        public AsyncRelayCommand NextStepCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.CategoryIntroductionRoute));
+        public AsyncRelayCommand NextStepCommand
+            => new AsyncRelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.CategoryIntroductionRoute));
 
         public RelayCommand SkipCommand => new RelayCommand(SkipSetup);
 
