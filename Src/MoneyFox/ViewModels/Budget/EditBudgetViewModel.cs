@@ -16,7 +16,7 @@
         private readonly ISender sender;
         private readonly INavigationService navigationService;
 
-        public EditBudgetViewModel(ISender sender, INavigationService navigationService) : base(navigationService)
+        public EditBudgetViewModel(ISender sender, INavigationService navigationService) : base(navigationService: navigationService)
         {
             this.sender = sender;
             this.navigationService = navigationService;
@@ -33,8 +33,7 @@
             SelectedBudget.Id = budgetData.Id;
             SelectedBudget.Name = budgetData.Name;
             SelectedBudget.SpendingLimit = budgetData.SpendingLimit;
-
-            SelectedCategories.AddRange(budgetData.Categories.Select(bc => new BudgetCategoryViewModel(bc.Id, bc.Name)));
+            SelectedCategories.AddRange(budgetData.Categories.Select(bc => new BudgetCategoryViewModel(categoryId: bc.Id, name: bc.Name)));
         }
 
         private async Task DeleteBudgetAsync()

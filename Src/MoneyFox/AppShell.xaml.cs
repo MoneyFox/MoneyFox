@@ -48,6 +48,7 @@
             Routing.RegisterRoute(route: ViewModelLocator.PaymentForCategoryListRoute, type: typeof(PaymentForCategoryListPage));
             Routing.RegisterRoute(route: ViewModelLocator.BudgetListRoute, type: typeof(BudgetListPage));
             Routing.RegisterRoute(route: ViewModelLocator.AddBudgetRoute, type: typeof(AddBudgetPage));
+            Routing.RegisterRoute(route: ViewModelLocator.EditBudgetRoute, type: typeof(EditBudgetPage));
         }
     }
 

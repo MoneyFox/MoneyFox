@@ -39,6 +39,7 @@ namespace MoneyFox
         public static string CategoryIntroductionRoute => nameof(CategoryIntroductionPage);
         public static string SetupCompletionRoute => nameof(SetupCompletionPage);
         public static string AddBudgetRoute => nameof(AddBudgetPage);
+        public static string EditBudgetRoute => nameof(EditBudgetPage);
     }
 
 }

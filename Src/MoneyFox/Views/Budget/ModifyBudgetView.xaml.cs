@@ -1,8 +1,6 @@
 ﻿namespace MoneyFox.Views.Budget
 {
 
-    using System;
-    using Extensions;
     using Xamarin.Forms;
 
     public partial class ModifyBudgetView

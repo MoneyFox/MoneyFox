@@ -56,7 +56,7 @@
                 return;
             }
 
-            await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new EditBudgetPage(selectedBudget.Id)) {BarBackgroundColor = Color.Transparent});
+            await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new EditBudgetPage(selectedBudget.Id)) { BarBackgroundColor = Color.Transparent });
         }
     }
 

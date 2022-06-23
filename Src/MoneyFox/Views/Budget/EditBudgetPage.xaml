@@ -1,14 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-             xmlns:budget="clr-namespace:MoneyFox.Views.Budget;assembly=MoneyFox"
-             x:Class="MoneyFox.Views.Budget.EditBudgetPage"
-             Title="{x:Static resources:Strings.EditBudgetTitle}"
-             Visual="Material">
-    
+<controls:ModalContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+                  xmlns:budgetVms="clr-namespace:MoneyFox.ViewModels.Budget;assembly=MoneyFox"
+                  xmlns:budgetViews="clr-namespace:MoneyFox.Views.Budget;assembly=MoneyFox"
+                  xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
+                  Title="{x:Static resources:Strings.EditBudgetTitle}"
+                  x:DataType="budgetVms:EditBudgetViewModel"
+                  x:Class="MoneyFox.Views.Budget.EditBudgetPage"
+                  Visual="Material">
+
     <ContentPage.Content>
-        <budget:ModifyBudgetView />
+        <budgetViews:ModifyBudgetView />
     </ContentPage.Content>
-</ContentPage>
+</controls:ModalContentPage>
