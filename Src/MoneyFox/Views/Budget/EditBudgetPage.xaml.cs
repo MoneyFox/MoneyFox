@@ -5,7 +5,7 @@
     using ViewModels.Budget;
     using Xamarin.Forms;
 
-    public partial class EditBudgetPage : ContentPage
+    public partial class EditBudgetPage
     {
         private readonly int budgetId;
 

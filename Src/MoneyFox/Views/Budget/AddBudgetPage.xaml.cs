@@ -1,11 +1,12 @@
 namespace MoneyFox.Views.Budget
 {
 
+    using Controls;
     using Core.Resources;
     using ViewModels.Budget;
     using Xamarin.Forms;
 
-    public partial class AddBudgetPage : ContentPage
+    public partial class AddBudgetPage
     {
         public AddBudgetPage()
         {
