@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Utilities
+﻿namespace MoneyFox.Common.Utilities
 {
 
     using System.Globalization;

@@ -8,12 +8,12 @@ namespace MoneyFox.ViewModels.Statistics
     using System.Threading.Tasks;
     using AutoMapper;
     using Categories;
+    using Common.Extensions;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
     using Core.ApplicationCore.Queries;
     using Core.ApplicationCore.Queries.Statistics;
     using Core.Common.Messages;
-    using Extensions;
     using LiveChartsCore;
     using LiveChartsCore.Kernel.Sketches;
     using LiveChartsCore.SkiaSharpView;

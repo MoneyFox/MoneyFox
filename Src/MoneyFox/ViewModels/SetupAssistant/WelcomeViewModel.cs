@@ -2,9 +2,9 @@
 {
 
     using System.Threading.Tasks;
+    using Common.Extensions;
     using CommunityToolkit.Mvvm.Input;
     using Core.Common.Facades;
-    using Extensions;
     using Xamarin.Forms;
 
     internal sealed class WelcomeViewModel : BaseViewModel

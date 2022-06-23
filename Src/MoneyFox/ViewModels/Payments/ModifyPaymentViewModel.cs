@@ -8,6 +8,7 @@
     using Accounts;
     using AutoMapper;
     using Categories;
+    using Common.Extensions;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
     using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
@@ -15,7 +16,6 @@
     using Core.Common.Interfaces;
     using Core.Common.Messages;
     using Core.Resources;
-    using Extensions;
     using MediatR;
     using Xamarin.Forms;
 

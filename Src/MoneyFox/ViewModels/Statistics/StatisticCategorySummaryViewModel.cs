@@ -5,11 +5,11 @@
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
+    using Common.Extensions;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
     using Core.ApplicationCore.Queries.Statistics.GetCategorySummary;
     using Core.Common.Interfaces;
-    using Extensions;
     using MediatR;
     using Serilog;
     using Xamarin.Forms;

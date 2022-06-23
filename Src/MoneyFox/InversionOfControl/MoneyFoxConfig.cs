@@ -1,13 +1,13 @@
 namespace MoneyFox.InversionOfControl
 {
 
+    using Common.Services;
     using Core.Common.Interfaces;
     using Core.Interfaces;
     using Core.InversionOfControl;
     using Mapping;
     using Microsoft.Extensions.DependencyInjection;
     using Mobile.Infrastructure.InversionOfControl;
-    using Services;
     using ViewModels.About;
     using ViewModels.Accounts;
     using ViewModels.Budget;

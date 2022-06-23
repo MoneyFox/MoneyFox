@@ -1,9 +1,9 @@
-﻿namespace MoneyFox.Services
+﻿namespace MoneyFox.Common.Services
 {
 
     using System.Threading.Tasks;
-    using Core.Common.Interfaces;
     using JetBrains.Annotations;
+    using MoneyFox.Core.Common.Interfaces;
     using Xamarin.CommunityToolkit.Extensions;
     using Xamarin.Forms;
 

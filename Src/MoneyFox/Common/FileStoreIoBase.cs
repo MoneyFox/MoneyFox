@@ -1,10 +1,10 @@
-﻿namespace MoneyFox
+﻿namespace MoneyFox.Common
 {
 
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    using Mobile.Infrastructure;
+    using MoneyFox.Mobile.Infrastructure;
     using Serilog;
 
     public class FileStoreIoBase : FileStoreBase

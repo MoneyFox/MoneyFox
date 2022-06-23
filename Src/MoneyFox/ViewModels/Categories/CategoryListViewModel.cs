@@ -6,6 +6,8 @@
     using System.Globalization;
     using System.Threading.Tasks;
     using AutoMapper;
+    using Common.Extensions;
+    using Common.Groups;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
     using Core.ApplicationCore.Queries;
@@ -13,8 +15,6 @@
     using Core.Common.Interfaces;
     using Core.Common.Messages;
     using Core.Resources;
-    using Extensions;
-    using Groups;
     using MediatR;
     using Views.Categories;
     using Xamarin.Forms;

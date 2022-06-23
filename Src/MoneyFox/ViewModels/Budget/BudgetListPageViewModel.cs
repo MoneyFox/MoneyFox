@@ -4,10 +4,10 @@
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
+    using Common.Extensions;
     using CommunityToolkit.Mvvm.Input;
     using Core.ApplicationCore.Queries.BudgetListLoading;
     using Core.Common.Extensions;
-    using Extensions;
     using MediatR;
     using Views.Budget;
     using Xamarin.Forms;

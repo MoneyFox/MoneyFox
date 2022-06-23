@@ -8,6 +8,8 @@
     using System.Threading.Tasks;
     using Accounts;
     using AutoMapper;
+    using Common.Extensions;
+    using Common.Groups;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
     using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
@@ -15,8 +17,6 @@
     using Core.ApplicationCore.Queries.GetPaymentsForAccountIdQuery;
     using Core.Common.Messages;
     using Core.Resources;
-    using Extensions;
-    using Groups;
     using MediatR;
     using Views.Payments;
     using Xamarin.Forms;

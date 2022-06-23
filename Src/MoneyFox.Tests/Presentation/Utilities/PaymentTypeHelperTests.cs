@@ -3,9 +3,9 @@
 
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using Common.Utilities;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using MoneyFox.Core.Resources;
-    using MoneyFox.Utilities;
     using Xunit;
 
     [ExcludeFromCodeCoverage]

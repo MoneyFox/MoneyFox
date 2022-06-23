@@ -2,8 +2,8 @@
 {
 
     using System.Diagnostics.CodeAnalysis;
+    using Common.Utilities;
     using FluentAssertions;
-    using MoneyFox.Utilities;
     using Xunit;
 
     [ExcludeFromCodeCoverage]

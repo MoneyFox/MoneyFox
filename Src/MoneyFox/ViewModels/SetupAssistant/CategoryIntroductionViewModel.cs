@@ -1,8 +1,8 @@
 ﻿namespace MoneyFox.ViewModels.SetupAssistant
 {
 
+    using Common.Extensions;
     using CommunityToolkit.Mvvm.Input;
-    using Extensions;
     using Xamarin.Forms;
 
     internal sealed class CategoryIntroductionViewModel : BaseViewModel

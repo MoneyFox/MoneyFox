@@ -1,11 +1,11 @@
-﻿namespace MoneyFox.Services
+﻿namespace MoneyFox.Common.Services
 {
 
     using System;
     using System.Threading.Tasks;
-    using Core.Common.Interfaces;
-    using Core.Resources;
-    using Views.Popups;
+    using MoneyFox.Core.Common.Interfaces;
+    using MoneyFox.Core.Resources;
+    using MoneyFox.Views.Popups;
     using Xamarin.CommunityToolkit.Extensions;
     using Xamarin.Forms;
 

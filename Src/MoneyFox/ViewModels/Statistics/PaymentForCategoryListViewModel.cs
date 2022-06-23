@@ -6,10 +6,10 @@
     using System.Globalization;
     using System.Threading.Tasks;
     using AutoMapper;
+    using Common.Groups;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
     using Core.ApplicationCore.Queries;
-    using Groups;
     using MediatR;
     using Payments;
     using Views.Payments;
