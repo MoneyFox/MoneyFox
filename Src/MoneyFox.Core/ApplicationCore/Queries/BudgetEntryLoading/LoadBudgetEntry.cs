@@ -32,12 +32,17 @@
 
             public async Task<BudgetEntryData> Handle(Query request, CancellationToken cancellationToken)
             {
-                var emptyList = ImmutableList<BudgetEntryData.BudgetCategory>.Empty;
+                var budgetData = await appDbContext.Budgets.Where(b => b.Id == request.BudgetId)
+                                                  .Select(b => new {b.Id, b.Name, b.SpendingLimit, b.IncludedCategories})
+                                                  .AsNoTracking()
+                                                  .SingleAsync(cancellationToken);
 
-                return await appDbContext.Budgets.Where(b => b.Id == request.BudgetId)
-                                         .Select(b => new BudgetEntryData(b.Id, b.Name, b.SpendingLimit, emptyList))
-                                         .AsNoTracking()
-                                         .SingleAsync(cancellationToken);
+                var budgetEntryCategories = appDbContext.Categories.Where(c => budgetData.IncludedCategories.Contains(c.Id))
+                                                              .Select(c => new BudgetEntryData.BudgetCategory(c.Id, c.Name))
+                                                              .AsNoTracking()
+                                                              .ToImmutableList();
+
+                return new BudgetEntryData(budgetData.Id, budgetData.Name, budgetData.SpendingLimit, budgetEntryCategories);
             }
         }
     }

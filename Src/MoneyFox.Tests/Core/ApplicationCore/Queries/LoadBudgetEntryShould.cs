@@ -2,6 +2,8 @@
 {
 
     using System;
+    using System.Collections.Immutable;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using FluentAssertions;
@@ -13,7 +15,7 @@
     public class LoadBudgetEntryShould
     {
         private readonly AppDbContext appDbContext;
-            private readonly LoadBudgetEntry.Handler handler;
+        private readonly LoadBudgetEntry.Handler handler;
 
         protected LoadBudgetEntryShould()
         {
@@ -41,7 +43,9 @@
             public async Task ReturnBudgetWithCorrectId()
             {
                 // Arrange
-                var testBudget = new TestData.DefaultBudget();
+                var testCategory = new TestData.DefaultCategory();
+                var dbCategory = appDbContext.RegisterCategory(testCategory);
+                var testBudget = new TestData.DefaultBudget {Categories = ImmutableList.Create(dbCategory.Id)};
                 var dbBudget = appDbContext.RegisterBudget(testBudget);
 
                 // Act
@@ -52,8 +56,8 @@
                 budgetEntryData.Id.Should().Be(dbBudget.Id);
                 budgetEntryData.Name.Should().Be(dbBudget.Name);
                 budgetEntryData.SpendingLimit.Should().Be(dbBudget.SpendingLimit);
-
-                //budgetEntryData.Categories.Should().BeEquivalentTo(testBudget.Categories.Select(id => new BudgetEntryData.BudgetCategory(id, "")));
+                budgetEntryData.Categories.Should()
+                               .BeEquivalentTo(testBudget.Categories.Select(id => new BudgetEntryData.BudgetCategory(id: id, name: testCategory.Name)));
             }
         }
     }
