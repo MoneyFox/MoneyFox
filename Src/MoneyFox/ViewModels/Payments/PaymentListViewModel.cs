@@ -82,7 +82,7 @@
             };
 
         public AsyncRelayCommand GoToAddPaymentCommand
-            => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
+            => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(Routes.AddPaymentRoute));
 
         public AsyncRelayCommand<PaymentViewModel> GoToEditPaymentCommand
             => new AsyncRelayCommand<PaymentViewModel>(

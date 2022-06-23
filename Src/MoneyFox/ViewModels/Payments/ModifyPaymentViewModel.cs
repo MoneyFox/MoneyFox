@@ -94,7 +94,7 @@
         public string AccountHeader => SelectedPayment?.Type == PaymentType.Income ? Strings.TargetAccountLabel : Strings.ChargedAccountLabel;
 
         public RelayCommand GoToSelectCategoryDialogCommand
-            => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.SelectCategoryRoute));
+            => new RelayCommand(async () => await Shell.Current.GoToModalAsync(Routes.SelectCategoryRoute));
 
         public RelayCommand ResetCategoryCommand => new RelayCommand(() => SelectedPayment.Category = null);
 

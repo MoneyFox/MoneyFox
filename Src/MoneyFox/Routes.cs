@@ -12,9 +12,8 @@ namespace MoneyFox
     using Views.SetupAssistant;
     using Views.Statistics;
 
-    public class ViewModelLocator
+    public class Routes
     {
-        // Routes
         public static string DashboardRoute => nameof(DashboardPage);
         public static string AccountListRoute => nameof(AccountListPage);
         public static string AddAccountRoute => nameof(AddAccountPage);

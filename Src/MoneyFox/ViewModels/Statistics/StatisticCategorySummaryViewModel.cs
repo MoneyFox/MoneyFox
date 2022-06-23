@@ -68,7 +68,7 @@
 
         private async Task ShowCategoryPaymentsAsync(CategoryOverviewViewModel categoryOverviewModel)
         {
-            await Shell.Current.GoToModalAsync(ViewModelLocator.PaymentForCategoryListRoute);
+            await Shell.Current.GoToModalAsync(Routes.PaymentForCategoryListRoute);
             Messenger.Send(new PaymentsForCategoryMessage(categoryId: categoryOverviewModel.CategoryId, startdate: StartDate, enddate: EndDate));
         }
     }

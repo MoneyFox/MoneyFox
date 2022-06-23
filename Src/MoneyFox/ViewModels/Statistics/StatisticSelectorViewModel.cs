@@ -63,23 +63,23 @@
         {
             if (item.Type == StatisticType.Cashflow)
             {
-                await Shell.Current.GoToAsync(ViewModelLocator.StatisticCashFlowRoute);
+                await Shell.Current.GoToAsync(Routes.StatisticCashFlowRoute);
             }
             else if (item.Type == StatisticType.CategorySpreading)
             {
-                await Shell.Current.GoToAsync(ViewModelLocator.StatisticCategorySpreadingRoute);
+                await Shell.Current.GoToAsync(Routes.StatisticCategorySpreadingRoute);
             }
             else if (item.Type == StatisticType.CategorySummary)
             {
-                await Shell.Current.GoToAsync(ViewModelLocator.StatisticCategorySummaryRoute);
+                await Shell.Current.GoToAsync(Routes.StatisticCategorySummaryRoute);
             }
             else if (item.Type == StatisticType.MonthlyAccountCashFlow)
             {
-                await Shell.Current.GoToAsync(ViewModelLocator.StatisticAccountMonthlyCashFlowRoute);
+                await Shell.Current.GoToAsync(Routes.StatisticAccountMonthlyCashFlowRoute);
             }
             else if (item.Type == StatisticType.CategoryProgression)
             {
-                await Shell.Current.GoToAsync(ViewModelLocator.StatisticCategoryProgressionRoute);
+                await Shell.Current.GoToAsync(Routes.StatisticCategoryProgressionRoute);
             }
         }
     }

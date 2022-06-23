@@ -49,7 +49,7 @@
             }
         }
 
-        public RelayCommand GoToAddAccountCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddAccountRoute));
+        public RelayCommand GoToAddAccountCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(Routes.AddAccountRoute));
 
         public AsyncRelayCommand<AccountViewModel> GoToEditAccountCommand
             => new AsyncRelayCommand<AccountViewModel>(
@@ -58,7 +58,7 @@
 
         public AsyncRelayCommand<AccountViewModel> GoToTransactionListCommand
             => new AsyncRelayCommand<AccountViewModel>(
-                async accountViewModel => await Shell.Current.GoToAsync($"{ViewModelLocator.PaymentListRoute}?accountId={accountViewModel.Id}"));
+                async accountViewModel => await Shell.Current.GoToAsync($"{Routes.PaymentListRoute}?accountId={accountViewModel.Id}"));
 
         public AsyncRelayCommand<AccountViewModel> DeleteAccountCommand
             => new AsyncRelayCommand<AccountViewModel>(async accountViewModel => await DeleteAccountAsync(accountViewModel));

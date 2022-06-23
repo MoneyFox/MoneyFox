@@ -63,7 +63,7 @@ namespace MoneyFox.ViewModels.Statistics
         public AsyncRelayCommand LoadDataCommand => new AsyncRelayCommand(LoadAsync);
 
         public AsyncRelayCommand GoToSelectCategoryDialogCommand
-            => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.SelectCategoryRoute));
+            => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(Routes.SelectCategoryRoute));
 
         protected override void OnActivated()
         {

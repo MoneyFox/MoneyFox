@@ -49,7 +49,7 @@
             }
         }
 
-        public RelayCommand GoToAddCategoryCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddCategoryRoute));
+        public RelayCommand GoToAddCategoryCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(Routes.AddCategoryRoute));
 
         public AsyncRelayCommand<string> SearchCategoryCommand => new AsyncRelayCommand<string>(async searchTerm => await SearchCategoryAsync(searchTerm));
 

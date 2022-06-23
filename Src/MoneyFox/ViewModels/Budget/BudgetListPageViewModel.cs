@@ -46,7 +46,7 @@
 
         private static async Task GoToAddBudget()
         {
-            await Shell.Current.GoToModalAsync(ViewModelLocator.AddBudgetRoute);
+            await Shell.Current.GoToModalAsync(Routes.AddBudgetRoute);
         }
 
         private async Task EditBudgetAsync(BudgetListViewModel? selectedBudget)

@@ -34,7 +34,7 @@
             MainPage = new AppShell();
             if (!settingsFacade.IsSetupCompleted)
             {
-                Shell.Current.GoToAsync(ViewModelLocator.WelcomeViewRoute).Wait();
+                Shell.Current.GoToAsync(Routes.WelcomeViewRoute).Wait();
             }
         }
 
