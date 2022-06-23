@@ -5,19 +5,19 @@
 
     <StackLayout BindingContext="{x:Reference BudgetProgress}">
         <Grid>
-            <Rectangle x:Name="SpendingLimitBar" 
+            <Rectangle x:Name="SpendingLimitBar"
                        Fill="#314A9B"
                        HeightRequest="10"
-                       RadiusX="50"
-                       RadiusY="50"
-                       HorizontalOptions="FillAndExpand" 
+                       RadiusX="5"
+                       RadiusY="5"
+                       HorizontalOptions="FillAndExpand"
                        SizeChanged="UpdateCurrentSpendingBar" />
 
-            <Rectangle x:Name="CurrentSpendingBar" 
+            <Rectangle x:Name="CurrentSpendingBar"
                        Fill="#FF8671"
                        HeightRequest="10"
-                       RadiusX="50"
-                       RadiusY="50"
+                       RadiusX="5"
+                       RadiusY="5"
                        HorizontalOptions="Start" />
         </Grid>
 
