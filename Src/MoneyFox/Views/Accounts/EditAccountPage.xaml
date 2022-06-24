@@ -8,6 +8,7 @@
                            mc:Ignorable="d"
                            xmlns:accounts="clr-namespace:MoneyFox.Views.Accounts"
                            xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+                           xmlns:extensions="clr-namespace:MoneyFox.Common.Extensions;assembly=MoneyFox"
                            Title="{Binding Title}"
                            Visual="Material"
                            x:Class="MoneyFox.Views.Accounts.EditAccountPage">

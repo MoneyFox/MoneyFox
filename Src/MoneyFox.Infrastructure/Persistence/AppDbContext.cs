@@ -82,6 +82,11 @@ namespace MoneyFox.Infrastructure.Persistence
         {
             return SaveChangesAsync().GetAwaiter().GetResult();
         }
+
+        public void Migratedb()
+        {
+            Database.Migrate();
+        }
     }
 
 }

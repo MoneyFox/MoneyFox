@@ -9,10 +9,9 @@ using Core.Commands.Payments.CreateRecurringPayments;
 using Core.Common.Facades;
 using InversionOfControl;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
-using MoneyFox.Infrastructure.Persistence;
+using MoneyFox.Core.Common.Interfaces;
 using Pages;
 using Pages.Accounts;
 using Pages.Categories;
@@ -69,7 +68,7 @@ public partial class App : Application
         var services = new ServiceCollection();
         new WindowsConfig().Register(services);
         ServiceProvider = services.BuildServiceProvider();
-        ServiceProvider.GetService<AppDbContext>()?.Database.Migrate();
+        ServiceProvider.GetService<IAppDbContext>()?.Migratedb();
     }
 
     protected override void OnLaunched(LaunchActivatedEventArgs args)

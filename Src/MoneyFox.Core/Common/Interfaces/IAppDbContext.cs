@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Common.Interfaces
+namespace MoneyFox.Core.Common.Interfaces
 {
 
     using System;
@@ -32,6 +32,8 @@
         EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
 
         EntityEntry Entry(object entity);
+
+        void Migratedb();
     }
 
 }
