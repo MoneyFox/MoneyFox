@@ -8,7 +8,7 @@
 
     public static class DeleteBudget
     {
-        public class Command: IRequest
+        public class Command : IRequest
         {
             public Command(int budgetId)
             {

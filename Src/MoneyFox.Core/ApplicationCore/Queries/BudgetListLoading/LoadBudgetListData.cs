@@ -12,7 +12,7 @@
     using MediatR;
     using Microsoft.EntityFrameworkCore;
 
-    public static class LoadBudgets
+    public static class LoadBudgetListData
     {
         public class Query : IRequest<IReadOnlyCollection<BudgetListData>> { }
 

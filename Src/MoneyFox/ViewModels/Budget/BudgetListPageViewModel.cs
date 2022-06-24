@@ -31,7 +31,7 @@
 
         private async Task Initialize()
         {
-            var budgetsListData = await sender.Send(new LoadBudgets.Query());
+            var budgetsListData = await sender.Send(new LoadBudgetListData.Query());
             Budgets.Clear();
             Budgets.AddRange(
                 budgetsListData.Select(

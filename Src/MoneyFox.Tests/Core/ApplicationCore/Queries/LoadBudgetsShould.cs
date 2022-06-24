@@ -16,19 +16,19 @@
     public sealed class LoadBudgetsShould
     {
         private readonly AppDbContext dbContext;
-        private readonly LoadBudgets.Handler handler;
+        private readonly LoadBudgetListData.Handler handler;
 
         public LoadBudgetsShould()
         {
             dbContext = InMemoryAppDbContextFactory.Create();
-            handler = new LoadBudgets.Handler(dbContext);
+            handler = new LoadBudgetListData.Handler(dbContext);
         }
 
         [Fact]
         public async Task ReturnEmpty_WhenNoBudgetsCreated()
         {
             // Act
-            var query = new LoadBudgets.Query();
+            var query = new LoadBudgetListData.Query();
             var result = await handler.Handle(request: query, cancellationToken: CancellationToken.None);
 
             // Assert
@@ -61,7 +61,7 @@
             dbContext.RegisterBudget(testBudget);
 
             // Act
-            var query = new LoadBudgets.Query();
+            var query = new LoadBudgetListData.Query();
             var result = await handler.Handle(request: query, cancellationToken: CancellationToken.None);
 
             // Assert
@@ -99,7 +99,7 @@
             dbContext.RegisterBudget(testBudget);
 
             // Act
-            var query = new LoadBudgets.Query();
+            var query = new LoadBudgetListData.Query();
             var result = await handler.Handle(request: query, cancellationToken: CancellationToken.None);
 
             // Assert

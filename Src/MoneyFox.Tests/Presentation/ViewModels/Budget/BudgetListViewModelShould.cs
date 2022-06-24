@@ -51,7 +51,7 @@
             public WithBudgetsAvailable()
             {
                 budgetTestData = new TestData.DefaultBudget();
-                sender.Send(Arg.Any<LoadBudgets.Query>())
+                sender.Send(Arg.Any<LoadBudgetListData.Query>())
                     .Returns(
                         ImmutableList.Create(
                             new BudgetListData(
