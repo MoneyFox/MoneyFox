@@ -10,12 +10,11 @@
     using Core.Commands.Payments.ClearPayments;
     using Core.Commands.Payments.CreateRecurringPayments;
     using Core.Common;
-    using Infrastructure.Persistence;
     using InversionOfControl;
     using MediatR;
-    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
     using Mobile.Infrastructure.Adapters;
+    using MoneyFox.Core.Common.Interfaces;
     using Serilog;
     using ViewModels;
     using Xamarin.Forms;
@@ -61,7 +60,7 @@
             addPlatformServices?.Invoke(services);
             new MoneyFoxConfig().Register(services);
             ServiceProvider = services.BuildServiceProvider();
-            ServiceProvider.GetService<AppDbContext>()?.Database.Migrate();
+            ServiceProvider.GetService<IAppDbContext>()?.Migratedb();
         }
 
         private async Task StartupTasksAsync()
