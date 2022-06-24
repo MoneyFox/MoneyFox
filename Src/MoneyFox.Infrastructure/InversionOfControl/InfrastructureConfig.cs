@@ -11,6 +11,7 @@ namespace MoneyFox.Infrastructure.InversionOfControl
     using DbBackup.Legacy;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
+    using MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
     using Persistence;
 
     public static class InfrastructureConfig
@@ -28,6 +29,7 @@ namespace MoneyFox.Infrastructure.InversionOfControl
         private static void RegisterRepositories(IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<ICategoryRepository, CategoryRepository>();
+            serviceCollection.AddTransient<IBudgetRepository, BudgetRepository>();
         }
 
         private static void RegisterBackupServices(IServiceCollection serviceCollection)

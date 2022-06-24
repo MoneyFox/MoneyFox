@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Infrastructure.DataAccess
+namespace MoneyFox.Infrastructure.DataAccess
 {
 
     using System.Collections.Generic;
@@ -7,13 +7,13 @@
     using System.Threading.Tasks;
     using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
     using Microsoft.EntityFrameworkCore;
-    using Persistence;
+    using MoneyFox.Core.Common.Interfaces;
 
     internal sealed class BudgetRepository : IBudgetRepository
     {
-        private readonly AppDbContext appDbContext;
+        private readonly IAppDbContext appDbContext;
 
-        public BudgetRepository(AppDbContext appDbContext)
+        public BudgetRepository(IAppDbContext appDbContext)
         {
             this.appDbContext = appDbContext;
         }

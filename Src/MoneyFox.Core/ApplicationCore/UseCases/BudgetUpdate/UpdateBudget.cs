@@ -25,7 +25,7 @@
             public IReadOnlyList<int> Categories { get; }
         }
 
-        public class Handler : IRequestHandler<Command, Unit>
+        public class Handler : IRequestHandler<Command>
         {
             private readonly IBudgetRepository budgetRepository;
 
