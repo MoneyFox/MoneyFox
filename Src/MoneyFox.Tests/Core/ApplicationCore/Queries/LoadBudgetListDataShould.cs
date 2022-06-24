@@ -13,12 +13,12 @@
     using TestFramework;
     using Xunit;
 
-    public sealed class LoadBudgetsShould
+    public sealed class LoadBudgetListDataShould
     {
         private readonly AppDbContext dbContext;
         private readonly LoadBudgetListData.Handler handler;
 
-        public LoadBudgetsShould()
+        public LoadBudgetListDataShould()
         {
             dbContext = InMemoryAppDbContextFactory.Create();
             handler = new LoadBudgetListData.Handler(dbContext);
