@@ -33,6 +33,8 @@
             SelectedBudget.Id = budgetData.Id;
             SelectedBudget.Name = budgetData.Name;
             SelectedBudget.SpendingLimit = budgetData.SpendingLimit;
+
+            SelectedCategories.Clear();
             SelectedCategories.AddRange(budgetData.Categories.Select(bc => new BudgetCategoryViewModel(categoryId: bc.Id, name: bc.Name)));
         }
 
