@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Infrastructure.Persistence
+namespace MoneyFox.Infrastructure.Persistence
 {
 
     using System;
@@ -78,6 +78,11 @@
         public override int SaveChanges()
         {
             return SaveChangesAsync().GetAwaiter().GetResult();
+        }
+
+        public void Migratedb()
+        {
+            Database.Migrate();
         }
     }
 
