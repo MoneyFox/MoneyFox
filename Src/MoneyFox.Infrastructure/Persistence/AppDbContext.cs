@@ -4,10 +4,11 @@ namespace MoneyFox.Infrastructure.Persistence
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using Core._Pending_.Common.Facades;
     using Core.ApplicationCore.Domain.Aggregates;
     using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+    using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
     using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
+    using Core.Common.Facades;
     using Core.Common.Interfaces;
     using Core.Common.Mediatr;
     using Core.Notifications.DatabaseChanged;
@@ -23,6 +24,8 @@ namespace MoneyFox.Infrastructure.Persistence
             this.publisher = publisher;
             this.settingsFacade = settingsFacade;
         }
+
+        public DbSet<Budget> Budgets { get; set; } = null!;
 
         public DbSet<Account> Accounts { get; set; } = null!;
 

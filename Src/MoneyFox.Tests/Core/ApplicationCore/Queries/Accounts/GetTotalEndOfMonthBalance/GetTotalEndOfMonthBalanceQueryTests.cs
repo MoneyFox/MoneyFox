@@ -7,7 +7,7 @@
     using FluentAssertions;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using MoneyFox.Core.ApplicationCore.Queries;
-    using MoneyFox.Core.Common;
+    using MoneyFox.Core.Common.Helpers;
     using MoneyFox.Infrastructure.Persistence;
     using NSubstitute;
     using TestFramework;

@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using _Pending_.Common.Helpers;
     using _Pending_.Common.QueryObjects;
     using ApplicationCore.Domain.Aggregates.AccountAggregate;
     using Common.Interfaces;
@@ -34,10 +33,10 @@
                     .ToListAsync(cancellationToken);
 
                 var recPaymentsToCreate = recurringPayments.Where(x => x.RelatedPayments.Any())
-                    .Where(x => RecurringPaymentHelper.CheckIfRepeatable(x.RelatedPayments.OrderByDescending(d => d.Date).First()))
+                    .Where(x => RecurrenceHelper.CheckIfRepeatable(x.RelatedPayments.OrderByDescending(d => d.Date).First()))
                     .Select(
                         x => new Payment(
-                            date: RecurringPaymentHelper.GetPaymentDateFromRecurring(x),
+                            date: RecurrenceHelper.GetPaymentDateFromRecurring(x),
                             amount: x.Amount,
                             type: x.Type,
                             chargedAccount: x.ChargedAccount,

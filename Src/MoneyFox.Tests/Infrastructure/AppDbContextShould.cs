@@ -7,8 +7,8 @@
     using System.Threading.Tasks;
     using FluentAssertions;
     using Microsoft.EntityFrameworkCore;
-    using MoneyFox.Core._Pending_.Common.Facades;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+    using MoneyFox.Core.Common.Facades;
     using MoneyFox.Core.Common.Mediatr;
     using MoneyFox.Core.Notifications.DatabaseChanged;
     using MoneyFox.Infrastructure.Persistence;
@@ -62,7 +62,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            account.UpdateAccount("NewTest");
+            account.Change("NewTest");
             await context.SaveChangesAsync();
 
             // Assert

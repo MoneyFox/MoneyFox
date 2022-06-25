@@ -2,10 +2,9 @@
 {
 
     using System.Threading.Tasks;
-    using CommunityToolkit.Mvvm.ComponentModel;
+    using Common.Extensions;
     using CommunityToolkit.Mvvm.Input;
-    using Core._Pending_.Common.Facades;
-    using Extensions;
+    using Core.Common.Facades;
     using Xamarin.Forms;
 
     internal sealed class WelcomeViewModel : BaseViewModel
@@ -17,9 +16,11 @@
             this.settingsFacade = settingsFacade;
         }
 
-        public AsyncRelayCommand GoToAddAccountCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddAccountRoute));
+        public AsyncRelayCommand GoToAddAccountCommand
+            => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(Routes.AddAccountRoute));
 
-        public AsyncRelayCommand NextStepCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.CategoryIntroductionRoute));
+        public AsyncRelayCommand NextStepCommand
+            => new AsyncRelayCommand(async () => await Shell.Current.GoToAsync(Routes.CategoryIntroductionRoute));
 
         public RelayCommand SkipCommand => new RelayCommand(SkipSetup);
 
@@ -27,7 +28,7 @@
         {
             if (settingsFacade.IsSetupCompleted)
             {
-                await Shell.Current.GoToAsync(ViewModelLocator.DashboardRoute);
+                await Shell.Current.GoToAsync(Routes.DashboardRoute);
             }
         }
 

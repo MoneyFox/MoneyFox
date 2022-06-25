@@ -28,7 +28,7 @@
             public async Task<Unit> Handle(UpdateAccountCommand request, CancellationToken cancellationToken)
             {
                 var existingAccount = await appDbContext.Accounts.FindAsync(request.Account.Id);
-                existingAccount.UpdateAccount(name: request.Account.Name, note: request.Account.Note ?? "", isExcluded: request.Account.IsExcluded);
+                existingAccount.Change(name: request.Account.Name, note: request.Account.Note ?? "", isExcluded: request.Account.IsExcluded);
                 await appDbContext.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;

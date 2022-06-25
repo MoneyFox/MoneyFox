@@ -6,16 +6,15 @@
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
-    using CommunityToolkit.Mvvm.ComponentModel;
+    using Common.Extensions;
+    using Common.Groups;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
-    using Core._Pending_.Common.Messages;
     using Core.ApplicationCore.Queries;
     using Core.Commands.Accounts.DeleteAccountById;
     using Core.Common.Interfaces;
+    using Core.Common.Messages;
     using Core.Resources;
-    using Extensions;
-    using Groups;
     using MediatR;
     using Views.Accounts;
     using Xamarin.Forms;
@@ -50,19 +49,19 @@
             }
         }
 
-        public RelayCommand GoToAddAccountCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddAccountRoute));
+        public RelayCommand GoToAddAccountCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(Routes.AddAccountRoute));
 
-        public RelayCommand<AccountViewModel> GoToEditAccountCommand
-            => new RelayCommand<AccountViewModel>(
+        public AsyncRelayCommand<AccountViewModel> GoToEditAccountCommand
+            => new AsyncRelayCommand<AccountViewModel>(
                 async accountViewModel => await Shell.Current.Navigation.PushModalAsync(
                     new NavigationPage(new EditAccountPage(accountViewModel.Id)) { BarBackgroundColor = Color.Transparent }));
 
-        public RelayCommand<AccountViewModel> GoToTransactionListCommand
-            => new RelayCommand<AccountViewModel>(
-                async accountViewModel => await Shell.Current.GoToAsync($"{ViewModelLocator.PaymentListRoute}?accountId={accountViewModel.Id}"));
+        public AsyncRelayCommand<AccountViewModel> GoToTransactionListCommand
+            => new AsyncRelayCommand<AccountViewModel>(
+                async accountViewModel => await Shell.Current.GoToAsync($"{Routes.PaymentListRoute}?accountId={accountViewModel.Id}"));
 
-        public RelayCommand<AccountViewModel> DeleteAccountCommand
-            => new RelayCommand<AccountViewModel>(async accountViewModel => await DeleteAccountAsync(accountViewModel));
+        public AsyncRelayCommand<AccountViewModel> DeleteAccountCommand
+            => new AsyncRelayCommand<AccountViewModel>(async accountViewModel => await DeleteAccountAsync(accountViewModel));
 
         protected override void OnActivated()
         {

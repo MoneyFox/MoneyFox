@@ -5,11 +5,11 @@
     using System.Globalization;
     using System.Threading.Tasks;
     using Common.Exceptions;
-    using Core._Pending_.Common.Facades;
     using Core.ApplicationCore.UseCases.DbBackup;
     using Core.Commands.Payments.ClearPayments;
     using Core.Commands.Payments.CreateRecurringPayments;
-    using Core.Common;
+    using Core.Common.Facades;
+    using Core.Common.Helpers;
     using InversionOfControl;
     using MediatR;
     using Microsoft.Extensions.DependencyInjection;
@@ -33,7 +33,7 @@
             MainPage = new AppShell();
             if (!settingsFacade.IsSetupCompleted)
             {
-                Shell.Current.GoToAsync(ViewModelLocator.WelcomeViewRoute).Wait();
+                Shell.Current.GoToAsync(Routes.WelcomeViewRoute).Wait();
             }
         }
 

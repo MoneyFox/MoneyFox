@@ -11,6 +11,7 @@ namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Statistics
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using MoneyFox.Core.ApplicationCore.Queries.Statistics;
     using MoneyFox.Core.Common;
+    using MoneyFox.Core.Common.Helpers;
     using MoneyFox.Core.Resources;
     using MoneyFox.Infrastructure.Persistence;
     using TestFramework;
@@ -42,7 +43,7 @@ namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Statistics
                     new Payment(date: DateTime.Today, amount: 40, type: PaymentType.Expense, chargedAccount: new Account("Foo3"))
                 });
 
-            context.SaveChanges();
+            await context.SaveChangesAsync();
 
             // Act
             var result = await getCashFlowQueryHandler.Handle(
@@ -94,7 +95,7 @@ namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Statistics
             context.AddRange(
                 new List<Payment> { new Payment(date: DateTime.Today, amount: 40, type: PaymentType.Expense, chargedAccount: new Account("Foo3")) });
 
-            context.SaveChanges();
+            await context.SaveChangesAsync();
             var cultureInfo = new CultureInfo("en-US");
             CultureHelper.CurrentCulture = cultureInfo;
 

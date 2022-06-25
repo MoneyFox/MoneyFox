@@ -3,7 +3,7 @@
 
     using Xamarin.Forms;
 
-    public partial class ModifyPaymentContentView : ContentView
+    public partial class ModifyPaymentContentView
     {
         public ModifyPaymentContentView()
         {

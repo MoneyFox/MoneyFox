@@ -1,9 +1,9 @@
-﻿namespace MoneyFox.Extensions
+﻿namespace MoneyFox.Common.Extensions
 {
 
     using System;
     using System.Threading.Tasks;
-    using Core.ApplicationCore.Domain.Exceptions;
+    using MoneyFox.Core.ApplicationCore.Domain.Exceptions;
     using Serilog;
     using Xamarin.Essentials;
     using Xamarin.Forms;

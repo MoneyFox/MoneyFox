@@ -4,8 +4,8 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-    using MoneyFox.Core._Pending_.Common.Facades;
     using MoneyFox.Core.Commands.Accounts.CreateAccount;
+    using MoneyFox.Core.Common.Facades;
     using MoneyFox.Infrastructure.Persistence;
     using Moq;
     using TestFramework;

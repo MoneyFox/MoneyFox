@@ -1,9 +1,8 @@
 ﻿namespace MoneyFox.ViewModels.SetupAssistant
 {
 
-    using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
-    using Core._Pending_.Common.Facades;
+    using Core.Common.Facades;
     using Xamarin.Forms;
 
     internal sealed class SetupCompletionViewModel : BaseViewModel

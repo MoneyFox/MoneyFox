@@ -4,11 +4,10 @@ namespace MoneyFox.ViewModels.Statistics
     using System;
     using System.Globalization;
     using System.Threading.Tasks;
-    using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
-    using Core._Pending_.Common.Extensions;
-    using Core._Pending_.Common.Messages;
+    using Core.Common.Extensions;
+    using Core.Common.Messages;
     using Core.Resources;
     using MediatR;
 

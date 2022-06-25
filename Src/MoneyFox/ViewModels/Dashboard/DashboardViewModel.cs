@@ -5,16 +5,13 @@
     using System.Threading.Tasks;
     using Accounts;
     using AutoMapper;
-    using CommunityToolkit.Mvvm.ComponentModel;
+    using Common.Extensions;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
-    using Core._Pending_.Common.Messages;
     using Core.ApplicationCore.Queries;
     using Core.Common.Interfaces;
-    using Extensions;
+    using Core.Common.Messages;
     using MediatR;
-    using Views.Popups;
-    using Xamarin.CommunityToolkit.Extensions;
     using Xamarin.Forms;
     using Xamarin.Forms.Internals;
 
@@ -118,15 +115,16 @@
             }
         }
 
-        public AsyncRelayCommand GoToAddPaymentCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
+        public AsyncRelayCommand GoToAddPaymentCommand
+            => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(Routes.AddPaymentRoute));
 
-        public AsyncRelayCommand GoToAccountsCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.AccountListRoute));
+        public AsyncRelayCommand GoToAccountsCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToAsync(Routes.AccountListRoute));
 
-        public AsyncRelayCommand GoToBudgetsCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.BudgetListRoute));
+        public AsyncRelayCommand GoToBudgetsCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToAsync(Routes.BudgetListRoute));
 
         public AsyncRelayCommand<AccountViewModel> GoToTransactionListCommand
             => new AsyncRelayCommand<AccountViewModel>(
-                async accountViewModel => await Shell.Current.GoToAsync($"{ViewModelLocator.PaymentListRoute}?accountId={accountViewModel.Id}"));
+                async accountViewModel => await Shell.Current.GoToAsync($"{Routes.PaymentListRoute}?accountId={accountViewModel.Id}"));
 
         protected override void OnActivated()
         {

@@ -39,9 +39,6 @@
             }
         }
 
-        /// <summary>
-        ///     Account Name
-        /// </summary>
         public string Name
         {
             get => name;

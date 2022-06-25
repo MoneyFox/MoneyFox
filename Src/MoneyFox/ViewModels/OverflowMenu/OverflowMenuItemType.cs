@@ -6,7 +6,8 @@
         Categories,
         Backup,
         Settings,
-        About
+        About,
+        Budgets
     }
 
 }

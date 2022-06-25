@@ -4,8 +4,8 @@
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using _Pending_.Common.Facades;
     using ApplicationCore.UseCases.BackupUpload;
+    using Common.Facades;
     using MediatR;
 
     public static class DataBaseChanged
@@ -28,7 +28,7 @@
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
                 if (settingsFacade.IsBackupAutoUploadEnabled && settingsFacade.IsLoggedInToBackupService)
                 {
-                    await sender.Send(new UploadBackup.Command(), cancellationToken);
+                    await sender.Send(request: new UploadBackup.Command(), cancellationToken: cancellationToken);
                 }
             }
         }

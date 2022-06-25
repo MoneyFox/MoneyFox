@@ -8,15 +8,14 @@
     using Accounts;
     using AutoMapper;
     using Categories;
-    using CommunityToolkit.Mvvm.ComponentModel;
+    using Common.Extensions;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
-    using Core._Pending_.Common.Messages;
     using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using Core.ApplicationCore.Queries;
     using Core.Common.Interfaces;
+    using Core.Common.Messages;
     using Core.Resources;
-    using Extensions;
     using MediatR;
     using Xamarin.Forms;
 
@@ -95,7 +94,7 @@
         public string AccountHeader => SelectedPayment?.Type == PaymentType.Income ? Strings.TargetAccountLabel : Strings.ChargedAccountLabel;
 
         public RelayCommand GoToSelectCategoryDialogCommand
-            => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.SelectCategoryRoute));
+            => new RelayCommand(async () => await Shell.Current.GoToModalAsync(Routes.SelectCategoryRoute));
 
         public RelayCommand ResetCategoryCommand => new RelayCommand(() => SelectedPayment.Category = null);
 
@@ -169,7 +168,7 @@
                 return;
             }
 
-            SelectedPayment.Category = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.CategoryId)));
+            SelectedPayment.Category = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId)));
         }
     }
 

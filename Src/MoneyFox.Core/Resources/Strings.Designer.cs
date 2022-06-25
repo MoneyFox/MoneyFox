@@ -124,6 +124,24 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Budget.
+        /// </summary>
+        public static string AddBudgetLabel {
+            get {
+                return ResourceManager.GetString("AddBudgetLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Budget.
+        /// </summary>
+        public static string AddBudgetTitle {
+            get {
+                return ResourceManager.GetString("AddBudgetTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Category.
         /// </summary>
         public static string AddCategoryLabel {
@@ -394,11 +412,29 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Budget Name.
+        /// </summary>
+        public static string BudgetNameLabel {
+            get {
+                return ResourceManager.GetString("BudgetNameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Budgets.
         /// </summary>
         public static string BudgetsLabel {
             get {
                 return ResourceManager.GetString("BudgetsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Budgets.
+        /// </summary>
+        public static string BudgetsTitle {
+            get {
+                return ResourceManager.GetString("BudgetsTitle", resourceCulture);
             }
         }
         
@@ -885,6 +921,15 @@ namespace MoneyFox.Core.Resources {
         public static string EditAccountTitle {
             get {
                 return ResourceManager.GetString("EditAccountTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Budget.
+        /// </summary>
+        public static string EditBudgetTitle {
+            get {
+                return ResourceManager.GetString("EditBudgetTitle", resourceCulture);
             }
         }
         
@@ -1556,6 +1601,15 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are no Budgets yet. Go ahead and create one!.
+        /// </summary>
+        public static string NoBudgetsMessage {
+            get {
+                return ResourceManager.GetString("NoBudgetsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There are no categories to display. .
         /// </summary>
         public static string NoCategoriesMessage {
@@ -1692,7 +1746,7 @@ namespace MoneyFox.Core.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to When you create a payment you can select the category for that payment along with the account and if it is an expense, an income or a transfer.
-        ///Payments you created will show up under the account you choose. 
+        ///Payments you created will show up under the account you choose.
         ///To get there go to the account list and select the respective account..
         /// </summary>
         public static string PaymentIntroductionText {
@@ -1911,6 +1965,15 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selected Categories.
+        /// </summary>
+        public static string SelectedCategoriesLabel {
+            get {
+                return ResourceManager.GetString("SelectedCategoriesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Selected Payment Type.
         /// </summary>
         public static string SelectedPaymentTypeHeader {
@@ -1952,6 +2015,15 @@ namespace MoneyFox.Core.Resources {
         public static string SkipLabel {
             get {
                 return ResourceManager.GetString("SkipLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spending Limit.
+        /// </summary>
+        public static string SpendingLimitLabel {
+            get {
+                return ResourceManager.GetString("SpendingLimitLabel", resourceCulture);
             }
         }
         
@@ -2100,7 +2172,7 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The MoneyFox helps you to track your expenses and incomes in an easy way. 
+        ///   Looks up a localized string similar to The MoneyFox helps you to track your expenses and incomes in an easy way.
         ///To start create a new account. Accounts are used to organize payments and money in collections..
         /// </summary>
         public static string WelcomePageText {
