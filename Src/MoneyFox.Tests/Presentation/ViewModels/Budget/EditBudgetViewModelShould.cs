@@ -180,6 +180,7 @@
                 // Assert
                 capturedCommand.Should().NotBeNull();
                 capturedCommand!.BudgetId.Should().Be(testBudget.Id);
+                await navigationService.Received(1).GoBackFromModal();
             }
 
             [Fact]
@@ -194,6 +195,7 @@
 
                 // Assert
                 await sender.Received(0).Send(Arg.Any<DeleteBudget.Command>());
+                await navigationService.Received(0).GoBackFromModal();
             }
         }
     }

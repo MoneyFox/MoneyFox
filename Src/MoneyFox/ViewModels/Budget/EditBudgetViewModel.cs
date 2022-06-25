@@ -48,6 +48,7 @@
             {
                 var command = new DeleteBudget.Command(budgetId: SelectedBudget.Id);
                 await sender.Send(command);
+                await navigationService.GoBackFromModal();
             }
         }
 
