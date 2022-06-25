@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Common.Interfaces
+namespace MoneyFox.Core.Common.Interfaces
 {
 
     using System;
@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using ApplicationCore.Domain.Aggregates;
     using ApplicationCore.Domain.Aggregates.AccountAggregate;
+    using ApplicationCore.Domain.Aggregates.BudgetAggregate;
     using ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -20,6 +21,8 @@
 
         DbSet<Category> Categories { get; }
 
+        DbSet<Budget> Budgets { get; }
+
         ValueTask<EntityEntry> AddAsync(object entity, CancellationToken cancellationToken = default);
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
@@ -29,6 +32,8 @@
         EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
 
         EntityEntry Entry(object entity);
+
+        void Migratedb();
     }
 
 }

@@ -5,18 +5,15 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
-using Core._Pending_.Common.Extensions;
-using Core._Pending_.Common.Facades;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries.Statistics;
+using Core.Common.Extensions;
+using Core.Common.Facades;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using MediatR;
 
-/// <summary>
-///     Representation of the category Spreading View
-/// </summary>
-public class StatisticCategorySpreadingViewModel : StatisticViewModel
+internal class StatisticCategorySpreadingViewModel : StatisticViewModel
 {
     private readonly ISettingsFacade settingsFacade;
     private PaymentType selectedPaymentType;

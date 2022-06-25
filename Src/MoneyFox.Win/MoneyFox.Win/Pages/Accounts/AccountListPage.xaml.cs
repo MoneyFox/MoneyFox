@@ -13,7 +13,7 @@ public sealed partial class AccountListPage : BasePage
         InitializeComponent();
         if (!DesignMode.DesignModeEnabled)
         {
-            DataContext = ViewModelLocator.AccountListVm;
+            DataContext = App.GetViewModel<AccountListViewModel>();
         }
     }
 

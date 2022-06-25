@@ -12,16 +12,16 @@
     {
         public class Handler : IRequestHandler<GetAccountCountQuery, int>
         {
-            private readonly IContextAdapter contextAdapter;
+            private readonly IAppDbContext appDbContext;
 
-            public Handler(IContextAdapter contextAdapter)
+            public Handler(IAppDbContext appDbContext)
             {
-                this.contextAdapter = contextAdapter;
+                this.appDbContext = appDbContext;
             }
 
             public async Task<int> Handle(GetAccountCountQuery request, CancellationToken cancellationToken)
             {
-                return await contextAdapter.Context.Accounts.AreActive().CountAsync(cancellationToken);
+                return await appDbContext.Accounts.AreActive().CountAsync(cancellationToken);
             }
         }
     }

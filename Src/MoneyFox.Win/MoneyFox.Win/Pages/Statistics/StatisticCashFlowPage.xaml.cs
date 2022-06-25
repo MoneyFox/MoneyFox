@@ -8,10 +8,10 @@ public partial class StatisticCashFlowPage : BasePage
     public StatisticCashFlowPage()
     {
         InitializeComponent();
-        DataContext = ViewModelLocator.StatisticCashFlowVm;
+        DataContext = App.GetViewModel<StatisticCashFlowViewModel>();
     }
 
-    public StatisticCashFlowViewModel ViewModel => (StatisticCashFlowViewModel)DataContext;
+    internal StatisticCashFlowViewModel ViewModel => (StatisticCashFlowViewModel)DataContext;
 
     public override string Header => Strings.CashFlowStatisticTitle;
 }

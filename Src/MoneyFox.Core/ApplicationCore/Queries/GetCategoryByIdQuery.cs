@@ -18,16 +18,16 @@
 
         public class Handler : IRequestHandler<GetCategoryByIdQuery, Category?>
         {
-            private readonly IContextAdapter contextAdapter;
+            private readonly IAppDbContext appDbContext;
 
-            public Handler(IContextAdapter contextAdapter)
+            public Handler(IAppDbContext appDbContext)
             {
-                this.contextAdapter = contextAdapter;
+                this.appDbContext = appDbContext;
             }
 
             public async Task<Category?> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
             {
-                return await contextAdapter.Context.Categories.FindAsync(request.CategoryId);
+                return await appDbContext.Categories.FindAsync(request.CategoryId);
             }
         }
     }

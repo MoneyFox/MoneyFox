@@ -2,6 +2,7 @@
 {
 
     using System;
+    using Common;
 
     public class IosFileStore : FileStoreIoBase
     {

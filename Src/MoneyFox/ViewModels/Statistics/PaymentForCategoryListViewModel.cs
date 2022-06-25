@@ -6,16 +6,15 @@ namespace MoneyFox.ViewModels.Statistics
     using System.Globalization;
     using System.Threading.Tasks;
     using AutoMapper;
-    using CommunityToolkit.Mvvm.ComponentModel;
+    using Common.Groups;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
     using Core.ApplicationCore.Queries;
-    using Groups;
     using MediatR;
     using Payments;
     using Views.Payments;
 
-    public class PaymentForCategoryListViewModel : ObservableRecipient
+    internal sealed class PaymentForCategoryListViewModel : BaseViewModel
     {
         private readonly IMapper mapper;
 

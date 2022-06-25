@@ -1,13 +1,13 @@
-namespace MoneyFox.ViewModels.SetupAssistant
+﻿namespace MoneyFox.ViewModels.SetupAssistant
 {
 
     using System.Threading.Tasks;
-    using CommunityToolkit.Mvvm.ComponentModel;
+    using Common.Extensions;
     using CommunityToolkit.Mvvm.Input;
-    using Core._Pending_.Common.Facades;
-    using Extensions;
+    using Core.Common.Facades;
+    using Xamarin.Forms;
 
-    public class WelcomeViewModel : ObservableObject
+    internal sealed class WelcomeViewModel : BaseViewModel
     {
         private readonly ISettingsFacade settingsFacade;
 
@@ -16,9 +16,11 @@ namespace MoneyFox.ViewModels.SetupAssistant
             this.settingsFacade = settingsFacade;
         }
 
-        public RelayCommand GoToAddAccountCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddAccountRoute));
+        public AsyncRelayCommand GoToAddAccountCommand
+            => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(Routes.AddAccountRoute));
 
-        public RelayCommand NextStepCommand => new RelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.CategoryIntroductionRoute));
+        public AsyncRelayCommand NextStepCommand
+            => new AsyncRelayCommand(async () => await Shell.Current.GoToAsync(Routes.CategoryIntroductionRoute));
 
         public RelayCommand SkipCommand => new RelayCommand(SkipSetup);
 
@@ -26,7 +28,7 @@ namespace MoneyFox.ViewModels.SetupAssistant
         {
             if (settingsFacade.IsSetupCompleted)
             {
-                await Shell.Current.GoToAsync(ViewModelLocator.DashboardRoute);
+                await Shell.Current.GoToAsync(Routes.DashboardRoute);
             }
         }
 

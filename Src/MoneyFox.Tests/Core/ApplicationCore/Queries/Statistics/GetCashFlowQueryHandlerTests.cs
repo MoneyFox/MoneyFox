@@ -11,36 +11,23 @@ namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Statistics
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using MoneyFox.Core.ApplicationCore.Queries.Statistics;
     using MoneyFox.Core.Common;
-    using MoneyFox.Core.Common.Interfaces;
+    using MoneyFox.Core.Common.Helpers;
     using MoneyFox.Core.Resources;
     using MoneyFox.Infrastructure.Persistence;
-    using Moq;
     using TestFramework;
     using Xunit;
 
     [ExcludeFromCodeCoverage]
     [Collection("CultureCollection")]
-    public class GetCashFlowQueryHandlerTests : IDisposable
+    public class GetCashFlowQueryHandlerTests
     {
         private readonly AppDbContext context;
-        private readonly Mock<IContextAdapter> contextAdapterMock;
+        private readonly GetCashFlowQueryHandler getCashFlowQueryHandler;
 
         public GetCashFlowQueryHandlerTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-            contextAdapterMock = new Mock<IContextAdapter>();
-            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryAppDbContextFactory.Destroy(context);
+            getCashFlowQueryHandler = new GetCashFlowQueryHandler(context);
         }
 
         [Fact]
@@ -56,10 +43,10 @@ namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Statistics
                     new Payment(date: DateTime.Today, amount: 40, type: PaymentType.Expense, chargedAccount: new Account("Foo3"))
                 });
 
-            context.SaveChanges();
+            await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
+            var result = await getCashFlowQueryHandler.Handle(
                 request: new GetCashFlowQuery { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
                 cancellationToken: default);
 
@@ -75,7 +62,7 @@ namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Statistics
             // Arrange
 
             // Act
-            var result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
+            var result = await getCashFlowQueryHandler.Handle(
                 request: new GetCashFlowQuery { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
                 cancellationToken: default);
 
@@ -91,7 +78,7 @@ namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Statistics
             // Arrange
 
             // Act
-            var result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
+            var result = await getCashFlowQueryHandler.Handle(
                 request: new GetCashFlowQuery { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
                 cancellationToken: default);
 
@@ -108,12 +95,12 @@ namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Statistics
             context.AddRange(
                 new List<Payment> { new Payment(date: DateTime.Today, amount: 40, type: PaymentType.Expense, chargedAccount: new Account("Foo3")) });
 
-            context.SaveChanges();
+            await context.SaveChangesAsync();
             var cultureInfo = new CultureInfo("en-US");
             CultureHelper.CurrentCulture = cultureInfo;
 
             // Act
-            var result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
+            var result = await getCashFlowQueryHandler.Handle(
                 request: new GetCashFlowQuery { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
                 cancellationToken: default);
 
@@ -133,7 +120,7 @@ namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Statistics
             CultureHelper.CurrentCulture = cultureInfo;
 
             // Act
-            var result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
+            var result = await getCashFlowQueryHandler.Handle(
                 request: new GetCashFlowQuery { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
                 cancellationToken: default);
 

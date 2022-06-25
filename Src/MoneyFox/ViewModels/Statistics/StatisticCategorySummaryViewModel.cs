@@ -5,15 +5,15 @@ namespace MoneyFox.ViewModels.Statistics
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
+    using Common.Extensions;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
     using Core.ApplicationCore.Queries.Statistics.GetCategorySummary;
     using Core.Common.Interfaces;
-    using Extensions;
     using MediatR;
     using Serilog;
 
-    public class StatisticCategorySummaryViewModel : StatisticViewModel
+    internal sealed class StatisticCategorySummaryViewModel : StatisticViewModel
     {
         private readonly IDialogService dialogService;
 
@@ -67,7 +67,7 @@ namespace MoneyFox.ViewModels.Statistics
 
         private async Task ShowCategoryPaymentsAsync(CategoryOverviewViewModel categoryOverviewModel)
         {
-            await Shell.Current.GoToModalAsync(ViewModelLocator.PaymentForCategoryListRoute);
+            await Shell.Current.GoToModalAsync(Routes.PaymentForCategoryListRoute);
             Messenger.Send(new PaymentsForCategoryMessage(categoryId: categoryOverviewModel.CategoryId, startdate: StartDate, enddate: EndDate));
         }
     }

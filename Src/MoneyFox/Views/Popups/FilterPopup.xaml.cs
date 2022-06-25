@@ -1,28 +1,32 @@
-namespace MoneyFox.Views.Popups;
-
-using Core._Pending_.Common.Messages;
-using ViewModels.Dialogs;
-
-public partial class FilterPopup
+namespace MoneyFox.Views.Popups
 {
-    public FilterPopup()
+
+    using System;
+    using Core.Common.Messages;
+    using MoneyFox.ViewModels.Dialogs;
+
+    public partial class FilterPopup
     {
-        InitializeComponent();
-        BindingContext = ViewModelLocator.SelectFilterDialogViewModel;
+        public FilterPopup()
+        {
+            InitializeComponent();
+            BindingContext = App.GetViewModel<SelectFilterDialogViewModel>();
+        }
+
+        public FilterPopup(PaymentListFilterChangedMessage message)
+        {
+            InitializeComponent();
+            BindingContext = App.GetViewModel<SelectFilterDialogViewModel>();
+            ViewModel.Initialize(message);
+        }
+
+        private SelectFilterDialogViewModel ViewModel => (SelectFilterDialogViewModel)BindingContext;
+
+        private void Button_OnClicked(object sender, EventArgs e)
+        {
+            ViewModel.FilterSelectedCommand.Execute(null);
+            Dismiss(null);
+        }
     }
 
-    public FilterPopup(PaymentListFilterChangedMessage message)
-    {
-        InitializeComponent();
-        BindingContext = ViewModelLocator.SelectFilterDialogViewModel;
-        ViewModel.Initialize(message);
-    }
-
-    private SelectFilterDialogViewModel ViewModel => (SelectFilterDialogViewModel)BindingContext;
-
-    private void Button_OnClicked(object sender, EventArgs e)
-    {
-        ViewModel.FilterSelectedCommand.Execute(null);
-        Close(null);
-    }
 }

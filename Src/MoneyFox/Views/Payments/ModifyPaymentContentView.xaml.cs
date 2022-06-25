@@ -1,6 +1,9 @@
-namespace MoneyFox.Views.Payments
+﻿namespace MoneyFox.Views.Payments
 {
-    public partial class ModifyPaymentContentView : ContentView
+
+    using Xamarin.Forms;
+
+    public partial class ModifyPaymentContentView
     {
         public ModifyPaymentContentView()
         {
@@ -9,8 +12,12 @@ namespace MoneyFox.Views.Payments
 
         private void AmountFieldGotFocus(object sender, FocusEventArgs e)
         {
-            AmountEntry.CursorPosition = 0;
-            AmountEntry.SelectionLength = AmountEntry.Text != null ? AmountEntry.Text.Length : 0;
+            Dispatcher.BeginInvokeOnMainThread(
+                () =>
+                {
+                    AmountEntry.CursorPosition = 0;
+                    AmountEntry.SelectionLength = AmountEntry.Text != null ? AmountEntry.Text.Length : 0;
+                });
         }
     }
 

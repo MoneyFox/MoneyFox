@@ -8,6 +8,7 @@
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using MoneyFox.Core.ApplicationCore.Queries;
     using MoneyFox.Core.Common;
+    using MoneyFox.Core.Common.Helpers;
     using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Infrastructure.Persistence;
     using NSubstitute;
@@ -15,34 +16,23 @@
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class GetMonthlyExpenseQueryTests : IDisposable
+    public class GetMonthlyExpenseQueryTests
     {
         private readonly AppDbContext context;
-        private readonly IContextAdapter contextAdapter;
+        private readonly ISystemDateHelper systemDateHelper;
+        private readonly GetMonthlyExpenseQuery.Handler handler;
 
         public GetMonthlyExpenseQueryTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-            contextAdapter = Substitute.For<IContextAdapter>();
-            contextAdapter.Context.Returns(context);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryAppDbContextFactory.Destroy(context);
+            systemDateHelper = Substitute.For<ISystemDateHelper>();
+            handler = new GetMonthlyExpenseQuery.Handler(appDbContext: context, systemDateHelper: systemDateHelper);
         }
 
         [Fact]
         public async Task ReturnCorrectAmount()
         {
             // Arrange
-            var systemDateHelper = Substitute.For<ISystemDateHelper>();
             systemDateHelper.Today.Returns(new DateTime(year: 2020, month: 09, day: 05));
             var account = new Account(name: "test", initialBalance: 80);
             var payment1 = new Payment(date: new DateTime(year: 2020, month: 09, day: 03), amount: 50, type: PaymentType.Expense, chargedAccount: account);
@@ -54,9 +44,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            var sum = await new GetMonthlyExpenseQuery.Handler(contextAdapter: contextAdapter, systemDateHelper: systemDateHelper).Handle(
-                request: new GetMonthlyExpenseQuery(),
-                cancellationToken: default);
+            var sum = await handler.Handle(request: new GetMonthlyExpenseQuery(), cancellationToken: default);
 
             // Assert
             sum.Should().Be(70);

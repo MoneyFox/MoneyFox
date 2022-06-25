@@ -14,27 +14,15 @@
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class GetAccountNameByIdQueryTests : IDisposable
+    public class GetAccountNameByIdQueryTests
     {
         private readonly AppDbContext context;
-        private readonly Mock<IContextAdapter> contextAdapterMock;
+        private readonly GetAccountNameByIdQuery.Handler handler;
 
         public GetAccountNameByIdQueryTests()
         {
             context = InMemoryAppDbContextFactory.Create();
-            contextAdapterMock = new Mock<IContextAdapter>();
-            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryAppDbContextFactory.Destroy(context);
+            handler = new GetAccountNameByIdQuery.Handler(context);
         }
 
         [Fact]
@@ -46,9 +34,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetAccountNameByIdQuery.Handler(contextAdapterMock.Object).Handle(
-                request: new GetAccountNameByIdQuery(account1.Id),
-                cancellationToken: default);
+            var result = await handler.Handle(request: new GetAccountNameByIdQuery(account1.Id), cancellationToken: default);
 
             // Assert
             result.Should().Be(account1.Name);
@@ -57,11 +43,8 @@
         [Fact]
         public async Task EmptyStringWhenNoAccountFound()
         {
-            // Arrange
             // Act
-            var result = await new GetAccountNameByIdQuery.Handler(contextAdapterMock.Object).Handle(
-                request: new GetAccountNameByIdQuery(33),
-                cancellationToken: default);
+            var result = await handler.Handle(request: new GetAccountNameByIdQuery(33), cancellationToken: default);
 
             // Assert
             result.Should().Be(string.Empty);

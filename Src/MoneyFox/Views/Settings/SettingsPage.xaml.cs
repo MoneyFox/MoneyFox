@@ -8,7 +8,7 @@
         public SettingsPage()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.SettingsViewModel;
+            BindingContext = App.GetViewModel<SettingsViewModel>();
         }
 
         private SettingsViewModel ViewModel => (SettingsViewModel)BindingContext;

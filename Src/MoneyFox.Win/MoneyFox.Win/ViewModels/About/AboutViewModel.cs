@@ -10,7 +10,7 @@ using Core.Common.Interfaces;
 using Core.Interfaces;
 using Core.Resources;
 
-public class AboutViewModel : ObservableObject, IAboutViewModel
+internal sealed class AboutViewModel : BaseViewModel, IAboutViewModel
 {
     private const string WEBSITE_URL = "https://www.apply-solutions.ch";
     private const string SUPPORT_MAIL = "mobile.support@apply-solutions.ch";

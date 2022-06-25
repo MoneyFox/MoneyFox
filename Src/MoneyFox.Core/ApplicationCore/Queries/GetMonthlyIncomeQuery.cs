@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using Common.Helpers;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
     using MoneyFox.Core._Pending_.Common;
@@ -15,18 +16,18 @@
     {
         public class Handler : IRequestHandler<GetMonthlyIncomeQuery, decimal>
         {
-            private readonly IContextAdapter contextAdapter;
+            private readonly IAppDbContext appDbContext;
             private readonly ISystemDateHelper systemDateHelper;
 
-            public Handler(IContextAdapter contextAdapter, ISystemDateHelper systemDateHelper)
+            public Handler(IAppDbContext appDbContext, ISystemDateHelper systemDateHelper)
             {
-                this.contextAdapter = contextAdapter;
+                this.appDbContext = appDbContext;
                 this.systemDateHelper = systemDateHelper;
             }
 
             public async Task<decimal> Handle(GetMonthlyIncomeQuery request, CancellationToken cancellationToken)
             {
-                return (await contextAdapter.Context.Payments.HasDateLargerEqualsThan(HelperFunctions.GetFirstDayMonth(systemDateHelper))
+                return (await appDbContext.Payments.HasDateLargerEqualsThan(HelperFunctions.GetFirstDayMonth(systemDateHelper))
                     .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper))
                     .IsIncome()
                     .Select(x => x.Amount)

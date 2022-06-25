@@ -1,25 +1,22 @@
-namespace MoneyFox.Droid
+﻿namespace MoneyFox.Droid
 {
 
     using System;
     using System.IO;
-    using Autofac;
+    using Android.App;
+    using Android.Runtime;
     using Core.Common;
-    using global::Android.App;
-    using global::Android.Runtime;
-    using Microsoft.Maui;
-    using Microsoft.Maui.Hosting;
-    using Microsoft.Maui.Storage;
+    using JetBrains.Annotations;
     using Serilog;
     using Serilog.Events;
     using Serilog.Exceptions;
+    using Xamarin.Essentials;
 
     [Application]
-    public class MainApplication : MauiApplication
+    [UsedImplicitly]
+    public class MainApplication : Application
     {
-        public MainApplication(IntPtr handle, JniHandleOwnership transfer) : base(handle, transfer) { }
-
-        protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
+        public MainApplication(IntPtr handle, JniHandleOwnership transfer) : base(javaReference: handle, transfer: transfer) { }
 
         public override void OnCreate()
         {
@@ -27,20 +24,12 @@ namespace MoneyFox.Droid
 
             // Setup handler for uncaught exceptions.
             AndroidEnvironment.UnhandledExceptionRaiser += HandleAndroidException;
-            RegisterServices();
             base.OnCreate();
         }
 
         private void HandleAndroidException(object sender, RaiseThrowableEventArgs e)
         {
             Log.Fatal(exception: e.Exception, messageTemplate: "Application Terminating");
-        }
-
-        private static void RegisterServices()
-        {
-            var builder = new ContainerBuilder();
-            builder.RegisterModule<AndroidModule>();
-            ViewModelLocator.RegisterServices(builder);
         }
 
         private void InitLogger()

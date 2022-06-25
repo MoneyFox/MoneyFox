@@ -1,7 +1,6 @@
 namespace MoneyFox.Views.SetupAssistant
 {
 
-    using CommonServiceLocator;
     using ViewModels.SetupAssistant;
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -10,7 +9,7 @@ namespace MoneyFox.Views.SetupAssistant
         public SetupCompletionPage()
         {
             InitializeComponent();
-            BindingContext = ServiceLocator.Current.GetInstance<SetupCompletionViewModel>();
+            BindingContext = App.GetViewModel<SetupCompletionViewModel>();
         }
     }
 

@@ -41,8 +41,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Autofac" Version="6.4.0" />
-        <PackageReference Include="Autofac.Extras.CommonServiceLocator" Version="6.0.1" />
         <PackageReference Include="CommunityToolkit.Mvvm" Version="7.1.2" />
         <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
         <PackageReference Include="Serilog" Version="2.11.0" />
@@ -58,4 +56,108 @@
         <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+        <EmbeddedResource Update="Common\Styles\DefaultTheme.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\Budget\BudgetListPage.xaml">
+            <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\Accounts\AccountListPage.xaml">
+            <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\Accounts\AddAccountPage.xaml">
+            <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\Accounts\EditAccountPage.xaml">
+            <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\Accounts\ModifyAccountContentView.xaml">
+            <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\Categories\AddCategoryPage.xaml">
+            <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\Categories\CategoryListPage.xaml">
+            <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\Categories\EditCategoryPage.xaml">
+            <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\Categories\ModifyCategoryContentView.xaml">
+            <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\Categories\SelectedCategoryPage.xaml">
+            <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\Dashboard\DashboardPage.xaml">
+            <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\Dialogs\LoadingIndicatorPopup.xaml">
+            <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\OverflowMenu\OverflowMenuPage.xaml">
+            <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\Payments\AddPaymentPage.xaml">
+            <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\Payments\EditPaymentPage.xaml">
+            <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\Payments\ModifyPaymentContentView.xaml">
+            <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\Payments\PaymentListPage.xaml">
+            <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\Settings\SettingsPage.xaml">
+            <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\SetupAssistant\CategoryIntroductionPage.xaml">
+            <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\SetupAssistant\SetupCompletionPage.xaml">
+            <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\SetupAssistant\WelcomePage.xaml">
+            <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\Statistics\PaymentForCategoryListPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\Statistics\StatisticAccountMonthlyCashFlowPage.xaml">
+            <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\Statistics\StatisticCashFlowPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\Statistics\StatisticCategorySpreadingPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\Statistics\StatisticCategorySummaryPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\Statistics\StatisticSelectorPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="Views\OverflowMenu\OverflowMenuPage.xaml.cs">
+            <DependentUpon>OverflowMenuPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Update="Views\Statistics\StatisticCategoryProgressionPage.xaml.cs">
+            <DependentUpon>StatisticCategoryProgressionPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Update="Views\Statistics\StatisticAccountMonthlyCashflowPage.xaml.cs">
+            <DependentUpon>StatisticAccountMonthlyCashFlowPage.xaml</DependentUpon>
+        </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+            <_Parameter1>MoneyFox.Tests</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
 </Project>

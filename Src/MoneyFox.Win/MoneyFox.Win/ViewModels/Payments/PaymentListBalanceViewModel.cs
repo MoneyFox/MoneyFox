@@ -6,10 +6,7 @@ using AutoMapper;
 using Core.ApplicationCore.Queries;
 using MediatR;
 
-/// <summary>
-///     This ViewModel is for the usage in the payment list when a concrete account is selected
-/// </summary>
-public class PaymentListBalanceViewModel : BalanceViewModel
+internal sealed class PaymentListBalanceViewModel : BalanceViewModel
 {
     private readonly int accountId;
     private readonly IMediator mediator;

@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using _Pending_.Common.Helpers;
     using _Pending_.Common.QueryObjects;
     using ApplicationCore.Domain.Aggregates.AccountAggregate;
     using Common.Interfaces;
@@ -16,16 +15,16 @@
     {
         public class Handler : IRequestHandler<CreateRecurringPaymentsCommand>
         {
-            private readonly IContextAdapter contextAdapter;
+            private readonly IAppDbContext appDbContext;
 
-            public Handler(IContextAdapter contextAdapter)
+            public Handler(IAppDbContext appDbContext)
             {
-                this.contextAdapter = contextAdapter;
+                this.appDbContext = appDbContext;
             }
 
             public async Task<Unit> Handle(CreateRecurringPaymentsCommand request, CancellationToken cancellationToken)
             {
-                var recurringPayments = await contextAdapter.Context.RecurringPayments.Include(x => x.ChargedAccount)
+                var recurringPayments = await appDbContext.RecurringPayments.Include(x => x.ChargedAccount)
                     .Include(x => x.TargetAccount)
                     .Include(x => x.Category)
                     .Include(x => x.RelatedPayments)
@@ -34,10 +33,10 @@
                     .ToListAsync(cancellationToken);
 
                 var recPaymentsToCreate = recurringPayments.Where(x => x.RelatedPayments.Any())
-                    .Where(x => RecurringPaymentHelper.CheckIfRepeatable(x.RelatedPayments.OrderByDescending(d => d.Date).First()))
+                    .Where(x => RecurrenceHelper.CheckIfRepeatable(x.RelatedPayments.OrderByDescending(d => d.Date).First()))
                     .Select(
                         x => new Payment(
-                            date: RecurringPaymentHelper.GetPaymentDateFromRecurring(x),
+                            date: RecurrenceHelper.GetPaymentDateFromRecurring(x),
                             amount: x.Amount,
                             type: x.Type,
                             chargedAccount: x.ChargedAccount,
@@ -49,8 +48,8 @@
 
                 recPaymentsToCreate.ForEach(x => x.RecurringPayment?.SetLastRecurrenceCreatedDate());
                 Log.Information(messageTemplate: "Create {Count} recurring payments", propertyValue: recPaymentsToCreate.Count);
-                contextAdapter.Context.Payments.AddRange(recPaymentsToCreate);
-                await contextAdapter.Context.SaveChangesAsync(cancellationToken);
+                appDbContext.Payments.AddRange(recPaymentsToCreate);
+                await appDbContext.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
             }

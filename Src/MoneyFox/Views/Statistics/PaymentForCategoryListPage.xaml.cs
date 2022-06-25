@@ -1,15 +1,17 @@
-namespace MoneyFox.Views.Statistics
+﻿namespace MoneyFox.Views.Statistics
 {
 
     using System.Threading.Tasks;
     using Core.Resources;
+    using ViewModels.Statistics;
+    using Xamarin.Forms;
 
     public partial class PaymentForCategoryListPage : ContentPage
     {
         public PaymentForCategoryListPage()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.PaymentForCategoryListViewModel;
+            BindingContext = App.GetViewModel<PaymentForCategoryListViewModel>();
             var doneItem = new ToolbarItem
             {
                 Command = new Command(async () => await CloseAsync()),

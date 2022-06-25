@@ -8,10 +8,10 @@
         public BackupPage()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.BackupViewModel;
+            BindingContext = App.GetViewModel<BackupViewModel>();
         }
 
-        public BackupViewModel ViewModel => (BackupViewModel)BindingContext;
+        internal BackupViewModel ViewModel => (BackupViewModel)BindingContext;
 
         protected override void OnAppearing()
         {

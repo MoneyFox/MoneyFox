@@ -5,7 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 using Interfaces;
 using Services;
 
-public class AccountListViewActionViewModel : ObservableObject, IAccountListViewActionViewModel
+internal sealed class AccountListViewActionViewModel : BaseViewModel, IAccountListViewActionViewModel
 {
     private readonly INavigationService navigationService;
 

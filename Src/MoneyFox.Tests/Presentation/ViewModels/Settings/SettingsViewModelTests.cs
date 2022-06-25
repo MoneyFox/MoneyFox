@@ -4,7 +4,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using FluentAssertions;
-    using MoneyFox.Core._Pending_.Common.Facades;
+    using MoneyFox.Core.Common.Facades;
     using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.ViewModels.Settings;
     using NSubstitute;

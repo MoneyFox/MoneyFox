@@ -8,7 +8,7 @@ using Core.Resources;
 using Services;
 using StatisticCategorySummary;
 
-public class StatisticSelectorViewModel : ObservableObject, IStatisticSelectorViewModel
+internal class StatisticSelectorViewModel : BaseViewModel, IStatisticSelectorViewModel
 {
     private readonly INavigationService navigationService;
 

@@ -3,10 +3,10 @@
 using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
-using Core._Pending_.Common.Messages;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Core.Common.Messages;
 
-public class SelectFilterDialogViewModel : ObservableRecipient, ISelectFilterDialogViewModel
+internal sealed class SelectFilterDialogViewModel : BaseViewModel, ISelectFilterDialogViewModel
 {
     private bool isClearedFilterActive;
     private bool isRecurringFilterActive;

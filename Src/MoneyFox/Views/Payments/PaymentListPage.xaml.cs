@@ -1,35 +1,40 @@
-﻿namespace MoneyFox.Views.Payments;
-
-using CommunityToolkit.Maui.Views;
-using Popups;
-using ViewModels.Payments;
-
-[QueryProperty(name: "AccountId", queryId: "accountId")]
-public partial class PaymentListPage : ContentPage
+﻿namespace MoneyFox.Views.Payments
 {
-    public PaymentListPage()
-    {
-        InitializeComponent();
-        BindingContext = ViewModelLocator.PaymentListViewModel;
-    }
 
-    private PaymentListViewModel ViewModel => (PaymentListViewModel)BindingContext;
+    using System;
+    using Popups;
+    using ViewModels.Payments;
+    using Xamarin.CommunityToolkit.Extensions;
+    using Xamarin.Forms;
 
-    protected override async void OnAppearing()
+    [QueryProperty(name: "AccountId", queryId: "accountId")]
+    public partial class PaymentListPage : ContentPage
     {
-        await ViewModel.OnAppearingAsync(accountId);
-    }
+        public PaymentListPage()
+        {
+            InitializeComponent();
+            BindingContext = App.GetViewModel<PaymentListViewModel>();
+        }
 
-    private void ShowFilterPopup(object sender, EventArgs e)
-    {
-        var popup = new FilterPopup();
-        Shell.Current.ShowPopup(popup);
-    }
+        private PaymentListViewModel ViewModel => (PaymentListViewModel)BindingContext;
+
+        protected override async void OnAppearing()
+        {
+            await ViewModel.OnAppearingAsync(accountId);
+        }
 #pragma warning disable S2376 // Write-only properties should not be used
-    private int accountId;
-    public string AccountId
-    {
-        set => accountId = Convert.ToInt32(Uri.UnescapeDataString(value));
-    }
+        private int accountId;
+        public string AccountId
+        {
+            set => accountId = Convert.ToInt32(Uri.UnescapeDataString(value));
+        }
 #pragma warning restore S2376 // Write-only properties should not be used
+
+        private void ShowFilterPopup(object sender, EventArgs e)
+        {
+            var popup = new FilterPopup();
+            Shell.Current.ShowPopup(popup);
+        }
+    }
+
 }

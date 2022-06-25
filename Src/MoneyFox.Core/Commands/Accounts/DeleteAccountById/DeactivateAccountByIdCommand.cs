@@ -17,18 +17,18 @@
 
         public class Handler : IRequestHandler<DeactivateAccountByIdCommand>
         {
-            private readonly IContextAdapter contextAdapter;
+            private readonly IAppDbContext appDbContext;
 
-            public Handler(IContextAdapter contextAdapter)
+            public Handler(IAppDbContext appDbContext)
             {
-                this.contextAdapter = contextAdapter;
+                this.appDbContext = appDbContext;
             }
 
             public async Task<Unit> Handle(DeactivateAccountByIdCommand request, CancellationToken cancellationToken)
             {
-                var entityToDeactivate = await contextAdapter.Context.Accounts.FindAsync(request.AccountId);
-                entityToDeactivate?.Deactivate();
-                await contextAdapter.Context.SaveChangesAsync(cancellationToken);
+                var entityToDeactivate = await appDbContext.Accounts.FindAsync(request.AccountId);
+                entityToDeactivate.Deactivate();
+                await appDbContext.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
             }

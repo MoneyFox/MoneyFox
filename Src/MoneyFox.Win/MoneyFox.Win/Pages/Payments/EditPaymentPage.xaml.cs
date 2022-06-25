@@ -9,7 +9,7 @@ public sealed partial class EditPaymentPage
     public EditPaymentPage()
     {
         InitializeComponent();
-        DataContext = ViewModelLocator.EditPaymentVm;
+        DataContext = App.GetViewModel<EditPaymentViewModel>();
     }
 
     public override string Header => Strings.EditPaymentTitle;

@@ -3,7 +3,7 @@ namespace MoneyFox.Converter
 
     using System;
     using System.Globalization;
-    using ConverterLogic;
+    using Common.ConverterLogic;
     using ViewModels.Payments;
 
     public class PaymentAmountConverter : IValueConverter

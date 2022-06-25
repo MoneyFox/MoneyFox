@@ -3,6 +3,7 @@
 using System.Globalization;
 using System.Threading.Tasks;
 using AutoMapper;
+using Common.Helpers;
 using CommunityToolkit.Mvvm.Input;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries;
@@ -12,9 +13,8 @@ using Core.Common.Interfaces;
 using Core.Resources;
 using MediatR;
 using Services;
-using Utilities;
 
-public class EditAccountViewModel : ModifyAccountViewModel
+internal sealed class EditAccountViewModel : ModifyAccountViewModel
 {
     private readonly IMapper mapper;
 

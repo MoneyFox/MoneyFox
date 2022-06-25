@@ -11,17 +11,17 @@ using Categories;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core._Pending_.Common.Messages;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries;
 using Core.Common.Interfaces;
+using Core.Common.Messages;
 using Core.Resources;
 using MediatR;
 using Pages.Categories;
 using Pages.Payments;
 using Services;
 
-public abstract class ModifyPaymentViewModel : ObservableRecipient, IModifyPaymentViewModel
+public abstract class ModifyPaymentViewModel : BaseViewModel, IModifyPaymentViewModel
 {
     private readonly IMapper mapper;
     private readonly IMediator mediator;
@@ -40,9 +40,6 @@ public abstract class ModifyPaymentViewModel : ObservableRecipient, IModifyPayme
 
     private bool isBusy;
 
-    /// <summary>
-    ///     Default constructor
-    /// </summary>
     protected ModifyPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, INavigationService navigationService)
     {
         this.dialogService = dialogService;
@@ -308,7 +305,7 @@ public abstract class ModifyPaymentViewModel : ObservableRecipient, IModifyPayme
             return;
         }
 
-        SelectedPayment.Category = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.CategoryId)));
+        SelectedPayment.Category = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId)));
     }
 
     private void ResetSelection()

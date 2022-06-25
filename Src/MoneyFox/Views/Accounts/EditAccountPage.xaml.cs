@@ -11,7 +11,7 @@ namespace MoneyFox.Views.Accounts
         public EditAccountPage(int accountId)
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.EditAccountViewModel;
+            BindingContext = App.GetViewModel<EditAccountViewModel>();
             this.accountId = accountId;
             var cancelItem = new ToolbarItem
             {

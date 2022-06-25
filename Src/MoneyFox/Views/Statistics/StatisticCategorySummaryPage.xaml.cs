@@ -1,23 +1,28 @@
-﻿namespace MoneyFox.Views.Statistics;
-
-using CommunityToolkit.Maui.Views;
-using Popups;
-using ViewModels.Statistics;
-
-public partial class StatisticCategorySummaryPage
+﻿namespace MoneyFox.Views.Statistics
 {
-    public StatisticCategorySummaryPage()
+
+    using System;
+    using Popups;
+    using ViewModels.Statistics;
+    using Xamarin.CommunityToolkit.Extensions;
+    using Xamarin.Forms;
+
+    public partial class StatisticCategorySummaryPage
     {
-        InitializeComponent();
-        BindingContext = ViewModelLocator.StatisticCategorySummaryViewModel;
-        ViewModel.LoadedCommand.Execute(null);
+        public StatisticCategorySummaryPage()
+        {
+            InitializeComponent();
+            BindingContext = App.GetViewModel<StatisticCategorySummaryViewModel>();
+            ViewModel.LoadedCommand.Execute(null);
+        }
+
+        private StatisticCategorySummaryViewModel ViewModel => (StatisticCategorySummaryViewModel)BindingContext;
+
+        private void OpenFilterDialog(object sender, EventArgs e)
+        {
+            var popup = new DateSelectionPopup(dateFrom: ViewModel.StartDate, dateTo: ViewModel.EndDate);
+            Shell.Current.ShowPopup(popup);
+        }
     }
 
-    private StatisticCategorySummaryViewModel ViewModel => (StatisticCategorySummaryViewModel)BindingContext;
-
-    private void OpenFilterDialog(object sender, EventArgs e)
-    {
-        var popup = new DateSelectionPopup(dateFrom: ViewModel.StartDate, dateTo: ViewModel.EndDate);
-        Shell.Current.ShowPopup(popup);
-    }
 }

@@ -8,18 +8,16 @@ namespace MoneyFox.ViewModels.Statistics
     using CommunityToolkit.Mvvm.Input;
     using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using Core.ApplicationCore.Queries.Statistics;
+    using Core.Common.Extensions;
     using LiveChartsCore;
     using LiveChartsCore.SkiaSharpView;
     using MediatR;
-    using MoneyFox.Core._Pending_.Common.Extensions;
 
-    public class StatisticCategorySpreadingViewModel : StatisticViewModel
+    internal sealed class StatisticCategorySpreadingViewModel : StatisticViewModel
     {
         private PaymentType selectedPaymentType;
 
-        public StatisticCategorySpreadingViewModel(IMediator mediator) : base(mediator)
-        {
-        }
+        public StatisticCategorySpreadingViewModel(IMediator mediator) : base(mediator) { }
 
         public List<PaymentType> PaymentTypes => new List<PaymentType> { PaymentType.Expense, PaymentType.Income };
 
@@ -28,6 +26,7 @@ namespace MoneyFox.ViewModels.Statistics
         public PaymentType SelectedPaymentType
         {
             get => selectedPaymentType;
+
             set
             {
                 if (selectedPaymentType == value)
@@ -45,14 +44,9 @@ namespace MoneyFox.ViewModels.Statistics
 
         protected override async Task LoadAsync()
         {
-            IEnumerable<StatisticEntry> statisticEntries = await Mediator.Send(
-                new GetCategorySpreadingQuery(
-                    StartDate,
-                    EndDate,
-                    SelectedPaymentType));
-
-            IEnumerable<PieSeries<decimal>> pieSeries = statisticEntries.Select(x =>
-                new PieSeries<decimal>
+            var statisticEntries = await Mediator.Send(new GetCategorySpreadingQuery(startDate: StartDate, endDate: EndDate, paymentType: SelectedPaymentType));
+            var pieSeries = statisticEntries.Select(
+                x => new PieSeries<decimal>
                 {
                     Name = x.Label,
                     TooltipLabelFormatter = point => $"{point.Context.Series.Name}: {point.PrimaryValue:C}",
@@ -60,8 +54,10 @@ namespace MoneyFox.ViewModels.Statistics
                     Values = new List<decimal> { x.Value },
                     InnerRadius = 150
                 });
+
             Series.Clear();
             Series.AddRange(pieSeries);
         }
     }
+
 }

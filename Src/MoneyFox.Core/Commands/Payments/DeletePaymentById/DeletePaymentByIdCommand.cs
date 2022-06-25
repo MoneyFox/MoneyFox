@@ -23,16 +23,16 @@
 
         public class Handler : IRequestHandler<DeletePaymentByIdCommand>
         {
-            private readonly IContextAdapter contextAdapter;
+            private readonly IAppDbContext appDbContext;
 
-            public Handler(IContextAdapter contextAdapter)
+            public Handler(IAppDbContext appDbContext)
             {
-                this.contextAdapter = contextAdapter;
+                this.appDbContext = appDbContext;
             }
 
             public async Task<Unit> Handle(DeletePaymentByIdCommand request, CancellationToken cancellationToken)
             {
-                var entityToDelete = await contextAdapter.Context.Payments.Include(x => x.ChargedAccount)
+                var entityToDelete = await appDbContext.Payments.Include(x => x.ChargedAccount)
                     .Include(x => x.TargetAccount)
                     .Include(x => x.RecurringPayment)
                     .SingleOrDefaultAsync(predicate: x => x.Id == request.PaymentId, cancellationToken: cancellationToken);
@@ -49,21 +49,22 @@
                     await DeleteRecurringPaymentAsync(entityToDelete.RecurringPayment.Id);
                 }
 
-                await contextAdapter.Context.SaveChangesAsync(cancellationToken);
-                contextAdapter.Context.Payments.Remove(entityToDelete);
-                await contextAdapter.Context.SaveChangesAsync(cancellationToken);
+                await appDbContext.SaveChangesAsync(cancellationToken);
+                appDbContext.Payments.Remove(entityToDelete);
+                await appDbContext.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
             }
 
             private async Task DeleteRecurringPaymentAsync(int recurringPaymentId)
             {
-                var payments = await contextAdapter.Context.Payments.Where(x => x.IsRecurring)
+                var payments = await appDbContext.Payments
+                    .Where(x => x.IsRecurring)
                     .Where(x => x.RecurringPayment!.Id == recurringPaymentId)
                     .ToListAsync();
 
                 payments.ForEach(x => x.RemoveRecurringPayment());
-                contextAdapter.Context.RecurringPayments.Remove(await contextAdapter.Context.RecurringPayments.FindAsync(recurringPaymentId));
+                appDbContext.RecurringPayments.Remove(await appDbContext.RecurringPayments.FindAsync(recurringPaymentId));
             }
         }
     }

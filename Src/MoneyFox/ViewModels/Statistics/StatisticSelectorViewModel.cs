@@ -3,12 +3,11 @@ namespace MoneyFox.ViewModels.Statistics
 
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using Core.Enums;
     using Core.Resources;
 
-    public class StatisticSelectorViewModel : ObservableObject, IStatisticSelectorViewModel
+    internal sealed class StatisticSelectorViewModel : BaseViewModel, IStatisticSelectorViewModel
     {
         /// <summary>
         ///     All possible statistic to choose from
@@ -63,23 +62,23 @@ namespace MoneyFox.ViewModels.Statistics
         {
             if (item.Type == StatisticType.Cashflow)
             {
-                await Shell.Current.GoToAsync(ViewModelLocator.StatisticCashFlowRoute);
+                await Shell.Current.GoToAsync(Routes.StatisticCashFlowRoute);
             }
             else if (item.Type == StatisticType.CategorySpreading)
             {
-                await Shell.Current.GoToAsync(ViewModelLocator.StatisticCategorySpreadingRoute);
+                await Shell.Current.GoToAsync(Routes.StatisticCategorySpreadingRoute);
             }
             else if (item.Type == StatisticType.CategorySummary)
             {
-                await Shell.Current.GoToAsync(ViewModelLocator.StatisticCategorySummaryRoute);
+                await Shell.Current.GoToAsync(Routes.StatisticCategorySummaryRoute);
             }
             else if (item.Type == StatisticType.MonthlyAccountCashFlow)
             {
-                await Shell.Current.GoToAsync(ViewModelLocator.StatisticAccountMonthlyCashFlowRoute);
+                await Shell.Current.GoToAsync(Routes.StatisticAccountMonthlyCashFlowRoute);
             }
             else if (item.Type == StatisticType.CategoryProgression)
             {
-                await Shell.Current.GoToAsync(ViewModelLocator.StatisticCategoryProgressionRoute);
+                await Shell.Current.GoToAsync(Routes.StatisticCategoryProgressionRoute);
             }
         }
     }

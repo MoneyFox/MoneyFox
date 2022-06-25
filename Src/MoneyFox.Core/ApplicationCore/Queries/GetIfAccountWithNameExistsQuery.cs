@@ -21,17 +21,16 @@
 
         public class Handler : IRequestHandler<GetIfAccountWithNameExistsQuery, bool>
         {
-            private readonly IContextAdapter contextAdapter;
+            private readonly IAppDbContext appDbContext;
 
-            public Handler(IContextAdapter contextAdapter)
+            public Handler(IAppDbContext appDbContext)
             {
-                this.contextAdapter = contextAdapter;
+                this.appDbContext = appDbContext;
             }
 
-            /// <inheritdoc />
             public async Task<bool> Handle(GetIfAccountWithNameExistsQuery request, CancellationToken cancellationToken)
             {
-                return await contextAdapter.Context.Accounts.AnyWithNameAsync(name: request.AccountName, Id: request.AccountId);
+                return await appDbContext.Accounts.AnyWithNameAsync(name: request.AccountName, Id: request.AccountId);
             }
         }
     }

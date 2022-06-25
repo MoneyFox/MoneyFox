@@ -11,7 +11,7 @@ namespace MoneyFox.ViewModels.Payments
     using Core.Resources;
     using MediatR;
 
-    public class EditPaymentViewModel : ModifyPaymentViewModel
+    internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
     {
         private readonly IDialogService dialogService;
         private readonly IMapper mapper;

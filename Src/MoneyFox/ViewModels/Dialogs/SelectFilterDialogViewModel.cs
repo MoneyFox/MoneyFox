@@ -3,11 +3,10 @@
 
     using System;
     using System.Collections.Generic;
-    using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
-    using Core._Pending_.Common.Messages;
     using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+    using Core.Common.Messages;
 
     public interface ISelectFilterDialogViewModel
     {
@@ -22,7 +21,7 @@
         DateTime TimeRangeEnd { get; set; }
     }
 
-    public class SelectFilterDialogViewModel : ObservableRecipient, ISelectFilterDialogViewModel
+    internal sealed class SelectFilterDialogViewModel : BaseViewModel, ISelectFilterDialogViewModel
     {
         private bool isClearedFilterActive;
         private bool isRecurringFilterActive;

@@ -24,19 +24,18 @@
 
         public class Handler : IRequestHandler<CreateAccountCommand>
         {
-            private readonly IContextAdapter contextAdapter;
+            private readonly IAppDbContext appDbContext;
 
-            public Handler(IContextAdapter contextAdapter)
+            public Handler(IAppDbContext appDbContext)
             {
-                this.contextAdapter = contextAdapter;
+                this.appDbContext = appDbContext;
             }
 
-            /// <inheritdoc />
             public async Task<Unit> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
             {
                 var account = new Account(name: request.Name, initialBalance: request.CurrentBalance, note: request.Note, isExcluded: request.IsExcluded);
-                await contextAdapter.Context.Accounts.AddAsync(entity: account, cancellationToken: cancellationToken);
-                await contextAdapter.Context.SaveChangesAsync(cancellationToken);
+                await appDbContext.Accounts.AddAsync(entity: account, cancellationToken: cancellationToken);
+                await appDbContext.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
             }

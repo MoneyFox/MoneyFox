@@ -1,7 +1,6 @@
 namespace MoneyFox.Views.SetupAssistant
 {
 
-    using CommonServiceLocator;
     using ViewModels.SetupAssistant;
 
 
@@ -11,7 +10,7 @@ namespace MoneyFox.Views.SetupAssistant
         public WelcomePage()
         {
             InitializeComponent();
-            BindingContext = ServiceLocator.Current.GetInstance<WelcomeViewModel>();
+            BindingContext = App.GetViewModel<WelcomeViewModel>();
         }
 
         private WelcomeViewModel ViewModel => (WelcomeViewModel)BindingContext;

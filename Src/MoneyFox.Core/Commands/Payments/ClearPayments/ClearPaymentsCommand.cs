@@ -13,16 +13,16 @@
     {
         public class Handler : IRequestHandler<ClearPaymentsCommand>
         {
-            private readonly IContextAdapter contextAdapter;
+            private readonly IAppDbContext appDbContext;
 
-            public Handler(IContextAdapter contextAdapter)
+            public Handler(IAppDbContext appDbContext)
             {
-                this.contextAdapter = contextAdapter;
+                this.appDbContext = appDbContext;
             }
 
             public async Task<Unit> Handle(ClearPaymentsCommand request, CancellationToken cancellationToken)
             {
-                var unclearedPayments = await contextAdapter.Context.Payments.Include(x => x.ChargedAccount)
+                var unclearedPayments = await appDbContext.Payments.Include(x => x.ChargedAccount)
                     .Include(x => x.TargetAccount)
                     .AsQueryable()
                     .AreNotCleared()
@@ -33,7 +33,7 @@
                     payment.ClearPayment();
                 }
 
-                await contextAdapter.Context.SaveChangesAsync(cancellationToken);
+                await appDbContext.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
             }

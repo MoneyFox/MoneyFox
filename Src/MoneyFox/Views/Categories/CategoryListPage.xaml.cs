@@ -8,7 +8,7 @@ namespace MoneyFox.Views.Categories
         public CategoryListPage()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.CategoryListViewModel;
+            BindingContext = App.GetViewModel<CategoryListViewModel>();
         }
 
         private CategoryListViewModel ViewModel => (CategoryListViewModel)BindingContext;

@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core._Pending_.Common.Messages;
 using Core.ApplicationCore.Queries;
 using Core.Common.Interfaces;
+using Core.Common.Messages;
 using Core.Resources;
 using MediatR;
 using Services;
 using DialogServiceClass = DialogService;
 
-public abstract class ModifyAccountViewModel : ObservableRecipient
+internal abstract class ModifyAccountViewModel : BaseViewModel
 {
     private string title = "";
     private AccountViewModel selectedAccount = new();

@@ -8,19 +8,20 @@
     using System.Threading.Tasks;
     using Accounts;
     using AutoMapper;
-    using CommunityToolkit.Mvvm.ComponentModel;
+    using Common.Extensions;
+    using Common.Groups;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
-    using Core._Pending_.Common.Messages;
     using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using Core.ApplicationCore.Queries;
+    using Core.ApplicationCore.Queries.GetPaymentsForAccountIdQuery;
+    using Core.Common.Messages;
     using Core.Resources;
-    using Extensions;
-    using Groups;
     using MediatR;
     using Views.Payments;
+    using Xamarin.Forms;
 
-    public class PaymentListViewModel : ObservableRecipient
+    internal sealed class PaymentListViewModel : BaseViewModel
     {
         private readonly IMapper mapper;
 
@@ -81,12 +82,12 @@
             };
 
         public AsyncRelayCommand GoToAddPaymentCommand
-            => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
+            => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(Routes.AddPaymentRoute));
 
         public AsyncRelayCommand<PaymentViewModel> GoToEditPaymentCommand
             => new AsyncRelayCommand<PaymentViewModel>(
                 async paymentViewModel => await Shell.Current.Navigation.PushModalAsync(
-                    new NavigationPage(new EditPaymentPage(paymentViewModel.Id)) { BarBackgroundColor = Colors.Transparent }));
+                    new NavigationPage(new EditPaymentPage(paymentViewModel.Id)) { BarBackgroundColor = Color.Transparent }));
 
         protected override void OnActivated()
         {
@@ -145,8 +146,7 @@
         {
             group.Subtitle = string.Format(
                 format: Strings.ExpenseAndIncomeTemplate,
-                arg0: group.Where(x => x.Type == PaymentType.Expense || x.Type == PaymentType.Transfer && x.ChargedAccount.Id == SelectedAccount.Id)
-                    .Sum(x => x.Amount),
+                arg0: group.Where(x => x.Type != PaymentType.Income && x.ChargedAccount.Id == SelectedAccount.Id).Sum(x => x.Amount),
                 arg1: group.Where(
                         x => x.Type == PaymentType.Income
                              || x.Type == PaymentType.Transfer && x.TargetAccount != null && x.TargetAccount.Id == SelectedAccount.Id)

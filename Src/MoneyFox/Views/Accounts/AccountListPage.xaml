@@ -15,7 +15,6 @@
 
     <ContentPage.Content>
         <Grid IsClippedToBounds="False" RowDefinitions="40, *">
-
             <Button
                 Margin="0,0,6,0"
                 HorizontalOptions="End"

@@ -7,12 +7,12 @@
     using System.Threading.Tasks;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Messaging;
-    using Core._Pending_.Common.Extensions;
-    using Core._Pending_.Common.Facades;
-    using Core._Pending_.Common.Messages;
     using Core.ApplicationCore.Domain.Exceptions;
     using Core.ApplicationCore.UseCases.DbBackup;
+    using Core.Common.Extensions;
+    using Core.Common.Facades;
     using Core.Common.Interfaces;
+    using Core.Common.Messages;
     using Core.Interfaces;
     using Core.Resources;
     using Serilog;
@@ -25,7 +25,6 @@
         private readonly IFileStore fileStore;
         private readonly ISettingsFacade settingsFacade;
         private readonly IConnectivityAdapter connectivity;
-        private readonly IContextAdapter contextAdapter;
         private readonly IToastService toastService;
         private readonly IDbPathProvider dbPathProvider;
 
@@ -37,7 +36,6 @@
             IFileStore fileStore,
             ISettingsFacade settingsFacade,
             IConnectivityAdapter connectivity,
-            IContextAdapter contextAdapter,
             IToastService toastService,
             IDbPathProvider dbPathProvider)
         {
@@ -45,7 +43,6 @@
             this.fileStore = fileStore;
             this.settingsFacade = settingsFacade;
             this.connectivity = connectivity;
-            this.contextAdapter = contextAdapter;
             this.toastService = toastService;
             this.dbPathProvider = dbPathProvider;
         }
@@ -178,8 +175,6 @@
                 {
                     throw new BackupException("Error Moving downloaded backup file");
                 }
-
-                contextAdapter.RecreateContext();
 
                 return BackupRestoreResult.NewBackupRestored;
             }

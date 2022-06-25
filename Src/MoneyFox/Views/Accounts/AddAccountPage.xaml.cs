@@ -9,7 +9,7 @@ namespace MoneyFox.Views.Accounts
         public AddAccountPage()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.AddAccountViewModel;
+            BindingContext = App.GetViewModel<AddAccountViewModel>();
             var cancelItem = new ToolbarItem
             {
                 Command = new Command(async () => await Navigation.PopModalAsync()),

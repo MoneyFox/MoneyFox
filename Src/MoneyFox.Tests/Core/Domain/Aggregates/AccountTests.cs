@@ -66,7 +66,7 @@
             var testAccount = new Account("test");
 
             // Act / Assert
-            Assert.Throws<ArgumentException>(() => testAccount.UpdateAccount(name));
+            Assert.Throws<ArgumentException>(() => testAccount.Change(name));
         }
 
         [Fact]
@@ -77,7 +77,7 @@
             var testAccount = new Account("foo");
 
             // Act / Assert
-            testAccount.UpdateAccount(testname);
+            testAccount.Change(testname);
 
             // Assert
             testAccount.Name.Should().Be(testname);
@@ -96,7 +96,7 @@
             var testAccount = new Account("foo");
 
             // Act / Assert
-            testAccount.UpdateAccount(name: testname, note: testnote, isExcluded: testExcluded);
+            testAccount.Change(name: testname, note: testnote, isExcluded: testExcluded);
 
             // Assert
             testAccount.Name.Should().Be(testname);

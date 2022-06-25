@@ -3,7 +3,7 @@ namespace MoneyFox.Converter
 
     using System;
     using System.Globalization;
-    using ConverterLogic;
+    using Common.ConverterLogic;
     using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 
     /// <summary>

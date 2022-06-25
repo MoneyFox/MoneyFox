@@ -9,7 +9,7 @@
     using Core.Common.Interfaces;
     using MediatR;
 
-    public class EditCategoryViewModel : ModifyCategoryViewModel
+    internal sealed class EditCategoryViewModel : ModifyCategoryViewModel
     {
         private readonly IMapper mapper;
         private readonly IMediator mediator;

@@ -8,7 +8,7 @@ public sealed partial class StatisticSelectorPage
     public StatisticSelectorPage()
     {
         InitializeComponent();
-        DataContext = ViewModelLocator.StatisticSelectorVm;
+        DataContext = App.GetViewModel<StatisticSelectorViewModel>();
     }
 
     public override string Header => Strings.SelectStatisticTitle;

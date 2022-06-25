@@ -7,7 +7,7 @@ public sealed partial class AboutPage
     public AboutPage()
     {
         InitializeComponent();
-        DataContext = ViewModelLocator.AboutVm;
+        DataContext = App.GetViewModel<AboutViewModel>();
     }
 
     private AboutViewModel ViewModel => (AboutViewModel)DataContext;

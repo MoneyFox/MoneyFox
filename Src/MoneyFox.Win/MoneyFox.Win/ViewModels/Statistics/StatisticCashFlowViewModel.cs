@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Core._Pending_.Common.Extensions;
 using Core.ApplicationCore.Queries.Statistics;
+using Core.Common.Extensions;
 using LiveChartsCore;
 using LiveChartsCore.Kernel.Sketches;
 using LiveChartsCore.SkiaSharpView;
 using MediatR;
 
-public class StatisticCashFlowViewModel : StatisticViewModel
+internal class StatisticCashFlowViewModel : StatisticViewModel
 {
     public StatisticCashFlowViewModel(IMediator mediator) : base(mediator) { }
 

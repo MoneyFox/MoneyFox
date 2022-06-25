@@ -8,10 +8,10 @@ public sealed partial class StatisticAccountMonthlyCashFlowPage
     public StatisticAccountMonthlyCashFlowPage()
     {
         InitializeComponent();
-        DataContext = ViewModelLocator.StatisticAccountMonthlyCashflowVm;
+        DataContext = App.GetViewModel<StatisticAccountMonthlyCashflowViewModel>();
     }
 
-    public StatisticAccountMonthlyCashflowViewModel ViewModel => (StatisticAccountMonthlyCashflowViewModel)DataContext;
+    internal StatisticAccountMonthlyCashflowViewModel ViewModel => (StatisticAccountMonthlyCashflowViewModel)DataContext;
 
     public override string Header => Strings.MonthlyCashflowTitle;
 }

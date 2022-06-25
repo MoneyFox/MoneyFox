@@ -4,6 +4,7 @@ namespace MoneyFox.Converter
     using System;
     using System.Globalization;
     using Core.Common;
+    using Core.Common.Helpers;
     using ViewModels.Accounts;
 
     public class AccountNameConverter : IValueConverter

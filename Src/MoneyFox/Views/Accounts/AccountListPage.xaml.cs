@@ -3,12 +3,12 @@ namespace MoneyFox.Views.Accounts
 
     using ViewModels.Accounts;
 
-    public partial class AccountListPage : ContentPage
+    public partial class AccountListPage
     {
         public AccountListPage()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.AccountListViewModel;
+            BindingContext = App.GetViewModel<AccountListViewModel>();
         }
 
         private AccountListViewModel ViewModel => (AccountListViewModel)BindingContext;

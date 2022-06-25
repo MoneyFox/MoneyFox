@@ -9,9 +9,9 @@ using AutoMapper;
 using Categories;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core._Pending_.Common.Messages;
 using Core.ApplicationCore.Queries;
 using Core.ApplicationCore.Queries.Statistics;
+using Core.Common.Messages;
 using LiveChartsCore;
 using LiveChartsCore.Kernel.Sketches;
 using LiveChartsCore.SkiaSharpView;
@@ -20,10 +20,7 @@ using MediatR;
 using Pages.Payments;
 using SkiaSharp;
 
-/// <summary>
-///     Representation of the cash flow view.
-/// </summary>
-public class StatisticCategoryProgressionViewModel : StatisticViewModel
+internal class StatisticCategoryProgressionViewModel : StatisticViewModel
 {
     private readonly IMapper mapper;
     private bool hasNoData = true;
@@ -79,7 +76,7 @@ public class StatisticCategoryProgressionViewModel : StatisticViewModel
             recipient: this,
             handler: async (r, m) =>
             {
-                SelectedCategory = mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(m.CategoryId)));
+                SelectedCategory = mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(m.Value.CategoryId)));
                 await r.LoadAsync();
             });
     }
