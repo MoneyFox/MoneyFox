@@ -1,14 +1,10 @@
-﻿namespace MoneyFox.ViewModels.Statistics
+﻿namespace MoneyFox.ViewModels.Statistics;
+
+using CommunityToolkit.Mvvm.Input;
+
+public interface IStatisticSelectorViewModel
 {
+    List<StatisticSelectorTypeViewModel> StatisticItems { get; }
 
-    using System.Collections.Generic;
-    using CommunityToolkit.Mvvm.Input;
-
-    public interface IStatisticSelectorViewModel
-    {
-        List<StatisticSelectorTypeViewModel> StatisticItems { get; }
-
-        RelayCommand<StatisticSelectorTypeViewModel> GoToStatisticCommand { get; }
-    }
-
+    RelayCommand<StatisticSelectorTypeViewModel> GoToStatisticCommand { get; }
 }

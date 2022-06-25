@@ -4,7 +4,6 @@
     x:Class="MoneyFox.Views.Dashboard.DashboardPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converter="clr-namespace:MoneyFox.Converter"
     xmlns:accounts="clr-namespace:MoneyFox.ViewModels.Accounts;assembly=MoneyFox"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core">
@@ -24,7 +23,7 @@
                          HorizontalOptions="End"
                          VerticalOptions="Center"
                          WidthRequest="66"
-                         Style="{StaticResource PrimaryImageButton}" >
+                         Style="{StaticResource PrimaryImageButton}">
                 <ImageButton.Source>
                     <FontImageSource FontFamily="MaterialIconsRound" Glyph="add" Color="White" />
                 </ImageButton.Source>
@@ -56,9 +55,9 @@
 
                     <Border.Shadow>
                         <Shadow Brush="Black"
-                                        Offset="5,5"
-                                        Radius="30"
-                                        Opacity="0.8" />
+                                Offset="5,5"
+                                Radius="30"
+                                Opacity="0.8" />
                     </Border.Shadow>
 
                     <Grid>
@@ -180,13 +179,13 @@
                     </CollectionView>
 
                     <Button Grid.Row="1"
-                        Margin="0,12,0,0"
-                        BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark},
+                            Margin="0,12,0,0"
+                            BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark},
                                                           Light={StaticResource BackgroundColorLight}}"
-                        Command="{Binding GoToAccountsCommand}"
-                        HorizontalOptions="End"
-                        Style="{StaticResource LinkButton}"
-                        Text="{x:Static resources:Strings.GoToAccountsLabel}" />
+                            Command="{Binding GoToAccountsCommand}"
+                            HorizontalOptions="End"
+                            Style="{StaticResource LinkButton}"
+                            Text="{x:Static resources:Strings.GoToAccountsLabel}" />
                 </Grid>
 
                 <!--  Income / Expenses  -->
@@ -210,9 +209,9 @@
 
                             <Border.Shadow>
                                 <Shadow Brush="Black"
-                                       Offset="5,5"
-                                       Radius="30"
-                                       Opacity="0.8" />
+                                        Offset="5,5"
+                                        Radius="30"
+                                        Opacity="0.8" />
                             </Border.Shadow>
 
                             <Grid>
@@ -238,9 +237,9 @@
 
                             <Border.Shadow>
                                 <Shadow Brush="Black"
-                                       Offset="5,5"
-                                       Radius="30"
-                                       Opacity="0.8" />
+                                        Offset="5,5"
+                                        Radius="30"
+                                        Opacity="0.8" />
                             </Border.Shadow>
 
                             <Grid>

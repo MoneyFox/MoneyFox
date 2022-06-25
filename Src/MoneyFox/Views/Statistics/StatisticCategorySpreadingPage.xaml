@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:converter="clr-namespace:MoneyFox.Converter"
-             xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              xmlns:statistics="clr-namespace:MoneyFox.ViewModels.Statistics"
              xmlns:forms="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
@@ -21,16 +20,16 @@
                    HorizontalOptions="Start"
                    VerticalOptions="Center"
                    Text="{x:Static resources:Strings.CategorySpreadingTitle}" />
-            
+
             <ImageButton Margin="0,0,5,0"
                          Grid.Column="1"
                          Padding="0"
                          BorderWidth="0"
-                         Clicked="OpenFilterDialog" 
+                         Clicked="OpenFilterDialog"
                          HeightRequest="44"
                          HorizontalOptions="End"
                          VerticalOptions="Center"
-                         WidthRequest="66" >
+                         WidthRequest="66">
                 <ImageButton.Source>
                     <FontImageSource FontFamily="MaterialIconsRound" Glyph="filter_alt" />
                 </ImageButton.Source>

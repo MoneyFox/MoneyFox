@@ -1,6 +1,7 @@
-namespace MoneyFox.Droid
+﻿namespace MoneyFox.Droid
 {
 
+    using Android;
     using AndroidX.AppCompat.App;
     using global::Android.App;
     using global::Android.Content.PM;

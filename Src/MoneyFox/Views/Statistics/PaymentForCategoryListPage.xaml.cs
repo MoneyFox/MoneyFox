@@ -1,32 +1,27 @@
-﻿namespace MoneyFox.Views.Statistics
+﻿namespace MoneyFox.Views.Statistics;
+
+using Core.Resources;
+using ViewModels.Statistics;
+
+public partial class PaymentForCategoryListPage : ContentPage
 {
-
-    using System.Threading.Tasks;
-    using Core.Resources;
-    using ViewModels.Statistics;
-    using Xamarin.Forms;
-
-    public partial class PaymentForCategoryListPage : ContentPage
+    public PaymentForCategoryListPage()
     {
-        public PaymentForCategoryListPage()
+        InitializeComponent();
+        BindingContext = App.GetViewModel<PaymentForCategoryListViewModel>();
+        var doneItem = new ToolbarItem
         {
-            InitializeComponent();
-            BindingContext = App.GetViewModel<PaymentForCategoryListViewModel>();
-            var doneItem = new ToolbarItem
-            {
-                Command = new Command(async () => await CloseAsync()),
-                Text = Strings.DoneLabel,
-                Priority = 1,
-                Order = ToolbarItemOrder.Primary
-            };
+            Command = new Command(async () => await CloseAsync()),
+            Text = Strings.DoneLabel,
+            Priority = 1,
+            Order = ToolbarItemOrder.Primary
+        };
 
-            ToolbarItems.Add(doneItem);
-        }
-
-        private async Task CloseAsync()
-        {
-            await Navigation.PopModalAsync();
-        }
+        ToolbarItems.Add(doneItem);
     }
 
+    private async Task CloseAsync()
+    {
+        await Navigation.PopModalAsync();
+    }
 }

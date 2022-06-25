@@ -1,15 +1,12 @@
-﻿namespace MoneyFox.Views.About
+﻿namespace MoneyFox.Views.About;
+
+using ViewModels.About;
+
+public partial class AboutPage
 {
-
-    using ViewModels.About;
-
-    public partial class AboutPage
+    public AboutPage()
     {
-        public AboutPage()
-        {
-            InitializeComponent();
-            BindingContext = App.GetViewModel<AboutViewModel>();
-        }
+        InitializeComponent();
+        BindingContext = App.GetViewModel<AboutViewModel>();
     }
-
 }

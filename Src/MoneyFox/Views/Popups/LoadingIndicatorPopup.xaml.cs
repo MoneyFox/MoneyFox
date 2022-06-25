@@ -1,12 +1,9 @@
-﻿namespace MoneyFox.Views.Popups
+﻿namespace MoneyFox.Views.Popups;
+
+public partial class LoadingIndicatorPopup
 {
-
-    public partial class LoadingIndicatorPopup
+    public LoadingIndicatorPopup()
     {
-        public LoadingIndicatorPopup()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
-
 }

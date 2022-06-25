@@ -1,16 +1,11 @@
-namespace MoneyFox.Mobile.Infrastructure.Adapters
+namespace MoneyFox.Mobile.Infrastructure.Adapters;
+
+using Core.Interfaces;
+
+public class BrowserAdapter : IBrowserAdapter
 {
-
-    using System;
-    using System.Threading.Tasks;
-    using Core.Interfaces;
-
-    public class BrowserAdapter : IBrowserAdapter
+    public async Task OpenWebsiteAsync(Uri uri)
     {
-        public async Task OpenWebsiteAsync(Uri uri)
-        {
-            await Browser.OpenAsync(uri: uri, launchMode: BrowserLaunchMode.External);
-        }
+        await Browser.OpenAsync(uri: uri, launchMode: BrowserLaunchMode.External);
     }
-
 }

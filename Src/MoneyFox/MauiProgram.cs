@@ -8,15 +8,15 @@ public class MauiProgram
     public static MauiApp CreateMauiApp()
     {
         var builder = MauiApp.CreateBuilder();
-        builder
-            .UseSkiaSharp(true)
+        builder.UseSkiaSharp(true)
             .UseMauiApp<App>()
-            .ConfigureFonts(fonts =>
-            {
-                fonts.AddFont("ProductSans-Regular.ttf", "Product");
-                fonts.AddFont("MaterialIconsRound-Regular.otf", "MaterialIconsRound");
-                fonts.AddFont("RobotoMono-Regular.ttf", "Roboto");
-            })
+            .ConfigureFonts(
+                fonts =>
+                {
+                    fonts.AddFont(filename: "ProductSans-Regular.ttf", alias: "Product");
+                    fonts.AddFont(filename: "MaterialIconsRound-Regular.otf", alias: "MaterialIconsRound");
+                    fonts.AddFont(filename: "RobotoMono-Regular.ttf", alias: "Roboto");
+                })
             .UseMauiCommunityToolkit();
 
         return builder.Build();

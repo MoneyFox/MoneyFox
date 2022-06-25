@@ -1,11 +1,8 @@
-﻿namespace MoneyFox.ViewModels.OverflowMenu
+﻿namespace MoneyFox.ViewModels.OverflowMenu;
+
+public class OverflowItemViewModel
 {
-
-    public class OverflowItemViewModel
-    {
-        public string IconGlyph { get; set; }
-        public string Name { get; set; } = "";
-        public OverflowMenuItemType Type { get; set; }
-    }
-
+    public string IconGlyph { get; set; }
+    public string Name { get; set; } = "";
+    public OverflowMenuItemType Type { get; set; }
 }

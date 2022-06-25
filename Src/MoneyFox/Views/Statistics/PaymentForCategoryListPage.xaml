@@ -4,7 +4,6 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converter="clr-namespace:MoneyFox.Converter"
-             xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
              xmlns:payments="clr-namespace:MoneyFox.ViewModels.Payments;assembly=MoneyFox"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              Title="{x:Static resources:Strings.PaymentsForCategoryTitle}"
@@ -45,9 +44,9 @@
 
                                 <Border.Shadow>
                                     <Shadow Brush="Black"
-                                        Offset="20,20"
-                                        Radius="40"
-                                        Opacity="0.8" />
+                                            Offset="20,20"
+                                            Radius="40"
+                                            Opacity="0.8" />
                                 </Border.Shadow>
 
                                 <StackLayout BindableLayout.ItemsSource="{Binding .}">
@@ -83,7 +82,8 @@
                                                                IsVisible="{Binding IsTransfer}"
                                                                WidthRequest="15">
                                                             <Image.Source>
-                                                                <FontImageSource FontFamily="MaterialIconsRound" Glyph="sync_alt" />
+                                                                <FontImageSource FontFamily="MaterialIconsRound"
+                                                                    Glyph="sync_alt" />
                                                             </Image.Source>
                                                         </Image>
 
@@ -91,7 +91,8 @@
                                                                IsVisible="{Binding IsRecurring}"
                                                                WidthRequest="15">
                                                             <Image.Source>
-                                                                <FontImageSource FontFamily="MaterialIconsRound" Glyph="repeat" />
+                                                                <FontImageSource FontFamily="MaterialIconsRound"
+                                                                    Glyph="repeat" />
                                                             </Image.Source>
                                                         </Image>
 
@@ -99,7 +100,8 @@
                                                                IsVisible="{Binding IsCleared}"
                                                                WidthRequest="15">
                                                             <Image.Source>
-                                                                <FontImageSource FontFamily="MaterialIconsRound" Glyph="done" />
+                                                                <FontImageSource FontFamily="MaterialIconsRound"
+                                                                    Glyph="done" />
                                                             </Image.Source>
                                                         </Image>
                                                     </StackLayout>

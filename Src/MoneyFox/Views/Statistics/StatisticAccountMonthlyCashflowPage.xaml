@@ -1,7 +1,6 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MoneyFox.Views.Statistics.StatisticAccountMonthlyCashFlowPage"
-             xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
              xmlns:statistics="clr-namespace:MoneyFox.ViewModels.Statistics;assembly=MoneyFox"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              xmlns:forms="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
@@ -18,11 +17,11 @@
                          Grid.Column="1"
                          Padding="0"
                          BorderWidth="0"
-                         Clicked="OpenFilterDialog" 
+                         Clicked="OpenFilterDialog"
                          HeightRequest="44"
                          HorizontalOptions="End"
                          VerticalOptions="Center"
-                         WidthRequest="66" >
+                         WidthRequest="66">
                 <ImageButton.Source>
                     <FontImageSource FontFamily="MaterialIconsRound" Glyph="filter_alt" />
                 </ImageButton.Source>
@@ -31,7 +30,7 @@
     </Shell.TitleView>
 
     <ContentPage.Content>
-        <Grid RowDefinitions="38, auto, auto, *" Padding="15,0,15,15" >
+        <Grid RowDefinitions="38, auto, auto, *" Padding="15,0,15,15">
 
             <Label Style="{StaticResource TextHeadline}"
                    Text="{x:Static resources:Strings.MonthlyCashflowTitle}" />

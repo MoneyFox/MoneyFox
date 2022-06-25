@@ -1,26 +1,23 @@
-﻿namespace MoneyFox.ViewModels.Budget
+﻿namespace MoneyFox.ViewModels.Budget;
+
+using CommunityToolkit.Mvvm.ComponentModel;
+
+public sealed class BudgetViewModel : ObservableObject
 {
+    private string name = null!;
 
-    using CommunityToolkit.Mvvm.ComponentModel;
+    private decimal spendingLimit;
+    public int Id { get; set; }
 
-    public sealed class BudgetViewModel : ObservableObject
+    public string Name
     {
-        private string name = null!;
-
-        private decimal spendingLimit;
-        public int Id { get; set; }
-
-        public string Name
-        {
-            get => name;
-            set => SetProperty(field: ref name, newValue: value);
-        }
-
-        public decimal SpendingLimit
-        {
-            get => spendingLimit;
-            set => SetProperty(field: ref spendingLimit, newValue: value);
-        }
+        get => name;
+        set => SetProperty(field: ref name, newValue: value);
     }
 
+    public decimal SpendingLimit
+    {
+        get => spendingLimit;
+        set => SetProperty(field: ref spendingLimit, newValue: value);
+    }
 }

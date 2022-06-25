@@ -1,19 +1,15 @@
-﻿namespace MoneyFox.Common.Services
+﻿namespace MoneyFox.Common.Services;
+
+using CommunityToolkit.Maui.Alerts;
+using Core.Common.Interfaces;
+using JetBrains.Annotations;
+
+[UsedImplicitly]
+public class ToastService : IToastService
 {
-
-    using System.Threading.Tasks;
-    using JetBrains.Annotations;
-    using MoneyFox.Core.Common.Interfaces;
-    using Xamarin.CommunityToolkit.Extensions;
-    using Xamarin.Forms;
-
-    [UsedImplicitly]
-    public class ToastService : IToastService
+    public async Task ShowToastAsync(string message, string title = "")
     {
-        public async Task ShowToastAsync(string message, string title = "")
-        {
-            await Application.Current.MainPage.DisplayToastAsync(message);
-        }
+        var toast = Toast.Make(message);
+        await toast.Show();
     }
-
 }

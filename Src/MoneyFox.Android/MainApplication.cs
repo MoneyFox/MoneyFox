@@ -3,14 +3,14 @@
 
     using System;
     using System.IO;
-    using Android.App;
-    using Android.Runtime;
     using Core.Common;
+    using global::Android.App;
+    using global::Android.Runtime;
     using JetBrains.Annotations;
+    using Microsoft.Maui.Storage;
     using Serilog;
     using Serilog.Events;
     using Serilog.Exceptions;
-    using Xamarin.Essentials;
 
     [Application]
     [UsedImplicitly]

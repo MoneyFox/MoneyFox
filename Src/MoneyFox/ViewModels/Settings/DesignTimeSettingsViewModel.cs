@@ -1,20 +1,16 @@
-﻿namespace MoneyFox.ViewModels.Settings
+﻿namespace MoneyFox.ViewModels.Settings;
+
+using System.Collections.ObjectModel;
+using System.Globalization;
+
+public class DesignTimeSettingsViewModel : ISettingsViewModel
 {
+    public ObservableCollection<CultureInfo> AvailableCultures => new();
 
-    using System.Collections.ObjectModel;
-    using System.Globalization;
-    using System.Threading.Tasks;
+    public CultureInfo SelectedCulture { get; set; } = CultureInfo.CurrentCulture;
 
-    public class DesignTimeSettingsViewModel : ISettingsViewModel
+    public Task InitializeAsync()
     {
-        public ObservableCollection<CultureInfo> AvailableCultures => new ObservableCollection<CultureInfo>();
-
-        public CultureInfo SelectedCulture { get; set; } = CultureInfo.CurrentCulture;
-
-        public Task InitializeAsync()
-        {
-            return Task.CompletedTask;
-        }
+        return Task.CompletedTask;
     }
-
 }

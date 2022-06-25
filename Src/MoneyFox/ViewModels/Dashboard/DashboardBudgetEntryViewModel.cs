@@ -1,10 +1,7 @@
-﻿namespace MoneyFox.ViewModels.Dashboard
+﻿namespace MoneyFox.ViewModels.Dashboard;
+
+public class DashboardBudgetEntryViewModel
 {
-
-    public class DashboardBudgetEntryViewModel
-    {
-        public string BudgetName { get; set; } = "";
-        public double Progress { get; set; }
-    }
-
+    public string BudgetName { get; set; } = "";
+    public double Progress { get; set; }
 }

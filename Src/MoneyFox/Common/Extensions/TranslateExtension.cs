@@ -1,31 +1,24 @@
-﻿namespace MoneyFox.Common.Extensions
+﻿namespace MoneyFox.Common.Extensions;
+
+using System.Reflection;
+using System.Resources;
+using Core.Common.Helpers;
+using Core.Resources;
+
+[ContentProperty("Text")]
+public class TranslateExtension : IMarkupExtension
 {
+    private static readonly Lazy<ResourceManager> ResMgr = new(() => new(baseName: typeof(Strings).FullName, assembly: typeof(Strings).GetTypeInfo().Assembly));
 
-    using System;
-    using System.Reflection;
-    using System.Resources;
-    using MoneyFox.Core.Common.Helpers;
-    using MoneyFox.Core.Resources;
-    using Xamarin.Forms;
-    using Xamarin.Forms.Xaml;
+    public string? Text { get; set; }
 
-    [ContentProperty("Text")]
-    public class TranslateExtension : IMarkupExtension
+    public object ProvideValue(IServiceProvider serviceProvider)
     {
-        private static readonly Lazy<ResourceManager> ResMgr = new Lazy<ResourceManager>(
-            () => new ResourceManager(baseName: typeof(Strings).FullName, assembly: typeof(Strings).GetTypeInfo().Assembly));
-
-        public string? Text { get; set; }
-
-        public object ProvideValue(IServiceProvider serviceProvider)
+        if (Text == null)
         {
-            if (Text == null)
-            {
-                return string.Empty;
-            }
-
-            return ResMgr.Value.GetString(name: Text, culture: CultureHelper.CurrentCulture) ?? Text;
+            return string.Empty;
         }
-    }
 
+        return ResMgr.Value.GetString(name: Text, culture: CultureHelper.CurrentCulture) ?? Text;
+    }
 }

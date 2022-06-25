@@ -1,27 +1,24 @@
-namespace MoneyFox.Mobile.Infrastructure.Adapters
+namespace MoneyFox.Mobile.Infrastructure.Adapters;
+
+using Core.Interfaces;
+using Serilog;
+
+public class ConnectivityAdapter : IConnectivityAdapter
 {
-
-    using Core.Interfaces;
-    using Serilog;
-
-    public class ConnectivityAdapter : IConnectivityAdapter
+    public bool IsConnected
     {
-        public bool IsConnected
+        get
         {
-            get
+            try
             {
-                try
-                {
-                    return Connectivity.NetworkAccess == NetworkAccess.Internet;
-                }
-                catch (PermissionException ex)
-                {
-                    Log.Error(exception: ex, messageTemplate: "Permission denied on check for connection");
+                return Connectivity.NetworkAccess == NetworkAccess.Internet;
+            }
+            catch (PermissionException ex)
+            {
+                Log.Error(exception: ex, messageTemplate: "Permission denied on check for connection");
 
-                    return false;
-                }
+                return false;
             }
         }
     }
-
 }

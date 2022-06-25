@@ -1,24 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<controls:ModalContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-                           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                           xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-                           xmlns:budgetVms="clr-namespace:MoneyFox.ViewModels.Budget;assembly=MoneyFox"
-                           xmlns:budgetViews="clr-namespace:MoneyFox.Views.Budget;assembly=MoneyFox"
-                           xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
-                           Title="{x:Static resources:Strings.EditBudgetTitle}"
-                           x:DataType="budgetVms:EditBudgetViewModel"
-                           x:Class="MoneyFox.Views.Budget.EditBudgetPage"
-                           Visual="Material">
+<controls:ModalContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:budgetVms="clr-namespace:MoneyFox.ViewModels.Budget;assembly=MoneyFox"
+    xmlns:budgetViews="clr-namespace:MoneyFox.Views.Budget;assembly=MoneyFox"
+    xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
+    Title="{x:Static resources:Strings.EditBudgetTitle}"
+    x:DataType="budgetVms:EditBudgetViewModel"
+    x:Class="MoneyFox.Views.Budget.EditBudgetPage"
+    Visual="Material">
 
     <ContentPage.Content>
         <Grid RowDefinitions="*, Auto">
             <budgetViews:ModifyBudgetView Grid.Row="0" />
-            <Button  Grid.Row="1"
-                     Margin="12"
-                     Style="{StaticResource WarningButton}"
-                     Command="{Binding DeleteBudgetCommand}"
-                     Text="{x:Static resources:Strings.DeleteLabel}" />
+            <Button Grid.Row="1"
+                    Margin="12"
+                    Style="{StaticResource WarningButton}"
+                    Command="{Binding DeleteBudgetCommand}"
+                    Text="{x:Static resources:Strings.DeleteLabel}" />
         </Grid>
     </ContentPage.Content>
 </controls:ModalContentPage>

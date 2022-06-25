@@ -1,16 +1,13 @@
-namespace MoneyFox.Views.SetupAssistant
+﻿namespace MoneyFox.Views.SetupAssistant;
+
+using ViewModels.SetupAssistant;
+
+[XamlCompilation(XamlCompilationOptions.Compile)]
+public partial class SetupCompletionPage : ContentPage
 {
-
-    using ViewModels.SetupAssistant;
-
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SetupCompletionPage : ContentPage
+    public SetupCompletionPage()
     {
-        public SetupCompletionPage()
-        {
-            InitializeComponent();
-            BindingContext = App.GetViewModel<SetupCompletionViewModel>();
-        }
+        InitializeComponent();
+        BindingContext = App.GetViewModel<SetupCompletionViewModel>();
     }
-
 }

@@ -33,16 +33,17 @@
 
                                 <Border.Shadow>
                                     <Shadow Brush="Black"
-                                        Offset="5,5"
-                                        Radius="30"
-                                        Opacity="0.8" />
+                                            Offset="5,5"
+                                            Radius="30"
+                                            Opacity="0.8" />
                                 </Border.Shadow>
 
                                 <StackLayout Orientation="Horizontal" x:DataType="overflowmenu:OverflowItemViewModel">
                                     <Image HeightRequest="15"
                                            WidthRequest="15">
                                         <Image.Source>
-                                            <FontImageSource FontFamily="MaterialIconsRound" Glyph="{Binding IconGlyph}" />
+                                            <FontImageSource FontFamily="MaterialIconsRound"
+                                                             Glyph="{Binding IconGlyph}" />
                                         </Image.Source>
                                     </Image>
                                     <Label Text="{Binding Name}" Style="{DynamicResource TextSubHead}" />

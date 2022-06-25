@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:statistics="clr-namespace:MoneyFox.ViewModels.Statistics"
     xmlns:maui="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
@@ -17,16 +16,16 @@
                    HorizontalOptions="Start"
                    VerticalOptions="Center"
                    Text="{x:Static resources:Strings.CashFlowStatisticTitle}" />
-            
+
             <ImageButton Margin="0,0,5,0"
                          Grid.Column="1"
                          Padding="0"
                          BorderWidth="0"
-                         Clicked="OpenFilterDialog" 
+                         Clicked="OpenFilterDialog"
                          HeightRequest="44"
                          HorizontalOptions="End"
                          VerticalOptions="Center"
-                         WidthRequest="66" >
+                         WidthRequest="66">
                 <ImageButton.Source>
                     <FontImageSource FontFamily="MaterialIconsRound" Glyph="filter_alt" />
                 </ImageButton.Source>
@@ -35,7 +34,7 @@
     </Shell.TitleView>
 
     <ContentPage.Content>
-        <Grid RowDefinitions="38, 38, *" Padding="15,0,15,15" >
+        <Grid RowDefinitions="38, 38, *" Padding="15,0,15,15">
             <Label Style="{StaticResource TextHeadline}"
                    Text="{x:Static resources:Strings.CashFlowStatisticTitle}" />
 
@@ -44,11 +43,11 @@
                    Text="{Binding Title}" />
 
             <maui:CartesianChart Grid.Row="2"
-                                  Series="{Binding Series, Mode=OneWay}"
-                                  XAxes="{Binding XAxis, Mode=OneWay}"
-                                  LegendPosition="Bottom"
-                                  LegendBackground="{AppThemeBinding Dark={StaticResource StatisticLegendDark}, Light={StaticResource StatisticLegendLight}}"
-                                  LegendTextBrush="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+                                 Series="{Binding Series, Mode=OneWay}"
+                                 XAxes="{Binding XAxis, Mode=OneWay}"
+                                 LegendPosition="Bottom"
+                                 LegendBackground="{AppThemeBinding Dark={StaticResource StatisticLegendDark}, Light={StaticResource StatisticLegendLight}}"
+                                 LegendTextBrush="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
 
         </Grid>
     </ContentPage.Content>
