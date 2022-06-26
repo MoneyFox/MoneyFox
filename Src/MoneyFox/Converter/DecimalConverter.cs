@@ -4,6 +4,7 @@
     using System;
     using System.Globalization;
     using Core.Common;
+    using Core.Common.Helpers;
     using Xamarin.Forms;
 
     public class DecimalConverter : IValueConverter

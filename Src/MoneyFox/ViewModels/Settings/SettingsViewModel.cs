@@ -5,9 +5,8 @@
     using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
-    using CommunityToolkit.Mvvm.ComponentModel;
-    using Core._Pending_.Common.Facades;
-    using Core.Common;
+    using Core.Common.Facades;
+    using Core.Common.Helpers;
     using Core.Common.Interfaces;
 
     internal sealed class SettingsViewModel : BaseViewModel, ISettingsViewModel

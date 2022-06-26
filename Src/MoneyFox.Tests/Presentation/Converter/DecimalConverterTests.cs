@@ -7,6 +7,7 @@
     using FluentAssertions;
     using MoneyFox.Converter;
     using MoneyFox.Core.Common;
+    using MoneyFox.Core.Common.Helpers;
     using Xunit;
 
     [ExcludeFromCodeCoverage]

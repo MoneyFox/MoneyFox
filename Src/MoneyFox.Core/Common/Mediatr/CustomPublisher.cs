@@ -10,24 +10,21 @@ namespace MoneyFox.Core.Common.Mediatr
 
     public class CustomPublisher : ICustomPublisher
     {
-        private readonly ServiceFactory serviceFactory;
-
-        private readonly IDictionary<PublishStrategy, IMediator> PublishStrategies = new Dictionary<PublishStrategy, IMediator>();
+        private readonly IDictionary<PublishStrategy, IMediator> publishStrategies = new Dictionary<PublishStrategy, IMediator>();
 
         public CustomPublisher(ServiceFactory serviceFactory)
         {
-            this.serviceFactory = serviceFactory;
-            PublishStrategies[PublishStrategy.Async] = new CustomMediator(serviceFactory: this.serviceFactory, publish: AsyncContinueOnException);
-            PublishStrategies[PublishStrategy.ParallelNoWait] = new CustomMediator(serviceFactory: this.serviceFactory, publish: ParallelNoWait);
-            PublishStrategies[PublishStrategy.ParallelWhenAll] = new CustomMediator(serviceFactory: this.serviceFactory, publish: ParallelWhenAll);
-            PublishStrategies[PublishStrategy.ParallelWhenAny] = new CustomMediator(serviceFactory: this.serviceFactory, publish: ParallelWhenAny);
-            PublishStrategies[PublishStrategy.SyncContinueOnException]
-                = new CustomMediator(serviceFactory: this.serviceFactory, publish: SyncContinueOnException);
+            publishStrategies[PublishStrategy.Async] = new CustomMediator(serviceFactory: serviceFactory, publish: AsyncContinueOnException);
+            publishStrategies[PublishStrategy.ParallelNoWait] = new CustomMediator(serviceFactory: serviceFactory, publish: ParallelNoWait);
+            publishStrategies[PublishStrategy.ParallelWhenAll] = new CustomMediator(serviceFactory: serviceFactory, publish: ParallelWhenAll);
+            publishStrategies[PublishStrategy.ParallelWhenAny] = new CustomMediator(serviceFactory: serviceFactory, publish: ParallelWhenAny);
+            publishStrategies[PublishStrategy.SyncContinueOnException]
+                = new CustomMediator(serviceFactory: serviceFactory, publish: SyncContinueOnException);
 
-            PublishStrategies[PublishStrategy.SyncStopOnException] = new CustomMediator(serviceFactory: this.serviceFactory, publish: SyncStopOnException);
+            publishStrategies[PublishStrategy.SyncStopOnException] = new CustomMediator(serviceFactory: serviceFactory, publish: SyncStopOnException);
         }
 
-        public PublishStrategy DefaultStrategy { get; set; } = PublishStrategy.SyncContinueOnException;
+        private PublishStrategy DefaultStrategy { get; set; } = PublishStrategy.SyncContinueOnException;
 
         public Task Publish<TNotification>(TNotification notification)
         {
@@ -46,7 +43,7 @@ namespace MoneyFox.Core.Common.Mediatr
 
         public Task Publish<TNotification>(TNotification notification, PublishStrategy strategy, CancellationToken cancellationToken)
         {
-            if (!PublishStrategies.TryGetValue(key: strategy, value: out var mediator))
+            if (!publishStrategies.TryGetValue(key: strategy, value: out var mediator))
             {
                 throw new ArgumentException($"Unknown strategy: {strategy}");
             }

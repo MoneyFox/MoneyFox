@@ -31,8 +31,9 @@
             await context.SaveChangesAsync();
 
             // Act
-            account.UpdateAccount("foo");
-            await handler.Handle(request: new UpdateAccountCommand(account), cancellationToken: default);
+            account.Change("foo");
+            await new UpdateAccountCommand.Handler(context).Handle(request: new UpdateAccountCommand(account), cancellationToken: default);
+
             var loadedAccount = await context.Accounts.FindAsync(account.Id);
 
             // Assert

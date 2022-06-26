@@ -1,11 +1,11 @@
-﻿namespace MoneyFox.Extensions
+﻿namespace MoneyFox.Common.Extensions
 {
 
     using System;
     using System.Reflection;
     using System.Resources;
-    using Core.Common;
-    using Core.Resources;
+    using MoneyFox.Core.Common.Helpers;
+    using MoneyFox.Core.Resources;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 

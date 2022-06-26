@@ -20,28 +20,25 @@ namespace MoneyFox.ViewModels.Statistics
 
     internal sealed class StatisticAccountMonthlyCashFlowViewModel : StatisticViewModel
     {
-        private AccountViewModel selectedAccount = null!;
         private readonly IMapper mapper;
+        private AccountViewModel selectedAccount = null!;
 
         public StatisticAccountMonthlyCashFlowViewModel(IMediator mediator, IMapper mapper) : base(mediator)
         {
             this.mapper = mapper;
-
             StartDate = DateTime.Now.AddYears(-1);
         }
 
         public ObservableCollection<ISeries> Series { get; } = new ObservableCollection<ISeries>();
 
-        public List<ICartesianAxis> XAxis { get; } = new List<ICartesianAxis>
-        {
-            new Axis()
-        };
+        public List<ICartesianAxis> XAxis { get; } = new List<ICartesianAxis> { new Axis() };
 
         public ObservableCollection<AccountViewModel> Accounts { get; } = new ObservableCollection<AccountViewModel>();
 
         public AccountViewModel SelectedAccount
         {
             get => selectedAccount;
+
             set
             {
                 if (selectedAccount == value)
@@ -64,7 +61,6 @@ namespace MoneyFox.ViewModels.Statistics
             Accounts.Clear();
             var accounts = mapper.Map<List<AccountViewModel>>(await Mediator.Send(new GetAccountsQuery()));
             accounts.ForEach(Accounts.Add);
-
             if (Accounts.Any())
             {
                 SelectedAccount = Accounts.First();
@@ -74,8 +70,8 @@ namespace MoneyFox.ViewModels.Statistics
 
         protected override async Task LoadAsync()
         {
-            List<StatisticEntry> statisticItems =
-                await Mediator.Send(new GetAccountProgressionQuery(SelectedAccount?.Id ?? 0, StartDate, EndDate));
+            var statisticItems = await Mediator.Send(
+                new GetAccountProgressionQuery(accountId: SelectedAccount?.Id ?? 0, startDate: StartDate, endDate: EndDate));
 
             var columnSeries = new ColumnSeries<decimal>
             {
@@ -89,4 +85,5 @@ namespace MoneyFox.ViewModels.Statistics
             Series.Add(columnSeries);
         }
     }
+
 }

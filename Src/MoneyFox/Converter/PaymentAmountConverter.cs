@@ -3,7 +3,7 @@
 
     using System;
     using System.Globalization;
-    using ConverterLogic;
+    using Common.ConverterLogic;
     using ViewModels.Payments;
     using Xamarin.Forms;
 

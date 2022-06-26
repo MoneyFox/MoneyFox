@@ -3,9 +3,9 @@ namespace MoneyFox.Win.ViewModels.Payments;
 using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Core.Common.Interfaces.Mapping;
-using Core._Pending_.Common.Helpers;
 using Core.ApplicationCore.Domain.Aggregates;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Core.Common.Helpers;
 
 public class RecurringPaymentViewModel : ObservableObject, IMapFrom<RecurringPayment>
 {

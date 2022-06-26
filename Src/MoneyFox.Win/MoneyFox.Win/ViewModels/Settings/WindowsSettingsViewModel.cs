@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Win.ViewModels.Settings;
 
 using CommunityToolkit.Mvvm.Input;
-using Core._Pending_.Common.Facades;
+using Core.Common.Facades;
 using Core.Common.Interfaces;
 
 internal sealed class WindowsSettingsViewModel : SettingsViewModel, IWindowsSettingsViewModel

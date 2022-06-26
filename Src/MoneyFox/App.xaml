@@ -10,7 +10,7 @@
     mc:Ignorable="d">
 
     <Application.Resources>
-        <moneyfox:ViewModelLocator x:Key="Locator" />
+        <moneyfox:Routes x:Key="Locator" />
         <ResourceDictionary Source="/Common/Styles/DefaultTheme.xaml" />
     </Application.Resources>
 </Application>

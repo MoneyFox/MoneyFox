@@ -2,8 +2,8 @@
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.Messaging;
-using Core._Pending_.Common.Messages;
 using Core.Common.Interfaces;
+using Core.Common.Messages;
 using MediatR;
 using Services;
 
@@ -34,11 +34,9 @@ internal class SelectCategoryListViewModel : AbstractCategoryListViewModel, ISel
         }
     }
 
-    /// <summary>
-    ///     Post selected CategoryViewModel to message hub
-    /// </summary>
     protected override void ItemClick(CategoryViewModel category)
     {
-        Messenger.Send(new CategorySelectedMessage(category.Id));
+        var dataSet = new CategorySelectedDataSet(category.Id, category.Name);
+        Messenger.Send(new CategorySelectedMessage(dataSet));
     }
 }

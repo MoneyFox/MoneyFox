@@ -1,15 +1,16 @@
 namespace MoneyFox.InversionOfControl
 {
 
+    using Common.Services;
     using Core.Common.Interfaces;
     using Core.Interfaces;
     using Core.InversionOfControl;
     using Mapping;
     using Microsoft.Extensions.DependencyInjection;
     using Mobile.Infrastructure.InversionOfControl;
-    using Services;
     using ViewModels.About;
     using ViewModels.Accounts;
+    using ViewModels.Budget;
     using ViewModels.Categories;
     using ViewModels.Dashboard;
     using ViewModels.DataBackup;
@@ -66,8 +67,13 @@ namespace MoneyFox.InversionOfControl
             serviceCollection.AddTransient<StatisticCategorySpreadingViewModel>();
             serviceCollection.AddTransient<StatisticCategorySummaryViewModel>();
             serviceCollection.AddTransient<StatisticSelectorViewModel>();
+
             serviceCollection.AddTransient<SelectDateRangeDialogViewModel>();
             serviceCollection.AddTransient<SelectFilterDialogViewModel>();
+
+            serviceCollection.AddTransient<AddBudgetViewModel>();
+            serviceCollection.AddTransient<EditBudgetViewModel>();
+            serviceCollection.AddTransient<BudgetListPageViewModel>(); er
         }
     }
 

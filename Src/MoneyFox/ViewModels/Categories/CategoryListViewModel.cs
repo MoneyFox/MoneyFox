@@ -6,16 +6,15 @@
     using System.Globalization;
     using System.Threading.Tasks;
     using AutoMapper;
-    using CommunityToolkit.Mvvm.ComponentModel;
+    using Common.Extensions;
+    using Common.Groups;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
-    using Core._Pending_.Common.Messages;
     using Core.ApplicationCore.Queries;
     using Core.Commands.Categories.DeleteCategoryById;
     using Core.Common.Interfaces;
+    using Core.Common.Messages;
     using Core.Resources;
-    using Extensions;
-    using Groups;
     using MediatR;
     using Views.Categories;
     using Xamarin.Forms;
@@ -50,7 +49,7 @@
             }
         }
 
-        public RelayCommand GoToAddCategoryCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddCategoryRoute));
+        public RelayCommand GoToAddCategoryCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(Routes.AddCategoryRoute));
 
         public AsyncRelayCommand<string> SearchCategoryCommand => new AsyncRelayCommand<string>(async searchTerm => await SearchCategoryAsync(searchTerm));
 

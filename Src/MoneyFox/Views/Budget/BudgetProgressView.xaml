@@ -1,0 +1,34 @@
+﻿<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="BudgetProgress"
+             x:Class="MoneyFox.Views.Budget.BudgetProgressView">
+
+    <StackLayout BindingContext="{x:Reference BudgetProgress}">
+        <Grid>
+            <Rectangle x:Name="SpendingLimitBar"
+                       Fill="#314A9B"
+                       HeightRequest="10"
+                       RadiusX="5"
+                       RadiusY="5"
+                       HorizontalOptions="FillAndExpand"
+                       SizeChanged="UpdateCurrentSpendingBar" />
+
+            <Rectangle x:Name="CurrentSpendingBar"
+                       Fill="#FF8671"
+                       HeightRequest="10"
+                       RadiusX="5"
+                       RadiusY="5"
+                       HorizontalOptions="Start" />
+        </Grid>
+
+        <Grid>
+            <Label Text="{Binding CurrentSpending}"
+                   HorizontalOptions="Start"
+                   Style="{StaticResource TextBodySecondary}" />
+
+            <Label Text="{Binding SpendingLimit}"
+                   HorizontalOptions="End"
+                   Style="{StaticResource TextBodySecondary}" />
+        </Grid>
+    </StackLayout>
+</ContentView>

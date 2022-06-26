@@ -6,6 +6,7 @@
     using Android.Content.PM;
     using Android.OS;
     using Android.Runtime;
+    using Common;
     using Core.Common.Interfaces;
     using Core.Interfaces;
     using Infrastructure.DbBackup;

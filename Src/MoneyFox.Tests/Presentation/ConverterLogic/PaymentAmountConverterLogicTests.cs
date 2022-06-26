@@ -2,8 +2,8 @@
 {
 
     using System.Diagnostics.CodeAnalysis;
+    using Common.ConverterLogic;
     using FluentAssertions;
-    using MoneyFox.ConverterLogic;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using MoneyFox.ViewModels.Payments;
     using Xunit;
