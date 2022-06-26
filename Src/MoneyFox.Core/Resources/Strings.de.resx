@@ -606,9 +606,8 @@ Klicke auf den Link um das Repository zu besuchen:</value>
     <value>Überschreiben?</value>
   </data>
     <data name="PaymentIntroductionText" xml:space="preserve">
-    <value>When you create a payment you can select the category for that payment along with the account and if it is an expense, an income or a transfer.
-Payments you created will show up under the account you choose.
-To get there go to the account list and select the respective account.</value>
+    <value>Wenn du eine Zahlung erstellst kannst du dieser eine Kategorie zuweisen, sowie auswählen ob es sich dabei um eine Ausgabe, eine Einnahme oder einen Übertrag handelt.
+Erstellte Zahlungen werden dir unter dem ausgewählten Konto angezeigt. Um dorthin zu gelangen, gehe auf die Kontoübersicht und wähle das gewünschte Konto aus.</value>
   </data>
     <data name="PaymentsForCategoryTitle" xml:space="preserve">
     <value>Zahlungen für Kategorie</value>
@@ -736,8 +735,8 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Schön, dass du hier bist!</value>
   </data>
     <data name="WelcomePageText" xml:space="preserve">
-    <value>The MoneyFox helps you to track your expenses and incomes in an easy way.
-To start create a new account. Accounts are used to organize payments and money in collections.</value>
+    <value>Der MoneyFox hilft dir deine Ausgaben und Einnahmen auf einfach Weise im Überblick zu behalten.
+Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen und Geld in Gruppen.</value>
   </data>
     <data name="WindowsDefaultLabel" xml:space="preserve">
     <value>Windows-Standard</value>
@@ -815,30 +814,33 @@ To start create a new account. Accounts are used to organize payments and money 
         <value>Budgets</value>
     </data>
     <data name="NoBudgetsMessage" xml:space="preserve">
-        <value>There are no Budgets yet. Go ahead and create one!</value>
+        <value>Es gibt noch keine Budgets. Erstelle jetzt eines!</value>
     </data>
     <data name="AddBudgetLabel" xml:space="preserve">
-      <value>Add Budget</value>
+      <value>Budget hinzufügen</value>
     </data>
     <data name="AddBudgetTitle" xml:space="preserve">
-      <value>Add Budget</value>
+      <value>Budget hinzufügen</value>
     </data>
     <data name="SpendingLimitLabel" xml:space="preserve">
-      <value>Spending Limit</value>
+      <value>Ausgabelimit</value>
     </data>
     <data name="BudgetNameLabel" xml:space="preserve">
-        <value>Budget Name</value>
+        <value>Budgetname</value>
     </data>
     <data name="MoreTitle" xml:space="preserve">
         <value>Mehr</value>
     </data>
     <data name="SelectedCategoriesLabel" xml:space="preserve">
-        <value>Selected Categories</value>
+        <value>Kategorien auswählen</value>
     </data>
     <data name="BackupUploadSkippedMessage" xml:space="preserve">
         <value>Hochladen der Sicherung wurde übersprungen, da die Sicherung bereits aktuell war.</value>
     </data>
     <data name="EditBudgetTitle" xml:space="preserve">
-        <value>Edit Budget</value>
+        <value>Budget bearbeiten</value>
+    </data>
+    <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
+        <value>Möchtest du dieses Budget wirklich löschen?</value>
     </data>
 </root>

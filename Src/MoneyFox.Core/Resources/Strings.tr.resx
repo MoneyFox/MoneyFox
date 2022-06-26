@@ -841,4 +841,7 @@ To start create a new account. Accounts are used to organize payments and money 
     <data name="EditBudgetTitle" xml:space="preserve">
         <value>Edit Budget</value>
     </data>
+    <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
+        <value>Do you really want to delete this budget?</value>
+    </data>
 </root>
