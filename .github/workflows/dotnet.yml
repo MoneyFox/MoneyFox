@@ -12,6 +12,11 @@ jobs:
     runs-on: macos-latest
 
     steps:
+      - uses: actions/checkout@v3
+      - name: Set default Xamarin SDK versions
+        run: |
+          $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --ios=14.19
+        
       - name: Setup .NET Core SDK 5.0.x
         uses: actions/setup-dotnet@v2
         with:
