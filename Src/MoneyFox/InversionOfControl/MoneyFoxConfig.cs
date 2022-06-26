@@ -52,7 +52,6 @@ namespace MoneyFox.InversionOfControl
             serviceCollection.AddTransient<SelectCategoryViewModel>();
             serviceCollection.AddTransient<DashboardViewModel>();
             serviceCollection.AddTransient<BackupViewModel>();
-            serviceCollection.AddTransient<SelectFilterDialogViewModel>();
             serviceCollection.AddTransient<OverflowMenuViewModel>();
             serviceCollection.AddTransient<AddPaymentViewModel>();
             serviceCollection.AddTransient<EditPaymentViewModel>();
@@ -68,6 +67,9 @@ namespace MoneyFox.InversionOfControl
             serviceCollection.AddTransient<StatisticCategorySpreadingViewModel>();
             serviceCollection.AddTransient<StatisticCategorySummaryViewModel>();
             serviceCollection.AddTransient<StatisticSelectorViewModel>();
+
+            serviceCollection.AddTransient<SelectDateRangeDialogViewModel>();
+            serviceCollection.AddTransient<SelectFilterDialogViewModel>();
 
             serviceCollection.AddTransient<AddBudgetViewModel>();
             serviceCollection.AddTransient<EditBudgetViewModel>();
