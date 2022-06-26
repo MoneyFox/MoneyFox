@@ -1,14 +1,17 @@
 ﻿namespace MoneyFox.Tests.Presentation.ViewModels.Budget
 {
 
+    using System.Collections.Generic;
     using System.Collections.Immutable;
     using System.Linq;
     using System.Threading.Tasks;
     using FluentAssertions;
     using MediatR;
     using MoneyFox.Core.ApplicationCore.Queries.BudgetEntryLoading;
+    using MoneyFox.Core.ApplicationCore.UseCases.BudgetDeletion;
     using MoneyFox.Core.ApplicationCore.UseCases.BudgetUpdate;
     using MoneyFox.Core.Common.Extensions;
+    using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Core.Common.Messages;
     using MoneyFox.Core.Interfaces;
     using MoneyFox.ViewModels.Budget;
@@ -22,6 +25,7 @@
         private const int CATEGORY_ID = 10;
         private readonly INavigationService navigationService;
         private readonly ISender sender;
+        private readonly IDialogService dialogService;
 
         private readonly EditBudgetViewModel viewModel;
 
@@ -29,7 +33,8 @@
         {
             sender = Substitute.For<ISender>();
             navigationService = Substitute.For<INavigationService>();
-            viewModel = new EditBudgetViewModel(sender: sender, navigationService: navigationService);
+            dialogService = Substitute.For<IDialogService>();
+            viewModel = new EditBudgetViewModel(sender: sender, navigationService: navigationService, dialogService: dialogService);
         }
 
         public class OnReceiveMessage : EditBudgetViewModelShould
@@ -127,7 +132,7 @@
                 var categories = testBudget.Categories.Select(c => new BudgetEntryData.BudgetCategory(id: c, name: "category")).ToImmutableList();
                 LoadBudgetEntry.Query? capturedQuery = null;
                 sender.Send(Arg.Do<LoadBudgetEntry.Query>(q => capturedQuery = q))
-                      .Returns(new BudgetEntryData(id: testBudget.Id, name: testBudget.Name, spendingLimit: testBudget.SpendingLimit, categories: categories));
+                    .Returns(new BudgetEntryData(id: testBudget.Id, name: testBudget.Name, spendingLimit: testBudget.SpendingLimit, categories: categories));
 
                 // Arrange
 
@@ -140,7 +145,6 @@
                 viewModel.SelectedBudget.Id.Should().Be(testBudget.Id);
                 viewModel.SelectedBudget.Name.Should().Be(testBudget.Name);
                 viewModel.SelectedBudget.SpendingLimit.Should().Be(testBudget.SpendingLimit);
-
                 viewModel.SelectedCategories[0].CategoryId.Should().Be(categories[0].Id);
                 viewModel.SelectedCategories[0].Name.Should().Be(categories[0].Name);
             }
@@ -148,23 +152,51 @@
 
         public class OnDelete : EditBudgetViewModelShould
         {
-            // [Fact]
-            // public async Task SendsCorrectDeleteCommand()
-            // {
-            //     // Capture
-            //     DeleteBudget.Command? capturedCommand = null;
-            //     await sender.Send(Arg.Do<DeleteBudget.Command>(q => capturedCommand = q));
-            //
-            //     // Arrange
-            //     //viewModel.SelectedBudget = new BudgetViewModel { Id = 10 };
-            //
-            //     // Act
-            //     await viewModel.DeleteBudgetCommand.ExecuteAsync(null);
-            //
-            //     // Assert
-            //     capturedCommand.Should().NotBeNull();
-            //     capturedCommand!.BudgetId.Should().Be(budgetViewModel.Id);
-            // }
+            [Fact]
+            public async Task SendsCorrectDeleteCommand()
+            {
+                // Capture
+                DeleteBudget.Command? capturedCommand = null;
+                await sender.Send(Arg.Do<DeleteBudget.Command>(q => capturedCommand = q));
+
+                // Arrange
+                dialogService.ShowConfirmMessageAsync(title: Arg.Any<string>(), message: Arg.Any<string>(), positiveButtonText: Arg.Any<string>())
+                    .Returns(true);
+
+                var testBudget = new TestData.DefaultBudget();
+                sender.Send(Arg.Any<LoadBudgetEntry.Query>())
+                    .Returns(
+                        new BudgetEntryData(
+                            id: testBudget.Id,
+                            name: testBudget.Name,
+                            spendingLimit: testBudget.SpendingLimit,
+                            categories: new List<BudgetEntryData.BudgetCategory>()));
+
+                await viewModel.InitializeCommand.ExecuteAsync(testBudget.Id);
+
+                // Act
+                await viewModel.DeleteBudgetCommand.ExecuteAsync(null);
+
+                // Assert
+                capturedCommand.Should().NotBeNull();
+                capturedCommand!.BudgetId.Should().Be(testBudget.Id);
+                await navigationService.Received(1).GoBackFromModal();
+            }
+
+            [Fact]
+            public async Task DontSendCommand_WhenConfirmationWasDenied()
+            {
+                // Arrange
+                dialogService.ShowConfirmMessageAsync(title: Arg.Any<string>(), message: Arg.Any<string>())
+                    .Returns(false);
+
+                // Act
+                await viewModel.DeleteBudgetCommand.ExecuteAsync(null);
+
+                // Assert
+                await sender.Received(0).Send(Arg.Any<DeleteBudget.Command>());
+                await navigationService.Received(0).GoBackFromModal();
+            }
         }
     }
 

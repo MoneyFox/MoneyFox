@@ -16,7 +16,6 @@
 
         protected override async void OnAppearing()
         {
-            base.OnAppearing();
             await PageViewModel.InitializeCommand.ExecuteAsync(null);
         }
     }
