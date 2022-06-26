@@ -1,0 +1,35 @@
+name: .NET
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set default Xamarin SDK versions
+        run: |
+          $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --ios=14.10
+
+      - name: Set default Xcode 12.3
+        run: |
+          XCODE_ROOT=/Applications/Xcode_12.3.0.app
+          echo "MD_APPLE_SDK_ROOT=$XCODE_ROOT" >> $GITHUB_ENV
+          sudo xcode-select -s $XCODE_ROOT
+
+      - name: Setup .NET Core SDK 5.0.x
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '5.0.x'
+
+      - name: Install dependencies
+        run: nuget restore /src/MoneyFox.Mobile.sln
+
+      - name: Build
+        run: msbuild /src/MoneyFox.Ios/MoneyFox.iOS.csproj /p:Configuration=Release /p:Platform=iPhone /t:Rebuild
