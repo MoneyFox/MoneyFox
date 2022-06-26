@@ -825,6 +825,15 @@ namespace MoneyFox.Core.Resources {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Do you really want to delete this budget?.
+        /// </summary>
+        public static string DeleteBudgetConfirmationMessage {
+            get {
+                return ResourceManager.GetString("DeleteBudgetConfirmationMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you really want to delete this Category?.
         /// </summary>
         public static string DeleteCategoryConfirmationMessage {

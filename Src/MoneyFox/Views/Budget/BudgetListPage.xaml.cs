@@ -1,20 +1,23 @@
-﻿namespace MoneyFox.Views.Budget;
-
-using ViewModels.Budget;
-
-public partial class BudgetListPage : ContentPage
+﻿namespace MoneyFox.Views.Budget
 {
-    public BudgetListPage()
+
+    using ViewModels.Budget;
+    using Xamarin.Forms;
+
+    public partial class BudgetListPage : ContentPage
     {
-        InitializeComponent();
-        BindingContext = App.GetViewModel<BudgetListPageViewModel>();
+        public BudgetListPage()
+        {
+            InitializeComponent();
+            BindingContext = App.GetViewModel<BudgetListPageViewModel>();
+        }
+
+        private BudgetListPageViewModel PageViewModel => (BudgetListPageViewModel)BindingContext;
+
+        protected override async void OnAppearing()
+        {
+            await PageViewModel.InitializeCommand.ExecuteAsync(null);
+        }
     }
 
-    private BudgetListPageViewModel PageViewModel => (BudgetListPageViewModel)BindingContext;
-
-    protected override async void OnAppearing()
-    {
-        base.OnAppearing();
-        await PageViewModel.InitializeCommand.ExecuteAsync(null);
-    }
 }
