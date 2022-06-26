@@ -12,18 +12,13 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Set default Xamarin SDK versions
-        run: |
-          $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --ios=14.10
-
       - name: Setup .NET Core SDK 5.0.x
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: '5.0.x'
 
       - name: Install dependencies
-        run: nuget restore /src/MoneyFox.Mobile.sln
+        run: nuget restore ${{ github.workspace }}/src/MoneyFox.Mobile.sln
 
       - name: Build
-        run: msbuild /src/MoneyFox.Ios/MoneyFox.iOS.csproj /p:Configuration=Release /p:Platform=iPhone /t:Rebuild
+        run: msbuild ${{ github.workspace }}/src/MoneyFox.Ios/MoneyFox.iOS.csproj /p:Configuration=Release /p:Platform=iPhone /t:Rebuild
