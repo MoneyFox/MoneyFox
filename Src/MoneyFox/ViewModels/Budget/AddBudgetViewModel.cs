@@ -3,7 +3,9 @@ namespace MoneyFox.ViewModels.Budget
 
     using System.Linq;
     using System.Threading.Tasks;
+    using CommunityToolkit.Mvvm.Messaging;
     using Core.ApplicationCore.UseCases.BudgetCreation;
+    using Core.Common.Messages;
     using Core.Interfaces;
     using MediatR;
 
@@ -26,6 +28,7 @@ namespace MoneyFox.ViewModels.Budget
                 categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
 
             await sender.Send(query);
+            Messenger.Send(new ReloadMessage());
             await navigationService.GoBackFromModal();
         }
     }

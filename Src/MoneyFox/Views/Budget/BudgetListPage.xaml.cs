@@ -2,9 +2,8 @@
 {
 
     using ViewModels.Budget;
-    using Xamarin.Forms;
 
-    public partial class BudgetListPage : ContentPage
+    public partial class BudgetListPage
     {
         public BudgetListPage()
         {
