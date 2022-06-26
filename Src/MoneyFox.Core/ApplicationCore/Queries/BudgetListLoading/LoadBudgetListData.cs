@@ -6,8 +6,6 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using System.Xml.Schema;
-    using Common.Extensions;
     using Common.Interfaces;
     using Domain.Aggregates.AccountAggregate;
     using MediatR;
@@ -30,18 +28,19 @@
             {
                 var budgets = await appDbContext.Budgets.ToListAsync(cancellationToken);
                 var budgetListDataList = new List<BudgetListData>();
-
                 foreach (var budget in budgets)
                 {
                     var payments = await appDbContext.Payments.Where(p => p.CategoryId != null)
-                                                     .Where(p => p.Date.Year >= DateTime.Today.Year && p.Date.Year <= DateTime.Today.Year)
-                                                     .Where(p => budget.IncludedCategories.Contains(p.CategoryId!.Value))
-                                                     .OrderByDescending(p => p.Date)
-                                                     .ToListAsync(cancellationToken);
+                        .Where(p => p.Date.Year >= DateTime.Today.Year && p.Date.Year <= DateTime.Today.Year)
+                        .Where(p => budget.IncludedCategories.Contains(p.CategoryId!.Value))
+                        .OrderByDescending(p => p.Date)
+                        .ToListAsync(cancellationToken);
 
                     if (payments.Any() is false)
                     {
-                        return new List<BudgetListData>();
+                        budgetListDataList.Add(new BudgetListData(id: budget.Id, name: budget.Name, spendingLimit: budget.SpendingLimit, currentSpending: 0));
+
+                        continue;
                     }
 
                     var amountOfMonthsInRange = payments.First().Date.Month - payments.Last().Date.Month + 1;
