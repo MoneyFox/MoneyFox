@@ -23,7 +23,7 @@ jobs:
       - task: InstallAppleCertificate@2
         displayName: 'Install an Apple certificate'
         inputs:
-          certSecureFile: 'Apple Distribution MoneyFox 2021.p12'
+          certSecureFile: 'MoneyFox_Distribution_2022.p12'
           certPwd: '$(P12password)'
           keychain: 'temp'
 
@@ -31,7 +31,7 @@ jobs:
         displayName: 'Install an Apple provisioning profile'
         inputs:
           provisioningProfileLocation: 'secureFiles'
-          provProfileSecureFile: 'MoneyFox_Distribution_2021.mobileprovision'
+          provProfileSecureFile: 'MoneyFox_Distribution_2022.mobileprovision'
 
       - task: NuGetToolInstaller@1
         displayName: 'Use NuGet'
