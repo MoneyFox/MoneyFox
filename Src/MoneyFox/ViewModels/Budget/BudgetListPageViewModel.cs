@@ -42,14 +42,15 @@
             var budgetsListData = await sender.Send(new LoadBudgetListData.Query());
             Budgets.Clear();
             Budgets.AddRange(
-                budgetsListData.Select(
-                    bld => new BudgetListViewModel
-                    {
-                        Id = bld.Id,
-                        Name = bld.Name,
-                        SpendingLimit = bld.SpendingLimit,
-                        CurrentSpending = bld.CurrentSpending
-                    }));
+                budgetsListData.OrderBy(bld => bld.Name)
+                    .Select(
+                        bld => new BudgetListViewModel
+                        {
+                            Id = bld.Id,
+                            Name = bld.Name,
+                            SpendingLimit = bld.SpendingLimit,
+                            CurrentSpending = bld.CurrentSpending
+                        }));
         }
 
         private static async Task GoToAddBudget()

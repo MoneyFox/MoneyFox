@@ -44,11 +44,11 @@
             }
         }
 
-        public class WithBudgetsAvailable : BudgetListViewModelShould
+        public class WithBudgetAvailable : BudgetListViewModelShould
         {
             private readonly TestData.DefaultBudget budgetTestData;
 
-            public WithBudgetsAvailable()
+            public WithBudgetAvailable()
             {
                 budgetTestData = new TestData.DefaultBudget();
                 sender.Send(Arg.Any<LoadBudgetListData.Query>())
@@ -84,6 +84,40 @@
                 pageViewModel.Budgets.Should().HaveCount(1);
                 var loadedBudget = pageViewModel.Budgets.Single();
                 AssertBudgetListViewModel(actualBudgetVm: loadedBudget, expectedBudgetData: budgetTestData);
+            }
+        }
+        public class WithMultipleBudgetAvailable : BudgetListViewModelShould
+        {
+            private readonly TestData.DefaultBudget budgetTestData;
+
+            public WithMultipleBudgetAvailable()
+            {
+                budgetTestData = new TestData.DefaultBudget();
+                sender.Send(Arg.Any<LoadBudgetListData.Query>())
+                    .Returns(
+                        ImmutableList.Create(
+                            new BudgetListData(
+                                id: budgetTestData.Id,
+                                name: "Beverages",
+                                spendingLimit: budgetTestData.SpendingLimit,
+                                currentSpending: budgetTestData.CurrentSpending),
+                            new BudgetListData(
+                                id: budgetTestData.Id,
+                                name: "Apples",
+                                spendingLimit: budgetTestData.SpendingLimit,
+                                currentSpending: budgetTestData.CurrentSpending)));
+            }
+
+            [Fact]
+            public async Task InitializeBudgetsCollection_WithLoadedBudgetsCorrectlySorted()
+            {
+                // Act
+                await pageViewModel.InitializeCommand.ExecuteAsync(null);
+
+                // Assert
+                pageViewModel.Budgets.Should().HaveCount(2);
+                pageViewModel.Budgets[0].Name.Should().Be("Apples");
+                pageViewModel.Budgets[1].Name.Should().Be("Beverages");
             }
         }
     }
