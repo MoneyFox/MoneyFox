@@ -14,7 +14,7 @@
     using Views.Budget;
     using Xamarin.Forms;
 
-    internal sealed class BudgetListPageViewModel : BaseViewModel, IRecipient<ReloadMessage>
+    public sealed class BudgetListPageViewModel : BaseViewModel, IRecipient<ReloadMessage>
     {
         private readonly ISender sender;
 

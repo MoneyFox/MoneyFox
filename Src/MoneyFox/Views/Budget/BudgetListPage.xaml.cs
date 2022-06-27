@@ -11,7 +11,7 @@
             BindingContext = App.GetViewModel<BudgetListPageViewModel>();
         }
 
-        private BudgetListPageViewModel PageViewModel => (BudgetListPageViewModel)BindingContext;
+        public BudgetListPageViewModel PageViewModel => (BudgetListPageViewModel)BindingContext;
 
         protected override async void OnAppearing()
         {
