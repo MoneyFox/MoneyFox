@@ -10,12 +10,12 @@
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is decimal decimalValue ? RoundDecimalToFive(decimalValue).ToString(CultureHelper.CurrentCulture) : value;
+            return value is decimal decimalValue ? RoundDecimalToFive(decimalValue).ToString("F2", CultureHelper.CurrentCulture) : value;
         }
 
-        private static int RoundDecimalToFive(decimal decimalValue)
+        private static decimal RoundDecimalToFive(decimal decimalValue)
         {
-            return 5 * (int)Math.Round(d: decimalValue / 5);
+            return ((int)Math.Round(d: decimalValue * 20)) / 20m;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
