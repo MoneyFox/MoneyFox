@@ -12,12 +12,12 @@
     using TestFramework;
     using Xunit;
 
-    public class BudgetListViewModelShould
+    public class BudgetListPageViewModelShould
     {
         private readonly BudgetListPageViewModel pageViewModel;
         private readonly ISender sender;
 
-        protected BudgetListViewModelShould()
+        protected BudgetListPageViewModelShould()
         {
             sender = Substitute.For<ISender>();
             pageViewModel = new BudgetListPageViewModel(sender);
@@ -31,7 +31,7 @@
             actualBudgetVm.CurrentSpending.Should().Be(expectedBudgetData.CurrentSpending);
         }
 
-        public class WithNoBudgetsAvailable : BudgetListViewModelShould
+        public class WithNoBudgetsAvailable : BudgetListPageViewModelShould
         {
             [Fact]
             public async Task InitializeBudgetsCollectionEmpty_WhenNotItemsFound()
@@ -44,7 +44,7 @@
             }
         }
 
-        public class WithBudgetAvailable : BudgetListViewModelShould
+        public class WithBudgetAvailable : BudgetListPageViewModelShould
         {
             private readonly TestData.DefaultBudget budgetTestData;
 
@@ -86,26 +86,25 @@
                 AssertBudgetListViewModel(actualBudgetVm: loadedBudget, expectedBudgetData: budgetTestData);
             }
         }
-        public class WithMultipleBudgetAvailable : BudgetListViewModelShould
-        {
-            private readonly TestData.DefaultBudget budgetTestData;
 
+        public class WithMultipleBudgetAvailable : BudgetListPageViewModelShould
+        {
             public WithMultipleBudgetAvailable()
             {
-                budgetTestData = new TestData.DefaultBudget();
+                var budgetTestData1 = new TestData.DefaultBudget();
                 sender.Send(Arg.Any<LoadBudgetListData.Query>())
                     .Returns(
                         ImmutableList.Create(
                             new BudgetListData(
-                                id: budgetTestData.Id,
+                                id: budgetTestData1.Id,
                                 name: "Beverages",
-                                spendingLimit: budgetTestData.SpendingLimit,
-                                currentSpending: budgetTestData.CurrentSpending),
+                                spendingLimit: budgetTestData1.SpendingLimit,
+                                currentSpending: budgetTestData1.CurrentSpending),
                             new BudgetListData(
-                                id: budgetTestData.Id,
+                                id: budgetTestData1.Id,
                                 name: "Apples",
-                                spendingLimit: budgetTestData.SpendingLimit,
-                                currentSpending: budgetTestData.CurrentSpending)));
+                                spendingLimit: budgetTestData1.SpendingLimit,
+                                currentSpending: budgetTestData1.CurrentSpending)));
             }
 
             [Fact]
@@ -118,6 +117,17 @@
                 pageViewModel.Budgets.Should().HaveCount(2);
                 pageViewModel.Budgets[0].Name.Should().Be("Apples");
                 pageViewModel.Budgets[1].Name.Should().Be("Beverages");
+            }
+
+            [Fact]
+            public async Task TotalAmountCorrectlyCalculated()
+            {
+                // Act
+                await pageViewModel.InitializeCommand.ExecuteAsync(null);
+
+                // Assert
+                var expectedAmount = pageViewModel.Budgets.Sum(b => b.SpendingLimit);
+                pageViewModel.BudgetedAmount.Should().Be(expectedAmount);
             }
         }
     }

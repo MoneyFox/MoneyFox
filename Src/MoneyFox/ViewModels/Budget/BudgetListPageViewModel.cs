@@ -26,6 +26,8 @@
 
         public ObservableCollection<BudgetListViewModel> Budgets { get; } = new ObservableCollection<BudgetListViewModel>();
 
+        public decimal BudgetedAmount => Budgets.Sum(b => b.SpendingLimit);
+
         public AsyncRelayCommand InitializeCommand => new AsyncRelayCommand(Initialize);
 
         public AsyncRelayCommand GoToAddBudgetCommand => new AsyncRelayCommand(GoToAddBudget);
@@ -51,6 +53,8 @@
                             SpendingLimit = bld.SpendingLimit,
                             CurrentSpending = bld.CurrentSpending
                         }));
+
+            OnPropertyChanged(nameof(BudgetedAmount));
         }
 
         private static async Task GoToAddBudget()
