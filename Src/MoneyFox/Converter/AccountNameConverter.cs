@@ -3,7 +3,6 @@
 
     using System;
     using System.Globalization;
-    using Core.Common;
     using Core.Common.Helpers;
     using ViewModels.Accounts;
     using Xamarin.Forms;

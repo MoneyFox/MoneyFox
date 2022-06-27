@@ -14,11 +14,32 @@
     public class DecimalConverterTests
     {
         [Theory]
+        [InlineData("nl", 36.41, "36.40")]
+        [InlineData("en-GB", 36.41, "36.40")]
+        [InlineData("de-CH", 36.41, "36.40")]
+        [InlineData("de-DE", 36.41, "36.40")]
+        [InlineData("nl", 36.43, "36.45")]
+        [InlineData("en-GB", 36.43, "36.45")]
+        [InlineData("de-CH", 36.43, "36.45")]
+        [InlineData("de-DE", 36.43, "36.45")]
+        public void ConvertCorrectly(string culture, decimal value, string expectedResult)
+        {
+            // Arrange
+            var converter = new DecimalConverter();
+
+            // Act
+            var result = (string)converter.Convert(value: value, targetType: null, parameter: null, culture: new CultureInfo(culture));
+
+            // Assert
+            result.Should().Be(expectedResult);
+        }
+
+        [Theory]
         [InlineData("nl", "36,41", 36.41)]
         [InlineData("en-GB", "34.41", 34.41)]
         [InlineData("de-CH", "33.41", 33.41)]
         [InlineData("de-DE", "33,41", 33.41)]
-        public void ConvertCorrectly(string culture, string value, decimal expectedResult)
+        public void ConvertCorrectlyBack(string culture, string value, decimal expectedResult)
         {
             // Arrange
             CultureHelper.CurrentCulture = new CultureInfo(culture);

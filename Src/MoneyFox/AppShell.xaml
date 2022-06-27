@@ -20,7 +20,7 @@
        mc:Ignorable="d">
 
     <TabBar>
-        <Tab Title="{x:Static resources:Strings.HomeTitle}" >
+        <Tab Title="{x:Static resources:Strings.HomeTitle}">
             <Tab.Icon>
                 <FontImageSource FontFamily="MaterialIconsRound" Glyph="home" />
             </Tab.Icon>
@@ -29,7 +29,7 @@
             </ShellContent>
         </Tab>
 
-        <Tab Title="{x:Static resources:Strings.StatisticsTitle}" >
+        <Tab Title="{x:Static resources:Strings.StatisticsTitle}">
             <Tab.Icon>
                 <FontImageSource FontFamily="MaterialIconsRound" Glyph="donut_small" />
             </Tab.Icon>
@@ -38,7 +38,7 @@
             </ShellContent>
         </Tab>
 
-        <Tab Title="{x:Static resources:Strings.MoreTitle}" >
+        <Tab Title="{x:Static resources:Strings.MoreTitle}">
             <Tab.Icon>
                 <FontImageSource FontFamily="MaterialIconsRound" Glyph="more_horiz" />
             </Tab.Icon>

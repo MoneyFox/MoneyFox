@@ -12,12 +12,12 @@
     using TestFramework;
     using Xunit;
 
-    public class BudgetListViewModelShould
+    public class BudgetListPageViewModelShould
     {
         private readonly BudgetListPageViewModel pageViewModel;
         private readonly ISender sender;
 
-        protected BudgetListViewModelShould()
+        protected BudgetListPageViewModelShould()
         {
             sender = Substitute.For<ISender>();
             pageViewModel = new BudgetListPageViewModel(sender);
@@ -31,7 +31,7 @@
             actualBudgetVm.CurrentSpending.Should().Be(expectedBudgetData.CurrentSpending);
         }
 
-        public class WithNoBudgetsAvailable : BudgetListViewModelShould
+        public class WithNoBudgetsAvailable : BudgetListPageViewModelShould
         {
             [Fact]
             public async Task InitializeBudgetsCollectionEmpty_WhenNotItemsFound()
@@ -44,11 +44,11 @@
             }
         }
 
-        public class WithBudgetsAvailable : BudgetListViewModelShould
+        public class WithBudgetAvailable : BudgetListPageViewModelShould
         {
             private readonly TestData.DefaultBudget budgetTestData;
 
-            public WithBudgetsAvailable()
+            public WithBudgetAvailable()
             {
                 budgetTestData = new TestData.DefaultBudget();
                 sender.Send(Arg.Any<LoadBudgetListData.Query>())
@@ -74,7 +74,7 @@
             }
 
             [Fact]
-            public async Task HasTheRightCount_WhenInitializeIsCalledMultipleTimes()
+            public async Task DoesNotAddEntriesTwice_WhenInitializeIsCalledMultipleTimes()
             {
                 // Act
                 await pageViewModel.InitializeCommand.ExecuteAsync(null);
@@ -84,6 +84,50 @@
                 pageViewModel.Budgets.Should().HaveCount(1);
                 var loadedBudget = pageViewModel.Budgets.Single();
                 AssertBudgetListViewModel(actualBudgetVm: loadedBudget, expectedBudgetData: budgetTestData);
+            }
+        }
+
+        public class WithMultipleBudgetAvailable : BudgetListPageViewModelShould
+        {
+            public WithMultipleBudgetAvailable()
+            {
+                var budgetTestData1 = new TestData.DefaultBudget();
+                sender.Send(Arg.Any<LoadBudgetListData.Query>())
+                    .Returns(
+                        ImmutableList.Create(
+                            new BudgetListData(
+                                id: budgetTestData1.Id,
+                                name: "Beverages",
+                                spendingLimit: budgetTestData1.SpendingLimit,
+                                currentSpending: budgetTestData1.CurrentSpending),
+                            new BudgetListData(
+                                id: budgetTestData1.Id,
+                                name: "Apples",
+                                spendingLimit: budgetTestData1.SpendingLimit,
+                                currentSpending: budgetTestData1.CurrentSpending)));
+            }
+
+            [Fact]
+            public async Task InitializeBudgetsCollection_WithLoadedBudgetsCorrectlySorted()
+            {
+                // Act
+                await pageViewModel.InitializeCommand.ExecuteAsync(null);
+
+                // Assert
+                pageViewModel.Budgets.Should().HaveCount(2);
+                pageViewModel.Budgets[0].Name.Should().Be("Apples");
+                pageViewModel.Budgets[1].Name.Should().Be("Beverages");
+            }
+
+            [Fact]
+            public async Task TotalAmountCorrectlyCalculated()
+            {
+                // Act
+                await pageViewModel.InitializeCommand.ExecuteAsync(null);
+
+                // Assert
+                var expectedAmount = pageViewModel.Budgets.Sum(b => b.SpendingLimit);
+                pageViewModel.BudgetedAmount.Should().Be(expectedAmount);
             }
         }
     }

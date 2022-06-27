@@ -73,10 +73,7 @@
         public bool IsTransfer => SelectedPayment.IsTransfer;
 
         public List<PaymentType> PaymentTypeList => new List<PaymentType> { PaymentType.Expense, PaymentType.Income, PaymentType.Transfer };
-
-        /// <summary>
-        ///     List with the different recurrence types. This has to have the same order as the enum
-        /// </summary>
+        
         public List<PaymentRecurrence> RecurrenceList
             => new List<PaymentRecurrence>
             {
@@ -93,8 +90,7 @@
 
         public string AccountHeader => SelectedPayment?.Type == PaymentType.Income ? Strings.TargetAccountLabel : Strings.ChargedAccountLabel;
 
-        public RelayCommand GoToSelectCategoryDialogCommand
-            => new RelayCommand(async () => await Shell.Current.GoToModalAsync(Routes.SelectCategoryRoute));
+        public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(Routes.SelectCategoryRoute));
 
         public RelayCommand ResetCategoryCommand => new RelayCommand(() => SelectedPayment.Category = null);
 

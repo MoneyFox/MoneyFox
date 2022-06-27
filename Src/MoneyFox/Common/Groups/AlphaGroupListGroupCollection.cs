@@ -5,7 +5,7 @@
     using System.Globalization;
     using System.Linq;
     using CommunityToolkit.Mvvm.Input;
-    using MoneyFox.Core.ApplicationCore.Domain.Exceptions;
+    using Core.ApplicationCore.Domain.Exceptions;
 
     /// <summary>
     ///     Can be used for a alphanumeric grouping. It will show the whole key as title.     This can be a single name or a

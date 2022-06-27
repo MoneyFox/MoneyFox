@@ -2,9 +2,9 @@
 {
 
     using System.Threading.Tasks;
+    using Core.Interfaces;
     using Extensions;
     using JetBrains.Annotations;
-    using MoneyFox.Core.Interfaces;
     using Xamarin.Forms;
 
     [UsedImplicitly]

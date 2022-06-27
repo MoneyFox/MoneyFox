@@ -3,9 +3,9 @@
 
     using System;
     using System.Threading.Tasks;
-    using MoneyFox.Core.Common.Interfaces;
-    using MoneyFox.Core.Resources;
-    using MoneyFox.Views.Popups;
+    using Core.Common.Interfaces;
+    using Core.Resources;
+    using Views.Popups;
     using Xamarin.CommunityToolkit.Extensions;
     using Xamarin.Forms;
 

@@ -1,7 +1,6 @@
 namespace MoneyFox.Views.Budget
 {
 
-    using Controls;
     using Core.Resources;
     using ViewModels.Budget;
     using Xamarin.Forms;

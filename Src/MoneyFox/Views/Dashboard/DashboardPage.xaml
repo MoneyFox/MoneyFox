@@ -28,7 +28,7 @@
                          HorizontalOptions="End"
                          VerticalOptions="Center"
                          WidthRequest="66"
-                         Style="{StaticResource PrimaryImageButton}" >
+                         Style="{StaticResource PrimaryImageButton}">
                 <ImageButton.Source>
                     <FontImageSource FontFamily="MaterialIconsRound" Glyph="add" Color="White" />
                 </ImageButton.Source>

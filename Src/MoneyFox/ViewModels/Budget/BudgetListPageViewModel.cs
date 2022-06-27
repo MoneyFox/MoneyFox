@@ -14,7 +14,7 @@
     using Views.Budget;
     using Xamarin.Forms;
 
-    internal sealed class BudgetListPageViewModel : BaseViewModel, IRecipient<ReloadMessage>
+    public sealed class BudgetListPageViewModel : BaseViewModel, IRecipient<ReloadMessage>
     {
         private readonly ISender sender;
 
@@ -25,6 +25,8 @@
         }
 
         public ObservableCollection<BudgetListViewModel> Budgets { get; } = new ObservableCollection<BudgetListViewModel>();
+
+        public decimal BudgetedAmount => Budgets.Sum(b => b.SpendingLimit);
 
         public AsyncRelayCommand InitializeCommand => new AsyncRelayCommand(Initialize);
 
@@ -42,14 +44,17 @@
             var budgetsListData = await sender.Send(new LoadBudgetListData.Query());
             Budgets.Clear();
             Budgets.AddRange(
-                budgetsListData.Select(
-                    bld => new BudgetListViewModel
-                    {
-                        Id = bld.Id,
-                        Name = bld.Name,
-                        SpendingLimit = bld.SpendingLimit,
-                        CurrentSpending = bld.CurrentSpending
-                    }));
+                budgetsListData.OrderBy(bld => bld.Name)
+                    .Select(
+                        bld => new BudgetListViewModel
+                        {
+                            Id = bld.Id,
+                            Name = bld.Name,
+                            SpendingLimit = bld.SpendingLimit,
+                            CurrentSpending = bld.CurrentSpending
+                        }));
+
+            OnPropertyChanged(nameof(BudgetedAmount));
         }
 
         private static async Task GoToAddBudget()

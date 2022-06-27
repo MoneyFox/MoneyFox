@@ -17,7 +17,7 @@
 
     public class AddBudgetViewModelShould
     {
-        private const int CATEGORY_ID = 10;
+        private const int CategoryId = 10;
         private readonly ISender sender;
 
         private readonly AddBudgetViewModel viewModel;
@@ -34,25 +34,25 @@
         public void AddsSelectedCategoryToList()
         {
             // Act
-            var categorySelectedMessage = new CategorySelectedMessage(new CategorySelectedDataSet(categoryId: CATEGORY_ID, name: "Beer"));
+            var categorySelectedMessage = new CategorySelectedMessage(new CategorySelectedDataSet(categoryId: CategoryId, name: "Beer"));
             viewModel.Receive(categorySelectedMessage);
 
             // Assert
             viewModel.SelectedCategories.Should().HaveCount(1);
-            viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CATEGORY_ID);
+            viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CategoryId);
         }
 
         [Fact]
         public void IgnoresSelectedCategory_WhenEntryWithSameIdAlreadyInList()
         {
             // Act
-            var categorySelectedMessage = new CategorySelectedMessage(new CategorySelectedDataSet(categoryId: CATEGORY_ID, name: "Beer"));
+            var categorySelectedMessage = new CategorySelectedMessage(new CategorySelectedDataSet(categoryId: CategoryId, name: "Beer"));
             viewModel.Receive(categorySelectedMessage);
             viewModel.Receive(categorySelectedMessage);
 
             // Assert
             viewModel.SelectedCategories.Should().HaveCount(1);
-            viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CATEGORY_ID);
+            viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CategoryId);
         }
 
         [Fact]

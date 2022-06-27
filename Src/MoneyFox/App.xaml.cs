@@ -10,11 +10,11 @@
     using Core.Commands.Payments.CreateRecurringPayments;
     using Core.Common.Facades;
     using Core.Common.Helpers;
+    using Core.Common.Interfaces;
     using InversionOfControl;
     using MediatR;
     using Microsoft.Extensions.DependencyInjection;
     using Mobile.Infrastructure.Adapters;
-    using MoneyFox.Core.Common.Interfaces;
     using Serilog;
     using ViewModels;
     using Xamarin.Forms;

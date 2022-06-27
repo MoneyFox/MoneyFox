@@ -1,7 +1,12 @@
 ﻿<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
              x:Name="BudgetProgress"
              x:Class="MoneyFox.Views.Budget.BudgetProgressView">
+
+    <ContentView.Resources>
+        <converter:DecimalConverter x:Key="DecimalConverter" />
+    </ContentView.Resources>
 
     <StackLayout BindingContext="{x:Reference BudgetProgress}">
         <Grid>
@@ -22,11 +27,11 @@
         </Grid>
 
         <Grid>
-            <Label Text="{Binding CurrentSpending}"
+            <Label Text="{Binding CurrentSpending, Converter={StaticResource DecimalConverter}}"
                    HorizontalOptions="Start"
                    Style="{StaticResource TextBodySecondary}" />
 
-            <Label Text="{Binding SpendingLimit}"
+            <Label Text="{Binding SpendingLimit, Converter={StaticResource DecimalConverter}}"
                    HorizontalOptions="End"
                    Style="{StaticResource TextBodySecondary}" />
         </Grid>

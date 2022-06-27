@@ -7,8 +7,7 @@
 
     internal sealed class CategoryIntroductionViewModel : BaseViewModel
     {
-        public AsyncRelayCommand GoToAddCategoryCommand
-            => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(Routes.AddCategoryRoute));
+        public AsyncRelayCommand GoToAddCategoryCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(Routes.AddCategoryRoute));
 
         public AsyncRelayCommand NextStepCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToAsync(Routes.SetupCompletionRoute));
 
