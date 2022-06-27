@@ -74,7 +74,7 @@
             }
 
             [Fact]
-            public async Task HasTheRightCount_WhenInitializeIsCalledMultipleTimes()
+            public async Task DoesNotAddEntriesTwice_WhenInitializeIsCalledMultipleTimes()
             {
                 // Act
                 await pageViewModel.InitializeCommand.ExecuteAsync(null);
