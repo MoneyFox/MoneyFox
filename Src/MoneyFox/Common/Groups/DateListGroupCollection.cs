@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using CommunityToolkit.Mvvm.Input;
-    using MoneyFox.Core.ApplicationCore.Domain.Exceptions;
+    using Core.ApplicationCore.Domain.Exceptions;
 
     public class DateListGroupCollection<T> : List<T>
     {

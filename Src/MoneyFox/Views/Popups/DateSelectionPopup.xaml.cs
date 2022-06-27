@@ -3,7 +3,7 @@
 
     using System;
     using Core.Common.Messages;
-    using MoneyFox.ViewModels.Dialogs;
+    using ViewModels.Dialogs;
 
     public partial class DateSelectionPopup
     {

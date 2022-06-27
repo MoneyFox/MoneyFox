@@ -5,7 +5,6 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              x:Name="StatisticCategorySummary"
              Visual="Material"
@@ -22,11 +21,11 @@
                          Grid.Column="1"
                          Padding="0"
                          BorderWidth="0"
-                         Clicked="OpenFilterDialog" 
+                         Clicked="OpenFilterDialog"
                          HeightRequest="44"
                          HorizontalOptions="End"
                          VerticalOptions="Center"
-                         WidthRequest="66" >
+                         WidthRequest="66">
                 <ImageButton.Source>
                     <FontImageSource FontFamily="MaterialIconsRound" Glyph="filter_alt" />
                 </ImageButton.Source>

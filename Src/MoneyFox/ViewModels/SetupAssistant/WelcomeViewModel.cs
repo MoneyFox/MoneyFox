@@ -16,11 +16,9 @@
             this.settingsFacade = settingsFacade;
         }
 
-        public AsyncRelayCommand GoToAddAccountCommand
-            => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(Routes.AddAccountRoute));
+        public AsyncRelayCommand GoToAddAccountCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(Routes.AddAccountRoute));
 
-        public AsyncRelayCommand NextStepCommand
-            => new AsyncRelayCommand(async () => await Shell.Current.GoToAsync(Routes.CategoryIntroductionRoute));
+        public AsyncRelayCommand NextStepCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToAsync(Routes.CategoryIntroductionRoute));
 
         public RelayCommand SkipCommand => new RelayCommand(SkipSetup);
 

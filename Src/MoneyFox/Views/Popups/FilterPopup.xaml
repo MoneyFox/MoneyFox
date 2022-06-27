@@ -15,10 +15,10 @@
         </ResourceDictionary>
     </xct:Popup.Resources>
 
-    <Grid RowDefinitions="*, 40" >
-        <StackLayout Padding="15" Spacing="6" >
+    <Grid RowDefinitions="*, 40">
+        <StackLayout Padding="15" Spacing="6">
             <Label Text="{x:Static resources:Strings.SelectFilterTitle}"
-                   Style="{DynamicResource TextTitle}"/>
+                   Style="{DynamicResource TextTitle}" />
 
             <Grid Margin="0,6,0,0">
                 <Label Text="{x:Static resources:Strings.IsClearedLabel}"
@@ -36,8 +36,8 @@
                         HorizontalOptions="End" />
             </Grid>
 
-            <Label  Margin="0,6,0,0" Style="{DynamicResource BaseLabel}"
-                    Text="{x:Static resources:Strings.PaymentTypeLabel}" />
+            <Label Margin="0,6,0,0" Style="{DynamicResource BaseLabel}"
+                   Text="{x:Static resources:Strings.PaymentTypeLabel}" />
             <Picker Title="{x:Static resources:Strings.PaymentTypeLabel}"
                     ItemsSource="{Binding PaymentTypeFilterList}"
                     SelectedItem="{Binding FilteredPaymentType}"
@@ -47,9 +47,9 @@
                    Text="{x:Static resources:Strings.TimeRangeStartLabel}" />
             <DatePicker Date="{Binding TimeRangeStart}" />
 
-            <Label  Margin="0,6,0,0"
-                    Style="{DynamicResource BaseLabel}"
-                    Text="{x:Static resources:Strings.TimeRangeEndLabel}" />
+            <Label Margin="0,6,0,0"
+                   Style="{DynamicResource BaseLabel}"
+                   Text="{x:Static resources:Strings.TimeRangeEndLabel}" />
             <DatePicker Date="{Binding TimeRangeEnd}" />
         </StackLayout>
 

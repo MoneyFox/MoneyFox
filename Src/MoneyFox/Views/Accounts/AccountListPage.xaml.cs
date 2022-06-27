@@ -2,7 +2,6 @@
 {
 
     using ViewModels.Accounts;
-    using Xamarin.Forms;
 
     public partial class AccountListPage
     {

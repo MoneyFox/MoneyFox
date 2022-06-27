@@ -14,11 +14,11 @@
     <ContentPage.Content>
         <Grid RowDefinitions="*, Auto">
             <budgetViews:ModifyBudgetView Grid.Row="0" />
-            <Button  Grid.Row="1"
-                     Margin="12"
-                     Style="{StaticResource WarningButton}"
-                     Command="{Binding DeleteBudgetCommand}"
-                     Text="{x:Static resources:Strings.DeleteLabel}" />
+            <Button Grid.Row="1"
+                    Margin="12"
+                    Style="{StaticResource WarningButton}"
+                    Command="{Binding DeleteBudgetCommand}"
+                    Text="{x:Static resources:Strings.DeleteLabel}" />
         </Grid>
     </ContentPage.Content>
 </controls:ModalContentPage>

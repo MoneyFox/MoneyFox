@@ -4,7 +4,7 @@
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    using MoneyFox.Mobile.Infrastructure;
+    using Mobile.Infrastructure;
     using Serilog;
 
     public class FileStoreIoBase : FileStoreBase

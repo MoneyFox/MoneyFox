@@ -28,15 +28,16 @@
                             SelectionMode="Single"
                             ItemsSource="{Binding Budgets}"
                             SelectionChangedCommand="{Binding EditBudgetCommand}"
-                            SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference BudgetCollectionView}}" >
+                            SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference BudgetCollectionView}}">
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="budgetViewModel:BudgetListViewModel">
                         <Grid Padding="15,6,15,8">
-                            <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
-                                               Padding="15"
-                                               CornerRadius="10"
-                                               HorizontalOptions="FillAndExpand">
+                            <yummy:PancakeView
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
+                                Padding="15"
+                                CornerRadius="10"
+                                HorizontalOptions="FillAndExpand">
 
                                 <yummy:PancakeView.Shadow>
                                     <yummy:DropShadow />
@@ -48,7 +49,7 @@
 
 
                                     <budgetControl:BudgetProgressView CurrentSpending="{Binding CurrentSpending}"
-                                                                         SpendingLimit="{Binding SpendingLimit}" />
+                                                                      SpendingLimit="{Binding SpendingLimit}" />
                                 </StackLayout>
                             </yummy:PancakeView>
                         </Grid>

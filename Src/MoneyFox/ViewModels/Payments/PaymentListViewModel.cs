@@ -81,8 +81,7 @@
                 PaymentRecurrence.Yearly
             };
 
-        public AsyncRelayCommand GoToAddPaymentCommand
-            => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(Routes.AddPaymentRoute));
+        public AsyncRelayCommand GoToAddPaymentCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(Routes.AddPaymentRoute));
 
         public AsyncRelayCommand<PaymentViewModel> GoToEditPaymentCommand
             => new AsyncRelayCommand<PaymentViewModel>(
