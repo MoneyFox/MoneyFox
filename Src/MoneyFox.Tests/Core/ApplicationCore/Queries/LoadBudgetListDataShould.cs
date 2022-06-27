@@ -60,9 +60,22 @@
                 Date = DateTime.Now
             };
 
+            var testTransfer = new TestData.DefaultExpense
+            {
+                Id = 11,
+                Amount = 60.3m,
+                Type = PaymentType.Transfer,
+                Date = DateTime.Now
+            };
+
             var dbPayment1 = dbContext.RegisterPayment(testExpense1);
             var dbPayment2 = dbContext.RegisterPayment(testExpense2);
-            var testBudget = new TestData.DefaultBudget { Categories = ImmutableList.Create(dbPayment1.CategoryId.Value, dbPayment2.CategoryId.Value) };
+            var dbPayment3 = dbContext.RegisterPayment(testTransfer);
+            var testBudget = new TestData.DefaultBudget
+            {
+                Categories = ImmutableList.Create(dbPayment1.CategoryId!.Value, dbPayment2.CategoryId!.Value, dbPayment3.CategoryId!.Value)
+            };
+
             dbContext.RegisterBudget(testBudget);
 
             // Act

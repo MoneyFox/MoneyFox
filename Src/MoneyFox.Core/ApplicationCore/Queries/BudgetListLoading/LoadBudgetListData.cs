@@ -30,7 +30,8 @@
                 var budgetListDataList = new List<BudgetListData>();
                 foreach (var budget in budgets)
                 {
-                    var payments = await appDbContext.Payments.Where(p => p.CategoryId != null)
+                    var payments = await appDbContext.Payments.Where(p => p.Type != PaymentType.Transfer)
+                        .Where(p => p.CategoryId != null)
                         .Where(p => p.Date.Year >= DateTime.Today.Year && p.Date.Year <= DateTime.Today.Year)
                         .Where(p => budget.IncludedCategories.Contains(p.CategoryId!.Value))
                         .OrderByDescending(p => p.Date)
