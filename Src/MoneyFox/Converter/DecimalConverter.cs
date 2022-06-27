@@ -3,7 +3,6 @@
 
     using System;
     using System.Globalization;
-    using Core.Common;
     using Core.Common.Helpers;
     using Xamarin.Forms;
 
@@ -11,7 +10,12 @@
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is decimal decimalValue ? decimalValue.ToString(CultureHelper.CurrentCulture) : value;
+            return value is decimal decimalValue ? RoundDecimalToFive(decimalValue).ToString(CultureHelper.CurrentCulture) : value;
+        }
+
+        private static int RoundDecimalToFive(decimal decimalValue)
+        {
+            return 5 * (int)Math.Round(d: decimalValue / 5);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
