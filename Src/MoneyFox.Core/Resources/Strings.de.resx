@@ -843,4 +843,7 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
     <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
         <value>Möchtest du dieses Budget wirklich löschen?</value>
     </data>
+    <data name="MonthlyBudgetLabel" xml:space="preserve">
+      <value>Monthly Budget:</value>
+    </data>
 </root>
