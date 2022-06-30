@@ -5,7 +5,7 @@
              x:Class="MoneyFox.Views.Budget.BudgetProgressView">
 
     <ContentView.Resources>
-        <converter:DecimalConverter x:Key="DecimalConverter" />
+        <converter:DecimalToZeroFiveConverter x:Key="DecimalToZeroFiveConverter" />
     </ContentView.Resources>
 
     <StackLayout BindingContext="{x:Reference BudgetProgress}">
@@ -27,11 +27,11 @@
         </Grid>
 
         <Grid>
-            <Label Text="{Binding CurrentSpending, Converter={StaticResource DecimalConverter}}"
+            <Label Text="{Binding CurrentSpending, Converter={StaticResource DecimalToZeroFiveConverter}}"
                    HorizontalOptions="Start"
                    Style="{StaticResource TextBodySecondary}" />
 
-            <Label Text="{Binding SpendingLimit, Converter={StaticResource DecimalConverter}}"
+            <Label Text="{Binding SpendingLimit, Converter={StaticResource DecimalToZeroFiveConverter}}"
                    HorizontalOptions="End"
                    Style="{StaticResource TextBodySecondary}" />
         </Grid>
