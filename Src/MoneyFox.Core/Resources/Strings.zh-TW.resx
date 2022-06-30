@@ -843,4 +843,7 @@ To start create a new account. Accounts are used to organize payments and money 
     <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
         <value>Do you really want to delete this budget?</value>
     </data>
+    <data name="MonthlyBudgetLabel" xml:space="preserve">
+      <value>Monthly Budget:</value>
+    </data>
 </root>
