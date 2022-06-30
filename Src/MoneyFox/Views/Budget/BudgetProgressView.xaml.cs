@@ -25,7 +25,12 @@
 
         public decimal CurrentSpending
         {
-            get => (decimal)GetValue(CurrentSpendingProperty);
+            get
+            {
+                UpdateCurrentSpendingBar();
+                return (decimal)GetValue(CurrentSpendingProperty);
+            }
+
             set => SetValue(property: CurrentSpendingProperty, value: value);
         }
 
@@ -35,11 +40,35 @@
             set => SetValue(property: SpendingLimitProperty, value: value);
         }
 
-        private void UpdateCurrentSpendingBar(object sender, EventArgs e)
+        private void UpdateCurrentSpendingBar()
         {
-            var totalWidth = SpendingLimitBar.Width;
-            var ratioSpendingLimitToSpending = Convert.ToDouble(CurrentSpending / SpendingLimit);
-            CurrentSpendingBar.WidthRequest = totalWidth * ratioSpendingLimitToSpending;
+            if (CurrentSpending == 0)
+            {
+                CurrentSpendingBar.WidthRequest = 0;
+            }
+            else
+            {
+                var totalWidth = SpendingLimitBar.Width;
+                var ratioSpendingLimitToSpending = Convert.ToDouble(CurrentSpending / SpendingLimit);
+                CurrentSpendingBar.WidthRequest = totalWidth * ratioSpendingLimitToSpending;
+            }
+
+            InvalidateLayout();
+        }
+
+        private void UpdateCurrentSpendingBar(object sender, EventArgs eventArgs)
+        {
+            if (SpendingLimit == 0)
+            {
+                CurrentSpendingBar.WidthRequest = 0;
+            }
+            else
+            {
+                var totalWidth = SpendingLimitBar.Width;
+                var ratioSpendingLimitToSpending = Convert.ToDouble(CurrentSpending / SpendingLimit);
+                CurrentSpendingBar.WidthRequest = totalWidth * ratioSpendingLimitToSpending;
+            }
+
             InvalidateLayout();
         }
     }
