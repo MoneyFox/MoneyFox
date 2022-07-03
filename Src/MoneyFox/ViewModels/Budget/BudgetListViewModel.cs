@@ -1,33 +1,75 @@
 ﻿namespace MoneyFox.ViewModels.Budget
 {
 
-    using CommunityToolkit.Mvvm.ComponentModel;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Common.Extensions;
+    using CommunityToolkit.Mvvm.Input;
+    using CommunityToolkit.Mvvm.Messaging;
+    using Core.ApplicationCore.Queries.BudgetListLoading;
+    using Core.Common.Extensions;
+    using Core.Common.Messages;
+    using MediatR;
+    using Views.Budget;
+    using Xamarin.Forms;
 
-    public sealed class BudgetListViewModel : ObservableObject
+    public sealed class BudgetListViewModel : BaseViewModel, IRecipient<ReloadMessage>
     {
-        private string name = null!;
+        private readonly ISender sender;
 
-        private decimal currentSpending;
-
-        private decimal spendingLimit;
-        public int Id { get; set; }
-
-        public string Name
+        public BudgetListViewModel(ISender sender)
         {
-            get => name;
-            set => SetProperty(field: ref name, newValue: value);
+            this.sender = sender;
+            WeakReferenceMessenger.Default.Register(this);
         }
 
-        public decimal CurrentSpending
+        public ObservableCollection<BudgetListItemViewModel> Budgets { get; } = new ObservableCollection<BudgetListItemViewModel>();
+
+        public decimal BudgetedAmount => Budgets.Sum(b => b.SpendingLimit);
+
+        public AsyncRelayCommand InitializeCommand => new AsyncRelayCommand(Initialize);
+
+        public AsyncRelayCommand GoToAddBudgetCommand => new AsyncRelayCommand(GoToAddBudget);
+
+        public AsyncRelayCommand<BudgetListItemViewModel> EditBudgetCommand => new AsyncRelayCommand<BudgetListItemViewModel>(EditBudgetAsync);
+
+        public async void Receive(ReloadMessage message)
         {
-            get => currentSpending;
-            set => SetProperty(field: ref currentSpending, newValue: value);
+            await Initialize();
         }
 
-        public decimal SpendingLimit
+        private async Task Initialize()
         {
-            get => spendingLimit;
-            set => SetProperty(field: ref spendingLimit, newValue: value);
+            var budgetsListData = await sender.Send(new LoadBudgetListData.Query());
+            Budgets.Clear();
+            Budgets.AddRange(
+                budgetsListData.OrderBy(bld => bld.Name)
+                    .Select(
+                        bld => new BudgetListItemViewModel
+                        {
+                            Id = bld.Id,
+                            Name = bld.Name,
+                            SpendingLimit = bld.SpendingLimit,
+                            CurrentSpending = bld.CurrentSpending
+                        }));
+
+            OnPropertyChanged(nameof(BudgetedAmount));
+        }
+
+        private static async Task GoToAddBudget()
+        {
+            await Shell.Current.GoToModalAsync(Routes.AddBudgetRoute);
+        }
+
+        private async Task EditBudgetAsync(BudgetListItemViewModel? selectedBudget)
+        {
+            if (selectedBudget == null)
+            {
+                return;
+            }
+
+            await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new EditBudgetPage(selectedBudget.Id)) { BarBackgroundColor = Color.Transparent });
         }
     }
 

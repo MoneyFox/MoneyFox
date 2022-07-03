@@ -14,16 +14,16 @@
 
     public class BudgetListPageViewModelShould
     {
-        private readonly BudgetListPageViewModel pageViewModel;
+        private readonly BudgetListViewModel viewModel;
         private readonly ISender sender;
 
         protected BudgetListPageViewModelShould()
         {
             sender = Substitute.For<ISender>();
-            pageViewModel = new BudgetListPageViewModel(sender);
+            viewModel = new BudgetListViewModel(sender);
         }
 
-        private static void AssertBudgetListViewModel(BudgetListViewModel actualBudgetVm, TestData.IBudget expectedBudgetData)
+        private static void AssertBudgetListViewModel(BudgetListItemViewModel actualBudgetVm, TestData.IBudget expectedBudgetData)
         {
             actualBudgetVm.Id.Should().Be(expectedBudgetData.Id);
             actualBudgetVm.Name.Should().Be(expectedBudgetData.Name);
@@ -37,10 +37,10 @@
             public async Task InitializeBudgetsCollectionEmpty_WhenNotItemsFound()
             {
                 // Act
-                await pageViewModel.InitializeCommand.ExecuteAsync(null);
+                await viewModel.InitializeCommand.ExecuteAsync(null);
 
                 // Assert
-                pageViewModel.Budgets.Should().BeEmpty();
+                viewModel.Budgets.Should().BeEmpty();
             }
         }
 
@@ -65,11 +65,11 @@
             public async Task InitializeBudgetsCollection_WithLoadedBudgets()
             {
                 // Act
-                await pageViewModel.InitializeCommand.ExecuteAsync(null);
+                await viewModel.InitializeCommand.ExecuteAsync(null);
 
                 // Assert
-                pageViewModel.Budgets.Should().HaveCount(1);
-                var loadedBudget = pageViewModel.Budgets.Single();
+                viewModel.Budgets.Should().HaveCount(1);
+                var loadedBudget = viewModel.Budgets.Single();
                 AssertBudgetListViewModel(actualBudgetVm: loadedBudget, expectedBudgetData: budgetTestData);
             }
 
@@ -77,12 +77,12 @@
             public async Task DoesNotAddEntriesTwice_WhenInitializeIsCalledMultipleTimes()
             {
                 // Act
-                await pageViewModel.InitializeCommand.ExecuteAsync(null);
-                await pageViewModel.InitializeCommand.ExecuteAsync(null);
+                await viewModel.InitializeCommand.ExecuteAsync(null);
+                await viewModel.InitializeCommand.ExecuteAsync(null);
 
                 // Assert
-                pageViewModel.Budgets.Should().HaveCount(1);
-                var loadedBudget = pageViewModel.Budgets.Single();
+                viewModel.Budgets.Should().HaveCount(1);
+                var loadedBudget = viewModel.Budgets.Single();
                 AssertBudgetListViewModel(actualBudgetVm: loadedBudget, expectedBudgetData: budgetTestData);
             }
         }
@@ -111,23 +111,23 @@
             public async Task InitializeBudgetsCollection_WithLoadedBudgetsCorrectlySorted()
             {
                 // Act
-                await pageViewModel.InitializeCommand.ExecuteAsync(null);
+                await viewModel.InitializeCommand.ExecuteAsync(null);
 
                 // Assert
-                pageViewModel.Budgets.Should().HaveCount(2);
-                pageViewModel.Budgets[0].Name.Should().Be("Apples");
-                pageViewModel.Budgets[1].Name.Should().Be("Beverages");
+                viewModel.Budgets.Should().HaveCount(2);
+                viewModel.Budgets[0].Name.Should().Be("Apples");
+                viewModel.Budgets[1].Name.Should().Be("Beverages");
             }
 
             [Fact]
             public async Task TotalAmountCorrectlyCalculated()
             {
                 // Act
-                await pageViewModel.InitializeCommand.ExecuteAsync(null);
+                await viewModel.InitializeCommand.ExecuteAsync(null);
 
                 // Assert
-                var expectedAmount = pageViewModel.Budgets.Sum(b => b.SpendingLimit);
-                pageViewModel.BudgetedAmount.Should().Be(expectedAmount);
+                var expectedAmount = viewModel.Budgets.Sum(b => b.SpendingLimit);
+                viewModel.BudgetedAmount.Should().Be(expectedAmount);
             }
         }
     }
