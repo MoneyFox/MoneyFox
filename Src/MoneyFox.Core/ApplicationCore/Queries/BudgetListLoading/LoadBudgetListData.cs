@@ -32,7 +32,7 @@
                 {
                     var payments = await appDbContext.Payments.Where(p => p.Type != PaymentType.Transfer)
                         .Where(p => p.CategoryId != null)
-                        .Where(p => p.Date >= DateTime.Today.AddYears(-1))
+                        .Where(p => p.Date >= DateTime.Today.AddYears(-3))
                         .Where(p => budget.IncludedCategories.Contains(p.CategoryId!.Value))
                         .OrderBy(p => p.Date)
                         .ToListAsync(cancellationToken);
