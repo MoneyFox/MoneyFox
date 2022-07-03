@@ -6,10 +6,10 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:budgetViewModel="clr-namespace:MoneyFox.ViewModels.Budget;assembly=MoneyFox"
-             xmlns:budgetControl="clr-namespace:MoneyFox.Views.Budget;assembly=MoneyFox"
              xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:budget="clr-namespace:MoneyFox.Views.Budget;assembly=MoneyFox"
              mc:Ignorable="d"
              Visual="Material"
              x:Name="BudgetList"
@@ -34,50 +34,52 @@
                 <Label Style="{StaticResource TextBodySecondary}" Text="{Binding BudgetedAmount, Converter={StaticResource DecimalToZeroFiveConverter}}" />
             </StackLayout>
 
-            <CollectionView Grid.Row="2"
-                            ItemsSource="{Binding Budgets}">
-
-                <CollectionView.ItemTemplate>
+            <ListView Grid.Row="2"
+                      ItemsSource="{Binding Budgets}"
+                      CachingStrategy="RetainElement"
+                      RowHeight="100">
+                <ListView.ItemTemplate>
                     <DataTemplate x:DataType="budgetViewModel:BudgetListViewModel">
-                        <Grid Padding="15,6,15,8">
-                            <yummy:PancakeView
-                                BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
-                                Padding="15"
-                                CornerRadius="10"
-                                HorizontalOptions="FillAndExpand">
+                        <ViewCell>
+                            <Grid Padding="15,6,15,8">
+                                <yummy:PancakeView
+                                    BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
+                                    Padding="15"
+                                    CornerRadius="10"
+                                    HorizontalOptions="FillAndExpand">
 
-                                <yummy:PancakeView.Shadow>
-                                    <yummy:DropShadow />
-                                </yummy:PancakeView.Shadow>
+                                    <yummy:PancakeView.Shadow>
+                                        <yummy:DropShadow />
+                                    </yummy:PancakeView.Shadow>
 
-                                <yummy:PancakeView.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                        Command="{Binding PageViewModel.EditBudgetCommand, Source={x:Reference BudgetList}}"
-                                        CommandParameter="{Binding .}" />
-                                </yummy:PancakeView.GestureRecognizers>
+                                    <yummy:PancakeView.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding PageViewModel.EditBudgetCommand, Source={x:Reference BudgetList}}"
+                                            CommandParameter="{Binding .}" />
+                                    </yummy:PancakeView.GestureRecognizers>
 
-                                <StackLayout>
-                                    <Label Style="{StaticResource TextHead}"
-                                           Text="{Binding Name}" />
+                                    <StackLayout>
+                                        <Label Style="{StaticResource TextHead}"
+                                               Text="{Binding Name}" />
 
-                                    <budgetControl:BudgetProgressView CurrentSpending="{Binding CurrentSpending}"
-                                                                      SpendingLimit="{Binding SpendingLimit}" />
-                                </StackLayout>
-                            </yummy:PancakeView>
-                        </Grid>
+                                        <budget:BudgetProgressView CurrentSpending="{Binding CurrentSpending}"
+                                                                          SpendingLimit="{Binding SpendingLimit}" />
+                                    </StackLayout>
+                                </yummy:PancakeView>
+                            </Grid>
+                        </ViewCell>
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-                <CollectionView.EmptyView>
-                    <Grid>
-                        <Label Style="{StaticResource TextSubheadSecondary}"
-                               Margin="10,0,10,0"
-                               VerticalTextAlignment="Center"
-                               HorizontalTextAlignment="Center"
-                               Text="{x:Static resources:Strings.NoBudgetsMessage}" />
-                    </Grid>
-                </CollectionView.EmptyView>
-            </CollectionView>
+            <!-- <Grid IsVisible="{Binding Budgets}"> -->
+            <!--     <Label Style="{StaticResource TextSubheadSecondary}" -->
+            <!--            Margin="10,0,10,0" -->
+            <!--            VerticalTextAlignment="Center" -->
+            <!--            HorizontalTextAlignment="Center" -->
+            <!--            Text="{x:Static resources:Strings.NoBudgetsMessage}" /> -->
+            <!-- </Grid> -->
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>
