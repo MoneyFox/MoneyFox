@@ -37,6 +37,7 @@
             <ListView Grid.Row="2"
                       ItemsSource="{Binding Budgets}"
                       CachingStrategy="RetainElement"
+                      SelectionMode="None"
                       RowHeight="100">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="budgetViewModel:BudgetListViewModel">
