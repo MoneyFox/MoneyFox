@@ -13,7 +13,7 @@
              mc:Ignorable="d"
              Visual="Material"
              x:Name="BudgetList"
-             x:DataType="budgetViewModel:BudgetListPageViewModel"
+             x:DataType="budgetViewModel:BudgetListViewModel"
              Title="{x:Static resources:Strings.BudgetsTitle}">
 
     <ContentPage.Resources>
@@ -37,9 +37,10 @@
             <ListView Grid.Row="2"
                       ItemsSource="{Binding Budgets}"
                       CachingStrategy="RetainElement"
+                      SelectionMode="None"
                       RowHeight="100">
                 <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="budgetViewModel:BudgetListViewModel">
+                    <DataTemplate x:DataType="budgetViewModel:BudgetListItemViewModel">
                         <ViewCell>
                             <Grid Padding="15,6,15,8">
                                 <yummy:PancakeView
@@ -54,7 +55,7 @@
 
                                     <yummy:PancakeView.GestureRecognizers>
                                         <TapGestureRecognizer
-                                            Command="{Binding PageViewModel.EditBudgetCommand, Source={x:Reference BudgetList}}"
+                                            Command="{Binding ViewModel.EditBudgetCommand, Source={x:Reference BudgetList}}"
                                             CommandParameter="{Binding .}" />
                                     </yummy:PancakeView.GestureRecognizers>
 
