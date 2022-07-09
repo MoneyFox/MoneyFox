@@ -107,7 +107,8 @@ jobs:
         displayName: "MAUI Check"
         inputs:
           command: 'custom'
-          custom: 'maui-check --ci'
+          custom: 'tool '
+          arguments:  'maui-check --ci'
 
       - task: JavaToolInstaller@0
         displayName: 'Install Java 11'
