@@ -38,6 +38,7 @@
                       ItemsSource="{Binding Budgets}"
                       CachingStrategy="RetainElement"
                       SelectionMode="None"
+                      SeparatorVisibility="None"
                       RowHeight="100">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="budgetViewModel:BudgetListItemViewModel">
