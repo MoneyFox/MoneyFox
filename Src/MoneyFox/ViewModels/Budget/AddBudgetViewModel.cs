@@ -1,28 +1,36 @@
-namespace MoneyFox.ViewModels.Budget;
-
-using Core.ApplicationCore.UseCases.BudgetCreation;
-using Core.Interfaces;
-using MediatR;
-
-internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
+namespace MoneyFox.ViewModels.Budget
 {
-    private readonly ISender sender;
-    private readonly INavigationService navigationService;
 
-    public AddBudgetViewModel(ISender sender, INavigationService navigationService) : base(navigationService: navigationService)
+    using System.Linq;
+    using System.Threading.Tasks;
+    using CommunityToolkit.Mvvm.Messaging;
+    using Core.ApplicationCore.UseCases.BudgetCreation;
+    using Core.Common.Messages;
+    using Core.Interfaces;
+    using MediatR;
+
+    internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
     {
-        this.sender = sender;
-        this.navigationService = navigationService;
+        private readonly ISender sender;
+        private readonly INavigationService navigationService;
+
+        public AddBudgetViewModel(ISender sender, INavigationService navigationService) : base(navigationService: navigationService)
+        {
+            this.sender = sender;
+            this.navigationService = navigationService;
+        }
+
+        protected override async Task SaveBudgetAsync()
+        {
+            var query = new CreateBudget.Command(
+                name: SelectedBudget.Name,
+                spendingLimit: SelectedBudget.SpendingLimit,
+                categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
+
+            await sender.Send(query);
+            Messenger.Send(new ReloadMessage());
+            await navigationService.GoBackFromModal();
+        }
     }
 
-    protected override async Task SaveBudgetAsync()
-    {
-        var query = new CreateBudget.Command(
-            name: SelectedBudget.Name,
-            spendingLimit: SelectedBudget.SpendingLimit,
-            categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
-
-        await sender.Send(query);
-        await navigationService.GoBackFromModal();
-    }
 }

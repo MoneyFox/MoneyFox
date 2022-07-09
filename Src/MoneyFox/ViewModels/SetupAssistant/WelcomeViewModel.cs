@@ -1,35 +1,40 @@
-﻿namespace MoneyFox.ViewModels.SetupAssistant;
-
-using Common.Extensions;
-using CommunityToolkit.Mvvm.Input;
-using Core.Common.Facades;
-
-internal sealed class WelcomeViewModel : BaseViewModel
+﻿namespace MoneyFox.ViewModels.SetupAssistant
 {
-    private readonly ISettingsFacade settingsFacade;
 
-    public WelcomeViewModel(ISettingsFacade settingsFacade)
+    using System.Threading.Tasks;
+    using Common.Extensions;
+    using CommunityToolkit.Mvvm.Input;
+    using Core.Common.Facades;
+    using Xamarin.Forms;
+
+    internal sealed class WelcomeViewModel : BaseViewModel
     {
-        this.settingsFacade = settingsFacade;
-    }
+        private readonly ISettingsFacade settingsFacade;
 
-    public AsyncRelayCommand GoToAddAccountCommand => new(async () => await Shell.Current.GoToModalAsync(Routes.AddAccountRoute));
-
-    public AsyncRelayCommand NextStepCommand => new(async () => await Shell.Current.GoToAsync(Routes.CategoryIntroductionRoute));
-
-    public RelayCommand SkipCommand => new(SkipSetup);
-
-    public async Task InitAsync()
-    {
-        if (settingsFacade.IsSetupCompleted)
+        public WelcomeViewModel(ISettingsFacade settingsFacade)
         {
-            await Shell.Current.GoToAsync(Routes.DashboardRoute);
+            this.settingsFacade = settingsFacade;
+        }
+
+        public AsyncRelayCommand GoToAddAccountCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(Routes.AddAccountRoute));
+
+        public AsyncRelayCommand NextStepCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToAsync(Routes.CategoryIntroductionRoute));
+
+        public RelayCommand SkipCommand => new RelayCommand(SkipSetup);
+
+        public async Task InitAsync()
+        {
+            if (settingsFacade.IsSetupCompleted)
+            {
+                await Shell.Current.GoToAsync(Routes.DashboardRoute);
+            }
+        }
+
+        private void SkipSetup()
+        {
+            settingsFacade.IsSetupCompleted = true;
+            Application.Current.MainPage = new AppShell();
         }
     }
 
-    private void SkipSetup()
-    {
-        settingsFacade.IsSetupCompleted = true;
-        Application.Current.MainPage = new AppShell();
-    }
 }

@@ -2,21 +2,20 @@
 {
 
     using ViewModels.Budget;
-    using Xamarin.Forms;
 
-    public partial class BudgetListPage : ContentPage
+    public partial class BudgetListPage
     {
         public BudgetListPage()
         {
             InitializeComponent();
-            BindingContext = App.GetViewModel<BudgetListPageViewModel>();
+            BindingContext = App.GetViewModel<BudgetListViewModel>();
         }
 
-        private BudgetListPageViewModel PageViewModel => (BudgetListPageViewModel)BindingContext;
+        public BudgetListViewModel ViewModel => (BudgetListViewModel)BindingContext;
 
         protected override async void OnAppearing()
         {
-            await PageViewModel.InitializeCommand.ExecuteAsync(null);
+            await ViewModel.InitializeCommand.ExecuteAsync(null);
         }
     }
 

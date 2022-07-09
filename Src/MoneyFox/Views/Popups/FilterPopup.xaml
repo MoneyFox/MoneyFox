@@ -1,20 +1,21 @@
-﻿<views:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-             xmlns:converter="clr-namespace:MoneyFox.Converter"
-             xmlns:views="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             Size="330, 500"
-             CanBeDismissedByTappingOutsideOfPopup="false"
-             Color="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
-             x:Class="MoneyFox.Views.Popups.FilterPopup">
+﻿<xct:Popup xmlns="http://xamarin.com/schemas/2014/forms"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
+           xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+           xmlns:converter="clr-namespace:MoneyFox.Converter"
+           Visual="Material"
+           Size="330, 500"
+           IsLightDismissEnabled="false"
+           Color="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
+           x:Class="MoneyFox.Views.Popups.FilterPopup">
+
+    <xct:Popup.Resources>
+        <ResourceDictionary>
+            <converter:PaymentTypeFilterConverter x:Key="PaymentTypeFilterConverter" />
+        </ResourceDictionary>
+    </xct:Popup.Resources>
 
     <Grid RowDefinitions="*, 40">
-        <Grid.Resources>
-            <ResourceDictionary>
-                <converter:PaymentTypeFilterConverter x:Key="PaymentTypeFilterConverter" />
-            </ResourceDictionary>
-        </Grid.Resources>
-
         <StackLayout Padding="15" Spacing="6">
             <Label Text="{x:Static resources:Strings.SelectFilterTitle}"
                    Style="{DynamicResource TextTitle}" />
@@ -56,4 +57,4 @@
                 Text="{x:Static resources:Strings.DoneLabel}"
                 Clicked="Button_OnClicked" />
     </Grid>
-</views:Popup>
+</xct:Popup>

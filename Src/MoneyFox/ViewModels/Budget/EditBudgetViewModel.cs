@@ -4,11 +4,13 @@
     using System.Linq;
     using System.Threading.Tasks;
     using CommunityToolkit.Mvvm.Input;
+    using CommunityToolkit.Mvvm.Messaging;
     using Core.ApplicationCore.Queries.BudgetEntryLoading;
     using Core.ApplicationCore.UseCases.BudgetDeletion;
     using Core.ApplicationCore.UseCases.BudgetUpdate;
     using Core.Common.Extensions;
     using Core.Common.Interfaces;
+    using Core.Common.Messages;
     using Core.Interfaces;
     using Core.Resources;
     using MediatR;
@@ -48,6 +50,7 @@
             {
                 var command = new DeleteBudget.Command(budgetId: SelectedBudget.Id);
                 await sender.Send(command);
+                Messenger.Send(new ReloadMessage());
                 await navigationService.GoBackFromModal();
             }
         }
@@ -61,6 +64,7 @@
                 categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
 
             await sender.Send(command);
+            Messenger.Send(new ReloadMessage());
             await navigationService.GoBackFromModal();
         }
     }

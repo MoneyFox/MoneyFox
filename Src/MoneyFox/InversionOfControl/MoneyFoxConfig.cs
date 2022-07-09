@@ -27,7 +27,6 @@ namespace MoneyFox.InversionOfControl
             RegisterServices(serviceCollection);
             RegisterViewModels(serviceCollection);
             serviceCollection.AddSingleton(_ => AutoMapperFactory.Create());
-
             new CoreConfig().Register(serviceCollection);
         }
 
@@ -65,13 +64,11 @@ namespace MoneyFox.InversionOfControl
             serviceCollection.AddTransient<StatisticCategorySpreadingViewModel>();
             serviceCollection.AddTransient<StatisticCategorySummaryViewModel>();
             serviceCollection.AddTransient<StatisticSelectorViewModel>();
-
             serviceCollection.AddTransient<SelectDateRangeDialogViewModel>();
             serviceCollection.AddTransient<SelectFilterDialogViewModel>();
-
             serviceCollection.AddTransient<AddBudgetViewModel>();
             serviceCollection.AddTransient<EditBudgetViewModel>();
-            serviceCollection.AddTransient<BudgetListPageViewModel>();
+            serviceCollection.AddTransient<BudgetListViewModel>();
         }
     }
 

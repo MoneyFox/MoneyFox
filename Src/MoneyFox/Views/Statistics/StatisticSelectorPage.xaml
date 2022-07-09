@@ -1,12 +1,14 @@
-﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:statistics="clr-namespace:MoneyFox.ViewModels.Statistics;assembly=MoneyFox"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              Title="{x:Static resources:Strings.SelectStatisticTitle}"
              mc:Ignorable="d"
              x:Class="MoneyFox.Views.Statistics.StatisticSelectorPage"
+             Visual="Material"
              x:Name="root">
 
     <ContentPage.Content>
@@ -24,30 +26,24 @@
                                     CommandParameter="{Binding .}" />
                             </Grid.GestureRecognizers>
 
-                            <Border
-                                BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
+                            <yummy:PancakeView
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                                                 Light={StaticResource CardBackgroundLight}}"
                                 Padding="15"
-                                Stroke="black"
-                                StrokeThickness="0"
-                                StrokeShape="RoundRectangle 10"
+                                CornerRadius="10"
                                 MinimumHeightRequest="45"
                                 HorizontalOptions="FillAndExpand">
 
-                                <Border.Shadow>
-                                    <Shadow Brush="Black"
-                                            Offset="5,5"
-                                            Radius="30"
-                                            Opacity="0.8" />
-                                </Border.Shadow>
+                                <yummy:PancakeView.Shadow>
+                                    <yummy:DropShadow />
+                                </yummy:PancakeView.Shadow>
 
-                                <StackLayout Orientation="Vertical"
-                                             x:DataType="statistics:StatisticSelectorTypeViewModel">
+                                <StackLayout Orientation="Vertical" x:DataType="statistics:StatisticSelectorTypeViewModel">
                                     <StackLayout Orientation="Horizontal">
                                         <Image HeightRequest="15"
                                                WidthRequest="15">
                                             <Image.Source>
-                                                <FontImageSource FontFamily="MaterialIconsRound"
-                                                                 Glyph="{Binding IconGlyph}" />
+                                                <FontImageSource FontFamily="MaterialIconsRound" Glyph="{Binding IconGlyph}" />
                                             </Image.Source>
                                         </Image>
                                         <Label Text="{Binding Name}" Style="{DynamicResource TextSubHead}" />
@@ -55,7 +51,7 @@
                                     <Label Text="{Binding Description}"
                                            Style="{DynamicResource DeemphasizedLabelStyle}" />
                                 </StackLayout>
-                            </Border>
+                            </yummy:PancakeView>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

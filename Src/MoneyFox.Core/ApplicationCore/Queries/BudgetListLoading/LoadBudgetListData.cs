@@ -6,8 +6,6 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using System.Xml.Schema;
-    using Common.Extensions;
     using Common.Interfaces;
     using Domain.Aggregates.AccountAggregate;
     using MediatR;
@@ -30,25 +28,28 @@
             {
                 var budgets = await appDbContext.Budgets.ToListAsync(cancellationToken);
                 var budgetListDataList = new List<BudgetListData>();
-
                 foreach (var budget in budgets)
                 {
-                    var payments = await appDbContext.Payments.Where(p => p.CategoryId != null)
-                                                     .Where(p => p.Date.Year >= DateTime.Today.Year && p.Date.Year <= DateTime.Today.Year)
-                                                     .Where(p => budget.IncludedCategories.Contains(p.CategoryId!.Value))
-                                                     .OrderByDescending(p => p.Date)
-                                                     .ToListAsync(cancellationToken);
+                    var payments = await appDbContext.Payments.Where(p => p.Type != PaymentType.Transfer)
+                        .Where(p => p.CategoryId != null)
+                        .Where(p => p.Date >= DateTime.Today.AddYears(-3))
+                        .Where(p => budget.IncludedCategories.Contains(p.CategoryId!.Value))
+                        .OrderBy(p => p.Date)
+                        .ToListAsync(cancellationToken);
 
                     if (payments.Any() is false)
                     {
-                        return new List<BudgetListData>();
+                        budgetListDataList.Add(new BudgetListData(id: budget.Id, name: budget.Name, spendingLimit: budget.SpendingLimit, currentSpending: 0));
+
+                        continue;
                     }
 
-                    var amountOfMonthsInRange = payments.First().Date.Month - payments.Last().Date.Month + 1;
+                    var timeDeltaFirstPaymentAndNow = DateTime.Now - payments.First().Date;
+                    var numberOfMonthsInRange = (int)Math.Ceiling(timeDeltaFirstPaymentAndNow.TotalDays / 30);
 
                     // Since sum is not supported for decimal in Ef Core with SQLite we have to do this in two steps
                     var currentSpending = payments.Sum(selector: p => p.Type == PaymentType.Expense ? p.Amount : -p.Amount);
-                    var monthlyAverage = currentSpending / amountOfMonthsInRange;
+                    var monthlyAverage = currentSpending / numberOfMonthsInRange;
                     budgetListDataList.Add(
                         new BudgetListData(id: budget.Id, name: budget.Name, spendingLimit: budget.SpendingLimit, currentSpending: monthlyAverage));
                 }
