@@ -90,6 +90,7 @@ jobs:
           
           
       - task: DotNetCoreCLI@2
+        displayName: "Build Android Project"
         inputs:
           command: 'build'
           projects: 'Src/MoneyFox.Android/MoneyFox.Android.csproj'
