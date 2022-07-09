@@ -100,7 +100,7 @@ jobs:
       - task: DotNetCoreCLI@2
         displayName: "Build Android Project"
         inputs:
-          command: 'publish'
+          command: 'build'
           projects: 'Src/MoneyFox.Android/MoneyFox.Android.csproj'
           arguments: '-c $(BuildConfiguration) -f net6.0-android -o $(build.binariesdirectory)/$(BuildConfiguration)'
 
