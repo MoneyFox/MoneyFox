@@ -46,12 +46,12 @@ jobs:
         inputs:
           command: 'custom'
           custom: 'workload '
-          arguments: 'install maui --source https://api.nuget.org/v3/index.json'
+          arguments: 'install maui-iOS --source https://api.nuget.org/v3/index.json'
 
       - task: DotNetCoreCLI@2
         displayName: "Build iOS Project"
         inputs:
-          command: 'publish'
+          command: 'build'
           projects: 'Src/MoneyFox.Android/MoneyFox.Android.csproj'
           arguments: '-c $(BuildConfiguration) -f net6.0-ios -o $(build.binariesdirectory)/$(BuildConfiguration)'
 
@@ -87,7 +87,7 @@ jobs:
         inputs:
           command: 'custom'
           custom: 'workload '
-          arguments: 'install maui --source https://api.nuget.org/v3/index.json'
+          arguments: 'install maui-android --source https://api.nuget.org/v3/index.json'
 
       - task: JavaToolInstaller@0
         displayName: 'Install Java 11'
