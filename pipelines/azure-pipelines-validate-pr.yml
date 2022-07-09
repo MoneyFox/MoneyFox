@@ -48,15 +48,6 @@ jobs:
           custom: 'workload '
           arguments: 'install maui --source https://api.nuget.org/v3/index.json'
 
-      - task: NuGetToolInstaller@1
-        displayName: 'Use NuGet'
-        inputs:
-          versionSpec: 6.x
-
-      - task: NuGetCommand@2
-        inputs:
-          restoreSolution: '$(solution)'
-
       - task: DotNetCoreCLI@2
         displayName: 'Run Tests'
         inputs:
@@ -96,19 +87,25 @@ jobs:
           versionSpec: '11'
           jdkArchitectureOption: 'x64'
           jdkSourceOption: 'PreInstalled'
-
-      - task: NuGetToolInstaller@1
-        displayName: 'Use NuGet'
+          
+          
+      - task: DotNetCoreCLI@2
         inputs:
-          versionSpec: 6.x
+          command: 'build'
+          projects: 'Src/MoneyFox.Android/MoneyFox.Android.csproj'
+          arguments: '-c $(BuildConfiguration) -f net6.0-android -o $(build.binariesdirectory)/$(BuildConfiguration)'
 
-      - task: NuGetCommand@2
-        displayName: 'Install Nuget Packages for solution'
+      - task: DotNetCoreCLI@2
+        displayName: 'Run Tests'
         inputs:
-          restoreSolution: '$(solution)'
+          command: 'test'
+          projects: |
+            **/*.Tests.csproj
+          arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
 
       - task: XamarinAndroid@1
         displayName: 'Build Android Project'
+        enabled: false
         inputs:
           projectFile: Src/MoneyFox.Android/MoneyFox.Android.csproj
           outputDirectory: '$(build.binariesdirectory)/$(BuildConfiguration)'
