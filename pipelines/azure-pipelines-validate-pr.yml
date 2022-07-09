@@ -14,27 +14,8 @@ jobs:
       solution: '**/MoneyFox.Mobile.sln'
 
     steps:
-      
-      - task: DotNetCoreCLI@2
-        displayName: "New Manifest for tool"
-        inputs:
-          command: custom
-          custom: 'new '
-          arguments: tool-manifest
-            
-      - task: DotNetCoreCLI@2
-        displayName: "Install MauiCheck"
-        inputs:
-          command: custom
-          custom: 'tool '
-          arguments: 'install -g Redth.Net.Maui.Check'
-
-      - task: DotNetCoreCLI@2
-        displayName: "MAUI Check"
-        inputs:
-          command: 'custom'
-          custom: 'tool '
-          arguments: 'maui-check --ci'
+      - script: sudo dotnet workload install maui --source https://api.nuget.org/v3/index.json
+        displayName: "Install MAUI Workload"
         
       #- script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_12_0
       #  displayName: 'Select the Xamarin SDK version 6.12.0'
@@ -91,25 +72,11 @@ jobs:
     steps:
       
       - task: DotNetCoreCLI@2
-        displayName: "New Manifest for tool"
-        inputs:
-          command: custom
-          custom: 'new '
-          arguments: tool-manifest
-          
-      - task: DotNetCoreCLI@2
-        displayName: "Install MauiCheck"
-        inputs:
-          command: custom
-          custom: 'tool '
-          arguments: 'install -g Redth.Net.Maui.Check'
-
-      - task: DotNetCoreCLI@2
-        displayName: "MAUI Check"
+        displayName: "Install MAUI workload"
         inputs:
           command: 'custom'
-          custom: 'tool '
-          arguments: 'maui-check --ci'
+          custom: 'workload '
+          arguments: 'install maui --source https://api.nuget.org/v3/index.json'
 
       - task: JavaToolInstaller@0
         displayName: 'Install Java 11'
