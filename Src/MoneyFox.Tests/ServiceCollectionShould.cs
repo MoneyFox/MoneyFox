@@ -24,7 +24,7 @@ namespace MoneyFox.Tests
             serviceCollection.AddSingleton(Substitute.For<IGraphClientFactory>());
             serviceCollection.AddSingleton(Substitute.For<IStoreOperations>());
             serviceCollection.AddSingleton(Substitute.For<IAppInformation>());
-            
+
             serviceCollection.AddSingleton(Substitute.For<IBrowserAdapter>());
             serviceCollection.AddSingleton(Substitute.For<IConnectivityAdapter>());
             serviceCollection.AddSingleton(Substitute.For<IEmailAdapter>());
