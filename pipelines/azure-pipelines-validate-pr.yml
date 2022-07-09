@@ -16,11 +16,18 @@ jobs:
     steps:
       
       - task: DotNetCoreCLI@2
+        displayName: "New Manifest for tool"
+        inputs:
+          command: custom
+          custom: 'new '
+          arguments: tool-manifest
+            
+      - task: DotNetCoreCLI@2
         displayName: "Install MauiCheck"
         inputs:
           command: custom
           custom: 'tool '
-          arguments: 'dotnet tool install -g Redth.Net.Maui.Check'
+          arguments: 'install -g Redth.Net.Maui.Check'
 
       - task: DotNetCoreCLI@2
         displayName: "MAUI Check"
@@ -81,13 +88,20 @@ jobs:
       solution: '**/MoneyFox.Mobile.sln'
 
     steps:
-
+      - 
+      - task: DotNetCoreCLI@2
+        displayName: "New Manifest for tool"
+        inputs:
+          command: custom
+          custom: 'new '
+          arguments: tool-manifest
+          
       - task: DotNetCoreCLI@2
         displayName: "Install MauiCheck"
         inputs:
           command: custom
           custom: 'tool '
-          arguments: 'dotnet tool install -g Redth.Net.Maui.Check'
+          arguments: 'install -g Redth.Net.Maui.Check'
 
       - task: DotNetCoreCLI@2
         displayName: "MAUI Check"
