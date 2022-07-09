@@ -69,9 +69,6 @@ internal abstract class ModifyPaymentViewModel : BaseViewModel
 
     public List<PaymentType> PaymentTypeList => new() { PaymentType.Expense, PaymentType.Income, PaymentType.Transfer };
 
-    /// <summary>
-    ///     List with the different recurrence types. This has to have the same order as the enum
-    /// </summary>
     public List<PaymentRecurrence> RecurrenceList
         => new()
         {

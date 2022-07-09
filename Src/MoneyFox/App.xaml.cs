@@ -9,7 +9,6 @@ using Core.Common.Helpers;
 using Core.Common.Interfaces;
 using InversionOfControl;
 using MediatR;
-using Microsoft.Extensions.DependencyInjection;
 using Mobile.Infrastructure.Adapters;
 using Serilog;
 using ViewModels;
@@ -18,12 +17,12 @@ public partial class App
 {
     private bool isRunning;
 
-    public App()
+    public App(Action<IServiceCollection> addPlatformServices = null)
     {
         var settingsFacade = new SettingsFacade(new SettingsAdapter());
         CultureHelper.CurrentCulture = new(settingsFacade.DefaultCulture);
         InitializeComponent();
-        SetupServices(AddPlatformServicesAction);
+        SetupServices(addPlatformServices);
         MainPage = new AppShell();
         if (!settingsFacade.IsSetupCompleted)
         {

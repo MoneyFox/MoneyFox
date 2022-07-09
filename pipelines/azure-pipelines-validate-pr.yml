@@ -14,6 +14,9 @@ jobs:
       solution: '**/MoneyFox.Mobile.sln'
 
     steps:
+      - script: sudo dotnet workload install maui --source https://api.nuget.org/v3/index.json
+        displayName: "Install MAUI Workload"
+        
       #- script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_12_0
       #  displayName: 'Select the Xamarin SDK version 6.12.0'
 
@@ -67,15 +70,13 @@ jobs:
       solution: '**/MoneyFox.Mobile.sln'
 
     steps:
-      - task: pjcollins.azp-utilities-boots.boots.Boots@1
-        displayName: 'Install https://aka.ms/xamarin-android-commercial-d16-2-windows '
+      
+      - task: DotNetCoreCLI@2
+        displayName: "Install MAUI workload"
         inputs:
-          uri: 'https://aka.ms/xamarin-android-commercial-d16-2-windows '
-        enabled: false
-
-      - script: ' C:\"Program Files (x86)"\Android\android-sdk\tools\bin\sdkmanager "ndk-bundle"'
-        displayName: 'Install NDK'
-        enabled: false
+          command: 'custom'
+          custom: 'workload '
+          arguments: 'install maui --source https://api.nuget.org/v3/index.json'
 
       - task: JavaToolInstaller@0
         displayName: 'Install Java 11'

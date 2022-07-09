@@ -31,11 +31,18 @@ public partial class BudgetProgressView
         set => SetValue(property: SpendingLimitProperty, value: value);
     }
 
-    private void UpdateCurrentSpendingBar(object sender, EventArgs e)
+    private void UpdateCurrentSpendingBar(object sender, EventArgs eventArgs)
     {
-        var totalWidth = SpendingLimitBar.Width;
-        var ratioSpendingLimitToSpending = Convert.ToDouble(CurrentSpending / SpendingLimit);
-        CurrentSpendingBar.WidthRequest = totalWidth * ratioSpendingLimitToSpending;
-        InvalidateLayout();
+        if (SpendingLimit == 0)
+        {
+            CurrentSpendingBar.WidthRequest = 0;
+        }
+        else
+        {
+            var totalWidth = SpendingLimitBar.Width;
+            var ratioSpendingLimitToSpending = Convert.ToDouble(CurrentSpending / SpendingLimit);
+            CurrentSpendingBar.WidthRequest = totalWidth * ratioSpendingLimitToSpending;
+            InvalidateLayout();
+        }
     }
 }
