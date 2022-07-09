@@ -18,8 +18,9 @@ jobs:
       - task: DotNetCoreCLI@2
         displayName: "Install MauiCheck"
         inputs:
-          command: 'custom'
-          custom: 'dotnet tool install -g Redth.Net.Maui.Check'
+          command: custom
+          custom: 'tool '
+          arguments: 'dotnet tool install -g Redth.Net.Maui.Check'
 
       - task: DotNetCoreCLI@2
         displayName: "MAUI Check"
@@ -84,8 +85,9 @@ jobs:
       - task: DotNetCoreCLI@2
         displayName: "Install MauiCheck"
         inputs:
-          command: 'custom'
-          custom: 'dotnet tool install -g Redth.Net.Maui.Check'
+          command: custom
+          custom: 'tool '
+          arguments: 'dotnet tool install -g Redth.Net.Maui.Check'
 
       - task: DotNetCoreCLI@2
         displayName: "MAUI Check"
