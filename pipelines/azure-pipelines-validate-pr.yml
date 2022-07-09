@@ -83,11 +83,11 @@ jobs:
 
       - task: JavaToolInstaller@0
         displayName: 'Install Java 11'
+        enabled: false
         inputs:
           versionSpec: '11'
           jdkArchitectureOption: 'x64'
           jdkSourceOption: 'PreInstalled'
-          
           
       - task: DotNetCoreCLI@2
         displayName: "Build Android Project"
