@@ -48,15 +48,6 @@ jobs:
           custom: 'workload '
           arguments: 'install maui --source https://api.nuget.org/v3/index.json'
 
-      - task: NuGetToolInstaller@1
-        displayName: 'Use NuGet'
-        inputs:
-          versionSpec: 6.x
-
-      - task: NuGetCommand@2
-        inputs:
-          restoreSolution: '$(solution)'
-
       - task: DotNetCoreCLI@2
         displayName: 'Run Tests'
         inputs:
@@ -96,16 +87,6 @@ jobs:
           versionSpec: '11'
           jdkArchitectureOption: 'x64'
           jdkSourceOption: 'PreInstalled'
-
-      - task: NuGetToolInstaller@1
-        displayName: 'Use NuGet'
-        inputs:
-          versionSpec: 6.x
-
-      - task: NuGetCommand@2
-        displayName: 'Install Nuget Packages for solution'
-        inputs:
-          restoreSolution: '$(solution)'
 
       - task: XamarinAndroid@1
         displayName: 'Build Android Project'
