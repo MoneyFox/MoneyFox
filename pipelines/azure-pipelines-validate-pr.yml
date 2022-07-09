@@ -33,7 +33,8 @@ jobs:
         displayName: "MAUI Check"
         inputs:
           command: 'custom'
-          custom: 'maui-check --ci'
+          custom: 'tool '
+          arguments: 'maui-check --ci'
         
       #- script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_12_0
       #  displayName: 'Select the Xamarin SDK version 6.12.0'
@@ -108,7 +109,7 @@ jobs:
         inputs:
           command: 'custom'
           custom: 'tool '
-          arguments:  'maui-check --ci'
+          arguments: 'maui-check --ci'
 
       - task: JavaToolInstaller@0
         displayName: 'Install Java 11'
