@@ -1,89 +1,83 @@
-﻿namespace MoneyFox.Common
+﻿namespace MoneyFox.Common;
+
+using Mobile.Infrastructure;
+using Serilog;
+
+public class FileStoreIoBase : FileStoreBase
 {
-
-    using System;
-    using System.IO;
-    using System.Threading.Tasks;
-    using Mobile.Infrastructure;
-    using Serilog;
-
-    public class FileStoreIoBase : FileStoreBase
+    public FileStoreIoBase(string basePath)
     {
-        public FileStoreIoBase(string basePath)
+        BasePath = basePath;
+    }
+
+    protected string BasePath { get; }
+
+    public override async Task<Stream> OpenReadAsync(string path)
+    {
+        var fullPath = AppendPath(path);
+        if (!File.Exists(fullPath))
         {
-            BasePath = basePath;
+            throw new FileNotFoundException(message: "File could not be opened.", fileName: path);
         }
 
-        protected string BasePath { get; }
+        return await Task.FromResult(File.Open(path: fullPath, mode: FileMode.Open, access: FileAccess.Read, share: FileShare.ReadWrite));
+    }
 
-        public override async Task<Stream> OpenReadAsync(string path)
+    public override async Task<bool> TryMoveAsync(string from, string destination, bool overwrite)
+    {
+        try
         {
-            var fullPath = AppendPath(path);
-            if (!File.Exists(fullPath))
+            var fullFrom = AppendPath(from);
+            var fullTo = AppendPath(destination);
+            if (!File.Exists(fullFrom))
             {
-                throw new FileNotFoundException(message: "File could not be opened.", fileName: path);
-            }
-
-            return await Task.FromResult(File.Open(path: fullPath, mode: FileMode.Open, access: FileAccess.Read, share: FileShare.ReadWrite));
-        }
-
-        public override async Task<bool> TryMoveAsync(string from, string destination, bool overwrite)
-        {
-            try
-            {
-                var fullFrom = AppendPath(from);
-                var fullTo = AppendPath(destination);
-                if (!File.Exists(fullFrom))
-                {
-                    Log.Error(messageTemplate: "Error during file move {0} : {1}. File does not exist!", propertyValue0: from, propertyValue1: destination);
-
-                    return await Task.FromResult(false);
-                }
-
-                if (File.Exists(fullTo))
-                {
-                    if (overwrite)
-                    {
-                        File.Delete(fullTo);
-                    }
-                    else
-                    {
-                        return await Task.FromResult(false);
-                    }
-                }
-
-                File.Move(sourceFileName: fullFrom, destFileName: fullTo);
-
-                return await Task.FromResult(true);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(exception: ex, messageTemplate: "Error during moving file");
+                Log.Error(messageTemplate: "Error during file move {0} : {1}. File does not exist!", propertyValue0: from, propertyValue1: destination);
 
                 return await Task.FromResult(false);
             }
-        }
 
-        protected override Task WriteFileCommonAsync(string path, Action<Stream> streamAction)
-        {
-            var fullPath = AppendPath(path);
-            if (File.Exists(fullPath))
+            if (File.Exists(fullTo))
             {
-                File.Delete(fullPath);
+                if (overwrite)
+                {
+                    File.Delete(fullTo);
+                }
+                else
+                {
+                    return await Task.FromResult(false);
+                }
             }
 
-            using (var fileStream = File.OpenWrite(fullPath))
-            {
-                streamAction?.Invoke(fileStream);
-            }
+            File.Move(sourceFileName: fullFrom, destFileName: fullTo);
 
-            return Task.CompletedTask;
+            return await Task.FromResult(true);
         }
-
-        protected virtual string AppendPath(string path)
+        catch (Exception ex)
         {
-            return Path.Combine(path1: BasePath, path2: path);
+            Log.Error(exception: ex, messageTemplate: "Error during moving file");
+
+            return await Task.FromResult(false);
         }
     }
 
+    protected override Task WriteFileCommonAsync(string path, Action<Stream> streamAction)
+    {
+        var fullPath = AppendPath(path);
+        if (File.Exists(fullPath))
+        {
+            File.Delete(fullPath);
+        }
+
+        using (var fileStream = File.OpenWrite(fullPath))
+        {
+            streamAction?.Invoke(fileStream);
+        }
+
+        return Task.CompletedTask;
+    }
+
+    protected virtual string AppendPath(string path)
+    {
+        return Path.Combine(path1: BasePath, path2: path);
+    }
 }
