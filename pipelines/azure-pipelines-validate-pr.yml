@@ -14,8 +14,13 @@ jobs:
       solution: '**/MoneyFox.Mobile.sln'
 
     steps:
-      - script: sudo dotnet workload install maui --source https://api.nuget.org/v3/index.json
-        displayName: "Install MAUI Workload"
+
+      - task: DotNetCoreCLI@2
+        displayName: "Install MAUI workload"
+        inputs:
+          command: 'custom'
+          custom: 'workload '
+          arguments: 'install maui --source https://api.nuget.org/v3/index.json'
         
       #- script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_12_0
       #  displayName: 'Select the Xamarin SDK version 6.12.0'
