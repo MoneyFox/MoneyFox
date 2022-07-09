@@ -6,6 +6,7 @@ namespace MoneyFox.Tests
     using System.Linq;
     using InversionOfControl;
     using Microsoft.Extensions.DependencyInjection;
+    using MoneyFox.Core.ApplicationCore.UseCases.DbBackup;
     using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Core.Interfaces;
     using MoneyFox.Infrastructure.DbBackup;
@@ -23,7 +24,11 @@ namespace MoneyFox.Tests
             serviceCollection.AddSingleton(Substitute.For<IGraphClientFactory>());
             serviceCollection.AddSingleton(Substitute.For<IStoreOperations>());
             serviceCollection.AddSingleton(Substitute.For<IAppInformation>());
-            serviceCollection.AddSingleton(Substitute.For<IFileStore>());
+
+            serviceCollection.AddSingleton(Substitute.For<IBrowserAdapter>());
+            serviceCollection.AddSingleton(Substitute.For<IConnectivityAdapter>());
+            serviceCollection.AddSingleton(Substitute.For<IEmailAdapter>());
+            serviceCollection.AddSingleton(Substitute.For<ISettingsAdapter>());
 
             // Act
             new MoneyFoxConfig().Register(serviceCollection);

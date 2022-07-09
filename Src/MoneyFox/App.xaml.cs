@@ -7,9 +7,9 @@ using Core.Commands.Payments.CreateRecurringPayments;
 using Core.Common.Facades;
 using Core.Common.Helpers;
 using Core.Common.Interfaces;
+using Infrastructure.Adapters;
 using InversionOfControl;
 using MediatR;
-using Mobile.Infrastructure.Adapters;
 using Serilog;
 using ViewModels;
 

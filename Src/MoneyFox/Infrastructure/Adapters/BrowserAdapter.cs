@@ -1,6 +1,6 @@
-namespace MoneyFox.Mobile.Infrastructure.Adapters;
+namespace MoneyFox.Infrastructure.Adapters;
 
-using Core.Interfaces;
+using MoneyFox.Core.Interfaces;
 
 public class BrowserAdapter : IBrowserAdapter
 {

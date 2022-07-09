@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Common;
 
-using Mobile.Infrastructure;
+using Infrastructure;
 using Serilog;
 
 public class FileStoreIoBase : FileStoreBase
