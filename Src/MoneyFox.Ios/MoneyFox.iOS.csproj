@@ -6,8 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-ios'">15.0</SupportedOSPlatformVersion>
-    <CodesignEntitlement>Entitlements.plist</CodesignEntitlement>
   </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <EnableSGenConc>True</EnableSGenConc>
