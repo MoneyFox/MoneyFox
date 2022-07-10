@@ -17,12 +17,12 @@ public partial class App
 {
     private bool isRunning;
 
-    public App(Action<IServiceCollection> addPlatformServices = null)
+    public App()
     {
         var settingsFacade = new SettingsFacade(new SettingsAdapter());
         CultureHelper.CurrentCulture = new(settingsFacade.DefaultCulture);
         InitializeComponent();
-        SetupServices(addPlatformServices);
+        SetupServices(AddPlatformServicesAction);
         MainPage = new AppShell();
         if (!settingsFacade.IsSetupCompleted)
         {
