@@ -1,6 +1,6 @@
 namespace MoneyFox.Infrastructure;
 
-using MoneyFox.Core.Interfaces;
+using Core.Interfaces;
 
 public abstract class FileStoreBase : IFileStore
 {

@@ -5,6 +5,7 @@ using Core.Common.Interfaces;
 using Core.Interfaces;
 using Core.InversionOfControl;
 using Infrastructure.Adapters;
+using Infrastructure.InversionOfControl;
 using Mapping;
 using Microsoft.Identity.Client;
 using ViewModels.About;
@@ -32,6 +33,7 @@ public sealed class MoneyFoxConfig
         RegisterIdentityClient(serviceCollection);
         serviceCollection.AddSingleton(_ => AutoMapperFactory.Create());
         new CoreConfig().Register(serviceCollection);
+        InfrastructureConfig.Register(serviceCollection);
     }
 
     private static void RegisterServices(IServiceCollection serviceCollection)

@@ -1,22 +1,18 @@
-﻿using System.Linq;
-using Foundation;
+﻿using Foundation;
 
 [assembly: Preserve(typeof(Queryable), AllMembers = true)]
 
-namespace MoneyFox.iOS
+namespace MoneyFox.iOS;
+
+using UIKit;
+
+public class Application
 {
+    protected Application() { }
 
-    using UIKit;
-
-    public class Application
+    // This is the main entry point of the application.
+    private static void Main(string[] args)
     {
-        protected Application() { }
-
-        // This is the main entry point of the application.
-        private static void Main(string[] args)
-        {
-            UIApplication.Main(args: args, principalClass: null, delegateClass: typeof(AppDelegate));
-        }
+        UIApplication.Main(args: args, principalClass: null, delegateClass: typeof(AppDelegate));
     }
-
 }
