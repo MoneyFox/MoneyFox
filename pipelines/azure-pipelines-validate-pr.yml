@@ -176,21 +176,6 @@ jobs:
             $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Win\MoneyFox.Win (Package)\Package.StoreAssociation.xml')
           failOnStderr: true
 
-      - task: UseDotNet@2
-        displayName: Use .NET 6.0
-        enabled: false
-        inputs:
-          packageType: 'sdk'
-          version: '6.0.x'
-
-      - task: DotNetCoreCLI@2
-        displayName: 'Run Tests'
-        inputs:
-          command: 'test'
-          projects: |
-            **/*.Tests.csproj
-          arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
-
       - task: VSBuild@1
         displayName: 'Build WinUI Project'
         inputs:
