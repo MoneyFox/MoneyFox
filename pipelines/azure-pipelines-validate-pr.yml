@@ -14,7 +14,7 @@ jobs:
       solution: '**/MoneyFox.Mobile.sln'
 
     steps:
-        
+
       #- script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_12_0
       #  displayName: 'Select the Xamarin SDK version 6.12.0'
 
@@ -46,7 +46,7 @@ jobs:
         inputs:
           command: 'custom'
           custom: 'workload '
-          arguments: 'install maui-iOS --source https://api.nuget.org/v3/index.json'
+          arguments: 'install maui-ios --source https://api.nuget.org/v3/index.json'
 
       - task: DotNetCoreCLI@2
         displayName: "Build iOS Project"
@@ -81,7 +81,7 @@ jobs:
       solution: '**/MoneyFox.Mobile.sln'
 
     steps:
-      
+
       - task: DotNetCoreCLI@2
         displayName: "Install MAUI workload"
         inputs:
@@ -96,7 +96,7 @@ jobs:
           versionSpec: '11'
           jdkArchitectureOption: 'x64'
           jdkSourceOption: 'PreInstalled'
-          
+
       - task: DotNetCoreCLI@2
         displayName: "Build Android Project"
         inputs:
