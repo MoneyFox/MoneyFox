@@ -130,6 +130,7 @@ jobs:
 
     variables:
       solution: '**/*.wapproj'
+      desktopSolution: '**/MoneyFox.WinUI.sln'
       appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
     steps:
@@ -181,7 +182,7 @@ jobs:
         displayName: Restore NuGets
         inputs:
           command: 'restore'
-          projects: '$(solution)'
+          projects: '$(desktopSolution)'
           feedsToUse: 'select'
 
       - task: VSBuild@1
