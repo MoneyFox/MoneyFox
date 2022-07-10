@@ -8,6 +8,14 @@
     <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-ios'">15.0</SupportedOSPlatformVersion>
     <CodesignEntitlement>Entitlements.plist</CodesignEntitlement>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <EnableSGenConc>True</EnableSGenConc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <EnableSGenConc>True</EnableSGenConc>
+  </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations">
