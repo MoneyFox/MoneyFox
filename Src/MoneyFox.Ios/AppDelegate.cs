@@ -8,6 +8,7 @@ using Core.Interfaces;
 using Foundation;
 using Infrastructure.DbBackup;
 using JetBrains.Annotations;
+using Microsoft.Identity.Client;
 using Serilog;
 using Serilog.Events;
 using Serilog.Exceptions;
