@@ -176,6 +176,14 @@ jobs:
             $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Win\MoneyFox.Win (Package)\Package.StoreAssociation.xml')
           failOnStderr: true
 
+
+      - task: DotNetCoreCLI@2
+        displayName: Restore NuGets
+        inputs:
+          command: 'restore'
+          projects: '$(solution)'
+          feedsToUse: 'select'
+
       - task: VSBuild@1
         displayName: 'Build WinUI Project'
         inputs:
