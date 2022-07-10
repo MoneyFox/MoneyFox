@@ -183,18 +183,6 @@ jobs:
           packageType: 'sdk'
           version: '6.0.x'
 
-      - task: NuGetToolInstaller@1
-        displayName: 'Use NuGet'
-        inputs:
-          versionSpec: 6.x
-
-      - task: DotNetCoreCLI@2
-        displayName: Restore NuGets
-        inputs:
-          command: 'restore'
-          projects: '**/*.csproj'
-          feedsToUse: 'select'
-
       - task: DotNetCoreCLI@2
         displayName: 'Run Tests'
         inputs:
