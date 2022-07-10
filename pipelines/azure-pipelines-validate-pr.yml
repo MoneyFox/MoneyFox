@@ -52,7 +52,7 @@ jobs:
         displayName: "Build iOS Project"
         inputs:
           command: 'build'
-          projects: 'Src/MoneyFox.Android/MoneyFox.Android.csproj'
+          projects: 'Src/MoneyFox.Ios/MoneyFox.iOS.csproj'
           arguments: '-c $(BuildConfiguration) -f net6.0-ios -o $(build.binariesdirectory)/$(BuildConfiguration)'
 
       - task: DotNetCoreCLI@2
