@@ -39,8 +39,7 @@ public class AppDelegate : MauiUIApplicationDelegate
     // Needed for auth
     public override bool OpenUrl(UIApplication application, NSUrl url, NSDictionary options)
     {
-        // TODO: Reactivate once Microsoft.Identity.Client fixed issue with NSUrl
-        // AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(url);
+        AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(url);
 
         return true;
     }
