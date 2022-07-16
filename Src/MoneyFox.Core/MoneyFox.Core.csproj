@@ -24,7 +24,6 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.6" />
         <PackageReference Include="Serilog" Version="2.11.0" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-        <PackageReference Include="Serilog" Version="2.11.0" />
         <PackageReference Include="SonarAnalyzer.CSharp" Version="8.41.0.50478">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -54,7 +53,4 @@
         </Compile>
     </ItemGroup>
 
-    <ItemGroup>
-        <Folder Include="ApplicationCore\Domain" />
-    </ItemGroup>
 </Project>
