@@ -416,3 +416,47 @@ resharper_csharp_space_after_attributes = true
 
 # Other
 resharper_csharp_space_around_lambda_arrow = true
+
+###############################
+# Naming rules                #
+###############################
+# https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/naming-rules
+
+# Defining the 'camel_case_style' naming style
+dotnet_naming_style.camel_case_style.capitalization = camel_case
+
+# Defining the 'pascal_case_style' naming style
+dotnet_naming_style.pascal_case_style.capitalization = pascal_case
+
+# Defining the 'all_upper_case_style' naming style
+dotnet_naming_style.all_upper_case_style.capitalization = all_upper
+
+# Define the 'private_static_readonly_fields' symbol group
+dotnet_naming_symbols.private_static_readonly_fields.applicable_kinds = field
+dotnet_naming_symbols.private_static_readonly_fields.applicable_accessibilities = private
+dotnet_naming_symbols.private_static_readonly_fields.required_modifiers = static, readonly
+
+# Define the 'private_static_readonly_fields_must_be_camel_case' naming rule
+dotnet_naming_rule.private_static_readonly_fields_must_be_camel_case.symbols = private_static_readonly_fields
+dotnet_naming_rule.private_static_readonly_fields_must_be_camel_case.style = camel_case_style
+dotnet_naming_rule.private_static_readonly_fields_must_be_camel_case.severity = warning
+
+# Define the 'public_static_fields' symbol group
+dotnet_naming_symbols.public_static_fields.applicable_kinds = field
+dotnet_naming_symbols.public_static_fields.applicable_accessibilities = public
+dotnet_naming_symbols.public_static_fields.required_modifiers = static
+
+# Define the 'public_static_fields_must_be_pascal_case' naming rule
+dotnet_naming_rule.public_static_fields_must_be_pascal_case.symbols = public_static_fields
+dotnet_naming_rule.public_static_fields_must_be_pascal_case.style = pascal_case_style
+dotnet_naming_rule.public_static_fields_must_be_pascal_case.severity = warning
+
+# Define the 'const_fields' symbol group
+dotnet_naming_symbols.const_fields.applicable_kinds = field
+dotnet_naming_symbols.const_fields.applicable_accessibilities = public, internal, private
+dotnet_naming_symbols.const_fields.required_modifiers = const
+
+# Define the 'public_static_fields_must_be_pascal_case' naming rule
+dotnet_naming_rule.const_fields_must_be_all_upper.symbols = const_fields
+dotnet_naming_rule.const_fields_must_be_all_upper.style = all_upper_case_style
+dotnet_naming_rule.const_fields_must_be_all_upper.severity = warning
