@@ -1,13 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:converter="clr-namespace:MoneyFox.Converter"
-             xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-             mc:Ignorable="d"
-             x:Class="MoneyFox.Views.Payments.ModifyPaymentContentView">
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:MoneyFox.Converter"
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    x:Class="MoneyFox.Views.Payments.ModifyPaymentContentView">
 
     <ContentView.Resources>
         <ResourceDictionary>

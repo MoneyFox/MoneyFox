@@ -1,10 +1,8 @@
 ﻿<ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     Title="{x:Static resources:Strings.SelectStatisticTitle}"
-    mc:Ignorable="d"
     x:Class="MoneyFox.Views.Statistics.StatisticSelectorPage"
     Visual="Material"
     x:Name="root">

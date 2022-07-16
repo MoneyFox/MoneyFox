@@ -2,15 +2,11 @@
 
 <ContentPage
     x:Class="MoneyFox.Views.Budget.BudgetListPage"
-
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:budgetViewModel="clr-namespace:MoneyFox.ViewModels.Budget;assembly=MoneyFox"
     xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
-    mc:Ignorable="d"
     Visual="Material"
     x:Name="BudgetList"
     x:DataType="budgetViewModel:BudgetListViewModel"

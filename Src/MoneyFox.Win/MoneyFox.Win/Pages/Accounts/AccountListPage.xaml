@@ -5,16 +5,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converter="using:MoneyFox.Win.Converter"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    
     xmlns:designTime="using:MoneyFox.Win.ViewModels.DesignTime"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    
     xmlns:accounts="using:MoneyFox.Win.ViewModels.Accounts"
     xmlns:resources="using:MoneyFox.Core.Resources"
     xmlns:accountsPages="using:MoneyFox.Win.Pages.Accounts"
     xmlns:controls="using:MoneyFox.Win.Pages.UserControls"
     xmlns:animations="using:CommunityToolkit.WinUI.UI.Animations"
-    mc:Ignorable="d">
+    >
 
     <d:MvxWindowsPage.DataContext>
         <designTime:DesignTimeAccountListViewModel />

@@ -2,12 +2,9 @@
     x:Class="MoneyFox.Views.Statistics.StatisticCategorySummaryPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     x:Name="StatisticCategorySummary"
-    Visual="Material"
-    mc:Ignorable="d">
+    Visual="Material">
 
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,66">

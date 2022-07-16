@@ -4,9 +4,9 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    
     xmlns:winUi="using:Microsoft.UI.Xaml.Controls"
     xmlns:resources="using:MoneyFox.Core.Resources"
     xmlns:converter="using:MoneyFox.Win.Converter"
@@ -14,7 +14,7 @@
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     xmlns:userControls="using:MoneyFox.Win.Pages.UserControls"
     NavigationCacheMode="Disabled"
-    mc:Ignorable="d">
+    >
 
     <d:Page.DataContext>
         <designTime:DesignTimePaymentListViewModel />

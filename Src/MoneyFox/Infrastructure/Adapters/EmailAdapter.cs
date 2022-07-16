@@ -1,6 +1,6 @@
 namespace MoneyFox.Infrastructure.Adapters;
 
-using MoneyFox.Core.Interfaces;
+using Core.Interfaces;
 using Serilog;
 
 public class EmailAdapter : IEmailAdapter

@@ -13,10 +13,10 @@ using MediatR;
 
 internal class DashboardViewModel : BaseViewModel
 {
+    private readonly IDialogService dialogService;
     private readonly IMapper mapper;
 
     private readonly IMediator mediator;
-    private readonly IDialogService dialogService;
     private ObservableCollection<AccountViewModel> accounts = new();
     private decimal assets;
 
@@ -141,7 +141,6 @@ internal class DashboardViewModel : BaseViewModel
         {
             isRunning = true;
             Accounts = mapper.Map<ObservableCollection<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
-
             foreach (var accountViewModel in Accounts)
             {
                 accountViewModel.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(accountViewModel.Id));

@@ -20,9 +20,9 @@ public interface ISelectFilterDialogViewModel
 
 internal sealed class SelectFilterDialogViewModel : BaseViewModel, ISelectFilterDialogViewModel
 {
+    private PaymentTypeFilter filteredPaymentType = PaymentTypeFilter.All;
     private bool isClearedFilterActive;
     private bool isRecurringFilterActive;
-    private PaymentTypeFilter filteredPaymentType = PaymentTypeFilter.All;
     private DateTime timeRangeEnd = DateTime.Now.AddMonths(6);
     private DateTime timeRangeStart = DateTime.Now.AddMonths(-2);
 
