@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Commands.Payments.CreatePayment
+namespace MoneyFox.Core.Commands.Payments.CreatePayment
 {
 
     using System.Threading;
@@ -8,7 +8,6 @@
     using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using Serilog;
 
     public class CreatePaymentCommand : IRequest
     {
