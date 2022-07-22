@@ -1,4 +1,4 @@
-﻿namespace MoneyFox;
+namespace MoneyFox;
 
 using Common.Exceptions;
 using Core.ApplicationCore.UseCases.DbBackup;
@@ -22,7 +22,7 @@ public partial class App
         var settingsFacade = new SettingsFacade(new SettingsAdapter());
         CultureHelper.CurrentCulture = new(settingsFacade.DefaultCulture);
         InitializeComponent();
-        SetupServices(AddPlatformServicesAction);
+        SetupServices();
         MainPage = new AppShell();
         if (!settingsFacade.IsSetupCompleted)
         {
@@ -49,10 +49,10 @@ public partial class App
         StartupTasksAsync().ConfigureAwait(false);
     }
 
-    private static void SetupServices(Action<IServiceCollection>? addPlatformServices)
+    private static void SetupServices()
     {
         var services = new ServiceCollection();
-        addPlatformServices?.Invoke(services);
+        AddPlatformServicesAction?.Invoke(services);
         new MoneyFoxConfig().Register(services);
         ServiceProvider = services.BuildServiceProvider();
         ServiceProvider.GetService<IAppDbContext>()?.Migratedb();

@@ -19,7 +19,7 @@ namespace MoneyFox.Infrastructure.InversionOfControl
         public static void Register(IServiceCollection serviceCollection)
         {
             serviceCollection.AddSingleton<DbContextOptions>(
-                sp => new DbContextOptionsBuilder<AppDbContext>().UseSqlite($"Data Source={sp.GetService<IDbPathProvider>()?.GetDbPath()}").Options);
+                sp => new DbContextOptionsBuilder<AppDbContext>().UseSqlite($"Data Source={sp.GetService<IDbPathProvider>().GetDbPath()}").Options);
 
             serviceCollection.AddTransient<IAppDbContext, AppDbContext>();
             RegisterRepositories(serviceCollection);

@@ -5,7 +5,6 @@ namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate
     using CategoryAggregate;
     using Exceptions;
     using JetBrains.Annotations;
-    using Serilog;
 
     public class Payment : EntityBase
     {
