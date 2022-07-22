@@ -41,17 +41,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="LiveChartsCore.SkiaSharpView.XamarinForms" Version="2.0.0-beta.330" />
-    <PackageReference Include="Serilog" Version="2.11.0" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="8.42.0.51121">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.4" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2478" />
-    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
-    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.2478" />
     <PackageReference Include="MediatR" Version="10.0.1" />
   </ItemGroup>
 

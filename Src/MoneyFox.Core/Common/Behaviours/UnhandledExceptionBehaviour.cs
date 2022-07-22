@@ -6,6 +6,7 @@ namespace MoneyFox.Core.Common.Behaviours
     using System.Threading.Tasks;
     using JetBrains.Annotations;
     using MediatR;
+    using Serilog;
 
     [UsedImplicitly]
     public class UnhandledExceptionBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
