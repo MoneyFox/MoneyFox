@@ -13,7 +13,7 @@
             <Grid
                 Padding="15"
                 IsClippedToBounds="False"
-                RowDefinitions="35, 40, Auto, 40, *, 40, 40">
+                RowDefinitions="35, 40, Auto, 40, Auto, 40, 40">
 
                 <Label Style="{StaticResource TextHeadline}"
                        Text="{x:Static resources:Strings.WelcomeLabel}" />

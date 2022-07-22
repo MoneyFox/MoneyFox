@@ -5,10 +5,10 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
+    using Core.ApplicationCore.Domain.Exceptions;
+    using Core.ApplicationCore.UseCases.BackupUpload;
     using Microsoft.Graph;
     using Microsoft.Identity.Client;
-    using MoneyFox.Core.ApplicationCore.Domain.Exceptions;
-    using MoneyFox.Core.ApplicationCore.UseCases.BackupUpload;
 
     internal class OneDriveBackupUploadService : IBackupUploadService
     {
