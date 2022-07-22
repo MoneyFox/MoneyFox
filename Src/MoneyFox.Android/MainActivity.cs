@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Android;
+namespace MoneyFox.Android;
 
 using Common;
 using Core.Common.Interfaces;

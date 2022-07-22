@@ -10,7 +10,7 @@
 
     <PropertyGroup>
         <UseInterpreter Condition="$(TargetFramework.Contains('-android'))">True</UseInterpreter>
-        <SupportedOSPlatformVersion>21.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion>22.0</SupportedOSPlatformVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'" />
