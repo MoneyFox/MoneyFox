@@ -7,6 +7,7 @@
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:budgetViewModel="clr-namespace:MoneyFox.ViewModels.Budget;assembly=MoneyFox"
     xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
+    xmlns:budget="clr-namespace:MoneyFox.Views.Budget"
     Visual="Material"
     x:Name="BudgetList"
     x:DataType="budgetViewModel:BudgetListViewModel"
@@ -18,12 +19,12 @@
 
     <ContentPage.Content>
         <Grid IsClippedToBounds="False" RowDefinitions="40, Auto, *">
-            <Button
-                Margin="0,0,6,0"
-                HorizontalOptions="End"
-                Text="{x:Static resources:Strings.AddBudgetLabel}"
-                VerticalOptions="Center"
-                Command="{Binding GoToAddBudgetCommand}" />
+            <Button Grid.Row="0"
+                    Margin="0,0,6,0"
+                    HorizontalOptions="End"
+                    Text="{x:Static resources:Strings.AddBudgetLabel}"
+                    VerticalOptions="Center"
+                    Command="{Binding GoToAddBudgetCommand}" />
 
             <StackLayout Grid.Row="1" Margin="18,0,12,0" Orientation="Horizontal" Spacing="6">
                 <Label Style="{StaticResource TextBodySecondary}"
@@ -39,10 +40,45 @@
                       SeparatorVisibility="None"
                       RowHeight="100">
                 <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="budgetViewModel:BudgetListItemViewModel">
+                        <ViewCell>
+                            <Grid Padding="15,6,15,8">
+                                <Border BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
+                                        Stroke="black"
+                                        StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 10"
+                                        HeightRequest="90"
+                                        HorizontalOptions="FillAndExpand">
+
+                                    <Border.Shadow>
+                                        <Shadow Brush="Black"
+                                                Offset="5,5"
+                                                Radius="30"
+                                                Opacity="0.8" />
+                                    </Border.Shadow>
+
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding ViewModel.EditBudgetCommand, Source={x:Reference BudgetList}}"
+                                            CommandParameter="{Binding .}" />
+                                    </Border.GestureRecognizers>
+
+                                    <StackLayout>
+                                        <Label Style="{StaticResource TextHead}"
+                                               Text="{Binding Name}" />
+
+                                        <budget:BudgetProgressView CurrentSpending="{Binding CurrentSpending}"
+                                                                          SpendingLimit="{Binding SpendingLimit}" />
+                                    </StackLayout>
+                                </Border>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Grid IsVisible="{Binding Budgets}">
+            <Grid Grid.Row="2"
+                  IsVisible="{Binding Budgets}">
                 <Label Style="{StaticResource TextSubheadSecondary}"
                        Margin="10,0,10,0"
                        VerticalTextAlignment="Center"
