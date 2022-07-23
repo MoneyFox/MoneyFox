@@ -5,20 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converter="using:MoneyFox.Win.Converter"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    
-    xmlns:designTime="using:MoneyFox.Win.ViewModels.DesignTime"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
-    
     xmlns:accounts="using:MoneyFox.Win.ViewModels.Accounts"
     xmlns:resources="using:MoneyFox.Core.Resources"
     xmlns:accountsPages="using:MoneyFox.Win.Pages.Accounts"
     xmlns:controls="using:MoneyFox.Win.Pages.UserControls"
-    xmlns:animations="using:CommunityToolkit.WinUI.UI.Animations"
-    >
-
-    <d:MvxWindowsPage.DataContext>
-        <designTime:DesignTimeAccountListViewModel />
-    </d:MvxWindowsPage.DataContext>
+    xmlns:animations="using:CommunityToolkit.WinUI.UI.Animations" >
 
     <i:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
@@ -61,13 +53,14 @@
                     Style="{ThemeResource CustomSubtitleTextBlockStyle}"
                     Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
                     TextAlignment="Center"
-                    Foreground="{x:Bind CurrentBalance, Converter={StaticResource BalanceColorConverter}}"/>
+                    Foreground="{x:Bind CurrentBalance, Converter={StaticResource BalanceColorConverter}}" />
 
                 <StackPanel Orientation="Horizontal"
                             VerticalAlignment="Bottom"
                             HorizontalAlignment="Right">
                     <TextBlock Text="{x:Bind resources:Strings.EndOfMonthLabel}" Margin="0,0,6,0" />
-                    <TextBlock Foreground="{x:Bind EndOfMonthBalance, Converter={StaticResource BalanceColorConverter}}"
+                    <TextBlock
+                        Foreground="{x:Bind EndOfMonthBalance, Converter={StaticResource BalanceColorConverter}}"
                         Text="{x:Bind EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}" />
                 </StackPanel>
             </Grid>

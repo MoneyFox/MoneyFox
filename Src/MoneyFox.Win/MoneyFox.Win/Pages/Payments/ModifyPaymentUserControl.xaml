@@ -3,21 +3,11 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    
     xmlns:i="using:Microsoft.Xaml.Interactivity"
-    
     xmlns:resources="using:MoneyFox.Core.Resources"
     xmlns:payments="using:MoneyFox.Win.Pages.Payments"
-    xmlns:designTime="using:MoneyFox.Win.ViewModels.DesignTime"
     xmlns:converter="using:MoneyFox.Win.Converter"
-    xmlns:accounts="using:MoneyFox.Win.ViewModels.Accounts"
-    d:DesignHeight="300"
-    d:DesignWidth="400"
-    >
-
-    <d:Page.DataContext>
-        <designTime:DesignTimeModifyPaymentViewModel />
-    </d:Page.DataContext>
+    xmlns:accounts="using:MoneyFox.Win.ViewModels.Accounts">
 
     <UserControl.Resources>
         <converter:AmountFormatConverter x:Key="AmountConverter" />
@@ -25,7 +15,7 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <converter:RecurrenceTypeConverter x:Key="RecurrenceTypeConverter" />
         <converter:PaymentTypeToStringConverter x:Key="PaymentTypeToStringConverter" />
-        
+
         <DataTemplate x:Key="ComboBoxAccountTemplate" x:DataType="accounts:AccountViewModel">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{x:Bind Name}" />

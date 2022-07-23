@@ -4,21 +4,13 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-    
     xmlns:winUi="using:Microsoft.UI.Xaml.Controls"
     xmlns:resources="using:MoneyFox.Core.Resources"
     xmlns:converter="using:MoneyFox.Win.Converter"
-    xmlns:designTime="using:MoneyFox.Win.ViewModels.Payments"
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     xmlns:userControls="using:MoneyFox.Win.Pages.UserControls"
-    NavigationCacheMode="Disabled"
-    >
-
-    <d:Page.DataContext>
-        <designTime:DesignTimePaymentListViewModel />
-    </d:Page.DataContext>
+    NavigationCacheMode="Disabled">
 
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
@@ -130,10 +122,10 @@
                                                      Binding="{Binding IsCleared}" />
                     <controls:DataGridCheckBoxColumn Header="{x:Bind resources:Strings.IsRecurringLabel}"
                                                      Binding="{Binding IsRecurring}" />
-                    
+
                     <controls:DataGridTextColumn Header="{x:Bind resources:Strings.RecurrenceLabel}"
                                                  Binding="{Binding RecurringPayment.Recurrence, Converter={StaticResource RecurrenceTypeConverter}}" />
-                   
+
                     <controls:DataGridTextColumn Header="{x:Bind resources:Strings.NoteLabel}"
                                                  Binding="{Binding Note}" />
 

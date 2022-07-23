@@ -3,15 +3,9 @@
     x:Class="MoneyFox.Win.Pages.Settings.SettingsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    
-    
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:resources="using:MoneyFox.Core.Resources"
-    >
-
-    <Page.Resources>
-    </Page.Resources>
+    xmlns:resources="using:MoneyFox.Core.Resources" >
 
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
