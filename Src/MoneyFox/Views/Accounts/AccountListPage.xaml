@@ -54,8 +54,8 @@
 
                                 <Border.Shadow>
                                     <Shadow Brush="Black"
-                                            Offset="20,20"
-                                            Radius="40"
+                                            Offset="5,5"
+                                            Radius="30"
                                             Opacity="0.8" />
                                 </Border.Shadow>
 
