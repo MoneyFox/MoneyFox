@@ -8,7 +8,7 @@
 
     <ItemGroup>
         <PackageReference Include="AutoMapper" Version="11.0.1" />
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="7.1.2" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
         <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
         <PackageReference Include="Microsoft.Graph" Version="4.35.0" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.17" />
