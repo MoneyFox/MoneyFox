@@ -14,10 +14,12 @@
              Visual="Material"
              x:Name="BudgetList"
              x:DataType="budgetViewModel:BudgetListViewModel"
+             BackgroundColor="{DynamicResource WindowBackgroundColor}"
              Title="{x:Static resources:Strings.BudgetsTitle}">
 
     <ContentPage.Resources>
         <converter:DecimalToZeroFiveConverter x:Key="DecimalToZeroFiveConverter" />
+        <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
     </ContentPage.Resources>
 
     <ContentPage.Content>
@@ -38,6 +40,7 @@
                       ItemsSource="{Binding Budgets}"
                       CachingStrategy="RetainElement"
                       SelectionMode="None"
+                      BackgroundColor="Transparent"
                       SeparatorVisibility="None"
                       RowHeight="100">
                 <ListView.ItemTemplate>
@@ -74,14 +77,13 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <!-- <Grid IsVisible="{Binding Budgets}"> -->
-            <!--     <Label Style="{StaticResource TextSubheadSecondary}" -->
-            <!--            Margin="10,0,10,0" -->
-            <!--            VerticalTextAlignment="Center" -->
-            <!--            HorizontalTextAlignment="Center" -->
-            <!--            Text="{x:Static resources:Strings.NoBudgetsMessage}" /> -->
-            <!-- </Grid> -->
-
+            <Label Grid.Row="2"
+                   IsVisible="{Binding HasBudgets, Converter={StaticResource InverseBoolConverter}}"
+                   Style="{StaticResource TextSubheadSecondary}" 
+                   Margin="10,0,10,0" 
+                   VerticalTextAlignment="Center" 
+                   HorizontalTextAlignment="Center" 
+                   Text="{x:Static resources:Strings.NoBudgetsMessage}" /> 
         </Grid>
     </ContentPage.Content>
 </ContentPage>
