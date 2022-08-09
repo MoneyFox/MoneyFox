@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.Budget
+namespace MoneyFox.ViewModels.Budget
 {
 
     using System.Collections.ObjectModel;
@@ -23,6 +23,8 @@
             this.sender = sender;
             WeakReferenceMessenger.Default.Register(this);
         }
+
+        public bool HasBudgets => Budgets.Any();
 
         public ObservableCollection<BudgetListItemViewModel> Budgets { get; } = new ObservableCollection<BudgetListItemViewModel>();
 
@@ -55,6 +57,7 @@
                         }));
 
             OnPropertyChanged(nameof(BudgetedAmount));
+            OnPropertyChanged(nameof(HasBudgets));
         }
 
         private static async Task GoToAddBudget()
