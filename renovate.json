@@ -2,7 +2,7 @@
   "assignees" : [ "npadrutt" ],
   "azure-pipelines": {
     "enabled": false
-  }
+  },
   "packageRules": [
     {
       "packagePatterns": ["*"],
