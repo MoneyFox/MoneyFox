@@ -17,19 +17,19 @@ variables:
 name: $(date:yyyy)$(DayOfYear)$(rev:rrr)
 steps:
 
-  - task: NuGetToolInstaller@1
+  - task: NuGetToolInstaller@1.208.1
     displayName: 'Use NuGet'
     inputs:
       versionSpec: 6.x
 
-  - task: JavaToolInstaller@0
+  - task: JavaToolInstaller@0.209.0
     displayName: 'Install Java 11'
     inputs:
       versionSpec: '11'
       jdkArchitectureOption: 'x64'
       jdkSourceOption: 'PreInstalled'
 
-  - task: NuGetCommand@2
+  - task: NuGetCommand@2.208.1
     displayName: 'NuGet restore'
     inputs:
       restoreSolution: Src/MoneyFox.Android/MoneyFox.Android.csproj
@@ -43,27 +43,27 @@ steps:
       versionName: '$(Major).$(Minor).$(Build.BuildId)'
       printFile: true
 
-  - task: DotNetCoreCLI@2
+  - task: DotNetCoreCLI@2.208.1
     displayName: 'Run Tests'
     inputs:
       command: 'test'
       projects: '**/*.Tests.csproj'
       arguments: '--configuration $(BuildConfiguration)'
 
-  - task: DownloadSecureFile@1
+  - task: DownloadSecureFile@1.200.0
     displayName: 'Download secure file'
     name: KeyStore
     inputs:
       secureFile: MoneyFoxKeyStore.keystore
 
-  - task: MSBuild@1
+  - task: MSBuild@1.208.0
     displayName: 'Build Android Project'
     inputs:
       solution: Src/MoneyFox.Android/MoneyFox.Android.csproj
       msbuildArchitecture: x64
       msbuildArguments: '-restore -t:SignAndroidPackage -p:Configuration=$(BuildConfiguration) -p:AndroidKeyStore=True -p:AndroidSigningKeyStore=$(KeyStore.secureFilePath) -p:AndroidSigningStorePass=$(KeyStorePass) -p:AndroidSigningKeyAlias=$(KeyStoreAlias) -p:AndroidSigningKeyPass=$(KeyStorePass)'
 
-  - task: CopyFiles@2
+  - task: CopyFiles@2.208.0
     displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
     inputs:
       SourceFolder: '$(System.DefaultWorkingDirectory)'
@@ -71,7 +71,7 @@ steps:
       TargetFolder: '$(build.artifactstagingdirectory)'
       flattenFolders: true
 
-  - task: PublishBuildArtifacts@1
+  - task: PublishBuildArtifacts@1.200.0
     displayName: 'Publish Artifact: drop'
     inputs:
       PathtoPublish: '$(build.artifactstagingdirectory)'

@@ -10,14 +10,14 @@ jobs:
   displayName: 'Run Mutation Tests'
 
   steps:
-  - task: DotNetCoreCLI@2
+  - task: DotNetCoreCLI@2.208.1
     displayName: 'Install dotnet-stryker'
     inputs:
       command: custom
       custom: tool
       arguments: install dotnet-stryker --tool-path $(Agent.BuildDirectory)/tools
 
-  - task: Powershell@2
+  - task: Powershell@2.200.0
     displayName: 'Run dotnet-stryker'
     inputs:
       workingDirectory: '$(Build.Repository.LocalPath)\src\MoneyFox.Tests'

@@ -20,29 +20,29 @@ jobs:
       #- script: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_12.2.app;sudo xcode-select --switch /Applications/Xcode_12.2.app/Contents/Developer
       #  displayName: 'Updating xcode version'
 
-      - task: InstallAppleCertificate@2
+      - task: InstallAppleCertificate@2.200.0
         displayName: 'Install an Apple certificate'
         inputs:
           certSecureFile: 'MoneyFox_Distribution_2022.p12'
           certPwd: '$(P12password)'
           keychain: 'temp'
 
-      - task: InstallAppleProvisioningProfile@1
+      - task: InstallAppleProvisioningProfile@1.200.0
         displayName: 'Install an Apple provisioning profile'
         inputs:
           provisioningProfileLocation: 'secureFiles'
           provProfileSecureFile: 'MoneyFox_Distribution_2022.mobileprovision'
 
-      - task: NuGetToolInstaller@1
+      - task: NuGetToolInstaller@1.208.1
         displayName: 'Use NuGet'
         inputs:
           versionSpec: 6.x
 
-      - task: NuGetCommand@2
+      - task: NuGetCommand@2.208.1
         inputs:
           restoreSolution: '$(solution)'
 
-      - task: DotNetCoreCLI@2
+      - task: DotNetCoreCLI@2.208.1
         displayName: 'Run Tests'
         inputs:
           command: 'test'
@@ -50,7 +50,7 @@ jobs:
             **/*.Tests.csproj
           arguments: '--configuration $(BuildConfiguration)'
 
-      - task: XamariniOS@2
+      - task: XamariniOS@2.200.1
         displayName: 'Build Xamarin.iOS '
         inputs:
           solutionFile: Src/MoneyFox.Ios/MoneyFox.iOS.csproj
@@ -77,24 +77,24 @@ jobs:
         displayName: 'Install NDK'
         enabled: false
 
-      - task: JavaToolInstaller@0
+      - task: JavaToolInstaller@0.209.0
         displayName: 'Install Java 11'
         inputs:
           versionSpec: '11'
           jdkArchitectureOption: 'x64'
           jdkSourceOption: 'PreInstalled'
 
-      - task: NuGetToolInstaller@1
+      - task: NuGetToolInstaller@1.208.1
         displayName: 'Use NuGet'
         inputs:
           versionSpec: 6.x
 
-      - task: NuGetCommand@2
+      - task: NuGetCommand@2.208.1
         displayName: 'Install Nuget Packages for solution'
         inputs:
           restoreSolution: '$(solution)'
 
-      - task: XamarinAndroid@1
+      - task: XamarinAndroid@1.208.0
         displayName: 'Build Android Project'
         inputs:
           projectFile: Src/MoneyFox.Android/MoneyFox.Android.csproj
@@ -114,7 +114,7 @@ jobs:
       appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
     steps:
-      - task: DownloadSecureFile@1
+      - task: DownloadSecureFile@1.200.0
         displayName: 'Download Windows Certificate'
         name: 'signingCert'
         inputs:
@@ -135,7 +135,7 @@ jobs:
         env:
           CERT_PASSWORD_ENV: $(UWP_Certificate_Password)
 
-      - task: PowerShell@2
+      - task: PowerShell@2.200.0
         displayName: "Set AppManifest"
         inputs:
           targetType: 'inline'
@@ -146,7 +146,7 @@ jobs:
             $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Win\MoneyFox.Win (Package)\Package.appxmanifest')
           failOnStderr: true
 
-      - task: PowerShell@2
+      - task: PowerShell@2.200.0
         displayName: "Set Store Association"
         inputs:
           targetType: 'inline'
@@ -157,26 +157,26 @@ jobs:
             $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Win\MoneyFox.Win (Package)\Package.StoreAssociation.xml')
           failOnStderr: true
 
-      - task: UseDotNet@2
+      - task: UseDotNet@2.207.2
         displayName: Use .NET 6.0
         enabled: false
         inputs:
           packageType: 'sdk'
           version: '6.0.x'
 
-      - task: NuGetToolInstaller@1
+      - task: NuGetToolInstaller@1.208.1
         displayName: 'Use NuGet'
         inputs:
           versionSpec: 6.x
 
-      - task: DotNetCoreCLI@2
+      - task: DotNetCoreCLI@2.208.1
         displayName: Restore NuGets
         inputs:
           command: 'restore'
           projects: '**/*.csproj'
           feedsToUse: 'select'
 
-      - task: DotNetCoreCLI@2
+      - task: DotNetCoreCLI@2.208.1
         displayName: 'Run Tests'
         inputs:
           command: 'test'
@@ -184,7 +184,7 @@ jobs:
             **/*.Tests.csproj
           arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
 
-      - task: VSBuild@1
+      - task: VSBuild@1.208.0
         displayName: 'Build WinUI Project'
         inputs:
           solution: '$(solution)'

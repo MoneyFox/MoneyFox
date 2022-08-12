@@ -23,7 +23,7 @@ jobs:
     
     steps:
 
-      - task: DownloadSecureFile@1
+      - task: DownloadSecureFile@1.200.0
         displayName: 'Download secure file'
         name: 'signingCert'
         inputs:
@@ -44,7 +44,7 @@ jobs:
         env:
           CERT_PASSWORD_ENV: $(UWP_Certificate_Password)
 
-      - task: PowerShell@2
+      - task: PowerShell@2.200.0
         displayName: "Set AppManifest"
         inputs:
           targetType: 'inline'
@@ -55,7 +55,7 @@ jobs:
             $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Win\MoneyFox.Win (Package)\Package.appxmanifest')
           failOnStderr: true
 
-      - task: PowerShell@2
+      - task: PowerShell@2.200.0
         displayName: "Set Store Association"
         inputs:
           targetType: 'inline'
@@ -74,31 +74,31 @@ jobs:
           VersionRegex: '\d+.\d+.\d+'
           OutputVersion: 'OutputedVersion'
 
-      - task: NuGetToolInstaller@1
+      - task: NuGetToolInstaller@1.208.1
         displayName: 'Use NuGet'
         inputs:
           versionSpec: 6.x
 
-      - task: NuGetCommand@2
+      - task: NuGetCommand@2.208.1
         displayName: 'NuGet restore'
         inputs:
           restoreSolution: '**/MoneyFox.WinUI.sln'
 
-      - task: DotNetCoreCLI@2
+      - task: DotNetCoreCLI@2.208.1
         displayName: 'Run Tests'
         inputs:
           command: test
           projects: '**/*.Tests.csproj'
           arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
 
-      - task: CopyFiles@2
+      - task: CopyFiles@2.208.0
         displayName: 'Copy coveragexml to staging'
         inputs:
           SourceFolder: '$(Agent.TempDirectory)'
           Contents: '**\*.opencover.xml'
           TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-      - task: VSBuild@1
+      - task: VSBuild@1.208.0
         displayName: 'Build Windows Project'
         inputs:
           solution: '**/*.wapproj'
@@ -114,5 +114,5 @@ jobs:
           platform: x64
           configuration: '$(BuildConfiguration)'
 
-      - task: PublishBuildArtifacts@1
+      - task: PublishBuildArtifacts@1.200.0
         displayName: 'Publish Artifact: drop'
