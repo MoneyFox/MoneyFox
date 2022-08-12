@@ -10,7 +10,11 @@
       "packagePatterns": ["*"],
       "updateTypes": ["major"],
       "groupName": "dependencies",
-      "excludePackageNames": ["^Microsoft.EntityFrameworkCore"]
+      "excludePackageNames": [
+        "Microsoft.EntityFrameworkCore.Design",
+        "Microsoft.EntityFrameworkCore.InMemory", 
+        "Microsoft.EntityFrameworkCore.Sqlite", "Microsoft.EntityFrameworkCore.Tools"
+      ]
     }
   ],
   "dependencyDashboard": false
