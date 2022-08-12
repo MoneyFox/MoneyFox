@@ -1,40 +1,17 @@
 {
-  "assignees": [
-    "npadrutt"
-  ],
+  "assignees" : [ "npadrutt" ],
   "packageRules": [
     {
-      "packagePatterns": [
-        "*"
-      ],
-      "updateTypes": [
-        "minor",
-        "patch"
-      ],
-      "groupName": "all non-major dependencies",
-      "groupSlug": "all-minor-patch"
+      "packagePatterns": ["*"],
+      "updateTypes": ["minor", "patch"],
+      "groupName": "dependencies (non-major)"
     },
     {
-      "packagePatterns": [
-        "*"
-      ],
-      "excludePackagePatterns": [
-        "^Microsoft.EntityFrameworkCore"
-      ],
-      "updateTypes": [
-        "major"
-      ],
-      "groupName": "all major dependencies",
-      "groupSlug": "all-major"
-    },
-    {
-      "matchPackagePatterns": [
-        "^Microsoft.EntityFrameworkCore"
-      ],
-      "updateTypes": [
-        "major"
-      ],
-      "enabled": false
+      "packagePatterns": ["*"],
+      "updateTypes": ["major"],
+      "groupName": "dependencies",
+      "excludePackageNames": ["^Microsoft.EntityFrameworkCore"]
     }
-  ]
+  ],
+  "dependencyDashboard": false
 }
