@@ -15,7 +15,7 @@
         <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
         <PackageReference Include="MediatR" Version="10.0.1" />
         <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.17">
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.8">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
