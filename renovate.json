@@ -15,6 +15,15 @@
         "Microsoft.EntityFrameworkCore.InMemory", 
         "Microsoft.EntityFrameworkCore.Sqlite", "Microsoft.EntityFrameworkCore.Tools"
       ]
+    },
+    {
+      "matchPackagePatterns": [
+        "^Microsoft.EntityFrameworkCore"
+      ],
+      "updateTypes": [
+        "major"
+      ],
+      "enabled": false
     }
   ],
   "dependencyDashboard": false
