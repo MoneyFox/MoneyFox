@@ -25,6 +25,7 @@
         public LoadBudgetListDataShould()
         {
             systemDateHelper = Substitute.For<ISystemDateHelper>();
+            systemDateHelper.Today.Returns(DateTime.Today);
             systemDateHelper.Now.Returns(DateTime.Now);
             dbContext = InMemoryAppDbContextFactory.Create();
             handler = new LoadBudgetListData.Handler(systemDateHelper: systemDateHelper, appDbContext: dbContext);
@@ -148,6 +149,67 @@
             result.Should().HaveCount(1);
             var loadedBudget = result.Single();
             AssertBudgetListData(actualBudgetListData: loadedBudget, expectedBudgetTestData: testBudget, expectedCurrentSpending: 15);
+        }
+
+        [Theory]
+        [InlineData(BudgetTimeRange.Last1Year, 1)]
+        public async Task ReturnBudgets_WithCorrectSummarizedSpending_WithMonthsWithoutPaymentsInBetween(BudgetTimeRange timeRange, int yearsToDeduct)
+        {
+            // Arrange
+            var now = new DateTime(
+                year: DateTime.Today.Year,
+                month: 10,
+                day: 12,
+                hour: 11,
+                minute: 52,
+                second: 0);
+
+            systemDateHelper.Now.Returns(now);
+
+            var testExpense1 = new TestData.DefaultExpense
+            {
+                Id = 10,
+                Amount = 100m,
+                Type = PaymentType.Expense,
+                Date = now.Date
+            };
+
+            var testExpense2 = new TestData.DefaultExpense
+            {
+                Id = 10,
+                Amount = 50m,
+                Type = PaymentType.Expense,
+                Date = now.Date
+            };
+
+            var testExpense3 = new TestData.DefaultExpense
+            {
+                Id = 10,
+                Amount = 50m,
+                Type = PaymentType.Expense,
+                Date = now.AddYears(-(yearsToDeduct + 1))
+            };
+
+            var dbPayment1 = dbContext.RegisterPayment(testExpense1);
+            var dbPayment2 = dbContext.RegisterPayment(testExpense2);
+            var dbPayment3 = dbContext.RegisterPayment(testExpense3);
+            var testBudget = new TestData.DefaultBudget
+            {
+                BudgetTimeRange = timeRange,
+                Categories = ImmutableList.Create(dbPayment1.CategoryId!.Value, dbPayment2.CategoryId!.Value, dbPayment3.CategoryId!.Value)
+            };
+
+            dbContext.RegisterBudget(testBudget);
+
+            // Act
+            var query = new LoadBudgetListData.Query();
+            var result = await handler.Handle(request: query, cancellationToken: CancellationToken.None);
+
+            // Assert
+            result.Should().HaveCount(1);
+            var budgetListData = result.Single();
+            var expectedCurrentSpending = (testExpense1.Amount + testExpense2.Amount) / (yearsToDeduct * 12);
+            AssertBudgetListData(actualBudgetListData: budgetListData, expectedBudgetTestData: testBudget, expectedCurrentSpending: expectedCurrentSpending);
         }
 
         [Fact]

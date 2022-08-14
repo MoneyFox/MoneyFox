@@ -50,7 +50,7 @@
                         continue;
                     }
 
-                    var timeDeltaFirstPaymentAndNow = systemDateHelper.Now - payments.First().Date;
+                    var timeDeltaFirstPaymentAndNow = systemDateHelper.Now.Date - thresholdDate.Date;
                     var numberOfMonthsInRange = (int)Math.Ceiling(timeDeltaFirstPaymentAndNow.TotalDays / 30);
 
                     // Since sum is not supported for decimal in Ef Core with SQLite we have to do this in two steps
@@ -63,15 +63,15 @@
                 return budgetListDataList;
             }
 
-            private static DateTime GetThresholdDateFor(BudgetTimeRange timeRange)
+            private DateTime GetThresholdDateFor(BudgetTimeRange timeRange)
             {
                 return timeRange switch
                 {
-                    BudgetTimeRange.YearToDate => new DateTime(DateTime.Today.Year, 1, 1),
-                    BudgetTimeRange.Last1Year => DateTime.Today.AddYears(-1),
-                    BudgetTimeRange.Last2Years => DateTime.Today.AddYears(-2),
-                    BudgetTimeRange.Last3Years => DateTime.Today.AddYears(-3),
-                    BudgetTimeRange.Last5Years => DateTime.Today.AddYears(-5),
+                    BudgetTimeRange.YearToDate => new DateTime(systemDateHelper.Today.Year, 1, 1),
+                    BudgetTimeRange.Last1Year => systemDateHelper.Today.AddYears(-1),
+                    BudgetTimeRange.Last2Years => systemDateHelper.Today.AddYears(-2),
+                    BudgetTimeRange.Last3Years => systemDateHelper.Today.AddYears(-3),
+                    BudgetTimeRange.Last5Years => systemDateHelper.Today.AddYears(-5),
                     _ => throw new ArgumentOutOfRangeException(nameof(timeRange), timeRange, null)
                 };
             }
