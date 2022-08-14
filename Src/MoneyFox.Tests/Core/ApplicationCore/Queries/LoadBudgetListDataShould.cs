@@ -8,20 +8,26 @@
     using System.Threading.Tasks;
     using FluentAssertions;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+    using MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
     using MoneyFox.Core.ApplicationCore.Queries.BudgetListLoading;
+    using MoneyFox.Core.Common.Helpers;
     using MoneyFox.Infrastructure.Persistence;
+    using NSubstitute;
     using TestFramework;
     using Xunit;
 
     public sealed class LoadBudgetListDataShould
     {
+        private readonly ISystemDateHelper systemDateHelper;
         private readonly AppDbContext dbContext;
         private readonly LoadBudgetListData.Handler handler;
 
         public LoadBudgetListDataShould()
         {
+            systemDateHelper = Substitute.For<ISystemDateHelper>();
+            systemDateHelper.Now.Returns(DateTime.Now);
             dbContext = InMemoryAppDbContextFactory.Create();
-            handler = new LoadBudgetListData.Handler(dbContext);
+            handler = new LoadBudgetListData.Handler(systemDateHelper: systemDateHelper, appDbContext: dbContext);
         }
 
         [Fact]
@@ -44,7 +50,7 @@
                 Id = 10,
                 Amount = 100.5m,
                 Type = PaymentType.Expense,
-                Date = DateTime.Now
+                Date = DateTime.Today
             };
 
             var testExpense2 = new TestData.DefaultExpense
@@ -52,7 +58,7 @@
                 Id = 10,
                 Amount = 60.3m,
                 Type = PaymentType.Income,
-                Date = DateTime.Now
+                Date = DateTime.Today
             };
 
             var testTransfer = new TestData.DefaultExpense
@@ -60,7 +66,7 @@
                 Id = 11,
                 Amount = 60.3m,
                 Type = PaymentType.Transfer,
-                Date = DateTime.Now
+                Date = DateTime.Today
             };
 
             var dbPayment1 = dbContext.RegisterPayment(testExpense1);
@@ -90,12 +96,21 @@
         public async Task ReturnBudgets_WithCorrectSummarizedSpending_ForPaymentsInCurrentYear_WithMonthsWithoutPaymentsInBetween()
         {
             // Arrange
+            systemDateHelper.Now.Returns(
+                new DateTime(
+                    year: DateTime.Today.Year,
+                    month: 10,
+                    day: 12,
+                    hour: 11,
+                    minute: 52,
+                    second: 0));
+
             var testExpense1 = new TestData.DefaultExpense
             {
                 Id = 10,
                 Amount = 100m,
                 Type = PaymentType.Expense,
-                Date = DateTime.Now.AddMonths(-11)
+                Date = new DateTime(year: DateTime.Today.Year, month: 1, day: 1)
             };
 
             var testExpense2 = new TestData.DefaultExpense
@@ -103,12 +118,26 @@
                 Id = 10,
                 Amount = 50m,
                 Type = PaymentType.Expense,
-                Date = DateTime.Now.AddMonths(-3)
+                Date = new DateTime(year: DateTime.Today.Year, month: 1, day: 1)
+            };
+
+            var testExpense3 = new TestData.DefaultExpense
+            {
+                Id = 10,
+                Amount = 50m,
+                Type = PaymentType.Expense,
+                Date = DateTime.Now.AddYears(-1)
             };
 
             var dbPayment1 = dbContext.RegisterPayment(testExpense1);
             var dbPayment2 = dbContext.RegisterPayment(testExpense2);
-            var testBudget = new TestData.DefaultBudget { Categories = ImmutableList.Create(dbPayment1.CategoryId.Value, dbPayment2.CategoryId.Value) };
+            var dbPayment3 = dbContext.RegisterPayment(testExpense3);
+            var testBudget = new TestData.DefaultBudget
+            {
+                BudgetTimeRange = BudgetTimeRange.YearToDate,
+                Categories = ImmutableList.Create(dbPayment1.CategoryId!.Value, dbPayment2.CategoryId!.Value, dbPayment3.CategoryId!.Value)
+            };
+
             dbContext.RegisterBudget(testBudget);
 
             // Act
@@ -118,8 +147,7 @@
             // Assert
             result.Should().HaveCount(1);
             var loadedBudget = result.Single();
-            var expectedCurrentSpending = (testExpense1.Amount + testExpense2.Amount) / 12;
-            AssertBudgetListData(actualBudgetListData: loadedBudget, expectedBudgetTestData: testBudget, expectedCurrentSpending: expectedCurrentSpending);
+            AssertBudgetListData(actualBudgetListData: loadedBudget, expectedBudgetTestData: testBudget, expectedCurrentSpending: 15);
         }
 
         [Fact]

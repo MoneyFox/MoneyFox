@@ -41,6 +41,14 @@ namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate
             private set;
         }
 
+        public BudgetTimeRange BudgetTimeRange
+        {
+            get;
+
+            [UsedImplicitly]
+            private set;
+        }
+
         public IReadOnlyList<int> IncludedCategories
         {
             get;
