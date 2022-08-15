@@ -10,10 +10,11 @@ namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate
         [UsedImplicitly]
         private Budget() { }
 
-        public Budget(string name, SpendingLimit spendingLimit, IReadOnlyList<int> includedCategories)
+        public Budget(string name, SpendingLimit spendingLimit, IReadOnlyList<int> includedCategories, BudgetTimeRange timeRange)
         {
             Name = name;
             SpendingLimit = spendingLimit;
+            BudgetTimeRange = timeRange;
             IncludedCategories = includedCategories;
         }
 
@@ -57,10 +58,11 @@ namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate
             private set;
         } = new List<int>();
 
-        public void Change(string budgetName, SpendingLimit spendingLimit, IReadOnlyList<int> includedCategories)
+        public void Change(string budgetName, SpendingLimit spendingLimit, IReadOnlyList<int> includedCategories, BudgetTimeRange timeRange)
         {
             Name = budgetName;
             SpendingLimit = spendingLimit;
+            BudgetTimeRange = timeRange;
             IncludedCategories = includedCategories;
         }
     }

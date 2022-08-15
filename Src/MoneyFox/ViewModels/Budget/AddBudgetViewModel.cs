@@ -4,6 +4,7 @@ namespace MoneyFox.ViewModels.Budget
     using System.Linq;
     using System.Threading.Tasks;
     using CommunityToolkit.Mvvm.Messaging;
+    using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
     using Core.ApplicationCore.UseCases.BudgetCreation;
     using Core.Common.Messages;
     using Core.Interfaces;
@@ -25,6 +26,7 @@ namespace MoneyFox.ViewModels.Budget
             var query = new CreateBudget.Command(
                 name: SelectedBudget.Name,
                 spendingLimit: SelectedBudget.SpendingLimit,
+                budgetTimeRange: BudgetTimeRange.YearToDate,
                 categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
 
             await sender.Send(query);

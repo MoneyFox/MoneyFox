@@ -46,6 +46,7 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases
                 budgetId: testBudget.Id,
                 name: updatedBudget.Name,
                 spendingLimit: updatedBudget.SpendingLimit,
+                BudgetTimeRange.YearToDate,
                 categories: updatedBudget.Categories);
 
             await handler.Handle(request: command, cancellationToken: CancellationToken.None);

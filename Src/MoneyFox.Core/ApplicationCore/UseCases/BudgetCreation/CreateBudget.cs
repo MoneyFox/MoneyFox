@@ -11,15 +11,17 @@
     {
         public class Command : IRequest
         {
-            public Command(string name, decimal spendingLimit, IReadOnlyList<int> categories)
+            public Command(string name, decimal spendingLimit, BudgetTimeRange budgetTimeRange, IReadOnlyList<int> categories)
             {
                 Name = name;
                 SpendingLimit = spendingLimit;
                 Categories = categories;
+                BudgetTimeRange = budgetTimeRange;
             }
 
             public string Name { get; }
             public decimal SpendingLimit { get; }
+            public BudgetTimeRange BudgetTimeRange { get; }
             public IReadOnlyList<int> Categories { get; }
         }
 
@@ -35,7 +37,7 @@
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
                 var spendingLimit = new SpendingLimit(request.SpendingLimit);
-                var budget = new Budget(name: request.Name, spendingLimit: spendingLimit, includedCategories: request.Categories);
+                var budget = new Budget(name: request.Name, spendingLimit: spendingLimit, includedCategories: request.Categories, request.BudgetTimeRange);
                 await repository.AddAsync(budget);
 
                 return Unit.Value;

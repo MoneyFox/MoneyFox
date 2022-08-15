@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
+    using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
     using Core.ApplicationCore.Queries.BudgetEntryLoading;
     using Core.ApplicationCore.UseCases.BudgetDeletion;
     using Core.ApplicationCore.UseCases.BudgetUpdate;
@@ -61,6 +62,7 @@
                 budgetId: SelectedBudget.Id,
                 name: SelectedBudget.Name,
                 spendingLimit: SelectedBudget.SpendingLimit,
+                budgetTimeRange: BudgetTimeRange.YearToDate,
                 categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
 
             await sender.Send(command);
