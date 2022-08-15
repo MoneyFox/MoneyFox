@@ -11,7 +11,7 @@ namespace MoneyFox.Core.Resources {
     using System;
     
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.1.0.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Strings {
@@ -1482,6 +1482,42 @@ namespace MoneyFox.Core.Resources {
         public static string MonthlyBudgetLabel {
             get {
                 return ResourceManager.GetString("MonthlyBudgetLabel", resourceCulture);
+            }
+        }
+        
+        public static string TimeRangeLabel {
+            get {
+                return ResourceManager.GetString("TimeRangeLabel", resourceCulture);
+            }
+        }
+        
+        public static string LastFiveYearsLabel {
+            get {
+                return ResourceManager.GetString("LastFiveYearsLabel", resourceCulture);
+            }
+        }
+        
+        public static string LastThreeYearsLabel {
+            get {
+                return ResourceManager.GetString("LastThreeYearsLabel", resourceCulture);
+            }
+        }
+        
+        public static string LastTwoYearsLabel {
+            get {
+                return ResourceManager.GetString("LastTwoYearsLabel", resourceCulture);
+            }
+        }
+        
+        public static string LastYearLabel {
+            get {
+                return ResourceManager.GetString("LastYearLabel", resourceCulture);
+            }
+        }
+        
+        public static string YearToDateLabel {
+            get {
+                return ResourceManager.GetString("YearToDateLabel", resourceCulture);
             }
         }
     }

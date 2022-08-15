@@ -7,9 +7,7 @@
     using FluentAssertions;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using MoneyFox.Core.ApplicationCore.Queries;
-    using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Infrastructure.Persistence;
-    using Moq;
     using TestFramework;
     using Xunit;
 
@@ -45,9 +43,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetAccountByIdQuery.Handler(context).Handle(
-                request: new GetAccountByIdQuery(account1.Id),
-                cancellationToken: default);
+            var result = await new GetAccountByIdQuery.Handler(context).Handle(request: new GetAccountByIdQuery(account1.Id), cancellationToken: default);
 
             // Assert
             result.Name.Should().Be(account1.Name);

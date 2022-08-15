@@ -1,15 +1,12 @@
 ﻿namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Accounts.GetAccountNameById
 {
 
-    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
     using FluentAssertions;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using MoneyFox.Core.ApplicationCore.Queries;
-    using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Infrastructure.Persistence;
-    using Moq;
     using TestFramework;
     using Xunit;
 

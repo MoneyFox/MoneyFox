@@ -3,8 +3,8 @@
 
     using System;
     using System.IO;
-    using MoneyFox.Core.Common;
-    using MoneyFox.Core.Interfaces;
+    using Core.Common;
+    using Core.Interfaces;
 
     // TODO Is this still needed?
     public class DbPathProvider : IDbPathProvider

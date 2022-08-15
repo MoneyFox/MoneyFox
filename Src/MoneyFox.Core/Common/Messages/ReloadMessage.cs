@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Common.Messages
+namespace MoneyFox.Core.Common.Messages
 {
 
     /// <summary>

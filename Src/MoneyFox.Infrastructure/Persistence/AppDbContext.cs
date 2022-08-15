@@ -73,6 +73,11 @@ namespace MoneyFox.Infrastructure.Persistence
             return changeCount;
         }
 
+        public void Migratedb()
+        {
+            Database.Migrate();
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
@@ -81,11 +86,6 @@ namespace MoneyFox.Infrastructure.Persistence
         public override int SaveChanges()
         {
             return SaveChangesAsync().GetAwaiter().GetResult();
-        }
-
-        public void Migratedb()
-        {
-            Database.Migrate();
         }
     }
 

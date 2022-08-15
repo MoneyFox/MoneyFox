@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Win.Converter;
 
 using System;
-using Core.Common;
 using Core.Common.Helpers;
 using Microsoft.UI.Xaml.Data;
 

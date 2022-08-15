@@ -2,7 +2,6 @@
 
 using System.Threading.Tasks;
 using AutoMapper;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.ApplicationCore.Queries;
@@ -15,8 +14,8 @@ using DialogServiceClass = DialogService;
 
 internal abstract class ModifyCategoryViewModel : BaseViewModel, IModifyCategoryViewModel
 {
-    private readonly IMediator mediator;
     private readonly IMapper mapper;
+    private readonly IMediator mediator;
 
     private CategoryViewModel selectedCategory = new();
     private string title = "";

@@ -165,7 +165,12 @@ namespace MoneyFox.Tests.Core.Domain.Aggregates
                 note: "note");
 
             // Act
-            payment.UpdateRecurringPayment(amount: 111, recurrence: PaymentRecurrence.Daily, chargedAccount: payment.ChargedAccount, isLastDayOfMonth: false, endDate: null);
+            payment.UpdateRecurringPayment(
+                amount: 111,
+                recurrence: PaymentRecurrence.Daily,
+                chargedAccount: payment.ChargedAccount,
+                isLastDayOfMonth: false,
+                endDate: null);
 
             // Assert
             payment.Should().NotBeNull();
@@ -250,7 +255,11 @@ namespace MoneyFox.Tests.Core.Domain.Aggregates
                 note: "foo");
 
             // Act
-            recurringPayment.UpdateRecurringPayment(amount: 123, recurrence: PaymentRecurrence.Daily, chargedAccount: new Account("123"), isLastDayOfMonth: false);
+            recurringPayment.UpdateRecurringPayment(
+                amount: 123,
+                recurrence: PaymentRecurrence.Daily,
+                chargedAccount: new Account("123"),
+                isLastDayOfMonth: false);
 
             // Assert
             recurringPayment.IsEndless.Should().BeTrue();

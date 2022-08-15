@@ -11,25 +11,25 @@ using Core.Common.Interfaces.Mapping;
 public class PaymentViewModel : ObservableObject, IHaveCustomMapping
 {
     private const decimal DECIMAL_DELTA = 0.01m;
-
-    private int id;
-    private int chargedAccountId;
-    private int? targetAccountId;
-    private DateTime date;
     private decimal amount;
-    private bool isCleared;
-    private PaymentType type;
-    private string note = "";
-    private bool isRecurring;
-    private DateTime created;
-    private DateTime lastModified;
+    private CategoryViewModel? categoryViewModel;
 
     private AccountViewModel chargedAccount = null!;
-    private AccountViewModel? targetAccount;
-    private CategoryViewModel? categoryViewModel;
-    private RecurringPaymentViewModel? recurringPaymentViewModel;
+    private int chargedAccountId;
+    private DateTime created;
 
     private int currentAccountId;
+    private DateTime date;
+
+    private int id;
+    private bool isCleared;
+    private bool isRecurring;
+    private DateTime lastModified;
+    private string note = "";
+    private RecurringPaymentViewModel? recurringPaymentViewModel;
+    private AccountViewModel? targetAccount;
+    private int? targetAccountId;
+    private PaymentType type;
 
     public PaymentViewModel()
     {

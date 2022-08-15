@@ -8,7 +8,6 @@
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using MoneyFox.Core.ApplicationCore.Queries;
     using MoneyFox.Core.Common.Helpers;
-    using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Infrastructure.Persistence;
     using NSubstitute;
     using TestFramework;
@@ -18,8 +17,8 @@
     public class GetMonthlyIncomeQueryTests
     {
         private readonly AppDbContext context;
-        private readonly ISystemDateHelper systemDateHelper;
         private readonly GetMonthlyIncomeQuery.Handler handler;
+        private readonly ISystemDateHelper systemDateHelper;
 
         public GetMonthlyIncomeQueryTests()
         {
@@ -43,9 +42,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            var sum = await handler.Handle(
-                request: new GetMonthlyIncomeQuery(),
-                cancellationToken: default);
+            var sum = await handler.Handle(request: new GetMonthlyIncomeQuery(), cancellationToken: default);
 
             // Assert
             sum.Should().Be(70);

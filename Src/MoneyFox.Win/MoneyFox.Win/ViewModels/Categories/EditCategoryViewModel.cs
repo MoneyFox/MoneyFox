@@ -15,8 +15,8 @@ using Services;
 
 internal sealed class EditCategoryViewModel : ModifyCategoryViewModel
 {
-    private readonly IMediator mediator;
     private readonly IMapper mapper;
+    private readonly IMediator mediator;
 
     public EditCategoryViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService, IMapper mapper) : base(
         mediator: mediator,

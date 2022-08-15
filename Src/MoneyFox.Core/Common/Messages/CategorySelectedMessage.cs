@@ -5,9 +5,7 @@
 
     public class CategorySelectedMessage : ValueChangedMessage<CategorySelectedDataSet>
     {
-        public CategorySelectedMessage(CategorySelectedDataSet dataSet) : base(dataSet)
-        {
-        }
+        public CategorySelectedMessage(CategorySelectedDataSet dataSet) : base(dataSet) { }
     }
 
     public class CategorySelectedDataSet

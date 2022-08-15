@@ -5,11 +5,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:budget="clr-namespace:MoneyFox.ViewModels.Budget;assembly=MoneyFox"
+    xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
+    xmlns:budget1="clr-namespace:MoneyFox.Views.Budget;assembly=MoneyFox"
     x:DataType="budget:ModifyBudgetViewModel"
     x:Class="MoneyFox.Views.Budget.ModifyBudgetView">
 
     <ContentView.Resources>
-        <ResourceDictionary />
+        <ResourceDictionary>
+            <converter:DecimalConverter x:Key="DecimalConverter" />
+            <budget1:BudgetTimeRangeStringConverter x:Key="BudgetTimeRangeStringConverter" />
+        </ResourceDictionary>
     </ContentView.Resources>
 
     <ContentView.Content>
@@ -24,6 +29,11 @@
                        Placeholder="{x:Static resources:Strings.SpendingLimitLabel}"
                        Text="{Binding SelectedBudget.SpendingLimit, Converter={StaticResource DecimalConverter}}" />
 
+                <Picker Title="{x:Static resources:Strings.TimeRangeLabel}"
+                        ItemsSource="{Binding TimeRangeCollection}"
+                        SelectedItem="{Binding SelectedBudget.TimeRange}"
+                        ItemDisplayBinding="{Binding ., Converter={StaticResource BudgetTimeRangeStringConverter}}" />
+
                 <Button Text="{x:Static resources:Strings.SelectCategoryLabel}"
                         Command="{Binding OpenCategorySelectionCommand}" />
 
@@ -36,6 +46,13 @@
                                 SelectionChangedCommand="{Binding RemoveCategoryCommand}"
                                 SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference BudgetCategoryCollectionView}}">
                     <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="budget:BudgetCategoryViewModel">
+                            <Grid Padding="3" HeightRequest="60">
+                                <Frame>
+                                    <Label Text="{Binding Name}" />
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </StackLayout>

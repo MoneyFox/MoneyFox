@@ -85,6 +85,7 @@ public class NavigationService : INavigationService
     public static Type GetViewModel(Type view)
     {
         var type = ViewModelMap.Where(r => r.Value == view).Select(r => r.Key).FirstOrDefault();
+
         return type ?? throw new InvalidOperationException($"View not registered for ViewModel '{view.FullName}'");
     }
 }

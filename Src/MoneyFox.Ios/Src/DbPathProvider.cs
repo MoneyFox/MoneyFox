@@ -3,8 +3,8 @@
 
     using System;
     using System.IO;
-    using MoneyFox.Core.Common;
-    using MoneyFox.Core.Interfaces;
+    using Core.Common;
+    using Core.Interfaces;
     using SQLitePCL;
 
     public class DbPathProvider : IDbPathProvider

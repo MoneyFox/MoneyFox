@@ -18,13 +18,11 @@ namespace MoneyFox.Core.Common.Mediatr
             publishStrategies[PublishStrategy.ParallelNoWait] = new CustomMediator(serviceFactory: serviceFactory, publish: ParallelNoWait);
             publishStrategies[PublishStrategy.ParallelWhenAll] = new CustomMediator(serviceFactory: serviceFactory, publish: ParallelWhenAll);
             publishStrategies[PublishStrategy.ParallelWhenAny] = new CustomMediator(serviceFactory: serviceFactory, publish: ParallelWhenAny);
-            publishStrategies[PublishStrategy.SyncContinueOnException]
-                = new CustomMediator(serviceFactory: serviceFactory, publish: SyncContinueOnException);
-
+            publishStrategies[PublishStrategy.SyncContinueOnException] = new CustomMediator(serviceFactory: serviceFactory, publish: SyncContinueOnException);
             publishStrategies[PublishStrategy.SyncStopOnException] = new CustomMediator(serviceFactory: serviceFactory, publish: SyncStopOnException);
         }
 
-        private PublishStrategy DefaultStrategy { get; set; } = PublishStrategy.SyncContinueOnException;
+        private PublishStrategy DefaultStrategy { get; } = PublishStrategy.SyncContinueOnException;
 
         public Task Publish<TNotification>(TNotification notification)
         {

@@ -13,8 +13,8 @@
 
     public class CategoryRepositoryTests
     {
-        private readonly CategoryRepository categoryRepository;
         private readonly AppDbContext appDbContext;
+        private readonly CategoryRepository categoryRepository;
 
         protected CategoryRepositoryTests()
         {

@@ -17,12 +17,12 @@
     [ExcludeFromCodeCoverage]
     public class BackupViewModelShould
     {
-        private readonly IMediator mediator;
-        private readonly IConnectivityAdapter connectivityAdapter;
-        private readonly ISettingsFacade settingsManager;
         private readonly IBackupService backupService;
-        private readonly IToastService toastService;
+        private readonly IConnectivityAdapter connectivityAdapter;
         private readonly IDialogService dialogService;
+        private readonly IMediator mediator;
+        private readonly ISettingsFacade settingsManager;
+        private readonly IToastService toastService;
 
         protected BackupViewModelShould()
         {

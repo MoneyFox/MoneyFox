@@ -4,13 +4,12 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using _Pending_.Common;
+    using _Pending_.Common.QueryObjects;
     using Common.Helpers;
+    using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using MoneyFox.Core._Pending_.Common;
-    using MoneyFox.Core._Pending_.Common.QueryObjects;
-    using MoneyFox.Core.Common;
-    using MoneyFox.Core.Common.Interfaces;
 
     public class GetMonthlyIncomeQuery : IRequest<decimal>
     {

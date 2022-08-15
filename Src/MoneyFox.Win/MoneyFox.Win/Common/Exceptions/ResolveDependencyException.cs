@@ -1,11 +1,8 @@
-﻿namespace MoneyFox.Win.Common.Exceptions
+﻿namespace MoneyFox.Win.Common.Exceptions;
+
+using System;
+
+internal sealed class ResolveDependencyException<T> : Exception
 {
-
-    using System;
-
-    internal sealed class ResolveDependencyException<T> : Exception
-    {
-        public ResolveDependencyException() : base($"Failed to resolve {typeof(T)}") { }
-    }
-
+    public ResolveDependencyException() : base($"Failed to resolve {typeof(T)}") { }
 }

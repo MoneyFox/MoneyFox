@@ -17,9 +17,9 @@
     [ExcludeFromCodeCoverage]
     public class CategoryListViewModelTests
     {
-        private readonly IMediator mediator;
-        private readonly IMapper mapper;
         private readonly IDialogService dialogService;
+        private readonly IMapper mapper;
+        private readonly IMediator mediator;
 
         public CategoryListViewModelTests()
         {

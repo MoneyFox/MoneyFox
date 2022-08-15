@@ -1,6 +1,5 @@
 ﻿namespace MoneyFox.Win.ViewModels.Accounts;
 
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Interfaces;
 using Services;

@@ -119,8 +119,8 @@ namespace MoneyFox.Core.Commands.Payments.UpdatePayment
                     var linkedPayments = appDbContext.Payments.Where(x => x.IsRecurring)
                         .Where(x => x.RecurringPayment!.Id == existingPayment.RecurringPayment!.Id)
                         .ToList();
-                    appDbContext.RecurringPayments.Remove(existingPayment.RecurringPayment!);
 
+                    appDbContext.RecurringPayments.Remove(existingPayment.RecurringPayment!);
                     linkedPayments.ForEach(x => x.RemoveRecurringPayment());
                 }
 

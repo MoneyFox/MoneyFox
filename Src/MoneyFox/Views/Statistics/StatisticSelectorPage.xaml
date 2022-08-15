@@ -40,12 +40,14 @@
                                             Opacity="0.8" />
                                 </Border.Shadow>
 
-                                <StackLayout Orientation="Vertical" x:DataType="statistics:StatisticSelectorTypeViewModel">
+                                <StackLayout Orientation="Vertical"
+                                             x:DataType="statistics:StatisticSelectorTypeViewModel">
                                     <StackLayout Orientation="Horizontal">
                                         <Image HeightRequest="15"
                                                WidthRequest="15">
                                             <Image.Source>
-                                                <FontImageSource FontFamily="MaterialIconsRound" Glyph="{Binding IconGlyph}" />
+                                                <FontImageSource FontFamily="MaterialIconsRound"
+                                                                 Glyph="{Binding IconGlyph}" />
                                             </Image.Source>
                                         </Image>
                                         <Label Text="{Binding Name}" Style="{DynamicResource TextSubHead}" />

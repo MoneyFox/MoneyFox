@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Win.ViewModels.Statistics;
 
 using System.Collections.Generic;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Core.Enums;
 using Core.Resources;

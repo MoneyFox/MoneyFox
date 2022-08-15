@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.ApplicationCore.Queries
+namespace MoneyFox.Core.ApplicationCore.Queries
 {
 
     using System.Collections.Generic;

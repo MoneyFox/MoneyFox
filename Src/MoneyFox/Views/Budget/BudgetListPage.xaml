@@ -15,16 +15,17 @@
 
     <ContentPage.Resources>
         <converter:DecimalToZeroFiveConverter x:Key="DecimalToZeroFiveConverter" />
+        <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
     </ContentPage.Resources>
 
     <ContentPage.Content>
         <Grid IsClippedToBounds="False" RowDefinitions="40, Auto, *">
-            <Button Grid.Row="0"
-                    Margin="0,0,6,0"
-                    HorizontalOptions="End"
-                    Text="{x:Static resources:Strings.AddBudgetLabel}"
-                    VerticalOptions="Center"
-                    Command="{Binding GoToAddBudgetCommand}" />
+            <Button
+                Margin="0,0,6,0"
+                HorizontalOptions="End"
+                Text="{x:Static resources:Strings.AddBudgetLabel}"
+                VerticalOptions="Center"
+                Command="{Binding GoToAddBudgetCommand}" />
 
             <StackLayout Grid.Row="1" Margin="18,0,12,0" Orientation="Horizontal" Spacing="6">
                 <Label Style="{StaticResource TextBodySecondary}"
@@ -43,12 +44,13 @@
                     <DataTemplate x:DataType="budgetViewModel:BudgetListItemViewModel">
                         <ViewCell>
                             <Grid Padding="15,6,15,8">
-                                <Border BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
-                                        Stroke="black"
-                                        StrokeThickness="0"
-                                        StrokeShape="RoundRectangle 10"
-                                        HeightRequest="90"
-                                        HorizontalOptions="FillAndExpand">
+                                <Border
+                                    BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
+                                    Stroke="black"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 10"
+                                    HeightRequest="90"
+                                    HorizontalOptions="FillAndExpand">
 
                                     <Border.Shadow>
                                         <Shadow Brush="Black"
@@ -68,7 +70,7 @@
                                                Text="{Binding Name}" />
 
                                         <budget:BudgetProgressView CurrentSpending="{Binding CurrentSpending}"
-                                                                          SpendingLimit="{Binding SpendingLimit}" />
+                                                                   SpendingLimit="{Binding SpendingLimit}" />
                                     </StackLayout>
                                 </Border>
                             </Grid>
@@ -77,15 +79,13 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Grid Grid.Row="2"
-                  IsVisible="{Binding Budgets}">
-                <Label Style="{StaticResource TextSubheadSecondary}"
-                       Margin="10,0,10,0"
-                       VerticalTextAlignment="Center"
-                       HorizontalTextAlignment="Center"
-                       Text="{x:Static resources:Strings.NoBudgetsMessage}" />
-            </Grid>
-
+            <Label Grid.Row="2"
+                   IsVisible="{Binding HasBudgets, Converter={StaticResource InverseBoolConverter}}"
+                   Style="{StaticResource TextSubheadSecondary}"
+                   Margin="10,0,10,0"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   Text="{x:Static resources:Strings.NoBudgetsMessage}" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

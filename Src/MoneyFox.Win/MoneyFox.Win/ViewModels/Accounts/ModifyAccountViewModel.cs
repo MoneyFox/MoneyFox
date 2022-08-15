@@ -2,7 +2,6 @@
 
 using System.Globalization;
 using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.ApplicationCore.Queries;
@@ -15,10 +14,9 @@ using DialogServiceClass = DialogService;
 
 internal abstract class ModifyAccountViewModel : BaseViewModel
 {
-    private string title = "";
-    private AccountViewModel selectedAccount = new();
-
     private string amountString = "";
+    private AccountViewModel selectedAccount = new();
+    private string title = "";
 
     protected ModifyAccountViewModel(IDialogService dialogService, INavigationService navigationService, IMediator mediator)
     {

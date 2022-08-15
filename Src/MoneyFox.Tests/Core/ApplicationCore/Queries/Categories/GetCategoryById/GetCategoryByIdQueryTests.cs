@@ -1,15 +1,12 @@
 ﻿namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Categories.GetCategoryById
 {
 
-    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
     using FluentAssertions;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using MoneyFox.Core.ApplicationCore.Queries;
-    using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Infrastructure.Persistence;
-    using Moq;
     using TestFramework;
     using Xunit;
 
@@ -31,9 +28,7 @@
             // Arrange
 
             // Act
-            var result = await handler.Handle(
-                request: new GetCategoryByIdQuery(999),
-                cancellationToken: default);
+            var result = await handler.Handle(request: new GetCategoryByIdQuery(999), cancellationToken: default);
 
             // Assert
             result.Should().BeNull();
@@ -48,9 +43,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            var result = await handler.Handle(
-                request: new GetCategoryByIdQuery(testCat1.Id),
-                cancellationToken: default);
+            var result = await handler.Handle(request: new GetCategoryByIdQuery(testCat1.Id), cancellationToken: default);
 
             // Assert
             result.Should().NotBeNull();

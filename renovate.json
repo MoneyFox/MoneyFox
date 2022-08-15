@@ -2,6 +2,9 @@
   "assignees": [
     "npadrutt"
   ],
+  "azure-pipelines": {
+    "enabled": false
+  },
   "packageRules": [
     {
       "packagePatterns": [
@@ -11,8 +14,7 @@
         "minor",
         "patch"
       ],
-      "groupName": "all non-major dependencies",
-      "groupSlug": "all-minor-patch"
+      "groupName": "dependencies (non-major)"
     },
     {
       "packagePatterns": [
@@ -21,8 +23,23 @@
       "updateTypes": [
         "major"
       ],
-      "groupName": "all major dependencies",
-      "groupSlug": "all-major"
+      "groupName": "dependencies",
+      "excludePackageNames": [
+        "Microsoft.EntityFrameworkCore.Design",
+        "Microsoft.EntityFrameworkCore.InMemory",
+        "Microsoft.EntityFrameworkCore.Sqlite",
+        "Microsoft.EntityFrameworkCore.Tools"
+      ]
+    },
+    {
+      "matchPackagePatterns": [
+        "^Microsoft.EntityFrameworkCore"
+      ],
+      "updateTypes": [
+        "major"
+      ],
+      "enabled": false
     }
-  ]
+  ],
+  "dependencyDashboard": false
 }

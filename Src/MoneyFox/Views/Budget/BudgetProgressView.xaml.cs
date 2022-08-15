@@ -1,48 +1,53 @@
-﻿namespace MoneyFox.Views.Budget;
-
-public partial class BudgetProgressView
+namespace MoneyFox.Views.Budget
 {
-    public static readonly BindableProperty CurrentSpendingProperty = BindableProperty.Create(
-        propertyName: "CurrentSpending",
-        returnType: typeof(decimal),
-        declaringType: typeof(BudgetProgressView),
-        defaultValue: 0m);
 
-    public static readonly BindableProperty SpendingLimitProperty = BindableProperty.Create(
-        propertyName: "SpendingLimit",
-        returnType: typeof(decimal),
-        declaringType: typeof(BudgetProgressView),
-        defaultValue: 0m);
+    using System;
 
-    public BudgetProgressView()
+    public partial class BudgetProgressView
     {
-        InitializeComponent();
-    }
+        public static readonly BindableProperty CurrentSpendingProperty = BindableProperty.Create(
+            propertyName: "CurrentSpending",
+            returnType: typeof(decimal),
+            declaringType: typeof(BudgetProgressView),
+            defaultValue: 0m);
 
-    public decimal CurrentSpending
-    {
-        get => (decimal)GetValue(CurrentSpendingProperty);
-        set => SetValue(property: CurrentSpendingProperty, value: value);
-    }
+        public static readonly BindableProperty SpendingLimitProperty = BindableProperty.Create(
+            propertyName: "SpendingLimit",
+            returnType: typeof(decimal),
+            declaringType: typeof(BudgetProgressView),
+            defaultValue: 0m);
 
-    public decimal SpendingLimit
-    {
-        get => (decimal)GetValue(SpendingLimitProperty);
-        set => SetValue(property: SpendingLimitProperty, value: value);
-    }
-
-    private void UpdateCurrentSpendingBar(object sender, EventArgs eventArgs)
-    {
-        if (SpendingLimit == 0)
+        public BudgetProgressView()
         {
-            CurrentSpendingBar.WidthRequest = 0;
+            InitializeComponent();
         }
-        else
+
+        public decimal CurrentSpending
         {
-            var totalWidth = SpendingLimitBar.Width;
-            var ratioSpendingLimitToSpending = Convert.ToDouble(CurrentSpending / SpendingLimit);
-            CurrentSpendingBar.WidthRequest = totalWidth * ratioSpendingLimitToSpending;
-            InvalidateLayout();
+            get => (decimal)GetValue(CurrentSpendingProperty);
+            set => SetValue(property: CurrentSpendingProperty, value: value);
+        }
+
+        public decimal SpendingLimit
+        {
+            get => (decimal)GetValue(SpendingLimitProperty);
+            set => SetValue(property: SpendingLimitProperty, value: value);
+        }
+
+        private void UpdateCurrentSpendingBar(object sender, EventArgs eventArgs)
+        {
+            if (SpendingLimit == 0)
+            {
+                CurrentSpendingBar.WidthRequest = 0;
+            }
+            else
+            {
+                var totalWidth = SpendingLimitBar.Width;
+                var ratioSpendingLimitToSpending = Convert.ToDouble(CurrentSpending / SpendingLimit);
+                CurrentSpendingBar.WidthRequest = totalWidth * ratioSpendingLimitToSpending;
+                InvalidateLayout();
+            }
         }
     }
+
 }

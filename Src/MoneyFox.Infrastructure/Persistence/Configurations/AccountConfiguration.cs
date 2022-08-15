@@ -10,7 +10,6 @@ namespace MoneyFox.Infrastructure.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Account> builder)
         {
             builder.HasKey(b => b.Id);
-
             builder.HasIndex(b => b.Name);
             builder.Property(b => b.Name).IsRequired();
         }

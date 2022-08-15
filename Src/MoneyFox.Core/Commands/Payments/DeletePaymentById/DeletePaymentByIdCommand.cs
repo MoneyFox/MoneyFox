@@ -58,11 +58,7 @@
 
             private async Task DeleteRecurringPaymentAsync(int recurringPaymentId)
             {
-                var payments = await appDbContext.Payments
-                    .Where(x => x.IsRecurring)
-                    .Where(x => x.RecurringPayment!.Id == recurringPaymentId)
-                    .ToListAsync();
-
+                var payments = await appDbContext.Payments.Where(x => x.IsRecurring).Where(x => x.RecurringPayment!.Id == recurringPaymentId).ToListAsync();
                 payments.ForEach(x => x.RemoveRecurringPayment());
                 appDbContext.RecurringPayments.Remove(await appDbContext.RecurringPayments.FindAsync(recurringPaymentId));
             }

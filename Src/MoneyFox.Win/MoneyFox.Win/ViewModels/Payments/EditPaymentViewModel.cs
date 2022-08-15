@@ -17,9 +17,9 @@ using Services;
 
 internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
 {
-    private readonly IMediator mediator;
-    private readonly IMapper mapper;
     private readonly IDialogService dialogService;
+    private readonly IMapper mapper;
+    private readonly IMediator mediator;
     private readonly INavigationService navigationService;
 
     public EditPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, INavigationService navigationService) : base(

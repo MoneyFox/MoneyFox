@@ -33,12 +33,17 @@
             var testData = new TestData.DefaultBudget();
 
             // Act
-            var query = new CreateBudget.Command(name: testData.Name, spendingLimit: testData.SpendingLimit, categories: testData.Categories);
+            var query = new CreateBudget.Command(
+                name: testData.Name,
+                spendingLimit: testData.SpendingLimit,
+                budgetTimeRange: BudgetTimeRange.YearToDate,
+                categories: testData.Categories);
+
             await handler.Handle(request: query, cancellationToken: CancellationToken.None);
 
             // Assert
             capturedBudget.Should().NotBeNull();
-            AssertBudget(capturedBudget!, testData);
+            AssertBudget(actual: capturedBudget!, expected: testData);
         }
     }
 
