@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate
+namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate
 {
 
     public enum BudgetTimeRange

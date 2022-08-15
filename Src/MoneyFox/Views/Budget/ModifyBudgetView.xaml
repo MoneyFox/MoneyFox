@@ -5,12 +5,14 @@
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              xmlns:budget="clr-namespace:MoneyFox.ViewModels.Budget;assembly=MoneyFox"
              xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
+             xmlns:budget1="clr-namespace:MoneyFox.Views.Budget;assembly=MoneyFox"
              x:DataType="budget:ModifyBudgetViewModel"
              x:Class="MoneyFox.Views.Budget.ModifyBudgetView">
 
     <ContentView.Resources>
         <ResourceDictionary>
             <converter:DecimalConverter x:Key="DecimalConverter" />
+            <budget1:BudgetTimeRangeStringConverter x:Key="BudgetTimeRangeStringConverter" />
         </ResourceDictionary>
     </ContentView.Resources>
 
@@ -29,7 +31,16 @@
                 <Button Text="{x:Static resources:Strings.SelectCategoryLabel}"
                         Command="{Binding OpenCategorySelectionCommand}" />
 
-                <Label Text="{x:Static resources:Strings.SelectedCategoriesLabel}" />
+                <Button Text="{x:Static resources:Strings.TimeRangeLabel}"
+                        Command="{Binding OpenCategorySelectionCommand}" />
+
+                <StackLayout>
+                    <Label Text="{x:Static resources:Strings.SelectedCategoriesLabel}" />
+                    <Picker Title="{x:Static resources:Strings.TimeRangeLabel}"
+                            ItemsSource="{Binding TimeRangeCollection}"
+                            SelectedItem="{Binding SelectedBudget.TimeRange}"
+                            ItemDisplayBinding="{Binding ., Converter={StaticResource BudgetTimeRangeStringConverter}}" />
+                </StackLayout>
 
                 <CollectionView x:Name="BudgetCategoryCollectionView"
                                 SelectionMode="Single"

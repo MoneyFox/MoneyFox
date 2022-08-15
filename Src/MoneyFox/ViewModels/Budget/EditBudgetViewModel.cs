@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.Budget
+namespace MoneyFox.ViewModels.Budget
 {
 
     using System.Linq;
@@ -62,7 +62,7 @@
                 budgetId: SelectedBudget.Id,
                 name: SelectedBudget.Name,
                 spendingLimit: SelectedBudget.SpendingLimit,
-                budgetTimeRange: BudgetTimeRange.YearToDate,
+                budgetTimeRange: SelectedBudget.TimeRange,
                 categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
 
             await sender.Send(command);
