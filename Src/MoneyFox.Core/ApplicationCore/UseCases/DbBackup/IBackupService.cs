@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.ApplicationCore.UseCases.DbBackup
+namespace MoneyFox.Core.ApplicationCore.UseCases.DbBackup
 {
 
     using System;

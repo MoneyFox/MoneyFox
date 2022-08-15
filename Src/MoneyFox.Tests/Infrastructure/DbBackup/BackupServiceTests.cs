@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Infrastructure.DbBackup
+namespace MoneyFox.Tests.Infrastructure.DbBackup
 {
 
     using System;
@@ -23,21 +23,26 @@
         private readonly Mock<IOneDriveBackupService> cloudBackupServiceMock;
         private readonly Mock<IConnectivityAdapter> connectivityAdapterMock;
         private readonly Mock<ISettingsFacade> settingsFacadeMock;
+        private readonly IAppDbContext appDbMock;
 
         public BackupServiceTests()
         {
             cloudBackupServiceMock = new Mock<IOneDriveBackupService>();
             settingsFacadeMock = new Mock<ISettingsFacade>();
             connectivityAdapterMock = new Mock<IConnectivityAdapter>();
+            appDbMock = Substitute.For<IAppDbContext>();
+
             var dbPathProvider = Substitute.For<IDbPathProvider>();
             dbPathProvider.GetDbPath().Returns(Path.GetTempFileName());
+
             backupService = new BackupService(
                 oneDriveBackupService: cloudBackupServiceMock.Object,
                 fileStore: new Mock<IFileStore>().Object,
                 settingsFacade: settingsFacadeMock.Object,
                 connectivity: connectivityAdapterMock.Object,
                 toastService: Substitute.For<IToastService>(),
-                dbPathProvider: dbPathProvider);
+                dbPathProvider: dbPathProvider,
+                appDbMock);
         }
 
         [Fact]

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Persistence.Migrations
+namespace MoneyFox.Persistence.Migrations
 {
     using Microsoft.EntityFrameworkCore.Migrations;
     using System;
@@ -169,4 +169,5 @@
                                        "Accounts");
         }
     }
+
 }
