@@ -7,9 +7,7 @@ namespace MoneyFox.Tests.Core.Commands.Payments.CreatePayment
     using FluentAssertions;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using MoneyFox.Core.Commands.Payments.CreatePayment;
-    using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Infrastructure.Persistence;
-    using Moq;
     using TestFramework;
     using Xunit;
 

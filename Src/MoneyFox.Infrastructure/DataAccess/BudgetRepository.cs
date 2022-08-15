@@ -2,12 +2,11 @@ namespace MoneyFox.Infrastructure.DataAccess
 {
 
     using System.Collections.Generic;
-    using System.Collections.Immutable;
     using System.Linq;
     using System.Threading.Tasks;
     using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
+    using Core.Common.Interfaces;
     using Microsoft.EntityFrameworkCore;
-    using MoneyFox.Core.Common.Interfaces;
 
     internal sealed class BudgetRepository : IBudgetRepository
     {

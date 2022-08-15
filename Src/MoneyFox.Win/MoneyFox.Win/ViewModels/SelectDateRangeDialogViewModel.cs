@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Win.ViewModels;
 
 using System;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;
@@ -9,8 +8,8 @@ using Core.Common.Messages;
 
 internal sealed class SelectDateRangeDialogViewModel : BaseViewModel
 {
-    private DateTime startDate;
     private DateTime endDate;
+    private DateTime startDate;
 
     public SelectDateRangeDialogViewModel()
     {

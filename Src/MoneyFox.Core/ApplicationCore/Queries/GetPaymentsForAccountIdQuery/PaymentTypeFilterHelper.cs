@@ -2,7 +2,7 @@
 {
 
     using System;
-    using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+    using Domain.Aggregates.AccountAggregate;
 
     public static class PaymentTypeFilterHelper
     {

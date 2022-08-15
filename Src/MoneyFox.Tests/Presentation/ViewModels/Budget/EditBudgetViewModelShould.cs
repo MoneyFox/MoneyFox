@@ -23,9 +23,9 @@
     public class EditBudgetViewModelShould
     {
         private const int CATEGORY_ID = 10;
+        private readonly IDialogService dialogService;
         private readonly INavigationService navigationService;
         private readonly ISender sender;
-        private readonly IDialogService dialogService;
 
         private readonly EditBudgetViewModel viewModel;
 
@@ -187,8 +187,7 @@
             public async Task DontSendCommand_WhenConfirmationWasDenied()
             {
                 // Arrange
-                dialogService.ShowConfirmMessageAsync(title: Arg.Any<string>(), message: Arg.Any<string>())
-                    .Returns(false);
+                dialogService.ShowConfirmMessageAsync(title: Arg.Any<string>(), message: Arg.Any<string>()).Returns(false);
 
                 // Act
                 await viewModel.DeleteBudgetCommand.ExecuteAsync(null);

@@ -26,7 +26,6 @@ namespace MoneyFox.Droid.Renderer
         protected override void OnElementChanged(ElementChangedEventArgs<SearchBar> e)
         {
             base.OnElementChanged(e);
-
             if (Control != null)
             {
                 var searchView = Control;

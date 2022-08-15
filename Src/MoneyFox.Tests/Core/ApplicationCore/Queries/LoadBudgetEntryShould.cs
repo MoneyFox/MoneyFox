@@ -57,7 +57,7 @@ namespace MoneyFox.Tests.Core.ApplicationCore.Queries
                 budgetEntryData.Name.Should().Be(dbBudget.Name);
                 budgetEntryData.SpendingLimit.Should().Be(dbBudget.SpendingLimit);
                 budgetEntryData.Categories.Should()
-                               .BeEquivalentTo(testBudget.Categories.Select(id => new BudgetEntryData.BudgetCategory(id: id, name: testCategory.Name)));
+                    .BeEquivalentTo(testBudget.Categories.Select(id => new BudgetEntryData.BudgetCategory(id: id, name: testCategory.Name)));
             }
         }
     }

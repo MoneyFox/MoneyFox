@@ -4,11 +4,11 @@
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
+    using _Pending_.Common.QueryObjects;
+    using Common.Interfaces;
     using Domain.Aggregates.AccountAggregate;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using MoneyFox.Core._Pending_.Common.QueryObjects;
-    using MoneyFox.Core.Common.Interfaces;
 
     public class GetExcludedAccountQuery : IRequest<List<Account>>
     {

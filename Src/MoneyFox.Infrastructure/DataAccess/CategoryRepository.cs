@@ -5,11 +5,11 @@ namespace MoneyFox.Infrastructure.DataAccess
     using System.Threading.Tasks;
     using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using Core.Common.Interfaces;
-    using Persistence;
 
     internal sealed class CategoryRepository : ICategoryRepository
     {
         private readonly IAppDbContext appDbContext;
+
         public CategoryRepository(IAppDbContext appDbContext)
         {
             this.appDbContext = appDbContext;
@@ -17,8 +17,9 @@ namespace MoneyFox.Infrastructure.DataAccess
 
         public async Task AddAsync(Category category, CancellationToken cancellationToken = default)
         {
-            await appDbContext.AddAsync(category, cancellationToken);
-            await appDbContext.SaveChangesAsync(cancellationToken:cancellationToken);
+            await appDbContext.AddAsync(entity: category, cancellationToken: cancellationToken);
+            await appDbContext.SaveChangesAsync(cancellationToken: cancellationToken);
         }
     }
+
 }

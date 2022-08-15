@@ -12,8 +12,8 @@ namespace MoneyFox.ViewModels.Budget
 
     internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
     {
-        private readonly ISender sender;
         private readonly INavigationService navigationService;
+        private readonly ISender sender;
 
         public AddBudgetViewModel(ISender sender, INavigationService navigationService) : base(navigationService: navigationService)
         {

@@ -18,9 +18,9 @@
 
     internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
     {
-        private readonly ISender sender;
-        private readonly INavigationService navigationService;
         private readonly IDialogService dialogService;
+        private readonly INavigationService navigationService;
+        private readonly ISender sender;
 
         public EditBudgetViewModel(ISender sender, INavigationService navigationService, IDialogService dialogService) : base(
             navigationService: navigationService)

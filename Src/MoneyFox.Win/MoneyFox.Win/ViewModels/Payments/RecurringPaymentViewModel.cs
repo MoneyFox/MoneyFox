@@ -2,10 +2,10 @@ namespace MoneyFox.Win.ViewModels.Payments;
 
 using System;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Core.Common.Interfaces.Mapping;
 using Core.ApplicationCore.Domain.Aggregates;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Common.Helpers;
+using Core.Common.Interfaces.Mapping;
 
 public class RecurringPaymentViewModel : ObservableObject, IMapFrom<RecurringPayment>
 {
@@ -55,6 +55,7 @@ public class RecurringPaymentViewModel : ObservableObject, IMapFrom<RecurringPay
     public bool IsLastDayOfMonth
     {
         get => isLastDayOfMonth;
+
         set
         {
             if (isLastDayOfMonth == value)
@@ -66,9 +67,11 @@ public class RecurringPaymentViewModel : ObservableObject, IMapFrom<RecurringPay
             OnPropertyChanged();
         }
     }
+
     public PaymentRecurrence Recurrence
     {
         get => recurrence;
+
         set
         {
             if (recurrence == value)
@@ -94,10 +97,5 @@ public class RecurringPaymentViewModel : ObservableObject, IMapFrom<RecurringPay
     /// <summary>
     ///     Boolean indicating whether or not the Last Day Of Month option should be permitted
     /// </summary>
-    public bool AllowLastDayOfMonth
-    {
-        get => RecurringPaymentHelper.AllowLastDayOfMonth(Recurrence);
-    }
-
-
+    public bool AllowLastDayOfMonth => RecurringPaymentHelper.AllowLastDayOfMonth(Recurrence);
 }

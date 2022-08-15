@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Win.ViewModels;
 
 using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Interfaces;
 
@@ -11,9 +10,9 @@ using Interfaces;
 internal class BalanceViewModel : BaseViewModel, IBalanceViewModel
 {
     private readonly IBalanceCalculationService balanceCalculationService;
+    private decimal endOfMonthBalance;
 
     private decimal totalBalance;
-    private decimal endOfMonthBalance;
 
     public BalanceViewModel(IBalanceCalculationService balanceCalculationService)
     {

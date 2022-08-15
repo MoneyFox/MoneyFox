@@ -45,7 +45,12 @@
             {
                 var loadedBudget = await budgetRepository.GetAsync(request.BudgetId);
                 var spendingLimit = new SpendingLimit(request.SpendingLimit);
-                loadedBudget.Change(budgetName: request.Name, spendingLimit: spendingLimit, includedCategories: request.Categories, request.BudgetTimeRange);
+                loadedBudget.Change(
+                    budgetName: request.Name,
+                    spendingLimit: spendingLimit,
+                    includedCategories: request.Categories,
+                    timeRange: request.BudgetTimeRange);
+
                 await budgetRepository.UpdateAsync(loadedBudget);
 
                 return Unit.Value;

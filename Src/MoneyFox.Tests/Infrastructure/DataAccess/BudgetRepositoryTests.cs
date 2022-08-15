@@ -15,8 +15,8 @@
 
     public class BudgetRepositoryTests
     {
-        private readonly BudgetRepository budgetRepository;
         private readonly AppDbContext appDbContext;
+        private readonly BudgetRepository budgetRepository;
 
         protected BudgetRepositoryTests()
         {

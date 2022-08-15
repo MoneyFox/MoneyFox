@@ -14,8 +14,8 @@
 
         public class Handler : INotificationHandler<Notification>
         {
-            private readonly ISettingsFacade settingsFacade;
             private readonly ISender sender;
+            private readonly ISettingsFacade settingsFacade;
 
             public Handler(ISender sender, ISettingsFacade settingsFacade)
             {

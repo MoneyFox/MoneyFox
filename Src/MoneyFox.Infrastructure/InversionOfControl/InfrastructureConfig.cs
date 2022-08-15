@@ -1,6 +1,7 @@
 namespace MoneyFox.Infrastructure.InversionOfControl
 {
 
+    using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
     using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using Core.ApplicationCore.UseCases.BackupUpload;
     using Core.ApplicationCore.UseCases.DbBackup;
@@ -11,7 +12,6 @@ namespace MoneyFox.Infrastructure.InversionOfControl
     using DbBackup.Legacy;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
-    using MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
     using Persistence;
 
     public static class InfrastructureConfig

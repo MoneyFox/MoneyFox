@@ -36,7 +36,7 @@ internal class SelectCategoryListViewModel : AbstractCategoryListViewModel, ISel
 
     protected override void ItemClick(CategoryViewModel category)
     {
-        var dataSet = new CategorySelectedDataSet(category.Id, category.Name);
+        var dataSet = new CategorySelectedDataSet(categoryId: category.Id, name: category.Name);
         Messenger.Send(new CategorySelectedMessage(dataSet));
     }
 }

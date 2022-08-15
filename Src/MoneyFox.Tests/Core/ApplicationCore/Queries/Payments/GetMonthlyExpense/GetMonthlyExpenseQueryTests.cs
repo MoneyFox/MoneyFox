@@ -7,9 +7,7 @@
     using FluentAssertions;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using MoneyFox.Core.ApplicationCore.Queries;
-    using MoneyFox.Core.Common;
     using MoneyFox.Core.Common.Helpers;
-    using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Infrastructure.Persistence;
     using NSubstitute;
     using TestFramework;
@@ -19,8 +17,8 @@
     public class GetMonthlyExpenseQueryTests
     {
         private readonly AppDbContext context;
-        private readonly ISystemDateHelper systemDateHelper;
         private readonly GetMonthlyExpenseQuery.Handler handler;
+        private readonly ISystemDateHelper systemDateHelper;
 
         public GetMonthlyExpenseQueryTests()
         {

@@ -61,13 +61,14 @@
                     Style="{ThemeResource CustomSubtitleTextBlockStyle}"
                     Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
                     TextAlignment="Center"
-                    Foreground="{x:Bind CurrentBalance, Converter={StaticResource BalanceColorConverter}}"/>
+                    Foreground="{x:Bind CurrentBalance, Converter={StaticResource BalanceColorConverter}}" />
 
                 <StackPanel Orientation="Horizontal"
                             VerticalAlignment="Bottom"
                             HorizontalAlignment="Right">
                     <TextBlock Text="{x:Bind resources:Strings.EndOfMonthLabel}" Margin="0,0,6,0" />
-                    <TextBlock Foreground="{x:Bind EndOfMonthBalance, Converter={StaticResource BalanceColorConverter}}"
+                    <TextBlock
+                        Foreground="{x:Bind EndOfMonthBalance, Converter={StaticResource BalanceColorConverter}}"
                         Text="{x:Bind EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}" />
                 </StackPanel>
             </Grid>

@@ -10,9 +10,7 @@ namespace MoneyFox.Tests.Core.Commands.Payments.UpdatePaymentById
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using MoneyFox.Core.Commands.Payments.CreateRecurringPayments;
     using MoneyFox.Core.Commands.Payments.UpdatePayment;
-    using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Infrastructure.Persistence;
-    using Moq;
     using TestFramework;
     using Xunit;
 

@@ -1,9 +1,8 @@
-﻿namespace MoneyFox.Core.ApplicationCore.Queries.BudgetListLoading
+namespace MoneyFox.Core.ApplicationCore.Queries.BudgetListLoading
 {
 
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
@@ -20,8 +19,8 @@
 
         public class Handler : IRequestHandler<Query, IReadOnlyCollection<BudgetListData>>
         {
-            private readonly ISystemDateHelper systemDateHelper;
             private readonly IAppDbContext appDbContext;
+            private readonly ISystemDateHelper systemDateHelper;
 
             public Handler(ISystemDateHelper systemDateHelper, IAppDbContext appDbContext)
             {
@@ -67,12 +66,12 @@
             {
                 return timeRange switch
                 {
-                    BudgetTimeRange.YearToDate => new DateTime(systemDateHelper.Today.Year, 1, 1),
+                    BudgetTimeRange.YearToDate => new DateTime(year: systemDateHelper.Today.Year, month: 1, day: 1),
                     BudgetTimeRange.Last1Year => systemDateHelper.Today.AddYears(-1),
                     BudgetTimeRange.Last2Years => systemDateHelper.Today.AddYears(-2),
                     BudgetTimeRange.Last3Years => systemDateHelper.Today.AddYears(-3),
                     BudgetTimeRange.Last5Years => systemDateHelper.Today.AddYears(-5),
-                    _ => throw new ArgumentOutOfRangeException(nameof(timeRange), timeRange, null)
+                    _ => throw new ArgumentOutOfRangeException(paramName: nameof(timeRange), actualValue: timeRange, message: null)
                 };
             }
         }

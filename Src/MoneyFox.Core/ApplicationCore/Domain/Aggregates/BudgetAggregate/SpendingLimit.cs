@@ -6,16 +6,17 @@ namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate
 
     public sealed class SpendingLimit : ValueObject
     {
-        public decimal Value { get; }
-
         public SpendingLimit(decimal value)
         {
             if (value < 1)
             {
-                throw new InvalidArgumentException(nameof(value), "Value can't be 0 or negative.");
+                throw new InvalidArgumentException(paramName: nameof(value), message: "Value can't be 0 or negative.");
             }
+
             Value = value;
         }
+
+        public decimal Value { get; }
 
         protected override IEnumerable<object> GetEqualityComponents()
         {

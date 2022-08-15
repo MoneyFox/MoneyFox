@@ -42,7 +42,7 @@ public static partial class Preferences
         lock (locker)
         {
             var appDataContainer = GetApplicationDataContainer(sharedName);
-            if (object.Equals(value, default(T)))
+            if (Equals(objA: value, objB: default(T)))
             {
                 if (appDataContainer.Values.ContainsKey(key))
                 {

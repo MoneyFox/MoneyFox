@@ -16,10 +16,10 @@
 
     internal sealed class BackupViewModel : BaseViewModel, IBackupViewModel
     {
-        private readonly IMediator mediator;
         private readonly IBackupService backupService;
         private readonly IConnectivityAdapter connectivity;
         private readonly IDialogService dialogService;
+        private readonly IMediator mediator;
         private readonly ISettingsFacade settingsFacade;
         private readonly IToastService toastService;
         private bool backupAvailable;

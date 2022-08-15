@@ -46,14 +46,14 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases
                 budgetId: testBudget.Id,
                 name: updatedBudget.Name,
                 spendingLimit: updatedBudget.SpendingLimit,
-                BudgetTimeRange.YearToDate,
+                budgetTimeRange: BudgetTimeRange.YearToDate,
                 categories: updatedBudget.Categories);
 
             await handler.Handle(request: command, cancellationToken: CancellationToken.None);
 
             // Assert
             capturedBudget.Should().NotBeNull();
-            AssertBudget(capturedBudget!, updatedBudget);
+            AssertBudget(actual: capturedBudget!, expected: updatedBudget);
         }
     }
 

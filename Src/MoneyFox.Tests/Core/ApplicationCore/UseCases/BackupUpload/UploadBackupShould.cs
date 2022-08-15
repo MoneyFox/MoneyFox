@@ -15,8 +15,8 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
     public class UploadBackupShould
     {
         private readonly IBackupUploadService backupService;
-        private readonly ISettingsFacade settingsFacade;
         private readonly IFileStore fileStore;
+        private readonly ISettingsFacade settingsFacade;
 
         protected UploadBackupShould()
         {

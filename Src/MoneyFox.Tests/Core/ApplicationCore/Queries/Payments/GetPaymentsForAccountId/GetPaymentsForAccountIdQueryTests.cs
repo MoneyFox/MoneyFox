@@ -7,11 +7,8 @@
     using System.Threading.Tasks;
     using FluentAssertions;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-    using MoneyFox.Core.ApplicationCore.Queries;
     using MoneyFox.Core.ApplicationCore.Queries.GetPaymentsForAccountIdQuery;
-    using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Infrastructure.Persistence;
-    using Moq;
     using TestFramework;
     using Xunit;
 
@@ -33,7 +30,12 @@
             // Arrange
             var account = new Account(name: "test", initialBalance: 80);
             var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: account);
-            var payment2 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new Account(name: "test", initialBalance: 80));
+            var payment2 = new Payment(
+                date: DateTime.Now,
+                amount: 20,
+                type: PaymentType.Expense,
+                chargedAccount: new Account(name: "test", initialBalance: 80));
+
             await context.AddAsync(payment1);
             await context.AddAsync(payment2);
             await context.SaveChangesAsync();

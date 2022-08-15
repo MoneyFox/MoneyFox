@@ -3,9 +3,9 @@
 
     using System.Threading;
     using System.Threading.Tasks;
+    using Common.Interfaces;
     using Domain.Aggregates.CategoryAggregate;
     using MediatR;
-    using MoneyFox.Core.Common.Interfaces;
 
     public class GetCategoryByIdQuery : IRequest<Category>
     {

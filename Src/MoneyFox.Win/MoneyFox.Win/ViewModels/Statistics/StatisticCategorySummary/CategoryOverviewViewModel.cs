@@ -9,13 +9,13 @@ using Payments;
 internal class CategoryOverviewViewModel : ObservableObject
 {
     private const decimal DECIMAL_DELTA = 0.01m;
+    private decimal average;
     private int categoryId;
     private string label = "";
-    private decimal value;
-    private decimal average;
     private decimal percentage;
 
     private ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> source = new();
+    private decimal value;
 
     /// <summary>
     ///     Value of this item

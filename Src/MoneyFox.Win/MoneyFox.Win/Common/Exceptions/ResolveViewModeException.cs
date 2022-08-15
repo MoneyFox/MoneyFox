@@ -1,11 +1,8 @@
-namespace MoneyFox.Win.Common.Exceptions
+namespace MoneyFox.Win.Common.Exceptions;
+
+using System;
+
+internal sealed class ResolveViewModeException<T> : Exception
 {
-
-    using System;
-
-    internal sealed class ResolveViewModeException<T> : Exception
-    {
-        public ResolveViewModeException() : base($"Failed to resolve ViewModel for {typeof(T)}") { }
-    }
-
+    public ResolveViewModeException() : base($"Failed to resolve ViewModel for {typeof(T)}") { }
 }

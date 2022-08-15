@@ -18,9 +18,9 @@
 
     public sealed class LoadBudgetListDataShould
     {
-        private readonly ISystemDateHelper systemDateHelper;
         private readonly AppDbContext dbContext;
         private readonly LoadBudgetListData.Handler handler;
+        private readonly ISystemDateHelper systemDateHelper;
 
         public LoadBudgetListDataShould()
         {
@@ -56,7 +56,6 @@
 
             systemDateHelper.Now.Returns(now);
             systemDateHelper.Today.Returns(now.Date);
-
             var testExpense1 = new TestData.DefaultExpense
             {
                 Id = 10,
@@ -120,7 +119,6 @@
 
             systemDateHelper.Now.Returns(now);
             systemDateHelper.Today.Returns(now.Date);
-
             var testExpense1 = new TestData.DefaultExpense
             {
                 Id = 10,

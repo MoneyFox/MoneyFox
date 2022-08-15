@@ -1,18 +1,17 @@
 ﻿namespace MoneyFox.Win.ViewModels;
 
 using System;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Common.Messages;
 
 internal sealed class SelectFilterDialogViewModel : BaseViewModel, ISelectFilterDialogViewModel
 {
+    private PaymentTypeFilter filteredPaymentType = PaymentTypeFilter.All;
     private bool isClearedFilterActive;
     private bool isRecurringFilterActive;
-    private PaymentTypeFilter filteredPaymentType = PaymentTypeFilter.All;
-    private DateTime timeRangeStart = DateTime.Now.AddMonths(-2);
     private DateTime timeRangeEnd = DateTime.Now.AddMonths(6);
+    private DateTime timeRangeStart = DateTime.Now.AddMonths(-2);
 
     /// <summary>
     ///     Indicates wether the filter for only cleared Payments is active or not.

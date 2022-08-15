@@ -7,12 +7,12 @@ using Core.Common.Interfaces.Mapping;
 
 public class CategoryViewModel : ObservableObject, IMapFrom<Category>
 {
+    private DateTime created;
     private int id;
+    private DateTime lastModified;
     private string name = "";
     private string note = "";
     private bool requireNote;
-    private DateTime created;
-    private DateTime lastModified;
 
     public int Id
     {

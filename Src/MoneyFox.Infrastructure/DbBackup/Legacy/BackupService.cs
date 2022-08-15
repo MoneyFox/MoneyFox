@@ -21,15 +21,15 @@
     {
         private const string TEMP_DOWNLOAD_PATH = "backupmoneyfox3.db";
 
-        private readonly IOneDriveBackupService oneDriveBackupService;
-        private readonly IFileStore fileStore;
-        private readonly ISettingsFacade settingsFacade;
-        private readonly IConnectivityAdapter connectivity;
-        private readonly IToastService toastService;
-        private readonly IDbPathProvider dbPathProvider;
-
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        private readonly IConnectivityAdapter connectivity;
+        private readonly IDbPathProvider dbPathProvider;
+        private readonly IFileStore fileStore;
+
+        private readonly IOneDriveBackupService oneDriveBackupService;
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(initialCount: 1, maxCount: 1);
+        private readonly ISettingsFacade settingsFacade;
+        private readonly IToastService toastService;
 
         public BackupService(
             IOneDriveBackupService oneDriveBackupService,

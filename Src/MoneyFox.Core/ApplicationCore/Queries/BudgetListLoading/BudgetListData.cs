@@ -3,11 +3,7 @@
 
     public class BudgetListData
     {
-        public BudgetListData(
-            int id,
-            string name,
-            decimal spendingLimit,
-            decimal currentSpending)
+        public BudgetListData(int id, string name, decimal spendingLimit, decimal currentSpending)
         {
             Id = id;
             Name = name;

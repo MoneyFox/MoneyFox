@@ -2,10 +2,10 @@ namespace MoneyFox.Win.InversionOfControl;
 
 using Common.Mapping;
 using Core.Common.Interfaces;
+using Core.Interfaces;
 using Core.InversionOfControl;
 using Infrastructure.InversionOfControl;
 using Microsoft.Extensions.DependencyInjection;
-using MoneyFox.Core.Interfaces;
 using MoneyFox.Infrastructure.DbBackup;
 using Services;
 using ViewModels;
@@ -17,6 +17,7 @@ using ViewModels.Payments;
 using ViewModels.Settings;
 using ViewModels.Statistics;
 using ViewModels.Statistics.StatisticCategorySummary;
+using INavigationService = Services.INavigationService;
 
 internal sealed class WindowsConfig
 {
@@ -24,7 +25,6 @@ internal sealed class WindowsConfig
     {
         RegisterViewModels(serviceCollection);
         RegisterWindowsServices(serviceCollection);
-
         serviceCollection.AddSingleton(_ => AutoMapperFactory.Create());
         new CoreConfig().Register(serviceCollection);
         new InfrastructureWinConfig().Register(serviceCollection);
@@ -32,7 +32,7 @@ internal sealed class WindowsConfig
 
     private static void RegisterWindowsServices(IServiceCollection serviceCollection)
     {
-        serviceCollection.AddSingleton<Services.INavigationService, NavigationService>();
+        serviceCollection.AddSingleton<INavigationService, NavigationService>();
         serviceCollection.AddTransient<IDialogService, DialogService>();
         serviceCollection.AddTransient<IToastService, ToastService>();
         serviceCollection.AddTransient<IGraphClientFactory, GraphClientFactory>();
@@ -66,7 +66,6 @@ internal sealed class WindowsConfig
         serviceCollection.AddTransient<StatisticCategorySpreadingViewModel>();
         serviceCollection.AddTransient<StatisticCategorySummaryViewModel>();
         serviceCollection.AddTransient<StatisticSelectorViewModel>();
-
         serviceCollection.AddTransient<IncomeExpenseBalanceViewModel>();
         serviceCollection.AddTransient<SelectFilterDialogViewModel>();
         serviceCollection.AddTransient<ShellViewModel>();
