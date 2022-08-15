@@ -28,19 +28,15 @@
                        Placeholder="{x:Static resources:Strings.SpendingLimitLabel}"
                        Text="{Binding SelectedBudget.SpendingLimit, Converter={StaticResource DecimalConverter}}" />
 
+                <Picker Title="{x:Static resources:Strings.TimeRangeLabel}"
+                        ItemsSource="{Binding TimeRangeCollection}"
+                        SelectedItem="{Binding SelectedBudget.TimeRange}"
+                        ItemDisplayBinding="{Binding ., Converter={StaticResource BudgetTimeRangeStringConverter}}" />
+
                 <Button Text="{x:Static resources:Strings.SelectCategoryLabel}"
                         Command="{Binding OpenCategorySelectionCommand}" />
 
-                <Button Text="{x:Static resources:Strings.TimeRangeLabel}"
-                        Command="{Binding OpenCategorySelectionCommand}" />
-
-                <StackLayout>
-                    <Label Text="{x:Static resources:Strings.SelectedCategoriesLabel}" />
-                    <Picker Title="{x:Static resources:Strings.TimeRangeLabel}"
-                            ItemsSource="{Binding TimeRangeCollection}"
-                            SelectedItem="{Binding SelectedBudget.TimeRange}"
-                            ItemDisplayBinding="{Binding ., Converter={StaticResource BudgetTimeRangeStringConverter}}" />
-                </StackLayout>
+                <Label Text="{x:Static resources:Strings.SelectedCategoriesLabel}" />
 
                 <CollectionView x:Name="BudgetCategoryCollectionView"
                                 SelectionMode="Single"
