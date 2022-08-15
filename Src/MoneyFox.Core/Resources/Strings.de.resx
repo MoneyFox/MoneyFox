@@ -844,24 +844,24 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
     <value>Möchtest du dieses Budget wirklich löschen?</value>
   </data>
     <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Monthly Budget:</value>
+    <value>Monatliches Budget:</value>
   </data>
     <data name="TimeRangeLabel" xml:space="preserve">
-    <value>Time Range</value>
+    <value>Zeitspanne</value>
   </data>
     <data name="LastFiveYearsLabel" xml:space="preserve">
-    <value>Last Five Years</value>
+    <value>Letzten fünf Jahre</value>
   </data>
     <data name="LastThreeYearsLabel" xml:space="preserve">
-    <value>Last Three Years</value>
+    <value>Letzten drei Jahre</value>
   </data>
     <data name="LastTwoYearsLabel" xml:space="preserve">
-    <value>Last Two Years</value>
+    <value>Letzten zwei Jahre</value>
   </data>
     <data name="LastYearLabel" xml:space="preserve">
-    <value>Last Year</value>
+    <value>Letztes Jahr</value>
   </data>
     <data name="YearToDateLabel" xml:space="preserve">
-    <value>Year to date</value>
+    <value>Dieses Jahr bis heute</value>
   </data>
 </root>
