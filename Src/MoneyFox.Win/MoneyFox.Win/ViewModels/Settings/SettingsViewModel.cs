@@ -4,16 +4,14 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
-using Core.Common;
 using Core.Common.Facades;
 using Core.Common.Helpers;
 using Core.Common.Interfaces;
 
 internal class SettingsViewModel : BaseViewModel, ISettingsViewModel
 {
-    private readonly ISettingsFacade settingsFacade;
     private readonly IDialogService dialogService;
+    private readonly ISettingsFacade settingsFacade;
 
     private CultureInfo selectedCulture = CultureHelper.CurrentCulture;
 

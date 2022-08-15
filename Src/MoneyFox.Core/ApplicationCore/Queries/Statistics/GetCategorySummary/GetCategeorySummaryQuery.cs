@@ -30,9 +30,9 @@
         private const int POSITIONS_TO_ROUND = 2;
 
         private readonly IAppDbContext appDbContext;
+        private List<CategoryOverviewItem> categoryOverviewItems = new List<CategoryOverviewItem>();
 
         private List<Payment> paymentLastTwelveMonths = new List<Payment>();
-        private List<CategoryOverviewItem> categoryOverviewItems = new List<CategoryOverviewItem>();
 
         public GetCategorySummaryQueryHandler(IAppDbContext appDbContext)
         {

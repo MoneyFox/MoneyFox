@@ -46,7 +46,6 @@
                 var totalWidth = SpendingLimitBar.Width;
                 var ratioSpendingLimitToSpending = Convert.ToDouble(CurrentSpending / SpendingLimit);
                 CurrentSpendingBar.WidthRequest = totalWidth * ratioSpendingLimitToSpending;
-
                 InvalidateLayout();
             }
         }

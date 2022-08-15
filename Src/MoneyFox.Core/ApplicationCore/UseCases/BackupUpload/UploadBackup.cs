@@ -20,9 +20,9 @@
             private const int BACKUP_ARCHIVE_THRESHOLD = 15;
 
             private readonly IBackupUploadService backupUploadService;
-            private readonly ISettingsFacade settingsFacade;
-            private readonly IFileStore fileStore;
             private readonly IDbPathProvider dbPathProvider;
+            private readonly IFileStore fileStore;
+            private readonly ISettingsFacade settingsFacade;
 
             public Handler(IBackupUploadService backupUploadService, ISettingsFacade settingsFacade, IFileStore fileStore, IDbPathProvider dbPathProvider)
             {

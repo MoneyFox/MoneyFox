@@ -25,7 +25,7 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <converter:RecurrenceTypeConverter x:Key="RecurrenceTypeConverter" />
         <converter:PaymentTypeToStringConverter x:Key="PaymentTypeToStringConverter" />
-        
+
         <DataTemplate x:Key="ComboBoxAccountTemplate" x:DataType="accounts:AccountViewModel">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{x:Bind Name}" />

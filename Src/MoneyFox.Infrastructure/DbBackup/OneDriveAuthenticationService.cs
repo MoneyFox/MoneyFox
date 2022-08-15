@@ -16,10 +16,10 @@
     {
         private const string ERROR_CODE_CANCELED = "authentication_canceled";
 
-        private readonly string[] scopes = { "Files.ReadWrite" };
-
         private readonly IPublicClientApplication clientApp;
         private readonly IGraphClientFactory graphClientFactory;
+
+        private readonly string[] scopes = { "Files.ReadWrite" };
 
         public OneDriveAuthenticationService(IPublicClientApplication clientApp, IGraphClientFactory graphClientFactory)
         {

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Infrastructure.DbBackup
+namespace MoneyFox.Tests.Infrastructure.DbBackup
 {
 
     using System;
@@ -11,7 +11,6 @@
     using MoneyFox.Core.Common.Facades;
     using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Core.Interfaces;
-    using MoneyFox.Infrastructure.DbBackup;
     using MoneyFox.Infrastructure.DbBackup.Legacy;
     using Moq;
     using NSubstitute;
@@ -20,19 +19,20 @@
     [ExcludeFromCodeCoverage]
     public class BackupServiceTests
     {
-        private readonly Mock<IOneDriveBackupService> cloudBackupServiceMock;
-        private readonly Mock<ISettingsFacade> settingsFacadeMock;
-        private readonly Mock<IConnectivityAdapter> connectivityAdapterMock;
-
         private readonly BackupService backupService;
+        private readonly Mock<IOneDriveBackupService> cloudBackupServiceMock;
+        private readonly Mock<IConnectivityAdapter> connectivityAdapterMock;
+        private readonly Mock<ISettingsFacade> settingsFacadeMock;
+        private readonly IAppDbContext appDbMock;
 
         public BackupServiceTests()
         {
             cloudBackupServiceMock = new Mock<IOneDriveBackupService>();
             settingsFacadeMock = new Mock<ISettingsFacade>();
             connectivityAdapterMock = new Mock<IConnectivityAdapter>();
+            appDbMock = Substitute.For<IAppDbContext>();
 
-            IDbPathProvider dbPathProvider = Substitute.For<IDbPathProvider>();
+            var dbPathProvider = Substitute.For<IDbPathProvider>();
             dbPathProvider.GetDbPath().Returns(Path.GetTempFileName());
 
             backupService = new BackupService(
@@ -41,7 +41,8 @@
                 settingsFacade: settingsFacadeMock.Object,
                 connectivity: connectivityAdapterMock.Object,
                 toastService: Substitute.For<IToastService>(),
-                dbPathProvider: dbPathProvider);
+                dbPathProvider: dbPathProvider,
+                appDbMock);
         }
 
         [Fact]

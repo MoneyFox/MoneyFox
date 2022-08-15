@@ -14,9 +14,9 @@
 
     public class DatabaseChangedNotificationHandlerShould
     {
+        private readonly DataBaseChanged.Handler handler;
         private readonly ISender sender;
         private readonly ISettingsFacade settingsFacade;
-        private readonly DataBaseChanged.Handler handler;
 
         public DatabaseChangedNotificationHandlerShould()
         {

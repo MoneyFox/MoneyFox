@@ -2,7 +2,6 @@
 
 using System;
 using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Core.ApplicationCore.Domain.Exceptions;
 using Core.ApplicationCore.UseCases.BackupUpload;
@@ -16,17 +15,17 @@ using Serilog;
 
 internal sealed class BackupViewModel : BaseViewModel, IBackupViewModel
 {
-    private readonly IMediator mediator;
     private readonly IBackupService backupService;
     private readonly IConnectivityAdapter connectivity;
     private readonly IDialogService dialogService;
+    private readonly IMediator mediator;
     private readonly ISettingsFacade settingsFacade;
     private readonly IToastService toastService;
     private bool backupAvailable;
-    private UserAccount userAccount;
 
     private DateTime backupLastModified;
     private bool isLoadingBackupAvailability;
+    private UserAccount userAccount;
 
     public BackupViewModel(
         IMediator mediator,

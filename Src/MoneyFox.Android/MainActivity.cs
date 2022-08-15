@@ -15,6 +15,7 @@
     using Microsoft.Identity.Client;
     using Xamarin.Forms;
     using Xamarin.Forms.Platform.Android;
+    using Application = Android.App.Application;
     using Platform = Xamarin.Essentials.Platform;
 
     [Activity(
@@ -42,7 +43,7 @@
             services.AddSingleton<IGraphClientFactory, GraphClientFactory>();
             services.AddSingleton<IStoreOperations, PlayStoreOperations>();
             services.AddSingleton<IAppInformation, DroidAppInformation>();
-            services.AddTransient<IFileStore>(_ => new FileStoreIoBase(Android.App.Application.Context.FilesDir?.Path ?? ""));
+            services.AddTransient<IFileStore>(_ => new FileStoreIoBase(Application.Context.FilesDir?.Path ?? ""));
         }
 
         // Needed for auth, so that MSAL can intercept the response from the browser

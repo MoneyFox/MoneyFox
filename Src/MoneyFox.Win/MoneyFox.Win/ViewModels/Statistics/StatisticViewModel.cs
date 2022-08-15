@@ -3,7 +3,6 @@ namespace MoneyFox.Win.ViewModels.Statistics;
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;
@@ -17,8 +16,8 @@ using MediatR;
 internal abstract class StatisticViewModel : BaseViewModel
 {
     protected readonly IMediator Mediator;
-    private DateTime startDate;
     private DateTime endDate;
+    private DateTime startDate;
 
     /// <summary>
     ///     Creates a StatisticViewModel Object and passes the first and last day of the current month     as a start

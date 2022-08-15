@@ -7,9 +7,7 @@
     using FluentAssertions;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using MoneyFox.Core.ApplicationCore.Queries;
-    using MoneyFox.Core.Common;
     using MoneyFox.Core.Common.Helpers;
-    using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Infrastructure.Persistence;
     using NSubstitute;
     using TestFramework;
@@ -26,7 +24,7 @@
         {
             context = InMemoryAppDbContextFactory.Create();
             systemDateHelper = Substitute.For<ISystemDateHelper>();
-            handler = new GetAccountEndOfMonthBalanceQuery.Handler(context, systemDateHelper: systemDateHelper);
+            handler = new GetAccountEndOfMonthBalanceQuery.Handler(appDbContext: context, systemDateHelper: systemDateHelper);
         }
 
         [Fact]
@@ -45,9 +43,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            var result = await handler.Handle(
-                request: new GetAccountEndOfMonthBalanceQuery(account1.Id),
-                cancellationToken: default);
+            var result = await handler.Handle(request: new GetAccountEndOfMonthBalanceQuery(account1.Id), cancellationToken: default);
 
             // Assert
             result.Should().Be(150);
@@ -72,9 +68,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            var result = await handler.Handle(
-                request: new GetAccountEndOfMonthBalanceQuery(account1.Id),
-                cancellationToken: default);
+            var result = await handler.Handle(request: new GetAccountEndOfMonthBalanceQuery(account1.Id), cancellationToken: default);
 
             // Assert
             result.Should().Be(150);

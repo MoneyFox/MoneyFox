@@ -3,7 +3,6 @@
 
     using System.Threading;
     using System.Threading.Tasks;
-    using MediatR;
 
     public interface ICustomPublisher
     {

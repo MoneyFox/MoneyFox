@@ -17,10 +17,10 @@
 
     internal class DashboardViewModel : BaseViewModel
     {
+        private readonly IDialogService dialogService;
         private readonly IMapper mapper;
 
         private readonly IMediator mediator;
-        private readonly IDialogService dialogService;
         private ObservableCollection<AccountViewModel> accounts = new ObservableCollection<AccountViewModel>();
         private decimal assets;
 

@@ -17,8 +17,8 @@
     public class GetTotalEndOfMonthBalanceQueryTests
     {
         private readonly AppDbContext context;
-        private readonly ISystemDateHelper systemDateHelper;
         private readonly GetTotalEndOfMonthBalanceQuery.Handler handler;
+        private readonly ISystemDateHelper systemDateHelper;
 
         public GetTotalEndOfMonthBalanceQueryTests()
         {

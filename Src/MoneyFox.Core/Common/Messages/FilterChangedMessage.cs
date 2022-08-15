@@ -2,7 +2,7 @@
 {
 
     using System;
-    using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+    using ApplicationCore.Domain.Aggregates.AccountAggregate;
 
     /// <summary>
     ///     Used to notify the payment list that a filter changed.

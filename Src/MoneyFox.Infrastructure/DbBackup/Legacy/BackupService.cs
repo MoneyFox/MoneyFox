@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Infrastructure.DbBackup.Legacy
+namespace MoneyFox.Infrastructure.DbBackup.Legacy
 {
 
     using System;
@@ -21,15 +21,16 @@
     {
         private const string TEMP_DOWNLOAD_PATH = "backupmoneyfox3.db";
 
-        private readonly IOneDriveBackupService oneDriveBackupService;
-        private readonly IFileStore fileStore;
-        private readonly ISettingsFacade settingsFacade;
-        private readonly IConnectivityAdapter connectivity;
-        private readonly IToastService toastService;
-        private readonly IDbPathProvider dbPathProvider;
-
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        private readonly IConnectivityAdapter connectivity;
+        private readonly IDbPathProvider dbPathProvider;
+        private readonly IFileStore fileStore;
+
+        private readonly IOneDriveBackupService oneDriveBackupService;
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(initialCount: 1, maxCount: 1);
+        private readonly ISettingsFacade settingsFacade;
+        private readonly IToastService toastService;
+        private readonly IAppDbContext appDbContext;
 
         public BackupService(
             IOneDriveBackupService oneDriveBackupService,
@@ -37,7 +38,8 @@
             ISettingsFacade settingsFacade,
             IConnectivityAdapter connectivity,
             IToastService toastService,
-            IDbPathProvider dbPathProvider)
+            IDbPathProvider dbPathProvider,
+            IAppDbContext appDbContext)
         {
             this.oneDriveBackupService = oneDriveBackupService;
             this.fileStore = fileStore;
@@ -45,6 +47,7 @@
             this.connectivity = connectivity;
             this.toastService = toastService;
             this.dbPathProvider = dbPathProvider;
+            this.appDbContext = appDbContext;
         }
 
         public async Task LoginAsync()
@@ -134,6 +137,7 @@
                 var result = await DownloadBackupAsync(backupMode);
                 if (result == BackupRestoreResult.NewBackupRestored)
                 {
+                    appDbContext.Migratedb();
                     await toastService.ShowToastAsync(Strings.BackupRestoredMessage);
                     Messenger.Send(new ReloadMessage());
                 }

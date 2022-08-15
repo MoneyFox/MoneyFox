@@ -6,7 +6,6 @@ using System.Globalization;
 using System.Threading.Tasks;
 using AutoMapper;
 using Common.Groups;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
@@ -26,22 +25,22 @@ using Services;
 internal sealed class PaymentListViewModel : BaseViewModel
 {
     private const int DEFAULT_YEAR_BACK = -2;
-
-    private readonly IMediator mediator;
-    private readonly IMapper mapper;
     private readonly IBalanceCalculationService balanceCalculationService;
     private readonly IDialogService dialogService;
+    private readonly IMapper mapper;
+
+    private readonly IMediator mediator;
     private readonly INavigationService navigationService;
     private readonly ISettingsFacade settingsFacade;
 
     private int accountId;
     private IBalanceViewModel balanceViewModel = null!;
 
-    private string title = "";
-    private bool isBusy;
-    private IPaymentListViewActionViewModel? viewActionViewModel;
-
     private CollectionViewSource? groupedPayments;
+    private bool isBusy;
+
+    private string title = "";
+    private IPaymentListViewActionViewModel? viewActionViewModel;
 
     /// <summary>
     ///     Default constructor

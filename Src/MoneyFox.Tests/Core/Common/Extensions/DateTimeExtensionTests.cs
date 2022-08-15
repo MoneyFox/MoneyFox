@@ -32,11 +32,8 @@ namespace MoneyFox.Tests.Core.Common.Extensions
         [InlineData(7)]
         public void GetDaysFromToday(int dayOffset)
         {
-            Assert.Equal(
-                expected: dayOffset,
-                actual: DateTime.Today.AddDays(dayOffset).GetDaysFromToday());
+            Assert.Equal(expected: dayOffset, actual: DateTime.Today.AddDays(dayOffset).GetDaysFromToday());
         }
-
     }
 
 }

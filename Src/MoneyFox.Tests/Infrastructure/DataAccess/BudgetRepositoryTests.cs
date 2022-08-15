@@ -15,8 +15,8 @@
 
     public class BudgetRepositoryTests
     {
-        private readonly BudgetRepository budgetRepository;
         private readonly AppDbContext appDbContext;
+        private readonly BudgetRepository budgetRepository;
 
         protected BudgetRepositoryTests()
         {
@@ -84,7 +84,12 @@
                 await budgetRepository.AddAsync(dbBudget);
 
                 // Act
-                dbBudget.Change("Updated Name", new SpendingLimit(500), ImmutableList.Create(33));
+                dbBudget.Change(
+                    budgetName: "Updated Name",
+                    spendingLimit: new SpendingLimit(500),
+                    includedCategories: ImmutableList.Create(33),
+                    timeRange: BudgetTimeRange.YearToDate);
+
                 await budgetRepository.UpdateAsync(dbBudget);
 
                 // Assert

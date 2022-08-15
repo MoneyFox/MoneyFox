@@ -1,11 +1,13 @@
-﻿namespace MoneyFox.ViewModels.Budget
+namespace MoneyFox.ViewModels.Budget
 {
 
     using CommunityToolkit.Mvvm.ComponentModel;
+    using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
 
     public sealed class BudgetViewModel : ObservableObject
     {
         private string name = null!;
+        private BudgetTimeRange timeRange;
 
         private decimal spendingLimit;
         public int Id { get; set; }
@@ -14,6 +16,12 @@
         {
             get => name;
             set => SetProperty(field: ref name, newValue: value);
+        }
+
+        public BudgetTimeRange TimeRange
+        {
+            get => timeRange;
+            set => SetProperty(field: ref timeRange, newValue: value);
         }
 
         public decimal SpendingLimit

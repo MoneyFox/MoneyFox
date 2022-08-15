@@ -11,17 +11,24 @@
     {
         public class Command : IRequest
         {
-            public Command(int budgetId, string name, decimal spendingLimit, IReadOnlyList<int> categories)
+            public Command(
+                int budgetId,
+                string name,
+                decimal spendingLimit,
+                BudgetTimeRange budgetTimeRange,
+                IReadOnlyList<int> categories)
             {
                 BudgetId = budgetId;
                 Name = name;
                 SpendingLimit = spendingLimit;
                 Categories = categories;
+                BudgetTimeRange = budgetTimeRange;
             }
 
             public int BudgetId { get; }
             public string Name { get; }
             public decimal SpendingLimit { get; }
+            public BudgetTimeRange BudgetTimeRange { get; }
             public IReadOnlyList<int> Categories { get; }
         }
 
@@ -38,7 +45,12 @@
             {
                 var loadedBudget = await budgetRepository.GetAsync(request.BudgetId);
                 var spendingLimit = new SpendingLimit(request.SpendingLimit);
-                loadedBudget.Change(budgetName: request.Name, spendingLimit: spendingLimit, includedCategories: request.Categories);
+                loadedBudget.Change(
+                    budgetName: request.Name,
+                    spendingLimit: spendingLimit,
+                    includedCategories: request.Categories,
+                    timeRange: request.BudgetTimeRange);
+
                 await budgetRepository.UpdateAsync(loadedBudget);
 
                 return Unit.Value;

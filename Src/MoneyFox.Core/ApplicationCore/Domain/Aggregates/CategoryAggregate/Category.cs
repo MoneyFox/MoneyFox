@@ -2,12 +2,10 @@
 {
 
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
     using AccountAggregate;
+    using Common.Interfaces;
     using Dawn;
     using JetBrains.Annotations;
-    using MoneyFox.Core.Common.Interfaces;
 
     public class Category : EntityBase, IAggregateRoot
     {

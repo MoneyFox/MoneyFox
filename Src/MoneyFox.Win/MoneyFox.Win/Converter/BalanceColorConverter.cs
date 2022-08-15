@@ -8,10 +8,15 @@ public class BalanceColorConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object? parameter, string language)
     {
-        string styleKey = (value is decimal d && d < 0) ? "NegativeBalanceColorBrush" : "AppForegroundPrimaryBrush";
-        return Application.Current.Resources.TryGetValue(styleKey, out var styleValue) ? styleValue : throw new InvalidOperationException($"Failed to find the style '{styleKey}' in the resource dictionary.");
+        var styleKey = value is decimal d && d < 0 ? "NegativeBalanceColorBrush" : "AppForegroundPrimaryBrush";
+
+        return Application.Current.Resources.TryGetValue(key: styleKey, value: out var styleValue)
+            ? styleValue
+            : throw new InvalidOperationException($"Failed to find the style '{styleKey}' in the resource dictionary.");
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, string language) =>
+    public object ConvertBack(object value, Type targetType, object parameter, string language)
+    {
         throw new NotSupportedException();
+    }
 }

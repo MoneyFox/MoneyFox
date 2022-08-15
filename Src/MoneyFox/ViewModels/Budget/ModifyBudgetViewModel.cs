@@ -1,11 +1,14 @@
-﻿namespace MoneyFox.ViewModels.Budget
+namespace MoneyFox.ViewModels.Budget
 {
 
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
+    using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
     using Core.Common.Messages;
     using Core.Interfaces;
     using Views.Categories;
@@ -26,6 +29,16 @@
             get => selectedBudget;
             private set => SetProperty(field: ref selectedBudget, newValue: value);
         }
+
+        public ICollection TimeRangeCollection
+            => new List<BudgetTimeRange>
+            {
+                BudgetTimeRange.YearToDate,
+                BudgetTimeRange.Last1Year,
+                BudgetTimeRange.Last2Years,
+                BudgetTimeRange.Last3Years,
+                BudgetTimeRange.Last5Years
+            };
 
         // Todo: use ReadOnly Collection?
         public ObservableCollection<BudgetCategoryViewModel> SelectedCategories { get; set; } = new ObservableCollection<BudgetCategoryViewModel>();

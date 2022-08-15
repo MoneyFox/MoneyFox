@@ -9,17 +9,17 @@ namespace MoneyFox.Core.ApplicationCore.Domain
     {
         protected static bool EqualOperator(ValueObject left, ValueObject right)
         {
-            if (ReferenceEquals(left, null) ^ ReferenceEquals(right, null))
+            if (ReferenceEquals(objA: left, objB: null) ^ ReferenceEquals(objA: right, objB: null))
             {
                 return false;
             }
 
-            return ReferenceEquals(left, null) || left.Equals(right);
+            return ReferenceEquals(objA: left, objB: null) || left.Equals(right);
         }
 
         protected static bool NotEqualOperator(ValueObject left, ValueObject right)
         {
-            return !(EqualOperator(left, right));
+            return !EqualOperator(left: left, right: right);
         }
 
         protected abstract IEnumerable<object> GetEqualityComponents();
@@ -33,14 +33,13 @@ namespace MoneyFox.Core.ApplicationCore.Domain
 
             var other = (ValueObject)obj;
 
-            return this.GetEqualityComponents().SequenceEqual(other.GetEqualityComponents());
+            return GetEqualityComponents().SequenceEqual(other.GetEqualityComponents());
         }
 
         public override int GetHashCode()
         {
             return GetEqualityComponents().Select(x => x != null ? x.GetHashCode() : 0).Aggregate((x, y) => x ^ y);
         }
-
     }
 
 }

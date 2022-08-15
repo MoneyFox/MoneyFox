@@ -1,16 +1,13 @@
 ﻿namespace MoneyFox.Tests.Core.Commands.Categories.DeleteCategoryById
 {
 
-    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
     using FluentAssertions;
     using Microsoft.EntityFrameworkCore;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using MoneyFox.Core.Commands.Categories.DeleteCategoryById;
-    using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Infrastructure.Persistence;
-    using Moq;
     using TestFramework;
     using Xunit;
 
@@ -35,9 +32,7 @@
             await context.SaveChangesAsync();
 
             // Act
-            await handler.Handle(
-                request: new DeleteCategoryByIdCommand(category1.Id),
-                cancellationToken: default);
+            await handler.Handle(request: new DeleteCategoryByIdCommand(category1.Id), cancellationToken: default);
 
             // Assert
             (await context.Categories.FirstOrDefaultAsync(x => x.Id == category1.Id)).Should().BeNull();

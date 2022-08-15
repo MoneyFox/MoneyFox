@@ -9,9 +9,9 @@ using MediatR;
 internal sealed class PaymentListBalanceViewModel : BalanceViewModel
 {
     private readonly int accountId;
-    private readonly IMediator mediator;
-    private readonly IMapper mapper;
     private readonly IBalanceCalculationService balanceCalculationService;
+    private readonly IMapper mapper;
+    private readonly IMediator mediator;
 
     /// <summary>
     ///     Constructor

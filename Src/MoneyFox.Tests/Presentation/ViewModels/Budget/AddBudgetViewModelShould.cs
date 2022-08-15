@@ -18,10 +18,10 @@
     public class AddBudgetViewModelShould
     {
         private const int CategoryId = 10;
+        private readonly INavigationService navigationService;
         private readonly ISender sender;
 
         private readonly AddBudgetViewModel viewModel;
-        private readonly INavigationService navigationService;
 
         public AddBudgetViewModelShould()
         {

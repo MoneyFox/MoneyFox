@@ -10,7 +10,6 @@ namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Statistics
     using FluentAssertions;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using MoneyFox.Core.ApplicationCore.Queries.Statistics;
-    using MoneyFox.Core.Common;
     using MoneyFox.Core.Common.Helpers;
     using MoneyFox.Core.Resources;
     using MoneyFox.Infrastructure.Persistence;

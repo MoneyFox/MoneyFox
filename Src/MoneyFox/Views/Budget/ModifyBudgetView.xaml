@@ -5,12 +5,14 @@
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              xmlns:budget="clr-namespace:MoneyFox.ViewModels.Budget;assembly=MoneyFox"
              xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
+             xmlns:budget1="clr-namespace:MoneyFox.Views.Budget;assembly=MoneyFox"
              x:DataType="budget:ModifyBudgetViewModel"
              x:Class="MoneyFox.Views.Budget.ModifyBudgetView">
 
     <ContentView.Resources>
         <ResourceDictionary>
             <converter:DecimalConverter x:Key="DecimalConverter" />
+            <budget1:BudgetTimeRangeStringConverter x:Key="BudgetTimeRangeStringConverter" />
         </ResourceDictionary>
     </ContentView.Resources>
 
@@ -25,6 +27,11 @@
                        Focused="AmountFieldGotFocus"
                        Placeholder="{x:Static resources:Strings.SpendingLimitLabel}"
                        Text="{Binding SelectedBudget.SpendingLimit, Converter={StaticResource DecimalConverter}}" />
+
+                <Picker Title="{x:Static resources:Strings.TimeRangeLabel}"
+                        ItemsSource="{Binding TimeRangeCollection}"
+                        SelectedItem="{Binding SelectedBudget.TimeRange}"
+                        ItemDisplayBinding="{Binding ., Converter={StaticResource BudgetTimeRangeStringConverter}}" />
 
                 <Button Text="{x:Static resources:Strings.SelectCategoryLabel}"
                         Command="{Binding OpenCategorySelectionCommand}" />

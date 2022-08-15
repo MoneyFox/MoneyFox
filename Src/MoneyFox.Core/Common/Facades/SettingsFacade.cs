@@ -3,7 +3,7 @@
 
     using System;
     using System.Globalization;
-    using MoneyFox.Core.Interfaces;
+    using Core.Interfaces;
 
     public interface ISettingsFacade
     {

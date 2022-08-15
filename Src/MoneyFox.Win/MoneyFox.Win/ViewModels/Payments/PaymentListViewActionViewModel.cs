@@ -2,7 +2,6 @@
 
 using System;
 using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
@@ -20,22 +19,22 @@ internal sealed class PaymentListViewActionViewModel : BaseViewModel, IPaymentLi
 {
     private const int TRANSFER_THRESHOLD = 2;
 
-    private readonly IMediator mediator;
-    private readonly ISettingsFacade settingsFacade;
-    private readonly IDialogService dialogService;
-    private readonly IBalanceViewModel balanceViewModel;
-    private readonly INavigationService navigationService;
-
     private readonly int accountId;
-    private bool isClearedFilterActive;
-    private bool isRecurringFilterActive;
-    private bool isGrouped;
+    private readonly IBalanceViewModel balanceViewModel;
+    private readonly IDialogService dialogService;
+
+    private readonly IMediator mediator;
+    private readonly INavigationService navigationService;
+    private readonly ISettingsFacade settingsFacade;
     private PaymentTypeFilter filteredPaymentType = PaymentTypeFilter.All;
-    private DateTime timeRangeStart = DateTime.Now.AddMonths(-2);
-    private DateTime timeRangeEnd = DateTime.Now.AddMonths(6);
-    private bool isTransferAvailable;
-    private bool isAddIncomeAvailable;
     private bool isAddExpenseAvailable;
+    private bool isAddIncomeAvailable;
+    private bool isClearedFilterActive;
+    private bool isGrouped;
+    private bool isRecurringFilterActive;
+    private bool isTransferAvailable;
+    private DateTime timeRangeEnd = DateTime.Now.AddMonths(6);
+    private DateTime timeRangeStart = DateTime.Now.AddMonths(-2);
 
     /// <summary>
     ///     Constructor

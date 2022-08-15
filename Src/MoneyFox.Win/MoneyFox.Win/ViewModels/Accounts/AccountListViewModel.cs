@@ -7,7 +7,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Common.Groups;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.ApplicationCore.Queries;
@@ -23,15 +22,15 @@ using Services;
 
 internal sealed class AccountListViewModel : BaseViewModel, IAccountListViewModel
 {
-    private readonly IMediator mediator;
-    private readonly IMapper mapper;
     private readonly IDialogService dialogService;
-    private readonly ISettingsFacade settingsFacade;
+    private readonly IMapper mapper;
+    private readonly IMediator mediator;
     private readonly INavigationService navigationService;
-
-    private bool isRunning;
+    private readonly ISettingsFacade settingsFacade;
 
     private ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> accounts = new();
+
+    private bool isRunning;
 
     public AccountListViewModel(
         IMediator mediator,

@@ -8,16 +8,16 @@ using Core.Common.Interfaces.Mapping;
 public sealed class AccountViewModel : ObservableObject, IMapFrom<Account>, IEquatable<AccountViewModel>
 {
     private const decimal DECIMAL_DELTA = 0.01m;
-
-    private int id;
-    private string name = "";
+    private DateTime created;
     private decimal currentBalance;
     private decimal endOfMonthBalance;
-    private string note = "";
-    private bool isOverdrawn;
+
+    private int id;
     private bool isExcluded;
-    private DateTime created;
+    private bool isOverdrawn;
     private DateTime lastModified;
+    private string name = "";
+    private string note = "";
 
     public int Id
     {

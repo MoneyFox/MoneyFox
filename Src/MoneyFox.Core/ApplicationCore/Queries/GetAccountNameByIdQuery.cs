@@ -4,9 +4,9 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using MoneyFox.Core.Common.Interfaces;
 
     public class GetAccountNameByIdQuery : IRequest<string>
     {
@@ -28,9 +28,7 @@
 
             public async Task<string> Handle(GetAccountNameByIdQuery request, CancellationToken cancellationToken)
             {
-                var account = await appDbContext.Accounts.Where(x => x.Id == request.AccountId)
-                    .Select(x => x.Name)
-                    .FirstOrDefaultAsync(cancellationToken);
+                var account = await appDbContext.Accounts.Where(x => x.Id == request.AccountId).Select(x => x.Name).FirstOrDefaultAsync(cancellationToken);
 
                 return account ?? string.Empty;
             }

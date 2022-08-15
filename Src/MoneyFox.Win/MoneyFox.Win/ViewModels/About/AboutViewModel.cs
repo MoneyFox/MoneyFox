@@ -3,7 +3,6 @@
 using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common;
 using Core.Common.Interfaces;

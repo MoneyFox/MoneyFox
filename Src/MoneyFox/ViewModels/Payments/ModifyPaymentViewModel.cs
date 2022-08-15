@@ -73,7 +73,7 @@
         public bool IsTransfer => SelectedPayment.IsTransfer;
 
         public List<PaymentType> PaymentTypeList => new List<PaymentType> { PaymentType.Expense, PaymentType.Income, PaymentType.Transfer };
-        
+
         public List<PaymentRecurrence> RecurrenceList
             => new List<PaymentRecurrence>
             {

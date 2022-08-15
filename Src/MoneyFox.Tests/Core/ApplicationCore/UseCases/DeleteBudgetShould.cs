@@ -1,12 +1,10 @@
 namespace MoneyFox.Tests.Core.ApplicationCore.UseCases
 {
 
-    using System.Collections.Immutable;
     using System.Threading;
     using System.Threading.Tasks;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
     using MoneyFox.Core.ApplicationCore.UseCases.BudgetDeletion;
-    using MoneyFox.Core.ApplicationCore.UseCases.BudgetUpdate;
     using NSubstitute;
     using TestFramework;
     using Xunit;

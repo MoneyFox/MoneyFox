@@ -14,8 +14,8 @@
 
     public class BudgetListPageViewModelShould
     {
-        private readonly BudgetListViewModel viewModel;
         private readonly ISender sender;
+        private readonly BudgetListViewModel viewModel;
 
         protected BudgetListPageViewModelShould()
         {

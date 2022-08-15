@@ -8,7 +8,6 @@
 
     public class RecurringPaymentHelperTests
     {
-
         [Theory]
         [InlineData(PaymentRecurrence.Daily, false)]
         [InlineData(PaymentRecurrence.Weekly, false)]

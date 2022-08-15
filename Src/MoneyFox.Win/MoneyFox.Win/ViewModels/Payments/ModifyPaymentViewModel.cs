@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using Accounts;
 using AutoMapper;
 using Categories;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
@@ -23,22 +22,22 @@ using Services;
 
 public abstract class ModifyPaymentViewModel : BaseViewModel, IModifyPaymentViewModel
 {
+    private readonly IDialogService dialogService;
     private readonly IMapper mapper;
     private readonly IMediator mediator;
-    private readonly IDialogService dialogService;
     private readonly INavigationService navigationService;
+
+    private string amountString = "";
+
+    private ObservableCollection<CategoryViewModel> categories = new();
     private ObservableCollection<AccountViewModel> chargedAccounts = new();
+
+    private bool isBusy;
 
     private PaymentRecurrence recurrence;
     private PaymentViewModel selectedPayment = new();
     private ObservableCollection<AccountViewModel> targetAccounts = new();
     private string title = Strings.AddPaymentLabel;
-
-    private string amountString = "";
-
-    private ObservableCollection<CategoryViewModel> categories = new();
-
-    private bool isBusy;
 
     protected ModifyPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, INavigationService navigationService)
     {
