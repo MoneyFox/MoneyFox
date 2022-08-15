@@ -17,6 +17,7 @@ namespace MoneyFox.ViewModels.Budget
             get => name;
             set => SetProperty(field: ref name, newValue: value);
         }
+
         public BudgetTimeRange TimeRange
         {
             get => timeRange;
@@ -29,4 +30,5 @@ namespace MoneyFox.ViewModels.Budget
             set => SetProperty(field: ref spendingLimit, newValue: value);
         }
     }
+
 }

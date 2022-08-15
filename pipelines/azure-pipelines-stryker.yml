@@ -6,26 +6,26 @@ pool:
   vmImage: 'windows-2022'
 
 jobs:
-- job: RunMutationTests
-  displayName: 'Run Mutation Tests'
+  - job: RunMutationTests
+    displayName: 'Run Mutation Tests'
+    
+    steps:
+      - task: DotNetCoreCLI@2
+        displayName: 'Install dotnet-stryker'
+        inputs:
+          command: custom
+          custom: tool
+          arguments: install dotnet-stryker --tool-path $(Agent.BuildDirectory)/tools
 
-  steps:
-  - task: DotNetCoreCLI@2
-    displayName: 'Install dotnet-stryker'
-    inputs:
-      command: custom
-      custom: tool
-      arguments: install dotnet-stryker --tool-path $(Agent.BuildDirectory)/tools
+      - task: Powershell@2
+        displayName: 'Run dotnet-stryker'
+        inputs:
+          workingDirectory: '$(Build.Repository.LocalPath)\src\MoneyFox.Tests'
+          targetType: 'inline'
+          pwsh: true
+          script: $(Agent.BuildDirectory)/tools/dotnet-stryker --dashboard-api-key $(StrykerDashboardApiKey) --version master
 
-  - task: Powershell@2
-    displayName: 'Run dotnet-stryker'
-    inputs:
-      workingDirectory: '$(Build.Repository.LocalPath)\src\MoneyFox.Tests'
-      targetType: 'inline'
-      pwsh: true
-      script: $(Agent.BuildDirectory)/tools/dotnet-stryker --dashboard-api-key $(StrykerDashboardApiKey) --version master
-
-  - task: PublishMutationReport@1
-    inputs:
-      reportPattern: '**/mutation-report.html'
+      - task: PublishMutationReport@1
+        inputs:
+          reportPattern: '**/mutation-report.html'
       

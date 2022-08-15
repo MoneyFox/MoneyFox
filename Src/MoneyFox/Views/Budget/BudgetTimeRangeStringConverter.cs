@@ -1,12 +1,10 @@
 namespace MoneyFox.Views.Budget
 {
+
     using System;
-    using System.Collections.Generic;
     using System.Globalization;
-    using System.Text;
     using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
     using Core.Resources;
-    using ViewModels.Budget;
     using Xamarin.Forms;
 
     internal class BudgetTimeRangeStringConverter : IValueConverter
@@ -30,4 +28,5 @@ namespace MoneyFox.Views.Budget
             throw new NotImplementedException();
         }
     }
+
 }

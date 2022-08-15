@@ -1,11 +1,10 @@
-namespace MoneyFox.ViewModels.Budget
+﻿namespace MoneyFox.ViewModels.Budget
 {
 
     using System.Linq;
     using System.Threading.Tasks;
     using CommunityToolkit.Mvvm.Input;
     using CommunityToolkit.Mvvm.Messaging;
-    using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
     using Core.ApplicationCore.Queries.BudgetEntryLoading;
     using Core.ApplicationCore.UseCases.BudgetDeletion;
     using Core.ApplicationCore.UseCases.BudgetUpdate;
