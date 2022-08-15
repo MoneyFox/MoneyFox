@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core.ApplicationCore.Queries
+namespace MoneyFox.Tests.Core.ApplicationCore.Queries
 {
 
     using System;
@@ -45,7 +45,7 @@
                 // Arrange
                 var testCategory = new TestData.DefaultCategory();
                 var dbCategory = appDbContext.RegisterCategory(testCategory);
-                var testBudget = new TestData.DefaultBudget {Categories = ImmutableList.Create(dbCategory.Id)};
+                var testBudget = new TestData.DefaultBudget { Categories = ImmutableList.Create(dbCategory.Id) };
                 var dbBudget = appDbContext.RegisterBudget(testBudget);
 
                 // Act
