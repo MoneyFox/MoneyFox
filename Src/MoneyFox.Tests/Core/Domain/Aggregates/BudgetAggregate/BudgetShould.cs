@@ -20,8 +20,8 @@ namespace MoneyFox.Tests.Core.Domain.Aggregates.BudgetAggregate
             var budget = new Budget(
                 name: testBudget.Name,
                 spendingLimit: spendingLimit,
-                includedCategories: testBudget.Categories,
-                timeRange: BudgetTimeRange.YearToDate);
+                timeRange: BudgetTimeRange.YearToDate,
+                includedCategories: testBudget.Categories);
 
             // Assert
             AssertBudget(actual: budget, expected: testBudget);
@@ -35,8 +35,8 @@ namespace MoneyFox.Tests.Core.Domain.Aggregates.BudgetAggregate
             var budget = new Budget(
                 name: "Empty",
                 spendingLimit: new SpendingLimit(10),
-                includedCategories: ImmutableList.Create(1),
-                timeRange: BudgetTimeRange.YearToDate);
+                timeRange: BudgetTimeRange.YearToDate,
+                includedCategories: ImmutableList.Create(1));
 
             // Act
             var spendingLimit = new SpendingLimit(testBudget.SpendingLimit);

@@ -13,6 +13,7 @@
             {
                 actual.Name.Should().Be(expected.Name);
                 actual.SpendingLimit.Value.Should().Be(expected.SpendingLimit);
+                actual.BudgetTimeRange.Should().Be(expected.BudgetTimeRange);
                 actual.IncludedCategories.Should().BeEquivalentTo(expected.Categories);
             }
         }

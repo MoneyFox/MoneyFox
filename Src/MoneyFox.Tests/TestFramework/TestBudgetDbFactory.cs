@@ -9,7 +9,7 @@
         {
             var spendingLimit = new SpendingLimit(budget.SpendingLimit);
 
-            return new Budget(name: budget.Name, spendingLimit: spendingLimit, includedCategories: budget.Categories, timeRange: BudgetTimeRange.YearToDate);
+            return new Budget(name: budget.Name, spendingLimit: spendingLimit, timeRange: budget.BudgetTimeRange, includedCategories: budget.Categories);
         }
     }
 

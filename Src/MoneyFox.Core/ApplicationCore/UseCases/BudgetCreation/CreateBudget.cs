@@ -37,7 +37,7 @@
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
                 var spendingLimit = new SpendingLimit(request.SpendingLimit);
-                var budget = new Budget(name: request.Name, spendingLimit: spendingLimit, includedCategories: request.Categories, request.BudgetTimeRange);
+                var budget = new Budget(name: request.Name, spendingLimit: spendingLimit, timeRange: request.BudgetTimeRange, includedCategories: request.Categories);
                 await repository.AddAsync(budget);
 
                 return Unit.Value;

@@ -43,68 +43,19 @@
         }
 
         [Fact]
-        public async Task ReturnBudgets_WithCorrectSummarizedSpending()
-        {
-            // Arrange
-            var testExpense1 = new TestData.DefaultExpense
-            {
-                Id = 10,
-                Amount = 100.5m,
-                Type = PaymentType.Expense,
-                Date = DateTime.Today
-            };
-
-            var testExpense2 = new TestData.DefaultExpense
-            {
-                Id = 10,
-                Amount = 60.3m,
-                Type = PaymentType.Income,
-                Date = DateTime.Today
-            };
-
-            var testTransfer = new TestData.DefaultExpense
-            {
-                Id = 11,
-                Amount = 60.3m,
-                Type = PaymentType.Transfer,
-                Date = DateTime.Today
-            };
-
-            var dbPayment1 = dbContext.RegisterPayment(testExpense1);
-            var dbPayment2 = dbContext.RegisterPayment(testExpense2);
-            var dbPayment3 = dbContext.RegisterPayment(testTransfer);
-            var testBudget = new TestData.DefaultBudget
-            {
-                Categories = ImmutableList.Create(dbPayment1.CategoryId!.Value, dbPayment2.CategoryId!.Value, dbPayment3.CategoryId!.Value)
-            };
-
-            dbContext.RegisterBudget(testBudget);
-
-            // Act
-            var query = new LoadBudgetListData.Query();
-            var result = await handler.Handle(request: query, cancellationToken: CancellationToken.None);
-
-            // Assert
-            result.Should().HaveCount(1);
-            var loadedBudget = result.Single();
-            AssertBudgetListData(
-                actualBudgetListData: loadedBudget,
-                expectedBudgetTestData: testBudget,
-                expectedCurrentSpending: testExpense1.Amount - testExpense2.Amount);
-        }
-
-        [Fact]
         public async Task ReturnBudgets_WithCorrectSummarizedSpending_ForPaymentsInCurrentYear_WithMonthsWithoutPaymentsInBetween()
         {
             // Arrange
-            systemDateHelper.Now.Returns(
-                new DateTime(
-                    year: DateTime.Today.Year,
-                    month: 10,
-                    day: 12,
-                    hour: 11,
-                    minute: 52,
-                    second: 0));
+            var now = new DateTime(
+                year: DateTime.Today.Year,
+                month: 11,
+                day: 12,
+                hour: 11,
+                minute: 52,
+                second: 0);
+
+            systemDateHelper.Now.Returns(now);
+            systemDateHelper.Today.Returns(now.Date);
 
             var testExpense1 = new TestData.DefaultExpense
             {
@@ -153,6 +104,9 @@
 
         [Theory]
         [InlineData(BudgetTimeRange.Last1Year, 1)]
+        [InlineData(BudgetTimeRange.Last2Years, 2)]
+        [InlineData(BudgetTimeRange.Last3Years, 3)]
+        [InlineData(BudgetTimeRange.Last5Years, 5)]
         public async Task ReturnBudgets_WithCorrectSummarizedSpending_WithMonthsWithoutPaymentsInBetween(BudgetTimeRange timeRange, int yearsToDeduct)
         {
             // Arrange
@@ -165,6 +119,7 @@
                 second: 0);
 
             systemDateHelper.Now.Returns(now);
+            systemDateHelper.Today.Returns(now.Date);
 
             var testExpense1 = new TestData.DefaultExpense
             {
