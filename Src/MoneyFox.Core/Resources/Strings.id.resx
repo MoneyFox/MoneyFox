@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-    <!--
-      Microsoft ResX Schema
-
+    <!-- 
+      Microsoft ResX Schema 
+      
       Version 2.0
-
-      The primary goals of this format is to allow a simple XML format
-      that is mostly human readable. The generation and parsing of the
-      various data types are done through the TypeConverter classes
+      
+      The primary goals of this format is to allow a simple XML format 
+      that is mostly human readable. The generation and parsing of the 
+      various data types are done through the TypeConverter classes 
       associated with the data types.
-
+      
       Example:
-
+      
       ... ado.net/XML headers & schema ...
       <resheader name="resmimetype">text/microsoft-resx</resheader>
       <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
           <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
           <comment>This is a comment</comment>
       </data>
-
-      There are any number of "resheader" rows that contain simple
+                  
+      There are any number of "resheader" rows that contain simple 
       name/value pairs.
-
-      Each data row contains a name, and value. The row also contains a
-      type or mimetype. Type corresponds to a .NET class that support
-      text/value conversion through the TypeConverter architecture.
-      Classes that don't support this are serialized and stored with the
+      
+      Each data row contains a name, and value. The row also contains a 
+      type or mimetype. Type corresponds to a .NET class that support 
+      text/value conversion through the TypeConverter architecture. 
+      Classes that don't support this are serialized and stored with the 
       mimetype set.
-
-      The mimetype is used for serialized objects, and tells the
-      ResXResourceReader how to depersist the object. This is currently not
+      
+      The mimetype is used for serialized objects, and tells the 
+      ResXResourceReader how to depersist the object. This is currently not 
       extensible. For a given mimetype the value must be set accordingly:
-
-      Note - application/x-microsoft.net.object.binary.base64 is the format
-      that the ResXResourceWriter will generate, however the reader can
+      
+      Note - application/x-microsoft.net.object.binary.base64 is the format 
+      that the ResXResourceWriter will generate, however the reader can 
       read any of the formats listed below.
-
+      
       mimetype: application/x-microsoft.net.object.binary.base64
-      value   : The object must be serialized with
+      value   : The object must be serialized with 
               : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
               : and then encoded with base64 encoding.
-
+      
       mimetype: application/x-microsoft.net.object.soap.base64
-      value   : The object must be serialized with
+      value   : The object must be serialized with 
               : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
               : and then encoded with base64 encoding.
-
+  
       mimetype: application/x-microsoft.net.object.bytearray.base64
-      value   : The object must be serialized into a byte array
+      value   : The object must be serialized into a byte array 
               : using a System.ComponentModel.TypeConverter
               : and then encoded with base64 encoding.
       -->
@@ -813,39 +813,57 @@ To start create a new account. Accounts are used to organize payments and money 
     <value>Open Log</value>
   </data>
     <data name="BudgetsTitle" xml:space="preserve">
-        <value>Budgets</value>
-    </data>
+    <value>Budgets</value>
+  </data>
     <data name="NoBudgetsMessage" xml:space="preserve">
-        <value>There are no Budgets yet. Go ahead and create one!</value>
-    </data>
+    <value>There are no Budgets yet. Go ahead and create one!</value>
+  </data>
     <data name="AddBudgetLabel" xml:space="preserve">
-      <value>Add Budget</value>
-    </data>
+    <value>Add Budget</value>
+  </data>
     <data name="AddBudgetTitle" xml:space="preserve">
-      <value>Add Budget</value>
-    </data>
+    <value>Add Budget</value>
+  </data>
     <data name="SpendingLimitLabel" xml:space="preserve">
-      <value>Spending Limit</value>
-    </data>
+    <value>Spending Limit</value>
+  </data>
     <data name="BudgetNameLabel" xml:space="preserve">
-        <value>Budget Name</value>
-    </data>
+    <value>Budget Name</value>
+  </data>
     <data name="MoreTitle" xml:space="preserve">
-        <value>More</value>
-    </data>
+    <value>More</value>
+  </data>
     <data name="SelectedCategoriesLabel" xml:space="preserve">
-        <value>Selected Categories</value>
-    </data>
+    <value>Selected Categories</value>
+  </data>
     <data name="BackupUploadSkippedMessage" xml:space="preserve">
-        <value>Upload of backup skipped, since remote version was already up to date.</value>
-    </data>
+    <value>Upload of backup skipped, since remote version was already up to date.</value>
+  </data>
     <data name="EditBudgetTitle" xml:space="preserve">
-        <value>Edit Budget</value>
-    </data>
+    <value>Edit Budget</value>
+  </data>
     <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
-        <value>Do you really want to delete this budget?</value>
-    </data>
+    <value>Do you really want to delete this budget?</value>
+  </data>
     <data name="MonthlyBudgetLabel" xml:space="preserve">
-      <value>Monthly Budget:</value>
-    </data>
+    <value>Monthly Budget:</value>
+  </data>
+    <data name="TimeRangeLabel" xml:space="preserve">
+    <value>Time Range</value>
+  </data>
+    <data name="LastFiveYearsLabel" xml:space="preserve">
+    <value>Last Five Years</value>
+  </data>
+    <data name="LastThreeYearsLabel" xml:space="preserve">
+    <value>Last Three Years</value>
+  </data>
+    <data name="LastTwoYearsLabel" xml:space="preserve">
+    <value>Last Two Years</value>
+  </data>
+    <data name="LastYearLabel" xml:space="preserve">
+    <value>Last Year</value>
+  </data>
+    <data name="YearToDateLabel" xml:space="preserve">
+    <value>Year to date</value>
+  </data>
 </root>
