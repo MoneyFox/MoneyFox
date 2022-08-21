@@ -284,12 +284,6 @@
     <data name="CreateCategoryNowLabel" xml:space="preserve">
     <value>Utwórz kategorię</value>
   </data>
-    <data name="CreationDateHeader" xml:space="preserve">
-    <value>Creation Date</value>
-  </data>
-    <data name="CreationDateLabel" xml:space="preserve">
-    <value>Data utworzenia:</value>
-  </data>
     <data name="CreationDateTemplateLabel" xml:space="preserve">
     <value>Data utworzenia:  {0}</value>
   </data>
@@ -352,9 +346,6 @@
   </data>
     <data name="DuplicatedNameTitle" xml:space="preserve">
     <value>Nazwa jest w użyciu</value>
-  </data>
-    <data name="EditAccountTitle" xml:space="preserve">
-    <value>Edytuj {0}</value>
   </data>
     <data name="EditCategoryTitle" xml:space="preserve">
     <value>Edytuj Kategorię</value>
@@ -422,20 +413,11 @@
     <data name="IncomeAndExpensesLabel" xml:space="preserve">
     <value>Przychody i wydatki</value>
   </data>
-    <data name="IncomeHeader" xml:space="preserve">
-    <value>Dodaj dochód</value>
-  </data>
     <data name="IncomeLabel" xml:space="preserve">
     <value>Przychód</value>
   </data>
-    <data name="IncomeSpendingLabel" xml:space="preserve">
-    <value>Przychody/Wydatki</value>
-  </data>
     <data name="IncreaseLabel" xml:space="preserve">
     <value>Zyski</value>
-  </data>
-    <data name="InfoLabel" xml:space="preserve">
-    <value>Informacje</value>
   </data>
     <data name="InfoOpenSource" xml:space="preserve">
     <value>To jest projekt Open-Source - i bardzo chcielibyśmy pracować z tobą! Zapraszamy do kontrybuowania. Naciśnij, aby odwiedzić repozytorium:</value>
@@ -446,32 +428,17 @@
     <data name="InvalidEnddateTitle" xml:space="preserve">
     <value>Nieprawidłowa Data Zakończenia</value>
   </data>
-    <data name="InvalidNumberCurrentBalanceMessage" xml:space="preserve">
-    <value>Twoje obecne saldo wydaje się być nieprawidłowe. Proszę sprawdzić, czy nie wprowadziłeś żadnych znaków specjalnych i użyłeś prawidłowego separatora.</value>
-  </data>
-    <data name="InvalidNumberTitle" xml:space="preserve">
-    <value>Nieprawidłowy numer</value>
-  </data>
     <data name="IsClearedLabel" xml:space="preserve">
     <value>Wyczyszczono</value>
   </data>
     <data name="IsExcludedLabel" xml:space="preserve">
     <value>Wyklucz konto z salda</value>
   </data>
-    <data name="IsGroupedLabel" xml:space="preserve">
-    <value>Group List</value>
-  </data>
-    <data name="IsRecurringFilterLabel" xml:space="preserve">
-    <value>Powtarzający/a się</value>
-  </data>
     <data name="IsRecurringLabel" xml:space="preserve">
     <value>Cykliczny</value>
   </data>
     <data name="LastBackupDateLabel" xml:space="preserve">
     <value>Ostatnia Kopia zapasowa została utworzona:</value>
-  </data>
-    <data name="LightLabel" xml:space="preserve">
-    <value>Jasny</value>
   </data>
     <data name="LoadingLabel" xml:space="preserve">
     <value>Ładowanie...</value>
@@ -502,15 +469,6 @@
   </data>
     <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
     <value>Pole obowiązkowe</value>
-  </data>
-    <data name="ModificationDateHeader" xml:space="preserve">
-    <value>Modification Date</value>
-  </data>
-    <data name="ModificationDateLabel" xml:space="preserve">
-    <value>Data Modyfikacji:</value>
-  </data>
-    <data name="ModificationDateTemplateLabel" xml:space="preserve">
-    <value>Data Modyfikacji: {0}</value>
   </data>
     <data name="ModifyRecurrenceMessage" xml:space="preserve">
     <value>Zmodyfikowałeś powtarzającą się płatność. Czy chcesz zmienić je wszystkie?</value>
@@ -548,9 +506,6 @@
     <data name="NoCategoryLabel" xml:space="preserve">
     <value>[Bez kategorii]</value>
   </data>
-    <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
-    <value>No entry selected. Choose a entry in the list to see the payments for it.</value>
-  </data>
     <data name="NoLabel" xml:space="preserve">
     <value>Nie</value>
   </data>
@@ -565,9 +520,6 @@
   </data>
     <data name="NoteLabel" xml:space="preserve">
     <value>Notatka</value>
-  </data>
-    <data name="NotNowLabel" xml:space="preserve">
-    <value>Nie Teraz</value>
   </data>
     <data name="OkLabel" xml:space="preserve">
     <value>Ok</value>
@@ -595,21 +547,11 @@ To get there go to the account list and select the respective account.</value>
     <data name="PaymentTypeLabel" xml:space="preserve">
     <value>Rodzaj Płatności</value>
   </data>
-    <data name="PersonalizationTitle" xml:space="preserve">
-    <value>Personalizacja</value>
-  </data>
     <data name="QuarterlyLabel" xml:space="preserve">
     <value>Kwartalnie</value>
   </data>
     <data name="RateLabel" xml:space="preserve">
     <value>Oceń aplikację!</value>
-  </data>
-    <data name="RateReminderText" xml:space="preserve">
-    <value>Mamy nadzieje że lubisz naszą aplikacje. Wesprzyj nas oceniając ją w sklepie.
-Czy chcesz przejść do sklepu aby ocenić?</value>
-  </data>
-    <data name="RateReminderTitle" xml:space="preserve">
-    <value>Oceń tę aplikację</value>
   </data>
     <data name="RecurrenceLabel" xml:space="preserve">
     <value>Powtarzanie</value>
@@ -644,12 +586,6 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <data name="SavingPaymentMessage" xml:space="preserve">
     <value>Zapisywanie płatności...</value>
   </data>
-    <data name="SearchLabel" xml:space="preserve">
-    <value>Szukaj</value>
-  </data>
-    <data name="SelectCategoryTitle" xml:space="preserve">
-    <value>Wybierz Kategorie</value>
-  </data>
     <data name="SelectDateLabel" xml:space="preserve">
     <value>Wybierz datę</value>
   </data>
@@ -682,9 +618,6 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
   </data>
     <data name="TimeRangeStartLabel" xml:space="preserve">
     <value>Początek okresu</value>
-  </data>
-    <data name="TransferHeader" xml:space="preserve">
-    <value>Dodaj przelew</value>
   </data>
     <data name="TransferLabel" xml:space="preserve">
     <value>Przelew</value>
@@ -726,9 +659,6 @@ To start create a new account. Accounts are used to organize payments and money 
     <data name="YesLabel" xml:space="preserve">
     <value>Tak</value>
   </data>
-    <data name="StatisticsToolTip" xml:space="preserve">
-    <value>View your Statistics</value>
-  </data>
     <data name="FailedToLoginToBackupMessage" xml:space="preserve">
     <value>Failed to login to your backup service. Automatic backup upload was disabled. Please login and enable it again.</value>
   </data>
@@ -755,9 +685,6 @@ To start create a new account. Accounts are used to organize payments and money 
   </data>
     <data name="EditPaymentTitle" xml:space="preserve">
     <value>Edit Payment</value>
-  </data>
-    <data name="InitialBalanceLabel" xml:space="preserve">
-    <value>Initial Balance</value>
   </data>
     <data name="AllLabel" xml:space="preserve">
     <value>All</value>
@@ -806,9 +733,6 @@ To start create a new account. Accounts are used to organize payments and money 
   </data>
     <data name="MonthlyBudgetLabel" xml:space="preserve">
     <value>Monthly Budget:</value>
-  </data>
-    <data name="TimeRangeLabel" xml:space="preserve">
-    <value>Time Range</value>
   </data>
     <data name="LastFiveYearsLabel" xml:space="preserve">
     <value>Last Five Years</value>
