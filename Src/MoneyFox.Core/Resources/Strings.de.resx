@@ -284,9 +284,6 @@
     <data name="CreateCategoryNowLabel" xml:space="preserve">
     <value>Jetzt Kategorie erstellen</value>
   </data>
-    <data name="CreationDateTemplateLabel" xml:space="preserve">
-    <value>Erstellungsdatum: {0}</value>
-  </data>
     <data name="CurrentBalanceLabel" xml:space="preserve">
     <value>Aktueller Kontostand</value>
   </data>
@@ -296,17 +293,8 @@
     <data name="DailyWithoutWeekendLabel" xml:space="preserve">
     <value>Täglich ohne Wochenende</value>
   </data>
-    <data name="DarkLabel" xml:space="preserve">
-    <value>Dunkel</value>
-  </data>
-    <data name="DashboardTitle" xml:space="preserve">
-    <value>Dashboard</value>
-  </data>
     <data name="DateLabel" xml:space="preserve">
     <value>Datum</value>
-  </data>
-    <data name="DateRangeHeader" xml:space="preserve">
-    <value>Zeitraum</value>
   </data>
     <data name="DefaultRegionHeader" xml:space="preserve">
     <value>Standard Region</value>
@@ -650,9 +638,6 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <data name="WelcomePageText" xml:space="preserve">
     <value>Der MoneyFox hilft dir deine Ausgaben und Einnahmen auf einfach Weise im Überblick zu behalten.
 Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen und Geld in Gruppen.</value>
-  </data>
-    <data name="WindowsDefaultLabel" xml:space="preserve">
-    <value>Windows-Standard</value>
   </data>
     <data name="YearlyLabel" xml:space="preserve">
     <value>Jährlich</value>

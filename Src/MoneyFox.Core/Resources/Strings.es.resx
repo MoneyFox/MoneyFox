@@ -284,9 +284,6 @@
     <data name="CreateCategoryNowLabel" xml:space="preserve">
     <value>Ahora crea una categoría </value>
   </data>
-    <data name="CreationDateTemplateLabel" xml:space="preserve">
-    <value>Fecha de Creación: {0}</value>
-  </data>
     <data name="CurrentBalanceLabel" xml:space="preserve">
     <value>Saldo actual</value>
   </data>
@@ -296,17 +293,8 @@
     <data name="DailyWithoutWeekendLabel" xml:space="preserve">
     <value>Diario sin fin de semana</value>
   </data>
-    <data name="DarkLabel" xml:space="preserve">
-    <value>Oscuro</value>
-  </data>
-    <data name="DashboardTitle" xml:space="preserve">
-    <value>Resumen Global</value>
-  </data>
     <data name="DateLabel" xml:space="preserve">
     <value>Fecha</value>
-  </data>
-    <data name="DateRangeHeader" xml:space="preserve">
-    <value>Rango de fecha</value>
   </data>
     <data name="DefaultRegionHeader" xml:space="preserve">
     <value>Región por defecto</value>
@@ -650,9 +638,6 @@ ATENCIÓN: ¡Los datos que creaste desde la copia de respaldo se perderán!</val
     <data name="WelcomePageText" xml:space="preserve">
     <value>The MoneyFox helps you to track your expenses and incomes in an easy way.
 To start create a new account. Accounts are used to organize payments and money in collections.</value>
-  </data>
-    <data name="WindowsDefaultLabel" xml:space="preserve">
-    <value>Ventanas por defecto</value>
   </data>
     <data name="YearlyLabel" xml:space="preserve">
     <value>Anual</value>

@@ -284,9 +284,6 @@
     <data name="CreateCategoryNowLabel" xml:space="preserve">
     <value>Tạo thể loại ngay</value>
   </data>
-    <data name="CreationDateTemplateLabel" xml:space="preserve">
-    <value>Creation Date: {0}</value>
-  </data>
     <data name="CurrentBalanceLabel" xml:space="preserve">
     <value>Số dư hiện tại</value>
   </data>
@@ -296,17 +293,8 @@
     <data name="DailyWithoutWeekendLabel" xml:space="preserve">
     <value>Hàng ngày trừ ngày cuối tuần</value>
   </data>
-    <data name="DarkLabel" xml:space="preserve">
-    <value>Dark</value>
-  </data>
-    <data name="DashboardTitle" xml:space="preserve">
-    <value>Dashboard</value>
-  </data>
     <data name="DateLabel" xml:space="preserve">
     <value>Ngày</value>
-  </data>
-    <data name="DateRangeHeader" xml:space="preserve">
-    <value>Phạm vi ngày</value>
   </data>
     <data name="DefaultRegionHeader" xml:space="preserve">
     <value>Default Region</value>
@@ -651,9 +639,6 @@ CẢNH BÁO: Các thay đổi trên máy của bạn sẽ bị mất!</value>
     <data name="WelcomePageText" xml:space="preserve">
     <value>The MoneyFox helps you to track your expenses and incomes in an easy way.
 To start create a new account. Accounts are used to organize payments and money in collections.</value>
-  </data>
-    <data name="WindowsDefaultLabel" xml:space="preserve">
-    <value>Windows Default</value>
   </data>
     <data name="YearlyLabel" xml:space="preserve">
     <value>Hàng năm</value>
