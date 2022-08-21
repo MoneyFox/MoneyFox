@@ -823,9 +823,6 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
     <data name="AddBudgetTitle" xml:space="preserve">
     <value>Budget hinzufügen</value>
   </data>
-    <data name="SpendingLimitLabel" xml:space="preserve">
-    <value>Ausgabelimit</value>
-  </data>
     <data name="BudgetNameLabel" xml:space="preserve">
     <value>Budgetname</value>
   </data>
