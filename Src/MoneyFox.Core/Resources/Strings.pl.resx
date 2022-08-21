@@ -137,9 +137,6 @@
     <data name="AddAccountLabel" xml:space="preserve">
     <value>Dodaj Konto</value>
   </data>
-    <data name="AddAccountTitle" xml:space="preserve">
-    <value>Dodaj Konto</value>
-  </data>
     <data name="AddCategoryLabel" xml:space="preserve">
     <value>Dodaj Kategorię</value>
   </data>
@@ -169,9 +166,6 @@
   </data>
     <data name="ANoteForPaymentIsRequired" xml:space="preserve">
     <value>A note for payment is required</value>
-  </data>
-    <data name="ApplyFilterLabel" xml:space="preserve">
-    <value>Apply Filter</value>
   </data>
     <data name="AssetsLabel" xml:space="preserve">
     <value>Assets</value>
@@ -266,9 +260,6 @@
     <data name="ChargedAccountLabel" xml:space="preserve">
     <value>Pobrane Konto</value>
   </data>
-    <data name="ClearedFilterLabel" xml:space="preserve">
-    <value>Wyczyszczono</value>
-  </data>
     <data name="CompletedText" xml:space="preserve">
     <value>That's it! You're set for using the MoneyFox.</value>
   </data>
@@ -283,9 +274,6 @@
   </data>
     <data name="ContributerLabel" xml:space="preserve">
     <value>Aby zobaczyć wszystkie kontrybucje przejdź do GitHub:</value>
-  </data>
-    <data name="ContributionsLabel" xml:space="preserve">
-    <value>Wkład</value>
   </data>
     <data name="CreateAccountNowLabel" xml:space="preserve">
     <value>Utwórz Konto Teraz</value>
@@ -392,9 +380,6 @@
     <data name="EndlessLabel" xml:space="preserve">
     <value>Nieskończony</value>
   </data>
-    <data name="EndOfMonthBalanceLabel" xml:space="preserve">
-    <value>Koniec Miesiąca</value>
-  </data>
     <data name="EndOfMonthLabel" xml:space="preserve">
     <value>Koniec miesiąca</value>
   </data>
@@ -407,17 +392,11 @@
     <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
     <value>Wydatki: {0} / Przychody: {1}</value>
   </data>
-    <data name="ExpenseHeader" xml:space="preserve">
-    <value>Dodaj wydatek</value>
-  </data>
     <data name="ExpenseLabel" xml:space="preserve">
     <value>Wydatki</value>
   </data>
     <data name="FeedbackSubject" xml:space="preserve">
     <value>Opinie zwrotne na temat Money Fox</value>
-  </data>
-    <data name="FilterLabel" xml:space="preserve">
-    <value>Filtr</value>
   </data>
     <data name="ForceOverrideBackupMessage" xml:space="preserve">
     <value>Twoja lokalna baza danych posiada nowszą datę modyfikacji niż dane na One Drive. Czy chcesz je podmienić?</value>
@@ -746,21 +725,6 @@ To start create a new account. Accounts are used to organize payments and money 
   </data>
     <data name="YesLabel" xml:space="preserve">
     <value>Tak</value>
-  </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Manage your Accounts</value>
-  </data>
-    <data name="AddPaymentTitle" xml:space="preserve">
-    <value>Add Payment</value>
-  </data>
-    <data name="AddPaymentToolTip" xml:space="preserve">
-    <value>Add a Payment with details</value>
-  </data>
-    <data name="BackupToolTip" xml:space="preserve">
-    <value>Backup your information</value>
-  </data>
-    <data name="CategoriesToolTip" xml:space="preserve">
-    <value>Manage your Categories</value>
   </data>
     <data name="StatisticsToolTip" xml:space="preserve">
     <value>View your Statistics</value>

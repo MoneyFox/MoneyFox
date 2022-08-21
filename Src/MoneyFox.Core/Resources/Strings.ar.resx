@@ -137,9 +137,6 @@
     <data name="AddAccountLabel" xml:space="preserve">
     <value>Add Account</value>
   </data>
-    <data name="AddAccountTitle" xml:space="preserve">
-    <value>Add Account</value>
-  </data>
     <data name="AddCategoryLabel" xml:space="preserve">
     <value>Add Category</value>
   </data>
@@ -169,9 +166,6 @@
   </data>
     <data name="ANoteForPaymentIsRequired" xml:space="preserve">
     <value>A note for payment is required</value>
-  </data>
-    <data name="ApplyFilterLabel" xml:space="preserve">
-    <value>Apply Filter</value>
   </data>
     <data name="AssetsLabel" xml:space="preserve">
     <value>Assets</value>
@@ -266,9 +260,6 @@
     <data name="ChargedAccountLabel" xml:space="preserve">
     <value>Charged Account</value>
   </data>
-    <data name="ClearedFilterLabel" xml:space="preserve">
-    <value>Cleared</value>
-  </data>
     <data name="CompletedText" xml:space="preserve">
     <value>That's it! You're set for using the MoneyFox.</value>
   </data>
@@ -283,9 +274,6 @@
   </data>
     <data name="ContributerLabel" xml:space="preserve">
     <value>لرؤية جميع المساهمات قم بزيارة GitHub:</value>
-  </data>
-    <data name="ContributionsLabel" xml:space="preserve">
-    <value>المساهمات</value>
   </data>
     <data name="CreateAccountNowLabel" xml:space="preserve">
     <value>Create Account Now</value>
@@ -392,9 +380,6 @@
     <data name="EndlessLabel" xml:space="preserve">
     <value>لا نهائي</value>
   </data>
-    <data name="EndOfMonthBalanceLabel" xml:space="preserve">
-    <value>End of Month</value>
-  </data>
     <data name="EndOfMonthLabel" xml:space="preserve">
     <value>End Of Month:</value>
   </data>
@@ -407,17 +392,11 @@
     <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
     <value>Expense: {0} / Income: {1}</value>
   </data>
-    <data name="ExpenseHeader" xml:space="preserve">
-    <value>إضافة نفقات</value>
-  </data>
     <data name="ExpenseLabel" xml:space="preserve">
     <value>النفقات</value>
   </data>
     <data name="FeedbackSubject" xml:space="preserve">
     <value>تقييم مانى فوكس</value>
-  </data>
-    <data name="FilterLabel" xml:space="preserve">
-    <value>Filter</value>
   </data>
     <data name="ForceOverrideBackupMessage" xml:space="preserve">
     <value>Your local database has a newer modification date than the one on OneDrive. Do you want to override your local data?</value>
@@ -748,21 +727,6 @@ To start create a new account. Accounts are used to organize payments and money 
   </data>
     <data name="YesLabel" xml:space="preserve">
     <value>نعم</value>
-  </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Manage your Accounts</value>
-  </data>
-    <data name="AddPaymentTitle" xml:space="preserve">
-    <value>Add Payment</value>
-  </data>
-    <data name="AddPaymentToolTip" xml:space="preserve">
-    <value>Add a Payment with details</value>
-  </data>
-    <data name="BackupToolTip" xml:space="preserve">
-    <value>Backup your information</value>
-  </data>
-    <data name="CategoriesToolTip" xml:space="preserve">
-    <value>Manage your Categories</value>
   </data>
     <data name="StatisticsToolTip" xml:space="preserve">
     <value>View your Statistics</value>
