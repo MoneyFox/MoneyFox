@@ -19,6 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\pipelines\azure-pipelines-windows.yml = ..\pipelines\azure-pipelines-windows.yml
 		..\renovate.json = ..\renovate.json
 		..\pipelines\azure-pipelines-stryker.yml = ..\pipelines\azure-pipelines-stryker.yml
+		nuget.config = nuget.config
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile", "Mobile", "{322785EB-7924-4EC1-849E-79C91C1159C7}"
