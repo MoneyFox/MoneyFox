@@ -285,6 +285,9 @@
     <data name="CreateCategoryNowLabel" xml:space="preserve">
     <value>Maak een nieuwe categorie</value>
   </data>
+    <data name="CreationDateTemplateLabel" xml:space="preserve">
+    <value>Aanmaakdatum: {0}</value>
+  </data>
     <data name="CurrentBalanceLabel" xml:space="preserve">
     <value>Huidig saldo</value>
   </data>
@@ -294,8 +297,17 @@
     <data name="DailyWithoutWeekendLabel" xml:space="preserve">
     <value>Enkel weekdagen </value>
   </data>
+    <data name="DarkLabel" xml:space="preserve">
+    <value>Donker</value>
+  </data>
+    <data name="DashboardTitle" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
     <data name="DateLabel" xml:space="preserve">
     <value>Datum</value>
+  </data>
+    <data name="DateRangeHeader" xml:space="preserve">
+    <value>Datumbereik</value>
   </data>
     <data name="DefaultRegionHeader" xml:space="preserve">
     <value>Standaard regio</value>
@@ -642,6 +654,9 @@ Categorie opslaan ...</value>
     <data name="WelcomePageText" xml:space="preserve">
     <value>The MoneyFox helps you to track your expenses and incomes in an easy way.
 To start create a new account. Accounts are used to organize payments and money in collections.</value>
+  </data>
+    <data name="WindowsDefaultLabel" xml:space="preserve">
+    <value>Windows standaard</value>
   </data>
     <data name="YearlyLabel" xml:space="preserve">
     <value>Jaarlijks</value>

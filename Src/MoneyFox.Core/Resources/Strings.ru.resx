@@ -284,6 +284,9 @@
     <data name="CreateCategoryNowLabel" xml:space="preserve">
     <value>Создать категорию</value>
   </data>
+    <data name="CreationDateTemplateLabel" xml:space="preserve">
+    <value>Дата создания: {0}</value>
+  </data>
     <data name="CurrentBalanceLabel" xml:space="preserve">
     <value>Текущий баланс</value>
   </data>
@@ -293,8 +296,17 @@
     <data name="DailyWithoutWeekendLabel" xml:space="preserve">
     <value>Каждый день без выходных</value>
   </data>
+    <data name="DarkLabel" xml:space="preserve">
+    <value>Тёмная тема</value>
+  </data>
+    <data name="DashboardTitle" xml:space="preserve">
+    <value>Главный экран</value>
+  </data>
     <data name="DateLabel" xml:space="preserve">
     <value>Дата</value>
+  </data>
+    <data name="DateRangeHeader" xml:space="preserve">
+    <value>Период</value>
   </data>
     <data name="DefaultRegionHeader" xml:space="preserve">
     <value>Регион по умолчанию</value>
@@ -639,6 +651,9 @@ To get there go to the account list and select the respective account.</value>
     <data name="WelcomePageText" xml:space="preserve">
     <value>The MoneyFox helps you to track your expenses and incomes in an easy way.
 To start create a new account. Accounts are used to organize payments and money in collections.</value>
+  </data>
+    <data name="WindowsDefaultLabel" xml:space="preserve">
+    <value>По умолчанию</value>
   </data>
     <data name="YearlyLabel" xml:space="preserve">
     <value>Ежегодно</value>

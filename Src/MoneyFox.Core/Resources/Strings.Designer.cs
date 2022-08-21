@@ -627,6 +627,15 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Creation Date: {0}.
+        /// </summary>
+        public static string CreationDateTemplateLabel {
+            get {
+                return ResourceManager.GetString("CreationDateTemplateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Balance.
         /// </summary>
         public static string CurrentBalanceLabel {
@@ -654,11 +663,38 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dark.
+        /// </summary>
+        public static string DarkLabel {
+            get {
+                return ResourceManager.GetString("DarkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dashboard.
+        /// </summary>
+        public static string DashboardTitle {
+            get {
+                return ResourceManager.GetString("DashboardTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date.
         /// </summary>
         public static string DateLabel {
             get {
                 return ResourceManager.GetString("DateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date Range.
+        /// </summary>
+        public static string DateRangeHeader {
+            get {
+                return ResourceManager.GetString("DateRangeHeader", resourceCulture);
             }
         }
         
@@ -1888,6 +1924,15 @@ namespace MoneyFox.Core.Resources {
         public static string WelcomePageText {
             get {
                 return ResourceManager.GetString("WelcomePageText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Default.
+        /// </summary>
+        public static string WindowsDefaultLabel {
+            get {
+                return ResourceManager.GetString("WindowsDefaultLabel", resourceCulture);
             }
         }
         
