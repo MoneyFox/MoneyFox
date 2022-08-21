@@ -285,6 +285,12 @@
     <data name="CreateCategoryNowLabel" xml:space="preserve">
     <value>Maak een nieuwe categorie</value>
   </data>
+    <data name="CreationDateHeader" xml:space="preserve">
+    <value>Gemaakt op</value>
+  </data>
+    <data name="CreationDateLabel" xml:space="preserve">
+    <value>creëer datum</value>
+  </data>
     <data name="CreationDateTemplateLabel" xml:space="preserve">
     <value>Aanmaakdatum: {0}</value>
   </data>
@@ -347,6 +353,9 @@
   </data>
     <data name="DuplicatedNameTitle" xml:space="preserve">
     <value>Naam al in gebruik.</value>
+  </data>
+    <data name="EditAccountTitle" xml:space="preserve">
+    <value>Wijzig {0}</value>
   </data>
     <data name="EditCategoryTitle" xml:space="preserve">
     <value>Categorie bewerken</value>
@@ -414,11 +423,20 @@
     <data name="IncomeAndExpensesLabel" xml:space="preserve">
     <value>Inkomsten en uitgaven</value>
   </data>
+    <data name="IncomeHeader" xml:space="preserve">
+    <value>Inkomsten toevoegen</value>
+  </data>
     <data name="IncomeLabel" xml:space="preserve">
     <value>Inkomsten</value>
   </data>
+    <data name="IncomeSpendingLabel" xml:space="preserve">
+    <value>Inkomen / uitgaven</value>
+  </data>
     <data name="IncreaseLabel" xml:space="preserve">
     <value>Winst</value>
+  </data>
+    <data name="InfoLabel" xml:space="preserve">
+    <value>informatie</value>
   </data>
     <data name="InfoOpenSource" xml:space="preserve">
     <value>Dit is een open-sourceproject en we willen graag met jou samenwerken! Voel je vrij om een bijdrage te leveren.
@@ -430,17 +448,32 @@ Tik hier om jou bijdrage te leveren.</value>
     <data name="InvalidEnddateTitle" xml:space="preserve">
     <value>Verkeerde eind datum.</value>
   </data>
+    <data name="InvalidNumberCurrentBalanceMessage" xml:space="preserve">
+    <value>Uw huidige saldo lijkt een ongeldig teken te bevatten. Controleer of u geen speciale tekens heeft ingevoerd en het juiste scheidingsteken heeft gebruikt.</value>
+  </data>
+    <data name="InvalidNumberTitle" xml:space="preserve">
+    <value>Ongeldig nummer</value>
+  </data>
     <data name="IsClearedLabel" xml:space="preserve">
     <value>Gewist</value>
   </data>
     <data name="IsExcludedLabel" xml:space="preserve">
     <value>Dit account afsluiten voor het saldo</value>
   </data>
+    <data name="IsGroupedLabel" xml:space="preserve">
+    <value>groepslijst</value>
+  </data>
+    <data name="IsRecurringFilterLabel" xml:space="preserve">
+    <value>terugkerend</value>
+  </data>
     <data name="IsRecurringLabel" xml:space="preserve">
     <value>Gewist</value>
   </data>
     <data name="LastBackupDateLabel" xml:space="preserve">
     <value>Laatste back-up gemaakt op:</value>
+  </data>
+    <data name="LightLabel" xml:space="preserve">
+    <value>Licht</value>
   </data>
     <data name="LoadingLabel" xml:space="preserve">
     <value>Laden...</value>
@@ -471,6 +504,15 @@ Tik hier om jou bijdrage te leveren.</value>
   </data>
     <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
     <value>Verplichte velden</value>
+  </data>
+    <data name="ModificationDateHeader" xml:space="preserve">
+    <value>Wijzigingsdatum</value>
+  </data>
+    <data name="ModificationDateLabel" xml:space="preserve">
+    <value>Wijzigingsdatum:</value>
+  </data>
+    <data name="ModificationDateTemplateLabel" xml:space="preserve">
+    <value>Wijzigingsdatum: {0}</value>
   </data>
     <data name="ModifyRecurrenceMessage" xml:space="preserve">
     <value>U heeft een periodieke betaling gewijzigd. Wilt u de deze bijwerken?</value>
@@ -508,6 +550,9 @@ Tik hier om jou bijdrage te leveren.</value>
     <data name="NoCategoryLabel" xml:space="preserve">
     <value>Geen categorie</value>
   </data>
+    <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
+    <value>Geen invoer geselecteerd. Kies een item in de lijst, om de betalingen te bekijken.</value>
+  </data>
     <data name="NoLabel" xml:space="preserve">
     <value>Nee</value>
   </data>
@@ -522,6 +567,9 @@ Tik hier om jou bijdrage te leveren.</value>
   </data>
     <data name="NoteLabel" xml:space="preserve">
     <value>Nota</value>
+  </data>
+    <data name="NotNowLabel" xml:space="preserve">
+    <value>Niet nu</value>
   </data>
     <data name="OkLabel" xml:space="preserve">
     <value>In orde</value>
@@ -549,11 +597,21 @@ To get there go to the account list and select the respective account.</value>
     <data name="PaymentTypeLabel" xml:space="preserve">
     <value>Betalings wijze</value>
   </data>
+    <data name="PersonalizationTitle" xml:space="preserve">
+    <value>personaliseren</value>
+  </data>
     <data name="QuarterlyLabel" xml:space="preserve">
     <value>Per kwartaal</value>
   </data>
     <data name="RateLabel" xml:space="preserve">
     <value>Geef deze app een rating!</value>
+  </data>
+    <data name="RateReminderText" xml:space="preserve">
+    <value>We hopen dat je deze app leuk vindt. Steun ons met een waardering in de store.
+Wil je naar de store om te om ons te beoordelen?</value>
+  </data>
+    <data name="RateReminderTitle" xml:space="preserve">
+    <value>Beoordeel deze app.</value>
   </data>
     <data name="RecurrenceLabel" xml:space="preserve">
     <value>Herhalling</value>
@@ -591,6 +649,12 @@ Categorie opslaan ...</value>
     <data name="SavingPaymentMessage" xml:space="preserve">
     <value>Betaling opslaan</value>
   </data>
+    <data name="SearchLabel" xml:space="preserve">
+    <value>zoeken</value>
+  </data>
+    <data name="SelectCategoryTitle" xml:space="preserve">
+    <value>selecteer categorie</value>
+  </data>
     <data name="SelectDateLabel" xml:space="preserve">
     <value>selecteer datum</value>
   </data>
@@ -623,6 +687,9 @@ Categorie opslaan ...</value>
   </data>
     <data name="TimeRangeStartLabel" xml:space="preserve">
     <value>Tijdsbereik Starten</value>
+  </data>
+    <data name="TransferHeader" xml:space="preserve">
+    <value>Overdracht toevoegen</value>
   </data>
     <data name="TransferLabel" xml:space="preserve">
     <value>Overschrijving</value>
@@ -664,6 +731,9 @@ To start create a new account. Accounts are used to organize payments and money 
     <data name="YesLabel" xml:space="preserve">
     <value>Ja</value>
   </data>
+    <data name="StatisticsToolTip" xml:space="preserve">
+    <value>Bekijk de forumstatistieken</value>
+  </data>
     <data name="FailedToLoginToBackupMessage" xml:space="preserve">
     <value>Kan niet inloggen op uw back-upservice. Automatische back-up uploaden is uitgeschakeld. Gelieve in te loggen en opnieuw in te schakelen.</value>
   </data>
@@ -690,6 +760,9 @@ To start create a new account. Accounts are used to organize payments and money 
   </data>
     <data name="EditPaymentTitle" xml:space="preserve">
     <value>Betaling bewerken</value>
+  </data>
+    <data name="InitialBalanceLabel" xml:space="preserve">
+    <value>Beginbalans</value>
   </data>
     <data name="AllLabel" xml:space="preserve">
     <value>Alles</value>
@@ -738,6 +811,9 @@ To start create a new account. Accounts are used to organize payments and money 
   </data>
     <data name="MonthlyBudgetLabel" xml:space="preserve">
     <value>Monthly Budget:</value>
+  </data>
+    <data name="TimeRangeLabel" xml:space="preserve">
+    <value>Time Range</value>
   </data>
     <data name="LastFiveYearsLabel" xml:space="preserve">
     <value>Last Five Years</value>

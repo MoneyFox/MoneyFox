@@ -284,6 +284,12 @@
     <data name="CreateCategoryNowLabel" xml:space="preserve">
     <value>Jetzt Kategorie erstellen</value>
   </data>
+    <data name="CreationDateHeader" xml:space="preserve">
+    <value>Erstellungsdatum</value>
+  </data>
+    <data name="CreationDateLabel" xml:space="preserve">
+    <value>Erstellungsdatum:</value>
+  </data>
     <data name="CreationDateTemplateLabel" xml:space="preserve">
     <value>Erstellungsdatum: {0}</value>
   </data>
@@ -346,6 +352,9 @@
   </data>
     <data name="DuplicatedNameTitle" xml:space="preserve">
     <value>Name wird bereits verwendet</value>
+  </data>
+    <data name="EditAccountTitle" xml:space="preserve">
+    <value>{0} Bearbeiten</value>
   </data>
     <data name="EditCategoryTitle" xml:space="preserve">
     <value>Kategorie bearbeiten</value>
@@ -413,11 +422,20 @@
     <data name="IncomeAndExpensesLabel" xml:space="preserve">
     <value>Einkommen und Ausgaben</value>
   </data>
+    <data name="IncomeHeader" xml:space="preserve">
+    <value>Einnahme hinzufügen</value>
+  </data>
     <data name="IncomeLabel" xml:space="preserve">
     <value>Einnahme</value>
   </data>
+    <data name="IncomeSpendingLabel" xml:space="preserve">
+    <value>Einnahmen / Ausgaben:</value>
+  </data>
     <data name="IncreaseLabel" xml:space="preserve">
     <value>Gewinn</value>
+  </data>
+    <data name="InfoLabel" xml:space="preserve">
+    <value>Info</value>
   </data>
     <data name="InfoOpenSource" xml:space="preserve">
     <value>Dieses Programm ist Open Source. Wir würden uns freuen mit dir zusammenzuarbeiten!
@@ -429,17 +447,32 @@ Klicke auf den Link um das Repository zu besuchen:</value>
     <data name="InvalidEnddateTitle" xml:space="preserve">
     <value>Ungültiges Enddatum</value>
   </data>
+    <data name="InvalidNumberCurrentBalanceMessage" xml:space="preserve">
+    <value>Ihr aktueller Kontostand scheint eine ungültige Zahl zu sein. Bitte überprüfen Sie, dass Sie keine Sonderzeichen eingegeben und das richtige Trennzeichen verwendet haben.</value>
+  </data>
+    <data name="InvalidNumberTitle" xml:space="preserve">
+    <value>Ungültige Zahl</value>
+  </data>
     <data name="IsClearedLabel" xml:space="preserve">
     <value>Verbucht</value>
   </data>
     <data name="IsExcludedLabel" xml:space="preserve">
     <value>Konto von Monatsbilanz ausschliessen</value>
   </data>
+    <data name="IsGroupedLabel" xml:space="preserve">
+    <value>Liste gruppieren</value>
+  </data>
+    <data name="IsRecurringFilterLabel" xml:space="preserve">
+    <value>Wiederkehrend</value>
+  </data>
     <data name="IsRecurringLabel" xml:space="preserve">
     <value>Wiederkehrend</value>
   </data>
     <data name="LastBackupDateLabel" xml:space="preserve">
     <value>Letzte Sicherung wurde erstellt am:</value>
+  </data>
+    <data name="LightLabel" xml:space="preserve">
+    <value>Hell</value>
   </data>
     <data name="LoadingLabel" xml:space="preserve">
     <value>Wird geladen...</value>
@@ -470,6 +503,15 @@ Klicke auf den Link um das Repository zu besuchen:</value>
   </data>
     <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
     <value>Pflichtfeld</value>
+  </data>
+    <data name="ModificationDateHeader" xml:space="preserve">
+    <value>Änderungsdatum</value>
+  </data>
+    <data name="ModificationDateLabel" xml:space="preserve">
+    <value>Änderungsdatum:</value>
+  </data>
+    <data name="ModificationDateTemplateLabel" xml:space="preserve">
+    <value>Änderungsdatum: {0}</value>
   </data>
     <data name="ModifyRecurrenceMessage" xml:space="preserve">
     <value>Du hast eine wiederkehrende Zahlung bearbeitet. Möchtest du die Wiederholungen ebenfalls anpassen?</value>
@@ -507,6 +549,9 @@ Klicke auf den Link um das Repository zu besuchen:</value>
     <data name="NoCategoryLabel" xml:space="preserve">
     <value>Keine Kategorie</value>
   </data>
+    <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
+    <value>Kein Eintrag ausgewählt. Wählen Sie einen Eintrag in der Liste, um die Zahlungen anzuzeigen.</value>
+  </data>
     <data name="NoLabel" xml:space="preserve">
     <value>Nein</value>
   </data>
@@ -521,6 +566,9 @@ Klicke auf den Link um das Repository zu besuchen:</value>
   </data>
     <data name="NoteLabel" xml:space="preserve">
     <value>Notiz</value>
+  </data>
+    <data name="NotNowLabel" xml:space="preserve">
+    <value>Nicht jetzt</value>
   </data>
     <data name="OkLabel" xml:space="preserve">
     <value>OK</value>
@@ -547,11 +595,21 @@ Erstellte Zahlungen werden dir unter dem ausgewählten Konto angezeigt. Um dorth
     <data name="PaymentTypeLabel" xml:space="preserve">
     <value>Zahlungstyp</value>
   </data>
+    <data name="PersonalizationTitle" xml:space="preserve">
+    <value>Personalisierung</value>
+  </data>
     <data name="QuarterlyLabel" xml:space="preserve">
     <value>Vierteljährlich</value>
   </data>
     <data name="RateLabel" xml:space="preserve">
     <value>Bewerte diese App!</value>
+  </data>
+    <data name="RateReminderText" xml:space="preserve">
+    <value>Wir hoffen dass dir unser App gefällt. Unterstütze uns mit einer Bewertung.
+Möchtest du jetzt in den store gehen um eine Bewertung abzugeben?</value>
+  </data>
+    <data name="RateReminderTitle" xml:space="preserve">
+    <value>Bewerte dieses App</value>
   </data>
     <data name="RecurrenceLabel" xml:space="preserve">
     <value>Wiederholung</value>
@@ -587,6 +645,12 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <data name="SavingPaymentMessage" xml:space="preserve">
     <value>Zahlung speichern...</value>
   </data>
+    <data name="SearchLabel" xml:space="preserve">
+    <value>Suche</value>
+  </data>
+    <data name="SelectCategoryTitle" xml:space="preserve">
+    <value>Kategorie auswählen</value>
+  </data>
     <data name="SelectDateLabel" xml:space="preserve">
     <value>Datum wählen</value>
   </data>
@@ -619,6 +683,9 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   </data>
     <data name="TimeRangeStartLabel" xml:space="preserve">
     <value>Zeitraum Start</value>
+  </data>
+    <data name="TransferHeader" xml:space="preserve">
+    <value>Übertrag hinzufügen</value>
   </data>
     <data name="TransferLabel" xml:space="preserve">
     <value>Übertrag</value>
@@ -660,6 +727,9 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
     <data name="YesLabel" xml:space="preserve">
     <value>Ja</value>
   </data>
+    <data name="StatisticsToolTip" xml:space="preserve">
+    <value>Statistiken über deine Einnahmen und Ausgaben</value>
+  </data>
     <data name="FailedToLoginToBackupMessage" xml:space="preserve">
     <value>Anmeldung zum Sicherungsdienst ist fehlgeschlagen. Das automatische Backup wurde deaktiviert. Bitte logge dich erneut ein und aktiviere es wieder.</value>
   </data>
@@ -686,6 +756,9 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
   </data>
     <data name="EditPaymentTitle" xml:space="preserve">
     <value>Zahlung bearbeiten</value>
+  </data>
+    <data name="InitialBalanceLabel" xml:space="preserve">
+    <value>Anfangsguthaben</value>
   </data>
     <data name="AllLabel" xml:space="preserve">
     <value>Alle</value>
@@ -734,6 +807,9 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
   </data>
     <data name="MonthlyBudgetLabel" xml:space="preserve">
     <value>Monatliches Budget:</value>
+  </data>
+    <data name="TimeRangeLabel" xml:space="preserve">
+    <value>Zeitspanne</value>
   </data>
     <data name="LastFiveYearsLabel" xml:space="preserve">
     <value>Letzten fünf Jahre</value>
