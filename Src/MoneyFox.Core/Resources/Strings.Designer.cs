@@ -96,11 +96,29 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Manage your Accounts.
+        /// </summary>
+        public static string AccountsToolTip {
+            get {
+                return ResourceManager.GetString("AccountsToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Account.
         /// </summary>
         public static string AddAccountLabel {
             get {
                 return ResourceManager.GetString("AddAccountLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Account.
+        /// </summary>
+        public static string AddAccountTitle {
+            get {
+                return ResourceManager.GetString("AddAccountTitle", resourceCulture);
             }
         }
         
@@ -168,6 +186,24 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Payment.
+        /// </summary>
+        public static string AddPaymentTitle {
+            get {
+                return ResourceManager.GetString("AddPaymentTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a Payment with details.
+        /// </summary>
+        public static string AddPaymentToolTip {
+            get {
+                return ResourceManager.GetString("AddPaymentToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Transfer.
         /// </summary>
         public static string AddTransferTitle {
@@ -218,6 +254,15 @@ namespace MoneyFox.Core.Resources {
         public static string ANoteForPaymentIsRequired {
             get {
                 return ResourceManager.GetString("ANoteForPaymentIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply Filter.
+        /// </summary>
+        public static string ApplyFilterLabel {
+            get {
+                return ResourceManager.GetString("ApplyFilterLabel", resourceCulture);
             }
         }
         
@@ -317,6 +362,15 @@ namespace MoneyFox.Core.Resources {
         public static string BackupTitle {
             get {
                 return ResourceManager.GetString("BackupTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup your information.
+        /// </summary>
+        public static string BackupToolTip {
+            get {
+                return ResourceManager.GetString("BackupToolTip", resourceCulture);
             }
         }
         
@@ -456,6 +510,15 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Manage your Categories.
+        /// </summary>
+        public static string CategoriesToolTip {
+            get {
+                return ResourceManager.GetString("CategoriesToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Category.
         /// </summary>
         public static string CategoryLabel {
@@ -555,6 +618,15 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cleared.
+        /// </summary>
+        public static string ClearedFilterLabel {
+            get {
+                return ResourceManager.GetString("ClearedFilterLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to That&apos;s it! You&apos;re set for using the MoneyFox..
         /// </summary>
         public static string CompletedText {
@@ -596,6 +668,15 @@ namespace MoneyFox.Core.Resources {
         public static string ContributerLabel {
             get {
                 return ResourceManager.GetString("ContributerLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contributions.
+        /// </summary>
+        public static string ContributionsLabel {
+            get {
+                return ResourceManager.GetString("ContributionsLabel", resourceCulture);
             }
         }
         
@@ -942,6 +1023,15 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to End of Month.
+        /// </summary>
+        public static string EndOfMonthBalanceLabel {
+            get {
+                return ResourceManager.GetString("EndOfMonthBalanceLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to End Of Month:.
         /// </summary>
         public static string EndOfMonthLabel {
@@ -996,6 +1086,15 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add expense.
+        /// </summary>
+        public static string ExpenseHeader {
+            get {
+                return ResourceManager.GetString("ExpenseHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expenses.
         /// </summary>
         public static string ExpenseLabel {
@@ -1028,6 +1127,15 @@ namespace MoneyFox.Core.Resources {
         public static string FeedbackSubject {
             get {
                 return ResourceManager.GetString("FeedbackSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string FilterLabel {
+            get {
+                return ResourceManager.GetString("FilterLabel", resourceCulture);
             }
         }
         
