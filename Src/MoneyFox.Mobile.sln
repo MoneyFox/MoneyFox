@@ -13,12 +13,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0CF8258F-193E-4373-9E7A-61DB4579EE66}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
-		..\pipelines\azure-pipelines-android.yml = ..\pipelines\azure-pipelines-android.yml
-		..\pipelines\azure-pipelines-iOS.yml = ..\pipelines\azure-pipelines-iOS.yml
-		..\pipelines\azure-pipelines-validate-pr.yml = ..\pipelines\azure-pipelines-validate-pr.yml
-		..\pipelines\azure-pipelines-windows.yml = ..\pipelines\azure-pipelines-windows.yml
 		..\renovate.json = ..\renovate.json
-		..\pipelines\azure-pipelines-stryker.yml = ..\pipelines\azure-pipelines-stryker.yml
+		nuget.config = nuget.config
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile", "Mobile", "{322785EB-7924-4EC1-849E-79C91C1159C7}"
@@ -34,6 +30,15 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyFox.Core", "MoneyFox.Core\MoneyFox.Core.csproj", "{E593AFFA-EE19-4F42-8CC1-77B86ACF25A5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{68196064-35D5-4628-9065-329772C8745A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pipelines", "pipelines", "{A4E6CDD4-0BA6-4B87-A4E2-BD808CE4B952}"
+	ProjectSection(SolutionItems) = preProject
+		..\pipelines\azure-pipelines-android.yml = ..\pipelines\azure-pipelines-android.yml
+		..\pipelines\azure-pipelines-iOS.yml = ..\pipelines\azure-pipelines-iOS.yml
+		..\pipelines\azure-pipelines-stryker.yml = ..\pipelines\azure-pipelines-stryker.yml
+		..\pipelines\azure-pipelines-validate-pr.yml = ..\pipelines\azure-pipelines-validate-pr.yml
+		..\pipelines\azure-pipelines-winui.yml = ..\pipelines\azure-pipelines-winui.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -636,6 +641,7 @@ Global
 		{0D7B5BCE-3CB6-4FE4-806A-81BCAEFF18A1} = {68196064-35D5-4628-9065-329772C8745A}
 		{0429508E-AFD9-4F1C-900A-EA1997FC8567} = {68196064-35D5-4628-9065-329772C8745A}
 		{E593AFFA-EE19-4F42-8CC1-77B86ACF25A5} = {68196064-35D5-4628-9065-329772C8745A}
+		{A4E6CDD4-0BA6-4B87-A4E2-BD808CE4B952} = {0CF8258F-193E-4373-9E7A-61DB4579EE66}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		RESX_ShowErrorsInErrorList = False
