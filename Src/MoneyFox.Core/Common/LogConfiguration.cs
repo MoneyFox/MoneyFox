@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Common
+namespace MoneyFox.Core.Common
 {
 
     public static class LogConfiguration
