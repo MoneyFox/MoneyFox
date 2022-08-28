@@ -47,6 +47,7 @@
     </PackageReference>
     <PackageReference Include="SonarAnalyzer.CSharp">
       <Version>8.42.0.51121</Version>
+      <Version>8.44.0.52574</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>

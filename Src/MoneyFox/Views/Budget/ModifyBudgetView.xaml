@@ -26,19 +26,20 @@
                 <Entry x:Name="AmountEntry"
                        Keyboard="Numeric"
                        Focused="AmountFieldGotFocus"
-                       Placeholder="{x:Static resources:Strings.SpendingLimitLabel}"
+                       Placeholder="{x:Static resources:Strings.MonthlySpendingLimitLabel}"
                        Text="{Binding SelectedBudget.SpendingLimit, Converter={StaticResource DecimalConverter}}" />
 
-                <Picker Title="{x:Static resources:Strings.TimeRangeLabel}"
+                <Picker Title="{x:Static resources:Strings.EvaluationTimeRangeLabel}"
                         ItemsSource="{Binding TimeRangeCollection}"
                         SelectedItem="{Binding SelectedBudget.TimeRange}"
                         ItemDisplayBinding="{Binding ., Converter={StaticResource BudgetTimeRangeStringConverter}}" />
 
+                <Label Text="{x:Static resources:Strings.EvaluationTimeRangeMessage}" Style="{StaticResource TextBodySecondary}" />
+                
                 <Button Text="{x:Static resources:Strings.SelectCategoryLabel}"
                         Command="{Binding OpenCategorySelectionCommand}" />
-
+                
                 <Label Text="{x:Static resources:Strings.SelectedCategoriesLabel}" />
-
                 <CollectionView x:Name="BudgetCategoryCollectionView"
                                 SelectionMode="Single"
                                 ItemsLayout="VerticalGrid, 2"

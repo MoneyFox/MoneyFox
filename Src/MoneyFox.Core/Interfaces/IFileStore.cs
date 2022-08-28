@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Interfaces
+namespace MoneyFox.Core.Interfaces
 {
 
     using System.Collections.Generic;

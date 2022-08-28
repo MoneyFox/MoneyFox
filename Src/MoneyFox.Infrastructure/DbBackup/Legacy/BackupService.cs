@@ -2,6 +2,7 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
 {
 
     using System;
+    using System.IO;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
@@ -9,7 +10,6 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
     using CommunityToolkit.Mvvm.Messaging;
     using Core.ApplicationCore.Domain.Exceptions;
     using Core.ApplicationCore.UseCases.DbBackup;
-    using Core.Common.Extensions;
     using Core.Common.Facades;
     using Core.Common.Interfaces;
     using Core.Common.Messages;
@@ -20,6 +20,7 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
     internal sealed class BackupService : ObservableRecipient, IBackupService, IDisposable
     {
         private const string TEMP_DOWNLOAD_PATH = "backupmoneyfox3.db";
+        private readonly IAppDbContext appDbContext;
 
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly IConnectivityAdapter connectivity;
@@ -30,7 +31,6 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(initialCount: 1, maxCount: 1);
         private readonly ISettingsFacade settingsFacade;
         private readonly IToastService toastService;
-        private readonly IAppDbContext appDbContext;
 
         public BackupService(
             IOneDriveBackupService oneDriveBackupService,
@@ -171,16 +171,14 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
                 await using (var backupStream = await oneDriveBackupService.RestoreAsync())
                 {
                     settingsFacade.LastDatabaseUpdate = backupDate.ToLocalTime();
-                    await fileStore.WriteFileAsync(path: TEMP_DOWNLOAD_PATH, contents: backupStream.ReadToEnd());
+                    var ms = new MemoryStream();
+                    await backupStream.CopyToAsync(ms);
+                    await fileStore.WriteFileAsync(path: TEMP_DOWNLOAD_PATH, contents: ms.ToArray());
                 }
 
                 var moveSucceed = await fileStore.TryMoveAsync(from: TEMP_DOWNLOAD_PATH, destination: dbPathProvider.GetDbPath(), overwrite: true);
-                if (!moveSucceed)
-                {
-                    throw new BackupException("Error Moving downloaded backup file");
-                }
 
-                return BackupRestoreResult.NewBackupRestored;
+                return !moveSucceed ? throw new BackupException("Error Moving downloaded backup file") : BackupRestoreResult.NewBackupRestored;
             }
             catch (BackupOperationCanceledException ex)
             {
