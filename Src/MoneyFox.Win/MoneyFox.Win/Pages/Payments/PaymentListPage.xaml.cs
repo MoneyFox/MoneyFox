@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Win.Pages.Payments;
+namespace MoneyFox.Win.Pages.Payments;
 
 using System.Globalization;
 using CommunityToolkit.WinUI.UI.Controls;
@@ -17,6 +17,8 @@ public sealed partial class PaymentListPage
     }
 
     public override bool ShowHeader => false;
+
+    public int AccountID => ViewModel.AccountId;
 
     private PaymentListViewModel ViewModel => (PaymentListViewModel)DataContext;
 

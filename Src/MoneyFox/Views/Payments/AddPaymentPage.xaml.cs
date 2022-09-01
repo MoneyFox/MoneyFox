@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Views.Payments
+namespace MoneyFox.Views.Payments
 {
 
     using Core.Resources;
@@ -7,6 +7,14 @@
 
     public partial class AddPaymentPage
     {
+        private int? defaultChargedAccountID;
+
+        public int? DefaultChargedAccountID
+        {
+            // Change to init setter when the project is upgraded to C# 9.
+            set => defaultChargedAccountID = value;
+        }
+
         public AddPaymentPage()
         {
             InitializeComponent();
@@ -35,7 +43,7 @@
 
         protected override async void OnAppearing()
         {
-            await ViewModel.InitializeAsync();
+            await ViewModel.InitializeAsync(defaultChargedAccountID);
         }
     }
 

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.Payments
+namespace MoneyFox.ViewModels.Payments
 {
 
     using System.Collections.Generic;
@@ -81,7 +81,10 @@
                 PaymentRecurrence.Yearly
             };
 
-        public AsyncRelayCommand GoToAddPaymentCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToModalAsync(Routes.AddPaymentRoute));
+        public AsyncRelayCommand GoToAddPaymentCommand
+            => new AsyncRelayCommand(
+                async () => await Shell.Current.Navigation.PushModalAsync(
+                    new NavigationPage(new AddPaymentPage() { DefaultChargedAccountID = SelectedAccount.Id }) { BarBackgroundColor = Color.Transparent }));
 
         public AsyncRelayCommand<PaymentViewModel> GoToEditPaymentCommand
             => new AsyncRelayCommand<PaymentViewModel>(
