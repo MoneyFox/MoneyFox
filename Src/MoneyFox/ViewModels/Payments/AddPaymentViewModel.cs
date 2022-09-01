@@ -27,10 +27,10 @@ namespace MoneyFox.ViewModels.Payments
             this.mapper = mapper;
         }
 
-        public new async Task InitializeAsync()
+        public async Task InitializeAsync(int? defaultChargedAccountID = null)
         {
             await base.InitializeAsync();
-            SelectedPayment.ChargedAccount = ChargedAccounts.FirstOrDefault();
+            SelectedPayment.ChargedAccount = defaultChargedAccountID.HasValue ? ChargedAccounts.FirstOrDefault(n => n.Id == defaultChargedAccountID.Value) : ChargedAccounts.FirstOrDefault();
         }
 
         protected override async Task SavePaymentAsync()

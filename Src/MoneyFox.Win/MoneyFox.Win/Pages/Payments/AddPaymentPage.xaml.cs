@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Win.Pages.Payments;
+namespace MoneyFox.Win.Pages.Payments;
 
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Resources;
@@ -19,8 +19,16 @@ public sealed partial class AddPaymentPage
 
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
-        var passedType = e.Parameter as PaymentType?;
-        var type = passedType == null ? PaymentType.Expense : passedType.Value;
+        PaymentType type = PaymentType.Expense;
+        if (e.Parameter is PaymentType)
+        {
+            type = (PaymentType)e.Parameter;
+        }
+        else if (e.Parameter is int)
+        {
+            ViewModel.DefaultChargedAccountID = (int)e.Parameter;
+        }
+
         ViewModel.PaymentType = type;
         ViewModel.InitializeCommand.Execute(null);
     }

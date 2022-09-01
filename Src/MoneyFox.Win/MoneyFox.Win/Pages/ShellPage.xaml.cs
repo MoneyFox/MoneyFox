@@ -27,7 +27,8 @@ public sealed partial class ShellPage : Page
 
     private void AddPaymentItemTapped(object sender, TappedRoutedEventArgs e)
     {
-        MainContentFrame.Navigate(typeof(AddPaymentPage));
+        var isCurrentPagePaymentList = MainContentFrame.Content is PaymentListPage;
+        MainContentFrame.Navigate(typeof(AddPaymentPage), isCurrentPagePaymentList ? ((PaymentListPage)MainContentFrame.Content).AccountID : null);
     }
 
     private void MenuNav_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
