@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Win.ViewModels.Payments;
+namespace MoneyFox.Win.ViewModels.Payments;
 
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,6 +21,8 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
     private readonly IMapper mapper;
     private readonly IMediator mediator;
 
+    private int? defaultChargedAccountID = null;
+
     public AddPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, INavigationService navigationService) : base(
         mediator: mediator,
         mapper: mapper,
@@ -34,6 +36,8 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
 
     public PaymentType PaymentType { get; set; }
 
+    public int? DefaultChargedAccountID { set => defaultChargedAccountID = value; }
+
     public RelayCommand InitializeCommand => new(async () => await InitializeAsync());
 
     protected override async Task InitializeAsync()
@@ -42,7 +46,7 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
         AmountString = HelperFunctions.FormatLargeNumbers(SelectedPayment.Amount);
         SelectedPayment.Type = PaymentType;
         await base.InitializeAsync();
-        SelectedPayment.ChargedAccount = ChargedAccounts.FirstOrDefault();
+        SelectedPayment.ChargedAccount = defaultChargedAccountID.HasValue ? ChargedAccounts.FirstOrDefault(n => n.Id == defaultChargedAccountID.Value) : ChargedAccounts.FirstOrDefault();
         if (SelectedPayment.IsTransfer)
         {
             SelectedItemChangedCommand.Execute(null);
