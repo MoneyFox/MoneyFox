@@ -66,83 +66,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Remove="Common\**" />
-      <Compile Remove="Controls\**" />
-      <Compile Remove="InversionOfControl\**" />
-      <Compile Remove="ViewModels\**" />
-      <Compile Remove="Views\**" />
-      <EmbeddedResource Remove="Common\**" />
-      <EmbeddedResource Remove="Controls\**" />
-      <EmbeddedResource Remove="InversionOfControl\**" />
-      <EmbeddedResource Remove="ViewModels\**" />
-      <EmbeddedResource Remove="Views\**" />
-      <MauiCss Remove="Common\**" />
-      <MauiCss Remove="Controls\**" />
-      <MauiCss Remove="InversionOfControl\**" />
-      <MauiCss Remove="ViewModels\**" />
-      <MauiCss Remove="Views\**" />
-      <MauiXaml Remove="Common\**" />
-      <MauiXaml Remove="Controls\**" />
-      <MauiXaml Remove="InversionOfControl\**" />
-      <MauiXaml Remove="ViewModels\**" />
-      <MauiXaml Remove="Views\**" />
-      <None Remove="Common\**" />
-      <None Remove="Controls\**" />
-      <None Remove="InversionOfControl\**" />
-      <None Remove="ViewModels\**" />
-      <None Remove="Views\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <PRIResource Remove="Controls\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <PRIResource Remove="InversionOfControl\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <PRIResource Remove="ViewModels\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <PRIResource Remove="Views\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Remove="Converter\AccountNameConverter.cs" />
-      <Compile Remove="Converter\NoCategorySelectedConverter.cs" />
-      <Compile Remove="Converter\PaymentAmountConverter.cs" />
-      <Compile Remove="Mapping\AutoMapperFactory.cs" />
-      <Compile Remove="Mapping\AutoMapperProfile.cs" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <PRIResource Remove="Common\**" />
-    </ItemGroup>
-
-    <ItemGroup>
       <None Remove="Platforms\Windows\Package.appxmanifest" />
       <None Remove="Resources\Fonts\MaterialIconsRound-Regular.otf" />
       <None Remove="Resources\Fonts\ProductSans-Regular.ttf" />
       <None Remove="Resources\Fonts\RobotoMono-Regular.ttf" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Include="Common\ConverterLogic\RecurrenceTypeConverterLogic.cs" />
-      <Compile Include="Common\Exceptions\ResolveDependencyException.cs" />
-      <Compile Include="Common\Exceptions\ResolveViewModelException.cs" />
-      <Compile Include="Common\Extensions\NavigationExtension.cs" />
-      <Compile Include="Common\Extensions\TranslateExtension.cs" />
-      <Compile Include="Common\FileStoreIoBase.cs" />
-      <Compile Include="Common\Groups\AlphaGroupListGroupCollection.cs" />
-      <Compile Include="Common\Groups\DateListGroupCollection.cs" />
-      <Compile Include="Common\Services\NavigationService.cs" />
-      <Compile Include="Common\Services\ToastService.cs" />
-      <Compile Include="Common\Utilities\HelperFunctions.cs" />
-      <Compile Include="Common\Utilities\PaymentTypeHelper.cs" />
-      <Compile Include="InversionOfControl\MoneyFoxConfig.cs" />
-      <Compile Include="ViewModels\BaseViewModel.cs" />
     </ItemGroup>
 
     <ItemGroup>
