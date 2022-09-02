@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage
+    x:Class="MoneyFox.Views.Dashboard.DashboardPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:MoneyFox.Converter"
+    xmlns:accounts="clr-namespace:MoneyFox.ViewModels.Accounts;assembly=MoneyFox"
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core">
+
+    <ContentPage.Resources>
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:BalanceColorConverter x:Key="BalanceColorConverter" />
+    </ContentPage.Resources>
+
+    <Shell.TitleView>
+        <Grid>
+            <ImageButton Margin="0,0,5,0"
+                         Padding="0"
+                         BorderWidth="0"
+                         Command="{Binding GoToAddPaymentCommand}"
+                         HeightRequest="44"
+                         HorizontalOptions="End"
+                         VerticalOptions="Center"
+                         WidthRequest="66"
+                         Style="{StaticResource PrimaryImageButton}">
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="MaterialIconsRound" Glyph="add" Color="White" />
+                </ImageButton.Source>
+            </ImageButton>
+        </Grid>
+    </Shell.TitleView>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid Padding="15"
+                  IsClippedToBounds="False"
+                  RowDefinitions="35, 40, 90, 160, 140,*">
+
+                <Label Style="{StaticResource TextHeadline}" Text="{x:Static resources:Strings.WelcomeLabel}" />
+
+                <Label Grid.Row="1"
+                       Style="{StaticResource TextTitle}"
+                       Text="{x:Static resources:Strings.AssetsLabel}"
+                       VerticalOptions="Center" />
+
+                <!--  Assets card  -->
+                <Border Grid.Row="2"
+                        BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
+                        Stroke="black"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 10"
+                        HeightRequest="90"
+                        HorizontalOptions="FillAndExpand">
+
+                    <Border.Shadow>
+                        <Shadow Brush="Black"
+                                Offset="5,5"
+                                Radius="30"
+                                Opacity="0.8" />
+                    </Border.Shadow>
+
+                    <Grid>
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding GoToAccountsCommand}" />
+                        </Grid.GestureRecognizers>
+
+                        <Label
+                            FontAttributes="Bold"
+                            FontFamily="Product"
+                            FontSize="22"
+                            HorizontalOptions="Center"
+                            Style="{Binding Assets, Converter={StaticResource BalanceColorConverter}}"
+                            Text="{Binding Assets, Converter={StaticResource AmountFormatConverter}}"
+                            VerticalTextAlignment="Center" />
+
+                        <StackLayout Orientation="Horizontal"
+                                     VerticalOptions="End"
+                                     Spacing="6"
+                                     HorizontalOptions="End">
+                            <Label
+                                Margin="0,0,0,2"
+                                FontFamily="Product"
+                                FontSize="15"
+                                HorizontalTextAlignment="End"
+                                Text="{x:Static resources:Strings.EndOfMonthLabel}"
+                                VerticalTextAlignment="End" />
+
+                            <Label
+                                Margin="0,0,6,2"
+                                FontFamily="Product"
+                                FontSize="15"
+                                HorizontalTextAlignment="End"
+                                Style="{Binding EndOfMonthBalance, Converter={StaticResource BalanceColorConverter}}"
+                                Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}"
+                                VerticalTextAlignment="End" />
+                        </StackLayout>
+                    </Grid>
+                </Border>
+
+                <!--  Accounts  -->
+                <Grid Grid.Row="3" VerticalOptions="FillAndExpand" RowDefinitions="*, 35">
+
+                    <CollectionView
+                        x:Name="AccountCollectionView"
+                        EmptyView="{x:Static resources:Strings.NoAccountsMessage}"
+                        ItemsLayout="HorizontalList"
+                        ItemsSource="{Binding Accounts}">
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="accounts:AccountViewModel">
+                                <Grid Padding="10,15,10,15" WidthRequest="180">
+
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference Name=AccountCollectionView}}"
+                                            CommandParameter="{Binding .}" />
+                                    </Grid.GestureRecognizers>
+
+
+                                    <Border
+                                        BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                                          Light={StaticResource CardBackgroundLight}}"
+                                        StrokeShape="RoundRectangle 10"
+                                        Stroke="black"
+                                        StrokeThickness="0"
+                                        HeightRequest="80"
+                                        HorizontalOptions="FillAndExpand">
+
+                                        <Border.Shadow>
+                                            <Shadow Brush="Black"
+                                                    Offset="5,5"
+                                                    Radius="30"
+                                                    Opacity="0.8" />
+                                        </Border.Shadow>
+
+                                        <Grid>
+                                            <Label
+                                                Margin="10,2,0,0"
+                                                Style="{StaticResource TextHead}"
+                                                Text="{Binding Name}"
+                                                VerticalTextAlignment="Start" />
+
+                                            <Label
+                                                Margin="0,0,6,2"
+                                                FontFamily="Product"
+                                                FontSize="20"
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center"
+                                                Style="{Binding CurrentBalance, Converter={StaticResource BalanceColorConverter}}"
+                                                Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}" />
+
+                                            <StackLayout Orientation="Horizontal"
+                                                         VerticalOptions="End"
+                                                         Spacing="6"
+                                                         HorizontalOptions="End">
+                                                <Label
+                                                    Margin="0,0,0,2"
+                                                    FontFamily="Product"
+                                                    FontSize="10"
+                                                    VerticalOptions="End"
+                                                    Text="{x:Static resources:Strings.EndOfMonthLabel}" />
+
+                                                <Label
+                                                    Margin="0,0,6,2"
+                                                    FontFamily="Product"
+                                                    FontSize="10"
+                                                    VerticalOptions="End"
+                                                    Style="{Binding EndOfMonthBalance, Converter={StaticResource BalanceColorConverter}}"
+                                                    Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}" />
+                                            </StackLayout>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+
+                    </CollectionView>
+
+                    <Button Grid.Row="1"
+                            Margin="0,12,0,0"
+                            BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark},
+                                                          Light={StaticResource BackgroundColorLight}}"
+                            Command="{Binding GoToAccountsCommand}"
+                            HorizontalOptions="End"
+                            Style="{StaticResource LinkButton}"
+                            Text="{x:Static resources:Strings.GoToAccountsLabel}" />
+                </Grid>
+
+                <!--  Income / Expenses  -->
+                <StackLayout Grid.Row="4" VerticalOptions="Start">
+                    <Label
+                        Style="{StaticResource TextTitle}"
+                        Text="{x:Static resources:Strings.IncomeAndExpensesLabel}"
+                        VerticalOptions="Center" />
+
+                    <Grid ColumnDefinitions="*, 10, *">
+
+                        <Border
+                            Grid.Column="0"
+                            BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                              Light={StaticResource CardBackgroundLight}}"
+                            StrokeShape="RoundRectangle 10"
+                            Stroke="black"
+                            StrokeThickness="0"
+                            HeightRequest="80"
+                            HorizontalOptions="FillAndExpand">
+
+                            <Border.Shadow>
+                                <Shadow Brush="Black"
+                                        Offset="5,5"
+                                        Radius="30"
+                                        Opacity="0.8" />
+                            </Border.Shadow>
+
+                            <Grid>
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontFamily="Product"
+                                    FontSize="18"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    Text="{Binding MonthlyIncomes, StringFormat='+ {0:C}', Converter={StaticResource AmountFormatConverter}}" />
+                            </Grid>
+                        </Border>
+
+                        <Border
+                            Grid.Column="2"
+                            BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                              Light={StaticResource CardBackgroundLight}}"
+                            StrokeShape="RoundRectangle 10"
+                            Stroke="black"
+                            StrokeThickness="0"
+                            HeightRequest="80"
+                            HorizontalOptions="FillAndExpand">
+
+                            <Border.Shadow>
+                                <Shadow Brush="Black"
+                                        Offset="5,5"
+                                        Radius="30"
+                                        Opacity="0.8" />
+                            </Border.Shadow>
+
+                            <Grid>
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontFamily="Product"
+                                    FontSize="18"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    Text="{Binding MonthlyExpenses, StringFormat='- {0:C}', Converter={StaticResource AmountFormatConverter}}" />
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

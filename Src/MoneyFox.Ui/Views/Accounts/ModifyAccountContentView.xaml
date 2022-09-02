@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:MoneyFox.Converter"
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    x:Class="MoneyFox.Views.Accounts.ModifyAccountContentView">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converter:DecimalConverter x:Key="DecimalConverter" />
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ContentView.Content>
+        <StackLayout>
+
+            <Entry Placeholder="{x:Static resources:Strings.AccountNameLabel}"
+                   Text="{Binding SelectedAccountVm.Name}" />
+
+            <Entry x:Name="AmountEntry"
+                   Keyboard="Numeric"
+                   Focused="AmountFieldGotFocus"
+                   IsEnabled="{Binding IsEdit, Converter={StaticResource InverseBoolConverter}}"
+                   Placeholder="{x:Static resources:Strings.CurrentBalanceLabel}"
+                   Text="{Binding SelectedAccountVm.CurrentBalance, Converter={StaticResource DecimalConverter}}" />
+
+            <Entry Placeholder="{x:Static resources:Strings.NoteLabel}"
+                   Text="{Binding SelectedAccountVm.Note}" />
+
+            <Grid Margin="0,5,0,0" HorizontalOptions="FillAndExpand">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70*" />
+                    <ColumnDefinition Width="20*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0"
+                       Text="{x:Static resources:Strings.IsExcludedLabel}" />
+                <Switch
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    IsToggled="{Binding SelectedAccountVm.IsExcluded}" />
+            </Grid>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

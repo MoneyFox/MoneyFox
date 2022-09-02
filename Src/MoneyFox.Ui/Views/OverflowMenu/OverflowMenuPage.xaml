@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MoneyFox.Views.OverflowMenu.OverflowMenuPage"
+             xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+             xmlns:overflowmenu="clr-namespace:MoneyFox.ViewModels.OverflowMenu"
+             Title="{x:Static resources:Strings.MenuTitle}">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <CollectionView x:Name="OverflowMenuCollectionView"
+                            ItemsSource="{Binding OverflowEntries}">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="overflowmenu:OverflowItemViewModel">
+                        <Grid Padding="15,6,15,8">
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding BindingContext.GoToSelectedItemCommand, Source={x:Reference Name=OverflowMenuCollectionView}}"
+                                    CommandParameter="{Binding .}" />
+                            </Grid.GestureRecognizers>
+
+                            <Border
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
+                                Padding="15"
+                                Stroke="black"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 10"
+                                MinimumHeightRequest="45"
+                                HorizontalOptions="FillAndExpand">
+
+                                <Border.Shadow>
+                                    <Shadow Brush="Black"
+                                            Offset="5,5"
+                                            Radius="30"
+                                            Opacity="0.8" />
+                                </Border.Shadow>
+
+                                <StackLayout Orientation="Horizontal" x:DataType="overflowmenu:OverflowItemViewModel">
+                                    <Image HeightRequest="15"
+                                           WidthRequest="15">
+                                        <Image.Source>
+                                            <FontImageSource FontFamily="MaterialIconsRound"
+                                                             Glyph="{Binding IconGlyph}" />
+                                        </Image.Source>
+                                    </Image>
+                                    <Label Text="{Binding Name}" Style="{DynamicResource TextSubHead}" />
+                                </StackLayout>
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
