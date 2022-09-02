@@ -5,10 +5,13 @@
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
   IgnorableNamespaces="uap rescap">
 
-  <Identity Name="maui-package-name-placeholder" Publisher="CN=User Name" Version="0.0.0.0" />
+    <Identity
+        Name="57598ApplySolutionsSoftwa.MoneyFoxBeta"
+        Publisher="CN=071307B1-B0E3-434A-AD0E-FFF714A7245C"
+        Version="7.3.7802.0"/>
 
   <Properties>
-    <DisplayName>$placeholder$</DisplayName>
+    <DisplayName>Money Fox</DisplayName>
     <PublisherDisplayName>User Name</PublisherDisplayName>
     <Logo>$placeholder$.png</Logo>
   </Properties>
@@ -25,19 +28,23 @@
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="$placeholder$"
-        Description="$placeholder$"
+        DisplayName="MoneyFox"
         Square150x150Logo="$placeholder$.png"
         Square44x44Logo="$placeholder$.png"
-        BackgroundColor="transparent">
+        BackgroundColor="transparent" Description="A way to make budgeting easy. A basic idea for the community, made even better by the community.">
         <uap:DefaultTile Square71x71Logo="$placeholder$.png" Wide310x150Logo="$placeholder$.png" Square310x310Logo="$placeholder$.png" />
         <uap:SplashScreen Image="$placeholder$.png" />
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="landscape"/>
+          <uap:Rotation Preference="portrait"/>
+          <uap:Rotation Preference="landscapeFlipped"/>
+          <uap:Rotation Preference="portraitFlipped"/></uap:InitialRotationPreference>
       </uap:VisualElements>
     </Application>
   </Applications>
-
-  <Capabilities>
-    <rescap:Capability Name="runFullTrust" />
-  </Capabilities>
-
+    
+    <Capabilities>
+        <rescap:Capability Name="runFullTrust"/>
+        <Capability Name="internetClient"/>
+    </Capabilities>
 </Package>

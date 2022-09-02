@@ -12,10 +12,10 @@
 
 
 		<!-- Display name -->
-		<ApplicationTitle>MoneyFox.Ui</ApplicationTitle>
+		<ApplicationTitle>MoneyFox</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.moneyfox.ui</ApplicationId>
+		<ApplicationId>com.applysolutions.moneyfox</ApplicationId>
 		<ApplicationIdGuid>DC1FC722-07EF-4356-9616-91A59959004B</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -28,6 +28,7 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		<DefaultLanguage>en</DefaultLanguage>
 	</PropertyGroup>
 
     <ItemGroup>
@@ -114,7 +115,6 @@
       <Compile Remove="Converter\PaymentAmountConverter.cs" />
       <Compile Remove="Mapping\AutoMapperFactory.cs" />
       <Compile Remove="Mapping\AutoMapperProfile.cs" />
-      <Compile Remove="Routes.cs" />
     </ItemGroup>
 
     <ItemGroup>
@@ -122,6 +122,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Remove="Platforms\Windows\Package.appxmanifest" />
       <None Remove="Resources\Fonts\MaterialIconsRound-Regular.otf" />
       <None Remove="Resources\Fonts\ProductSans-Regular.ttf" />
       <None Remove="Resources\Fonts\RobotoMono-Regular.ttf" />
@@ -129,6 +130,8 @@
 
     <ItemGroup>
       <Compile Include="Common\ConverterLogic\RecurrenceTypeConverterLogic.cs" />
+      <Compile Include="Common\Exceptions\ResolveDependencyException.cs" />
+      <Compile Include="Common\Exceptions\ResolveViewModelException.cs" />
       <Compile Include="Common\Extensions\NavigationExtension.cs" />
       <Compile Include="Common\Extensions\TranslateExtension.cs" />
       <Compile Include="Common\FileStoreIoBase.cs" />
@@ -138,10 +141,19 @@
       <Compile Include="Common\Services\ToastService.cs" />
       <Compile Include="Common\Utilities\HelperFunctions.cs" />
       <Compile Include="Common\Utilities\PaymentTypeHelper.cs" />
+      <Compile Include="InversionOfControl\MoneyFoxConfig.cs" />
+      <Compile Include="ViewModels\BaseViewModel.cs" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\MoneyFox.Core\MoneyFox.Core.csproj" />
+      <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AppxManifest Update="Platforms\Windows\Package.appxmanifest">
+        <SubType>Designer</SubType>
+      </AppxManifest>
     </ItemGroup>
 
 </Project>
