@@ -41,4 +41,27 @@
     <Color x:Key="Blue200Accent">#72ACF1</Color>
     <Color x:Key="Blue300Accent">#A7CBF6</Color>
 
+    <!-- Colors -->
+    <Color x:Key="ThemePrimary">#FF3300</Color>
+    <Color x:Key="ThemeLighterAlt">#fff7f5</Color>
+    <Color x:Key="ThemeLighter">#ffded6</Color>
+    <Color x:Key="ThemeTertiary">#ff8566</Color>
+    <Color x:Key="ThemeSecondary">#ff4b1f</Color>
+    <Color x:Key="ThemeDarkAlt">#e62e00</Color>
+    <Color x:Key="ThemeDark">#c22700</Color>
+    <Color x:Key="ThemeDarker">#8f1d00</Color>
+
+    <Color x:Key="NeutralLighterAlt">#f8f8f8</Color>
+    <Color x:Key="NeutralLighter">#f4f4f4</Color>
+    <Color x:Key="NeutralLight">#eaeaea</Color>
+    <Color x:Key="NeutralQuaternaryAlt">#dadada</Color>
+    <Color x:Key="NeutralQuaternary">#d0d0d0</Color>
+    <Color x:Key="NeutralTertiaryAlt">#c8c8c8</Color>
+    <Color x:Key="NeutralTertiary">#bab8b7</Color>
+    <Color x:Key="NeutralSecondaryAlt">#a3a2a0</Color>
+    <Color x:Key="NeutralSecondary">#a3a2a0</Color>
+    <Color x:Key="NeutralPrimaryAlt">#8d8b8a</Color>
+    <Color x:Key="NeutralPrimary">#323130</Color>
+    <Color x:Key="NeutralDark">#605e5d</Color>
+
 </ResourceDictionary>

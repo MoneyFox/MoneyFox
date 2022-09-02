@@ -7,7 +7,9 @@
 		<RootNamespace>MoneyFox.Ui</RootNamespace>
 		<UseMaui>true</UseMaui>
 		<SingleProject>true</SingleProject>
-		<ImplicitUsings>enable</ImplicitUsings>
+		<ImplicitUsings>enable</ImplicitUsings>   
+        <Nullable>enable</Nullable>
+
 
 		<!-- Display name -->
 		<ApplicationTitle>MoneyFox.Ui</ApplicationTitle>
@@ -47,39 +49,45 @@
 	</ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="Autofac" Version="6.4.0" />
+        <PackageReference Include="Autofac.Extras.CommonServiceLocator" Version="6.0.1" />
+        <PackageReference Include="CommunityToolkit.Maui" Version="1.2.0" />
+        <PackageReference Include="CommunityToolkit.Maui.Core" Version="1.2.0" />
+        <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
+        <PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-beta.300" />
+        <PackageReference Include="Serilog" Version="2.11.0" />
+        <PackageReference Include="Microsoft.Identity.Client" Version="4.46.0-preview2" />
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.42.0.51121">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="MediatR" Version="10.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
       <Compile Remove="Common\**" />
       <Compile Remove="Controls\**" />
-      <Compile Remove="Infrastructure\**" />
       <Compile Remove="InversionOfControl\**" />
-      <Compile Remove="Mapping\**" />
       <Compile Remove="ViewModels\**" />
       <Compile Remove="Views\**" />
       <EmbeddedResource Remove="Common\**" />
       <EmbeddedResource Remove="Controls\**" />
-      <EmbeddedResource Remove="Infrastructure\**" />
       <EmbeddedResource Remove="InversionOfControl\**" />
-      <EmbeddedResource Remove="Mapping\**" />
       <EmbeddedResource Remove="ViewModels\**" />
       <EmbeddedResource Remove="Views\**" />
       <MauiCss Remove="Common\**" />
       <MauiCss Remove="Controls\**" />
-      <MauiCss Remove="Infrastructure\**" />
       <MauiCss Remove="InversionOfControl\**" />
-      <MauiCss Remove="Mapping\**" />
       <MauiCss Remove="ViewModels\**" />
       <MauiCss Remove="Views\**" />
       <MauiXaml Remove="Common\**" />
       <MauiXaml Remove="Controls\**" />
-      <MauiXaml Remove="Infrastructure\**" />
       <MauiXaml Remove="InversionOfControl\**" />
-      <MauiXaml Remove="Mapping\**" />
       <MauiXaml Remove="ViewModels\**" />
       <MauiXaml Remove="Views\**" />
       <None Remove="Common\**" />
       <None Remove="Controls\**" />
-      <None Remove="Infrastructure\**" />
       <None Remove="InversionOfControl\**" />
-      <None Remove="Mapping\**" />
       <None Remove="ViewModels\**" />
       <None Remove="Views\**" />
     </ItemGroup>
@@ -89,15 +97,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PRIResource Remove="Infrastructure\**" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PRIResource Remove="InversionOfControl\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <PRIResource Remove="Mapping\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -112,6 +112,8 @@
       <Compile Remove="Converter\AccountNameConverter.cs" />
       <Compile Remove="Converter\NoCategorySelectedConverter.cs" />
       <Compile Remove="Converter\PaymentAmountConverter.cs" />
+      <Compile Remove="Mapping\AutoMapperFactory.cs" />
+      <Compile Remove="Mapping\AutoMapperProfile.cs" />
       <Compile Remove="Routes.cs" />
     </ItemGroup>
 
@@ -126,18 +128,10 @@
       <Compile Include="Common\FileStoreIoBase.cs" />
       <Compile Include="Common\Groups\AlphaGroupListGroupCollection.cs" />
       <Compile Include="Common\Groups\DateListGroupCollection.cs" />
-      <Compile Include="Common\Services\DialogService.cs" />
       <Compile Include="Common\Services\NavigationService.cs" />
       <Compile Include="Common\Services\ToastService.cs" />
-      <Compile Include="Common\Styles\DefaultTheme.xaml.cs" />
       <Compile Include="Common\Utilities\HelperFunctions.cs" />
       <Compile Include="Common\Utilities\PaymentTypeHelper.cs" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Page Include="Common\Styles\DefaultTheme.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
     </ItemGroup>
 
     <ItemGroup>
