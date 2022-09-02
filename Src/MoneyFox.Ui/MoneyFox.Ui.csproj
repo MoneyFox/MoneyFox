@@ -52,7 +52,6 @@
       <Compile Remove="Infrastructure\**" />
       <Compile Remove="InversionOfControl\**" />
       <Compile Remove="Mapping\**" />
-      <Compile Remove="Services\**" />
       <Compile Remove="ViewModels\**" />
       <Compile Remove="Views\**" />
       <EmbeddedResource Remove="Common\**" />
@@ -60,7 +59,6 @@
       <EmbeddedResource Remove="Infrastructure\**" />
       <EmbeddedResource Remove="InversionOfControl\**" />
       <EmbeddedResource Remove="Mapping\**" />
-      <EmbeddedResource Remove="Services\**" />
       <EmbeddedResource Remove="ViewModels\**" />
       <EmbeddedResource Remove="Views\**" />
       <MauiCss Remove="Common\**" />
@@ -68,7 +66,6 @@
       <MauiCss Remove="Infrastructure\**" />
       <MauiCss Remove="InversionOfControl\**" />
       <MauiCss Remove="Mapping\**" />
-      <MauiCss Remove="Services\**" />
       <MauiCss Remove="ViewModels\**" />
       <MauiCss Remove="Views\**" />
       <MauiXaml Remove="Common\**" />
@@ -76,7 +73,6 @@
       <MauiXaml Remove="Infrastructure\**" />
       <MauiXaml Remove="InversionOfControl\**" />
       <MauiXaml Remove="Mapping\**" />
-      <MauiXaml Remove="Services\**" />
       <MauiXaml Remove="ViewModels\**" />
       <MauiXaml Remove="Views\**" />
       <None Remove="Common\**" />
@@ -84,7 +80,6 @@
       <None Remove="Infrastructure\**" />
       <None Remove="InversionOfControl\**" />
       <None Remove="Mapping\**" />
-      <None Remove="Services\**" />
       <None Remove="ViewModels\**" />
       <None Remove="Views\**" />
     </ItemGroup>
@@ -106,10 +101,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PRIResource Remove="Services\**" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PRIResource Remove="ViewModels\**" />
     </ItemGroup>
 
@@ -118,12 +109,35 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Remove="AssemblyInfo.cs" />
+      <Compile Remove="Converter\AccountNameConverter.cs" />
+      <Compile Remove="Converter\NoCategorySelectedConverter.cs" />
+      <Compile Remove="Converter\PaymentAmountConverter.cs" />
       <Compile Remove="Routes.cs" />
     </ItemGroup>
 
     <ItemGroup>
       <PRIResource Remove="Common\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Include="Common\ConverterLogic\RecurrenceTypeConverterLogic.cs" />
+      <Compile Include="Common\Extensions\NavigationExtension.cs" />
+      <Compile Include="Common\Extensions\TranslateExtension.cs" />
+      <Compile Include="Common\FileStoreIoBase.cs" />
+      <Compile Include="Common\Groups\AlphaGroupListGroupCollection.cs" />
+      <Compile Include="Common\Groups\DateListGroupCollection.cs" />
+      <Compile Include="Common\Services\DialogService.cs" />
+      <Compile Include="Common\Services\NavigationService.cs" />
+      <Compile Include="Common\Services\ToastService.cs" />
+      <Compile Include="Common\Styles\DefaultTheme.xaml.cs" />
+      <Compile Include="Common\Utilities\HelperFunctions.cs" />
+      <Compile Include="Common\Utilities\PaymentTypeHelper.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Page Include="Common\Styles\DefaultTheme.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
     </ItemGroup>
 
     <ItemGroup>
