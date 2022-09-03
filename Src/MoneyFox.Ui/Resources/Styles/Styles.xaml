@@ -24,7 +24,6 @@
     <Style x:Key="BaseLabel" TargetType="Label">
         <Setter Property="TextColor"
                 Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
-        <Setter Property="FontFamily" Value="Product" />
     </Style>
 
     <Style x:Key="TextHeadline" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
@@ -117,9 +116,10 @@
     </Style>
 
     <Style TargetType="Button">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Primary}}" />
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
-        <Setter Property="FontFamily" Value="OpenSansRegular"/>
+        <Setter Property="TextColor"
+                Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+        <Setter Property="BackgroundColor"
+                Value="{AppThemeBinding Dark={StaticResource ButtonBackgroundDark}, Light={StaticResource ButtonBackgroundLight}}" />        <Setter Property="FontFamily" Value="OpenSansRegular"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="CornerRadius" Value="8"/>
         <Setter Property="Padding" Value="14,10"/>
