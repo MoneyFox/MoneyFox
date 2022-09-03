@@ -4,6 +4,92 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
+
+    
+    <!-- Text / Label -->
+    <Style TargetType="Label">
+        <Setter Property="TextColor"
+                Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+        <Setter Property="FontSize" Value="{StaticResource TextSizeBody}" />
+        <Setter Property="FontFamily" Value="Product" />
+    </Style>
+
+    <Style x:Key="BaseLabel" TargetType="Label">
+        <Setter Property="TextColor"
+                Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+        <Setter Property="FontFamily" Value="Product" />
+    </Style>
+
+    <Style x:Key="TextHeadline" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+        <Setter Property="FontSize" Value="{StaticResource TextSizeHeadline}" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+    <Style x:Key="TextSubHeadline" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+        <Setter Property="FontSize" Value="{StaticResource TextSizeHeadline}" />
+    </Style>
+
+    <Style x:Key="TextTitle" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+        <Setter Property="FontSize" Value="{StaticResource TextSizeTitle}" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+    <Style x:Key="TextHead" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+        <Setter Property="FontSize" Value="{StaticResource TextSizeHeading}" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+    <Style x:Key="TextSubHead" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+        <Setter Property="FontSize" Value="{StaticResource TextSizeSubHeading}" />
+    </Style>
+
+    <Style x:Key="TextSubheadSecondary" TargetType="Label">
+        <Setter Property="TextColor"
+                Value="{AppThemeBinding Dark={StaticResource TextSecondaryColor_Dark}, Light={StaticResource TextSecondaryColor_Light}}" />
+        <Setter Property="FontSize" Value="{StaticResource TextSizeSubHeading}" />
+    </Style>
+
+    <Style x:Key="TextBody" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+        <Setter Property="FontSize" Value="{StaticResource TextSizeBody}" />
+    </Style>
+
+    <Style x:Key="TextBodySecondary" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+        <Setter Property="TextColor"
+                Value="{AppThemeBinding Dark={StaticResource TextSecondaryColor_Dark}, Light={StaticResource TextSecondaryColor_Light}}" />
+        <Setter Property="FontSize" Value="{StaticResource TextSizeBody}" />
+    </Style>
+
+    <Style x:Key="TextCaption" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+        <Setter Property="FontSize" Value="{StaticResource TextSizeCaption}" />
+    </Style>
+
+    <Style x:Key="TextSmallCaption"
+           BasedOn="{StaticResource TextCaption}"
+           TargetType="Label">
+        <Setter Property="FontSize" Value="{StaticResource TextSizeSmallCaption}" />
+    </Style>
+
+    <Style x:Key="TextCaptionSecondary" TargetType="Label">
+        <Setter Property="TextColor"
+                Value="{AppThemeBinding Dark={StaticResource TextSecondaryColor_Dark}, Light={StaticResource TextSecondaryColor_Light}}" />
+        <Setter Property="FontSize" Value="{StaticResource TextSizeCaption}" />
+    </Style>
+
+    <Style x:Key="TextLink" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource ThemePrimary}" />
+    </Style>
+
+    <Style x:Key="BalanceLabelPositive" TargetType="Label">
+        <Setter Property="TextColor"
+                Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+    </Style>
+
+    <Style x:Key="BalanceLabelNegative" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource Warning}" />
+    </Style>
+
+    <!-- Controls -->
+
     <Style TargetType="ActivityIndicator">
         <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
     </Style>
