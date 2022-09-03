@@ -30,15 +30,16 @@ public sealed class MoneyFoxConfig
         RegisterServices(serviceCollection);
         RegisterViewModels(serviceCollection);
         RegisterAdapters(serviceCollection);
-        RegisterIdentityClient(serviceCollection);
-        //serviceCollection.AddSingleton(_ => AutoMapperFactory.Create());
+        // TODO: use this here again
+        //RegisterIdentityClient(serviceCollection);
+        serviceCollection.AddSingleton(_ => AutoMapperFactory.Create());
         new CoreConfig().Register(serviceCollection);
         InfrastructureConfig.Register(serviceCollection);
     }
 
     private static void RegisterServices(IServiceCollection serviceCollection)
     {
-        //serviceCollection.AddTransient<IDialogService, DialogService>();
+        serviceCollection.AddTransient<IDialogService, DialogService>();
         serviceCollection.AddTransient<INavigationService, NavigationService>();
         serviceCollection.AddTransient<IToastService, ToastService>();
     }
