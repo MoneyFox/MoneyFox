@@ -4,16 +4,23 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
+    <!-- Sizes -->
+    <x:Double x:Key="SpacingSmall">5</x:Double>
+    <x:Double x:Key="SpacingMedium">10</x:Double>
+    <x:Double x:Key="SpacingLarge">15</x:Double>
 
+    <x:Double x:Key="NavigationBar">15</x:Double>
+
+    <x:Double x:Key="TextSizeHeadline">32</x:Double>
+    <x:Double x:Key="TextSizeSubHeadline">28</x:Double>
+    <x:Double x:Key="TextSizeTitle">22</x:Double>
+    <x:Double x:Key="TextSizeHeading">18</x:Double>
+    <x:Double x:Key="TextSizeSubHeading">16</x:Double>
+    <x:Double x:Key="TextSizeBody">14</x:Double>
+    <x:Double x:Key="TextSizeCaption">12</x:Double>
+    <x:Double x:Key="TextSizeSmallCaption">11</x:Double>
     
     <!-- Text / Label -->
-    <Style TargetType="Label">
-        <Setter Property="TextColor"
-                Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
-        <Setter Property="FontSize" Value="{StaticResource TextSizeBody}" />
-        <Setter Property="FontFamily" Value="Product" />
-    </Style>
-
     <Style x:Key="BaseLabel" TargetType="Label">
         <Setter Property="TextColor"
                 Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
@@ -465,6 +472,38 @@
         <Setter Property="BarTextColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
         <Setter Property="UnselectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" />
         <Setter Property="SelectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
+    </Style>
+
+    <Style x:Key="PrimaryImageButton" TargetType="ImageButton">
+        <Setter Property="BorderColor" Value="Transparent" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource ThemePrimary}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Focused">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource ThemeDark}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource NeutralLighter}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style x:Key="LinkButton" TargetType="Button">
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="HeightRequest" Value="35" />
+        <Setter Property="TextColor" Value="{DynamicResource ThemePrimary}" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
     </Style>
 
 </ResourceDictionary>
