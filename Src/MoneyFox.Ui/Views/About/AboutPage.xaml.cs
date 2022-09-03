@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Views.About;
 
+using Ui;
 using ViewModels.About;
 
 public partial class AboutPage

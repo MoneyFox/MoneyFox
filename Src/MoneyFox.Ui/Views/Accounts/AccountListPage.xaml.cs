@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Views.Accounts;
 
+using Ui;
 using ViewModels.Accounts;
 
 public partial class AccountListPage

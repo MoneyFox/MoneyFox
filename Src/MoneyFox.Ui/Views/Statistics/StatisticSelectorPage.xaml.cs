@@ -1,5 +1,6 @@
 namespace MoneyFox.Views.Statistics;
 
+using Ui;
 using ViewModels.Statistics;
 
 public partial class StatisticSelectorPage

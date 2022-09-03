@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Shell x:Class="MoneyFox.AppShell"
+<Shell x:Class="MoneyFox.Ui.AppShell"
        xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:setup="clr-namespace:MoneyFox.Views.SetupAssistant"
+       xmlns:statistics="using:MoneyFox.Views.Statistics"
+       xmlns:dashboard="using:MoneyFox.Views.Dashboard"
+       xmlns:overflowMenu="using:MoneyFox.Views.OverflowMenu"
+       xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
        Shell.BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}"
        Shell.ForegroundColor="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}"
        Shell.TitleColor="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}"
@@ -12,7 +16,7 @@
        Shell.TabBarUnselectedColor="DarkGray"
        Title="MoneyFox">
 
-    <!--<TabBar>
+    <TabBar>
         <Tab Title="{x:Static resources:Strings.HomeTitle}">
             <Tab.Icon>
                 <FontImageSource FontFamily="MaterialIconsRound" Glyph="home" />
@@ -27,7 +31,7 @@
                 <FontImageSource FontFamily="MaterialIconsRound" Glyph="donut_small" />
             </Tab.Icon>
             <ShellContent Title="{x:Static resources:Strings.StatisticsTitle}">
-                <statistic:StatisticSelectorPage />
+                <statistics:StatisticSelectorPage />
             </ShellContent>
         </Tab>
 
@@ -36,10 +40,10 @@
                 <FontImageSource FontFamily="MaterialIconsRound" Glyph="more_horiz" />
             </Tab.Icon>
             <ShellContent>
-                <overflow:OverflowMenuPage />
+                <overflowMenu:OverflowMenuPage />
             </ShellContent>
         </Tab>
-    </TabBar>-->
+    </TabBar>
 
     <ShellContent Route="WelcomePage" IsVisible="False" Shell.FlyoutBehavior="Disabled"
                   ContentTemplate="{DataTemplate setup:WelcomePage}" />

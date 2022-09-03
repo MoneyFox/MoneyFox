@@ -5,8 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Shell.NavBarHasShadow="False"
     xmlns:converter="clr-namespace:MoneyFox.Converter"
-    xmlns:payments="clr-namespace:MoneyFox.ViewModels.Payments;assembly=MoneyFox"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:payments="using:MoneyFox.ViewModels.Payments"
     x:Class="MoneyFox.Views.Payments.PaymentListPage">
 
     <ContentPage.Resources>

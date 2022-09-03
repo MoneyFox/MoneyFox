@@ -1,6 +1,7 @@
 ﻿namespace MoneyFox.Views.Accounts;
 
 using Core.Resources;
+using Ui;
 using ViewModels.Accounts;
 
 public partial class EditAccountPage

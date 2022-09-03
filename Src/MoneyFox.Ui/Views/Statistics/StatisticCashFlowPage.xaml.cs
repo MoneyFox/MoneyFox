@@ -2,6 +2,7 @@
 
 using CommunityToolkit.Maui.Views;
 using Popups;
+using Ui;
 using ViewModels.Statistics;
 
 public partial class StatisticCashFlowPage

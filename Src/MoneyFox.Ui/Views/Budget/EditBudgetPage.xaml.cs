@@ -1,6 +1,7 @@
 ﻿namespace MoneyFox.Views.Budget;
 
 using Core.Resources;
+using Ui;
 using ViewModels.Budget;
 
 public partial class EditBudgetPage

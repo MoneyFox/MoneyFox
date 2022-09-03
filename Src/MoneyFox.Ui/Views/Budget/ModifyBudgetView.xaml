@@ -4,16 +4,16 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-    xmlns:budget="clr-namespace:MoneyFox.ViewModels.Budget;assembly=MoneyFox"
-    xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
-    xmlns:budget1="clr-namespace:MoneyFox.Views.Budget;assembly=MoneyFox"
-    x:DataType="budget:ModifyBudgetViewModel"
+    xmlns:budget2="using:MoneyFox.ViewModels.Budget"
+    xmlns:converter="using:MoneyFox.Converter"
+    xmlns:budget="using:MoneyFox.Views.Budget"
+    x:DataType="budget2:ModifyBudgetViewModel"
     x:Class="MoneyFox.Views.Budget.ModifyBudgetView">
 
     <ContentView.Resources>
         <ResourceDictionary>
             <converter:DecimalConverter x:Key="DecimalConverter" />
-            <budget1:BudgetTimeRangeStringConverter x:Key="BudgetTimeRangeStringConverter" />
+            <budget:BudgetTimeRangeStringConverter x:Key="BudgetTimeRangeStringConverter" />
         </ResourceDictionary>
     </ContentView.Resources>
 
@@ -47,7 +47,7 @@
                                 SelectionChangedCommand="{Binding RemoveCategoryCommand}"
                                 SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference BudgetCategoryCollectionView}}">
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="budget:BudgetCategoryViewModel">
+                        <DataTemplate x:DataType="budget2:BudgetCategoryViewModel">
                             <Grid Padding="3" HeightRequest="60">
                                 <Frame>
                                     <Label Text="{Binding Name}" />
