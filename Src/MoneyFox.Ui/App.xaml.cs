@@ -28,7 +28,7 @@ public partial class App
         MainPage = new AppShell();
         if (!settingsFacade.IsSetupCompleted)
         {
-            //Shell.Current.GoToAsync(Routes.WelcomeViewRoute).Wait();
+            Shell.Current.GoToAsync(Routes.WelcomeViewRoute).Wait();
         }
     }
 

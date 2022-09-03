@@ -8,6 +8,18 @@ using Infrastructure.Adapters;
 using Infrastructure.InversionOfControl;
 using Mapping;
 using Microsoft.Identity.Client;
+using ViewModels.About;
+using ViewModels.Accounts;
+using ViewModels.Budget;
+using ViewModels.Categories;
+using ViewModels.Dashboard;
+using ViewModels.DataBackup;
+using ViewModels.Dialogs;
+using ViewModels.OverflowMenu;
+using ViewModels.Payments;
+using ViewModels.Settings;
+using ViewModels.SetupAssistant;
+using ViewModels.Statistics;
 
 public sealed class MoneyFoxConfig
 {
@@ -33,36 +45,36 @@ public sealed class MoneyFoxConfig
 
     private static void RegisterViewModels(IServiceCollection serviceCollection)
     {
-        //serviceCollection.AddTransient<AboutViewModel>();
-        //serviceCollection.AddTransient<AccountListViewModel>();
-        //serviceCollection.AddTransient<AddAccountViewModel>();
-        //serviceCollection.AddTransient<EditAccountViewModel>();
-        //serviceCollection.AddTransient<AddCategoryViewModel>();
-        //serviceCollection.AddTransient<CategoryListViewModel>();
-        //serviceCollection.AddTransient<EditCategoryViewModel>();
-        //serviceCollection.AddTransient<SelectCategoryViewModel>();
-        //serviceCollection.AddTransient<DashboardViewModel>();
-        //serviceCollection.AddTransient<BackupViewModel>();
-        //serviceCollection.AddTransient<OverflowMenuViewModel>();
-        //serviceCollection.AddTransient<AddPaymentViewModel>();
-        //serviceCollection.AddTransient<EditPaymentViewModel>();
-        //serviceCollection.AddTransient<PaymentListViewModel>();
-        //serviceCollection.AddTransient<SettingsViewModel>();
-        //serviceCollection.AddTransient<CategoryIntroductionViewModel>();
-        //serviceCollection.AddTransient<SetupCompletionViewModel>();
-        //serviceCollection.AddTransient<WelcomeViewModel>();
-        //serviceCollection.AddTransient<PaymentForCategoryListViewModel>();
-        //serviceCollection.AddTransient<StatisticAccountMonthlyCashFlowViewModel>();
-        //serviceCollection.AddTransient<StatisticCashFlowViewModel>();
-        //serviceCollection.AddTransient<StatisticCategoryProgressionViewModel>();
-        //serviceCollection.AddTransient<StatisticCategorySpreadingViewModel>();
-        //serviceCollection.AddTransient<StatisticCategorySummaryViewModel>();
-        //serviceCollection.AddTransient<StatisticSelectorViewModel>();
-        //serviceCollection.AddTransient<SelectDateRangeDialogViewModel>();
-        //serviceCollection.AddTransient<SelectFilterDialogViewModel>();
-        //serviceCollection.AddTransient<AddBudgetViewModel>();
-        //serviceCollection.AddTransient<EditBudgetViewModel>();
-        //serviceCollection.AddTransient<BudgetListViewModel>();
+        serviceCollection.AddTransient<AboutViewModel>();
+        serviceCollection.AddTransient<AccountListViewModel>();
+        serviceCollection.AddTransient<AddAccountViewModel>();
+        serviceCollection.AddTransient<EditAccountViewModel>();
+        serviceCollection.AddTransient<AddCategoryViewModel>();
+        serviceCollection.AddTransient<CategoryListViewModel>();
+        serviceCollection.AddTransient<EditCategoryViewModel>();
+        serviceCollection.AddTransient<SelectCategoryViewModel>();
+        serviceCollection.AddTransient<DashboardViewModel>();
+        serviceCollection.AddTransient<BackupViewModel>();
+        serviceCollection.AddTransient<OverflowMenuViewModel>();
+        serviceCollection.AddTransient<AddPaymentViewModel>();
+        serviceCollection.AddTransient<EditPaymentViewModel>();
+        serviceCollection.AddTransient<PaymentListViewModel>();
+        serviceCollection.AddTransient<SettingsViewModel>();
+        serviceCollection.AddTransient<CategoryIntroductionViewModel>();
+        serviceCollection.AddTransient<SetupCompletionViewModel>();
+        serviceCollection.AddTransient<WelcomeViewModel>();
+        serviceCollection.AddTransient<PaymentForCategoryListViewModel>();
+        serviceCollection.AddTransient<StatisticAccountMonthlyCashFlowViewModel>();
+        serviceCollection.AddTransient<StatisticCashFlowViewModel>();
+        serviceCollection.AddTransient<StatisticCategoryProgressionViewModel>();
+        serviceCollection.AddTransient<StatisticCategorySpreadingViewModel>();
+        serviceCollection.AddTransient<StatisticCategorySummaryViewModel>();
+        serviceCollection.AddTransient<StatisticSelectorViewModel>();
+        serviceCollection.AddTransient<SelectDateRangeDialogViewModel>();
+        serviceCollection.AddTransient<SelectFilterDialogViewModel>();
+        serviceCollection.AddTransient<AddBudgetViewModel>();
+        serviceCollection.AddTransient<EditBudgetViewModel>();
+        serviceCollection.AddTransient<BudgetListViewModel>();
     }
 
     private static void RegisterAdapters(ServiceCollection serviceCollection)
