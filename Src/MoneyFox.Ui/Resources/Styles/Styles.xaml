@@ -23,7 +23,7 @@
     <!-- Text / Label -->
     <Style x:Key="BaseLabel" TargetType="Label">
         <Setter Property="TextColor"
-                Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+                Value="{AppThemeBinding Dark={StaticResource TextPrimaryColorDark}, Light={StaticResource TextPrimaryColorLight}}" />
     </Style>
 
     <Style x:Key="TextHeadline" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
@@ -51,7 +51,7 @@
 
     <Style x:Key="TextSubheadSecondary" TargetType="Label">
         <Setter Property="TextColor"
-                Value="{AppThemeBinding Dark={StaticResource TextSecondaryColor_Dark}, Light={StaticResource TextSecondaryColor_Light}}" />
+                Value="{AppThemeBinding Dark={StaticResource TextSecondaryColorDark}, Light={StaticResource TextSecondaryColorLight}}" />
         <Setter Property="FontSize" Value="{StaticResource TextSizeSubHeading}" />
     </Style>
 
@@ -61,7 +61,7 @@
 
     <Style x:Key="TextBodySecondary" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
         <Setter Property="TextColor"
-                Value="{AppThemeBinding Dark={StaticResource TextSecondaryColor_Dark}, Light={StaticResource TextSecondaryColor_Light}}" />
+                Value="{AppThemeBinding Dark={StaticResource TextSecondaryColorDark}, Light={StaticResource TextSecondaryColorLight}}" />
         <Setter Property="FontSize" Value="{StaticResource TextSizeBody}" />
     </Style>
 
@@ -77,7 +77,7 @@
 
     <Style x:Key="TextCaptionSecondary" TargetType="Label">
         <Setter Property="TextColor"
-                Value="{AppThemeBinding Dark={StaticResource TextSecondaryColor_Dark}, Light={StaticResource TextSecondaryColor_Light}}" />
+                Value="{AppThemeBinding Dark={StaticResource TextSecondaryColorDark}, Light={StaticResource TextSecondaryColorLight}}" />
         <Setter Property="FontSize" Value="{StaticResource TextSizeCaption}" />
     </Style>
 
@@ -87,7 +87,7 @@
 
     <Style x:Key="BalanceLabelPositive" TargetType="Label">
         <Setter Property="TextColor"
-                Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+                Value="{AppThemeBinding Dark={StaticResource TextPrimaryColorDark}, Light={StaticResource TextPrimaryColorLight}}" />
     </Style>
 
     <Style x:Key="BalanceLabelNegative" TargetType="Label">
@@ -117,7 +117,7 @@
 
     <Style TargetType="Button">
         <Setter Property="TextColor"
-                Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+                Value="{AppThemeBinding Dark={StaticResource TextPrimaryColorDark}, Light={StaticResource TextPrimaryColorLight}}" />
         <Setter Property="BackgroundColor"
                 Value="{AppThemeBinding Dark={StaticResource ButtonBackgroundDark}, Light={StaticResource ButtonBackgroundLight}}" />        <Setter Property="FontFamily" Value="OpenSansRegular"/>
         <Setter Property="FontSize" Value="14"/>

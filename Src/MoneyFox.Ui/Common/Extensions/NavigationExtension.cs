@@ -30,12 +30,12 @@ public static class NavigationExtension
     {
         if (AppInfo.RequestedTheme == AppTheme.Dark)
         {
-            Application.Current.Resources.TryGetValue(key: "TextPrimaryColor_Dark", value: out var colorDark);
+            Application.Current.Resources.TryGetValue(key: "TextPrimaryColorDark", value: out var colorDark);
 
             return (Color)colorDark;
         }
 
-        Application.Current.Resources.TryGetValue(key: "TextPrimaryColor_Light", value: out var colorLight);
+        Application.Current.Resources.TryGetValue(key: "TextPrimaryColorLight", value: out var colorLight);
 
         return (Color)colorLight;
     }

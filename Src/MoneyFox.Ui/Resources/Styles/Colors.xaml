@@ -74,11 +74,11 @@
     <Color x:Key="BackgroundColorSearchBarDark">#323130</Color>
     <Color x:Key="BackgroundColorSearchBarLight">#EFF2F5</Color>
 
-    <Color x:Key="TextPrimaryColor_Dark">#FFFFFF</Color>
-    <Color x:Key="TextPrimaryColor_Light">#323130</Color>
+    <Color x:Key="TextPrimaryColorDark">#FFFFFF</Color>
+    <Color x:Key="TextPrimaryColorLight">#323130</Color>
 
-    <Color x:Key="TextSecondaryColor_Dark">#878786</Color>
-    <Color x:Key="TextSecondaryColor_Light">#a3a2a0</Color>
+    <Color x:Key="TextSecondaryColorDark">#878786</Color>
+    <Color x:Key="TextSecondaryColorLight">#a3a2a0</Color>
 
     <Color x:Key="CardBackgroundDark">#2d2d30</Color>
     <Color x:Key="CardBackgroundLight">#ffffff</Color>
