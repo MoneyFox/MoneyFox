@@ -1,8 +1,8 @@
-﻿namespace MoneyFox.ViewModels.Accounts;
+﻿namespace MoneyFox.Ui.ViewModels.Accounts;
 
-using Core.Commands.Accounts.CreateAccount;
-using Core.Common.Interfaces;
 using MediatR;
+using MoneyFox.Core.Commands.Accounts.CreateAccount;
+using MoneyFox.Core.Common.Interfaces;
 
 internal sealed class AddAccountViewModel : ModifyAccountViewModel
 {

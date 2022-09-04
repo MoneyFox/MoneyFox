@@ -1,6 +1,5 @@
-﻿namespace MoneyFox.Views.Categories;
+﻿namespace MoneyFox.Ui.Views.Categories;
 
-using Ui;
 using ViewModels.Categories;
 
 public partial class CategoryListPage : ContentPage

@@ -4,10 +4,10 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-    xmlns:categories="using:MoneyFox.ViewModels.Categories"
+    xmlns:categories="using:MoneyFox.Ui.ViewModels.Categories"
     Shell.NavBarHasShadow="False"
     Title="{x:Static resources:Strings.CategoriesTitle}"
-    x:Class="MoneyFox.Views.Categories.CategoryListPage">
+    x:Class="MoneyFox.Ui.Views.Categories.CategoryListPage">
 
     <ContentPage.Content>
         <Grid IsClippedToBounds="False" RowDefinitions="40, 40, *">

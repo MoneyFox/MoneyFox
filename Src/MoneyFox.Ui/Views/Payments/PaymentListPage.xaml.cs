@@ -1,8 +1,7 @@
-﻿namespace MoneyFox.Views.Payments;
+﻿namespace MoneyFox.Ui.Views.Payments;
 
 using CommunityToolkit.Maui.Views;
 using Popups;
-using Ui;
 using ViewModels.Payments;
 
 [QueryProperty(name: "AccountId", queryId: "accountId")]

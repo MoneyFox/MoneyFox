@@ -1,6 +1,6 @@
-﻿namespace MoneyFox.Win.Infrastructure.Adapters;
+﻿namespace MoneyFox.Ui.Platforms.Windows.Adapters;
 
-using Core.Interfaces;
+using MoneyFox.Core.Interfaces;
 using Serilog;
 
 public class SettingsAdapter : ISettingsAdapter

@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <ContentPage
-    x:Class="MoneyFox.Views.Budget.BudgetListPage"
+    x:Class="MoneyFox.Ui.Views.Budget.BudgetListPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-    xmlns:budget="clr-namespace:MoneyFox.Views.Budget"
-    xmlns:budget1="using:MoneyFox.ViewModels.Budget"
-    xmlns:converter="using:MoneyFox.Converter"
+    xmlns:converter="using:MoneyFox.Ui.Converter"
+    xmlns:budget="using:MoneyFox.Ui.Views.Budget"
+    xmlns:budget1="using:MoneyFox.Ui.ViewModels.Budget"
     Visual="Material"
     x:Name="BudgetList"
     x:DataType="budget1:BudgetListViewModel"

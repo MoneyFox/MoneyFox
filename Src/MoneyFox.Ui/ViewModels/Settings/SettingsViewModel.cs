@@ -1,10 +1,10 @@
-﻿namespace MoneyFox.ViewModels.Settings;
+﻿namespace MoneyFox.Ui.ViewModels.Settings;
 
 using System.Collections.ObjectModel;
 using System.Globalization;
-using Core.Common.Facades;
-using Core.Common.Helpers;
-using Core.Common.Interfaces;
+using MoneyFox.Core.Common.Facades;
+using MoneyFox.Core.Common.Helpers;
+using MoneyFox.Core.Common.Interfaces;
 
 internal sealed class SettingsViewModel : BaseViewModel, ISettingsViewModel
 {

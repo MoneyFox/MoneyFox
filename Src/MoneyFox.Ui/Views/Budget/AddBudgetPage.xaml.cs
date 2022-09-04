@@ -1,7 +1,6 @@
-namespace MoneyFox.Views.Budget;
+namespace MoneyFox.Ui.Views.Budget;
 
-using Core.Resources;
-using Ui;
+using MoneyFox.Core.Resources;
 using ViewModels.Budget;
 
 public partial class AddBudgetPage

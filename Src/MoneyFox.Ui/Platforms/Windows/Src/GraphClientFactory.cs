@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Win;
+﻿namespace MoneyFox.Ui.Platforms.Windows.Src;
 
 using Microsoft.Graph;
 using Microsoft.Identity.Client;

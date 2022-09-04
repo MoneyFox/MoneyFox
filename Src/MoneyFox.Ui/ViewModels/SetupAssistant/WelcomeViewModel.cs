@@ -1,9 +1,8 @@
-namespace MoneyFox.ViewModels.SetupAssistant;
+namespace MoneyFox.Ui.ViewModels.SetupAssistant;
 
 using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
-using Core.Common.Facades;
-using Ui;
+using MoneyFox.Core.Common.Facades;
 
 internal sealed class WelcomeViewModel : BaseViewModel
 {

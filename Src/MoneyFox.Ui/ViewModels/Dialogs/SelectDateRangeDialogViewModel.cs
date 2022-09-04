@@ -1,9 +1,9 @@
-﻿namespace MoneyFox.ViewModels.Dialogs;
+﻿namespace MoneyFox.Ui.ViewModels.Dialogs;
 
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.Common.Extensions;
-using Core.Common.Messages;
+using MoneyFox.Core.Common.Extensions;
+using MoneyFox.Core.Common.Messages;
 
 internal sealed class SelectDateRangeDialogViewModel : BaseViewModel
 {

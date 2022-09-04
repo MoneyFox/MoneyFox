@@ -1,10 +1,10 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MoneyFox.Views.Statistics.StatisticCategoryProgressionPage"
-             xmlns:converter="clr-namespace:MoneyFox.Converter"
-             xmlns:statistics="clr-namespace:MoneyFox.ViewModels.Statistics"
+             x:Class="MoneyFox.Ui.Views.Statistics.StatisticCategoryProgressionPage"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              xmlns:forms="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+             xmlns:converter="using:MoneyFox.Ui.Converter"
+             xmlns:statistics="using:MoneyFox.Ui.ViewModels.Statistics"
              x:DataType="statistics:StatisticCategoryProgressionViewModel">
 
     <ContentPage.Resources>

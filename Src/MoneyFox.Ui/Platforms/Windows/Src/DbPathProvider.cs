@@ -1,8 +1,8 @@
-namespace MoneyFox.Win;
+namespace MoneyFox.Ui.Platforms.Windows.Src;
 
-using Windows.Storage;
-using Core.Common;
-using Core.Interfaces;
+using global::Windows.Storage;
+using MoneyFox.Core.Common;
+using MoneyFox.Core.Interfaces;
 
 internal class DbPathProvider : IDbPathProvider
 {

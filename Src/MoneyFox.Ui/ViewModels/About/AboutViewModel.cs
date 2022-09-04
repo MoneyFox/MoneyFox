@@ -1,10 +1,10 @@
-﻿namespace MoneyFox.ViewModels.About;
+﻿namespace MoneyFox.Ui.ViewModels.About;
 
 using CommunityToolkit.Mvvm.Input;
-using Core.Common;
-using Core.Common.Interfaces;
-using Core.Interfaces;
-using Core.Resources;
+using MoneyFox.Core.Common;
+using MoneyFox.Core.Common.Interfaces;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.Resources;
 
 internal class AboutViewModel : BaseViewModel
 {

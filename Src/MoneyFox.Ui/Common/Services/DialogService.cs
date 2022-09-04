@@ -1,8 +1,8 @@
-﻿namespace MoneyFox.Common.Services;
+﻿namespace MoneyFox.Ui.Common.Services;
 
 using CommunityToolkit.Maui.Views;
-using Core.Common.Interfaces;
-using Core.Resources;
+using MoneyFox.Core.Common.Interfaces;
+using MoneyFox.Core.Resources;
 using Views.Popups;
 
 public class DialogService : IDialogService

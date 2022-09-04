@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.Settings;
+﻿namespace MoneyFox.Ui.ViewModels.Settings;
 
 using System.Collections.ObjectModel;
 using System.Globalization;

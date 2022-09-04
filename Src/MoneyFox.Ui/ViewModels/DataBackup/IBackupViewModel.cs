@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.DataBackup;
+﻿namespace MoneyFox.Ui.ViewModels.DataBackup;
 
 using CommunityToolkit.Mvvm.Input;
 

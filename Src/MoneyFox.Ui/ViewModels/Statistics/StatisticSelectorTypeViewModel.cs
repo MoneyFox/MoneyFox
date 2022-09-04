@@ -1,6 +1,6 @@
-﻿namespace MoneyFox.ViewModels.Statistics;
+﻿namespace MoneyFox.Ui.ViewModels.Statistics;
 
-using Core.Enums;
+using MoneyFox.Core.Enums;
 
 public class StatisticSelectorTypeViewModel
 {

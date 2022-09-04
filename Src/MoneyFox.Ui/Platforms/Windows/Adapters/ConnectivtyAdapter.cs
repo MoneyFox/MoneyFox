@@ -1,8 +1,8 @@
-﻿namespace MoneyFox.Win.Infrastructure.Adapters;
+﻿namespace MoneyFox.Ui.Platforms.Windows.Adapters;
 
 using System.Net.NetworkInformation;
-using Core.Interfaces;
 using JetBrains.Annotations;
+using MoneyFox.Core.Interfaces;
 
 /// <inheritdoc />
 [UsedImplicitly]

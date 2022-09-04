@@ -1,7 +1,6 @@
-﻿namespace MoneyFox.Views.Statistics;
+﻿namespace MoneyFox.Ui.Views.Statistics;
 
-using Core.Resources;
-using Ui;
+using MoneyFox.Core.Resources;
 using ViewModels.Statistics;
 
 public partial class PaymentForCategoryListPage : ContentPage

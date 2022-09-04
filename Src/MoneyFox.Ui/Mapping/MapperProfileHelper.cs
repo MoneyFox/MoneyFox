@@ -1,7 +1,7 @@
-﻿namespace MoneyFox.Mapping;
+﻿namespace MoneyFox.Ui.Mapping;
 
 using System.Reflection;
-using Core.Common.Interfaces.Mapping;
+using MoneyFox.Core.Common.Interfaces.Mapping;
 
 public sealed class Map
 {

@@ -1,8 +1,8 @@
-﻿namespace MoneyFox.Win;
+﻿namespace MoneyFox.Ui.Platforms.Windows.Src;
 
-using Windows.ApplicationModel.Store;
-using Windows.System;
-using Core.Common.Interfaces;
+using global::Windows.ApplicationModel.Store;
+using global::Windows.System;
+using MoneyFox.Core.Common.Interfaces;
 
 public class MarketplaceOperations : IStoreOperations
 {

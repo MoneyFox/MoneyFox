@@ -1,8 +1,8 @@
-﻿namespace MoneyFox.ViewModels.Statistics;
+﻿namespace MoneyFox.Ui.ViewModels.Statistics;
 
 using CommunityToolkit.Mvvm.Input;
-using Core.Enums;
-using Core.Resources;
+using MoneyFox.Core.Enums;
+using MoneyFox.Core.Resources;
 
 internal sealed class StatisticSelectorViewModel : BaseViewModel, IStatisticSelectorViewModel
 {

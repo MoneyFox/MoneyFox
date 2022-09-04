@@ -6,7 +6,7 @@
     CanBeDismissedByTappingOutsideOfPopup="false"
     Size="330, 500"
     Color="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
-    x:Class="MoneyFox.Views.Popups.FilterPopup">
+    x:Class="MoneyFox.Ui.Views.Popups.FilterPopup">
 
     <Grid RowDefinitions="*, 40">
         <StackLayout Padding="15" Spacing="6">

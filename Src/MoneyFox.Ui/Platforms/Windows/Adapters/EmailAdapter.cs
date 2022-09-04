@@ -1,7 +1,7 @@
-namespace MoneyFox.Win.Infrastructure.Adapters;
+namespace MoneyFox.Ui.Platforms.Windows.Adapters;
 
-using Core.Interfaces;
 using JetBrains.Annotations;
+using MoneyFox.Core.Interfaces;
 
 [UsedImplicitly]
 public class EmailAdapter : IEmailAdapter

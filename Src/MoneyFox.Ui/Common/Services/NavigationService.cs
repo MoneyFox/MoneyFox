@@ -1,8 +1,8 @@
-﻿namespace MoneyFox.Common.Services;
+﻿namespace MoneyFox.Ui.Common.Services;
 
-using Core.Interfaces;
 using Extensions;
 using JetBrains.Annotations;
+using MoneyFox.Core.Interfaces;
 
 [UsedImplicitly]
 internal sealed class NavigationService : INavigationService

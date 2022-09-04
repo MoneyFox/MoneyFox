@@ -1,7 +1,6 @@
-namespace MoneyFox.Views.Payments;
+namespace MoneyFox.Ui.Views.Payments;
 
-using Core.Resources;
-using Ui;
+using MoneyFox.Core.Resources;
 using ViewModels.Payments;
 
 public partial class AddPaymentPage

@@ -1,13 +1,13 @@
-namespace MoneyFox.InversionOfControl;
+namespace MoneyFox.Ui.InversionOfControl;
 
 using Common.Services;
-using Core.Common.Interfaces;
-using Core.Interfaces;
-using Core.InversionOfControl;
 using Infrastructure.Adapters;
-using Infrastructure.InversionOfControl;
 using Mapping;
 using Microsoft.Identity.Client;
+using MoneyFox.Core.Common.Interfaces;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.InversionOfControl;
+using MoneyFox.Infrastructure.InversionOfControl;
 using ViewModels.About;
 using ViewModels.Accounts;
 using ViewModels.Budget;

@@ -1,3 +1,3 @@
-﻿namespace MoneyFox.Controls;
+﻿namespace MoneyFox.Ui.Controls;
 
 public class ModalContentPage : ContentPage { }

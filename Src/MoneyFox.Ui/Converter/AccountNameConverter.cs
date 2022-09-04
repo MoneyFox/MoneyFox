@@ -1,7 +1,7 @@
-﻿namespace MoneyFox.Converter;
+﻿namespace MoneyFox.Ui.Converter;
 
 using System.Globalization;
-using Core.Common.Helpers;
+using MoneyFox.Core.Common.Helpers;
 using ViewModels.Accounts;
 
 public class AccountNameConverter : IValueConverter

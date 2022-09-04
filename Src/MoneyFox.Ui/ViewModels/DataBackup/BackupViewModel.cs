@@ -1,14 +1,14 @@
-namespace MoneyFox.ViewModels.DataBackup;
+namespace MoneyFox.Ui.ViewModels.DataBackup;
 
 using CommunityToolkit.Mvvm.Input;
-using Core.ApplicationCore.Domain.Exceptions;
-using Core.ApplicationCore.UseCases.BackupUpload;
-using Core.ApplicationCore.UseCases.DbBackup;
-using Core.Common.Facades;
-using Core.Common.Interfaces;
-using Core.Interfaces;
-using Core.Resources;
 using MediatR;
+using MoneyFox.Core.ApplicationCore.Domain.Exceptions;
+using MoneyFox.Core.ApplicationCore.UseCases.BackupUpload;
+using MoneyFox.Core.ApplicationCore.UseCases.DbBackup;
+using MoneyFox.Core.Common.Facades;
+using MoneyFox.Core.Common.Interfaces;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.Resources;
 using Serilog;
 
 internal sealed class BackupViewModel : BaseViewModel, IBackupViewModel

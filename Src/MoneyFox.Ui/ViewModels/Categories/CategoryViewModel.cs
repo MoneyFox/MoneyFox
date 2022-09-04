@@ -1,8 +1,8 @@
-﻿namespace MoneyFox.ViewModels.Categories;
+﻿namespace MoneyFox.Ui.ViewModels.Categories;
 
 using CommunityToolkit.Mvvm.ComponentModel;
-using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
-using Core.Common.Interfaces.Mapping;
+using MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
+using MoneyFox.Core.Common.Interfaces.Mapping;
 
 public class CategoryViewModel : ObservableObject, IMapFrom<Category>
 {

@@ -1,8 +1,8 @@
-﻿namespace MoneyFox.Converter;
+﻿namespace MoneyFox.Ui.Converter;
 
 using System.Globalization;
 using Common.ConverterLogic;
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 
 /// <summary>
 ///     Converts the RecurrenceType to a string.

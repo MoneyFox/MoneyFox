@@ -1,4 +1,4 @@
-namespace MoneyFox.ViewModels.Payments;
+namespace MoneyFox.Ui.ViewModels.Payments;
 
 using System.Collections.ObjectModel;
 using Accounts;
@@ -7,12 +7,12 @@ using Categories;
 using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using Core.ApplicationCore.Queries;
-using Core.Common.Interfaces;
-using Core.Common.Messages;
-using Core.Resources;
 using MediatR;
+using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using MoneyFox.Core.ApplicationCore.Queries;
+using MoneyFox.Core.Common.Interfaces;
+using MoneyFox.Core.Common.Messages;
+using MoneyFox.Core.Resources;
 
 internal abstract class ModifyPaymentViewModel : BaseViewModel
 {

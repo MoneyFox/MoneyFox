@@ -1,6 +1,5 @@
-﻿namespace MoneyFox.Views.SetupAssistant;
+﻿namespace MoneyFox.Ui.Views.SetupAssistant;
 
-using Ui;
 using ViewModels.SetupAssistant;
 
 [XamlCompilation(XamlCompilationOptions.Compile)]

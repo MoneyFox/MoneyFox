@@ -1,4 +1,4 @@
-namespace MoneyFox.ViewModels.Statistics;
+namespace MoneyFox.Ui.ViewModels.Statistics;
 
 using System.Collections.ObjectModel;
 using AutoMapper;
@@ -6,14 +6,14 @@ using Categories;
 using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.ApplicationCore.Queries;
-using Core.ApplicationCore.Queries.Statistics;
-using Core.Common.Messages;
 using LiveChartsCore;
 using LiveChartsCore.Kernel.Sketches;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using MediatR;
+using MoneyFox.Core.ApplicationCore.Queries;
+using MoneyFox.Core.ApplicationCore.Queries.Statistics;
+using MoneyFox.Core.Common.Messages;
 using SkiaSharp;
 
 internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel

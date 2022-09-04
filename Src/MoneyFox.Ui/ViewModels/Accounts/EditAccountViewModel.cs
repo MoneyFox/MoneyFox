@@ -1,11 +1,11 @@
-﻿namespace MoneyFox.ViewModels.Accounts;
+﻿namespace MoneyFox.Ui.ViewModels.Accounts;
 
 using AutoMapper;
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using Core.ApplicationCore.Queries;
-using Core.Commands.Accounts.UpdateAccount;
-using Core.Common.Interfaces;
 using MediatR;
+using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using MoneyFox.Core.ApplicationCore.Queries;
+using MoneyFox.Core.Commands.Accounts.UpdateAccount;
+using MoneyFox.Core.Common.Interfaces;
 
 internal class EditAccountViewModel : ModifyAccountViewModel
 {

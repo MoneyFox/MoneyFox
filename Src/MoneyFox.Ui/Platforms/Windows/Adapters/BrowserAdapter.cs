@@ -1,8 +1,8 @@
-﻿namespace MoneyFox.Win.Infrastructure.Adapters;
+﻿namespace MoneyFox.Ui.Platforms.Windows.Adapters;
 
 using System.Diagnostics;
 using System.Text.RegularExpressions;
-using Core.Interfaces;
+using MoneyFox.Core.Interfaces;
 
 public class BrowserAdapter : IBrowserAdapter
 {

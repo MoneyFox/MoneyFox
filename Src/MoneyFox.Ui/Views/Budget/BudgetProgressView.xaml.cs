@@ -1,4 +1,4 @@
-namespace MoneyFox.Views.Budget;
+namespace MoneyFox.Ui.Views.Budget;
 
 public partial class BudgetProgressView
 {

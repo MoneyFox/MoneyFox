@@ -1,12 +1,12 @@
-﻿namespace MoneyFox.ViewModels.Statistics;
+﻿namespace MoneyFox.Ui.ViewModels.Statistics;
 
 using System.Collections.ObjectModel;
 using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.ApplicationCore.Queries.Statistics.GetCategorySummary;
-using Core.Common.Interfaces;
 using MediatR;
+using MoneyFox.Core.ApplicationCore.Queries.Statistics.GetCategorySummary;
+using MoneyFox.Core.Common.Interfaces;
 using Serilog;
 
 internal sealed class StatisticCategorySummaryViewModel : StatisticViewModel

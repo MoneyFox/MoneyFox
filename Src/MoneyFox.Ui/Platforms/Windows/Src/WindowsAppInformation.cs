@@ -1,8 +1,8 @@
-﻿namespace MoneyFox.Win;
+﻿namespace MoneyFox.Ui.Platforms.Windows.Src;
 
 using System.Globalization;
-using Windows.ApplicationModel;
-using Core.Common.Interfaces;
+using global::Windows.ApplicationModel;
+using MoneyFox.Core.Common.Interfaces;
 
 public class WindowsAppInformation : IAppInformation
 {

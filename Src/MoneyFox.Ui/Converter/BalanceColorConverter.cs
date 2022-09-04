@@ -1,4 +1,4 @@
-namespace MoneyFox.Converter;
+namespace MoneyFox.Ui.Converter;
 
 using System.Globalization;
 

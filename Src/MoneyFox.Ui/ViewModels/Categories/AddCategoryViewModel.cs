@@ -1,9 +1,9 @@
-﻿namespace MoneyFox.ViewModels.Categories;
+﻿namespace MoneyFox.Ui.ViewModels.Categories;
 
-using Core.ApplicationCore.UseCases.CategoryCreation;
-using Core.Common.Interfaces;
 using JetBrains.Annotations;
 using MediatR;
+using MoneyFox.Core.ApplicationCore.UseCases.CategoryCreation;
+using MoneyFox.Core.Common.Interfaces;
 
 [UsedImplicitly]
 internal sealed class AddCategoryViewModel : ModifyCategoryViewModel

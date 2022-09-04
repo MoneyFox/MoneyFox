@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.Statistics;
+﻿namespace MoneyFox.Ui.ViewModels.Statistics;
 
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -6,8 +6,8 @@ using AutoMapper;
 using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.ApplicationCore.Queries;
 using MediatR;
+using MoneyFox.Core.ApplicationCore.Queries;
 using Payments;
 using Views.Payments;
 

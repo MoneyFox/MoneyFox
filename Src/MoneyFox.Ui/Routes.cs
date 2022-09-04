@@ -1,4 +1,4 @@
-namespace MoneyFox;
+namespace MoneyFox.Ui;
 
 using Views.About;
 using Views.Accounts;

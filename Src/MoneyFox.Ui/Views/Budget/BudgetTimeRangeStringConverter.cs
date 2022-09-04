@@ -1,8 +1,8 @@
-namespace MoneyFox.Views.Budget;
+namespace MoneyFox.Ui.Views.Budget;
 
 using System.Globalization;
-using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
-using Core.Resources;
+using MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
+using MoneyFox.Core.Resources;
 
 internal class BudgetTimeRangeStringConverter : IValueConverter
 {

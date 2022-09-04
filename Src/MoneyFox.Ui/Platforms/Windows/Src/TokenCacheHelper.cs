@@ -1,7 +1,7 @@
-﻿namespace MoneyFox.Win.Infrastructure;
+﻿namespace MoneyFox.Ui.Platforms.Windows.Src;
 
 using System.Security.Cryptography;
-using Windows.Storage;
+using global::Windows.Storage;
 using Microsoft.Identity.Client;
 
 internal static class TokenCacheHelper

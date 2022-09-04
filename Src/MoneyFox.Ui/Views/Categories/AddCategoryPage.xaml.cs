@@ -1,7 +1,6 @@
-﻿namespace MoneyFox.Views.Categories;
+﻿namespace MoneyFox.Ui.Views.Categories;
 
-using Core.Resources;
-using Ui;
+using MoneyFox.Core.Resources;
 using ViewModels.Categories;
 
 public partial class AddCategoryPage

@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<control:ModalContentPage
-    xmlns:control="clr-namespace:MoneyFox.Controls"
+<controls:ModalContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:payments="clr-namespace:MoneyFox.Views.Payments"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:controls="using:MoneyFox.Ui.Controls"
+    xmlns:payments="using:MoneyFox.Ui.Views.Payments"
     Title="{x:Static resources:Strings.AddPaymentLabel}"
-    x:Class="MoneyFox.Views.Payments.AddPaymentPage">
+    x:Class="MoneyFox.Ui.Views.Payments.AddPaymentPage">
 
     <ContentPage.Content>
         <ScrollView Padding="15,0,15,0">
@@ -16,4 +16,4 @@
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
-</control:ModalContentPage>
+</controls:ModalContentPage>

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.Statistics;
+﻿namespace MoneyFox.Ui.ViewModels.Statistics;
 
 public class PaymentsForCategoryMessage
 {

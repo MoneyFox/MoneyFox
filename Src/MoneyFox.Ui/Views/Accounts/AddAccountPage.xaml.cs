@@ -1,7 +1,6 @@
-namespace MoneyFox.Views.Accounts;
+namespace MoneyFox.Ui.Views.Accounts;
 
-using Core.Resources;
-using Ui;
+using MoneyFox.Core.Resources;
 using ViewModels.Accounts;
 
 public partial class AddAccountPage

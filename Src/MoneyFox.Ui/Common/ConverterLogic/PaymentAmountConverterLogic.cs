@@ -1,7 +1,7 @@
-﻿namespace MoneyFox.Common.ConverterLogic;
+﻿namespace MoneyFox.Ui.Common.ConverterLogic;
 
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using Core.Common.Helpers;
+using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using MoneyFox.Core.Common.Helpers;
 using ViewModels.Payments;
 
 public static class PaymentAmountConverterLogic

@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <controls:ModalContentPage
-    xmlns:controls="clr-namespace:MoneyFox.Controls"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:payments="clr-namespace:MoneyFox.Views.Payments"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-    xmlns:extensions="using:MoneyFox.Common.Extensions"
+    xmlns:controls="using:MoneyFox.Ui.Controls"
+    xmlns:payments="using:MoneyFox.Ui.Views.Payments"
+    xmlns:extensions="using:MoneyFox.Ui.Common.Extensions"
     Title="{x:Static resources:Strings.EditPaymentTitle}"
-    x:Class="MoneyFox.Views.Payments.EditPaymentPage">
+    x:Class="MoneyFox.Ui.Views.Payments.EditPaymentPage">
 
     <ContentPage.Content>
         <ScrollView>

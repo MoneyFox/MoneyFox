@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Common;
+﻿namespace MoneyFox.Ui.Common;
 
 using Infrastructure;
 using Serilog;

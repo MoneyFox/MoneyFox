@@ -1,9 +1,9 @@
-﻿namespace MoneyFox.Common.Extensions;
+﻿namespace MoneyFox.Ui.Common.Extensions;
 
 using System.Reflection;
 using System.Resources;
-using Core.Common.Helpers;
-using Core.Resources;
+using MoneyFox.Core.Common.Helpers;
+using MoneyFox.Core.Resources;
 
 [ContentProperty("Text")]
 public class TranslateExtension : IMarkupExtension

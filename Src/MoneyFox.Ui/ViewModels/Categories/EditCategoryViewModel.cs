@@ -1,11 +1,11 @@
-﻿namespace MoneyFox.ViewModels.Categories;
+﻿namespace MoneyFox.Ui.ViewModels.Categories;
 
 using AutoMapper;
-using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
-using Core.ApplicationCore.Queries;
-using Core.Commands.Categories.UpdateCategory;
-using Core.Common.Interfaces;
 using MediatR;
+using MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
+using MoneyFox.Core.ApplicationCore.Queries;
+using MoneyFox.Core.Commands.Categories.UpdateCategory;
+using MoneyFox.Core.Common.Interfaces;
 
 internal sealed class EditCategoryViewModel : ModifyCategoryViewModel
 {

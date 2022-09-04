@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<controls1:ModalContentPage
+<controls:ModalContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-    xmlns:controls1="using:MoneyFox.Controls"
-    xmlns:budget="using:MoneyFox.Views.Budget"
-    xmlns:budget1="using:MoneyFox.ViewModels.Budget"
+    xmlns:controls="using:MoneyFox.Ui.Controls"
+    xmlns:budget="using:MoneyFox.Ui.Views.Budget"
+    xmlns:budget1="using:MoneyFox.Ui.ViewModels.Budget"
     Title="{x:Static resources:Strings.EditBudgetTitle}"
     x:DataType="budget1:EditBudgetViewModel"
-    x:Class="MoneyFox.Views.Budget.EditBudgetPage"
+    x:Class="MoneyFox.Ui.Views.Budget.EditBudgetPage"
     Visual="Material">
 
     <ContentPage.Content>
@@ -22,4 +22,4 @@
                     Text="{x:Static resources:Strings.DeleteLabel}" />
         </Grid>
     </ContentPage.Content>
-</controls1:ModalContentPage>
+</controls:ModalContentPage>

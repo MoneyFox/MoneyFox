@@ -1,12 +1,12 @@
-namespace MoneyFox.ViewModels.Statistics;
+namespace MoneyFox.Ui.ViewModels.Statistics;
 
 using System.Globalization;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.Common.Extensions;
-using Core.Common.Messages;
-using Core.Resources;
 using MediatR;
+using MoneyFox.Core.Common.Extensions;
+using MoneyFox.Core.Common.Messages;
+using MoneyFox.Core.Resources;
 
 internal abstract class StatisticViewModel : BaseViewModel
 {

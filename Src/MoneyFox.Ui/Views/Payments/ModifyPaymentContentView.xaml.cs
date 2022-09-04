@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Views.Payments;
+﻿namespace MoneyFox.Ui.Views.Payments;
 
 public partial class ModifyPaymentContentView
 {

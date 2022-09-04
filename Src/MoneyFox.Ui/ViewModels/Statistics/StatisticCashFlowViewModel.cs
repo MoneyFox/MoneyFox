@@ -1,12 +1,12 @@
-namespace MoneyFox.ViewModels.Statistics;
+namespace MoneyFox.Ui.ViewModels.Statistics;
 
 using System.Collections.ObjectModel;
-using Core.ApplicationCore.Queries.Statistics;
-using Core.Common.Extensions;
 using LiveChartsCore;
 using LiveChartsCore.Kernel.Sketches;
 using LiveChartsCore.SkiaSharpView;
 using MediatR;
+using MoneyFox.Core.ApplicationCore.Queries.Statistics;
+using MoneyFox.Core.Common.Extensions;
 
 internal sealed class StatisticCashFlowViewModel : StatisticViewModel
 {

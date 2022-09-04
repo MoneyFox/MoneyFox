@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.SetupAssistant;
+﻿namespace MoneyFox.Ui.ViewModels.SetupAssistant;
 
 using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
