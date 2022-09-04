@@ -1,7 +1,5 @@
 namespace MoneyFox.Win.Infrastructure.Adapters;
 
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Core.Interfaces;
 using JetBrains.Annotations;
 

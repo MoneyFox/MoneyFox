@@ -1,6 +1,5 @@
 ﻿namespace MoneyFox.Win;
 
-using System;
 using Windows.ApplicationModel.Store;
 using Windows.System;
 using Core.Common.Interfaces;

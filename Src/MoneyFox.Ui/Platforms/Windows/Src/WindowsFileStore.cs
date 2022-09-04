@@ -1,8 +1,8 @@
 namespace MoneyFox.Win;
 
 using Windows.Storage;
-using Serilog;
 using MoneyFox.Infrastructure;
+using Serilog;
 
 public class WindowsFileStore : FileStoreBase
 {

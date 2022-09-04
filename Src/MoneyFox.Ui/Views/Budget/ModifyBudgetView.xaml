@@ -34,11 +34,12 @@
                         SelectedItem="{Binding SelectedBudget.TimeRange}"
                         ItemDisplayBinding="{Binding ., Converter={StaticResource BudgetTimeRangeStringConverter}}" />
 
-                <Label Text="{x:Static resources:Strings.EvaluationTimeRangeMessage}" Style="{StaticResource TextBodySecondary}" />
-                
+                <Label Text="{x:Static resources:Strings.EvaluationTimeRangeMessage}"
+                       Style="{StaticResource TextBodySecondary}" />
+
                 <Button Text="{x:Static resources:Strings.SelectCategoryLabel}"
                         Command="{Binding OpenCategorySelectionCommand}" />
-                
+
                 <Label Text="{x:Static resources:Strings.SelectedCategoriesLabel}" />
                 <CollectionView x:Name="BudgetCategoryCollectionView"
                                 SelectionMode="Single"

@@ -1,6 +1,5 @@
 ﻿namespace MoneyFox.Win;
 
-using System.Threading.Tasks;
 using Microsoft.Graph;
 using Microsoft.Identity.Client;
 using MoneyFox.Infrastructure.DbBackup;

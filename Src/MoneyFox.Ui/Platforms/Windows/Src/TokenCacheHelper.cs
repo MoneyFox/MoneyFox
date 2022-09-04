@@ -1,6 +1,5 @@
 ﻿namespace MoneyFox.Win.Infrastructure;
 
-using System.IO;
 using System.Security.Cryptography;
 using Windows.Storage;
 using Microsoft.Identity.Client;

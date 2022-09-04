@@ -1,38 +1,33 @@
-namespace MoneyFox.ViewModels.Budget
+namespace MoneyFox.ViewModels.Budget;
+
+using CommunityToolkit.Mvvm.Messaging;
+using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
+using Core.ApplicationCore.UseCases.BudgetCreation;
+using Core.Common.Messages;
+using Core.Interfaces;
+using MediatR;
+
+internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
 {
+    private readonly INavigationService navigationService;
+    private readonly ISender sender;
 
-    using System.Linq;
-    using System.Threading.Tasks;
-    using CommunityToolkit.Mvvm.Messaging;
-    using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
-    using Core.ApplicationCore.UseCases.BudgetCreation;
-    using Core.Common.Messages;
-    using Core.Interfaces;
-    using MediatR;
-
-    internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
+    public AddBudgetViewModel(ISender sender, INavigationService navigationService) : base(navigationService: navigationService)
     {
-        private readonly INavigationService navigationService;
-        private readonly ISender sender;
-
-        public AddBudgetViewModel(ISender sender, INavigationService navigationService) : base(navigationService: navigationService)
-        {
-            this.sender = sender;
-            this.navigationService = navigationService;
-        }
-
-        protected override async Task SaveBudgetAsync()
-        {
-            var query = new CreateBudget.Command(
-                name: SelectedBudget.Name,
-                spendingLimit: SelectedBudget.SpendingLimit,
-                budgetTimeRange: BudgetTimeRange.YearToDate,
-                categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
-
-            await sender.Send(query);
-            Messenger.Send(new ReloadMessage());
-            await navigationService.GoBackFromModal();
-        }
+        this.sender = sender;
+        this.navigationService = navigationService;
     }
 
+    protected override async Task SaveBudgetAsync()
+    {
+        var query = new CreateBudget.Command(
+            name: SelectedBudget.Name,
+            spendingLimit: SelectedBudget.SpendingLimit,
+            budgetTimeRange: BudgetTimeRange.YearToDate,
+            categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
+
+        await sender.Send(query);
+        Messenger.Send(new ReloadMessage());
+        await navigationService.GoBackFromModal();
+    }
 }

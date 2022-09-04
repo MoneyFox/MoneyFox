@@ -30,6 +30,7 @@ public sealed class MoneyFoxConfig
         RegisterServices(serviceCollection);
         RegisterViewModels(serviceCollection);
         RegisterAdapters(serviceCollection);
+
         // TODO: use this here again
         //RegisterIdentityClient(serviceCollection);
         serviceCollection.AddSingleton(_ => AutoMapperFactory.Create());

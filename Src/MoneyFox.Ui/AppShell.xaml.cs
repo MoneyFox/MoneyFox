@@ -18,6 +18,7 @@ public partial class AppShell : Shell
         InitializeComponent();
         RegisterRoutes();
     }
+
     private static void RegisterRoutes()
     {
         Routing.RegisterRoute(route: Routes.WelcomeViewRoute, type: typeof(WelcomePage));

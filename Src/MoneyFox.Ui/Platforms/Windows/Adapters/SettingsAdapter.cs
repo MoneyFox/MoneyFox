@@ -1,6 +1,5 @@
 ﻿namespace MoneyFox.Win.Infrastructure.Adapters;
 
-using System;
 using Core.Interfaces;
 using Serilog;
 
