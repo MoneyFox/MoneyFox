@@ -1,0 +1,116 @@
+name: Validate PR
+
+on:
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    name: validate PR
+    runs-on: ubuntu-latest
+    
+    env:
+      solution: ${{ github.workspace }}/**/*.sln 
+      DOTNET_VERSION: '6.0.x'
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+        
+    - name: Set up dependency caching for faster builds
+      uses: actions/cache@v3
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
+          
+    - name: Restore dependencies
+      run: dotnet restore ${{ env.solution }}
+    
+    - name: Build
+      run: dotnet build ${{ env.solution }} --configuration Release --no-restore 
+    
+    - name: Test
+      run: dotnet test ${{ env.solution }} --configuration Release --no-build 
+    
+
+
+
+
+name: Validate PR
+
+on:
+  pull_request:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+env:
+    DOTNETVERSION: 6.0.300
+    
+jobs:
+  buildWindows:
+    runs-on: windows-2022
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Setup .NET SDK ${{env.DOTNETVERSION}}
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '${{env.DOTNETVERSION}}'
+          
+      - name: Install .NET MAUI
+        shell: pwsh
+        run: |
+          & dotnet nuget locals all --clear
+          & dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+          & dotnet workload install android maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+      
+      # https://docs.microsoft.com/en-us/dotnet/maui/windows/deployment/overview
+      - name: Build Windows MSIX
+        run: |
+          cd .\Src\MoneyFox.Ui\
+          dotnet publish -f net6.0-windows10.0.22621.0 -c Release 
+          
+#       - name: Build and Run UnitTests
+#         shell: bash
+#         run: |
+#           dotnet build <path to unit test csproj>
+#           dotnet test <path to unit test csproj> --no-build --verbosity normal
+
+#      # https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/certutil
+#      # commandline util to encode to base64 on windows
+#      - name: Create signing pfx file from secrets
+#        shell: pwsh
+#        id: secret-file
+#        env:
+#          SECRET_DATA1: ${{ secrets.WIN_SIGN_CERT }}
+#        run: |
+#          $secretFile = "WinSignCert.pfx"; 
+#          $encodedBytes = [System.Convert]::FromBase64String($env:SECRET_DATA1); 
+#          Set-Content $secretFile -Value $encodedBytes -AsByteStream;
+#          Write-Output "::set-output name=SECRET_FILE::$secretFile";
+#          Write-Output " ";
+#          Write-Output "CHECK FILE EXISTS";
+#          Write-Output " ";
+#          ls
+#
+#      # https://docs.microsoft.com/en-us/windows/msix/desktop/azure-dev-ops
+#      - name: Sign Windows App
+#        shell: pwsh
+#        env:
+#          CERT_PASSWORD: ${{ secrets.WIN_CERT_PASSWORD }}
+#        run: |
+#          '"C:\Program Files (x86)\Windows Kits\10\App Certification Kit\SignTool" sign /a /fd SHA256 /f WinSignCert.pfx /p ($env:CERT_PASSWORD) 6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net6.0-windows10.0.19041.0\win10-x64\AppPackages\WeatherTwentyOne_1.0.0.0_TestWeatherTwentyOne_1.0.0.0_x64.msix'
+#
+#      - uses: actions/upload-artifact@v2
+#        with:
+#          name: artifacts-windows
+#          path: |
+#            **\*.msix
+#      
