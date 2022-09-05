@@ -30,15 +30,15 @@ jobs:
       
       # https://docs.microsoft.com/en-us/dotnet/maui/windows/deployment/overview
       - name: Build Windows MSIX
-        run: | 
+        run: |
           cd .\Src\MoneyFox.Ui\
           dotnet publish -f net6.0-windows10.0.22000.0 -c Release 
           
-       - name: Build and Run UnitTests
-         shell: bash
-         run: |
-           dotnet build .\Src\MoneyFox.Tests\MoneyFox.Tests.csproj
-           dotnet test .\Src\MoneyFox.Tests\MoneyFox.Tests.csproj --no-build --verbosity normal
+#       - name: Build and Run UnitTests
+#         shell: bash
+#         run: |
+#           dotnet build .\Src\MoneyFox.Tests\MoneyFox.Tests.csproj
+#           dotnet test .\Src\MoneyFox.Tests\MoneyFox.Tests.csproj --no-build --verbosity normal
 
 #      # https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/certutil
 #      # commandline util to encode to base64 on windows
