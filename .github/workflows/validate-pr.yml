@@ -2,49 +2,6 @@ name: Validate PR
 
 on:
   pull_request:
-    branches: [ "master" ]
-
-jobs:
-  build:
-    name: validate PR
-    runs-on: ubuntu-latest
-    
-    env:
-      solution: ${{ github.workspace }}/**/*.sln 
-      DOTNET_VERSION: '6.0.x'
-
-    steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: ${{ env.DOTNET_VERSION }}
-        
-    - name: Set up dependency caching for faster builds
-      uses: actions/cache@v3
-      with:
-        path: ~/.nuget/packages
-        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-nuget-
-          
-    - name: Restore dependencies
-      run: dotnet restore ${{ env.solution }}
-    
-    - name: Build
-      run: dotnet build ${{ env.solution }} --configuration Release --no-restore 
-    
-    - name: Test
-      run: dotnet test ${{ env.solution }} --configuration Release --no-build 
-    
-
-
-
-
-name: Validate PR
-
-on:
-  pull_request:
     branches: [ master ]
 
   workflow_dispatch:
