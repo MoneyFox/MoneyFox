@@ -26,7 +26,6 @@ jobs:
         run: |
           & dotnet nuget locals all --clear
           & dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
-          & dotnet workload install android maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
       
       # https://docs.microsoft.com/en-us/dotnet/maui/windows/deployment/overview
       - name: Build Windows MSIX
