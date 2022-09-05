@@ -34,7 +34,6 @@ jobs:
           dotnet publish -f net6.0-windows10.0.22000.0 -c Release 
           
       - name: Build and Run UnitTests
-        shell: bash
         run: |
           dotnet build .\Src\MoneyFox.Tests\MoneyFox.Tests.csproj
           dotnet test .\Src\MoneyFox.Tests\MoneyFox.Tests.csproj --no-build --verbosity normal
