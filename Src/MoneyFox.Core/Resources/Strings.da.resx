@@ -122,58 +122,58 @@
         </value>
     </resheader>
     <data name="AboutTitle" xml:space="preserve">
-    <value>About</value>
+    <value>Om</value>
   </data>
     <data name="AccountNameLabel" xml:space="preserve">
-    <value>Account Name</value>
+    <value>Kontonavn</value>
   </data>
     <data name="AccountRequiredMessage" xml:space="preserve">
-    <value>Please select an Account.</value>
+    <value>Vælg en konto.</value>
   </data>
     <data name="AccountsTitle" xml:space="preserve">
-    <value>Accounts</value>
+    <value>Konti</value>
   </data>
     <data name="AddAccountLabel" xml:space="preserve">
-    <value>Add Account</value>
+    <value>Tilføj konto</value>
   </data>
     <data name="AddAccountTitle" xml:space="preserve">
-    <value>Add Account</value>
+    <value>Tilføj konto</value>
   </data>
     <data name="AddCategoryLabel" xml:space="preserve">
-    <value>Add Category</value>
+    <value>Tilføj kategori</value>
   </data>
     <data name="AddCategoryTitle" xml:space="preserve">
-    <value>Add Category</value>
+    <value>Tilføj kategori</value>
   </data>
     <data name="AddExpenseTitle" xml:space="preserve">
-    <value>Add Expense</value>
+    <value>Tilføj en udgift</value>
   </data>
     <data name="AddIncomeTitle" xml:space="preserve">
-    <value>Add Income</value>
+    <value>Tilføj en indtægt</value>
   </data>
     <data name="AddPaymentLabel" xml:space="preserve">
-    <value>Add Payment</value>
+    <value>Tilføj betaling</value>
   </data>
     <data name="AddTransferTitle" xml:space="preserve">
-    <value>Add Transfer</value>
+    <value>Tilføj overførsel</value>
   </data>
     <data name="AmountLabel" xml:space="preserve">
-    <value>Amount</value>
+    <value>Beløb</value>
   </data>
     <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
     <value>The amount may not be negative. If it is subtracted or added is deteremined by the kind of payment you create.</value>
   </data>
     <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
-    <value>Negative amount</value>
+    <value>Negativt beløb</value>
   </data>
     <data name="ANoteForPaymentIsRequired" xml:space="preserve">
     <value>A note for payment is required</value>
   </data>
     <data name="ApplyFilterLabel" xml:space="preserve">
-    <value>Apply Filter</value>
+    <value>Anvend filter</value>
   </data>
     <data name="AssetsLabel" xml:space="preserve">
-    <value>Assets</value>
+    <value>Aktiver</value>
   </data>
     <data name="AuthenticationFailedTitle" xml:space="preserve">
     <value>Authentication failed</value>
@@ -182,52 +182,52 @@
     <value>If you activate this setting we backup your data automatically to OneDrive. Also we check periodically if something changed on another device.</value>
   </data>
     <data name="AutobackupLabel" xml:space="preserve">
-    <value>Automatically upload and download backups</value>
+    <value>Upload og download sikkerhedskopier automatisk</value>
   </data>
     <data name="AutobackupTitle" xml:space="preserve">
     <value>Autobackup</value>
   </data>
     <data name="BackLabel" xml:space="preserve">
-    <value>Back</value>
+    <value>Tilbage</value>
   </data>
     <data name="BackupCreatedMessage" xml:space="preserve">
-    <value>Backup created successfully</value>
+    <value>Backup oprettet</value>
   </data>
     <data name="BackupFailedTitle" xml:space="preserve">
-    <value>Backup failed!</value>
+    <value>Sikkerhedskopiering mislykkedes!</value>
   </data>
     <data name="BackupInformationLabel" xml:space="preserve">
     <value>Your data will be saved to your OneDrive Account. You’ll find them in the Application Folder in a new folder called "MoneyFox".</value>
   </data>
     <data name="BackupRestoredMessage" xml:space="preserve">
-    <value>Backup restored successfully.</value>
+    <value>Backup gendannet.</value>
   </data>
     <data name="BackupTitle" xml:space="preserve">
-    <value>Backup</value>
+    <value>Sikkerhedskopi</value>
   </data>
     <data name="BiannuallyLabel" xml:space="preserve">
-    <value>Biannually</value>
+    <value>Halvårligt</value>
   </data>
     <data name="BimonthlyLabel" xml:space="preserve">
-    <value>Bimonthly</value>
+    <value>Hver anden måned</value>
   </data>
     <data name="BiweeklyLabel" xml:space="preserve">
     <value>Biweekly</value>
   </data>
     <data name="BudgetsLabel" xml:space="preserve">
-    <value>Budgets</value>
+    <value>Budgetter</value>
   </data>
     <data name="CanceledTitle" xml:space="preserve">
-    <value>Canceled</value>
+    <value>Annulleret</value>
   </data>
     <data name="CancelLabel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Annullér</value>
   </data>
     <data name="CashflowDescription" xml:space="preserve">
     <value>Income, expenses and gains for the selected time period.</value>
   </data>
     <data name="CashflowLabel" xml:space="preserve">
-    <value>Cashflow</value>
+    <value>Pengestrøm</value>
   </data>
     <data name="CashFlowStatisticTitle" xml:space="preserve">
     <value>Cash Flow</value>
@@ -239,13 +239,13 @@
     <value>Spreading of the expenses to the categories.</value>
   </data>
     <data name="CategoriesTitle" xml:space="preserve">
-    <value>Categories</value>
+    <value>Kategorier</value>
   </data>
     <data name="CategoryLabel" xml:space="preserve">
-    <value>Category</value>
+    <value>Kategori</value>
   </data>
     <data name="CategoryNameLabel" xml:space="preserve">
-    <value>Category Name</value>
+    <value>Kategorinavn</value>
   </data>
     <data name="CategorySpreadingLabel" xml:space="preserve">
     <value>Category Spreading</value>
@@ -260,7 +260,7 @@
     <value>Category Summary</value>
   </data>
     <data name="CategorySummaryTitle" xml:space="preserve">
-    <value>Category Summary</value>
+    <value>Kategori overblik</value>
   </data>
     <data name="ChargedAccountLabel" xml:space="preserve">
     <value>Charged Account</value>
