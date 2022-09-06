@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:converter="using:MoneyFox.Ui.Converter"
+    xmlns:payments="using:MoneyFox.Ui.ViewModels.Payments"
     x:Class="MoneyFox.Ui.Views.Payments.ModifyPaymentContentView">
 
     <ContentView.Resources>
@@ -17,7 +18,7 @@
         </ResourceDictionary>
     </ContentView.Resources>
 
-    <ContentView.Content>
+    <ScrollView x:DataType="payments:ModifyPaymentViewModel" Padding="15,0,15,0">
         <StackLayout>
             <Picker Title="{x:Static resources:Strings.PaymentTypeLabel}"
                     ItemsSource="{Binding PaymentTypeList}"
@@ -135,5 +136,5 @@
 
             </StackLayout>
         </StackLayout>
-    </ContentView.Content>
+    </ScrollView>
 </ContentView>
