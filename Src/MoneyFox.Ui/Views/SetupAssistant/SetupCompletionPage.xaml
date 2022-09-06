@@ -26,7 +26,7 @@
                             Text="{x:Static resources:Strings.BackLabel}"
                             Command="{Binding BackCommand}" />
 
-                    <Button Grid.Column="1"
+                    <Button Grid.Column="2"
                             VerticalOptions="Center"
                             Text="{x:Static resources:Strings.CompleteLabel}"
                             Command="{Binding CompleteCommand}" />
