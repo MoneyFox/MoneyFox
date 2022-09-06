@@ -85,11 +85,11 @@ internal abstract class ModifyPaymentViewModel : BaseViewModel
 
     public string AccountHeader => SelectedPayment?.Type == PaymentType.Income ? Strings.TargetAccountLabel : Strings.ChargedAccountLabel;
 
-    public RelayCommand GoToSelectCategoryDialogCommand => new(async () => await Shell.Current.GoToModalAsync(Routes.SelectCategoryRoute));
+    public AsyncRelayCommand GoToSelectCategoryDialogCommand => new(async () => await Shell.Current.GoToModalAsync(Routes.SelectCategoryRoute));
 
     public RelayCommand ResetCategoryCommand => new(() => SelectedPayment.Category = null);
 
-    public RelayCommand SaveCommand => new(async () => await SavePaymentBaseAsync());
+    public AsyncRelayCommand SaveCommand => new(SavePaymentBaseAsync);
 
     protected virtual async Task InitializeAsync()
     {

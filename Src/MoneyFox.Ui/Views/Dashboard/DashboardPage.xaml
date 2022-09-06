@@ -266,16 +266,20 @@
             </Grid>
         </ScrollView>
 
-        <Grid Grid.Column="1" x:Name="AddPaymentPanel" RowDefinitions="40, *">
-            <ImageButton Clicked="ClickClosePanel" HorizontalOptions="End">
-                <ImageButton.Source>
-                    <FontImageSource FontFamily="MaterialIconsRound" Glyph="delete" />
-                </ImageButton.Source>
-            </ImageButton>
+        <Grid Grid.Column="1" x:Name="AddPaymentPanel" RowDefinitions="50, *">
 
             <Label Style="{StaticResource TextTitle}"
                    Text="{x:Static resources:Strings.AddPaymentTitle}"
                    VerticalOptions="Center" />
+
+            <ImageButton Clicked="ClickClosePanel" HorizontalOptions="End"
+                         HeightRequest="44"
+                         WidthRequest="44"
+                         Margin="6">
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="MaterialIconsRound" Glyph="delete" />
+                </ImageButton.Source>
+            </ImageButton>
 
             <payments:ModifyPaymentContentView x:Name="AddPaymentView" Grid.Row="1" />
         </Grid>
