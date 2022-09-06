@@ -212,7 +212,7 @@
     <value>Hver anden måned</value>
   </data>
     <data name="BiweeklyLabel" xml:space="preserve">
-    <value>Biweekly</value>
+    <value>Hver anden uge</value>
   </data>
     <data name="BudgetsLabel" xml:space="preserve">
     <value>Budgetter</value>
@@ -224,7 +224,7 @@
     <value>Annullér</value>
   </data>
     <data name="CashflowDescription" xml:space="preserve">
-    <value>Income, expenses and gains for the selected time period.</value>
+    <value>Indtægter, udgifter og overskud for den valgte tidsperiode.</value>
   </data>
     <data name="CashflowLabel" xml:space="preserve">
     <value>Pengestrøm</value>
@@ -275,10 +275,10 @@
     <value>Done!</value>
   </data>
     <data name="CompleteLabel" xml:space="preserve">
-    <value>Complete</value>
+    <value>Fuldført</value>
   </data>
     <data name="ContactLabel" xml:space="preserve">
-    <value>Contact</value>
+    <value>Kontakt os</value>
   </data>
     <data name="ContributerLabel" xml:space="preserve">
     <value>To see all contributions head over to GitHub:</value>
