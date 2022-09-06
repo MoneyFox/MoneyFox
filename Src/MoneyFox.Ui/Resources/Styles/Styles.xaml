@@ -29,7 +29,6 @@
 
     <Style x:Key="TextHeadline" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
         <Setter Property="FontSize" Value="{StaticResource TextSizeHeadline}" />
-        <Setter Property="FontAttributes" Value="Bold" />
     </Style>
 
     <Style x:Key="TextSubHeadline" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
@@ -38,12 +37,10 @@
 
     <Style x:Key="TextTitle" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
         <Setter Property="FontSize" Value="{StaticResource TextSizeTitle}" />
-        <Setter Property="FontAttributes" Value="Bold" />
     </Style>
 
     <Style x:Key="TextHead" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
         <Setter Property="FontSize" Value="{StaticResource TextSizeHeading}" />
-        <Setter Property="FontAttributes" Value="Bold" />
     </Style>
 
     <Style x:Key="TextSubHead" TargetType="Label" BasedOn="{StaticResource BaseLabel}">

@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <ContentPage
     x:Class="MoneyFox.Ui.Views.Dashboard.DashboardPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -13,24 +12,6 @@
         <converter:BalanceColorConverter x:Key="BalanceColorConverter" />
     </ContentPage.Resources>
 
-    <Shell.TitleView>
-        <Grid>
-            <ImageButton Margin="0,0,5,0"
-                         Padding="0"
-                         BorderWidth="0"
-                         Command="{Binding GoToAddPaymentCommand}"
-                         HeightRequest="44"
-                         HorizontalOptions="End"
-                         VerticalOptions="Center"
-                         WidthRequest="66"
-                         Style="{StaticResource PrimaryImageButton}">
-                <ImageButton.Source>
-                    <FontImageSource FontFamily="MaterialIconsRound" Glyph="add" Color="White" />
-                </ImageButton.Source>
-            </ImageButton>
-        </Grid>
-    </Shell.TitleView>
-
     <ContentPage.Content>
         <ScrollView>
             <Grid Padding="15"
@@ -38,6 +19,12 @@
                   RowDefinitions="35, 40, 90, 160, 140,*">
 
                 <Label Style="{StaticResource TextHeadline}" Text="{x:Static resources:Strings.WelcomeLabel}" />
+
+                <Button
+                    HorizontalOptions="End"
+                    Text="{x:Static resources:Strings.AddPaymentLabel}"
+                    VerticalOptions="Center"
+                    Command="{Binding GoToAddAccountCommand}" />
 
                 <Label Grid.Row="1"
                        Style="{StaticResource TextTitle}"
@@ -51,7 +38,8 @@
                         StrokeThickness="0"
                         StrokeShape="RoundRectangle 10"
                         HeightRequest="90"
-                        HorizontalOptions="FillAndExpand">
+                        MaximumWidthRequest="400"
+                        HorizontalOptions="Center">
 
                     <Border.Shadow>
                         <Shadow Brush="Black"
