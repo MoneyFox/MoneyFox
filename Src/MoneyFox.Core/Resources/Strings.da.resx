@@ -161,13 +161,13 @@
     <value>Beløb</value>
   </data>
     <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
-    <value>The amount may not be negative. If it is subtracted or added is deteremined by the kind of payment you create.</value>
+    <value>Beløbet må ikke være negativt. Om det trækkes fra eller lægges til, bliver afgjort af den form for betaling, du opretter.</value>
   </data>
     <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
     <value>Negativt beløb</value>
   </data>
     <data name="ANoteForPaymentIsRequired" xml:space="preserve">
-    <value>A note for payment is required</value>
+    <value>En kommentar er påkrævet</value>
   </data>
     <data name="ApplyFilterLabel" xml:space="preserve">
     <value>Anvend filter</value>
@@ -176,13 +176,13 @@
     <value>Formue</value>
   </data>
     <data name="AuthenticationFailedTitle" xml:space="preserve">
-    <value>Authentication failed</value>
+    <value>Godkendelse mislykkedes</value>
   </data>
     <data name="AutobackupInformationLabel" xml:space="preserve">
-    <value>If you activate this setting we backup your data automatically to OneDrive. Also we check periodically if something changed on another device.</value>
+    <value>Hvis du aktiverer denne indstilling, laver vi automatiske backups af dine data til OneDrive. Vi tjekker også periodisk, om noget ændres på en anden enhed.</value>
   </data>
     <data name="AutobackupLabel" xml:space="preserve">
-    <value>Upload og download sikkerhedskopier automatisk</value>
+    <value>Upload og download backup automatisk</value>
   </data>
     <data name="AutobackupTitle" xml:space="preserve">
     <value>Autobackup</value>
@@ -194,7 +194,7 @@
     <value>Backup oprettet</value>
   </data>
     <data name="BackupFailedTitle" xml:space="preserve">
-    <value>Sikkerhedskopiering mislykkedes!</value>
+    <value>Backup mislykkedes!</value>
   </data>
     <data name="BackupInformationLabel" xml:space="preserve">
     <value>Dine data vil blive gemt til din OneDrive konto. Du kan finde dem i applikationsmappen i en ny mappe kaldet "MoneyFox".</value>
@@ -203,7 +203,7 @@
     <value>Backup gendannet.</value>
   </data>
     <data name="BackupTitle" xml:space="preserve">
-    <value>Sikkerhedskopi</value>
+    <value>Backup</value>
   </data>
     <data name="BiannuallyLabel" xml:space="preserve">
     <value>Halvårligt</value>
@@ -230,13 +230,13 @@
     <value>Pengestrøm</value>
   </data>
     <data name="CashFlowStatisticTitle" xml:space="preserve">
-    <value>Cash Flow</value>
+    <value>Pengestrøm</value>
   </data>
     <data name="CategorieIntroductionText" xml:space="preserve">
-    <value>Categories can help order your payments. Also they make it easier to analyze your spendings and incomes in the statistics.</value>
+    <value>Kategorier kan hjælpe med at organisere dine betalinger. De gør det også lettere at analysere dine udgifter og indtægter i statistikken.</value>
   </data>
     <data name="CategorieSpreadingDescription" xml:space="preserve">
-    <value>Spreading of the expenses to the categories.</value>
+    <value>Spredning af udgifterne for kategorierne</value>
   </data>
     <data name="CategoriesTitle" xml:space="preserve">
     <value>Kategorier</value>
@@ -248,13 +248,13 @@
     <value>Kategorinavn</value>
   </data>
     <data name="CategorySpreadingLabel" xml:space="preserve">
-    <value>Category Spreading</value>
+    <value>Kategori spredning</value>
   </data>
     <data name="CategorySpreadingTitle" xml:space="preserve">
-    <value>Category Spreading</value>
+    <value>Kategori spredning</value>
   </data>
     <data name="CategorySummaryDescription" xml:space="preserve">
-    <value>Summary of the categories with a Payment.</value>
+    <value>Oversigt over kategorierne med en betaling.</value>
   </data>
     <data name="CategorySummaryLabel" xml:space="preserve">
     <value>Kategori overblik</value>
@@ -263,13 +263,13 @@
     <value>Kategori overblik</value>
   </data>
     <data name="ChargedAccountLabel" xml:space="preserve">
-    <value>Charged Account</value>
+    <value>Afsender konto</value>
   </data>
     <data name="ClearedFilterLabel" xml:space="preserve">
     <value>Ryddet</value>
   </data>
     <data name="CompletedText" xml:space="preserve">
-    <value>That's it! You're set for using the MoneyFox.</value>
+    <value>Det var det! Du er nu klar til at bruge MoneyFox</value>
   </data>
     <data name="CompletedTitle" xml:space="preserve">
     <value>Udført!</value>
@@ -290,22 +290,22 @@
     <value>Opret en konto</value>
   </data>
     <data name="CreateBackupLabel" xml:space="preserve">
-    <value>Opret sikkerhedskopi</value>
+    <value>Opret backup</value>
   </data>
     <data name="CreateCategoryNowLabel" xml:space="preserve">
     <value>Opret en kategori</value>
   </data>
     <data name="CreationDateHeader" xml:space="preserve">
-    <value>Creation Date</value>
+    <value>Oprettelsesdato</value>
   </data>
     <data name="CreationDateLabel" xml:space="preserve">
-    <value>Creation Date:</value>
+    <value>Oprettelsesdato:</value>
   </data>
     <data name="CreationDateTemplateLabel" xml:space="preserve">
-    <value>Creation Date: {0}</value>
+    <value>Oprettelsesdato: {0}</value>
   </data>
     <data name="CurrentBalanceLabel" xml:space="preserve">
-    <value>Current Balance</value>
+    <value>Nuværende saldo</value>
   </data>
     <data name="DailyLabel" xml:space="preserve">
     <value>Dagligt</value>
@@ -323,31 +323,31 @@
     <value>Dato</value>
   </data>
     <data name="DateRangeHeader" xml:space="preserve">
-    <value>Date Range</value>
+    <value>Datointerval</value>
   </data>
     <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Default Region</value>
+    <value>Standard område</value>
   </data>
     <data name="DefaultRegionText" xml:space="preserve">
-    <value>This region will be used as a default for your application.</value>
+    <value>Dette område vil blive brugt som standard</value>
   </data>
     <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this Account?</value>
+    <value>Er du sikker på at du vil slette denne konto?</value>
   </data>
     <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this Category?</value>
+    <value>Er du sikker på at du vil slette denne kategori?</value>
   </data>
     <data name="DeleteLabel" xml:space="preserve">
     <value>Slet</value>
   </data>
     <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this Payment?</value>
+    <value>Er du sikker på at du vil slette denne betaling?</value>
   </data>
     <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
-    <value>You've deleted a recurring payment. Do you want to delete the recurrence as well?</value>
+    <value>Du har slettet en gentagende betaling. Vil du også slette gentagelserne?</value>
   </data>
     <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
-    <value>Delete Recurrence?</value>
+    <value>Slet gentagelse?</value>
   </data>
     <data name="DeleteTitle" xml:space="preserve">
     <value>Slet?</value>
@@ -380,7 +380,7 @@
     <value>Ændr udgift</value>
   </data>
     <data name="EditTransferTitle" xml:space="preserve">
-    <value>Edit Transfer</value>
+    <value>Rediger overførsel</value>
   </data>
     <data name="EmailLabel" xml:space="preserve">
     <value>E-mail</value>
@@ -389,7 +389,7 @@
     <value>Slutdato</value>
   </data>
     <data name="EndlessLabel" xml:space="preserve">
-    <value>Is Endless</value>
+    <value>Er uendelig</value>
   </data>
     <data name="EndOfMonthBalanceLabel" xml:space="preserve">
     <value>Ultimo</value>
@@ -398,10 +398,10 @@
     <value>Ultimo:</value>
   </data>
     <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
-    <value>There was an error during the authentication. Please try again later.</value>
+    <value>Der opstod en fejl under godkendelsen. Prøv igen senere.</value>
   </data>
     <data name="ExcludedAccountsHeader" xml:space="preserve">
-    <value>Excluded Accounts</value>
+    <value>Udeladte konti</value>
   </data>
     <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
     <value>Udgift: {0} / Indtægt: {1}</value>
@@ -419,10 +419,10 @@
     <value>Filter</value>
   </data>
     <data name="ForceOverrideBackupMessage" xml:space="preserve">
-    <value>Your local database has a newer modification date than the one on OneDrive. Do you want to override your local data?</value>
+    <value>Din lokale database har en nyere ændringsdato end den på OneDrive. Vil du overskrive dine lokale data?</value>
   </data>
     <data name="ForceOverrideBackupTitle" xml:space="preserve">
-    <value>Override Local Data</value>
+    <value>Overskriv lokale data</value>
   </data>
     <data name="GeneralErrorTitle" xml:space="preserve">
     <value>Der er opstået en fejl</value>
@@ -468,7 +468,7 @@ Tryk for at besøge projektets hjemmeside:</value>
     <value>Ugyldig slutdato</value>
   </data>
     <data name="InvalidNumberCurrentBalanceMessage" xml:space="preserve">
-    <value>Your current balance seems to be an invalid number. Please check that you haven't entered any special characters and used the correct separator.</value>
+    <value>Din aktuelle saldo ser ud til at være et ugyldigt tal. Tjek venligst at du ikke har indtastet nogen specialtegn og brugt den korrekte separator.</value>
   </data>
     <data name="InvalidNumberTitle" xml:space="preserve">
     <value>Ugyldigt tal</value>
@@ -480,7 +480,7 @@ Tryk for at besøge projektets hjemmeside:</value>
     <value>Ekskludér konto fra saldo</value>
   </data>
     <data name="IsGroupedLabel" xml:space="preserve">
-    <value>Group List</value>
+    <value>Gruppe liste</value>
   </data>
     <data name="IsRecurringFilterLabel" xml:space="preserve">
     <value>Er tilbagevendende</value>
@@ -489,7 +489,7 @@ Tryk for at besøge projektets hjemmeside:</value>
     <value>Tilbagevendende</value>
   </data>
     <data name="LastBackupDateLabel" xml:space="preserve">
-    <value>Seneste sikkerhedskopi oprettet den:</value>
+    <value>Seneste backup oprettet den:</value>
   </data>
     <data name="LightLabel" xml:space="preserve">
     <value>Lyst</value>
@@ -498,10 +498,10 @@ Tryk for at besøge projektets hjemmeside:</value>
     <value>Indlæser...</value>
   </data>
     <data name="LoggedInMessage" xml:space="preserve">
-    <value>Loggedin successfully.</value>
+    <value>Loggede ind succesfuldt</value>
   </data>
     <data name="LoggedOutMessage" xml:space="preserve">
-    <value>Logged out successfully.</value>
+    <value>Loggede ud succesfuldt</value>
   </data>
     <data name="LoggedOutTitle" xml:space="preserve">
     <value>Logget ud</value>
@@ -522,34 +522,34 @@ Tryk for at besøge projektets hjemmeside:</value>
     <value>Log ud</value>
   </data>
     <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
-    <value>Mandatory field</value>
+    <value>Obligatorisk felt</value>
   </data>
     <data name="ModificationDateHeader" xml:space="preserve">
-    <value>Modification Date</value>
+    <value>Ændringsdato</value>
   </data>
     <data name="ModificationDateLabel" xml:space="preserve">
-    <value>Modification Date:</value>
+    <value>Ændringsdato:</value>
   </data>
     <data name="ModificationDateTemplateLabel" xml:space="preserve">
-    <value>Modification Date: {0}</value>
+    <value>Ændringsdato: {0}</value>
   </data>
     <data name="ModifyRecurrenceMessage" xml:space="preserve">
-    <value>You have modified a recurring payment. Do you want to update the recurrence?</value>
+    <value>Du har ændret en gentagende betaling. Vil du opdatere gentagelsen?</value>
   </data>
     <data name="ModifyRecurrenceTitle" xml:space="preserve">
-    <value>Modify Recurrence</value>
+    <value>Ændr gentagelse</value>
   </data>
     <data name="MonthlyAverageLabel" xml:space="preserve">
-    <value>Last year monthly average: </value>
+    <value>Sidste års månedlige gennemsnit: </value>
   </data>
     <data name="MonthlyCashflowDescription" xml:space="preserve">
-    <value>Shows the monthly cashflow for the selected account.</value>
+    <value>Viser den månedlige pengestrøm for den valgte konto.</value>
   </data>
     <data name="MonthlyCashflowLabel" xml:space="preserve">
-    <value>Monthly Cashflow</value>
+    <value>Månedlig pengestrøm</value>
   </data>
     <data name="MonthlyCashflowTitle" xml:space="preserve">
-    <value>Monthly Cashflow</value>
+    <value>Månedlig pengestrøm</value>
   </data>
     <data name="MonthlyLabel" xml:space="preserve">
     <value>Månedligt</value>
@@ -570,7 +570,7 @@ Tryk for at besøge projektets hjemmeside:</value>
     <value>[Ingen kategori]</value>
   </data>
     <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
-    <value>No entry selected. Choose a entry in the list to see the payments for it.</value>
+    <value>Intet emne valgt. Vælg et emne fra listen for at se betalingerne.</value>
   </data>
     <data name="NoLabel" xml:space="preserve">
     <value>Nej</value>
@@ -597,7 +597,7 @@ Tryk for at besøge projektets hjemmeside:</value>
     <value>Andet</value>
   </data>
     <data name="OverwriteBackupMessage" xml:space="preserve">
-    <value>Existing backups will be overwritten. Do you wanna continue?</value>
+    <value>Eksisterende backups vil blive overskrevet. Vil du fortsætte?</value>
   </data>
     <data name="OverwriteDataMessage" xml:space="preserve">
     <value>Dine lokale data vil blive slettet. Er du sikker på, at du vil fortsætte?</value>
@@ -606,12 +606,12 @@ Tryk for at besøge projektets hjemmeside:</value>
     <value>Overskriv?</value>
   </data>
     <data name="PaymentIntroductionText" xml:space="preserve">
-    <value>When you create a payment you can select the category for that payment along with the account and if it is an expense, an income or a transfer.
-Payments you created will show up under the account you choose.
-To get there go to the account list and select the respective account.</value>
+    <value>Når du opretter en betaling, kan du vælge kategorien for denne betaling sammen med kontoen, og hvis det er en udgift, en indkomst eller en overførsel.
+Betalinger, du har oprettet, vil blive vist under den konto, du vælger.
+For at komme dertil gå til kontolisten og vælg kontoen.</value>
   </data>
     <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Payments for Category</value>
+    <value>Betalinger ud fra kategori</value>
   </data>
     <data name="PaymentTypeLabel" xml:space="preserve">
     <value>Betalingstype</value>
@@ -642,11 +642,11 @@ Vil du gå til butikken for at bedømme?</value>
     <value>Kommentar påkrævet</value>
   </data>
     <data name="RestoreBackupCanceledMessage" xml:space="preserve">
-    <value>Restoring backup was canceled.</value>
+    <value>Gendannelse af backup blev annulleret.</value>
   </data>
     <data name="RestoreBackupInformationLabel" xml:space="preserve">
-    <value>Download the previous uploaded database backup and replace your local data with it.
-WARNING: Local changes you made meanwhile will be lost!</value>
+    <value>Download den tidligere uploadede database backup og overskriv dine lokale data med det.
+ADVARSEL: Lokale ændringer, du lavede i mellemtiden, vil gå tabt!</value>
   </data>
     <data name="RestoreBackupLabel" xml:space="preserve">
     <value>Gendan backup</value>
@@ -697,7 +697,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Statistikker</value>
   </data>
     <data name="TargetAccountLabel" xml:space="preserve">
-    <value>Target Account</value>
+    <value>Modtager konto</value>
   </data>
     <data name="TimeRangeEndLabel" xml:space="preserve">
     <value>Slutdato</value>
@@ -715,7 +715,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Er noget ikke korrekt oversat eller slet ikke oversat? Hjælp os! Gå over til crowdin og hjælpe med at forbedre Money Fox:</value>
   </data>
     <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>Der opstod et problem under handlingen. Fejlmeddelelse {0}</value>
   </data>
     <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Upload af backup blev annulleret.</value>
@@ -758,16 +758,16 @@ For at starte skal du oprette en ny konto. Konti bruges til at organisere betali
     <value>Tilføj en betaling med detaljer</value>
   </data>
     <data name="BackupToolTip" xml:space="preserve">
-    <value>Backup your information</value>
+    <value>Lav backup af dine oplysninger</value>
   </data>
     <data name="CategoriesToolTip" xml:space="preserve">
     <value>Administrer dine kategorier</value>
   </data>
     <data name="StatisticsToolTip" xml:space="preserve">
-    <value>View your Statistics</value>
+    <value>Vis statistikker</value>
   </data>
     <data name="FailedToLoginToBackupMessage" xml:space="preserve">
-    <value>Failed to login to your backup service. Automatic backup upload was disabled. Please login and enable it again.</value>
+    <value>Kunne ikke logge ind på din backup-tjeneste. Automatisk upload af backup blev deaktiveret. Log venligst ind og aktivér den igen.</value>
   </data>
     <data name="FailedToLoginToBackupTitle" xml:space="preserve">
     <value>Kunne ikke logge ind</value>
@@ -779,16 +779,16 @@ For at starte skal du oprette en ny konto. Konti bruges til at organisere betali
     <value>Vælg betalingstype</value>
   </data>
     <data name="CategoryProgressionDescription" xml:space="preserve">
-    <value>Shows the progression of a category by month.</value>
+    <value>Viser fremskridt for en kategori pr. måned.</value>
   </data>
     <data name="CategoryProgressionLabel" xml:space="preserve">
-    <value>Category Progression</value>
+    <value>Kategori fremskridt</value>
   </data>
     <data name="SelectCategoryLabel" xml:space="preserve">
     <value>Vælg en kategori...</value>
   </data>
     <data name="CategoryProgressionTitle" xml:space="preserve">
-    <value>Category Progression</value>
+    <value>Kategori fremskridt</value>
   </data>
     <data name="EditPaymentTitle" xml:space="preserve">
     <value>Rediger betaling</value>
@@ -833,7 +833,7 @@ For at starte skal du oprette en ny konto. Konti bruges til at organisere betali
     <value>Valgte kategorier</value>
   </data>
     <data name="BackupUploadSkippedMessage" xml:space="preserve">
-    <value>Upload of backup skipped, since remote version was already up to date.</value>
+    <value>Upload af backup sprunget over, da ekstern version allerede var opdateret.</value>
   </data>
     <data name="EditBudgetTitle" xml:space="preserve">
     <value>Redigér budget</value>
@@ -866,9 +866,9 @@ For at starte skal du oprette en ny konto. Konti bruges til at organisere betali
         <value>Grænse for månedlige udgifter</value>
     </data>
     <data name="EvaluationTimeRangeLabel" xml:space="preserve">
-        <value>Evaluation Time Range</value>
+        <value>Evalueringsinterval</value>
     </data>
     <data name="EvaluationTimeRangeMessage" xml:space="preserve">
-        <value>This defines the time range in which payments are included to calculate your monthly average to compare to your spending limit.</value>
+        <value>Dette definerer tidsintervallet, hvor betalinger er inkluderet for at beregne dit månedlige gennemsnit for at sammenligne med din udgiftsgrænse.</value>
     </data>
 </root>
