@@ -146,10 +146,10 @@
     <value>Tilføj kategori</value>
   </data>
     <data name="AddExpenseTitle" xml:space="preserve">
-    <value>Tilføj en udgift</value>
+    <value>Tilføj udgift</value>
   </data>
     <data name="AddIncomeTitle" xml:space="preserve">
-    <value>Tilføj en indtægt</value>
+    <value>Tilføj indtægt</value>
   </data>
     <data name="AddPaymentLabel" xml:space="preserve">
     <value>Tilføj betaling</value>
@@ -173,7 +173,7 @@
     <value>Anvend filter</value>
   </data>
     <data name="AssetsLabel" xml:space="preserve">
-    <value>Aktiver</value>
+    <value>Formue</value>
   </data>
     <data name="AuthenticationFailedTitle" xml:space="preserve">
     <value>Authentication failed</value>
@@ -197,7 +197,7 @@
     <value>Sikkerhedskopiering mislykkedes!</value>
   </data>
     <data name="BackupInformationLabel" xml:space="preserve">
-    <value>Your data will be saved to your OneDrive Account. You’ll find them in the Application Folder in a new folder called "MoneyFox".</value>
+    <value>Dine data vil blive gemt til din OneDrive konto. Du kan finde dem i applikationsmappen i en ny mappe kaldet "MoneyFox".</value>
   </data>
     <data name="BackupRestoredMessage" xml:space="preserve">
     <value>Backup gendannet.</value>
@@ -257,7 +257,7 @@
     <value>Summary of the categories with a Payment.</value>
   </data>
     <data name="CategorySummaryLabel" xml:space="preserve">
-    <value>Category Summary</value>
+    <value>Kategori overblik</value>
   </data>
     <data name="CategorySummaryTitle" xml:space="preserve">
     <value>Kategori overblik</value>
@@ -266,13 +266,13 @@
     <value>Charged Account</value>
   </data>
     <data name="ClearedFilterLabel" xml:space="preserve">
-    <value>Cleared</value>
+    <value>Ryddet</value>
   </data>
     <data name="CompletedText" xml:space="preserve">
     <value>That's it! You're set for using the MoneyFox.</value>
   </data>
     <data name="CompletedTitle" xml:space="preserve">
-    <value>Done!</value>
+    <value>Udført!</value>
   </data>
     <data name="CompleteLabel" xml:space="preserve">
     <value>Fuldført</value>
@@ -287,13 +287,13 @@
     <value>Bidrag</value>
   </data>
     <data name="CreateAccountNowLabel" xml:space="preserve">
-    <value>Create Account Now</value>
+    <value>Opret en konto</value>
   </data>
     <data name="CreateBackupLabel" xml:space="preserve">
     <value>Opret sikkerhedskopi</value>
   </data>
     <data name="CreateCategoryNowLabel" xml:space="preserve">
-    <value>Create Category now</value>
+    <value>Opret en kategori</value>
   </data>
     <data name="CreationDateHeader" xml:space="preserve">
     <value>Creation Date</value>
@@ -365,19 +365,19 @@
     <value>Navnet er allerede i brug</value>
   </data>
     <data name="EditAccountTitle" xml:space="preserve">
-    <value>Edit {0}</value>
+    <value>Redigér {0}</value>
   </data>
     <data name="EditCategoryTitle" xml:space="preserve">
-    <value>Edit Category</value>
+    <value>Redigér kategori</value>
   </data>
     <data name="EditIncomeTitle" xml:space="preserve">
-    <value>Edit Income</value>
+    <value>Redigér indtægt</value>
   </data>
     <data name="EditLabel" xml:space="preserve">
-    <value>Edit</value>
+    <value>Redigér</value>
   </data>
     <data name="EditSpendingTitle" xml:space="preserve">
-    <value>Edit Expense</value>
+    <value>Ændr udgift</value>
   </data>
     <data name="EditTransferTitle" xml:space="preserve">
     <value>Edit Transfer</value>
@@ -404,13 +404,13 @@
     <value>Excluded Accounts</value>
   </data>
     <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
-    <value>Expense: {0} / Income: {1}</value>
+    <value>Udgift: {0} / Indtægt: {1}</value>
   </data>
     <data name="ExpenseHeader" xml:space="preserve">
-    <value>Add expense</value>
+    <value>Tilføj udgift</value>
   </data>
     <data name="ExpenseLabel" xml:space="preserve">
-    <value>Expenses</value>
+    <value>Udgifter</value>
   </data>
     <data name="FeedbackSubject" xml:space="preserve">
     <value>Feedback Money Fox</value>
@@ -471,13 +471,13 @@ Tryk for at besøge projektets hjemmeside:</value>
     <value>Your current balance seems to be an invalid number. Please check that you haven't entered any special characters and used the correct separator.</value>
   </data>
     <data name="InvalidNumberTitle" xml:space="preserve">
-    <value>Invalid Number</value>
+    <value>Ugyldigt tal</value>
   </data>
     <data name="IsClearedLabel" xml:space="preserve">
-    <value>Cleared</value>
+    <value>Ryddet</value>
   </data>
     <data name="IsExcludedLabel" xml:space="preserve">
-    <value>Exclude account from balance</value>
+    <value>Ekskludér konto fra saldo</value>
   </data>
     <data name="IsGroupedLabel" xml:space="preserve">
     <value>Group List</value>
@@ -516,7 +516,7 @@ Tryk for at besøge projektets hjemmeside:</value>
     <value>Log ind</value>
   </data>
     <data name="LogoutCanceledMessage" xml:space="preserve">
-    <value>Logout was canceled.</value>
+    <value>Log ud blev annulleret.</value>
   </data>
     <data name="LogoutLabel" xml:space="preserve">
     <value>Log ud</value>
@@ -594,7 +594,7 @@ Tryk for at besøge projektets hjemmeside:</value>
     <value>OK</value>
   </data>
     <data name="OthersLabel" xml:space="preserve">
-    <value>Others</value>
+    <value>Andet</value>
   </data>
     <data name="OverwriteBackupMessage" xml:space="preserve">
     <value>Existing backups will be overwritten. Do you wanna continue?</value>
@@ -603,7 +603,7 @@ Tryk for at besøge projektets hjemmeside:</value>
     <value>Dine lokale data vil blive slettet. Er du sikker på, at du vil fortsætte?</value>
   </data>
     <data name="OverwriteTitle" xml:space="preserve">
-    <value>Overwrite?</value>
+    <value>Overskriv?</value>
   </data>
     <data name="PaymentIntroductionText" xml:space="preserve">
     <value>When you create a payment you can select the category for that payment along with the account and if it is an expense, an income or a transfer.
@@ -614,13 +614,13 @@ To get there go to the account list and select the respective account.</value>
     <value>Payments for Category</value>
   </data>
     <data name="PaymentTypeLabel" xml:space="preserve">
-    <value>Payment type</value>
+    <value>Betalingstype</value>
   </data>
     <data name="PersonalizationTitle" xml:space="preserve">
     <value>Personliggørelse</value>
   </data>
     <data name="QuarterlyLabel" xml:space="preserve">
-    <value>Quarterly</value>
+    <value>Kvartalsvis</value>
   </data>
     <data name="RateLabel" xml:space="preserve">
     <value>Bedøm app'en</value>
@@ -649,10 +649,10 @@ Vil du gå til butikken for at bedømme?</value>
 WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
     <data name="RestoreBackupLabel" xml:space="preserve">
-    <value>Restore Backup</value>
+    <value>Gendan backup</value>
   </data>
     <data name="RevenueLabel" xml:space="preserve">
-    <value>Revenue</value>
+    <value>Omsætning</value>
   </data>
     <data name="SaveLabel" xml:space="preserve">
     <value>Gem</value>
@@ -736,11 +736,11 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Vi er glade for at se dig!</value>
   </data>
     <data name="WelcomePageText" xml:space="preserve">
-    <value>The MoneyFox helps you to track your expenses and incomes in an easy way.
-To start create a new account. Accounts are used to organize payments and money in collections.</value>
+    <value>MoneyFox hjælper dig med at spore dine udgifter og indtægter på en nem måde.
+For at starte skal du oprette en ny konto. Konti bruges til at organisere betalinger og penge på et sted.</value>
   </data>
     <data name="WindowsDefaultLabel" xml:space="preserve">
-    <value>Windows Default</value>
+    <value>Windows Standard</value>
   </data>
     <data name="YearlyLabel" xml:space="preserve">
     <value>Årligt</value>
@@ -761,7 +761,7 @@ To start create a new account. Accounts are used to organize payments and money 
     <value>Backup your information</value>
   </data>
     <data name="CategoriesToolTip" xml:space="preserve">
-    <value>Manage your Categories</value>
+    <value>Administrer dine kategorier</value>
   </data>
     <data name="StatisticsToolTip" xml:space="preserve">
     <value>View your Statistics</value>
@@ -794,10 +794,10 @@ To start create a new account. Accounts are used to organize payments and money 
     <value>Rediger betaling</value>
   </data>
     <data name="InitialBalanceLabel" xml:space="preserve">
-    <value>Initial Balance</value>
+    <value>Oprindelig Saldo</value>
   </data>
     <data name="AllLabel" xml:space="preserve">
-    <value>All</value>
+    <value>Alt</value>
   </data>
     <data name="HomeTitle" xml:space="preserve">
     <value>Startside</value>
@@ -839,7 +839,7 @@ To start create a new account. Accounts are used to organize payments and money 
     <value>Redigér budget</value>
   </data>
     <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this budget?</value>
+    <value>Er du sikker på at du vil slette dette budget?</value>
   </data>
     <data name="MonthlyBudgetLabel" xml:space="preserve">
     <value>Månedligt budget:</value>
