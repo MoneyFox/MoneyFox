@@ -50,7 +50,7 @@
             <Grid ColumnDefinitions="70*, 6, 40">
                 <Button Grid.Column="0"
                         Text="{Binding SelectedPayment.Category, Converter={StaticResource NoCategorySelectedConverter}}"
-                        Command="{Binding GoToSelectCategoryDialogCommand}" />
+                        Clicked="Button_OnClicked" />
 
                 <ImageButton Grid.Column="2"
                              Command="{Binding ResetCategoryCommand}">

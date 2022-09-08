@@ -77,4 +77,16 @@
       </AppxManifest>
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Update="Views\Popups\popup.xaml.cs">
+        <DependentUpon>popup.xaml</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <MauiXaml Update="Views\Popups\popup.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
+    </ItemGroup>
+
 </Project>
