@@ -8,7 +8,8 @@
     xmlns:converter="using:MoneyFox.Ui.Converter"
     xmlns:accounts="using:MoneyFox.Ui.ViewModels.Accounts"
     xmlns:payments="using:MoneyFox.Ui.Views.Payments"
-    xmlns:dashboard="using:MoneyFox.Ui.ViewModels.Dashboard">
+    xmlns:dashboard="using:MoneyFox.Ui.ViewModels.Dashboard"
+    x:DataType="dashboard:DashboardViewModel">
 
     <ContentPage.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
@@ -34,7 +35,7 @@
     </VisualStateManager.VisualStateGroups>
 
     <Grid x:Name="RootGrid" ColumnDefinitions="*" >
-        <ScrollView Grid.Column="0" x:DataType="dashboard:DashboardViewModel">
+        <ScrollView Grid.Column="0" >
             <Grid Padding="15"
                   IsClippedToBounds="False"
                   RowDefinitions="35, 40, 90, 160, 140,*">
