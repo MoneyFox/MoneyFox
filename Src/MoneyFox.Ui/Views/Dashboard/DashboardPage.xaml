@@ -277,7 +277,7 @@
                          WidthRequest="44"
                          Margin="6">
                 <ImageButton.Source>
-                    <FontImageSource FontFamily="MaterialIconsRound" Glyph="delete" />
+                    <FontImageSource FontFamily="MaterialIconsRound" Glyph="Close" />
                 </ImageButton.Source>
             </ImageButton>
 
