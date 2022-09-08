@@ -64,7 +64,6 @@
       <None Remove="Platforms\Windows\Package.appxmanifest" />
       <None Remove="Resources\Fonts\MaterialIconsRound-Regular.otf" />
       <None Remove="Resources\Fonts\ProductSans-Regular.ttf" />
-      <None Remove="Resources\Fonts\RobotoMono-Regular.ttf" />
     </ItemGroup>
 
     <ItemGroup>
