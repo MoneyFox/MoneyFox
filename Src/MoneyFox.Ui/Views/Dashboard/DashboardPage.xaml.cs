@@ -1,19 +1,19 @@
-﻿namespace MoneyFox.Ui.Views.Dashboard;
+namespace MoneyFox.Ui.Views.Dashboard;
 
 using ViewModels.Dashboard;
 using ViewModels.Payments;
 
 public partial class DashboardPage : ContentPage
 {
-    const string ClosedPanelState = "ClosedPanel";
-    const string OpenPanelState = "OpenPanel";
+    private const string CLOSED_PANEL_STATE = "ClosedPanel";
+    private const string OPEN_PANEL_STATE = "OpenPanel";
 
     public DashboardPage()
     {
         InitializeComponent();
         BindingContext = App.GetViewModel<DashboardViewModel>();
 
-        VisualStateManager.GoToState(this, ClosedPanelState);
+        VisualStateManager.GoToState(this, CLOSED_PANEL_STATE);
     }
 
     private DashboardViewModel ViewModel => (DashboardViewModel)BindingContext;
@@ -25,12 +25,14 @@ public partial class DashboardPage : ContentPage
 
     private void ClickClosePanel(object sender, EventArgs e)
     {
-        VisualStateManager.GoToState(this, ClosedPanelState);
+        VisualStateManager.GoToState(this, CLOSED_PANEL_STATE);
     }
 
-    private void OpenAddPaymentPanel(object? sender, EventArgs e)
+    private async void OpenAddPaymentPanel(object? sender, EventArgs e)
     {
-        AddPaymentView.BindingContext = App.GetViewModel<AddPaymentViewModel>();
-        VisualStateManager.GoToState(this, OpenPanelState);
+        var viewModel = App.GetViewModel<AddPaymentViewModel>();
+        await viewModel.InitializeAsync();
+        AddPaymentView.BindingContext = viewModel;
+        VisualStateManager.GoToState(this, OPEN_PANEL_STATE);
     }
 }

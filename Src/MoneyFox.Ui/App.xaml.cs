@@ -37,7 +37,7 @@ public partial class App
 
     private static IServiceProvider? ServiceProvider { get; set; }
 
-    internal static BaseViewModel GetViewModel<TViewModel>() where TViewModel : BaseViewModel
+    internal static TViewModel GetViewModel<TViewModel>() where TViewModel : BaseViewModel
     {
         return ServiceProvider?.GetService<TViewModel>() ?? throw new ResolveViewModelException<TViewModel>();
     }
