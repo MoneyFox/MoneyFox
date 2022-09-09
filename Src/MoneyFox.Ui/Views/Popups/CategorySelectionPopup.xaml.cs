@@ -12,4 +12,9 @@ public partial class CategorySelectionPopup
     }
 
     private SelectCategoryViewModel ViewModel => (SelectCategoryViewModel)BindingContext;
+
+    private void ClickClosePopup(object? sender, EventArgs e)
+    {
+        Close();
+    }
 }
