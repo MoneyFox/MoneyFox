@@ -49,7 +49,7 @@
 
             <CollectionView x:Name="CategorySummaryList"
                             Grid.Row="1"
-                            EmptyView="{x:Static resources:Strings.NoPaymentsMessage}"
+                            EmptyView="{x:Static resources:Strings.CategorySummaryPlaceholder}"
                             ItemsSource="{Binding CategorySummary}">
 
                 <CollectionView.ItemTemplate>
