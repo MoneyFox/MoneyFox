@@ -865,6 +865,6 @@ To start create a new account. Accounts are used to organize payments and money 
     <value>This defines the time range in which payments are included to calculate your monthly average to compare to your spending limit.</value>
   </data>
   <data name="CategorySummaryPlaceholder" xml:space="preserve">
-    <value>No payments in the selected time range found.</value>
+    <value>Pas de paiement pour la période sélectionnée.</value>
   </data>
 </root>
