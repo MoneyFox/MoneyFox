@@ -51,9 +51,9 @@
         <PackageReference Include="CommunityToolkit.Maui.Core" Version="1.2.0" />
         <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
         <PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-beta.300" />
-        <PackageReference Include="Serilog" Version="2.11.0" />
+        <PackageReference Include="Serilog" Version="2.12.0" />
         <PackageReference Include="Microsoft.Identity.Client" Version="4.46.0-preview2" />
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.42.0.51121">
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.44.0.52574">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
