@@ -867,6 +867,6 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
     <value>Dies definiert den Zeitraum, für welchen Zahlungen in die Berechnung des monatlichen Durchschnittest einbezogen und mit deinem Ausgabelimit verglichen werden.</value>
   </data>
   <data name="CategorySummaryPlaceholder" xml:space="preserve">
-    <value>No payments in the selected time range found.</value>
+    <value>Keine Zahlungen im ausgewählten Zeitbereich gefunden.</value>
   </data>
 </root>
