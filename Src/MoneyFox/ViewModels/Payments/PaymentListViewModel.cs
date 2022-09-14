@@ -82,12 +82,12 @@ namespace MoneyFox.ViewModels.Payments
         public AsyncRelayCommand GoToAddPaymentCommand
             => new AsyncRelayCommand(
                 async () => await Shell.Current.Navigation.PushModalAsync(
-                    new NavigationPage(new AddPaymentPage() { DefaultChargedAccountID = SelectedAccount.Id }) { BarBackgroundColor = Color.Transparent }));
+                    new NavigationPage(new AddPaymentPage() { DefaultChargedAccountID = SelectedAccount.Id }) { BarBackgroundColor = Colors.Transparent }));
 
         public AsyncRelayCommand<PaymentViewModel> GoToEditPaymentCommand
             => new AsyncRelayCommand<PaymentViewModel>(
                 async paymentViewModel => await Shell.Current.Navigation.PushModalAsync(
-                    new NavigationPage(new EditPaymentPage(paymentViewModel.Id)) { BarBackgroundColor = Color.Transparent }));
+                    new NavigationPage(new EditPaymentPage(paymentViewModel.Id)) { BarBackgroundColor = Colors.Transparent }));
 
         protected override void OnActivated()
         {
