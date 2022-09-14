@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Common.Services;
+namespace MoneyFox.Ui.Common.Services;
 
 using CommunityToolkit.Maui.Views;
 using MoneyFox.Core.Common.Interfaces;
@@ -9,7 +9,6 @@ public class DialogService : IDialogService
 {
     private LoadingIndicatorPopup? loadingDialog;
 
-    /// <inheritdoc />
     public async Task ShowLoadingDialogAsync(string? message = null)
     {
         if (loadingDialog != null)
@@ -21,7 +20,6 @@ public class DialogService : IDialogService
         Shell.Current.ShowPopup(loadingDialog);
     }
 
-    /// <inheritdoc />
     public async Task HideLoadingDialogAsync()
     {
         if (loadingDialog == null)

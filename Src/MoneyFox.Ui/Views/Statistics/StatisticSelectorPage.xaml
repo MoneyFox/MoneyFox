@@ -3,19 +3,24 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:statistics="using:MoneyFox.Ui.ViewModels.Statistics"
-    Title="{x:Static resources:Strings.SelectStatisticTitle}"
     x:Class="MoneyFox.Ui.Views.Statistics.StatisticSelectorPage"
     Visual="Material"
     x:Name="root">
 
     <ContentPage.Content>
-        <StackLayout>
+        <VerticalStackLayout Spacing="6" Padding="15,6,15,0">
+            
+            <Label Style="{StaticResource TextHeadline}"
+                   Text="{x:Static resources:Strings.SelectStatisticTitle}"
+                   VerticalOptions="Center" />
+            
             <CollectionView x:Name="StatisticCollectionView"
+                            BackgroundColor="Transparent"
                             ItemsSource="{Binding StatisticItems}">
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="15,6,15,8">
+                        <Grid Margin="0,6,0,6">
 
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer
@@ -37,7 +42,7 @@
                                     <Shadow Brush="Black"
                                             Offset="5,5"
                                             Radius="30"
-                                            Opacity="0.8" />
+                                            Opacity="0.3" />
                                 </Border.Shadow>
 
                                 <StackLayout Orientation="Vertical"
@@ -60,6 +65,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </StackLayout>
+        </VerticalStackLayout>
     </ContentPage.Content>
 </ContentPage>
