@@ -4,6 +4,7 @@
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:statistics="using:MoneyFox.Ui.ViewModels.Statistics"
     x:Class="MoneyFox.Ui.Views.Statistics.StatisticSelectorPage"
+    Title=""
     Visual="Material"
     x:Name="root">
 
