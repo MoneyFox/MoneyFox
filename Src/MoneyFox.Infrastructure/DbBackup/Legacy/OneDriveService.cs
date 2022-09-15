@@ -10,6 +10,7 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
     using Core.ApplicationCore.UseCases.DbBackup;
     using Microsoft.Graph;
     using Microsoft.Identity.Client;
+    using Newtonsoft.Json;
 
     internal class OneDriveService : IOneDriveBackupService
     {
@@ -126,10 +127,18 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
             }
         }
 
+        /// <summary>
+        ///     Due to an issue with .net maui the conversion has to be manually here.
+        ///     https://github.com/dotnet/maui/issues/3903#issuecomment-1070975207
+        /// </summary>
+        /// <returns></returns>
         public async Task<UserAccount> GetUserAccountAsync()
         {
             var graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
-            var user = await graphServiceClient.Me.Request().GetAsync();
+            var userResponse = await graphServiceClient.Me.Request().GetResponseAsync();
+
+            var data = await userResponse.Content.ReadAsStringAsync();
+            var user = JsonConvert.DeserializeObject<User>(data);
 
             return new UserAccount(name: user.DisplayName, email: string.IsNullOrEmpty(user.Mail) ? user.UserPrincipalName : user.Mail);
         }
