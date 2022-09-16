@@ -15,7 +15,7 @@ namespace MoneyFox.ViewModels.DataBackup
     using Serilog;
     using Xamarin.Forms;
 
-    internal sealed class BackupViewModel : BaseViewModel, IBackupViewModel
+    internal sealed class BackupViewModel : BaseViewModel
     {
         private readonly IBackupService backupService;
         private readonly IOneDriveProfileService oneDriveProfileService;
@@ -187,7 +187,10 @@ namespace MoneyFox.ViewModels.DataBackup
                 UserAccount.Email = userAccountDto.Email;
 
                 var profilePictureStream = await oneDriveProfileService.GetProfilePictureAsync();
-                ProfilePicture = ImageSource.FromStream(() => profilePictureStream);
+                if (profilePictureStream != null)
+                {
+                    ProfilePicture = ImageSource.FromStream(() => profilePictureStream);
+                }
             }
             catch (BackupAuthenticationFailedException ex)
             {
