@@ -68,10 +68,7 @@ namespace MoneyFox.Tests.Presentation.ViewModels
             public async Task CallNothing_OnInitialize_WhenNotLoggedIn()
             {
                 // Arrange
-                var connectivitySetup = Substitute.For<IConnectivityAdapter>();
-                connectivitySetup.IsConnected.Returns(true);
-                var settingsManagerMock = Substitute.For<ISettingsFacade>();
-                var backupServiceMock = Substitute.For<IBackupService>();
+                connectivityAdapter.IsConnected.Returns(true);
 
                 // Act
                 viewModel.InitializeCommand.Execute(null);
@@ -86,14 +83,12 @@ namespace MoneyFox.Tests.Presentation.ViewModels
             public void CallInitializations_WhenConnectivitySet_AndUserLoggedIn()
             {
                 // Arrange
-                var connectivitySetup = Substitute.For<IConnectivityAdapter>();
-                connectivitySetup.IsConnected.Returns(true);
-                var settingsManagerMock = Substitute.For<ISettingsFacade>();
-                settingsManagerMock.IsLoggedInToBackupService.Returns(true);
+                connectivityAdapter.IsConnected.Returns(true);
+                settingsManager.IsLoggedInToBackupService.Returns(true);
+
                 var returnDate = DateTime.Today;
-                var backupServiceMock = Substitute.For<IBackupService>();
-                backupServiceMock.IsBackupExistingAsync().Returns(true);
-                backupServiceMock.GetBackupDateAsync().Returns(returnDate);
+                backupService.IsBackupExistingAsync().Returns(true);
+                backupService.GetBackupDateAsync().Returns(returnDate);
 
                 // Act
                 viewModel.InitializeCommand.Execute(null);
