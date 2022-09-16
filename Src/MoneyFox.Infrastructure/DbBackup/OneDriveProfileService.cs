@@ -1,13 +1,18 @@
 namespace MoneyFox.Infrastructure.DbBackup
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Threading.Tasks;
+    using Flurl;
     using Flurl.Http;
     using MoneyFox.Core.ApplicationCore.UseCases.DbBackup;
     using MoneyFox.Infrastructure.DbBackup.OneDriveModels;
 
     internal class OneDriveProfileService : IOneDriveProfileService
     {
+        [SuppressMessage("Minor Code Smell", "S1075:URIs should not be hardcoded", Justification = "Can be later moved to configuration")]
+        private readonly Uri graphProfileUri = new Uri("https://graph.microsoft.com/v1.0/me");
         private readonly IOneDriveAuthenticationService oneDriveAuthenticationService;
 
         public OneDriveProfileService(IOneDriveAuthenticationService oneDriveAuthenticationService)
@@ -18,7 +23,7 @@ namespace MoneyFox.Infrastructure.DbBackup
         public async Task<UserAccountDto> GetUserAccountAsync()
         {
             var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
-            var userDto = await "https://graph.microsoft.com/v1.0/me"
+            var userDto = await graphProfileUri
                 .WithOAuthBearerToken(authentication.AccessToken)
                 .GetJsonAsync<UserDto>();
 
@@ -29,9 +34,10 @@ namespace MoneyFox.Infrastructure.DbBackup
         {
             var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
 
-            return await "https://graph.microsoft.com/v1.0/me/photo/$value"
-            .WithOAuthBearerToken(authentication.AccessToken)
-            .GetStreamAsync();
+            return await graphProfileUri
+                .AppendPathSegments("photo", "$value")
+                .WithOAuthBearerToken(authentication.AccessToken)
+                .GetStreamAsync();
         }
     }
 }
