@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Infrastructure.DbBackup
+namespace MoneyFox.Infrastructure.DbBackup
 {
 
     using System;
@@ -88,14 +88,5 @@
                 throw new BackupAuthenticationFailedException(ex);
             }
         }
-
-        private async Task<AuthenticationResult> AcquireInteractive()
-        {
-            return await clientApp.AcquireTokenInteractive(scopes)
-                .WithUseEmbeddedWebView(true)
-                .WithParentActivityOrWindow(ParentActivityWrapper.ParentActivity) // this is required for Android
-                .ExecuteAsync();
-        }
     }
-
 }
