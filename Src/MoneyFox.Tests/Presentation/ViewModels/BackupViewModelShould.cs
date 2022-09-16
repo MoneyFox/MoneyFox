@@ -75,8 +75,8 @@ namespace MoneyFox.Tests.Presentation.ViewModels
 
                 // Assert
                 viewModel.IsLoadingBackupAvailability.Should().BeFalse();
-                await backupServiceMock.Received(0).IsBackupExistingAsync();
-                await backupServiceMock.Received(0).GetBackupDateAsync();
+                await backupService.Received(0).IsBackupExistingAsync();
+                await backupService.Received(0).GetBackupDateAsync();
             }
 
             [Fact]
