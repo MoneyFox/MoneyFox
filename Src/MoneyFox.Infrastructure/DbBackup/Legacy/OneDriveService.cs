@@ -135,7 +135,7 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
                 .WithOAuthBearerToken(authentication.AccessToken)
                 .GetJsonAsync<UserDto>();
 
-            return new UserAccountDto(name: userDto.DisplayName, email: userDto.PrincipalName);
+            return new UserAccountDto(name: userDto.DisplayName ?? string.Empty, email: userDto.PrincipalName ?? string.Empty);
         }
 
         private static async Task CleanupOldBackupsAsync(GraphServiceClient graphServiceClient)
