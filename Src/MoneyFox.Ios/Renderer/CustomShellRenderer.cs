@@ -8,6 +8,11 @@ namespace MoneyFox.iOS.Renderer
     using CoreGraphics;
     using Xamarin.Forms;
     using Xamarin.Forms.Platform.iOS;
+
+    /// <summary>
+    ///     This file is a work around for an issue with the titleview in iOS 16 and can be removed once it is fixed
+    ///     in Xamarin Forms and / or .net MAUI
+    /// </summary>
     public class CustomShellRenderer : ShellRenderer
     {
         protected override IShellPageRendererTracker CreatePageRendererTracker()
