@@ -6,7 +6,7 @@ namespace MoneyFox.Infrastructure.DbBackup
     using Microsoft.Graph;
     using MoneyFox.Infrastructure.DbBackup.OneDriveModels;
 
-    internal interface IOneDriveAuthenticationService
+    public interface IOneDriveAuthenticationService
     {
         Task<GraphServiceClient> CreateServiceClient(CancellationToken cancellationToken = default);
 

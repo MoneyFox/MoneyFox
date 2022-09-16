@@ -15,17 +15,6 @@ namespace MoneyFox.Infrastructure.DbBackup
             this.oneDriveAuthenticationService = oneDriveAuthenticationService;
         }
 
-        public async Task<Stream> GetProfilePictureAsync()
-        {
-            var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
-
-            var imageStream = await "https://graph.microsoft.com/v1.0/me/photo/$value"
-            .WithOAuthBearerToken(authentication.AccessToken)
-            .GetStreamAsync();
-
-            return imageStream;
-        }
-
         public async Task<UserAccountDto> GetUserAccountAsync()
         {
             var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
@@ -34,6 +23,15 @@ namespace MoneyFox.Infrastructure.DbBackup
                 .GetJsonAsync<UserDto>();
 
             return new UserAccountDto(name: userDto.DisplayName ?? string.Empty, email: userDto.PrincipalName ?? string.Empty);
+        }
+
+        public async Task<Stream> GetProfilePictureAsync()
+        {
+            var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
+
+            return await "https://graph.microsoft.com/v1.0/me/photo/$value"
+            .WithOAuthBearerToken(authentication.AccessToken)
+            .GetStreamAsync();
         }
     }
 }

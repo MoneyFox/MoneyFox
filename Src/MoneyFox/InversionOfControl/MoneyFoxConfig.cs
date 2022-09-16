@@ -14,7 +14,6 @@ namespace MoneyFox.InversionOfControl
     using ViewModels.Budget;
     using ViewModels.Categories;
     using ViewModels.Dashboard;
-    using ViewModels.DataBackup;
     using ViewModels.Dialogs;
     using ViewModels.OverflowMenu;
     using ViewModels.Payments;

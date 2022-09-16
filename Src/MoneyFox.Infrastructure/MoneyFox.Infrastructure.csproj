@@ -32,9 +32,6 @@
 
     <ItemGroup>
         <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
-            <_Parameter1>MoneyFox.Core.Tests</_Parameter1>
-        </AssemblyAttribute>
-        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
             <_Parameter1>MoneyFox.Tests</_Parameter1>
         </AssemblyAttribute>
     </ItemGroup>

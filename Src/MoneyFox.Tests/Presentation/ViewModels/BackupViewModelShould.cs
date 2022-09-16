@@ -10,7 +10,7 @@ namespace MoneyFox.Tests.Presentation.ViewModels
     using MoneyFox.Core.Common.Facades;
     using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Core.Interfaces;
-    using MoneyFox.ViewModels.DataBackup;
+    using MoneyFox.Views.Backup;
     using NSubstitute;
     using Xunit;
 
