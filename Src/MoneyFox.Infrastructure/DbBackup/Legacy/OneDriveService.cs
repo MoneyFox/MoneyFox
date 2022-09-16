@@ -27,7 +27,7 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
 
         public async Task LoginAsync()
         {
-            await oneDriveAuthenticationService.CreateServiceClient();
+            await oneDriveAuthenticationService.AcquireAuthentication();
         }
 
         public async Task LogoutAsync()
