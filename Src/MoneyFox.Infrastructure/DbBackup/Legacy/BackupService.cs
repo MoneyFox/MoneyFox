@@ -75,7 +75,7 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
             await toastService.ShowToastAsync(message: Strings.LoggedOutMessage, title: Strings.LoggedOutTitle);
         }
 
-        public Task<UserAccount> GetUserAccount()
+        public Task<UserAccountDto> GetUserAccount()
         {
             if (!connectivity.IsConnected)
             {

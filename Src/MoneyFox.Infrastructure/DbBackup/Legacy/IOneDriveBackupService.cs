@@ -13,7 +13,7 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
 
         Task LogoutAsync();
 
-        Task<UserAccount> GetUserAccountAsync();
+        Task<UserAccountDto> GetUserAccountAsync();
 
         Task<bool> UploadAsync(Stream dataToUpload);
 

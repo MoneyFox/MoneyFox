@@ -8,8 +8,10 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
     using System.Threading.Tasks;
     using Core.ApplicationCore.Domain.Exceptions;
     using Core.ApplicationCore.UseCases.DbBackup;
+    using Flurl.Http;
     using Microsoft.Graph;
     using Microsoft.Identity.Client;
+    using MoneyFox.Infrastructure.DbBackup.OneDriveModels;
 
     internal class OneDriveService : IOneDriveBackupService
     {
@@ -126,12 +128,14 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
             }
         }
 
-        public async Task<UserAccount> GetUserAccountAsync()
+        public async Task<UserAccountDto> GetUserAccountAsync()
         {
-            var graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
-            var user = await graphServiceClient.Me.Request().GetAsync();
+            var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
+            var userDto = await "https://graph.microsoft.com/v1.0/me"
+                .WithOAuthBearerToken(authentication.AccessToken)
+                .GetJsonAsync<UserDto>();
 
-            return new UserAccount(name: user.DisplayName, email: string.IsNullOrEmpty(user.Mail) ? user.UserPrincipalName : user.Mail);
+            return new UserAccountDto(name: userDto.DisplayName, email: userDto.PrincipalName);
         }
 
         private static async Task CleanupOldBackupsAsync(GraphServiceClient graphServiceClient)

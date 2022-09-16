@@ -11,7 +11,7 @@ namespace MoneyFox.Core.ApplicationCore.UseCases.DbBackup
 
         Task LogoutAsync();
 
-        Task<UserAccount> GetUserAccount();
+        Task<UserAccountDto> GetUserAccount();
 
         Task<bool> IsBackupExistingAsync();
 

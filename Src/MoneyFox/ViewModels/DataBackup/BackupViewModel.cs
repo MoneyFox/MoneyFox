@@ -26,7 +26,7 @@ namespace MoneyFox.ViewModels.DataBackup
 
         private DateTime backupLastModified;
         private bool isLoadingBackupAvailability;
-        private UserAccount userAccount = new UserAccount(name: "", email: "");
+        private UserAccountDto userAccount = new UserAccountDto(name: "", email: "");
 
         public BackupViewModel(
             IMediator mediator,
@@ -44,7 +44,7 @@ namespace MoneyFox.ViewModels.DataBackup
             this.mediator = mediator;
         }
 
-        public UserAccount UserAccount
+        public UserAccountDto UserAccount
         {
             get => userAccount;
 

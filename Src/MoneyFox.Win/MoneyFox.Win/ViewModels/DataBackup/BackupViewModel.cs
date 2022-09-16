@@ -25,7 +25,7 @@ internal sealed class BackupViewModel : BaseViewModel, IBackupViewModel
 
     private DateTime backupLastModified;
     private bool isLoadingBackupAvailability;
-    private UserAccount userAccount;
+    private UserAccountDto userAccount;
 
     public BackupViewModel(
         IMediator mediator,
@@ -43,7 +43,7 @@ internal sealed class BackupViewModel : BaseViewModel, IBackupViewModel
         this.toastService = toastService;
     }
 
-    public UserAccount UserAccount
+    public UserAccountDto UserAccount
     {
         get => userAccount;
 
