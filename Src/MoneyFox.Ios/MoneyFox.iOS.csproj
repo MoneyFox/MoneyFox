@@ -82,6 +82,7 @@
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Renderer\CustomShellRenderer.cs" />
     <Compile Include="Renderer\ModalContentPageRenderer.cs" />
     <Compile Include="Renderer\CustomSearchBarRenderer.cs" />
     <Compile Include="Renderer\NavigationPageRenderer.cs" />
@@ -251,7 +252,7 @@
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadXFormsNugetUpgradeInfoBarMoneyFoxiOSHideInfoBar="True" TriggeredFromHotReload="False" />
+      <UserProperties TriggeredFromHotReload="False" XamarinHotReloadXFormsNugetUpgradeInfoBarMoneyFoxiOSHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
