@@ -1,6 +1,5 @@
 namespace MoneyFox.Core.ApplicationCore.UseCases.DbBackup
 {
-
     public class UserAccountDto
     {
         public UserAccountDto(string name, string email)
@@ -12,11 +11,5 @@ namespace MoneyFox.Core.ApplicationCore.UseCases.DbBackup
         public string Name { get; }
 
         public string Email { get; }
-
-        public UserAccountDto GetUserAccount()
-        {
-            return this;
-        }
     }
-
 }

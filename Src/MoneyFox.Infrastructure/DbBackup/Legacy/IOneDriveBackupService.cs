@@ -23,5 +23,4 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
 
         Task<DateTime> GetBackupDateAsync();
     }
-
 }

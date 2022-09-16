@@ -39,6 +39,7 @@ namespace MoneyFox.Infrastructure.InversionOfControl
             serviceCollection.AddTransient<IBackupUploadService, OneDriveBackupUploadService>();
             serviceCollection.AddTransient<IBackupService, BackupService>();
             serviceCollection.AddTransient<IOneDriveBackupService, OneDriveService>();
+            serviceCollection.AddTransient<IOneDriveProfileService, OneDriveProfileService>();
         }
     }
 

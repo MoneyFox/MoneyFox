@@ -13,10 +13,12 @@ namespace MoneyFox.ViewModels.DataBackup
     using Core.Resources;
     using MediatR;
     using Serilog;
+    using Xamarin.Forms;
 
     internal sealed class BackupViewModel : BaseViewModel, IBackupViewModel
     {
         private readonly IBackupService backupService;
+        private readonly IOneDriveProfileService oneDriveProfileService;
         private readonly IConnectivityAdapter connectivity;
         private readonly IDialogService dialogService;
         private readonly IMediator mediator;
@@ -26,7 +28,9 @@ namespace MoneyFox.ViewModels.DataBackup
 
         private DateTime backupLastModified;
         private bool isLoadingBackupAvailability;
-        private UserAccountDto userAccount = new UserAccountDto(name: "", email: "");
+        private UserAccountViewModel userAccount = new UserAccountViewModel();
+
+        private ImageSource? profilePicture;
 
         public BackupViewModel(
             IMediator mediator,
@@ -34,7 +38,8 @@ namespace MoneyFox.ViewModels.DataBackup
             IDialogService dialogService,
             IConnectivityAdapter connectivity,
             ISettingsFacade settingsFacade,
-            IToastService toastService)
+            IToastService toastService,
+            IOneDriveProfileService oneDriveProfileService)
         {
             this.backupService = backupService;
             this.dialogService = dialogService;
@@ -42,9 +47,10 @@ namespace MoneyFox.ViewModels.DataBackup
             this.settingsFacade = settingsFacade;
             this.toastService = toastService;
             this.mediator = mediator;
+            this.oneDriveProfileService = oneDriveProfileService;
         }
 
-        public UserAccountDto UserAccount
+        public UserAccountViewModel UserAccount
         {
             get => userAccount;
 
@@ -58,6 +64,12 @@ namespace MoneyFox.ViewModels.DataBackup
                 userAccount = value;
                 OnPropertyChanged();
             }
+        }
+
+        public ImageSource? ProfilePicture
+        {
+            get => profilePicture;
+            set => SetProperty(ref profilePicture, value);
         }
 
         public RelayCommand InitializeCommand => new RelayCommand(async () => await InitializeAsync());
@@ -129,7 +141,6 @@ namespace MoneyFox.ViewModels.DataBackup
             }
         }
 
-        /// <inheritdoc />
         public bool IsAutoBackupEnabled
         {
             get => settingsFacade.IsBackupAutoUploadEnabled;
@@ -170,7 +181,13 @@ namespace MoneyFox.ViewModels.DataBackup
             {
                 BackupAvailable = await backupService.IsBackupExistingAsync();
                 BackupLastModified = await backupService.GetBackupDateAsync();
-                UserAccount = await backupService.GetUserAccount();
+
+                var userAccountDto = await oneDriveProfileService.GetUserAccountAsync();
+                UserAccount.Name = userAccountDto.Name;
+                UserAccount.Email = userAccountDto.Email;
+
+                var profilePictureStream = await oneDriveProfileService.GetProfilePictureAsync();
+                ProfilePicture = ImageSource.FromStream(() => profilePictureStream);
             }
             catch (BackupAuthenticationFailedException ex)
             {
@@ -203,7 +220,10 @@ namespace MoneyFox.ViewModels.DataBackup
             try
             {
                 await backupService.LoginAsync();
-                UserAccount = await backupService.GetUserAccount();
+                
+                var userAccountDto = await oneDriveProfileService.GetUserAccountAsync();
+                UserAccount.Name = userAccountDto.Name;
+                UserAccount.Email = userAccountDto.Email;
             }
             catch (BackupOperationCanceledException)
             {

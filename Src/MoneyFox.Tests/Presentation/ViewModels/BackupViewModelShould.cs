@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Presentation.ViewModels
+namespace MoneyFox.Tests.Presentation.ViewModels
 {
 
     using System;
@@ -18,20 +18,33 @@
     public class BackupViewModelShould
     {
         private readonly IBackupService backupService;
+        private readonly IOneDriveProfileService oneDriveProfileService;
         private readonly IConnectivityAdapter connectivityAdapter;
         private readonly IDialogService dialogService;
         private readonly IMediator mediator;
         private readonly ISettingsFacade settingsManager;
         private readonly IToastService toastService;
 
+        private readonly BackupViewModel viewModel;
+
         protected BackupViewModelShould()
         {
-            mediator = Substitute.For<IMediator>();
-            connectivityAdapter = Substitute.For<IConnectivityAdapter>();
-            settingsManager = Substitute.For<ISettingsFacade>();
             backupService = Substitute.For<IBackupService>();
+            oneDriveProfileService = Substitute.For<IOneDriveProfileService>();
+            connectivityAdapter = Substitute.For<IConnectivityAdapter>();
             toastService = Substitute.For<IToastService>();
+            mediator = Substitute.For<IMediator>();
+            settingsManager = Substitute.For<ISettingsFacade>();
             dialogService = Substitute.For<IDialogService>();
+
+            viewModel = new BackupViewModel(
+                mediator: mediator,
+                backupService: backupService,
+                dialogService: dialogService,
+                connectivity: connectivityAdapter,
+                settingsFacade: settingsManager,
+                toastService: toastService,
+                oneDriveProfileService: oneDriveProfileService);
         }
 
         public sealed class InitializeCommand : BackupViewModelShould
@@ -43,18 +56,10 @@
                 connectivityAdapter.IsConnected.Returns(false);
 
                 // Act
-                var vm = new BackupViewModel(
-                    mediator: mediator,
-                    backupService: backupService,
-                    dialogService: dialogService,
-                    connectivity: connectivityAdapter,
-                    settingsFacade: settingsManager,
-                    toastService: toastService);
-
-                vm.InitializeCommand.Execute(null);
+                viewModel.InitializeCommand.Execute(null);
 
                 // Assert
-                vm.IsLoadingBackupAvailability.Should().BeFalse();
+                viewModel.IsLoadingBackupAvailability.Should().BeFalse();
                 await backupService.Received(0).IsBackupExistingAsync();
                 await backupService.Received(0).GetBackupDateAsync();
             }
@@ -69,18 +74,10 @@
                 var backupServiceMock = Substitute.For<IBackupService>();
 
                 // Act
-                var vm = new BackupViewModel(
-                    mediator: mediator,
-                    backupService: backupServiceMock,
-                    dialogService: dialogService,
-                    connectivity: connectivitySetup,
-                    settingsFacade: settingsManagerMock,
-                    toastService: toastService);
-
-                vm.InitializeCommand.Execute(null);
+                viewModel.InitializeCommand.Execute(null);
 
                 // Assert
-                vm.IsLoadingBackupAvailability.Should().BeFalse();
+                viewModel.IsLoadingBackupAvailability.Should().BeFalse();
                 await backupServiceMock.Received(0).IsBackupExistingAsync();
                 await backupServiceMock.Received(0).GetBackupDateAsync();
             }
@@ -99,20 +96,12 @@
                 backupServiceMock.GetBackupDateAsync().Returns(returnDate);
 
                 // Act
-                var vm = new BackupViewModel(
-                    mediator: mediator,
-                    backupService: backupServiceMock,
-                    dialogService: dialogService,
-                    connectivity: connectivitySetup,
-                    settingsFacade: settingsManagerMock,
-                    toastService: toastService);
-
-                vm.InitializeCommand.Execute(null);
+                viewModel.InitializeCommand.Execute(null);
 
                 // Assert
-                vm.IsLoadingBackupAvailability.Should().BeFalse();
-                vm.BackupAvailable.Should().BeTrue();
-                vm.BackupLastModified.Should().Be(returnDate);
+                viewModel.IsLoadingBackupAvailability.Should().BeFalse();
+                viewModel.BackupAvailable.Should().BeTrue();
+                viewModel.BackupLastModified.Should().Be(returnDate);
             }
         }
 
@@ -126,15 +115,7 @@
                 backupService.When(x => x.LogoutAsync()).Do(x => logoutCommandCalled = true);
 
                 // Act
-                var vm = new BackupViewModel(
-                    mediator: mediator,
-                    backupService: backupService,
-                    dialogService: dialogService,
-                    connectivity: connectivityAdapter,
-                    settingsFacade: settingsManager,
-                    toastService: toastService);
-
-                vm.LogoutCommand.Execute(null);
+                viewModel.LogoutCommand.Execute(null);
 
                 // Assert
                 logoutCommandCalled.Should().BeTrue();
