@@ -3,11 +3,13 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
 
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using Core.ApplicationCore.Domain.Exceptions;
     using Core.ApplicationCore.UseCases.DbBackup;
+    using Flurl;
     using Flurl.Http;
     using Microsoft.Graph;
     using Microsoft.Identity.Client;
@@ -19,6 +21,9 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
         private const string BACKUP_NAME_TEMPLATE = "backupmoneyfox3_{0}.db";
         private const int BACKUP_ARCHIVE_COUNT = 15;
         private const string ERROR_CODE_CANCELED = "authentication_canceled";
+
+        [SuppressMessage("Minor Code Smell", "S1075:URIs should not be hardcoded", Justification = "Can be later moved to configuration")]
+        private readonly Uri graphDriveUri = new Uri("https://graph.microsoft.com/v1.0/me/drive");
 
         private readonly IOneDriveAuthenticationService oneDriveAuthenticationService;
 
@@ -88,8 +93,14 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
         {
             try
             {
-                var graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
+                var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
 
+                var appFolders = await graphDriveUri
+                    .AppendPathSegments("special", "apps")
+                    .WithOAuthBearerToken(authentication.AccessToken)
+                    .GetJsonAsync();
+
+                var graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
                 return (await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync()).Select(x => x.Name).ToList();
             }
             catch (Exception ex)
