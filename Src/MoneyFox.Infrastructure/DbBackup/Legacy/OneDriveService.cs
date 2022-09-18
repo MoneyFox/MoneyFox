@@ -50,7 +50,7 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
                     .Content.Request()
                     .PutAsync<DriveItem>(dataToUpload);
 
-                await CleanupOldBackupsAsync(graphServiceClient);
+                await CleanupOldBackupsAsync();
 
                 return uploadedItem != null;
             }
@@ -145,7 +145,7 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
             }
         }
 
-        private async Task CleanupOldBackupsAsync(GraphServiceClient graphServiceClient)
+        private async Task CleanupOldBackupsAsync()
         {
             var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
             var appRoot = await graphDriveUri
@@ -160,7 +160,11 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
             }
 
             var oldestBackup = existingBackups.OrderByDescending(x => x.CreatedDate).Last();
-            await graphServiceClient.Drive.Items[oldestBackup?.Id].Request().DeleteAsync();
+
+            await graphDriveUri
+                .AppendPathSegments("items", $"{oldestBackup.Id}")
+                .WithOAuthBearerToken(authentication.AccessToken)
+                .DeleteAsync();
         }
     }
 
