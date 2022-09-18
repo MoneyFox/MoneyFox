@@ -13,7 +13,7 @@
     using Views.Statistics;
     using Xamarin.Forms;
 
-    public partial class AppShell : Shell
+    public partial class AppShell
     {
         public AppShell()
         {

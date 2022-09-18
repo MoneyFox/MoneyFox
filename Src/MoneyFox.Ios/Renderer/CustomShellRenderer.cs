@@ -1,13 +1,12 @@
 using MoneyFox;
 using MoneyFox.iOS.Renderer;
 using Xamarin.Forms;
+using CoreGraphics;
+using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportRenderer(typeof(AppShell), typeof(CustomShellRenderer))]
+[assembly: ExportRenderer(handler: typeof(MyAppShell), target: typeof(CustomShellRenderer))]
 namespace MoneyFox.iOS.Renderer
 {
-    using CoreGraphics;
-    using Xamarin.Forms;
-    using Xamarin.Forms.Platform.iOS;
 
     /// <summary>
     ///     This file is a work around for an issue with the titleview in iOS 16 and can be removed once it is fixed
