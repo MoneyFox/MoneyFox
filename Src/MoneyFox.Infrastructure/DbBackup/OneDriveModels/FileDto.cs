@@ -1,5 +1,6 @@
 namespace MoneyFox.Infrastructure.DbBackup.OneDriveModels
 {
+    using System;
     using System.Collections.Generic;
     using System.Text.Json.Serialization;
     using Newtonsoft.Json;
@@ -20,5 +21,10 @@ namespace MoneyFox.Infrastructure.DbBackup.OneDriveModels
         [JsonPropertyName("name")]
         [JsonProperty("name")]
         public string Name { get; set; } = null!;
+
+        [JsonPropertyName("lastModifiedDateTime")]
+        [JsonProperty("lastModifiedDateTime")]
+        public DateTimeOffset LastModifiedDateTime { get; set; }
+
     }
 }

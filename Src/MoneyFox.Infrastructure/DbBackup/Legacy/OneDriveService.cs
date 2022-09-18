@@ -78,15 +78,17 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
 
         public async Task<DateTime> GetBackupDateAsync()
         {
-            var graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
-            var existingBackups = await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync();
-            if (existingBackups.Any())
-            {
-                return existingBackups.OrderByDescending(di => di.LastModifiedDateTime).First().LastModifiedDateTime?.DateTime.ToLocalTime()
-                       ?? DateTime.MinValue;
-            }
+            var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
 
-            return DateTime.MinValue;
+            var appRoot = await graphDriveUri
+                .AppendPathSegments("special", "approot", "children")
+                .WithOAuthBearerToken(authentication.AccessToken)
+                .GetJsonAsync<FileSearchDto>();
+
+            var existingBackups = appRoot.Files;
+            return existingBackups.Any()
+                ? existingBackups.OrderByDescending(di => di.LastModifiedDateTime).First().LastModifiedDateTime.DateTime.ToLocalTime()
+                : DateTime.MinValue;
         }
 
         public async Task<List<string>> GetFileNamesAsync()
@@ -112,16 +114,24 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
         {
             try
             {
-                var graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
-                var existingBackups = await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync();
-                if (existingBackups.Any() is false)
+                var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
+
+                var appRoot = await graphDriveUri
+                    .AppendPathSegments("special", "approot", "children")
+                    .WithOAuthBearerToken(authentication.AccessToken)
+                    .GetJsonAsync<FileSearchDto>();
+
+                if (appRoot.Files.Any() is false)
                 {
                     throw new NoBackupFoundException();
                 }
 
-                var lastBackup = existingBackups.OrderByDescending(di => di.LastModifiedDateTime).First();
+                var lastBackup = appRoot.Files.OrderByDescending(di => di.LastModifiedDateTime).First();
 
-                return await graphServiceClient.Drive.Items[lastBackup.Id].Content.Request().GetAsync();
+                return await graphDriveUri
+                    .AppendPathSegments("items", $"{lastBackup.Id}", "content")
+                    .WithOAuthBearerToken(authentication.AccessToken)
+                    .GetStreamAsync();
             }
             catch (MsalClientException ex)
             {
