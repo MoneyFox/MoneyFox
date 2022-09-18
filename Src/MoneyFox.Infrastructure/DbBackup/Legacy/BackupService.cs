@@ -93,7 +93,6 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
             }
 
             var files = await oneDriveBackupService.GetFileNamesAsync();
-
             return files.Any();
         }
 

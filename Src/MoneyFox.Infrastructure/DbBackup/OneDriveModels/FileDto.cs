@@ -4,14 +4,14 @@ namespace MoneyFox.Infrastructure.DbBackup.OneDriveModels
     using System.Text.Json.Serialization;
     using Newtonsoft.Json;
 
-    internal class FolderSearchDto
+    internal class FileSearchDto
     {
         [JsonPropertyName("value")]
         [JsonProperty("value")]
-        public List<FolderDto> Value { get; set; } = null!;
+        public List<FileDto> Files { get; set; } = null!;
     }
 
-    internal class FolderDto
+    internal class FileDto
     {
         [JsonPropertyName("id")]
         [JsonProperty("id")]

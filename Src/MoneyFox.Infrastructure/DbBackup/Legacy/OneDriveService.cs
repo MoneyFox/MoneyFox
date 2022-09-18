@@ -95,13 +95,12 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
             {
                 var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
 
-                var appFolders = await graphDriveUri
-                    .AppendPathSegments("special", "apps")
+                var appRoot = await graphDriveUri
+                    .AppendPathSegments("special", "approot", "children")
                     .WithOAuthBearerToken(authentication.AccessToken)
-                    .GetJsonAsync();
+                    .GetJsonAsync<FileSearchDto>();
 
-                var graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
-                return (await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync()).Select(x => x.Name).ToList();
+                return appRoot.Files.Select(f => f.Name).ToList();
             }
             catch (Exception ex)
             {
