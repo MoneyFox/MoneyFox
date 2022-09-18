@@ -8,7 +8,6 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
     using System.Linq;
     using System.Threading.Tasks;
     using Core.ApplicationCore.Domain.Exceptions;
-    using Core.ApplicationCore.UseCases.DbBackup;
     using Flurl;
     using Flurl.Http;
     using Microsoft.Graph;
@@ -17,7 +16,6 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
 
     internal class OneDriveService : IOneDriveBackupService
     {
-        private const string ARCHIVE_FOLDER_NAME = "Archive";
         private const string BACKUP_NAME_TEMPLATE = "backupmoneyfox3_{0}.db";
         private const int BACKUP_ARCHIVE_COUNT = 15;
         private const string ERROR_CODE_CANCELED = "authentication_canceled";
@@ -53,7 +51,6 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
                     .PutAsync<DriveItem>(dataToUpload);
 
                 await CleanupOldBackupsAsync(graphServiceClient);
-                await DeleteExistingFolderAsync(graphServiceClient);
 
                 return uploadedItem != null;
             }
@@ -148,27 +145,22 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
             }
         }
 
-        private static async Task CleanupOldBackupsAsync(GraphServiceClient graphServiceClient)
+        private async Task CleanupOldBackupsAsync(GraphServiceClient graphServiceClient)
         {
-            var existingBackups = await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync();
+            var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
+            var appRoot = await graphDriveUri
+                .AppendPathSegments("special", "approot", "children")
+                .WithOAuthBearerToken(authentication.AccessToken)
+                .GetJsonAsync<FileSearchDto>();
+
+            var existingBackups = appRoot.Files;
             if (existingBackups.Count < BACKUP_ARCHIVE_COUNT)
             {
                 return;
             }
 
-            var oldestBackup = existingBackups.OrderByDescending(x => x.CreatedDateTime).Last();
+            var oldestBackup = existingBackups.OrderByDescending(x => x.CreatedDate).Last();
             await graphServiceClient.Drive.Items[oldestBackup?.Id].Request().DeleteAsync();
-        }
-
-        private static async Task DeleteExistingFolderAsync(GraphServiceClient graphServiceClient)
-        {
-            var archiveFolder = (await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync()).CurrentPage.FirstOrDefault(
-                x => x.Name == ARCHIVE_FOLDER_NAME);
-
-            if (archiveFolder != null)
-            {
-                await graphServiceClient.Me.Drive.Items[archiveFolder.Id].Request().DeleteAsync();
-            }
         }
     }
 

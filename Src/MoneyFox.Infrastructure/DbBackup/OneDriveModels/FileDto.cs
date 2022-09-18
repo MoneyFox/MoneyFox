@@ -26,5 +26,9 @@ namespace MoneyFox.Infrastructure.DbBackup.OneDriveModels
         [JsonProperty("lastModifiedDateTime")]
         public DateTimeOffset LastModifiedDateTime { get; set; }
 
+        [JsonPropertyName("createdDateTime")]
+        [JsonProperty("createdDateTime")]
+        public DateTimeOffset CreatedDate { get; set; }
+
     }
 }
