@@ -75,16 +75,6 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
             await toastService.ShowToastAsync(message: Strings.LoggedOutMessage, title: Strings.LoggedOutTitle);
         }
 
-        public Task<UserAccountDto> GetUserAccount()
-        {
-            if (!connectivity.IsConnected)
-            {
-                throw new NetworkConnectionException();
-            }
-
-            return oneDriveBackupService.GetUserAccountAsync();
-        }
-
         public async Task<bool> IsBackupExistingAsync()
         {
             if (!connectivity.IsConnected)

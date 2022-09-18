@@ -148,16 +148,6 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
             }
         }
 
-        public async Task<UserAccountDto> GetUserAccountAsync()
-        {
-            var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
-            var userDto = await "https://graph.microsoft.com/v1.0/me"
-                .WithOAuthBearerToken(authentication.AccessToken)
-                .GetJsonAsync<UserDto>();
-
-            return new UserAccountDto(name: userDto.DisplayName ?? string.Empty, email: userDto.PrincipalName ?? string.Empty);
-        }
-
         private static async Task CleanupOldBackupsAsync(GraphServiceClient graphServiceClient)
         {
             var existingBackups = await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync();

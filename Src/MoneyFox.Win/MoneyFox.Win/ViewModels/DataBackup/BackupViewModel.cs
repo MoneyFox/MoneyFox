@@ -1,6 +1,7 @@
 ﻿namespace MoneyFox.Win.ViewModels.DataBackup;
 
 using System;
+using System.IO;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using Core.ApplicationCore.Domain.Exceptions;
@@ -11,11 +12,15 @@ using Core.Common.Interfaces;
 using Core.Interfaces;
 using Core.Resources;
 using MediatR;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Imaging;
+using MoneyFox.Views.Backup;
 using Serilog;
 
 internal sealed class BackupViewModel : BaseViewModel, IBackupViewModel
 {
     private readonly IBackupService backupService;
+    private readonly IOneDriveProfileService oneDriveProfileService;
     private readonly IConnectivityAdapter connectivity;
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
@@ -25,7 +30,8 @@ internal sealed class BackupViewModel : BaseViewModel, IBackupViewModel
 
     private DateTime backupLastModified;
     private bool isLoadingBackupAvailability;
-    private UserAccountDto userAccount;
+
+    private UserAccountViewModel userAccount = new UserAccountViewModel();
 
     public BackupViewModel(
         IMediator mediator,
@@ -33,7 +39,8 @@ internal sealed class BackupViewModel : BaseViewModel, IBackupViewModel
         IDialogService dialogService,
         IConnectivityAdapter connectivity,
         ISettingsFacade settingsFacade,
-        IToastService toastService)
+        IToastService toastService,
+        IOneDriveProfileService oneDriveProfileService)
     {
         this.mediator = mediator;
         this.backupService = backupService;
@@ -41,9 +48,10 @@ internal sealed class BackupViewModel : BaseViewModel, IBackupViewModel
         this.connectivity = connectivity;
         this.settingsFacade = settingsFacade;
         this.toastService = toastService;
+        this.oneDriveProfileService = oneDriveProfileService;
     }
 
-    public UserAccountDto UserAccount
+    public UserAccountViewModel UserAccount
     {
         get => userAccount;
 
@@ -159,10 +167,12 @@ internal sealed class BackupViewModel : BaseViewModel, IBackupViewModel
         {
             BackupAvailable = await backupService.IsBackupExistingAsync();
             BackupLastModified = await backupService.GetBackupDateAsync();
-            UserAccount = await backupService.GetUserAccount();
+
+            await LoadUserAccount();
         }
-        catch (BackupAuthenticationFailedException)
+        catch (BackupAuthenticationFailedException ex)
         {
+            Log.Error(exception: ex, messageTemplate: "Issue during Login process");
             await backupService.LogoutAsync();
             await dialogService.ShowMessageAsync(title: Strings.AuthenticationFailedTitle, message: Strings.ErrorMessageAuthenticationFailed);
         }
@@ -190,7 +200,7 @@ internal sealed class BackupViewModel : BaseViewModel, IBackupViewModel
         try
         {
             await backupService.LoginAsync();
-            UserAccount = await backupService.GetUserAccount();
+            await LoadUserAccount();
         }
         catch (BackupOperationCanceledException)
         {
@@ -224,6 +234,13 @@ internal sealed class BackupViewModel : BaseViewModel, IBackupViewModel
 
         // ReSharper disable once ExplicitCallerInfoArgument
         OnPropertyChanged(nameof(IsLoggedIn));
+    }
+
+    private async Task LoadUserAccount()
+    {
+        var userAccountDto = await oneDriveProfileService.GetUserAccountAsync();
+        UserAccount.Name = userAccountDto.Name;
+        UserAccount.Email = userAccountDto.Email;
     }
 
     private async Task CreateBackupAsync()
