@@ -1,9 +1,10 @@
 using CoreGraphics;
+using MoneyFox;
 using MoneyFox.iOS.Renderer;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportRenderer(typeof(Shell), typeof(CustomShellRenderer))]
+[assembly: ExportRenderer(typeof(AppShell), typeof(CustomShellRenderer))]
 namespace MoneyFox.iOS.Renderer
 {
     public class CustomShellRenderer : ShellRenderer
