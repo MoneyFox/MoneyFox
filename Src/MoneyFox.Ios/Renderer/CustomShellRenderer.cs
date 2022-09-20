@@ -1,17 +1,11 @@
-using MoneyFox;
+using CoreGraphics;
 using MoneyFox.iOS.Renderer;
 using Xamarin.Forms;
-using CoreGraphics;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportRenderer(handler: typeof(MyAppShell), target: typeof(CustomShellRenderer))]
+[assembly: ExportRenderer(typeof(Shell), typeof(CustomShellRenderer))]
 namespace MoneyFox.iOS.Renderer
 {
-
-    /// <summary>
-    ///     This file is a work around for an issue with the titleview in iOS 16 and can be removed once it is fixed
-    ///     in Xamarin Forms and / or .net MAUI
-    /// </summary>
     public class CustomShellRenderer : ShellRenderer
     {
         protected override IShellPageRendererTracker CreatePageRendererTracker()
@@ -30,6 +24,9 @@ namespace MoneyFox.iOS.Renderer
 
         protected override void UpdateTitleView()
         {
+            if (ViewController == null || ViewController.NavigationItem == null)
+                return;
+
             var titleView = Shell.GetTitleView(Page);
 
             if (titleView == null)
@@ -54,10 +51,5 @@ namespace MoneyFox.iOS.Renderer
         }
 
         public override CGSize IntrinsicContentSize => UILayoutFittingExpandedSize;
-
-        public override CGSize SizeThatFits(CGSize size)
-        {
-            return size;
-        }
     }
 }

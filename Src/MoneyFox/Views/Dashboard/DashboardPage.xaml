@@ -19,7 +19,7 @@
     </ContentPage.Resources>
 
     <Shell.TitleView>
-        <Grid Padding="0,8,16,0">
+        <Grid Padding="0,8,16,0" HeightRequest="44">
             <Button Command="{Binding GoToAddPaymentCommand}"
                             HorizontalOptions="End"
                             VerticalOptions="Start"
