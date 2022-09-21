@@ -82,10 +82,10 @@
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Renderer\CustomShellRenderer.cs" />
     <Compile Include="Renderer\ModalContentPageRenderer.cs" />
     <Compile Include="Renderer\CustomSearchBarRenderer.cs" />
     <Compile Include="Renderer\NavigationPageRenderer.cs" />
-    <Compile Include="Renderer\ShellNavbarRenderer.cs" />
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\DbPathProvider.cs" />
     <Compile Include="Src\GraphServiceClientFactory.cs" />
@@ -207,7 +207,7 @@
       <Name>MoneyFox.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj">
-      <Project>{CA773928-B26B-43DE-B874-87854F929534}</Project>
+      <Project>{0429508E-AFD9-4F1C-900A-EA1997FC8567}</Project>
       <Name>MoneyFox.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Mobile.Infrastructure\MoneyFox.Mobile.Infrastructure.csproj">
@@ -215,7 +215,7 @@
       <Name>MoneyFox.Mobile.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox\MoneyFox.csproj">
-      <Project>{97801952-BB0D-4CAA-BA07-CBAE00A5860F}</Project>
+      <Project>{AC88BCF6-97ED-4410-A61B-19CA5E3737F8}</Project>
       <Name>MoneyFox</Name>
     </ProjectReference>
   </ItemGroup>
@@ -251,7 +251,7 @@
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadXFormsNugetUpgradeInfoBarMoneyFoxiOSHideInfoBar="True" TriggeredFromHotReload="False" />
+      <UserProperties TriggeredFromHotReload="False" XamarinHotReloadXFormsNugetUpgradeInfoBarMoneyFoxiOSHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
