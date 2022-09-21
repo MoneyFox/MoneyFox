@@ -2,7 +2,6 @@
 using Xamarin.Forms;
 
 [assembly: ExportRenderer(handler: typeof(SearchBar), target: typeof(CustomSearchBarRenderer))]
-
 namespace MoneyFox.iOS.Renderer
 {
 
