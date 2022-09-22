@@ -7,7 +7,7 @@ namespace MoneyFox.InversionOfControl
     using Core.InversionOfControl;
     using Mapping;
     using Microsoft.Extensions.DependencyInjection;
-    using Mobile.Infrastructure.InversionOfControl;
+    using MoneyFox.Infrastructure.InversionOfControl;
     using MoneyFox.Views.Backup;
     using ViewModels.About;
     using ViewModels.Accounts;
@@ -29,7 +29,7 @@ namespace MoneyFox.InversionOfControl
             RegisterViewModels(serviceCollection);
             serviceCollection.AddSingleton(_ => AutoMapperFactory.Create());
             new CoreConfig().Register(serviceCollection);
-            new InfrastructureMobileConfig().Register(serviceCollection);
+            InfrastructureConfig.Register(serviceCollection);
         }
 
         private static void RegisterServices(IServiceCollection serviceCollection)

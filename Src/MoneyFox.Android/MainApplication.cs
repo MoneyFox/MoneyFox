@@ -14,7 +14,6 @@ namespace MoneyFox.Droid
     using MoneyFox.Common;
     using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Core.Interfaces;
-    using MoneyFox.Infrastructure.DbBackup;
     using Serilog;
     using Serilog.Events;
     using Serilog.Exceptions;
@@ -26,7 +25,6 @@ namespace MoneyFox.Droid
         private static void AddServices(IServiceCollection services)
         {
             services.AddSingleton<IDbPathProvider, DbPathProvider>();
-            services.AddSingleton<IGraphClientFactory, GraphClientFactory>();
             services.AddSingleton<IStoreOperations, PlayStoreOperations>();
             services.AddSingleton<IAppInformation, DroidAppInformation>();
             services.AddTransient<IFileStore>(_ => new FileStoreIoBase(global::Android.App.Application.Context.FilesDir?.Path ?? ""));

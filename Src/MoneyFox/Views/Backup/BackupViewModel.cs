@@ -15,7 +15,6 @@ namespace MoneyFox.Views.Backup
     using Core.Resources;
     using MediatR;
     using Serilog;
-    using Xamarin.Forms;
 
     internal sealed class BackupViewModel : BaseViewModel
     {
