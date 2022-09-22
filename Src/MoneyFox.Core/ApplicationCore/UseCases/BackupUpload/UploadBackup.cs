@@ -39,11 +39,11 @@ namespace MoneyFox.Core.ApplicationCore.UseCases.BackupUpload
                     return UploadResult.Skipped;
                 }
 
-                //var backupdate = await backupuploadservice.getbackupdateasync();
-                //if (settingsfacade.lastdatabaseupdate - backupdate.tolocaltime() < timespan.fromseconds(1))
-                //{
-                //    return uploadresult.skipped;
-                //}
+                var backupdate = await backupUploadService.GetBackupDateAsync();
+                if (settingsFacade.LastDatabaseUpdate - backupdate.ToLocalTime() < TimeSpan.FromSeconds(1))
+                {
+                    return UploadResult.Skipped;
+                }
 
                 var backupName = string.Format(format: BACKUP_NAME_TEMPLATE, arg0: DateTime.UtcNow.ToString(format: "yyyy-M-d_hh-mm-ssss"));
                 var dbAsStream = await fileStore.OpenReadAsync(dbPathProvider.GetDbPath());
