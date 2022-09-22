@@ -10,7 +10,6 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
     using Core.ApplicationCore.Domain.Exceptions;
     using Flurl;
     using Flurl.Http;
-    using Microsoft.Graph;
     using Microsoft.Identity.Client;
     using MoneyFox.Infrastructure.DbBackup.OneDriveModels;
 
@@ -38,49 +37,6 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
         public async Task LogoutAsync()
         {
             await oneDriveAuthenticationService.LogoutAsync();
-        }
-
-        public async Task<bool> UploadAsync(Stream dataToUpload)
-        {
-            var graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
-            try
-            {
-                var backupName = string.Format(format: BACKUP_NAME_TEMPLATE, arg0: DateTime.UtcNow.ToString(format: "yyyy-M-d_hh-mm-ssss"));
-
-                var foo = graphServiceClient.Me.Drive.Special.AppRoot.ItemWithPath(backupName).Content.Request().RequestUrl;
-
-                var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
-                var appRoot = await graphDriveUri
-                    .AppendPathSegments("special", "approot", backupName)
-                    .WithOAuthBearerToken(authentication.AccessToken)
-                    .GetJsonAsync<FileSearchDto>();
-
-
-                var uploadedItem = await graphServiceClient.Me.Drive.Special.AppRoot.ItemWithPath(backupName)
-                    .Content.Request()
-                    .PutAsync<DriveItem>(dataToUpload);
-
-                await CleanupOldBackupsAsync();
-
-                return uploadedItem != null;
-            }
-            catch (MsalClientException ex)
-            {
-                if (ex.ErrorCode == ERROR_CODE_CANCELED)
-                {
-                    throw new BackupOperationCanceledException(ex);
-                }
-
-                throw;
-            }
-            catch (OperationCanceledException ex)
-            {
-                throw new BackupOperationCanceledException(ex);
-            }
-            catch (Exception ex)
-            {
-                throw new BackupAuthenticationFailedException(ex);
-            }
         }
 
         public async Task<DateTime> GetBackupDateAsync()

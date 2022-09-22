@@ -11,7 +11,6 @@ namespace MoneyFox.Infrastructure.DbBackup
     using Core.ApplicationCore.UseCases.BackupUpload;
     using Flurl;
     using Flurl.Http;
-    using Microsoft.Graph;
     using Microsoft.Identity.Client;
     using MoneyFox.Infrastructure.DbBackup.OneDriveModels;
 
