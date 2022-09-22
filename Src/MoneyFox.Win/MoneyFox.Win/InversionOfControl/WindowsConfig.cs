@@ -35,7 +35,6 @@ internal sealed class WindowsConfig
         serviceCollection.AddSingleton<INavigationService, NavigationService>();
         serviceCollection.AddTransient<IDialogService, DialogService>();
         serviceCollection.AddTransient<IToastService, ToastService>();
-        serviceCollection.AddTransient<IGraphClientFactory, GraphClientFactory>();
         serviceCollection.AddTransient<IAppInformation, WindowsAppInformation>();
         serviceCollection.AddTransient<IStoreOperations, MarketplaceOperations>();
         serviceCollection.AddTransient<IBalanceCalculationService, BalanceCalculationService>();

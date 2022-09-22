@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Droid
+namespace MoneyFox.Droid
 {
 
     using Android.App;
@@ -40,7 +40,6 @@
         private static void AddServices(IServiceCollection services)
         {
             services.AddSingleton<IDbPathProvider, DbPathProvider>();
-            services.AddSingleton<IGraphClientFactory, GraphClientFactory>();
             services.AddSingleton<IStoreOperations, PlayStoreOperations>();
             services.AddSingleton<IAppInformation, DroidAppInformation>();
             services.AddTransient<IFileStore>(_ => new FileStoreIoBase(Application.Context.FilesDir?.Path ?? ""));

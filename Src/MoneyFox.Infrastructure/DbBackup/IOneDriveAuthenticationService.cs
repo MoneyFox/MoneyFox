@@ -8,8 +8,6 @@ namespace MoneyFox.Infrastructure.DbBackup
 
     public interface IOneDriveAuthenticationService
     {
-        Task<GraphServiceClient> CreateServiceClient(CancellationToken cancellationToken = default);
-
         Task<OneDriveAuthentication> AcquireAuthentication(CancellationToken cancellationToken = default);
 
         Task LogoutAsync(CancellationToken cancellationToken = default);
