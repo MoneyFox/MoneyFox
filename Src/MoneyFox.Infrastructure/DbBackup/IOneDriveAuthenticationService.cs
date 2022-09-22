@@ -3,7 +3,6 @@ namespace MoneyFox.Infrastructure.DbBackup
 
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.Graph;
     using MoneyFox.Infrastructure.DbBackup.OneDriveModels;
 
     public interface IOneDriveAuthenticationService
