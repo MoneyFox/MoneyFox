@@ -10,6 +10,10 @@ using MoneyFox.Common;
 
 public class WindowsFileStore : FileStoreIoBase
 {
+    public WindowsFileStore(string basePath) : base(basePath)
+    {
+    }
+
     public override async Task<Stream> OpenReadAsync(string path)
     {
         try
