@@ -46,6 +46,16 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
             try
             {
                 var backupName = string.Format(format: BACKUP_NAME_TEMPLATE, arg0: DateTime.UtcNow.ToString(format: "yyyy-M-d_hh-mm-ssss"));
+
+                var foo = graphServiceClient.Me.Drive.Special.AppRoot.ItemWithPath(backupName).Content.Request().RequestUrl;
+
+                var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
+                var appRoot = await graphDriveUri
+                    .AppendPathSegments("special", "approot", backupName)
+                    .WithOAuthBearerToken(authentication.AccessToken)
+                    .GetJsonAsync<FileSearchDto>();
+
+
                 var uploadedItem = await graphServiceClient.Me.Drive.Special.AppRoot.ItemWithPath(backupName)
                     .Content.Request()
                     .PutAsync<DriveItem>(dataToUpload);
