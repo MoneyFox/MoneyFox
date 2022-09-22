@@ -243,6 +243,8 @@ Global
 		{543F0752-1B4A-40FF-83EF-D80A26576910}.AppStore|x86.Build.0 = Release|iPhoneSimulator
 		{543F0752-1B4A-40FF-83EF-D80A26576910}.AppStore|x86.Deploy.0 = Release|iPhoneSimulator
 		{543F0752-1B4A-40FF-83EF-D80A26576910}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{543F0752-1B4A-40FF-83EF-D80A26576910}.Debug|Any CPU.ActiveCfg = Debug|iPhone
+		{543F0752-1B4A-40FF-83EF-D80A26576910}.Debug|Any CPU.Build.0 = Debug|iPhone
 		{543F0752-1B4A-40FF-83EF-D80A26576910}.Debug|ARM.ActiveCfg = Debug|iPhone
 		{543F0752-1B4A-40FF-83EF-D80A26576910}.Debug|ARM64.ActiveCfg = Debug|iPhoneSimulator
 		{543F0752-1B4A-40FF-83EF-D80A26576910}.Debug|iPhone.ActiveCfg = Debug|iPhone
