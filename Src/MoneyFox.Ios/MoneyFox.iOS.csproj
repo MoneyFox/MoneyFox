@@ -88,7 +88,6 @@
     <Compile Include="Renderer\NavigationPageRenderer.cs" />
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\DbPathProvider.cs" />
-    <Compile Include="Src\GraphServiceClientFactory.cs" />
     <Compile Include="Src\IosFileStore.cs" />
     <Compile Include="Src\StoreOperations.cs" />
     <None Include="Entitlements.plist" />
@@ -251,7 +250,7 @@
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties TriggeredFromHotReload="False" XamarinHotReloadXFormsNugetUpgradeInfoBarMoneyFoxiOSHideInfoBar="True" />
+      <UserProperties XamarinHotReloadXFormsNugetUpgradeInfoBarMoneyFoxiOSHideInfoBar="True" TriggeredFromHotReload="False" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
