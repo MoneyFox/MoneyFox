@@ -40,7 +40,6 @@ namespace MoneyFox.iOS
         private static void AddServices(IServiceCollection services)
         {
             services.AddSingleton<IDbPathProvider, DbPathProvider>();
-            services.AddSingleton<IGraphClientFactory, GraphServiceClientFactory>();
             services.AddSingleton<IStoreOperations, StoreOperations>();
             services.AddSingleton<IAppInformation, AppInformation>();
             services.AddTransient<IFileStore>(_ => new IosFileStore(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)));

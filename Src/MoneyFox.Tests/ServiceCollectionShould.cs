@@ -8,7 +8,6 @@ namespace MoneyFox.Tests
     using Microsoft.Extensions.DependencyInjection;
     using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Core.Interfaces;
-    using MoneyFox.Infrastructure.DbBackup;
     using NSubstitute;
     using Xunit;
 
@@ -20,7 +19,6 @@ namespace MoneyFox.Tests
             // Arrange
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddSingleton(Substitute.For<IDbPathProvider>());
-            serviceCollection.AddSingleton(Substitute.For<IGraphClientFactory>());
             serviceCollection.AddSingleton(Substitute.For<IStoreOperations>());
             serviceCollection.AddSingleton(Substitute.For<IAppInformation>());
             serviceCollection.AddSingleton(Substitute.For<IFileStore>());

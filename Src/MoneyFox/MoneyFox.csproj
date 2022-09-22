@@ -153,4 +153,8 @@
             <_Parameter1>MoneyFox.Tests</_Parameter1>
         </AssemblyAttribute>
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="ViewModels\DataBackup\" />
+    </ItemGroup>
 </Project>

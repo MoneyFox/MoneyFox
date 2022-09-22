@@ -8,12 +8,12 @@ namespace MoneyFox.InversionOfControl
     using Mapping;
     using Microsoft.Extensions.DependencyInjection;
     using Mobile.Infrastructure.InversionOfControl;
+    using MoneyFox.Views.Backup;
     using ViewModels.About;
     using ViewModels.Accounts;
     using ViewModels.Budget;
     using ViewModels.Categories;
     using ViewModels.Dashboard;
-    using ViewModels.DataBackup;
     using ViewModels.Dialogs;
     using ViewModels.OverflowMenu;
     using ViewModels.Payments;

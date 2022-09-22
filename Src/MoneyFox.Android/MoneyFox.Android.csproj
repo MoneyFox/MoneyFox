@@ -105,7 +105,6 @@
     <Compile Include="SplashScreen.cs" />
     <Compile Include="Src\DbPathProvider.cs" />
     <Compile Include="Src\DroidAppInformation.cs" />
-    <Compile Include="Src\GraphClientFactory.cs" />
     <Compile Include="Src\PlayStoreOperations.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -173,7 +172,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadXFormsNugetUpgradeInfoBarMoneyFoxAndroidHideInfoBar="True" TriggeredFromHotReload="False" />
+      <UserProperties TriggeredFromHotReload="False" XamarinHotReloadXFormsNugetUpgradeInfoBarMoneyFoxAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
