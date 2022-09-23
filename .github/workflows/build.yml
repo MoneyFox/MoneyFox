@@ -10,6 +10,7 @@ on:
 
 env:
     DOTNETVERSION: 6.0.400
+    ANDROID_PROJECT_PATH: "src/MoneyFox.Android/MoneyFox.Android.csproj"
 
 jobs:
   buildAndroid:
@@ -27,8 +28,11 @@ jobs:
     - name: Install MAUI Workload
       run: dotnet workload install maui --ignore-failed-sources
 
+    - name: Restore Dependencies
+      run: dotnet restore ${{env.ANDROID_PROJECT_PATH}}
+
     - name: Build MAUI Android
-      run: dotnet publish src/MoneyFox.Android/MoneyFox.Android.csproj -c Release -f net6.0-android --no-restore
+      run: dotnet publish ${{env.ANDROID_PROJECT_PATH}} -c Release -f net6.0-android --no-restore
 
     - name: Upload Android Artifact
       if: github.ref == 'refs/heads/master'
