@@ -1,0 +1,38 @@
+name: build
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+  workflow_dispatch:
+
+env:
+    DOTNETVERSION: 6.0.400
+
+jobs:
+  build android:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '${{env.DOTNETVERSION}}'
+
+    - name: Install MAUI Workload
+      run: dotnet workload install maui --ignore-failed-sources
+
+    - name: Build MAUI Android
+      run: dotnet publish src/MoneyFox.Android/MoneyFox.Android.csproj -c Release -f net6.0-android --no-restore
+
+    - name: Upload Android Artifact
+      if: github.ref == 'refs/heads/master'
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        name: moneyfox-android-build
+        path: src/MoneyFox.Android/bin/Release/net6.0-android/*Signed.a*
