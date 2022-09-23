@@ -38,10 +38,11 @@ jobs:
           provProfileSecureFile: 'MoneyFox_Distribution_2022.mobileprovision'
           
       - task: UseDotNet@2
-        displayName: .NET Version
+        displayName: Use .NET Version
         inputs:
           packageType: 'sdk'
           version: '$(DotNetVersion)'
+
       - task: Bash@3
         displayName: Install MAUI
         inputs:
@@ -59,12 +60,14 @@ jobs:
           arguments: '--configuration $(BuildConfiguration)'
 
       - task: DotNetCoreCLI@2
+        displayName: Restore Dependencies
         inputs:
           command: 'restore'
           projects: '/src/MoneyFox.Ios/MoneyFox.Ios.csproj'
           feedsToUse: 'select'
 
       - task: DotNetCoreCLI@2
+        displayName: Publish Android App
         inputs:
           command: 'publish'
           projects: '/src/MoneyFox.Ios/MoneyFox.Ios.csproj'
@@ -81,7 +84,7 @@ jobs:
     steps:
               
       - task: UseDotNet@2
-        displayName: .NET Version
+        displayName: Use .NET Version
         inputs:
           packageType: 'sdk'
           version: '$(DotNetVersion)'
@@ -103,15 +106,17 @@ jobs:
           arguments: '--configuration $(BuildConfiguration)'
 
       - task: DotNetCoreCLI@2
+        displayName: Restore Dependencies
         inputs:
           command: 'restore'
           projects: '/src/MoneyFox.Android/MoneyFox.Android.csproj'
           feedsToUse: 'select'
 
       - task: DotNetCoreCLI@2
+        displayName: Publish Android App
         inputs:
           command: 'publish'
-          projects: '/src/MoneyFox.Ios/MoneyFox.Ios.csproj'
+          projects: '/src/MoneyFox.Android/MoneyFox.Android.csproj'
           arguments: '--configuration $(BuildConfiguration)'
 
 
