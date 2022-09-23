@@ -67,9 +67,7 @@ namespace MoneyFox.iOS.Renderer
     {
         public void SetAppearance(UINavigationController controller, ShellAppearance appearance)
         {
-            var tintColor = AppInfo.RequestedTheme == AppTheme.Dark ? Colors.White : Color.FromHex("#323130");
             var navBar = controller.NavigationBar;
-            navBar.TintColor = tintColor.ToUIColor();
             var navigationBarAppearance = new UINavigationBarAppearance();
             navigationBarAppearance.ConfigureWithOpaqueBackground();
             navigationBarAppearance.ShadowColor = UIColor.Clear;
