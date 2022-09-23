@@ -67,9 +67,9 @@ jobs:
           feedsToUse: 'select'
 
       - task: DotNetCoreCLI@2
-        displayName: Publish Android App
+        displayName: Build Android App
         inputs:
-          command: 'publish'
+          command: 'build'
           projects: 'Src/MoneyFox.Ios/MoneyFox.iOS.csproj'
           arguments: '--configuration $(BuildConfiguration)'
 
@@ -113,9 +113,9 @@ jobs:
           feedsToUse: 'select'
 
       - task: DotNetCoreCLI@2
-        displayName: Publish Android App
+        displayName: Build Android App
         inputs:
-          command: 'publish'
+          command: 'build'
           projects: 'Src/MoneyFox.Android/MoneyFox.Android.csproj'
           arguments: '--configuration $(BuildConfiguration)'
 
