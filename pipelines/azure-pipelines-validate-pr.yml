@@ -67,7 +67,7 @@ jobs:
           feedsToUse: 'select'
 
       - task: DotNetCoreCLI@2
-        displayName: Build Android App
+        displayName: Build iOS App
         inputs:
           command: 'build'
           projects: 'Src/MoneyFox.Ios/MoneyFox.iOS.csproj'
