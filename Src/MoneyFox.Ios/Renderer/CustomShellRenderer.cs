@@ -1,18 +1,15 @@
+using Microsoft.Maui.Controls.Compatibility;
 using MoneyFox;
 using MoneyFox.iOS.Renderer;
-using Xamarin.Forms;
 
 [assembly: ExportRenderer(typeof(AppShell), typeof(CustomShellRenderer))]
 namespace MoneyFox.iOS.Renderer
 {
     using CoreGraphics;
+    using Microsoft.Maui.Controls.Handlers.Compatibility;
+    using Microsoft.Maui.Controls.Platform.Compatibility;
     using UIKit;
 
-    using Xamarin.Essentials;
-
-    using Xamarin.Forms;
-
-    using Xamarin.Forms.Platform.iOS;
 
     public class CustomShellRenderer : ShellRenderer
     {
@@ -70,7 +67,7 @@ namespace MoneyFox.iOS.Renderer
     {
         public void SetAppearance(UINavigationController controller, ShellAppearance appearance)
         {
-            var tintColor = AppInfo.RequestedTheme == AppTheme.Dark ? Color.White : Color.FromHex("#323130");
+            var tintColor = AppInfo.RequestedTheme == AppTheme.Dark ? Colors.White : Color.FromHex("#323130");
             var navBar = controller.NavigationBar;
             navBar.TintColor = tintColor.ToUIColor();
             var navigationBarAppearance = new UINavigationBarAppearance();
