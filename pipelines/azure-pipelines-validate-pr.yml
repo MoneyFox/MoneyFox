@@ -3,6 +3,10 @@ pr:
     include:
       - master
 
+
+variables:
+  DotNetVersion: 6.0.400
+
 jobs:
 
   - job: BuildiOS
@@ -12,7 +16,6 @@ jobs:
 
     variables:
       solution: '**/MoneyFox.Mobile.sln'
-      DotNetVersion: 6.0.400
 
     steps:
       #- script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_12_0
@@ -67,7 +70,6 @@ jobs:
           projects: '/src/MoneyFox.Ios/MoneyFox.Ios.csproj'
           arguments: '--configuration $(BuildConfiguration)'
 
-
   - job: BuildAndroid
     displayName: "Build Android"
     pool:
@@ -75,7 +77,6 @@ jobs:
 
     variables:
       solution: '**/MoneyFox.Mobile.sln'
-      DotNetVersion: 6.0.400
 
     steps:
               
