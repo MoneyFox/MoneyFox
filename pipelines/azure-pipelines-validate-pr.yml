@@ -63,14 +63,14 @@ jobs:
         displayName: Restore Dependencies
         inputs:
           command: 'restore'
-          projects: '/src/MoneyFox.Ios/MoneyFox.Ios.csproj'
+          projects: '/**/MoneyFox.Ios.csproj'
           feedsToUse: 'select'
 
       - task: DotNetCoreCLI@2
         displayName: Publish Android App
         inputs:
           command: 'publish'
-          projects: '/src/MoneyFox.Ios/MoneyFox.Ios.csproj'
+          projects: '/**/MoneyFox.Ios.csproj'
           arguments: '--configuration $(BuildConfiguration)'
 
   - job: BuildAndroid
@@ -109,14 +109,14 @@ jobs:
         displayName: Restore Dependencies
         inputs:
           command: 'restore'
-          projects: '/src/MoneyFox.Android/MoneyFox.Android.csproj'
+          projects: '/**/MoneyFox.Android.csproj'
           feedsToUse: 'select'
 
       - task: DotNetCoreCLI@2
         displayName: Publish Android App
         inputs:
           command: 'publish'
-          projects: '/src/MoneyFox.Android/MoneyFox.Android.csproj'
+          projects: '/**/MoneyFox.Android.csproj'
           arguments: '--configuration $(BuildConfiguration)'
 
 
