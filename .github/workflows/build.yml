@@ -11,6 +11,7 @@ on:
 env:
     DOTNETVERSION: 6.0.400
     ANDROID_PROJECT_PATH: "src/MoneyFox.Android/MoneyFox.Android.csproj"
+    IOS_PROJECT_PATH: "src/MoneyFox.Ios/MoneyFox.Ios.csproj"
 
 jobs:
   buildAndroid:
@@ -39,4 +40,32 @@ jobs:
       uses: actions/upload-artifact@v3.1.0
       with:
         name: moneyfox-android-build
-        path: src/MoneyFox.Android/bin/Release/net6.0-android/*Signed.a*
+        path: src/MoneyFox.Android/bin/Release/**/*Signed.a*
+
+  buildiOS:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '${{env.DOTNETVERSION}}'
+
+    - name: Install MAUI Workload
+      run: dotnet workload install maui --ignore-failed-sources
+
+    - name: Restore Dependencies
+      run: dotnet restore ${{env.IOS_PROJECT_PATH}}
+
+    - name: Build MAUI iOS
+      run: dotnet publish ${{env.IOS_PROJECT_PATH}} -c Release -f net6.0-ios --no-restore
+
+    - name: Upload iOS Artifact
+      if: github.ref == 'refs/heads/master'
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        name: moneyfox-ios-build
+        path: src/MoneyFox.Ios/bin/Release/**/*.app
