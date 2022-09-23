@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Win;
+namespace MoneyFox.Win;
 
 using System;
 using System.IO;
@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Infrastructure;
 using Serilog;
+using MoneyFox.Common;
 
-public class WindowsFileStore : FileStoreBase
+public class WindowsFileStore : FileStoreIoBase
 {
+    public WindowsFileStore(string basePath) : base(basePath)
+    {
+    }
+
     public override async Task<Stream> OpenReadAsync(string path)
     {
         try

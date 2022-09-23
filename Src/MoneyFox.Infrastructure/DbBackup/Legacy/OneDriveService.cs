@@ -3,21 +3,24 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
 
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using Core.ApplicationCore.Domain.Exceptions;
-    using Core.ApplicationCore.UseCases.DbBackup;
-    using Microsoft.Graph;
+    using Flurl;
+    using Flurl.Http;
     using Microsoft.Identity.Client;
-    using Newtonsoft.Json;
+    using MoneyFox.Infrastructure.DbBackup.OneDriveModels;
 
     internal class OneDriveService : IOneDriveBackupService
     {
-        private const string ARCHIVE_FOLDER_NAME = "Archive";
         private const string BACKUP_NAME_TEMPLATE = "backupmoneyfox3_{0}.db";
         private const int BACKUP_ARCHIVE_COUNT = 15;
         private const string ERROR_CODE_CANCELED = "authentication_canceled";
+
+        [SuppressMessage("Minor Code Smell", "S1075:URIs should not be hardcoded", Justification = "Can be later moved to configuration")]
+        private readonly Uri graphDriveUri = new Uri("https://graph.microsoft.com/v1.0/me/drive");
 
         private readonly IOneDriveAuthenticationService oneDriveAuthenticationService;
 
@@ -28,7 +31,7 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
 
         public async Task LoginAsync()
         {
-            await oneDriveAuthenticationService.CreateServiceClient();
+            await oneDriveAuthenticationService.AcquireAuthentication();
         }
 
         public async Task LogoutAsync()
@@ -36,60 +39,33 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
             await oneDriveAuthenticationService.LogoutAsync();
         }
 
-        public async Task<bool> UploadAsync(Stream dataToUpload)
-        {
-            var graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
-            try
-            {
-                var backupName = string.Format(format: BACKUP_NAME_TEMPLATE, arg0: DateTime.UtcNow.ToString(format: "yyyy-M-d_hh-mm-ssss"));
-                var uploadedItem = await graphServiceClient.Me.Drive.Special.AppRoot.ItemWithPath(backupName)
-                    .Content.Request()
-                    .PutAsync<DriveItem>(dataToUpload);
-
-                await CleanupOldBackupsAsync(graphServiceClient);
-                await DeleteExistingFolderAsync(graphServiceClient);
-
-                return uploadedItem != null;
-            }
-            catch (MsalClientException ex)
-            {
-                if (ex.ErrorCode == ERROR_CODE_CANCELED)
-                {
-                    throw new BackupOperationCanceledException(ex);
-                }
-
-                throw;
-            }
-            catch (OperationCanceledException ex)
-            {
-                throw new BackupOperationCanceledException(ex);
-            }
-            catch (Exception ex)
-            {
-                throw new BackupAuthenticationFailedException(ex);
-            }
-        }
-
         public async Task<DateTime> GetBackupDateAsync()
         {
-            var graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
-            var existingBackups = await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync();
-            if (existingBackups.Any())
-            {
-                return existingBackups.OrderByDescending(di => di.LastModifiedDateTime).First().LastModifiedDateTime?.DateTime.ToLocalTime()
-                       ?? DateTime.MinValue;
-            }
+            var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
 
-            return DateTime.MinValue;
+            var appRoot = await graphDriveUri
+                .AppendPathSegments("special", "approot", "children")
+                .WithOAuthBearerToken(authentication.AccessToken)
+                .GetJsonAsync<FileSearchDto>();
+
+            var existingBackups = appRoot.Files;
+            return existingBackups.Any()
+                ? existingBackups.OrderByDescending(di => di.LastModifiedDateTime).First().LastModifiedDateTime.DateTime.ToLocalTime()
+                : DateTime.MinValue;
         }
 
         public async Task<List<string>> GetFileNamesAsync()
         {
             try
             {
-                var graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
+                var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
 
-                return (await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync()).Select(x => x.Name).ToList();
+                var appRoot = await graphDriveUri
+                    .AppendPathSegments("special", "approot", "children")
+                    .WithOAuthBearerToken(authentication.AccessToken)
+                    .GetJsonAsync<FileSearchDto>();
+
+                return appRoot.Files.Select(f => f.Name).ToList();
             }
             catch (Exception ex)
             {
@@ -101,16 +77,24 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
         {
             try
             {
-                var graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
-                var existingBackups = await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync();
-                if (existingBackups.Any() is false)
+                var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
+
+                var appRoot = await graphDriveUri
+                    .AppendPathSegments("special", "approot", "children")
+                    .WithOAuthBearerToken(authentication.AccessToken)
+                    .GetJsonAsync<FileSearchDto>();
+
+                if (appRoot.Files.Any() is false)
                 {
                     throw new NoBackupFoundException();
                 }
 
-                var lastBackup = existingBackups.OrderByDescending(di => di.LastModifiedDateTime).First();
+                var lastBackup = appRoot.Files.OrderByDescending(di => di.LastModifiedDateTime).First();
 
-                return await graphServiceClient.Drive.Items[lastBackup.Id].Content.Request().GetAsync();
+                return await graphDriveUri
+                    .AppendPathSegments("items", $"{lastBackup.Id}", "content")
+                    .WithOAuthBearerToken(authentication.AccessToken)
+                    .GetStreamAsync();
             }
             catch (MsalClientException ex)
             {
@@ -127,43 +111,26 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy
             }
         }
 
-        /// <summary>
-        ///     Due to an issue with .net maui the conversion has to be manually here.
-        ///     https://github.com/dotnet/maui/issues/3903#issuecomment-1070975207
-        /// </summary>
-        /// <returns></returns>
-        public async Task<UserAccount> GetUserAccountAsync()
+        private async Task CleanupOldBackupsAsync()
         {
-            var graphServiceClient = await oneDriveAuthenticationService.CreateServiceClient();
-            var userResponse = await graphServiceClient.Me.Request().GetResponseAsync();
+            var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
+            var appRoot = await graphDriveUri
+                .AppendPathSegments("special", "approot", "children")
+                .WithOAuthBearerToken(authentication.AccessToken)
+                .GetJsonAsync<FileSearchDto>();
 
-            var data = await userResponse.Content.ReadAsStringAsync();
-            var user = JsonConvert.DeserializeObject<User>(data);
-
-            return new UserAccount(name: user.DisplayName, email: string.IsNullOrEmpty(user.Mail) ? user.UserPrincipalName : user.Mail);
-        }
-
-        private static async Task CleanupOldBackupsAsync(GraphServiceClient graphServiceClient)
-        {
-            var existingBackups = await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync();
+            var existingBackups = appRoot.Files;
             if (existingBackups.Count < BACKUP_ARCHIVE_COUNT)
             {
                 return;
             }
 
-            var oldestBackup = existingBackups.OrderByDescending(x => x.CreatedDateTime).Last();
-            await graphServiceClient.Drive.Items[oldestBackup?.Id].Request().DeleteAsync();
-        }
+            var oldestBackup = existingBackups.OrderByDescending(x => x.CreatedDate).Last();
 
-        private static async Task DeleteExistingFolderAsync(GraphServiceClient graphServiceClient)
-        {
-            var archiveFolder = (await graphServiceClient.Me.Drive.Special.AppRoot.Children.Request().GetAsync()).CurrentPage.FirstOrDefault(
-                x => x.Name == ARCHIVE_FOLDER_NAME);
-
-            if (archiveFolder != null)
-            {
-                await graphServiceClient.Me.Drive.Items[archiveFolder.Id].Request().DeleteAsync();
-            }
+            await graphDriveUri
+                .AppendPathSegments("items", $"{oldestBackup.Id}")
+                .WithOAuthBearerToken(authentication.AccessToken)
+                .DeleteAsync();
         }
     }
 

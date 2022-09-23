@@ -8,8 +8,8 @@ namespace MoneyFox.Infrastructure.DbBackup
     using System.Threading.Tasks;
     using Core.ApplicationCore.Domain.Exceptions;
     using Legacy;
-    using Microsoft.Graph;
     using Microsoft.Identity.Client;
+    using MoneyFox.Infrastructure.DbBackup.OneDriveModels;
     using Serilog;
 
     internal sealed class OneDriveAuthenticationService : IOneDriveAuthenticationService
@@ -17,17 +17,15 @@ namespace MoneyFox.Infrastructure.DbBackup
         private const string ERROR_CODE_CANCELED = "authentication_canceled";
 
         private readonly IPublicClientApplication clientApp;
-        private readonly IGraphClientFactory graphClientFactory;
 
         private readonly string[] scopes = { "Files.ReadWrite" };
 
-        public OneDriveAuthenticationService(IPublicClientApplication clientApp, IGraphClientFactory graphClientFactory)
+        public OneDriveAuthenticationService(IPublicClientApplication clientApp)
         {
             this.clientApp = clientApp;
-            this.graphClientFactory = graphClientFactory;
         }
 
-        public async Task<GraphServiceClient> CreateServiceClient(CancellationToken cancellationToken = default)
+        public async Task<OneDriveAuthentication> AcquireAuthentication(CancellationToken cancellationToken = default)
         {
             var accounts = await clientApp.GetAccountsAsync();
             AuthenticationResult? result;
@@ -60,7 +58,7 @@ namespace MoneyFox.Infrastructure.DbBackup
                 throw;
             }
 
-            return result != null ? graphClientFactory.CreateClient(result) : throw new BackupAuthenticationFailedException();
+            return result != null ? new OneDriveAuthentication(result.AccessToken, result.TokenType) : throw new BackupAuthenticationFailedException();
         }
 
         public async Task LogoutAsync(CancellationToken cancellationToken = default)

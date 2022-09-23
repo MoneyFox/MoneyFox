@@ -18,11 +18,19 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
         private readonly IFileStore fileStore;
         private readonly ISettingsFacade settingsFacade;
 
+        private readonly UploadBackup.Handler handler;
+
         protected UploadBackupShould()
         {
             backupService = Substitute.For<IBackupUploadService>();
             settingsFacade = Substitute.For<ISettingsFacade>();
             fileStore = Substitute.For<IFileStore>();
+
+            handler = new UploadBackup.Handler(
+                    backupUploadService: backupService,
+                    settingsFacade: settingsFacade,
+                    fileStore: fileStore,
+                    dbPathProvider: Substitute.For<IDbPathProvider>());
         }
 
         public class NotLoggedInBackupService : UploadBackupShould
@@ -38,11 +46,6 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
                 // Assert
                 backupService.GetBackupDateAsync().Returns(DateTime.Today.AddMinutes(-2));
                 settingsFacade.LastDatabaseUpdate.Returns(DateTime.Today);
-                var handler = new UploadBackup.Handler(
-                    backupUploadService: backupService,
-                    settingsFacade: settingsFacade,
-                    fileStore: fileStore,
-                    dbPathProvider: Substitute.For<IDbPathProvider>());
 
                 // Act
                 var command = new UploadBackup.Command();
@@ -66,11 +69,6 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
                 // Assert
                 backupService.GetBackupDateAsync().Returns(DateTime.Now);
                 settingsFacade.LastDatabaseUpdate.Returns(DateTime.Now.AddMinutes(-2));
-                var handler = new UploadBackup.Handler(
-                    backupUploadService: backupService,
-                    settingsFacade: settingsFacade,
-                    fileStore: Substitute.For<IFileStore>(),
-                    dbPathProvider: Substitute.For<IDbPathProvider>());
 
                 // Act
                 var command = new UploadBackup.Command();
@@ -86,11 +84,6 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
                 // Assert
                 backupService.GetBackupDateAsync().Returns(DateTime.Now);
                 settingsFacade.LastDatabaseUpdate.Returns(DateTime.Now.AddSeconds(0.5));
-                var handler = new UploadBackup.Handler(
-                    backupUploadService: backupService,
-                    settingsFacade: settingsFacade,
-                    fileStore: Substitute.For<IFileStore>(),
-                    dbPathProvider: Substitute.For<IDbPathProvider>());
 
                 // Act
                 var command = new UploadBackup.Command();
@@ -108,11 +101,6 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
                 backupService.GetBackupCount().Returns(3);
                 settingsFacade.LastDatabaseUpdate.Returns(DateTime.Today.AddMinutes(-1));
                 fileStore.OpenReadAsync(Arg.Any<string>()).Returns(Stream.Null);
-                var handler = new UploadBackup.Handler(
-                    backupUploadService: backupService,
-                    settingsFacade: settingsFacade,
-                    fileStore: fileStore,
-                    dbPathProvider: Substitute.For<IDbPathProvider>());
 
                 // Act
                 var command = new UploadBackup.Command();
@@ -133,11 +121,6 @@ namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.BackupUpload
                 backupService.GetBackupCount().Returns(15);
                 settingsFacade.LastDatabaseUpdate.Returns(DateTime.Today.AddMinutes(-1));
                 fileStore.OpenReadAsync(Arg.Any<string>()).Returns(Stream.Null);
-                var handler = new UploadBackup.Handler(
-                    backupUploadService: backupService,
-                    settingsFacade: settingsFacade,
-                    fileStore: fileStore,
-                    dbPathProvider: Substitute.For<IDbPathProvider>());
 
                 // Act
                 var command = new UploadBackup.Command();
