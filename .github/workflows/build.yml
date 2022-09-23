@@ -39,6 +39,20 @@ jobs:
     - name: Build MAUI Android
       run: dotnet publish ${{env.ANDROID_PROJECT_PATH}} -c Release -f net6.0-android --no-restore
 
+    # Store Android Signing Keystore and password in Secrets using base64 encoding
+    # https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/certutil
+    # commandline util to encode to base64 on windows
+    - name: Extract Android signing key from env
+      shell: bash
+      run: |
+        echo "${{ secrets.RELEASE_KEYSTORE }}" > android/release.jks.base64
+        base64 -d android/release.jks.base64 > android/release.decrypted.jks
+
+    - name: Sign dev build
+      shell: bash
+      run: jarsigner -keystore android/release.decrypted.jks -storepass "${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" -signedjar ./android/app/build/outputs/bundle/release/app-release-signed.aab ./android/app/build/outputs/bundle/release/app-release.aab release
+
+
     - name: Upload Android Artifact
       if: github.ref == 'refs/heads/master'
       uses: actions/upload-artifact@v3.1.0
