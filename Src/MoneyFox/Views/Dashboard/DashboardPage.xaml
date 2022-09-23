@@ -14,20 +14,26 @@
     </ContentPage.Resources>
 
     <Shell.TitleView>
-        <Grid>
-            <ImageButton Margin="0,0,5,0"
-                         Padding="0"
-                         BorderWidth="0"
-                         Command="{Binding GoToAddPaymentCommand}"
-                         HeightRequest="44"
-                         HorizontalOptions="End"
-                         VerticalOptions="Center"
-                         WidthRequest="66"
-                         Style="{StaticResource PrimaryImageButton}">
-                <ImageButton.Source>
+        <Grid >
+            <Grid.Padding>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="Android" Value="0,8,16,0" />
+                    <On Platform="WinUi" Value="0,4,16,0" />
+                    <On Platform="MacOS" Value="0,4,16,0" />
+                    <On Platform="iOS" Value="0,4,0,0" />
+                </OnPlatform>
+            </Grid.Padding>
+            
+            <Button Command="{Binding GoToAddPaymentCommand}"
+                            HorizontalOptions="End"
+                            VerticalOptions="Start"
+                    HeightRequest="40"
+                            Style="{StaticResource PrimaryButton}"
+                            Text="Add Payment">
+                <Button.ImageSource>
                     <FontImageSource FontFamily="MaterialIconsRound" Glyph="add" Color="White" />
-                </ImageButton.Source>
-            </ImageButton>
+                </Button.ImageSource>
+            </Button>
         </Grid>
     </Shell.TitleView>
 
