@@ -12,7 +12,7 @@ env:
     DOTNETVERSION: 6.0.400
 
 jobs:
-  build android:
+  buildAndroid:
 
     runs-on: windows-latest
 
