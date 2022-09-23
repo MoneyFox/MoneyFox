@@ -75,6 +75,7 @@ jobs:
 
     variables:
       solution: '**/MoneyFox.Mobile.sln'
+      DotNetVersion: 6.0.400
 
     steps:
               
