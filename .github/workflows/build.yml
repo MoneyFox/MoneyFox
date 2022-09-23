@@ -35,7 +35,7 @@ jobs:
 
     - name: Test
       run: dotnet test ${{env.TEST_PROJECT_PATH}}
-      
+
     - name: Build MAUI Android
       run: dotnet publish ${{env.ANDROID_PROJECT_PATH}} -c Release -f net6.0-android --no-restore
 
@@ -69,7 +69,7 @@ jobs:
       run: dotnet test ${{env.TEST_PROJECT_PATH}}
 
     - name: Build MAUI iOS
-      run: dotnet build src/MauiBeach/MauiBeach.csproj -c Release -f net6.0-ios --no-restore /p:buildForSimulator=false /p:packageApp=True /p:ArchiveOnBuild=False 
+      run: dotnet build ${{env.IOS_PROJECT_PATH}} -c Release -f net6.0-ios --no-restore /p:buildForSimulator=false /p:packageApp=True /p:ArchiveOnBuild=False 
 
     - name: Upload iOS Artifact
       if: github.ref == 'refs/heads/master'
