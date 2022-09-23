@@ -12,9 +12,9 @@ jobs:
 
     variables:
       solution: '**/MoneyFox.Mobile.sln'
+      DotNetVersion: 6.0.400
 
     steps:
-
       #- script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_12_0
       #  displayName: 'Select the Xamarin SDK version 6.12.0'
 
@@ -33,27 +33,20 @@ jobs:
         inputs:
           provisioningProfileLocation: 'secureFiles'
           provProfileSecureFile: 'MoneyFox_Distribution_2022.mobileprovision'
-
+          
       - task: UseDotNet@2
-        displayName: Install DotNet SDK
+        displayName: .NET Version
         inputs:
           packageType: 'sdk'
-          version: '6.x'
-          includePreviewVersions: false
+          version: '$(DotNetVersion)'
 
-      - task: DotNetCoreCLI@2
-        displayName: "Install MAUI workload"
-        inputs:
-          command: 'custom'
-          custom: 'workload '
-          arguments: 'install maui-ios --source https://api.nuget.org/v3/index.json'
-
-      - task: DotNetCoreCLI@2
-        displayName: "Build iOS Project"
-        inputs:
-          command: 'build'
-          projects: 'Src/MoneyFox.Ios/MoneyFox.iOS.csproj'
-          arguments: '-c $(BuildConfiguration) -f net6.0-ios -o $(build.binariesdirectory)/$(BuildConfiguration)'
+      - task: Bash@3
+          displayName: Install MAUI
+          inputs:
+          targetType: 'inline'
+          script: |
+              dotnet nuget locals all --clear 
+              dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json    
 
       - task: DotNetCoreCLI@2
         displayName: 'Run Tests'
@@ -63,14 +56,18 @@ jobs:
             **/*.Tests.csproj
           arguments: '--configuration $(BuildConfiguration)'
 
-      - task: XamariniOS@2
-        displayName: 'Build Xamarin.iOS '
-        enabled: false
+      - task: DotNetCoreCLI@2
         inputs:
-          solutionFile: Src/MoneyFox.Ios/MoneyFox.iOS.csproj
-          configuration: '$(BuildConfiguration)'
-          signingIdentity: $(APPLE_CERTIFICATE_SIGNING_IDENTITY)
-          signingProvisioningProfileID: $(APPLE_PROV_PROFILE_UUID)
+          command: 'restore'
+          projects: '/src/MoneyFox.Ios/MoneyFox.Ios.csproj'
+          feedsToUse: 'select'
+
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: 'publish'
+          projects: '/src/MoneyFox.Ios/MoneyFox.Ios.csproj'
+          arguments: '--configuration $(BuildConfiguration)'
+
 
   - job: BuildAndroid
     displayName: "Build Android"
@@ -81,28 +78,20 @@ jobs:
       solution: '**/MoneyFox.Mobile.sln'
 
     steps:
-
-      - task: DotNetCoreCLI@2
-        displayName: "Install MAUI workload"
+              
+      - task: UseDotNet@2
+        displayName: .NET Version
         inputs:
-          command: 'custom'
-          custom: 'workload '
-          arguments: 'install maui-android --source https://api.nuget.org/v3/index.json'
+          packageType: 'sdk'
+          version: '$(DotNetVersion)'
 
-      - task: JavaToolInstaller@0
-        displayName: 'Install Java 11'
-        enabled: false
-        inputs:
-          versionSpec: '11'
-          jdkArchitectureOption: 'x64'
-          jdkSourceOption: 'PreInstalled'
-
-      - task: DotNetCoreCLI@2
-        displayName: "Build Android Project"
-        inputs:
-          command: 'build'
-          projects: 'Src/MoneyFox.Android/MoneyFox.Android.csproj'
-          arguments: '-c $(BuildConfiguration) -f net6.0-android -o $(build.binariesdirectory)/$(BuildConfiguration)'
+      - task: Bash@3
+          displayName: Install MAUI
+          inputs:
+          targetType: 'inline'
+          script: |
+              dotnet nuget locals all --clear 
+              dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json    
 
       - task: DotNetCoreCLI@2
         displayName: 'Run Tests'
@@ -110,18 +99,20 @@ jobs:
           command: 'test'
           projects: |
             **/*.Tests.csproj
-          arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
+          arguments: '--configuration $(BuildConfiguration)'
 
-      - task: XamarinAndroid@1
-        displayName: 'Build Android Project'
-        enabled: false
+      - task: DotNetCoreCLI@2
         inputs:
-          projectFile: Src/MoneyFox.Android/MoneyFox.Android.csproj
-          outputDirectory: '$(build.binariesdirectory)/$(BuildConfiguration)'
-          configuration: '$(BuildConfiguration)'
-          msbuildVersionOption: latest
-          msbuildArchitectureOption: x64
-          msbuildArguments: '/p:JavaSdkDirectory="$(JAVA_HOME)/"'
+          command: 'restore'
+          projects: '/src/MoneyFox.Android/MoneyFox.Android.csproj'
+          feedsToUse: 'select'
+
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: 'publish'
+          projects: '/src/MoneyFox.Ios/MoneyFox.Ios.csproj'
+          arguments: '--configuration $(BuildConfiguration)'
+
 
   - job: BuildAndTestWinUI
     displayName: "Build WinUI and Run Tests"
@@ -130,7 +121,6 @@ jobs:
 
     variables:
       solution: '**/*.wapproj'
-      desktopSolution: '**/MoneyFox.WinUI.sln'
       appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
     steps:
@@ -177,13 +167,32 @@ jobs:
             $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Win\MoneyFox.Win (Package)\Package.StoreAssociation.xml')
           failOnStderr: true
 
+      - task: UseDotNet@2
+        displayName: Use .NET 6.0
+        enabled: false
+        inputs:
+          packageType: 'sdk'
+          version: '6.0.x'
+
+      - task: NuGetToolInstaller@1
+        displayName: 'Use NuGet'
+        inputs:
+          versionSpec: 6.x
 
       - task: DotNetCoreCLI@2
         displayName: Restore NuGets
         inputs:
           command: 'restore'
-          projects: '$(desktopSolution)'
+          projects: '**/*.csproj'
           feedsToUse: 'select'
+
+      - task: DotNetCoreCLI@2
+        displayName: 'Run Tests'
+        inputs:
+          command: 'test'
+          projects: |
+            **/*.Tests.csproj
+          arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
 
       - task: VSBuild@1
         displayName: 'Build WinUI Project'
