@@ -1,4 +1,4 @@
-name: build
+name: validate pr
 
 on:
   pull_request:
