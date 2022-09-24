@@ -11,6 +11,7 @@ env:
     ANDROID_PROJECT_PATH: "src/MoneyFox.Android/MoneyFox.Android.csproj"
     IOS_PROJECT_PATH: "src/MoneyFox.Ios/MoneyFox.Ios.csproj"
     TEST_PROJECT_PATH: "src/MoneyFox.Tests/MoneyFox.Tests.csproj"
+    MAJOR_MINOR_VERSION: "7.8"
 
 jobs:
   buildAndroid:
@@ -90,6 +91,19 @@ jobs:
         # apply provisioning profile
         mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
         cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+      
+    - name: Update Version
+      env:
+        VERSION: "${{ env.MAJOR_MINOR_VERSION }}.${{ github.run_number }}"
+      run: |
+          echo $VERSION
+
+          INFO_PLIST_FILE=$BUILD_REPOSITORY_LOCALPATH/Src/MoneyFox.Ios/Info.plist
+          echo $INFO_PLIST_FILE
+
+          echo "Updating version name to $VERSION_NAME in Info.plist"
+          plutil -replace CFBundleShortVersionString -string $BUILD_BUILDNUMBER $INFO_PLIST_FILE
+          plutil -replace CFBundleVersion -string $VERSION $INFO_PLIST_FILE
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
@@ -114,3 +128,4 @@ jobs:
       with:
         name: moneyfox-ios-build
         path: src/MoneyFox.Ios/bin/Release/**/*.app
+        
