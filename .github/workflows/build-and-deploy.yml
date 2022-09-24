@@ -21,14 +21,17 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Set current date as env variable
-      run: echo "NOW::$(date +'%Y%m%dT')" >> $GITHUB_ENV
+    - name: Get current time
+      uses: josStorer/get-current-time@v2.0.1
+      id: current-time
+      with:
+        format: YYYYMMDD
 
     - name: Update AndroidManifest.xml
       uses: damienaicheh/update-android-version-manifest-action@v1.0.0
       with:
         android-manifest-path: "src/MoneyFox.Android/Properties/AndroidManifest.xml"
-        version-code: "$NOW.${{ github.run_number }}"
+        version-code: "${{ steps.current-time.outputs.formattedTime }}.${{ github.run_number }}"
         version-name: "${{ env.MAJOR_MINOR_VERSION }}.${{ github.run_number }}"
         print-file: true
 
