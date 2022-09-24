@@ -89,16 +89,10 @@ jobs:
             **/*.Tests.csproj
           arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
 
-      - task: MSBuild@1
+      - task: VSBuild@1
         displayName: 'Build WinUI Project'
         inputs:
-          platform: 'x86'
           solution: '$(solution)'
-          configuration: '$(buildConfiguration)'
-          msbuildArgs: '/p:AppxBundlePlatforms="x86|x64|arm64" 
-                        /p:AppxPackageDir="$(appxPackageDir)" 
-                        /p:AppxBundle=Never 
-                        p:UapAppxPackageBuildMode=CI 
-                        /p:AppxPackageSigningEnabled=true
-                        /p:PackageCertificateThumbprint="" 
-                        /p:PackageCertificateKeyFile="$(signingCert.secureFilePath)"'
+          msbuildArgs: '/p:AppxBundlePlatforms="x86|x64|arm64" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=CI'
+          platform: x64
+          configuration: '$(BuildConfiguration)'
