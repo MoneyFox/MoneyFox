@@ -54,13 +54,17 @@ jobs:
 
     - name: Extract Android signing key from env
       shell: bash
+      env:
+        KEYSTORE: ${{ secrets.RELEASE_KEYSTORE }}
       run: |
-        echo "${{ secrets.RELEASE_KEYSTORE }}" > android/release.jks.base64
+        echo "$KEYSTORE" > android/release.jks.base64
         base64 -d android/release.jks.base64 > android/release.decrypted.jks
 
     - name: Sign dev build
       shell: bash
-      run: jarsigner -keystore android/release.decrypted.jks -storepass "${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" -signedjar ./android/app/build/outputs/bundle/release/app-release-signed.aab ./android/app/build/outputs/bundle/release/app-release.aab release
+      env:
+        KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
+      run: jarsigner -keystore android/release.decrypted.jks -storepass "$KEYSTORE_PASSWORD" -signedjar ./android/app/build/outputs/bundle/release/app-release-signed.aab ./android/app/build/outputs/bundle/release/app-release.aab release
 
     - name: Upload Android Artifact
       uses: actions/upload-artifact@v3.1.0
