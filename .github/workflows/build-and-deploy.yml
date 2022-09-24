@@ -49,9 +49,6 @@ jobs:
     - name: Build MAUI Android
       run: dotnet publish ${{env.ANDROID_PROJECT_PATH}} -c Release -f net6.0-android --no-restore
 
-    # Store Android Signing Keystore and password in Secrets using base64 encoding
-    # https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/certutil
-    # commandline util to encode to base64 on windows
     - name: Extract Android signing key from env
       shell: bash
       run: |
@@ -104,7 +101,7 @@ jobs:
     - name: Update Version
       env:
         VERSION: "${{ env.MAJOR_MINOR_VERSION }}.${{ github.run_number }}"
-        REPOSITORY_PATH: "${{ GITHUB_WORKSPACE }}"
+        REPOSITORY_PATH: "${GITHUB_WORKSPACE}"
       run: |
           echo $VERSION
 
