@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Infrastructure;
 using Serilog;
-using MoneyFox.Common;
+using MoneyFox.Win.Src;
 
 public class WindowsFileStore : FileStoreIoBase
 {
