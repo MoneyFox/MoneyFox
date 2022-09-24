@@ -31,7 +31,7 @@ jobs:
       uses: damienaicheh/update-android-version-manifest-action@v1.0.0
       with:
         android-manifest-path: "src/MoneyFox.Android/Properties/AndroidManifest.xml"
-        version-code: "${{ steps.current-time.outputs.formattedTime }}.${{ github.run_number }}"
+        version-code: "${{ steps.current-time.outputs.formattedTime }}${{ github.run_number }}"
         version-name: "${{ env.MAJOR_MINOR_VERSION }}.${{ github.run_number }}"
         print-file: true
 
