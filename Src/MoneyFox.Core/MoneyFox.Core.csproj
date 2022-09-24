@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64;android-x64;android-arm64</RuntimeIdentifiers>
+        <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64;android-x64;android-arm64 </RuntimeIdentifiers>
         <nullable>enable</nullable>
         <WarningsAsErrors>CS8600;CS8602;CS8603</WarningsAsErrors>
         <GenerateSatelliteAssembliesForCore>true</GenerateSatelliteAssembliesForCore>
@@ -25,10 +25,10 @@
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
         <PackageReference Include="Serilog" Version="2.12.0" />
         <PackageReference Include="SonarAnalyzer.CSharp" Version="8.44.0.52574" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.17"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.17"/>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0"/>
-        <PackageReference Include="Serilog" Version="2.12.0"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.17" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.17" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+        <PackageReference Include="Serilog" Version="2.12.0" />
         <PackageReference Include="SonarAnalyzer.CSharp" Version="8.45.0.54064">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
