@@ -97,6 +97,7 @@ jobs:
             /p:AppxBundlePlatforms="x86|x64|arm64" 
             /p:AppxPackageDir="$(appxPackageDir)" 
             /p:AppxBundle=Always 
-            /p:UapAppxPackageBuildMode=CI'
+            /p:UapAppxPackageBuildMode=CI
+            /p:AppxPackageSigningEnabled=false'
           platform: x64
           configuration: '$(BuildConfiguration)'
