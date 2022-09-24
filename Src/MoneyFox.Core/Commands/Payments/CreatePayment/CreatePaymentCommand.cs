@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Commands.Payments.CreatePayment
+namespace MoneyFox.Core.Commands.Payments.CreatePayment
 {
 
     using System.Threading;

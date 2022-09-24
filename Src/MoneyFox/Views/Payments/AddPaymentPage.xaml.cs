@@ -3,7 +3,6 @@ namespace MoneyFox.Views.Payments
 
     using Core.Resources;
     using ViewModels.Payments;
-    using Xamarin.Forms;
 
     public partial class AddPaymentPage
     {

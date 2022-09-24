@@ -1,18 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-<ContentPage
+﻿<ContentPage
     x:Class="MoneyFox.Views.Accounts.AccountListPage"
-    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:converter="clr-namespace:MoneyFox.Converter"
-    xmlns:accounts="clr-namespace:MoneyFox.ViewModels.Accounts;assembly=MoneyFox"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:accounts="clr-namespace:MoneyFox.ViewModels.Accounts"
     Title="{x:Static resources:Strings.AccountsTitle}"
-    Shell.NavBarHasShadow="False"
-    mc:Ignorable="d">
+    Shell.NavBarHasShadow="False">
 
     <ContentPage.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
@@ -49,14 +43,21 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="accounts:AccountViewModel">
                         <Grid Padding="15,6,15,12">
-                            <yummy:PancakeView
-                                CornerRadius="10"
+                            <Border
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                                                 Light={StaticResource CardBackgroundLight}}"
+                                Stroke="black"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 10"
                                 HeightRequest="80"
                                 HorizontalOptions="FillAndExpand">
 
-                                <yummy:PancakeView.Shadow>
-                                    <yummy:DropShadow />
-                                </yummy:PancakeView.Shadow>
+                                <Border.Shadow>
+                                    <Shadow Brush="Black"
+                                            Offset="5,5"
+                                            Radius="30"
+                                            Opacity="0.8" />
+                                </Border.Shadow>
 
                                 <SwipeView
                                     BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
@@ -119,7 +120,7 @@
                                         </StackLayout>
                                     </Grid>
                                 </SwipeView>
-                            </yummy:PancakeView>
+                            </Border>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

@@ -1,98 +1,93 @@
-﻿namespace MoneyFox.ViewModels.Payments
+﻿namespace MoneyFox.ViewModels.Payments;
+
+using AutoMapper;
+using CommunityToolkit.Mvvm.Input;
+using Core.ApplicationCore.Queries;
+using Core.Commands.Payments.DeletePaymentById;
+using Core.Commands.Payments.UpdatePayment;
+using Core.Common.Interfaces;
+using Core.Resources;
+using MediatR;
+
+internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
 {
+    private readonly IDialogService dialogService;
+    private readonly IMapper mapper;
 
-    using System.Threading.Tasks;
-    using AutoMapper;
-    using CommunityToolkit.Mvvm.Input;
-    using Core.ApplicationCore.Queries;
-    using Core.Commands.Payments.DeletePaymentById;
-    using Core.Commands.Payments.UpdatePayment;
-    using Core.Common.Interfaces;
-    using Core.Resources;
-    using MediatR;
-    using Xamarin.Forms;
+    private readonly IMediator mediator;
 
-    internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
+    public EditPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService) : base(
+        mediator: mediator,
+        mapper: mapper,
+        dialogService: dialogService)
     {
-        private readonly IDialogService dialogService;
-        private readonly IMapper mapper;
+        this.mediator = mediator;
+        this.mapper = mapper;
+        this.dialogService = dialogService;
+    }
 
-        private readonly IMediator mediator;
+    public RelayCommand<PaymentViewModel> DeleteCommand => new(async p => await DeletePaymentAsync(p));
 
-        public EditPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService) : base(
-            mediator: mediator,
-            mapper: mapper,
-            dialogService: dialogService)
+    public async Task InitializeAsync(int paymentId)
+    {
+        await base.InitializeAsync();
+        SelectedPayment = mapper.Map<PaymentViewModel>(await mediator.Send(new GetPaymentByIdQuery(paymentId)));
+    }
+
+    protected override async Task SavePaymentAsync()
+    {
+        var updateRecurring = false;
+        if (SelectedPayment.IsRecurring)
         {
-            this.mediator = mediator;
-            this.mapper = mapper;
-            this.dialogService = dialogService;
+            updateRecurring = await dialogService.ShowConfirmMessageAsync(
+                title: Strings.ModifyRecurrenceTitle,
+                message: Strings.ModifyRecurrenceMessage,
+                positiveButtonText: Strings.YesLabel,
+                negativeButtonText: Strings.NoLabel);
         }
 
-        public RelayCommand<PaymentViewModel> DeleteCommand => new RelayCommand<PaymentViewModel>(async p => await DeletePaymentAsync(p));
+        var command = new UpdatePaymentCommand(
+            id: SelectedPayment.Id,
+            date: SelectedPayment.Date,
+            amount: SelectedPayment.Amount,
+            isCleared: SelectedPayment.IsCleared,
+            type: SelectedPayment.Type,
+            note: SelectedPayment.Note,
+            isRecurring: SelectedPayment.IsRecurring,
+            categoryId: SelectedPayment.Category?.Id ?? 0,
+            chargedAccountId: SelectedPayment.ChargedAccount?.Id ?? 0,
+            targetAccountId: SelectedPayment.TargetAccount?.Id ?? 0,
+            updateRecurringPayment: updateRecurring,
+            recurrence: SelectedPayment.RecurringPayment?.Recurrence,
+            isEndless: SelectedPayment.RecurringPayment?.IsEndless,
+            endDate: SelectedPayment.RecurringPayment?.EndDate,
+            isLastDayOfMonth: SelectedPayment.RecurringPayment?.IsLastDayOfMonth ?? false);
 
-        public async Task InitializeAsync(int paymentId)
-        {
-            await base.InitializeAsync();
-            SelectedPayment = mapper.Map<PaymentViewModel>(await mediator.Send(new GetPaymentByIdQuery(paymentId)));
-        }
+        await mediator.Send(command);
+    }
 
-        protected override async Task SavePaymentAsync()
+    private async Task DeletePaymentAsync(PaymentViewModel payment)
+    {
+        if (await dialogService.ShowConfirmMessageAsync(title: Strings.DeleteTitle, message: Strings.DeletePaymentConfirmationMessage))
         {
-            var updateRecurring = false;
+            var deleteCommand = new DeletePaymentByIdCommand(payment.Id);
             if (SelectedPayment.IsRecurring)
             {
-                updateRecurring = await dialogService.ShowConfirmMessageAsync(
-                    title: Strings.ModifyRecurrenceTitle,
-                    message: Strings.ModifyRecurrenceMessage,
-                    positiveButtonText: Strings.YesLabel,
-                    negativeButtonText: Strings.NoLabel);
+                deleteCommand.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(
+                    title: Strings.DeleteRecurringPaymentTitle,
+                    message: Strings.DeleteRecurringPaymentMessage);
             }
 
-            var command = new UpdatePaymentCommand(
-                id: SelectedPayment.Id,
-                date: SelectedPayment.Date,
-                amount: SelectedPayment.Amount,
-                isCleared: SelectedPayment.IsCleared,
-                type: SelectedPayment.Type,
-                note: SelectedPayment.Note,
-                isRecurring: SelectedPayment.IsRecurring,
-                categoryId: SelectedPayment.Category?.Id ?? 0,
-                chargedAccountId: SelectedPayment.ChargedAccount?.Id ?? 0,
-                targetAccountId: SelectedPayment.TargetAccount?.Id ?? 0,
-                updateRecurringPayment: updateRecurring,
-                recurrence: SelectedPayment.RecurringPayment?.Recurrence,
-                isEndless: SelectedPayment.RecurringPayment?.IsEndless,
-                endDate: SelectedPayment.RecurringPayment?.EndDate,
-                isLastDayOfMonth: SelectedPayment.RecurringPayment?.IsLastDayOfMonth ?? false);
-
-            await mediator.Send(command);
-        }
-
-        private async Task DeletePaymentAsync(PaymentViewModel payment)
-        {
-            if (await dialogService.ShowConfirmMessageAsync(title: Strings.DeleteTitle, message: Strings.DeletePaymentConfirmationMessage))
+            try
             {
-                var deleteCommand = new DeletePaymentByIdCommand(payment.Id);
-                if (SelectedPayment.IsRecurring)
-                {
-                    deleteCommand.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(
-                        title: Strings.DeleteRecurringPaymentTitle,
-                        message: Strings.DeleteRecurringPaymentMessage);
-                }
-
-                try
-                {
-                    await dialogService.ShowLoadingDialogAsync();
-                    await mediator.Send(deleteCommand);
-                    await Shell.Current.Navigation.PopModalAsync();
-                }
-                finally
-                {
-                    await dialogService.HideLoadingDialogAsync();
-                }
+                await dialogService.ShowLoadingDialogAsync();
+                await mediator.Send(deleteCommand);
+                await Shell.Current.Navigation.PopModalAsync();
+            }
+            finally
+            {
+                await dialogService.HideLoadingDialogAsync();
             }
         }
     }
-
 }

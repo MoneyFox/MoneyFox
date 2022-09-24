@@ -1,8 +1,7 @@
-﻿namespace MoneyFox.Views.Budget
+namespace MoneyFox.Views.Budget
 {
 
     using System;
-    using Xamarin.Forms;
 
     public partial class BudgetProgressView
     {

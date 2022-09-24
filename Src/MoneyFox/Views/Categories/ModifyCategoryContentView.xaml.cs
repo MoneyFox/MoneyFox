@@ -1,14 +1,9 @@
-﻿namespace MoneyFox.Views.Categories
+﻿namespace MoneyFox.Views.Categories;
+
+public partial class ModifyCategoryContentView : ContentView
 {
-
-    using Xamarin.Forms;
-
-    public partial class ModifyCategoryContentView : ContentView
+    public ModifyCategoryContentView()
     {
-        public ModifyCategoryContentView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
-
 }

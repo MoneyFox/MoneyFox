@@ -1,22 +1,45 @@
-﻿namespace MoneyFox.Droid
+namespace MoneyFox.Droid
 {
 
     using System;
     using System.IO;
-    using Android.App;
-    using Android.Runtime;
     using Core.Common;
+    using global::Android.App;
+    using global::Android.Runtime;
     using JetBrains.Annotations;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Maui;
+    using Microsoft.Maui.Hosting;
+    using Microsoft.Maui.Storage;
+    using MoneyFox.Common;
+    using MoneyFox.Core.Common.Interfaces;
+    using MoneyFox.Core.Interfaces;
     using Serilog;
     using Serilog.Events;
     using Serilog.Exceptions;
-    using Xamarin.Essentials;
 
     [Application]
     [UsedImplicitly]
-    public class MainApplication : Application
+    public class MainApplication : MauiApplication
     {
-        public MainApplication(IntPtr handle, JniHandleOwnership transfer) : base(javaReference: handle, transfer: transfer) { }
+        private static void AddServices(IServiceCollection services)
+        {
+            services.AddSingleton<IDbPathProvider, DbPathProvider>();
+            services.AddSingleton<IStoreOperations, PlayStoreOperations>();
+            services.AddSingleton<IAppInformation, DroidAppInformation>();
+            services.AddTransient<IFileStore>(_ => new FileStoreIoBase(global::Android.App.Application.Context.FilesDir?.Path ?? ""));
+        }
+
+        public MainApplication(IntPtr handle, JniHandleOwnership ownership)
+            : base(handle, ownership)
+        {
+        }
+
+        protected override MauiApp CreateMauiApp()
+        {
+            App.AddPlatformServicesAction = AddServices;
+            return MauiProgram.CreateMauiApp();
+        }
 
         public override void OnCreate()
         {
@@ -26,6 +49,7 @@
             AndroidEnvironment.UnhandledExceptionRaiser += HandleAndroidException;
             base.OnCreate();
         }
+
 
         private void HandleAndroidException(object sender, RaiseThrowableEventArgs e)
         {

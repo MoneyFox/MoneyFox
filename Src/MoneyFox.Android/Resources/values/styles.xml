@@ -8,32 +8,9 @@
     </style>
 
     <style name="MainTheme" parent="MainTheme.Base">
-    </style>
-    <!-- Base theme applied no matter what API -->
-    <style name="MainTheme.Base" parent="Theme.AppCompat.DayNight.DarkActionBar">
-        <!--If you are using revision 22.1 please use just windowNoTitle. Without android:-->
         <item name="windowNoTitle">true</item>
-        <!--We will be using the toolbar so no need to show ActionBar-->
-        <item name="windowActionBar">false</item>
-        <!-- Set theme colors from https://aka.ms/material-colors -->
-        <!-- colorPrimary is used for the default action bar background -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <!-- colorPrimaryDark is used for the status bar -->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <!-- colorAccent is used as the default value for colorControlActivated
-             which is used to tint widgets -->
         <item name="colorAccent">@color/colorAccent</item>
-        <!-- You can also set colorControlNormal, colorControlActivated
-             colorControlHighlight and colorSwitchThumbNormal. -->
-        <item name="windowActionModeOverlay">true</item>
-
-        <item name="android:colorLongPressedHighlight">@color/colorAccent</item>
-        <item name="android:actionMenuTextColor">@color/colorAccent</item>
-
-        <item name="android:editTextStyle">@style/myEditText</item>
-    </style>
-
-    <style name="myEditText" parent="Theme.AppCompat.DayNight.DarkActionBar">
-        <item name="android:textCursorDrawable">@drawable/CustomCursor</item>
     </style>
 </resources>

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Commands.Payments.CreateRecurringPayments
+namespace MoneyFox.Core.Commands.Payments.CreateRecurringPayments
 {
 
     using System.Linq;

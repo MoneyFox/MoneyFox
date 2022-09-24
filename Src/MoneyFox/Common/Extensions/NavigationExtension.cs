@@ -1,49 +1,42 @@
-﻿namespace MoneyFox.Common.Extensions
+﻿namespace MoneyFox.Common.Extensions;
+
+using Core.ApplicationCore.Domain.Exceptions;
+using Serilog;
+
+public static class NavigationExtension
 {
-
-    using System;
-    using System.Threading.Tasks;
-    using Core.ApplicationCore.Domain.Exceptions;
-    using Serilog;
-    using Xamarin.Essentials;
-    using Xamarin.Forms;
-
-    public static class NavigationExtension
+    public static Task GoToModalAsync(this Shell shell, string route)
     {
-        public static Task GoToModalAsync(this Shell shell, string route)
+        try
         {
-            try
+            if (!(Routing.GetOrCreateContent(route) is Page page))
             {
-                if (!(Routing.GetOrCreateContent(route) is Page page))
-                {
-                    return Task.CompletedTask;
-                }
-
-                return shell.Navigation.PushModalAsync(
-                    new NavigationPage(page) { BarBackgroundColor = Color.Transparent, BarTextColor = GetCurrentForegroundColor() });
+                return Task.CompletedTask;
             }
-            catch (Exception ex)
-            {
-                var exception = new NavigationException(message: $"Navigation to route {route} failed. ", innerException: ex);
-                Log.Error(exception: exception, messageTemplate: "Error during navigation");
 
-                throw exception;
-            }
+            return shell.Navigation.PushModalAsync(
+                new NavigationPage(page) { BarBackgroundColor = Colors.Transparent, BarTextColor = GetCurrentForegroundColor() });
         }
-
-        private static Color GetCurrentForegroundColor()
+        catch (Exception ex)
         {
-            if (AppInfo.RequestedTheme == AppTheme.Dark)
-            {
-                Application.Current.Resources.TryGetValue(key: "TextPrimaryColor_Dark", value: out var colorDark);
+            var exception = new NavigationException(message: $"Navigation to route {route} failed. ", innerException: ex);
+            Log.Error(exception: exception, messageTemplate: "Error during navigation");
 
-                return (Color)colorDark;
-            }
-
-            Application.Current.Resources.TryGetValue(key: "TextPrimaryColor_Light", value: out var colorLight);
-
-            return (Color)colorLight;
+            throw exception;
         }
     }
 
+    private static Color GetCurrentForegroundColor()
+    {
+        if (AppInfo.RequestedTheme == AppTheme.Dark)
+        {
+            Application.Current.Resources.TryGetValue(key: "TextPrimaryColor_Dark", value: out var colorDark);
+
+            return (Color)colorDark;
+        }
+
+        Application.Current.Resources.TryGetValue(key: "TextPrimaryColor_Light", value: out var colorLight);
+
+        return (Color)colorLight;
+    }
 }

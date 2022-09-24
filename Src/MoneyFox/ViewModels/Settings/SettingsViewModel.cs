@@ -1,60 +1,55 @@
-﻿namespace MoneyFox.ViewModels.Settings
+﻿namespace MoneyFox.ViewModels.Settings;
+
+using System.Collections.ObjectModel;
+using System.Globalization;
+using Core.Common.Facades;
+using Core.Common.Helpers;
+using Core.Common.Interfaces;
+
+internal sealed class SettingsViewModel : BaseViewModel, ISettingsViewModel
 {
+    private readonly IDialogService dialogService;
+    private readonly ISettingsFacade settingsFacade;
 
-    using System.Collections.ObjectModel;
-    using System.Globalization;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using Core.Common.Facades;
-    using Core.Common.Helpers;
-    using Core.Common.Interfaces;
+    private CultureInfo selectedCulture = CultureHelper.CurrentCulture;
 
-    internal sealed class SettingsViewModel : BaseViewModel, ISettingsViewModel
+    public SettingsViewModel(ISettingsFacade settingsFacade, IDialogService dialogService)
     {
-        private readonly IDialogService dialogService;
-        private readonly ISettingsFacade settingsFacade;
+        this.settingsFacade = settingsFacade;
+        this.dialogService = dialogService;
+        AvailableCultures = new();
+    }
 
-        private CultureInfo selectedCulture = CultureHelper.CurrentCulture;
+    public async Task InitializeAsync()
+    {
+        await LoadAvailableCulturesAsync();
+    }
 
-        public SettingsViewModel(ISettingsFacade settingsFacade, IDialogService dialogService)
+    public CultureInfo SelectedCulture
+    {
+        get => selectedCulture;
+
+        set
         {
-            this.settingsFacade = settingsFacade;
-            this.dialogService = dialogService;
-            AvailableCultures = new ObservableCollection<CultureInfo>();
-        }
-
-        public async Task InitializeAsync()
-        {
-            await LoadAvailableCulturesAsync();
-        }
-
-        public CultureInfo SelectedCulture
-        {
-            get => selectedCulture;
-
-            set
+            if (value == null)
             {
-                if (value == null)
-                {
-                    return;
-                }
-
-                selectedCulture = value;
-                settingsFacade.DefaultCulture = selectedCulture.Name;
-                CultureHelper.CurrentCulture = selectedCulture;
-                OnPropertyChanged();
+                return;
             }
-        }
 
-        public ObservableCollection<CultureInfo> AvailableCultures { get; }
-
-        private async Task LoadAvailableCulturesAsync()
-        {
-            await dialogService.ShowLoadingDialogAsync();
-            CultureInfo.GetCultures(CultureTypes.AllCultures).OrderBy(x => x.Name).ToList().ForEach(AvailableCultures.Add);
-            SelectedCulture = AvailableCultures.First(x => x.Name == settingsFacade.DefaultCulture);
-            await dialogService.HideLoadingDialogAsync();
+            selectedCulture = value;
+            settingsFacade.DefaultCulture = selectedCulture.Name;
+            CultureHelper.CurrentCulture = selectedCulture;
+            OnPropertyChanged();
         }
     }
 
+    public ObservableCollection<CultureInfo> AvailableCultures { get; }
+
+    private async Task LoadAvailableCulturesAsync()
+    {
+        await dialogService.ShowLoadingDialogAsync();
+        CultureInfo.GetCultures(CultureTypes.AllCultures).OrderBy(x => x.Name).ToList().ForEach(AvailableCultures.Add);
+        SelectedCulture = AvailableCultures.First(x => x.Name == settingsFacade.DefaultCulture);
+        await dialogService.HideLoadingDialogAsync();
+    }
 }

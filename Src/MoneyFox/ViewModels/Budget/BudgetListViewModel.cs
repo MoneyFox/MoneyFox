@@ -12,7 +12,6 @@ namespace MoneyFox.ViewModels.Budget
     using Core.Common.Messages;
     using MediatR;
     using Views.Budget;
-    using Xamarin.Forms;
 
     public sealed class BudgetListViewModel : BaseViewModel, IRecipient<ReloadMessage>
     {
@@ -72,7 +71,7 @@ namespace MoneyFox.ViewModels.Budget
                 return;
             }
 
-            await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new EditBudgetPage(selectedBudget.Id)) { BarBackgroundColor = Color.Transparent });
+            await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new EditBudgetPage(selectedBudget.Id)) { BarBackgroundColor = Colors.Transparent });
         }
     }
 

@@ -1,33 +1,29 @@
-﻿namespace MoneyFox.Views.Categories
+﻿namespace MoneyFox.Views.Categories;
+
+using Core.Resources;
+using ViewModels.Categories;
+
+public partial class SelectCategoryPage : ContentPage
 {
-
-    using Core.Resources;
-    using ViewModels.Categories;
-    using Xamarin.Forms;
-
-    public partial class SelectCategoryPage : ContentPage
+    public SelectCategoryPage()
     {
-        public SelectCategoryPage()
+        InitializeComponent();
+        BindingContext = App.GetViewModel<SelectCategoryViewModel>();
+        var cancelItem = new ToolbarItem
         {
-            InitializeComponent();
-            BindingContext = App.GetViewModel<SelectCategoryViewModel>();
-            var cancelItem = new ToolbarItem
-            {
-                Command = new Command(async () => await Navigation.PopModalAsync()),
-                Text = Strings.CancelLabel,
-                Priority = -1,
-                Order = ToolbarItemOrder.Primary
-            };
+            Command = new Command(async () => await Navigation.PopModalAsync()),
+            Text = Strings.CancelLabel,
+            Priority = -1,
+            Order = ToolbarItemOrder.Primary
+        };
 
-            ToolbarItems.Add(cancelItem);
-        }
-
-        private SelectCategoryViewModel ViewModel => (SelectCategoryViewModel)BindingContext;
-
-        protected override async void OnAppearing()
-        {
-            await ViewModel.InitializeAsync();
-        }
+        ToolbarItems.Add(cancelItem);
     }
 
+    private SelectCategoryViewModel ViewModel => (SelectCategoryViewModel)BindingContext;
+
+    protected override async void OnAppearing()
+    {
+        await ViewModel.InitializeAsync();
+    }
 }

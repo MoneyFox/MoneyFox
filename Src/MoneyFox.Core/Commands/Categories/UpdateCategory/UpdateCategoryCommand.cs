@@ -6,6 +6,7 @@
     using ApplicationCore.Domain.Aggregates.CategoryAggregate;
     using Common.Interfaces;
     using MediatR;
+    using Microsoft.EntityFrameworkCore;
 
     public class UpdateCategoryCommand : IRequest
     {
@@ -27,7 +28,7 @@
 
             public async Task<Unit> Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
             {
-                var existingCategory = await appDbContext.Categories.FindAsync(request.Category.Id);
+                var existingCategory = await appDbContext.Categories.SingleAsync(c => c.Id == request.Category.Id, cancellationToken: cancellationToken);
                 existingCategory.UpdateData(name: request.Category.Name, note: request.Category.Note ?? "", requireNote: request.Category.RequireNote);
                 await appDbContext.SaveChangesAsync(cancellationToken);
 

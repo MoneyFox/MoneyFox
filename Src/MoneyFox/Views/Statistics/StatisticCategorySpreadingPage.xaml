@@ -1,15 +1,13 @@
-﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             xmlns:converter="clr-namespace:MoneyFox.Converter"
-             xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-             xmlns:statistics="clr-namespace:MoneyFox.ViewModels.Statistics"
-             xmlns:forms="clr-namespace:LiveChartsCore.SkiaSharpView.Xamarin.Forms;assembly=LiveChartsCore.SkiaSharpView.XamarinForms"
-             Visual="Material"
-             x:DataType="statistics:StatisticCategorySpreadingViewModel"
-             x:Class="MoneyFox.Views.Statistics.StatisticCategorySpreadingPage">
+﻿<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:MoneyFox.Converter"
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:statistics="clr-namespace:MoneyFox.ViewModels.Statistics"
+    xmlns:maui="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+    Visual="Material"
+    x:DataType="statistics:StatisticCategorySpreadingViewModel"
+    x:Class="MoneyFox.Views.Statistics.StatisticCategorySpreadingPage">
 
     <ContentPage.Resources>
         <converter:PaymentTypeStringConverter x:Key="PaymentTypeStringConverter" />
@@ -48,11 +46,11 @@
                     SelectedItem="{Binding SelectedPaymentType, Mode=TwoWay}"
                     ItemDisplayBinding="{Binding ., Converter={StaticResource PaymentTypeStringConverter}}" />
 
-            <forms:PieChart Series="{Binding Series, Mode=OneWay}"
-                            Grid.Row="3"
-                            LegendPosition="Right"
-                            LegendBackground="{AppThemeBinding Dark={StaticResource StatisticLegendDark}, Light={StaticResource StatisticLegendLight}}"
-                            LegendTextBrush="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+            <maui:PieChart Series="{Binding Series, Mode=OneWay}"
+                           Grid.Row="3"
+                           LegendPosition="Right"
+                           LegendBackground="{AppThemeBinding Dark={StaticResource StatisticLegendDark}, Light={StaticResource StatisticLegendLight}}"
+                           LegendTextBrush="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

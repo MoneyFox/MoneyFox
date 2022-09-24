@@ -1,15 +1,11 @@
 ﻿<ContentPage
     x:Class="MoneyFox.Views.Statistics.StatisticCashFlowPage"
-    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-    xmlns:forms="clr-namespace:LiveChartsCore.SkiaSharpView.Xamarin.Forms;assembly=LiveChartsCore.SkiaSharpView.XamarinForms"
     xmlns:statistics="clr-namespace:MoneyFox.ViewModels.Statistics"
-    x:DataType="statistics:StatisticCashFlowViewModel"
-    Visual="Material"
-    mc:Ignorable="d">
+    xmlns:maui="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+    x:DataType="statistics:StatisticCashFlowViewModel">
 
     <Shell.TitleView>
         <Grid Padding="0,4,16,0">
@@ -36,12 +32,12 @@
                    Style="{StaticResource TextBodySecondary}"
                    Text="{Binding Title}" />
 
-            <forms:CartesianChart Grid.Row="2"
-                                  Series="{Binding Series, Mode=OneWay}"
-                                  XAxes="{Binding XAxis, Mode=OneWay}"
-                                  LegendPosition="Bottom"
-                                  LegendBackground="{AppThemeBinding Dark={StaticResource StatisticLegendDark}, Light={StaticResource StatisticLegendLight}}"
-                                  LegendTextBrush="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+            <maui:CartesianChart Grid.Row="2"
+                                 Series="{Binding Series, Mode=OneWay}"
+                                 XAxes="{Binding XAxis, Mode=OneWay}"
+                                 LegendPosition="Bottom"
+                                 LegendBackground="{AppThemeBinding Dark={StaticResource StatisticLegendDark}, Light={StaticResource StatisticLegendLight}}"
+                                 LegendTextBrush="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
 
         </Grid>
     </ContentPage.Content>

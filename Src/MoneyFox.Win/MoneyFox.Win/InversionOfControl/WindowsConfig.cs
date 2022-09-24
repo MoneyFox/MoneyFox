@@ -4,9 +4,8 @@ using Common.Mapping;
 using Core.Common.Interfaces;
 using Core.Interfaces;
 using Core.InversionOfControl;
-using Infrastructure.InversionOfControl;
 using Microsoft.Extensions.DependencyInjection;
-using MoneyFox.Infrastructure.DbBackup;
+using MoneyFox.Win.Infrastructure.InversionOfControl;
 using Services;
 using ViewModels;
 using ViewModels.About;
@@ -26,8 +25,8 @@ internal sealed class WindowsConfig
         RegisterViewModels(serviceCollection);
         RegisterWindowsServices(serviceCollection);
         serviceCollection.AddSingleton(_ => AutoMapperFactory.Create());
-        new CoreConfig().Register(serviceCollection);
         new InfrastructureWinConfig().Register(serviceCollection);
+        new CoreConfig().Register(serviceCollection);
     }
 
     private static void RegisterWindowsServices(IServiceCollection serviceCollection)

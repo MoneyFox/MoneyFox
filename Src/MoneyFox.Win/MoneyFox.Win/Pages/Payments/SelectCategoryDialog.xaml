@@ -2,15 +2,12 @@
     x:Class="MoneyFox.Win.Pages.Payments.SelectCategoryDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:categories="using:MoneyFox.Win.ViewModels.Categories"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:resources="using:MoneyFox.Core.Resources"
     xmlns:converter="using:MoneyFox.Win.Converter"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    mc:Ignorable="d"
     Title="{x:Bind resources:Strings.SelectCategoryTitle}"
     SecondaryButtonText="{x:Bind resources:Strings.CancelLabel}">
 

@@ -1,23 +1,19 @@
-﻿namespace MoneyFox.Views.Categories
+﻿namespace MoneyFox.Views.Categories;
+
+using ViewModels.Categories;
+
+public partial class CategoryListPage : ContentPage
 {
-
-    using ViewModels.Categories;
-    using Xamarin.Forms;
-
-    public partial class CategoryListPage : ContentPage
+    public CategoryListPage()
     {
-        public CategoryListPage()
-        {
-            InitializeComponent();
-            BindingContext = App.GetViewModel<CategoryListViewModel>();
-        }
-
-        private CategoryListViewModel ViewModel => (CategoryListViewModel)BindingContext;
-
-        protected override async void OnAppearing()
-        {
-            await ViewModel.InitializeAsync();
-        }
+        InitializeComponent();
+        BindingContext = App.GetViewModel<CategoryListViewModel>();
     }
 
+    private CategoryListViewModel ViewModel => (CategoryListViewModel)BindingContext;
+
+    protected override async void OnAppearing()
+    {
+        await ViewModel.InitializeAsync();
+    }
 }

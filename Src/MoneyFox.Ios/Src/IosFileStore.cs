@@ -8,7 +8,9 @@
     {
         private const string ResScheme = "res:";
 
-        public IosFileStore(string basePath) : base(basePath) { }
+        public IosFileStore(string basePath) : base(basePath)
+        {
+        }
 
         protected override string AppendPath(string path)
         {

@@ -1,10 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <IsPackable>false</IsPackable>
         <GenerateErrorForMissingTargetingPacks>false</GenerateErrorForMissingTargetingPacks>
         <Nullable>enable</Nullable>
+        <UseMaui>True</UseMaui>
     </PropertyGroup>
 
     <ItemGroup>
@@ -44,6 +45,8 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Folder Include="Core\Domain"/>
+        <Folder Include="Presentation"/>
         <Folder Include="Core\Domain" />
         <Folder Include="Presentation" />
     </ItemGroup>

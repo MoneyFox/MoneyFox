@@ -87,5 +87,4 @@ namespace MoneyFox.Infrastructure.DbBackup
             }
         }
     }
-
 }

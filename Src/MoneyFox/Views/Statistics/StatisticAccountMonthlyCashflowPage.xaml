@@ -1,11 +1,10 @@
-﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MoneyFox.Views.Statistics.StatisticAccountMonthlyCashFlowPage"
              xmlns:statistics="clr-namespace:MoneyFox.ViewModels.Statistics;assembly=MoneyFox"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-             xmlns:forms="clr-namespace:LiveChartsCore.SkiaSharpView.Xamarin.Forms;assembly=LiveChartsCore.SkiaSharpView.XamarinForms"
-             x:DataType="statistics:StatisticAccountMonthlyCashFlowViewModel"
-             Visual="Material">
+             xmlns:forms="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+             x:DataType="statistics:StatisticAccountMonthlyCashFlowViewModel">
 
     <Shell.TitleView>
         <Grid Padding="0,4,16,0">
