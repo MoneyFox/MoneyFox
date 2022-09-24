@@ -21,6 +21,17 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Set current date as env variable
+        run: echo "NOW::$(date +'%Y%m%dT')" >> $GITHUB_ENV
+
+    - name: Update AndroidManifest.xml
+      uses: damienaicheh/update-android-version-manifest-action@v1.0.0
+      with:
+        android-manifest-path: "src/MoneyFox.Android/Properties/AndroidManifest.xml"
+        version-code: "$NOW.${{ github.run_number }}"
+        version-name: "${{ env.MAJOR_MINOR_VERSION }}.${{ github.run_number }}"
+        print-file: true
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
@@ -51,9 +62,7 @@ jobs:
       shell: bash
       run: jarsigner -keystore android/release.decrypted.jks -storepass "${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" -signedjar ./android/app/build/outputs/bundle/release/app-release-signed.aab ./android/app/build/outputs/bundle/release/app-release.aab release
 
-
     - name: Upload Android Artifact
-      if: github.ref == 'refs/heads/master'
       uses: actions/upload-artifact@v3.1.0
       with:
         name: moneyfox-android-build
