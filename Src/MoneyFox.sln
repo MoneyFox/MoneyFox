@@ -13,8 +13,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0CF8258F-193E-4373-9E7A-61DB4579EE66}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
-		..\pipelines\azure-pipelines-android.yml = ..\pipelines\azure-pipelines-android.yml
-		..\pipelines\azure-pipelines-iOS.yml = ..\pipelines\azure-pipelines-iOS.yml
 		..\pipelines\azure-pipelines-validate-pr.yml = ..\pipelines\azure-pipelines-validate-pr.yml
 		..\pipelines\azure-pipelines-winui.yml = ..\pipelines\azure-pipelines-winui.yml
 		..\renovate.json = ..\renovate.json
