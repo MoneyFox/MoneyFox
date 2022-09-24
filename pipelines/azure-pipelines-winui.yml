@@ -98,7 +98,7 @@ jobs:
           Contents: '**\*.opencover.xml'
           TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-      - task: VSBuild@1
+      - task: MSBuild@1
         displayName: 'Build Windows Project'
         inputs:
           solution: '**/*.wapproj'
