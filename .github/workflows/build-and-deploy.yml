@@ -97,20 +97,15 @@ jobs:
         # apply provisioning profile
         mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
         cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
-      
-    - name: Update Version
-      env:
-        VERSION: "${{ env.MAJOR_MINOR_VERSION }}.${{ github.run_number }}"
-        REPOSITORY_PATH: "${GITHUB_WORKSPACE}"
-      run: |
-          echo $VERSION
-
-          INFO_PLIST_FILE=$REPOSITORY_PATH/Src/MoneyFox.Ios/Info.plist
-          echo $INFO_PLIST_FILE
-
-          echo "Updating version name to $VERSION_NAME in Info.plist"
-          plutil -replace CFBundleShortVersionString -string $BUILD_BUILDNUMBER $INFO_PLIST_FILE
-          plutil -replace CFBundleVersion -string $VERSION $INFO_PLIST_FILE
+ 
+        
+    - name: Update Info.plist
+      uses: damienaicheh/update-ios-version-info-plist-action@v1.0.0
+      with:
+        info-plist-path: "Src/MoneyFox.Ios/Info.plist"
+        bundle-short-version-string: "${{ env.MAJOR_MINOR_VERSION }}.${{ github.run_number }}"
+        bundle-version: ${{ github.run_number }}"
+        print-file: true
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
