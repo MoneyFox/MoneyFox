@@ -63,6 +63,6 @@ jobs:
     - name: Test
       run: dotnet test ${{env.TEST_PROJECT_PATH}}
 
-    - name: Build MAUI iOS
-      run: dotnet build ${{env.IOS_PROJECT_PATH}} -c Debug -f net6.0-ios --no-restore /p:buildForSimulator=True /p:packageApp=True /p:ArchiveOnBuild=False
+#    - name: Build MAUI iOS
+#      run: dotnet build ${{env.IOS_PROJECT_PATH}} -c Debug -f net6.0-ios --no-restore /p:buildForSimulator=True /p:packageApp=True /p:ArchiveOnBuild=False
 
