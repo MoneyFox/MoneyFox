@@ -50,28 +50,24 @@ jobs:
       run: dotnet test ${{env.TEST_PROJECT_PATH}}
 
     - name: Build MAUI Android
-      run: dotnet publish ${{env.ANDROID_PROJECT_PATH}} -c Release -f net6.0-android --no-restore
+      run: dotnet publish ${{env.ANDROID_PROJECT_PATH}} -c Release -f net6.0-android --no-restore -o ${{env.ANDROID_PROJECT_PATH}}/build
 
-    - name: Extract Android signing key from env
-      shell: bash
-      env:
-        KEYSTORE: ${{ secrets.RELEASE_KEYSTORE }}
-      run: |
-        echo "$KEYSTORE" > android/release.jks.base64
-        base64 -d android/release.jks.base64 > android/release.decrypted.jks
-
-    - name: Sign dev build
-      shell: bash
-      env:
-        KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
-      run: jarsigner -keystore android/release.decrypted.jks -storepass "$KEYSTORE_PASSWORD" -signedjar ./android/app/build/outputs/bundle/release/app-release-signed.aab ./android/app/build/outputs/bundle/release/app-release.aab release
-
-    - name: Upload Android Artifact
-      uses: actions/upload-artifact@v3.1.0
+    - uses: r0adkll/sign-android-release@v1
+      name: Sign app ABB
+      # ID used to access action output
+      id: sign_app
       with:
-        name: moneyfox-android-build
-        path: src/MoneyFox.Android/bin/Release/**/*Signed.a*
+        releaseDirectory: ${{env.ANDROID_PROJECT_PATH}}/build
+        signingKeyBase64: ${{ secrets.RELEASE_KEYSTORE }}
+        alias: "moneyfox-keystore"
+        keyStorePassword: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
+        keyPassword: ${{ secrets.KEYSTORE_PASSWORD }}
 
+    - uses: actions/upload-artifact@v2
+      with:
+        name: Signed app bundle
+        path: ${{steps.sign_app.outputs.signedReleaseFile}}
+        
 
   buildiOS:
 
