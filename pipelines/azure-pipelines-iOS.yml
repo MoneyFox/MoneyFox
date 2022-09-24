@@ -17,7 +17,7 @@ steps:
   - task: UseDotNet@2
     displayName: 'Use correct .Net sdk'
     inputs:
-      version: 3.1.x
+      version: 6.x
 
   #- script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_12_0
   #  displayName: 'Select the Xamarin SDK version 6.12.0'
@@ -63,15 +63,10 @@ steps:
     inputs:
       provProfileSecureFile: 'MoneyFox_Distribution_2022.mobileprovision'
 
-  - task: NuGetToolInstaller@1
-    displayName: 'Use NuGet'
+  - task: PowerShell@2
     inputs:
-      versionSpec: 6.x
-
-  - task: NuGetCommand@2
-    displayName: 'NuGet restore'
-    inputs:
-      restoreSolution: '**/MoneyFox.Mobile.sln'
+      targetType: 'inline'
+      script: 'dotnet workload install maui --ignore-failed-sources'
 
   - task: DotNetCoreCLI@2
     displayName: 'Run Tests'
@@ -80,13 +75,10 @@ steps:
       projects: |
         **/*.Tests.csproj
 
-  - task: XamariniOS@2
-    displayName: 'Build Xamarin.iOS '
+  - task: DotNetCoreCLI@2
     inputs:
-      solutionFile: Src/MoneyFox.Ios/MoneyFox.iOS.csproj
-      configuration: $(BuildConfiguration)
-      signingIdentity: $(APPLE_CERTIFICATE_SIGNING_IDENTITY)
-      signingProvisioningProfileID: $(APPLE_PROV_PROFILE_UUID)
+      command: 'build'
+      projects: '**/MoneyFox.iOS.csproj'
 
   - task: CopyFiles@2
     displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
@@ -102,17 +94,6 @@ steps:
       script: |
         $sourceRoot = '$(system.defaultworkingdirectory)/assets/metadata'
         Copy-Item -Path $sourceRoot  -Destination $(build.artifactstagingdirectory) -Recurse
-
-  - task: CopyFiles@2
-    enabled: false
-    displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
-    inputs:
-      SourceFolder: '$(system.defaultworkingdirectory)'
-      Contents: '**/release_notes.txt'
-      TargetFolder: 'default'
-      CleanTargetFolder: true
-      OverWrite: true
-      flattenFolders: true
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: drop'
