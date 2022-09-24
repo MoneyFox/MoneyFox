@@ -5,6 +5,7 @@ using Core.Common.Interfaces;
 using Core.Interfaces;
 using Core.InversionOfControl;
 using Microsoft.Extensions.DependencyInjection;
+using MoneyFox.Win.Infrastructure.InversionOfControl;
 using Services;
 using ViewModels;
 using ViewModels.About;
@@ -24,6 +25,7 @@ internal sealed class WindowsConfig
         RegisterViewModels(serviceCollection);
         RegisterWindowsServices(serviceCollection);
         serviceCollection.AddSingleton(_ => AutoMapperFactory.Create());
+        new InfrastructureWinConfig().Register(serviceCollection);
         new CoreConfig().Register(serviceCollection);
     }
 
