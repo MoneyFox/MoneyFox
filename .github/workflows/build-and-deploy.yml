@@ -95,10 +95,11 @@ jobs:
     - name: Update Version
       env:
         VERSION: "${{ env.MAJOR_MINOR_VERSION }}.${{ github.run_number }}"
+        REPOSITORY_PATH: "${{ GITHUB_WORKSPACE }}"
       run: |
           echo $VERSION
 
-          INFO_PLIST_FILE=$BUILD_REPOSITORY_LOCALPATH/Src/MoneyFox.Ios/Info.plist
+          INFO_PLIST_FILE=$REPOSITORY_PATH/Src/MoneyFox.Ios/Info.plist
           echo $INFO_PLIST_FILE
 
           echo "Updating version name to $VERSION_NAME in Info.plist"
@@ -123,7 +124,6 @@ jobs:
       run: dotnet build ${{env.IOS_PROJECT_PATH}} -c Release -f net6.0-ios --no-restore /p:buildForSimulator=false /p:packageApp=True /p:ArchiveOnBuild=False 
 
     - name: Upload iOS Artifact
-      if: github.ref == 'refs/heads/master'
       uses: actions/upload-artifact@v3.1.0
       with:
         name: moneyfox-ios-build
