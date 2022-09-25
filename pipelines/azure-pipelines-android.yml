@@ -57,7 +57,7 @@ steps:
       command: 'publish'
       publishWebProjects: false
       projects: '**/MoneyFox.Android.csproj'
-      arguments: '-c Release -f net6.0-android /p:AndroidKeyStore="True" /p:AndroidSigningKeyAlias="$(KeyStoreAlias)" /p:AndroidSigningKeyStore="$(keystore.secureFilePath)" /p:AndroidSigningKeyPass="$(KeyStorePass)" /p:AndroidSigningStorePass="$(KeyStorePass)"'
+      arguments: '-c Release -f net6.0-android /p:AndroidKeyStore="True" /p:AndroidSigningKeyAlias="$(KeyStoreAlias)" /p:AndroidSigningKeyPass="$(KeyStorePass)" /p:AndroidSigningStorePass="$(KeyStorePass)"'
 
   - task: CopyFiles@2
     displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
