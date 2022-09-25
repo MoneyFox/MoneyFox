@@ -1,85 +1,87 @@
-﻿namespace MoneyFox.Tests.Presentation.ViewModels.OverflowMenu
+namespace MoneyFox.Ui.Tests.ViewModels.OverflowMenu;
+
+using System.Threading.Tasks;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Ui.ViewModels.OverflowMenu;
+using NSubstitute;
+using Views.About;
+using Views.Backup;
+using Views.Categories;
+using Views.Settings;
+using Xunit;
+
+public class OverflowMenuViewModelTests
 {
-
-    using System.Threading.Tasks;
-    using MoneyFox.Core.Interfaces;
-    using MoneyFox.ViewModels.OverflowMenu;
-    using NSubstitute;
-    using Views.About;
-    using Views.Backup;
-    using Views.Categories;
-    using Views.Settings;
-    using Xunit;
-
-    public class OverflowMenuViewModelTests
+    [Fact]
+    public async Task ShouldNavigateToCategoryPage_WhenCommandIsCalledWithCategoryItem()
     {
-        [Fact]
-        public async Task ShouldNavigateToCategoryPage_WhenCommandIsCalledWithCategoryItem()
-        {
-            // Capture
-            var navigationService = Substitute.For<INavigationService>();
+        // Capture
+        INavigationService navigationService = Substitute.For<INavigationService>();
 
-            // Arrange
-            var overflowItem = new OverflowItemViewModel { Name = "Some Name", Type = OverflowMenuItemType.Categories };
+        // Arrange
+        OverflowItemViewModel overflowItem = new()
+        { Name = "Some Name", Type = OverflowMenuItemType.Categories };
 
-            // Act
-            var viewModel = new OverflowMenuViewModel(navigationService);
-            await viewModel.GoToSelectedItemCommand.ExecuteAsync(overflowItem);
+        // Act
+        OverflowMenuViewModel viewModel = new(navigationService);
+        await viewModel.GoToSelectedItemCommand.ExecuteAsync(overflowItem);
 
-            // Assert
-            await navigationService.Received(1).NavigateTo<CategoryListPage>();
-        }
-
-        [Fact]
-        public async Task ShouldNavigateToBackupPage_WhenCommandIsCalledWithBackupItem()
-        {
-            // Capture
-            var navigationService = Substitute.For<INavigationService>();
-
-            // Arrange
-            var overflowItem = new OverflowItemViewModel { Name = "Some Name", Type = OverflowMenuItemType.Backup };
-
-            // Act
-            var viewModel = new OverflowMenuViewModel(navigationService);
-            await viewModel.GoToSelectedItemCommand.ExecuteAsync(overflowItem);
-
-            // Assert
-            await navigationService.Received(1).NavigateTo<BackupPage>();
-        }
-
-        [Fact]
-        public async Task ShouldNavigateToSettingsPage_WhenCommandIsCalledWithSettingsMenuItem()
-        {
-            // Capture
-            var navigationService = Substitute.For<INavigationService>();
-
-            // Arrange
-            var overflowItem = new OverflowItemViewModel { Name = "Some Name", Type = OverflowMenuItemType.Settings };
-
-            // Act
-            var viewModel = new OverflowMenuViewModel(navigationService);
-            await viewModel.GoToSelectedItemCommand.ExecuteAsync(overflowItem);
-
-            // Assert
-            await navigationService.Received(1).NavigateTo<SettingsPage>();
-        }
-
-        [Fact]
-        public async Task ShouldNavigateToAboutPage_WhenCommandIsCalledWithAboutMenuItem()
-        {
-            // Capture
-            var navigationService = Substitute.For<INavigationService>();
-
-            // Arrange
-            var overflowItem = new OverflowItemViewModel { Name = "Some Name", Type = OverflowMenuItemType.About };
-
-            // Act
-            var viewModel = new OverflowMenuViewModel(navigationService);
-            await viewModel.GoToSelectedItemCommand.ExecuteAsync(overflowItem);
-
-            // Assert
-            await navigationService.Received(1).NavigateTo<AboutPage>();
-        }
+        // Assert
+        await navigationService.Received(1).NavigateTo<CategoryListPage>();
     }
 
+    [Fact]
+    public async Task ShouldNavigateToBackupPage_WhenCommandIsCalledWithBackupItem()
+    {
+        // Capture
+        INavigationService navigationService = Substitute.For<INavigationService>();
+
+        // Arrange
+        OverflowItemViewModel overflowItem = new()
+        { Name = "Some Name", Type = OverflowMenuItemType.Backup };
+
+        // Act
+        OverflowMenuViewModel viewModel = new(navigationService);
+        await viewModel.GoToSelectedItemCommand.ExecuteAsync(overflowItem);
+
+        // Assert
+        await navigationService.Received(1).NavigateTo<BackupPage>();
+    }
+
+    [Fact]
+    public async Task ShouldNavigateToSettingsPage_WhenCommandIsCalledWithSettingsMenuItem()
+    {
+        // Capture
+        INavigationService navigationService = Substitute.For<INavigationService>();
+
+        // Arrange
+        OverflowItemViewModel overflowItem = new()
+        { Name = "Some Name", Type = OverflowMenuItemType.Settings };
+
+        // Act
+        OverflowMenuViewModel viewModel = new(navigationService);
+        await viewModel.GoToSelectedItemCommand.ExecuteAsync(overflowItem);
+
+        // Assert
+        await navigationService.Received(1).NavigateTo<SettingsPage>();
+    }
+
+    [Fact]
+    public async Task ShouldNavigateToAboutPage_WhenCommandIsCalledWithAboutMenuItem()
+    {
+        // Capture
+        INavigationService navigationService = Substitute.For<INavigationService>();
+
+        // Arrange
+        OverflowItemViewModel overflowItem = new()
+        { Name = "Some Name", Type = OverflowMenuItemType.About };
+
+        // Act
+        OverflowMenuViewModel viewModel = new(navigationService);
+        await viewModel.GoToSelectedItemCommand.ExecuteAsync(overflowItem);
+
+        // Assert
+        await navigationService.Received(1).NavigateTo<AboutPage>();
+    }
 }
+

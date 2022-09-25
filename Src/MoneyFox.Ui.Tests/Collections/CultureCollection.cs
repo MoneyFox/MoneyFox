@@ -1,9 +1,7 @@
-﻿namespace MoneyFox.Tests.Presentation.Collections
-{
+﻿namespace MoneyFox.Ui.Tests.Collections;
 
-    using Xunit;
+using Xunit;
 
-    [CollectionDefinition("CultureCollection")]
-    public class CultureCollection { }
+[CollectionDefinition("CultureCollection")]
+public class CultureCollection { }
 
-}
