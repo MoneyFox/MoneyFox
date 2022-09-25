@@ -4,49 +4,46 @@
     x:Class="MoneyFox.Ui.Views.Dashboard.DashboardPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-    xmlns:converter="using:MoneyFox.Ui.Converter"
-    xmlns:accounts="using:MoneyFox.Ui.ViewModels.Accounts"
-    xmlns:payments="using:MoneyFox.Ui.Views.Payments"
-    xmlns:dashboard="using:MoneyFox.Ui.ViewModels.Dashboard"
-    x:DataType="dashboard:DashboardViewModel">
+    xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
+    xmlns:accounts="clr-namespace:MoneyFox.Ui.ViewModels.Accounts"
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core">
 
     <ContentPage.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
         <converter:BalanceColorConverter x:Key="BalanceColorConverter" />
     </ContentPage.Resources>
 
-    <VisualStateManager.VisualStateGroups>
-        <VisualStateGroup x:Name="Width">
-            <VisualState x:Name="ClosedPanel">
-                <VisualState.Setters>
-                    <Setter TargetName="RootGrid" Property="Grid.ColumnDefinitions" Value="*"/>
-                    <Setter TargetName="AddPaymentPanel" Property="IsVisible" Value="False" />
-                </VisualState.Setters>
-            </VisualState>
+    <Shell.TitleView>
+        <Grid >
+            <Grid.Padding>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="Android" Value="0,8,16,0" />
+                    <On Platform="WinUi" Value="0,4,16,0" />
+                    <On Platform="MacOS" Value="0,4,16,0" />
+                    <On Platform="iOS" Value="0,4,0,0" />
+                </OnPlatform>
+            </Grid.Padding>
+            
+            <Button Command="{Binding GoToAddPaymentCommand}"
+                            HorizontalOptions="End"
+                            VerticalOptions="Start"
+                    HeightRequest="40"
+                            Style="{StaticResource PrimaryButton}"
+                            Text="Add Payment">
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsRound" Glyph="add" Color="White" />
+                </Button.ImageSource>
+            </Button>
+        </Grid>
+    </Shell.TitleView>
 
-            <VisualState x:Name="OpenPanel">
-                <VisualState.Setters>
-                    <Setter TargetName="RootGrid" Property="Grid.ColumnDefinitions" Value="*, 400"/>
-                    <Setter TargetName="AddPaymentPanel" Property="IsVisible" Value="True" />
-                </VisualState.Setters>
-            </VisualState>
-        </VisualStateGroup>
-    </VisualStateManager.VisualStateGroups>
-
-    <Grid x:Name="RootGrid" ColumnDefinitions="*" >
-        <ScrollView Grid.Column="0" >
+    <ContentPage.Content>
+        <ScrollView>
             <Grid Padding="15"
                   IsClippedToBounds="False"
                   RowDefinitions="35, 40, 90, 160, 140,*">
 
                 <Label Style="{StaticResource TextHeadline}" Text="{x:Static resources:Strings.WelcomeLabel}" />
-
-                <Button
-                    HorizontalOptions="End"
-                    Text="{x:Static resources:Strings.AddPaymentLabel}"
-                    VerticalOptions="Center"
-                    Clicked="OpenAddPaymentPanel" />
 
                 <Label Grid.Row="1"
                        Style="{StaticResource TextTitle}"
@@ -60,8 +57,7 @@
                         StrokeThickness="0"
                         StrokeShape="RoundRectangle 10"
                         HeightRequest="90"
-                        MaximumWidthRequest="400"
-                        HorizontalOptions="Center">
+                        HorizontalOptions="FillAndExpand">
 
                     <Border.Shadow>
                         <Shadow Brush="Black"
@@ -266,23 +262,5 @@
                 </StackLayout>
             </Grid>
         </ScrollView>
-
-        <Grid Grid.Column="1" x:Name="AddPaymentPanel" RowDefinitions="50, *">
-
-            <Label Style="{StaticResource TextTitle}"
-                   Text="{x:Static resources:Strings.AddPaymentTitle}"
-                   VerticalOptions="Center" />
-
-            <ImageButton Clicked="ClickClosePanel" HorizontalOptions="End"
-                         HeightRequest="44"
-                         WidthRequest="44"
-                         Margin="6">
-                <ImageButton.Source>
-                    <FontImageSource FontFamily="MaterialIconsRound" Glyph="cancel" />
-                </ImageButton.Source>
-            </ImageButton>
-
-            <payments:ModifyPaymentContentView x:Name="AddPaymentView" Grid.Row="1" />
-        </Grid>
-    </Grid>
+    </ContentPage.Content>
 </ContentPage>

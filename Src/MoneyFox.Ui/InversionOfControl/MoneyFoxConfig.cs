@@ -3,17 +3,16 @@ namespace MoneyFox.Ui.InversionOfControl;
 using Common.Services;
 using Infrastructure.Adapters;
 using Mapping;
-using Microsoft.Identity.Client;
 using MoneyFox.Core.Common.Interfaces;
 using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.InversionOfControl;
 using MoneyFox.Infrastructure.InversionOfControl;
+using MoneyFox.Views.Backup;
 using ViewModels.About;
 using ViewModels.Accounts;
 using ViewModels.Budget;
 using ViewModels.Categories;
 using ViewModels.Dashboard;
-using ViewModels.DataBackup;
 using ViewModels.Dialogs;
 using ViewModels.OverflowMenu;
 using ViewModels.Payments;
@@ -23,16 +22,12 @@ using ViewModels.Statistics;
 
 public sealed class MoneyFoxConfig
 {
-    private const string MsalApplicationId = "00a3e4cd-b4b0-4730-be62-5fcf90a94a1d";
-
     public void Register(ServiceCollection serviceCollection)
     {
         RegisterServices(serviceCollection);
         RegisterViewModels(serviceCollection);
         RegisterAdapters(serviceCollection);
 
-        // TODO: use this here again
-        //RegisterIdentityClient(serviceCollection);
         serviceCollection.AddSingleton(_ => AutoMapperFactory.Create());
         new CoreConfig().Register(serviceCollection);
         InfrastructureConfig.Register(serviceCollection);
@@ -85,15 +80,5 @@ public sealed class MoneyFoxConfig
         serviceCollection.AddTransient<IConnectivityAdapter, ConnectivityAdapter>();
         serviceCollection.AddTransient<IEmailAdapter, EmailAdapter>();
         serviceCollection.AddTransient<ISettingsAdapter, SettingsAdapter>();
-    }
-
-    private static void RegisterIdentityClient(ServiceCollection serviceCollection)
-    {
-        var publicClientApplication = PublicClientApplicationBuilder.Create(MsalApplicationId)
-            .WithRedirectUri($"msal{MsalApplicationId}://auth")
-            .WithIosKeychainSecurityGroup("com.microsoft.adalcache")
-            .Build();
-
-        serviceCollection.AddSingleton(publicClientApplication);
     }
 }

@@ -1,19 +1,21 @@
-namespace MoneyFox.Ui.Views.Backup;
-
-using ViewModels.DataBackup;
-
-public partial class BackupPage
+namespace MoneyFox.Ui.Views.Backup
 {
-    public BackupPage()
+    using MoneyFox.Views.Backup;
+
+    public partial class BackupPage
     {
-        InitializeComponent();
-        BindingContext = App.GetViewModel<BackupViewModel>();
+        public BackupPage()
+        {
+            InitializeComponent();
+            BindingContext = App.GetViewModel<BackupViewModel>();
+        }
+
+        internal BackupViewModel ViewModel => (BackupViewModel)BindingContext;
+
+        protected override void OnAppearing()
+        {
+            ViewModel.InitializeCommand.Execute(null);
+        }
     }
 
-    internal BackupViewModel ViewModel => (BackupViewModel)BindingContext;
-
-    protected override void OnAppearing()
-    {
-        ViewModel.InitializeCommand.Execute(null);
-    }
 }

@@ -77,4 +77,15 @@
       </AppxManifest>
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Update="Views\Backup\BackupPage.xaml.cs">
+        <SubType>Code</SubType>
+        <DependentUpon>%(Filename)</DependentUpon>
+      </Compile>
+      <Compile Update="Views\Dashboard\DashboardPage.xaml.cs">
+        <SubType>Code</SubType>
+        <DependentUpon>%(Filename)</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
 </Project>
