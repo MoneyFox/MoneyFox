@@ -1,16 +1,14 @@
-namespace MoneyFox.Infrastructure.Persistence.Configurations
+namespace MoneyFox.Infrastructure.Persistence.Configurations;
+
+using Core.ApplicationCore.Domain.Aggregates;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+internal class RecurringPaymentConfiguration : IEntityTypeConfiguration<RecurringPayment>
 {
-
-    using Core.ApplicationCore.Domain.Aggregates;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-    internal class RecurringPaymentConfiguration : IEntityTypeConfiguration<RecurringPayment>
+    public void Configure(EntityTypeBuilder<RecurringPayment> builder)
     {
-        public void Configure(EntityTypeBuilder<RecurringPayment> builder)
-        {
-            builder.HasKey(b => b.Id);
-        }
+        _ = builder.HasKey(b => b.Id);
     }
-
 }
+

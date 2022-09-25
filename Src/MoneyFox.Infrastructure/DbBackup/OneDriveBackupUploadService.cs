@@ -1,114 +1,111 @@
-namespace MoneyFox.Infrastructure.DbBackup
+namespace MoneyFox.Infrastructure.DbBackup;
+
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Core.ApplicationCore.Domain.Exceptions;
+using Core.ApplicationCore.UseCases.BackupUpload;
+using Flurl;
+using Flurl.Http;
+using Microsoft.Identity.Client;
+using MoneyFox.Infrastructure.DbBackup.OneDriveModels;
+
+internal class OneDriveBackupUploadService : IBackupUploadService
 {
+    private readonly Uri graphDriveUri = new("https://graph.microsoft.com/v1.0/me/drive");
 
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.IO;
-    using System.Linq;
-    using System.Net.Http;
-    using System.Threading.Tasks;
-    using Core.ApplicationCore.Domain.Exceptions;
-    using Core.ApplicationCore.UseCases.BackupUpload;
-    using Flurl;
-    using Flurl.Http;
-    using Microsoft.Identity.Client;
-    using MoneyFox.Infrastructure.DbBackup.OneDriveModels;
+    private const string ERROR_CODE_CANCELED = "authentication_canceled";
 
-    internal class OneDriveBackupUploadService : IBackupUploadService
+    private readonly IOneDriveAuthenticationService oneDriveAuthenticationService;
+
+    public OneDriveBackupUploadService(IOneDriveAuthenticationService oneDriveAuthenticationService)
     {
-        [SuppressMessage("Minor Code Smell", "S1075:URIs should not be hardcoded", Justification = "Can be later moved to configuration")]
-        private readonly Uri graphDriveUri = new Uri("https://graph.microsoft.com/v1.0/me/drive");
+        this.oneDriveAuthenticationService = oneDriveAuthenticationService;
+    }
 
-        private const string ERROR_CODE_CANCELED = "authentication_canceled";
+    public async Task<DateTime> GetBackupDateAsync()
+    {
+        OneDriveAuthentication authentication = await oneDriveAuthenticationService.AcquireAuthentication();
 
-        private readonly IOneDriveAuthenticationService oneDriveAuthenticationService;
+        FileSearchDto appRoot = await graphDriveUri
+            .AppendPathSegments("special", "approot", "children")
+            .WithOAuthBearerToken(authentication.AccessToken)
+            .GetJsonAsync<FileSearchDto>();
 
-        public OneDriveBackupUploadService(IOneDriveAuthenticationService oneDriveAuthenticationService)
+        System.Collections.Generic.List<FileDto> existingBackups = appRoot.Files;
+        return existingBackups.Any()
+            ? existingBackups.OrderByDescending(di => di.LastModifiedDateTime).First().LastModifiedDateTime.DateTime.ToLocalTime()
+            : DateTime.MinValue;
+    }
+
+    public async Task UploadAsync(string backupName, Stream dataToUpload)
+    {
+        try
         {
-            this.oneDriveAuthenticationService = oneDriveAuthenticationService;
-        }
+            OneDriveAuthentication authentication = await oneDriveAuthenticationService.AcquireAuthentication();
 
-        public async Task<DateTime> GetBackupDateAsync()
-        {
-            var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
-
-            var appRoot = await graphDriveUri
-                .AppendPathSegments("special", "approot", "children")
+            StreamContent content = new(dataToUpload);
+            IFlurlResponse response = await graphDriveUri
+                .AppendPathSegments("special", "approot:", $"{backupName}:", "content")
                 .WithOAuthBearerToken(authentication.AccessToken)
-                .GetJsonAsync<FileSearchDto>();
-
-            var existingBackups = appRoot.Files;
-            return existingBackups.Any()
-                ? existingBackups.OrderByDescending(di => di.LastModifiedDateTime).First().LastModifiedDateTime.DateTime.ToLocalTime()
-                : DateTime.MinValue;
+                .PutAsync(content);
         }
-
-        public async Task UploadAsync(string backupName, Stream dataToUpload)
+        catch (MsalClientException ex)
         {
-            try
-            {
-                var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
-
-                var content = new StreamContent(dataToUpload);
-                var response = await graphDriveUri
-                    .AppendPathSegments("special", "approot:", $"{backupName}:", "content")
-                    .WithOAuthBearerToken(authentication.AccessToken)
-                    .PutAsync(content);
-            }
-            catch (MsalClientException ex)
-            {
-                if (ex.ErrorCode == ERROR_CODE_CANCELED)
-                {
-                    throw new BackupOperationCanceledException(ex);
-                }
-
-                throw;
-            }
-            catch (OperationCanceledException ex)
+            if (ex.ErrorCode == ERROR_CODE_CANCELED)
             {
                 throw new BackupOperationCanceledException(ex);
             }
-            catch (Exception ex)
-            {
-                throw new BackupAuthenticationFailedException(ex);
-            }
+
+            throw;
         }
-
-        public async Task<int> GetBackupCount()
+        catch (OperationCanceledException ex)
         {
-            try
-            {
-                var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
-
-                var appRoot = await graphDriveUri
-                    .AppendPathSegments("special", "approot", "children")
-                    .WithOAuthBearerToken(authentication.AccessToken)
-                    .GetJsonAsync<FileSearchDto>();
-
-                return appRoot.Files.Count;
-            }
-            catch (Exception ex)
-            {
-                throw new BackupAuthenticationFailedException(ex);
-            }
+            throw new BackupOperationCanceledException(ex);
         }
-
-        public async Task DeleteOldest()
+        catch (Exception ex)
         {
-            var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
-            var appRoot = await graphDriveUri
+            throw new BackupAuthenticationFailedException(ex);
+        }
+    }
+
+    public async Task<int> GetBackupCount()
+    {
+        try
+        {
+            OneDriveAuthentication authentication = await oneDriveAuthenticationService.AcquireAuthentication();
+
+            FileSearchDto appRoot = await graphDriveUri
                 .AppendPathSegments("special", "approot", "children")
                 .WithOAuthBearerToken(authentication.AccessToken)
                 .GetJsonAsync<FileSearchDto>();
 
-            var existingBackups = appRoot.Files;
-            var oldestBackup = existingBackups.OrderByDescending(x => x.CreatedDate).Last();
-
-            await graphDriveUri
-                .AppendPathSegments("items", $"{oldestBackup.Id}")
-                .WithOAuthBearerToken(authentication.AccessToken)
-                .DeleteAsync();
+            return appRoot.Files.Count;
+        }
+        catch (Exception ex)
+        {
+            throw new BackupAuthenticationFailedException(ex);
         }
     }
 
+    public async Task DeleteOldest()
+    {
+        OneDriveAuthentication authentication = await oneDriveAuthenticationService.AcquireAuthentication();
+        FileSearchDto appRoot = await graphDriveUri
+            .AppendPathSegments("special", "approot", "children")
+            .WithOAuthBearerToken(authentication.AccessToken)
+            .GetJsonAsync<FileSearchDto>();
+
+        System.Collections.Generic.List<FileDto> existingBackups = appRoot.Files;
+        FileDto oldestBackup = existingBackups.OrderByDescending(x => x.CreatedDate).Last();
+
+        _ = await graphDriveUri
+            .AppendPathSegments("items", $"{oldestBackup.Id}")
+            .WithOAuthBearerToken(authentication.AccessToken)
+            .DeleteAsync();
+    }
 }
+

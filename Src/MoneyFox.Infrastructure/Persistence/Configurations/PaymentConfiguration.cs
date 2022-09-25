@@ -1,16 +1,14 @@
-namespace MoneyFox.Infrastructure.Persistence.Configurations
+namespace MoneyFox.Infrastructure.Persistence.Configurations;
+
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+internal class PaymentConfiguration : IEntityTypeConfiguration<Payment>
 {
-
-    using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-    internal class PaymentConfiguration : IEntityTypeConfiguration<Payment>
+    public void Configure(EntityTypeBuilder<Payment> builder)
     {
-        public void Configure(EntityTypeBuilder<Payment> builder)
-        {
-            builder.HasKey(b => b.Id);
-        }
+        _ = builder.HasKey(b => b.Id);
     }
-
 }
+
