@@ -67,7 +67,7 @@ jobs:
       run: dotnet restore ${{env.IOS_PROJECT_PATH}}
 
     - name: Build MAUI iOS
-      run: dotnet build ${{env.UI_PROJECT_PATH}} net6.0-ios c- Debug --no-restore /p:buildForSimulator=True /p:packageApp=True /p:ArchiveOnBuild=False
+      run: dotnet build ${{env.UI_PROJECT_PATH}} net6.0-ios c- Debug /p:buildForSimulator=True /p:packageApp=True /p:ArchiveOnBuild=False
       
     - name: Test
       run: |
