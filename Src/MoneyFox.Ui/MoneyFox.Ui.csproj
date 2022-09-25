@@ -31,8 +31,12 @@
 
 	<PropertyGroup>
 	  <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.22621.0</TargetFrameworks>
-	  <TargetFrameworks>;net6.0-ios;net6.0-android</TargetFrameworks>
+	  <TargetFrameworks>;net6.0-ios;net6.0-android;net6.0</TargetFrameworks>
 	</PropertyGroup>
+    
+    <PropertyGroup Condition="'$(TargetFramework)' == 'net6.0'">
+        <OutputType>Library</OutputType>
+    </PropertyGroup>
 
     <PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'">
         <RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
