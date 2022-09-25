@@ -122,7 +122,7 @@ jobs:
       run: dotnet restore ${{env.IOS_PROJECT_PATH}}
 
     - name: Build MAUI iOS
-      run: dotnet publish ${{env.IOS_PROJECT_PATH}} -c Release -f net6.0-ios /p:ArchiveOnBuild=True /p:CodesignProvision="5c376e13-eebb-48ba-b90e-590cd25dd62d"
+      run: dotnet publish ${{env.IOS_PROJECT_PATH}} -c Release -f net6.0-ios /p:ArchiveOnBuild=True
 
     - name: Test
       run: dotnet test ${{env.TEST_PROJECT_PATH}}
