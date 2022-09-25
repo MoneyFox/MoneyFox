@@ -1,15 +1,12 @@
-﻿namespace MoneyFox.Views.OverflowMenu
+﻿namespace MoneyFox.Views.OverflowMenu;
+
+using ViewModels.OverflowMenu;
+
+public partial class OverflowMenuPage
 {
-
-    using ViewModels.OverflowMenu;
-
-    public partial class OverflowMenuPage
+    public OverflowMenuPage()
     {
-        public OverflowMenuPage()
-        {
-            InitializeComponent();
-            BindingContext = App.GetViewModel<OverflowMenuViewModel>();
-        }
+        InitializeComponent();
+        BindingContext = App.GetViewModel<OverflowMenuViewModel>();
     }
-
 }

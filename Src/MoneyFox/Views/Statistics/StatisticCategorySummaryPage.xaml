@@ -1,25 +1,14 @@
-﻿<ContentPage x:Class="MoneyFox.Views.Statistics.StatisticCategorySummaryPage"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:converter="clr-namespace:MoneyFox.Converter"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-             x:Name="StatisticCategorySummary"
-             Visual="Material"
-             mc:Ignorable="d">
+﻿<ContentPage
+    x:Class="MoneyFox.Views.Statistics.StatisticCategorySummaryPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    x:Name="StatisticCategorySummary"
+    Visual="Material">
 
     <Shell.TitleView>
-        <Grid ColumnDefinitions="*,66">
-            <Label Style="{StaticResource TextTitle}"
-                   HorizontalOptions="Start"
-                   VerticalOptions="Center"
-                   Text="{x:Static resources:Strings.CategorySummaryTitle}" />
-
-            <ImageButton Margin="0,0,5,0"
-                         Grid.Column="1"
-                         Padding="0"
+        <Grid Padding="0,4,16,0">
+            <ImageButton Padding="0"
                          BorderWidth="0"
                          Clicked="OpenFilterDialog"
                          HeightRequest="44"
@@ -32,12 +21,6 @@
             </ImageButton>
         </Grid>
     </Shell.TitleView>
-
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <converter:AmountFormatConverter x:Key="AmountValueConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
 
     <ContentPage.Content>
         <Grid RowDefinitions="35, *">
@@ -53,60 +36,6 @@
                             ItemsSource="{Binding CategorySummary}">
 
                 <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Padding="15, 6, 15, 8">
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer
-                                    Command="{Binding BindingContext.ShowCategoryPaymentsCommand, Source={x:Reference Name=CategorySummaryList}}"
-                                    CommandParameter="{Binding .}" />
-                            </Grid.GestureRecognizers>
-
-                            <yummy:PancakeView
-                                BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                                 Light={StaticResource CardBackgroundLight}}"
-                                CornerRadius="10"
-                                Padding="15"
-                                HeightRequest="45"
-                                HorizontalOptions="FillAndExpand">
-
-                                <yummy:PancakeView.Shadow>
-                                    <yummy:DropShadow />
-                                </yummy:PancakeView.Shadow>
-
-                                <StackLayout HorizontalOptions="FillAndExpand">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <Label Grid.Column="0"
-                                               HorizontalOptions="StartAndExpand"
-                                               LineBreakMode="TailTruncation"
-                                               Style="{StaticResource TextSubHead}"
-                                               Text="{Binding Label}" />
-
-                                        <StackLayout Grid.Column="1"
-                                                     HorizontalOptions="End"
-                                                     Orientation="Horizontal"
-                                                     Spacing="0"
-                                                     VerticalOptions="Center">
-                                            <Label
-                                                Text="{Binding Value, Converter={StaticResource AmountValueConverter}}" />
-                                            <Label Text="{Binding Percentage, StringFormat=' ({0} %)'}" />
-
-                                        </StackLayout>
-                                    </Grid>
-
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="{x:Static resources:Strings.MonthlyAverageLabel}" />
-                                        <Label
-                                            Text="{Binding Average, Converter={StaticResource AmountValueConverter}}" />
-                                    </StackLayout>
-                                </StackLayout>
-                            </yummy:PancakeView>
-                        </Grid>
-                    </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </Grid>

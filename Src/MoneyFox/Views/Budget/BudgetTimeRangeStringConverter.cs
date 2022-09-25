@@ -5,7 +5,6 @@ namespace MoneyFox.Views.Budget
     using System.Globalization;
     using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
     using Core.Resources;
-    using Xamarin.Forms;
 
     internal class BudgetTimeRangeStringConverter : IValueConverter
     {

@@ -3,21 +3,11 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Core.Resources"
     xmlns:payments="using:MoneyFox.Win.Pages.Payments"
-    xmlns:designTime="using:MoneyFox.Win.ViewModels.DesignTime"
     xmlns:converter="using:MoneyFox.Win.Converter"
-    xmlns:accounts="using:MoneyFox.Win.ViewModels.Accounts"
-    d:DesignHeight="300"
-    d:DesignWidth="400"
-    mc:Ignorable="d">
-
-    <d:Page.DataContext>
-        <designTime:DesignTimeModifyPaymentViewModel />
-    </d:Page.DataContext>
+    xmlns:accounts="using:MoneyFox.Win.ViewModels.Accounts">
 
     <UserControl.Resources>
         <converter:AmountFormatConverter x:Key="AmountConverter" />

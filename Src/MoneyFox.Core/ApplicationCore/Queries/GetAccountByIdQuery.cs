@@ -7,7 +7,7 @@
     using Domain.Aggregates.AccountAggregate;
     using MediatR;
 
-    public class GetAccountByIdQuery : IRequest<Account>
+    public class GetAccountByIdQuery : IRequest<Account?>
     {
         public GetAccountByIdQuery(int accountId)
         {
@@ -16,7 +16,7 @@
 
         public int AccountId { get; }
 
-        public class Handler : IRequestHandler<GetAccountByIdQuery, Account>
+        public class Handler : IRequestHandler<GetAccountByIdQuery, Account?>
         {
             private readonly IAppDbContext appDbContext;
 
@@ -25,7 +25,7 @@
                 this.appDbContext = appDbContext;
             }
 
-            public async Task<Account> Handle(GetAccountByIdQuery request, CancellationToken cancellationToken)
+            public async Task<Account?> Handle(GetAccountByIdQuery request, CancellationToken cancellationToken)
             {
                 return await appDbContext.Accounts.FindAsync(request.AccountId);
             }

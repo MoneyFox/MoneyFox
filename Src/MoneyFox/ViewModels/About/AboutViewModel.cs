@@ -1,110 +1,101 @@
-﻿namespace MoneyFox.ViewModels.About
+﻿namespace MoneyFox.ViewModels.About;
+
+using CommunityToolkit.Mvvm.Input;
+using Core.Common;
+using Core.Common.Interfaces;
+using Core.Interfaces;
+using Core.Resources;
+
+internal class AboutViewModel : BaseViewModel
 {
+    private const string WEBSITE_URL = "https://www.apply-solutions.ch";
+    private const string SUPPORT_MAIL = "mobile.support@apply-solutions.ch";
+    private const string GITHUB_PROJECT_URL = "https://github.com/MoneyFox/MoneyFox";
+    private const string TRANSLATION_URL = "https://crowdin.com/project/money-fox";
+    private const string ICON_DESIGNER_URL = "https://twitter.com/vandert9";
+    private const string GITHUB_CONTRIBUTOR_URL = "https://github.com/MoneyFox/MoneyFox/graphs/contributors";
 
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using CommunityToolkit.Mvvm.Input;
-    using Core.Common;
-    using Core.Common.Interfaces;
-    using Core.Interfaces;
-    using Core.Resources;
-    using Xamarin.Essentials;
+    private readonly IAppInformation appInformation;
+    private readonly IBrowserAdapter browserAdapter;
+    private readonly IEmailAdapter emailAdapter;
+    private readonly IStoreOperations storeFeatures;
 
-    internal class AboutViewModel : BaseViewModel
+    public AboutViewModel(IAppInformation appInformation, IEmailAdapter emailAdapter, IBrowserAdapter browserAdapter, IStoreOperations storeOperations)
     {
-        private const string WEBSITE_URL = "https://www.apply-solutions.ch";
-        private const string SUPPORT_MAIL = "mobile.support@apply-solutions.ch";
-        private const string GITHUB_PROJECT_URL = "https://github.com/MoneyFox/MoneyFox";
-        private const string TRANSLATION_URL = "https://crowdin.com/project/money-fox";
-        private const string ICON_DESIGNER_URL = "https://twitter.com/vandert9";
-        private const string GITHUB_CONTRIBUTOR_URL = "https://github.com/MoneyFox/MoneyFox/graphs/contributors";
-
-        private readonly IAppInformation appInformation;
-        private readonly IBrowserAdapter browserAdapter;
-        private readonly IEmailAdapter emailAdapter;
-        private readonly IStoreOperations storeFeatures;
-
-        public AboutViewModel(IAppInformation appInformation, IEmailAdapter emailAdapter, IBrowserAdapter browserAdapter, IStoreOperations storeOperations)
-        {
-            this.appInformation = appInformation;
-            this.emailAdapter = emailAdapter;
-            this.browserAdapter = browserAdapter;
-            storeFeatures = storeOperations;
-        }
-
-        public AsyncRelayCommand GoToWebsiteCommand => new AsyncRelayCommand(async () => await GoToWebsiteAsync());
-
-        public AsyncRelayCommand SendMailCommand => new AsyncRelayCommand(async () => await SendMailAsync());
-
-        public RelayCommand RateAppCommand => new RelayCommand(RateApp);
-
-        public AsyncRelayCommand GoToRepositoryCommand => new AsyncRelayCommand(async () => await GoToRepositoryAsync());
-
-        public AsyncRelayCommand GoToTranslationProjectCommand => new AsyncRelayCommand(async () => await GoToTranslationProjectAsync());
-
-        public AsyncRelayCommand GoToDesignerTwitterAccountCommand => new AsyncRelayCommand(async () => await GoToDesignerTwitterAccountAsync());
-
-        public AsyncRelayCommand GoToContributionPageCommand => new AsyncRelayCommand(async () => await GoToContributionPageAsync());
-
-        public AsyncRelayCommand OpenLogFileCommand => new AsyncRelayCommand(async () => await OpenLogFile());
-
-        public string Version => appInformation.GetVersion;
-
-        public string Website => WEBSITE_URL;
-
-        public string SupportMail => SUPPORT_MAIL;
-
-        private async Task GoToWebsiteAsync()
-        {
-            await browserAdapter.OpenWebsiteAsync(new Uri(WEBSITE_URL));
-        }
-
-        private async Task SendMailAsync()
-        {
-            await emailAdapter.SendEmailAsync(
-                subject: Strings.FeedbackSubject,
-                body: string.Empty,
-                recipients: new List<string> { SUPPORT_MAIL },
-                filePaths: new List<string> { Path.Combine(path1: FileSystem.AppDataDirectory, path2: LogConfiguration.FileName) });
-        }
-
-        private void RateApp()
-        {
-            storeFeatures.RateApp();
-        }
-
-        private async Task GoToRepositoryAsync()
-        {
-            await browserAdapter.OpenWebsiteAsync(new Uri(GITHUB_PROJECT_URL));
-        }
-
-        private async Task GoToTranslationProjectAsync()
-        {
-            await browserAdapter.OpenWebsiteAsync(new Uri(TRANSLATION_URL));
-        }
-
-        private async Task GoToDesignerTwitterAccountAsync()
-        {
-            await browserAdapter.OpenWebsiteAsync(new Uri(ICON_DESIGNER_URL));
-        }
-
-        private async Task GoToContributionPageAsync()
-        {
-            await browserAdapter.OpenWebsiteAsync(new Uri(GITHUB_CONTRIBUTOR_URL));
-        }
-
-        private async Task OpenLogFile()
-        {
-            var logFilePaths = Directory.GetFiles(path: FileSystem.AppDataDirectory, searchPattern: "moneyfox*").OrderByDescending(x => x);
-            var latestLogFile = logFilePaths.Select(logFilePath => new FileInfo(logFilePath)).OrderByDescending(fi => fi.LastWriteTime).FirstOrDefault();
-            if (latestLogFile != null)
-            {
-                await Launcher.OpenAsync(new OpenFileRequest { File = new ReadOnlyFile(latestLogFile.FullName) });
-            }
-        }
+        this.appInformation = appInformation;
+        this.emailAdapter = emailAdapter;
+        this.browserAdapter = browserAdapter;
+        storeFeatures = storeOperations;
     }
 
+    public AsyncRelayCommand GoToWebsiteCommand => new(async () => await GoToWebsiteAsync());
+
+    public AsyncRelayCommand SendMailCommand => new(async () => await SendMailAsync());
+
+    public RelayCommand RateAppCommand => new(RateApp);
+
+    public AsyncRelayCommand GoToRepositoryCommand => new(async () => await GoToRepositoryAsync());
+
+    public AsyncRelayCommand GoToTranslationProjectCommand => new(async () => await GoToTranslationProjectAsync());
+
+    public AsyncRelayCommand GoToDesignerTwitterAccountCommand => new(async () => await GoToDesignerTwitterAccountAsync());
+
+    public AsyncRelayCommand GoToContributionPageCommand => new(async () => await GoToContributionPageAsync());
+
+    public AsyncRelayCommand OpenLogFileCommand => new(async () => await OpenLogFile());
+
+    public string Version => appInformation.GetVersion;
+
+    public string Website => WEBSITE_URL;
+
+    public string SupportMail => SUPPORT_MAIL;
+
+    private async Task GoToWebsiteAsync()
+    {
+        await browserAdapter.OpenWebsiteAsync(new(WEBSITE_URL));
+    }
+
+    private async Task SendMailAsync()
+    {
+        await emailAdapter.SendEmailAsync(
+            subject: Strings.FeedbackSubject,
+            body: string.Empty,
+            recipients: new() { SUPPORT_MAIL },
+            filePaths: new() { Path.Combine(path1: FileSystem.AppDataDirectory, path2: LogConfiguration.FileName) });
+    }
+
+    private void RateApp()
+    {
+        storeFeatures.RateApp();
+    }
+
+    private async Task GoToRepositoryAsync()
+    {
+        await browserAdapter.OpenWebsiteAsync(new(GITHUB_PROJECT_URL));
+    }
+
+    private async Task GoToTranslationProjectAsync()
+    {
+        await browserAdapter.OpenWebsiteAsync(new(TRANSLATION_URL));
+    }
+
+    private async Task GoToDesignerTwitterAccountAsync()
+    {
+        await browserAdapter.OpenWebsiteAsync(new(ICON_DESIGNER_URL));
+    }
+
+    private async Task GoToContributionPageAsync()
+    {
+        await browserAdapter.OpenWebsiteAsync(new(GITHUB_CONTRIBUTOR_URL));
+    }
+
+    private async Task OpenLogFile()
+    {
+        var logFilePaths = Directory.GetFiles(path: FileSystem.AppDataDirectory, searchPattern: "moneyfox*").OrderByDescending(x => x);
+        var latestLogFile = logFilePaths.Select(logFilePath => new FileInfo(logFilePath)).OrderByDescending(fi => fi.LastWriteTime).FirstOrDefault();
+        if (latestLogFile != null)
+        {
+            await Launcher.OpenAsync(new OpenFileRequest { File = new(latestLogFile.FullName) });
+        }
+    }
 }

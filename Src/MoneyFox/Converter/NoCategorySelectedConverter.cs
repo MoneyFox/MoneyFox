@@ -1,29 +1,24 @@
-﻿namespace MoneyFox.Converter
+﻿namespace MoneyFox.Converter;
+
+using System.Globalization;
+using Core.Resources;
+using ViewModels.Categories;
+
+public class NoCategorySelectedConverter : IValueConverter
 {
-
-    using System;
-    using System.Globalization;
-    using Core.Resources;
-    using ViewModels.Categories;
-    using Xamarin.Forms;
-
-    public class NoCategorySelectedConverter : IValueConverter
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        var category = (CategoryViewModel)value;
+        if (category == null)
         {
-            var category = (CategoryViewModel)value;
-            if (category == null)
-            {
-                return Strings.SelectCategoryLabel;
-            }
-
-            return category.Name;
+            return Strings.SelectCategoryLabel;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotSupportedException();
-        }
+        return category.Name;
     }
 
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotSupportedException();
+    }
 }

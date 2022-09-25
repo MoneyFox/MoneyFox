@@ -7,13 +7,14 @@ namespace MoneyFox.InversionOfControl
     using Core.InversionOfControl;
     using Mapping;
     using Microsoft.Extensions.DependencyInjection;
-    using Mobile.Infrastructure.InversionOfControl;
+    using MoneyFox.Infrastructure.Adapters;
+    using MoneyFox.Infrastructure.InversionOfControl;
+    using MoneyFox.Views.Backup;
     using ViewModels.About;
     using ViewModels.Accounts;
     using ViewModels.Budget;
     using ViewModels.Categories;
     using ViewModels.Dashboard;
-    using ViewModels.DataBackup;
     using ViewModels.Dialogs;
     using ViewModels.OverflowMenu;
     using ViewModels.Payments;
@@ -26,10 +27,11 @@ namespace MoneyFox.InversionOfControl
         public void Register(ServiceCollection serviceCollection)
         {
             RegisterServices(serviceCollection);
+            RegisterAdapters(serviceCollection);
             RegisterViewModels(serviceCollection);
             serviceCollection.AddSingleton(_ => AutoMapperFactory.Create());
             new CoreConfig().Register(serviceCollection);
-            new InfrastructureMobileConfig().Register(serviceCollection);
+            InfrastructureConfig.Register(serviceCollection);
         }
 
         private static void RegisterServices(IServiceCollection serviceCollection)
@@ -37,6 +39,14 @@ namespace MoneyFox.InversionOfControl
             serviceCollection.AddTransient<IDialogService, DialogService>();
             serviceCollection.AddTransient<INavigationService, NavigationService>();
             serviceCollection.AddTransient<IToastService, ToastService>();
+        }
+
+        private static void RegisterAdapters(IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddTransient<IBrowserAdapter, BrowserAdapter>();
+            serviceCollection.AddTransient<IConnectivityAdapter, ConnectivityAdapter>();
+            serviceCollection.AddTransient<IEmailAdapter, EmailAdapter>();
+            serviceCollection.AddTransient<ISettingsAdapter, SettingsAdapter>();
         }
 
         private static void RegisterViewModels(IServiceCollection serviceCollection)

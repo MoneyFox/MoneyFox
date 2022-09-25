@@ -1,17 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             Visual="Material"
-             Shell.NavBarHasShadow="False"
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             xmlns:converter="clr-namespace:MoneyFox.Converter"
-             xmlns:payments="clr-namespace:MoneyFox.ViewModels.Payments;assembly=MoneyFox"
-             xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-             x:Class="MoneyFox.Views.Payments.PaymentListPage">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Shell.NavBarHasShadow="False"
+    xmlns:converter="clr-namespace:MoneyFox.Converter"
+    xmlns:payments="clr-namespace:MoneyFox.ViewModels.Payments;assembly=MoneyFox"
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    x:Class="MoneyFox.Views.Payments.PaymentListPage">
 
     <ContentPage.Resources>
         <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
@@ -22,7 +18,6 @@
         <Grid ColumnDefinitions="*,Auto,66,66,0">
 
             <ImageButton Grid.Column="2"
-                         x:Name="ShowFilterButton"
                          Clicked="ShowFilterPopup"
                          Margin="0,0,5,0"
                          Padding="0"
@@ -80,16 +75,20 @@
                                    Style="{StaticResource TextBodySecondary}"
                                    Text="{Binding Subtitle}" />
 
-                            <yummy:PancakeView
-                                BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                            <Border Grid.Row="2"
+                                    BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                                  Light={StaticResource CardBackgroundLight}}"
-                                CornerRadius="10"
-                                Grid.Row="2"
-                                HorizontalOptions="FillAndExpand">
+                                    Stroke="black"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 10"
+                                    HorizontalOptions="FillAndExpand">
 
-                                <yummy:PancakeView.Shadow>
-                                    <yummy:DropShadow />
-                                </yummy:PancakeView.Shadow>
+                                <Border.Shadow>
+                                    <Shadow Brush="Black"
+                                            Offset="20,20"
+                                            Radius="40"
+                                            Opacity="0.8" />
+                                </Border.Shadow>
 
                                 <StackLayout BindableLayout.ItemsSource="{Binding .}">
                                     <BindableLayout.ItemTemplate>
@@ -157,7 +156,7 @@
                                         </DataTemplate>
                                     </BindableLayout.ItemTemplate>
                                 </StackLayout>
-                            </yummy:PancakeView>
+                            </Border>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

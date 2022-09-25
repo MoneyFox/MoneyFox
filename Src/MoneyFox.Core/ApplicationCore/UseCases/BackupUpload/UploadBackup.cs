@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.ApplicationCore.UseCases.BackupUpload
+namespace MoneyFox.Core.ApplicationCore.UseCases.BackupUpload
 {
 
     using System;
@@ -39,8 +39,8 @@
                     return UploadResult.Skipped;
                 }
 
-                var backupDate = await backupUploadService.GetBackupDateAsync();
-                if (settingsFacade.LastDatabaseUpdate - backupDate.ToLocalTime() < TimeSpan.FromSeconds(1))
+                var backupdate = await backupUploadService.GetBackupDateAsync();
+                if (settingsFacade.LastDatabaseUpdate - backupdate.ToLocalTime() < TimeSpan.FromSeconds(1))
                 {
                     return UploadResult.Skipped;
                 }

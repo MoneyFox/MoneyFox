@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.Dashboard
+namespace MoneyFox.ViewModels.Dashboard
 {
 
     using System.Collections.ObjectModel;
@@ -12,8 +12,6 @@
     using Core.Common.Interfaces;
     using Core.Common.Messages;
     using MediatR;
-    using Xamarin.Forms;
-    using Xamarin.Forms.Internals;
 
     internal class DashboardViewModel : BaseViewModel
     {
@@ -146,7 +144,12 @@
             {
                 isRunning = true;
                 Accounts = mapper.Map<ObservableCollection<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
-                Accounts.ForEach(async x => x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
+
+                foreach (var account in Accounts)
+                {
+                    account.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(account.Id));
+                }
+
                 Assets = await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
                 EndOfMonthBalance = await mediator.Send(new GetTotalEndOfMonthBalanceQuery());
                 MonthlyExpenses = await mediator.Send(new GetMonthlyExpenseQuery());

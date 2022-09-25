@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              x:Class="MoneyFox.Views.SetupAssistant.SetupCompletionPage"
-             Visual="Material"
              Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="False"
              BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}">
@@ -21,12 +20,14 @@
                 <Label Grid.Row="2"
                        Text="{x:Static resources:Strings.CompletedText}" />
 
-                <Grid Grid.Row="4" ColumnDefinitions="*, 2*">
+                <Grid Grid.Row="4" ColumnDefinitions="*, 6, 2*">
                     <Button Grid.Column="0"
+                            VerticalOptions="Center"
                             Text="{x:Static resources:Strings.BackLabel}"
                             Command="{Binding BackCommand}" />
 
                     <Button Grid.Column="1"
+                            VerticalOptions="Center"
                             Text="{x:Static resources:Strings.CompleteLabel}"
                             Command="{Binding CompleteCommand}" />
                 </Grid>

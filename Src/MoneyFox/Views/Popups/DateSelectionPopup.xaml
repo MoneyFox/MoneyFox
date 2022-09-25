@@ -1,12 +1,12 @@
-﻿<xct:Popup xmlns="http://xamarin.com/schemas/2014/forms"
-           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-           xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-           xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
-           Visual="Material"
-           IsLightDismissEnabled="false"
-           Size="330, 400"
-           Color="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
-           x:Class="MoneyFox.Views.Popups.DateSelectionPopup">
+﻿<views:Popup
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:views="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    CanBeDismissedByTappingOutsideOfPopup="false"
+    Size="330, 400"
+    Color="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
+    x:Class="MoneyFox.Views.Popups.DateSelectionPopup">
 
     <Grid RowDefinitions="*, 40">
 
@@ -32,4 +32,4 @@
                 Text="{x:Static resources:Strings.DoneLabel}"
                 Clicked="Button_OnClicked" />
     </Grid>
-</xct:Popup>
+</views:Popup>

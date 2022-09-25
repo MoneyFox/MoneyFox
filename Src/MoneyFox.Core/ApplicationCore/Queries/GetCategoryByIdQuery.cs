@@ -7,7 +7,7 @@
     using Domain.Aggregates.CategoryAggregate;
     using MediatR;
 
-    public class GetCategoryByIdQuery : IRequest<Category>
+    public class GetCategoryByIdQuery : IRequest<Category?>
     {
         public GetCategoryByIdQuery(int categoryId)
         {
@@ -16,7 +16,7 @@
 
         public int CategoryId { get; }
 
-        public class Handler : IRequestHandler<GetCategoryByIdQuery, Category>
+        public class Handler : IRequestHandler<GetCategoryByIdQuery, Category?>
         {
             private readonly IAppDbContext appDbContext;
 
@@ -25,7 +25,7 @@
                 this.appDbContext = appDbContext;
             }
 
-            public async Task<Category> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
+            public async Task<Category?> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
             {
                 return await appDbContext.Categories.FindAsync(request.CategoryId);
             }

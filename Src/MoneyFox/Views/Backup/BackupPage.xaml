@@ -1,17 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
-<ContentPage x:Class="MoneyFox.Views.Backup.BackupPage"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:converter="clr-namespace:MoneyFox.Converter"
-             xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-             BackgroundColor="{DynamicResource WindowBackgroundColor}"
-             Title="{x:Static resources:Strings.BackupTitle}"
-             Shell.NavBarHasShadow="False"
-             mc:Ignorable="d"
-             Visual="Material">
+<ContentPage
+    x:Class="MoneyFox.Views.Backup.BackupPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:MoneyFox.Converter"
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    BackgroundColor="{DynamicResource WindowBackgroundColor}"
+    Title="{x:Static resources:Strings.BackupTitle}"
+    Shell.NavBarHasShadow="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -22,18 +19,26 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Padding="16">
-                <StackLayout IsVisible="{Binding IsLoggedIn}">
+            <VerticalStackLayout Padding="16" Spacing="6" >
+                <VerticalStackLayout IsVisible="{Binding IsLoggedIn}" 
+                           Margin="0,0,0,10">
+                    <Frame CornerRadius="100" 
+                           WidthRequest="80"
+                           HeightRequest="80"
+                           HorizontalOptions="Center"
+                           Padding="0"
+                           IsClippedToBounds="True">
+                        <Image Source="{Binding ProfilePicture}"/>
+                    </Frame>
+                    
                     <Label Style="{StaticResource TextTitle}"
                            Text="{Binding UserAccount.Name}"
                            FontAttributes="Bold"
-                           HorizontalTextAlignment="Center"
-                           Margin="0,10,0,0" />
+                           HorizontalTextAlignment="Center" />
 
                     <Label Text="{Binding UserAccount.Email}"
-                           HorizontalTextAlignment="Center"
-                           Margin="0,0,0,10" />
-                </StackLayout>
+                           HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
 
                 <Button Command="{Binding LoginCommand}"
                         IsVisible="{Binding IsLoggedIn, Converter={StaticResource Inverter}}"
@@ -43,7 +48,7 @@
                         IsVisible="{Binding IsLoggedIn}"
                         Text="{x:Static resources:Strings.LogoutLabel}" />
 
-                <StackLayout IsVisible="{Binding IsLoggedIn}">
+                <VerticalStackLayout IsVisible="{Binding IsLoggedIn}">
 
                     <Label HorizontalOptions="StartAndExpand"
                            Text="{x:Static resources:Strings.BackupInformationLabel}" />
@@ -105,8 +110,8 @@
                                 HorizontalOptions="End"
                                 IsToggled="{Binding IsAutoBackupEnabled}" />
                     </Grid>
-                </StackLayout>
-            </StackLayout>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -6,6 +6,7 @@
     using ApplicationCore.Domain.Aggregates.AccountAggregate;
     using Common.Interfaces;
     using MediatR;
+    using Microsoft.EntityFrameworkCore;
 
     public class UpdateAccountCommand : IRequest
     {
@@ -27,7 +28,7 @@
 
             public async Task<Unit> Handle(UpdateAccountCommand request, CancellationToken cancellationToken)
             {
-                var existingAccount = await appDbContext.Accounts.FindAsync(request.Account.Id);
+                var existingAccount = await appDbContext.Accounts.SingleAsync(a => a.Id == request.Account.Id, cancellationToken: cancellationToken);
                 existingAccount.Change(name: request.Account.Name, note: request.Account.Note ?? "", isExcluded: request.Account.IsExcluded);
                 await appDbContext.SaveChangesAsync(cancellationToken);
 

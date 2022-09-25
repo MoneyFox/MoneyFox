@@ -1,8 +1,7 @@
 namespace MoneyFox.Droid
 {
-
-    using Android.App;
     using Core.Common.Interfaces;
+    using global::Android.App;
 
     public class DroidAppInformation : IAppInformation
     {
