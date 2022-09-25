@@ -64,6 +64,7 @@ steps:
       provProfileSecureFile: 'MoneyFox_Distribution_2022.mobileprovision'
 
   - task: PowerShell@2
+    displayName: "install maui workload"
     inputs:
       targetType: 'inline'
       script: 'dotnet workload install maui --ignore-failed-sources'
@@ -78,8 +79,8 @@ steps:
   - task: DotNetCoreCLI@2
     displayName: 'Build iOS'
     inputs:
-      command: 'build'
-      projects: '**/MoneyFox.iOS.csproj -c Release -f net6.0-ios --no-restore /p:buildForSimulator=false /p:packageApp=True /p:ArchiveOnBuild=True'
+      command: 'publish'
+      projects: '**/MoneyFox.iOS.csproj -c Release -f net6.0-ios /p:ArchiveOnBuild=True'
 
   - task: CopyFiles@2
     displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
