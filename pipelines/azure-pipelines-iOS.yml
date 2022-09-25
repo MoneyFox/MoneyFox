@@ -79,7 +79,7 @@ steps:
   - task: DotNetCoreCLI@2
     displayName: 'Build iOS'
     inputs:
-      command: 'publish'
+      command: 'build'
       projects: '**/MoneyFox.iOS.csproj -c Release -f net6.0-ios /p:ArchiveOnBuild=True'
 
   - task: CopyFiles@2
