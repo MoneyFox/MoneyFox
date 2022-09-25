@@ -79,7 +79,7 @@ steps:
     displayName: 'Build iOS'
     inputs:
       command: 'build'
-      projects: '**/MoneyFox.iOS.csproj -c Release -f net6.0-ios --no-restore /p:buildForSimulator=false /p:packageApp=True /p:ArchiveOnBuild=False'
+      projects: '**/MoneyFox.iOS.csproj -c Release -f net6.0-ios --no-restore /p:buildForSimulator=false /p:packageApp=True /p:ArchiveOnBuild=True'
 
   - task: CopyFiles@2
     displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
