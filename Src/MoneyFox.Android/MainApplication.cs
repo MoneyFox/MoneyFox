@@ -14,6 +14,7 @@ namespace MoneyFox.Droid
     using MoneyFox.Common;
     using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Core.Interfaces;
+    using MoneyFox.Ui.Droid;
     using Serilog;
     using Serilog.Events;
     using Serilog.Exceptions;
