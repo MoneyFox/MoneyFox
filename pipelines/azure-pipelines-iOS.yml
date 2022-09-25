@@ -75,7 +75,7 @@ steps:
       command: 'publish'
       publishWebProjects: false
       projects: '**/MoneyFox.iOS.csproj'
-      arguments: '-c Release -f net6.0-ios /p:ArchiveOnBuild=True /p:Codesignkey="$(APPLE_CERTIFICATE_SIGNING_IDENTITY)" /p:CodesignProvision="$(APPLE_PROV_PROFILE_UUID)"'
+      arguments: '-c Release -f net6.0-ios /p:BuildIpa=true /p:Codesignkey="$(APPLE_CERTIFICATE_SIGNING_IDENTITY)" /p:CodesignProvision="$(APPLE_PROV_PROFILE_UUID)"'
 
   - task: DotNetCoreCLI@2
     displayName: 'Run Tests'
