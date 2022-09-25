@@ -16,12 +16,7 @@
         <PackageReference Include="Dawn.Guard" Version="1.12.0" />
         <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
         <PackageReference Include="MediatR" Version="10.0.1" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.9">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
         <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.9" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.9" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
         <PackageReference Include="Serilog" Version="2.12.0" />
