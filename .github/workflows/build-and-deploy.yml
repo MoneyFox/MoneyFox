@@ -126,7 +126,7 @@ jobs:
       run: dotnet test ${{env.TEST_PROJECT_PATH}}
 
     - name: Build MAUI iOS
-      run: dotnet build ${{env.IOS_PROJECT_PATH}} -c Release -f net6.0-ios /p:ArchiveOnBuild=True 
+      run: dotnet publish ${{env.IOS_PROJECT_PATH}} -c Release -f net6.0-ios /p:ArchiveOnBuild=True 
 
     - name: Upload iOS Artifact
       uses: actions/upload-artifact@v3.1.0
