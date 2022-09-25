@@ -1,9 +1,9 @@
 using Microsoft.Maui.Controls.Compatibility;
 using MoneyFox.Ui;
-using MoneyFox.Ui.iOS.Renderer;
+using MoneyFox.Ui.Platforms.iOS.Renderer;
 
 [assembly: ExportRenderer(typeof(AppShell), typeof(CustomShellRenderer))]
-namespace MoneyFox.Ui.iOS.Renderer
+namespace MoneyFox.Ui.Platforms.iOS.Renderer
 {
     using CoreGraphics;
     using Microsoft.Maui.Controls.Handlers.Compatibility;

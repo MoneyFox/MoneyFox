@@ -1,7 +1,5 @@
 namespace MoneyFox.Ui.Views.Backup
 {
-    using MoneyFox.Views.Backup;
-
     public partial class BackupPage
     {
         public BackupPage()

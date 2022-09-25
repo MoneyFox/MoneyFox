@@ -1,4 +1,4 @@
-namespace MoneyFox.Views.Backup
+namespace MoneyFox.Ui.Views.Backup
 {
     using CommunityToolkit.Mvvm.ComponentModel;
 

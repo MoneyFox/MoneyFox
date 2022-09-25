@@ -1,4 +1,4 @@
-namespace MoneyFox.Droid
+namespace MoneyFox.Ui.Platforms.Android.Resources.Src
 {
 
     using global::Android.App;

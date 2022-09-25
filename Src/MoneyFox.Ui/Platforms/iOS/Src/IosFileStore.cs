@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.iOS
+namespace MoneyFox.Ui.Platforms.iOS.Src
 {
 
     using System;

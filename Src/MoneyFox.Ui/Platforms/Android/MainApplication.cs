@@ -1,4 +1,4 @@
-namespace MoneyFox.Droid
+namespace MoneyFox.Ui.Platforms.Android
 {
 
     using System;
@@ -15,6 +15,7 @@ namespace MoneyFox.Droid
     using MoneyFox.Core.Interfaces;
     using MoneyFox.Ui;
     using MoneyFox.Ui.Common;
+    using MoneyFox.Ui.Platforms.Android.Resources.Src;
     using Serilog;
     using Serilog.Events;
     using Serilog.Exceptions;
@@ -28,7 +29,7 @@ namespace MoneyFox.Droid
             services.AddSingleton<IDbPathProvider, DbPathProvider>();
             services.AddSingleton<IStoreOperations, PlayStoreOperations>();
             services.AddSingleton<IAppInformation, DroidAppInformation>();
-            services.AddTransient<IFileStore>(_ => new FileStoreIoBase(global::Android.App.Application.Context.FilesDir?.Path ?? ""));
+            services.AddTransient<IFileStore>(_ => new FileStoreIoBase(Context.FilesDir?.Path ?? ""));
         }
 
         public MainApplication(IntPtr handle, JniHandleOwnership ownership)

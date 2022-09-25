@@ -7,7 +7,7 @@ using MoneyFox.Core.Common.Interfaces;
 using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.InversionOfControl;
 using MoneyFox.Infrastructure.InversionOfControl;
-using MoneyFox.Views.Backup;
+using MoneyFox.Ui.Views.Backup;
 using ViewModels.About;
 using ViewModels.Accounts;
 using ViewModels.Budget;
