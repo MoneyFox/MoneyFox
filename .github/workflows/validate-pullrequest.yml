@@ -9,8 +9,8 @@ on:
 env:
     DOTNETVERSION: 6.0.400
     UI_PROJECT_PATH: "src/MoneyFox.Ui/MoneyFox.Ui.csproj"
-    CORE_TEST_PROJECT_PATH: "src/MoneyFox.Tests/MoneyFox.Core.Tests.csproj"
-    UI_TEST_PROJECT_PATH: "src/MoneyFox.Tests/MoneyFox.Ui.Tests.csproj"
+    CORE_TEST_PROJECT_PATH: "src/MoneyFox.Core.Tests/MoneyFox.Core.Tests.csproj"
+    UI_TEST_PROJECT_PATH: "src/MoneyFox.Ui.Tests/MoneyFox.Ui.Tests.csproj"
     INFRASTRUCTURE_PROJECT_PATH: "src/MoneyFox.Infrastructure.Tests/MoneyFox.Infrastructure.Tests.csproj"
 
 jobs:
