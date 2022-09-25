@@ -16,8 +16,6 @@
         <ArchiveOnBuild>true</ArchiveOnBuild>
         <CodesignKey>Apple Distribution: Apply Solutions GmbH (HTWW78XH49)</CodesignKey>
         <CodesignProvision>MoneyFox Distribution 2022</CodesignProvision>
-        <MtouchUseLlvm>False</MtouchUseLlvm>
-        <AotAssemblies>True</AotAssemblies>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
@@ -49,7 +47,7 @@
         </PackageReference>
         <PackageReference Include="Serilog.Sinks.File" Version="5.0.0">
         </PackageReference>
-        <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.1">
+        <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.2">
         </PackageReference>
     </ItemGroup>
 
