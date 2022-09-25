@@ -35,11 +35,11 @@ jobs:
     - name: Restore Dependencies
       run: dotnet restore ${{env.ANDROID_PROJECT_PATH}}
 
+    - name: Build MAUI Android
+      run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net6.0-android -c Release    
+      
     - name: Test
       run: dotnet test ${{env.TEST_PROJECT_PATH}}
-
-    - name: Build MAUI Android
-      run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net6.0-android -c Release
 
   buildiOS:
 
@@ -61,11 +61,11 @@ jobs:
     - name: Restore Dependencies
       run: dotnet restore ${{env.IOS_PROJECT_PATH}}
 
-    - name: Test
-      run: dotnet test ${{env.TEST_PROJECT_PATH}}
-
     - name: Build MAUI iOS
       run: dotnet build ${{env.UI_PROJECT_PATH}} net6.0-ios c- Debug --no-restore /p:buildForSimulator=True /p:packageApp=True /p:ArchiveOnBuild=False
+
+    - name: Test
+      run: dotnet test ${{env.TEST_PROJECT_PATH}}
 
 
   buildWindows:
