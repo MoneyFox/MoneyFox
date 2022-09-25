@@ -45,13 +45,6 @@ steps:
       printFile: true
 
   - task: DotNetCoreCLI@2
-    displayName: 'Run Tests'
-    inputs:
-      command: 'test'
-      projects: '**/*.Tests.csproj'
-      arguments: '--configuration $(BuildConfiguration)'
-
-  - task: DotNetCoreCLI@2
     displayName: 'build Android app'
     inputs:
       command: 'publish'
@@ -59,6 +52,13 @@ steps:
       projects: '**/MoneyFox.Android.csproj'
       arguments: '-c Release -f net6.0-android /p:AndroidKeyStore="True" /p:AndroidSigningKeyAlias="$(KeyStoreAlias)" /p:AndroidSigningKeyStore="$(keystore.secureFilePath)" /p:AndroidSigningKeyPass="$(KeyStorePass)" /p:AndroidSigningStorePass="$(KeyStorePass)"'
 
+  - task: DotNetCoreCLI@2
+    displayName: 'Run Tests'
+    inputs:
+      command: 'test'
+      projects: '**/*.Tests.csproj'
+      arguments: '--configuration $(BuildConfiguration)'
+      
   - task: CopyFiles@2
     displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
     inputs:
