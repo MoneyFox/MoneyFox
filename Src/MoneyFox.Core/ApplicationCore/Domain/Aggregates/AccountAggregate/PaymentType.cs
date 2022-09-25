@@ -1,6 +1,4 @@
-namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate
-{
+namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 
-    public enum PaymentType { Expense, Income, Transfer }
+public enum PaymentType { Expense, Income, Transfer }
 
-}

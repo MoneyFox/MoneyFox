@@ -1,80 +1,78 @@
-namespace MoneyFox.Core.ApplicationCore.Queries.BudgetListLoading
+namespace MoneyFox.Core.ApplicationCore.Queries.BudgetListLoading;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Common.Helpers;
+using Common.Interfaces;
+using Domain.Aggregates.AccountAggregate;
+using Domain.Aggregates.BudgetAggregate;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+
+public static class LoadBudgetListData
 {
+    public class Query : IRequest<IReadOnlyCollection<BudgetListData>> { }
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Common.Helpers;
-    using Common.Interfaces;
-    using Domain.Aggregates.AccountAggregate;
-    using Domain.Aggregates.BudgetAggregate;
-    using MediatR;
-    using Microsoft.EntityFrameworkCore;
-
-    public static class LoadBudgetListData
+    public class Handler : IRequestHandler<Query, IReadOnlyCollection<BudgetListData>>
     {
-        public class Query : IRequest<IReadOnlyCollection<BudgetListData>> { }
+        private readonly IAppDbContext appDbContext;
+        private readonly ISystemDateHelper systemDateHelper;
 
-        public class Handler : IRequestHandler<Query, IReadOnlyCollection<BudgetListData>>
+        public Handler(ISystemDateHelper systemDateHelper, IAppDbContext appDbContext)
         {
-            private readonly IAppDbContext appDbContext;
-            private readonly ISystemDateHelper systemDateHelper;
+            this.appDbContext = appDbContext;
+            this.systemDateHelper = systemDateHelper;
+        }
 
-            public Handler(ISystemDateHelper systemDateHelper, IAppDbContext appDbContext)
+        public async Task<IReadOnlyCollection<BudgetListData>> Handle(Query request, CancellationToken cancellationToken)
+        {
+            List<Budget> budgets = await appDbContext.Budgets.ToListAsync(cancellationToken);
+            List<BudgetListData> budgetListDataList = new();
+            foreach (Budget? budget in budgets)
             {
-                this.appDbContext = appDbContext;
-                this.systemDateHelper = systemDateHelper;
-            }
+                DateTime thresholdDate = GetThresholdDateFor(budget.BudgetTimeRange);
+                List<Payment> payments = await appDbContext.Payments.Where(p => p.Type != PaymentType.Transfer)
+                    .Where(p => p.CategoryId != null)
+                    .Where(p => p.Date >= thresholdDate)
+                    .Where(p => budget.IncludedCategories.Contains(p.CategoryId!.Value))
+                    .OrderBy(p => p.Date)
+                    .ToListAsync(cancellationToken);
 
-            public async Task<IReadOnlyCollection<BudgetListData>> Handle(Query request, CancellationToken cancellationToken)
-            {
-                var budgets = await appDbContext.Budgets.ToListAsync(cancellationToken);
-                var budgetListDataList = new List<BudgetListData>();
-                foreach (var budget in budgets)
+                if (payments.Any() is false)
                 {
-                    var thresholdDate = GetThresholdDateFor(budget.BudgetTimeRange);
-                    var payments = await appDbContext.Payments.Where(p => p.Type != PaymentType.Transfer)
-                        .Where(p => p.CategoryId != null)
-                        .Where(p => p.Date >= thresholdDate)
-                        .Where(p => budget.IncludedCategories.Contains(p.CategoryId!.Value))
-                        .OrderBy(p => p.Date)
-                        .ToListAsync(cancellationToken);
+                    budgetListDataList.Add(new BudgetListData(id: budget.Id, name: budget.Name, spendingLimit: budget.SpendingLimit, currentSpending: 0));
 
-                    if (payments.Any() is false)
-                    {
-                        budgetListDataList.Add(new BudgetListData(id: budget.Id, name: budget.Name, spendingLimit: budget.SpendingLimit, currentSpending: 0));
-
-                        continue;
-                    }
-
-                    var timeDeltaFirstPaymentAndNow = systemDateHelper.Now.Date - thresholdDate.Date;
-                    var numberOfMonthsInRange = (int)Math.Floor(timeDeltaFirstPaymentAndNow.TotalDays / 30);
-
-                    // Since sum is not supported for decimal in Ef Core with SQLite we have to do this in two steps
-                    var currentSpending = payments.Sum(selector: p => p.Type == PaymentType.Expense ? p.Amount : -p.Amount);
-                    var monthlyAverage = currentSpending / numberOfMonthsInRange;
-                    budgetListDataList.Add(
-                        new BudgetListData(id: budget.Id, name: budget.Name, spendingLimit: budget.SpendingLimit, currentSpending: monthlyAverage));
+                    continue;
                 }
 
-                return budgetListDataList;
+                TimeSpan timeDeltaFirstPaymentAndNow = systemDateHelper.Now.Date - thresholdDate.Date;
+                int numberOfMonthsInRange = (int)Math.Floor(timeDeltaFirstPaymentAndNow.TotalDays / 30);
+
+                // Since sum is not supported for decimal in Ef Core with SQLite we have to do this in two steps
+                decimal currentSpending = payments.Sum(selector: p => p.Type == PaymentType.Expense ? p.Amount : -p.Amount);
+                decimal monthlyAverage = currentSpending / numberOfMonthsInRange;
+                budgetListDataList.Add(
+                    new BudgetListData(id: budget.Id, name: budget.Name, spendingLimit: budget.SpendingLimit, currentSpending: monthlyAverage));
             }
 
-            private DateTime GetThresholdDateFor(BudgetTimeRange timeRange)
+            return budgetListDataList;
+        }
+
+        private DateTime GetThresholdDateFor(BudgetTimeRange timeRange)
+        {
+            return timeRange switch
             {
-                return timeRange switch
-                {
-                    BudgetTimeRange.YearToDate => new DateTime(year: systemDateHelper.Today.Year, month: 1, day: 1),
-                    BudgetTimeRange.Last1Year => systemDateHelper.Today.AddYears(-1),
-                    BudgetTimeRange.Last2Years => systemDateHelper.Today.AddYears(-2),
-                    BudgetTimeRange.Last3Years => systemDateHelper.Today.AddYears(-3),
-                    BudgetTimeRange.Last5Years => systemDateHelper.Today.AddYears(-5),
-                    _ => throw new ArgumentOutOfRangeException(paramName: nameof(timeRange), actualValue: timeRange, message: null)
-                };
-            }
+                BudgetTimeRange.YearToDate => new DateTime(year: systemDateHelper.Today.Year, month: 1, day: 1),
+                BudgetTimeRange.Last1Year => systemDateHelper.Today.AddYears(-1),
+                BudgetTimeRange.Last2Years => systemDateHelper.Today.AddYears(-2),
+                BudgetTimeRange.Last3Years => systemDateHelper.Today.AddYears(-3),
+                BudgetTimeRange.Last5Years => systemDateHelper.Today.AddYears(-5),
+                _ => throw new ArgumentOutOfRangeException(paramName: nameof(timeRange), actualValue: timeRange, message: null)
+            };
         }
     }
-
 }
+

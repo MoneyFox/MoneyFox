@@ -1,19 +1,17 @@
-﻿namespace MoneyFox.Core.ApplicationCore.Domain.Exceptions
+﻿namespace MoneyFox.Core.ApplicationCore.Domain.Exceptions;
+
+using System;
+using System.Runtime.Serialization;
+
+[Serializable]
+public class StartAfterEnddateException : Exception
 {
+    public StartAfterEnddateException() { }
 
-    using System;
-    using System.Runtime.Serialization;
+    protected StartAfterEnddateException(SerializationInfo info, StreamingContext context) : base(info: info, context: context) { }
 
-    [Serializable]
-    public class StartAfterEnddateException : Exception
-    {
-        public StartAfterEnddateException() { }
+    public StartAfterEnddateException(string message) : base(message) { }
 
-        protected StartAfterEnddateException(SerializationInfo info, StreamingContext context) : base(info: info, context: context) { }
-
-        public StartAfterEnddateException(string message) : base(message) { }
-
-        public StartAfterEnddateException(string message, Exception innerException) : base(message: message, innerException: innerException) { }
-    }
-
+    public StartAfterEnddateException(string message, Exception innerException) : base(message: message, innerException: innerException) { }
 }
+

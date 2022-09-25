@@ -1,25 +1,17 @@
-namespace MoneyFox.Core.Common.Helpers
+namespace MoneyFox.Core.Common.Helpers;
+
+using ApplicationCore.Domain.Aggregates.AccountAggregate;
+
+public static class RecurringPaymentHelper
 {
-
-    using ApplicationCore.Domain.Aggregates.AccountAggregate;
-
-    public static class RecurringPaymentHelper
+    public static bool AllowLastDayOfMonth(PaymentRecurrence passedEnum)
     {
-        public static bool AllowLastDayOfMonth(PaymentRecurrence passedEnum)
+        // TODO: Change to a switch expression using 'or' for the multiple condition matches when the project is upgraded to C# 9.
+        return passedEnum switch
         {
-            // TODO: Change to a switch expression using 'or' for the multiple condition matches when the project is upgraded to C# 9.
-            switch (passedEnum)
-            {
-                case PaymentRecurrence.Monthly:
-                case PaymentRecurrence.Bimonthly:
-                case PaymentRecurrence.Quarterly:
-                case PaymentRecurrence.Biannually:
-                case PaymentRecurrence.Yearly:
-                    return true;
-                default:
-                    return false;
-            }
-        }
+            PaymentRecurrence.Monthly or PaymentRecurrence.Bimonthly or PaymentRecurrence.Quarterly or PaymentRecurrence.Biannually or PaymentRecurrence.Yearly => true,
+            _ => false,
+        };
     }
-
 }
+

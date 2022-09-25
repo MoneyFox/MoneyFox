@@ -1,19 +1,17 @@
-﻿namespace MoneyFox.Core.ApplicationCore.Domain.Exceptions
+﻿namespace MoneyFox.Core.ApplicationCore.Domain.Exceptions;
+
+using System;
+using System.Runtime.Serialization;
+
+[Serializable]
+public class RecurringPaymentNullException : Exception
 {
+    public RecurringPaymentNullException() { }
 
-    using System;
-    using System.Runtime.Serialization;
+    public RecurringPaymentNullException(string message) : base(message) { }
 
-    [Serializable]
-    public class RecurringPaymentNullException : Exception
-    {
-        public RecurringPaymentNullException() { }
+    public RecurringPaymentNullException(string message, Exception innerException) : base(message: message, innerException: innerException) { }
 
-        public RecurringPaymentNullException(string message) : base(message) { }
-
-        public RecurringPaymentNullException(string message, Exception innerException) : base(message: message, innerException: innerException) { }
-
-        protected RecurringPaymentNullException(SerializationInfo info, StreamingContext context) : base(info: info, context: context) { }
-    }
-
+    protected RecurringPaymentNullException(SerializationInfo info, StreamingContext context) : base(info: info, context: context) { }
 }
+

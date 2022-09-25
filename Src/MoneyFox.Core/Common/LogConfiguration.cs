@@ -1,9 +1,7 @@
-namespace MoneyFox.Core.Common
+namespace MoneyFox.Core.Common;
+
+public static class LogConfiguration
 {
-
-    public static class LogConfiguration
-    {
-        public static string FileName => "moneyfox.log";
-    }
-
+    public static string FileName => "moneyfox.log";
 }
+

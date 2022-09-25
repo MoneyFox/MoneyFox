@@ -1,38 +1,36 @@
-﻿namespace MoneyFox.Core.Commands.Categories.DeleteCategoryById
+﻿namespace MoneyFox.Core.Commands.Categories.DeleteCategoryById;
+
+using System.Threading;
+using System.Threading.Tasks;
+using Common.Interfaces;
+using MediatR;
+
+public class DeleteCategoryByIdCommand : IRequest
 {
-
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Common.Interfaces;
-    using MediatR;
-
-    public class DeleteCategoryByIdCommand : IRequest
+    public DeleteCategoryByIdCommand(int categoryId)
     {
-        public DeleteCategoryByIdCommand(int categoryId)
-        {
-            CategoryId = categoryId;
-        }
-
-        public int CategoryId { get; }
-
-        public class Handler : IRequestHandler<DeleteCategoryByIdCommand>
-        {
-            private readonly IAppDbContext appDbContext;
-
-            public Handler(IAppDbContext appDbContext)
-            {
-                this.appDbContext = appDbContext;
-            }
-
-            public async Task<Unit> Handle(DeleteCategoryByIdCommand request, CancellationToken cancellationToken)
-            {
-                var entityToDelete = await appDbContext.Categories.FindAsync(request.CategoryId);
-                appDbContext.Categories.Remove(entityToDelete);
-                await appDbContext.SaveChangesAsync(cancellationToken);
-
-                return Unit.Value;
-            }
-        }
+        CategoryId = categoryId;
     }
 
+    public int CategoryId { get; }
+
+    public class Handler : IRequestHandler<DeleteCategoryByIdCommand>
+    {
+        private readonly IAppDbContext appDbContext;
+
+        public Handler(IAppDbContext appDbContext)
+        {
+            this.appDbContext = appDbContext;
+        }
+
+        public async Task<Unit> Handle(DeleteCategoryByIdCommand request, CancellationToken cancellationToken)
+        {
+            ApplicationCore.Domain.Aggregates.CategoryAggregate.Category? entityToDelete = await appDbContext.Categories.FindAsync(request.CategoryId);
+            _ = appDbContext.Categories.Remove(entityToDelete);
+            _ = await appDbContext.SaveChangesAsync(cancellationToken);
+
+            return Unit.Value;
+        }
+    }
 }
+

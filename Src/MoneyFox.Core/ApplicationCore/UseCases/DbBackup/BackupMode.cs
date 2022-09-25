@@ -1,6 +1,4 @@
-﻿namespace MoneyFox.Core.ApplicationCore.UseCases.DbBackup
-{
+﻿namespace MoneyFox.Core.ApplicationCore.UseCases.DbBackup;
 
-    public enum BackupMode { Manual, Automatic }
+public enum BackupMode { Manual, Automatic }
 
-}

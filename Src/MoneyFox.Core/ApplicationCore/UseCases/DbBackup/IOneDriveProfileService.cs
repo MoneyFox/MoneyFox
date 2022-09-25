@@ -1,12 +1,11 @@
-namespace MoneyFox.Core.ApplicationCore.UseCases.DbBackup
+namespace MoneyFox.Core.ApplicationCore.UseCases.DbBackup;
+
+using System.IO;
+using System.Threading.Tasks;
+
+public interface IOneDriveProfileService
 {
-    using System.IO;
-    using System.Threading.Tasks;
+    Task<UserAccountDto> GetUserAccountAsync();
 
-    public interface IOneDriveProfileService
-    {
-        Task<UserAccountDto> GetUserAccountAsync();
-
-        Task<Stream> GetProfilePictureAsync();
-    }
+    Task<Stream> GetProfilePictureAsync();
 }

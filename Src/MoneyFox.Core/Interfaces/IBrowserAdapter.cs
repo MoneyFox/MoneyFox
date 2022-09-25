@@ -1,12 +1,10 @@
-﻿namespace MoneyFox.Core.Interfaces
+﻿namespace MoneyFox.Core.Interfaces;
+
+using System;
+using System.Threading.Tasks;
+
+public interface IBrowserAdapter
 {
-
-    using System;
-    using System.Threading.Tasks;
-
-    public interface IBrowserAdapter
-    {
-        Task OpenWebsiteAsync(Uri uri);
-    }
-
+    Task OpenWebsiteAsync(Uri uri);
 }
+

@@ -1,9 +1,7 @@
-﻿namespace MoneyFox.Core.Common
+﻿namespace MoneyFox.Core.Common;
+
+public static class DatabaseConfiguration
 {
-
-    public static class DatabaseConfiguration
-    {
-        public static string DatabaseName => "moneyfox3.db";
-    }
-
+    public static string DatabaseName => "moneyfox3.db";
 }
+

@@ -1,19 +1,17 @@
-﻿namespace MoneyFox.Core.ApplicationCore.Domain.Exceptions
+﻿namespace MoneyFox.Core.ApplicationCore.Domain.Exceptions;
+
+using System;
+using System.Runtime.Serialization;
+
+[Serializable]
+public class GroupListParameterNullException : Exception
 {
+    public GroupListParameterNullException() { }
 
-    using System;
-    using System.Runtime.Serialization;
+    public GroupListParameterNullException(string message) : base(message) { }
 
-    [Serializable]
-    public class GroupListParameterNullException : Exception
-    {
-        public GroupListParameterNullException() { }
+    public GroupListParameterNullException(string message, Exception innerException) : base(message: message, innerException: innerException) { }
 
-        public GroupListParameterNullException(string message) : base(message) { }
-
-        public GroupListParameterNullException(string message, Exception innerException) : base(message: message, innerException: innerException) { }
-
-        protected GroupListParameterNullException(SerializationInfo info, StreamingContext context) : base(info: info, context: context) { }
-    }
-
+    protected GroupListParameterNullException(SerializationInfo info, StreamingContext context) : base(info: info, context: context) { }
 }
+

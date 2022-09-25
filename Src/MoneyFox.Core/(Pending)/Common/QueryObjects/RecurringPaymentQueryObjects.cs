@@ -1,16 +1,14 @@
-﻿namespace MoneyFox.Core._Pending_.Common.QueryObjects
+﻿namespace MoneyFox.Core._Pending_.Common.QueryObjects;
+
+using System;
+using System.Linq;
+using ApplicationCore.Domain.Aggregates;
+
+public static class RecurringPaymentQueryObjects
 {
-
-    using System;
-    using System.Linq;
-    using ApplicationCore.Domain.Aggregates;
-
-    public static class RecurringPaymentQueryObjects
+    public static IQueryable<RecurringPayment> IsNotExpired(this IQueryable<RecurringPayment> queryable)
     {
-        public static IQueryable<RecurringPayment> IsNotExpired(this IQueryable<RecurringPayment> queryable)
-        {
-            return queryable.Where(x => x.IsEndless || x.EndDate >= DateTime.Today);
-        }
+        return queryable.Where(x => x.IsEndless || x.EndDate >= DateTime.Today);
     }
-
 }
+

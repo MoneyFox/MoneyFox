@@ -1,9 +1,7 @@
-﻿namespace MoneyFox.Core.Common.Interfaces
+﻿namespace MoneyFox.Core.Common.Interfaces;
+
+public interface IAppInformation
 {
-
-    public interface IAppInformation
-    {
-        string GetVersion { get; }
-    }
-
+    string GetVersion { get; }
 }
+

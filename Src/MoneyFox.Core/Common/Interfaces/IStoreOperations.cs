@@ -1,12 +1,10 @@
-﻿namespace MoneyFox.Core.Common.Interfaces
+﻿namespace MoneyFox.Core.Common.Interfaces;
+
+public interface IStoreOperations
 {
-
-    public interface IStoreOperations
-    {
-        /// <summary>
-        ///     Opens the store and allows rating the app.
-        /// </summary>
-        void RateApp();
-    }
-
+    /// <summary>
+    ///     Opens the store and allows rating the app.
+    /// </summary>
+    void RateApp();
 }
+

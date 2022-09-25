@@ -1,6 +1,4 @@
-﻿namespace MoneyFox.Core.Common.Interfaces
-{
+﻿namespace MoneyFox.Core.Common.Interfaces;
 
-    public interface IAggregateRoot { }
+public interface IAggregateRoot { }
 
-}

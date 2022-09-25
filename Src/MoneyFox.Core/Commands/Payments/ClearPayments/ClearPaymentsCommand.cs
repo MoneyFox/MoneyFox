@@ -1,43 +1,41 @@
-﻿namespace MoneyFox.Core.Commands.Payments.ClearPayments
+﻿namespace MoneyFox.Core.Commands.Payments.ClearPayments;
+
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using _Pending_.Common.QueryObjects;
+using Common.Interfaces;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+
+public class ClearPaymentsCommand : IRequest
 {
-
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using _Pending_.Common.QueryObjects;
-    using Common.Interfaces;
-    using MediatR;
-    using Microsoft.EntityFrameworkCore;
-
-    public class ClearPaymentsCommand : IRequest
+    public class Handler : IRequestHandler<ClearPaymentsCommand>
     {
-        public class Handler : IRequestHandler<ClearPaymentsCommand>
+        private readonly IAppDbContext appDbContext;
+
+        public Handler(IAppDbContext appDbContext)
         {
-            private readonly IAppDbContext appDbContext;
+            this.appDbContext = appDbContext;
+        }
 
-            public Handler(IAppDbContext appDbContext)
+        public async Task<Unit> Handle(ClearPaymentsCommand request, CancellationToken cancellationToken)
+        {
+            System.Collections.Generic.List<ApplicationCore.Domain.Aggregates.AccountAggregate.Payment> unclearedPayments = await appDbContext.Payments.Include(x => x.ChargedAccount)
+                .Include(x => x.TargetAccount)
+                .AsQueryable()
+                .AreNotCleared()
+                .ToListAsync(cancellationToken: cancellationToken);
+
+            foreach (ApplicationCore.Domain.Aggregates.AccountAggregate.Payment? payment in unclearedPayments)
             {
-                this.appDbContext = appDbContext;
+                payment.ClearPayment();
             }
 
-            public async Task<Unit> Handle(ClearPaymentsCommand request, CancellationToken cancellationToken)
-            {
-                var unclearedPayments = await appDbContext.Payments.Include(x => x.ChargedAccount)
-                    .Include(x => x.TargetAccount)
-                    .AsQueryable()
-                    .AreNotCleared()
-                    .ToListAsync(cancellationToken: cancellationToken);
+            _ = await appDbContext.SaveChangesAsync(cancellationToken);
 
-                foreach (var payment in unclearedPayments)
-                {
-                    payment.ClearPayment();
-                }
-
-                await appDbContext.SaveChangesAsync(cancellationToken);
-
-                return Unit.Value;
-            }
+            return Unit.Value;
         }
     }
-
 }
+
