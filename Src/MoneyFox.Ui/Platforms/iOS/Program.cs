@@ -1,4 +1,6 @@
-﻿namespace MoneyFox.Ui;
+namespace MoneyFox.Ui;
+
+using MoneyFox.iOS;
 using ObjCRuntime;
 using UIKit;
 

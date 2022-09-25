@@ -1,4 +1,4 @@
-namespace MoneyFox.Android;
+namespace MoneyFox.Ui.Android;
 
 using Common;
 using Core.Common.Interfaces;
@@ -8,11 +8,11 @@ using global::Android.App;
 using global::Android.Content;
 using global::Android.Content.PM;
 using global::Android.OS;
-using Infrastructure.DbBackup.Legacy;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Identity.Client;
 using Microsoft.Maui;
 using Microsoft.Maui.ApplicationModel;
+using MoneyFox.Infrastructure.DbBackup.Legacy;
 
 [Activity(Label = "MoneyFox", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.UiMode | ConfigChanges.Orientation)]
 public class MainActivity : MauiAppCompatActivity

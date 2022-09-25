@@ -1,4 +1,4 @@
-namespace MoneyFox.iOS;
+namespace MoneyFox.Ui.iOS;
 
 using Autofac;
 using Common;

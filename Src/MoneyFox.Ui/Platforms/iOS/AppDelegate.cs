@@ -1,14 +1,12 @@
 namespace MoneyFox.iOS;
-
-using Autofac;
-using Common;
 using Core.Common;
 using Core.Common.Interfaces;
 using Core.Interfaces;
 using Foundation;
-using Infrastructure.DbBackup;
 using JetBrains.Annotations;
 using Microsoft.Identity.Client;
+using MoneyFox.Ui;
+using MoneyFox.Ui.iOS;
 using Serilog;
 using Serilog.Events;
 using Serilog.Exceptions;

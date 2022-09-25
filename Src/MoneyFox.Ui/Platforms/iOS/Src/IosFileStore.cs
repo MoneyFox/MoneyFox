@@ -1,8 +1,8 @@
-﻿namespace MoneyFox.iOS
+namespace MoneyFox.Ui.iOS
 {
 
     using System;
-    using Common;
+    using MoneyFox.Ui.Common;
 
     public class IosFileStore : FileStoreIoBase
     {

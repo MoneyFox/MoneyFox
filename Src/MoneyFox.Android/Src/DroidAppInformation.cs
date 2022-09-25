@@ -1,4 +1,4 @@
-namespace MoneyFox.Droid
+namespace MoneyFox.Ui.Droid
 {
     using Core.Common.Interfaces;
     using global::Android.App;

@@ -11,9 +11,10 @@ namespace MoneyFox.Droid
     using Microsoft.Maui;
     using Microsoft.Maui.Hosting;
     using Microsoft.Maui.Storage;
-    using MoneyFox.Common;
     using MoneyFox.Core.Common.Interfaces;
     using MoneyFox.Core.Interfaces;
+    using MoneyFox.Ui;
+    using MoneyFox.Ui.Common;
     using Serilog;
     using Serilog.Events;
     using Serilog.Exceptions;
