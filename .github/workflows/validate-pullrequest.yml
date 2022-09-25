@@ -32,14 +32,6 @@ jobs:
     - name: Restore Dependencies
       run: dotnet restore ${{env.UI_PROJECT_PATH}}
 
-    - uses: actions/cache@v3
-      with:
-        path: ~/.nuget/packages
-        # Look to see if there is a cache hit for the corresponding requirements file
-        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-nuget
-
     - name: Build MAUI Android
       run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net6.0-android -c Release    
       
@@ -65,15 +57,7 @@ jobs:
       run: dotnet workload install maui --ignore-failed-sources
 
     - name: Restore Dependencies
-      run: dotnet restore ${{env.UI_PROJECT_PATH}}
-
-    - uses: actions/cache@v3
-      with:
-        path: ~/.nuget/packages
-        # Look to see if there is a cache hit for the corresponding requirements file
-        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-nuget    
+      run: dotnet restore ${{env.UI_PROJECT_PATH}} 
 
     - name: Build MAUI iOS
       run: dotnet build ${{env.UI_PROJECT_PATH}} -f net6.0-ios -c Debug /p:buildForSimulator=True /p:packageApp=True /p:ArchiveOnBuild=False
@@ -103,14 +87,6 @@ jobs:
 
       - name: Restore Dependencies
         run: dotnet restore ${{env.UI_PROJECT_PATH}}
-
-      - uses: actions/cache@v3
-        with:
-          path: ~/.nuget/packages
-          # Look to see if there is a cache hit for the corresponding requirements file
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
-          restore-keys: |
-              ${{ runner.os }}-nuget  
       
       # https://docs.microsoft.com/en-us/dotnet/maui/windows/deployment/overview
       - name: Build Windows MSIX
