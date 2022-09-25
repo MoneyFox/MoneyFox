@@ -50,18 +50,19 @@ jobs:
       run: dotnet test ${{env.TEST_PROJECT_PATH}}
 
     - name: Build MAUI Android
-      run: dotnet publish ${{env.ANDROID_PROJECT_PATH}} -c Release -f net6.0-android --no-restore -o ${{env.ANDROID_PROJECT_PATH}}/build
+      run: dotnet publish ${{env.ANDROID_PROJECT_PATH}} -c Release -f net6.0-android --no-restore -o "${{env.ANDROID_PROJECT_PATH}}/build"
 
     - uses: r0adkll/sign-android-release@v1
       name: Sign app ABB
       # ID used to access action output
       id: sign_app
       with:
-        releaseDirectory: ${{env.ANDROID_PROJECT_PATH}}/build
+        releaseDirectory: "${{env.ANDROID_PROJECT_PATH}}/build"
         signingKeyBase64: ${{ secrets.RELEASE_KEYSTORE }}
-        alias: "moneyfox-keystore"
+        alias: ${{ secrets.KEYSTORE_ALIAS }}
         keyStorePassword: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
         keyPassword: ${{ secrets.KEYSTORE_PASSWORD }}
+
 
     - uses: actions/upload-artifact@v2
       with:
@@ -125,7 +126,7 @@ jobs:
       run: dotnet test ${{env.TEST_PROJECT_PATH}}
 
     - name: Build MAUI iOS
-      run: dotnet build ${{env.IOS_PROJECT_PATH}} -c Release -f net6.0-ios --no-restore /p:buildForSimulator=false /p:packageApp=True /p:ArchiveOnBuild=False 
+      run: dotnet publish ${{env.IOS_PROJECT_PATH}} -c Release -f net6.0-ios --no-restore /p:ArchiveOnBuild=True 
 
     - name: Upload iOS Artifact
       uses: actions/upload-artifact@v3.1.0
