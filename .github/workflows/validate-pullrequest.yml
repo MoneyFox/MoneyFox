@@ -30,9 +30,7 @@ jobs:
 
     - name: Install MAUI Workload
 
-      run: |
-        dotnet workload install android --ignore-failed-sources
-        dotnet workload install maui --ignore-failed-sources
+      run: dotnet workload install maui --ignore-failed-sources
 
     - name: Restore Dependencies
       run: dotnet restore ${{env.ANDROID_PROJECT_PATH}}
@@ -59,9 +57,7 @@ jobs:
         dotnet-version: '${{env.DOTNETVERSION}}'
 
     - name: Install MAUI Workloads
-      run: |
-        dotnet workload install ios --ignore-failed-sources
-        dotnet workload install maui --ignore-failed-sources
+      run: dotnet workload install maui --ignore-failed-sources
 
     - name: Restore Dependencies
       run: dotnet restore ${{env.IOS_PROJECT_PATH}}
@@ -71,6 +67,7 @@ jobs:
       
     - name: Test
       run: |
+        dotnet test ${{env.UI_TEST_PROJECT_PATH}}
         dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
         dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
 
@@ -89,7 +86,7 @@ jobs:
       - name: Install .NET MAUI
         run: |
           dotnet nuget locals all --clear
-          dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+          dotnet workload install maui
       
       # https://docs.microsoft.com/en-us/dotnet/maui/windows/deployment/overview
       - name: Build Windows MSIX
