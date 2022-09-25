@@ -20,8 +20,6 @@
             <string>UIInterfaceOrientationLandscapeLeft</string>
             <string>UIInterfaceOrientationLandscapeRight</string>
         </array>
-        <key>MinimumOSVersion</key>
-        <string>15.0</string>
         <key>CFBundleDisplayName</key>
         <string>MoneyFox</string>
         <key>CFBundleIdentifier</key>
