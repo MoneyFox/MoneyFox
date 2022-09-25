@@ -6,6 +6,7 @@ using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using MoneyFox.Core.Common.Interfaces;
 using MoneyFox.Core.Interfaces;
+using MoneyFox.Ui.InversionOfControl;
 using NSubstitute;
 using Xunit;
 

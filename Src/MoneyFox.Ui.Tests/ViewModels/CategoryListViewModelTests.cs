@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Tests.ViewModels;
+namespace MoneyFox.Ui.Tests.ViewModels;
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -9,6 +9,7 @@ using MediatR;
 using MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using MoneyFox.Core.ApplicationCore.Queries;
 using MoneyFox.Core.Common.Interfaces;
+using MoneyFox.Ui.ViewModels.Categories;
 using NSubstitute;
 using Xunit;
 
