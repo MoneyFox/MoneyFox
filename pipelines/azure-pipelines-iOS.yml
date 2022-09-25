@@ -70,13 +70,6 @@ steps:
       script: 'dotnet workload install maui --ignore-failed-sources'
 
   - task: DotNetCoreCLI@2
-    displayName: 'Run Tests'
-    inputs:
-      command: 'test'
-      projects: |
-        **/*.Tests.csproj
-
-  - task: DotNetCoreCLI@2
     displayName: 'Build iOS app'
     inputs:
       command: 'publish'
@@ -84,6 +77,13 @@ steps:
       projects: '**/MoneyFox.iOS.csproj'
       arguments: '-c Release -f net6.0-ios /p:ArchiveOnBuild=True /p:CodesignKey="MoneyFox_Distribution_2022.p12" /p:CodesignProvision="MoneyFox_Distribution_2022.mobileprovision"'
 
+  - task: DotNetCoreCLI@2
+    displayName: 'Run Tests'
+    inputs:
+      command: 'test'
+      projects: |
+        **/*.Tests.csproj
+        
   - task: CopyFiles@2
     displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
     inputs:
