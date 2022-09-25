@@ -10,6 +10,10 @@
         <ReleaseVersion>0.12.0.0</ReleaseVersion>
         <Platforms>iPhoneSimulator;iPhone;AnyCPU</Platforms>
     </PropertyGroup>
+    
+    <PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'">
+        <RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+    </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
         <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
