@@ -25,6 +25,7 @@ steps:
       jdkSourceOption: 'PreInstalled'
 
   - task: PowerShell@2
+    displayName: 'Install maui workload'
     inputs:
       targetType: 'inline'
       script: 'dotnet workload install maui --ignore-failed-sources'
@@ -46,6 +47,7 @@ steps:
       arguments: '--configuration $(BuildConfiguration)'
 
   - task: DotNetCoreCLI@2
+    displayName: 'build Android app'
     inputs:
       command: 'publish'
       publishWebProjects: false
@@ -53,6 +55,7 @@ steps:
       arguments: '-c Release -f net6.0-android'
 
   - task: AndroidSigning@2
+    displayName: 'sign aab'
     inputs:
       apkFiles: '**/*.aab'
       jarsignerKeystoreFile: 'MoneyFoxKeyStore.keystore'
