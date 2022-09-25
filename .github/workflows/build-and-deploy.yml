@@ -46,9 +46,6 @@ jobs:
     - name: Restore Dependencies
       run: dotnet restore ${{env.ANDROID_PROJECT_PATH}}
 
-    - name: Test
-      run: dotnet test ${{env.TEST_PROJECT_PATH}}
-
     - name: Build MAUI Android
       run: dotnet publish ${{env.ANDROID_PROJECT_PATH}} -c Release -f net6.0-android --no-restore -o "src/MoneyFox.Android/build"
 
@@ -63,6 +60,8 @@ jobs:
         keyStorePassword: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
         keyPassword: ${{ secrets.KEYSTORE_PASSWORD }}
 
+    - name: Test
+      run: dotnet test ${{env.TEST_PROJECT_PATH}}
 
     - uses: actions/upload-artifact@v2
       with:
@@ -122,12 +121,12 @@ jobs:
     - name: Restore Dependencies
       run: dotnet restore ${{env.IOS_PROJECT_PATH}}
 
-    - name: Test
-      run: dotnet test ${{env.TEST_PROJECT_PATH}}
-
     - name: Build MAUI iOS
       run: dotnet publish ${{env.IOS_PROJECT_PATH}} -c Release -f net6.0-ios /p:ArchiveOnBuild=True 
 
+    - name: Test
+      run: dotnet test ${{env.TEST_PROJECT_PATH}}
+      
     - name: Upload iOS Artifact
       uses: actions/upload-artifact@v3.1.0
       with:
