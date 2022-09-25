@@ -10,8 +10,10 @@ env:
     DOTNETVERSION: 6.0.400
     ANDROID_PROJECT_PATH: "src/MoneyFox.Android/MoneyFox.Android.csproj"
     IOS_PROJECT_PATH: "src/MoneyFox.Ios/MoneyFox.Ios.csproj"
-    CORE_CORE_TEST_PROJECT_PATH: "src/MoneyFox.Tests/MoneyFox.Core.Tests.csproj"
     UI_PROJECT_PATH: "src/MoneyFox.Ui/MoneyFox.Ui.csproj"
+    CORE_TEST_PROJECT_PATH: "src/MoneyFox.Tests/MoneyFox.Core.Tests.csproj"
+    UI_TEST_PROJECT_PATH: "src/MoneyFox.Tests/MoneyFox.Ui.Tests.csproj"
+    INFRASTRUCTURE_PROJECT_PATH: "src/MoneyFox.Infrastructure.Tests/MoneyFox.Infrastructure.Tests.csproj"
 
 jobs:
   buildAndroid:
@@ -39,7 +41,10 @@ jobs:
       run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net6.0-android -c Release    
       
     - name: Test
-      run: dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
+      run: |
+        dotnet test ${{env.UI_TEST_PROJECT_PATH}}
+        dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
+        dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
 
   buildiOS:
 
@@ -63,9 +68,11 @@ jobs:
 
     - name: Build MAUI iOS
       run: dotnet build ${{env.UI_PROJECT_PATH}} net6.0-ios c- Debug --no-restore /p:buildForSimulator=True /p:packageApp=True /p:ArchiveOnBuild=False
-
+      
     - name: Test
-      run: dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
+      run: |
+        dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
+        dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
 
 
   buildWindows:

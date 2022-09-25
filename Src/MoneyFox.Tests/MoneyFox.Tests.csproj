@@ -49,9 +49,4 @@
         <ProjectReference Include="..\MoneyFox\MoneyFox.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-        <Folder Include="Presentation" />
-        <Folder Include="Presentation" />
-    </ItemGroup>
-
 </Project>
