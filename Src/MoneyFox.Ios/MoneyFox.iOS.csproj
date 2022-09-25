@@ -51,11 +51,6 @@
         </PackageReference>
         <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.1">
         </PackageReference>
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.44.0.52574">
-            <Version>8.42.0.51121</Version>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-            <PrivateAssets>all</PrivateAssets>
-        </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
