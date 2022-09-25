@@ -46,6 +46,7 @@ namespace MoneyFox.Infrastructure.InversionOfControl
             serviceCollection.AddTransient<IOneDriveProfileService, OneDriveProfileService>();
         }
 
+        // TODO: move to platform
         private static void RegisterIdentityClient(IServiceCollection serviceCollection)
         {
             var publicClientApplication = PublicClientApplicationBuilder.Create(MsalApplicationId)

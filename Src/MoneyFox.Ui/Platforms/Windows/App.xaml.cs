@@ -34,7 +34,6 @@ public partial class App : MauiWinUIApplication
 
     private static void AddServices(IServiceCollection services)
     {
-        services.AddTransient<IGraphClientFactory, GraphClientFactory>();
         services.AddTransient<IAppInformation, WindowsAppInformation>();
         services.AddTransient<IStoreOperations, MarketplaceOperations>();
         services.AddTransient<IFileStore, WindowsFileStore>();
@@ -43,6 +42,7 @@ public partial class App : MauiWinUIApplication
         services.AddTransient<IConnectivityAdapter, ConnectivityAdapter>();
         services.AddTransient<IEmailAdapter, EmailAdapter>();
         services.AddTransient<ISettingsAdapter, SettingsAdapter>();
+
         var publicClientApplication = PublicClientApplicationBuilder.Create(MSAL_APPLICATION_ID).WithRedirectUri($"msal{MSAL_APPLICATION_ID}://auth").Build();
         TokenCacheHelper.EnableSerialization(publicClientApplication.UserTokenCache);
         services.AddSingleton(publicClientApplication);
