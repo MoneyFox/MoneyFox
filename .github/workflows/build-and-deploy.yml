@@ -50,14 +50,14 @@ jobs:
       run: dotnet test ${{env.TEST_PROJECT_PATH}}
 
     - name: Build MAUI Android
-      run: dotnet publish ${{env.ANDROID_PROJECT_PATH}} -c Release -f net6.0-android --no-restore -o "${{env.ANDROID_PROJECT_PATH}}/build"
+      run: dotnet publish ${{env.ANDROID_PROJECT_PATH}} -c Release -f net6.0-android --no-restore -o "src/MoneyFox.Android/build"
 
     - uses: r0adkll/sign-android-release@v1
       name: Sign app ABB
       # ID used to access action output
       id: sign_app
       with:
-        releaseDirectory: "${{env.ANDROID_PROJECT_PATH}}/build"
+        releaseDirectory: "src/MoneyFox.Android/build"
         signingKeyBase64: ${{ secrets.RELEASE_KEYSTORE }}
         alias: ${{ secrets.KEYSTORE_ALIAS }}
         keyStorePassword: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
