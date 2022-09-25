@@ -51,13 +51,14 @@ steps:
       projects: '**/MoneyFox.Android.csproj'
       arguments: '-c Release -f net6.0-android'
 
-  - task: AndroidSigning@3
+  - task: AndroidSigning@2
     inputs:
       apkFiles: '**/*.aab'
-      apksignerKeystoreFile: 'MoneyFoxKeyStore.keystore'
-      apksignerKeystorePassword: '$(KeyStorePass)'
-      apksignerKeystoreAlias: '$(KeyStoreAlias)'
-      apksignerKeyPassword: '$(KeyStorePass)'
+      jarsignerKeystoreFile: 'MoneyFoxKeyStore.keystore'
+      jarsignerKeystorePassword: '$(KeyStorePass)'
+      jarsignerKeystoreAlias: '$(KeyStoreAlias)'
+      jarsignerKeyPassword: '$(KeyStorePass)'
+      jarsignerArguments: '-sigalg SHA256withRSA -digestalg SHA-256'
 
   - task: CopyFiles@2
     displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
