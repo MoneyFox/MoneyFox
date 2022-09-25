@@ -66,8 +66,10 @@ jobs:
     - name: Test
       run: dotnet test ${{env.TEST_PROJECT_PATH}}
 
-#    - name: Build MAUI iOS
-#      run: dotnet build ${{env.IOS_PROJECT_PATH}} -c Debug -f net6.0-ios --no-restore /p:buildForSimulator=True /p:packageApp=True /p:ArchiveOnBuild=False
+    - name: Build MAUI iOS
+      run: |
+        cd ${{env.UI_PROJECT_PATH}}
+        dotnet build net6.0-ios c- Debug --no-restore /p:buildForSimulator=True /p:packageApp=True /p:ArchiveOnBuild=False
 
 
   buildWindows:
@@ -82,10 +84,9 @@ jobs:
           dotnet-version: '${{env.DOTNETVERSION}}'
           
       - name: Install .NET MAUI
-        shell: pwsh
         run: |
-          & dotnet nuget locals all --clear
-          & dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+          dotnet nuget locals all --clear
+          dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
       
       # https://docs.microsoft.com/en-us/dotnet/maui/windows/deployment/overview
       - name: Build Windows MSIX
