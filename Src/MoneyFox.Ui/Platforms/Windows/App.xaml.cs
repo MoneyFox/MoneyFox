@@ -38,10 +38,6 @@ public partial class App : MauiWinUIApplication
         services.AddTransient<IStoreOperations, MarketplaceOperations>();
         services.AddTransient<IFileStore, WindowsFileStore>();
         services.AddTransient<IDbPathProvider, DbPathProvider>();
-        services.AddTransient<IBrowserAdapter, BrowserAdapter>();
-        services.AddTransient<IConnectivityAdapter, ConnectivityAdapter>();
-        services.AddTransient<IEmailAdapter, EmailAdapter>();
-        services.AddTransient<ISettingsAdapter, SettingsAdapter>();
 
         var publicClientApplication = PublicClientApplicationBuilder.Create(MSAL_APPLICATION_ID).WithRedirectUri($"msal{MSAL_APPLICATION_ID}://auth").Build();
         TokenCacheHelper.EnableSerialization(publicClientApplication.UserTokenCache);
