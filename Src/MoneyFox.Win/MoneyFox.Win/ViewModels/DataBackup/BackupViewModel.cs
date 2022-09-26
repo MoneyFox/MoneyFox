@@ -264,12 +264,10 @@ internal sealed class BackupViewModel : BaseViewModel, IBackupViewModel
         }
         catch (BackupOperationCanceledException)
         {
-            await dialogService.HideLoadingDialogAsync();
             await dialogService.ShowMessageAsync(title: Strings.CanceledTitle, message: Strings.UploadBackupCanceledMessage);
         }
         catch (Exception ex)
         {
-            await dialogService.HideLoadingDialogAsync();
             await dialogService.ShowMessageAsync(title: Strings.BackupFailedTitle, message: ex.Message);
         }
 

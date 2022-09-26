@@ -11,6 +11,7 @@ using Core.Common.Facades;
 using Core.Common.Interfaces;
 using Core.Common.Mediatr;
 using Core.Notifications.DatabaseChanged;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
 public class AppDbContext : DbContext, IAppDbContext
@@ -75,6 +76,11 @@ public class AppDbContext : DbContext, IAppDbContext
     public void Migratedb()
     {
         Database.Migrate();
+    }
+
+    public void ReleaseLock()
+    {
+        SqliteConnection.ClearAllPools();
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

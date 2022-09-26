@@ -155,6 +155,7 @@ internal sealed class BackupService : ObservableRecipient, IBackupService, IDisp
 
                 return BackupRestoreResult.Canceled;
             }
+            appDbContext.ReleaseLock();
 
             await using (Stream backupStream = await oneDriveBackupService.RestoreAsync())
             {
