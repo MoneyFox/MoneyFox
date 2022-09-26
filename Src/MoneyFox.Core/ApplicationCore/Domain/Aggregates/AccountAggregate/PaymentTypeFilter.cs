@@ -1,12 +1,10 @@
-﻿namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate
+﻿namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+
+public enum PaymentTypeFilter
 {
-
-    public enum PaymentTypeFilter
-    {
-        All,
-        Expense,
-        Income,
-        Transfer
-    }
-
+    All,
+    Expense,
+    Income,
+    Transfer
 }
+

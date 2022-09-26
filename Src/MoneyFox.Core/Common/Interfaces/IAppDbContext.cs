@@ -1,39 +1,37 @@
-namespace MoneyFox.Core.Common.Interfaces
+namespace MoneyFox.Core.Common.Interfaces;
+
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using ApplicationCore.Domain.Aggregates;
+using ApplicationCore.Domain.Aggregates.AccountAggregate;
+using ApplicationCore.Domain.Aggregates.BudgetAggregate;
+using ApplicationCore.Domain.Aggregates.CategoryAggregate;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+
+public interface IAppDbContext : IDisposable
 {
+    DbSet<Account> Accounts { get; }
 
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using ApplicationCore.Domain.Aggregates;
-    using ApplicationCore.Domain.Aggregates.AccountAggregate;
-    using ApplicationCore.Domain.Aggregates.BudgetAggregate;
-    using ApplicationCore.Domain.Aggregates.CategoryAggregate;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.ChangeTracking;
+    DbSet<Payment> Payments { get; }
 
-    public interface IAppDbContext : IDisposable
-    {
-        DbSet<Account> Accounts { get; }
+    DbSet<RecurringPayment> RecurringPayments { get; }
 
-        DbSet<Payment> Payments { get; }
+    DbSet<Category> Categories { get; }
 
-        DbSet<RecurringPayment> RecurringPayments { get; }
+    DbSet<Budget> Budgets { get; }
 
-        DbSet<Category> Categories { get; }
+    ValueTask<EntityEntry> AddAsync(object entity, CancellationToken cancellationToken = default);
 
-        DbSet<Budget> Budgets { get; }
+    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 
-        ValueTask<EntityEntry> AddAsync(object entity, CancellationToken cancellationToken = default);
+    EntityEntry<TEntity> Add<TEntity>(TEntity entity) where TEntity : class;
 
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+    EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
 
-        EntityEntry<TEntity> Add<TEntity>(TEntity entity) where TEntity : class;
+    EntityEntry Entry(object entity);
 
-        EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
-
-        EntityEntry Entry(object entity);
-
-        void Migratedb();
-    }
-
+    void Migratedb();
 }
+

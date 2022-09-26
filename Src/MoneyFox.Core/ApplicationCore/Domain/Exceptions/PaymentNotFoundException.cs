@@ -1,19 +1,17 @@
-﻿namespace MoneyFox.Core.ApplicationCore.Domain.Exceptions
+﻿namespace MoneyFox.Core.ApplicationCore.Domain.Exceptions;
+
+using System;
+using System.Runtime.Serialization;
+
+[Serializable]
+public class PaymentNotFoundException : Exception
 {
+    public PaymentNotFoundException() { }
 
-    using System;
-    using System.Runtime.Serialization;
+    public PaymentNotFoundException(string message) : base(message) { }
 
-    [Serializable]
-    public class PaymentNotFoundException : Exception
-    {
-        public PaymentNotFoundException() { }
+    public PaymentNotFoundException(string message, Exception innerException) : base(message: message, innerException: innerException) { }
 
-        public PaymentNotFoundException(string message) : base(message) { }
-
-        public PaymentNotFoundException(string message, Exception innerException) : base(message: message, innerException: innerException) { }
-
-        protected PaymentNotFoundException(SerializationInfo info, StreamingContext context) : base(info: info, context: context) { }
-    }
-
+    protected PaymentNotFoundException(SerializationInfo info, StreamingContext context) : base(info: info, context: context) { }
 }
+

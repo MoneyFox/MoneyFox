@@ -1,22 +1,19 @@
-namespace MoneyFox.Infrastructure.DbBackup.Legacy
+namespace MoneyFox.Infrastructure.DbBackup.Legacy;
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
+
+public interface IOneDriveBackupService
 {
+    Task LoginAsync();
 
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Threading.Tasks;
-    using Core.ApplicationCore.UseCases.DbBackup;
+    Task LogoutAsync();
 
-    public interface IOneDriveBackupService
-    {
-        Task LoginAsync();
+    Task<Stream> RestoreAsync();
 
-        Task LogoutAsync();
+    Task<List<string>> GetFileNamesAsync();
 
-        Task<Stream> RestoreAsync();
-
-        Task<List<string>> GetFileNamesAsync();
-
-        Task<DateTime> GetBackupDateAsync();
-    }
+    Task<DateTime> GetBackupDateAsync();
 }

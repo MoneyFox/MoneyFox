@@ -1,31 +1,29 @@
-﻿namespace MoneyFox.Core.ApplicationCore.Queries
+﻿namespace MoneyFox.Core.ApplicationCore.Queries;
+
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using _Pending_.Common.QueryObjects;
+using Common.Interfaces;
+using Domain.Aggregates.AccountAggregate;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+
+public class GetExcludedAccountQuery : IRequest<List<Account>>
 {
-
-    using System.Collections.Generic;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using _Pending_.Common.QueryObjects;
-    using Common.Interfaces;
-    using Domain.Aggregates.AccountAggregate;
-    using MediatR;
-    using Microsoft.EntityFrameworkCore;
-
-    public class GetExcludedAccountQuery : IRequest<List<Account>>
+    public class Handler : IRequestHandler<GetExcludedAccountQuery, List<Account>>
     {
-        public class Handler : IRequestHandler<GetExcludedAccountQuery, List<Account>>
+        private readonly IAppDbContext appDbContext;
+
+        public Handler(IAppDbContext appDbContext)
         {
-            private readonly IAppDbContext appDbContext;
+            this.appDbContext = appDbContext;
+        }
 
-            public Handler(IAppDbContext appDbContext)
-            {
-                this.appDbContext = appDbContext;
-            }
-
-            public async Task<List<Account>> Handle(GetExcludedAccountQuery request, CancellationToken cancellationToken)
-            {
-                return await appDbContext.Accounts.AreActive().AreExcluded().OrderByName().ToListAsync(cancellationToken);
-            }
+        public async Task<List<Account>> Handle(GetExcludedAccountQuery request, CancellationToken cancellationToken)
+        {
+            return await appDbContext.Accounts.AreActive().AreExcluded().OrderByName().ToListAsync(cancellationToken);
         }
     }
-
 }
+

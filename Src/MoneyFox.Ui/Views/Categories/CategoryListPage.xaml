@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:categories="using:MoneyFox.Ui.ViewModels.Categories"
+    Shell.NavBarHasShadow="False"
+    Title="{x:Static resources:Strings.CategoriesTitle}"
+    x:Class="MoneyFox.Ui.Views.Categories.CategoryListPage">
+
+    <ContentPage.Content>
+        <Grid IsClippedToBounds="False" RowDefinitions="40, 40, *">
+
+            <Button
+                Margin="0,0,6,0"
+                HorizontalOptions="End"
+                Text="{x:Static resources:Strings.AddCategoryLabel}"
+                VerticalOptions="Center"
+                Command="{Binding GoToAddCategoryCommand}" />
+
+            <SearchBar Grid.Row="1"
+                       x:Name="categorySearchBar"
+                       Margin="0,0,0,0"
+                       Text="{Binding SearchTerm}"
+                       SearchCommand="{Binding SearchCategoryCommand}"
+                       SearchCommandParameter="{Binding Text, Source={x:Reference categorySearchBar}}" />
+
+            <CollectionView Grid.Row="2"
+                            x:Name="CategoryCollectionView"
+                            IsGrouped="true"
+                            ItemsSource="{Binding Categories}">
+
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <Label FontFamily="Product"
+                               FontSize="18"
+                               Margin="15"
+                               Padding="15,0,0,0"
+                               Text="{Binding Key}"
+                               VerticalTextAlignment="End" />
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="categories:CategoryViewModel">
+                        <Grid Padding="15, 6, 15, 8">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding BindingContext.GoToEditCategoryCommand, Source={x:Reference Name=CategoryCollectionView}}"
+                                    CommandParameter="{Binding .}" />
+                            </Grid.GestureRecognizers>
+
+                            <Border StrokeShape="RoundRectangle 10,10,10,10"
+                                    HeightRequest="45"
+                                    HorizontalOptions="FillAndExpand">
+
+                                <Border.Shadow>
+                                    <Shadow Brush="Black"
+                                            Offset="20,20"
+                                            Radius="40"
+                                            Opacity="0.8" />
+                                </Border.Shadow>
+
+                                <SwipeView
+                                    BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                                             Light={StaticResource CardBackgroundLight}}">
+                                    <SwipeView.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding BindingContext.GoToEditCategoryCommand, Source={x:Reference Name=CategoryCollectionView}}"
+                                            CommandParameter="{Binding .}" />
+                                    </SwipeView.GestureRecognizers>
+
+                                    <SwipeView.RightItems>
+                                        <SwipeItems>
+                                            <SwipeItem Text="{x:Static resources:Strings.EditLabel}"
+                                                       Command="{Binding Source={x:Reference CategoryCollectionView}, Path=BindingContext.GoToEditCategoryCommand}"
+                                                       CommandParameter="{Binding .}" />
+                                            <SwipeItem Text="{x:Static resources:Strings.DeleteLabel}"
+                                                       Command="{Binding Source={x:Reference CategoryCollectionView}, Path=BindingContext.DeleteCategoryCommand}"
+                                                       CommandParameter="{Binding .}" />
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+
+                                    <Grid>
+                                        <Label Style="{StaticResource TextHead}"
+                                               Margin="10,0,10,0"
+                                               VerticalTextAlignment="Center"
+                                               HorizontalTextAlignment="Start"
+                                               Text="{Binding Name}" />
+                                    </Grid>
+                                </SwipeView>
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+                    <Grid>
+                        <Label Style="{StaticResource TextSubheadSecondary}"
+                               Margin="10,0,10,0"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               Text="{x:Static resources:Strings.NoCategoriesMessage}" />
+                    </Grid>
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>

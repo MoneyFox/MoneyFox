@@ -1,0 +1,50 @@
+﻿<ContentPage
+    x:Class="MoneyFox.Ui.Views.Statistics.StatisticCategorySummaryPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    x:Name="StatisticCategorySummary"
+    Visual="Material">
+
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="*,66">
+            <Label Style="{StaticResource TextTitle}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center"
+                   Text="{x:Static resources:Strings.CategorySummaryTitle}" />
+
+            <ImageButton Margin="0,0,5,0"
+                         Grid.Column="1"
+                         Padding="0"
+                         BorderWidth="0"
+                         Clicked="OpenFilterDialog"
+                         HeightRequest="44"
+                         HorizontalOptions="End"
+                         VerticalOptions="Center"
+                         WidthRequest="66">
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="MaterialIconsRound" Glyph="filter_alt" />
+                </ImageButton.Source>
+            </ImageButton>
+        </Grid>
+    </Shell.TitleView>
+
+    <ContentPage.Content>
+        <Grid RowDefinitions="35, *">
+
+            <Label Grid.Row="0"
+                   Margin="15,0,15,0"
+                   Style="{StaticResource TextBodySecondary}"
+                   Text="{Binding Title}" />
+
+            <CollectionView x:Name="CategorySummaryList"
+                            Grid.Row="1"
+                            EmptyView="{x:Static resources:Strings.NoPaymentsMessage}"
+                            ItemsSource="{Binding CategorySummary}">
+
+                <CollectionView.ItemTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

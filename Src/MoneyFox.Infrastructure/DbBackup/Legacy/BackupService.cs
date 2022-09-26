@@ -1,192 +1,190 @@
-namespace MoneyFox.Infrastructure.DbBackup.Legacy
+namespace MoneyFox.Infrastructure.DbBackup.Legacy;
+
+using System;
+using System.IO;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
+using Core.ApplicationCore.Domain.Exceptions;
+using Core.ApplicationCore.UseCases.DbBackup;
+using Core.Common.Facades;
+using Core.Common.Interfaces;
+using Core.Common.Messages;
+using Core.Interfaces;
+using Core.Resources;
+using Serilog;
+
+internal sealed class BackupService : ObservableRecipient, IBackupService, IDisposable
 {
+    private const string TEMP_DOWNLOAD_PATH = "backupmoneyfox3.db";
+    private readonly IAppDbContext appDbContext;
 
-    using System;
-    using System.IO;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using CommunityToolkit.Mvvm.ComponentModel;
-    using CommunityToolkit.Mvvm.Messaging;
-    using Core.ApplicationCore.Domain.Exceptions;
-    using Core.ApplicationCore.UseCases.DbBackup;
-    using Core.Common.Facades;
-    using Core.Common.Interfaces;
-    using Core.Common.Messages;
-    using Core.Interfaces;
-    using Core.Resources;
-    using Serilog;
+    private readonly CancellationTokenSource cancellationTokenSource = new();
+    private readonly IConnectivityAdapter connectivity;
+    private readonly IDbPathProvider dbPathProvider;
+    private readonly IFileStore fileStore;
 
-    internal sealed class BackupService : ObservableRecipient, IBackupService, IDisposable
+    private readonly IOneDriveBackupService oneDriveBackupService;
+    private readonly SemaphoreSlim semaphoreSlim = new(initialCount: 1, maxCount: 1);
+    private readonly ISettingsFacade settingsFacade;
+    private readonly IToastService toastService;
+
+    public BackupService(
+        IOneDriveBackupService oneDriveBackupService,
+        IFileStore fileStore,
+        ISettingsFacade settingsFacade,
+        IConnectivityAdapter connectivity,
+        IToastService toastService,
+        IDbPathProvider dbPathProvider,
+        IAppDbContext appDbContext)
     {
-        private const string TEMP_DOWNLOAD_PATH = "backupmoneyfox3.db";
-        private readonly IAppDbContext appDbContext;
+        this.oneDriveBackupService = oneDriveBackupService;
+        this.fileStore = fileStore;
+        this.settingsFacade = settingsFacade;
+        this.connectivity = connectivity;
+        this.toastService = toastService;
+        this.dbPathProvider = dbPathProvider;
+        this.appDbContext = appDbContext;
+    }
 
-        private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-        private readonly IConnectivityAdapter connectivity;
-        private readonly IDbPathProvider dbPathProvider;
-        private readonly IFileStore fileStore;
-
-        private readonly IOneDriveBackupService oneDriveBackupService;
-        private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(initialCount: 1, maxCount: 1);
-        private readonly ISettingsFacade settingsFacade;
-        private readonly IToastService toastService;
-
-        public BackupService(
-            IOneDriveBackupService oneDriveBackupService,
-            IFileStore fileStore,
-            ISettingsFacade settingsFacade,
-            IConnectivityAdapter connectivity,
-            IToastService toastService,
-            IDbPathProvider dbPathProvider,
-            IAppDbContext appDbContext)
+    public async Task LoginAsync()
+    {
+        if (!connectivity.IsConnected)
         {
-            this.oneDriveBackupService = oneDriveBackupService;
-            this.fileStore = fileStore;
-            this.settingsFacade = settingsFacade;
-            this.connectivity = connectivity;
-            this.toastService = toastService;
-            this.dbPathProvider = dbPathProvider;
-            this.appDbContext = appDbContext;
+            throw new NetworkConnectionException();
         }
 
-        public async Task LoginAsync()
-        {
-            if (!connectivity.IsConnected)
-            {
-                throw new NetworkConnectionException();
-            }
+        await oneDriveBackupService.LoginAsync();
+        settingsFacade.IsLoggedInToBackupService = true;
+        await toastService.ShowToastAsync(message: Strings.LoggedInMessage, title: Strings.LoggedInTitle);
+    }
 
-            await oneDriveBackupService.LoginAsync();
-            settingsFacade.IsLoggedInToBackupService = true;
-            await toastService.ShowToastAsync(message: Strings.LoggedInMessage, title: Strings.LoggedInTitle);
+    public async Task LogoutAsync()
+    {
+        if (!connectivity.IsConnected)
+        {
+            throw new NetworkConnectionException();
         }
 
-        public async Task LogoutAsync()
-        {
-            if (!connectivity.IsConnected)
-            {
-                throw new NetworkConnectionException();
-            }
+        await oneDriveBackupService.LogoutAsync();
+        settingsFacade.IsLoggedInToBackupService = false;
+        settingsFacade.IsBackupAutoUploadEnabled = false;
+        await toastService.ShowToastAsync(message: Strings.LoggedOutMessage, title: Strings.LoggedOutTitle);
+    }
 
-            await oneDriveBackupService.LogoutAsync();
-            settingsFacade.IsLoggedInToBackupService = false;
-            settingsFacade.IsBackupAutoUploadEnabled = false;
-            await toastService.ShowToastAsync(message: Strings.LoggedOutMessage, title: Strings.LoggedOutTitle);
+    public async Task<bool> IsBackupExistingAsync()
+    {
+        if (!connectivity.IsConnected)
+        {
+            return false;
         }
 
-        public async Task<bool> IsBackupExistingAsync()
-        {
-            if (!connectivity.IsConnected)
-            {
-                return false;
-            }
+        System.Collections.Generic.List<string> files = await oneDriveBackupService.GetFileNamesAsync();
+        return files.Any();
+    }
 
-            var files = await oneDriveBackupService.GetFileNamesAsync();
-            return files.Any();
+    public async Task<DateTime> GetBackupDateAsync()
+    {
+        if (!connectivity.IsConnected)
+        {
+            return DateTime.MinValue;
         }
 
-        public async Task<DateTime> GetBackupDateAsync()
+        try
         {
-            if (!connectivity.IsConnected)
-            {
-                return DateTime.MinValue;
-            }
-
-            try
-            {
-                return await oneDriveBackupService.GetBackupDateAsync();
-            }
-            catch (Exception ex) when (ex is BackupOperationCanceledException || ex is BackupAuthenticationFailedException)
-            {
-                Log.Error(exception: ex, messageTemplate: "Operation canceled during get backup date. Execute logout");
-                await LogoutAsync();
-                await toastService.ShowToastAsync(message: Strings.FailedToLoginToBackupMessage, title: Strings.FailedToLoginToBackupTitle);
-            }
-
-            return DateTime.MinValue.ToLocalTime();
+            return await oneDriveBackupService.GetBackupDateAsync();
+        }
+        catch (Exception ex) when (ex is BackupOperationCanceledException or BackupAuthenticationFailedException)
+        {
+            Log.Error(exception: ex, messageTemplate: "Operation canceled during get backup date. Execute logout");
+            await LogoutAsync();
+            await toastService.ShowToastAsync(message: Strings.FailedToLoginToBackupMessage, title: Strings.FailedToLoginToBackupTitle);
         }
 
-        public async Task RestoreBackupAsync(BackupMode backupMode = BackupMode.Automatic)
+        return DateTime.MinValue.ToLocalTime();
+    }
+
+    public async Task RestoreBackupAsync(BackupMode backupMode = BackupMode.Automatic)
+    {
+        if (backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutoUploadEnabled)
         {
-            if (backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutoUploadEnabled)
-            {
-                Log.Information("Backup is in Automatic Mode but Auto Backup isn't enabled");
+            Log.Information("Backup is in Automatic Mode but Auto Backup isn't enabled");
 
-                return;
-            }
-
-            if (!connectivity.IsConnected)
-            {
-                throw new NetworkConnectionException();
-            }
-
-            try
-            {
-                var result = await DownloadBackupAsync(backupMode);
-                if (result == BackupRestoreResult.NewBackupRestored)
-                {
-                    appDbContext.Migratedb();
-                    await toastService.ShowToastAsync(Strings.BackupRestoredMessage);
-                    Messenger.Send(new ReloadMessage());
-                }
-            }
-            catch (BackupOperationCanceledException ex)
-            {
-                Log.Error(exception: ex, messageTemplate: "Operation canceled during restore backup. Execute logout");
-                await LogoutAsync();
-                await toastService.ShowToastAsync(message: Strings.FailedToLoginToBackupMessage, title: Strings.FailedToLoginToBackupTitle);
-            }
+            return;
         }
 
-        public void Dispose()
+        if (!connectivity.IsConnected)
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            throw new NetworkConnectionException();
         }
 
-        private async Task<BackupRestoreResult> DownloadBackupAsync(BackupMode backupMode)
+        try
         {
-            try
+            BackupRestoreResult result = await DownloadBackupAsync(backupMode);
+            if (result == BackupRestoreResult.NewBackupRestored)
             {
-                var backupDate = await GetBackupDateAsync();
-                if (backupDate - settingsFacade.LastDatabaseUpdate < TimeSpan.FromSeconds(1) && backupMode == BackupMode.Automatic)
-                {
-                    Log.Information("Local backup is newer than remote. Don't download backup");
-
-                    return BackupRestoreResult.Canceled;
-                }
-
-                await using (var backupStream = await oneDriveBackupService.RestoreAsync())
-                {
-                    settingsFacade.LastDatabaseUpdate = backupDate.ToLocalTime();
-                    var ms = new MemoryStream();
-                    await backupStream.CopyToAsync(ms);
-                    await fileStore.WriteFileAsync(path: TEMP_DOWNLOAD_PATH, contents: ms.ToArray());
-                }
-
-                var moveSucceed = await fileStore.TryMoveAsync(from: TEMP_DOWNLOAD_PATH, destination: dbPathProvider.GetDbPath(), overwrite: true);
-
-                return !moveSucceed ? throw new BackupException("Error Moving downloaded backup file") : BackupRestoreResult.NewBackupRestored;
+                appDbContext.Migratedb();
+                await toastService.ShowToastAsync(Strings.BackupRestoredMessage);
+                _ = Messenger.Send(new ReloadMessage());
             }
-            catch (BackupOperationCanceledException ex)
-            {
-                Log.Error(exception: ex, messageTemplate: "Operation canceled during restore backup. Execute logout");
-                await LogoutAsync();
-                await toastService.ShowToastAsync(message: Strings.FailedToLoginToBackupMessage, title: Strings.FailedToLoginToBackupTitle);
-            }
-
-            return BackupRestoreResult.BackupNotFound;
         }
-
-        private void Dispose(bool disposing)
+        catch (BackupOperationCanceledException ex)
         {
-            if (disposing)
-            {
-                cancellationTokenSource.Dispose();
-                semaphoreSlim.Dispose();
-            }
+            Log.Error(exception: ex, messageTemplate: "Operation canceled during restore backup. Execute logout");
+            await LogoutAsync();
+            await toastService.ShowToastAsync(message: Strings.FailedToLoginToBackupMessage, title: Strings.FailedToLoginToBackupTitle);
         }
     }
 
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    private async Task<BackupRestoreResult> DownloadBackupAsync(BackupMode backupMode)
+    {
+        try
+        {
+            DateTime backupDate = await GetBackupDateAsync();
+            if (backupDate - settingsFacade.LastDatabaseUpdate < TimeSpan.FromSeconds(1) && backupMode == BackupMode.Automatic)
+            {
+                Log.Information("Local backup is newer than remote. Don't download backup");
+
+                return BackupRestoreResult.Canceled;
+            }
+
+            await using (Stream backupStream = await oneDriveBackupService.RestoreAsync())
+            {
+                settingsFacade.LastDatabaseUpdate = backupDate.ToLocalTime();
+                MemoryStream ms = new();
+                await backupStream.CopyToAsync(ms);
+                await fileStore.WriteFileAsync(path: TEMP_DOWNLOAD_PATH, contents: ms.ToArray());
+            }
+
+            bool moveSucceed = await fileStore.TryMoveAsync(from: TEMP_DOWNLOAD_PATH, destination: dbPathProvider.GetDbPath(), overwrite: true);
+
+            return !moveSucceed ? throw new BackupException("Error Moving downloaded backup file") : BackupRestoreResult.NewBackupRestored;
+        }
+        catch (BackupOperationCanceledException ex)
+        {
+            Log.Error(exception: ex, messageTemplate: "Operation canceled during restore backup. Execute logout");
+            await LogoutAsync();
+            await toastService.ShowToastAsync(message: Strings.FailedToLoginToBackupMessage, title: Strings.FailedToLoginToBackupTitle);
+        }
+
+        return BackupRestoreResult.BackupNotFound;
+    }
+
+    private void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            cancellationTokenSource.Dispose();
+            semaphoreSlim.Dispose();
+        }
+    }
 }
+

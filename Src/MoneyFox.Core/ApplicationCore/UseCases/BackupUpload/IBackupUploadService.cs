@@ -1,19 +1,17 @@
-﻿namespace MoneyFox.Core.ApplicationCore.UseCases.BackupUpload
+﻿namespace MoneyFox.Core.ApplicationCore.UseCases.BackupUpload;
+
+using System;
+using System.IO;
+using System.Threading.Tasks;
+
+public interface IBackupUploadService
 {
+    Task<DateTime> GetBackupDateAsync();
 
-    using System;
-    using System.IO;
-    using System.Threading.Tasks;
+    Task UploadAsync(string backupName, Stream dataToUpload);
 
-    public interface IBackupUploadService
-    {
-        Task<DateTime> GetBackupDateAsync();
+    Task<int> GetBackupCount();
 
-        Task UploadAsync(string backupName, Stream dataToUpload);
-
-        Task<int> GetBackupCount();
-
-        Task DeleteOldest();
-    }
-
+    Task DeleteOldest();
 }
+

@@ -1,21 +1,19 @@
-﻿namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate
+﻿namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
+
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Common.Interfaces;
+
+public interface IBudgetRepository : IRepository<Budget>
 {
+    Task AddAsync(Budget budget);
 
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using Common.Interfaces;
+    Task<Budget> GetAsync(int budgetId);
 
-    public interface IBudgetRepository : IRepository<Budget>
-    {
-        Task AddAsync(Budget budget);
+    Task<IReadOnlyCollection<Budget>> GetAsync();
 
-        Task<Budget> GetAsync(int budgetId);
+    Task UpdateAsync(Budget budget);
 
-        Task<IReadOnlyCollection<Budget>> GetAsync();
-
-        Task UpdateAsync(Budget budget);
-
-        Task DeleteAsync(int testBudgetId);
-    }
-
+    Task DeleteAsync(int testBudgetId);
 }
+

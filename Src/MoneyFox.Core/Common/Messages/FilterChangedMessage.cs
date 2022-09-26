@@ -1,45 +1,43 @@
-﻿namespace MoneyFox.Core.Common.Messages
-{
+﻿namespace MoneyFox.Core.Common.Messages;
 
-    using System;
-    using ApplicationCore.Domain.Aggregates.AccountAggregate;
+using System;
+using ApplicationCore.Domain.Aggregates.AccountAggregate;
+
+/// <summary>
+///     Used to notify the payment list that a filter changed.
+/// </summary>
+public class PaymentListFilterChangedMessage
+{
+    private const int DEFAULT_MONTHS_BACK = -2;
 
     /// <summary>
-    ///     Used to notify the payment list that a filter changed.
+    ///     Indicates if only cleared payments should be displayed.
     /// </summary>
-    public class PaymentListFilterChangedMessage
-    {
-        private const int DEFAULT_MONTHS_BACK = -2;
+    public bool IsClearedFilterActive { get; set; }
 
-        /// <summary>
-        ///     Indicates if only cleared payments should be displayed.
-        /// </summary>
-        public bool IsClearedFilterActive { get; set; }
+    /// <summary>
+    ///     Indicates if only recurring payments should be displayed.
+    /// </summary>
+    public bool IsRecurringFilterActive { get; set; }
 
-        /// <summary>
-        ///     Indicates if only recurring payments should be displayed.
-        /// </summary>
-        public bool IsRecurringFilterActive { get; set; }
+    /// <summary>
+    ///     Indicate if payment list should be grouped.
+    /// </summary>
+    public bool IsGrouped { get; set; }
 
-        /// <summary>
-        ///     Indicate if payment list should be grouped.
-        /// </summary>
-        public bool IsGrouped { get; set; }
+    /// <summary>
+    ///     Indicates if only specific payment types should be displayed.
+    /// </summary>
+    public PaymentTypeFilter FilteredPaymentType { get; set; } = PaymentTypeFilter.All;
 
-        /// <summary>
-        ///     Indicates if only specific payment types should be displayed.
-        /// </summary>
-        public PaymentTypeFilter FilteredPaymentType { get; set; } = PaymentTypeFilter.All;
+    /// <summary>
+    ///     Start of the time range to load payments.
+    /// </summary>
+    public DateTime TimeRangeStart { get; set; } = DateTime.Now.AddMonths(DEFAULT_MONTHS_BACK);
 
-        /// <summary>
-        ///     Start of the time range to load payments.
-        /// </summary>
-        public DateTime TimeRangeStart { get; set; } = DateTime.Now.AddMonths(DEFAULT_MONTHS_BACK);
-
-        /// <summary>
-        ///     End of the time range to load payments.
-        /// </summary>
-        public DateTime TimeRangeEnd { get; set; } = DateTime.MaxValue;
-    }
-
+    /// <summary>
+    ///     End of the time range to load payments.
+    /// </summary>
+    public DateTime TimeRangeEnd { get; set; } = DateTime.MaxValue;
 }
+

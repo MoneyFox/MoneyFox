@@ -1,59 +1,57 @@
-namespace MoneyFox.Core.Commands.Payments.CreateRecurringPayments
+namespace MoneyFox.Core.Commands.Payments.CreateRecurringPayments;
+
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using _Pending_.Common.QueryObjects;
+using ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Common.Interfaces;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Serilog;
+
+public class CreateRecurringPaymentsCommand : IRequest
 {
-
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using _Pending_.Common.QueryObjects;
-    using ApplicationCore.Domain.Aggregates.AccountAggregate;
-    using Common.Interfaces;
-    using MediatR;
-    using Microsoft.EntityFrameworkCore;
-    using Serilog;
-
-    public class CreateRecurringPaymentsCommand : IRequest
+    public class Handler : IRequestHandler<CreateRecurringPaymentsCommand>
     {
-        public class Handler : IRequestHandler<CreateRecurringPaymentsCommand>
+        private readonly IAppDbContext appDbContext;
+
+        public Handler(IAppDbContext appDbContext)
         {
-            private readonly IAppDbContext appDbContext;
+            this.appDbContext = appDbContext;
+        }
 
-            public Handler(IAppDbContext appDbContext)
-            {
-                this.appDbContext = appDbContext;
-            }
+        public async Task<Unit> Handle(CreateRecurringPaymentsCommand request, CancellationToken cancellationToken)
+        {
+            System.Collections.Generic.List<ApplicationCore.Domain.Aggregates.RecurringPayment> recurringPayments = await appDbContext.RecurringPayments.Include(x => x.ChargedAccount)
+                .Include(x => x.TargetAccount)
+                .Include(x => x.Category)
+                .Include(x => x.RelatedPayments)
+                .AsQueryable()
+                .IsNotExpired()
+                .ToListAsync(cancellationToken);
 
-            public async Task<Unit> Handle(CreateRecurringPaymentsCommand request, CancellationToken cancellationToken)
-            {
-                var recurringPayments = await appDbContext.RecurringPayments.Include(x => x.ChargedAccount)
-                    .Include(x => x.TargetAccount)
-                    .Include(x => x.Category)
-                    .Include(x => x.RelatedPayments)
-                    .AsQueryable()
-                    .IsNotExpired()
-                    .ToListAsync(cancellationToken);
+            System.Collections.Generic.List<Payment> recPaymentsToCreate = recurringPayments.Where(x => x.RelatedPayments.Any())
+                .Where(x => RecurrenceHelper.CheckIfRepeatable(x.RelatedPayments.OrderByDescending(d => d.Date).First()))
+                .Select(
+                    x => new Payment(
+                        date: RecurrenceHelper.GetPaymentDateFromRecurring(x),
+                        amount: x.Amount,
+                        type: x.Type,
+                        chargedAccount: x.ChargedAccount,
+                        targetAccount: x.TargetAccount,
+                        category: x.Category,
+                        note: x.Note ?? "",
+                        recurringPayment: x))
+                .ToList();
 
-                var recPaymentsToCreate = recurringPayments.Where(x => x.RelatedPayments.Any())
-                    .Where(x => RecurrenceHelper.CheckIfRepeatable(x.RelatedPayments.OrderByDescending(d => d.Date).First()))
-                    .Select(
-                        x => new Payment(
-                            date: RecurrenceHelper.GetPaymentDateFromRecurring(x),
-                            amount: x.Amount,
-                            type: x.Type,
-                            chargedAccount: x.ChargedAccount,
-                            targetAccount: x.TargetAccount,
-                            category: x.Category,
-                            note: x.Note ?? "",
-                            recurringPayment: x))
-                    .ToList();
+            recPaymentsToCreate.ForEach(x => x.RecurringPayment?.SetLastRecurrenceCreatedDate());
+            Log.Information(messageTemplate: "Create {Count} recurring payments", propertyValue: recPaymentsToCreate.Count);
+            appDbContext.Payments.AddRange(recPaymentsToCreate);
+            _ = await appDbContext.SaveChangesAsync(cancellationToken);
 
-                recPaymentsToCreate.ForEach(x => x.RecurringPayment?.SetLastRecurrenceCreatedDate());
-                Log.Information(messageTemplate: "Create {Count} recurring payments", propertyValue: recPaymentsToCreate.Count);
-                appDbContext.Payments.AddRange(recPaymentsToCreate);
-                await appDbContext.SaveChangesAsync(cancellationToken);
-
-                return Unit.Value;
-            }
+            return Unit.Value;
         }
     }
-
 }
+

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<controls:ModalContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:controls="using:MoneyFox.Ui.Controls"
+    xmlns:accounts="using:MoneyFox.Ui.Views.Accounts"
+    xmlns:extensions="using:MoneyFox.Ui.Common.Extensions"
+    Title="{Binding Title}"
+    x:Class="MoneyFox.Ui.Views.Accounts.EditAccountPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="15,0,15,0">
+                <accounts:ModifyAccountContentView />
+
+                <Label Style="{StaticResource TextBodySecondary}"
+                       Text="{Binding SelectedAccount.Created, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />
+
+                <Label Style="{StaticResource TextBodySecondary}"
+                       Text="{Binding SelectedAccount.LastModified, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
+
+                <Button x:Name="DeleteAccountButton"
+                        Style="{StaticResource WarningButton}"
+                        Margin="0,12,0,0"
+                        Command="{Binding DeleteCommand}"
+                        Text="{x:Static resources:Strings.DeleteLabel}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</controls:ModalContentPage>

@@ -1,9 +1,7 @@
-﻿namespace MoneyFox.Core.Interfaces
+﻿namespace MoneyFox.Core.Interfaces;
+
+public interface IDbPathProvider
 {
-
-    public interface IDbPathProvider
-    {
-        public string GetDbPath();
-    }
-
+    public string GetDbPath();
 }
+

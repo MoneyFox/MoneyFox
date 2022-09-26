@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:converter="using:MoneyFox.Ui.Converter"
+    xmlns:budget="using:MoneyFox.Ui.Views.Budget"
+    xmlns:budget1="using:MoneyFox.Ui.ViewModels.Budget"
+    x:DataType="budget1:ModifyBudgetViewModel"
+    x:Class="MoneyFox.Ui.Views.Budget.ModifyBudgetView">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converter:DecimalConverter x:Key="DecimalConverter" />
+            <budget:BudgetTimeRangeStringConverter x:Key="BudgetTimeRangeStringConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ContentView.Content>
+        <ScrollView Padding="15,0,15,0">
+            <StackLayout Spacing="6">
+                <Entry Placeholder="{x:Static resources:Strings.BudgetNameLabel}"
+                       Text="{Binding SelectedBudget.Name}" />
+
+                <Entry x:Name="AmountEntry"
+                       Keyboard="Numeric"
+                       Focused="AmountFieldGotFocus"
+                       Placeholder="{x:Static resources:Strings.MonthlySpendingLimitLabel}"
+                       Text="{Binding SelectedBudget.SpendingLimit, Converter={StaticResource DecimalConverter}}" />
+
+                <Picker Title="{x:Static resources:Strings.EvaluationTimeRangeLabel}"
+                        ItemsSource="{Binding TimeRangeCollection}"
+                        SelectedItem="{Binding SelectedBudget.TimeRange}"
+                        ItemDisplayBinding="{Binding ., Converter={StaticResource BudgetTimeRangeStringConverter}}" />
+
+                <Label Text="{x:Static resources:Strings.EvaluationTimeRangeMessage}"
+                       Style="{StaticResource TextBodySecondary}" />
+
+                <Button Text="{x:Static resources:Strings.SelectCategoryLabel}"
+                        Command="{Binding OpenCategorySelectionCommand}" />
+
+                <Label Text="{x:Static resources:Strings.SelectedCategoriesLabel}" />
+                <CollectionView x:Name="BudgetCategoryCollectionView"
+                                SelectionMode="Single"
+                                ItemsLayout="VerticalGrid, 2"
+                                ItemsSource="{Binding SelectedCategories}"
+                                SelectionChangedCommand="{Binding RemoveCategoryCommand}"
+                                SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference BudgetCategoryCollectionView}}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="budget1:BudgetCategoryViewModel">
+                            <Grid Padding="3" HeightRequest="60">
+                                <Frame>
+                                    <Label Text="{Binding Name}" />
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

@@ -1,12 +1,10 @@
-﻿namespace MoneyFox.Core.Common.Helpers
+﻿namespace MoneyFox.Core.Common.Helpers;
+
+using System;
+
+public class SystemDateHelper : ISystemDateHelper
 {
-
-    using System;
-
-    public class SystemDateHelper : ISystemDateHelper
-    {
-        public DateTime Today => DateTime.Today;
-        public DateTime Now => DateTime.Now;
-    }
-
+    public DateTime Today => DateTime.Today;
+    public DateTime Now => DateTime.Now;
 }
+

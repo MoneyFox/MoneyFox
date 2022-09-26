@@ -1,0 +1,71 @@
+﻿<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:statistics="using:MoneyFox.Ui.ViewModels.Statistics"
+    x:Class="MoneyFox.Ui.Views.Statistics.StatisticSelectorPage"
+    Title=""
+    Visual="Material"
+    x:Name="root">
+
+    <ContentPage.Content>
+        <VerticalStackLayout Spacing="6" Padding="15,6,15,0">
+            
+            <Label Style="{StaticResource TextHeadline}"
+                   Text="{x:Static resources:Strings.SelectStatisticTitle}"
+                   VerticalOptions="Center" />
+            
+            <CollectionView x:Name="StatisticCollectionView"
+                            BackgroundColor="Transparent"
+                            ItemsSource="{Binding StatisticItems}">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,6,0,6">
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding BindingContext.GoToStatisticCommand, Source={x:Reference Name=StatisticCollectionView}}"
+                                    CommandParameter="{Binding .}" />
+                            </Grid.GestureRecognizers>
+
+                            <Border
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                                                 Light={StaticResource CardBackgroundLight}}"
+                                Stroke="black"
+                                StrokeThickness="0"
+                                Padding="15"
+                                StrokeShape="RoundRectangle 10"
+                                HeightRequest="80"
+                                HorizontalOptions="FillAndExpand">
+
+                                <Border.Shadow>
+                                    <Shadow Brush="Black"
+                                            Offset="5,5"
+                                            Radius="30"
+                                            Opacity="0.3" />
+                                </Border.Shadow>
+
+                                <StackLayout Orientation="Vertical"
+                                             x:DataType="statistics:StatisticSelectorTypeViewModel">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image HeightRequest="15"
+                                               WidthRequest="15">
+                                            <Image.Source>
+                                                <FontImageSource FontFamily="MaterialIconsRound"
+                                                                 Glyph="{Binding IconGlyph}" />
+                                            </Image.Source>
+                                        </Image>
+                                        <Label Text="{Binding Name}" Style="{DynamicResource TextSubHead}" />
+                                    </StackLayout>
+                                    <Label Text="{Binding Description}"
+                                           Style="{DynamicResource DeemphasizedLabelStyle}" />
+                                </StackLayout>
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>

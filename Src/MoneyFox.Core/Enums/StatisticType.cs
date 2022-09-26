@@ -1,14 +1,12 @@
-﻿namespace MoneyFox.Core.Enums
+﻿namespace MoneyFox.Core.Enums;
+
+public enum StatisticType
 {
-
-    public enum StatisticType
-    {
-        Cashflow,
-        CategorySpreading,
-        CategorySummary,
-        CashflowHistory,
-        MonthlyAccountCashFlow,
-        CategoryProgression
-    }
-
+    Cashflow,
+    CategorySpreading,
+    CategorySummary,
+    CashflowHistory,
+    MonthlyAccountCashFlow,
+    CategoryProgression
 }
+

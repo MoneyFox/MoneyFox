@@ -1,40 +1,37 @@
-﻿namespace MoneyFox.Core.Commands.Accounts.DeleteAccountById
+﻿namespace MoneyFox.Core.Commands.Accounts.DeleteAccountById;
+
+using System.Threading;
+using System.Threading.Tasks;
+using Common.Interfaces;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+
+public class DeactivateAccountByIdCommand : IRequest
 {
-
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Common.Interfaces;
-    using MediatR;
-    using Microsoft.EntityFrameworkCore;
-
-    public class DeactivateAccountByIdCommand : IRequest
+    public DeactivateAccountByIdCommand(int accountId)
     {
-        public DeactivateAccountByIdCommand(int accountId)
-        {
-            AccountId = accountId;
-        }
-
-        public int AccountId { get; }
-
-        public class Handler : IRequestHandler<DeactivateAccountByIdCommand>
-        {
-            private readonly IAppDbContext appDbContext;
-
-            public Handler(IAppDbContext appDbContext)
-            {
-                this.appDbContext = appDbContext;
-            }
-
-            public async Task<Unit> Handle(DeactivateAccountByIdCommand request, CancellationToken cancellationToken)
-            {
-                var entityToDeactivate = await appDbContext.Accounts.SingleAsync(a => a.Id == request.AccountId, cancellationToken: cancellationToken);
-                entityToDeactivate.Deactivate();
-                await appDbContext.SaveChangesAsync(cancellationToken);
-
-                return Unit.Value;
-            }
-        }
+        AccountId = accountId;
     }
 
+    public int AccountId { get; }
+
+    public class Handler : IRequestHandler<DeactivateAccountByIdCommand>
+    {
+        private readonly IAppDbContext appDbContext;
+
+        public Handler(IAppDbContext appDbContext)
+        {
+            this.appDbContext = appDbContext;
+        }
+
+        public async Task<Unit> Handle(DeactivateAccountByIdCommand request, CancellationToken cancellationToken)
+        {
+            ApplicationCore.Domain.Aggregates.AccountAggregate.Account entityToDeactivate = await appDbContext.Accounts.SingleAsync(a => a.Id == request.AccountId, cancellationToken: cancellationToken);
+            entityToDeactivate.Deactivate();
+            _ = await appDbContext.SaveChangesAsync(cancellationToken);
+
+            return Unit.Value;
+        }
+    }
 }
+

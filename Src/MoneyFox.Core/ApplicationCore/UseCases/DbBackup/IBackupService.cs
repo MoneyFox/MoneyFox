@@ -1,21 +1,19 @@
-namespace MoneyFox.Core.ApplicationCore.UseCases.DbBackup
+namespace MoneyFox.Core.ApplicationCore.UseCases.DbBackup;
+
+using System;
+using System.Threading.Tasks;
+
+// TODO Segregate interface
+public interface IBackupService
 {
+    Task LoginAsync();
 
-    using System;
-    using System.Threading.Tasks;
+    Task LogoutAsync();
 
-    // TODO Segregate interface
-    public interface IBackupService
-    {
-        Task LoginAsync();
+    Task<bool> IsBackupExistingAsync();
 
-        Task LogoutAsync();
+    Task<DateTime> GetBackupDateAsync();
 
-        Task<bool> IsBackupExistingAsync();
-
-        Task<DateTime> GetBackupDateAsync();
-
-        Task RestoreBackupAsync(BackupMode backupMode = BackupMode.Automatic);
-    }
-
+    Task RestoreBackupAsync(BackupMode backupMode = BackupMode.Automatic);
 }
+

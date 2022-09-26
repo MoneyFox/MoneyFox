@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xaml-comp compile="true" ?>
+
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Color x:Key="Primary">#512BD4</Color>
+    <Color x:Key="Secondary">#DFD8F7</Color>
+    <Color x:Key="Tertiary">#2B0B98</Color>
+    <Color x:Key="White">White</Color>
+    <Color x:Key="Black">Black</Color>
+    <Color x:Key="Gray100">#E1E1E1</Color>
+    <Color x:Key="Gray200">#C8C8C8</Color>
+    <Color x:Key="Gray300">#ACACAC</Color>
+    <Color x:Key="Gray400">#919191</Color>
+    <Color x:Key="Gray500">#6E6E6E</Color>
+    <Color x:Key="Gray600">#404040</Color>
+    <Color x:Key="Gray900">#212121</Color>
+    <Color x:Key="Gray950">#141414</Color>
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}" />
+    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}" />
+    <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}" />
+    <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}" />
+    <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}" />
+    <SolidColorBrush x:Key="Gray100Brush" Color="{StaticResource Gray100}" />
+    <SolidColorBrush x:Key="Gray200Brush" Color="{StaticResource Gray200}" />
+    <SolidColorBrush x:Key="Gray300Brush" Color="{StaticResource Gray300}" />
+    <SolidColorBrush x:Key="Gray400Brush" Color="{StaticResource Gray400}" />
+    <SolidColorBrush x:Key="Gray500Brush" Color="{StaticResource Gray500}" />
+    <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}" />
+    <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}" />
+    <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}" />
+
+    <Color x:Key="Yellow100Accent">#F7B548</Color>
+    <Color x:Key="Yellow200Accent">#FFD590</Color>
+    <Color x:Key="Yellow300Accent">#FFE5B9</Color>
+    <Color x:Key="Cyan100Accent">#28C2D1</Color>
+    <Color x:Key="Cyan200Accent">#7BDDEF</Color>
+    <Color x:Key="Cyan300Accent">#C3F2F4</Color>
+    <Color x:Key="Blue100Accent">#3E8EED</Color>
+    <Color x:Key="Blue200Accent">#72ACF1</Color>
+    <Color x:Key="Blue300Accent">#A7CBF6</Color>
+
+    <!-- Colors -->
+    <Color x:Key="ThemePrimary">#FF3300</Color>
+    <Color x:Key="ThemeLighterAlt">#fff7f5</Color>
+    <Color x:Key="ThemeLighter">#ffded6</Color>
+    <Color x:Key="ThemeTertiary">#ff8566</Color>
+    <Color x:Key="ThemeSecondary">#ff4b1f</Color>
+    <Color x:Key="ThemeDarkAlt">#e62e00</Color>
+    <Color x:Key="ThemeDark">#c22700</Color>
+    <Color x:Key="ThemeDarker">#8f1d00</Color>
+
+    <Color x:Key="NeutralLighterAlt">#f8f8f8</Color>
+    <Color x:Key="NeutralLighter">#f4f4f4</Color>
+    <Color x:Key="NeutralLight">#eaeaea</Color>
+    <Color x:Key="NeutralQuaternaryAlt">#dadada</Color>
+    <Color x:Key="NeutralQuaternary">#d0d0d0</Color>
+    <Color x:Key="NeutralTertiaryAlt">#c8c8c8</Color>
+    <Color x:Key="NeutralTertiary">#bab8b7</Color>
+    <Color x:Key="NeutralSecondaryAlt">#a3a2a0</Color>
+    <Color x:Key="NeutralSecondary">#a3a2a0</Color>
+    <Color x:Key="NeutralPrimaryAlt">#8d8b8a</Color>
+    <Color x:Key="NeutralPrimary">#323130</Color>
+    <Color x:Key="NeutralDark">#605e5d</Color>
+
+    <!-- Theme Colors -->
+    <Color x:Key="BackgroundColorDark">#121212</Color>
+    <Color x:Key="BackgroundColorLight">#EFF2F5</Color>
+
+    <Color x:Key="BackgroundTabColorDark">#323130</Color>
+    <Color x:Key="BackgroundTabColorLight">White</Color>
+
+    <Color x:Key="BackgroundColorSearchBarDark">#323130</Color>
+    <Color x:Key="BackgroundColorSearchBarLight">#EFF2F5</Color>
+
+    <Color x:Key="TextPrimaryColorDark">#FFFFFF</Color>
+    <Color x:Key="TextPrimaryColorLight">#323130</Color>
+
+    <Color x:Key="TextSecondaryColorDark">#878786</Color>
+    <Color x:Key="TextSecondaryColorLight">#a3a2a0</Color>
+
+    <Color x:Key="CardBackgroundDark">#2d2d30</Color>
+    <Color x:Key="CardBackgroundLight">#ffffff</Color>
+
+    <Color x:Key="ButtonBackgroundDark">#212121</Color>
+    <Color x:Key="ButtonBackgroundLight">#ffffff</Color>
+
+    <Color x:Key="StatisticLegendDark">#2d2d30</Color>
+    <Color x:Key="StatisticLegendLight">#ffffff</Color>
+
+    <!-- Semantic Colors -->
+    <Color x:Key="Success">#FF3300</Color>
+    <Color x:Key="Info">#ffded6</Color>
+    <Color x:Key="Warning">#ff4b1f</Color>
+
+    <Color x:Key="IncomeGreen">#1FFF39</Color>
+    <Color x:Key="ExpenseRed">#ED7A7A</Color>
+
+    <Color x:Key="TitleColor">#FFFFFF</Color>
+
+</ResourceDictionary>

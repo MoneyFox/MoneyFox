@@ -1,112 +1,110 @@
-﻿namespace MoneyFox.Core.ApplicationCore.Queries
+﻿namespace MoneyFox.Core.ApplicationCore.Queries;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using _Pending_.Common;
+using _Pending_.Common.QueryObjects;
+using Common.Helpers;
+using Common.Interfaces;
+using Domain.Aggregates.AccountAggregate;
+using Domain.Exceptions;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+
+public class GetTotalEndOfMonthBalanceQuery : IRequest<decimal>
 {
-
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using _Pending_.Common;
-    using _Pending_.Common.QueryObjects;
-    using Common.Helpers;
-    using Common.Interfaces;
-    using Domain.Aggregates.AccountAggregate;
-    using Domain.Exceptions;
-    using MediatR;
-    using Microsoft.EntityFrameworkCore;
-
-    public class GetTotalEndOfMonthBalanceQuery : IRequest<decimal>
+    public class Handler : IRequestHandler<GetTotalEndOfMonthBalanceQuery, decimal>
     {
-        public class Handler : IRequestHandler<GetTotalEndOfMonthBalanceQuery, decimal>
+        private readonly IAppDbContext appDbContext;
+        private readonly ISystemDateHelper systemDateHelper;
+
+        public Handler(IAppDbContext appDbContext, ISystemDateHelper systemDateHelper)
         {
-            private readonly IAppDbContext appDbContext;
-            private readonly ISystemDateHelper systemDateHelper;
+            this.appDbContext = appDbContext;
+            this.systemDateHelper = systemDateHelper;
+        }
 
-            public Handler(IAppDbContext appDbContext, ISystemDateHelper systemDateHelper)
+        public async Task<decimal> Handle(GetTotalEndOfMonthBalanceQuery request, CancellationToken cancellationToken)
+        {
+            List<Account> excluded = await appDbContext.Accounts.AreActive().AreExcluded().ToListAsync(cancellationToken: cancellationToken);
+            decimal balance = await GetCurrentAccountBalanceAsync();
+            foreach (Payment payment in await GetUnclearedPaymentsForThisMonthAsync())
             {
-                this.appDbContext = appDbContext;
-                this.systemDateHelper = systemDateHelper;
-            }
-
-            public async Task<decimal> Handle(GetTotalEndOfMonthBalanceQuery request, CancellationToken cancellationToken)
-            {
-                var excluded = await appDbContext.Accounts.AreActive().AreExcluded().ToListAsync(cancellationToken: cancellationToken);
-                var balance = await GetCurrentAccountBalanceAsync();
-                foreach (var payment in await GetUnclearedPaymentsForThisMonthAsync())
+                if (payment.ChargedAccount == null)
                 {
-                    if (payment.ChargedAccount == null)
-                    {
-                        throw new InvalidOperationException($"Navigation Property not initialized properly: {nameof(payment.ChargedAccount)}");
-                    }
-
-                    balance = AddPaymentToBalance(payment: payment, excluded: excluded, currentBalance: balance);
+                    throw new InvalidOperationException($"Navigation Property not initialized properly: {nameof(payment.ChargedAccount)}");
                 }
 
-                return balance;
+                balance = AddPaymentToBalance(payment: payment, excluded: excluded, currentBalance: balance);
             }
 
-            private static decimal AddPaymentToBalance(Payment payment, List<Account> excluded, decimal currentBalance)
+            return balance;
+        }
+
+        private static decimal AddPaymentToBalance(Payment payment, List<Account> excluded, decimal currentBalance)
+        {
+            switch (payment.Type)
             {
-                switch (payment.Type)
+                case PaymentType.Expense:
+                    currentBalance -= payment.Amount;
+
+                    break;
+                case PaymentType.Income:
+                    currentBalance += payment.Amount;
+
+                    break;
+                case PaymentType.Transfer:
+                    currentBalance = CalculateBalanceForTransfer(excluded: excluded, balance: currentBalance, payment: payment);
+
+                    break;
+                default:
+                    throw new InvalidPaymentTypeException();
+            }
+
+            return currentBalance;
+        }
+
+        private static decimal CalculateBalanceForTransfer(List<Account> excluded, decimal balance, Payment payment)
+        {
+            foreach (Account account in excluded)
+            {
+                if (Equals(objA: account.Id, objB: payment.ChargedAccount.Id))
                 {
-                    case PaymentType.Expense:
-                        currentBalance -= payment.Amount;
-
-                        break;
-                    case PaymentType.Income:
-                        currentBalance += payment.Amount;
-
-                        break;
-                    case PaymentType.Transfer:
-                        currentBalance = CalculateBalanceForTransfer(excluded: excluded, balance: currentBalance, payment: payment);
-
-                        break;
-                    default:
-                        throw new InvalidPaymentTypeException();
+                    //Transfer from excluded account
+                    balance += payment.Amount;
                 }
 
-                return currentBalance;
-            }
-
-            private static decimal CalculateBalanceForTransfer(List<Account> excluded, decimal balance, Payment payment)
-            {
-                foreach (var account in excluded)
+                if (payment.TargetAccount == null)
                 {
-                    if (Equals(objA: account.Id, objB: payment.ChargedAccount.Id))
-                    {
-                        //Transfer from excluded account
-                        balance += payment.Amount;
-                    }
-
-                    if (payment.TargetAccount == null)
-                    {
-                        throw new InvalidOperationException($"Navigation Property not initialized properly: {nameof(payment.TargetAccount)}");
-                    }
-
-                    if (Equals(objA: account.Id, objB: payment.TargetAccount.Id))
-                    {
-                        //Transfer to excluded account
-                        balance -= payment.Amount;
-                    }
+                    throw new InvalidOperationException($"Navigation Property not initialized properly: {nameof(payment.TargetAccount)}");
                 }
 
-                return balance;
+                if (Equals(objA: account.Id, objB: payment.TargetAccount.Id))
+                {
+                    //Transfer to excluded account
+                    balance -= payment.Amount;
+                }
             }
 
-            private async Task<decimal> GetCurrentAccountBalanceAsync()
-            {
-                return (await appDbContext.Accounts.AreActive().AreNotExcluded().Select(x => x.CurrentBalance).ToListAsync()).Sum();
-            }
+            return balance;
+        }
 
-            private async Task<List<Payment>> GetUnclearedPaymentsForThisMonthAsync()
-            {
-                return await appDbContext.Payments.Include(x => x.ChargedAccount)
-                    .Include(x => x.TargetAccount)
-                    .AreNotCleared()
-                    .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper))
-                    .ToListAsync();
-            }
+        private async Task<decimal> GetCurrentAccountBalanceAsync()
+        {
+            return (await appDbContext.Accounts.AreActive().AreNotExcluded().Select(x => x.CurrentBalance).ToListAsync()).Sum();
+        }
+
+        private async Task<List<Payment>> GetUnclearedPaymentsForThisMonthAsync()
+        {
+            return await appDbContext.Payments.Include(x => x.ChargedAccount)
+                .Include(x => x.TargetAccount)
+                .AreNotCleared()
+                .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper))
+                .ToListAsync();
         }
     }
-
 }
+
