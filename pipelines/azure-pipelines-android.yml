@@ -14,13 +14,14 @@ variables:
   Major: '7'
   Minor: '8'
 
+name: $(date:yyyy)$(DayOfYear)$(rev:rrr)
 steps:
 
   - task: android-manifest-version@1
     inputs:
       sourcePath: 'Src/MoneyFox.Ui/Platforms/Android/AndroidManifest.xml'
       versionCodeOption: 'buildid'
-      versionCode: '$(date:yyyy)$(DayOfYear)$(rev:rrr)'
+      versionCode: '$(Build.BuildNumber)'
       versionCodeOffset: '0'
       versionName: '$(Major).$(Minor).$(Build.BuildId)'
       printFile: true
