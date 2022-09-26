@@ -14,7 +14,6 @@ variables:
   Major: '7'
   Minor: '8'
 
-name: $(date:yyyy)$(DayOfYear)$(rev:rrr)
 steps:
 
   - task: DownloadSecureFile@1
@@ -39,7 +38,7 @@ steps:
     inputs:
       sourcePath: 'Src/MoneyFox.Ui/Platforms/Android/AndroidManifest.xml'
       versionCodeOption: 'buildid'
-      versionCode: '$(Build.BuildNumber)'
+      versionCode: '$(date:yyyy)$(DayOfYear)$(rev:rrr)'
       versionCodeOffset: '0'
       versionName: '$(Major).$(Minor).$(Build.BuildId)'
       printFile: true
