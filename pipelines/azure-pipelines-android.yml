@@ -16,6 +16,15 @@ variables:
 
 steps:
 
+  - task: android-manifest-version@1
+    inputs:
+      sourcePath: 'Src/MoneyFox.Ui/Platforms/Android/AndroidManifest.xml'
+      versionCodeOption: 'buildid'
+      versionCode: '$(date:yyyy)$(DayOfYear)$(rev:rrr)'
+      versionCodeOffset: '0'
+      versionName: '$(Major).$(Minor).$(Build.BuildId)'
+      printFile: true
+
   - task: DownloadSecureFile@1
     name: keystore
     inputs:
@@ -33,15 +42,6 @@ steps:
     inputs:
       targetType: 'inline'
       script: 'dotnet workload install maui --ignore-failed-sources'
-
-  - task: android-manifest-version@1
-    inputs:
-      sourcePath: 'Src/MoneyFox.Ui/Platforms/Android/AndroidManifest.xml'
-      versionCodeOption: 'buildid'
-      versionCode: '$(date:yyyy)$(DayOfYear)$(rev:rrr)'
-      versionCodeOffset: '0'
-      versionName: '$(Major).$(Minor).$(Build.BuildId)'
-      printFile: true
 
   - task: DotNetCoreCLI@2
     displayName: 'build Android app'
