@@ -7,6 +7,9 @@
         <nullable>enable</nullable>
         <WarningsAsErrors>CS8600;CS8602;CS8603</WarningsAsErrors>
         <GenerateSatelliteAssembliesForCore>true</GenerateSatelliteAssembliesForCore>
+
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+        <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.22621.0</TargetPlatformMinVersion>
     </PropertyGroup>
 
     <ItemGroup>

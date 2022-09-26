@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Win.ViewModels.DataBackup;
+namespace MoneyFox.Win.ViewModels.DataBackup;
 
 using System;
 using System.IO;
