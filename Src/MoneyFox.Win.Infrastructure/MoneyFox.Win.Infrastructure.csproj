@@ -18,7 +18,6 @@
         </PackageReference>
     </ItemGroup>
 
-
     <ItemGroup>
         <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj" />
     </ItemGroup>

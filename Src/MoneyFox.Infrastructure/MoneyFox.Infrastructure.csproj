@@ -2,11 +2,10 @@
 
     <PropertyGroup>
         <TargetFrameworks>net6.0</TargetFrameworks>
-        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.22621.0</TargetFrameworks>
-        <TargetPlatformMinVersion Condition="$([MSBuild]::IsOSPlatform('windows'))">10.0.17763.0</TargetPlatformMinVersion>
+        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.17763.0</TargetFrameworks>
         <EnableWindowsTargeting>true</EnableWindowsTargeting>
         <nullable>enable</nullable>
-        
+
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
         <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.22621.0</TargetPlatformMinVersion>
     </PropertyGroup>
