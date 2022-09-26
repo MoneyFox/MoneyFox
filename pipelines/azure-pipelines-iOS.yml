@@ -19,12 +19,6 @@ steps:
     inputs:
       version: 6.x
 
-  #- script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_12_0
-  #  displayName: 'Select the Xamarin SDK version 6.12.0'
-
-  #- script: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_12.1.app;sudo xcode-select --switch /Applications/Xcode_12.app/Contents/Developer
-  #  displayName: 'Updating xcode version'
-
   - bash: |
       # Write your commands here
 
@@ -40,7 +34,7 @@ steps:
       VERSION=$Major.$Minor.$BUILD_BUILDID
       echo $VERSION
 
-      INFO_PLIST_FILE=$BUILD_REPOSITORY_LOCALPATH/Src/MoneyFox.Ios/Info.plist
+      INFO_PLIST_FILE=$BUILD_REPOSITORY_LOCALPATH/Src/MoneyFox.Ui/Platforms/iOS/Info.plist
       echo $INFO_PLIST_FILE
 
       echo "Updating version name to $VERSION_NAME in Info.plist"
@@ -75,7 +69,7 @@ steps:
       command: 'publish'
       publishWebProjects: false
       zipAfterPublish: false
-      projects: '**/MoneyFox.iOS.csproj'
+      projects: '**/MoneyFox.Ui.csproj'
       arguments: '-c Release -f net6.0-ios -o $(build.artifactstagingdirectory) /p:BuildIpa=true /p:Codesignkey="$(APPLE_CERTIFICATE_SIGNING_IDENTITY)" /p:CodesignProvision="$(APPLE_PROV_PROFILE_UUID)"'
 
   - task: DotNetCoreCLI@2
