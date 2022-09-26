@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Win;
+namespace MoneyFox.Win;
 
 using System;
 using System.Threading.Tasks;
@@ -22,6 +22,7 @@ public class DialogService : IDialogService
     /// <param name="negativeButtonText">Text for the no button.</param>
     public async Task<bool> ShowConfirmMessageAsync(string title, string message, string? positiveButtonText = null, string? negativeButtonText = null)
     {
+        await HideLoadingDialogAsync();
         var dialog = new ContentDialog
         {
             XamlRoot = MainWindow.RootFrame.XamlRoot,
@@ -43,21 +44,26 @@ public class DialogService : IDialogService
     /// <param name="message">Text to display.</param>
     public async Task ShowMessageAsync(string title, string message)
     {
-        var dialog = new ContentDialog { XamlRoot = MainWindow.RootFrame.XamlRoot, Title = title, Content = message };
-        dialog.PrimaryButtonText = Strings.OkLabel;
+        await HideLoadingDialogAsync();
+        var dialog = new ContentDialog
+        {
+            XamlRoot = MainWindow.RootFrame.XamlRoot,
+            Title = title,
+            Content = message,
+            PrimaryButtonText = Strings.OkLabel
+        };
         await dialog.ShowAsync();
     }
 
     /// <summary>
     ///     Shows a loading Dialog.
     /// </summary>
-    public Task ShowLoadingDialogAsync(string? message = null)
+    public async Task ShowLoadingDialogAsync(string? message = null)
     {
+        await HideLoadingDialogAsync();
         loadingDialog = new() { Text = message ?? Strings.LoadingLabel };
         var dispatcherQueue = DispatcherQueue.GetForCurrentThread();
         dispatcherQueue.TryEnqueue(async () => { await loadingDialog.ShowAsync(); });
-
-        return Task.CompletedTask;
     }
 
     /// <summary>
@@ -70,7 +76,6 @@ public class DialogService : IDialogService
             () =>
             {
                 loadingDialog?.Hide();
-                loadingDialog = null;
             });
 
         return Task.CompletedTask;
