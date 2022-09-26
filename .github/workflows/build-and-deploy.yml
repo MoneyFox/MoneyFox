@@ -101,7 +101,7 @@ jobs:
  
         
     - name: Update Info.plist
-      uses: damienaicheh/update-ios-version-info-plist-action@v1.0.0
+      uses: damienaicheh/update-ios-version-info-plist-action@v1.1.0
       with:
         info-plist-path: "Src/MoneyFox.Ios/Info.plist"
         bundle-short-version-string: "${{ env.MAJOR_MINOR_VERSION }}.${{ github.run_number }}"
