@@ -37,7 +37,7 @@ steps:
 
   - task: android-manifest-version@1
     inputs:
-      sourcePath: 'Src/MoneyFox.Android/Properties/AndroidManifest.xml'
+      sourcePath: 'Src/MoneyFox.Ui/Platforms/Android/AndroidManifest.xml'
       versionCodeOption: 'buildid'
       versionCode: '$(Build.BuildNumber)'
       versionCodeOffset: '0'
