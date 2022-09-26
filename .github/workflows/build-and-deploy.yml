@@ -61,7 +61,7 @@ jobs:
     - name: Test
       run: dotnet test ${{env.TEST_PROJECT_PATH}}
 
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v3
       with:
         name: Signed app bundle
         path: ${{steps.sign_app.outputs.signedReleaseFile}}
