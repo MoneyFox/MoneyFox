@@ -5,6 +5,7 @@ using Core.Common.Interfaces;
 using Core.Interfaces;
 using Core.InversionOfControl;
 using Microsoft.Extensions.DependencyInjection;
+using MoneyFox.Ui.Platforms.Windows.Src;
 using MoneyFox.Win.Infrastructure.InversionOfControl;
 using Services;
 using ViewModels;
