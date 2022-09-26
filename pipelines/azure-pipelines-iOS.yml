@@ -69,7 +69,7 @@ steps:
       command: 'publish'
       publishWebProjects: false
       zipAfterPublish: false
-      projects: '**/MoneyFox.iOS.csproj'
+      projects: '**/MoneyFox.Ui.csproj'
       arguments: '-c Release -f net6.0-ios -o $(build.artifactstagingdirectory) /p:BuildIpa=true /p:Codesignkey="$(APPLE_CERTIFICATE_SIGNING_IDENTITY)" /p:CodesignProvision="$(APPLE_PROV_PROFILE_UUID)"'
 
   - task: DotNetCoreCLI@2
