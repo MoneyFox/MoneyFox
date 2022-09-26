@@ -12,14 +12,14 @@ using Xunit;
 public class DecimalToZeroFiveConverterTests
 {
     [Theory]
-    [InlineData("nl", 36.41, "36.40")]
+    [InlineData("nl", 36.41, "36,40")]
     [InlineData("en-GB", 36.41, "36.40")]
     [InlineData("de-CH", 36.41, "36.40")]
-    [InlineData("de-DE", 36.41, "36.40")]
-    [InlineData("nl", 36.43, "36.45")]
+    [InlineData("de-DE", 36.41, "36,40")]
+    [InlineData("nl", 36.43, "36,45")]
     [InlineData("en-GB", 36.43, "36.45")]
     [InlineData("de-CH", 36.43, "36.45")]
-    [InlineData("de-DE", 36.43, "36.45")]
+    [InlineData("de-DE", 36.43, "36,45")]
     public void ConvertCorrectly(string culture, decimal value, string expectedResult)
     {
         // Arrange
