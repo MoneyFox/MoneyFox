@@ -44,9 +44,9 @@
 
     <ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.png"  />
+        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#FFFFFF" />
 
-		<!-- Splash Screen -->
+        <!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#efeadd" BaseSize="128,128" />
 
 		<!-- Custom Fonts -->
@@ -76,6 +76,7 @@
 
     <ItemGroup>
       <None Remove="Platforms\Windows\Package.appxmanifest" />
+      <None Remove="Resources\AppIcon\appiconfg.svg" />
       <None Remove="Resources\Fonts\MaterialIconsRound-Regular.otf" />
       <None Remove="Resources\Fonts\ProductSans-Regular.ttf" />
       <None Remove="SQLitePCLRaw.bundle_e_sqlite3" />
