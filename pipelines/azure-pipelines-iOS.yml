@@ -21,6 +21,7 @@ steps:
 
   - task: PowerShell@2
     displayName: "Set App Version"
+    enabled: false
     inputs:
       targetType: 'inline'
       script: |
@@ -31,8 +32,8 @@ steps:
         Write-Host "Version:" $Version
 
         [xml]$xml = Get-Content -Path ./src/MoneyFox.Ui/MoneyFox.Ui.csproj
-        $xml.Project.PropertyGroup[0].ApplicationDisplayVersion = $DisplayVersion
-        $xml.Project.PropertyGroup[0].ApplicationVersion = $Version 
+        $xml.Project.PropertyGroup[0].ApplicationDisplayVersion = $Version 
+        $xml.Project.PropertyGroup[0].ApplicationVersion = $DisplayVersion
         Set-Content "./src/MoneyFox.Ui/MoneyFox.Ui.csproj" -Value $xml.InnerXml -Force
         Write-Host $xml.InnerXml
       pwsh: true
@@ -40,6 +41,32 @@ steps:
       Major: $(Major)
       Minor: $(Minor)
 
+  - bash: |
+      # Write your commands here
+
+      echo "Build Script started.."
+
+      echo 'Updating fastlane...'
+      sudo gem install fastlane
+
+      echo $Major
+      echo $Minor
+      echo $BUILD_BUILDNUMBER
+
+      VERSION=$Major.$Minor.$BUILD_BUILDID
+      echo $VERSION
+
+      INFO_PLIST_FILE=$BUILD_REPOSITORY_LOCALPATH/Src/MoneyFox.Ios/Info.plist
+      echo $INFO_PLIST_FILE
+
+      echo "Updating version name to $VERSION_NAME in Info.plist"
+      plutil -replace CFBundleShortVersionString -string $BUILD_BUILDNUMBER $INFO_PLIST_FILE
+      plutil -replace CFBundleVersion -string $VERSION $INFO_PLIST_FILE
+    displayName: 'Set App Version'
+    env:
+      Major: $(Major)
+      Minor: $(Minor)
+      
   - task: InstallAppleCertificate@2
     displayName: 'Install an Apple certificate'
     inputs:
