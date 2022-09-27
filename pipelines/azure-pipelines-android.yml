@@ -71,7 +71,7 @@ steps:
     displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
     inputs:
       SourceFolder: '$(System.DefaultWorkingDirectory)'
-      Contents: '**/*.aab'
+      Contents: '**/*-Signed.aab'
       TargetFolder: '$(build.artifactstagingdirectory)'
       flattenFolders: true
 
