@@ -50,7 +50,8 @@ steps:
       targetType: 'inline'
       script: |
         [xml]$xml = Get-Content -Path ./src/MoneyFox.Ui/MoneyFox.Ui.csproj
-        $xml.Project.PropertyGroup[0].ApplicationVersion = "$Major.$Minor.$BUILD_BUILDID"
+        $xml.Project.PropertyGroup[0].ApplicationVersion = "$BUILD_BUILDNUMBER"
+        $xml.Project.PropertyGroup[0].ApplicationDisplayVersion = "$Major.$Minor.$BUILD_BUILDID"
         Set-Content "./src/MoneyFox.Ui/MoneyFox.Ui.csproj" -Value $xml.InnerXml -Force
       pwsh: true
     env:
