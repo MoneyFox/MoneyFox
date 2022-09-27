@@ -25,8 +25,8 @@ steps:
         $Version = "$(Build.BuildNumber)"
         $DisplayVersion = "$(Major).$(Minor).$(Build.BuildId)'"
 
-        Write-Host "Version: "$Version
-        Write-Host "DisplayVersion: "$DisplayVersion
+        Write-Host "Version:" $Version"
+        Write-Host "DisplayVersion:" $DisplayVersion
 
         [xml]$xml = Get-Content -Path ./src/MoneyFox.Ui/MoneyFox.Ui.csproj
         $xml.Project.PropertyGroup[0].ApplicationDisplayVersion = $DisplayVersion
