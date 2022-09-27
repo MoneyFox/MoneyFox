@@ -17,14 +17,23 @@ variables:
 name: $(date:yyyy)$(DayOfYear)$(rev:rrr)
 steps:
 
-  - task: android-manifest-version@1
+  - task: PowerShell@2
+    displayName: "Set App Version"
     inputs:
-      sourcePath: 'Src/MoneyFox.Ui/Platforms/Android/AndroidManifest.xml'
-      versionCodeOption: 'buildid'
-      versionCode: '$(Build.BuildNumber)'
-      versionCodeOffset: '0'
-      versionName: '$(Major).$(Minor).$(Build.BuildId)'
-      printFile: true
+      targetType: 'inline'
+      script: |
+        $Version = $(Build.BuildNumber)
+        $DisplayVersion = "$(Major).$(Minor).$(Build.BuildId)"
+
+        Write-Host "DisplayVersion:" $DisplayVersion
+        Write-Host "Version:" $Version
+
+        [xml]$xml = Get-Content -Path ./src/MoneyFox.Ui/MoneyFox.Ui.csproj
+        $xml.Project.PropertyGroup[0].ApplicationDisplayVersion = $DisplayVersion
+        $xml.Project.PropertyGroup[0].ApplicationVersion = $Version
+        Set-Content "./src/MoneyFox.Ui/MoneyFox.Ui.csproj" -Value $xml.InnerXml -Force
+        Write-Host $xml.InnerXml
+      pwsh: true
 
   - task: DownloadSecureFile@1
     name: keystore
@@ -63,7 +72,7 @@ steps:
     displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
     inputs:
       SourceFolder: '$(System.DefaultWorkingDirectory)'
-      Contents: '**/*.aab'
+      Contents: '**/*-Signed.aab'
       TargetFolder: '$(build.artifactstagingdirectory)'
       flattenFolders: true
 

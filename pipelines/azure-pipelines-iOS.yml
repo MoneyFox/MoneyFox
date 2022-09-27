@@ -13,34 +13,30 @@ variables:
   Major: '7'
   Minor: '8'
 
+name: $(date:yyyy)$(DayOfYear)$(rev:rrr)
 steps:
   - task: UseDotNet@2
     displayName: 'Use correct .Net sdk'
     inputs:
       version: 6.x
 
-  - bash: |
-      # Write your commands here
+  - task: PowerShell@2
+    displayName: "Set App Version"
+    inputs:
+      targetType: 'inline'
+      script: |
+        $Version = $(Build.BuildNumber)
+        $DisplayVersion = "$(Major).$(Minor).$(Build.BuildId)"
 
-      echo "Build Script started.."
+        Write-Host "DisplayVersion:" $DisplayVersion
+        Write-Host "Version:" $Version
 
-      echo 'Updating fastlane...'
-      sudo gem install fastlane
-
-      echo $Major
-      echo $Minor
-      echo $BUILD_BUILDNUMBER
-
-      VERSION=$Major.$Minor.$BUILD_BUILDID
-      echo $VERSION
-
-      INFO_PLIST_FILE=$BUILD_REPOSITORY_LOCALPATH/Src/MoneyFox.Ui/Platforms/iOS/Info.plist
-      echo $INFO_PLIST_FILE
-
-      echo "Updating version name to $VERSION_NAME in Info.plist"
-      plutil -replace CFBundleShortVersionString -string $BUILD_BUILDNUMBER $INFO_PLIST_FILE
-      plutil -replace CFBundleVersion -string $VERSION $INFO_PLIST_FILE
-    displayName: 'Set App Version'
+        [xml]$xml = Get-Content -Path ./src/MoneyFox.Ui/MoneyFox.Ui.csproj
+        $xml.Project.PropertyGroup[0].ApplicationDisplayVersion = "$Version"
+        $xml.Project.PropertyGroup[0].ApplicationVersion = "$DisplayVersion"
+        Set-Content "./src/MoneyFox.Ui/MoneyFox.Ui.csproj" -Value $xml.InnerXml -Force
+        Write-Host $xml.InnerXml
+      pwsh: true
     env:
       Major: $(Major)
       Minor: $(Minor)
