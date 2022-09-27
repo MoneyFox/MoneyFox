@@ -56,7 +56,7 @@ steps:
       VERSION=$Major.$Minor.$BUILD_BUILDID
       echo $VERSION
 
-      INFO_PLIST_FILE=$BUILD_REPOSITORY_LOCALPATH/Src/MoneyFox.Ios/Info.plist
+      INFO_PLIST_FILE=$BUILD_REPOSITORY_LOCALPATH/Src/MoneyFox.Ui/Platforms/iOS/Info.plist
       echo $INFO_PLIST_FILE
 
       echo "Updating version name to $VERSION_NAME in Info.plist"
