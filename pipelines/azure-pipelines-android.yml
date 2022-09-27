@@ -30,11 +30,15 @@ steps:
   - task: PowerShell@2
     inputs:
       targetType: 'inline'
-      script: |
+      script: |        
+        $Version = "$(Build.BuildNumber)"
+        $DisplayVersion = "$(Major).$(Minor).$(BUILD_BUILDID)"
+
         [xml]$xml = Get-Content -Path ./src/MoneyFox.Ui/MoneyFox.Ui.csproj
-        $xml.Project.PropertyGroup[0].ApplicationDisplayVersion = "$(Major).$(Minor).$(Build.BuildId)"
-        $xml.Project.PropertyGroup[0].ApplicationVersion = "$(Build.BuildNumber)"
+        $xml.Project.PropertyGroup[0].ApplicationDisplayVersion = $DisplayVersion
+        $xml.Project.PropertyGroup[0].ApplicationVersion = $Version
         Set-Content "./src/MoneyFox.Ui/MoneyFox.Ui.csproj" -Value $xml.InnerXml -Force
+        Write-Host $xml.InnerXml
       pwsh: true
 
   - task: DownloadSecureFile@1
