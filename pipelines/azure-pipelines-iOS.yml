@@ -49,9 +49,12 @@ steps:
     inputs:
       targetType: 'inline'
       script: |
+        $Version = "$(Build.BuildNumber)"
+        $DisplayVersion = "$(Major).$(Minor).$(BUILD_BUILDID)"
+
         [xml]$xml = Get-Content -Path ./src/MoneyFox.Ui/MoneyFox.Ui.csproj
-        $xml.Project.PropertyGroup[0].ApplicationVersion = "$BUILD_BUILDNUMBER"
-        $xml.Project.PropertyGroup[0].ApplicationDisplayVersion = "$Major.$Minor.$BUILD_BUILDID"
+        $xml.Project.PropertyGroup[0].ApplicationDisplayVersion = "$DisplayVersion"
+        $xml.Project.PropertyGroup[0].ApplicationVersion = "$Version"
         Set-Content "./src/MoneyFox.Ui/MoneyFox.Ui.csproj" -Value $xml.InnerXml -Force
         Write-Host $xml.InnerXml
       pwsh: true
