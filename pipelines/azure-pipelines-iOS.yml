@@ -19,40 +19,22 @@ steps:
     inputs:
       version: 6.x
 
-  - bash: |
-      # Write your commands here
-
-      echo "Build Script started.."
-
-      echo 'Updating fastlane...'
-      sudo gem install fastlane
-
-      echo $Major
-      echo $Minor
-      echo $BUILD_BUILDNUMBER
-
-      VERSION=$Major.$Minor.$BUILD_BUILDID
-      echo $VERSION
-
-      INFO_PLIST_FILE=$BUILD_REPOSITORY_LOCALPATH/Src/MoneyFox.Ui/Platforms/iOS/Info.plist
-      echo $INFO_PLIST_FILE
-
-      echo "Updating version name to $VERSION_NAME in Info.plist"
-      plutil -replace CFBundleShortVersionString -string $BUILD_BUILDNUMBER $INFO_PLIST_FILE
-      plutil -replace CFBundleVersion -string $VERSION $INFO_PLIST_FILE
-    displayName: 'Set App Version'
-    env:
-      Major: $(Major)
-      Minor: $(Minor)
-
   - task: PowerShell@2
+    displayName: "Set App Version"
     inputs:
       targetType: 'inline'
       script: |
+        $Version = Get-Date -Format 'yyyyMMds'
+        $DisplayVersion = "$(Major).$(Minor).$(Build.BuildId)"
+
+        Write-Host "DisplayVersion:" $DisplayVersion
+        Write-Host "Version:" $Version
+
         [xml]$xml = Get-Content -Path ./src/MoneyFox.Ui/MoneyFox.Ui.csproj
-        $xml.Project.PropertyGroup[0].ApplicationVersion = "$BUILD_BUILDNUMBER"
-        $xml.Project.PropertyGroup[0].ApplicationDisplayVersion = "$Major.$Minor.$BUILD_BUILDID"
+        $xml.Project.PropertyGroup[0].ApplicationDisplayVersion = "$DisplayVersion"
+        $xml.Project.PropertyGroup[0].ApplicationVersion = "$Version"
         Set-Content "./src/MoneyFox.Ui/MoneyFox.Ui.csproj" -Value $xml.InnerXml -Force
+        Write-Host $xml.InnerXml
       pwsh: true
     env:
       Major: $(Major)
