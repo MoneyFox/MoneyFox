@@ -24,7 +24,7 @@ steps:
     inputs:
       targetType: 'inline'
       script: |
-        $Version = "$(Build.BuildNumber)"
+        $Version = "$(date:yyyy)$(DayOfYear)$(rev:rrr)"
         $DisplayVersion = "$(Major).$(Minor).$(Build.BuildId)'"
 
         Write-Host "DisplayVersion:" $DisplayVersion
