@@ -31,7 +31,7 @@ steps:
       echo $Minor
       echo $BUILD_BUILDNUMBER
 
-      VERSION=$Major.$Minor.$BUILD_BUILDID
+      VERSION=$Major.$Minor.$(Build.BuildId)'
       echo $VERSION
 
       INFO_PLIST_FILE=$BUILD_REPOSITORY_LOCALPATH/Src/MoneyFox.Ui/Platforms/iOS/Info.plist
