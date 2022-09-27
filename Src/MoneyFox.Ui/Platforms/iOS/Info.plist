@@ -28,6 +28,10 @@
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
 	<string>MoneyFox</string>
+  <key>CFBundleShortVersionString</key>
+  <string>2018304.001</string>
+  <key>CFBundleVersion</key>
+  <string>20183034.001</string>
 	<key>NSContactsUsageDescription</key>
 	<string>This app does not require contact access.</string>
 	<key>NSCalendarsUsageDescription</key>
