@@ -45,6 +45,18 @@ steps:
       Major: $(Major)
       Minor: $(Minor)
 
+  - task: PowerShell@2
+    inputs:
+      targetType: 'inline'
+      script: |
+        [xml]$xml = Get-Content -Path ./src/MoneyFox.Ui/MoneyFox.Ui.csproj
+        $xml.Project.PropertyGroup[0].ApplicationVersion = "$Major.$Minor.$BUILD_BUILDID"
+        Set-Content "./src/MoneyFox.Ui/MoneyFox.Ui.csproj" -Value $xml.InnerXml -Force
+      pwsh: true
+    env:
+      Major: $(Major)
+      Minor: $(Minor)
+
   - task: InstallAppleCertificate@2
     displayName: 'Install an Apple certificate'
     inputs:
