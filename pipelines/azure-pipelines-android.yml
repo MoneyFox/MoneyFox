@@ -17,17 +17,8 @@ variables:
 name: $(date:yyyy)$(DayOfYear)$(rev:rrr)
 steps:
 
-  - task: android-manifest-version@1
-    enabled: false
-    inputs:
-      sourcePath: 'Src/MoneyFox.Ui/Platforms/Android/AndroidManifest.xml'
-      versionCodeOption: 'buildid'
-      versionCode: '$(Build.BuildNumber)'
-      versionCodeOffset: '0'
-      versionName: '$(Major).$(Minor).$(Build.BuildId)'
-      printFile: true
-
   - task: PowerShell@2
+    displayName: "Set App Version"
     inputs:
       targetType: 'inline'
       script: |        
