@@ -53,7 +53,7 @@ steps:
         $xml.Project.PropertyGroup[0].ApplicationVersion = "$BUILD_BUILDNUMBER"
         $xml.Project.PropertyGroup[0].ApplicationDisplayVersion = "$Major.$Minor.$BUILD_BUILDID"
         Set-Content "./src/MoneyFox.Ui/MoneyFox.Ui.csproj" -Value $xml.InnerXml -Force
-        Write-Host Get-Content -Path ./src/MoneyFox.Ui/MoneyFox.Ui.csproj
+        Write-Host $xml.InnerXml
       pwsh: true
     env:
       Major: $(Major)
