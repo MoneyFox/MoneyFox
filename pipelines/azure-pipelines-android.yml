@@ -32,7 +32,7 @@ steps:
       targetType: 'inline'
       script: |        
         $Version = "$(Build.BuildNumber)"
-        $DisplayVersion = "$(Major).$(Minor).$(BUILD_BUILDID)"
+        $DisplayVersion = "$(Major).$(Minor).$(Build.BuildId)'"
 
         [xml]$xml = Get-Content -Path ./src/MoneyFox.Ui/MoneyFox.Ui.csproj
         $xml.Project.PropertyGroup[0].ApplicationDisplayVersion = $DisplayVersion
