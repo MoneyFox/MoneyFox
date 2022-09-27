@@ -13,6 +13,7 @@ variables:
   Major: '7'
   Minor: '8'
 
+name: $(date:yyyy)$(DayOfYear)$(rev:rrr)
 steps:
   - task: UseDotNet@2
     displayName: 'Use correct .Net sdk'
@@ -24,7 +25,7 @@ steps:
     inputs:
       targetType: 'inline'
       script: |
-        $Version = Get-Date -Format 'yyyyMMds'
+        $Version = $(Build.BuildNumber)
         $DisplayVersion = "$(Major).$(Minor).$(Build.BuildId)"
 
         Write-Host "DisplayVersion:" $DisplayVersion
