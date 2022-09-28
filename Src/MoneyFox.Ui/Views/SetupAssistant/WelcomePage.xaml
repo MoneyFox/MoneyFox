@@ -3,46 +3,48 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+             xmlns:setupassistant="clr-namespace:MoneyFox.Ui.ViewModels.SetupAssistant"
              x:Class="MoneyFox.Ui.Views.SetupAssistant.WelcomePage"
              Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="False"
+             x:DataType="setupassistant:WelcomeViewModel"
              BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}">
 
     <ContentPage.Content>
-        <ScrollView>
-            <Grid
-                Padding="15"
+        <Grid Padding="15"
                 IsClippedToBounds="False"
-                RowDefinitions="35, 40, Auto, 12, 40, *, Auto">
+                RowDefinitions="*, Auto"
+                VerticalOptions="FillAndExpand">
 
+            <VerticalStackLayout Spacing="6">
                 <Label Style="{StaticResource TextHeadline}"
-                       Text="{x:Static resources:Strings.WelcomeLabel}" />
+                        Text="{x:Static resources:Strings.WelcomeLabel}" />
 
                 <Label Grid.Row="1"
-                       Style="{StaticResource TextTitle}"
-                       Text="{x:Static resources:Strings.WelcomePageSubtitle}" />
+                        Style="{StaticResource TextTitle}"
+                        Text="{x:Static resources:Strings.WelcomePageSubtitle}" />
 
                 <Label Grid.Row="2"
-                       Text="{x:Static resources:Strings.WelcomePageText}" />
+                        Text="{x:Static resources:Strings.WelcomePageText}" />
 
                 <Button Grid.Row="4"
                         VerticalOptions="Center"
                         Text="{x:Static resources:Strings.CreateAccountNowLabel}"
                         Command="{Binding GoToAddAccountCommand}" />
+            </VerticalStackLayout>
 
-                <Grid Grid.Row="6" ColumnDefinitions="*, 6, *">
-                    <Button Grid.Column="0" 
-                            VerticalOptions="Center"
-                            Style="{StaticResource LinkButton}"
-                            Text="{x:Static resources:Strings.SkipLabel}"
-                            Command="{Binding SkipCommand}" />
+            <Grid Grid.Row="1" ColumnDefinitions="*, 6, *">
+                <Button Grid.Column="0" 
+                        VerticalOptions="Center"
+                        Style="{StaticResource LinkButton}"
+                        Text="{x:Static resources:Strings.SkipLabel}"
+                        Command="{Binding SkipCommand}" />
 
-                    <Button Grid.Column="2" 
-                            VerticalOptions="Center"
-                            Text="{x:Static resources:Strings.NextLabel}"
-                            Command="{Binding NextStepCommand}" />
-                </Grid>
+                <Button Grid.Column="2" 
+                        VerticalOptions="Center"
+                        Text="{x:Static resources:Strings.NextLabel}"
+                        Command="{Binding NextStepCommand}" />
             </Grid>
-        </ScrollView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
