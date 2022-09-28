@@ -22,7 +22,7 @@ steps:
     inputs:
       targetType: 'inline'
       script: |
-        $Version = $(Build.BuildNumber)
+        $Version = "$(Build.BuildNumber)"
         $DisplayVersion = "$(Major).$(Minor).$(Build.BuildId)"
 
         Write-Host "DisplayVersion:" $DisplayVersion
