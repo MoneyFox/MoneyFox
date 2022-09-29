@@ -8,30 +8,28 @@
              Shell.TabBarIsVisible="False"
              BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}">
     <ContentPage.Content>
-        <ScrollView>
-            <Grid
-                Padding="15"
-                IsClippedToBounds="False"
-                RowDefinitions="35, 20, Auto, *, 40">
+        <Grid
+            Padding="15"
+            IsClippedToBounds="False"
+            RowDefinitions="35, 20, Auto, *, 40">
 
-                <Label Style="{StaticResource TextHeadline}"
-                       Text="{x:Static resources:Strings.CompletedTitle}" />
+            <Label Style="{StaticResource TextHeadline}"
+                    Text="{x:Static resources:Strings.CompletedTitle}" />
 
-                <Label Grid.Row="2"
-                       Text="{x:Static resources:Strings.CompletedText}" />
+            <Label Grid.Row="2"
+                    Text="{x:Static resources:Strings.CompletedText}" />
 
-                <Grid Grid.Row="4" ColumnDefinitions="*, 6, 2*">
-                    <Button Grid.Column="0"
-                            VerticalOptions="Center"
-                            Text="{x:Static resources:Strings.BackLabel}"
-                            Command="{Binding BackCommand}" />
+            <Grid Grid.Row="4" ColumnDefinitions="*, 6, 2*">
+                <Button Grid.Column="0"
+                        VerticalOptions="Center"
+                        Text="{x:Static resources:Strings.BackLabel}"
+                        Command="{Binding BackCommand}" />
 
-                    <Button Grid.Column="2"
-                            VerticalOptions="Center"
-                            Text="{x:Static resources:Strings.CompleteLabel}"
-                            Command="{Binding CompleteCommand}" />
-                </Grid>
+                <Button Grid.Column="2"
+                        VerticalOptions="Center"
+                        Text="{x:Static resources:Strings.CompleteLabel}"
+                        Command="{Binding CompleteCommand}" />
             </Grid>
-        </ScrollView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
