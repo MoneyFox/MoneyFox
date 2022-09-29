@@ -8,38 +8,36 @@
              Shell.TabBarIsVisible="False"
              BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}">
     <ContentPage.Content>
-        <ScrollView>
-            <Grid
-                Padding="15"
-                IsClippedToBounds="False"
-                RowDefinitions="35, 40, Auto, 40, Auto, *, 40">
+        <Grid
+            Padding="15"
+            IsClippedToBounds="False"
+            RowDefinitions="35, 40, Auto, 40, Auto, *, 40">
 
-                <Label Style="{StaticResource TextSubHeadline}"
-                       Text="{x:Static resources:Strings.CategoriesTitle}" />
+            <Label Style="{StaticResource TextSubHeadline}"
+                    Text="{x:Static resources:Strings.CategoriesTitle}" />
 
-                <Label Grid.Row="2"
-                       Text="{x:Static resources:Strings.CategorieIntroductionText}" />
+            <Label Grid.Row="2"
+                    Text="{x:Static resources:Strings.CategorieIntroductionText}" />
 
-                <Button Grid.Row="3"
+            <Button Grid.Row="3"
+                    VerticalOptions="Center"
+                    Text="{x:Static resources:Strings.CreateCategoryNowLabel}"
+                    Command="{Binding GoToAddCategoryCommand}" />
+
+            <Label Grid.Row="4"
+                    Text="{x:Static resources:Strings.PaymentIntroductionText}" />
+
+            <Grid Grid.Row="6" ColumnDefinitions="*, 6, 2*">
+                <Button Grid.Column="0"
                         VerticalOptions="Center"
-                        Text="{x:Static resources:Strings.CreateCategoryNowLabel}"
-                        Command="{Binding GoToAddCategoryCommand}" />
+                        Text="{x:Static resources:Strings.BackLabel}"
+                        Command="{Binding BackCommand}" />
 
-                <Label Grid.Row="4"
-                       Text="{x:Static resources:Strings.PaymentIntroductionText}" />
-
-                <Grid Grid.Row="6" ColumnDefinitions="*, 6, 2*">
-                    <Button Grid.Column="0"
-                            VerticalOptions="Center"
-                            Text="{x:Static resources:Strings.BackLabel}"
-                            Command="{Binding BackCommand}" />
-
-                    <Button Grid.Column="2"
-                            VerticalOptions="Center"
-                            Text="{x:Static resources:Strings.NextLabel}"
-                            Command="{Binding NextStepCommand}" />
-                </Grid>
+                <Button Grid.Column="2"
+                        VerticalOptions="Center"
+                        Text="{x:Static resources:Strings.NextLabel}"
+                        Command="{Binding NextStepCommand}" />
             </Grid>
-        </ScrollView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
