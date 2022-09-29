@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.Platforms.Android
+namespace MoneyFox.Ui
 {
 
     using System;

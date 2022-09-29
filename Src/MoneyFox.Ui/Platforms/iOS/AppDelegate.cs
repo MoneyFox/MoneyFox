@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.Platforms.iOS;
+namespace MoneyFox.Ui;
 using Core.Common;
 using Core.Common.Interfaces;
 using Core.Interfaces;
