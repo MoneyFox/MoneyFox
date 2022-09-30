@@ -19,6 +19,7 @@ steps:
 
   - task: PowerShell@2
     displayName: "Set App Version"
+    enabled: false
     inputs:
       targetType: 'inline'
       script: |
@@ -32,6 +33,16 @@ steps:
         Set-Content "./src/MoneyFox.Ui/MoneyFox.Ui.csproj" -Value $xml.InnerXml -Force
         Write-Host $xml.InnerXml
       pwsh: true
+
+  - task: android-manifest-version@1
+    displayName: "Set App Version"
+    inputs:
+      sourcePath: 'Src/MoneyFox.Ui/Platforms/Android/AndroidManifest.xml'
+      versionCodeOption: 'buildid'
+      versionCode: '$(Build.BuildNumber)'
+      versionCodeOffset: '0'
+      versionName: '$(Major).$(Minor).$(Build.BuildId)'
+      printFile: true
 
   - task: DownloadSecureFile@1
     name: keystore
