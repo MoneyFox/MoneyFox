@@ -9,8 +9,9 @@
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>   
         <Nullable>enable</Nullable>
+        <DefaultLanguage>en</DefaultLanguage>
 
-		<!-- Display name -->
+        <!-- Display name -->
 		<ApplicationTitle>MoneyFox</ApplicationTitle>
 
 		<!-- App Identifier -->
@@ -18,12 +19,8 @@
 		<ApplicationIdGuid>DC1FC722-07EF-4356-9616-91A59959004B</ApplicationIdGuid>
 
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.22621.0</TargetPlatformMinVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
-		<DefaultLanguage>en</DefaultLanguage>
 	</PropertyGroup>
 
     <PropertyGroup Condition="'$(TargetFramework)' == 'net6.0'">
@@ -35,11 +32,6 @@
         <ArchiveOnBuild>true</ArchiveOnBuild>
         <CodesignKey>Apple Distribution: Apply Solutions GmbH (HTWW78XH49)</CodesignKey>
         <CodesignProvision>MoneyFox Distribution 2022</CodesignProvision>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
-        <ApplicationDisplayVersion>7.8.12844</ApplicationDisplayVersion>
-        <ApplicationVersion>2022092726</ApplicationVersion>
     </PropertyGroup>
 
     <ItemGroup>
