@@ -483,7 +483,7 @@
     </Style>
 
     <Style TargetType="Button">
-        <Setter Property="TextColor" Value="{StaticResource Gray200}" />
+        <Setter Property="TextColor" Value="{StaticResource Gray100}" />
         <Setter Property="BackgroundColor" Value="{StaticResource ButtonBackgroundColor}" />
         <Setter Property="FontFamily" Value="OpenSansRegular"/>
         <Setter Property="FontSize" Value="14"/>
