@@ -15,19 +15,12 @@ jobs:
       appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
     steps:
-          
+
       - task: UseDotNet@2
-        displayName: Use .NET 7.0
+        displayName: Use .NET 6.0
         inputs:
           packageType: 'sdk'
-          version: '7.0.x'
-          includePreviewVersions: true
-
-      - task: PowerShell@2
-        displayName: 'Install maui workload'
-        inputs:
-          targetType: 'inline'
-          script: 'dotnet workload install maui --ignore-failed-sources'
+          version: '6.0.x'
 
       - task: DownloadSecureFile@1
         displayName: 'Download Windows Certificate'
@@ -76,7 +69,9 @@ jobs:
         displayName: Restore NuGets
         inputs:
           command: 'restore'
-          projects: '**/MoneyFox.Win.*.csproj'
+          projects: |
+            **/*.wapproj
+            **/MoneyFox.Win.csproj
           feedsToUse: 'select'
 
       - task: DotNetCoreCLI@2
@@ -84,7 +79,8 @@ jobs:
         inputs:
           command: 'test'
           projects: |
-            **/*.Tests.csproj
+            **/MoneyFox.Core.Tests.csproj
+            **/MoneyFox.Infrastructure.Tests.csproj
           arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
 
       - task: VSBuild@1

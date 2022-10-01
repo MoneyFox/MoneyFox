@@ -22,14 +22,16 @@ jobs:
     displayName: 'Build Windows Release'
     
     steps:
+          
       - task: UseDotNet@2
-        displayName: 'Use correct .Net sdk'
+        displayName: Use .NET 6.0
         inputs:
-          version: 7.x
-          includePreviewVersions: true
-
+          packageType: 'sdk'
+          version: '6.0.x'
+        
       - task: PowerShell@2
         displayName: 'Install maui workload'
+        enabled: false
         inputs:
           targetType: 'inline'
           script: 'dotnet workload install maui --ignore-failed-sources'
@@ -90,16 +92,22 @@ jobs:
         inputs:
           versionSpec: 6.x
 
-      - task: NuGetCommand@2
-        displayName: 'NuGet restore'
+      - task: DotNetCoreCLI@2
+        displayName: Restore NuGets
         inputs:
-          restoreSolution: '**/MoneyFox.WinUI.sln'
+          command: 'restore'
+          projects: |
+            **/*.wapproj
+            **/MoneyFox.Win.csproj
+          feedsToUse: 'select'
 
       - task: DotNetCoreCLI@2
         displayName: 'Run Tests'
         inputs:
-          command: test
-          projects: '**/*.Tests.csproj'
+          command: 'test'
+          projects: |
+            **/MoneyFox.Core.Tests.csproj
+            **/MoneyFox.Infrastructure.Tests.csproj
           arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
 
       - task: CopyFiles@2
