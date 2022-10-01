@@ -82,7 +82,7 @@ jobs:
         displayName: Restore NuGets
         inputs:
           command: 'restore'
-          projects: '**/MoneyFox.Win.*.csproj'
+          projects: '**/*.csproj'
           feedsToUse: 'select'
 
       - task: DotNetCoreCLI@2
