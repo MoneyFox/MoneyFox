@@ -51,9 +51,10 @@
                                     CommandParameter="{Binding .}" />
                             </Grid.GestureRecognizers>
 
-                            <Border StrokeShape="RoundRectangle 10,10,10,10"
-                                    HeightRequest="45"
-                                    HorizontalOptions="FillAndExpand">
+
+                            <Border StrokeShape="RoundRectangle 10"
+                                    Padding="15"
+                                    BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}" >
 
                                 <Border.Shadow>
                                     <Shadow />
