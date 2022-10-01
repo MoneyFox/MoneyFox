@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Common.Groups;
+namespace MoneyFox.Ui.Common.Groups;
 
 using System.Globalization;
 using CommunityToolkit.Mvvm.Input;
@@ -22,7 +22,6 @@ public class AlphaGroupListGroupCollection<T> : List<T>
     ///     Public constructor.
     /// </summary>
     /// <param name="key">The key for this group.</param>
-    /// <param name="itemClickCommand">The command to execute on click.</param>
     public AlphaGroupListGroupCollection(string key)
     {
         Key = key;
