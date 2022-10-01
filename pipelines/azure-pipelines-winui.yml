@@ -104,8 +104,10 @@ jobs:
       - task: DotNetCoreCLI@2
         displayName: 'Run Tests'
         inputs:
-          command: test
-          projects: '**/*.Tests.csproj'
+          command: 'test'
+          projects: |
+            **/MoneyFox.Core.Tests.csproj
+            **/MoneyFox.Infrastructure.Tests.csproj
           arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
 
       - task: CopyFiles@2
