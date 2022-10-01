@@ -40,10 +40,7 @@
                                 HorizontalOptions="FillAndExpand">
 
                                 <Border.Shadow>
-                                    <Shadow Brush="Black"
-                                            Offset="5,5"
-                                            Radius="30"
-                                            Opacity="0.3" />
+                                    <Shadow />
                                 </Border.Shadow>
 
                                 <StackLayout Orientation="Vertical"

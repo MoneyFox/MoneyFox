@@ -41,10 +41,7 @@
                                 HorizontalOptions="FillAndExpand">
 
                                 <Border.Shadow>
-                                    <Shadow Brush="Black"
-                                            Offset="20,20"
-                                            Radius="40"
-                                            Opacity="0.8" />
+                                    <Shadow />
                                 </Border.Shadow>
 
                                 <StackLayout BindableLayout.ItemsSource="{Binding .}">

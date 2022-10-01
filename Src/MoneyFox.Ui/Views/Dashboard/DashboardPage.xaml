@@ -41,7 +41,7 @@
         <ScrollView>
             <Grid Padding="15"
                   IsClippedToBounds="False"
-                  RowDefinitions="35, 40, 90, 160, 140,*">
+                  RowDefinitions="35, 40, 90, 160, 140, *">
 
                 <Label Style="{StaticResource TextHeadline}" Text="{x:Static resources:Strings.WelcomeLabel}" />
 
@@ -58,14 +58,11 @@
                         StrokeShape="RoundRectangle 10"
                         HeightRequest="90"
                         HorizontalOptions="FillAndExpand">
-
+                    
                     <Border.Shadow>
-                        <Shadow Brush="Black"
-                                Offset="5,5"
-                                Radius="30"
-                                Opacity="0.8" />
+                        <Shadow />
                     </Border.Shadow>
-
+                    
                     <Grid>
 
                         <Grid.GestureRecognizers>
@@ -133,12 +130,9 @@
                                         StrokeThickness="0"
                                         HeightRequest="80"
                                         HorizontalOptions="FillAndExpand">
-
+                                        
                                         <Border.Shadow>
-                                            <Shadow Brush="Black"
-                                                    Offset="5,5"
-                                                    Radius="30"
-                                                    Opacity="0.8" />
+                                            <Shadow />
                                         </Border.Shadow>
 
                                         <Grid>
@@ -212,12 +206,9 @@
                             StrokeThickness="0"
                             HeightRequest="80"
                             HorizontalOptions="FillAndExpand">
-
+                            
                             <Border.Shadow>
-                                <Shadow Brush="Black"
-                                        Offset="5,5"
-                                        Radius="30"
-                                        Opacity="0.8" />
+                                <Shadow />
                             </Border.Shadow>
 
                             <Grid>
@@ -242,10 +233,7 @@
                             HorizontalOptions="FillAndExpand">
 
                             <Border.Shadow>
-                                <Shadow Brush="Black"
-                                        Offset="5,5"
-                                        Radius="30"
-                                        Opacity="0.8" />
+                                <Shadow />
                             </Border.Shadow>
 
                             <Grid>
