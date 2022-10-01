@@ -59,11 +59,11 @@ jobs:
           failOnStderr: true
 
       - task: UseDotNet@2
-        displayName: Use .NET 6.0
-        enabled: false
+        displayName: Use .NET 7.0
         inputs:
           packageType: 'sdk'
-          version: '6.0.x'
+          version: '7.0.x'
+          includePreviewVersions: true
 
       - task: NuGetToolInstaller@1
         displayName: 'Use NuGet'
