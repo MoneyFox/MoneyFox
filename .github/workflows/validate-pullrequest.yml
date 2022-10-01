@@ -69,28 +69,3 @@ jobs:
         dotnet test ${{env.UI_TEST_PROJECT_PATH}}
         dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
         dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
-
-
-  buildWindows:
-    runs-on: windows-latest
-    
-    steps:
-      - uses: actions/checkout@v3
-      
-      - name: Setup .NET SDK ${{env.DOTNETVERSION}}
-        uses: actions/setup-dotnet@v2
-        with:
-            dotnet-version: '${{env.DOTNETVERSION}}'
-            include-prerelease: true
-          
-      - name: Install .NET MAUI
-        run: |
-          dotnet nuget locals all --clear
-          dotnet workload install maui    
-
-      - name: Restore Dependencies
-        run: dotnet restore ${{env.UI_PROJECT_PATH}}
-      
-      # https://docs.microsoft.com/en-us/dotnet/maui/windows/deployment/overview
-      - name: Build Windows MSIX
-        run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-windows10.0.22621.0 -c Release 
