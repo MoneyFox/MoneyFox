@@ -28,6 +28,12 @@ jobs:
           version: 7.x
           includePreviewVersions: true
 
+      - task: PowerShell@2
+        displayName: 'Install maui workload'
+        inputs:
+          targetType: 'inline'
+          script: 'dotnet workload install maui --ignore-failed-sources'
+
       - task: DownloadSecureFile@1
         displayName: 'Download secure file'
         name: 'signingCert'

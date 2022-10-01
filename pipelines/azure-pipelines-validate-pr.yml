@@ -21,6 +21,12 @@ jobs:
         inputs:
           secureFile: 'MoneyFoxCert_2021.pfx'
 
+      - task: PowerShell@2
+        displayName: 'Install maui workload'
+        inputs:
+          targetType: 'inline'
+          script: 'dotnet workload install maui --ignore-failed-sources'
+
       - powershell: |
           $pfxpath = '$(signingCert.secureFilePath)'
           $certPassword = $env:CERT_PASSWORD_ENV
