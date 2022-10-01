@@ -38,7 +38,6 @@
     <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}" />
     <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}" />
     <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}" />
-    <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="{StaticResource ButtonBackgroundColor}" />
 
     <Color x:Key="Yellow100Accent">#F7B548</Color>
     <Color x:Key="Yellow200Accent">#FFD590</Color>
@@ -89,6 +88,7 @@
     <Color x:Key="CardBackgroundDark">#2d2d30</Color>
     <Color x:Key="CardBackgroundLight">#ffffff</Color>
 
+    // TODO: remove if no longer needed
     <Color x:Key="ButtonBackgroundDark">#212121</Color>
     <Color x:Key="ButtonBackgroundLight">#ffffff</Color>
 
