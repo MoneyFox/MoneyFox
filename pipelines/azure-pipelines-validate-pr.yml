@@ -15,6 +15,13 @@ jobs:
       appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
     steps:
+
+      - task: UseDotNet@2
+        displayName: Use .NET 6.0
+        inputs:
+          packageType: 'sdk'
+          version: '6.0.x'
+
       - task: DownloadSecureFile@1
         displayName: 'Download Windows Certificate'
         name: 'signingCert'
@@ -58,23 +65,13 @@ jobs:
             $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Win\MoneyFox.Win (Package)\Package.StoreAssociation.xml')
           failOnStderr: true
 
-      - task: UseDotNet@2
-        displayName: Use .NET 6.0
-        enabled: false
-        inputs:
-          packageType: 'sdk'
-          version: '6.0.x'
-
-      - task: NuGetToolInstaller@1
-        displayName: 'Use NuGet'
-        inputs:
-          versionSpec: 6.x
-
       - task: DotNetCoreCLI@2
         displayName: Restore NuGets
         inputs:
           command: 'restore'
-          projects: '**/*.csproj'
+          projects: |
+            **/*.wapproj
+            **/MoneyFox.Win.csproj
           feedsToUse: 'select'
 
       - task: DotNetCoreCLI@2
@@ -82,7 +79,8 @@ jobs:
         inputs:
           command: 'test'
           projects: |
-            **/*.Tests.csproj
+            **/MoneyFox.Core.Tests.csproj
+            **/MoneyFox.Infrastructure.Tests.csproj
           arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
 
       - task: VSBuild@1

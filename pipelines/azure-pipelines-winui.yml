@@ -22,6 +22,17 @@ jobs:
     displayName: 'Build Windows Release'
     
     steps:
+      - task: UseDotNet@2
+        displayName: 'Use correct .Net sdk'
+        inputs:
+          version: 6.x
+
+      - task: PowerShell@2
+        displayName: 'Install maui workload'
+        enabled: false
+        inputs:
+          targetType: 'inline'
+          script: 'dotnet workload install maui --ignore-failed-sources'
 
       - task: DownloadSecureFile@1
         displayName: 'Download secure file'

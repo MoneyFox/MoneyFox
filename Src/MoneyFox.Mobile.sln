@@ -7,11 +7,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0CF8258F-193E-4373-9E7A-61DB4579EE66}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
-		..\pipelines\azure-pipelines-android.yml = ..\pipelines\azure-pipelines-android.yml
-		..\pipelines\azure-pipelines-iOS.yml = ..\pipelines\azure-pipelines-iOS.yml
-		..\pipelines\azure-pipelines-stryker.yml = ..\pipelines\azure-pipelines-stryker.yml
-		..\pipelines\azure-pipelines-validate-pr.yml = ..\pipelines\azure-pipelines-validate-pr.yml
-		..\pipelines\azure-pipelines-winui.yml = ..\pipelines\azure-pipelines-winui.yml
 		nuget.config = nuget.config
 		..\renovate.json = ..\renovate.json
 	EndProjectSection
@@ -26,7 +21,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pipelines", "pipelines", "{
 	ProjectSection(SolutionItems) = preProject
 		..\pipelines\azure-pipelines-android.yml = ..\pipelines\azure-pipelines-android.yml
 		..\pipelines\azure-pipelines-iOS.yml = ..\pipelines\azure-pipelines-iOS.yml
-		..\pipelines\azure-pipelines-stryker.yml = ..\pipelines\azure-pipelines-stryker.yml
 		..\pipelines\azure-pipelines-validate-pr.yml = ..\pipelines\azure-pipelines-validate-pr.yml
 		..\pipelines\azure-pipelines-winui.yml = ..\pipelines\azure-pipelines-winui.yml
 	EndProjectSection
@@ -38,6 +32,12 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyFox.Core.Tests", "MoneyFox.Core.Tests\MoneyFox.Core.Tests.csproj", "{14C0CF81-DB1D-45EE-9E2F-400A9C83959C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyFox.Infrastructure.Tests", "MoneyFox.Infrastructure.Tests\MoneyFox.Infrastructure.Tests.csproj", "{C259D91B-1753-4696-BA22-E6D8EFADB5F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflow", "workflow", "{665DF91A-2A61-4262-8812-EE850938447D}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\build-and-deploy.yml = ..\.github\workflows\build-and-deploy.yml
+		..\.github\workflows\validate-pullrequest.yml = ..\.github\workflows\validate-pullrequest.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -559,6 +559,7 @@ Global
 		{3C486A9C-83B4-487F-B8C4-2C9DA13F1039} = {C34715EF-4059-44BC-A162-5599ACA83C82}
 		{14C0CF81-DB1D-45EE-9E2F-400A9C83959C} = {C34715EF-4059-44BC-A162-5599ACA83C82}
 		{C259D91B-1753-4696-BA22-E6D8EFADB5F7} = {C34715EF-4059-44BC-A162-5599ACA83C82}
+		{665DF91A-2A61-4262-8812-EE850938447D} = {0CF8258F-193E-4373-9E7A-61DB4579EE66}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		RESX_CodeReferences = {"Items":[{"Expression":"\\W($File.$Key)\\W","Extensions":".cs,.xaml,.cshtml","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"\\W($File.$Key)\\W","Extensions":".vbhtml","IsCaseSensitive":false,"SingleLineComment":null},{"Expression":"ResourceManager.GetString\\(\"($Key)\"\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"typeof\\((\\w+\\.)*($File)\\).+\"($Key)\"|\"($Key)\".+typeof\\((\\w+\\.)*($File)\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"\\W($Key)\\W","Extensions":".vb","IsCaseSensitive":false,"SingleLineComment":"'"},{"Expression":"\\W($File::$Key)\\W","Extensions":".cpp,.c,.hxx,.h","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"&lt;%\\$\\s+Resources:\\s*($File)\\s*,\\s*($Key)\\s*%&gt;","Extensions":".aspx,.ascx,.master","IsCaseSensitive":true,"SingleLineComment":null},{"Expression":"StringResourceKey\\.($Key)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"\\.($Key)","Extensions":".ts,.html","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"resources:Strings.$Key","Extensions":".xaml","IsCaseSensitive":false,"SingleLineComment":"<!--"},{"Expression":"Strings.$Key","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"}]}

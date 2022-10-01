@@ -1,10 +1,11 @@
-﻿namespace MoneyFox.Ui.ViewModels.Accounts;
+namespace MoneyFox.Ui.ViewModels.Accounts;
 
+using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
 using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using MoneyFox.Core.Common.Interfaces.Mapping;
 
-public sealed class AccountViewModel : ObservableObject, IMapFrom<Account>, IEquatable<AccountViewModel>
+public sealed class AccountViewModel : ObservableObject, IHaveCustomMapping, IEquatable<AccountViewModel>
 {
     private const decimal DECIMAL_DELTA = 0.01m;
     private DateTime creationTime;
@@ -173,6 +174,11 @@ public sealed class AccountViewModel : ObservableObject, IMapFrom<Account>, IEqu
             modificationDate = value;
             OnPropertyChanged();
         }
+    }
+
+    public void CreateMappings(Profile configuration)
+    {
+        configuration.CreateMap<Account, AccountViewModel>();
     }
 
     public bool Equals(AccountViewModel other)
