@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.ViewModels.Payments;
 
 using Accounts;
+using AutoMapper;
 using Categories;
 using CommunityToolkit.Mvvm.ComponentModel;
 using MoneyFox.Core.ApplicationCore.Domain.Aggregates;
@@ -8,7 +9,7 @@ using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using MoneyFox.Core.Common.Helpers;
 using MoneyFox.Core.Common.Interfaces.Mapping;
 
-public class RecurringPaymentViewModel : ObservableObject, IMapFrom<RecurringPayment>
+public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
 {
     private const decimal DECIMAL_DELTA = 0.01m;
     private decimal amount;
@@ -239,5 +240,10 @@ public class RecurringPaymentViewModel : ObservableObject, IMapFrom<RecurringPay
             categoryViewModel = value;
             OnPropertyChanged();
         }
+    }
+
+    public void CreateMappings(Profile configuration)
+    {
+        configuration.CreateMap<RecurringPayment, RecurringPaymentViewModel>();
     }
 }

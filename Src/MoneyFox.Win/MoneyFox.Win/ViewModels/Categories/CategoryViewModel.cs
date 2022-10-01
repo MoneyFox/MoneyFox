@@ -1,11 +1,12 @@
-﻿namespace MoneyFox.Win.ViewModels.Categories;
+namespace MoneyFox.Win.ViewModels.Categories;
 
 using System;
+using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.Common.Interfaces.Mapping;
 
-public class CategoryViewModel : ObservableObject, IMapFrom<Category>
+public class CategoryViewModel : ObservableObject, IHaveCustomMapping
 {
     private DateTime created;
     private int id;
@@ -111,5 +112,10 @@ public class CategoryViewModel : ObservableObject, IMapFrom<Category>
             note = value;
             OnPropertyChanged();
         }
+    }
+
+    public void CreateMappings(Profile configuration)
+    {
+        configuration.CreateMap<Category, CategoryViewModel>();
     }
 }
