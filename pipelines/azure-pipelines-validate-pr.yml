@@ -15,17 +15,25 @@ jobs:
       appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
     steps:
-      - task: DownloadSecureFile@1
-        displayName: 'Download Windows Certificate'
-        name: 'signingCert'
+          
+      - task: UseDotNet@2
+        displayName: Use .NET 7.0
         inputs:
-          secureFile: 'MoneyFoxCert_2021.pfx'
+          packageType: 'sdk'
+          version: '7.0.x'
+          includePreviewVersions: true
 
       - task: PowerShell@2
         displayName: 'Install maui workload'
         inputs:
           targetType: 'inline'
           script: 'dotnet workload install maui --ignore-failed-sources'
+
+      - task: DownloadSecureFile@1
+        displayName: 'Download Windows Certificate'
+        name: 'signingCert'
+        inputs:
+          secureFile: 'MoneyFoxCert_2021.pfx'
 
       - powershell: |
           $pfxpath = '$(signingCert.secureFilePath)'
@@ -63,13 +71,6 @@ jobs:
             $xmlDoc.StoreAssociation.ProductReservedInfo.MainPackageIdentityName="57598ApplySolutionsSoftwa.MoneyFox"
             $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Win\MoneyFox.Win (Package)\Package.StoreAssociation.xml')
           failOnStderr: true
-
-      - task: UseDotNet@2
-        displayName: Use .NET 7.0
-        inputs:
-          packageType: 'sdk'
-          version: '7.0.x'
-          includePreviewVersions: true
 
       - task: DotNetCoreCLI@2
         displayName: Restore NuGets
