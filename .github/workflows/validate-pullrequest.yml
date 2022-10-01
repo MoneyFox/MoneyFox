@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-    DOTNETVERSION: "7.0.x"
+    DOTNETVERSION: "6.0.x"
     UI_PROJECT_PATH: "src/MoneyFox.Ui/MoneyFox.Ui.csproj"
     CORE_TEST_PROJECT_PATH: "src/MoneyFox.Core.Tests/MoneyFox.Core.Tests.csproj"
     UI_TEST_PROJECT_PATH: "src/MoneyFox.Ui.Tests/MoneyFox.Ui.Tests.csproj"
@@ -24,8 +24,13 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: ${{env.DOTNETVERSION}}
+        dotnet-version: '7.0.x'
         include-prerelease: true
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: ${{env.DOTNETVERSION}}
 
     - name: Install MAUI Workload
       run: dotnet workload install maui --ignore-failed-sources
@@ -52,8 +57,13 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '${{env.DOTNETVERSION}}'
+        dotnet-version: '7.0.x'
         include-prerelease: true
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: ${{env.DOTNETVERSION}}
 
     - name: Install MAUI Workloads
       run: dotnet workload install maui --ignore-failed-sources
