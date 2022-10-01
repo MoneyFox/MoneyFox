@@ -17,7 +17,8 @@ steps:
   - task: UseDotNet@2
     displayName: 'Use correct .Net sdk'
     inputs:
-      version: 6.x
+      version: 7.x
+      includePreviewVersions: true
 
   - task: PowerShell@2
     displayName: "Set App Version"

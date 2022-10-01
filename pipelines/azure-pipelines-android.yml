@@ -15,7 +15,13 @@ variables:
   Minor: '8'
 
 name: $(date:yyyy)$(DayOfYear)$(rev:rrr)
-steps:
+steps: 
+
+  - task: UseDotNet@2
+    displayName: 'Use correct .Net sdk'
+    inputs:
+      version: 7.x
+      includePreviewVersions: true
 
   - task: PowerShell@2
     displayName: "Set App Version"
