@@ -66,6 +66,13 @@ jobs:
           failOnStderr: true
 
       - task: DotNetCoreCLI@2
+        displayName: Restore NuGets
+        inputs:
+          command: 'restore'
+          projects: '**/*.wapproj'
+          feedsToUse: 'select'
+
+      - task: DotNetCoreCLI@2
         displayName: 'Run Tests'
         inputs:
           command: 'test'
