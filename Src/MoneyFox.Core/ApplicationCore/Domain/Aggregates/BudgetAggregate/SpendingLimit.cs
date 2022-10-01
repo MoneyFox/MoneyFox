@@ -1,9 +1,8 @@
 namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
 
-using System.Collections.Generic;
 using Exceptions;
 
-public sealed class SpendingLimit : ValueObject
+public sealed record SpendingLimit
 {
     public SpendingLimit(decimal value)
     {
@@ -16,11 +15,6 @@ public sealed class SpendingLimit : ValueObject
     }
 
     public decimal Value { get; }
-
-    protected override IEnumerable<object> GetEqualityComponents()
-    {
-        yield return Value;
-    }
 
     public static implicit operator decimal(SpendingLimit spendingLimit) => spendingLimit.Value;
 }
