@@ -33,15 +33,15 @@ jobs:
     - name: Restore Dependencies
       run: dotnet restore ${{env.UI_PROJECT_PATH}}
 
-    - name: Build MAUI Android
-      run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-android -c Release    
-      
     - name: Test
       run: |
         dotnet test ${{env.UI_TEST_PROJECT_PATH}}
         dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
         dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
 
+    - name: Build MAUI Android
+      run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-android -c Release    
+      
   buildiOS:
 
     runs-on: macos-12
@@ -61,11 +61,12 @@ jobs:
     - name: Restore Dependencies
       run: dotnet restore ${{env.UI_PROJECT_PATH}} 
 
-#    - name: Build MAUI iOS
-#      run: dotnet build ${{env.UI_PROJECT_PATH}} -f net7.0-ios -c Debug /p:buildForSimulator=True /p:packageApp=True /p:ArchiveOnBuild=False
-      
     - name: Test
       run: |
         dotnet test ${{env.UI_TEST_PROJECT_PATH}}
         dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
         dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
+        
+#    - name: Build MAUI iOS
+#      run: dotnet build ${{env.UI_PROJECT_PATH}} -f net7.0-ios -c Debug /p:buildForSimulator=True /p:packageApp=True /p:ArchiveOnBuild=False
+      
