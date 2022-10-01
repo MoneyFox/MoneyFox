@@ -22,7 +22,7 @@ public class EmailAdapter : IEmailAdapter
     {
         try
         {
-            var message = new EmailMessage { Subject = subject, Body = body, To = recipients };
+            var message = new EmailMessage { Subject = subject, Body = body, To = recipients, Attachments = new List<EmailAttachment>() };
             foreach (var path in filePaths)
             {
                 message.Attachments.Add(new(fullPath: path, contentType: "txt"));
