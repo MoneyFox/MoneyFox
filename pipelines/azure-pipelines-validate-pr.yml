@@ -15,12 +15,6 @@ jobs:
       appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
     steps:
-    
-      - task: UseDotNet@2
-        displayName: 'Use correct .Net sdk'
-        inputs:
-            version: 7.x
-            includePreviewVersions: true
 
       - task: UseDotNet@2
         displayName: Use .NET 6.0
@@ -70,13 +64,6 @@ jobs:
             $xmlDoc.StoreAssociation.ProductReservedInfo.MainPackageIdentityName="57598ApplySolutionsSoftwa.MoneyFox"
             $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Win\MoneyFox.Win (Package)\Package.StoreAssociation.xml')
           failOnStderr: true
-
-      - task: DotNetCoreCLI@2
-        displayName: Restore NuGets
-        inputs:
-          command: 'restore'
-          projects: '**/*.csproj'
-          feedsToUse: 'select'
 
       - task: DotNetCoreCLI@2
         displayName: 'Run Tests'
