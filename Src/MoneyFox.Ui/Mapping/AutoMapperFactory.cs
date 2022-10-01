@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Mapping;
+namespace MoneyFox.Ui.Mapping;
 
 using AutoMapper;
 
