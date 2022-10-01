@@ -62,7 +62,7 @@ jobs:
       run: dotnet restore ${{env.UI_PROJECT_PATH}} 
 
 #    - name: Build MAUI iOS
-#      run: dotnet build ${{env.UI_PROJECT_PATH}} -f net6.0-ios -c Debug /p:buildForSimulator=True /p:packageApp=True /p:ArchiveOnBuild=False
+#      run: dotnet build ${{env.UI_PROJECT_PATH}} -f net7.0-ios -c Debug /p:buildForSimulator=True /p:packageApp=True /p:ArchiveOnBuild=False
       
     - name: Test
       run: |
@@ -93,41 +93,4 @@ jobs:
       
       # https://docs.microsoft.com/en-us/dotnet/maui/windows/deployment/overview
       - name: Build Windows MSIX
-        run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net6.0-windows10.0.22621.0 -c Release 
-          
-#      - name: Build and Run UnitTests
-#        run: |
-#          dotnet build .\Src\MoneyFox.Tests\MoneyFox.Tests.csproj
-#          dotnet test .\Src\MoneyFox.Tests\MoneyFox.Tests.csproj --no-build --verbosity normal
-
-#      # https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/certutil
-#      # commandline util to encode to base64 on windows
-#      - name: Create signing pfx file from secrets
-#        shell: pwsh
-#        id: secret-file
-#        env:
-#          SECRET_DATA1: ${{ secrets.WIN_SIGN_CERT }}
-#        run: |
-#          $secretFile = "WinSignCert.pfx"; 
-#          $encodedBytes = [System.Convert]::FromBase64String($env:SECRET_DATA1); 
-#          Set-Content $secretFile -Value $encodedBytes -AsByteStream;
-#          Write-Output "::set-output name=SECRET_FILE::$secretFile";
-#          Write-Output " ";
-#          Write-Output "CHECK FILE EXISTS";
-#          Write-Output " ";
-#          ls
-#
-#      # https://docs.microsoft.com/en-us/windows/msix/desktop/azure-dev-ops
-#      - name: Sign Windows App
-#        shell: pwsh
-#        env:
-#          CERT_PASSWORD: ${{ secrets.WIN_CERT_PASSWORD }}
-#        run: |
-#          '"C:\Program Files (x86)\Windows Kits\10\App Certification Kit\SignTool" sign /a /fd SHA256 /f WinSignCert.pfx /p ($env:CERT_PASSWORD) 6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net6.0-windows10.0.19041.0\win10-x64\AppPackages\WeatherTwentyOne_1.0.0.0_TestWeatherTwentyOne_1.0.0.0_x64.msix'
-#
-#      - uses: actions/upload-artifact@v2
-#        with:
-#          name: artifacts-windows
-#          path: |
-#            **\*.msix
-#      
+        run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-windows10.0.22621.0 -c Release 
