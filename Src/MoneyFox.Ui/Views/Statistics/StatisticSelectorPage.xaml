@@ -9,7 +9,7 @@
     x:Name="root">
 
     <ContentPage.Content>
-        <VerticalStackLayout Spacing="6" Padding="15,6,15,0">
+        <VerticalStackLayout Spacing="6" >
             
             <Label Style="{StaticResource TextHeadline}"
                    Text="{x:Static resources:Strings.SelectStatisticTitle}"
@@ -21,7 +21,7 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="0,6,0,6">
+                        <Grid Padding="15,6,15,8">
 
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer
@@ -40,10 +40,7 @@
                                 HorizontalOptions="FillAndExpand">
 
                                 <Border.Shadow>
-                                    <Shadow Brush="Black"
-                                            Offset="5,5"
-                                            Radius="30"
-                                            Opacity="0.3" />
+                                    <Shadow />
                                 </Border.Shadow>
 
                                 <StackLayout Orientation="Vertical"

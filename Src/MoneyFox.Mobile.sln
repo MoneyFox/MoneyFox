@@ -33,6 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyFox.Core.Tests", "Mone
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyFox.Infrastructure.Tests", "MoneyFox.Infrastructure.Tests\MoneyFox.Infrastructure.Tests.csproj", "{C259D91B-1753-4696-BA22-E6D8EFADB5F7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflow", "workflow", "{DB3165F2-79CD-41DE-8650-100167D22E0B}"
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflow", "workflow", "{665DF91A-2A61-4262-8812-EE850938447D}"
 	ProjectSection(SolutionItems) = preProject
 		..\.github\workflows\build-and-deploy.yml = ..\.github\workflows\build-and-deploy.yml
@@ -559,6 +560,7 @@ Global
 		{3C486A9C-83B4-487F-B8C4-2C9DA13F1039} = {C34715EF-4059-44BC-A162-5599ACA83C82}
 		{14C0CF81-DB1D-45EE-9E2F-400A9C83959C} = {C34715EF-4059-44BC-A162-5599ACA83C82}
 		{C259D91B-1753-4696-BA22-E6D8EFADB5F7} = {C34715EF-4059-44BC-A162-5599ACA83C82}
+		{DB3165F2-79CD-41DE-8650-100167D22E0B} = {0CF8258F-193E-4373-9E7A-61DB4579EE66}
 		{665DF91A-2A61-4262-8812-EE850938447D} = {0CF8258F-193E-4373-9E7A-61DB4579EE66}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
