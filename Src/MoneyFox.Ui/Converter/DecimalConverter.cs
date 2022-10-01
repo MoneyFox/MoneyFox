@@ -1,6 +1,7 @@
-﻿namespace MoneyFox.Ui.Converter;
+namespace MoneyFox.Ui.Converter;
 
 using System.Globalization;
+using Microsoft.Maui.Controls;
 using MoneyFox.Core.Common.Helpers;
 
 public class DecimalConverter : IValueConverter

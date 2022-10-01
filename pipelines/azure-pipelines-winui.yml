@@ -25,11 +25,11 @@ jobs:
       - task: UseDotNet@2
         displayName: 'Use correct .Net sdk'
         inputs:
-          version: 7.x
-          includePreviewVersions: true
+          version: 6.x
 
       - task: PowerShell@2
         displayName: 'Install maui workload'
+        enabled: false
         inputs:
           targetType: 'inline'
           script: 'dotnet workload install maui --ignore-failed-sources'
