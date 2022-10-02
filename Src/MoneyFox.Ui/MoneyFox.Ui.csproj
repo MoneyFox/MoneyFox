@@ -91,4 +91,8 @@
         </AssemblyAttribute>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="ViewModels\Dashboard\" />
+    </ItemGroup>
+
 </Project>
