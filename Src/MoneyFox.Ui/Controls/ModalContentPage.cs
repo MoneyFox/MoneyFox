@@ -1,3 +1,12 @@
 ﻿namespace MoneyFox.Ui.Controls;
 
-public class ModalContentPage : ContentPage { }
+using Microsoft.Maui.Controls.PlatformConfiguration;
+using Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;
+
+public class ModalContentPage : ContentPage
+{
+    public ModalContentPage()
+    {
+        On<iOS>().SetModalPresentationStyle(UIModalPresentationStyle.Automatic);
+    }
+}
