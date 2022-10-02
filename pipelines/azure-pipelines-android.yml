@@ -28,7 +28,7 @@ steps:
     inputs:
       version: 6.x
 
-  - task: PowerShell@2
+  - task: PowerShell@2.210.0
     displayName: "Set App Version"
     enabled: false
     inputs:
@@ -67,7 +67,7 @@ steps:
       jdkArchitectureOption: 'x64'
       jdkSourceOption: 'PreInstalled'
 
-  - task: PowerShell@2
+  - task: PowerShell@2.210.0
     displayName: 'Install maui workload'
     inputs:
       targetType: 'inline'
