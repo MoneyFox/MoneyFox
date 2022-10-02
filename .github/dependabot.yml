@@ -13,7 +13,7 @@ updates:
       - "npadrutt"
       
   - package-ecosystem: "nuget" 
-    directory: "/" # Location of package manifests
+    directory: "/src" # Location of package manifests
     schedule:
       interval: "daily"
     assignees:
