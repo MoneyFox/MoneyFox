@@ -22,7 +22,7 @@
             <VerticalStackLayout Padding="16" Spacing="6" >
                 <VerticalStackLayout IsVisible="{Binding IsLoggedIn}" 
                            Margin="0,0,0,10">
-                    <Frame CornerRadius="100" 
+                    <Frame CornerRadius="40" 
                            WidthRequest="80"
                            HeightRequest="80"
                            HorizontalOptions="Center"
