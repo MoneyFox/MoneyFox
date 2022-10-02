@@ -2,7 +2,6 @@ using Microsoft.Maui.Controls.Compatibility;
 using MoneyFox.Ui;
 using MoneyFox.Ui.Platforms.iOS.Renderer;
 
-[assembly: ExportRenderer(typeof(AppShell), typeof(CustomShellRenderer))]
 namespace MoneyFox.Ui.Platforms.iOS.Renderer
 {
     using CoreGraphics;
@@ -63,8 +62,17 @@ namespace MoneyFox.Ui.Platforms.iOS.Renderer
         public override CGSize IntrinsicContentSize => UILayoutFittingExpandedSize;
     }
 
+
     public class NoLineAppearanceTracker : IShellNavBarAppearanceTracker
     {
+        public void Dispose()
+        {
+        }
+
+        public void ResetAppearance(UINavigationController controller)
+        {
+        }
+
         public void SetAppearance(UINavigationController controller, ShellAppearance appearance)
         {
             var navBar = controller.NavigationBar;
@@ -77,22 +85,10 @@ namespace MoneyFox.Ui.Platforms.iOS.Renderer
 
         public void SetHasShadow(UINavigationController controller, bool hasShadow)
         {
-            // Only needed for interface implementation.
         }
 
         public void UpdateLayout(UINavigationController controller)
         {
-            // Only needed for interface implementation.
-        }
-
-        public void ResetAppearance(UINavigationController controller)
-        {
-            // Only needed for interface implementation.
-        }
-
-        public void Dispose()
-        {
-            // Only needed for interface implementation.
         }
     }
 }
