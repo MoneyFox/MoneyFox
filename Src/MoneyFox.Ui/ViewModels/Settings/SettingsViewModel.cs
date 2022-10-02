@@ -54,6 +54,10 @@ internal sealed class SettingsViewModel : BaseViewModel, ISettingsViewModel
             CultureInfo.GetCultures(CultureTypes.AllCultures).OrderBy(x => x.Name).ToList().ForEach(AvailableCultures.Add);
             SelectedCulture = AvailableCultures.First(x => x.Name == settingsFacade.DefaultCulture);
         }
+        catch (Exception ex)
+        {
+            Log.Error(ex, "Failed to load Available Cultures");
+        }
         finally
         {
             await dialogService.HideLoadingDialogAsync();
