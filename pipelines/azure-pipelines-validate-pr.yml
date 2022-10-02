@@ -43,7 +43,7 @@ jobs:
         env:
           CERT_PASSWORD_ENV: $(UWP_Certificate_Password)
 
-      - task: PowerShell@2
+      - task: PowerShell@2.210.0
         displayName: "Set AppManifest"
         inputs:
           targetType: 'inline'
@@ -54,7 +54,7 @@ jobs:
             $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Win\MoneyFox.Win (Package)\Package.appxmanifest')
           failOnStderr: true
 
-      - task: PowerShell@2
+      - task: PowerShell@2.210.0
         displayName: "Set Store Association"
         inputs:
           targetType: 'inline'

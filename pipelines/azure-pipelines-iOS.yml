@@ -25,7 +25,7 @@ steps:
     inputs:
       version: 6.x
 
-  - task: PowerShell@2
+  - task: PowerShell@2.210.0
     displayName: "Set App Version"
     enabled: false
     inputs:
@@ -85,7 +85,7 @@ steps:
     inputs:
       provProfileSecureFile: 'MoneyFox_Distribution_2022.mobileprovision'
 
-  - task: PowerShell@2
+  - task: PowerShell@2.210.0
     displayName: "install maui workload"
     inputs:
       targetType: 'inline'
@@ -107,7 +107,7 @@ steps:
       projects: '**/MoneyFox.Ui.csproj'
       arguments: '-c Release -f net7.0-ios -o $(build.artifactstagingdirectory) /p:BuildIpa=true /p:Codesignkey="$(APPLE_CERTIFICATE_SIGNING_IDENTITY)" /p:CodesignProvision="$(APPLE_PROV_PROFILE_UUID)"'
 
-  - task: PowerShell@2
+  - task: PowerShell@2.210.0
     inputs:
       targetType: 'inline'
       script: |

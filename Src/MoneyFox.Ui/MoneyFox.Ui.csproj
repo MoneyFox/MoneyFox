@@ -21,10 +21,16 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.22621.0</TargetPlatformMinVersion>
+
+        <EnableSGenConc>True</EnableSGenConc>
 	</PropertyGroup>
 
     <PropertyGroup Condition="'$(TargetFramework)' == 'net7.0'">
         <OutputType>Library</OutputType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$(TargetFramework.Contains('-ios'))">
+        <UseInterpreter>true</UseInterpreter>
     </PropertyGroup>
 
     <PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'">
@@ -77,17 +83,6 @@
     <ItemGroup>
       <ProjectReference Include="..\MoneyFox.Core\MoneyFox.Core.csproj" />
       <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Update="Views\Backup\BackupPage.xaml.cs">
-        <SubType>Code</SubType>
-        <DependentUpon>%(Filename)</DependentUpon>
-      </Compile>
-      <Compile Update="Views\Dashboard\DashboardPage.xaml.cs">
-        <SubType>Code</SubType>
-        <DependentUpon>%(Filename)</DependentUpon>
-      </Compile>
     </ItemGroup>
 
     <ItemGroup>

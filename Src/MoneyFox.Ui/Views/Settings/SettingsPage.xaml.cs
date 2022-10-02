@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Ui.Views.Settings;
 
+using Microsoft.Maui.Controls;
 using ViewModels.Settings;
 
 public partial class SettingsPage
@@ -12,7 +13,7 @@ public partial class SettingsPage
 
     private SettingsViewModel ViewModel => (SettingsViewModel)BindingContext;
 
-    protected override async void OnAppearing()
+    protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     {
         await ViewModel.InitializeAsync();
     }
