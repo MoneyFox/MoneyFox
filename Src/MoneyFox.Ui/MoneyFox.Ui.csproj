@@ -21,10 +21,16 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.22621.0</TargetPlatformMinVersion>
+
+        <EnableSGenConc>True</EnableSGenConc>
 	</PropertyGroup>
 
     <PropertyGroup Condition="'$(TargetFramework)' == 'net7.0'">
         <OutputType>Library</OutputType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$(TargetFramework.Contains('-ios'))">
+        <UseInterpreter>true</UseInterpreter>
     </PropertyGroup>
 
     <PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'">
@@ -32,10 +38,6 @@
         <ArchiveOnBuild>true</ArchiveOnBuild>
         <CodesignKey>Apple Distribution: Apply Solutions GmbH (HTWW78XH49)</CodesignKey>
         <CodesignProvision>MoneyFox Distribution 2022</CodesignProvision>
-        
-        <MtouchUseLlvm>False</MtouchUseLlvm>
-        <MtouchLink>None</MtouchLink>
-        <EnableSGenConc>True</EnableSGenConc>
     </PropertyGroup>
 
     <ItemGroup>
