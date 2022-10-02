@@ -133,5 +133,5 @@ jobs:
           platform: x64
           configuration: '$(BuildConfiguration)'
 
-      - task: PublishBuildArtifacts@1
+      - task: PublishBuildArtifacts@1.211.0
         displayName: 'Publish Artifact: drop'
