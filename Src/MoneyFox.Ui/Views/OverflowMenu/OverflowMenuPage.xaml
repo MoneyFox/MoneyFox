@@ -8,7 +8,7 @@
              Title="{x:Static resources:Strings.MenuTitle}">
 
     <ContentPage.Content>
-        <StackLayout>
+        <VerticalStackLayout>
             <CollectionView x:Name="OverflowMenuCollectionView"
                             ItemsSource="{Binding OverflowEntries}">
 
@@ -50,6 +50,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </StackLayout>
+        </VerticalStackLayout>
     </ContentPage.Content>
 </ContentPage>
