@@ -92,7 +92,7 @@ jobs:
         inputs:
           versionSpec: 6.x
 
-      - task: DotNetCoreCLI@2
+      - task: DotNetCoreCLI@2.210.0
         displayName: Restore NuGets
         inputs:
           command: 'restore'
@@ -101,7 +101,7 @@ jobs:
             **/MoneyFox.Win.csproj
           feedsToUse: 'select'
 
-      - task: DotNetCoreCLI@2
+      - task: DotNetCoreCLI@2.210.0
         displayName: 'Run Tests'
         inputs:
           command: 'test'

@@ -91,14 +91,14 @@ steps:
       targetType: 'inline'
       script: 'dotnet workload install maui'
 
-  - task: DotNetCoreCLI@2
+  - task: DotNetCoreCLI@2.210.0
     displayName: 'Run Tests'
     inputs:
       command: 'test'
       projects: |
         **/*.Tests.csproj
 
-  - task: DotNetCoreCLI@2
+  - task: DotNetCoreCLI@2.210.0
     displayName: 'Build iOS app'
     inputs:
       command: 'publish'
