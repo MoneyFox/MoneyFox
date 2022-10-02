@@ -73,7 +73,7 @@ steps:
       targetType: 'inline'
       script: 'dotnet workload install maui --ignore-failed-sources'
 
-  - task: DotNetCoreCLI@2
+  - task: DotNetCoreCLI@2.210.0
     displayName: 'build Android app'
     inputs:
       command: 'publish'
@@ -81,7 +81,7 @@ steps:
       projects: '**/MoneyFox.Ui.csproj'
       arguments: '-c Release -f net7.0-android /p:AndroidKeyStore="True" /p:AndroidSigningKeyAlias="$(KeyStoreAlias)" /p:AndroidSigningKeyStore="$(keystore.secureFilePath)" /p:AndroidSigningKeyPass="$(KeyStorePass)" /p:AndroidSigningStorePass="$(KeyStorePass)"'
 
-  - task: DotNetCoreCLI@2
+  - task: DotNetCoreCLI@2.210.0
     displayName: 'Run Tests'
     inputs:
       command: 'test'
