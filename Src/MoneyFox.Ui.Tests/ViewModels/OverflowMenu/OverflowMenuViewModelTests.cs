@@ -2,7 +2,7 @@ namespace MoneyFox.Ui.Tests.ViewModels.OverflowMenu;
 
 using System.Threading.Tasks;
 using MoneyFox.Core.Interfaces;
-using MoneyFox.Ui.ViewModels.OverflowMenu;
+using MoneyFox.Ui.Views.OverflowMenu;
 using NSubstitute;
 using Views.About;
 using Views.Backup;

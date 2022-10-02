@@ -1,4 +1,6 @@
-namespace MoneyFox.Ui.ViewModels.OverflowMenu;
+using MoneyFox.Ui.ViewModels;
+
+namespace MoneyFox.Ui.Views.OverflowMenu;
 
 using CommunityToolkit.Mvvm.Input;
 using JetBrains.Annotations;
