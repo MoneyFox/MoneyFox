@@ -23,7 +23,7 @@ jobs:
     
     steps:
           
-      - task: UseDotNet@2
+      - task: UseDotNet@2.207.2
         displayName: Use .NET 6.0
         inputs:
           packageType: 'sdk'
@@ -36,7 +36,7 @@ jobs:
           targetType: 'inline'
           script: 'dotnet workload install maui --ignore-failed-sources'
 
-      - task: DownloadSecureFile@1
+      - task: DownloadSecureFile@1.200.0
         displayName: 'Download secure file'
         name: 'signingCert'
         inputs:
@@ -92,7 +92,7 @@ jobs:
         inputs:
           versionSpec: 6.x
 
-      - task: DotNetCoreCLI@2
+      - task: DotNetCoreCLI@2.210.0
         displayName: Restore NuGets
         inputs:
           command: 'restore'
@@ -101,7 +101,7 @@ jobs:
             **/MoneyFox.Win.csproj
           feedsToUse: 'select'
 
-      - task: DotNetCoreCLI@2
+      - task: DotNetCoreCLI@2.210.0
         displayName: 'Run Tests'
         inputs:
           command: 'test'
@@ -117,7 +117,7 @@ jobs:
           Contents: '**\*.opencover.xml'
           TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-      - task: VSBuild@1
+      - task: VSBuild@1.208.0
         displayName: 'Build Windows Project'
         inputs:
           solution: '**/*.wapproj'

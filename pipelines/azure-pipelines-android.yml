@@ -17,13 +17,13 @@ variables:
 name: $(date:yyyy)$(DayOfYear)$(rev:rrr)
 steps: 
 
-  - task: UseDotNet@2
+  - task: UseDotNet@2.207.2
     displayName: 'Use correct .Net sdk'
     inputs:
       version: 7.x
       includePreviewVersions: true
        
-  - task: UseDotNet@2
+  - task: UseDotNet@2.207.2
     displayName: 'Use correct .Net sdk'
     inputs:
       version: 6.x
@@ -55,7 +55,7 @@ steps:
       versionName: '$(Major).$(Minor).$(Build.BuildId)'
       printFile: true
 
-  - task: DownloadSecureFile@1
+  - task: DownloadSecureFile@1.200.0
     name: keystore
     inputs:
       secureFile: 'Money Fox.keystore'
@@ -73,7 +73,7 @@ steps:
       targetType: 'inline'
       script: 'dotnet workload install maui --ignore-failed-sources'
 
-  - task: DotNetCoreCLI@2
+  - task: DotNetCoreCLI@2.210.0
     displayName: 'build Android app'
     inputs:
       command: 'publish'
@@ -81,7 +81,7 @@ steps:
       projects: '**/MoneyFox.Ui.csproj'
       arguments: '-c Release -f net7.0-android /p:AndroidKeyStore="True" /p:AndroidSigningKeyAlias="$(KeyStoreAlias)" /p:AndroidSigningKeyStore="$(keystore.secureFilePath)" /p:AndroidSigningKeyPass="$(KeyStorePass)" /p:AndroidSigningStorePass="$(KeyStorePass)"'
 
-  - task: DotNetCoreCLI@2
+  - task: DotNetCoreCLI@2.210.0
     displayName: 'Run Tests'
     inputs:
       command: 'test'
