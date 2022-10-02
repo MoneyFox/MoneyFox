@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using MoneyFox.Core.Common.Interfaces;
 using MoneyFox.Core.Interfaces;
-using MoneyFox.Ui.ViewModels.About;
+using MoneyFox.Ui.Views.About;
 using NSubstitute;
 using Xunit;
 
