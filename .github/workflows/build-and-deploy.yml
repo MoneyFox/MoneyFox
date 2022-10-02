@@ -34,7 +34,7 @@ jobs:
         print-file: true
 
     - name: Setup .NET
-      uses: actions/setup-dotnet@v2
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '${{env.DOTNETVERSION}}'
 
@@ -109,7 +109,7 @@ jobs:
         print-file: true
 
     - name: Setup .NET
-      uses: actions/setup-dotnet@v2
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '${{env.DOTNETVERSION}}'
 
