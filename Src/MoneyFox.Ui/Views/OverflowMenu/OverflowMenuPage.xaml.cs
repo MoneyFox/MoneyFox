@@ -1,7 +1,4 @@
-﻿namespace MoneyFox.Ui.Views.OverflowMenu;
-
-using ViewModels.OverflowMenu;
-
+namespace MoneyFox.Ui.Views.OverflowMenu;
 public partial class OverflowMenuPage
 {
     public OverflowMenuPage()

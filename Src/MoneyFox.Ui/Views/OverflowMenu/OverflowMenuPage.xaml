@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MoneyFox.Ui.Views.OverflowMenu.OverflowMenuPage"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-             xmlns:overflowMenu="using:MoneyFox.Ui.ViewModels.OverflowMenu"
+             xmlns:overflowMenu="using:MoneyFox.Ui.Views.OverflowMenu"
              Title="{x:Static resources:Strings.MenuTitle}">
 
     <ContentPage.Content>

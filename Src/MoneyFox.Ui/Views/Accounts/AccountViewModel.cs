@@ -19,9 +19,6 @@ public sealed class AccountViewModel : ObservableObject, IHaveCustomMapping, IEq
     private string name = "";
     private string note = "";
 
-    /// <summary>
-    ///     Account Id
-    /// </summary>
     public int Id
     {
         get => id;

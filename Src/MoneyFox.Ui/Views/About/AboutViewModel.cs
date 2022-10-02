@@ -1,4 +1,6 @@
-﻿namespace MoneyFox.Ui.ViewModels.About;
+﻿using MoneyFox.Ui.ViewModels;
+
+namespace MoneyFox.Ui.Views.About;
 
 using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Core.Common;

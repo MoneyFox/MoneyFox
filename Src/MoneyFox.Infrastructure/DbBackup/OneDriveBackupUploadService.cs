@@ -48,7 +48,7 @@ internal class OneDriveBackupUploadService : IBackupUploadService
             OneDriveAuthentication authentication = await oneDriveAuthenticationService.AcquireAuthentication();
 
             StreamContent content = new(dataToUpload);
-            IFlurlResponse response = await graphDriveUri
+            _ = await graphDriveUri
                 .AppendPathSegments("special", "approot:", $"{backupName}:", "content")
                 .WithOAuthBearerToken(authentication.AccessToken)
                 .PutAsync(content);

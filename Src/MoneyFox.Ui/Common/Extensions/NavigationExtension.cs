@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Common.Extensions;
+namespace MoneyFox.Ui.Common.Extensions;
 
 using MoneyFox.Core.ApplicationCore.Domain.Exceptions;
 using Serilog;
@@ -14,8 +14,7 @@ public static class NavigationExtension
                 return Task.CompletedTask;
             }
 
-            return shell.Navigation.PushModalAsync(
-                new NavigationPage(page) { BarBackgroundColor = Colors.Transparent, BarTextColor = GetCurrentForegroundColor() });
+            return shell.Navigation.PushModalAsync(page);
         }
         catch (Exception ex)
         {
