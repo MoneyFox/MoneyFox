@@ -22,7 +22,7 @@ jobs:
           packageType: 'sdk'
           version: '6.0.x'
 
-      - task: DownloadSecureFile@1
+      - task: DownloadSecureFile@1.200.0
         displayName: 'Download Windows Certificate'
         name: 'signingCert'
         inputs:

@@ -55,7 +55,7 @@ steps:
       versionName: '$(Major).$(Minor).$(Build.BuildId)'
       printFile: true
 
-  - task: DownloadSecureFile@1
+  - task: DownloadSecureFile@1.200.0
     name: keystore
     inputs:
       secureFile: 'Money Fox.keystore'
