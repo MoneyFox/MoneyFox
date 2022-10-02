@@ -26,7 +26,7 @@ public class DecimalToZeroFiveConverterTests
         var converter = new DecimalToZeroFiveConverter();
 
         // Act
-        string result = (string)converter.Convert(value: value, targetType: null, parameter: null, culture: new CultureInfo(culture));
+        string result = (string)converter.Convert(value: value, targetType: null!, parameter: null!, culture: new CultureInfo(culture));
 
         // Assert
         _ = result.Should().Be(expectedResult);
@@ -45,7 +45,7 @@ public class DecimalToZeroFiveConverterTests
         var converter = new DecimalToZeroFiveConverter();
 
         // Act
-        decimal result = (decimal)converter.ConvertBack(value: value, targetType: null, parameter: null, culture: Thread.CurrentThread.CurrentUICulture);
+        decimal result = (decimal)converter.ConvertBack(value: value, targetType: null!, parameter: null!, culture: Thread.CurrentThread.CurrentUICulture);
 
         // Assert
         _ = result.Should().Be(expectedResult);

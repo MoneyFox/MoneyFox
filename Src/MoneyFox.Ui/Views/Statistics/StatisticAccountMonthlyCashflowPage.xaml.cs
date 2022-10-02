@@ -19,7 +19,7 @@ public partial class StatisticAccountMonthlyCashFlowPage
         ViewModel.InitCommand.Execute(null);
     }
 
-    private async void OpenFilterDialog(object sender, EventArgs e)
+    private void OpenFilterDialog(object sender, EventArgs e)
     {
         var popup = new DateSelectionPopup(dateFrom: ViewModel.StartDate, dateTo: ViewModel.EndDate);
         Shell.Current.ShowPopup(popup);
