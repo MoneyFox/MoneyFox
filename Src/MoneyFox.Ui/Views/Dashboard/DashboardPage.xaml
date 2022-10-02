@@ -54,6 +54,7 @@
                 <Border Grid.Row="2"
                         BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
                         StrokeShape="RoundRectangle 10"
+                        StrokeThickness="0"
                         HeightRequest="90"
                         HorizontalOptions="FillAndExpand">
                     
@@ -124,7 +125,6 @@
                                         BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                           Light={StaticResource CardBackgroundLight}}"
                                         StrokeShape="RoundRectangle 10"
-                                        Stroke="black"
                                         StrokeThickness="0"
                                         HeightRequest="80"
                                         HorizontalOptions="FillAndExpand">
@@ -200,7 +200,6 @@
                             BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                               Light={StaticResource CardBackgroundLight}}"
                             StrokeShape="RoundRectangle 10"
-                            Stroke="black"
                             StrokeThickness="0"
                             HeightRequest="80"
                             HorizontalOptions="FillAndExpand">
@@ -225,7 +224,6 @@
                             BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                               Light={StaticResource CardBackgroundLight}}"
                             StrokeShape="RoundRectangle 10"
-                            Stroke="black"
                             StrokeThickness="0"
                             HeightRequest="80"
                             HorizontalOptions="FillAndExpand">
