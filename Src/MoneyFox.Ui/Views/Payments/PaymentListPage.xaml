@@ -15,7 +15,7 @@
     </ContentPage.Resources>
 
     <Shell.TitleView>
-        <Grid ColumnDefinitions="*,Auto,66,66,0">
+        <Grid ColumnDefinitions="*,Auto ,66 ,6 ,66">
 
             <ImageButton Grid.Column="2"
                          Clicked="ShowFilterPopup"
@@ -27,12 +27,14 @@
                          VerticalOptions="Center"
                          WidthRequest="66">
                 <ImageButton.Source>
-                    <FontImageSource FontFamily="MaterialIconsRound" Glyph="filter_alt" />
+                    <FontImageSource FontFamily="MaterialIconsRound"
+                                     Glyph="filter_alt"
+                                     />
                 </ImageButton.Source>
             </ImageButton>
 
             <ImageButton Margin="0,0,5,0"
-                         Grid.Column="3"
+                         Grid.Column="4"
                          Padding="0"
                          BorderWidth="0"
                          Command="{Binding GoToAddPaymentCommand}"
