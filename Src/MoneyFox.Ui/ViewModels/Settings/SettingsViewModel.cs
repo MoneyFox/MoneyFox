@@ -5,6 +5,7 @@ using System.Globalization;
 using MoneyFox.Core.Common.Facades;
 using MoneyFox.Core.Common.Helpers;
 using MoneyFox.Core.Common.Interfaces;
+using Serilog;
 
 internal sealed class SettingsViewModel : BaseViewModel, ISettingsViewModel
 {
@@ -47,9 +48,19 @@ internal sealed class SettingsViewModel : BaseViewModel, ISettingsViewModel
 
     private async Task LoadAvailableCulturesAsync()
     {
-        await dialogService.ShowLoadingDialogAsync();
-        CultureInfo.GetCultures(CultureTypes.AllCultures).OrderBy(x => x.Name).ToList().ForEach(AvailableCultures.Add);
-        SelectedCulture = AvailableCultures.First(x => x.Name == settingsFacade.DefaultCulture);
-        await dialogService.HideLoadingDialogAsync();
+        try
+        {
+            await dialogService.ShowLoadingDialogAsync();
+            CultureInfo.GetCultures(CultureTypes.AllCultures).OrderBy(x => x.Name).ToList().ForEach(AvailableCultures.Add);
+            SelectedCulture = AvailableCultures.First(x => x.Name == settingsFacade.DefaultCulture);
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex, "Failed to load Available Cultures");
+        }
+        finally
+        {
+            await dialogService.HideLoadingDialogAsync();
+        }
     }
 }
