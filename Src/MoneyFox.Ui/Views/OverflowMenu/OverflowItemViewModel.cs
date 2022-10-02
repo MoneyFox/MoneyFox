@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.ViewModels.OverflowMenu;
+﻿namespace MoneyFox.Ui.Views.OverflowMenu;
 
 public class OverflowItemViewModel
 {

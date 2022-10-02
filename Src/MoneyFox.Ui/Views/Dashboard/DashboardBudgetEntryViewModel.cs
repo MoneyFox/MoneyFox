@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.ViewModels.Dashboard;
+﻿namespace MoneyFox.Ui.Views.Dashboard;
 
 public class DashboardBudgetEntryViewModel
 {
