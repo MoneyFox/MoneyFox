@@ -35,7 +35,7 @@
                                     <Shadow />
                                 </Border.Shadow>
 
-                                <StackLayout Orientation="Horizontal" x:DataType="overflowMenu:OverflowItemViewModel">
+                                <HorizontalStackLayout Spacing="6" x:DataType="overflowMenu:OverflowItemViewModel">
                                     <Image HeightRequest="15"
                                            WidthRequest="15">
                                         <Image.Source>
@@ -44,7 +44,7 @@
                                         </Image.Source>
                                     </Image>
                                     <Label Text="{Binding Name}" Style="{DynamicResource TextSubHead}" />
-                                </StackLayout>
+                                </HorizontalStackLayout>
                             </Border>
                         </Grid>
                     </DataTemplate>

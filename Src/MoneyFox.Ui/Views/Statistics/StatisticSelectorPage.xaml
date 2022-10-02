@@ -32,16 +32,15 @@
                                 StrokeThickness="0"
                                 Padding="15"
                                 StrokeShape="RoundRectangle 10"
-                                HeightRequest="80"
                                 HorizontalOptions="FillAndExpand">
 
                                 <Border.Shadow>
                                     <Shadow />
                                 </Border.Shadow>
 
-                                <StackLayout Orientation="Vertical"
-                                                x:DataType="statistics:StatisticSelectorTypeViewModel">
-                                    <StackLayout Orientation="Horizontal">
+                                <VerticalStackLayout Spacing="6"
+                                               x:DataType="statistics:StatisticSelectorTypeViewModel">
+                                    <HorizontalStackLayout Spacing="6">
                                         <Image HeightRequest="15"
                                                 WidthRequest="15">
                                             <Image.Source>
@@ -50,10 +49,10 @@
                                             </Image.Source>
                                         </Image>
                                         <Label Text="{Binding Name}" Style="{DynamicResource TextSubHead}" />
-                                    </StackLayout>
+                                    </HorizontalStackLayout>
                                     <Label Text="{Binding Description}"
                                             Style="{DynamicResource DeemphasizedLabelStyle}" />
-                                </StackLayout>
+                                </VerticalStackLayout>
                             </Border>
                         </Grid>
                     </DataTemplate>
