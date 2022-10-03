@@ -88,7 +88,7 @@ steps:
       projects: '**/*.Tests.csproj'
       arguments: '--configuration $(BuildConfiguration)'
       
-  - task: CopyFiles@2
+  - task: CopyFiles@2.211.0
     displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
     inputs:
       SourceFolder: '$(System.DefaultWorkingDirectory)'
