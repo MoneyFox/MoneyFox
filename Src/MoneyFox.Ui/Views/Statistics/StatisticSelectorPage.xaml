@@ -4,17 +4,13 @@
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:statistics="using:MoneyFox.Ui.ViewModels.Statistics"
     x:Class="MoneyFox.Ui.Views.Statistics.StatisticSelectorPage"
-    Title=""
+    Title="{x:Static resources:Strings.SelectStatisticTitle}"
     Visual="Material"
     x:Name="root">
 
     <ContentPage.Content>
-        <VerticalStackLayout Spacing="6" >
-            
-            <Label Style="{StaticResource TextHeadline}"
-                   Text="{x:Static resources:Strings.SelectStatisticTitle}"
-                   VerticalOptions="Center" />
-            
+        
+        <VerticalStackLayout>
             <CollectionView x:Name="StatisticCollectionView"
                             BackgroundColor="Transparent"
                             ItemsSource="{Binding StatisticItems}">
@@ -31,33 +27,32 @@
 
                             <Border
                                 BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                                 Light={StaticResource CardBackgroundLight}}"
+                                                                                    Light={StaticResource CardBackgroundLight}}"
                                 Stroke="black"
                                 StrokeThickness="0"
                                 Padding="15"
                                 StrokeShape="RoundRectangle 10"
-                                HeightRequest="80"
                                 HorizontalOptions="FillAndExpand">
 
                                 <Border.Shadow>
                                     <Shadow />
                                 </Border.Shadow>
 
-                                <StackLayout Orientation="Vertical"
-                                             x:DataType="statistics:StatisticSelectorTypeViewModel">
-                                    <StackLayout Orientation="Horizontal">
+                                <VerticalStackLayout Spacing="6"
+                                               x:DataType="statistics:StatisticSelectorTypeViewModel">
+                                    <HorizontalStackLayout Spacing="6">
                                         <Image HeightRequest="15"
-                                               WidthRequest="15">
+                                                WidthRequest="15">
                                             <Image.Source>
                                                 <FontImageSource FontFamily="MaterialIconsRound"
-                                                                 Glyph="{Binding IconGlyph}" />
+                                                                    Glyph="{Binding IconGlyph}" />
                                             </Image.Source>
                                         </Image>
                                         <Label Text="{Binding Name}" Style="{DynamicResource TextSubHead}" />
-                                    </StackLayout>
+                                    </HorizontalStackLayout>
                                     <Label Text="{Binding Description}"
-                                           Style="{DynamicResource DeemphasizedLabelStyle}" />
-                                </StackLayout>
+                                            Style="{DynamicResource DeemphasizedLabelStyle}" />
+                                </VerticalStackLayout>
                             </Border>
                         </Grid>
                     </DataTemplate>

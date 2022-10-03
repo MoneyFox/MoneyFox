@@ -73,14 +73,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="Platforms\Windows\Package.appxmanifest" />
-      <None Remove="Resources\AppIcon\appiconfg.svg" />
-      <None Remove="Resources\Fonts\MaterialIconsRound-Regular.otf" />
-      <None Remove="Resources\Fonts\ProductSans-Regular.ttf" />
-      <None Remove="SQLitePCLRaw.bundle_e_sqlite3" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\MoneyFox.Core\MoneyFox.Core.csproj" />
       <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj" />
     </ItemGroup>
