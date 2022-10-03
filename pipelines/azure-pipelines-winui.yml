@@ -110,7 +110,7 @@ jobs:
             **/MoneyFox.Infrastructure.Tests.csproj
           arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
 
-      - task: CopyFiles@2.211.0
+      - task: CopyFiles@2
         displayName: 'Copy coveragexml to staging'
         inputs:
           SourceFolder: '$(Agent.TempDirectory)'
