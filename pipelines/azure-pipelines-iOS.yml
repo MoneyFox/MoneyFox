@@ -114,7 +114,7 @@ steps:
         $sourceRoot = '$(system.defaultworkingdirectory)/assets/metadata'
         Copy-Item -Path $sourceRoot  -Destination $(build.artifactstagingdirectory) -Recurse
 
-  - task: PublishBuildArtifacts@1.211.0
+  - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: drop'
     inputs:
       PathtoPublish: '$(build.artifactstagingdirectory)'
