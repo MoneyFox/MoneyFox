@@ -87,7 +87,7 @@ jobs:
           VersionRegex: '\d+.\d+.\d+'
           OutputVersion: 'OutputedVersion'
 
-      - task: NuGetToolInstaller@1
+      - task: NuGetToolInstaller@1.208.1
         displayName: 'Use NuGet'
         inputs:
           versionSpec: 6.x
