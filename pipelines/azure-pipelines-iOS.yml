@@ -80,7 +80,7 @@ steps:
       certPwd: '$(P12password)'
       keychain: temp
 
-  - task: InstallAppleProvisioningProfile@1
+  - task: InstallAppleProvisioningProfile@1.200.0
     displayName: 'Install an Apple provisioning profile'
     inputs:
       provProfileSecureFile: 'MoneyFox_Distribution_2022.mobileprovision'
