@@ -14,13 +14,13 @@ variables:
   Minor: '8'
 
 steps:
-  - task: UseDotNet@2
+  - task: UseDotNet@2.207.2
     displayName: 'Use correct .Net sdk'
     inputs:
       version: 7.x
       includePreviewVersions: true
        
-  - task: UseDotNet@2
+  - task: UseDotNet@2.207.2
     displayName: 'Use correct .Net sdk'
     inputs:
       version: 6.x
@@ -91,14 +91,14 @@ steps:
       targetType: 'inline'
       script: 'dotnet workload install maui'
 
-  - task: DotNetCoreCLI@2
+  - task: DotNetCoreCLI@2.210.0
     displayName: 'Run Tests'
     inputs:
       command: 'test'
       projects: |
         **/*.Tests.csproj
 
-  - task: DotNetCoreCLI@2
+  - task: DotNetCoreCLI@2.210.0
     displayName: 'Build iOS app'
     inputs:
       command: 'publish'
