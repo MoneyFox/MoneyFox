@@ -60,7 +60,7 @@ steps:
     inputs:
       secureFile: 'Money Fox.keystore'
 
-  - task: JavaToolInstaller@0.211.0
+  - task: JavaToolInstaller@0
     displayName: 'Install Java 11'
     inputs:
       versionSpec: '11'
@@ -88,7 +88,7 @@ steps:
       projects: '**/*.Tests.csproj'
       arguments: '--configuration $(BuildConfiguration)'
       
-  - task: CopyFiles@2.211.0
+  - task: CopyFiles@2
     displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
     inputs:
       SourceFolder: '$(System.DefaultWorkingDirectory)'
@@ -96,7 +96,7 @@ steps:
       TargetFolder: '$(build.artifactstagingdirectory)'
       flattenFolders: true
 
-  - task: PublishBuildArtifacts@1.211.0
+  - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: drop'
     inputs:
       PathtoPublish: '$(build.artifactstagingdirectory)'

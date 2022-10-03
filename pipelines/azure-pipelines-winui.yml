@@ -110,7 +110,7 @@ jobs:
             **/MoneyFox.Infrastructure.Tests.csproj
           arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
 
-      - task: CopyFiles@2.211.0
+      - task: CopyFiles@2
         displayName: 'Copy coveragexml to staging'
         inputs:
           SourceFolder: '$(Agent.TempDirectory)'
@@ -133,5 +133,5 @@ jobs:
           platform: x64
           configuration: '$(BuildConfiguration)'
 
-      - task: PublishBuildArtifacts@1.211.0
+      - task: PublishBuildArtifacts@1
         displayName: 'Publish Artifact: drop'
