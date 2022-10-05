@@ -11,7 +11,6 @@ using DbBackup;
 using DbBackup.Legacy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Identity.Client;
 using Persistence;
 
 public static class InfrastructureConfig
