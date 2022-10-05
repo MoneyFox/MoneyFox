@@ -16,11 +16,6 @@ using Persistence;
 
 public static class InfrastructureConfig
 {
-    private const string MSAL_APPLICATIONID = "00a3e4cd-b4b0-4730-be62-5fcf90a94a1d";
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Blocker Bug", "S2857:SQL keywords should be delimited by whitespace", Justification = "Is not SQL")]
-    private const string MSAL_URI = $"msal{MSAL_APPLICATIONID}://auth";
-
     public static void Register(IServiceCollection serviceCollection)
     {
         _ = serviceCollection.AddSingleton<DbContextOptions>(
@@ -29,7 +24,6 @@ public static class InfrastructureConfig
         _ = serviceCollection.AddTransient<IAppDbContext, AppDbContext>();
         RegisterRepositories(serviceCollection);
         RegisterBackupServices(serviceCollection);
-        RegisterIdentityClient(serviceCollection);
     }
 
     private static void RegisterRepositories(IServiceCollection serviceCollection)
@@ -46,17 +40,5 @@ public static class InfrastructureConfig
         _ = serviceCollection.AddTransient<IBackupService, BackupService>();
         _ = serviceCollection.AddTransient<IOneDriveBackupService, OneDriveService>();
         _ = serviceCollection.AddTransient<IOneDriveProfileService, OneDriveProfileService>();
-    }
-
-    // TODO: move to platform
-    private static void RegisterIdentityClient(IServiceCollection serviceCollection)
-    {
-        IPublicClientApplication publicClientApplication = PublicClientApplicationBuilder
-            .Create(MSAL_APPLICATIONID)
-            .WithRedirectUri(MSAL_URI)
-            .WithIosKeychainSecurityGroup("com.microsoft.adalcache")
-            .Build();
-
-        _ = serviceCollection.AddSingleton(publicClientApplication);
     }
 }
