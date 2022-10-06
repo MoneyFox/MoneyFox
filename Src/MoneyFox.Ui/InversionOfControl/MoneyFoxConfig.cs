@@ -22,7 +22,7 @@ using ViewModels.Statistics;
 
 public sealed class MoneyFoxConfig
 {
-    public void Register(ServiceCollection serviceCollection)
+    public void Register(IServiceCollection serviceCollection)
     {
         RegisterServices(serviceCollection);
         RegisterViewModels(serviceCollection);
@@ -74,7 +74,7 @@ public sealed class MoneyFoxConfig
             .AddTransient<BudgetListViewModel>();
     }
 
-    private static void RegisterAdapters(ServiceCollection serviceCollection)
+    private static void RegisterAdapters(IServiceCollection serviceCollection)
     {
         _ = serviceCollection.AddTransient<IBrowserAdapter, BrowserAdapter>()
             .AddTransient<IConnectivityAdapter, ConnectivityAdapter>()
