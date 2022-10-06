@@ -9,6 +9,7 @@ using MoneyFox.Infrastructure.InversionOfControl;
 public sealed class InfrastructureWinConfig
 {
     private const string MSAL_APPLICATION_ID = "00a3e4cd-b4b0-4730-be62-5fcf90a94a1d";
+    private const string MSAL_URI = $"msal{MSAL_APPLICATION_ID}://auth";
 
     public void Register(IServiceCollection serviceCollection)
     {
@@ -28,7 +29,9 @@ public sealed class InfrastructureWinConfig
 
     private static void RegisterIdentityClient(IServiceCollection serviceCollection)
     {
-        var publicClientApplication = PublicClientApplicationBuilder.Create(MSAL_APPLICATION_ID).WithRedirectUri($"msal{MSAL_APPLICATION_ID}://auth").Build();
+        var publicClientApplication = PublicClientApplicationBuilder
+            .Create(MSAL_APPLICATION_ID)
+            .WithRedirectUri(MSAL_URI).Build();
         TokenCacheHelper.EnableSerialization(publicClientApplication.UserTokenCache);
         serviceCollection.AddSingleton(publicClientApplication);
     }
