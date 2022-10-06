@@ -1,4 +1,6 @@
-﻿namespace MoneyFox.Ui.ViewModels.Accounts;
+using MoneyFox.Ui.ViewModels.Accounts;
+
+namespace MoneyFox.Ui.Views.Accounts;
 
 using MediatR;
 using MoneyFox.Core.Commands.Accounts.CreateAccount;
