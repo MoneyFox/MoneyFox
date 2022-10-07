@@ -14,156 +14,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Remove="appsettings.json" />
-        <None Remove="Images\LargeTile.scale-100.png" />
-        <None Remove="Images\LargeTile.scale-125.png" />
-        <None Remove="Images\LargeTile.scale-150.png" />
-        <None Remove="Images\LargeTile.scale-200.png" />
-        <None Remove="Images\LockScreenLogo.scale-200.png" />
-        <None Remove="Images\SmallTile.scale-100.png" />
-        <None Remove="Images\SmallTile.scale-125.png" />
-        <None Remove="Images\SmallTile.scale-150.png" />
-        <None Remove="Images\SmallTile.scale-200.png" />
-        <None Remove="Images\SmallTile.scale-400.png" />
-        <None Remove="Images\SplashScreen.scale-100.png" />
-        <None Remove="Images\SplashScreen.scale-125.png" />
-        <None Remove="Images\SplashScreen.scale-150.png" />
-        <None Remove="Images\SplashScreen.scale-200.png" />
-        <None Remove="Images\Square150x150Logo.scale-100.png" />
-        <None Remove="Images\Square150x150Logo.scale-125.png" />
-        <None Remove="Images\Square150x150Logo.scale-150.png" />
-        <None Remove="Images\Square150x150Logo.scale-200.png" />
-        <None Remove="Images\Square150x150Logo.scale-400.png" />
-        <None Remove="Images\Square44x44Logo.altform-lightunplated_targetsize-16.png" />
-        <None Remove="Images\Square44x44Logo.altform-lightunplated_targetsize-24.png" />
-        <None Remove="Images\Square44x44Logo.altform-lightunplated_targetsize-256.png" />
-        <None Remove="Images\Square44x44Logo.altform-lightunplated_targetsize-32.png" />
-        <None Remove="Images\Square44x44Logo.altform-lightunplated_targetsize-48.png" />
-        <None Remove="Images\Square44x44Logo.altform-unplated_targetsize-16.png" />
-        <None Remove="Images\Square44x44Logo.altform-unplated_targetsize-256.png" />
-        <None Remove="Images\Square44x44Logo.altform-unplated_targetsize-32.png" />
-        <None Remove="Images\Square44x44Logo.altform-unplated_targetsize-48.png" />
-        <None Remove="Images\Square44x44Logo.scale-100.png" />
-        <None Remove="Images\Square44x44Logo.scale-125.png" />
-        <None Remove="Images\Square44x44Logo.scale-150.png" />
-        <None Remove="Images\Square44x44Logo.scale-200.png" />
-        <None Remove="Images\Square44x44Logo.scale-400.png" />
-        <None Remove="Images\Square44x44Logo.targetsize-16.png" />
-        <None Remove="Images\Square44x44Logo.targetsize-24.png" />
-        <None Remove="Images\Square44x44Logo.targetsize-24_altform-unplated.png" />
-        <None Remove="Images\Square44x44Logo.targetsize-256.png" />
-        <None Remove="Images\Square44x44Logo.targetsize-32.png" />
-        <None Remove="Images\Square44x44Logo.targetsize-48.png" />
-        <None Remove="Images\StoreLogo.scale-100.png" />
-        <None Remove="Images\StoreLogo.scale-125.png" />
-        <None Remove="Images\StoreLogo.scale-150.png" />
-        <None Remove="Images\StoreLogo.scale-200.png" />
-        <None Remove="Images\StoreLogo.scale-400.png" />
-        <None Remove="Images\Wide310x150Logo.scale-100.png" />
-        <None Remove="Images\Wide310x150Logo.scale-125.png" />
-        <None Remove="Images\Wide310x150Logo.scale-150.png" />
-        <None Remove="Images\Wide310x150Logo.scale-200.png" />
-        <None Remove="Images\Wide310x150Logo.scale-400.png" />
-        <None Remove="Package.appxmanifest" />
-        <None Remove="Pages\Accounts\AccountListToolbar.xaml" />
-        <None Remove="Pages\Accounts\AccountListView.xaml" />
-        <None Remove="Pages\Accounts\AddAccountDialog.xaml" />
-        <None Remove="Pages\Accounts\EditAccountView.xaml" />
-        <None Remove="Pages\Accounts\ModifyAccountUserControl.xaml" />
-        <None Remove="Pages\BackupView.xaml" />
-        <None Remove="Pages\Categories\AddCategoryDialog.xaml" />
-        <None Remove="Pages\Categories\CategoryListControl.xaml" />
-        <None Remove="Pages\Categories\CategoryListView.xaml" />
-        <None Remove="Pages\Categories\EditCategoryDialog.xaml" />
-        <None Remove="Pages\Categories\ModifyCategoryUserControl.xaml" />
-        <None Remove="Pages\Dialogs\LoadingDialog.xaml" />
-        <None Remove="Pages\Payments\AddPaymentView.xaml" />
-        <None Remove="Pages\Payments\CategorySelectionControl.xaml" />
-        <None Remove="Pages\Payments\EditPaymentView.xaml" />
-        <None Remove="Pages\Payments\ModifyPaymentUserControl.xaml" />
-        <None Remove="Pages\Payments\PaymentListView.xaml" />
-        <None Remove="Pages\Payments\SelectCategoryDialog.xaml" />
-        <None Remove="Pages\Settings\AboutView.xaml" />
-        <None Remove="Pages\Settings\SettingsHostView.xaml" />
-        <None Remove="Pages\Settings\SettingsView.xaml" />
-        <None Remove="Pages\Statistics\StatisticAccountMonthlyCashflowView.xaml" />
-        <None Remove="Pages\Statistics\StatisticCashFlowView.xaml" />
-        <None Remove="Pages\Statistics\StatisticCategoryProgressionView.xaml" />
-        <None Remove="Pages\Statistics\StatisticCategorySpreadingView.xaml" />
-        <None Remove="Pages\Statistics\StatisticCategorySummary\PaymentListUserControl.xaml" />
-        <None Remove="Pages\Statistics\StatisticCategorySummary\StatisticCategorySummaryView.xaml" />
-        <None Remove="Pages\Statistics\StatisticSelectorView.xaml" />
-        <None Remove="Pages\UserControls\BalanceControl.xaml" />
-        <None Remove="Pages\UserControls\IncomeExpenseBalanceUserControl.xaml" />
-        <None Remove="Pages\UserControls\Loading.xaml" />
-        <None Remove="Style\AppStyles.xaml" />
-        <None Remove="Style\ColorsDark.xaml" />
-        <None Remove="Style\ColorsLight.xaml" />
-        <None Remove="Style\ControlStyles.xaml" />
-        <None Remove="Style\TextStyles.xaml" />
-        <None Remove="Style\_FontSizes.xaml" />
-        <None Remove="Style\_Thickness.xaml" />
-    </ItemGroup>
-    
-    <ItemGroup>
-      <Content Include="Images\LargeTile.scale-100.png" />
-      <Content Include="Images\LargeTile.scale-125.png" />
-      <Content Include="Images\LargeTile.scale-150.png" />
-      <Content Include="Images\LargeTile.scale-200.png" />
-      <Content Include="Images\LockScreenLogo.scale-200.png" />
-      <Content Include="Images\SmallTile.scale-100.png" />
-      <Content Include="Images\SmallTile.scale-125.png" />
-      <Content Include="Images\SmallTile.scale-150.png" />
-      <Content Include="Images\SmallTile.scale-200.png" />
-      <Content Include="Images\SmallTile.scale-400.png" />
-      <Content Include="Images\SplashScreen.scale-100.png" />
-      <Content Include="Images\SplashScreen.scale-125.png" />
-      <Content Include="Images\SplashScreen.scale-150.png" />
-      <Content Include="Images\SplashScreen.scale-200.png" />
-      <Content Include="Images\Square150x150Logo.scale-100.png" />
-      <Content Include="Images\Square150x150Logo.scale-125.png" />
-      <Content Include="Images\Square150x150Logo.scale-150.png" />
-      <Content Include="Images\Square150x150Logo.scale-200.png" />
-      <Content Include="Images\Square150x150Logo.scale-400.png" />
-      <Content Include="Images\Square44x44Logo.altform-lightunplated_targetsize-16.png" />
-      <Content Include="Images\Square44x44Logo.altform-lightunplated_targetsize-24.png" />
-      <Content Include="Images\Square44x44Logo.altform-lightunplated_targetsize-256.png" />
-      <Content Include="Images\Square44x44Logo.altform-lightunplated_targetsize-32.png" />
-      <Content Include="Images\Square44x44Logo.altform-lightunplated_targetsize-48.png" />
-      <Content Include="Images\Square44x44Logo.altform-unplated_targetsize-16.png" />
-      <Content Include="Images\Square44x44Logo.altform-unplated_targetsize-256.png" />
-      <Content Include="Images\Square44x44Logo.altform-unplated_targetsize-32.png" />
-      <Content Include="Images\Square44x44Logo.altform-unplated_targetsize-48.png" />
-      <Content Include="Images\Square44x44Logo.scale-100.png" />
-      <Content Include="Images\Square44x44Logo.scale-125.png" />
-      <Content Include="Images\Square44x44Logo.scale-150.png" />
-      <Content Include="Images\Square44x44Logo.scale-200.png" />
-      <Content Include="Images\Square44x44Logo.scale-400.png" />
-      <Content Include="Images\Square44x44Logo.targetsize-16.png" />
-      <Content Include="Images\Square44x44Logo.targetsize-24.png" />
-      <Content Include="Images\Square44x44Logo.targetsize-24_altform-unplated.png" />
-      <Content Include="Images\Square44x44Logo.targetsize-256.png" />
-      <Content Include="Images\Square44x44Logo.targetsize-32.png" />
-      <Content Include="Images\Square44x44Logo.targetsize-48.png" />
-      <Content Include="Images\StoreLogo.scale-100.png" />
-      <Content Include="Images\StoreLogo.scale-125.png" />
-      <Content Include="Images\StoreLogo.scale-150.png" />
-      <Content Include="Images\StoreLogo.scale-200.png" />
-      <Content Include="Images\StoreLogo.scale-400.png" />
-      <Content Include="Images\Wide310x150Logo.scale-100.png" />
-      <Content Include="Images\Wide310x150Logo.scale-125.png" />
-      <Content Include="Images\Wide310x150Logo.scale-150.png" />
-      <Content Include="Images\Wide310x150Logo.scale-200.png" />
-      <Content Include="Images\Wide310x150Logo.scale-400.png" />
-    </ItemGroup>
-
-    <ItemGroup>
         <PackageReference Include="CommunityToolkit.WinUI.UI.Animations" Version="7.1.2" />
         <PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.1.2" />
         <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Media" Version="7.1.2" />
         <PackageReference Include="LiveChartsCore.SkiaSharpView.WinUI" Version="2.0.0-beta.300" />
         <PackageReference Include="MediatR" Version="10.0.1" />
-        <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.1.5" />
         <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.8" />
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.9">
@@ -177,12 +32,15 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.1.5" />
+        <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.194" />
         <Manifest Include="$(ApplicationManifest)" />
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\..\MoneyFox.Core\MoneyFox.Core.csproj" />
         <ProjectReference Include="..\..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj" />
+        <ProjectReference Include="..\..\MoneyFox.Win.Infrastructure\MoneyFox.Win.Infrastructure.csproj" />
     </ItemGroup>
 
       <!-- 
