@@ -73,7 +73,7 @@ steps:
       Major: $(Major)
       Minor: $(Minor)
       
-  - task: InstallAppleCertificate@2.200.0
+  - task: InstallAppleCertificate@2.212.0
     displayName: 'Install an Apple certificate'
     inputs:
       certSecureFile: 'MoneyFox_Distribution_2022.p12'
