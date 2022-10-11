@@ -22,6 +22,8 @@ internal abstract class ModifyAccountViewModel : BaseViewModel
 
     public virtual bool IsEdit => false;
 
+    public virtual string Title => Strings.AddAccountTitle;
+
     protected IMediator Mediator { get; }
 
     /// <summary>

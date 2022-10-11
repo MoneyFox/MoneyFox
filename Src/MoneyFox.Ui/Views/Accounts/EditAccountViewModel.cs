@@ -8,6 +8,7 @@ using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using MoneyFox.Core.ApplicationCore.Queries;
 using MoneyFox.Core.Commands.Accounts.UpdateAccount;
 using MoneyFox.Core.Common.Interfaces;
+using MoneyFox.Core.Resources;
 
 internal class EditAccountViewModel : ModifyAccountViewModel
 {
@@ -21,6 +22,7 @@ internal class EditAccountViewModel : ModifyAccountViewModel
     }
 
     public override bool IsEdit => true;
+    public override string Title => Strings.EditAccountTitle;
 
     public async Task InitializeAsync(int accountId)
     {
