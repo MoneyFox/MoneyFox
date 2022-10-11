@@ -8,6 +8,7 @@ using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.InversionOfControl;
 using MoneyFox.Infrastructure.InversionOfControl;
 using MoneyFox.Ui.Views.About;
+using MoneyFox.Ui.Views.Accounts;
 using MoneyFox.Ui.Views.Backup;
 using MoneyFox.Ui.Views.Dashboard;
 using MoneyFox.Ui.Views.OverflowMenu;
@@ -22,7 +23,7 @@ using ViewModels.Statistics;
 
 public sealed class MoneyFoxConfig
 {
-    public void Register(ServiceCollection serviceCollection)
+    public void Register(IServiceCollection serviceCollection)
     {
         RegisterServices(serviceCollection);
         RegisterViewModels(serviceCollection);
@@ -74,7 +75,7 @@ public sealed class MoneyFoxConfig
             .AddTransient<BudgetListViewModel>();
     }
 
-    private static void RegisterAdapters(ServiceCollection serviceCollection)
+    private static void RegisterAdapters(IServiceCollection serviceCollection)
     {
         _ = serviceCollection.AddTransient<IBrowserAdapter, BrowserAdapter>()
             .AddTransient<IConnectivityAdapter, ConnectivityAdapter>()

@@ -17,6 +17,9 @@ using UserNotifications;
 [UsedImplicitly]
 public class AppDelegate : MauiUIApplicationDelegate
 {
+    private const string MSAL_APPLICATIONID = "00a3e4cd-b4b0-4730-be62-5fcf90a94a1d";
+    private const string MSAL_URI = $"msal{MSAL_APPLICATIONID}://auth";
+
     protected override MauiApp CreateMauiApp()
     {
         InitLogger();
@@ -32,6 +35,19 @@ public class AppDelegate : MauiUIApplicationDelegate
         services.AddSingleton<IStoreOperations, StoreOperations>();
         services.AddSingleton<IAppInformation, AppInformation>();
         services.AddTransient<IFileStore>(_ => new IosFileStore(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)));
+
+        RegisterIdentityClient(services);
+    }
+
+    private static void RegisterIdentityClient(IServiceCollection serviceCollection)
+    {
+        IPublicClientApplication publicClientApplication = PublicClientApplicationBuilder
+            .Create(MSAL_APPLICATIONID)
+            .WithRedirectUri(MSAL_URI)
+            .WithIosKeychainSecurityGroup("com.microsoft.adalcache")
+            .Build();
+
+        _ = serviceCollection.AddSingleton(publicClientApplication);
     }
 
     // Needed for auth

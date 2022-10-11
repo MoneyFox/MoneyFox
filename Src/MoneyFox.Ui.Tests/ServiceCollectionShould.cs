@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Identity.Client;
 using MoneyFox.Core.Common.Interfaces;
 using MoneyFox.Core.Interfaces;
 using MoneyFox.Ui.InversionOfControl;
@@ -16,11 +17,12 @@ public sealed class ServiceCollectionShould
     public void AllDependenciesPresentAndAccountedFor()
     {
         // Arrange
-        ServiceCollection serviceCollection = new();
-        _ = serviceCollection.AddSingleton(Substitute.For<IDbPathProvider>());
-        _ = serviceCollection.AddSingleton(Substitute.For<IStoreOperations>());
-        _ = serviceCollection.AddSingleton(Substitute.For<IAppInformation>());
-        _ = serviceCollection.AddSingleton(Substitute.For<IFileStore>());
+        var serviceCollection = new ServiceCollection()
+            .AddSingleton(Substitute.For<IDbPathProvider>())
+            .AddSingleton(Substitute.For<IStoreOperations>())
+            .AddSingleton(Substitute.For<IAppInformation>())
+            .AddSingleton(Substitute.For<IFileStore>())
+            .AddSingleton(Substitute.For<IPublicClientApplication>());
 
         // Act
         new MoneyFoxConfig().Register(serviceCollection);
