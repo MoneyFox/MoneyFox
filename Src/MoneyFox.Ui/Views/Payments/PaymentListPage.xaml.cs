@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Views.Payments;
+namespace MoneyFox.Ui.Views.Payments;
 
 using CommunityToolkit.Maui.Views;
 using Popups;
@@ -25,6 +25,7 @@ public partial class PaymentListPage : ContentPage
         var popup = new FilterPopup();
         Shell.Current.ShowPopup(popup);
     }
+
 #pragma warning disable S2376 // Write-only properties should not be used
     private int accountId;
     public string AccountId

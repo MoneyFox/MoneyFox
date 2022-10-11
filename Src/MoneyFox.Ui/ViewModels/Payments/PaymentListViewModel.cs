@@ -80,9 +80,7 @@ internal sealed class PaymentListViewModel : BaseViewModel
                 new NavigationPage(new AddPaymentPage { DefaultChargedAccountID = SelectedAccount.Id }) { BarBackgroundColor = Colors.Transparent }));
 
     public AsyncRelayCommand<PaymentViewModel> GoToEditPaymentCommand
-        => new(
-            async paymentViewModel => await Shell.Current.Navigation.PushModalAsync(
-                new NavigationPage(new EditPaymentPage(paymentViewModel.Id)) { BarBackgroundColor = Colors.Transparent }));
+        => new(async pvm => await Shell.Current.GoToAsync($"{Routes.EditPaymentRoute}?paymentId={pvm.Id}"));
 
     protected override void OnActivated()
     {
