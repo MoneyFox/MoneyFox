@@ -56,7 +56,7 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
 
     private async Task OpenCategorySelection()
     {
-        await navigationService.OpenModal<SelectCategoryPage>();
+        await navigationService.OpenModalAsync<SelectCategoryPage>();
     }
 
     private void RemoveCategory(BudgetCategoryViewModel? budgetCategory)
