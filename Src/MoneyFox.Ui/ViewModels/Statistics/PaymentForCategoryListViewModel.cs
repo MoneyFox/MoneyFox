@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.ViewModels.Statistics;
+namespace MoneyFox.Ui.ViewModels.Statistics;
 
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -39,9 +39,7 @@ internal sealed class PaymentForCategoryListViewModel : BaseViewModel
     }
 
     public RelayCommand<PaymentViewModel> GoToEditPaymentCommand
-        => new(
-            async paymentViewModel => await Shell.Current.Navigation.PushModalAsync(
-                new NavigationPage(new EditPaymentPage(paymentViewModel.Id)) { BarBackgroundColor = Colors.Transparent }));
+        => new(async pvm => await Shell.Current.GoToAsync($"{Routes.EditPaymentRoute}?paymentId={pvm.Id}"));
 
     protected override void OnActivated()
     {
