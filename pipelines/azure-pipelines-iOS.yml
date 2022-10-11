@@ -73,14 +73,14 @@ steps:
       Major: $(Major)
       Minor: $(Minor)
       
-  - task: InstallAppleCertificate@2.200.0
+  - task: InstallAppleCertificate@2.212.0
     displayName: 'Install an Apple certificate'
     inputs:
       certSecureFile: 'MoneyFox_Distribution_2022.p12'
       certPwd: '$(P12password)'
       keychain: temp
 
-  - task: InstallAppleProvisioningProfile@1.200.0
+  - task: InstallAppleProvisioningProfile@1.212.0
     displayName: 'Install an Apple provisioning profile'
     inputs:
       provProfileSecureFile: 'MoneyFox_Distribution_2022.mobileprovision'
