@@ -5,9 +5,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:backup="using:MoneyFox.Ui.Views.Backup"
+    x:DataType="backup:BackupViewModel"
     BackgroundColor="{DynamicResource WindowBackgroundColor}"
-    Title="{x:Static resources:Strings.BackupTitle}"
-    Shell.NavBarHasShadow="False">
+    Title="{x:Static resources:Strings.BackupTitle}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
