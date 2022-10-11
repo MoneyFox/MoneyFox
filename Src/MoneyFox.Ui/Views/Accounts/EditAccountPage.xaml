@@ -8,7 +8,9 @@
     xmlns:accounts="using:MoneyFox.Ui.Views.Accounts"
     xmlns:extensions="using:MoneyFox.Ui.Common.Extensions"
     Title="{Binding Title}"
+    x:DataType="accounts:EditAccountViewModel"
     x:Class="MoneyFox.Ui.Views.Accounts.EditAccountPage">
+    
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="15,0,15,0">

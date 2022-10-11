@@ -7,12 +7,14 @@
     xmlns:controls="using:MoneyFox.Ui.Controls"
     xmlns:accounts="using:MoneyFox.Ui.Views.Accounts"
     Title="{x:Static resources:Strings.AddAccountLabel}"
+    x:DataType="accounts:AddAccountViewModel"
     x:Class="MoneyFox.Ui.Views.Accounts.AddAccountPage">
 
     <ContentPage.Content>
         <ScrollView Padding="15,0,15,0">
-            <StackLayout>
+            <StackLayout Spacing="6">
                 <accounts:ModifyAccountContentView />
+                <Button Command="{Binding SaveCommand}" Text="{x:Static resources:Strings.SaveLabel}" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

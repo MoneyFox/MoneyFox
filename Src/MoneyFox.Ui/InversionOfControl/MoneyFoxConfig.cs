@@ -8,6 +8,7 @@ using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.InversionOfControl;
 using MoneyFox.Infrastructure.InversionOfControl;
 using MoneyFox.Ui.Views.About;
+using MoneyFox.Ui.Views.Accounts;
 using MoneyFox.Ui.Views.Backup;
 using MoneyFox.Ui.Views.Dashboard;
 using MoneyFox.Ui.Views.OverflowMenu;
