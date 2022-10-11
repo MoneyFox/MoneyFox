@@ -17,18 +17,14 @@ using MoneyFox.Ui.Platforms.Android.Resources.Src;
 using Serilog;
 using Serilog.Events;
 using Serilog.Exceptions;
+using Microsoft.Identity.Client;
 
 [Application]
 [UsedImplicitly]
 public class MainApplication : MauiApplication
 {
-    private static void AddServices(IServiceCollection services)
-    {
-        services.AddSingleton<IDbPathProvider, DbPathProvider>();
-        services.AddSingleton<IStoreOperations, PlayStoreOperations>();
-        services.AddSingleton<IAppInformation, DroidAppInformation>();
-        services.AddTransient<IFileStore>(_ => new FileStoreIoBase(Context.FilesDir?.Path ?? ""));
-    }
+    private const string MSAL_APPLICATIONID = "00a3e4cd-b4b0-4730-be62-5fcf90a94a1d";
+    private const string MSAL_URI = $"msal{MSAL_APPLICATIONID}://auth";
 
     public MainApplication(IntPtr handle, JniHandleOwnership ownership)
         : base(handle, ownership)
@@ -50,6 +46,24 @@ public class MainApplication : MauiApplication
         base.OnCreate();
     }
 
+    private static void AddServices(IServiceCollection services)
+    {
+        services.AddSingleton<IDbPathProvider, DbPathProvider>();
+        services.AddSingleton<IStoreOperations, PlayStoreOperations>();
+        services.AddSingleton<IAppInformation, DroidAppInformation>();
+        services.AddTransient<IFileStore>(_ => new FileStoreIoBase(Context.FilesDir?.Path ?? ""));
+        RegisterIdentityClient(services);
+    }
+
+    private static void RegisterIdentityClient(IServiceCollection serviceCollection)
+    {
+        IPublicClientApplication publicClientApplication = PublicClientApplicationBuilder
+            .Create(MSAL_APPLICATIONID)
+            .WithRedirectUri(MSAL_URI)
+            .Build();
+
+        serviceCollection.AddSingleton(publicClientApplication);
+    }
 
     private void HandleAndroidException(object sender, RaiseThrowableEventArgs e)
     {
