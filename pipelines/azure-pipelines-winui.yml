@@ -97,7 +97,6 @@ jobs:
         inputs:
           command: 'restore'
           projects: |
-            **/*.wapproj
             **/MoneyFox.Win.csproj
           feedsToUse: 'select'
 
@@ -120,7 +119,7 @@ jobs:
       - task: VSBuild@1
         displayName: 'Build Windows Project'
         inputs:
-          solution: '**/*.wapproj'
+          solution: '**/MoneyFox.Win.csproj'
           msbuildArgs: '
         /p:AppxBundlePlatforms="$(buildPlatform)"
         /p:AppxPackageDir="$(appxPackageDir)"

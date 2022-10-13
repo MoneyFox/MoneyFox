@@ -11,7 +11,7 @@ jobs:
       vmImage: windows-2022
 
     variables:
-      solution: '**/*.wapproj'
+      solution: '**/MoneyFox.Win.csproj'
       appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
     steps:
@@ -70,7 +70,6 @@ jobs:
         inputs:
           command: 'restore'
           projects: |
-            **/*.wapproj
             **/MoneyFox.Win.csproj
           feedsToUse: 'select'
 
