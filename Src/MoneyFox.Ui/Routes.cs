@@ -20,6 +20,7 @@ public class Routes
     public static string BudgetListRoute => nameof(BudgetListPage);
     public static string PaymentListRoute => nameof(PaymentListPage);
     public static string AddPaymentRoute => nameof(AddPaymentPage);
+    public static string EditPaymentRoute => nameof(EditPaymentPage);
     public static string CategoryListRoute => nameof(CategoryListPage);
     public static string SelectCategoryRoute => nameof(SelectCategoryPage);
     public static string AddCategoryRoute => nameof(AddCategoryPage);

@@ -2,5 +2,7 @@
   "assignees": [
     "npadrutt"
   ],
-  "dependencyDashboard": false
+  "azure-pipelines": {
+    "enabled": false
+  }
 }
