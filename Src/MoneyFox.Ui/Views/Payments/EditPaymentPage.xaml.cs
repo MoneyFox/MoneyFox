@@ -1,38 +1,26 @@
-﻿namespace MoneyFox.Ui.Views.Payments;
+namespace MoneyFox.Ui.Views.Payments;
 
-using MoneyFox.Core.Resources;
 using ViewModels.Payments;
 
+[QueryProperty(name: "PaymentId", queryId: "paymentId")]
 public partial class EditPaymentPage
 {
-    private readonly int paymentId;
 
-    public EditPaymentPage(int paymentId)
+    public EditPaymentPage()
     {
         InitializeComponent();
         BindingContext = App.GetViewModel<EditPaymentViewModel>();
-        this.paymentId = paymentId;
-        var cancelItem = new ToolbarItem
-        {
-            Command = new Command(async () => await Navigation.PopModalAsync()),
-            Text = Strings.CancelLabel,
-            Priority = -1,
-            Order = ToolbarItemOrder.Primary
-        };
-
-        var saveItem = new ToolbarItem
-        {
-            Command = new Command(() => ViewModel.SaveCommand.Execute(null)),
-            Text = Strings.SaveLabel,
-            Priority = 1,
-            Order = ToolbarItemOrder.Primary
-        };
-
-        ToolbarItems.Add(cancelItem);
-        ToolbarItems.Add(saveItem);
     }
 
     private EditPaymentViewModel ViewModel => (EditPaymentViewModel)BindingContext;
+
+#pragma warning disable S2376 // Write-only properties should not be used
+    private int paymentId;
+    public string PaymentId
+    {
+        set => paymentId = Convert.ToInt32(Uri.UnescapeDataString(value));
+    }
+#pragma warning restore S2376 // Write-only properties should not be used
 
     protected override async void OnAppearing()
     {

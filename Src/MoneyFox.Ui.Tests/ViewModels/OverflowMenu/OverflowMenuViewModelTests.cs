@@ -27,7 +27,7 @@ public class OverflowMenuViewModelTests
         await viewModel.GoToSelectedItemCommand.ExecuteAsync(overflowItem);
 
         // Assert
-        await navigationService.Received(1).NavigateTo<CategoryListPage>();
+        await navigationService.Received(1).NavigateToAsync<CategoryListPage>();
     }
 
     [Fact]
@@ -45,7 +45,7 @@ public class OverflowMenuViewModelTests
         await viewModel.GoToSelectedItemCommand.ExecuteAsync(overflowItem);
 
         // Assert
-        await navigationService.Received(1).NavigateTo<BackupPage>();
+        await navigationService.Received(1).NavigateToAsync<BackupPage>();
     }
 
     [Fact]
@@ -63,7 +63,7 @@ public class OverflowMenuViewModelTests
         await viewModel.GoToSelectedItemCommand.ExecuteAsync(overflowItem);
 
         // Assert
-        await navigationService.Received(1).NavigateTo<SettingsPage>();
+        await navigationService.Received(1).NavigateToAsync<SettingsPage>();
     }
 
     [Fact]
@@ -81,7 +81,7 @@ public class OverflowMenuViewModelTests
         await viewModel.GoToSelectedItemCommand.ExecuteAsync(overflowItem);
 
         // Assert
-        await navigationService.Received(1).NavigateTo<AboutPage>();
+        await navigationService.Received(1).NavigateToAsync<AboutPage>();
     }
 }
 

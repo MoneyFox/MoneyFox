@@ -24,18 +24,4 @@ public static class NavigationExtension
             throw exception;
         }
     }
-
-    private static Color GetCurrentForegroundColor()
-    {
-        if (AppInfo.RequestedTheme == AppTheme.Dark)
-        {
-            Application.Current.Resources.TryGetValue(key: "TextPrimaryColorDark", value: out var colorDark);
-
-            return (Color)colorDark;
-        }
-
-        Application.Current.Resources.TryGetValue(key: "TextPrimaryColorLight", value: out var colorLight);
-
-        return (Color)colorLight;
-    }
 }
