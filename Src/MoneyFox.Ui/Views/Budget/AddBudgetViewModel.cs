@@ -28,6 +28,6 @@ internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
 
         await sender.Send(query);
         Messenger.Send(new ReloadMessage());
-        await navigationService.GoBackFromModal();
+        await navigationService.GoBackFromModalAsync();
     }
 }

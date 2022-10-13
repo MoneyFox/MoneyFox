@@ -5,8 +5,7 @@
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:converter="using:MoneyFox.Ui.Converter"
     xmlns:accounts="using:MoneyFox.Ui.ViewModels.Accounts"
-    Title="{x:Static resources:Strings.AccountsTitle}"
-    Shell.NavBarHasShadow="False">
+    Title="{x:Static resources:Strings.AccountsTitle}" >
 
     <ContentPage.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />

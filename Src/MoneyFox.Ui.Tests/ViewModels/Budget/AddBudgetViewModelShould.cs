@@ -75,7 +75,7 @@ public class AddBudgetViewModelShould
         passedQuery!.Name.Should().Be(testBudget.Name);
         passedQuery.SpendingLimit.Should().Be(testBudget.SpendingLimit);
         passedQuery.Categories.Should().BeEquivalentTo(testBudget.Categories);
-        await navigationService.Received(1).GoBackFromModal();
+        await navigationService.Received(1).GoBackFromModalAsync();
     }
 
     [Fact]
@@ -99,7 +99,7 @@ public class AddBudgetViewModelShould
         await viewModel.OpenCategorySelectionCommand.ExecuteAsync(null);
 
         // Assert
-        await navigationService.Received(1).OpenModal<SelectCategoryPage>();
+        await navigationService.Received(1).OpenModalAsync<SelectCategoryPage>();
     }
 }
 

@@ -1,18 +1,19 @@
-﻿namespace MoneyFox.Ui.ViewModels.Accounts;
+using MoneyFox.Ui.ViewModels.Accounts;
+
+namespace MoneyFox.Ui.Views.Accounts;
 
 using MediatR;
 using MoneyFox.Core.Commands.Accounts.CreateAccount;
 using MoneyFox.Core.Common.Interfaces;
+using MoneyFox.Core.Interfaces;
 
 internal sealed class AddAccountViewModel : ModifyAccountViewModel
 {
-    private readonly IDialogService dialogService;
     private readonly IMediator mediator;
 
-    public AddAccountViewModel(IMediator mediator, IDialogService dialogService) : base(dialogService: dialogService, mediator: mediator)
+    public AddAccountViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService) : base(dialogService: dialogService, mediator: mediator, navigationService: navigationService)
     {
         this.mediator = mediator;
-        this.dialogService = dialogService;
     }
 
     protected override async Task SaveAccountAsync()

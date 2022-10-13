@@ -113,7 +113,7 @@ internal class DashboardViewModel : BaseViewModel
         }
     }
 
-    public AsyncRelayCommand GoToAddPaymentCommand => new(async () => await Shell.Current.GoToModalAsync(Routes.AddPaymentRoute));
+    public AsyncRelayCommand GoToAddPaymentCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddPaymentRoute));
 
     public AsyncRelayCommand GoToAccountsCommand => new(async () => await Shell.Current.GoToAsync(Routes.AccountListRoute));
 
