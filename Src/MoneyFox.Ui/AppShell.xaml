@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <Shell x:Class="MoneyFox.Ui.AppShell"
        xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -8,12 +8,6 @@
        xmlns:statistics="using:MoneyFox.Ui.Views.Statistics"
        xmlns:overflowMenu="using:MoneyFox.Ui.Views.OverflowMenu"
        xmlns:setupAssistant="using:MoneyFox.Ui.Views.SetupAssistant"
-       Shell.BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}"
-       Shell.ForegroundColor="{AppThemeBinding Dark={StaticResource TextPrimaryColorDark}, Light={StaticResource TextPrimaryColorLight}}"
-       Shell.TitleColor="{AppThemeBinding Dark={StaticResource TextPrimaryColorDark}, Light={StaticResource TextPrimaryColorLight}}"
-       Shell.TabBarBackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundTabColorDark}, Light={StaticResource BackgroundTabColorLight}}"
-       Shell.NavBarHasShadow="False"
-       Shell.TabBarUnselectedColor="DarkGray"
        Title="MoneyFox">
 
     <TabBar>
