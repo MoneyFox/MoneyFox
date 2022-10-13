@@ -24,12 +24,6 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '7.0.x'
-        include-prerelease: true
-
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
         dotnet-version: ${{env.DOTNETVERSION}}
 
     - name: Install MAUI Workload
@@ -53,12 +47,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '7.0.x'
-        include-prerelease: true
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
