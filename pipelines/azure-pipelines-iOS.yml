@@ -14,18 +14,18 @@ variables:
   Minor: '8'
 
 steps:
-  - task: UseDotNet@2.207.2
+  - task: UseDotNet@2
     displayName: 'Use correct .Net sdk'
     inputs:
       version: 7.x
       includePreviewVersions: true
        
-  - task: UseDotNet@2.207.2
+  - task: UseDotNet@2
     displayName: 'Use correct .Net sdk'
     inputs:
       version: 6.x
 
-  - task: PowerShell@2.210.0
+  - task: PowerShell@2
     displayName: "Set App Version"
     enabled: false
     inputs:
@@ -73,32 +73,32 @@ steps:
       Major: $(Major)
       Minor: $(Minor)
       
-  - task: InstallAppleCertificate@2.200.0
+  - task: InstallAppleCertificate@2
     displayName: 'Install an Apple certificate'
     inputs:
       certSecureFile: 'MoneyFox_Distribution_2022.p12'
       certPwd: '$(P12password)'
       keychain: temp
 
-  - task: InstallAppleProvisioningProfile@1.200.0
+  - task: InstallAppleProvisioningProfile@1
     displayName: 'Install an Apple provisioning profile'
     inputs:
       provProfileSecureFile: 'MoneyFox_Distribution_2022.mobileprovision'
 
-  - task: PowerShell@2.210.0
+  - task: PowerShell@2
     displayName: "install maui workload"
     inputs:
       targetType: 'inline'
       script: 'dotnet workload install maui'
 
-  - task: DotNetCoreCLI@2.210.0
+  - task: DotNetCoreCLI@2
     displayName: 'Run Tests'
     inputs:
       command: 'test'
       projects: |
         **/*.Tests.csproj
 
-  - task: DotNetCoreCLI@2.210.0
+  - task: DotNetCoreCLI@2
     displayName: 'Build iOS app'
     inputs:
       command: 'publish'
@@ -107,7 +107,7 @@ steps:
       projects: '**/MoneyFox.Ui.csproj'
       arguments: '-c Release -f net7.0-ios -o $(build.artifactstagingdirectory) /p:BuildIpa=true /p:Codesignkey="$(APPLE_CERTIFICATE_SIGNING_IDENTITY)" /p:CodesignProvision="$(APPLE_PROV_PROFILE_UUID)"'
 
-  - task: PowerShell@2.210.0
+  - task: PowerShell@2
     inputs:
       targetType: 'inline'
       script: |
