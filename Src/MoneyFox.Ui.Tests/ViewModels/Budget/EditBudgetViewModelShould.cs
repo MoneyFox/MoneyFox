@@ -90,7 +90,7 @@ public class EditBudgetViewModelShould
             await viewModel.OpenCategorySelectionCommand.ExecuteAsync(null);
 
             // Assert
-            await navigationService.Received(1).OpenModal<SelectCategoryPage>();
+            await navigationService.Received(1).OpenModalAsync<SelectCategoryPage>();
         }
     }
 
@@ -117,7 +117,7 @@ public class EditBudgetViewModelShould
             capturedCommand!.Name.Should().Be(testBudget.Name);
             capturedCommand.SpendingLimit.Should().Be(testBudget.SpendingLimit);
             capturedCommand.Categories.Should().BeEquivalentTo(testBudget.Categories);
-            await navigationService.Received(1).GoBackFromModal();
+            await navigationService.Received(1).GoBackFromModalAsync();
         }
     }
 
@@ -179,7 +179,7 @@ public class EditBudgetViewModelShould
             // Assert
             _ = capturedCommand.Should().NotBeNull();
             capturedCommand!.BudgetId.Should().Be(testBudget.Id);
-            await navigationService.Received(1).GoBackFromModal();
+            await navigationService.Received(1).GoBackFromModalAsync();
         }
 
         [Fact]
@@ -193,7 +193,7 @@ public class EditBudgetViewModelShould
 
             // Assert
             _ = await sender.Received(0).Send(Arg.Any<DeleteBudget.Command>());
-            await navigationService.Received(0).GoBackFromModal();
+            await navigationService.Received(0).GoBackFromModalAsync();
         }
     }
 }

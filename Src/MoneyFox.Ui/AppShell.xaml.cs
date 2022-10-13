@@ -34,6 +34,7 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(route: Routes.SelectCategoryRoute, type: typeof(SelectCategoryPage));
         Routing.RegisterRoute(route: Routes.AddCategoryRoute, type: typeof(AddCategoryPage));
         Routing.RegisterRoute(route: Routes.AddPaymentRoute, type: typeof(AddPaymentPage));
+        Routing.RegisterRoute(route: Routes.EditPaymentRoute, type: typeof(EditPaymentPage));
         Routing.RegisterRoute(route: Routes.BackupRoute, type: typeof(BackupPage));
         Routing.RegisterRoute(route: Routes.SettingsRoute, type: typeof(SettingsPage));
         Routing.RegisterRoute(route: Routes.AboutRoute, type: typeof(AboutPage));

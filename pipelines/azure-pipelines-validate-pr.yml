@@ -11,18 +11,18 @@ jobs:
       vmImage: windows-2022
 
     variables:
-      solution: '**/*.wapproj'
+      solution: '**/MoneyFox.Win.csproj'
       appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
     steps:
 
-      - task: UseDotNet@2.207.2
+      - task: UseDotNet@2
         displayName: Use .NET 6.0
         inputs:
           packageType: 'sdk'
           version: '6.0.x'
 
-      - task: DownloadSecureFile@1.200.0
+      - task: DownloadSecureFile@1
         displayName: 'Download Windows Certificate'
         name: 'signingCert'
         inputs:
@@ -43,7 +43,7 @@ jobs:
         env:
           CERT_PASSWORD_ENV: $(UWP_Certificate_Password)
 
-      - task: PowerShell@2.210.0
+      - task: PowerShell@2
         displayName: "Set AppManifest"
         inputs:
           targetType: 'inline'
@@ -54,7 +54,7 @@ jobs:
             $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Win\MoneyFox.Win (Package)\Package.appxmanifest')
           failOnStderr: true
 
-      - task: PowerShell@2.210.0
+      - task: PowerShell@2
         displayName: "Set Store Association"
         inputs:
           targetType: 'inline'
@@ -65,16 +65,15 @@ jobs:
             $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Win\MoneyFox.Win (Package)\Package.StoreAssociation.xml')
           failOnStderr: true
 
-      - task: DotNetCoreCLI@2.210.0
+      - task: DotNetCoreCLI@2
         displayName: Restore NuGets
         inputs:
           command: 'restore'
           projects: |
-            **/*.wapproj
             **/MoneyFox.Win.csproj
           feedsToUse: 'select'
 
-      - task: DotNetCoreCLI@2.210.0
+      - task: DotNetCoreCLI@2
         displayName: 'Run Tests'
         inputs:
           command: 'test'
@@ -83,7 +82,7 @@ jobs:
             **/MoneyFox.Infrastructure.Tests.csproj
           arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
 
-      - task: VSBuild@1.208.0
+      - task: VSBuild@1
         displayName: 'Build WinUI Project'
         inputs:
           solution: '$(solution)'

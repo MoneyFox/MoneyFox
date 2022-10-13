@@ -6,21 +6,26 @@ using MediatR;
 using MoneyFox.Core.ApplicationCore.Queries;
 using MoneyFox.Core.Common.Interfaces;
 using MoneyFox.Core.Common.Messages;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Resources;
 
-internal abstract class ModifyAccountViewModel : BaseViewModel
+internal abstract partial class ModifyAccountViewModel : BaseViewModel
 {
     private readonly IDialogService dialogService;
+    private readonly INavigationService navigationService;
 
     private AccountViewModel selectedAccountVm = new();
 
-    protected ModifyAccountViewModel(IDialogService dialogService, IMediator mediator)
+    protected ModifyAccountViewModel(IDialogService dialogService, IMediator mediator, INavigationService navigationService)
     {
         this.dialogService = dialogService;
+        this.navigationService = navigationService;
         Mediator = mediator;
     }
 
     public virtual bool IsEdit => false;
+
+    public virtual string Title => Strings.AddAccountTitle;
 
     protected IMediator Mediator { get; }
 
@@ -38,11 +43,10 @@ internal abstract class ModifyAccountViewModel : BaseViewModel
         }
     }
 
-    public RelayCommand SaveCommand => new(async () => await SaveAccountBaseAsync());
-
     protected abstract Task SaveAccountAsync();
 
-    private async Task SaveAccountBaseAsync()
+    [RelayCommand]
+    private async Task SaveAsync()
     {
         if (string.IsNullOrWhiteSpace(SelectedAccountVm.Name))
         {
@@ -64,6 +68,6 @@ internal abstract class ModifyAccountViewModel : BaseViewModel
         await SaveAccountAsync();
         Messenger.Send(new ReloadMessage());
         await dialogService.HideLoadingDialogAsync();
-        await Application.Current.MainPage.Navigation.PopModalAsync();
+        await navigationService.GoBackFromModalAsync();
     }
 }

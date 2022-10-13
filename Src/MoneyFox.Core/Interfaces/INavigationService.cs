@@ -1,13 +1,13 @@
-﻿namespace MoneyFox.Core.Interfaces;
+namespace MoneyFox.Core.Interfaces;
 
 using System.Threading.Tasks;
 
 public interface INavigationService
 {
-    Task NavigateTo<T>();
+    Task NavigateToAsync<T>();
 
-    Task OpenModal<T>();
+    Task OpenModalAsync<T>();
 
-    Task GoBackFromModal();
+    Task GoBackFromModalAsync();
 }
 

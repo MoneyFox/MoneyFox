@@ -23,20 +23,20 @@ jobs:
     
     steps:
           
-      - task: UseDotNet@2.207.2
+      - task: UseDotNet@2
         displayName: Use .NET 6.0
         inputs:
           packageType: 'sdk'
           version: '6.0.x'
         
-      - task: PowerShell@2.210.0
+      - task: PowerShell@2
         displayName: 'Install maui workload'
         enabled: false
         inputs:
           targetType: 'inline'
           script: 'dotnet workload install maui --ignore-failed-sources'
 
-      - task: DownloadSecureFile@1.200.0
+      - task: DownloadSecureFile@1
         displayName: 'Download secure file'
         name: 'signingCert'
         inputs:
@@ -57,7 +57,7 @@ jobs:
         env:
           CERT_PASSWORD_ENV: $(UWP_Certificate_Password)
 
-      - task: PowerShell@2.210.0
+      - task: PowerShell@2
         displayName: "Set AppManifest"
         inputs:
           targetType: 'inline'
@@ -68,7 +68,7 @@ jobs:
             $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Win\MoneyFox.Win (Package)\Package.appxmanifest')
           failOnStderr: true
 
-      - task: PowerShell@2.210.0
+      - task: PowerShell@2
         displayName: "Set Store Association"
         inputs:
           targetType: 'inline'
@@ -87,7 +87,7 @@ jobs:
           VersionRegex: '\d+.\d+.\d+'
           OutputVersion: 'OutputedVersion'
 
-      - task: NuGetToolInstaller@1.208.1
+      - task: NuGetToolInstaller@1
         displayName: 'Use NuGet'
         inputs:
           versionSpec: 6.x
@@ -97,11 +97,10 @@ jobs:
         inputs:
           command: 'restore'
           projects: |
-            **/*.wapproj
             **/MoneyFox.Win.csproj
           feedsToUse: 'select'
 
-      - task: DotNetCoreCLI@2.210.0
+      - task: DotNetCoreCLI@2
         displayName: 'Run Tests'
         inputs:
           command: 'test'
@@ -117,10 +116,10 @@ jobs:
           Contents: '**\*.opencover.xml'
           TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-      - task: VSBuild@1.208.0
+      - task: VSBuild@1
         displayName: 'Build Windows Project'
         inputs:
-          solution: '**/*.wapproj'
+          solution: '**/MoneyFox.Win.csproj'
           msbuildArgs: '
         /p:AppxBundlePlatforms="$(buildPlatform)"
         /p:AppxPackageDir="$(appxPackageDir)"
