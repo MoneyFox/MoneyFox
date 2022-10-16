@@ -78,11 +78,11 @@
                                    Text="{Binding Subtitle}" />
 
                             <Border Grid.Row="2"
-                                    BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                                 Light={StaticResource CardBackgroundLight}}"
+                                    BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
                                     Stroke="black"
                                     StrokeThickness="0"
                                     StrokeShape="RoundRectangle 10"
+                                    Margin="0,12,0,0"
                                     HorizontalOptions="FillAndExpand">
 
                                 <Border.Shadow>
