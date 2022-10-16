@@ -29,7 +29,7 @@
                 <ImageButton.Source>
                     <FontImageSource FontFamily="MaterialIconsRound"
                                      Glyph="filter_alt"
-                                     />
+                                     Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                 </ImageButton.Source>
             </ImageButton>
 
@@ -78,11 +78,11 @@
                                    Text="{Binding Subtitle}" />
 
                             <Border Grid.Row="2"
-                                    BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                                 Light={StaticResource CardBackgroundLight}}"
+                                    BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
                                     Stroke="black"
                                     StrokeThickness="0"
                                     StrokeShape="RoundRectangle 10"
+                                    Margin="0,12,0,0"
                                     HorizontalOptions="FillAndExpand">
 
                                 <Border.Shadow>
@@ -100,15 +100,13 @@
                                                         CommandParameter="{Binding .}" />
                                                 </StackLayout.GestureRecognizers>
 
-                                                <Grid>
-                                                    <Label Style="{StaticResource TextBody}"
-                                                           HorizontalTextAlignment="Start"
-                                                           VerticalTextAlignment="Start"
+                                                <Grid ColumnDefinitions="*,Auto">
+                                                    <Label Grid.Column="0"
+                                                           Style="{StaticResource TextBody}"
                                                            Text="{Binding Date, Converter={StaticResource DateFormatConverter}}" />
 
-                                                    <Label Style="{StaticResource TextBody}"
-                                                           HorizontalTextAlignment="End"
-                                                           VerticalTextAlignment="Start"
+                                                    <Label Grid.Column="1"
+                                                           Style="{StaticResource TextBody}"
                                                            Text="{Binding ., Converter={StaticResource PaymentAmountConverter}}" />
                                                 </Grid>
 
@@ -148,7 +146,6 @@
                                                 </Grid>
 
                                                 <Label Style="{StaticResource TextBodySecondary}"
-                                                       HorizontalTextAlignment="Start"
                                                        LineBreakMode="TailTruncation"
                                                        Text="{Binding Note}" />
                                             </StackLayout>
