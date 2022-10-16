@@ -1,10 +1,10 @@
-namespace MoneyFox.Ui.Platforms.Windows.Src;
+﻿namespace MoneyFox.Win;
 
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using global::Windows.Storage;
-using MoneyFox.Win.Infrastructure;
+using Windows.Storage;
+using Infrastructure;
 using Serilog;
 
 public class WindowsFileStore : FileStoreBase
