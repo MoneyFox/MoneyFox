@@ -103,14 +103,10 @@
                                                 <Grid ColumnDefinitions="*,Auto">
                                                     <Label Grid.Column="0"
                                                            Style="{StaticResource TextBody}"
-                                                           HorizontalTextAlignment="Start"
-                                                           VerticalTextAlignment="Start"
                                                            Text="{Binding Date, Converter={StaticResource DateFormatConverter}}" />
 
                                                     <Label Grid.Column="1"
                                                            Style="{StaticResource TextBody}"
-                                                           HorizontalTextAlignment="End"
-                                                           VerticalTextAlignment="Start"
                                                            Text="{Binding ., Converter={StaticResource PaymentAmountConverter}}" />
                                                 </Grid>
 
@@ -150,7 +146,6 @@
                                                 </Grid>
 
                                                 <Label Style="{StaticResource TextBodySecondary}"
-                                                       HorizontalTextAlignment="Start"
                                                        LineBreakMode="TailTruncation"
                                                        Text="{Binding Note}" />
                                             </StackLayout>

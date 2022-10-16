@@ -89,7 +89,8 @@
                                             Margin="0,0,6,2"
                                             FontFamily="Product"
                                             FontSize="20"
-                                            HorizontalTextAlignment="Center"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"
                                             Style="{Binding CurrentBalance, Converter={StaticResource BalanceColorConverter}}"
                                             Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
                                             VerticalTextAlignment="Center" />
