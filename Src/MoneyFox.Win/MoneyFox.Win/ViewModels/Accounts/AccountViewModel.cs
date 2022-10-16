@@ -6,7 +6,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Common.Interfaces.Mapping;
 
-public sealed class AccountViewModel : ObservableObject, IHaveCustomMapping, IEquatable<AccountViewModel>
+public sealed class AccountViewModel : ObservableObject, IEquatable<AccountViewModel>, IHaveCustomMapping
 {
     private const decimal DECIMAL_DELTA = 0.01m;
     private DateTime created;
