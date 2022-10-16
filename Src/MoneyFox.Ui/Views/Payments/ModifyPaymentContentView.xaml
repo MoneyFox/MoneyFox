@@ -55,7 +55,9 @@
                 <ImageButton Grid.Column="2"
                              Command="{Binding ResetCategoryCommand}">
                     <ImageButton.Source>
-                        <FontImageSource FontFamily="MaterialIconsRound" Glyph="delete" />
+                        <FontImageSource FontFamily="MaterialIconsRound" 
+                                         Glyph="delete" 
+                                         Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                     </ImageButton.Source>
                 </ImageButton>
             </Grid>

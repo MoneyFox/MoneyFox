@@ -88,7 +88,7 @@
     <Color x:Key="CardBackgroundDark">#2d2d30</Color>
     <Color x:Key="CardBackgroundLight">#ffffff</Color>
 
-    // TODO: remove if no longer needed
+    <!-- TODO: remove if no longer needed -->
     <Color x:Key="ButtonBackgroundDark">#212121</Color>
     <Color x:Key="ButtonBackgroundLight">#ffffff</Color>
 
