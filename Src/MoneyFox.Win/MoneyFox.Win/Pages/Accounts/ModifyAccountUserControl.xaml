@@ -3,9 +3,19 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Core.Resources"
-    xmlns:converter="using:MoneyFox.Win.Converter">
+    xmlns:designTime="using:MoneyFox.Win.ViewModels.DesignTime"
+    xmlns:converter="using:MoneyFox.Win.Converter"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    mc:Ignorable="d">
+
+    <d:Page.DataContext>
+        <designTime:DesignTimeModifyAccountViewModel />
+    </d:Page.DataContext>
 
     <i:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">

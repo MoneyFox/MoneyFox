@@ -1,4 +1,4 @@
-namespace MoneyFox.Win.ViewModels.Payments;
+﻿namespace MoneyFox.Win.ViewModels.Payments;
 
 using System;
 using Accounts;
