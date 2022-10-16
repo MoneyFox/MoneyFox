@@ -13,9 +13,7 @@
     <TabBar>
         <Tab Title="{x:Static resources:Strings.HomeTitle}">
             <Tab.Icon>
-                <FontImageSource FontFamily="MaterialIconsRound"
-                                 Glyph="home" 
-                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                <FontImageSource FontFamily="MaterialIconsRound" Glyph="home" />
             </Tab.Icon>
             <ShellContent>
                 <dashboard:DashboardPage />
@@ -24,9 +22,7 @@
 
         <Tab Title="{x:Static resources:Strings.StatisticsTitle}">
             <Tab.Icon>
-                <FontImageSource FontFamily="MaterialIconsRound" 
-                                 Glyph="donut_small"
-                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}"/>
+                <FontImageSource FontFamily="MaterialIconsRound" Glyph="donut_small" />
             </Tab.Icon>
             <ShellContent Title="{x:Static resources:Strings.StatisticsTitle}">
                 <statistics:StatisticSelectorPage />
@@ -35,9 +31,7 @@
 
         <Tab Title="{x:Static resources:Strings.MoreTitle}">
             <Tab.Icon>
-                <FontImageSource FontFamily="MaterialIconsRound" 
-                                 Glyph="more_horiz"
-                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                <FontImageSource FontFamily="MaterialIconsRound" Glyph="more_horiz" />
             </Tab.Icon>
             <ShellContent>
                 <overflowMenu:OverflowMenuPage />
