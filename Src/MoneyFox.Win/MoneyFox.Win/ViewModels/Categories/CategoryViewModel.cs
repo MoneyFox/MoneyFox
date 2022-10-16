@@ -116,6 +116,6 @@ public class CategoryViewModel : ObservableObject, IHaveCustomMapping
 
     public void CreateMappings(Profile configuration)
     {
-        configuration.CreateMap<Category, CategoryViewModel>();
+        configuration.CreateMap<Category, CategoryViewModel>().ReverseMap();
     }
 }
