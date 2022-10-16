@@ -29,7 +29,7 @@
                 <ImageButton.Source>
                     <FontImageSource FontFamily="MaterialIconsRound"
                                      Glyph="filter_alt"
-                                     />
+                                     Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                 </ImageButton.Source>
             </ImageButton>
 
