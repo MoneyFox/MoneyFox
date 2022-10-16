@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.ViewModels.Payments;
+namespace MoneyFox.Ui.ViewModels.Payments;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
@@ -30,8 +30,8 @@ internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
 
     public async Task InitializeAsync(int paymentId)
     {
-        await base.InitializeAsync();
-        SelectedPayment = mapper.Map<PaymentViewModel>(await mediator.Send(new GetPaymentByIdQuery(paymentId)));
+        var payment = await mediator.Send(new GetPaymentByIdQuery(paymentId));
+        SelectedPayment = mapper.Map<PaymentViewModel>(payment);
     }
 
     protected override async Task SavePaymentAsync()
