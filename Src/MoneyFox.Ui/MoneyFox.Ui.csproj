@@ -38,6 +38,15 @@
         <ArchiveOnBuild>true</ArchiveOnBuild>
         <CodesignKey>Apple Distribution: Apply Solutions GmbH (HTWW78XH49)</CodesignKey>
         <CodesignProvision>MoneyFox Distribution 2022</CodesignProvision>
+        <PublishTrimmed>False</PublishTrimmed>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'">
+      <PublishTrimmed>False</PublishTrimmed>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0-android|AnyCPU'">
+      <PublishTrimmed>False</PublishTrimmed>
     </PropertyGroup>
 
     <ItemGroup>
