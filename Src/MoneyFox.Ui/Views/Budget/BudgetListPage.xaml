@@ -7,10 +7,10 @@
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:converter="using:MoneyFox.Ui.Converter"
     xmlns:budget="using:MoneyFox.Ui.Views.Budget"
-    xmlns:budget1="using:MoneyFox.Ui.ViewModels.Budget"
+    xmlns:budgetVm="using:MoneyFox.Ui.ViewModels.Budget"
     Visual="Material"
     x:Name="BudgetList"
-    x:DataType="budget1:BudgetListViewModel"
+    x:DataType="budgetVm:BudgetListViewModel"
     Title="{x:Static resources:Strings.BudgetsTitle}">
 
     <ContentPage.Resources>
@@ -41,7 +41,7 @@
                       SeparatorVisibility="None"
                       RowHeight="100">
                 <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="budget1:BudgetListItemViewModel">
+                    <DataTemplate x:DataType="budgetVm:BudgetListItemViewModel">
                         <ViewCell>
                             <Grid Padding="15,6,15,8">
                                 <Border
