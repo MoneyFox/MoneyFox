@@ -4,7 +4,9 @@
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:views="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:categories="using:MoneyFox.Ui.ViewModels.Categories"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
     x:Class="MoneyFox.Ui.Views.Popups.CategorySelectionPopup"
+    ios:Page.ModalPresentationStyle="OverFullScreen"
     Title="{x:Static resources:Strings.CategoriesTitle}">
 
     <Grid IsClippedToBounds="False"
