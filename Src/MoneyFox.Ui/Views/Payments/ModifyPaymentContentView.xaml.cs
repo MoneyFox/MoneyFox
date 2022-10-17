@@ -1,8 +1,4 @@
 namespace MoneyFox.Ui.Views.Payments;
-
-using CommunityToolkit.Maui.Views;
-using Popups;
-
 public partial class ModifyPaymentContentView
 {
     public ModifyPaymentContentView()
@@ -14,11 +10,5 @@ public partial class ModifyPaymentContentView
     {
         AmountEntry.CursorPosition = 0;
         AmountEntry.SelectionLength = AmountEntry.Text?.Length ?? 0;
-    }
-
-    private void Button_OnClicked(object? sender, EventArgs e)
-    {
-        var popup = new CategorySelectionPopup();
-        Shell.Current.ShowPopup(popup);
     }
 }

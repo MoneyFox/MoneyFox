@@ -6,7 +6,8 @@
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:converter="using:MoneyFox.Ui.Converter"
     xmlns:payments="using:MoneyFox.Ui.ViewModels.Payments"
-    x:Class="MoneyFox.Ui.Views.Payments.ModifyPaymentContentView">
+    x:Class="MoneyFox.Ui.Views.Payments.ModifyPaymentContentView"
+    x:DataType="payments:ModifyPaymentViewModel">
 
     <ContentView.Resources>
         <ResourceDictionary>
@@ -50,13 +51,13 @@
             <Grid ColumnDefinitions="70*, 6, 40">
                 <Button Grid.Column="0"
                         Text="{Binding SelectedPayment.Category, Converter={StaticResource NoCategorySelectedConverter}}"
-                        Clicked="Button_OnClicked" />
+                        Command="{Binding GoToSelectCategoryDialogCommand}" />
 
                 <ImageButton Grid.Column="2"
                              Command="{Binding ResetCategoryCommand}">
                     <ImageButton.Source>
                         <FontImageSource FontFamily="MaterialIconsRound" 
-                                         Glyph="delete" 
+                                         Glyph="cancel" 
                                          Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                     </ImageButton.Source>
                 </ImageButton>
