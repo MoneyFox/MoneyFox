@@ -23,47 +23,23 @@
 
     <ScrollView x:DataType="payments:ModifyPaymentViewModel" Padding="15,0,15,0">
         <StackLayout Spacing="6">
-            <Picker Title="{x:Static resources:Strings.PaymentTypeLabel}"
-                    ItemsSource="{Binding PaymentTypeList}"
-                    SelectedItem="{Binding SelectedPayment.Type}"
-                    ItemDisplayBinding="{Binding ., Converter={StaticResource PaymentTypeStringConverter}}" />
+            <controls:CustomPicker PickerTitle="{x:Static resources:Strings.PaymentTypeLabel}"
+                    PickerItemsSource="{Binding PaymentTypeList}"
+                    PickerSelectedItem="{Binding SelectedPayment.Type}"
+                    PickerItemDisplayBinding="{Binding ., Converter={StaticResource PaymentTypeStringConverter}}" />
 
-            <Picker Title="{Binding AccountHeader}"
-                    ItemsSource="{Binding ChargedAccounts}"
-                    SelectedItem="{Binding SelectedPayment.ChargedAccount}"
-                    ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}" />
+            <controls:CustomPicker PickerTitle="{Binding AccountHeader}"
+                    PickerItemsSource="{Binding ChargedAccounts}"
+                    PickerSelectedItem="{Binding SelectedPayment.ChargedAccount}"
+                    PickerItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}" />
 
-            <Picker Title="{x:Static resources:Strings.TargetAccountLabel}"
-                    ItemsSource="{Binding TargetAccounts}"
+            <<controls:CustomPicker PickerTitle="{x:Static resources:Strings.TargetAccountLabel}"
+                    PickerItemsSource="{Binding TargetAccounts}"
                     IsVisible="{Binding SelectedPayment.IsTransfer}"
-                    SelectedItem="{Binding SelectedPayment.TargetAccount}"
-                    ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}" />
+                    PickerSelectedItem="{Binding SelectedPayment.TargetAccount}"
+                    PickerItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}" />
 
             <Label Text="{x:Static resources:Strings.AmountLabel}" />
-            
-            <Border Padding="20,0" BackgroundColor="White">
-                
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="10"/>
-                </Border.StrokeShape>
-                
-                <Grid ColumnDefinitions="*, Auto">
-
-                    <Picker Title="{x:Static resources:Strings.PaymentTypeLabel}"
-                            ItemsSource="{Binding PaymentTypeList}"
-                            SelectedItem="{Binding SelectedPayment.Type}"
-                            ItemDisplayBinding="{Binding ., Converter={StaticResource PaymentTypeStringConverter}}" />
-                    
-                    <Image Grid.Column="1" HeightRequest="20" WidthRequest="20">
-                        <Image.Source>
-                            <FontImageSource FontFamily="MaterialIcons"
-                                             Glyph="{x:Static views:IconFont.ChevronDown}"
-                                             Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
-                        </Image.Source>
-                    </Image>
-                </Grid>
-            </Border>
-
             <controls:MyEntry x:Name="AmountEntry"
                               EntryText="{Binding SelectedPayment.Amount, Converter={StaticResource DecimalConverter}}"
                               EntryPlaceholder="{x:Static resources:Strings.AmountLabel}"
@@ -92,8 +68,8 @@
                         Format="D" />
 
             <Label Text="{x:Static resources:Strings.NoteLabel}" />
-            <Entry Placeholder="{x:Static resources:Strings.NoteLabel}"
-                   Text="{Binding SelectedPayment.Note}" />
+            <controls:MyEntry EntryPlaceholder="{x:Static resources:Strings.NoteLabel}"
+                              EntryText="{Binding SelectedPayment.Note}" />
  
             <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*, Auto">
                 <Label Grid.Column="0"
