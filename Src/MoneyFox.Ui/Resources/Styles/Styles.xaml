@@ -27,23 +27,23 @@
                 Value="{AppThemeBinding Dark={StaticResource TextPrimaryColorDark}, Light={StaticResource TextPrimaryColorLight}}" />
     </Style>
 
-    <Style x:Key="TextHeadline" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+    <Style x:Key="TextHeadline" TargetType="Label" >
         <Setter Property="FontSize" Value="{StaticResource TextSizeHeadline}" />
     </Style>
 
-    <Style x:Key="TextSubHeadline" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+    <Style x:Key="TextSubHeadline" TargetType="Label" >
         <Setter Property="FontSize" Value="{StaticResource TextSizeHeadline}" />
     </Style>
 
-    <Style x:Key="TextTitle" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+    <Style x:Key="TextTitle" TargetType="Label" >
         <Setter Property="FontSize" Value="{StaticResource TextSizeTitle}" />
     </Style>
 
-    <Style x:Key="TextHead" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+    <Style x:Key="TextHead" TargetType="Label" >
         <Setter Property="FontSize" Value="{StaticResource TextSizeHeading}" />
     </Style>
 
-    <Style x:Key="TextSubHead" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+    <Style x:Key="TextSubHead" TargetType="Label" >
         <Setter Property="FontSize" Value="{StaticResource TextSizeSubHeading}" />
     </Style>
 
@@ -53,17 +53,17 @@
         <Setter Property="FontSize" Value="{StaticResource TextSizeSubHeading}" />
     </Style>
 
-    <Style x:Key="TextBody" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+    <Style x:Key="TextBody" TargetType="Label" >
         <Setter Property="FontSize" Value="{StaticResource TextSizeBody}" />
     </Style>
 
-    <Style x:Key="TextBodySecondary" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+    <Style x:Key="TextBodySecondary" TargetType="Label" >
         <Setter Property="TextColor"
                 Value="{AppThemeBinding Dark={StaticResource TextSecondaryColorDark}, Light={StaticResource TextSecondaryColorLight}}" />
         <Setter Property="FontSize" Value="{StaticResource TextSizeBody}" />
     </Style>
 
-    <Style x:Key="TextCaption" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+    <Style x:Key="TextCaption" TargetType="Label" >
         <Setter Property="FontSize" Value="{StaticResource TextSizeCaption}" />
     </Style>
 
