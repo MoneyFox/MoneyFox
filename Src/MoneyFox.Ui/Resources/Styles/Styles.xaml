@@ -22,7 +22,7 @@
     <x:Double x:Key="TextSizeSmallCaption">11</x:Double>
 
     <!-- Text / Label -->
-    <Style x:Key="BaseLabel" TargetType="Label">
+    <Style TargetType="Label">
         <Setter Property="TextColor"
                 Value="{AppThemeBinding Dark={StaticResource TextPrimaryColorDark}, Light={StaticResource TextPrimaryColorLight}}" />
     </Style>
