@@ -83,4 +83,10 @@
         </AssemblyAttribute>
     </ItemGroup>
 
+    <ItemGroup>
+      <MauiXaml Update="Controls\MyEntry.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
+    </ItemGroup>
+
 </Project>
