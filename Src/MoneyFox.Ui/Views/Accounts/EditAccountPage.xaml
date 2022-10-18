@@ -21,6 +21,8 @@
                 <Label Style="{StaticResource TextBodySecondary}"
                        Text="{Binding SelectedAccountVm.CreationTime, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
 
+                <Button Command="{Binding SaveCommand}" Text="{x:Static resources:Strings.SaveLabel}" />
+                
                 <Button x:Name="DeleteAccountButton"
                         Style="{StaticResource WarningButton}"
                         Margin="0,12,0,0"

@@ -14,7 +14,7 @@ using MoneyFox.Core.Common.Interfaces;
 using MoneyFox.Core.Common.Messages;
 using MoneyFox.Core.Resources;
 
-internal abstract class ModifyPaymentViewModel : BaseViewModel
+internal abstract partial class ModifyPaymentViewModel : BaseViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
@@ -89,8 +89,6 @@ internal abstract class ModifyPaymentViewModel : BaseViewModel
 
     public RelayCommand ResetCategoryCommand => new(() => SelectedPayment.Category = null);
 
-    public AsyncRelayCommand SaveCommand => new(SavePaymentBaseAsync);
-
     protected virtual async Task InitializeAsync()
     {
         var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
@@ -106,7 +104,8 @@ internal abstract class ModifyPaymentViewModel : BaseViewModel
 
     protected abstract Task SavePaymentAsync();
 
-    private async Task SavePaymentBaseAsync()
+    [RelayCommand]
+    private async Task Save()
     {
         if (SelectedPayment.ChargedAccount == null)
         {
