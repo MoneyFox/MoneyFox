@@ -39,7 +39,7 @@
                     ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}" />
 
             <Label Text="{x:Static resources:Strings.AmountLabel}" />
-
+            
             <Border Padding="20,0" BackgroundColor="White">
                 
                 <Border.StrokeShape>
@@ -55,8 +55,8 @@
                     
                     <Image Grid.Column="1" HeightRequest="20" WidthRequest="20">
                         <Image.Source>
-                            <FontImageSource FontFamily="MaterialIconsRound"
-                                             Glyph="{x:Static views:IconFont.Expand_more}"
+                            <FontImageSource FontFamily="MaterialIcons"
+                                             Glyph="{x:Static views:IconFont.ChevronDown}"
                                              Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                         </Image.Source>
                     </Image>
