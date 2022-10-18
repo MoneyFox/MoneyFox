@@ -9,8 +9,8 @@ public partial class MyEntry : ContentView
 
     public static readonly BindableProperty EntryTextProperty = BindableProperty.Create(nameof(EntryText), typeof(string), typeof(MyEntry), string.Empty);
     public static readonly BindableProperty EntryPlaceholderProperty = BindableProperty.Create(nameof(EntryPlaceholder), typeof(string), typeof(MyEntry), string.Empty);
-    public static readonly BindableProperty KeyboardProperty = BindableProperty.Create(nameof(Keyboard), typeof(string), typeof(MyEntry), string.Empty);
-    public static readonly BindableProperty HorizontalTextAlignmentProperty = BindableProperty.Create(nameof(HorizontalTextAlignment), typeof(string), typeof(MyEntry), string.Empty);
+    public static readonly BindableProperty EntryKeyboardProperty = BindableProperty.Create(nameof(EntryKeyboard), typeof(Keyboard), typeof(MyEntry), Keyboard.Default);
+    public static readonly BindableProperty EntryHorizontalTextAlignmentProperty = BindableProperty.Create(nameof(EntryHorizontalTextAlignment), typeof(TextAlignment), typeof(MyEntry), TextAlignment.Start);
 
     public string EntryText
     {
@@ -24,15 +24,15 @@ public partial class MyEntry : ContentView
         set => SetValue(MyEntry.EntryPlaceholderProperty, value);
     }
 
-    public string Keyboard
+    public Keyboard EntryKeyboard
     {
-        get => (string)GetValue(MyEntry.KeyboardProperty);
-        set => SetValue(MyEntry.KeyboardProperty, value);
+        get => (Keyboard)GetValue(MyEntry.EntryKeyboardProperty);
+        set => SetValue(MyEntry.EntryKeyboardProperty, value);
     }
 
-    public string HorizontalTextAlignment
+    public TextAlignment EntryHorizontalTextAlignment
     {
-        get => (string)GetValue(MyEntry.HorizontalTextAlignmentProperty);
-        set => SetValue(MyEntry.HorizontalTextAlignmentProperty, value);
+        get => (TextAlignment)GetValue(MyEntry.EntryHorizontalTextAlignmentProperty);
+        set => SetValue(MyEntry.EntryHorizontalTextAlignmentProperty, value);
     }
 }

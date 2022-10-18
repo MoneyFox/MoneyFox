@@ -15,8 +15,8 @@
         <Grid>
             <Entry Text="{Binding EntryText}"
                    Placeholder="{Binding EntryPlaceholder}" 
-                   Keyboard="{Binding Keyboard}"
-                   HorizontalTextAlignment="{Binding HorizontalTextAlignment}" />
+                   Keyboard="{Binding EntryKeyboard}"
+                   HorizontalTextAlignment="{Binding EntryHorizontalTextAlignment}" />
         </Grid>
     </Border>
 </ContentView>

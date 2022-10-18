@@ -65,10 +65,10 @@
             </Border>
 
             <controls:MyEntry x:Name="AmountEntry"
-                           EntryText="{Binding SelectedPayment.Amount, Converter={StaticResource DecimalConverter}}"
-                           EntryPlaceholder="{x:Static resources:Strings.AmountLabel}"
-                           Keyboard="Numeric"
-                           HorizontalTextAlignment="End" />
+                              EntryText="{Binding SelectedPayment.Amount, Converter={StaticResource DecimalConverter}}"
+                              EntryPlaceholder="{x:Static resources:Strings.AmountLabel}"
+                              EntryKeyboard="Numeric"
+                              EntryHorizontalTextAlignment="End"/>
 
             <Label Text="{x:Static resources:Strings.CategoryLabel}" />
 
