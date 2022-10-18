@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:views="clr-namespace:MoneyFox.Ui.Views"
     xmlns:converter="using:MoneyFox.Ui.Converter"
     xmlns:payments="using:MoneyFox.Ui.ViewModels.Payments"
     x:Class="MoneyFox.Ui.Views.Payments.ModifyPaymentContentView"
@@ -39,12 +40,45 @@
 
             <Label Text="{x:Static resources:Strings.AmountLabel}" />
 
-            <Entry x:Name="AmountEntry"
-                   Text="{Binding SelectedPayment.Amount, Converter={StaticResource DecimalConverter}}"
-                   Placeholder="{x:Static resources:Strings.AmountLabel}"
-                   Keyboard="Numeric"
-                   HorizontalTextAlignment="End"
-                   Focused="AmountFieldGotFocus" />
+            <Border Padding="20,0" BackgroundColor="White">
+                
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10"/>
+                </Border.StrokeShape>
+                
+                <Grid ColumnDefinitions="*, Auto">
+
+                    <Picker Title="{x:Static resources:Strings.PaymentTypeLabel}"
+                            ItemsSource="{Binding PaymentTypeList}"
+                            SelectedItem="{Binding SelectedPayment.Type}"
+                            ItemDisplayBinding="{Binding ., Converter={StaticResource PaymentTypeStringConverter}}" />
+                    
+                    <Image Grid.Column="1" HeightRequest="20" WidthRequest="20">
+                        <Image.Source>
+                            <FontImageSource FontFamily="MaterialIconsRound"
+                                             Glyph="{x:Static views:IconFont.Expand_more}"
+                                             Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                        </Image.Source>
+                    </Image>
+                </Grid>
+            </Border>
+            
+            <Border Padding="20,0" BackgroundColor="White">
+                
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10"/>
+                </Border.StrokeShape>
+                
+                <Grid ColumnDefinitions="*, Auto">
+                    <Entry x:Name="AmountEntry"
+                           Text="{Binding SelectedPayment.Amount, Converter={StaticResource DecimalConverter}}"
+                           Placeholder="{x:Static resources:Strings.AmountLabel}"
+                           Keyboard="Numeric"
+                           HorizontalTextAlignment="End"
+                           Focused="AmountFieldGotFocus" />
+                </Grid>
+            </Border>
+
 
             <Label Text="{x:Static resources:Strings.CategoryLabel}" />
 
