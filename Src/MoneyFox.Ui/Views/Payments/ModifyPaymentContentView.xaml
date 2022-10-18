@@ -33,9 +33,9 @@
                     PickerSelectedItem="{Binding SelectedPayment.ChargedAccount}"
                     PickerItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}" />
 
-            <<controls:CustomPicker PickerTitle="{x:Static resources:Strings.TargetAccountLabel}"
+            <controls:CustomPicker PickerTitle="{x:Static resources:Strings.TargetAccountLabel}"
                     PickerItemsSource="{Binding TargetAccounts}"
-                    IsVisible="{Binding SelectedPayment.IsTransfer}"
+                    PickerIsVisible="{Binding SelectedPayment.IsTransfer}"
                     PickerSelectedItem="{Binding SelectedPayment.TargetAccount}"
                     PickerItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}" />
 
