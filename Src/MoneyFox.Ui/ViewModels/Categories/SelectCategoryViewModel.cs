@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.ViewModels.Categories;
+namespace MoneyFox.Ui.ViewModels.Categories;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
@@ -12,7 +12,8 @@ internal sealed class SelectCategoryViewModel : CategoryListViewModel
     public SelectCategoryViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService) : base(
         mediator: mediator,
         mapper: mapper,
-        dialogService: dialogService) { }
+        dialogService: dialogService)
+    { }
 
     public AsyncRelayCommand<CategoryViewModel> SelectCategoryCommand
         => new(

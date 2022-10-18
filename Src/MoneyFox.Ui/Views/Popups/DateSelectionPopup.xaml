@@ -15,14 +15,12 @@
                    Style="{DynamicResource TextTitle}" />
 
             <Label Margin="0,6,0,0"
-                   Style="{DynamicResource BaseLabel}"
                    Text="{x:Static resources:Strings.TimeRangeStartLabel}"
                    HorizontalOptions="StartAndExpand" />
 
             <DatePicker Date="{Binding StartDate}" />
 
             <Label Margin="0,6,0,0"
-                   Style="{DynamicResource BaseLabel}"
                    Text="{x:Static resources:Strings.TimeRangeEndLabel}" />
             <DatePicker Date="{Binding EndDate}" />
         </StackLayout>

@@ -15,7 +15,6 @@
 
             <Grid Margin="0,6,0,0">
                 <Label Text="{x:Static resources:Strings.IsClearedLabel}"
-                       Style="{DynamicResource BaseLabel}"
                        HorizontalOptions="Start" />
                 <Switch IsToggled="{Binding IsClearedFilterActive}"
                         HorizontalOptions="End" />
@@ -23,25 +22,23 @@
 
             <Grid Margin="0,6,0,0">
                 <Label Text="{x:Static resources:Strings.IsRecurringLabel}"
-                       Style="{DynamicResource BaseLabel}"
                        HorizontalOptions="Start" />
                 <Switch IsToggled="{Binding IsRecurringFilterActive}"
                         HorizontalOptions="End" />
             </Grid>
 
-            <Label Margin="0,6,0,0" Style="{DynamicResource BaseLabel}"
+            <Label Margin="0,6,0,0"
                    Text="{x:Static resources:Strings.PaymentTypeLabel}" />
             <Picker Title="{x:Static resources:Strings.PaymentTypeLabel}"
                     ItemsSource="{Binding PaymentTypeFilterList}"
                     SelectedItem="{Binding FilteredPaymentType}"
                     ItemDisplayBinding="{Binding ., Converter={StaticResource PaymentTypeFilterConverter}}" />
 
-            <Label Margin="0,6,0,0" Style="{DynamicResource BaseLabel}"
+            <Label Margin="0,6,0,0"
                    Text="{x:Static resources:Strings.TimeRangeStartLabel}" />
             <DatePicker Date="{Binding TimeRangeStart}" />
 
             <Label Margin="0,6,0,0"
-                   Style="{DynamicResource BaseLabel}"
                    Text="{x:Static resources:Strings.TimeRangeEndLabel}" />
             <DatePicker Date="{Binding TimeRangeEnd}" />
         </StackLayout>

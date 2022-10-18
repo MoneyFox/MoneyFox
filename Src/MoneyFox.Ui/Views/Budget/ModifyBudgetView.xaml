@@ -6,8 +6,8 @@
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:converter="using:MoneyFox.Ui.Converter"
     xmlns:budget="using:MoneyFox.Ui.Views.Budget"
-    xmlns:budget1="using:MoneyFox.Ui.ViewModels.Budget"
-    x:DataType="budget1:ModifyBudgetViewModel"
+    xmlns:budgetVm="using:MoneyFox.Ui.ViewModels.Budget"
+    x:DataType="budgetVm:ModifyBudgetViewModel"
     x:Class="MoneyFox.Ui.Views.Budget.ModifyBudgetView">
 
     <ContentView.Resources>
@@ -48,7 +48,7 @@
                                 SelectionChangedCommand="{Binding RemoveCategoryCommand}"
                                 SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference BudgetCategoryCollectionView}}">
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="budget1:BudgetCategoryViewModel">
+                        <DataTemplate x:DataType="budgetVm:BudgetCategoryViewModel">
                             <Grid Padding="3" HeightRequest="60">
                                 <Frame>
                                     <Label Text="{Binding Name}" />

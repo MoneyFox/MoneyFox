@@ -6,7 +6,8 @@
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:converter="using:MoneyFox.Ui.Converter"
     xmlns:payments="using:MoneyFox.Ui.ViewModels.Payments"
-    x:Class="MoneyFox.Ui.Views.Payments.ModifyPaymentContentView">
+    x:Class="MoneyFox.Ui.Views.Payments.ModifyPaymentContentView"
+    x:DataType="payments:ModifyPaymentViewModel">
 
     <ContentView.Resources>
         <ResourceDictionary>
@@ -50,13 +51,13 @@
             <Grid ColumnDefinitions="70*, 6, 40">
                 <Button Grid.Column="0"
                         Text="{Binding SelectedPayment.Category, Converter={StaticResource NoCategorySelectedConverter}}"
-                        Clicked="Button_OnClicked" />
+                        Command="{Binding GoToSelectCategoryDialogCommand}" />
 
                 <ImageButton Grid.Column="2"
                              Command="{Binding ResetCategoryCommand}">
                     <ImageButton.Source>
                         <FontImageSource FontFamily="MaterialIconsRound" 
-                                         Glyph="delete" 
+                                         Glyph="cancel" 
                                          Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                     </ImageButton.Source>
                 </ImageButton>
@@ -70,7 +71,7 @@
             <Entry Placeholder="{x:Static resources:Strings.NoteLabel}"
                    Text="{Binding SelectedPayment.Note}" />
  
-            <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="70*, 20*">
+            <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*, Auto">
                 <Label Grid.Column="0"
                        VerticalOptions="Center"
                        Text="{x:Static resources:Strings.RecurringLabel}" />
@@ -99,7 +100,7 @@
                             IsToggled="{Binding SelectedPayment.RecurringPayment.IsLastDayOfMonth}" />
                 </Grid>
 
-                <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="70*, 15*">
+                <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*, Auto">
 
                     <Label Grid.Column="0"
                            VerticalOptions="Center"
@@ -113,7 +114,7 @@
                 <StackLayout Spacing="6"
                     IsVisible="{Binding SelectedPayment.RecurringPayment.IsEndless, Converter={StaticResource Inverter}}">
                     <Label Text="{x:Static resources:Strings.EnddateLabel}"
-                           Margin="0,5,0,6"/>
+                           Margin="0,5,0,0"/>
 
                     <DatePicker Date="{Binding SelectedPayment.RecurringPayment.EndDate}"
                                 Format="D" />
