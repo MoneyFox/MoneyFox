@@ -37,7 +37,7 @@
                     PickerSelectedItem="{Binding SelectedPayment.TargetAccount}" />
 
             <Label Text="{x:Static resources:Strings.AmountLabel}" />
-            <controls:MyEntry x:Name="AmountEntry"
+            <controls:AmountEntry x:Name="AmountEntry"
                               EntryText="{Binding SelectedPayment.Amount, Converter={StaticResource DecimalConverter}}"
                               EntryPlaceholder="{x:Static resources:Strings.AmountLabel}"
                               EntryKeyboard="Numeric"
@@ -65,7 +65,7 @@
                         Format="D" />
 
             <Label Text="{x:Static resources:Strings.NoteLabel}" />
-            <controls:MyEntry EntryPlaceholder="{x:Static resources:Strings.NoteLabel}"
+            <controls:AmountEntry EntryPlaceholder="{x:Static resources:Strings.NoteLabel}"
                               EntryText="{Binding SelectedPayment.Note}" />
  
             <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*, Auto">

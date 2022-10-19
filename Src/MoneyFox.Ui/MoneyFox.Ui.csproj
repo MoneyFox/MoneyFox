@@ -87,7 +87,7 @@
       <MauiXaml Update="Controls\CustomPicker.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
-      <MauiXaml Update="Controls\MyEntry.xaml">
+      <MauiXaml Update="Controls\AmountEntry.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
       <MauiXaml Update="Controls\PaymentTypePicker.xaml">
