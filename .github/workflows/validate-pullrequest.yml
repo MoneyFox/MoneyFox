@@ -25,6 +25,12 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: ${{env.DOTNETVERSION}}
+        
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '7.0.x'
+        include-prerelease: true
 
     - name: Install MAUI Workload
       run: dotnet workload install maui --ignore-failed-sources
@@ -39,7 +45,7 @@ jobs:
         dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
 
     - name: Build MAUI Android
-      run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net6.0-android -c Release    
+      run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-android -c Release    
       
   buildiOS:
 

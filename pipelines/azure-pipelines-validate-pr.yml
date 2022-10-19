@@ -22,6 +22,12 @@ jobs:
           packageType: 'sdk'
           version: '6.0.x'
 
+      - task: UseDotNet@2
+        displayName: 'Use preview .Net sdk'
+        inputs:
+          version: 7.x
+          includePreviewVersions: true
+
       - task: DownloadSecureFile@1
         displayName: 'Download Windows Certificate'
         name: 'signingCert'
