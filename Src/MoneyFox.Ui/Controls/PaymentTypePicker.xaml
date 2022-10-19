@@ -27,7 +27,7 @@
 
                 <Picker Title="{Binding PickerTitle, Mode=OneWay}"
                             ItemsSource="{Binding PaymentTypeSource, Mode=OneWay}"
-                            SelectedItem="{Binding SelectedTypeProperty, Mode=TwoWay}"
+                            SelectedItem="{Binding SelectedType, Mode=TwoWay}"
                             ItemDisplayBinding="{Binding ., Converter={StaticResource PaymentTypeStringConverter}}" />
 
                 <Image Grid.Column="1" HeightRequest="20" WidthRequest="20">

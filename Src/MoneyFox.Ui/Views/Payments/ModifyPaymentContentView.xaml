@@ -21,7 +21,7 @@
         </ResourceDictionary>
     </ContentView.Resources>
 
-    <ScrollView x:DataType="payments:ModifyPaymentViewModel" Padding="15,0,15,0">
+    <ScrollView x:DataType="payments:ModifyPaymentViewModel" Padding="6,0,6,0">
         <VerticalStackLayout Spacing="6">
 
             <controls:PaymentTypePicker PickerTitle="{x:Static resources:Strings.PaymentTypeLabel}"
@@ -37,8 +37,8 @@
                 PickerSelectedItem="{Binding SelectedPayment.TargetAccount}"
                 IsVisible="{Binding SelectedPayment.IsTransfer}" />
             
-            <Label Text="{x:Static resources:Strings.AmountLabel}" />
             <controls:AmountEntry 
+                AmountFieldTitle="{x:Static resources:Strings.AmountLabel}"
                 Amount="{Binding SelectedPayment.Amount, Converter={StaticResource DecimalConverter}}"
                 EntryPlaceholder="{x:Static resources:Strings.AmountLabel}" />
 
