@@ -25,8 +25,8 @@
         <StackLayout Spacing="6">
 
             <controls:PaymentTypePicker PickerTitle="{x:Static resources:Strings.PaymentTypeLabel}"
-                    PickerItemsSource="{Binding PaymentTypeList}"
-                    PickerSelectedItem="{Binding SelectedPayment.Type}" />
+                    PaymentTypeSource="{Binding PaymentTypeList}"
+                    SelectedType="{Binding SelectedPayment.Type}" />
 
             <controls:AccountPicker PickerTitle="{Binding AccountHeader}"
                     PickerItemsSource="{Binding ChargedAccounts}"

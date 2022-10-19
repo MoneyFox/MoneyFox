@@ -10,23 +10,23 @@ public partial class PaymentTypePicker : ContentView
     }
 
     public static readonly BindableProperty PickerTitleProperty = BindableProperty.Create(nameof(PickerTitle), typeof(string), typeof(PaymentTypePicker), string.Empty, BindingMode.OneWay);
-    public static readonly BindableProperty PickerItemsSourceProperty = BindableProperty.Create(nameof(PickerItemsSource), typeof(IList), typeof(PaymentTypePicker));
-    public static readonly BindableProperty PickerSelectedItemProperty = BindableProperty.Create(nameof(PickerSelectedItem), typeof(object), typeof(PaymentTypePicker), BindingMode.TwoWay);
+    public static readonly BindableProperty PaymentTypeSourceProperty = BindableProperty.Create(nameof(PaymentTypeSource), typeof(IList), typeof(PaymentTypePicker));
+    public static readonly BindableProperty SelectedTypeProperty = BindableProperty.Create(nameof(SelectedType), typeof(object), typeof(PaymentTypePicker), BindingMode.TwoWay);
 
     public string PickerTitle
     {
         get => (string)GetValue(PaymentTypePicker.PickerTitleProperty);
         set => SetValue(PaymentTypePicker.PickerTitleProperty, value);
     }
-    public IList PickerItemsSource
+    public IList PaymentTypeSource
     {
-        get => (IList)GetValue(PaymentTypePicker.PickerItemsSourceProperty);
-        set => SetValue(PaymentTypePicker.PickerItemsSourceProperty, value);
+        get => (IList)GetValue(PaymentTypePicker.PaymentTypeSourceProperty);
+        set => SetValue(PaymentTypePicker.PaymentTypeSourceProperty, value);
     }
 
-    public object PickerSelectedItem
+    public object SelectedType
     {
-        get => GetValue(PaymentTypePicker.PickerSelectedItemProperty);
-        set => SetValue(PaymentTypePicker.PickerSelectedItemProperty, value);
+        get => GetValue(PaymentTypePicker.SelectedTypeProperty);
+        set => SetValue(PaymentTypePicker.SelectedTypeProperty, value);
     }
 }
