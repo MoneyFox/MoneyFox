@@ -33,15 +33,13 @@
 
             <controls:AccountPicker PickerTitle="{x:Static resources:Strings.TargetAccountLabel}"
                     PickerItemsSource="{Binding TargetAccounts}"
-                    PickerIsVisible="{Binding SelectedPayment.IsTransfer}"
-                    PickerSelectedItem="{Binding SelectedPayment.TargetAccount}" />
+                    PickerSelectedItem="{Binding SelectedPayment.TargetAccount}"
+                    IsVisible="{Binding SelectedPayment.IsTransfer}"/>
 
             <Label Text="{x:Static resources:Strings.AmountLabel}" />
             <controls:AmountEntry x:Name="AmountEntry"
                               EntryText="{Binding SelectedPayment.Amount, Converter={StaticResource DecimalConverter}}"
-                              EntryPlaceholder="{x:Static resources:Strings.AmountLabel}"
-                              EntryKeyboard="Numeric"
-                              EntryHorizontalTextAlignment="End"/>
+                              EntryPlaceholder="{x:Static resources:Strings.AmountLabel}" />
 
             <Label Text="{x:Static resources:Strings.CategoryLabel}" />
 

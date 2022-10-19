@@ -13,10 +13,11 @@
         </Border.StrokeShape>
 
         <Grid>
-            <Entry Text="{Binding EntryText}"
-                   Placeholder="{Binding EntryPlaceholder}" 
-                   Keyboard="{Binding EntryKeyboard}"
-                   HorizontalTextAlignment="{Binding EntryHorizontalTextAlignment}" />
+            <Entry x:Name="AmountField" Text="{Binding EntryText}"
+                   Placeholder="{Binding EntryPlaceholder}"
+                   Keyboard="Numeric"
+                   HorizontalTextAlignment="End"
+                   Focused="AmountFieldGotFocus" />
         </Grid>
     </Border>
 </ContentView>
