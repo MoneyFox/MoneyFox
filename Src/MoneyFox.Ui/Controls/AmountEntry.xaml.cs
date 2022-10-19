@@ -8,7 +8,7 @@ public partial class AmountEntry : ContentView
     }
 
     public static readonly BindableProperty AmountFieldTitleProperty = BindableProperty.Create(nameof(AmountFieldTitle), typeof(string), typeof(AmountEntry), string.Empty);
-    public static readonly BindableProperty EntryTextProperty = BindableProperty.Create(nameof(EntryText), typeof(string), typeof(AmountEntry), string.Empty, BindingMode.TwoWay);
+    public static readonly BindableProperty AmountProperty = BindableProperty.Create(nameof(Amount), typeof(string), typeof(AmountEntry), string.Empty, BindingMode.TwoWay);
     public static readonly BindableProperty EntryPlaceholderProperty = BindableProperty.Create(nameof(EntryPlaceholder), typeof(string), typeof(AmountEntry), string.Empty);
 
     public string AmountFieldTitle
@@ -16,10 +16,10 @@ public partial class AmountEntry : ContentView
         get => (string)GetValue(AmountEntry.AmountFieldTitleProperty);
         set => SetValue(AmountEntry.AmountFieldTitleProperty, value);
     }
-    public string EntryText
+    public string Amount
     {
-        get => (string)GetValue(AmountEntry.EntryTextProperty);
-        set => SetValue(AmountEntry.EntryTextProperty, value);
+        get => (string)GetValue(AmountEntry.AmountProperty);
+        set => SetValue(AmountEntry.AmountProperty, value);
     }
 
     public string EntryPlaceholder

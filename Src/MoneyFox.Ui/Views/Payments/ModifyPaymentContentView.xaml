@@ -22,13 +22,13 @@
     </ContentView.Resources>
 
     <ScrollView x:DataType="payments:ModifyPaymentViewModel" Padding="15,0,15,0">
-        <StackLayout Spacing="6">
+        <VerticalStackLayout Spacing="6">
 
             <controls:PaymentTypePicker PickerTitle="{x:Static resources:Strings.PaymentTypeLabel}"
                     PaymentTypeSource="{Binding PaymentTypeList}"
-                    SelectedType="{Binding SelectedPayment.Type}" />
+                    SelectedType="{Binding SelectedPayment.Type, Mode=TwoWay}" />
 
-            <controls:AccountPicker PickerTitle="{Binding AccountHeader}"
+            <controls:AccountPicker PickerTitle="{Binding AccountHeader, Mode=OneWay}"
                     PickerItemsSource="{Binding ChargedAccounts}"
                     PickerSelectedItem="{Binding SelectedPayment.ChargedAccount}" />
 
@@ -38,9 +38,9 @@
                 IsVisible="{Binding SelectedPayment.IsTransfer}" />
             
             <Label Text="{x:Static resources:Strings.AmountLabel}" />
-            <controls:AmountEntry x:Name="AmountEntry"
-                              EntryText="{Binding SelectedPayment.Amount, Converter={StaticResource DecimalConverter}}"
-                              EntryPlaceholder="{x:Static resources:Strings.AmountLabel}" />
+            <controls:AmountEntry 
+                Amount="{Binding SelectedPayment.Amount, Converter={StaticResource DecimalConverter}}"
+                EntryPlaceholder="{x:Static resources:Strings.AmountLabel}" />
 
             <Label Text="{x:Static resources:Strings.CategoryLabel}" />
 
@@ -64,8 +64,9 @@
                         Format="D" />
 
             <Label Text="{x:Static resources:Strings.NoteLabel}" />
-            <controls:AmountEntry EntryPlaceholder="{x:Static resources:Strings.NoteLabel}"
-                              EntryText="{Binding SelectedPayment.Note}" />
+            <controls:AmountEntry 
+                EntryPlaceholder="{x:Static resources:Strings.NoteLabel}"
+                Amount="{Binding SelectedPayment.Note}" />
  
             <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*, Auto">
                 <Label Grid.Column="0"
@@ -117,6 +118,6 @@
                 </StackLayout>
 
             </StackLayout>
-        </StackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentView>

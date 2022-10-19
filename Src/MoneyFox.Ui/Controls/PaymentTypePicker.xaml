@@ -13,11 +13,11 @@
         </ResourceDictionary>
     </ContentView.Resources>
 
-    <VerticalStackLayout>
+    <VerticalStackLayout Spacing="6"
+            BindingContext="{x:Reference this}">
         <Label Text="{x:Static resources:Strings.PaymentTypeLabel}" />
         <Border Padding="20,0" 
-            BackgroundColor="White"
-            BindingContext="{x:Reference this}">
+            BackgroundColor="White">
 
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="10"/>
@@ -25,9 +25,9 @@
 
             <Grid ColumnDefinitions="*, Auto">
 
-                <Picker Title="{Binding PickerTitle}"
-                            ItemsSource="{Binding PaymentTypeSource}"
-                            SelectedItem="{Binding SelectedTypeProperty}"
+                <Picker Title="{Binding PickerTitle, Mode=OneWay}"
+                            ItemsSource="{Binding PaymentTypeSource, Mode=OneWay}"
+                            SelectedItem="{Binding SelectedTypeProperty, Mode=TwoWay}"
                             ItemDisplayBinding="{Binding ., Converter={StaticResource PaymentTypeStringConverter}}" />
 
                 <Image Grid.Column="1" HeightRequest="20" WidthRequest="20">

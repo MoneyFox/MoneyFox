@@ -13,12 +13,12 @@
         </ResourceDictionary>
     </ContentView.Resources>
 
-    <VerticalStackLayout Spacing="6"> 
+    <VerticalStackLayout Spacing="6" 
+                BindingContext="{x:Reference this}"> 
         <Label Text="{Binding PickerTitle}" />
         
         <Border Padding="20,0"
-                BackgroundColor="White"
-                BindingContext="{x:Reference this}">
+                BackgroundColor="White">
 
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="10" />

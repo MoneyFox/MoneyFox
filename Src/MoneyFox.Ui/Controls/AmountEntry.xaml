@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
              x:Name="this"
              x:Class="MoneyFox.Ui.Controls.AmountEntry">
-    <VerticalStackLayout Spacing="6">
+    <VerticalStackLayout Spacing="6"
+            BindingContext="{x:Reference this}">
         <Label Text="{Binding AmountFieldTitle}" />
 
         <Border Padding="20,0" 
@@ -15,7 +16,8 @@
             </Border.StrokeShape>
 
             <Grid>
-                <Entry x:Name="AmountField" Text="{Binding EntryText}"
+                <Entry x:Name="AmountField" 
+                       Text="{Binding Amount}"
                    Placeholder="{Binding EntryPlaceholder}"
                    Keyboard="Numeric"
                    HorizontalTextAlignment="End"
