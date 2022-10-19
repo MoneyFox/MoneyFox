@@ -27,8 +27,8 @@
             <Grid ColumnDefinitions="*, Auto">
 
                 <Picker Title="{Binding PickerTitle}"
-                        ItemsSource="{Binding PickerItemsSource}"
-                        SelectedItem="{Binding PickerSelectedItem}"
+                        ItemsSource="{Binding AccountsSource}"
+                        SelectedItem="{Binding SelectedAccount}"
                         ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}" />
 
                 <Image Grid.Column="1" HeightRequest="20" WidthRequest="20">

@@ -29,12 +29,12 @@
                     SelectedType="{Binding SelectedPayment.Type, Mode=TwoWay}" />
 
             <controls:AccountPicker PickerTitle="{Binding AccountHeader, Mode=OneWay}"
-                    PickerItemsSource="{Binding ChargedAccounts}"
-                    PickerSelectedItem="{Binding SelectedPayment.ChargedAccount}" />
+                    AccountsSource="{Binding ChargedAccounts}"
+                    SelectedAccount="{Binding SelectedPayment.ChargedAccount}" />
 
             <controls:AccountPicker PickerTitle="{x:Static resources:Strings.TargetAccountLabel}"
-                PickerItemsSource="{Binding TargetAccounts}"
-                PickerSelectedItem="{Binding SelectedPayment.TargetAccount}"
+                AccountsSource="{Binding TargetAccounts}"
+                SelectedAccount="{Binding SelectedPayment.TargetAccount}"
                 IsVisible="{Binding SelectedPayment.IsTransfer}" />
             
             <controls:AmountEntry 
