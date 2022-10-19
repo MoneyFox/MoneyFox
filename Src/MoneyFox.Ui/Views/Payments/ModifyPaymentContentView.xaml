@@ -63,10 +63,10 @@
             <DatePicker Date="{Binding SelectedPayment.Date}"
                         Format="D" />
 
-            <Label Text="{x:Static resources:Strings.NoteLabel}" />
-            <controls:AmountEntry 
+            <controls:TextEntry 
+                TextFieldTitle="{x:Static resources:Strings.NoteLabel}"
                 EntryPlaceholder="{x:Static resources:Strings.NoteLabel}"
-                Amount="{Binding SelectedPayment.Note}" />
+                EntryText="{Binding SelectedPayment.Note}" />
  
             <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*, Auto">
                 <Label Grid.Column="0"

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
+             x:Name="this"
+             x:Class="MoneyFox.Ui.Controls.TextEntry">
+    
+    <VerticalStackLayout Spacing="6"
+            BindingContext="{x:Reference this}">
+        <Label Text="{Binding TextFieldTitle}" />
+
+        <Border Padding="20,0" 
+            BackgroundColor="White"
+            BindingContext="{x:Reference this}">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10"/>
+            </Border.StrokeShape>
+
+            <Grid>
+                <Entry x:Name="AmountField" 
+                       Text="{Binding EntryText}"
+                       Placeholder="{Binding EntryPlaceholder}" />
+            </Grid>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>
