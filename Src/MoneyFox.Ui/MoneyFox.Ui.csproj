@@ -90,6 +90,16 @@
       <MauiXaml Update="Controls\MyEntry.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
+      <MauiXaml Update="Controls\PaymentTypePicker.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Controls\PaymentTypePicker.xaml.cs">
+        <DependentUpon>PaymentTypePicker.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 
 </Project>

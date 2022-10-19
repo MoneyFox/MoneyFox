@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"   
+             xmlns:views="clr-namespace:MoneyFox.Ui.Views"
+             xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
+             x:Name="this"
+             x:Class="MoneyFox.Ui.Controls.PaymentTypePicker">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converter:PaymentTypeStringConverter x:Key="PaymentTypeStringConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <Border Padding="20,0" 
+            BackgroundColor="White"
+            BindingContext="{x:Reference this}">
+
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="10"/>
+        </Border.StrokeShape>
+
+        <Grid ColumnDefinitions="*, Auto">
+
+            <Picker Title="{Binding PickerTitle}"
+                            ItemsSource="{Binding PickerItemsSource}"
+                            SelectedItem="{Binding PickerSelectedItem}"
+                            ItemDisplayBinding="{Binding ., Converter={StaticResource PaymentTypeStringConverter}}" />
+
+            <Image Grid.Column="1" HeightRequest="20" WidthRequest="20">
+                <Image.Source>
+                    <FontImageSource FontFamily="MaterialIcons"
+                                     Glyph="{x:Static views:IconFont.ChevronDown}"
+                                     Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                </Image.Source>
+            </Image>
+        </Grid>
+    </Border>
+</ContentView>

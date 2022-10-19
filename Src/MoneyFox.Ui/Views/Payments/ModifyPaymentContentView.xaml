@@ -23,10 +23,9 @@
 
     <ScrollView x:DataType="payments:ModifyPaymentViewModel" Padding="15,0,15,0">
         <StackLayout Spacing="6">
-            <controls:AccountPicker PickerTitle="{x:Static resources:Strings.PaymentTypeLabel}"
+            <controls:PaymentTypePicker PickerTitle="{x:Static resources:Strings.PaymentTypeLabel}"
                     PickerItemsSource="{Binding PaymentTypeList}"
-                    PickerSelectedItem="{Binding SelectedPayment.Type}"
-                    PickerItemDisplayBinding="{Binding ., Converter={StaticResource PaymentTypeStringConverter}}" />
+                    PickerSelectedItem="{Binding SelectedPayment.Type}" />
 
             <controls:AccountPicker PickerTitle="{Binding AccountHeader}"
                     PickerItemsSource="{Binding ChargedAccounts}"
