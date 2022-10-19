@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"            
              x:Name="this"
              x:Class="MoneyFox.Ui.Controls.AmountEntry">
+
+    <ContentView.Resources>
+        <converter:DecimalConverter x:Key="DecimalConverter" />
+        <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
+    </ContentView.Resources>
+    
     <VerticalStackLayout Spacing="6"
             BindingContext="{x:Reference this}">
         <Label Text="{Binding AmountFieldTitle}" />
@@ -17,11 +24,12 @@
 
             <Grid>
                 <Entry x:Name="AmountField" 
-                       Text="{Binding Amount}"
-                   Placeholder="{Binding EntryPlaceholder}"
-                   Keyboard="Numeric"
-                   HorizontalTextAlignment="End"
-                   Focused="AmountFieldGotFocus" />
+                       Text="{Binding Amount,Converter={StaticResource DecimalConverter}}"
+                       IsEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBoolConverter}}"
+                       Placeholder="{Binding EntryPlaceholder}"
+                       Keyboard="Numeric"
+                       HorizontalTextAlignment="End"
+                       Focused="AmountFieldGotFocus" />
             </Grid>
         </Border>
     </VerticalStackLayout>

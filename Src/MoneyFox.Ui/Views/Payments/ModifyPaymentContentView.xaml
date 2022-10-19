@@ -22,7 +22,7 @@
     </ContentView.Resources>
 
     <ScrollView x:DataType="payments:ModifyPaymentViewModel" Padding="6,0,6,0">
-        <VerticalStackLayout Spacing="6">
+        <VerticalStackLayout Spacing="12">
 
             <controls:PaymentTypePicker PickerTitle="{x:Static resources:Strings.PaymentTypeLabel}"
                     PaymentTypeSource="{Binding PaymentTypeList}"

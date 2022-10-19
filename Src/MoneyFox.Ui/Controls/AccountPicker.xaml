@@ -8,9 +8,7 @@
              x:Class="MoneyFox.Ui.Controls.AccountPicker">
 
     <ContentView.Resources>
-        <ResourceDictionary>
-            <converter:AccountNameConverter x:Key="AccountNameConverter" />
-        </ResourceDictionary>
+        <converter:AccountNameConverter x:Key="AccountNameConverter" />
     </ContentView.Resources>
 
     <VerticalStackLayout Spacing="6" 

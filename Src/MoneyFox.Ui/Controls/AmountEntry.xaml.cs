@@ -10,6 +10,7 @@ public partial class AmountEntry : ContentView
     public static readonly BindableProperty AmountFieldTitleProperty = BindableProperty.Create(nameof(AmountFieldTitle), typeof(string), typeof(AmountEntry), string.Empty);
     public static readonly BindableProperty AmountProperty = BindableProperty.Create(nameof(Amount), typeof(string), typeof(AmountEntry), string.Empty, BindingMode.TwoWay);
     public static readonly BindableProperty EntryPlaceholderProperty = BindableProperty.Create(nameof(EntryPlaceholder), typeof(string), typeof(AmountEntry), string.Empty);
+    public static readonly BindableProperty IsReadOnlyProperty = BindableProperty.Create(nameof(IsReadOnly), typeof(bool), typeof(AmountEntry), false);
 
     public string AmountFieldTitle
     {
@@ -26,6 +27,12 @@ public partial class AmountEntry : ContentView
     {
         get => (string)GetValue(AmountEntry.EntryPlaceholderProperty);
         set => SetValue(AmountEntry.EntryPlaceholderProperty, value);
+    }
+
+    public bool IsReadOnly
+    {
+        get => (bool)GetValue(AmountEntry.IsReadOnlyProperty);
+        set => SetValue(AmountEntry.IsReadOnlyProperty, value);
     }
 
     private void AmountFieldGotFocus(object sender, FocusEventArgs e)
