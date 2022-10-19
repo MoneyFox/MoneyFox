@@ -40,6 +40,7 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel
         {
             selectedPayment = value;
             OnPropertyChanged();
+            OnPropertyChanged(nameof(AccountHeader));
         }
     }
 

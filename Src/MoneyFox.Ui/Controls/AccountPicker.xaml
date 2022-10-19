@@ -15,6 +15,7 @@
 
     <VerticalStackLayout Spacing="6"> 
         <Label Text="{Binding PickerTitle}" />
+        
         <Border Padding="20,0"
                 BackgroundColor="White"
                 BindingContext="{x:Reference this}">

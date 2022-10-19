@@ -7,9 +7,15 @@ public partial class AmountEntry : ContentView
         InitializeComponent();
     }
 
+    public static readonly BindableProperty AmountFieldTitleProperty = BindableProperty.Create(nameof(AmountFieldTitle), typeof(string), typeof(AmountEntry), string.Empty);
     public static readonly BindableProperty EntryTextProperty = BindableProperty.Create(nameof(EntryText), typeof(string), typeof(AmountEntry), string.Empty, BindingMode.TwoWay);
     public static readonly BindableProperty EntryPlaceholderProperty = BindableProperty.Create(nameof(EntryPlaceholder), typeof(string), typeof(AmountEntry), string.Empty);
 
+    public string AmountFieldTitle
+    {
+        get => (string)GetValue(AmountEntry.AmountFieldTitleProperty);
+        set => SetValue(AmountEntry.AmountFieldTitleProperty, value);
+    }
     public string EntryText
     {
         get => (string)GetValue(AmountEntry.EntryTextProperty);

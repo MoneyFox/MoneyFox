@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"   
              xmlns:views="clr-namespace:MoneyFox.Ui.Views"
              xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
+             xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              x:Name="this"
              x:Class="MoneyFox.Ui.Controls.PaymentTypePicker">
 
@@ -12,28 +13,31 @@
         </ResourceDictionary>
     </ContentView.Resources>
 
-    <Border Padding="20,0" 
+    <VerticalStackLayout>
+        <Label Text="{x:Static resources:Strings.PaymentTypeLabel}" />
+        <Border Padding="20,0" 
             BackgroundColor="White"
             BindingContext="{x:Reference this}">
 
-        <Border.StrokeShape>
-            <RoundRectangle CornerRadius="10"/>
-        </Border.StrokeShape>
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10"/>
+            </Border.StrokeShape>
 
-        <Grid ColumnDefinitions="*, Auto">
+            <Grid ColumnDefinitions="*, Auto">
 
-            <Picker Title="{Binding PickerTitle}"
+                <Picker Title="{Binding PickerTitle}"
                             ItemsSource="{Binding PickerItemsSource}"
                             SelectedItem="{Binding PickerSelectedItem}"
                             ItemDisplayBinding="{Binding ., Converter={StaticResource PaymentTypeStringConverter}}" />
 
-            <Image Grid.Column="1" HeightRequest="20" WidthRequest="20">
-                <Image.Source>
-                    <FontImageSource FontFamily="MaterialIcons"
+                <Image Grid.Column="1" HeightRequest="20" WidthRequest="20">
+                    <Image.Source>
+                        <FontImageSource FontFamily="MaterialIcons"
                                      Glyph="{x:Static views:IconFont.ChevronDown}"
                                      Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
-                </Image.Source>
-            </Image>
-        </Grid>
-    </Border>
+                    </Image.Source>
+                </Image>
+            </Grid>
+        </Border>
+    </VerticalStackLayout>
 </ContentView>

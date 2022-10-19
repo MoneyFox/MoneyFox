@@ -23,6 +23,7 @@
 
     <ScrollView x:DataType="payments:ModifyPaymentViewModel" Padding="15,0,15,0">
         <StackLayout Spacing="6">
+
             <controls:PaymentTypePicker PickerTitle="{x:Static resources:Strings.PaymentTypeLabel}"
                     PickerItemsSource="{Binding PaymentTypeList}"
                     PickerSelectedItem="{Binding SelectedPayment.Type}" />
@@ -32,10 +33,10 @@
                     PickerSelectedItem="{Binding SelectedPayment.ChargedAccount}" />
 
             <controls:AccountPicker PickerTitle="{x:Static resources:Strings.TargetAccountLabel}"
-                    PickerItemsSource="{Binding TargetAccounts}"
-                    PickerSelectedItem="{Binding SelectedPayment.TargetAccount}"
-                    IsVisible="{Binding SelectedPayment.IsTransfer}"/>
-
+                PickerItemsSource="{Binding TargetAccounts}"
+                PickerSelectedItem="{Binding SelectedPayment.TargetAccount}"
+                IsVisible="{Binding SelectedPayment.IsTransfer}" />
+            
             <Label Text="{x:Static resources:Strings.AmountLabel}" />
             <controls:AmountEntry x:Name="AmountEntry"
                               EntryText="{Binding SelectedPayment.Amount, Converter={StaticResource DecimalConverter}}"
