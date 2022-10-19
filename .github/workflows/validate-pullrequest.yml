@@ -58,15 +58,15 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: ${{env.DOTNETVERSION}}
-
-    - name: Install MAUI Workloads
-      run: dotnet workload install maui --ignore-failed-sources
         
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '7.0.x'
         include-prerelease: true
+
+    - name: Install MAUI Workloads
+      run: dotnet workload install maui --ignore-failed-sources
 
     - name: Restore Dependencies
       run: dotnet restore ${{env.UI_PROJECT_PATH}} 
