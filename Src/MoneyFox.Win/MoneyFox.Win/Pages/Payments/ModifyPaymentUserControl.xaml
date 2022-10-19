@@ -78,8 +78,8 @@
             </i:Interaction.Behaviors>
 
         </ComboBox>
-        
-        <Entry
+
+        <TextBox
             Margin="{StaticResource SmallTitleContentMargin}"
             Header="{x:Bind resources:Strings.AmountLabel}"
             InputScope="Number"
