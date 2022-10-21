@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:converter="using:MoneyFox.Ui.Converter"
+    xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:budget="using:MoneyFox.Ui.Views.Budget"
     xmlns:budgetVm="using:MoneyFox.Ui.ViewModels.Budget"
     x:DataType="budgetVm:ModifyBudgetViewModel"
@@ -20,14 +21,12 @@
     <ContentView.Content>
         <ScrollView Padding="15,0,15,0">
             <StackLayout Spacing="6">
-                <Entry Placeholder="{x:Static resources:Strings.BudgetNameLabel}"
-                       Text="{Binding SelectedBudget.Name}" />
+                <controls:TextEntry EntryPlaceholder="{x:Static resources:Strings.BudgetNameLabel}"
+                       EntryText="{Binding SelectedBudget.Name}" />
 
-                <Entry x:Name="AmountEntry"
-                       Keyboard="Numeric"
-                       Focused="AmountFieldGotFocus"
-                       Placeholder="{x:Static resources:Strings.MonthlySpendingLimitLabel}"
-                       Text="{Binding SelectedBudget.SpendingLimit, Converter={StaticResource DecimalConverter}}" />
+                <controls:AmountEntry x:Name="AmountEntry"
+                       EntryPlaceholder="{x:Static resources:Strings.MonthlySpendingLimitLabel}"
+                       Amount="{Binding SelectedBudget.SpendingLimit, Converter={StaticResource DecimalConverter}}" />
 
                 <Picker Title="{x:Static resources:Strings.EvaluationTimeRangeLabel}"
                         ItemsSource="{Binding TimeRangeCollection}"
