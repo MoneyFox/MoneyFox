@@ -4,6 +4,7 @@
     x:Class="MoneyFox.Ui.Views.Dashboard.DashboardPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:accounts="clr-namespace:MoneyFox.Ui.ViewModels.Accounts"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core">
@@ -50,18 +51,9 @@
                        Text="{x:Static resources:Strings.AssetsLabel}"
                        VerticalOptions="Center" />
 
-                <!--  Assets card  -->
-                <Border Grid.Row="2"
-                        BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
-                        StrokeShape="RoundRectangle 10"
-                        StrokeThickness="0"
-                        HeightRequest="90"
-                        HorizontalOptions="FillAndExpand">
-                    
-                    <Border.Shadow>
-                        <Shadow />
-                    </Border.Shadow>
-                    
+                <!--  Assets card  -->                
+                <controls:Card Grid.Row="2"
+                               HeightRequest="90">
                     <Grid>
 
                         <Grid.GestureRecognizers>
@@ -96,7 +88,7 @@
                                 VerticalTextAlignment="End" />
                         </StackLayout>
                     </Grid>
-                </Border>
+                </controls:Card>
 
                 <!--  Accounts  -->
                 <Grid Grid.Row="3" VerticalOptions="FillAndExpand" RowDefinitions="*, 35">
