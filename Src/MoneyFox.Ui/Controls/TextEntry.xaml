@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"      
+             xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
              x:Name="this"
              x:Class="MoneyFox.Ui.Controls.TextEntry">
     
@@ -17,7 +18,7 @@
             </Border.StrokeShape>
 
             <Grid>
-                <Entry x:Name="AmountField" 
+                <controls:BorderlessEntry x:Name="AmountField" 
                        Text="{Binding EntryText}"
                        Placeholder="{Binding EntryPlaceholder}" />
             </Grid>

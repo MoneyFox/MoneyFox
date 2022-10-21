@@ -1,11 +1,9 @@
 namespace MoneyFox.Ui;
 
 using CommunityToolkit.Maui;
+using Microsoft.Maui.Handlers;
+using MoneyFox.Ui.Controls;
 using SkiaSharp.Views.Maui.Controls.Hosting;
-
-#if IOS
-using MoneyFox.Ui.Platforms.iOS.Renderer;
-#endif
 
 public static class MauiProgram
 {
@@ -25,11 +23,25 @@ public static class MauiProgram
             .ConfigureMauiHandlers(handlers =>
             {
 #if IOS
-                handlers.AddHandler(typeof(Shell), typeof(CustomShellRenderer));
+                handlers.AddHandler(typeof(Shell), typeof(Platforms.iOS.Renderer.CustomShellRenderer));
 #endif
             })
             .UseSkiaSharp(true)
             .UseMauiCommunityToolkit();
+
+        EntryHandler.Mapper.AppendToMapping("Borderless", (handler, view) =>
+        {
+            if (view is BorderlessEntry)
+            {
+#if IOS
+                handler.PlatformView.Layer.BorderWidth = 0;
+                handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
+
+#elif WINDOWS
+                handler.PlatformView.BorderThickness = new Microsoft.UI.Xaml.Thickness(0);
+#endif
+            }
+        });
 
         return builder.Build();
     }
