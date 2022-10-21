@@ -33,7 +33,10 @@ public static class MauiProgram
         {
             if (view is BorderlessEntry)
             {
-#if IOS
+#if ANDROID
+                handler.PlatformView.Background = null;
+                handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
+#elif IOS    
                 handler.PlatformView.Layer.BorderWidth = 0;
                 handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
 
