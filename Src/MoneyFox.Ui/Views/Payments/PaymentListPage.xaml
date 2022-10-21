@@ -7,6 +7,7 @@
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:converter="using:MoneyFox.Ui.Converter"
     xmlns:payments="using:MoneyFox.Ui.ViewModels.Payments"
+    xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     x:Class="MoneyFox.Ui.Views.Payments.PaymentListPage">
 
     <ContentPage.Resources>
@@ -77,17 +78,8 @@
                                    Style="{StaticResource TextBodySecondary}"
                                    Text="{Binding Subtitle}" />
 
-                            <Border Grid.Row="2"
-                                    BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
-                                    Stroke="black"
-                                    StrokeThickness="0"
-                                    StrokeShape="RoundRectangle 10"
-                                    Margin="0,12,0,0"
-                                    HorizontalOptions="FillAndExpand">
-
-                                <Border.Shadow>
-                                    <Shadow />
-                                </Border.Shadow>
+                            <controls:Card Grid.Row="2"
+                                    Margin="0,12,0,0">
 
                                 <StackLayout BindableLayout.ItemsSource="{Binding .}">
                                     <BindableLayout.ItemTemplate>
@@ -152,7 +144,7 @@
                                         </DataTemplate>
                                     </BindableLayout.ItemTemplate>
                                 </StackLayout>
-                            </Border>
+                            </controls:Card>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

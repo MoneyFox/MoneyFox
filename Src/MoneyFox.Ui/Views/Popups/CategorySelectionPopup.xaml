@@ -4,6 +4,7 @@
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:views="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:categories="using:MoneyFox.Ui.ViewModels.Categories"
+    xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
     x:Class="MoneyFox.Ui.Views.Popups.CategorySelectionPopup"
     ios:Page.ModalPresentationStyle="OverFullScreen"
@@ -43,14 +44,7 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="categories:CategoryViewModel">
                     <Grid Padding="15, 6, 15, 8">
-                        <Border StrokeShape="RoundRectangle 10"
-                                    HeightRequest="40"
-                                    HorizontalOptions="FillAndExpand">
-
-                            <Border.Shadow>
-                                <Shadow />
-                            </Border.Shadow>
-
+                        <controls:Card HeightRequest="40">
                             <SwipeView
                                     BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                              Light={StaticResource CardBackgroundLight}}">
@@ -79,7 +73,7 @@
                                                Text="{Binding Name}" />
                                 </Grid>
                             </SwipeView>
-                        </Border>
+                        </controls:Card>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

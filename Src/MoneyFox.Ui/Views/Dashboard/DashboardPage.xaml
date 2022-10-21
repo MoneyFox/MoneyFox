@@ -110,18 +110,7 @@
                                     </Grid.GestureRecognizers>
 
 
-                                    <Border
-                                        BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                          Light={StaticResource CardBackgroundLight}}"
-                                        StrokeShape="RoundRectangle 10"
-                                        StrokeThickness="0"
-                                        HeightRequest="80"
-                                        HorizontalOptions="FillAndExpand">
-                                        
-                                        <Border.Shadow>
-                                            <Shadow />
-                                        </Border.Shadow>
-
+                                    <controls:Card HeightRequest="80">                                        
                                         <Grid>
                                             <Label
                                                 Margin="10,2,0,0"
@@ -156,7 +145,7 @@
                                                     Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}" />
                                             </StackLayout>
                                         </Grid>
-                                    </Border>
+                                    </controls:Card>
                                 </Grid>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
@@ -182,18 +171,8 @@
 
                     <Grid ColumnDefinitions="*, 10, *">
 
-                        <Border
-                            Grid.Column="0"
-                            BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                              Light={StaticResource CardBackgroundLight}}"
-                            StrokeShape="RoundRectangle 10"
-                            StrokeThickness="0"
-                            HeightRequest="80"
-                            HorizontalOptions="FillAndExpand">
-                            
-                            <Border.Shadow>
-                                <Shadow />
-                            </Border.Shadow>
+                        <controls:Card Grid.Column="0"
+                            HeightRequest="80">
 
                             <Grid>
                                 <Label
@@ -202,21 +181,10 @@
                                     VerticalOptions="Center"
                                     Text="{Binding MonthlyIncomes, StringFormat='+ {0:C}', Converter={StaticResource AmountFormatConverter}}" />
                             </Grid>
-                        </Border>
+                        </controls:Card>
 
-                        <Border
-                            Grid.Column="2"
-                            BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                              Light={StaticResource CardBackgroundLight}}"
-                            StrokeShape="RoundRectangle 10"
-                            StrokeThickness="0"
-                            HeightRequest="80"
-                            HorizontalOptions="FillAndExpand">
-
-                            <Border.Shadow>
-                                <Shadow />
-                            </Border.Shadow>
-
+                        <controls:Card Grid.Column="2" 
+                                       HeightRequest="80">
                             <Grid>
                                 <Label
                                     FontSize="18"
@@ -224,7 +192,7 @@
                                     VerticalOptions="Center"
                                     Text="{Binding MonthlyExpenses, StringFormat='- {0:C}', Converter={StaticResource AmountFormatConverter}}" />
                             </Grid>
-                        </Border>
+                        </controls:Card>
                     </Grid>
                 </StackLayout>
             </Grid>

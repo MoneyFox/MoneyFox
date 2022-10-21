@@ -5,8 +5,9 @@
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:converter="using:MoneyFox.Ui.Converter"
     xmlns:accounts="using:MoneyFox.Ui.ViewModels.Accounts"
+    xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     Title="{x:Static resources:Strings.AccountsTitle}" >
-
+F
     <ContentPage.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
         <converter:BalanceColorConverter x:Key="BalanceColorConverter" />
@@ -42,18 +43,7 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="accounts:AccountViewModel">
                         <Grid Padding="15,6,15,12">
-                            <Border
-                                BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                                 Light={StaticResource CardBackgroundLight}}"
-                                Stroke="black"
-                                StrokeThickness="0"
-                                StrokeShape="RoundRectangle 10"
-                                HeightRequest="80"
-                                HorizontalOptions="FillAndExpand">
-
-                                <Border.Shadow>
-                                    <Shadow />
-                                </Border.Shadow>
+                            <controls:Card HeightRequest="80">
 
                                 <SwipeView
                                     BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
@@ -117,7 +107,7 @@
                                         </StackLayout>
                                     </Grid>
                                 </SwipeView>
-                            </Border>
+                            </controls:Card>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

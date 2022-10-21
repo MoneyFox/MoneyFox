@@ -8,6 +8,7 @@
     xmlns:converter="using:MoneyFox.Ui.Converter"
     xmlns:budget="using:MoneyFox.Ui.Views.Budget"
     xmlns:budgetVm="using:MoneyFox.Ui.ViewModels.Budget"
+    xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     Visual="Material"
     x:Name="BudgetList"
     x:DataType="budgetVm:BudgetListViewModel"
@@ -44,19 +45,7 @@
                     <DataTemplate x:DataType="budgetVm:BudgetListItemViewModel">
                         <ViewCell>
                             <Grid Padding="15,6,15,8">
-                                <Border
-                                    BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
-                                    Padding="15"
-                                    Stroke="black"
-                                    StrokeThickness="0"
-                                    StrokeShape="RoundRectangle 10"
-                                    HeightRequest="90"
-                                    HorizontalOptions="FillAndExpand">
-
-                                    <Border.Shadow>
-                                        <Shadow />
-                                    </Border.Shadow>
-
+                                <controls:Card HeightRequest="90">
                                     <Border.GestureRecognizers>
                                         <TapGestureRecognizer
                                             Command="{Binding ViewModel.EditBudgetCommand, Source={x:Reference BudgetList}}"
@@ -70,7 +59,7 @@
                                         <budget:BudgetProgressView CurrentSpending="{Binding CurrentSpending}"
                                                                    SpendingLimit="{Binding SpendingLimit}" />
                                     </StackLayout>
-                                </Border>
+                                </controls:Card>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

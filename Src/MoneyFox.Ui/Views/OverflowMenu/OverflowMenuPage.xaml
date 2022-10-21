@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MoneyFox.Ui.Views.OverflowMenu.OverflowMenuPage"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
              xmlns:overflowMenu="using:MoneyFox.Ui.Views.OverflowMenu"
              Title="{x:Static resources:Strings.MenuTitle}">
 
@@ -22,19 +23,7 @@
                                     CommandParameter="{Binding .}" />
                             </Grid.GestureRecognizers>
 
-                            <Border
-                                BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
-                                Padding="15"
-                                Stroke="black"
-                                StrokeThickness="0"
-                                StrokeShape="RoundRectangle 10"
-                                MinimumHeightRequest="45"
-                                HorizontalOptions="FillAndExpand">
-
-                                <Border.Shadow>
-                                    <Shadow />
-                                </Border.Shadow>
-
+                            <controls:Card MinimumHeightRequest="45">
                                 <HorizontalStackLayout Spacing="6" x:DataType="overflowMenu:OverflowItemViewModel">
                                     <Image HeightRequest="15"
                                            WidthRequest="15">
@@ -46,7 +35,7 @@
                                     </Image>
                                     <Label Text="{Binding Name}" Style="{DynamicResource TextSubHead}" />
                                 </HorizontalStackLayout>
-                            </Border>
+                            </controls:Card>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:categories="using:MoneyFox.Ui.ViewModels.Categories"
+    xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     Shell.NavBarHasShadow="False"
     Title="{x:Static resources:Strings.CategoriesTitle}"
     x:Class="MoneyFox.Ui.Views.Categories.CategoryListPage">
@@ -51,14 +52,7 @@
                                     CommandParameter="{Binding .}" />
                             </Grid.GestureRecognizers>
 
-                            <Border StrokeShape="RoundRectangle 10,10,10,10"
-                                    HeightRequest="45"
-                                    HorizontalOptions="FillAndExpand">
-
-                                <Border.Shadow>
-                                    <Shadow />
-                                </Border.Shadow>
-
+                            <controls:Card HeightRequest="45" >
                                 <SwipeView
                                     BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                              Light={StaticResource CardBackgroundLight}}">
@@ -87,7 +81,7 @@
                                                Text="{Binding Name}" />
                                     </Grid>
                                 </SwipeView>
-                            </Border>
+                            </controls:Card>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
