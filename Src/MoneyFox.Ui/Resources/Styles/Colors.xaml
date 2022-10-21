@@ -15,6 +15,9 @@
 
     <Color x:Key="ButtonBackgroundColor">#333333</Color>
 
+    <Color x:Key="ControlBackgroundColorDark">#1e1e1e</Color>
+    <Color x:Key="ControlBackgroundColorLight">White</Color>   
+    
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
     <Color x:Key="Gray100">#E1E1E1</Color>

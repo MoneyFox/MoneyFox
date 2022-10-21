@@ -17,7 +17,7 @@
             BindingContext="{x:Reference this}">
         <Label Text="{x:Static resources:Strings.PaymentTypeLabel}" />
         <Border Padding="20,0" 
-            BackgroundColor="White">
+            BackgroundColor="{AppThemeBinding Dark={StaticResource ControlBackgroundColorDark}, Light={StaticResource ControlBackgroundColorLight}}">
 
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="10"/>

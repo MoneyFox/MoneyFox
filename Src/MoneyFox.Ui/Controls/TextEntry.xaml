@@ -10,7 +10,7 @@
         <Label Text="{Binding TextFieldTitle}" />
 
         <Border Padding="20,0" 
-            BackgroundColor="White"
+            BackgroundColor="{AppThemeBinding Dark={StaticResource ControlBackgroundColorDark}, Light={StaticResource ControlBackgroundColorLight}}"
             BindingContext="{x:Reference this}">
 
             <Border.StrokeShape>
