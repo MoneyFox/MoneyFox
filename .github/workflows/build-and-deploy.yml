@@ -126,7 +126,7 @@ jobs:
       run: dotnet test ${{env.TEST_PROJECT_PATH}}
       
     - name: Upload iOS Artifact
-      uses: actions/upload-artifact@v3.1.0
+      uses: actions/upload-artifact@v3.1.1
       with:
         name: moneyfox-ios-build
         path: src/MoneyFox.Ios/bin/Release/**/*.app
