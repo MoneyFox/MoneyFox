@@ -11,7 +11,7 @@
 
     <ContentPage.Content>
         <Grid IsClippedToBounds="False"
-              RowDefinitions="40, 40, *">
+              RowDefinitions="40, 70, *">
 
             <Button
                 Margin="0,0,6,0"
@@ -20,13 +20,12 @@
                 VerticalOptions="Center"
                 Command="{Binding GoToAddCategoryCommand}" />
 
-            <SearchBar Grid.Row="1"
-                       x:Name="categorySearchBar"
-                       Margin="0,0,15,0"
-                       Text="{Binding SearchTerm}"
-                       SearchCommand="{Binding SearchCategoryCommand}"
-                       SearchCommandParameter="{Binding Text, Source={x:Reference categorySearchBar}}" />
 
+            <controls:Search Grid.Row="1" 
+                             Margin="12,0,12,0"
+                             SearchPlaceholder="{x:Static resources:Strings.SearchLabel}"
+                             SearchCommand="{Binding SearchCategoryCommand}" />
+            
             <CollectionView Grid.Row="2"
                             x:Name="CategoryCollectionView"
                             IsGrouped="true"
