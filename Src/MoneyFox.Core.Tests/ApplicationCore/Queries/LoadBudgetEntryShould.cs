@@ -1,65 +1,59 @@
-namespace MoneyFox.Tests.Core.ApplicationCore.Queries
+namespace MoneyFox.Core.Tests.ApplicationCore.Queries;
+
+using System.Collections.Immutable;
+using Core.ApplicationCore.Queries.BudgetEntryLoading;
+using FluentAssertions;
+using Infrastructure.Persistence;
+using TestFramework;
+
+public class LoadBudgetEntryShould
 {
+    private readonly AppDbContext appDbContext;
+    private readonly LoadBudgetEntry.Handler handler;
 
-    using System;
-    using System.Collections.Immutable;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using FluentAssertions;
-    using MoneyFox.Core.ApplicationCore.Queries.BudgetEntryLoading;
-    using MoneyFox.Infrastructure.Persistence;
-    using TestFramework;
-    using Xunit;
-
-    public class LoadBudgetEntryShould
+    protected LoadBudgetEntryShould()
     {
-        private readonly AppDbContext appDbContext;
-        private readonly LoadBudgetEntry.Handler handler;
+        appDbContext = InMemoryAppDbContextFactory.Create();
+        handler = new(appDbContext);
+    }
 
-        protected LoadBudgetEntryShould()
+    public class GivenNoBudgets : LoadBudgetEntryShould
+    {
+        [Fact]
+        public void ThrowException()
         {
-            appDbContext = InMemoryAppDbContextFactory.Create();
-            handler = new LoadBudgetEntry.Handler(appDbContext);
-        }
+            // Act
+            var query = new LoadBudgetEntry.Query(10);
+            Func<Task> act = () => handler.Handle(request: query, cancellationToken: CancellationToken.None);
 
-        public class GivenNoBudgets : LoadBudgetEntryShould
-        {
-            [Fact]
-            public void ThrowException()
-            {
-                // Act
-                var query = new LoadBudgetEntry.Query(10);
-                Func<Task> act = () => handler.Handle(request: query, cancellationToken: CancellationToken.None);
-
-                // Assert
-                act.Should().ThrowAsync<InvalidOperationException>();
-            }
-        }
-
-        public class GivenBudgetsExist : LoadBudgetEntryShould
-        {
-            [Fact]
-            public async Task ReturnBudgetWithCorrectId()
-            {
-                // Arrange
-                var testCategory = new TestData.DefaultCategory();
-                var dbCategory = appDbContext.RegisterCategory(testCategory);
-                var testBudget = new TestData.DefaultBudget { Categories = ImmutableList.Create(dbCategory.Id) };
-                var dbBudget = appDbContext.RegisterBudget(testBudget);
-
-                // Act
-                var query = new LoadBudgetEntry.Query(dbBudget.Id);
-                var budgetEntryData = await handler.Handle(request: query, cancellationToken: CancellationToken.None);
-
-                // Assert
-                budgetEntryData.Id.Should().Be(dbBudget.Id);
-                budgetEntryData.Name.Should().Be(dbBudget.Name);
-                budgetEntryData.SpendingLimit.Should().Be(dbBudget.SpendingLimit);
-                budgetEntryData.Categories.Should()
-                    .BeEquivalentTo(testBudget.Categories.Select(id => new BudgetEntryData.BudgetCategory(id: id, name: testCategory.Name)));
-            }
+            // Assert
+            act.Should().ThrowAsync<InvalidOperationException>();
         }
     }
 
+    public class GivenBudgetsExist : LoadBudgetEntryShould
+    {
+        [Fact]
+        public async Task ReturnBudgetWithCorrectId()
+        {
+            // Arrange
+            var testCategory = new TestData.DefaultCategory();
+            var dbCategory = appDbContext.RegisterCategory(testCategory);
+            var testBudget = new TestData.DefaultBudget { Categories = ImmutableList.Create(dbCategory.Id) };
+            var dbBudget = appDbContext.RegisterBudget(testBudget);
+
+            // Act
+            var query = new LoadBudgetEntry.Query(dbBudget.Id);
+            var budgetEntryData = await handler.Handle(request: query, cancellationToken: CancellationToken.None);
+
+            // Assert
+            budgetEntryData.Id.Should().Be(dbBudget.Id);
+            budgetEntryData.Name.Should().Be(dbBudget.Name);
+            budgetEntryData.SpendingLimit.Should().Be(dbBudget.SpendingLimit);
+            budgetEntryData.Categories.Should()
+                .BeEquivalentTo(testBudget.Categories.Select(id => new BudgetEntryData.BudgetCategory(id: id, name: testCategory.Name)));
+        }
+    }
 }
+
+

@@ -1,21 +1,18 @@
 namespace MoneyFox.Ui.Tests.ViewModels.Budget;
 
-using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Linq;
-using System.Threading.Tasks;
+using Core.ApplicationCore.Queries.BudgetEntryLoading;
+using Core.ApplicationCore.UseCases.BudgetDeletion;
+using Core.ApplicationCore.UseCases.BudgetUpdate;
+using Core.Common.Extensions;
+using Core.Common.Interfaces;
+using Core.Common.Messages;
+using Core.Interfaces;
+using Core.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.Queries.BudgetEntryLoading;
-using MoneyFox.Core.ApplicationCore.UseCases.BudgetDeletion;
-using MoneyFox.Core.ApplicationCore.UseCases.BudgetUpdate;
-using MoneyFox.Core.Common.Extensions;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Common.Messages;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Tests.TestFramework;
-using MoneyFox.Ui.ViewModels.Budget;
 using NSubstitute;
+using Ui.ViewModels.Budget;
 using Views.Categories;
 using Xunit;
 
@@ -33,7 +30,7 @@ public class EditBudgetViewModelShould
         sender = Substitute.For<ISender>();
         navigationService = Substitute.For<INavigationService>();
         dialogService = Substitute.For<IDialogService>();
-        viewModel = new EditBudgetViewModel(sender: sender, navigationService: navigationService, dialogService: dialogService);
+        viewModel = new(sender: sender, navigationService: navigationService, dialogService: dialogService);
     }
 
     public class OnReceiveMessage : EditBudgetViewModelShould
@@ -42,7 +39,7 @@ public class EditBudgetViewModelShould
         public void AddsSelectedCategoryToList()
         {
             // Act
-            CategorySelectedMessage categorySelectedMessage = new(new CategorySelectedDataSet(categoryId: CATEGORY_ID, name: "Beer"));
+            CategorySelectedMessage categorySelectedMessage = new(new(categoryId: CATEGORY_ID, name: "Beer"));
             viewModel.Receive(categorySelectedMessage);
 
             // Assert
@@ -54,7 +51,7 @@ public class EditBudgetViewModelShould
         public void IgnoresSelectedCategory_WhenEntryWithSameIdAlreadyInList()
         {
             // Act
-            CategorySelectedMessage categorySelectedMessage = new(new CategorySelectedDataSet(categoryId: CATEGORY_ID, name: "Beer"));
+            CategorySelectedMessage categorySelectedMessage = new(new(categoryId: CATEGORY_ID, name: "Beer"));
             viewModel.Receive(categorySelectedMessage);
             viewModel.Receive(categorySelectedMessage);
 
@@ -197,4 +194,7 @@ public class EditBudgetViewModelShould
         }
     }
 }
+
+
+
 

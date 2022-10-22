@@ -38,16 +38,16 @@ public static class UploadBackup
                 return UploadResult.Skipped;
             }
 
-            DateTime backupdate = await backupUploadService.GetBackupDateAsync();
+            var backupdate = await backupUploadService.GetBackupDateAsync();
             if (settingsFacade.LastDatabaseUpdate - backupdate.ToLocalTime() < TimeSpan.FromSeconds(1))
             {
                 return UploadResult.Skipped;
             }
 
-            string backupName = string.Format(format: BACKUP_NAME_TEMPLATE, arg0: DateTime.UtcNow.ToString(format: "yyyy-M-d_hh-mm-ssss"));
-            System.IO.Stream dbAsStream = await fileStore.OpenReadAsync(dbPathProvider.GetDbPath());
+            var backupName = string.Format(format: BACKUP_NAME_TEMPLATE, arg0: DateTime.UtcNow.ToString(format: "yyyy-M-d_hh-mm-ssss"));
+            var dbAsStream = await fileStore.OpenReadAsync(dbPathProvider.GetDbPath());
             await backupUploadService.UploadAsync(backupName: backupName, dataToUpload: dbAsStream);
-            DateTime currentBackupDate = await backupUploadService.GetBackupDateAsync();
+            var currentBackupDate = await backupUploadService.GetBackupDateAsync();
             settingsFacade.LastDatabaseUpdate = currentBackupDate.ToLocalTime();
             if (await backupUploadService.GetBackupCount() >= BACKUP_ARCHIVE_THRESHOLD)
             {
@@ -58,4 +58,5 @@ public static class UploadBackup
         }
     }
 }
+
 

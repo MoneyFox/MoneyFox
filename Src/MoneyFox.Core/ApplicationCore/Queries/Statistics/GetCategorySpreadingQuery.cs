@@ -89,8 +89,8 @@ public class GetCategorySpreadingQueryHandler : IRequestHandler<GetCategorySprea
     private List<(decimal Value, string Label)> SelectRelevantDataFromList(IEnumerable<Payment> payments)
     {
         IEnumerable<(decimal, string category)> query = from payment in payments
-                                                        group payment by new { category = payment.Category != null ? payment.Category.Name : string.Empty } into temp
-                                                        select (temp.Sum(x => x.Type == PaymentType.Income ? -x.Amount : x.Amount), temp.Key.category);
+            group payment by new { category = payment.Category != null ? payment.Category.Name : string.Empty } into temp
+            select (temp.Sum(x => x.Type == PaymentType.Income ? -x.Amount : x.Amount), temp.Key.category);
 
         query = currentRequest.PaymentType == PaymentType.Expense ? query.Where(x => x.Item1 > 0) : query.Where(x => x.Item1 < 0);
 
@@ -99,9 +99,8 @@ public class GetCategorySpreadingQueryHandler : IRequestHandler<GetCategorySprea
 
     private IEnumerable<StatisticEntry> AggregateData(List<(decimal Value, string Label)> statisticData, int amountOfCategoriesToShow)
     {
-        List<StatisticEntry> statisticList = statisticData.Take(amountOfCategoriesToShow)
-            .Select(
-                x => new StatisticEntry(x.Value) { ValueLabel = x.Value.ToString(format: "C", provider: CultureHelper.CurrentCulture), Label = x.Label })
+        var statisticList = statisticData.Take(amountOfCategoriesToShow)
+            .Select(x => new StatisticEntry(x.Value) { ValueLabel = x.Value.ToString(format: "C", provider: CultureHelper.CurrentCulture), Label = x.Label })
             .ToList();
 
         AddOtherItem(statisticData: statisticData, statisticList: statisticList, amountOfCategoriesToShow: amountOfCategoriesToShow);
@@ -120,11 +119,10 @@ public class GetCategorySpreadingQueryHandler : IRequestHandler<GetCategorySprea
             return;
         }
 
-        decimal otherValue = statisticData.Where(x => statisticList.All(y => x.Label != y.Label)).Sum(x => x.Value);
+        var otherValue = statisticData.Where(x => statisticList.All(y => x.Label != y.Label)).Sum(x => x.Value);
         StatisticEntry othersItem = new(otherValue)
         {
-            Label = Strings.OthersLabel,
-            ValueLabel = otherValue.ToString(format: "C", provider: CultureHelper.CurrentCulture)
+            Label = Strings.OthersLabel, ValueLabel = otherValue.ToString(format: "C", provider: CultureHelper.CurrentCulture)
         };
 
         if (othersItem.Value > 0)
@@ -135,11 +133,12 @@ public class GetCategorySpreadingQueryHandler : IRequestHandler<GetCategorySprea
 
     private static void SetColors(List<StatisticEntry> statisticItems)
     {
-        int counter = statisticItems.Count >= Colors.Length ? Colors.Length : statisticItems.Count;
-        for (int i = 0; i < counter; i++)
+        var counter = statisticItems.Count >= Colors.Length ? Colors.Length : statisticItems.Count;
+        for (var i = 0; i < counter; i++)
         {
             statisticItems[i].Color = Colors[i];
         }
     }
 }
+
 

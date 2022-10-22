@@ -1,43 +1,40 @@
-﻿namespace MoneyFox.Tests.Core.Commands.Accounts.UpdateAccount
+﻿namespace MoneyFox.Core.Tests.Commands.Accounts.UpdateAccount;
+
+using System.Diagnostics.CodeAnalysis;
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Core.Commands.Accounts.UpdateAccount;
+using FluentAssertions;
+using Infrastructure.Persistence;
+using TestFramework;
+
+[ExcludeFromCodeCoverage]
+public class UpdateCategoryCommandTests
 {
+    private readonly AppDbContext context;
+    private readonly UpdateAccountCommand.Handler handler;
 
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-    using FluentAssertions;
-    using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-    using MoneyFox.Core.Commands.Accounts.UpdateAccount;
-    using MoneyFox.Infrastructure.Persistence;
-    using TestFramework;
-    using Xunit;
-
-    [ExcludeFromCodeCoverage]
-    public class UpdateCategoryCommandTests
+    public UpdateCategoryCommandTests()
     {
-        private readonly AppDbContext context;
-        private readonly UpdateAccountCommand.Handler handler;
-
-        public UpdateCategoryCommandTests()
-        {
-            context = InMemoryAppDbContextFactory.Create();
-            handler = new UpdateAccountCommand.Handler(context);
-        }
-
-        [Fact]
-        public async Task UpdateCategoryCommand_CorrectNumberLoaded()
-        {
-            // Arrange
-            var account = new Account(name: "test", initialBalance: 80);
-            await context.AddAsync(account);
-            await context.SaveChangesAsync();
-
-            // Act
-            account.Change("foo");
-            await new UpdateAccountCommand.Handler(context).Handle(request: new UpdateAccountCommand(account), cancellationToken: default);
-            var loadedAccount = await context.Accounts.FindAsync(account.Id);
-
-            // Assert
-            loadedAccount.Name.Should().Be("foo");
-        }
+        context = InMemoryAppDbContextFactory.Create();
+        handler = new(context);
     }
 
+    [Fact]
+    public async Task UpdateCategoryCommand_CorrectNumberLoaded()
+    {
+        // Arrange
+        var account = new Account(name: "test", initialBalance: 80);
+        await context.AddAsync(account);
+        await context.SaveChangesAsync();
+
+        // Act
+        account.Change("foo");
+        await new UpdateAccountCommand.Handler(context).Handle(request: new(account), cancellationToken: default);
+        var loadedAccount = await context.Accounts.FindAsync(account.Id);
+
+        // Assert
+        loadedAccount.Name.Should().Be("foo");
+    }
 }
+
+

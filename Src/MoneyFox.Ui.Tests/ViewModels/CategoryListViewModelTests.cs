@@ -1,16 +1,14 @@
 namespace MoneyFox.Ui.Tests.ViewModels;
 
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
 using AutoMapper;
+using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
+using Core.ApplicationCore.Queries;
+using Core.Common.Interfaces;
 using FluentAssertions;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
-using MoneyFox.Core.ApplicationCore.Queries;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Ui.ViewModels.Categories;
 using NSubstitute;
+using Ui.ViewModels.Categories;
 using Xunit;
 
 [ExcludeFromCodeCoverage]
@@ -42,7 +40,7 @@ public class CategoryListViewModelTests
     public async Task ItemLoadedInInit()
     {
         // Arrange
-        _ = mapper.Map<List<CategoryViewModel>>(Arg.Any<List<Category>>()).Returns(new List<CategoryViewModel> { new CategoryViewModel { Name = "asdf" } });
+        _ = mapper.Map<List<CategoryViewModel>>(Arg.Any<List<Category>>()).Returns(new List<CategoryViewModel> { new() { Name = "asdf" } });
         var viewModel = new CategoryListViewModel(mediator: mediator, mapper: mapper, dialogService: dialogService);
 
         // Act
@@ -53,4 +51,7 @@ public class CategoryListViewModelTests
         _ = mapper.Received(1).Map<List<CategoryViewModel>>(Arg.Any<List<Category>>());
     }
 }
+
+
+
 

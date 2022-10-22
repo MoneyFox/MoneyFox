@@ -17,7 +17,7 @@ public static class CategoryQueryExtensions
     /// <returns>Query with the added filter.</returns>
     public static IEnumerable<Category> WhereNameContains(this IEnumerable<Category> query, string searchterm)
 
-    // ReSharper disable once StringIndexOfIsCultureSpecific.1
+        // ReSharper disable once StringIndexOfIsCultureSpecific.1
     {
         return query.Where(category => category.Name.ToUpper().IndexOf(searchterm.ToUpper()) >= 0);
     }
@@ -32,4 +32,5 @@ public static class CategoryQueryExtensions
         return query.OrderBy(category => category.Name);
     }
 }
+
 

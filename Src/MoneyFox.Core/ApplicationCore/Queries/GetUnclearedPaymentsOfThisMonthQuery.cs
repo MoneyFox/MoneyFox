@@ -28,7 +28,7 @@ public class GetUnclearedPaymentsOfThisMonthQuery : IRequest<List<Payment>>
 
         public async Task<List<Payment>> Handle(GetUnclearedPaymentsOfThisMonthQuery request, CancellationToken cancellationToken)
         {
-            System.Linq.IQueryable<Payment> query = appDbContext.Payments.Include(x => x.ChargedAccount)
+            var query = appDbContext.Payments.Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
                 .AreNotCleared()
                 .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper));
@@ -42,4 +42,5 @@ public class GetUnclearedPaymentsOfThisMonthQuery : IRequest<List<Payment>>
         }
     }
 }
+
 

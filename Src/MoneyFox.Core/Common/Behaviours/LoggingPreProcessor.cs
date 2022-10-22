@@ -11,7 +11,7 @@ public class LoggingPreProcessor<TRequest> : IRequestPreProcessor<TRequest>
 {
     public Task Process(TRequest request, CancellationToken cancellationToken)
     {
-        string requestName = typeof(TRequest).Name;
+        var requestName = typeof(TRequest).Name;
         Log.Information(
             messageTemplate: "MoneyFox Request: {request} {@userName} \tRequestData{@Request} ",
             propertyValue0: requestName,
@@ -20,4 +20,5 @@ public class LoggingPreProcessor<TRequest> : IRequestPreProcessor<TRequest>
         return Task.CompletedTask;
     }
 }
+
 

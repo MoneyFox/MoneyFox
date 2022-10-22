@@ -14,3 +14,4 @@ public interface ICustomPublisher
     Task Publish<TNotification>(TNotification notification, PublishStrategy strategy, CancellationToken cancellationToken);
 }
 
+

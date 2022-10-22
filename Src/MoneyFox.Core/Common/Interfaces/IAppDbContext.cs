@@ -33,6 +33,8 @@ public interface IAppDbContext : IDisposable
     EntityEntry Entry(object entity);
 
     void Migratedb();
+
     void ReleaseLock();
 }
+
 
