@@ -1,38 +1,25 @@
-﻿namespace MoneyFox.Ui.Views.Budget;
+namespace MoneyFox.Ui.Views.Budget;
 
-using MoneyFox.Core.Resources;
 using ViewModels.Budget;
 
+[QueryProperty(name: "BudgetId", queryId: "budgetId")]
 public partial class EditBudgetPage
 {
-    private readonly int budgetId;
-
-    public EditBudgetPage(int budgetId)
+    public EditBudgetPage()
     {
         InitializeComponent();
-        this.budgetId = budgetId;
         BindingContext = App.GetViewModel<EditBudgetViewModel>();
-        var cancelItem = new ToolbarItem
-        {
-            Command = new Command(async () => await Navigation.PopModalAsync()),
-            Text = Strings.CancelLabel,
-            Priority = -1,
-            Order = ToolbarItemOrder.Primary
-        };
-
-        var saveItem = new ToolbarItem
-        {
-            Command = new Command(() => ViewModel.SaveBudgetCommand.Execute(null)),
-            Text = Strings.SaveLabel,
-            Priority = 1,
-            Order = ToolbarItemOrder.Primary
-        };
-
-        ToolbarItems.Add(cancelItem);
-        ToolbarItems.Add(saveItem);
     }
 
     private EditBudgetViewModel ViewModel => (EditBudgetViewModel)BindingContext;
+
+#pragma warning disable S2376 // Write-only properties should not be used
+    private int budgetId;
+    public string BudgetId
+    {
+        set => budgetId = Convert.ToInt32(Uri.UnescapeDataString(value));
+    }
+#pragma warning restore S2376 // Write-only properties should not be used
 
     protected override async void OnAppearing()
     {

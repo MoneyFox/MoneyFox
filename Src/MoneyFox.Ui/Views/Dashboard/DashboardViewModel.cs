@@ -2,7 +2,6 @@ namespace MoneyFox.Ui.Views.Dashboard;
 
 using System.Collections.ObjectModel;
 using AutoMapper;
-using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;

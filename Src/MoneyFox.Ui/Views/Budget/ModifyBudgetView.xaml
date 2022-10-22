@@ -49,9 +49,9 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="budgetVm:BudgetCategoryViewModel">
                             <Grid Padding="3" HeightRequest="60">
-                                <Frame>
-                                    <Label Text="{Binding Name}" />
-                                </Frame>
+                                <controls:Card>
+                                    <Label Text="{Binding Name}" VerticalOptions="Center" HorizontalOptions="Center" />
+                                </controls:Card>
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

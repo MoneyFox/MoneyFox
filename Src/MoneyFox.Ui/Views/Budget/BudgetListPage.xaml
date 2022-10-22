@@ -22,7 +22,7 @@
     <ContentPage.Content>
         <Grid IsClippedToBounds="False" RowDefinitions="40, Auto, *">
             <Button
-                Margin="0,0,6,0"
+                Margin="0,0,16,0"
                 HorizontalOptions="End"
                 Text="{x:Static resources:Strings.AddBudgetLabel}"
                 VerticalOptions="Center"
@@ -45,7 +45,7 @@
                     <DataTemplate x:DataType="budgetVm:BudgetListItemViewModel">
                         <ViewCell>
                             <Grid Padding="15,6,15,8">
-                                <controls:Card HeightRequest="90">
+                                <controls:Card HeightRequest="90" Padding="12">
                                     <Border.GestureRecognizers>
                                         <TapGestureRecognizer
                                             Command="{Binding ViewModel.EditBudgetCommand, Source={x:Reference BudgetList}}"

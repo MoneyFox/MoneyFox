@@ -58,7 +58,7 @@ public sealed class BudgetListViewModel : BaseViewModel, IRecipient<ReloadMessag
 
     private static async Task GoToAddBudget()
     {
-        await Shell.Current.GoToModalAsync(Routes.AddBudgetRoute);
+        await Shell.Current.GoToAsync(Routes.AddBudgetRoute);
     }
 
     private async Task EditBudgetAsync(BudgetListItemViewModel? selectedBudget)
@@ -68,6 +68,6 @@ public sealed class BudgetListViewModel : BaseViewModel, IRecipient<ReloadMessag
             return;
         }
 
-        await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new EditBudgetPage(selectedBudget.Id)) { BarBackgroundColor = Colors.Transparent });
+        await Shell.Current.GoToAsync($"{Routes.EditBudgetRoute}?budgetId={selectedBudget.Id}");
     }
 }
