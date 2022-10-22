@@ -1,8 +1,8 @@
-namespace MoneyFox.Ui.Views.Statistics;
+namespace MoneyFox.Ui.Views.Statistics.CategorySummary;
 
 using CommunityToolkit.Maui.Views;
-using Popups;
-using ViewModels.Statistics;
+using MoneyFox.Ui.ViewModels.Statistics;
+using MoneyFox.Ui.Views.Popups;
 
 public partial class StatisticCategorySummaryPage
 {

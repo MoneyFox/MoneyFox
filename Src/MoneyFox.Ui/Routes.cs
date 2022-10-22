@@ -10,6 +10,7 @@ using Views.Payments;
 using Views.Settings;
 using Views.SetupAssistant;
 using Views.Statistics;
+using Views.Statistics.CategorySummary;
 
 public class Routes
 {
