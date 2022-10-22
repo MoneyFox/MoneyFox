@@ -31,7 +31,7 @@
                             VerticalOptions="Start"
                     HeightRequest="40"
                             Style="{StaticResource PrimaryButton}"
-                            Text="Add Payment">
+                            Text="{x:Static resources:Strings.AddPaymentLabel}">
                 <Button.ImageSource>
                     <FontImageSource FontFamily="MaterialIcons" 
                                      Glyph="{x:Static views:IconFont.Plus}" 
