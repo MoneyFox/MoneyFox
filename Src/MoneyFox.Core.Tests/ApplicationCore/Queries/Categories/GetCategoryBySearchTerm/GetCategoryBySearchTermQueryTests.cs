@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Categories.GetCategoryBySearchTerm
+﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Categories.GetCategoryBySearchTerm
 {
 
     using System.Diagnostics.CodeAnalysis;

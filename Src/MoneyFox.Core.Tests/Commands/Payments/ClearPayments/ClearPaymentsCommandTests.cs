@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core.Commands.Payments.ClearPayments
+﻿namespace MoneyFox.Core.Tests.Commands.Payments.ClearPayments
 {
 
     using System;

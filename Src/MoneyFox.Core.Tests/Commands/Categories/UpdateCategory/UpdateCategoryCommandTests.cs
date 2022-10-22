@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core.Commands.Categories.UpdateCategory
+﻿namespace MoneyFox.Core.Tests.Commands.Categories.UpdateCategory
 {
 
     using System.Diagnostics.CodeAnalysis;

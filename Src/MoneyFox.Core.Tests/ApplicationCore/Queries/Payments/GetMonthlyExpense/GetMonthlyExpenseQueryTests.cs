@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Payments.GetMonthlyExpense
+﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Payments.GetMonthlyExpense
 {
 
     using System;

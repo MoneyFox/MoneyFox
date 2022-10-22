@@ -1,4 +1,4 @@
-namespace MoneyFox.Tests.Core.Common.Extensions
+namespace MoneyFox.Core.Tests.Common.Extensions
 {
 
     using System;

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core.ApplicationCore.UseCases.CategoryCreation
+﻿namespace MoneyFox.Core.Tests.ApplicationCore.UseCases.CategoryCreation
 {
 
     using System.Threading;

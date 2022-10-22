@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Accounts.GetAccountNameById
+﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Accounts.GetAccountNameById
 {
 
     using System.Diagnostics.CodeAnalysis;

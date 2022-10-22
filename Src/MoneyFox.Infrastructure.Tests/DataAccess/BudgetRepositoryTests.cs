@@ -1,17 +1,17 @@
-﻿namespace MoneyFox.Tests.Infrastructure.DataAccess
+﻿namespace MoneyFox.Infrastructure.Tests.DataAccess
 {
 
     using System;
     using System.Collections.Immutable;
     using System.Linq;
     using System.Threading.Tasks;
+    using Core.Tests.TestFramework;
     using FluentAssertions;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
     using MoneyFox.Infrastructure.DataAccess;
     using MoneyFox.Infrastructure.Persistence;
-    using TestFramework;
     using Xunit;
-    using static TestFramework.BudgetAssertion;
+    using static Core.Tests.TestFramework.BudgetAssertion;
 
     public class BudgetRepositoryTests
     {

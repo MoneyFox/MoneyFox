@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core.Commands.Accounts.DeleteAccountById
+﻿namespace MoneyFox.Core.Tests.Commands.Accounts.DeleteAccountById
 {
 
     using System.Diagnostics.CodeAnalysis;

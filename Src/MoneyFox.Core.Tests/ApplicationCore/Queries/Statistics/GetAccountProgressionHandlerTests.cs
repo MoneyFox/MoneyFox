@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Statistics
+﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Statistics
 {
 
     using System;

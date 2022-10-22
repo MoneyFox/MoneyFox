@@ -1,16 +1,13 @@
-namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Statistics
+namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Statistics
 {
 
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
-    using System.Runtime.InteropServices;
     using System.Threading.Tasks;
     using FluentAssertions;
     using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
     using MoneyFox.Core.ApplicationCore.Queries.Statistics;
-    using MoneyFox.Core.Common.Helpers;
     using MoneyFox.Core.Resources;
     using MoneyFox.Infrastructure.Persistence;
     using TestFramework;

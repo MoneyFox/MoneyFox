@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core.Commands.Payments.DeletePaymentById
+﻿namespace MoneyFox.Core.Tests.Commands.Payments.DeletePaymentById
 {
 
     using System;

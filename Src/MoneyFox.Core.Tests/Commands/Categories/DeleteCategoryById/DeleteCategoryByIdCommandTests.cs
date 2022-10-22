@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core.Commands.Categories.DeleteCategoryById
+﻿namespace MoneyFox.Core.Tests.Commands.Categories.DeleteCategoryById
 {
 
     using System.Diagnostics.CodeAnalysis;

@@ -1,4 +1,4 @@
-namespace MoneyFox.Tests.Infrastructure.DbBackup
+namespace MoneyFox.Infrastructure.Tests.DbBackup
 {
 
     using System;

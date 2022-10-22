@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using MoneyFox.Core.Commands.Accounts.CreateAccount;
 using MoneyFox.Infrastructure.Persistence;
-using MoneyFox.Tests.TestFramework;
+using TestFramework;
 using Xunit;
 
 [ExcludeFromCodeCoverage]

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core.ApplicationCore.UseCases
+﻿namespace MoneyFox.Core.Tests.ApplicationCore.UseCases
 {
 
     using System.Threading;

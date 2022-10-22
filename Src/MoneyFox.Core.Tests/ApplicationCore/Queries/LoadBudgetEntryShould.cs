@@ -1,4 +1,4 @@
-namespace MoneyFox.Tests.Core.ApplicationCore.Queries
+namespace MoneyFox.Core.Tests.ApplicationCore.Queries
 {
 
     using System;

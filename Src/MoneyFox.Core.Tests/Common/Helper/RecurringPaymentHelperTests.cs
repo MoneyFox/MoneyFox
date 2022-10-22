@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core.Common.Helper
+﻿namespace MoneyFox.Core.Tests.Common.Helper
 {
 
     using FluentAssertions;

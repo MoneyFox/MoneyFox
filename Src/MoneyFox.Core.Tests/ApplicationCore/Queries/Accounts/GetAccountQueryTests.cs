@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Accounts
+﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Accounts
 {
 
     using System.Diagnostics.CodeAnalysis;

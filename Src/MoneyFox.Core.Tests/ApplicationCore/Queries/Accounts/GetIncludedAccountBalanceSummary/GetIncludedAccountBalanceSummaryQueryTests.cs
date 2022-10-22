@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Accounts.GetIncludedAccountBalanceSummary
+﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Accounts.GetIncludedAccountBalanceSummary
 {
 
     using System.Diagnostics.CodeAnalysis;

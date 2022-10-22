@@ -1,5 +1,6 @@
-namespace MoneyFox.Tests.Infrastructure.DbBackup
+namespace MoneyFox.Infrastructure.Tests.DbBackup
 {
+
     using System.Threading.Tasks;
     using Flurl.Http.Testing;
     using MoneyFox.Infrastructure.DbBackup;

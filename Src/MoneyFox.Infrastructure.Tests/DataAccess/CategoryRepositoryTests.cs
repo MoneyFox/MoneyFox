@@ -1,15 +1,15 @@
-﻿namespace MoneyFox.Tests.Infrastructure.DataAccess
+﻿namespace MoneyFox.Infrastructure.Tests.DataAccess
 {
 
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using Core.Tests.TestFramework;
     using FluentAssertions;
     using MoneyFox.Infrastructure.DataAccess;
     using MoneyFox.Infrastructure.Persistence;
-    using TestFramework;
     using Xunit;
-    using static TestFramework.CategoryAssertion;
+    using static Core.Tests.TestFramework.CategoryAssertion;
 
     public class CategoryRepositoryTests
     {

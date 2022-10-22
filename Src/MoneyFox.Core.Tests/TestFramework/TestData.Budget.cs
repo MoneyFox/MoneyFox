@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.TestFramework
+﻿namespace MoneyFox.Core.Tests.TestFramework
 {
 
     using System.Collections.Generic;

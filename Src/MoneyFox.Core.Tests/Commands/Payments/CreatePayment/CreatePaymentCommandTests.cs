@@ -1,4 +1,4 @@
-namespace MoneyFox.Tests.Core.Commands.Payments.CreatePayment
+namespace MoneyFox.Core.Tests.Commands.Payments.CreatePayment
 {
 
     using System;

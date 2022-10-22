@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core.Commands.Accounts.UpdateAccount
+﻿namespace MoneyFox.Core.Tests.Commands.Accounts.UpdateAccount
 {
 
     using System.Diagnostics.CodeAnalysis;

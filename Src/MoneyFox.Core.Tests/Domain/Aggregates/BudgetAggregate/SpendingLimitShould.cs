@@ -1,4 +1,4 @@
-namespace MoneyFox.Tests.Core.Domain.Aggregates.BudgetAggregate
+namespace MoneyFox.Core.Tests.Domain.Aggregates.BudgetAggregate
 {
 
     using System;

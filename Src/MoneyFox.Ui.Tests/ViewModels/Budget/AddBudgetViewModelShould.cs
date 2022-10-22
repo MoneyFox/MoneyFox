@@ -2,13 +2,13 @@ namespace MoneyFox.Ui.Tests.ViewModels.Budget;
 
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
 using MoneyFox.Core.ApplicationCore.UseCases.BudgetCreation;
 using MoneyFox.Core.Common.Extensions;
 using MoneyFox.Core.Common.Messages;
 using MoneyFox.Core.Interfaces;
-using MoneyFox.Tests.TestFramework;
 using MoneyFox.Ui.ViewModels.Budget;
 using NSubstitute;
 using Views.Categories;

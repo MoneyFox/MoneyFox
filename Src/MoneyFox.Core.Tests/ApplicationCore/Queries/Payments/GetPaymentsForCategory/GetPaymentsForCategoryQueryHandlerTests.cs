@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Payments.GetPaymentsForCategory
+﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Payments.GetPaymentsForCategory
 {
 
     using System;

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Categories.GetIfCategoryWithNameExists
+﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Categories.GetIfCategoryWithNameExists
 {
 
     using System;

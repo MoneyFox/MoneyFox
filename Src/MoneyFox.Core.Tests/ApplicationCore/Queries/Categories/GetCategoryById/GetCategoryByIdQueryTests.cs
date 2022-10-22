@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Categories.GetCategoryById
+﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Categories.GetCategoryById
 {
 
     using System.Diagnostics.CodeAnalysis;

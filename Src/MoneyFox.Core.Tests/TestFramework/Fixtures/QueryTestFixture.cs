@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.TestFramework.Fixtures
+﻿namespace MoneyFox.Core.Tests.TestFramework.Fixtures
 {
 
     using System;

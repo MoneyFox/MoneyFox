@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Payments.GetPaymentsForAccountId
+﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Payments.GetPaymentsForAccountId
 {
 
     using System;

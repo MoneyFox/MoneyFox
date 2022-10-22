@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Accounts.GetAccountCount
+﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Accounts.GetAccountCount
 {
 
     using System.Diagnostics.CodeAnalysis;

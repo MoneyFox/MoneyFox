@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Notification.DatabaseChanged
+﻿namespace MoneyFox.Core.Tests.Notification.DatabaseChanged
 {
 
     using System;

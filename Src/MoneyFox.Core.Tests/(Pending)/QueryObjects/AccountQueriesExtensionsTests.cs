@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core._Pending_.QueryObjects
+﻿namespace MoneyFox.Core.Tests._Pending_.QueryObjects
 {
 
     using System.Collections.Generic;

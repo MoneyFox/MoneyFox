@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Tests.Core.ApplicationCore.Queries.Accounts.GetTotalEndOfMonthBalance
+﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Accounts.GetTotalEndOfMonthBalance
 {
 
     using System;

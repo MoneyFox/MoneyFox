@@ -1,4 +1,4 @@
-namespace MoneyFox.Tests.Core.Commands.Payments.CreateRecurringPayments
+namespace MoneyFox.Core.Tests.Commands.Payments.CreateRecurringPayments
 {
 
     using System;

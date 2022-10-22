@@ -1,4 +1,4 @@
-namespace MoneyFox.Tests.Core.Commands.Payments.UpdatePaymentById
+namespace MoneyFox.Core.Tests.Commands.Payments.UpdatePaymentById
 {
 
     using System;
