@@ -3,10 +3,9 @@
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Shell.NavBarHasShadow="False"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-    xmlns:converter="using:MoneyFox.Ui.Converter"
-    xmlns:payments="using:MoneyFox.Ui.ViewModels.Payments"
+    xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
+    xmlns:payments="clr-namespace:MoneyFox.Ui.ViewModels.Payments"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     x:Class="MoneyFox.Ui.Views.Payments.PaymentListPage">
 

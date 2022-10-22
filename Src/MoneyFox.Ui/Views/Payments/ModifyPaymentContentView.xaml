@@ -5,17 +5,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
-    xmlns:views="clr-namespace:MoneyFox.Ui.Views"
-    xmlns:converter="using:MoneyFox.Ui.Converter"
-    xmlns:payments="using:MoneyFox.Ui.ViewModels.Payments"
+    xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
+    xmlns:payments="clr-namespace:MoneyFox.Ui.ViewModels.Payments"
     x:Class="MoneyFox.Ui.Views.Payments.ModifyPaymentContentView"
     x:DataType="payments:ModifyPaymentViewModel">
 
     <ContentView.Resources>
         <ResourceDictionary>
             <converter:InverseBoolConverter x:Key="Inverter" />
-            <converter:AccountNameConverter x:Key="AccountNameConverter" />
-            <converter:PaymentTypeStringConverter x:Key="PaymentTypeStringConverter" />
             <converter:NoCategorySelectedConverter x:Key="NoCategorySelectedConverter" />
             <converter:DecimalConverter x:Key="DecimalConverter" />
         </ResourceDictionary>
