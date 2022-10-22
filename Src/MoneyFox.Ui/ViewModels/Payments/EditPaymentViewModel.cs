@@ -30,8 +30,10 @@ internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
 
     public async Task InitializeAsync(int paymentId)
     {
+        await InitializeAsync();
         var payment = await mediator.Send(new GetPaymentByIdQuery(paymentId));
         SelectedPayment = mapper.Map<PaymentViewModel>(payment);
+
     }
 
     protected override async Task SavePaymentAsync()

@@ -14,9 +14,7 @@ public partial class AccountPicker : ContentView
     public static readonly BindableProperty AccountsSourceProperty = BindableProperty.Create(
         propertyName: nameof(AccountsSource),
         returnType: typeof(IList),
-        declaringType: typeof(AccountPicker),
-        defaultValue: default,
-        defaultBindingMode: BindingMode.OneWay);
+        declaringType: typeof(AccountPicker));
 
     public static readonly BindableProperty SelectedAccountProperty = BindableProperty.Create(
         propertyName: nameof(SelectedAccount),
