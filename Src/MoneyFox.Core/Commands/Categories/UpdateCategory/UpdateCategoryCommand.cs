@@ -27,7 +27,7 @@ public class UpdateCategoryCommand : IRequest
 
         public async Task<Unit> Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
         {
-            Category existingCategory = await appDbContext.Categories.SingleAsync(c => c.Id == request.Category.Id, cancellationToken: cancellationToken);
+            var existingCategory = await appDbContext.Categories.SingleAsync(predicate: c => c.Id == request.Category.Id, cancellationToken: cancellationToken);
             existingCategory.UpdateData(name: request.Category.Name, note: request.Category.Note ?? "", requireNote: request.Category.RequireNote);
             _ = await appDbContext.SaveChangesAsync(cancellationToken);
 
@@ -35,4 +35,5 @@ public class UpdateCategoryCommand : IRequest
         }
     }
 }
+
 

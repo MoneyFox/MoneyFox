@@ -122,7 +122,7 @@ public class Payment : EntityBase
 
     public void AddRecurringPayment(PaymentRecurrence recurrence, bool isLastDayOfMonth = false, DateTime? endDate = null)
     {
-        RecurringPayment = new RecurringPayment(
+        RecurringPayment = new(
             startDate: Date,
             amount: Amount,
             type: Type,
@@ -166,4 +166,5 @@ public class Payment : EntityBase
         }
     }
 }
+
 

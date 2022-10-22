@@ -2,7 +2,6 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy;
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,7 +9,7 @@ using Core.ApplicationCore.Domain.Exceptions;
 using Flurl;
 using Flurl.Http;
 using Microsoft.Identity.Client;
-using MoneyFox.Infrastructure.DbBackup.OneDriveModels;
+using OneDriveModels;
 
 internal class OneDriveService : IOneDriveBackupService
 {
@@ -38,14 +37,13 @@ internal class OneDriveService : IOneDriveBackupService
 
     public async Task<DateTime> GetBackupDateAsync()
     {
-        OneDriveAuthentication authentication = await oneDriveAuthenticationService.AcquireAuthentication();
-
-        FileSearchDto appRoot = await graphDriveUri
-            .AppendPathSegments("special", "approot", "children")
+        var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
+        var appRoot = await graphDriveUri.AppendPathSegments("special", "approot", "children")
             .WithOAuthBearerToken(authentication.AccessToken)
             .GetJsonAsync<FileSearchDto>();
 
-        List<FileDto> existingBackups = appRoot.Files;
+        var existingBackups = appRoot.Files;
+
         return existingBackups.Any()
             ? existingBackups.OrderByDescending(di => di.LastModifiedDateTime).First().LastModifiedDateTime.DateTime.ToLocalTime()
             : DateTime.MinValue;
@@ -55,10 +53,8 @@ internal class OneDriveService : IOneDriveBackupService
     {
         try
         {
-            OneDriveAuthentication authentication = await oneDriveAuthenticationService.AcquireAuthentication();
-
-            FileSearchDto appRoot = await graphDriveUri
-                .AppendPathSegments("special", "approot", "children")
+            var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
+            var appRoot = await graphDriveUri.AppendPathSegments("special", "approot", "children")
                 .WithOAuthBearerToken(authentication.AccessToken)
                 .GetJsonAsync<FileSearchDto>();
 
@@ -74,10 +70,8 @@ internal class OneDriveService : IOneDriveBackupService
     {
         try
         {
-            OneDriveAuthentication authentication = await oneDriveAuthenticationService.AcquireAuthentication();
-
-            FileSearchDto appRoot = await graphDriveUri
-                .AppendPathSegments("special", "approot", "children")
+            var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
+            var appRoot = await graphDriveUri.AppendPathSegments("special", "approot", "children")
                 .WithOAuthBearerToken(authentication.AccessToken)
                 .GetJsonAsync<FileSearchDto>();
 
@@ -86,10 +80,9 @@ internal class OneDriveService : IOneDriveBackupService
                 throw new NoBackupFoundException();
             }
 
-            FileDto lastBackup = appRoot.Files.OrderByDescending(di => di.LastModifiedDateTime).First();
+            var lastBackup = appRoot.Files.OrderByDescending(di => di.LastModifiedDateTime).First();
 
-            return await graphDriveUri
-                .AppendPathSegments("items", $"{lastBackup.Id}", "content")
+            return await graphDriveUri.AppendPathSegments("items", $"{lastBackup.Id}", "content")
                 .WithOAuthBearerToken(authentication.AccessToken)
                 .GetStreamAsync();
         }
@@ -110,24 +103,20 @@ internal class OneDriveService : IOneDriveBackupService
 
     private async Task CleanupOldBackupsAsync()
     {
-        OneDriveAuthentication authentication = await oneDriveAuthenticationService.AcquireAuthentication();
-        FileSearchDto appRoot = await graphDriveUri
-            .AppendPathSegments("special", "approot", "children")
+        var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
+        var appRoot = await graphDriveUri.AppendPathSegments("special", "approot", "children")
             .WithOAuthBearerToken(authentication.AccessToken)
             .GetJsonAsync<FileSearchDto>();
 
-        List<FileDto> existingBackups = appRoot.Files;
+        var existingBackups = appRoot.Files;
         if (existingBackups.Count < BACKUP_ARCHIVE_COUNT)
         {
             return;
         }
 
-        FileDto oldestBackup = existingBackups.OrderByDescending(x => x.CreatedDate).Last();
-
-        _ = await graphDriveUri
-            .AppendPathSegments("items", $"{oldestBackup.Id}")
-            .WithOAuthBearerToken(authentication.AccessToken)
-            .DeleteAsync();
+        var oldestBackup = existingBackups.OrderByDescending(x => x.CreatedDate).Last();
+        _ = await graphDriveUri.AppendPathSegments("items", $"{oldestBackup.Id}").WithOAuthBearerToken(authentication.AccessToken).DeleteAsync();
     }
 }
+
 

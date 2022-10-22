@@ -30,8 +30,8 @@ public class GetCategoryBySearchTermQuery : IRequest<List<Category>>
 
         public async Task<List<Category>> Handle(GetCategoryBySearchTermQuery request, CancellationToken cancellationToken)
         {
-            IOrderedQueryable<Category> categoriesQuery = appDbContext.Categories.OrderBy(x => x.Name);
-            List<Category> categories = await categoriesQuery.ToListAsync(cancellationToken);
+            var categoriesQuery = appDbContext.Categories.OrderBy(x => x.Name);
+            var categories = await categoriesQuery.ToListAsync(cancellationToken);
             if (!string.IsNullOrEmpty(request.SearchTerm))
             {
                 categories = categories.WhereNameContains(request.SearchTerm).ToList();
@@ -41,4 +41,5 @@ public class GetCategoryBySearchTermQuery : IRequest<List<Category>>
         }
     }
 }
+
 

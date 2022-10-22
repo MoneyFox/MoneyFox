@@ -34,3 +34,4 @@ public class GetIfAccountWithNameExistsQuery : IRequest<bool>
     }
 }
 
+

@@ -40,19 +40,19 @@ public class GetCategorySummaryQueryHandler : IRequestHandler<GetCategorySummary
 
     public async Task<CategorySummaryModel> Handle(GetCategorySummaryQuery request, CancellationToken cancellationToken)
     {
-        categoryOverviewItems = new List<CategoryOverviewItem>();
+        categoryOverviewItems = new();
         paymentLastTwelveMonths = await appDbContext.Payments.Include(x => x.Category)
             .Where(x => x.Date.Date >= DateTime.Today.AddMonths(NUMBERS_OF_MONTHS_TO_LOAD))
             .WithoutTransfers()
             .ToListAsync(cancellationToken);
 
-        List<Payment> paymentsInTimeRange = await appDbContext.Payments.Include(x => x.Category)
+        var paymentsInTimeRange = await appDbContext.Payments.Include(x => x.Category)
             .HasDateLargerEqualsThan(request.StartDate.Date)
             .HasDateSmallerEqualsThan(request.EndDate.Date)
             .Where(x => x.Type != PaymentType.Transfer)
             .ToListAsync(cancellationToken);
 
-        foreach (Category? category in paymentsInTimeRange.Where(x => x.Category != null).Select(x => x.Category!).Distinct())
+        foreach (var category in paymentsInTimeRange.Where(x => x.Category != null).Select(x => x.Category!).Distinct())
         {
             CreateOverviewItem(payments: paymentsInTimeRange, category: category);
         }
@@ -61,7 +61,7 @@ public class GetCategorySummaryQueryHandler : IRequestHandler<GetCategorySummary
         CalculatePercentage(categoryOverviewItems);
         StatisticUtilities.RoundStatisticItems(categoryOverviewItems);
 
-        return new CategorySummaryModel(
+        return new(
             totalEarned: Convert.ToDecimal(paymentsInTimeRange.Where(x => x.Type == PaymentType.Income).Sum(x => x.Amount)),
             totalSpent: Convert.ToDecimal(paymentsInTimeRange.Where(x => x.Type == PaymentType.Expense).Sum(x => x.Amount)),
             categoryOverviewItems: categoryOverviewItems.Where(x => Math.Abs(x.Value) > DECIMAL_DELTA).OrderBy(x => x.Value).ToList());
@@ -86,7 +86,7 @@ public class GetCategorySummaryQueryHandler : IRequestHandler<GetCategorySummary
     private void AddEntryForPaymentsWithoutCategory(IEnumerable<Payment> payments)
     {
         categoryOverviewItems.Add(
-            new CategoryOverviewItem
+            new()
             {
                 Label = Strings.NoCategoryLabel,
                 Value = payments.Where(x => x.Category == null)
@@ -98,14 +98,14 @@ public class GetCategorySummaryQueryHandler : IRequestHandler<GetCategorySummary
 
     private static void CalculatePercentage(IEnumerable<CategoryOverviewItem> categories)
     {
-        decimal sumNegative = categories.Where(x => x.Value < 0).Sum(x => x.Value);
-        decimal sumPositive = categories.Where(x => x.Value > 0).Sum(x => x.Value);
-        foreach (CategoryOverviewItem? statisticItem in categories.Where(x => x.Value < 0))
+        var sumNegative = categories.Where(x => x.Value < 0).Sum(x => x.Value);
+        var sumPositive = categories.Where(x => x.Value > 0).Sum(x => x.Value);
+        foreach (var statisticItem in categories.Where(x => x.Value < 0))
         {
             statisticItem.Percentage = statisticItem.Value / sumNegative * PERCENTAGE_DIVIDER;
         }
 
-        foreach (CategoryOverviewItem? statisticItem in categories.Where(x => x.Value > 0))
+        foreach (var statisticItem in categories.Where(x => x.Value > 0))
         {
             statisticItem.Percentage = statisticItem.Value / sumPositive * PERCENTAGE_DIVIDER;
         }
@@ -113,21 +113,22 @@ public class GetCategorySummaryQueryHandler : IRequestHandler<GetCategorySummary
 
     private decimal CalculateAverageForCategory(int id)
     {
-        List<Payment> payments = paymentLastTwelveMonths.Where(x => x.Category != null).Where(x => x.Category!.Id == id).OrderByDescending(x => x.Date).ToList();
+        var payments = paymentLastTwelveMonths.Where(x => x.Category != null).Where(x => x.Category!.Id == id).OrderByDescending(x => x.Date).ToList();
+
         return payments.Count == 0 ? 0 : AverageSumFor(payments);
     }
 
     private decimal CalculateAverageForPaymentsWithoutCategory()
     {
-        List<Payment> payments = paymentLastTwelveMonths.Where(x => x.Category == null).OrderByDescending(x => x.Date).ToList();
+        var payments = paymentLastTwelveMonths.Where(x => x.Category == null).OrderByDescending(x => x.Date).ToList();
 
         return payments.Count == 0 ? 0 : AverageSumFor(payments);
     }
 
     private static decimal AverageSumFor(IEnumerable<Payment> payments)
     {
-        decimal totalSumForPayments = payments.Sum(x => x.Amount);
-        TimeSpan timeDiff = DateTime.Today - DateTime.Today.AddYears(-1);
+        var totalSumForPayments = payments.Sum(x => x.Amount);
+        var timeDiff = DateTime.Today - DateTime.Today.AddYears(-1);
 
         return timeDiff.Days < DAY_DIVIDER ? totalSumForPayments : CalculateAverageByMonth(totalSumForPayments: totalSumForPayments, timeDiff: timeDiff);
     }
@@ -138,4 +139,5 @@ public class GetCategorySummaryQueryHandler : IRequestHandler<GetCategorySummary
         return Math.Round(d: totalSumForPayments / (timeDiff.Days / DAY_DIVIDER), decimals: POSITIONS_TO_ROUND, mode: MidpointRounding.ToEven);
     }
 }
+
 

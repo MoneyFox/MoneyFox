@@ -16,6 +16,10 @@ public sealed record SpendingLimit
 
     public decimal Value { get; }
 
-    public static implicit operator decimal(SpendingLimit spendingLimit) => spendingLimit.Value;
+    public static implicit operator decimal(SpendingLimit spendingLimit)
+    {
+        return spendingLimit.Value;
+    }
 }
+
 

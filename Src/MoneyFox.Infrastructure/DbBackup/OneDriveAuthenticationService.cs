@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Core.ApplicationCore.Domain.Exceptions;
 using Legacy;
 using Microsoft.Identity.Client;
-using MoneyFox.Infrastructure.DbBackup.OneDriveModels;
+using OneDriveModels;
 using Serilog;
 
 internal sealed class OneDriveAuthenticationService : IOneDriveAuthenticationService
@@ -57,7 +57,9 @@ internal sealed class OneDriveAuthenticationService : IOneDriveAuthenticationSer
             throw;
         }
 
-        return result != null ? new OneDriveAuthentication(result.AccessToken, result.TokenType) : throw new BackupAuthenticationFailedException();
+        return result != null
+            ? new OneDriveAuthentication(accessToken: result.AccessToken, tokenType: result.TokenType)
+            : throw new BackupAuthenticationFailedException();
     }
 
     public async Task LogoutAsync(CancellationToken cancellationToken = default)
@@ -86,3 +88,4 @@ internal sealed class OneDriveAuthenticationService : IOneDriveAuthenticationSer
         }
     }
 }
+

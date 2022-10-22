@@ -15,18 +15,18 @@ public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequ
 
     public PerformanceBehaviour()
     {
-        timer = new Stopwatch();
+        timer = new();
     }
 
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
         timer.Start();
-        TResponse? response = await next();
+        var response = await next();
         timer.Stop();
-        long elapsedMilliseconds = timer.ElapsedMilliseconds;
+        var elapsedMilliseconds = timer.ElapsedMilliseconds;
         if (elapsedMilliseconds > THRESHOLD_LONG_RUNNING_REQUEST_MS)
         {
-            string requestName = typeof(TRequest).Name;
+            var requestName = typeof(TRequest).Name;
             Log.Warning(
                 messageTemplate: "MoneyFox Long Running Request: {Name} \tElapsedTime: ({ElapsedMilliseconds} milliseconds) \tRequestData: {@Request}",
                 propertyValue0: requestName,
@@ -37,4 +37,5 @@ public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequ
         return response;
     }
 }
+
 

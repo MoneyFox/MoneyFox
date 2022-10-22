@@ -48,7 +48,7 @@ public class GetCategoryProgressionHandler : IRequestHandler<GetCategoryProgress
 
     public async Task<IImmutableList<StatisticEntry>> Handle(GetCategoryProgressionQuery request, CancellationToken cancellationToken)
     {
-        List<Payment> payments = await appDbContext.Payments.Include(x => x.Category)
+        var payments = await appDbContext.Payments.Include(x => x.Category)
             .Include(x => x.ChargedAccount)
             .HasCategoryId(request.CategoryId)
             .HasDateLargerEqualsThan(request.StartDate.Date)
@@ -73,11 +73,11 @@ public class GetCategoryProgressionHandler : IRequestHandler<GetCategoryProgress
     private static IImmutableList<StatisticEntry> FillReturnList(GetCategoryProgressionQuery request, IEnumerable<StatisticEntry> statisticEntries)
     {
         List<StatisticEntry> returnList = new();
-        DateTime startDate = request.StartDate;
-        DateTime endDate = request.EndDate.AddMonths(1);
+        var startDate = request.StartDate;
+        var endDate = request.EndDate.AddMonths(1);
         do
         {
-            List<StatisticEntry> items = statisticEntries.Where(x => x.Label == $"{startDate.Month:d2} {startDate.Year:d4}").ToList();
+            var items = statisticEntries.Where(x => x.Label == $"{startDate.Month:d2} {startDate.Year:d4}").ToList();
             returnList.AddRange(items);
             if (!items.Any())
             {
@@ -105,4 +105,5 @@ public class GetCategoryProgressionHandler : IRequestHandler<GetCategoryProgress
         };
     }
 }
+
 

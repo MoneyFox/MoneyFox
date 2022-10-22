@@ -15,3 +15,4 @@ public class RecurrenceNullException : Exception
     public RecurrenceNullException(string message, Exception innerException) : base(message: message, innerException: innerException) { }
 }
 
+

@@ -8,3 +8,4 @@ public interface IBrowserAdapter
     Task OpenWebsiteAsync(Uri uri);
 }
 
+

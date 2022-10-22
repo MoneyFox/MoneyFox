@@ -34,3 +34,4 @@ public class GetMonthlyExpenseQuery : IRequest<decimal>
     }
 }
 
+

@@ -81,7 +81,8 @@ internal sealed class BackupService : ObservableRecipient, IBackupService, IDisp
             return false;
         }
 
-        System.Collections.Generic.List<string> files = await oneDriveBackupService.GetFileNamesAsync();
+        var files = await oneDriveBackupService.GetFileNamesAsync();
+
         return files.Any();
     }
 
@@ -122,7 +123,7 @@ internal sealed class BackupService : ObservableRecipient, IBackupService, IDisp
 
         try
         {
-            BackupRestoreResult result = await DownloadBackupAsync(backupMode);
+            var result = await DownloadBackupAsync(backupMode);
             if (result == BackupRestoreResult.NewBackupRestored)
             {
                 appDbContext.Migratedb();
@@ -148,16 +149,16 @@ internal sealed class BackupService : ObservableRecipient, IBackupService, IDisp
     {
         try
         {
-            DateTime backupDate = await GetBackupDateAsync();
+            var backupDate = await GetBackupDateAsync();
             if (backupDate - settingsFacade.LastDatabaseUpdate < TimeSpan.FromSeconds(1) && backupMode == BackupMode.Automatic)
             {
                 Log.Information("Local backup is newer than remote. Don't download backup");
 
                 return BackupRestoreResult.Canceled;
             }
-            appDbContext.ReleaseLock();
 
-            await using (Stream backupStream = await oneDriveBackupService.RestoreAsync())
+            appDbContext.ReleaseLock();
+            await using (var backupStream = await oneDriveBackupService.RestoreAsync())
             {
                 settingsFacade.LastDatabaseUpdate = backupDate.ToLocalTime();
                 MemoryStream ms = new();
@@ -165,7 +166,7 @@ internal sealed class BackupService : ObservableRecipient, IBackupService, IDisp
                 await fileStore.WriteFileAsync(path: TEMP_DOWNLOAD_PATH, contents: ms.ToArray());
             }
 
-            bool moveSucceed = await fileStore.TryMoveAsync(from: TEMP_DOWNLOAD_PATH, destination: dbPathProvider.GetDbPath(), overwrite: true);
+            var moveSucceed = await fileStore.TryMoveAsync(from: TEMP_DOWNLOAD_PATH, destination: dbPathProvider.GetDbPath(), overwrite: true);
 
             return !moveSucceed ? throw new BackupException("Error Moving downloaded backup file") : BackupRestoreResult.NewBackupRestored;
         }
@@ -188,4 +189,5 @@ internal sealed class BackupService : ObservableRecipient, IBackupService, IDisp
         }
     }
 }
+
 

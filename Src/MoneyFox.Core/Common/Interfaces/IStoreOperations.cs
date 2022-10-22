@@ -8,3 +8,4 @@ public interface IStoreOperations
     void RateApp();
 }
 
+

@@ -22,7 +22,7 @@ internal static class RecurrenceHelper
         }
 
         return payment.IsRecurring
-&& (payment.RecurringPayment == null ? throw new RecurringPaymentNullException() : CheckRecurrence(payment.RecurringPayment));
+               && (payment.RecurringPayment == null ? throw new RecurringPaymentNullException() : CheckRecurrence(payment.RecurringPayment));
     }
 
     /// <summary>
@@ -33,12 +33,15 @@ internal static class RecurrenceHelper
     /// <returns>True if the duration since the LastRecurrenceCreated date of the RecurringPayment object exceeds the recurrence period, false otherwise.</returns>
     private static bool CheckRecurrence(RecurringPayment recurringPayment)
     {
-        DateTime currDate = DateTime.Today;
-        DateTime lastRecurCreated = recurringPayment.LastRecurrenceCreated.Date;
+        var currDate = DateTime.Today;
+        var lastRecurCreated = recurringPayment.LastRecurrenceCreated.Date;
+
         return recurringPayment.Recurrence switch
         {
             PaymentRecurrence.Daily => currDate != lastRecurCreated,
-            PaymentRecurrence.DailyWithoutWeekend => currDate != lastRecurCreated && currDate.DayOfWeek != DayOfWeek.Saturday && currDate.DayOfWeek != DayOfWeek.Sunday,
+            PaymentRecurrence.DailyWithoutWeekend => currDate != lastRecurCreated
+                                                     && currDate.DayOfWeek != DayOfWeek.Saturday
+                                                     && currDate.DayOfWeek != DayOfWeek.Sunday,
             PaymentRecurrence.Weekly => currDate.AddDays(-7) >= lastRecurCreated,
             PaymentRecurrence.Biweekly => currDate.AddDays(-14) >= lastRecurCreated,
             PaymentRecurrence.Monthly => currDate.AddMonths(-1).GetFirstDayOfMonth() >= lastRecurCreated.GetFirstDayOfMonth(),
@@ -46,7 +49,7 @@ internal static class RecurrenceHelper
             PaymentRecurrence.Quarterly => currDate.AddMonths(-3).GetFirstDayOfMonth() >= lastRecurCreated.GetFirstDayOfMonth(),
             PaymentRecurrence.Biannually => currDate.AddMonths(-6).GetFirstDayOfMonth() >= lastRecurCreated.GetFirstDayOfMonth(),
             PaymentRecurrence.Yearly => currDate.AddYears(-1).GetFirstDayOfMonth() >= lastRecurCreated.GetFirstDayOfMonth(),
-            _ => false,
+            _ => false
         };
     }
 
@@ -57,7 +60,7 @@ internal static class RecurrenceHelper
     /// <returns>Date of the next recurrence instance.</returns>
     public static DateTime GetPaymentDateFromRecurring(RecurringPayment recurringPayment)
     {
-        DateTime currDate = DateTime.Today;
+        var currDate = DateTime.Today;
         switch (recurringPayment.Recurrence)
         {
             case PaymentRecurrence.Daily:
@@ -67,8 +70,7 @@ internal static class RecurrenceHelper
             case PaymentRecurrence.DailyWithoutWeekend:
                 if (currDate.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday)
                 {
-                    throw new InvalidOperationException(
-                        $"Unable to create a {Strings.DailyWithoutWeekendLabel} recurring payment on a {currDate.DayOfWeek}");
+                    throw new InvalidOperationException($"Unable to create a {Strings.DailyWithoutWeekendLabel} recurring payment on a {currDate.DayOfWeek}");
                 }
 
                 return currDate;
@@ -77,11 +79,11 @@ internal static class RecurrenceHelper
             case PaymentRecurrence.Quarterly:
             case PaymentRecurrence.Biannually:
             case PaymentRecurrence.Yearly:
-                int dayOfMonth = recurringPayment.IsLastDayOfMonth
+                var dayOfMonth = recurringPayment.IsLastDayOfMonth
                     ? DateTime.DaysInMonth(year: currDate.Year, month: currDate.Month)
                     : Math.Min(val1: DateTime.DaysInMonth(year: currDate.Year, month: currDate.Month), val2: recurringPayment.StartDate.Day);
 
-                return new DateTime(year: currDate.Year, month: currDate.Month, day: dayOfMonth);
+                return new(year: currDate.Year, month: currDate.Month, day: dayOfMonth);
             default:
                 throw new ArgumentOutOfRangeException(
                     paramName: nameof(recurringPayment),
@@ -89,4 +91,5 @@ internal static class RecurrenceHelper
         }
     }
 }
+
 

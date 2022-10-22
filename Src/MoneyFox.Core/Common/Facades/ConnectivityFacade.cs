@@ -19,3 +19,4 @@ public class ConnectivityFacade : IConnectivityFacade
     public bool IsConnected => connectivityAdapter.IsConnected;
 }
 
+

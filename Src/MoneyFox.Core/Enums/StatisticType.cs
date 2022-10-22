@@ -10,3 +10,4 @@ public enum StatisticType
     CategoryProgression
 }
 
+

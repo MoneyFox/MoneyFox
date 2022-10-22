@@ -11,3 +11,4 @@ public interface IConnectivityAdapter
     bool IsConnected { get; }
 }
 
+
