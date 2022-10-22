@@ -9,14 +9,14 @@
     x:DataType="statistics:StatisticCashFlowViewModel">
 
     <Shell.TitleView>
-        <Grid ColumnDefinitions="*,66">
-            <Label Style="{StaticResource TextTitle}"
+        <Grid ColumnDefinitions="*,66" Margin="0,0,12,0">
+
+            <Label Style="{StaticResource PageTitle}"
                    HorizontalOptions="Start"
                    VerticalOptions="Center"
                    Text="{x:Static resources:Strings.CashFlowStatisticTitle}" />
 
-            <ImageButton Margin="0,0,5,0"
-                         Grid.Column="1"
+            <ImageButton Grid.Column="1"
                          Padding="0"
                          BorderWidth="0"
                          Clicked="OpenFilterDialog"
@@ -34,15 +34,11 @@
     </Shell.TitleView>
 
     <ContentPage.Content>
-        <Grid RowDefinitions="38, 38, *" Padding="15,0,15,15">
-            <Label Style="{StaticResource TextHeadline}"
-                   Text="{x:Static resources:Strings.CashFlowStatisticTitle}" />
-
-            <Label Grid.Row="1"
-                   Style="{StaticResource TextBodySecondary}"
+        <Grid RowDefinitions="38, *" Padding="15,0,15,15">
+            <Label Style="{StaticResource TextBodySecondary}"
                    Text="{Binding Title}" />
 
-            <maui:CartesianChart Grid.Row="2"
+            <maui:CartesianChart Grid.Row="1"
                                  Series="{Binding Series, Mode=OneWay}"
                                  XAxes="{Binding XAxis, Mode=OneWay}"
                                  LegendPosition="Bottom"

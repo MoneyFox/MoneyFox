@@ -8,61 +8,51 @@
     xmlns:payments="clr-namespace:MoneyFox.Ui.ViewModels.Payments"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:views="clr-namespace:MoneyFox.Ui.Views"
-    x:Class="MoneyFox.Ui.Views.Payments.PaymentListPage">
+    x:Class="MoneyFox.Ui.Views.Payments.PaymentListPage"
+    Title="{Binding SelectedAccount.Name}">
 
     <ContentPage.Resources>
         <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
         <converter:DateFormatConverter x:Key="DateFormatConverter" />
     </ContentPage.Resources>
 
-    <Shell.TitleView>
-        <Grid ColumnDefinitions="*,Auto ,66 ,6 ,66">
-
-            <ImageButton Grid.Column="2"
+    <ContentPage.Content>
+        <Grid IsClippedToBounds="False"
+              RowDefinitions="50, *">
+            <Grid ColumnDefinitions="*,Auto ,66 ,6 ,66">
+                <ImageButton Grid.Column="2"
                          Clicked="ShowFilterPopup"
                          Margin="0,0,5,0"
                          Padding="0"
                          BorderWidth="0"
                          HeightRequest="44"
                          HorizontalOptions="End"
-                         VerticalOptions="Center"
+                         VerticalOptions="Start"
                          WidthRequest="66">
-                <ImageButton.Source>
-                    <FontImageSource FontFamily="MaterialIcons"
+                    <ImageButton.Source>
+                        <FontImageSource FontFamily="MaterialIcons"
                                      Glyph="{x:Static views:IconFont.FilterOutline}"
                                      Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
-                </ImageButton.Source>
-            </ImageButton>
+                    </ImageButton.Source>
+                </ImageButton>
 
-            <ImageButton Margin="0,0,5,0"
+                <ImageButton Margin="0,0,5,0"
                          Grid.Column="4"
                          Padding="0"
                          BorderWidth="0"
                          Command="{Binding GoToAddPaymentCommand}"
                          HeightRequest="44"
                          HorizontalOptions="End"
-                         VerticalOptions="Center"
+                         VerticalOptions="Start"
                          WidthRequest="66"
                          Style="{StaticResource PrimaryImageButton}">
-                <ImageButton.Source>
-                    <FontImageSource FontFamily="MaterialIcons"
+                    <ImageButton.Source>
+                        <FontImageSource FontFamily="MaterialIcons"
                                      Glyph="{x:Static views:IconFont.Plus}" 
                                      Color="White" />
-                </ImageButton.Source>
-            </ImageButton>
-        </Grid>
-    </Shell.TitleView>
-
-    <ContentPage.Content>
-        <Grid IsClippedToBounds="False"
-              RowDefinitions="40, *">
-
-            <Label FontAttributes="Bold"
-                   FontFamily="Product"
-                   Margin="15,0,15,0"
-                   Style="{StaticResource TextTitle}"
-                   Text="{Binding SelectedAccount.Name}"
-                   VerticalOptions="Center" />
+                    </ImageButton.Source>
+                </ImageButton>
+            </Grid>
 
             <CollectionView Grid.Row="1"
                             ItemsSource="{Binding Payments}"

@@ -10,14 +10,13 @@
     xmlns:views="clr-namespace:MoneyFox.Ui.Views" >
 
     <Shell.TitleView>
-        <Grid ColumnDefinitions="*,66">
-            <Label Style="{StaticResource TextTitle}"
+        <Grid ColumnDefinitions="*,66" Margin="0,0,12,0">
+            <Label Style="{StaticResource PageTitle}"
                    HorizontalOptions="Start"
                    VerticalOptions="Center"
                    Text="{x:Static resources:Strings.CategorySummaryTitle}" />
 
-            <ImageButton Margin="0,0,5,0"
-                         Grid.Column="1"
+            <ImageButton Grid.Column="1"
                          Padding="0"
                          BorderWidth="0"
                          Clicked="OpenFilterDialog"
