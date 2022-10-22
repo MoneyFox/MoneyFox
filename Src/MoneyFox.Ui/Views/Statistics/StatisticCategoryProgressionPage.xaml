@@ -61,7 +61,7 @@
 
             <Label Grid.Row="3"
                    Text="{x:Static resources:Strings.SelectCategoryLabel}"
-                   Style="{DynamicResource DeemphasizedLabelStyle}"
+                   Style="{DynamicResource TonedDownLabelStyle}"
                    IsVisible="{Binding HasNoData}" />
         </Grid>
     </ContentPage.Content>

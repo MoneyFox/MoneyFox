@@ -21,19 +21,19 @@
                 <StackPanel Orientation="Horizontal"
                             Margin="0,12,0,0">
                     <TextBlock
-                        Style="{StaticResource DeemphasizedLabelStyle}"
+                        Style="{StaticResource TonedDownLabelStyle}"
                         Text="{x:Bind resources:Strings.CreationDateLabel}"
                         Margin="0,0,2,0" />
-                    <TextBlock Style="{StaticResource DeemphasizedLabelStyle}"
+                    <TextBlock Style="{StaticResource TonedDownLabelStyle}"
                                Text="{x:Bind ViewModel.SelectedCategory.Created, Mode=OneWay}" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal"
                             Margin="0,12,0,0">
-                    <TextBlock Style="{StaticResource DeemphasizedLabelStyle}"
+                    <TextBlock Style="{StaticResource TonedDownLabelStyle}"
                                Text="{x:Bind resources:Strings.ModificationDateLabel}"
                                Margin="0,0,2,0" />
-                    <TextBlock Style="{StaticResource DeemphasizedLabelStyle}"
+                    <TextBlock Style="{StaticResource TonedDownLabelStyle}"
                                Text="{x:Bind ViewModel.SelectedCategory.LastModified, Mode=OneWay}" />
                 </StackPanel>
             </StackPanel>
