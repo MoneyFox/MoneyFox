@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.ViewModels.Accounts;
+namespace MoneyFox.Ui.ViewModels.Accounts;
 
 using System.Collections.ObjectModel;
 using AutoMapper;
@@ -57,7 +57,7 @@ internal sealed class AccountListViewModel : BaseViewModel
 
     protected override void OnActivated()
     {
-        Messenger.Register<AccountListViewModel, ReloadMessage>(recipient: this, handler: (r, m) => r.OnAppearingAsync());
+        Messenger.Register<AccountListViewModel, ReloadMessage>(recipient: this, handler: async (r, m) => await r.OnAppearingAsync());
     }
 
     protected override void OnDeactivated()

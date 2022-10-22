@@ -43,7 +43,7 @@ internal sealed class PaymentForCategoryListViewModel : BaseViewModel
 
     protected override void OnActivated()
     {
-        Messenger.Register<PaymentForCategoryListViewModel, PaymentsForCategoryMessage>(recipient: this, handler: (r, m) => r.InitializeAsync(m));
+        Messenger.Register<PaymentForCategoryListViewModel, PaymentsForCategoryMessage>(recipient: this, handler: async (r, m) => await r.InitializeAsync(m));
     }
 
     protected override void OnDeactivated()

@@ -99,7 +99,7 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel
 
     protected override void OnActivated()
     {
-        Messenger.Register<ModifyPaymentViewModel, CategorySelectedMessage>(recipient: this, handler: (r, m) => r.ReceiveMessageAsync(m));
+        Messenger.Register<ModifyPaymentViewModel, CategorySelectedMessage>(recipient: this, handler: async (r, m) => await r.ReceiveMessageAsync(m));
     }
 
     protected abstract Task SavePaymentAsync();

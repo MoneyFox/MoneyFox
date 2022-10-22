@@ -81,8 +81,8 @@ internal sealed class PaymentListViewModel : BaseViewModel
 
     protected override void OnActivated()
     {
-        Messenger.Register<PaymentListViewModel, ReloadMessage>(recipient: this, handler: (r, m) => OnAppearingAsync(SelectedAccount.Id));
-        Messenger.Register<PaymentListViewModel, PaymentListFilterChangedMessage>(recipient: this, handler: (r, m) => LoadPaymentsByMessageAsync(m));
+        Messenger.Register<PaymentListViewModel, ReloadMessage>(recipient: this, handler: async (r, m) => await OnAppearingAsync(SelectedAccount.Id));
+        Messenger.Register<PaymentListViewModel, PaymentListFilterChangedMessage>(recipient: this, handler: async (r, m) => await LoadPaymentsByMessageAsync(m));
     }
 
     protected override void OnDeactivated()

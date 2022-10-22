@@ -120,11 +120,11 @@ internal class DashboardViewModel : BaseViewModel
     public AsyncRelayCommand GoToBudgetsCommand => new(async () => await Shell.Current.GoToAsync(Routes.BudgetListRoute));
 
     public AsyncRelayCommand<AccountViewModel> GoToTransactionListCommand
-        => new(async accountViewModel => await Shell.Current.GoToAsync($"{Routes.PaymentListRoute}?accountId={accountViewModel.Id}"));
+        => new(async accountViewModel => await Shell.Current.GoToAsync($"{Routes.PaymentListRoute}?accountId={accountViewModel!.Id}"));
 
     protected override void OnActivated()
     {
-        Messenger.Register<DashboardViewModel, ReloadMessage>(recipient: this, handler: (r, m) => r.InitializeAsync());
+        Messenger.Register<DashboardViewModel, ReloadMessage>(recipient: this, handler: async (r, m) => await r.InitializeAsync());
     }
 
     protected override void OnDeactivated()
