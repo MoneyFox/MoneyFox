@@ -41,3 +41,4 @@ public class PaymentListFilterChangedMessage
     public DateTime TimeRangeEnd { get; set; } = DateTime.MaxValue;
 }
 
+

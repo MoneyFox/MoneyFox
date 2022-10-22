@@ -22,10 +22,11 @@ public class GetAccountsQuery : IRequest<List<Account>>
 
         public async Task<List<Account>> Handle(GetAccountsQuery request, CancellationToken cancellationToken)
         {
-            List<Account> accounts = await appDbContext.Accounts.AreActive().OrderByInclusion().OrderByName().ToListAsync(cancellationToken);
+            var accounts = await appDbContext.Accounts.AreActive().OrderByInclusion().OrderByName().ToListAsync(cancellationToken);
 
             return accounts;
         }
     }
 }
+
 

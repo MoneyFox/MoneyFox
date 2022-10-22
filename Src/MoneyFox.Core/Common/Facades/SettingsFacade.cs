@@ -60,9 +60,7 @@ public class SettingsFacade : ISettingsFacade
     {
         get
         {
-            string dateString = settingsAdapter.GetValue(
-                key: DatabaseLastUpdateKeyName,
-                defaultValue: DateTime.MinValue.ToString(CultureInfo.InvariantCulture));
+            var dateString = settingsAdapter.GetValue(key: DatabaseLastUpdateKeyName, defaultValue: DateTime.MinValue.ToString(CultureInfo.InvariantCulture));
 
             return Convert.ToDateTime(value: dateString, provider: CultureInfo.InvariantCulture);
         }
@@ -79,15 +77,13 @@ public class SettingsFacade : ISettingsFacade
     public DateTime LastExecutionTimeStampSyncBackup
     {
         get
-        {
-            return DateTime.TryParse(
-                    s: settingsAdapter.GetValue(key: LastExecutionTimeStampSyncBackupKeyName, defaultValue: LastExecutionTimeStampSyncBackupKeyDefault),
-                    provider: CultureInfo.InvariantCulture,
-                    styles: DateTimeStyles.None,
-                    result: out DateTime outValue)
+            => DateTime.TryParse(
+                s: settingsAdapter.GetValue(key: LastExecutionTimeStampSyncBackupKeyName, defaultValue: LastExecutionTimeStampSyncBackupKeyDefault),
+                provider: CultureInfo.InvariantCulture,
+                styles: DateTimeStyles.None,
+                result: out var outValue)
                 ? outValue
                 : DateTime.MinValue;
-        }
 
         set => settingsAdapter.AddOrUpdate(key: LastExecutionTimeStampSyncBackupKeyName, value: value.ToString(CultureInfo.InvariantCulture));
     }
@@ -110,4 +106,5 @@ public class SettingsFacade : ISettingsFacade
         set => settingsAdapter.AddOrUpdate(key: CategorySpreadingNumberKeyName, value: value);
     }
 }
+
 

@@ -39,9 +39,9 @@ public class GetAccountEndOfMonthBalanceQuery : IRequest<decimal>
         public async Task<decimal> Handle(GetAccountEndOfMonthBalanceQuery request, CancellationToken cancellationToken)
         {
             accountId = request.AccountId;
-            Account account = await appDbContext.Accounts.WithId(accountId).FirstAsync();
-            decimal balance = await GetCurrentAccountBalanceAsync();
-            foreach (Payment payment in await GetUnclearedPaymentsForThisMonthAsync())
+            var account = await appDbContext.Accounts.WithId(accountId).FirstAsync();
+            var balance = await GetCurrentAccountBalanceAsync();
+            foreach (var payment in await GetUnclearedPaymentsForThisMonthAsync())
             {
                 if (payment.ChargedAccount == null)
                 {
@@ -115,4 +115,5 @@ public class GetAccountEndOfMonthBalanceQuery : IRequest<decimal>
         }
     }
 }
+
 

@@ -42,7 +42,7 @@ public static class UpdateBudget
 
         public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
         {
-            Budget loadedBudget = await budgetRepository.GetAsync(request.BudgetId);
+            var loadedBudget = await budgetRepository.GetAsync(request.BudgetId);
             SpendingLimit spendingLimit = new(request.SpendingLimit);
             loadedBudget.Change(
                 budgetName: request.Name,
@@ -56,4 +56,5 @@ public static class UpdateBudget
         }
     }
 }
+
 

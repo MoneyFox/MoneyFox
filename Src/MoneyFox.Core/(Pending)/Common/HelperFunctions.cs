@@ -14,7 +14,7 @@ public static class HelperFunctions
     /// <returns></returns>
     public static DateTime GetFirstDayMonth(ISystemDateHelper systemDateHelper)
     {
-        return new DateTime(year: systemDateHelper.Today.Year, month: systemDateHelper.Today.Month, day: 1);
+        return new(year: systemDateHelper.Today.Year, month: systemDateHelper.Today.Month, day: 1);
     }
 
     /// <summary>
@@ -23,9 +23,10 @@ public static class HelperFunctions
     /// <returns>Last day of the month</returns>
     public static DateTime GetEndOfMonth(ISystemDateHelper systemDateHelper)
     {
-        DateTime today = systemDateHelper.Today;
+        var today = systemDateHelper.Today;
 
-        return new DateTime(year: today.Year, month: today.Month, day: DateTime.DaysInMonth(year: today.Year, month: today.Month));
+        return new(year: today.Year, month: today.Month, day: DateTime.DaysInMonth(year: today.Year, month: today.Month));
     }
 }
+
 

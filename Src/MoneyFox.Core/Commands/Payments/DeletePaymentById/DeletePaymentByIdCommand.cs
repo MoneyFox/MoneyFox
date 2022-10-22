@@ -31,7 +31,7 @@ public class DeletePaymentByIdCommand : IRequest
 
         public async Task<Unit> Handle(DeletePaymentByIdCommand request, CancellationToken cancellationToken)
         {
-            ApplicationCore.Domain.Aggregates.AccountAggregate.Payment? entityToDelete = await appDbContext.Payments.Include(x => x.ChargedAccount)
+            var entityToDelete = await appDbContext.Payments.Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
                 .Include(x => x.RecurringPayment)
                 .SingleOrDefaultAsync(predicate: x => x.Id == request.PaymentId, cancellationToken: cancellationToken);
@@ -57,10 +57,11 @@ public class DeletePaymentByIdCommand : IRequest
 
         private async Task DeleteRecurringPaymentAsync(int recurringPaymentId)
         {
-            System.Collections.Generic.List<ApplicationCore.Domain.Aggregates.AccountAggregate.Payment> payments = await appDbContext.Payments.Where(x => x.IsRecurring).Where(x => x.RecurringPayment!.Id == recurringPaymentId).ToListAsync();
+            var payments = await appDbContext.Payments.Where(x => x.IsRecurring).Where(x => x.RecurringPayment!.Id == recurringPaymentId).ToListAsync();
             payments.ForEach(x => x.RemoveRecurringPayment());
             _ = appDbContext.RecurringPayments.Remove(await appDbContext.RecurringPayments.FindAsync(recurringPaymentId));
         }
     }
 }
+
 

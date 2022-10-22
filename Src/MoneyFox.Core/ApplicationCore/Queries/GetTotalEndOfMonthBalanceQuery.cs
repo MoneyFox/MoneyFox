@@ -29,9 +29,9 @@ public class GetTotalEndOfMonthBalanceQuery : IRequest<decimal>
 
         public async Task<decimal> Handle(GetTotalEndOfMonthBalanceQuery request, CancellationToken cancellationToken)
         {
-            List<Account> excluded = await appDbContext.Accounts.AreActive().AreExcluded().ToListAsync(cancellationToken: cancellationToken);
-            decimal balance = await GetCurrentAccountBalanceAsync();
-            foreach (Payment payment in await GetUnclearedPaymentsForThisMonthAsync())
+            var excluded = await appDbContext.Accounts.AreActive().AreExcluded().ToListAsync(cancellationToken: cancellationToken);
+            var balance = await GetCurrentAccountBalanceAsync();
+            foreach (var payment in await GetUnclearedPaymentsForThisMonthAsync())
             {
                 if (payment.ChargedAccount == null)
                 {
@@ -69,7 +69,7 @@ public class GetTotalEndOfMonthBalanceQuery : IRequest<decimal>
 
         private static decimal CalculateBalanceForTransfer(List<Account> excluded, decimal balance, Payment payment)
         {
-            foreach (Account account in excluded)
+            foreach (var account in excluded)
             {
                 if (Equals(objA: account.Id, objB: payment.ChargedAccount.Id))
                 {
@@ -107,4 +107,5 @@ public class GetTotalEndOfMonthBalanceQuery : IRequest<decimal>
         }
     }
 }
+
 

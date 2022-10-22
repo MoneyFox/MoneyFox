@@ -2,7 +2,7 @@ namespace MoneyFox.Infrastructure.DbBackup;
 
 using System.Threading;
 using System.Threading.Tasks;
-using MoneyFox.Infrastructure.DbBackup.OneDriveModels;
+using OneDriveModels;
 
 public interface IOneDriveAuthenticationService
 {
@@ -10,4 +10,5 @@ public interface IOneDriveAuthenticationService
 
     Task LogoutAsync(CancellationToken cancellationToken = default);
 }
+
 

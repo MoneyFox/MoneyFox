@@ -2,11 +2,11 @@ namespace MoneyFox.Ui.Tests.ViewModels.Settings;
 
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using Core.Common.Facades;
+using Core.Common.Interfaces;
 using FluentAssertions;
-using MoneyFox.Core.Common.Facades;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Ui.ViewModels.Settings;
 using NSubstitute;
+using Ui.ViewModels.Settings;
 using Xunit;
 
 [ExcludeFromCodeCoverage]
@@ -16,8 +16,8 @@ public class SettingsViewModelTests
     public void CollectionNotNullAfterCtor()
     {
         // Arrange
-        ISettingsFacade settingsFacade = Substitute.For<ISettingsFacade>();
-        IDialogService dialogService = Substitute.For<IDialogService>();
+        var settingsFacade = Substitute.For<ISettingsFacade>();
+        var dialogService = Substitute.For<IDialogService>();
 
         // Act
         var viewModel = new SettingsViewModel(settingsFacade: settingsFacade, dialogService: dialogService);
@@ -30,8 +30,8 @@ public class SettingsViewModelTests
     public void UpdateSettingsOnSet()
     {
         // Arrange
-        ISettingsFacade settingsFacade = Substitute.For<ISettingsFacade>();
-        IDialogService dialogService = Substitute.For<IDialogService>();
+        var settingsFacade = Substitute.For<ISettingsFacade>();
+        var dialogService = Substitute.For<IDialogService>();
         var viewModel = new SettingsViewModel(settingsFacade: settingsFacade, dialogService: dialogService);
 
         // Act
@@ -42,4 +42,6 @@ public class SettingsViewModelTests
         settingsFacade.Received(1).DefaultCulture = newCulture.Name;
     }
 }
+
+
 

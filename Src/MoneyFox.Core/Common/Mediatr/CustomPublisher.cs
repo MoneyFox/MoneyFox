@@ -40,7 +40,7 @@ public class CustomPublisher : ICustomPublisher
 
     public Task Publish<TNotification>(TNotification notification, PublishStrategy strategy, CancellationToken cancellationToken)
     {
-        return !publishStrategies.TryGetValue(key: strategy, value: out IMediator? mediator)
+        return !publishStrategies.TryGetValue(key: strategy, value: out var mediator)
             ? throw new ArgumentException($"Unknown strategy: {strategy}")
             : mediator.Publish(notification: notification, cancellationToken: cancellationToken);
     }
@@ -51,7 +51,7 @@ public class CustomPublisher : ICustomPublisher
         CancellationToken cancellationToken)
     {
         List<Task> tasks = new();
-        foreach (Func<INotification, CancellationToken, Task> handler in handlers)
+        foreach (var handler in handlers)
         {
             tasks.Add(Task.Run(() => handler(arg1: notification, arg2: cancellationToken)));
         }
@@ -65,7 +65,7 @@ public class CustomPublisher : ICustomPublisher
         CancellationToken cancellationToken)
     {
         List<Task> tasks = new();
-        foreach (Func<INotification, CancellationToken, Task> handler in handlers)
+        foreach (var handler in handlers)
         {
             tasks.Add(Task.Run(() => handler(arg1: notification, arg2: cancellationToken)));
         }
@@ -78,7 +78,7 @@ public class CustomPublisher : ICustomPublisher
         INotification notification,
         CancellationToken cancellationToken)
     {
-        foreach (Func<INotification, CancellationToken, Task> handler in handlers)
+        foreach (var handler in handlers)
         {
             _ = Task.Run(() => handler(arg1: notification, arg2: cancellationToken));
         }
@@ -93,7 +93,7 @@ public class CustomPublisher : ICustomPublisher
     {
         List<Task> tasks = new();
         List<Exception> exceptions = new();
-        foreach (Func<INotification, CancellationToken, Task> handler in handlers)
+        foreach (var handler in handlers)
         {
             try
             {
@@ -129,7 +129,7 @@ public class CustomPublisher : ICustomPublisher
         INotification notification,
         CancellationToken cancellationToken)
     {
-        foreach (Func<INotification, CancellationToken, Task> handler in handlers)
+        foreach (var handler in handlers)
         {
             await handler(arg1: notification, arg2: cancellationToken).ConfigureAwait(false);
         }
@@ -141,7 +141,7 @@ public class CustomPublisher : ICustomPublisher
         CancellationToken cancellationToken)
     {
         List<Exception> exceptions = new();
-        foreach (Func<INotification, CancellationToken, Task> handler in handlers)
+        foreach (var handler in handlers)
         {
             try
             {
@@ -163,4 +163,5 @@ public class CustomPublisher : ICustomPublisher
         }
     }
 }
+
 
