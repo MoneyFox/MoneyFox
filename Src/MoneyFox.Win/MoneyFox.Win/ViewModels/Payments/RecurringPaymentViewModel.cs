@@ -1,13 +1,14 @@
 namespace MoneyFox.Win.ViewModels.Payments;
 
 using System;
+using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Core.ApplicationCore.Domain.Aggregates;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Common.Helpers;
 using Core.Common.Interfaces.Mapping;
 
-public class RecurringPaymentViewModel : ObservableObject
+public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
 {
     private DateTime? endDate;
     private int id;
@@ -98,4 +99,9 @@ public class RecurringPaymentViewModel : ObservableObject
     ///     Boolean indicating whether or not the Last Day Of Month option should be permitted
     /// </summary>
     public bool AllowLastDayOfMonth => RecurringPaymentHelper.AllowLastDayOfMonth(Recurrence);
+
+    public void CreateMappings(Profile configuration)
+    {
+        configuration.CreateMap<RecurringPayment, RecurringPaymentViewModel>();
+    }
 }
