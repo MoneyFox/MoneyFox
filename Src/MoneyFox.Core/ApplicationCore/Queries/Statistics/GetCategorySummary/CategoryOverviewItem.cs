@@ -13,3 +13,4 @@ public class CategoryOverviewItem
     public decimal Percentage { get; set; }
 }
 
+

@@ -43,17 +43,14 @@ public static class LoadBudgetEntry
                 .AsNoTracking()
                 .SingleAsync(cancellationToken);
 
-            ImmutableList<BudgetEntryData.BudgetCategory> budgetEntryCategories = appDbContext.Categories.Where(c => budgetData.IncludedCategories.Contains(c.Id))
+            var budgetEntryCategories = appDbContext.Categories.Where(c => budgetData.IncludedCategories.Contains(c.Id))
                 .Select(c => new BudgetEntryData.BudgetCategory(c.Id, c.Name))
                 .AsNoTracking()
                 .ToImmutableList();
 
-            return new BudgetEntryData(
-                id: budgetData.Id,
-                name: budgetData.Name,
-                spendingLimit: budgetData.SpendingLimit,
-                categories: budgetEntryCategories);
+            return new(id: budgetData.Id, name: budgetData.Name, spendingLimit: budgetData.SpendingLimit, categories: budgetEntryCategories);
         }
     }
 }
+
 

@@ -15,3 +15,4 @@ public class GroupListParameterNullException : Exception
     protected GroupListParameterNullException(SerializationInfo info, StreamingContext context) : base(info: info, context: context) { }
 }
 
+

@@ -2,3 +2,4 @@
 
 public enum BackupRestoreResult { Canceled, BackupNotFound, NewBackupRestored }
 
+

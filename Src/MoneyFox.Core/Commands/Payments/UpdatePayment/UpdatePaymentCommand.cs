@@ -87,7 +87,7 @@ public class UpdatePaymentCommand : IRequest
 
         public async Task<Unit> Handle(UpdatePaymentCommand request, CancellationToken cancellationToken)
         {
-            Payment existingPayment = await appDbContext.Payments.Include(x => x.ChargedAccount)
+            var existingPayment = await appDbContext.Payments.Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
                 .Include(x => x.Category)
                 .Include(x => x.RecurringPayment)
@@ -98,8 +98,8 @@ public class UpdatePaymentCommand : IRequest
                 return Unit.Value;
             }
 
-            Account? chargedAccount = await appDbContext.Accounts.FindAsync(request.ChargedAccountId);
-            Account? targetAccount = await appDbContext.Accounts.FindAsync(request.TargetAccountId);
+            var chargedAccount = await appDbContext.Accounts.FindAsync(request.ChargedAccountId);
+            var targetAccount = await appDbContext.Accounts.FindAsync(request.TargetAccountId);
             existingPayment.UpdatePayment(
                 date: request.Date,
                 amount: request.Amount,
@@ -115,7 +115,7 @@ public class UpdatePaymentCommand : IRequest
             }
             else if (!request.IsRecurring && existingPayment.RecurringPayment != null)
             {
-                System.Collections.Generic.List<Payment> linkedPayments = appDbContext.Payments.Where(x => x.IsRecurring)
+                var linkedPayments = appDbContext.Payments.Where(x => x.IsRecurring)
                     .Where(x => x.RecurringPayment!.Id == existingPayment.RecurringPayment!.Id)
                     .ToList();
 
@@ -157,4 +157,5 @@ public class UpdatePaymentCommand : IRequest
         }
     }
 }
+
 

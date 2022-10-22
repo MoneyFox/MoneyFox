@@ -36,7 +36,7 @@ public class Category : EntityBase, IAggregateRoot
 
         [UsedImplicitly]
         private set;
-    } = new List<Payment>();
+    } = new();
 
     public void UpdateData(string name, string? note = "", bool requireNote = false)
     {
@@ -46,4 +46,5 @@ public class Category : EntityBase, IAggregateRoot
         RequireNote = requireNote;
     }
 }
+
 

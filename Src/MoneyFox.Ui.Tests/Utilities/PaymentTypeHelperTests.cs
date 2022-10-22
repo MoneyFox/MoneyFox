@@ -1,10 +1,9 @@
 ﻿namespace MoneyFox.Ui.Tests.Utilities;
 
-using System;
 using System.Diagnostics.CodeAnalysis;
 using Common.Utilities;
-using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using MoneyFox.Core.Resources;
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Core.Resources;
 using Xunit;
 
 [ExcludeFromCodeCoverage]
@@ -99,4 +98,7 @@ public class PaymentTypeHelperTests
         Assert.Equal(expected: Strings.AddTransferTitle, actual: PaymentTypeHelper.GetViewTitleForType(type: PaymentType.Transfer, isEditMode: false));
     }
 }
+
+
+
 

@@ -35,9 +35,9 @@ public class AppDbContext : DbContext, IAppDbContext
 
     public DbSet<Category> Categories { get; set; } = null!;
 
-    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
     {
-        foreach (Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry<EntityBase> entry in ChangeTracker.Entries<EntityBase>())
+        foreach (var entry in ChangeTracker.Entries<EntityBase>())
         {
             switch (entry.State)
             {
@@ -53,7 +53,7 @@ public class AppDbContext : DbContext, IAppDbContext
             }
         }
 
-        int changeCount = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+        var changeCount = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
         // ignore events if no dispatcher provided
         if (publisher == null || settingsFacade == null)
@@ -93,4 +93,5 @@ public class AppDbContext : DbContext, IAppDbContext
         return SaveChangesAsync().GetAwaiter().GetResult();
     }
 }
+
 

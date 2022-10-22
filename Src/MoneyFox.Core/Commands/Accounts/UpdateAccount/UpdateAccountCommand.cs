@@ -27,7 +27,7 @@ public class UpdateAccountCommand : IRequest
 
         public async Task<Unit> Handle(UpdateAccountCommand request, CancellationToken cancellationToken)
         {
-            Account existingAccount = await appDbContext.Accounts.SingleAsync(a => a.Id == request.Account.Id, cancellationToken: cancellationToken);
+            var existingAccount = await appDbContext.Accounts.SingleAsync(predicate: a => a.Id == request.Account.Id, cancellationToken: cancellationToken);
             existingAccount.Change(name: request.Account.Name, note: request.Account.Note ?? "", isExcluded: request.Account.IsExcluded);
             _ = await appDbContext.SaveChangesAsync(cancellationToken);
 
@@ -35,4 +35,5 @@ public class UpdateAccountCommand : IRequest
         }
     }
 }
+
 

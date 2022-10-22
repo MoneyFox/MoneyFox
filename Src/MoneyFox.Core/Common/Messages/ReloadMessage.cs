@@ -5,3 +5,4 @@ namespace MoneyFox.Core.Common.Messages;
 /// </summary>
 public class ReloadMessage { }
 
+

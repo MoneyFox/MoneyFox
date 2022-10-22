@@ -18,3 +18,4 @@ public class StatisticEntry
     public string Color { get; set; } = string.Empty;
 }
 
+

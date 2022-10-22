@@ -44,3 +44,4 @@ public class GetPaymentsForCategoryQuery : IRequest<List<Payment>>
     }
 }
 
+

@@ -1,12 +1,11 @@
 namespace MoneyFox.Ui.Tests.ViewModels.OverflowMenu;
 
-using System.Threading.Tasks;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Ui.Views.OverflowMenu;
+using Core.Interfaces;
 using NSubstitute;
 using Views.About;
 using Views.Backup;
 using Views.Categories;
+using Views.OverflowMenu;
 using Views.Settings;
 using Xunit;
 
@@ -16,11 +15,10 @@ public class OverflowMenuViewModelTests
     public async Task ShouldNavigateToCategoryPage_WhenCommandIsCalledWithCategoryItem()
     {
         // Capture
-        INavigationService navigationService = Substitute.For<INavigationService>();
+        var navigationService = Substitute.For<INavigationService>();
 
         // Arrange
-        OverflowItemViewModel overflowItem = new()
-        { Name = "Some Name", Type = OverflowMenuItemType.Categories };
+        OverflowItemViewModel overflowItem = new() { Name = "Some Name", Type = OverflowMenuItemType.Categories };
 
         // Act
         OverflowMenuViewModel viewModel = new(navigationService);
@@ -34,11 +32,10 @@ public class OverflowMenuViewModelTests
     public async Task ShouldNavigateToBackupPage_WhenCommandIsCalledWithBackupItem()
     {
         // Capture
-        INavigationService navigationService = Substitute.For<INavigationService>();
+        var navigationService = Substitute.For<INavigationService>();
 
         // Arrange
-        OverflowItemViewModel overflowItem = new()
-        { Name = "Some Name", Type = OverflowMenuItemType.Backup };
+        OverflowItemViewModel overflowItem = new() { Name = "Some Name", Type = OverflowMenuItemType.Backup };
 
         // Act
         OverflowMenuViewModel viewModel = new(navigationService);
@@ -52,11 +49,10 @@ public class OverflowMenuViewModelTests
     public async Task ShouldNavigateToSettingsPage_WhenCommandIsCalledWithSettingsMenuItem()
     {
         // Capture
-        INavigationService navigationService = Substitute.For<INavigationService>();
+        var navigationService = Substitute.For<INavigationService>();
 
         // Arrange
-        OverflowItemViewModel overflowItem = new()
-        { Name = "Some Name", Type = OverflowMenuItemType.Settings };
+        OverflowItemViewModel overflowItem = new() { Name = "Some Name", Type = OverflowMenuItemType.Settings };
 
         // Act
         OverflowMenuViewModel viewModel = new(navigationService);
@@ -70,11 +66,10 @@ public class OverflowMenuViewModelTests
     public async Task ShouldNavigateToAboutPage_WhenCommandIsCalledWithAboutMenuItem()
     {
         // Capture
-        INavigationService navigationService = Substitute.For<INavigationService>();
+        var navigationService = Substitute.For<INavigationService>();
 
         // Arrange
-        OverflowItemViewModel overflowItem = new()
-        { Name = "Some Name", Type = OverflowMenuItemType.About };
+        OverflowItemViewModel overflowItem = new() { Name = "Some Name", Type = OverflowMenuItemType.About };
 
         // Act
         OverflowMenuViewModel viewModel = new(navigationService);
@@ -84,4 +79,7 @@ public class OverflowMenuViewModelTests
         await navigationService.Received(1).NavigateToAsync<AboutPage>();
     }
 }
+
+
+
 

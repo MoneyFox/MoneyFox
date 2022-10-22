@@ -15,3 +15,4 @@ public class NavigationException : Exception
     protected NavigationException(SerializationInfo info, StreamingContext context) : base(info: info, context: context) { }
 }
 
+

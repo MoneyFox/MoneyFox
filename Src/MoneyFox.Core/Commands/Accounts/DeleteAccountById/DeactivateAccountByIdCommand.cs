@@ -26,7 +26,7 @@ public class DeactivateAccountByIdCommand : IRequest
 
         public async Task<Unit> Handle(DeactivateAccountByIdCommand request, CancellationToken cancellationToken)
         {
-            ApplicationCore.Domain.Aggregates.AccountAggregate.Account entityToDeactivate = await appDbContext.Accounts.SingleAsync(a => a.Id == request.AccountId, cancellationToken: cancellationToken);
+            var entityToDeactivate = await appDbContext.Accounts.SingleAsync(predicate: a => a.Id == request.AccountId, cancellationToken: cancellationToken);
             entityToDeactivate.Deactivate();
             _ = await appDbContext.SaveChangesAsync(cancellationToken);
 
@@ -34,4 +34,5 @@ public class DeactivateAccountByIdCommand : IRequest
         }
     }
 }
+
 

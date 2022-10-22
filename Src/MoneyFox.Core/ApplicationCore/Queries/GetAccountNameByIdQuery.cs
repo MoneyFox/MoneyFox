@@ -27,10 +27,11 @@ public class GetAccountNameByIdQuery : IRequest<string>
 
         public async Task<string> Handle(GetAccountNameByIdQuery request, CancellationToken cancellationToken)
         {
-            string? account = await appDbContext.Accounts.Where(x => x.Id == request.AccountId).Select(x => x.Name).FirstOrDefaultAsync(cancellationToken);
+            var account = await appDbContext.Accounts.Where(x => x.Id == request.AccountId).Select(x => x.Name).FirstOrDefaultAsync(cancellationToken);
 
             return account ?? string.Empty;
         }
     }
 }
+
 

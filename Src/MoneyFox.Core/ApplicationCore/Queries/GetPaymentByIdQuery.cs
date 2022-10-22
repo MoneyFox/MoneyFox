@@ -28,7 +28,7 @@ public class GetPaymentByIdQuery : IRequest<Payment>
 
         public async Task<Payment> Handle(GetPaymentByIdQuery request, CancellationToken cancellationToken)
         {
-            Payment? payment = await appDbContext.Payments.Include(x => x.ChargedAccount)
+            var payment = await appDbContext.Payments.Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
                 .Include(x => x.RecurringPayment)
                 .Include(x => x.Category)
@@ -38,4 +38,5 @@ public class GetPaymentByIdQuery : IRequest<Payment>
         }
     }
 }
+
 

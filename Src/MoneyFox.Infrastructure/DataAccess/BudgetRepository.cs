@@ -39,9 +39,10 @@ internal sealed class BudgetRepository : IBudgetRepository
 
     public async Task DeleteAsync(int testBudgetId)
     {
-        Budget budget = await GetAsync(testBudgetId);
+        var budget = await GetAsync(testBudgetId);
         _ = appDbContext.Budgets.Remove(budget);
         _ = await appDbContext.SaveChangesAsync();
     }
 }
+
 

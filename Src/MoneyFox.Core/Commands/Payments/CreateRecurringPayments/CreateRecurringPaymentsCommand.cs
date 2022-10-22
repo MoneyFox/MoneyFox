@@ -23,7 +23,7 @@ public class CreateRecurringPaymentsCommand : IRequest
 
         public async Task<Unit> Handle(CreateRecurringPaymentsCommand request, CancellationToken cancellationToken)
         {
-            System.Collections.Generic.List<ApplicationCore.Domain.Aggregates.RecurringPayment> recurringPayments = await appDbContext.RecurringPayments.Include(x => x.ChargedAccount)
+            var recurringPayments = await appDbContext.RecurringPayments.Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
                 .Include(x => x.Category)
                 .Include(x => x.RelatedPayments)
@@ -31,7 +31,7 @@ public class CreateRecurringPaymentsCommand : IRequest
                 .IsNotExpired()
                 .ToListAsync(cancellationToken);
 
-            System.Collections.Generic.List<Payment> recPaymentsToCreate = recurringPayments.Where(x => x.RelatedPayments.Any())
+            var recPaymentsToCreate = recurringPayments.Where(x => x.RelatedPayments.Any())
                 .Where(x => RecurrenceHelper.CheckIfRepeatable(x.RelatedPayments.OrderByDescending(d => d.Date).First()))
                 .Select(
                     x => new Payment(
@@ -54,4 +54,5 @@ public class CreateRecurringPaymentsCommand : IRequest
         }
     }
 }
+
 

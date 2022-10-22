@@ -47,7 +47,7 @@ public class GetAccountProgressionHandler : IRequestHandler<GetAccountProgressio
 
     public async Task<List<StatisticEntry>> Handle(GetAccountProgressionQuery request, CancellationToken cancellationToken)
     {
-        List<Payment> payments = await appDbContext.Payments.Include(x => x.Category)
+        var payments = await appDbContext.Payments.Include(x => x.Category)
             .Include(x => x.ChargedAccount)
             .HasAccountId(request.AccountId)
             .HasDateLargerEqualsThan(request.StartDate.Date)
@@ -80,4 +80,5 @@ public class GetAccountProgressionHandler : IRequestHandler<GetAccountProgressio
         };
     }
 }
+
 

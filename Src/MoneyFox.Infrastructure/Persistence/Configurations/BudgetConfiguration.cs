@@ -19,9 +19,10 @@ internal class BudgetConfiguration : IEntityTypeConfiguration<Budget>
 
     private static ValueConverter<IReadOnlyList<int>, string> GetSplitStringConverter()
     {
-        return new ValueConverter<IReadOnlyList<int>, string>(
+        return new(
             convertToProviderExpression: i => string.Join(";", i),
             convertFromProviderExpression: s => string.IsNullOrWhiteSpace(s) ? Array.Empty<int>() : s.Split(new[] { ';' }).Select(int.Parse).ToArray());
     }
 }
+
 
