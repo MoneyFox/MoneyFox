@@ -1,22 +1,21 @@
-﻿namespace MoneyFox.Core.Tests.TestFramework
+﻿namespace MoneyFox.Core.Tests.TestFramework;
+
+using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
+using FluentAssertions;
+using FluentAssertions.Execution;
+
+internal static class BudgetAssertion
 {
-
-    using FluentAssertions;
-    using FluentAssertions.Execution;
-    using MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
-
-    internal static class BudgetAssertion
+    public static void AssertBudget(Budget actual, TestData.DefaultBudget expected)
     {
-        public static void AssertBudget(Budget actual, TestData.DefaultBudget expected)
+        using (new AssertionScope())
         {
-            using (new AssertionScope())
-            {
-                actual.Name.Should().Be(expected.Name);
-                actual.SpendingLimit.Value.Should().Be(expected.SpendingLimit);
-                actual.BudgetTimeRange.Should().Be(expected.BudgetTimeRange);
-                actual.IncludedCategories.Should().BeEquivalentTo(expected.Categories);
-            }
+            actual.Name.Should().Be(expected.Name);
+            actual.SpendingLimit.Value.Should().Be(expected.SpendingLimit);
+            actual.BudgetTimeRange.Should().Be(expected.BudgetTimeRange);
+            actual.IncludedCategories.Should().BeEquivalentTo(expected.Categories);
         }
     }
-
 }
+
+

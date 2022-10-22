@@ -1,16 +1,15 @@
-﻿namespace MoneyFox.Core.Tests.TestFramework
+﻿namespace MoneyFox.Core.Tests.TestFramework;
+
+using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
+
+internal static class TestBudgetDbFactory
 {
-
-    using MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
-
-    internal static class TestBudgetDbFactory
+    internal static Budget CreateDbBudget(this TestData.IBudget budget)
     {
-        internal static Budget CreateDbBudget(this TestData.IBudget budget)
-        {
-            var spendingLimit = new SpendingLimit(budget.SpendingLimit);
+        var spendingLimit = new SpendingLimit(budget.SpendingLimit);
 
-            return new Budget(name: budget.Name, spendingLimit: spendingLimit, timeRange: budget.BudgetTimeRange, includedCategories: budget.Categories);
-        }
+        return new(name: budget.Name, spendingLimit: spendingLimit, timeRange: budget.BudgetTimeRange, includedCategories: budget.Categories);
     }
-
 }
+
+

@@ -1,29 +1,27 @@
-﻿namespace MoneyFox.Core.Tests.TestFramework
+﻿namespace MoneyFox.Core.Tests.TestFramework;
+
+using System.Diagnostics.CodeAnalysis;
+using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
+
+[ExcludeFromCodeCoverage]
+internal static class InMemoryAppDbContextFactory
 {
-
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using Microsoft.EntityFrameworkCore;
-    using MoneyFox.Infrastructure.Persistence;
-
-    [ExcludeFromCodeCoverage]
-    internal static class InMemoryAppDbContextFactory
+    public static AppDbContext Create()
     {
-        public static AppDbContext Create()
-        {
-            var options = new DbContextOptionsBuilder<AppDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
-            var context = new AppDbContext(options: options, publisher: null, settingsFacade: null);
-            context.Database.EnsureCreated();
-            context.SaveChanges();
+        var options = new DbContextOptionsBuilder<AppDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
+        var context = new AppDbContext(options: options, publisher: null, settingsFacade: null);
+        context.Database.EnsureCreated();
+        context.SaveChanges();
 
-            return context;
-        }
-
-        public static void Destroy(AppDbContext context)
-        {
-            context.Database.EnsureDeleted();
-            context.Dispose();
-        }
+        return context;
     }
 
+    public static void Destroy(AppDbContext context)
+    {
+        context.Database.EnsureDeleted();
+        context.Dispose();
+    }
 }
+
+

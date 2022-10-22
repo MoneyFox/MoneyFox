@@ -1,14 +1,13 @@
-﻿namespace MoneyFox.Core.Tests.TestFramework
+﻿namespace MoneyFox.Core.Tests.TestFramework;
+
+using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
+
+internal static class TestCategoryDbFactory
 {
-
-    using MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
-
-    internal static class TestCategoryDbFactory
+    internal static Category CreateDbCategory(this TestData.ICategory category)
     {
-        internal static Category CreateDbCategory(this TestData.ICategory category)
-        {
-            return new Category(name: category.Name, note: category.Note, requireNote: category.RequireNote);
-        }
+        return new(name: category.Name, note: category.Note, requireNote: category.RequireNote);
     }
-
 }
+
+

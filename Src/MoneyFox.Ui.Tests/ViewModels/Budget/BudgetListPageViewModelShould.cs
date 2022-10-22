@@ -1,14 +1,12 @@
 namespace MoneyFox.Ui.Tests.ViewModels.Budget;
 
 using System.Collections.Immutable;
-using System.Linq;
-using System.Threading.Tasks;
+using Core.ApplicationCore.Queries.BudgetListLoading;
 using Core.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.Queries.BudgetListLoading;
-using MoneyFox.Ui.ViewModels.Budget;
 using NSubstitute;
+using Ui.ViewModels.Budget;
 using Xunit;
 
 public class BudgetListPageViewModelShould
@@ -19,7 +17,7 @@ public class BudgetListPageViewModelShould
     protected BudgetListPageViewModelShould()
     {
         sender = Substitute.For<ISender>();
-        viewModel = new BudgetListViewModel(sender);
+        viewModel = new(sender);
     }
 
     private static void AssertBudgetListViewModel(BudgetListItemViewModel actualBudgetVm, TestData.IBudget expectedBudgetData)
@@ -49,7 +47,7 @@ public class BudgetListPageViewModelShould
 
         public WithBudgetAvailable()
         {
-            budgetTestData = new TestData.DefaultBudget();
+            budgetTestData = new();
             _ = sender.Send(Arg.Any<LoadBudgetListData.Query>())
                 .Returns(
                     ImmutableList.Create(
@@ -68,7 +66,7 @@ public class BudgetListPageViewModelShould
 
             // Assert
             _ = viewModel.Budgets.Should().HaveCount(1);
-            BudgetListItemViewModel loadedBudget = viewModel.Budgets.Single();
+            var loadedBudget = viewModel.Budgets.Single();
             AssertBudgetListViewModel(actualBudgetVm: loadedBudget, expectedBudgetData: budgetTestData);
         }
 
@@ -81,7 +79,7 @@ public class BudgetListPageViewModelShould
 
             // Assert
             _ = viewModel.Budgets.Should().HaveCount(1);
-            BudgetListItemViewModel loadedBudget = viewModel.Budgets.Single();
+            var loadedBudget = viewModel.Budgets.Single();
             AssertBudgetListViewModel(actualBudgetVm: loadedBudget, expectedBudgetData: budgetTestData);
         }
     }
@@ -125,9 +123,12 @@ public class BudgetListPageViewModelShould
             await viewModel.InitializeCommand.ExecuteAsync(null);
 
             // Assert
-            decimal expectedAmount = viewModel.Budgets.Sum(b => b.SpendingLimit);
+            var expectedAmount = viewModel.Budgets.Sum(b => b.SpendingLimit);
             _ = viewModel.BudgetedAmount.Should().Be(expectedAmount);
         }
     }
 }
+
+
+
 

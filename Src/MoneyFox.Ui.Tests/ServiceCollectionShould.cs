@@ -1,13 +1,9 @@
 namespace MoneyFox.Ui.Tests;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Extensions.DependencyInjection;
+using Core.Common.Interfaces;
+using Core.Interfaces;
+using InversionOfControl;
 using Microsoft.Identity.Client;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Ui.InversionOfControl;
 using NSubstitute;
 using Xunit;
 
@@ -17,8 +13,7 @@ public sealed class ServiceCollectionShould
     public void AllDependenciesPresentAndAccountedFor()
     {
         // Arrange
-        var serviceCollection = new ServiceCollection()
-            .AddSingleton(Substitute.For<IDbPathProvider>())
+        var serviceCollection = new ServiceCollection().AddSingleton(Substitute.For<IDbPathProvider>())
             .AddSingleton(Substitute.For<IStoreOperations>())
             .AddSingleton(Substitute.For<IAppInformation>())
             .AddSingleton(Substitute.For<IFileStore>())
@@ -29,10 +24,10 @@ public sealed class ServiceCollectionShould
 
         // Assert
         List<InvalidOperationException> exceptions = new();
-        ServiceProvider provider = serviceCollection.BuildServiceProvider();
-        foreach (ServiceDescriptor serviceDescriptor in serviceCollection)
+        var provider = serviceCollection.BuildServiceProvider();
+        foreach (var serviceDescriptor in serviceCollection)
         {
-            Type serviceType = serviceDescriptor.ServiceType;
+            var serviceType = serviceDescriptor.ServiceType;
             if (serviceType.Namespace!.StartsWith("MoneyFox"))
             {
                 try
@@ -52,4 +47,7 @@ public sealed class ServiceCollectionShould
         }
     }
 }
+
+
+
 

@@ -1,26 +1,24 @@
 namespace MoneyFox.Ui.Tests.ViewModels;
 
-using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
+using Core.ApplicationCore.UseCases.DbBackup;
+using Core.Common.Facades;
+using Core.Common.Interfaces;
+using Core.Interfaces;
 using FluentAssertions;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.UseCases.DbBackup;
-using MoneyFox.Core.Common.Facades;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Ui.Views.Backup;
 using NSubstitute;
+using Views.Backup;
 using Xunit;
 
 [ExcludeFromCodeCoverage]
 public class BackupViewModelShould
 {
     private readonly IBackupService backupService;
-    private readonly IOneDriveProfileService oneDriveProfileService;
     private readonly IConnectivityAdapter connectivityAdapter;
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
+    private readonly IOneDriveProfileService oneDriveProfileService;
     private readonly ISettingsFacade settingsManager;
     private readonly IToastService toastService;
 
@@ -35,8 +33,7 @@ public class BackupViewModelShould
         mediator = Substitute.For<IMediator>();
         settingsManager = Substitute.For<ISettingsFacade>();
         dialogService = Substitute.For<IDialogService>();
-
-        viewModel = new BackupViewModel(
+        viewModel = new(
             mediator: mediator,
             backupService: backupService,
             dialogService: dialogService,
@@ -84,8 +81,7 @@ public class BackupViewModelShould
             // Arrange
             _ = connectivityAdapter.IsConnected.Returns(true);
             _ = settingsManager.IsLoggedInToBackupService.Returns(true);
-
-            DateTime returnDate = DateTime.Today;
+            var returnDate = DateTime.Today;
             _ = backupService.IsBackupExistingAsync().Returns(true);
             _ = backupService.GetBackupDateAsync().Returns(returnDate);
 
@@ -105,7 +101,7 @@ public class BackupViewModelShould
         public void UpdateSettingsCorrectly_OnLogout()
         {
             // Arrange
-            bool logoutCommandCalled = false;
+            var logoutCommandCalled = false;
             backupService.When(x => x.LogoutAsync()).Do(x => logoutCommandCalled = true);
 
             // Act
@@ -117,4 +113,7 @@ public class BackupViewModelShould
         }
     }
 }
+
+
+
 
