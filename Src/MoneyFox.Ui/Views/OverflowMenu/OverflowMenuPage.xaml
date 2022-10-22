@@ -28,7 +28,7 @@
                                     <Image HeightRequest="15"
                                            WidthRequest="15">
                                         <Image.Source>
-                                            <FontImageSource FontFamily="MaterialIconsRound"
+                                            <FontImageSource FontFamily="MaterialIcons"
                                                              Glyph="{Binding IconGlyph}"
                                                              Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                                         </Image.Source>

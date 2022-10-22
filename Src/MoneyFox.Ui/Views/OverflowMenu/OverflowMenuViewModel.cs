@@ -27,11 +27,11 @@ internal sealed class OverflowMenuViewModel : BaseViewModel
     public List<OverflowItemViewModel> OverflowEntries
         => new()
         {
-            new() { IconGlyph = "savings", Name = Strings.BudgetsTitle, Type = OverflowMenuItemType.Budgets },
-            new() { IconGlyph = "label", Name = Strings.CategoriesTitle, Type = OverflowMenuItemType.Categories },
-            new() { IconGlyph = "backup", Name = Strings.BackupTitle, Type = OverflowMenuItemType.Backup },
-            new() { IconGlyph = "settings", Name = Strings.SettingsTitle, Type = OverflowMenuItemType.Settings },
-            new() { IconGlyph = "info", Name = Strings.AboutTitle, Type = OverflowMenuItemType.About }
+            new() { IconGlyph = IconFont.PiggyBankOutline, Name = Strings.BudgetsTitle, Type = OverflowMenuItemType.Budgets },
+            new() { IconGlyph = IconFont.TagOutline, Name = Strings.CategoriesTitle, Type = OverflowMenuItemType.Categories },
+            new() { IconGlyph = IconFont.CloudUploadOutline, Name = Strings.BackupTitle, Type = OverflowMenuItemType.Backup },
+            new() { IconGlyph = IconFont.CogOutline, Name = Strings.SettingsTitle, Type = OverflowMenuItemType.Settings },
+            new() { IconGlyph = IconFont.InformationOutline, Name = Strings.AboutTitle, Type = OverflowMenuItemType.About }
         };
 
     private async Task GoToSelectedItem(OverflowMenuItemType menuType)
