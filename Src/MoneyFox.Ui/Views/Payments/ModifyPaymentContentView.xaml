@@ -7,6 +7,7 @@
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:payments="clr-namespace:MoneyFox.Ui.ViewModels.Payments"
+    xmlns:views="clr-namespace:MoneyFox.Ui.Views"
     x:Class="MoneyFox.Ui.Views.Payments.ModifyPaymentContentView"
     x:DataType="payments:ModifyPaymentViewModel">
 
@@ -49,9 +50,9 @@
                 <ImageButton Grid.Column="2"
                              Command="{Binding ResetCategoryCommand}">
                     <ImageButton.Source>
-                        <FontImageSource FontFamily="MaterialIconsRound" 
-                                         Glyph="cancel" 
-                                         Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                        <FontImageSource FontFamily="MaterialIcons" 
+                                         Glyph="{x:Static views:IconFont.Close}" 
+                                         Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray900}}" />
                     </ImageButton.Source>
                 </ImageButton>
             </Grid>
