@@ -8,12 +8,16 @@
        xmlns:statistics="clr-namespace:MoneyFox.Ui.Views.Statistics"
        xmlns:overflowMenu="clr-namespace:MoneyFox.Ui.Views.OverflowMenu"
        xmlns:setupAssistant="clr-namespace:MoneyFox.Ui.Views.SetupAssistant"
+       xmlns:views="clr-namespace:MoneyFox.Ui.Views"
        Title="MoneyFox">
 
     <TabBar>
         <Tab Title="{x:Static resources:Strings.HomeTitle}">
             <Tab.Icon>
-                <FontImageSource FontFamily="MaterialIconsRound" Glyph="home" />
+                <FontImageSource FontFamily="MaterialIcons" 
+                                 Glyph="{x:Static views:IconFont.HomeOutline}"
+                                 Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}" />
+
             </Tab.Icon>
             <ShellContent>
                 <dashboard:DashboardPage />
@@ -22,7 +26,9 @@
 
         <Tab Title="{x:Static resources:Strings.StatisticsTitle}">
             <Tab.Icon>
-                <FontImageSource FontFamily="MaterialIconsRound" Glyph="donut_small" />
+                <FontImageSource FontFamily="MaterialIcons" 
+                                 Glyph="{x:Static views:IconFont.ChartArc}"
+                                 Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}" />
             </Tab.Icon>
             <ShellContent Title="{x:Static resources:Strings.StatisticsTitle}">
                 <statistics:StatisticSelectorPage />
@@ -31,7 +37,9 @@
 
         <Tab Title="{x:Static resources:Strings.MoreTitle}">
             <Tab.Icon>
-                <FontImageSource FontFamily="MaterialIconsRound" Glyph="more_horiz" />
+                <FontImageSource FontFamily="MaterialIcons" 
+                                 Glyph="{x:Static views:IconFont.DotsHorizontal}"
+                                 Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}" />
             </Tab.Icon>
             <ShellContent>
                 <overflowMenu:OverflowMenuPage />
@@ -39,7 +47,9 @@
         </Tab>
     </TabBar>
 
-    <ShellContent Route="WelcomePage" IsVisible="False" Shell.FlyoutBehavior="Disabled"
+    <ShellContent Route="WelcomePage"
+                  IsVisible="False"
+                  Shell.FlyoutBehavior="Disabled"
                   ContentTemplate="{DataTemplate setupAssistant:WelcomePage}" />
 
 </Shell>
