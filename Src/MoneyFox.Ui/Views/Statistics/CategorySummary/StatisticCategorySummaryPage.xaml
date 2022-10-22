@@ -3,12 +3,18 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:statistics="clr-namespace:MoneyFox.Ui.ViewModels.Statistics"
     x:Name="StatisticCategorySummary"
     x:DataType="statistics:StatisticCategorySummaryViewModel"
     xmlns:views="clr-namespace:MoneyFox.Ui.Views" >
 
+    <ContentPage.Resources>
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
+    </ContentPage.Resources>
+
+   
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,66" Margin="0,0,12,0">
             <Label Style="{StaticResource PageTitle}"
@@ -76,7 +82,7 @@
                                                      Spacing="0"
                                                      VerticalOptions="Center">
                                             <Label
-                                                Text="{Binding Value, Converter={StaticResource AmountValueConverter}}" />
+                                                Text="{Binding Value, Converter={StaticResource AmountFormatConverter}}" />
                                             <Label Text="{Binding Percentage, StringFormat=' ({0} %)'}" />
 
                                         </StackLayout>
@@ -85,7 +91,7 @@
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="{x:Static resources:Strings.MonthlyAverageLabel}" />
                                         <Label
-                                            Text="{Binding Average, Converter={StaticResource AmountValueConverter}}" />
+                                            Text="{Binding Average, Converter={StaticResource AmountFormatConverter}}" />
                                     </StackLayout>
                                 </StackLayout>
                             </controls:Card>
