@@ -82,5 +82,9 @@
             <_Parameter1>MoneyFox.Ui.Tests</_Parameter1>
         </AssemblyAttribute>
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="ViewModels\Dialogs\" />
+    </ItemGroup>
     
 </Project>

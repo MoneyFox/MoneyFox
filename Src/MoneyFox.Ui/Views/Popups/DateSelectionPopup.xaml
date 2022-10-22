@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:views="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     CanBeDismissedByTappingOutsideOfPopup="false"
     Size="330, 400"
     Color="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
@@ -14,15 +15,11 @@
             <Label Text="{x:Static resources:Strings.SelectDateLabel}"
                    Style="{DynamicResource TextTitle}" />
 
-            <Label Margin="0,6,0,0"
-                   Text="{x:Static resources:Strings.TimeRangeStartLabel}"
-                   HorizontalOptions="StartAndExpand" />
+            <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Strings.TimeRangeStartLabel}"
+                                       DateField="{Binding StartDate}" />
 
-            <DatePicker Date="{Binding StartDate}" />
-
-            <Label Margin="0,6,0,0"
-                   Text="{x:Static resources:Strings.TimeRangeEndLabel}" />
-            <DatePicker Date="{Binding EndDate}" />
+            <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Strings.TimeRangeEndLabel}"
+                                       DateField="{Binding EndDate}" />
         </StackLayout>
 
 

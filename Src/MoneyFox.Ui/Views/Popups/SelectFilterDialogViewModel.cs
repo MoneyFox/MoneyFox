@@ -1,9 +1,10 @@
-﻿namespace MoneyFox.Ui.ViewModels.Dialogs;
+namespace MoneyFox.Ui.Views.Popups;
 
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using MoneyFox.Core.Common.Messages;
+using MoneyFox.Ui.ViewModels;
 
 public interface ISelectFilterDialogViewModel
 {

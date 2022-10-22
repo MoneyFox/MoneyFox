@@ -105,14 +105,9 @@
                             IsToggled="{Binding SelectedPayment.RecurringPayment.IsEndless}" />
                 </Grid>
 
-                <StackLayout Spacing="6"
-                    IsVisible="{Binding SelectedPayment.RecurringPayment.IsEndless, Converter={StaticResource Inverter}}">
-                    <Label Text="{x:Static resources:Strings.EnddateLabel}"
-                           Margin="0,5,0,0"/>
-
-                    <DatePicker Date="{Binding SelectedPayment.RecurringPayment.EndDate}"
-                                Format="D" />
-                </StackLayout>
+                <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Strings.EnddateLabel}"
+                                           DateField="{Binding SelectedPayment.RecurringPayment.EndDate}"
+                                           IsVisible="{Binding SelectedPayment.RecurringPayment.IsEndless, Converter={StaticResource Inverter}}"/>
 
             </StackLayout>
         </VerticalStackLayout>
