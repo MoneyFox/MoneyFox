@@ -41,7 +41,7 @@
                                         <Label Text="{Binding Name}" Style="{DynamicResource TextSubHead}" />
                                     </HorizontalStackLayout>
                                     <Label Text="{Binding Description}"
-                                            Style="{DynamicResource TonedDownLabelStyle}" />
+                                            Style="{DynamicResource ToneDownLabelStyle}" />
                                 </VerticalStackLayout>
                             </controls:Card>
                         </Grid>
