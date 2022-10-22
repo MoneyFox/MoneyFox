@@ -4,7 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
+    xmlns:statistics="clr-namespace:MoneyFox.Ui.ViewModels.Statistics"
     x:Name="StatisticCategorySummary"
+    x:DataType="statistics:StatisticCategorySummaryViewModel"
     Visual="Material">
 
     <Shell.TitleView>

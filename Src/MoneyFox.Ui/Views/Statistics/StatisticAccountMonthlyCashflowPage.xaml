@@ -3,7 +3,7 @@
              x:Class="MoneyFox.Ui.Views.Statistics.StatisticAccountMonthlyCashFlowPage"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              xmlns:forms="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
-             xmlns:statistics="using:MoneyFox.Ui.ViewModels.Statistics"
+             xmlns:statistics="clr-namespace:MoneyFox.Ui.ViewModels.Statistics"
              x:DataType="statistics:StatisticAccountMonthlyCashFlowViewModel">
 
     <Shell.TitleView>
