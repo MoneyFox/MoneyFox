@@ -46,13 +46,15 @@
                                                         CommandParameter="{Binding .}" />
                                                 </StackLayout.GestureRecognizers>
 
-                                                <Grid>
-                                                    <Label Style="{StaticResource TextBody}"
+                                                <Grid ColumnDefinitions="*, Auto">
+                                                    <Label Grid.Column="0" 
+                                                           Style="{StaticResource TextBody}"
                                                            HorizontalTextAlignment="Start"
                                                            VerticalTextAlignment="Start"
                                                            Text="{Binding Date, Converter={StaticResource DateFormatConverter}}" />
 
-                                                    <Label Style="{StaticResource TextBody}"
+                                                    <Label Grid.Column="1"
+                                                           Style="{StaticResource TextBody}"
                                                            HorizontalTextAlignment="End"
                                                            VerticalTextAlignment="Start"
                                                            Text="{Binding ., Converter={StaticResource PaymentAmountConverter}}" />
