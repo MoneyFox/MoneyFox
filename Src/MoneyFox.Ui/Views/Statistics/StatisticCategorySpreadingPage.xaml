@@ -5,7 +5,7 @@
     xmlns:maui="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:statistics="clr-namespace:MoneyFox.Ui.ViewModels.Statistics"
-    Visual="Material"
+    xmlns:views="clr-namespace:MoneyFox.Ui.Views"
     x:DataType="statistics:StatisticCategorySpreadingViewModel"
     x:Class="MoneyFox.Ui.Views.Statistics.StatisticCategorySpreadingPage">
 
@@ -30,8 +30,8 @@
                          VerticalOptions="Center"
                          WidthRequest="66">
                 <ImageButton.Source>
-                    <FontImageSource FontFamily="MaterialIconsRound"
-                                     Glyph="filter_alt"
+                    <FontImageSource FontFamily="MaterialIcons"
+                                     Glyph="{x:Static views:IconFont.FilterOutline}"
                                      Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                 </ImageButton.Source>
             </ImageButton>

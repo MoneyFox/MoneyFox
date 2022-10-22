@@ -65,13 +65,14 @@
                                                            Style="{StaticResource TextBodySecondary}"
                                                            Text="{Binding Category.Name}" />
 
-                                                    <StackLayout HorizontalOptions="End" Orientation="Horizontal">
+                                                    <HorizontalStackLayout HorizontalOptions="End">
                                                         <Image HeightRequest="15"
                                                                IsVisible="{Binding IsTransfer}"
                                                                WidthRequest="15">
                                                             <Image.Source>
-                                                                <FontImageSource FontFamily="MaterialIconsRound"
-                                                                    Glyph="sync_alt" />
+                                                                <FontImageSource FontFamily="MaterialIcons"
+                                                                                 Glyph="{x:Static views:IconFont.SwapHorizontal}"
+                                                                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                                                             </Image.Source>
                                                         </Image>
 
@@ -79,8 +80,9 @@
                                                                IsVisible="{Binding IsRecurring}"
                                                                WidthRequest="15">
                                                             <Image.Source>
-                                                                <FontImageSource FontFamily="MaterialIconsRound"
-                                                                    Glyph="repeat" />
+                                                                <FontImageSource FontFamily="MaterialIcons"
+                                                                                 Glyph="{x:Static views:IconFont.RepeatVariant}"
+                                                                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                                                             </Image.Source>
                                                         </Image>
 
@@ -88,11 +90,12 @@
                                                                IsVisible="{Binding IsCleared}"
                                                                WidthRequest="15">
                                                             <Image.Source>
-                                                                <FontImageSource FontFamily="MaterialIconsRound"
-                                                                    Glyph="done" />
+                                                                <FontImageSource FontFamily="MaterialIcons"
+                                                                                 Glyph="{x:Static views:IconFont.Check}"
+                                                                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                                                             </Image.Source>
                                                         </Image>
-                                                    </StackLayout>
+                                                    </HorizontalStackLayout>
                                                 </Grid>
 
                                                 <Label Style="{StaticResource TextBodySecondary}"

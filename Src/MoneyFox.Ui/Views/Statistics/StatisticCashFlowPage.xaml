@@ -5,6 +5,7 @@
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:maui="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
     xmlns:statistics="clr-namespace:MoneyFox.Ui.ViewModels.Statistics"
+    xmlns:views="clr-namespace:MoneyFox.Ui.Views"
     x:DataType="statistics:StatisticCashFlowViewModel">
 
     <Shell.TitleView>
@@ -24,8 +25,8 @@
                          VerticalOptions="Center"
                          WidthRequest="66">
                 <ImageButton.Source>
-                    <FontImageSource FontFamily="MaterialIconsRound"
-                                     Glyph="filter_alt"
+                    <FontImageSource FontFamily="MaterialIcons"
+                                     Glyph="{x:Static views:IconFont.FilterOutline}"
                                      Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                 </ImageButton.Source>
             </ImageButton>

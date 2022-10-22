@@ -7,7 +7,7 @@
     xmlns:statistics="clr-namespace:MoneyFox.Ui.ViewModels.Statistics"
     x:Name="StatisticCategorySummary"
     x:DataType="statistics:StatisticCategorySummaryViewModel"
-    Visual="Material">
+    xmlns:views="clr-namespace:MoneyFox.Ui.Views" >
 
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,66">
@@ -26,8 +26,8 @@
                          VerticalOptions="Center"
                          WidthRequest="66">
                 <ImageButton.Source>
-                    <FontImageSource FontFamily="MaterialIconsRound"
-                                     Glyph="filter_alt"
+                    <FontImageSource FontFamily="MaterialIcons"
+                                     Glyph="{x:Static views:IconFont.FilterOutline}"
                                      Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}"/>
                 </ImageButton.Source>
             </ImageButton>

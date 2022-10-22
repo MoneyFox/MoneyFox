@@ -17,7 +17,6 @@ public static class MauiProgram
                     fonts.AddFont(filename: "OpenSans-Regular.ttf", alias: "OpenSansRegular");
                     fonts.AddFont(filename: "OpenSans-Semibold.ttf", alias: "OpenSansSemibold");
                     fonts.AddFont(filename: "ProductSans-Regular.ttf", alias: "Product");
-                    fonts.AddFont(filename: "MaterialIconsRound-Regular.otf", alias: "MaterialIconsRound");
                     fonts.AddFont(filename: "materialdesignicons.ttf", alias: "MaterialIcons");
                 })
             .ConfigureMauiHandlers(handlers =>

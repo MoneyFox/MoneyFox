@@ -7,6 +7,7 @@
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:payments="clr-namespace:MoneyFox.Ui.ViewModels.Payments"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
+    xmlns:views="clr-namespace:MoneyFox.Ui.Views"
     x:Class="MoneyFox.Ui.Views.Payments.PaymentListPage">
 
     <ContentPage.Resources>
@@ -27,8 +28,8 @@
                          VerticalOptions="Center"
                          WidthRequest="66">
                 <ImageButton.Source>
-                    <FontImageSource FontFamily="MaterialIconsRound"
-                                     Glyph="filter_alt"
+                    <FontImageSource FontFamily="MaterialIcons"
+                                     Glyph="{x:Static views:IconFont.FilterOutline}"
                                      Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                 </ImageButton.Source>
             </ImageButton>
@@ -44,7 +45,9 @@
                          WidthRequest="66"
                          Style="{StaticResource PrimaryImageButton}">
                 <ImageButton.Source>
-                    <FontImageSource FontFamily="MaterialIconsRound" Glyph="add" Color="White" />
+                    <FontImageSource FontFamily="MaterialIcons"
+                                     Glyph="{x:Static views:IconFont.Plus}" 
+                                     Color="White" />
                 </ImageButton.Source>
             </ImageButton>
         </Grid>
@@ -111,8 +114,9 @@
                                                                IsVisible="{Binding IsTransfer}"
                                                                WidthRequest="15">
                                                             <Image.Source>
-                                                                <FontImageSource FontFamily="MaterialIconsRound"
-                                                                    Glyph="sync_alt" />
+                                                                <FontImageSource FontFamily="MaterialIcons"
+                                                                                 Glyph="{x:Static views:IconFont.SwapHorizontal}"
+                                                                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                                                             </Image.Source>
                                                         </Image>
 
@@ -120,8 +124,9 @@
                                                                IsVisible="{Binding IsRecurring}"
                                                                WidthRequest="15">
                                                             <Image.Source>
-                                                                <FontImageSource FontFamily="MaterialIconsRound"
-                                                                    Glyph="repeat" />
+                                                                <FontImageSource FontFamily="MaterialIcons"
+                                                                                 Glyph="{x:Static views:IconFont.RepeatVariant}"
+                                                                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                                                             </Image.Source>
                                                         </Image>
 
@@ -129,8 +134,9 @@
                                                                IsVisible="{Binding IsCleared}"
                                                                WidthRequest="15">
                                                             <Image.Source>
-                                                                <FontImageSource FontFamily="MaterialIconsRound"
-                                                                    Glyph="done" />
+                                                                <FontImageSource FontFamily="MaterialIcons"
+                                                                                 Glyph="{x:Static views:IconFont.Check}"
+                                                                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                                                             </Image.Source>
                                                         </Image>
                                                     </StackLayout>
