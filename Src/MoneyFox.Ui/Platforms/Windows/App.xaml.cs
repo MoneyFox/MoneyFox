@@ -3,11 +3,9 @@
 
 namespace MoneyFox.Ui.Platforms.Windows;
 
-using Infrastructure.Adapters;
 using Microsoft.Identity.Client;
 using MoneyFox.Core.Common.Interfaces;
 using MoneyFox.Core.Interfaces;
-using MoneyFox.Infrastructure.DbBackup;
 using Src;
 
 /// <summary>
@@ -34,13 +32,13 @@ public partial class App : MauiWinUIApplication
 
     private static void AddServices(IServiceCollection services)
     {
-        services.AddTransient<IAppInformation, WindowsAppInformation>();
-        services.AddTransient<IStoreOperations, MarketplaceOperations>();
-        services.AddTransient<IFileStore, WindowsFileStore>();
-        services.AddTransient<IDbPathProvider, DbPathProvider>();
+        _ = services.AddTransient<IAppInformation, WindowsAppInformation>();
+        _ = services.AddTransient<IStoreOperations, MarketplaceOperations>();
+        _ = services.AddTransient<IFileStore, WindowsFileStore>();
+        _ = services.AddTransient<IDbPathProvider, DbPathProvider>();
 
-        var publicClientApplication = PublicClientApplicationBuilder.Create(MSAL_APPLICATION_ID).WithRedirectUri($"msal{MSAL_APPLICATION_ID}://auth").Build();
+        IPublicClientApplication publicClientApplication = PublicClientApplicationBuilder.Create(MSAL_APPLICATION_ID).WithRedirectUri($"msal{MSAL_APPLICATION_ID}://auth").Build();
         TokenCacheHelper.EnableSerialization(publicClientApplication.UserTokenCache);
-        services.AddSingleton(publicClientApplication);
+        _ = services.AddSingleton(publicClientApplication);
     }
 }

@@ -18,8 +18,7 @@
             </Border.StrokeShape>
 
             <Grid>
-                <controls:BorderlessEntry x:Name="AmountField" 
-                       Text="{Binding EntryText}"
+                <controls:BorderlessEntry Text="{Binding EntryText}"
                        Placeholder="{Binding EntryPlaceholder}" />
             </Grid>
         </Border>

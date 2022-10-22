@@ -2,29 +2,46 @@ namespace MoneyFox.Ui.Controls;
 
 public partial class TextEntry : ContentView
 {
+    public static readonly BindableProperty TextFieldTitleProperty = BindableProperty.Create(
+        propertyName: nameof(TextFieldTitle),
+        returnType: typeof(string),
+        declaringType: typeof(TextEntry),
+        defaultValue: string.Empty);
+
+    public static readonly BindableProperty EntryTextProperty = BindableProperty.Create(
+        propertyName: nameof(EntryText),
+        returnType: typeof(string),
+        declaringType: typeof(TextEntry),
+        defaultValue: string.Empty,
+        defaultBindingMode: BindingMode.TwoWay);
+
+    public static readonly BindableProperty EntryPlaceholderProperty = BindableProperty.Create(
+        propertyName: nameof(EntryPlaceholder),
+        returnType: typeof(string),
+        declaringType: typeof(TextEntry),
+        defaultValue: string.Empty);
+
     public TextEntry()
     {
         InitializeComponent();
     }
 
-    public static readonly BindableProperty TextFieldTitleProperty = BindableProperty.Create(nameof(TextFieldTitle), typeof(string), typeof(TextEntry), string.Empty);
-    public static readonly BindableProperty EntryTextProperty = BindableProperty.Create(nameof(EntryText), typeof(string), typeof(TextEntry), string.Empty, BindingMode.TwoWay);
-    public static readonly BindableProperty EntryPlaceholderProperty = BindableProperty.Create(nameof(EntryPlaceholder), typeof(string), typeof(TextEntry), string.Empty);
-
     public string TextFieldTitle
     {
-        get => (string)GetValue(TextEntry.TextFieldTitleProperty);
-        set => SetValue(TextEntry.TextFieldTitleProperty, value);
+        get => (string)GetValue(TextFieldTitleProperty);
+        set => SetValue(property: TextFieldTitleProperty, value: value);
     }
+
     public string EntryText
     {
-        get => (string)GetValue(TextEntry.EntryTextProperty);
-        set => SetValue(TextEntry.EntryTextProperty, value);
+        get => (string)GetValue(EntryTextProperty);
+        set => SetValue(property: EntryTextProperty, value: value);
     }
 
     public string EntryPlaceholder
     {
-        get => (string)GetValue(TextEntry.EntryPlaceholderProperty);
-        set => SetValue(TextEntry.EntryPlaceholderProperty, value);
+        get => (string)GetValue(EntryPlaceholderProperty);
+        set => SetValue(property: EntryPlaceholderProperty, value: value);
     }
 }
+

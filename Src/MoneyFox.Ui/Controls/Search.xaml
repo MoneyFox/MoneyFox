@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"      
+             xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
+             xmlns:views="clr-namespace:MoneyFox.Ui.Views"
+             x:Name="this"
+             x:Class="MoneyFox.Ui.Controls.Search">
+    
+    <VerticalStackLayout Spacing="6"
+            BindingContext="{x:Reference this}">
+        <Label Text="{Binding TextFieldTitle}" />
+
+        <Border Padding="20,0" 
+            BackgroundColor="{AppThemeBinding Dark={StaticResource ControlBackgroundColorDark}, Light={StaticResource ControlBackgroundColorLight}}"
+            BindingContext="{x:Reference this}">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10"/>
+            </Border.StrokeShape>
+
+            <Grid ColumnDefinitions="*, Auto">
+                <controls:BorderlessEntry x:Name="SearchEntry"
+                                          TextChanged="SearchEntry_OnTextChanged"
+                                          Placeholder="{Binding SearchPlaceholder}" />
+                
+                <Image Grid.Column="1" HeightRequest="20" WidthRequest="20">
+                    <Image.Source>
+                        <FontImageSource FontFamily="MaterialIcons"
+                                         Glyph="{x:Static views:IconFont.Magnify}"
+                                         Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                    </Image.Source>
+                </Image>
+            </Grid>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>

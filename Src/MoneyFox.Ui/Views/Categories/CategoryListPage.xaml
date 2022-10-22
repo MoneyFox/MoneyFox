@@ -8,10 +8,10 @@
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     Shell.NavBarHasShadow="False"
     Title="{x:Static resources:Strings.CategoriesTitle}"
-    x:Class="MoneyFox.Ui.Views.Categories.CategoryListPage">
+    x:Class="MoneyFox.Ui.Views.Categories.CategoryListPage" >
 
     <ContentPage.Content>
-        <Grid IsClippedToBounds="False" RowDefinitions="40, 40, *">
+        <Grid IsClippedToBounds="False" RowDefinitions="40, 70, *">
 
             <Button
                 Margin="0,0,6,0"
@@ -20,12 +20,10 @@
                 VerticalOptions="Center"
                 Command="{Binding GoToAddCategoryCommand}" />
 
-            <SearchBar Grid.Row="1"
-                       x:Name="categorySearchBar"
-                       Margin="0,0,0,0"
-                       Text="{Binding SearchTerm}"
-                       SearchCommand="{Binding SearchCategoryCommand}"
-                       SearchCommandParameter="{Binding Text, Source={x:Reference categorySearchBar}}" />
+            <controls:Search Grid.Row="1" 
+                             Margin="12,0,12,0"
+                             SearchPlaceholder="{x:Static resources:Strings.SearchLabel}"
+                             SearchCommand="{Binding SearchCategoryCommand}" />
 
             <CollectionView Grid.Row="2"
                             x:Name="CategoryCollectionView"

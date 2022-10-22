@@ -24,8 +24,6 @@ internal class CategoryListViewModel : BaseViewModel
 
     private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> categories = new();
 
-    private string searchTerm = string.Empty;
-
     public CategoryListViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService)
     {
         this.mediator = mediator;
@@ -44,20 +42,9 @@ internal class CategoryListViewModel : BaseViewModel
         }
     }
 
-    public RelayCommand GoToAddCategoryCommand => new(async () => await Shell.Current.GoToModalAsync(Routes.AddCategoryRoute));
+    public AsyncRelayCommand GoToAddCategoryCommand => new(async () => await Shell.Current.GoToModalAsync(Routes.AddCategoryRoute));
 
     public AsyncRelayCommand<string> SearchCategoryCommand => new(async searchTerm => await SearchCategoryAsync(searchTerm));
-
-    public string SearchTerm
-    {
-        get => searchTerm;
-
-        set
-        {
-            searchTerm = value;
-            SearchCategoryCommand.Execute(searchTerm);
-        }
-    }
 
     public AsyncRelayCommand<CategoryViewModel> GoToEditCategoryCommand
         => new(
