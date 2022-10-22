@@ -13,6 +13,7 @@ using MoneyFox.Ui.Views.Backup;
 using MoneyFox.Ui.Views.Dashboard;
 using MoneyFox.Ui.Views.OverflowMenu;
 using MoneyFox.Ui.Views.Popups;
+using MoneyFox.Ui.Views.Statistics.Selector;
 using ViewModels.Accounts;
 using ViewModels.Budget;
 using ViewModels.Categories;
