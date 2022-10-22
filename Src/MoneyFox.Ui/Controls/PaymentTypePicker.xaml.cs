@@ -14,7 +14,9 @@ public partial class PaymentTypePicker : ContentView
     public static readonly BindableProperty PaymentTypeSourceProperty = BindableProperty.Create(
         propertyName: nameof(PaymentTypeSource),
         returnType: typeof(IList),
-        declaringType: typeof(PaymentTypePicker));
+        declaringType: typeof(PaymentTypePicker),
+        defaultValue: default,
+        defaultBindingMode: BindingMode.OneWay);
 
     public static readonly BindableProperty SelectedTypeProperty = BindableProperty.Create(
         propertyName: nameof(SelectedType),
