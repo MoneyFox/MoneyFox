@@ -16,7 +16,7 @@
     <ContentPage.Content>
         <Grid IsClippedToBounds="False" RowDefinitions="40, *">
             <Button
-                Margin="0,0,6,0"
+                Margin="0,0,12,0"
                 HorizontalOptions="End"
                 Text="{x:Static resources:Strings.AddAccountLabel}"
                 VerticalOptions="Center"

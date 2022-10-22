@@ -12,7 +12,6 @@ using MoneyFox.Core.Commands.Accounts.DeleteAccountById;
 using MoneyFox.Core.Common.Interfaces;
 using MoneyFox.Core.Common.Messages;
 using MoneyFox.Core.Resources;
-using Views.Accounts;
 
 internal sealed class AccountListViewModel : BaseViewModel
 {
@@ -43,17 +42,15 @@ internal sealed class AccountListViewModel : BaseViewModel
         }
     }
 
-    public RelayCommand GoToAddAccountCommand => new(async () => await Shell.Current.GoToModalAsync(Routes.AddAccountRoute));
+    public RelayCommand GoToAddAccountCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddAccountRoute));
 
     public AsyncRelayCommand<AccountViewModel> GoToEditAccountCommand
-        => new(
-            async accountViewModel => await Shell.Current.Navigation.PushModalAsync(
-                new NavigationPage(new EditAccountPage(accountViewModel.Id)) { BarBackgroundColor = Colors.Transparent }));
+        => new(async avm => await Shell.Current.GoToAsync($"{Routes.EditAccountRoute}?accountId={avm.Id}"));
 
     public AsyncRelayCommand<AccountViewModel> GoToTransactionListCommand
-        => new(async accountViewModel => await Shell.Current.GoToAsync($"{Routes.PaymentListRoute}?accountId={accountViewModel.Id}"));
+        => new(async avm => await Shell.Current.GoToAsync($"{Routes.PaymentListRoute}?accountId={avm.Id}"));
 
-    public AsyncRelayCommand<AccountViewModel> DeleteAccountCommand => new(async accountViewModel => await DeleteAccountAsync(accountViewModel));
+    public AsyncRelayCommand<AccountViewModel> DeleteAccountCommand => new(async avm => await DeleteAccountAsync(avm));
 
     protected override void OnActivated()
     {
