@@ -4,10 +4,10 @@
        xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-       xmlns:dashboard="using:MoneyFox.Ui.Views.Dashboard"
-       xmlns:statistics="using:MoneyFox.Ui.Views.Statistics"
-       xmlns:overflowMenu="using:MoneyFox.Ui.Views.OverflowMenu"
-       xmlns:setupAssistant="using:MoneyFox.Ui.Views.SetupAssistant"
+       xmlns:dashboard="clr-namespace:MoneyFox.Ui.Views.Dashboard"
+       xmlns:statistics="clr-namespace:MoneyFox.Ui.Views.Statistics"
+       xmlns:overflowMenu="clr-namespace:MoneyFox.Ui.Views.OverflowMenu"
+       xmlns:setupAssistant="clr-namespace:MoneyFox.Ui.Views.SetupAssistant"
        Title="MoneyFox">
 
     <TabBar>
