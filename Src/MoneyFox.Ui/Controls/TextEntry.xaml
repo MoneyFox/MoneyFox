@@ -1,25 +1,26 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
+
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"      
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
              x:Name="this"
              x:Class="MoneyFox.Ui.Controls.TextEntry">
-    
+
     <VerticalStackLayout Spacing="6"
-            BindingContext="{x:Reference this}">
+                         BindingContext="{x:Reference this}">
         <Label Text="{Binding TextFieldTitle}" />
 
-        <Border Padding="20,0" 
-            BackgroundColor="{AppThemeBinding Dark={StaticResource ControlBackgroundColorDark}, Light={StaticResource ControlBackgroundColorLight}}"
-            BindingContext="{x:Reference this}">
+        <Border Padding="20,0"
+                BackgroundColor="{AppThemeBinding Dark={StaticResource ControlBackgroundColorDark}, Light={StaticResource ControlBackgroundColorLight}}"
+                BindingContext="{x:Reference this}">
 
             <Border.StrokeShape>
-                <RoundRectangle CornerRadius="10"/>
+                <RoundRectangle CornerRadius="10" />
             </Border.StrokeShape>
 
             <Grid>
                 <controls:BorderlessEntry Text="{Binding EntryText}"
-                       Placeholder="{Binding EntryPlaceholder}" />
+                                          Placeholder="{Binding EntryPlaceholder}" />
             </Grid>
         </Border>
     </VerticalStackLayout>

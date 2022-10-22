@@ -1,33 +1,49 @@
 namespace MoneyFox.Ui.Controls;
 
 using System.Collections;
-using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 
 public partial class PaymentTypePicker : ContentView
 {
+    public static readonly BindableProperty PickerTitleProperty = BindableProperty.Create(
+        propertyName: nameof(PickerTitle),
+        returnType: typeof(string),
+        declaringType: typeof(PaymentTypePicker),
+        defaultValue: string.Empty);
+
+    public static readonly BindableProperty PaymentTypeSourceProperty = BindableProperty.Create(
+        propertyName: nameof(PaymentTypeSource),
+        returnType: typeof(IList),
+        declaringType: typeof(PaymentTypePicker));
+
+    public static readonly BindableProperty SelectedTypeProperty = BindableProperty.Create(
+        propertyName: nameof(SelectedType),
+        returnType: typeof(PaymentType),
+        declaringType: typeof(PaymentTypePicker),
+        defaultValue: default,
+        defaultBindingMode: BindingMode.TwoWay);
+
     public PaymentTypePicker()
     {
         InitializeComponent();
     }
 
-    public static readonly BindableProperty PickerTitleProperty = BindableProperty.Create(nameof(PickerTitle), typeof(string), typeof(PaymentTypePicker), string.Empty, BindingMode.OneWay);
-    public static readonly BindableProperty PaymentTypeSourceProperty = BindableProperty.Create(nameof(PaymentTypeSource), typeof(IList), typeof(PaymentTypePicker));
-    public static readonly BindableProperty SelectedTypeProperty = BindableProperty.Create(nameof(SelectedType), typeof(PaymentType), typeof(PaymentTypePicker), default, BindingMode.TwoWay);
-
     public string PickerTitle
     {
-        get => (string)GetValue(PaymentTypePicker.PickerTitleProperty);
-        set => SetValue(PaymentTypePicker.PickerTitleProperty, value);
+        get => (string)GetValue(PickerTitleProperty);
+        set => SetValue(property: PickerTitleProperty, value: value);
     }
+
     public IList PaymentTypeSource
     {
-        get => (IList)GetValue(PaymentTypePicker.PaymentTypeSourceProperty);
-        set => SetValue(PaymentTypePicker.PaymentTypeSourceProperty, value);
+        get => (IList)GetValue(PaymentTypeSourceProperty);
+        set => SetValue(property: PaymentTypeSourceProperty, value: value);
     }
 
     public PaymentType SelectedType
     {
-        get => (PaymentType)GetValue(PaymentTypePicker.SelectedTypeProperty);
-        set => SetValue(PaymentTypePicker.SelectedTypeProperty, value);
+        get => (PaymentType)GetValue(SelectedTypeProperty);
+        set => SetValue(property: SelectedTypeProperty, value: value);
     }
 }
+

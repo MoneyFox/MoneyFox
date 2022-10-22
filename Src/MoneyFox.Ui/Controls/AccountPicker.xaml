@@ -11,10 +11,10 @@
         <converter:AccountNameConverter x:Key="AccountNameConverter" />
     </ContentView.Resources>
 
-    <VerticalStackLayout Spacing="6" 
-                BindingContext="{x:Reference this}"> 
+    <VerticalStackLayout Spacing="6"
+                         BindingContext="{x:Reference this}">
         <Label Text="{Binding PickerTitle}" />
-        
+
         <Border Padding="20,0"
                 BackgroundColor="{AppThemeBinding Dark={StaticResource ControlBackgroundColorDark}, Light={StaticResource ControlBackgroundColorLight}}">
 
