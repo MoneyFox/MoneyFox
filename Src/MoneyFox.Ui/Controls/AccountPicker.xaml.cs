@@ -20,7 +20,7 @@ public partial class AccountPicker : ContentView
 
     public static readonly BindableProperty SelectedAccountProperty = BindableProperty.Create(
         propertyName: nameof(SelectedAccount),
-        returnType: typeof(AccountViewModel),
+        returnType: typeof(object),
         declaringType: typeof(AccountPicker),
         defaultValue: default,
         defaultBindingMode: BindingMode.TwoWay);
@@ -42,9 +42,9 @@ public partial class AccountPicker : ContentView
         set => SetValue(property: AccountsSourceProperty, value: value);
     }
 
-    public AccountViewModel SelectedAccount
+    public object SelectedAccount
     {
-        get => (AccountViewModel)GetValue(SelectedAccountProperty);
+        get => GetValue(SelectedAccountProperty);
         set => SetValue(property: SelectedAccountProperty, value: value);
     }
 }

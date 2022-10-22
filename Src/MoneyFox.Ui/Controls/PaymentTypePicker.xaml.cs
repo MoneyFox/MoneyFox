@@ -20,7 +20,7 @@ public partial class PaymentTypePicker : ContentView
 
     public static readonly BindableProperty SelectedTypeProperty = BindableProperty.Create(
         propertyName: nameof(SelectedType),
-        returnType: typeof(PaymentType),
+        returnType: typeof(object),
         declaringType: typeof(PaymentTypePicker),
         defaultValue: default,
         defaultBindingMode: BindingMode.TwoWay);
@@ -42,9 +42,9 @@ public partial class PaymentTypePicker : ContentView
         set => SetValue(property: PaymentTypeSourceProperty, value: value);
     }
 
-    public PaymentType SelectedType
+    public object SelectedType
     {
-        get => (PaymentType)GetValue(SelectedTypeProperty);
+        get => GetValue(SelectedTypeProperty);
         set => SetValue(property: SelectedTypeProperty, value: value);
     }
 }

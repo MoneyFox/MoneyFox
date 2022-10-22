@@ -15,7 +15,6 @@
         <ResourceDictionary>
             <converter:InverseBoolConverter x:Key="Inverter" />
             <converter:NoCategorySelectedConverter x:Key="NoCategorySelectedConverter" />
-            <converter:DecimalConverter x:Key="DecimalConverter" />
         </ResourceDictionary>
     </ContentView.Resources>
 
@@ -24,7 +23,7 @@
 
             <controls:PaymentTypePicker PickerTitle="{x:Static resources:Strings.PaymentTypeLabel}"
                     PaymentTypeSource="{Binding PaymentTypeList}"
-                    SelectedType="{Binding SelectedPayment.Type, Mode=TwoWay}" />
+                    SelectedType="{Binding SelectedPayment.Type}" />
 
             <controls:AccountPicker PickerTitle="{Binding AccountHeader, Mode=OneWay}"
                     AccountsSource="{Binding ChargedAccounts}"
@@ -37,7 +36,7 @@
             
             <controls:AmountEntry 
                 AmountFieldTitle="{x:Static resources:Strings.AmountLabel}"
-                Amount="{Binding SelectedPayment.Amount, Converter={StaticResource DecimalConverter}}"
+                Amount="{Binding SelectedPayment.Amount}"
                 EntryPlaceholder="{x:Static resources:Strings.AmountLabel}" />
 
             <Label Text="{x:Static resources:Strings.CategoryLabel}" />
