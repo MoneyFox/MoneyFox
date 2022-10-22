@@ -7,7 +7,7 @@
     xmlns:accounts="using:MoneyFox.Ui.ViewModels.Accounts"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     Title="{x:Static resources:Strings.AccountsTitle}" >
-F
+
     <ContentPage.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
         <converter:BalanceColorConverter x:Key="BalanceColorConverter" />
