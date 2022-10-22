@@ -57,10 +57,9 @@
                 </ImageButton>
             </Grid>
 
-            <Label Text="{x:Static resources:Strings.DateLabel}" />
-            <DatePicker Date="{Binding SelectedPayment.Date}"
-                        Format="D" />
-
+            <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Strings.DateLabel}"
+                                       DateField="{Binding SelectedPayment.Date}"/>
+            
             <controls:TextEntry 
                 TextFieldTitle="{x:Static resources:Strings.NoteLabel}"
                 EntryPlaceholder="{x:Static resources:Strings.NoteLabel}"
