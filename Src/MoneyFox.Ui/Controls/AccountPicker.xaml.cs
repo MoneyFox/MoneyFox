@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Controls;
 
 using System.Collections;
+using MoneyFox.Ui.ViewModels.Accounts;
 
 public partial class AccountPicker : ContentView
 {
@@ -10,23 +11,24 @@ public partial class AccountPicker : ContentView
     }
 
     public static readonly BindableProperty PickerTitleProperty = BindableProperty.Create(nameof(PickerTitle), typeof(string), typeof(AccountPicker), string.Empty, BindingMode.OneWay);
-    public static readonly BindableProperty AccountsSourceProperty = BindableProperty.Create(nameof(AccountsSource), typeof(IList), typeof(AccountPicker));
-    public static readonly BindableProperty SelectedAccountProperty = BindableProperty.Create(nameof(SelectedAccount), typeof(object), typeof(AccountPicker), BindingMode.TwoWay);
+    public static readonly BindableProperty AccountsSourceProperty = BindableProperty.Create(nameof(AccountsSource), typeof(IList), typeof(AccountPicker), default, BindingMode.OneWay);
+    public static readonly BindableProperty SelectedAccountProperty = BindableProperty.Create(nameof(SelectedAccount), typeof(AccountViewModel), typeof(AccountPicker), default, BindingMode.TwoWay);
 
     public string PickerTitle
     {
-        get => (string)GetValue(AccountPicker.PickerTitleProperty);
-        set => SetValue(AccountPicker.PickerTitleProperty, value);
-    }
-    public IList AccountsSource
-    {
-        get => (IList)GetValue(AccountPicker.AccountsSourceProperty);
-        set => SetValue(AccountPicker.AccountsSourceProperty, value);
+        get => (string)GetValue(PickerTitleProperty);
+        set => SetValue(PickerTitleProperty, value);
     }
 
-    public object SelectedAccount
+    public IList AccountsSource
     {
-        get => GetValue(AccountPicker.SelectedAccountProperty);
-        set => SetValue(AccountPicker.SelectedAccountProperty, value);
+        get => (IList)GetValue(AccountsSourceProperty);
+        set => SetValue(AccountsSourceProperty, value);
+    }
+
+    public AccountViewModel SelectedAccount
+    {
+        get => (AccountViewModel)GetValue(SelectedAccountProperty);
+        set => SetValue(SelectedAccountProperty, value);
     }
 }

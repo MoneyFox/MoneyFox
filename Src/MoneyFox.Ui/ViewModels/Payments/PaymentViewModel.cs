@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.ViewModels.Payments;
+namespace MoneyFox.Ui.ViewModels.Payments;
 
 using Accounts;
 using AutoMapper;

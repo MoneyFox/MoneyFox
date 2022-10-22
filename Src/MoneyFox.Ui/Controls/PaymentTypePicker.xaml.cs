@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Controls;
 
 using System.Collections;
+using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 
 public partial class PaymentTypePicker : ContentView
 {
@@ -11,7 +12,7 @@ public partial class PaymentTypePicker : ContentView
 
     public static readonly BindableProperty PickerTitleProperty = BindableProperty.Create(nameof(PickerTitle), typeof(string), typeof(PaymentTypePicker), string.Empty, BindingMode.OneWay);
     public static readonly BindableProperty PaymentTypeSourceProperty = BindableProperty.Create(nameof(PaymentTypeSource), typeof(IList), typeof(PaymentTypePicker));
-    public static readonly BindableProperty SelectedTypeProperty = BindableProperty.Create(nameof(SelectedType), typeof(object), typeof(PaymentTypePicker), BindingMode.TwoWay);
+    public static readonly BindableProperty SelectedTypeProperty = BindableProperty.Create(nameof(SelectedType), typeof(PaymentType), typeof(PaymentTypePicker), default, BindingMode.TwoWay);
 
     public string PickerTitle
     {
@@ -24,9 +25,9 @@ public partial class PaymentTypePicker : ContentView
         set => SetValue(PaymentTypePicker.PaymentTypeSourceProperty, value);
     }
 
-    public object SelectedType
+    public PaymentType SelectedType
     {
-        get => GetValue(PaymentTypePicker.SelectedTypeProperty);
+        get => (PaymentType)GetValue(PaymentTypePicker.SelectedTypeProperty);
         set => SetValue(PaymentTypePicker.SelectedTypeProperty, value);
     }
 }
