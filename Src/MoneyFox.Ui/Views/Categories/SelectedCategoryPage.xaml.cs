@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Ui.Views.Categories;
 
-using MoneyFox.Core.Resources;
+using Core.Resources;
 using ViewModels.Categories;
 
 public partial class SelectCategoryPage : ContentPage
@@ -27,3 +27,4 @@ public partial class SelectCategoryPage : ContentPage
         await ViewModel.InitializeAsync();
     }
 }
+

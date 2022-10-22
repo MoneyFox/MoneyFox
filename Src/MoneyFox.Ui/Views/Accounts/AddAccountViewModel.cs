@@ -1,17 +1,19 @@
-using MoneyFox.Ui.ViewModels.Accounts;
-
 namespace MoneyFox.Ui.Views.Accounts;
 
+using Core.Commands.Accounts.CreateAccount;
+using Core.Common.Interfaces;
+using Core.Interfaces;
 using MediatR;
-using MoneyFox.Core.Commands.Accounts.CreateAccount;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Interfaces;
+using ViewModels.Accounts;
 
 internal sealed class AddAccountViewModel : ModifyAccountViewModel
 {
     private readonly IMediator mediator;
 
-    public AddAccountViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService) : base(dialogService: dialogService, mediator: mediator, navigationService: navigationService)
+    public AddAccountViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService) : base(
+        dialogService: dialogService,
+        mediator: mediator,
+        navigationService: navigationService)
     {
         this.mediator = mediator;
     }
@@ -26,3 +28,4 @@ internal sealed class AddAccountViewModel : ModifyAccountViewModel
                 isExcluded: SelectedAccountVm.IsExcluded));
     }
 }
+

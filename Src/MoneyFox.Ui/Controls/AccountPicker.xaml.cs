@@ -1,7 +1,6 @@
 namespace MoneyFox.Ui.Controls;
 
 using System.Collections;
-using ViewModels.Accounts;
 
 public partial class AccountPicker : ContentView
 {
@@ -46,4 +45,5 @@ public partial class AccountPicker : ContentView
         set => SetValue(property: SelectedAccountProperty, value: value);
     }
 }
+
 

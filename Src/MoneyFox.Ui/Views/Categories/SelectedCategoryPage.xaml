@@ -20,11 +20,11 @@
                 VerticalOptions="Center"
                 Command="{Binding GoToAddCategoryCommand}" />
 
-            <controls:Search Grid.Row="1" 
+            <controls:Search Grid.Row="1"
                              Margin="12,0,12,0"
                              SearchPlaceholder="{x:Static resources:Strings.SearchLabel}"
                              SearchCommand="{Binding SearchCategoryCommand}" />
-            
+
             <CollectionView Grid.Row="2"
                             x:Name="CategoryCollectionView"
                             IsGrouped="true"

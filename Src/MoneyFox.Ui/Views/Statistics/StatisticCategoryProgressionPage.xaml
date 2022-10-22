@@ -16,7 +16,7 @@
     </ContentPage.Resources>
 
     <Shell.TitleView>
-        <Grid ColumnDefinitions="*,66" Margin="0,0,12,0" >
+        <Grid ColumnDefinitions="*,66" Margin="0,0,12,0">
             <Label Style="{StaticResource PageTitle}"
                    HorizontalOptions="Start"
                    VerticalOptions="Center"
@@ -41,7 +41,7 @@
 
     <ContentPage.Content>
         <Grid RowDefinitions="auto, auto, *" Padding="15,0,15,15">
-            
+
             <Label Style="{StaticResource TextBodySecondary}"
                    Text="{Binding Title}" />
 

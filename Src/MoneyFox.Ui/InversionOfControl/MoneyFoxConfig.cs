@@ -1,19 +1,12 @@
 namespace MoneyFox.Ui.InversionOfControl;
 
 using Common.Services;
+using Core.Common.Interfaces;
+using Core.Interfaces;
+using Core.InversionOfControl;
 using Infrastructure.Adapters;
 using Mapping;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Core.InversionOfControl;
 using MoneyFox.Infrastructure.InversionOfControl;
-using MoneyFox.Ui.Views.About;
-using MoneyFox.Ui.Views.Accounts;
-using MoneyFox.Ui.Views.Backup;
-using MoneyFox.Ui.Views.Dashboard;
-using MoneyFox.Ui.Views.OverflowMenu;
-using MoneyFox.Ui.Views.Popups;
-using MoneyFox.Ui.Views.Statistics.Selector;
 using ViewModels.Accounts;
 using ViewModels.Budget;
 using ViewModels.Categories;
@@ -21,6 +14,13 @@ using ViewModels.Payments;
 using ViewModels.Settings;
 using ViewModels.SetupAssistant;
 using ViewModels.Statistics;
+using Views.About;
+using Views.Accounts;
+using Views.Backup;
+using Views.Dashboard;
+using Views.OverflowMenu;
+using Views.Popups;
+using Views.Statistics.Selector;
 
 public sealed class MoneyFoxConfig
 {
@@ -29,7 +29,6 @@ public sealed class MoneyFoxConfig
         RegisterServices(serviceCollection);
         RegisterViewModels(serviceCollection);
         RegisterAdapters(serviceCollection);
-
         _ = serviceCollection.AddSingleton(_ => AutoMapperFactory.Create());
         new CoreConfig().Register(serviceCollection);
         InfrastructureConfig.Register(serviceCollection);
@@ -84,3 +83,4 @@ public sealed class MoneyFoxConfig
             .AddTransient<ISettingsAdapter, SettingsAdapter>();
     }
 }
+

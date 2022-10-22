@@ -46,3 +46,4 @@ public partial class BudgetProgressView
         }
     }
 }
+

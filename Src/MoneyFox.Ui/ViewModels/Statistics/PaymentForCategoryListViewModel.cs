@@ -6,10 +6,9 @@ using AutoMapper;
 using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Core.ApplicationCore.Queries;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.Queries;
 using Payments;
-using Views.Payments;
 
 internal sealed class PaymentForCategoryListViewModel : BaseViewModel
 {
@@ -68,3 +67,4 @@ internal sealed class PaymentForCategoryListViewModel : BaseViewModel
         PaymentList = new(dailyItems);
     }
 }
+

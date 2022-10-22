@@ -1,7 +1,6 @@
 namespace MoneyFox.Ui.Views.Statistics;
 
-using MoneyFox.Ui.Views.Statistics.Selector;
-using ViewModels.Statistics;
+using Selector;
 
 public partial class StatisticSelectorPage
 {
@@ -11,3 +10,4 @@ public partial class StatisticSelectorPage
         BindingContext = App.GetViewModel<StatisticSelectorViewModel>();
     }
 }
+

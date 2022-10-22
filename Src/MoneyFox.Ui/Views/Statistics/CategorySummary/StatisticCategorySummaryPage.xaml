@@ -8,13 +8,13 @@
     xmlns:statistics="clr-namespace:MoneyFox.Ui.ViewModels.Statistics"
     x:Name="StatisticCategorySummary"
     x:DataType="statistics:StatisticCategorySummaryViewModel"
-    xmlns:views="clr-namespace:MoneyFox.Ui.Views" >
+    xmlns:views="clr-namespace:MoneyFox.Ui.Views">
 
     <ContentPage.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
     </ContentPage.Resources>
 
-   
+
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,66" Margin="0,0,12,0">
             <Label Style="{StaticResource PageTitle}"
@@ -33,7 +33,7 @@
                 <ImageButton.Source>
                     <FontImageSource FontFamily="MaterialIcons"
                                      Glyph="{x:Static views:IconFont.FilterOutline}"
-                                     Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}"/>
+                                     Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                 </ImageButton.Source>
             </ImageButton>
         </Grid>
@@ -62,7 +62,7 @@
                             </Grid.GestureRecognizers>
 
 
-                            <controls:Card Padding="12" >
+                            <controls:Card Padding="12">
                                 <StackLayout HorizontalOptions="FillAndExpand">
                                     <Grid>
                                         <Grid.ColumnDefinitions>

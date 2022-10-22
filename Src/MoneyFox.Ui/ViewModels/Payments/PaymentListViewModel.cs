@@ -7,13 +7,12 @@ using AutoMapper;
 using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Core.ApplicationCore.Queries;
+using Core.ApplicationCore.Queries.GetPaymentsForAccountIdQuery;
+using Core.Common.Messages;
+using Core.Resources;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using MoneyFox.Core.ApplicationCore.Queries;
-using MoneyFox.Core.ApplicationCore.Queries.GetPaymentsForAccountIdQuery;
-using MoneyFox.Core.Common.Messages;
-using MoneyFox.Core.Resources;
-using Views.Payments;
 
 internal sealed class PaymentListViewModel : BaseViewModel
 {
@@ -82,7 +81,9 @@ internal sealed class PaymentListViewModel : BaseViewModel
     protected override void OnActivated()
     {
         Messenger.Register<PaymentListViewModel, ReloadMessage>(recipient: this, handler: async (r, m) => await OnAppearingAsync(SelectedAccount.Id));
-        Messenger.Register<PaymentListViewModel, PaymentListFilterChangedMessage>(recipient: this, handler: async (r, m) => await LoadPaymentsByMessageAsync(m));
+        Messenger.Register<PaymentListViewModel, PaymentListFilterChangedMessage>(
+            recipient: this,
+            handler: async (r, m) => await LoadPaymentsByMessageAsync(m));
     }
 
     protected override void OnDeactivated()
@@ -142,3 +143,4 @@ internal sealed class PaymentListViewModel : BaseViewModel
                 .Sum(x => x.Amount));
     }
 }
+

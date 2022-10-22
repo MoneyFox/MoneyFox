@@ -22,11 +22,11 @@
         <ScrollView Padding="15,0,15,0">
             <StackLayout Spacing="6">
                 <controls:TextEntry EntryPlaceholder="{x:Static resources:Strings.BudgetNameLabel}"
-                       EntryText="{Binding SelectedBudget.Name}" />
+                                    EntryText="{Binding SelectedBudget.Name}" />
 
                 <controls:AmountEntry x:Name="AmountEntry"
-                       EntryPlaceholder="{x:Static resources:Strings.MonthlySpendingLimitLabel}"
-                       Amount="{Binding SelectedBudget.SpendingLimit, Converter={StaticResource DecimalConverter}}" />
+                                      EntryPlaceholder="{x:Static resources:Strings.MonthlySpendingLimitLabel}"
+                                      Amount="{Binding SelectedBudget.SpendingLimit, Converter={StaticResource DecimalConverter}}" />
 
                 <Picker Title="{x:Static resources:Strings.EvaluationTimeRangeLabel}"
                         ItemsSource="{Binding TimeRangeCollection}"

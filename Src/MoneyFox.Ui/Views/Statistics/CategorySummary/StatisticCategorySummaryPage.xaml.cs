@@ -1,8 +1,8 @@
 namespace MoneyFox.Ui.Views.Statistics.CategorySummary;
 
 using CommunityToolkit.Maui.Views;
-using MoneyFox.Ui.ViewModels.Statistics;
-using MoneyFox.Ui.Views.Popups;
+using Popups;
+using ViewModels.Statistics;
 
 public partial class StatisticCategorySummaryPage
 {
@@ -21,3 +21,4 @@ public partial class StatisticCategorySummaryPage
         Shell.Current.ShowPopup(popup);
     }
 }
+

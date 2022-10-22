@@ -22,19 +22,19 @@
         <VerticalStackLayout Spacing="12">
 
             <controls:PaymentTypePicker PickerTitle="{x:Static resources:Strings.PaymentTypeLabel}"
-                    PaymentTypeSource="{Binding PaymentTypeList}"
-                    SelectedType="{Binding SelectedPayment.Type}" />
+                                        PaymentTypeSource="{Binding PaymentTypeList}"
+                                        SelectedType="{Binding SelectedPayment.Type}" />
 
             <controls:AccountPicker PickerTitle="{Binding AccountHeader, Mode=OneWay}"
-                    AccountsSource="{Binding ChargedAccounts}"
-                    SelectedAccount="{Binding SelectedPayment.ChargedAccount}" />
+                                    AccountsSource="{Binding ChargedAccounts}"
+                                    SelectedAccount="{Binding SelectedPayment.ChargedAccount}" />
 
             <controls:AccountPicker PickerTitle="{x:Static resources:Strings.TargetAccountLabel}"
-                AccountsSource="{Binding TargetAccounts}"
-                SelectedAccount="{Binding SelectedPayment.TargetAccount}"
-                IsVisible="{Binding SelectedPayment.IsTransfer}" />
-            
-            <controls:AmountEntry 
+                                    AccountsSource="{Binding TargetAccounts}"
+                                    SelectedAccount="{Binding SelectedPayment.TargetAccount}"
+                                    IsVisible="{Binding SelectedPayment.IsTransfer}" />
+
+            <controls:AmountEntry
                 AmountFieldTitle="{x:Static resources:Strings.AmountLabel}"
                 Amount="{Binding SelectedPayment.Amount}"
                 EntryPlaceholder="{x:Static resources:Strings.AmountLabel}" />
@@ -49,21 +49,21 @@
                 <ImageButton Grid.Column="2"
                              Command="{Binding ResetCategoryCommand}">
                     <ImageButton.Source>
-                        <FontImageSource FontFamily="MaterialIcons" 
-                                         Glyph="{x:Static views:IconFont.Close}" 
+                        <FontImageSource FontFamily="MaterialIcons"
+                                         Glyph="{x:Static views:IconFont.Close}"
                                          Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray900}}" />
                     </ImageButton.Source>
                 </ImageButton>
             </Grid>
 
             <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Strings.DateLabel}"
-                                       DateField="{Binding SelectedPayment.Date}"/>
-            
-            <controls:TextEntry 
+                                       DateField="{Binding SelectedPayment.Date}" />
+
+            <controls:TextEntry
                 TextFieldTitle="{x:Static resources:Strings.NoteLabel}"
                 EntryPlaceholder="{x:Static resources:Strings.NoteLabel}"
                 EntryText="{Binding SelectedPayment.Note}" />
- 
+
             <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*, Auto">
                 <Label Grid.Column="0"
                        VerticalOptions="Center"
@@ -106,7 +106,7 @@
 
                 <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Strings.EnddateLabel}"
                                            DateField="{Binding SelectedPayment.RecurringPayment.EndDate}"
-                                           IsVisible="{Binding SelectedPayment.RecurringPayment.IsEndless, Converter={StaticResource Inverter}}"/>
+                                           IsVisible="{Binding SelectedPayment.RecurringPayment.IsEndless, Converter={StaticResource Inverter}}" />
 
             </StackLayout>
         </VerticalStackLayout>

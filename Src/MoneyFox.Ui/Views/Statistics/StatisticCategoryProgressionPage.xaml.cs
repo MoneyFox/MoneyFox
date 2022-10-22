@@ -20,3 +20,4 @@ public partial class StatisticCategoryProgressionPage : ContentPage
         Shell.Current.ShowPopup(popup);
     }
 }
+

@@ -2,37 +2,58 @@ namespace MoneyFox.Ui.Controls;
 
 public partial class AmountEntry : ContentView
 {
+    public static readonly BindableProperty AmountFieldTitleProperty = BindableProperty.Create(
+        propertyName: nameof(AmountFieldTitle),
+        returnType: typeof(string),
+        declaringType: typeof(AmountEntry),
+        defaultValue: string.Empty);
+
+    public static readonly BindableProperty AmountProperty = BindableProperty.Create(
+        propertyName: nameof(Amount),
+        returnType: typeof(string),
+        declaringType: typeof(AmountEntry),
+        defaultValue: string.Empty,
+        defaultBindingMode: BindingMode.TwoWay);
+
+    public static readonly BindableProperty EntryPlaceholderProperty = BindableProperty.Create(
+        propertyName: nameof(EntryPlaceholder),
+        returnType: typeof(string),
+        declaringType: typeof(AmountEntry),
+        defaultValue: string.Empty);
+
+    public static readonly BindableProperty IsReadOnlyProperty = BindableProperty.Create(
+        propertyName: nameof(IsReadOnly),
+        returnType: typeof(bool),
+        declaringType: typeof(AmountEntry),
+        defaultValue: false);
+
     public AmountEntry()
     {
         InitializeComponent();
     }
 
-    public static readonly BindableProperty AmountFieldTitleProperty = BindableProperty.Create(nameof(AmountFieldTitle), typeof(string), typeof(AmountEntry), string.Empty);
-    public static readonly BindableProperty AmountProperty = BindableProperty.Create(nameof(Amount), typeof(string), typeof(AmountEntry), string.Empty, BindingMode.TwoWay);
-    public static readonly BindableProperty EntryPlaceholderProperty = BindableProperty.Create(nameof(EntryPlaceholder), typeof(string), typeof(AmountEntry), string.Empty);
-    public static readonly BindableProperty IsReadOnlyProperty = BindableProperty.Create(nameof(IsReadOnly), typeof(bool), typeof(AmountEntry), false);
-
     public string AmountFieldTitle
     {
-        get => (string)GetValue(AmountEntry.AmountFieldTitleProperty);
-        set => SetValue(AmountEntry.AmountFieldTitleProperty, value);
+        get => (string)GetValue(AmountFieldTitleProperty);
+        set => SetValue(property: AmountFieldTitleProperty, value: value);
     }
+
     public string Amount
     {
-        get => (string)GetValue(AmountEntry.AmountProperty);
-        set => SetValue(AmountEntry.AmountProperty, value);
+        get => (string)GetValue(AmountProperty);
+        set => SetValue(property: AmountProperty, value: value);
     }
 
     public string EntryPlaceholder
     {
-        get => (string)GetValue(AmountEntry.EntryPlaceholderProperty);
-        set => SetValue(AmountEntry.EntryPlaceholderProperty, value);
+        get => (string)GetValue(EntryPlaceholderProperty);
+        set => SetValue(property: EntryPlaceholderProperty, value: value);
     }
 
     public bool IsReadOnly
     {
-        get => (bool)GetValue(AmountEntry.IsReadOnlyProperty);
-        set => SetValue(AmountEntry.IsReadOnlyProperty, value);
+        get => (bool)GetValue(IsReadOnlyProperty);
+        set => SetValue(property: IsReadOnlyProperty, value: value);
     }
 
     private void AmountFieldGotFocus(object sender, FocusEventArgs e)
@@ -41,3 +62,4 @@ public partial class AmountEntry : ContentView
         AmountField.SelectionLength = AmountField.Text != null ? AmountField.Text.Length : 0;
     }
 }
+

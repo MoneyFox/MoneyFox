@@ -2,15 +2,15 @@
 
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Core.ApplicationCore.Queries.BudgetEntryLoading;
+using Core.ApplicationCore.UseCases.BudgetDeletion;
+using Core.ApplicationCore.UseCases.BudgetUpdate;
+using Core.Common.Extensions;
+using Core.Common.Interfaces;
+using Core.Common.Messages;
+using Core.Interfaces;
+using Core.Resources;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.Queries.BudgetEntryLoading;
-using MoneyFox.Core.ApplicationCore.UseCases.BudgetDeletion;
-using MoneyFox.Core.ApplicationCore.UseCases.BudgetUpdate;
-using MoneyFox.Core.Common.Extensions;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Common.Messages;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Core.Resources;
 
 internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
 {
@@ -65,3 +65,4 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
         await navigationService.GoBackFromModalAsync();
     }
 }
+

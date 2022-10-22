@@ -1,6 +1,6 @@
 namespace MoneyFox.Ui.Infrastructure.Adapters;
 
-using MoneyFox.Core.Interfaces;
+using Core.Interfaces;
 using Serilog;
 
 public class EmailAdapter : IEmailAdapter
@@ -22,7 +22,14 @@ public class EmailAdapter : IEmailAdapter
     {
         try
         {
-            var message = new EmailMessage { Subject = subject, Body = body, To = recipients, Attachments = new List<EmailAttachment>() };
+            var message = new EmailMessage
+            {
+                Subject = subject,
+                Body = body,
+                To = recipients,
+                Attachments = new()
+            };
+
             foreach (var path in filePaths)
             {
                 message.Attachments.Add(new(fullPath: path, contentType: "txt"));
@@ -36,3 +43,4 @@ public class EmailAdapter : IEmailAdapter
         }
     }
 }
+

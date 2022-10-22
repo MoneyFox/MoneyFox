@@ -4,13 +4,12 @@ using System.Collections.ObjectModel;
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Core.ApplicationCore.Queries;
+using Core.Common.Interfaces;
+using Core.Common.Messages;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.Queries;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Common.Messages;
-using MoneyFox.Ui;
-using MoneyFox.Ui.ViewModels;
-using MoneyFox.Ui.ViewModels.Accounts;
+using ViewModels;
+using ViewModels.Accounts;
 
 internal class DashboardViewModel : BaseViewModel
 {
@@ -142,7 +141,7 @@ internal class DashboardViewModel : BaseViewModel
         {
             isRunning = true;
             Accounts = mapper.Map<ObservableCollection<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
-            foreach (AccountViewModel account in Accounts)
+            foreach (var account in Accounts)
             {
                 account.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(account.Id));
             }
@@ -160,3 +159,4 @@ internal class DashboardViewModel : BaseViewModel
         IsActive = true;
     }
 }
+

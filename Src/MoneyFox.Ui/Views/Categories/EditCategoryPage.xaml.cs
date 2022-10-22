@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Ui.Views.Categories;
 
-using MoneyFox.Core.Resources;
+using Core.Resources;
 using ViewModels.Categories;
 
 public partial class EditCategoryPage
@@ -39,3 +39,4 @@ public partial class EditCategoryPage
         await ViewModel.InitializeAsync(categoryId);
     }
 }
+

@@ -2,12 +2,12 @@
 
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Core.ApplicationCore.Queries;
+using Core.Common.Interfaces;
+using Core.Common.Messages;
+using Core.Interfaces;
+using Core.Resources;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.Queries;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Common.Messages;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Core.Resources;
 
 internal abstract partial class ModifyAccountViewModel : BaseViewModel
 {
@@ -71,3 +71,4 @@ internal abstract partial class ModifyAccountViewModel : BaseViewModel
         await navigationService.GoBackFromModalAsync();
     }
 }
+

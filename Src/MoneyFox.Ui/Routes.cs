@@ -1,11 +1,11 @@
 namespace MoneyFox.Ui;
 
-using MoneyFox.Ui.Views.Backup;
-using MoneyFox.Ui.Views.Dashboard;
 using Views.About;
 using Views.Accounts;
+using Views.Backup;
 using Views.Budget;
 using Views.Categories;
+using Views.Dashboard;
 using Views.Payments;
 using Views.Settings;
 using Views.SetupAssistant;
@@ -41,3 +41,4 @@ public class Routes
     public static string AddBudgetRoute => nameof(AddBudgetPage);
     public static string EditBudgetRoute => nameof(EditBudgetPage);
 }
+

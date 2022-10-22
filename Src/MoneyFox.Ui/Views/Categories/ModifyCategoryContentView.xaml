@@ -1,17 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <ContentView
     x:Class="MoneyFox.Ui.Views.Categories.ModifyCategoryContentView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-    xmlns:controls="clr-namespace:MoneyFox.Ui.Controls" >
+    xmlns:controls="clr-namespace:MoneyFox.Ui.Controls">
 
     <ContentView.Content>
         <StackLayout>
-            <controls:TextEntry EntryPlaceholder="{x:Static resources:Strings.CategoryNameLabel}" 
+            <controls:TextEntry EntryPlaceholder="{x:Static resources:Strings.CategoryNameLabel}"
                                 EntryText="{Binding SelectedCategory.Name}" />
 
-            <controls:TextEntry EntryPlaceholder="{x:Static resources:Strings.NoteLabel}" 
+            <controls:TextEntry EntryPlaceholder="{x:Static resources:Strings.NoteLabel}"
                                 EntryText="{Binding SelectedCategory.Note}" />
 
             <StackLayout CompressedLayout.IsHeadless="True" Orientation="Horizontal">

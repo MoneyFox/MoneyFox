@@ -48,7 +48,7 @@
                                                 </StackLayout.GestureRecognizers>
 
                                                 <Grid ColumnDefinitions="*, Auto">
-                                                    <Label Grid.Column="0" 
+                                                    <Label Grid.Column="0"
                                                            Style="{StaticResource TextBody}"
                                                            HorizontalTextAlignment="Start"
                                                            VerticalTextAlignment="Start"
@@ -72,8 +72,8 @@
                                                                WidthRequest="15">
                                                             <Image.Source>
                                                                 <FontImageSource FontFamily="MaterialIcons"
-                                                                                 Glyph="{x:Static views:IconFont.SwapHorizontal}"
-                                                                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                                                                    Glyph="{x:Static views:IconFont.SwapHorizontal}"
+                                                                    Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                                                             </Image.Source>
                                                         </Image>
 
@@ -82,8 +82,8 @@
                                                                WidthRequest="15">
                                                             <Image.Source>
                                                                 <FontImageSource FontFamily="MaterialIcons"
-                                                                                 Glyph="{x:Static views:IconFont.RepeatVariant}"
-                                                                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                                                                    Glyph="{x:Static views:IconFont.RepeatVariant}"
+                                                                    Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                                                             </Image.Source>
                                                         </Image>
 
@@ -92,8 +92,8 @@
                                                                WidthRequest="15">
                                                             <Image.Source>
                                                                 <FontImageSource FontFamily="MaterialIcons"
-                                                                                 Glyph="{x:Static views:IconFont.Check}"
-                                                                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                                                                    Glyph="{x:Static views:IconFont.Check}"
+                                                                    Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                                                             </Image.Source>
                                                         </Image>
                                                     </HorizontalStackLayout>

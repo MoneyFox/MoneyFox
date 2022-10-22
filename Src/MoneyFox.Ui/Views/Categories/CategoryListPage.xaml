@@ -8,7 +8,7 @@
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     Shell.NavBarHasShadow="False"
     Title="{x:Static resources:Strings.CategoriesTitle}"
-    x:Class="MoneyFox.Ui.Views.Categories.CategoryListPage" >
+    x:Class="MoneyFox.Ui.Views.Categories.CategoryListPage">
 
     <ContentPage.Content>
         <Grid IsClippedToBounds="False" RowDefinitions="40, 70, *">
@@ -20,7 +20,7 @@
                 VerticalOptions="Center"
                 Command="{Binding GoToAddCategoryCommand}" />
 
-            <controls:Search Grid.Row="1" 
+            <controls:Search Grid.Row="1"
                              Margin="12,0,12,0"
                              SearchPlaceholder="{x:Static resources:Strings.SearchLabel}"
                              SearchCommand="{Binding SearchCategoryCommand}" />
@@ -50,7 +50,7 @@
                                     CommandParameter="{Binding .}" />
                             </Grid.GestureRecognizers>
 
-                            <controls:Card HeightRequest="45" >
+                            <controls:Card HeightRequest="45">
                                 <SwipeView
                                     BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                              Light={StaticResource CardBackgroundLight}}">

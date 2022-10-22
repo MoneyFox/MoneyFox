@@ -13,6 +13,11 @@ public partial class EditBudgetPage
 
     private EditBudgetViewModel ViewModel => (EditBudgetViewModel)BindingContext;
 
+    protected override async void OnAppearing()
+    {
+        await ViewModel.InitializeCommand.ExecuteAsync(budgetId);
+    }
+
 #pragma warning disable S2376 // Write-only properties should not be used
     private int budgetId;
     public string BudgetId
@@ -20,9 +25,5 @@ public partial class EditBudgetPage
         set => budgetId = Convert.ToInt32(Uri.UnescapeDataString(value));
     }
 #pragma warning restore S2376 // Write-only properties should not be used
-
-    protected override async void OnAppearing()
-    {
-        await ViewModel.InitializeCommand.ExecuteAsync(budgetId);
-    }
 }
+

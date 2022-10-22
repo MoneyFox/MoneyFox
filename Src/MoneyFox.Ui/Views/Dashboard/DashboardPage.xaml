@@ -16,7 +16,7 @@
     </ContentPage.Resources>
 
     <Shell.TitleView>
-        <Grid >
+        <Grid>
             <Grid.Padding>
                 <OnPlatform x:TypeArguments="Thickness">
                     <On Platform="Android" Value="0,8,16,0" />
@@ -25,16 +25,16 @@
                     <On Platform="iOS" Value="0,4,0,0" />
                 </OnPlatform>
             </Grid.Padding>
-            
+
             <Button Command="{Binding GoToAddPaymentCommand}"
-                            HorizontalOptions="End"
-                            VerticalOptions="Start"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
                     HeightRequest="40"
-                            Style="{StaticResource PrimaryButton}"
-                            Text="{x:Static resources:Strings.AddPaymentLabel}">
+                    Style="{StaticResource PrimaryButton}"
+                    Text="{x:Static resources:Strings.AddPaymentLabel}">
                 <Button.ImageSource>
-                    <FontImageSource FontFamily="MaterialIcons" 
-                                     Glyph="{x:Static views:IconFont.Plus}" 
+                    <FontImageSource FontFamily="MaterialIcons"
+                                     Glyph="{x:Static views:IconFont.Plus}"
                                      Color="White" />
                 </Button.ImageSource>
             </Button>
@@ -54,7 +54,7 @@
                        Text="{x:Static resources:Strings.AssetsLabel}"
                        VerticalOptions="Center" />
 
-                <!--  Assets card  -->                
+                <!--  Assets card  -->
                 <controls:Card Grid.Row="2"
                                HeightRequest="90">
                     <Grid>
@@ -113,7 +113,7 @@
                                     </Grid.GestureRecognizers>
 
 
-                                    <controls:Card HeightRequest="80">                                        
+                                    <controls:Card HeightRequest="80">
                                         <Grid>
                                             <Label
                                                 Margin="10,2,0,0"
@@ -175,7 +175,7 @@
                     <Grid ColumnDefinitions="*, 10, *">
 
                         <controls:Card Grid.Column="0"
-                            HeightRequest="80">
+                                       HeightRequest="80">
 
                             <Grid>
                                 <Label
@@ -186,7 +186,7 @@
                             </Grid>
                         </controls:Card>
 
-                        <controls:Card Grid.Column="2" 
+                        <controls:Card Grid.Column="2"
                                        HeightRequest="80">
                             <Grid>
                                 <Label

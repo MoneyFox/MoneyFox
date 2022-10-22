@@ -1,6 +1,5 @@
 ﻿namespace MoneyFox.Ui.Views.Settings;
 
-using Microsoft.Maui.Controls;
 using ViewModels.Settings;
 
 public partial class SettingsPage
@@ -18,3 +17,4 @@ public partial class SettingsPage
         await ViewModel.InitializeAsync();
     }
 }
+

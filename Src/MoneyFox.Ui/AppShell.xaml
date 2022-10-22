@@ -14,7 +14,7 @@
     <TabBar>
         <Tab Title="{x:Static resources:Strings.HomeTitle}">
             <Tab.Icon>
-                <FontImageSource FontFamily="MaterialIcons" 
+                <FontImageSource FontFamily="MaterialIcons"
                                  Glyph="{x:Static views:IconFont.HomeOutline}"
                                  Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}" />
 
@@ -26,7 +26,7 @@
 
         <Tab Title="{x:Static resources:Strings.StatisticsTitle}">
             <Tab.Icon>
-                <FontImageSource FontFamily="MaterialIcons" 
+                <FontImageSource FontFamily="MaterialIcons"
                                  Glyph="{x:Static views:IconFont.ChartArc}"
                                  Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}" />
             </Tab.Icon>
@@ -37,7 +37,7 @@
 
         <Tab Title="{x:Static resources:Strings.MoreTitle}">
             <Tab.Icon>
-                <FontImageSource FontFamily="MaterialIcons" 
+                <FontImageSource FontFamily="MaterialIcons"
                                  Glyph="{x:Static views:IconFont.DotsHorizontal}"
                                  Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}" />
             </Tab.Icon>

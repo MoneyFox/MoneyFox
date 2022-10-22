@@ -12,3 +12,4 @@ public static class AutoMapperFactory
         return mappingConfig.CreateMapper();
     }
 }
+

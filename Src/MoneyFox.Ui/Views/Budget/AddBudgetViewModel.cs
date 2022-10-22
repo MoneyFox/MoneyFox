@@ -1,11 +1,11 @@
 namespace MoneyFox.Ui.ViewModels.Budget;
 
 using CommunityToolkit.Mvvm.Messaging;
+using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
+using Core.ApplicationCore.UseCases.BudgetCreation;
+using Core.Common.Messages;
+using Core.Interfaces;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
-using MoneyFox.Core.ApplicationCore.UseCases.BudgetCreation;
-using MoneyFox.Core.Common.Messages;
-using MoneyFox.Core.Interfaces;
 
 internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
 {
@@ -31,3 +31,4 @@ internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
         await navigationService.GoBackFromModalAsync();
     }
 }
+

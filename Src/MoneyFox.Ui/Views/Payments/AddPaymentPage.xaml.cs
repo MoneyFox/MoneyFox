@@ -19,3 +19,4 @@ public partial class AddPaymentPage
         await ViewModel.InitializeAsync(defaultChargedAccountID);
     }
 }
+

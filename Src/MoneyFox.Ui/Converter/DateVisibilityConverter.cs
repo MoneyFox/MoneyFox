@@ -17,3 +17,4 @@ public class DateVisibilityConverter : IValueConverter
         return (DateTime)value != new DateTime();
     }
 }
+

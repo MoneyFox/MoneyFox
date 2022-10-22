@@ -26,14 +26,12 @@ public class MainApplication : MauiApplication
     private const string MSAL_APPLICATIONID = "00a3e4cd-b4b0-4730-be62-5fcf90a94a1d";
     private const string MSAL_URI = $"msal{MSAL_APPLICATIONID}://auth";
 
-    public MainApplication(IntPtr handle, JniHandleOwnership ownership)
-        : base(handle, ownership)
-    {
-    }
+    public MainApplication(IntPtr handle, JniHandleOwnership ownership) : base(handle, ownership) { }
 
     protected override MauiApp CreateMauiApp()
     {
         App.AddPlatformServicesAction = AddServices;
+
         return MauiProgram.CreateMauiApp();
     }
 
@@ -57,11 +55,7 @@ public class MainApplication : MauiApplication
 
     private static void RegisterIdentityClient(IServiceCollection serviceCollection)
     {
-        IPublicClientApplication publicClientApplication = PublicClientApplicationBuilder
-            .Create(MSAL_APPLICATIONID)
-            .WithRedirectUri(MSAL_URI)
-            .Build();
-
+        IPublicClientApplication publicClientApplication = PublicClientApplicationBuilder.Create(MSAL_APPLICATIONID).WithRedirectUri(MSAL_URI).Build();
         serviceCollection.AddSingleton(publicClientApplication);
     }
 
@@ -85,4 +79,5 @@ public class MainApplication : MauiApplication
         Log.Information("Application Startup");
     }
 }
+
 

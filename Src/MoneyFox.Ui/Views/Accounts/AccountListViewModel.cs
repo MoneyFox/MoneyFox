@@ -2,16 +2,15 @@ namespace MoneyFox.Ui.ViewModels.Accounts;
 
 using System.Collections.ObjectModel;
 using AutoMapper;
-using Common.Extensions;
 using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Core.ApplicationCore.Queries;
+using Core.Commands.Accounts.DeleteAccountById;
+using Core.Common.Interfaces;
+using Core.Common.Messages;
+using Core.Resources;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.Queries;
-using MoneyFox.Core.Commands.Accounts.DeleteAccountById;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Common.Messages;
-using MoneyFox.Core.Resources;
 
 internal sealed class AccountListViewModel : BaseViewModel
 {
@@ -113,3 +112,4 @@ internal sealed class AccountListViewModel : BaseViewModel
         }
     }
 }
+

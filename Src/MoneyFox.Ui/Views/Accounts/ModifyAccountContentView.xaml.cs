@@ -7,3 +7,4 @@ public partial class ModifyAccountContentView : ContentView
         InitializeComponent();
     }
 }
+

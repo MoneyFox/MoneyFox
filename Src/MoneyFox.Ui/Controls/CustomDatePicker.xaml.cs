@@ -1,7 +1,5 @@
 namespace MoneyFox.Ui.Controls;
 
-using System.Windows.Input;
-
 public partial class CustomDatePicker : ContentView
 {
     public static readonly BindableProperty DatePickerTitleProperty = BindableProperty.Create(
@@ -33,5 +31,6 @@ public partial class CustomDatePicker : ContentView
         set => SetValue(property: DateFieldProperty, value: value);
     }
 }
+
 
 

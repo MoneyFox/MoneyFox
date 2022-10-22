@@ -2,7 +2,7 @@ namespace MoneyFox.Ui.Views;
 
 using System.Diagnostics.CodeAnalysis;
 
-[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "Generated")]
+[SuppressMessage(category: "Style", checkId: "IDE1006:Naming Styles", Justification = "Generated")]
 internal static class IconFont
 {
     public const string VectorSquare = "\U000f0001";
@@ -7085,3 +7085,4 @@ internal static class IconFont
     public const string FlagVariantRemoveOutline = "\U000f1bb7";
     public const string HdmiPort = "\U000f1bb8";
 }
+

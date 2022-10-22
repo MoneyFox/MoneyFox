@@ -1,7 +1,7 @@
 namespace MoneyFox.Ui.Converter;
 
 using System.Globalization;
-using MoneyFox.Core.Common.Helpers;
+using Core.Common.Helpers;
 
 /// <summary>
 ///     Displays the amount as currency of the current culture.
@@ -32,3 +32,4 @@ public class AmountFormatConverter : IValueConverter
         return value;
     }
 }
+

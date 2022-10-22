@@ -1,4 +1,5 @@
 namespace MoneyFox.Ui.Views.Dashboard;
+
 public partial class DashboardPage : ContentPage
 {
     public DashboardPage()
@@ -14,3 +15,4 @@ public partial class DashboardPage : ContentPage
         await ViewModel.InitializeAsync();
     }
 }
+

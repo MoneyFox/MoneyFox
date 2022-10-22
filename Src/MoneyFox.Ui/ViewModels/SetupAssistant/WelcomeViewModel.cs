@@ -2,7 +2,7 @@ namespace MoneyFox.Ui.ViewModels.SetupAssistant;
 
 using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Core.Common.Facades;
+using Core.Common.Facades;
 
 internal sealed class WelcomeViewModel : BaseViewModel
 {
@@ -33,3 +33,4 @@ internal sealed class WelcomeViewModel : BaseViewModel
         Application.Current.MainPage = new AppShell();
     }
 }
+

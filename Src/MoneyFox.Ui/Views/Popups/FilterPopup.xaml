@@ -31,8 +31,8 @@
             </Grid>
 
             <controls:PaymentTypePicker PickerTitle="{x:Static resources:Strings.PaymentTypeLabel}"
-                                       PaymentTypeSource="{Binding PaymentTypeFilterList}"
-                                       SelectedType="{Binding FilteredPaymentType}"/>
+                                        PaymentTypeSource="{Binding PaymentTypeFilterList}"
+                                        SelectedType="{Binding FilteredPaymentType}" />
 
 
             <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Strings.TimeRangeStartLabel}"

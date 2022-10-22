@@ -36,9 +36,11 @@ public partial class App : MauiWinUIApplication
         _ = services.AddTransient<IStoreOperations, MarketplaceOperations>();
         _ = services.AddTransient<IFileStore, WindowsFileStore>();
         _ = services.AddTransient<IDbPathProvider, DbPathProvider>();
+        IPublicClientApplication publicClientApplication
+            = PublicClientApplicationBuilder.Create(MSAL_APPLICATION_ID).WithRedirectUri($"msal{MSAL_APPLICATION_ID}://auth").Build();
 
-        IPublicClientApplication publicClientApplication = PublicClientApplicationBuilder.Create(MSAL_APPLICATION_ID).WithRedirectUri($"msal{MSAL_APPLICATION_ID}://auth").Build();
         TokenCacheHelper.EnableSerialization(publicClientApplication.UserTokenCache);
         _ = services.AddSingleton(publicClientApplication);
     }
 }
+

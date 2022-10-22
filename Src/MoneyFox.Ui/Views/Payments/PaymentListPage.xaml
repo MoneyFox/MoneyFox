@@ -21,35 +21,35 @@
               RowDefinitions="50, *">
             <Grid ColumnDefinitions="*,Auto ,66 ,6 ,66">
                 <ImageButton Grid.Column="2"
-                         Clicked="ShowFilterPopup"
-                         Margin="0,0,5,0"
-                         Padding="0"
-                         BorderWidth="0"
-                         HeightRequest="44"
-                         HorizontalOptions="End"
-                         VerticalOptions="Start"
-                         WidthRequest="66">
+                             Clicked="ShowFilterPopup"
+                             Margin="0,0,5,0"
+                             Padding="0"
+                             BorderWidth="0"
+                             HeightRequest="44"
+                             HorizontalOptions="End"
+                             VerticalOptions="Start"
+                             WidthRequest="66">
                     <ImageButton.Source>
                         <FontImageSource FontFamily="MaterialIcons"
-                                     Glyph="{x:Static views:IconFont.FilterOutline}"
-                                     Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                                         Glyph="{x:Static views:IconFont.FilterOutline}"
+                                         Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                     </ImageButton.Source>
                 </ImageButton>
 
                 <ImageButton Margin="0,0,5,0"
-                         Grid.Column="4"
-                         Padding="0"
-                         BorderWidth="0"
-                         Command="{Binding GoToAddPaymentCommand}"
-                         HeightRequest="44"
-                         HorizontalOptions="End"
-                         VerticalOptions="Start"
-                         WidthRequest="66"
-                         Style="{StaticResource PrimaryImageButton}">
+                             Grid.Column="4"
+                             Padding="0"
+                             BorderWidth="0"
+                             Command="{Binding GoToAddPaymentCommand}"
+                             HeightRequest="44"
+                             HorizontalOptions="End"
+                             VerticalOptions="Start"
+                             WidthRequest="66"
+                             Style="{StaticResource PrimaryImageButton}">
                     <ImageButton.Source>
                         <FontImageSource FontFamily="MaterialIcons"
-                                     Glyph="{x:Static views:IconFont.Plus}" 
-                                     Color="White" />
+                                         Glyph="{x:Static views:IconFont.Plus}"
+                                         Color="White" />
                     </ImageButton.Source>
                 </ImageButton>
             </Grid>
@@ -71,7 +71,7 @@
                                    Text="{Binding Subtitle}" />
 
                             <controls:Card Grid.Row="2"
-                                    Margin="0,12,0,0">
+                                           Margin="0,12,0,0">
 
                                 <StackLayout BindableLayout.ItemsSource="{Binding .}">
                                     <BindableLayout.ItemTemplate>
@@ -105,8 +105,8 @@
                                                                WidthRequest="15">
                                                             <Image.Source>
                                                                 <FontImageSource FontFamily="MaterialIcons"
-                                                                                 Glyph="{x:Static views:IconFont.SwapHorizontal}"
-                                                                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                                                                    Glyph="{x:Static views:IconFont.SwapHorizontal}"
+                                                                    Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                                                             </Image.Source>
                                                         </Image>
 
@@ -115,8 +115,8 @@
                                                                WidthRequest="15">
                                                             <Image.Source>
                                                                 <FontImageSource FontFamily="MaterialIcons"
-                                                                                 Glyph="{x:Static views:IconFont.RepeatVariant}"
-                                                                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                                                                    Glyph="{x:Static views:IconFont.RepeatVariant}"
+                                                                    Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                                                             </Image.Source>
                                                         </Image>
 
@@ -125,8 +125,8 @@
                                                                WidthRequest="15">
                                                             <Image.Source>
                                                                 <FontImageSource FontFamily="MaterialIcons"
-                                                                                 Glyph="{x:Static views:IconFont.Check}"
-                                                                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                                                                    Glyph="{x:Static views:IconFont.Check}"
+                                                                    Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                                                             </Image.Source>
                                                         </Image>
                                                     </StackLayout>

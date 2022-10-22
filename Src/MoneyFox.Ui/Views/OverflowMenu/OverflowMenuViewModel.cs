@@ -1,16 +1,15 @@
-using MoneyFox.Ui.ViewModels;
-
 namespace MoneyFox.Ui.Views.OverflowMenu;
 
+using About;
+using Backup;
+using Budget;
+using Categories;
 using CommunityToolkit.Mvvm.Input;
+using Core.Interfaces;
+using Core.Resources;
 using JetBrains.Annotations;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Core.Resources;
-using MoneyFox.Ui.Views.Backup;
-using Views.About;
-using Views.Budget;
-using Views.Categories;
-using Views.Settings;
+using Settings;
+using ViewModels;
 
 [UsedImplicitly]
 internal sealed class OverflowMenuViewModel : BaseViewModel
@@ -61,3 +60,4 @@ internal sealed class OverflowMenuViewModel : BaseViewModel
         }
     }
 }
+

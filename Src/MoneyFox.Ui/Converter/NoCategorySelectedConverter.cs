@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Ui.Converter;
 
 using System.Globalization;
-using MoneyFox.Core.Resources;
+using Core.Resources;
 using ViewModels.Categories;
 
 public class NoCategorySelectedConverter : IValueConverter
@@ -22,3 +22,4 @@ public class NoCategorySelectedConverter : IValueConverter
         throw new NotSupportedException();
     }
 }
+

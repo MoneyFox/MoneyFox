@@ -11,3 +11,4 @@ public interface ISettingsViewModel
 
     Task InitializeAsync();
 }
+

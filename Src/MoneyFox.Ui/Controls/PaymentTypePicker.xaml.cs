@@ -1,7 +1,6 @@
 namespace MoneyFox.Ui.Controls;
 
 using System.Collections;
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 
 public partial class PaymentTypePicker : ContentView
 {
@@ -46,4 +45,5 @@ public partial class PaymentTypePicker : ContentView
         set => SetValue(property: SelectedTypeProperty, value: value);
     }
 }
+
 

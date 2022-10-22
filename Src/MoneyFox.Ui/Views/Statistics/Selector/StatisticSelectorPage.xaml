@@ -5,12 +5,11 @@
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:statistics="clr-namespace:MoneyFox.Ui.Views.Statistics.Selector"
     x:Class="MoneyFox.Ui.Views.Statistics.StatisticSelectorPage"
-    xmlns:views="clr-namespace:MoneyFox.Ui.Views"
     Title="{x:Static resources:Strings.SelectStatisticTitle}"
     x:Name="root">
 
     <ContentPage.Content>
-        
+
         <VerticalStackLayout>
             <CollectionView x:Name="StatisticCollectionView"
                             BackgroundColor="Transparent"
@@ -28,20 +27,20 @@
 
                             <controls:Card Padding="12">
                                 <VerticalStackLayout Spacing="6"
-                                               x:DataType="statistics:StatisticSelectorTypeViewModel">
+                                                     x:DataType="statistics:StatisticSelectorTypeViewModel">
                                     <HorizontalStackLayout Spacing="6">
                                         <Image HeightRequest="15"
-                                                WidthRequest="15">
+                                               WidthRequest="15">
                                             <Image.Source>
                                                 <FontImageSource FontFamily="MaterialIcons"
-                                                                 Glyph="{Binding IconGlyph}" 
+                                                                 Glyph="{Binding IconGlyph}"
                                                                  Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                                             </Image.Source>
                                         </Image>
                                         <Label Text="{Binding Name}" Style="{DynamicResource TextSubHead}" />
                                     </HorizontalStackLayout>
                                     <Label Text="{Binding Description}"
-                                            Style="{DynamicResource ToneDownLabelStyle}" />
+                                           Style="{DynamicResource ToneDownLabelStyle}" />
                                 </VerticalStackLayout>
                             </controls:Card>
                         </Grid>
