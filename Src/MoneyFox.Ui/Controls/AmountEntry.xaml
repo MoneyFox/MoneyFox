@@ -27,6 +27,7 @@
             <Grid>
                 <controls:BorderlessEntry
                     x:Name="AmountField"
+                    HeightRequest="40"
                     Text="{Binding Amount,Converter={StaticResource DecimalConverter}}"
                     IsEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBoolConverter}}"
                     Placeholder="{Binding EntryPlaceholder}"
