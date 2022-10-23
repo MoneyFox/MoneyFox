@@ -67,3 +67,4 @@ internal sealed class StatisticCategorySummaryViewModel : StatisticViewModel
     }
 }
 
+

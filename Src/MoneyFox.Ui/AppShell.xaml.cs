@@ -11,6 +11,7 @@ using Views.Settings;
 using Views.SetupAssistant;
 using Views.Statistics;
 using Views.Statistics.CategorySummary;
+using Views.Statistics.Selector;
 
 public partial class AppShell : Shell
 {

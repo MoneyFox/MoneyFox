@@ -28,7 +28,3 @@ public class DateListGroupCollectionTests
         createdGroup[1][0].Id.Should().Be(2);
     }
 }
-
-
-
-

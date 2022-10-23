@@ -1,7 +1,5 @@
 namespace MoneyFox.Ui.Views.Budget;
 
-using ViewModels.Budget;
-
 [QueryProperty(name: "BudgetId", queryId: "budgetId")]
 public partial class EditBudgetPage
 {
@@ -26,5 +24,6 @@ public partial class EditBudgetPage
     }
 #pragma warning restore S2376 // Write-only properties should not be used
 }
+
 
 

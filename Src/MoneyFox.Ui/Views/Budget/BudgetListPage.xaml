@@ -7,11 +7,10 @@
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:budget="clr-namespace:MoneyFox.Ui.Views.Budget"
-    xmlns:budgetVm="clr-namespace:MoneyFox.Ui.ViewModels.Budget"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     Visual="Material"
     x:Name="BudgetList"
-    x:DataType="budgetVm:BudgetListViewModel"
+    x:DataType="budget:BudgetListViewModel"
     Title="{x:Static resources:Strings.BudgetsTitle}">
 
     <ContentPage.Resources>
@@ -21,12 +20,6 @@
 
     <ContentPage.Content>
         <Grid IsClippedToBounds="False" RowDefinitions="40, Auto, *">
-            <Button
-                Margin="0,0,16,0"
-                HorizontalOptions="End"
-                Text="{x:Static resources:Strings.AddBudgetLabel}"
-                VerticalOptions="Center"
-                Command="{Binding GoToAddBudgetCommand}" />
 
             <HorizontalStackLayout Margin="18,0,12,0" Spacing="6">
                 <Label Style="{StaticResource TextBodySecondary}"
@@ -34,6 +27,13 @@
                 <Label Style="{StaticResource TextBodySecondary}"
                        Text="{Binding BudgetedAmount, Converter={StaticResource DecimalToZeroFiveConverter}}" />
             </HorizontalStackLayout>
+
+            <Button
+                Margin="0,0,16,0"
+                HorizontalOptions="End"
+                Text="{x:Static resources:Strings.AddBudgetLabel}"
+                VerticalOptions="Center"
+                Command="{Binding GoToAddBudgetCommand}" />
 
             <ListView Grid.Row="2"
                       BackgroundColor="Transparent"
@@ -43,7 +43,7 @@
                       SeparatorVisibility="None"
                       RowHeight="100">
                 <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="budgetVm:BudgetListItemViewModel">
+                    <DataTemplate x:DataType="budget:BudgetListItemViewModel">
                         <ViewCell>
                             <Grid Padding="15,6,15,8">
                                 <controls:Card HeightRequest="90" Padding="12">

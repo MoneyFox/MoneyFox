@@ -89,7 +89,3 @@ public class AboutViewModelTests
         storeFeaturesSetup.Received(1).RateApp();
     }
 }
-
-
-
-

@@ -17,7 +17,3 @@ public class HelperFunctionsTests
         _ = HelperFunctions.FormatLargeNumbers(amount).Should().Be(amount.ToString("N2"));
     }
 }
-
-
-
-

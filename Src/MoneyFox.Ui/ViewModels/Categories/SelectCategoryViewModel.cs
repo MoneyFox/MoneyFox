@@ -24,3 +24,4 @@ internal sealed class SelectCategoryViewModel : CategoryListViewModel
             });
 }
 
+

@@ -29,3 +29,4 @@ public class QueryTestFixture : IDisposable
 public class QueryCollection : ICollectionFixture<QueryTestFixture> { }
 
 
+

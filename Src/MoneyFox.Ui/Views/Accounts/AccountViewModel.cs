@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.ViewModels.Accounts;
+namespace MoneyFox.Ui.Views.Accounts;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -193,5 +193,6 @@ public sealed class AccountViewModel : ObservableObject, IHaveCustomMapping, IEq
         return Id.GetHashCode();
     }
 }
+
 
 

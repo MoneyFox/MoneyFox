@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.ViewModels.Budget;
+namespace MoneyFox.Ui.Views.Budget;
 
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
@@ -7,6 +7,7 @@ using Core.ApplicationCore.Queries.BudgetListLoading;
 using Core.Common.Extensions;
 using Core.Common.Messages;
 using MediatR;
+using ViewModels;
 
 public sealed class BudgetListViewModel : BaseViewModel, IRecipient<ReloadMessage>
 {
@@ -69,5 +70,6 @@ public sealed class BudgetListViewModel : BaseViewModel, IRecipient<ReloadMessag
         await Shell.Current.GoToAsync($"{Routes.EditBudgetRoute}?budgetId={selectedBudget.Id}");
     }
 }
+
 
 

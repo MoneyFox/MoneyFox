@@ -5,9 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:budget="clr-namespace:MoneyFox.Ui.Views.Budget"
-    xmlns:budgetVm="clr-namespace:MoneyFox.Ui.ViewModels.Budget"
     Title="{x:Static resources:Strings.EditBudgetTitle}"
-    x:DataType="budgetVm:EditBudgetViewModel"
+    x:DataType="budget:EditBudgetViewModel"
     x:Class="MoneyFox.Ui.Views.Budget.EditBudgetPage"
     Visual="Material">
 

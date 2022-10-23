@@ -4,7 +4,6 @@ using Core.Commands.Accounts.CreateAccount;
 using Core.Common.Interfaces;
 using Core.Interfaces;
 using MediatR;
-using ViewModels.Accounts;
 
 internal sealed class AddAccountViewModel : ModifyAccountViewModel
 {
@@ -28,5 +27,6 @@ internal sealed class AddAccountViewModel : ModifyAccountViewModel
                 isExcluded: SelectedAccountVm.IsExcluded));
     }
 }
+
 
 

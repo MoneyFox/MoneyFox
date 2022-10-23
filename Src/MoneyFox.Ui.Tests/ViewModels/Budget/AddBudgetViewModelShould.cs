@@ -2,19 +2,22 @@ namespace MoneyFox.Ui.Tests.ViewModels.Budget;
 
 using Core.ApplicationCore.UseCases.BudgetCreation;
 using Core.Common.Extensions;
+using Core.Common.Interfaces;
 using Core.Common.Messages;
 using Core.Interfaces;
+using Core.Resources;
 using Core.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
 using NSubstitute;
-using Ui.ViewModels.Budget;
+using Views.Budget;
 using Views.Categories;
 using Xunit;
 
 public class AddBudgetViewModelShould
 {
     private const int CategoryId = 10;
+    private readonly IDialogService dialogService;
     private readonly INavigationService navigationService;
     private readonly ISender sender;
 
@@ -24,7 +27,8 @@ public class AddBudgetViewModelShould
     {
         sender = Substitute.For<ISender>();
         navigationService = Substitute.For<INavigationService>();
-        viewModel = new(sender: sender, navigationService: navigationService);
+        dialogService = Substitute.For<IDialogService>();
+        viewModel = new(sender: sender, navigationService: navigationService, dialogService: dialogService);
     }
 
     [Fact]
@@ -57,7 +61,7 @@ public class AddBudgetViewModelShould
     {
         // Capture
         CreateBudget.Command? passedQuery = null;
-        _ = await sender.Send(Arg.Do<CreateBudget.Command>(q => passedQuery = q));
+        await sender.Send(Arg.Do<CreateBudget.Command>(q => passedQuery = q));
 
         // Arrange
         var testBudget = new TestData.DefaultBudget();
@@ -99,8 +103,23 @@ public class AddBudgetViewModelShould
         // Assert
         await navigationService.Received(1).OpenModalAsync<SelectCategoryPage>();
     }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(-1)]
+    public async Task ShowMessage_WhenSpendingLimitIsInvalid(decimal amount)
+    {
+        // Arrange
+        var testBudget = new TestData.DefaultBudget();
+        viewModel.SelectedBudget.Name = testBudget.Name;
+        viewModel.SelectedBudget.SpendingLimit = amount;
+
+        // Act
+        await viewModel.SaveBudgetCommand.ExecuteAsync(null);
+
+        // Assert
+        await dialogService.Received().ShowMessageAsync(title: Strings.InvalidSpendingLimitTitle, message: Strings.InvalidSpendingLimitMessage);
+        await sender.Received(0).Send(Arg.Any<CreateBudget.Command>());
+        await navigationService.Received(0).GoBackFromModalAsync();
+    }
 }
-
-
-
-

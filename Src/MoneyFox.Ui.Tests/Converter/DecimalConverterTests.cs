@@ -47,6 +47,3 @@ public class DecimalConverterTests
         _ = result.Should().Be(expectedResult);
     }
 }
-
-
-

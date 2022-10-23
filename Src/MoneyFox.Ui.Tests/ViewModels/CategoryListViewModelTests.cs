@@ -51,7 +51,3 @@ public class CategoryListViewModelTests
         _ = mapper.Received(1).Map<List<CategoryViewModel>>(Arg.Any<List<Category>>());
     }
 }
-
-
-
-
