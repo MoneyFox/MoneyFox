@@ -36,6 +36,7 @@
             </HorizontalStackLayout>
 
             <ListView Grid.Row="2"
+                      BackgroundColor="Transparent"
                       ItemsSource="{Binding Budgets}"
                       CachingStrategy="RetainElement"
                       SelectionMode="None"
