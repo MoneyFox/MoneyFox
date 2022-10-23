@@ -870,9 +870,9 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
     <value>Keine Zahlungen im ausgewählten Zeitbereich gefunden.</value>
   </data>
   <data name="InvalidSpendingLimitMessage" xml:space="preserve">
-    <value>The spending limit has to be larger than zero.</value>
+    <value>Die Ausgabengrenze muss größer als null sein.</value>
   </data>
   <data name="InvalidSpendingLimitTitle" xml:space="preserve">
-    <value>Invalid Spending Limit</value>
+    <value>Ungültiges Ausgabenlimit</value>
   </data>
 </root>
