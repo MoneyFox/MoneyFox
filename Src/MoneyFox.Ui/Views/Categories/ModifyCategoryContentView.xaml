@@ -8,24 +8,25 @@
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls">
 
     <ContentView.Content>
-        <StackLayout>
-            <controls:TextEntry EntryPlaceholder="{x:Static resources:Strings.CategoryNameLabel}"
+        <VerticalStackLayout Spacing="6">
+            <controls:TextEntry TextFieldTitle="{x:Static resources:Strings.CategoryNameLabel}"
+                                EntryPlaceholder="{x:Static resources:Strings.CategoryNameLabel}"
                                 EntryText="{Binding SelectedCategory.Name}" />
 
-            <controls:TextEntry EntryPlaceholder="{x:Static resources:Strings.NoteLabel}"
+            <controls:TextEntry TextFieldTitle="{x:Static resources:Strings.NoteLabel}"
+                                EntryPlaceholder="{x:Static resources:Strings.NoteLabel}"
                                 EntryText="{Binding SelectedCategory.Note}" />
 
-            <StackLayout CompressedLayout.IsHeadless="True" Orientation="Horizontal">
+            <HorizontalStackLayout Spacing="6">
                 <CheckBox
                     HorizontalOptions="Start"
                     IsChecked="{Binding SelectedCategory.RequireNote}"
                     VerticalOptions="Center" />
-                <Label
-                    Margin="-20,0,0,0"
+                <Label 
                     HorizontalOptions="StartAndExpand"
                     Text="{x:Static resources:Strings.RequireNoteCheckbox}"
                     VerticalOptions="Center" />
-            </StackLayout>
-        </StackLayout>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
     </ContentView.Content>
 </ContentView>
