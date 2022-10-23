@@ -19,12 +19,10 @@ public partial class AddPaymentPage
     }
 
 #pragma warning disable S2376 // Write-only properties should not be used
-    private int defaultChargedAccountId;
+    private int? defaultChargedAccountId;
     public string DefaultChargedAccountId
     {
         set => defaultChargedAccountId = Convert.ToInt32(Uri.UnescapeDataString(value));
     }
 #pragma warning restore S2376 // Write-only properties should not be used
 }
-
-
