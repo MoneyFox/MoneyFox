@@ -17,16 +17,17 @@
                                 EntryPlaceholder="{x:Static resources:Strings.NoteLabel}"
                                 EntryText="{Binding SelectedCategory.Note}" />
 
-            <HorizontalStackLayout Spacing="6">
-                <CheckBox
-                    HorizontalOptions="Start"
-                    IsChecked="{Binding SelectedCategory.RequireNote}"
-                    VerticalOptions="Center" />
+            <Grid ColumnDefinitions="*, Auto">
                 <Label
-                    HorizontalOptions="StartAndExpand"
+                    Grid.Column="0"
                     Text="{x:Static resources:Strings.RequireNoteCheckbox}"
                     VerticalOptions="Center" />
-            </HorizontalStackLayout>
+
+                <CheckBox
+                    Grid.Column="1"
+                    IsChecked="{Binding SelectedCategory.RequireNote}"
+                    VerticalOptions="Center" />
+            </Grid>
         </VerticalStackLayout>
     </ContentView.Content>
 </ContentView>

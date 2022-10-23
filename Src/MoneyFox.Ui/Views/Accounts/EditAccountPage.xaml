@@ -12,23 +12,22 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Padding="15,0,15,0">
+            <VerticalStackLayout Padding="15,0,15,0" Spacing="12">
                 <accounts:ModifyAccountContentView />
 
                 <Label Style="{StaticResource TextBodySecondary}"
-                       Text="{Binding SelectedAccountVm.CreationTime, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />
+                       Text="{Binding SelectedAccountVm.Created, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />
 
                 <Label Style="{StaticResource TextBodySecondary}"
-                       Text="{Binding SelectedAccountVm.CreationTime, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
+                       Text="{Binding SelectedAccountVm.LastModified, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
 
                 <Button Command="{Binding SaveCommand}" Text="{x:Static resources:Strings.SaveLabel}" />
 
                 <Button x:Name="DeleteAccountButton"
                         Style="{StaticResource WarningButton}"
-                        Margin="0,12,0,0"
                         Command="{Binding DeleteCommand}"
                         Text="{x:Static resources:Strings.DeleteLabel}" />
-            </StackLayout>
+            </VerticalStackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
