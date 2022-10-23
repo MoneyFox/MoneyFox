@@ -53,6 +53,13 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
 
     protected override async Task SaveBudgetAsync()
     {
+        if (SelectedBudget.SpendingLimit <= 0)
+        {
+            await dialogService.ShowMessageAsync(title: Strings.InvalidSpendingLimitTitle, message: Strings.InvalidSpendingLimitMessage);
+
+            return;
+        }
+
         var command = new UpdateBudget.Command(
             budgetId: SelectedBudget.Id,
             name: SelectedBudget.Name,

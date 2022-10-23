@@ -8,6 +8,7 @@ using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Common.Messages;
 using Core.Interfaces;
+using Core.Resources;
 using Core.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
@@ -190,6 +191,25 @@ public class EditBudgetViewModelShould
 
             // Assert
             _ = await sender.Received(0).Send(Arg.Any<DeleteBudget.Command>());
+            await navigationService.Received(0).GoBackFromModalAsync();
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-1)]
+        public async Task ShowMessage_WhenSpendingLimitIsInvalid(decimal amount)
+        {
+            // Arrange
+            var testBudget = new TestData.DefaultBudget();
+            viewModel.SelectedBudget.Name = testBudget.Name;
+            viewModel.SelectedBudget.SpendingLimit = amount;
+
+            // Act
+            await viewModel.SaveBudgetCommand.ExecuteAsync(null);
+
+            // Assert
+            await dialogService.Received().ShowMessageAsync(Strings.InvalidSpendingLimitTitle, Strings.InvalidSpendingLimitMessage);
+            await sender.Received(0).Send(Arg.Any<UpdateBudget.Command>());
             await navigationService.Received(0).GoBackFromModalAsync();
         }
     }
