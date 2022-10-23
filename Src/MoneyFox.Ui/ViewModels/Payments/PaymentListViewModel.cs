@@ -73,7 +73,8 @@ internal sealed class PaymentListViewModel : BaseViewModel
             PaymentRecurrence.Yearly
         };
 
-    public AsyncRelayCommand GoToAddPaymentCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddPaymentRoute));
+    public AsyncRelayCommand GoToAddPaymentCommand => new(async ()
+        => await Shell.Current.GoToAsync($"{Routes.AddPaymentRoute}?defaultChargedAccountId={SelectedAccount.Id}"));
 
     public AsyncRelayCommand<PaymentViewModel> GoToEditPaymentCommand
         => new(async pvm => await Shell.Current.GoToAsync($"{Routes.EditPaymentRoute}?paymentId={pvm.Id}"));

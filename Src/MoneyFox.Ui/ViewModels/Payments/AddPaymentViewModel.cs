@@ -28,8 +28,8 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
     {
         await base.InitializeAsync();
         SelectedPayment.ChargedAccount = defaultChargedAccountID.HasValue
-            ? ChargedAccounts.FirstOrDefault(n => n.Id == defaultChargedAccountID.Value)
-            : ChargedAccounts.FirstOrDefault();
+            ? ChargedAccounts.First(n => n.Id == defaultChargedAccountID.Value)
+            : ChargedAccounts.First();
     }
 
     protected override async Task SavePaymentAsync()
