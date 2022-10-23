@@ -98,7 +98,3 @@ public class PaymentTypeHelperTests
         Assert.Equal(expected: Strings.AddTransferTitle, actual: PaymentTypeHelper.GetViewTitleForType(type: PaymentType.Transfer, isEditMode: false));
     }
 }
-
-
-
-

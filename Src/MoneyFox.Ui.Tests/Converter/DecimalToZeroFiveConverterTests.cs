@@ -49,6 +49,3 @@ public class DecimalToZeroFiveConverterTests
         _ = result.Should().Be(expectedResult);
     }
 }
-
-
-

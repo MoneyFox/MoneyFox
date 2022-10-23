@@ -24,7 +24,3 @@ public class AccountViewModelTests
         _ = vm1.Equals(vm2).Should().Be(result);
     }
 }
-
-
-
-

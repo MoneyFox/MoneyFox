@@ -2,14 +2,13 @@ namespace MoneyFox.Ui.Tests.ViewModels.Budget;
 
 using Core.ApplicationCore.UseCases.BudgetCreation;
 using Core.Common.Extensions;
+using Core.Common.Interfaces;
 using Core.Common.Messages;
 using Core.Interfaces;
+using Core.Resources;
 using Core.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Resources;
-using MoneyFox.Ui.Common.Services;
 using NSubstitute;
 using Views.Budget;
 using Views.Categories;
@@ -119,7 +118,7 @@ public class AddBudgetViewModelShould
         await viewModel.SaveBudgetCommand.ExecuteAsync(null);
 
         // Assert
-        await dialogService.Received().ShowMessageAsync(Strings.InvalidSpendingLimitTitle, Strings.InvalidSpendingLimitMessage);
+        await dialogService.Received().ShowMessageAsync(title: Strings.InvalidSpendingLimitTitle, message: Strings.InvalidSpendingLimitMessage);
         await sender.Received(0).Send(Arg.Any<CreateBudget.Command>());
         await navigationService.Received(0).GoBackFromModalAsync();
     }

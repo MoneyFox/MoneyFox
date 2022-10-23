@@ -208,13 +208,9 @@ public class EditBudgetViewModelShould
             await viewModel.SaveBudgetCommand.ExecuteAsync(null);
 
             // Assert
-            await dialogService.Received().ShowMessageAsync(Strings.InvalidSpendingLimitTitle, Strings.InvalidSpendingLimitMessage);
+            await dialogService.Received().ShowMessageAsync(title: Strings.InvalidSpendingLimitTitle, message: Strings.InvalidSpendingLimitMessage);
             await sender.Received(0).Send(Arg.Any<UpdateBudget.Command>());
             await navigationService.Received(0).GoBackFromModalAsync();
         }
     }
 }
-
-
-
-

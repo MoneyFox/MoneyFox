@@ -128,7 +128,3 @@ public class BudgetListPageViewModelShould
         }
     }
 }
-
-
-
-

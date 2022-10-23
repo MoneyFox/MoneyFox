@@ -28,7 +28,3 @@ public class AlphaListGroupCollectionTests
         createdGroup[1][0].Name.Should().Be("b");
     }
 }
-
-
-
-
