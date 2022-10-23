@@ -22,3 +22,4 @@ public sealed class BudgetCategoryViewModel : ObservableObject
 }
 
 
+

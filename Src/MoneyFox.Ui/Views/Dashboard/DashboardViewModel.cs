@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Views.Dashboard;
 
 using System.Collections.ObjectModel;
+using Accounts;
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -9,7 +10,6 @@ using Core.Common.Interfaces;
 using Core.Common.Messages;
 using MediatR;
 using ViewModels;
-using ViewModels.Accounts;
 
 internal class DashboardViewModel : BaseViewModel
 {
@@ -159,5 +159,6 @@ internal class DashboardViewModel : BaseViewModel
         IsActive = true;
     }
 }
+
 
 

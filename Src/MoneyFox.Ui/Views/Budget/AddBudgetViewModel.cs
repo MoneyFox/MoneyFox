@@ -1,13 +1,13 @@
 namespace MoneyFox.Ui.Views.Budget;
 
 using CommunityToolkit.Mvvm.Messaging;
+using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
+using Core.ApplicationCore.UseCases.BudgetCreation;
+using Core.Common.Interfaces;
+using Core.Common.Messages;
+using Core.Interfaces;
+using Core.Resources;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
-using MoneyFox.Core.ApplicationCore.UseCases.BudgetCreation;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Common.Messages;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Core.Resources;
 
 internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
 {
@@ -42,4 +42,5 @@ internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
         await navigationService.GoBackFromModalAsync();
     }
 }
+
 

@@ -100,3 +100,4 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
     }
 }
 
+

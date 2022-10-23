@@ -27,7 +27,7 @@
                 <Label Style="{StaticResource TextBodySecondary}"
                        Text="{Binding BudgetedAmount, Converter={StaticResource DecimalToZeroFiveConverter}}" />
             </HorizontalStackLayout>
-            
+
             <Button
                 Margin="0,0,16,0"
                 HorizontalOptions="End"

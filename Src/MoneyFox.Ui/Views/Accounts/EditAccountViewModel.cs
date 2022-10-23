@@ -10,7 +10,6 @@ using Core.Common.Interfaces;
 using Core.Interfaces;
 using Core.Resources;
 using MediatR;
-using ViewModels.Accounts;
 
 internal partial class EditAccountViewModel : ModifyAccountViewModel
 {
@@ -53,5 +52,6 @@ internal partial class EditAccountViewModel : ModifyAccountViewModel
         }
     }
 }
+
 
 

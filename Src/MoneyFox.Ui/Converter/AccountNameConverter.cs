@@ -2,7 +2,7 @@
 
 using System.Globalization;
 using Core.Common.Helpers;
-using ViewModels.Accounts;
+using Views.Accounts;
 
 public class AccountNameConverter : IValueConverter
 {
@@ -18,4 +18,5 @@ public class AccountNameConverter : IValueConverter
         throw new NotSupportedException();
     }
 }
+
 

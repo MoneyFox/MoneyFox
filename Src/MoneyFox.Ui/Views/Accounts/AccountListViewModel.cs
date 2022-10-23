@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.ViewModels.Accounts;
+namespace MoneyFox.Ui.Views.Accounts;
 
 using System.Collections.ObjectModel;
 using AutoMapper;
@@ -11,6 +11,7 @@ using Core.Common.Interfaces;
 using Core.Common.Messages;
 using Core.Resources;
 using MediatR;
+using ViewModels;
 
 internal sealed class AccountListViewModel : BaseViewModel
 {
@@ -112,5 +113,6 @@ internal sealed class AccountListViewModel : BaseViewModel
         }
     }
 }
+
 
 

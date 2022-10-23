@@ -1,11 +1,11 @@
 namespace MoneyFox.Ui.ViewModels.Payments;
 
-using Accounts;
 using AutoMapper;
 using Categories;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Common.Interfaces.Mapping;
+using Views.Accounts;
 
 public class PaymentViewModel : ObservableObject, IHaveCustomMapping
 {
@@ -349,4 +349,5 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
             .ReverseMap();
     }
 }
+
 

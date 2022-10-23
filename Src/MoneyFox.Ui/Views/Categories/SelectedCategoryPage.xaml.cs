@@ -19,3 +19,4 @@ public partial class SelectCategoryPage : ContentPage
 }
 
 
+

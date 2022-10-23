@@ -2,7 +2,7 @@ namespace MoneyFox.Ui.Tests.ViewModels.Accounts;
 
 using System.Diagnostics.CodeAnalysis;
 using FluentAssertions;
-using Ui.ViewModels.Accounts;
+using Views.Accounts;
 using Xunit;
 
 [ExcludeFromCodeCoverage]

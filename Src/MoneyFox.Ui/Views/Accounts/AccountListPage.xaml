@@ -4,8 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
-    xmlns:accounts="clr-namespace:MoneyFox.Ui.ViewModels.Accounts"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
+    xmlns:accounts1="clr-namespace:MoneyFox.Ui.Views.Accounts"
     Title="{x:Static resources:Strings.AccountsTitle}">
 
     <ContentPage.Resources>
@@ -41,7 +41,7 @@
                 </CollectionView.GroupHeaderTemplate>
 
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="accounts:AccountViewModel">
+                    <DataTemplate x:DataType="accounts1:AccountViewModel">
                         <Grid Padding="15,6,15,12">
                             <controls:Card HeightRequest="80">
 

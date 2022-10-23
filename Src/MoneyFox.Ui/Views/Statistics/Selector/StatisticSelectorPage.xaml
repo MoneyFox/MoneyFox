@@ -4,7 +4,7 @@
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:statistics="clr-namespace:MoneyFox.Ui.Views.Statistics.Selector"
-    x:Class="MoneyFox.Ui.Views.Statistics.StatisticSelectorPage"
+    x:Class="MoneyFox.Ui.Views.Statistics.Selector.StatisticSelectorPage"
     Title="{x:Static resources:Strings.SelectStatisticTitle}"
     x:Name="root">
 
