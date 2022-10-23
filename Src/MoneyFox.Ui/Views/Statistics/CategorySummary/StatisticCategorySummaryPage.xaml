@@ -1,20 +1,28 @@
 ﻿<ContentPage
-    x:Class="MoneyFox.Ui.Views.Statistics.StatisticCategorySummaryPage"
+    x:Class="MoneyFox.Ui.Views.Statistics.CategorySummary.StatisticCategorySummaryPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
+    xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
+    xmlns:statistics="clr-namespace:MoneyFox.Ui.ViewModels.Statistics"
     x:Name="StatisticCategorySummary"
-    Visual="Material">
+    x:DataType="statistics:StatisticCategorySummaryViewModel"
+    xmlns:views="clr-namespace:MoneyFox.Ui.Views">
+
+    <ContentPage.Resources>
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
+    </ContentPage.Resources>
+
 
     <Shell.TitleView>
-        <Grid ColumnDefinitions="*,66">
-            <Label Style="{StaticResource TextTitle}"
+        <Grid ColumnDefinitions="*,66" Margin="0,0,12,0">
+            <Label Style="{StaticResource PageTitle}"
                    HorizontalOptions="Start"
                    VerticalOptions="Center"
                    Text="{x:Static resources:Strings.CategorySummaryTitle}" />
 
-            <ImageButton Margin="0,0,5,0"
-                         Grid.Column="1"
+            <ImageButton Grid.Column="1"
                          Padding="0"
                          BorderWidth="0"
                          Clicked="OpenFilterDialog"
@@ -23,9 +31,9 @@
                          VerticalOptions="Center"
                          WidthRequest="66">
                 <ImageButton.Source>
-                    <FontImageSource FontFamily="MaterialIconsRound"
-                                     Glyph="filter_alt"
-                                     Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}"/>
+                    <FontImageSource FontFamily="MaterialIcons"
+                                     Glyph="{x:Static views:IconFont.FilterOutline}"
+                                     Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                 </ImageButton.Source>
             </ImageButton>
         </Grid>
@@ -45,7 +53,7 @@
                             ItemsSource="{Binding CategorySummary}">
 
                 <CollectionView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="statistics:CategoryOverviewViewModel">
                         <Grid Padding="15, 6, 15, 8">
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer
@@ -54,14 +62,7 @@
                             </Grid.GestureRecognizers>
 
 
-                            <Border StrokeShape="RoundRectangle 10"
-                                    Padding="15"
-                                    BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}" >
-
-                                <Border.Shadow>
-                                    <Shadow />
-                                </Border.Shadow>
-
+                            <controls:Card Padding="12">
                                 <StackLayout HorizontalOptions="FillAndExpand">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -81,7 +82,7 @@
                                                      Spacing="0"
                                                      VerticalOptions="Center">
                                             <Label
-                                                Text="{Binding Value, Converter={StaticResource AmountValueConverter}}" />
+                                                Text="{Binding Value, Converter={StaticResource AmountFormatConverter}}" />
                                             <Label Text="{Binding Percentage, StringFormat=' ({0} %)'}" />
 
                                         </StackLayout>
@@ -90,10 +91,10 @@
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="{x:Static resources:Strings.MonthlyAverageLabel}" />
                                         <Label
-                                            Text="{Binding Average, Converter={StaticResource AmountValueConverter}}" />
+                                            Text="{Binding Average, Converter={StaticResource AmountFormatConverter}}" />
                                     </StackLayout>
                                 </StackLayout>
-                            </Border>
+                            </controls:Card>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

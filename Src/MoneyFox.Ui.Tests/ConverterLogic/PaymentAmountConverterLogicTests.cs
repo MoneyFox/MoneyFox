@@ -2,9 +2,9 @@ namespace MoneyFox.Ui.Tests.ConverterLogic;
 
 using System.Diagnostics.CodeAnalysis;
 using Common.ConverterLogic;
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using FluentAssertions;
-using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using MoneyFox.Ui.ViewModels.Payments;
+using Ui.ViewModels.Payments;
 using Xunit;
 
 [ExcludeFromCodeCoverage]
@@ -21,10 +21,13 @@ public class PaymentAmountConverterLogicTests
         var payment = new PaymentViewModel { Type = type, ChargedAccountId = chargedAccountId, CurrentAccountId = currentAccountId };
 
         // Act
-        string result = PaymentAmountConverterLogic.GetAmountSign(payment);
+        var result = PaymentAmountConverterLogic.GetAmountSign(payment);
 
         // Assert
         _ = result.Should().StartWith(expectedResult);
     }
 }
+
+
+
 

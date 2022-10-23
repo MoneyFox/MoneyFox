@@ -1,13 +1,11 @@
 namespace MoneyFox.Ui.Tests.ViewModels;
 
-using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
+using Core.Common.Interfaces;
+using Core.Interfaces;
 using FluentAssertions;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Ui.Views.About;
 using NSubstitute;
+using Views.About;
 using Xunit;
 
 [ExcludeFromCodeCoverage]
@@ -38,7 +36,7 @@ public class AboutViewModelTests
     [Fact]
     public void Version_NoParams_ReturnCorrectMail()
     {
-        IAppInformation appinfos = Substitute.For<IAppInformation>();
+        var appinfos = Substitute.For<IAppInformation>();
         _ = appinfos.GetVersion.Returns("42");
         new AboutViewModel(
                 appInformation: appinfos,
@@ -51,7 +49,7 @@ public class AboutViewModelTests
     [Fact]
     public async Task GoToWebsite_NoParams_Called()
     {
-        IBrowserAdapter webBrowserTaskSetup = Substitute.For<IBrowserAdapter>();
+        var webBrowserTaskSetup = Substitute.For<IBrowserAdapter>();
         _ = webBrowserTaskSetup.OpenWebsiteAsync(Arg.Any<Uri>()).Returns(Task.CompletedTask);
         new AboutViewModel(
             appInformation: Substitute.For<IAppInformation>(),
@@ -67,7 +65,7 @@ public class AboutViewModelTests
     [Fact]
     public async Task GoToRepository_NoParams_CommandCalled()
     {
-        IBrowserAdapter webbrowserTaskSetup = Substitute.For<IBrowserAdapter>();
+        var webbrowserTaskSetup = Substitute.For<IBrowserAdapter>();
         _ = webbrowserTaskSetup.OpenWebsiteAsync(Arg.Any<Uri>()).Returns(Task.CompletedTask);
         new AboutViewModel(
             appInformation: Substitute.For<IAppInformation>(),
@@ -81,7 +79,7 @@ public class AboutViewModelTests
     [Fact]
     public void RateApp_NoParams_CommandCalled()
     {
-        IStoreOperations storeFeaturesSetup = Substitute.For<IStoreOperations>();
+        var storeFeaturesSetup = Substitute.For<IStoreOperations>();
         new AboutViewModel(
             appInformation: Substitute.For<IAppInformation>(),
             emailAdapter: Substitute.For<IEmailAdapter>(),
@@ -91,4 +89,7 @@ public class AboutViewModelTests
         storeFeaturesSetup.Received(1).RateApp();
     }
 }
+
+
+
 

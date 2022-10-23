@@ -2,12 +2,12 @@ namespace MoneyFox.Ui.ViewModels.Payments;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
+using Core.ApplicationCore.Queries;
+using Core.Commands.Payments.DeletePaymentById;
+using Core.Commands.Payments.UpdatePayment;
+using Core.Common.Interfaces;
+using Core.Resources;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.Queries;
-using MoneyFox.Core.Commands.Payments.DeletePaymentById;
-using MoneyFox.Core.Commands.Payments.UpdatePayment;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Resources;
 
 internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
 {
@@ -30,6 +30,7 @@ internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
 
     public async Task InitializeAsync(int paymentId)
     {
+        await InitializeAsync();
         var payment = await mediator.Send(new GetPaymentByIdQuery(paymentId));
         SelectedPayment = mapper.Map<PaymentViewModel>(payment);
     }
@@ -91,3 +92,4 @@ internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
         }
     }
 }
+

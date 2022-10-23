@@ -100,7 +100,7 @@ public class RecurringPayment : EntityBase
 
         [UsedImplicitly]
         private set;
-    } = new List<Payment>();
+    } = new();
 
     public void UpdateRecurringPayment(
         decimal amount,
@@ -133,4 +133,5 @@ public class RecurringPayment : EntityBase
         LastRecurrenceCreated = DateTime.Now;
     }
 }
+
 

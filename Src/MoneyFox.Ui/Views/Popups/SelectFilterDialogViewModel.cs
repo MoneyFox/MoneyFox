@@ -1,9 +1,10 @@
-﻿namespace MoneyFox.Ui.ViewModels.Dialogs;
+namespace MoneyFox.Ui.Views.Popups;
 
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using MoneyFox.Core.Common.Messages;
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Core.Common.Messages;
+using ViewModels;
 
 public interface ISelectFilterDialogViewModel
 {
@@ -154,3 +155,5 @@ internal sealed class SelectFilterDialogViewModel : BaseViewModel, ISelectFilter
         FilteredPaymentType = message.FilteredPaymentType;
     }
 }
+
+

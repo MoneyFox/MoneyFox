@@ -3,9 +3,10 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-    xmlns:converter="using:MoneyFox.Ui.Converter"
-    xmlns:accounts="using:MoneyFox.Ui.ViewModels.Accounts"
-    Title="{x:Static resources:Strings.AccountsTitle}" >
+    xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
+    xmlns:accounts="clr-namespace:MoneyFox.Ui.ViewModels.Accounts"
+    xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
+    Title="{x:Static resources:Strings.AccountsTitle}">
 
     <ContentPage.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
@@ -15,7 +16,7 @@
     <ContentPage.Content>
         <Grid IsClippedToBounds="False" RowDefinitions="40, *">
             <Button
-                Margin="0,0,6,0"
+                Margin="0,0,12,0"
                 HorizontalOptions="End"
                 Text="{x:Static resources:Strings.AddAccountLabel}"
                 VerticalOptions="Center"
@@ -42,18 +43,7 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="accounts:AccountViewModel">
                         <Grid Padding="15,6,15,12">
-                            <Border
-                                BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                                 Light={StaticResource CardBackgroundLight}}"
-                                Stroke="black"
-                                StrokeThickness="0"
-                                StrokeShape="RoundRectangle 10"
-                                HeightRequest="80"
-                                HorizontalOptions="FillAndExpand">
-
-                                <Border.Shadow>
-                                    <Shadow />
-                                </Border.Shadow>
+                            <controls:Card HeightRequest="80">
 
                                 <SwipeView
                                     BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
@@ -117,7 +107,7 @@
                                         </StackLayout>
                                     </Grid>
                                 </SwipeView>
-                            </Border>
+                            </controls:Card>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

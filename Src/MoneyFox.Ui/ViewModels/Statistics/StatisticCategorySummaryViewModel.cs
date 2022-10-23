@@ -4,9 +4,9 @@ using System.Collections.ObjectModel;
 using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Core.ApplicationCore.Queries.Statistics.GetCategorySummary;
+using Core.Common.Interfaces;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.Queries.Statistics.GetCategorySummary;
-using MoneyFox.Core.Common.Interfaces;
 using Serilog;
 
 internal sealed class StatisticCategorySummaryViewModel : StatisticViewModel
@@ -66,3 +66,4 @@ internal sealed class StatisticCategorySummaryViewModel : StatisticViewModel
         Messenger.Send(new PaymentsForCategoryMessage(categoryId: categoryOverviewModel.CategoryId, startdate: StartDate, enddate: EndDate));
     }
 }
+

@@ -1,87 +1,82 @@
-﻿namespace MoneyFox.Tests.Notification.DatabaseChanged
+﻿namespace MoneyFox.Core.Tests.Notification.DatabaseChanged;
+
+using Core.ApplicationCore.UseCases.BackupUpload;
+using Core.Common.Facades;
+using FluentAssertions;
+using MediatR;
+using Notifications.DatabaseChanged;
+using NSubstitute;
+
+public class DatabaseChangedNotificationHandlerShould
 {
+    private readonly DataBaseChanged.Handler handler;
+    private readonly ISender sender;
+    private readonly ISettingsFacade settingsFacade;
 
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using FluentAssertions;
-    using MediatR;
-    using MoneyFox.Core.ApplicationCore.UseCases.BackupUpload;
-    using MoneyFox.Core.Common.Facades;
-    using MoneyFox.Core.Notifications.DatabaseChanged;
-    using NSubstitute;
-    using Xunit;
-
-    public class DatabaseChangedNotificationHandlerShould
+    public DatabaseChangedNotificationHandlerShould()
     {
-        private readonly DataBaseChanged.Handler handler;
-        private readonly ISender sender;
-        private readonly ISettingsFacade settingsFacade;
+        sender = Substitute.For<ISender>();
+        settingsFacade = Substitute.For<ISettingsFacade>();
+        handler = new(sender: sender, settingsFacade: settingsFacade);
+    }
 
-        public DatabaseChangedNotificationHandlerShould()
+    public class GivenBackupAutoUploadEnabled : DatabaseChangedNotificationHandlerShould
+    {
+        public GivenBackupAutoUploadEnabled()
         {
-            sender = Substitute.For<ISender>();
-            settingsFacade = Substitute.For<ISettingsFacade>();
-            handler = new DataBaseChanged.Handler(sender: sender, settingsFacade: settingsFacade);
+            settingsFacade.IsBackupAutoUploadEnabled.Returns(true);
         }
 
-        public class GivenBackupAutoUploadEnabled : DatabaseChangedNotificationHandlerShould
+        [Fact]
+        public async Task UploadBackup_WhenLoggedIn()
         {
-            public GivenBackupAutoUploadEnabled()
-            {
-                settingsFacade.IsBackupAutoUploadEnabled.Returns(true);
-            }
+            // Arrange
+            settingsFacade.IsLoggedInToBackupService.Returns(true);
 
-            [Fact]
-            public async Task UploadBackup_WhenLoggedIn()
-            {
-                // Arrange
-                settingsFacade.IsLoggedInToBackupService.Returns(true);
+            // Act
+            var notification = new DataBaseChanged.Notification();
+            await handler.Handle(notification: notification, cancellationToken: CancellationToken.None);
 
-                // Act
-                var notification = new DataBaseChanged.Notification();
-                await handler.Handle(notification: notification, cancellationToken: CancellationToken.None);
-
-                // Assert
-                await sender.Received().Send(request: Arg.Any<UploadBackup.Command>(), cancellationToken: CancellationToken.None);
-                settingsFacade.LastDatabaseUpdate.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
-            }
-
-            [Fact]
-            public async Task Skip_UploadBackup_WhenNotLoggedIn()
-            {
-                // Arrange
-                settingsFacade.IsLoggedInToBackupService.Returns(false);
-
-                // Act
-                var notification = new DataBaseChanged.Notification();
-                await handler.Handle(notification: notification, cancellationToken: CancellationToken.None);
-
-                // Assert
-                await sender.Received(0).Send(request: Arg.Any<UploadBackup.Command>(), cancellationToken: CancellationToken.None);
-                settingsFacade.LastDatabaseUpdate.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
-            }
+            // Assert
+            await sender.Received().Send(request: Arg.Any<UploadBackup.Command>(), cancellationToken: CancellationToken.None);
+            settingsFacade.LastDatabaseUpdate.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
         }
 
-        public class GivenBackupAutoUploadDisabled : DatabaseChangedNotificationHandlerShould
+        [Fact]
+        public async Task Skip_UploadBackup_WhenNotLoggedIn()
         {
-            public GivenBackupAutoUploadDisabled()
-            {
-                settingsFacade.IsBackupAutoUploadEnabled.Returns(false);
-            }
+            // Arrange
+            settingsFacade.IsLoggedInToBackupService.Returns(false);
 
-            [Fact]
-            public async Task UploadBackup_WhenLoggedIn()
-            {
-                // Act
-                var notification = new DataBaseChanged.Notification();
-                await handler.Handle(notification: notification, cancellationToken: CancellationToken.None);
+            // Act
+            var notification = new DataBaseChanged.Notification();
+            await handler.Handle(notification: notification, cancellationToken: CancellationToken.None);
 
-                // Assert
-                await sender.Received(0).Send(request: Arg.Any<UploadBackup.Command>(), cancellationToken: CancellationToken.None);
-                settingsFacade.LastDatabaseUpdate.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
-            }
+            // Assert
+            await sender.Received(0).Send(request: Arg.Any<UploadBackup.Command>(), cancellationToken: CancellationToken.None);
+            settingsFacade.LastDatabaseUpdate.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
         }
     }
 
+    public class GivenBackupAutoUploadDisabled : DatabaseChangedNotificationHandlerShould
+    {
+        public GivenBackupAutoUploadDisabled()
+        {
+            settingsFacade.IsBackupAutoUploadEnabled.Returns(false);
+        }
+
+        [Fact]
+        public async Task UploadBackup_WhenLoggedIn()
+        {
+            // Act
+            var notification = new DataBaseChanged.Notification();
+            await handler.Handle(notification: notification, cancellationToken: CancellationToken.None);
+
+            // Assert
+            await sender.Received(0).Send(request: Arg.Any<UploadBackup.Command>(), cancellationToken: CancellationToken.None);
+            settingsFacade.LastDatabaseUpdate.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
+        }
+    }
 }
+
+

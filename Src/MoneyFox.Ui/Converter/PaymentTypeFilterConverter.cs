@@ -1,8 +1,8 @@
 ﻿namespace MoneyFox.Ui.Converter;
 
 using System.Globalization;
-using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using MoneyFox.Core.Resources;
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Core.Resources;
 
 public class PaymentTypeFilterConverter : IValueConverter
 {
@@ -25,3 +25,4 @@ public class PaymentTypeFilterConverter : IValueConverter
         throw new NotSupportedException();
     }
 }
+

@@ -1,4 +1,5 @@
 namespace MoneyFox.Ui.Views.OverflowMenu;
+
 public partial class OverflowMenuPage
 {
     public OverflowMenuPage()
@@ -7,3 +8,5 @@ public partial class OverflowMenuPage
         BindingContext = App.GetViewModel<OverflowMenuViewModel>();
     }
 }
+
+

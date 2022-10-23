@@ -4,10 +4,10 @@ using Accounts;
 using AutoMapper;
 using Categories;
 using CommunityToolkit.Mvvm.ComponentModel;
-using MoneyFox.Core.ApplicationCore.Domain.Aggregates;
-using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using MoneyFox.Core.Common.Helpers;
-using MoneyFox.Core.Common.Interfaces.Mapping;
+using Core.ApplicationCore.Domain.Aggregates;
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Core.Common.Helpers;
+using Core.Common.Interfaces.Mapping;
 
 public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
 {
@@ -247,3 +247,4 @@ public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
         configuration.CreateMap<RecurringPayment, RecurringPaymentViewModel>();
     }
 }
+

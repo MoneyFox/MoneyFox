@@ -1,31 +1,29 @@
-﻿namespace MoneyFox.Tests.TestFramework
+﻿namespace MoneyFox.Core.Tests.TestFramework;
+
+using System.Collections.Immutable;
+using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
+
+internal static partial class TestData
 {
-
-    using System.Collections.Generic;
-    using System.Collections.Immutable;
-    using MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
-
-    internal static partial class TestData
+    internal sealed class DefaultBudget : IBudget
     {
-        internal sealed class DefaultBudget : IBudget
-        {
-            public int Id { get; set; } = 10;
-            public string Name { get; set; } = "Beverages";
-            public decimal SpendingLimit { get; set; } = 100.50m;
-            public decimal CurrentSpending { get; set; } = 60.20m;
-            public BudgetTimeRange BudgetTimeRange { get; set; } = BudgetTimeRange.YearToDate;
-            public IReadOnlyList<int> Categories { get; set; } = ImmutableList.Create(11);
-        }
-
-        internal interface IBudget
-        {
-            int Id { get; }
-            string Name { get; }
-            decimal SpendingLimit { get; }
-            decimal CurrentSpending { get; }
-            BudgetTimeRange BudgetTimeRange { get; }
-            IReadOnlyList<int> Categories { get; }
-        }
+        public int Id { get; set; } = 10;
+        public string Name { get; set; } = "Beverages";
+        public decimal SpendingLimit { get; set; } = 100.50m;
+        public decimal CurrentSpending { get; set; } = 60.20m;
+        public BudgetTimeRange BudgetTimeRange { get; set; } = BudgetTimeRange.YearToDate;
+        public IReadOnlyList<int> Categories { get; set; } = ImmutableList.Create(11);
     }
 
+    internal interface IBudget
+    {
+        int Id { get; }
+        string Name { get; }
+        decimal SpendingLimit { get; }
+        decimal CurrentSpending { get; }
+        BudgetTimeRange BudgetTimeRange { get; }
+        IReadOnlyList<int> Categories { get; }
+    }
 }
+
+

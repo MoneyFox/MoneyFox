@@ -54,3 +54,4 @@ public interface ISettingsAdapter
     void Remove(string key);
 }
 
+

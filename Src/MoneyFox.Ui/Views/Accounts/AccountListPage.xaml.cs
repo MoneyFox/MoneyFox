@@ -17,3 +17,5 @@ public partial class AccountListPage
         await ViewModel.OnAppearingAsync();
     }
 }
+
+

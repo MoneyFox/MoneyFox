@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Win.ViewModels.Payments;
+namespace MoneyFox.Win.ViewModels.Payments;
 
 using System;
 using System.Collections.Generic;
@@ -225,7 +225,7 @@ public abstract class ModifyPaymentViewModel : BaseViewModel, IModifyPaymentView
 
     protected override void OnActivated()
     {
-        Messenger.Register<ModifyPaymentViewModel, CategorySelectedMessage>(recipient: this, handler: (r, m) => r.ReceiveMessageAsync(m));
+        Messenger.Register<ModifyPaymentViewModel, CategorySelectedMessage>(recipient: this, handler: async (r, m) => await r.ReceiveMessageAsync(m));
     }
 
     protected override void OnDeactivated()

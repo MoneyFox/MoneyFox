@@ -21,13 +21,13 @@ public class ClearPaymentsCommand : IRequest
 
         public async Task<Unit> Handle(ClearPaymentsCommand request, CancellationToken cancellationToken)
         {
-            System.Collections.Generic.List<ApplicationCore.Domain.Aggregates.AccountAggregate.Payment> unclearedPayments = await appDbContext.Payments.Include(x => x.ChargedAccount)
+            var unclearedPayments = await appDbContext.Payments.Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
                 .AsQueryable()
                 .AreNotCleared()
                 .ToListAsync(cancellationToken: cancellationToken);
 
-            foreach (ApplicationCore.Domain.Aggregates.AccountAggregate.Payment? payment in unclearedPayments)
+            foreach (var payment in unclearedPayments)
             {
                 payment.ClearPayment();
             }
@@ -38,4 +38,5 @@ public class ClearPaymentsCommand : IRequest
         }
     }
 }
+
 

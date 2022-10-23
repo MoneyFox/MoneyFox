@@ -1,31 +1,30 @@
-﻿namespace MoneyFox.Tests.TestFramework
+﻿namespace MoneyFox.Core.Tests.TestFramework;
+
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
+
+internal static class TestPaymentDbFactory
 {
-
-    using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-    using MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
-
-    internal static class TestPaymentDbFactory
+    internal static Payment CreateDbPayment(this TestData.IPayment payment)
     {
-        internal static Payment CreateDbPayment(this TestData.IPayment payment)
-        {
-            // todo switch this around to have the account be the aggregate
-            var chargedAccount = payment.ChargedAccount.CreateDbAccount();
-            var targetAccount = payment.TargetAccount.CreateDbAccount();
+        // todo switch this around to have the account be the aggregate
+        var chargedAccount = payment.ChargedAccount.CreateDbAccount();
+        var targetAccount = payment.TargetAccount.CreateDbAccount();
 
-            //TODO Handle category better
-            var category = new Category(payment.CategoryName);
+        //TODO Handle category better
+        var category = new Category(payment.CategoryName);
 
-            //TODO Handle RecurringPayment better
+        //TODO Handle RecurringPayment better
 
-            return new Payment(
-                date: payment.Date,
-                amount: payment.Amount,
-                type: payment.Type,
-                chargedAccount: chargedAccount,
-                targetAccount: targetAccount,
-                category: category,
-                note: payment.Note);
-        }
+        return new(
+            date: payment.Date,
+            amount: payment.Amount,
+            type: payment.Type,
+            chargedAccount: chargedAccount,
+            targetAccount: targetAccount,
+            category: category,
+            note: payment.Note);
     }
-
 }
+
+

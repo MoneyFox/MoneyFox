@@ -1,25 +1,22 @@
-﻿namespace MoneyFox.Tests.Core.Common.Helper
+﻿namespace MoneyFox.Core.Tests.Common.Helper;
+
+using System.Diagnostics.CodeAnalysis;
+using Core.Common.Helpers;
+using FluentAssertions;
+
+[ExcludeFromCodeCoverage]
+public class SystemDateHelperTests
 {
-
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using FluentAssertions;
-    using MoneyFox.Core.Common.Helpers;
-    using Xunit;
-
-    [ExcludeFromCodeCoverage]
-    public class SystemDateHelperTests
+    [Fact]
+    public void ValueCorrectInitialized()
     {
-        [Fact]
-        public void ValueCorrectInitialized()
-        {
-            // Arrange
-            // Act
-            var systemDateHelper = new SystemDateHelper();
+        // Arrange
+        // Act
+        var systemDateHelper = new SystemDateHelper();
 
-            // Assert
-            systemDateHelper.Today.Should().Be(DateTime.Today);
-        }
+        // Assert
+        systemDateHelper.Today.Should().Be(DateTime.Today);
     }
-
 }
+
+

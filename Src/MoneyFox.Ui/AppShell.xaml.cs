@@ -10,6 +10,7 @@ using Views.Payments;
 using Views.Settings;
 using Views.SetupAssistant;
 using Views.Statistics;
+using Views.Statistics.CategorySummary;
 
 public partial class AppShell : Shell
 {
@@ -33,6 +34,7 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(route: Routes.CategoryListRoute, type: typeof(CategoryListPage));
         Routing.RegisterRoute(route: Routes.SelectCategoryRoute, type: typeof(SelectCategoryPage));
         Routing.RegisterRoute(route: Routes.AddCategoryRoute, type: typeof(AddCategoryPage));
+        Routing.RegisterRoute(route: Routes.EditCategoryRoute, type: typeof(EditCategoryPage));
         Routing.RegisterRoute(route: Routes.AddPaymentRoute, type: typeof(AddPaymentPage));
         Routing.RegisterRoute(route: Routes.EditPaymentRoute, type: typeof(EditPaymentPage));
         Routing.RegisterRoute(route: Routes.BackupRoute, type: typeof(BackupPage));
@@ -50,3 +52,4 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(route: Routes.EditBudgetRoute, type: typeof(EditBudgetPage));
     }
 }
+

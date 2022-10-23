@@ -1,14 +1,12 @@
 namespace MoneyFox.Ui.ViewModels.Budget;
 
 using System.Collections.ObjectModel;
-using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Core.ApplicationCore.Queries.BudgetListLoading;
+using Core.Common.Extensions;
+using Core.Common.Messages;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.Queries.BudgetListLoading;
-using MoneyFox.Core.Common.Extensions;
-using MoneyFox.Core.Common.Messages;
-using Views.Budget;
 
 public sealed class BudgetListViewModel : BaseViewModel, IRecipient<ReloadMessage>
 {
@@ -58,7 +56,7 @@ public sealed class BudgetListViewModel : BaseViewModel, IRecipient<ReloadMessag
 
     private static async Task GoToAddBudget()
     {
-        await Shell.Current.GoToModalAsync(Routes.AddBudgetRoute);
+        await Shell.Current.GoToAsync(Routes.AddBudgetRoute);
     }
 
     private async Task EditBudgetAsync(BudgetListItemViewModel? selectedBudget)
@@ -68,6 +66,8 @@ public sealed class BudgetListViewModel : BaseViewModel, IRecipient<ReloadMessag
             return;
         }
 
-        await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new EditBudgetPage(selectedBudget.Id)) { BarBackgroundColor = Colors.Transparent });
+        await Shell.Current.GoToAsync($"{Routes.EditBudgetRoute}?budgetId={selectedBudget.Id}");
     }
 }
+
+

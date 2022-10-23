@@ -34,3 +34,4 @@ public class GetMonthlyIncomeQuery : IRequest<decimal>
     }
 }
 
+

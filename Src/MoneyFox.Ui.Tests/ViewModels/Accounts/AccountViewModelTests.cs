@@ -1,9 +1,8 @@
 namespace MoneyFox.Ui.Tests.ViewModels.Accounts;
 
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using FluentAssertions;
-using MoneyFox.Ui.ViewModels.Accounts;
+using Ui.ViewModels.Accounts;
 using Xunit;
 
 [ExcludeFromCodeCoverage]
@@ -25,4 +24,7 @@ public class AccountViewModelTests
         _ = vm1.Equals(vm2).Should().Be(result);
     }
 }
+
+
+
 

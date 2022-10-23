@@ -1,16 +1,14 @@
 namespace MoneyFox.Ui.Tests.ViewModels.Budget;
 
-using System.Linq;
-using System.Threading.Tasks;
+using Core.ApplicationCore.UseCases.BudgetCreation;
+using Core.Common.Extensions;
+using Core.Common.Messages;
+using Core.Interfaces;
+using Core.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.UseCases.BudgetCreation;
-using MoneyFox.Core.Common.Extensions;
-using MoneyFox.Core.Common.Messages;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Tests.TestFramework;
-using MoneyFox.Ui.ViewModels.Budget;
 using NSubstitute;
+using Ui.ViewModels.Budget;
 using Views.Categories;
 using Xunit;
 
@@ -26,14 +24,14 @@ public class AddBudgetViewModelShould
     {
         sender = Substitute.For<ISender>();
         navigationService = Substitute.For<INavigationService>();
-        viewModel = new AddBudgetViewModel(sender: sender, navigationService: navigationService);
+        viewModel = new(sender: sender, navigationService: navigationService);
     }
 
     [Fact]
     public void AddsSelectedCategoryToList()
     {
         // Act
-        CategorySelectedMessage categorySelectedMessage = new(new CategorySelectedDataSet(categoryId: CategoryId, name: "Beer"));
+        CategorySelectedMessage categorySelectedMessage = new(new(categoryId: CategoryId, name: "Beer"));
         viewModel.Receive(categorySelectedMessage);
 
         // Assert
@@ -45,7 +43,7 @@ public class AddBudgetViewModelShould
     public void IgnoresSelectedCategory_WhenEntryWithSameIdAlreadyInList()
     {
         // Act
-        CategorySelectedMessage categorySelectedMessage = new(new CategorySelectedDataSet(categoryId: CategoryId, name: "Beer"));
+        CategorySelectedMessage categorySelectedMessage = new(new(categoryId: CategoryId, name: "Beer"));
         viewModel.Receive(categorySelectedMessage);
         viewModel.Receive(categorySelectedMessage);
 
@@ -102,4 +100,7 @@ public class AddBudgetViewModelShould
         await navigationService.Received(1).OpenModalAsync<SelectCategoryPage>();
     }
 }
+
+
+
 

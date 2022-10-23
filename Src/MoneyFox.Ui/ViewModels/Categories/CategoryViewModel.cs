@@ -2,8 +2,8 @@ namespace MoneyFox.Ui.ViewModels.Categories;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
-using MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
-using MoneyFox.Core.Common.Interfaces.Mapping;
+using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
+using Core.Common.Interfaces.Mapping;
 
 public class CategoryViewModel : ObservableObject, IHaveCustomMapping
 {
@@ -118,3 +118,4 @@ public class CategoryViewModel : ObservableObject, IHaveCustomMapping
         configuration.CreateMap<Category, CategoryViewModel>().ReverseMap();
     }
 }
+

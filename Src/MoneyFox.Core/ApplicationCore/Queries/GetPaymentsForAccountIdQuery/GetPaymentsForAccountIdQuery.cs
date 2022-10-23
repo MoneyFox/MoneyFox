@@ -52,7 +52,7 @@ public class GetPaymentsForAccountIdQuery : IRequest<List<Payment>>
 
         public async Task<List<Payment>> Handle(GetPaymentsForAccountIdQuery request, CancellationToken cancellationToken)
         {
-            IQueryable<Payment> paymentQuery = appDbContext.Payments.Include(x => x.ChargedAccount)
+            var paymentQuery = appDbContext.Payments.Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
                 .Include(x => x.Category)
                 .Include(x => x.RecurringPayment)
@@ -80,4 +80,5 @@ public class GetPaymentsForAccountIdQuery : IRequest<List<Payment>>
         }
     }
 }
+
 

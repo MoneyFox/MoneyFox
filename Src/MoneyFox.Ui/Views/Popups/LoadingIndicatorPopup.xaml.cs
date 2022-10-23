@@ -7,3 +7,5 @@ public partial class LoadingIndicatorPopup
         InitializeComponent();
     }
 }
+
+

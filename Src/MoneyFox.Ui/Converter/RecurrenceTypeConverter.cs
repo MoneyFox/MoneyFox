@@ -2,7 +2,7 @@
 
 using System.Globalization;
 using Common.ConverterLogic;
-using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 
 /// <summary>
 ///     Converts the RecurrenceType to a string.
@@ -30,3 +30,4 @@ public class RecurrenceTypeConverter : IValueConverter
         throw new NotSupportedException();
     }
 }
+

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.ViewModels.Categories;
+namespace MoneyFox.Ui.ViewModels.Categories;
 
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -7,12 +7,12 @@ using Common.Extensions;
 using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Core.ApplicationCore.Queries;
+using Core.Commands.Categories.DeleteCategoryById;
+using Core.Common.Interfaces;
+using Core.Common.Messages;
+using Core.Resources;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.Queries;
-using MoneyFox.Core.Commands.Categories.DeleteCategoryById;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Common.Messages;
-using MoneyFox.Core.Resources;
 using Views.Categories;
 
 internal class CategoryListViewModel : BaseViewModel
@@ -23,8 +23,6 @@ internal class CategoryListViewModel : BaseViewModel
     private readonly IMediator mediator;
 
     private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> categories = new();
-
-    private string searchTerm = string.Empty;
 
     public CategoryListViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService)
     {
@@ -44,25 +42,13 @@ internal class CategoryListViewModel : BaseViewModel
         }
     }
 
-    public RelayCommand GoToAddCategoryCommand => new(async () => await Shell.Current.GoToModalAsync(Routes.AddCategoryRoute));
+    public AsyncRelayCommand GoToAddCategoryCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddCategoryRoute));
 
     public AsyncRelayCommand<string> SearchCategoryCommand => new(async searchTerm => await SearchCategoryAsync(searchTerm));
 
-    public string SearchTerm
-    {
-        get => searchTerm;
-
-        set
-        {
-            searchTerm = value;
-            SearchCategoryCommand.Execute(searchTerm);
-        }
-    }
-
     public AsyncRelayCommand<CategoryViewModel> GoToEditCategoryCommand
-        => new(
-            async categoryViewModel => await Shell.Current.Navigation.PushModalAsync(
-                new NavigationPage(new EditCategoryPage(categoryViewModel.Id)) { BarBackgroundColor = Colors.Transparent }));
+
+            => new(async cvm => await Shell.Current.GoToAsync($"{Routes.EditCategoryRoute}?categoryId={cvm.Id}"));
 
     public AsyncRelayCommand<CategoryViewModel> DeleteCategoryCommand => new(async categoryViewModel => await DeleteAccountAsync(categoryViewModel));
 
@@ -106,3 +92,4 @@ internal class CategoryListViewModel : BaseViewModel
         }
     }
 }
+

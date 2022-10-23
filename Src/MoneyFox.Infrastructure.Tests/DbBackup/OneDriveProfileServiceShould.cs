@@ -1,61 +1,55 @@
-namespace MoneyFox.Tests.Infrastructure.DbBackup
+namespace MoneyFox.Infrastructure.Tests.DbBackup;
+
+using Flurl.Http.Testing;
+using Infrastructure.DbBackup;
+using Infrastructure.DbBackup.OneDriveModels;
+using NSubstitute;
+
+public class OneDriveProfileServiceShould
 {
-    using System.Threading.Tasks;
-    using Flurl.Http.Testing;
-    using MoneyFox.Infrastructure.DbBackup;
-    using MoneyFox.Infrastructure.DbBackup.OneDriveModels;
-    using NSubstitute;
-    using Xunit;
+    private readonly HttpTest httpTest;
+    private readonly IOneDriveAuthenticationService oneDriveAuthenticationService;
+    private readonly OneDriveProfileService oneDriveProfileService;
 
-    public class OneDriveProfileServiceShould
+    public OneDriveProfileServiceShould()
     {
-        private readonly HttpTest httpTest;
-        private readonly OneDriveProfileService oneDriveProfileService;
-        private readonly IOneDriveAuthenticationService oneDriveAuthenticationService;
+        httpTest = new();
+        oneDriveAuthenticationService = Substitute.For<IOneDriveAuthenticationService>();
+        oneDriveProfileService = new(oneDriveAuthenticationService);
+    }
 
-        public OneDriveProfileServiceShould()
+    public class GetUserAccountAsync : OneDriveProfileServiceShould
+    {
+        [Fact]
+        public async Task CallCorrectUrl()
         {
-            httpTest = new HttpTest();
+            // Assert
+            httpTest.RespondWithJson(new UserDto { DisplayName = "Hans Meier", PrincipalName = "hans.meier@test.ch", Email = "hans.meier@test.ch" });
+            oneDriveAuthenticationService.AcquireAuthentication().Returns(new OneDriveAuthentication(accessToken: "access-token", tokenType: "bearer"));
 
-            oneDriveAuthenticationService = Substitute.For<IOneDriveAuthenticationService>();
-            oneDriveProfileService = new OneDriveProfileService(oneDriveAuthenticationService);
+            // Act
+            await oneDriveProfileService.GetUserAccountAsync();
+
+            // Assert
+            httpTest.ShouldHaveCalled("https://graph.microsoft.com/v1.0/me").WithOAuthBearerToken();
         }
+    }
 
-        public class GetUserAccountAsync : OneDriveProfileServiceShould
+    public class GetProfilePictureAsync : OneDriveProfileServiceShould
+    {
+        [Fact]
+        public async Task CallCorrectUrl()
         {
+            // Assert
+            oneDriveAuthenticationService.AcquireAuthentication().Returns(new OneDriveAuthentication(accessToken: "access-token", tokenType: "bearer"));
 
-            [Fact]
-            public async Task CallCorrectUrl()
-            {
-                // Assert
-                httpTest.RespondWithJson(new UserDto { DisplayName = "Hans Meier", PrincipalName = "hans.meier@test.ch", Email = "hans.meier@test.ch" });
-                oneDriveAuthenticationService.AcquireAuthentication().Returns(new OneDriveAuthentication("access-token", "bearer"));
+            // Act
+            await oneDriveProfileService.GetProfilePictureAsync();
 
-                // Act
-                await oneDriveProfileService.GetUserAccountAsync();
-
-                // Assert
-                httpTest.ShouldHaveCalled("https://graph.microsoft.com/v1.0/me")
-                    .WithOAuthBearerToken();
-            }
-        }
-
-        public class GetProfilePictureAsync : OneDriveProfileServiceShould
-        {
-
-            [Fact]
-            public async Task CallCorrectUrl()
-            {
-                // Assert
-                oneDriveAuthenticationService.AcquireAuthentication().Returns(new OneDriveAuthentication("access-token", "bearer"));
-
-                // Act
-                await oneDriveProfileService.GetProfilePictureAsync();
-
-                // Assert
-                httpTest.ShouldHaveCalled("https://graph.microsoft.com/v1.0/me/photo/$value")
-                    .WithOAuthBearerToken();
-            }
+            // Assert
+            httpTest.ShouldHaveCalled("https://graph.microsoft.com/v1.0/me/photo/$value").WithOAuthBearerToken();
         }
     }
 }
+
+

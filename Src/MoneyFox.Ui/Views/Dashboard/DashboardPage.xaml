@@ -4,8 +4,10 @@
     x:Class="MoneyFox.Ui.Views.Dashboard.DashboardPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:accounts="clr-namespace:MoneyFox.Ui.ViewModels.Accounts"
+    xmlns:views="clr-namespace:MoneyFox.Ui.Views"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core">
 
     <ContentPage.Resources>
@@ -14,7 +16,7 @@
     </ContentPage.Resources>
 
     <Shell.TitleView>
-        <Grid >
+        <Grid>
             <Grid.Padding>
                 <OnPlatform x:TypeArguments="Thickness">
                     <On Platform="Android" Value="0,8,16,0" />
@@ -23,15 +25,17 @@
                     <On Platform="iOS" Value="0,4,0,0" />
                 </OnPlatform>
             </Grid.Padding>
-            
+
             <Button Command="{Binding GoToAddPaymentCommand}"
-                            HorizontalOptions="End"
-                            VerticalOptions="Start"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
                     HeightRequest="40"
-                            Style="{StaticResource PrimaryButton}"
-                            Text="Add Payment">
+                    Style="{StaticResource PrimaryButton}"
+                    Text="{x:Static resources:Strings.AddPaymentLabel}">
                 <Button.ImageSource>
-                    <FontImageSource FontFamily="MaterialIconsRound" Glyph="add" Color="White" />
+                    <FontImageSource FontFamily="MaterialIcons"
+                                     Glyph="{x:Static views:IconFont.Plus}"
+                                     Color="White" />
                 </Button.ImageSource>
             </Button>
         </Grid>
@@ -51,17 +55,8 @@
                        VerticalOptions="Center" />
 
                 <!--  Assets card  -->
-                <Border Grid.Row="2"
-                        BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
-                        StrokeShape="RoundRectangle 10"
-                        StrokeThickness="0"
-                        HeightRequest="90"
-                        HorizontalOptions="FillAndExpand">
-                    
-                    <Border.Shadow>
-                        <Shadow />
-                    </Border.Shadow>
-                    
+                <controls:Card Grid.Row="2"
+                               HeightRequest="90">
                     <Grid>
 
                         <Grid.GestureRecognizers>
@@ -96,7 +91,7 @@
                                 VerticalTextAlignment="End" />
                         </StackLayout>
                     </Grid>
-                </Border>
+                </controls:Card>
 
                 <!--  Accounts  -->
                 <Grid Grid.Row="3" VerticalOptions="FillAndExpand" RowDefinitions="*, 35">
@@ -118,18 +113,7 @@
                                     </Grid.GestureRecognizers>
 
 
-                                    <Border
-                                        BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                          Light={StaticResource CardBackgroundLight}}"
-                                        StrokeShape="RoundRectangle 10"
-                                        StrokeThickness="0"
-                                        HeightRequest="80"
-                                        HorizontalOptions="FillAndExpand">
-                                        
-                                        <Border.Shadow>
-                                            <Shadow />
-                                        </Border.Shadow>
-
+                                    <controls:Card HeightRequest="80">
                                         <Grid>
                                             <Label
                                                 Margin="10,2,0,0"
@@ -164,7 +148,7 @@
                                                     Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}" />
                                             </StackLayout>
                                         </Grid>
-                                    </Border>
+                                    </controls:Card>
                                 </Grid>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
@@ -190,18 +174,8 @@
 
                     <Grid ColumnDefinitions="*, 10, *">
 
-                        <Border
-                            Grid.Column="0"
-                            BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                              Light={StaticResource CardBackgroundLight}}"
-                            StrokeShape="RoundRectangle 10"
-                            StrokeThickness="0"
-                            HeightRequest="80"
-                            HorizontalOptions="FillAndExpand">
-                            
-                            <Border.Shadow>
-                                <Shadow />
-                            </Border.Shadow>
+                        <controls:Card Grid.Column="0"
+                                       HeightRequest="80">
 
                             <Grid>
                                 <Label
@@ -210,21 +184,10 @@
                                     VerticalOptions="Center"
                                     Text="{Binding MonthlyIncomes, StringFormat='+ {0:C}', Converter={StaticResource AmountFormatConverter}}" />
                             </Grid>
-                        </Border>
+                        </controls:Card>
 
-                        <Border
-                            Grid.Column="2"
-                            BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                              Light={StaticResource CardBackgroundLight}}"
-                            StrokeShape="RoundRectangle 10"
-                            StrokeThickness="0"
-                            HeightRequest="80"
-                            HorizontalOptions="FillAndExpand">
-
-                            <Border.Shadow>
-                                <Shadow />
-                            </Border.Shadow>
-
+                        <controls:Card Grid.Column="2"
+                                       HeightRequest="80">
                             <Grid>
                                 <Label
                                     FontSize="18"
@@ -232,7 +195,7 @@
                                     VerticalOptions="Center"
                                     Text="{Binding MonthlyExpenses, StringFormat='- {0:C}', Converter={StaticResource AmountFormatConverter}}" />
                             </Grid>
-                        </Border>
+                        </controls:Card>
                     </Grid>
                 </StackLayout>
             </Grid>

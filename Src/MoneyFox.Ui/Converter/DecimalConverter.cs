@@ -1,8 +1,7 @@
 namespace MoneyFox.Ui.Converter;
 
 using System.Globalization;
-using Microsoft.Maui.Controls;
-using MoneyFox.Core.Common.Helpers;
+using Core.Common.Helpers;
 
 public class DecimalConverter : IValueConverter
 {
@@ -21,3 +20,4 @@ public class DecimalConverter : IValueConverter
         return value;
     }
 }
+

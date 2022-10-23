@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Win.ViewModels.Statistics.StatisticCategorySummary;
+namespace MoneyFox.Win.ViewModels.Statistics.StatisticCategorySummary;
 
 using System;
 using System.Collections.Generic;
@@ -72,7 +72,6 @@ internal sealed class StatisticCategorySummaryViewModel : StatisticViewModel, IS
         }
     }
 
-    /// <inheritdoc />
     public bool HasData => CategorySummary.Any();
 
     public RelayCommand<CategoryOverviewViewModel> SummaryEntrySelectedCommand => new(async c => await SummaryEntrySelectedAsync(c));

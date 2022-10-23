@@ -1,6 +1,6 @@
 namespace MoneyFox.Ui.Infrastructure.Adapters;
 
-using MoneyFox.Core.Interfaces;
+using Core.Interfaces;
 using Serilog;
 
 public class SettingsAdapter : ISettingsAdapter
@@ -70,3 +70,4 @@ public class SettingsAdapter : ISettingsAdapter
         Preferences.Remove(key);
     }
 }
+

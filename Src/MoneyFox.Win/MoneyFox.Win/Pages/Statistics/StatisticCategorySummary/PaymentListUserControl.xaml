@@ -75,7 +75,7 @@
                                 Text="{Binding Key}" />
 
                             <TextBlock
-                                Style="{ThemeResource DeemphasizedLabelStyle}"
+                                Style="{ThemeResource ToneDownLabelStyle}"
                                 Text="{Binding Subtitle}" />
 
                             <ListView

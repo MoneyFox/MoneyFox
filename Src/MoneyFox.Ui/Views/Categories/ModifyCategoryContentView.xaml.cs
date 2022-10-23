@@ -7,3 +7,5 @@ public partial class ModifyCategoryContentView : ContentView
         InitializeComponent();
     }
 }
+
+

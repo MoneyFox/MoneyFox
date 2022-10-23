@@ -1,35 +1,14 @@
-﻿namespace MoneyFox.Ui.Views.Categories;
+namespace MoneyFox.Ui.Views.Categories;
 
-using MoneyFox.Core.Resources;
 using ViewModels.Categories;
 
+[QueryProperty(name: "CategoryId", queryId: "categoryId")]
 public partial class EditCategoryPage
 {
-    private readonly int categoryId;
-
-    public EditCategoryPage(int categoryId)
+    public EditCategoryPage()
     {
         InitializeComponent();
         BindingContext = App.GetViewModel<EditCategoryViewModel>();
-        this.categoryId = categoryId;
-        var cancelItem = new ToolbarItem
-        {
-            Command = new Command(async () => await Navigation.PopModalAsync()),
-            Text = Strings.CancelLabel,
-            Priority = -1,
-            Order = ToolbarItemOrder.Primary
-        };
-
-        var saveItem = new ToolbarItem
-        {
-            Command = new Command(() => ViewModel.SaveCommand.Execute(null)),
-            Text = Strings.SaveLabel,
-            Priority = 1,
-            Order = ToolbarItemOrder.Primary
-        };
-
-        ToolbarItems.Add(cancelItem);
-        ToolbarItems.Add(saveItem);
     }
 
     private EditCategoryViewModel ViewModel => (EditCategoryViewModel)BindingContext;
@@ -38,4 +17,14 @@ public partial class EditCategoryPage
     {
         await ViewModel.InitializeAsync(categoryId);
     }
+
+#pragma warning disable S2376 // Write-only properties should not be used
+    private int categoryId;
+    public string CategoryId
+    {
+        set => categoryId = Convert.ToInt32(Uri.UnescapeDataString(value));
+    }
+#pragma warning restore S2376 // Write-only properties should not be used
 }
+
+

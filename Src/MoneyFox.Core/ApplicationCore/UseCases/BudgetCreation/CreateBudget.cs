@@ -36,16 +36,12 @@ public static class CreateBudget
         public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
         {
             SpendingLimit spendingLimit = new(request.SpendingLimit);
-            Budget budget = new(
-                name: request.Name,
-                spendingLimit: spendingLimit,
-                timeRange: request.BudgetTimeRange,
-                includedCategories: request.Categories);
-
+            Budget budget = new(name: request.Name, spendingLimit: spendingLimit, timeRange: request.BudgetTimeRange, includedCategories: request.Categories);
             await repository.AddAsync(budget);
 
             return Unit.Value;
         }
     }
 }
+
 

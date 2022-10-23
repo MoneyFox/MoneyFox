@@ -9,9 +9,14 @@ public static class RecurringPaymentHelper
         // TODO: Change to a switch expression using 'or' for the multiple condition matches when the project is upgraded to C# 9.
         return passedEnum switch
         {
-            PaymentRecurrence.Monthly or PaymentRecurrence.Bimonthly or PaymentRecurrence.Quarterly or PaymentRecurrence.Biannually or PaymentRecurrence.Yearly => true,
-            _ => false,
+            PaymentRecurrence.Monthly
+                or PaymentRecurrence.Bimonthly
+                or PaymentRecurrence.Quarterly
+                or PaymentRecurrence.Biannually
+                or PaymentRecurrence.Yearly => true,
+            _ => false
         };
     }
 }
+
 

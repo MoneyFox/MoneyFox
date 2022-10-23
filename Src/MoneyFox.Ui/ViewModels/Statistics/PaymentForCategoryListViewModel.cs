@@ -6,10 +6,9 @@ using AutoMapper;
 using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Core.ApplicationCore.Queries;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.Queries;
 using Payments;
-using Views.Payments;
 
 internal sealed class PaymentForCategoryListViewModel : BaseViewModel
 {
@@ -43,7 +42,7 @@ internal sealed class PaymentForCategoryListViewModel : BaseViewModel
 
     protected override void OnActivated()
     {
-        Messenger.Register<PaymentForCategoryListViewModel, PaymentsForCategoryMessage>(recipient: this, handler: (r, m) => r.InitializeAsync(m));
+        Messenger.Register<PaymentForCategoryListViewModel, PaymentsForCategoryMessage>(recipient: this, handler: async (r, m) => await r.InitializeAsync(m));
     }
 
     protected override void OnDeactivated()
@@ -68,3 +67,4 @@ internal sealed class PaymentForCategoryListViewModel : BaseViewModel
         PaymentList = new(dailyItems);
     }
 }
+

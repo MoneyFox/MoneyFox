@@ -3,17 +3,16 @@ namespace MoneyFox.Ui.ViewModels.Categories;
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Core.Common.Interfaces;
+using Core.Common.Messages;
 using MediatR;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Common.Messages;
 
 internal sealed class SelectCategoryViewModel : CategoryListViewModel
 {
     public SelectCategoryViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService) : base(
         mediator: mediator,
         mapper: mapper,
-        dialogService: dialogService)
-    { }
+        dialogService: dialogService) { }
 
     public AsyncRelayCommand<CategoryViewModel> SelectCategoryCommand
         => new(
@@ -24,3 +23,4 @@ internal sealed class SelectCategoryViewModel : CategoryListViewModel
                 await Application.Current.MainPage.Navigation.PopModalAsync();
             });
 }
+

@@ -1,9 +1,10 @@
-﻿namespace MoneyFox.Ui.ViewModels.Dialogs;
+﻿namespace MoneyFox.Ui.Views.Popups;
 
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using MoneyFox.Core.Common.Extensions;
-using MoneyFox.Core.Common.Messages;
+using Core.Common.Extensions;
+using Core.Common.Messages;
+using ViewModels;
 
 internal sealed class SelectDateRangeDialogViewModel : BaseViewModel
 {
@@ -63,3 +64,5 @@ internal sealed class SelectDateRangeDialogViewModel : BaseViewModel
         Messenger.Send(new DateSelectedMessage(startDate: StartDate, endDate: EndDate));
     }
 }
+
+

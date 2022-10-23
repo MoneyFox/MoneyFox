@@ -25,7 +25,7 @@ public class DeleteCategoryByIdCommand : IRequest
 
         public async Task<Unit> Handle(DeleteCategoryByIdCommand request, CancellationToken cancellationToken)
         {
-            ApplicationCore.Domain.Aggregates.CategoryAggregate.Category? entityToDelete = await appDbContext.Categories.FindAsync(request.CategoryId);
+            var entityToDelete = await appDbContext.Categories.FindAsync(request.CategoryId);
             _ = appDbContext.Categories.Remove(entityToDelete);
             _ = await appDbContext.SaveChangesAsync(cancellationToken);
 
@@ -33,4 +33,5 @@ public class DeleteCategoryByIdCommand : IRequest
         }
     }
 }
+
 

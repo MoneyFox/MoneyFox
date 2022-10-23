@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:MoneyFox.Ui.Views"
+             xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
+             x:Name="this"
+             x:Class="MoneyFox.Ui.Controls.AccountPicker">
+
+    <ContentView.Resources>
+        <converter:AccountNameConverter x:Key="AccountNameConverter" />
+    </ContentView.Resources>
+
+    <VerticalStackLayout Spacing="6"
+                         BindingContext="{x:Reference this}">
+        <Label Text="{Binding PickerTitle}" />
+
+        <Border Padding="20,0"
+                BackgroundColor="{AppThemeBinding Dark={StaticResource ControlBackgroundColorDark}, Light={StaticResource ControlBackgroundColorLight}}">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10" />
+            </Border.StrokeShape>
+
+            <Grid ColumnDefinitions="*, Auto">
+
+                <Picker Title="{Binding PickerTitle}"
+                        ItemsSource="{Binding AccountsSource}"
+                        SelectedItem="{Binding SelectedAccount}"
+                        ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}" />
+
+                <Image Grid.Column="1" HeightRequest="20" WidthRequest="20">
+                    <Image.Source>
+                        <FontImageSource FontFamily="MaterialIcons"
+                                         Glyph="{x:Static views:IconFont.ChevronDown}"
+                                         Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                    </Image.Source>
+                </Image>
+            </Grid>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>

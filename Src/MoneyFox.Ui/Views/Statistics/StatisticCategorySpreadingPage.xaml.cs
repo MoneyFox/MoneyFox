@@ -21,3 +21,5 @@ public partial class StatisticCategorySpreadingPage
         Shell.Current.ShowPopup(popup);
     }
 }
+
+

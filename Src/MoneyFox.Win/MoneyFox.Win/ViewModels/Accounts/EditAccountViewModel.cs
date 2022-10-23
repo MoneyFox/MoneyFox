@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Win.ViewModels.Accounts;
+namespace MoneyFox.Win.ViewModels.Accounts;
 
 using System.Globalization;
 using System.Threading.Tasks;
@@ -42,7 +42,7 @@ internal sealed class EditAccountViewModel : ModifyAccountViewModel
         await Mediator.Send(new UpdateAccountCommand(mapper.Map<Account>(SelectedAccount)));
     }
 
-    protected async Task DeleteAccountAsync()
+    private async Task DeleteAccountAsync()
     {
         if (await DialogService.ShowConfirmMessageAsync(title: Strings.DeleteTitle, message: Strings.DeleteAccountConfirmationMessage))
         {

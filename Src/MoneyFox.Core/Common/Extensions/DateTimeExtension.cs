@@ -12,7 +12,7 @@ public static class DateTimeExtension
     /// </summary>
     public static DateTime GetFirstDayOfMonth(this DateTime self)
     {
-        return new DateTime(year: self.Year, month: self.Month, day: 1);
+        return new(year: self.Year, month: self.Month, day: 1);
     }
 
     /// <summary>
@@ -20,7 +20,7 @@ public static class DateTimeExtension
     /// </summary>
     public static DateTime GetLastDayOfMonth(this DateTime self)
     {
-        return new DateTime(year: self.Year, month: self.Month, day: DateTime.DaysInMonth(year: self.Year, month: self.Month));
+        return new(year: self.Year, month: self.Month, day: DateTime.DaysInMonth(year: self.Year, month: self.Month));
     }
 
     /// <summary>
@@ -31,4 +31,5 @@ public static class DateTimeExtension
         return (self - DateTime.Today).Days;
     }
 }
+
 

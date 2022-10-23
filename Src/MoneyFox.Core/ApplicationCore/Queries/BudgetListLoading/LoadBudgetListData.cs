@@ -29,12 +29,12 @@ public static class LoadBudgetListData
 
         public async Task<IReadOnlyCollection<BudgetListData>> Handle(Query request, CancellationToken cancellationToken)
         {
-            List<Budget> budgets = await appDbContext.Budgets.ToListAsync(cancellationToken);
+            var budgets = await appDbContext.Budgets.ToListAsync(cancellationToken);
             List<BudgetListData> budgetListDataList = new();
-            foreach (Budget? budget in budgets)
+            foreach (var budget in budgets)
             {
-                DateTime thresholdDate = GetThresholdDateFor(budget.BudgetTimeRange);
-                List<Payment> payments = await appDbContext.Payments.Where(p => p.Type != PaymentType.Transfer)
+                var thresholdDate = GetThresholdDateFor(budget.BudgetTimeRange);
+                var payments = await appDbContext.Payments.Where(p => p.Type != PaymentType.Transfer)
                     .Where(p => p.CategoryId != null)
                     .Where(p => p.Date >= thresholdDate)
                     .Where(p => budget.IncludedCategories.Contains(p.CategoryId!.Value))
@@ -43,19 +43,18 @@ public static class LoadBudgetListData
 
                 if (payments.Any() is false)
                 {
-                    budgetListDataList.Add(new BudgetListData(id: budget.Id, name: budget.Name, spendingLimit: budget.SpendingLimit, currentSpending: 0));
+                    budgetListDataList.Add(new(id: budget.Id, name: budget.Name, spendingLimit: budget.SpendingLimit, currentSpending: 0));
 
                     continue;
                 }
 
-                TimeSpan timeDeltaFirstPaymentAndNow = systemDateHelper.Now.Date - thresholdDate.Date;
-                int numberOfMonthsInRange = (int)Math.Floor(timeDeltaFirstPaymentAndNow.TotalDays / 30);
+                var timeDeltaFirstPaymentAndNow = systemDateHelper.Now.Date - thresholdDate.Date;
+                var numberOfMonthsInRange = (int)Math.Floor(timeDeltaFirstPaymentAndNow.TotalDays / 30);
 
                 // Since sum is not supported for decimal in Ef Core with SQLite we have to do this in two steps
-                decimal currentSpending = payments.Sum(selector: p => p.Type == PaymentType.Expense ? p.Amount : -p.Amount);
-                decimal monthlyAverage = currentSpending / numberOfMonthsInRange;
-                budgetListDataList.Add(
-                    new BudgetListData(id: budget.Id, name: budget.Name, spendingLimit: budget.SpendingLimit, currentSpending: monthlyAverage));
+                var currentSpending = payments.Sum(selector: p => p.Type == PaymentType.Expense ? p.Amount : -p.Amount);
+                var monthlyAverage = currentSpending / numberOfMonthsInRange;
+                budgetListDataList.Add(new(id: budget.Id, name: budget.Name, spendingLimit: budget.SpendingLimit, currentSpending: monthlyAverage));
             }
 
             return budgetListDataList;
@@ -65,7 +64,7 @@ public static class LoadBudgetListData
         {
             return timeRange switch
             {
-                BudgetTimeRange.YearToDate => new DateTime(year: systemDateHelper.Today.Year, month: 1, day: 1),
+                BudgetTimeRange.YearToDate => new(year: systemDateHelper.Today.Year, month: 1, day: 1),
                 BudgetTimeRange.Last1Year => systemDateHelper.Today.AddYears(-1),
                 BudgetTimeRange.Last2Years => systemDateHelper.Today.AddYears(-2),
                 BudgetTimeRange.Last3Years => systemDateHelper.Today.AddYears(-3),
@@ -75,4 +74,5 @@ public static class LoadBudgetListData
         }
     }
 }
+
 

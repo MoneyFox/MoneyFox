@@ -3,9 +3,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:maui="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
-    xmlns:converter="using:MoneyFox.Ui.Converter"
-    xmlns:statistics="using:MoneyFox.Ui.ViewModels.Statistics"
-    Visual="Material"
+    xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
+    xmlns:statistics="clr-namespace:MoneyFox.Ui.ViewModels.Statistics"
+    xmlns:views="clr-namespace:MoneyFox.Ui.Views"
     x:DataType="statistics:StatisticCategorySpreadingViewModel"
     x:Class="MoneyFox.Ui.Views.Statistics.StatisticCategorySpreadingPage">
 
@@ -14,14 +14,13 @@
     </ContentPage.Resources>
 
     <Shell.TitleView>
-        <Grid ColumnDefinitions="*,66">
-            <Label Style="{StaticResource TextTitle}"
+        <Grid ColumnDefinitions="*,66" Margin="0,0,12,0">
+            <Label Style="{StaticResource PageTitle}"
                    HorizontalOptions="Start"
                    VerticalOptions="Center"
                    Text="{x:Static resources:Strings.CategorySpreadingTitle}" />
 
-            <ImageButton Margin="0,0,5,0"
-                         Grid.Column="1"
+            <ImageButton Grid.Column="1"
                          Padding="0"
                          BorderWidth="0"
                          Clicked="OpenFilterDialog"
@@ -30,8 +29,8 @@
                          VerticalOptions="Center"
                          WidthRequest="66">
                 <ImageButton.Source>
-                    <FontImageSource FontFamily="MaterialIconsRound"
-                                     Glyph="filter_alt"
+                    <FontImageSource FontFamily="MaterialIcons"
+                                     Glyph="{x:Static views:IconFont.FilterOutline}"
                                      Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                 </ImageButton.Source>
             </ImageButton>
@@ -39,24 +38,21 @@
     </Shell.TitleView>
 
     <ContentPage.Content>
-        <Grid RowDefinitions="38, 38, auto, *" Padding="15,0,15,15"
+        <Grid RowDefinitions="38, auto, *" Padding="15,0,15,15"
               x:DataType="statistics:StatisticCategorySpreadingViewModel">
 
-            <Label Style="{StaticResource TextHeadline}"
-                   Text="{x:Static resources:Strings.CategorySpreadingTitle}" />
-
-            <Label Grid.Row="1"
+            <Label Grid.Row="0"
                    Style="{StaticResource TextBodySecondary}"
                    Text="{Binding Title}" />
 
-            <Picker Grid.Row="2"
+            <Picker Grid.Row="1"
                     Title="{x:Static resources:Strings.SelectedPaymentTypeHeader}"
                     ItemsSource="{Binding PaymentTypes}"
                     SelectedItem="{Binding SelectedPaymentType, Mode=TwoWay}"
                     ItemDisplayBinding="{Binding ., Converter={StaticResource PaymentTypeStringConverter}}" />
 
             <maui:PieChart Series="{Binding Series, Mode=OneWay}"
-                           Grid.Row="3"
+                           Grid.Row="2"
                            LegendPosition="Right"
                            LegendBackground="{AppThemeBinding Dark={StaticResource StatisticLegendDark}, Light={StaticResource StatisticLegendLight}}"
                            LegendTextBrush="{AppThemeBinding Dark={StaticResource TextPrimaryColorDark}, Light={StaticResource TextPrimaryColorLight}}" />

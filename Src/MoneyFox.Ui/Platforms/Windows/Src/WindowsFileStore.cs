@@ -114,3 +114,4 @@ public class WindowsFileStore : FileStoreBase
         return Path.Combine(path1: localFolderPath, path2: path);
     }
 }
+

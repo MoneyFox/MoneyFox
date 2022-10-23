@@ -1,6 +1,6 @@
 namespace MoneyFox.Ui.Common.Extensions;
 
-using MoneyFox.Core.ApplicationCore.Domain.Exceptions;
+using Core.ApplicationCore.Domain.Exceptions;
 using Serilog;
 
 public static class NavigationExtension
@@ -25,3 +25,4 @@ public static class NavigationExtension
         }
     }
 }
+
