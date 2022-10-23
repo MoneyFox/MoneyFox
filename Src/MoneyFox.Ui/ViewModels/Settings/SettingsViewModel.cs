@@ -2,9 +2,9 @@
 
 using System.Collections.ObjectModel;
 using System.Globalization;
-using MoneyFox.Core.Common.Facades;
-using MoneyFox.Core.Common.Helpers;
-using MoneyFox.Core.Common.Interfaces;
+using Core.Common.Facades;
+using Core.Common.Helpers;
+using Core.Common.Interfaces;
 using Serilog;
 
 internal sealed class SettingsViewModel : BaseViewModel, ISettingsViewModel
@@ -56,7 +56,7 @@ internal sealed class SettingsViewModel : BaseViewModel, ISettingsViewModel
         }
         catch (Exception ex)
         {
-            Log.Error(ex, "Failed to load Available Cultures");
+            Log.Error(exception: ex, messageTemplate: "Failed to load Available Cultures");
         }
         finally
         {
@@ -64,3 +64,4 @@ internal sealed class SettingsViewModel : BaseViewModel, ISettingsViewModel
         }
     }
 }
+

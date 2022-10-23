@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Win.ViewModels.Payments;
+namespace MoneyFox.Win.ViewModels.Payments;
 
 using System;
 using System.Collections.Generic;
@@ -134,7 +134,7 @@ internal sealed class PaymentListViewModel : BaseViewModel
 
     protected override void OnActivated()
     {
-        Messenger.Register<PaymentListViewModel, PaymentListFilterChangedMessage>(recipient: this, handler: (r, m) => r.LoadDataAsync(m));
+        Messenger.Register<PaymentListViewModel, PaymentListFilterChangedMessage>(recipient: this, handler: async (r, m) => await r.LoadDataAsync(m));
         Messenger.Register<PaymentListViewModel, ReloadMessage>(recipient: this, handler: (r, m) => r.LoadDataCommand.Execute(null));
     }
 

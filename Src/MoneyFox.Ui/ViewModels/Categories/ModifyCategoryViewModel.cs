@@ -2,11 +2,11 @@
 
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Core.ApplicationCore.Queries;
+using Core.Common.Interfaces;
+using Core.Common.Messages;
+using Core.Resources;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.Queries;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Common.Messages;
-using MoneyFox.Core.Resources;
 
 internal abstract class ModifyCategoryViewModel : BaseViewModel
 {
@@ -62,3 +62,4 @@ internal abstract class ModifyCategoryViewModel : BaseViewModel
         await Application.Current.MainPage.Navigation.PopModalAsync();
     }
 }
+

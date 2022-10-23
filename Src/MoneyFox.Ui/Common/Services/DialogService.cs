@@ -1,8 +1,8 @@
 namespace MoneyFox.Ui.Common.Services;
 
 using CommunityToolkit.Maui.Views;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Resources;
+using Core.Common.Interfaces;
+using Core.Resources;
 using Views.Popups;
 
 public class DialogService : IDialogService
@@ -53,3 +53,4 @@ public class DialogService : IDialogService
             cancel: negativeButtonText ?? Strings.NoLabel);
     }
 }
+

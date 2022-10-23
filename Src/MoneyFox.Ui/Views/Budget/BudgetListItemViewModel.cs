@@ -28,3 +28,5 @@ public sealed class BudgetListItemViewModel : ObservableObject
         set => SetProperty(field: ref spendingLimit, newValue: value);
     }
 }
+
+

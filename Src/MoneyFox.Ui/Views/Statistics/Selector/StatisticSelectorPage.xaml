@@ -2,14 +2,14 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-    xmlns:statistics="using:MoneyFox.Ui.ViewModels.Statistics"
+    xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
+    xmlns:statistics="clr-namespace:MoneyFox.Ui.Views.Statistics.Selector"
     x:Class="MoneyFox.Ui.Views.Statistics.StatisticSelectorPage"
     Title="{x:Static resources:Strings.SelectStatisticTitle}"
-    Visual="Material"
     x:Name="root">
 
     <ContentPage.Content>
-        
+
         <VerticalStackLayout>
             <CollectionView x:Name="StatisticCollectionView"
                             BackgroundColor="Transparent"
@@ -25,36 +25,24 @@
                                     CommandParameter="{Binding .}" />
                             </Grid.GestureRecognizers>
 
-                            <Border
-                                BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                                    Light={StaticResource CardBackgroundLight}}"
-                                Stroke="black"
-                                StrokeThickness="0"
-                                Padding="15"
-                                StrokeShape="RoundRectangle 10"
-                                HorizontalOptions="FillAndExpand">
-
-                                <Border.Shadow>
-                                    <Shadow />
-                                </Border.Shadow>
-
+                            <controls:Card Padding="12">
                                 <VerticalStackLayout Spacing="6"
-                                               x:DataType="statistics:StatisticSelectorTypeViewModel">
+                                                     x:DataType="statistics:StatisticSelectorTypeViewModel">
                                     <HorizontalStackLayout Spacing="6">
                                         <Image HeightRequest="15"
-                                                WidthRequest="15">
+                                               WidthRequest="15">
                                             <Image.Source>
-                                                <FontImageSource FontFamily="MaterialIconsRound"
-                                                                 Glyph="{Binding IconGlyph}" 
+                                                <FontImageSource FontFamily="MaterialIcons"
+                                                                 Glyph="{Binding IconGlyph}"
                                                                  Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                                             </Image.Source>
                                         </Image>
                                         <Label Text="{Binding Name}" Style="{DynamicResource TextSubHead}" />
                                     </HorizontalStackLayout>
                                     <Label Text="{Binding Description}"
-                                            Style="{DynamicResource DeemphasizedLabelStyle}" />
+                                           Style="{DynamicResource ToneDownLabelStyle}" />
                                 </VerticalStackLayout>
-                            </Border>
+                            </controls:Card>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

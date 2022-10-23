@@ -2,10 +2,9 @@ namespace MoneyFox.Ui.Views.Payments;
 
 using ViewModels.Payments;
 
+[QueryProperty(name: "DefaultChargedAccountId", queryId: "defaultChargedAccountId")]
 public partial class AddPaymentPage
 {
-    private int? defaultChargedAccountID;
-
     public AddPaymentPage()
     {
         InitializeComponent();
@@ -16,6 +15,14 @@ public partial class AddPaymentPage
 
     protected override async void OnAppearing()
     {
-        await ViewModel.InitializeAsync(defaultChargedAccountID);
+        await ViewModel.InitializeAsync(defaultChargedAccountId);
     }
+
+#pragma warning disable S2376 // Write-only properties should not be used
+    private int? defaultChargedAccountId;
+    public string DefaultChargedAccountId
+    {
+        set => defaultChargedAccountId = Convert.ToInt32(Uri.UnescapeDataString(value));
+    }
+#pragma warning restore S2376 // Write-only properties should not be used
 }

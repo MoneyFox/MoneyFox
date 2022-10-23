@@ -1,8 +1,8 @@
 ﻿namespace MoneyFox.Ui.Common.Services;
 
 using CommunityToolkit.Maui.Alerts;
+using Core.Common.Interfaces;
 using JetBrains.Annotations;
-using MoneyFox.Core.Common.Interfaces;
 
 [UsedImplicitly]
 public class ToastService : IToastService
@@ -13,3 +13,4 @@ public class ToastService : IToastService
         await toast.Show();
     }
 }
+

@@ -1,7 +1,7 @@
 namespace MoneyFox.Ui.Mapping;
 
 using System.Reflection;
-using MoneyFox.Core.Common.Interfaces.Mapping;
+using Core.Common.Interfaces.Mapping;
 
 public sealed class Map
 {
@@ -29,3 +29,4 @@ public static class MapperProfileHelper
         return mapsFrom;
     }
 }
+

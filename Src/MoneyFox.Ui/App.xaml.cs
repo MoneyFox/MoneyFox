@@ -87,7 +87,6 @@ public partial class App
 
             await mediator.Send(new ClearPaymentsCommand());
             await mediator.Send(new CreateRecurringPaymentsCommand());
-
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
         }
         catch (Exception ex)
@@ -100,3 +99,4 @@ public partial class App
         }
     }
 }
+

@@ -1,5 +1,6 @@
 namespace MoneyFox.Ui.Platforms.Android.Resources.Src
 {
+
     using Core.Common.Interfaces;
     using global::Android.App;
 

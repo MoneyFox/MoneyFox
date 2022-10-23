@@ -1,6 +1,6 @@
 namespace MoneyFox.Ui.Infrastructure.Adapters;
 
-using MoneyFox.Core.Interfaces;
+using Core.Interfaces;
 
 public class BrowserAdapter : IBrowserAdapter
 {
@@ -9,3 +9,4 @@ public class BrowserAdapter : IBrowserAdapter
         await Browser.OpenAsync(uri: uri, launchMode: BrowserLaunchMode.External);
     }
 }
+

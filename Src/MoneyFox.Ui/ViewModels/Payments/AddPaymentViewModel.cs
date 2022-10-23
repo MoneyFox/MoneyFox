@@ -1,13 +1,13 @@
 namespace MoneyFox.Ui.ViewModels.Payments;
 
 using AutoMapper;
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
+using Core.ApplicationCore.Queries;
+using Core.Commands.Payments.CreatePayment;
+using Core.Common.Interfaces;
 using JetBrains.Annotations;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
-using MoneyFox.Core.ApplicationCore.Queries;
-using MoneyFox.Core.Commands.Payments.CreatePayment;
-using MoneyFox.Core.Common.Interfaces;
 
 [UsedImplicitly]
 internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
@@ -28,8 +28,8 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
     {
         await base.InitializeAsync();
         SelectedPayment.ChargedAccount = defaultChargedAccountID.HasValue
-            ? ChargedAccounts.FirstOrDefault(n => n.Id == defaultChargedAccountID.Value)
-            : ChargedAccounts.FirstOrDefault();
+            ? ChargedAccounts.First(n => n.Id == defaultChargedAccountID.Value)
+            : ChargedAccounts.First();
     }
 
     protected override async Task SavePaymentAsync()
@@ -54,3 +54,4 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
         await mediator.Send(new CreatePaymentCommand(payment));
     }
 }
+

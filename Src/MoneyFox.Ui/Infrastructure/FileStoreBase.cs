@@ -1,6 +1,6 @@
 namespace MoneyFox.Ui.Infrastructure;
 
-using MoneyFox.Core.Interfaces;
+using Core.Interfaces;
 
 public abstract class FileStoreBase : IFileStore
 {
@@ -24,3 +24,4 @@ public abstract class FileStoreBase : IFileStore
 
     protected abstract Task WriteFileCommonAsync(string path, Action<Stream> streamAction);
 }
+

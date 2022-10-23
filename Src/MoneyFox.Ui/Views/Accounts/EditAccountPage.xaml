@@ -4,12 +4,12 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-    xmlns:accounts="using:MoneyFox.Ui.Views.Accounts"
-    xmlns:extensions="using:MoneyFox.Ui.Common.Extensions"
+    xmlns:accounts="clr-namespace:MoneyFox.Ui.Views.Accounts"
+    xmlns:extensions="clr-namespace:MoneyFox.Ui.Common.Extensions"
     Title="{Binding Title}"
     x:DataType="accounts:EditAccountViewModel"
     x:Class="MoneyFox.Ui.Views.Accounts.EditAccountPage">
-    
+
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="15,0,15,0">
@@ -22,7 +22,7 @@
                        Text="{Binding SelectedAccountVm.CreationTime, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
 
                 <Button Command="{Binding SaveCommand}" Text="{x:Static resources:Strings.SaveLabel}" />
-                
+
                 <Button x:Name="DeleteAccountButton"
                         Style="{StaticResource WarningButton}"
                         Margin="0,12,0,0"

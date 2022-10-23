@@ -9,7 +9,15 @@ using Microsoft.Maui;
 using Microsoft.Maui.ApplicationModel;
 using MoneyFox.Infrastructure.DbBackup.Legacy;
 
-[Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize | ConfigChanges.Density)]
+[Activity(
+    Theme = "@style/Maui.SplashTheme",
+    MainLauncher = true,
+    ConfigurationChanges = ConfigChanges.ScreenSize
+                           | ConfigChanges.Orientation
+                           | ConfigChanges.UiMode
+                           | ConfigChanges.ScreenLayout
+                           | ConfigChanges.SmallestScreenSize
+                           | ConfigChanges.Density)]
 public class MainActivity : MauiAppCompatActivity
 {
     protected override void OnCreate(Bundle? savedInstanceState)
@@ -31,3 +39,4 @@ public class MainActivity : MauiAppCompatActivity
         base.OnRequestPermissionsResult(requestCode: requestCode, permissions: permissions, grantResults: grantResults);
     }
 }
+

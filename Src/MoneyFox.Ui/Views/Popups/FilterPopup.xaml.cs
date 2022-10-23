@@ -1,7 +1,6 @@
 namespace MoneyFox.Ui.Views.Popups;
 
-using MoneyFox.Core.Common.Messages;
-using ViewModels.Dialogs;
+using Core.Common.Messages;
 
 public partial class FilterPopup
 {
@@ -26,3 +25,5 @@ public partial class FilterPopup
         Close();
     }
 }
+
+

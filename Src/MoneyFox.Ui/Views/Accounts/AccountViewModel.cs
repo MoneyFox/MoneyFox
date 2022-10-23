@@ -2,8 +2,8 @@ namespace MoneyFox.Ui.ViewModels.Accounts;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
-using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using MoneyFox.Core.Common.Interfaces.Mapping;
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Core.Common.Interfaces.Mapping;
 
 public sealed class AccountViewModel : ObservableObject, IHaveCustomMapping, IEquatable<AccountViewModel>
 {
@@ -173,11 +173,6 @@ public sealed class AccountViewModel : ObservableObject, IHaveCustomMapping, IEq
         }
     }
 
-    public void CreateMappings(Profile configuration)
-    {
-        configuration.CreateMap<Account, AccountViewModel>();
-    }
-
     public bool Equals(AccountViewModel other)
     {
         if (other == null)
@@ -188,8 +183,15 @@ public sealed class AccountViewModel : ObservableObject, IHaveCustomMapping, IEq
         return Id.Equals(other.Id);
     }
 
+    public void CreateMappings(Profile configuration)
+    {
+        configuration.CreateMap<Account, AccountViewModel>();
+    }
+
     public override int GetHashCode()
     {
         return Id.GetHashCode();
     }
 }
+
+

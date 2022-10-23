@@ -14,3 +14,4 @@ public class InverseBoolConverter : IValueConverter
         return !(bool)value;
     }
 }
+

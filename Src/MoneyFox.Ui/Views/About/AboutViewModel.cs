@@ -1,12 +1,11 @@
-﻿using MoneyFox.Ui.ViewModels;
-
-namespace MoneyFox.Ui.Views.About;
+﻿namespace MoneyFox.Ui.Views.About;
 
 using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Core.Common;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Core.Resources;
+using Core.Common;
+using Core.Common.Interfaces;
+using Core.Interfaces;
+using Core.Resources;
+using ViewModels;
 
 internal class AboutViewModel : BaseViewModel
 {
@@ -101,3 +100,5 @@ internal class AboutViewModel : BaseViewModel
         }
     }
 }
+
+

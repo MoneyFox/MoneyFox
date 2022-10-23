@@ -1,17 +1,14 @@
-﻿namespace MoneyFox.Ui.Platforms.iOS.Src
+﻿namespace MoneyFox.Ui.Platforms.iOS.Src;
+
+using Core.Common.Interfaces;
+using StoreKit;
+
+/// <inheritdoc />
+public class StoreOperations : IStoreOperations
 {
-
-    using Core.Common.Interfaces;
-    using StoreKit;
-
     /// <inheritdoc />
-    public class StoreOperations : IStoreOperations
+    public void RateApp()
     {
-        /// <inheritdoc />
-        public void RateApp()
-        {
-            SKStoreReviewController.RequestReview();
-        }
+        SKStoreReviewController.RequestReview();
     }
-
 }

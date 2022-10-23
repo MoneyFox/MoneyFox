@@ -7,12 +7,12 @@ using Categories;
 using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Core.ApplicationCore.Queries;
+using Core.Common.Interfaces;
+using Core.Common.Messages;
+using Core.Resources;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using MoneyFox.Core.ApplicationCore.Queries;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Common.Messages;
-using MoneyFox.Core.Resources;
 
 internal abstract partial class ModifyPaymentViewModel : BaseViewModel
 {
@@ -99,7 +99,7 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel
 
     protected override void OnActivated()
     {
-        Messenger.Register<ModifyPaymentViewModel, CategorySelectedMessage>(recipient: this, handler: (r, m) => r.ReceiveMessageAsync(m));
+        Messenger.Register<ModifyPaymentViewModel, CategorySelectedMessage>(recipient: this, handler: async (r, m) => await r.ReceiveMessageAsync(m));
     }
 
     protected abstract Task SavePaymentAsync();
@@ -161,3 +161,4 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel
         SelectedPayment.Category = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId)));
     }
 }
+

@@ -2,16 +2,14 @@ namespace MoneyFox.Ui.Views.Dashboard;
 
 using System.Collections.ObjectModel;
 using AutoMapper;
-using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Core.ApplicationCore.Queries;
+using Core.Common.Interfaces;
+using Core.Common.Messages;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.Queries;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Common.Messages;
-using MoneyFox.Ui;
-using MoneyFox.Ui.ViewModels;
-using MoneyFox.Ui.ViewModels.Accounts;
+using ViewModels;
+using ViewModels.Accounts;
 
 internal class DashboardViewModel : BaseViewModel
 {
@@ -120,11 +118,11 @@ internal class DashboardViewModel : BaseViewModel
     public AsyncRelayCommand GoToBudgetsCommand => new(async () => await Shell.Current.GoToAsync(Routes.BudgetListRoute));
 
     public AsyncRelayCommand<AccountViewModel> GoToTransactionListCommand
-        => new(async accountViewModel => await Shell.Current.GoToAsync($"{Routes.PaymentListRoute}?accountId={accountViewModel.Id}"));
+        => new(async accountViewModel => await Shell.Current.GoToAsync($"{Routes.PaymentListRoute}?accountId={accountViewModel!.Id}"));
 
     protected override void OnActivated()
     {
-        Messenger.Register<DashboardViewModel, ReloadMessage>(recipient: this, handler: (r, m) => r.InitializeAsync());
+        Messenger.Register<DashboardViewModel, ReloadMessage>(recipient: this, handler: async (r, m) => await r.InitializeAsync());
     }
 
     protected override void OnDeactivated()
@@ -143,7 +141,7 @@ internal class DashboardViewModel : BaseViewModel
         {
             isRunning = true;
             Accounts = mapper.Map<ObservableCollection<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
-            foreach (AccountViewModel account in Accounts)
+            foreach (var account in Accounts)
             {
                 account.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(account.Id));
             }
@@ -161,3 +159,5 @@ internal class DashboardViewModel : BaseViewModel
         IsActive = true;
     }
 }
+
+

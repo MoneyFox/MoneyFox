@@ -1,12 +1,12 @@
 namespace MoneyFox.Ui;
+
 using Core.Common;
 using Core.Common.Interfaces;
 using Core.Interfaces;
 using Foundation;
 using JetBrains.Annotations;
 using Microsoft.Identity.Client;
-using MoneyFox.Ui;
-using MoneyFox.Ui.Platforms.iOS.Src;
+using Platforms.iOS.Src;
 using Serilog;
 using Serilog.Events;
 using Serilog.Exceptions;
@@ -35,14 +35,12 @@ public class AppDelegate : MauiUIApplicationDelegate
         services.AddSingleton<IStoreOperations, StoreOperations>();
         services.AddSingleton<IAppInformation, AppInformation>();
         services.AddTransient<IFileStore>(_ => new IosFileStore(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)));
-
         RegisterIdentityClient(services);
     }
 
     private static void RegisterIdentityClient(IServiceCollection serviceCollection)
     {
-        IPublicClientApplication publicClientApplication = PublicClientApplicationBuilder
-            .Create(MSAL_APPLICATIONID)
+        var publicClientApplication = PublicClientApplicationBuilder.Create(MSAL_APPLICATIONID)
             .WithRedirectUri(MSAL_URI)
             .WithIosKeychainSecurityGroup("com.microsoft.adalcache")
             .Build();
@@ -80,3 +78,4 @@ public class AppDelegate : MauiUIApplicationDelegate
         Log.Information("Application Startup");
     }
 }
+

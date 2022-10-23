@@ -41,8 +41,10 @@ public partial class BudgetProgressView
         {
             var totalWidth = SpendingLimitBar.Width;
             var ratioSpendingLimitToSpending = Convert.ToDouble(CurrentSpending / SpendingLimit);
-            CurrentSpendingBar.WidthRequest = totalWidth * ratioSpendingLimitToSpending;
+            CurrentSpendingBar.WidthRequest = ratioSpendingLimitToSpending > 1 ? totalWidth : totalWidth * ratioSpendingLimitToSpending;
             InvalidateLayout();
         }
     }
 }
+
+

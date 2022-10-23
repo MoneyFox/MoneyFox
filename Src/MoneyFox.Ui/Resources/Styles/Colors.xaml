@@ -8,12 +8,15 @@
     <Color x:Key="Primary">#FF3300</Color>
     <Color x:Key="Secondary">#ff4b1f</Color>
     <Color x:Key="Tertiary">#ff8566</Color>
-    
+
     <Color x:Key="ThemePrimary">#FF3300</Color>
     <Color x:Key="ThemeSecondary">#ff4b1f</Color>
     <Color x:Key="ThemeTertiary">#ff8566</Color>
 
     <Color x:Key="ButtonBackgroundColor">#333333</Color>
+
+    <Color x:Key="ControlBackgroundColorDark">#1e1e1e</Color>
+    <Color x:Key="ControlBackgroundColorLight">White</Color>
 
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>

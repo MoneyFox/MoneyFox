@@ -1,17 +1,18 @@
 namespace MoneyFox.Ui;
 
-using MoneyFox.Ui.Views.Backup;
-using MoneyFox.Ui.Views.Dashboard;
 using Views.About;
 using Views.Accounts;
+using Views.Backup;
 using Views.Budget;
 using Views.Categories;
+using Views.Dashboard;
 using Views.Payments;
 using Views.Settings;
 using Views.SetupAssistant;
 using Views.Statistics;
+using Views.Statistics.CategorySummary;
 
-public class Routes
+public static class Routes
 {
     public static string DashboardRoute => nameof(DashboardPage);
     public static string AccountListRoute => nameof(AccountListPage);
@@ -24,6 +25,7 @@ public class Routes
     public static string CategoryListRoute => nameof(CategoryListPage);
     public static string SelectCategoryRoute => nameof(SelectCategoryPage);
     public static string AddCategoryRoute => nameof(AddCategoryPage);
+    public static string EditCategoryRoute => nameof(EditCategoryPage);
     public static string BackupRoute => nameof(BackupPage);
     public static string SettingsRoute => nameof(SettingsPage);
     public static string AboutRoute => nameof(AboutPage);
@@ -40,3 +42,4 @@ public class Routes
     public static string AddBudgetRoute => nameof(AddBudgetPage);
     public static string EditBudgetRoute => nameof(EditBudgetPage);
 }
+

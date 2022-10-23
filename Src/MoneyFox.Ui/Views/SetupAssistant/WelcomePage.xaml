@@ -12,35 +12,35 @@
 
     <ContentPage.Content>
         <Grid Padding="15"
-                IsClippedToBounds="False"
-                RowDefinitions="*, Auto"
-                VerticalOptions="FillAndExpand">
+              IsClippedToBounds="False"
+              RowDefinitions="*, Auto"
+              VerticalOptions="FillAndExpand">
 
             <VerticalStackLayout Spacing="6">
                 <Label Style="{StaticResource TextHeadline}"
-                        Text="{x:Static resources:Strings.WelcomeLabel}" />
+                       Text="{x:Static resources:Strings.WelcomeLabel}" />
 
-                <Label Grid.Row="1"
-                        Style="{StaticResource TextTitle}"
-                        Text="{x:Static resources:Strings.WelcomePageSubtitle}" />
+                <Label
+                    Style="{StaticResource TextTitle}"
+                    Text="{x:Static resources:Strings.WelcomePageSubtitle}" />
 
-                <Label Grid.Row="2"
-                        Text="{x:Static resources:Strings.WelcomePageText}" />
+                <Label
+                    Text="{x:Static resources:Strings.WelcomePageText}" />
 
-                <Button Grid.Row="4"
-                        VerticalOptions="Center"
-                        Text="{x:Static resources:Strings.CreateAccountNowLabel}"
-                        Command="{Binding GoToAddAccountCommand}" />
+                <Button
+                    VerticalOptions="Center"
+                    Text="{x:Static resources:Strings.CreateAccountNowLabel}"
+                    Command="{Binding GoToAddAccountCommand}" />
             </VerticalStackLayout>
 
             <Grid Grid.Row="1" ColumnDefinitions="*, 6, *">
-                <Button Grid.Column="0" 
+                <Button Grid.Column="0"
                         VerticalOptions="Center"
                         Style="{StaticResource LinkButton}"
                         Text="{x:Static resources:Strings.SkipLabel}"
                         Command="{Binding SkipCommand}" />
 
-                <Button Grid.Column="2" 
+                <Button Grid.Column="2"
                         VerticalOptions="Center"
                         Text="{x:Static resources:Strings.NextLabel}"
                         Command="{Binding NextStepCommand}" />

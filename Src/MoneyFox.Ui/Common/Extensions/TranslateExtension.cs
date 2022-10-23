@@ -2,8 +2,8 @@
 
 using System.Reflection;
 using System.Resources;
-using MoneyFox.Core.Common.Helpers;
-using MoneyFox.Core.Resources;
+using Core.Common.Helpers;
+using Core.Resources;
 
 [ContentProperty("Text")]
 public class TranslateExtension : IMarkupExtension
@@ -22,3 +22,4 @@ public class TranslateExtension : IMarkupExtension
         return ResMgr.Value.GetString(name: Text, culture: CultureHelper.CurrentCulture) ?? Text;
     }
 }
+

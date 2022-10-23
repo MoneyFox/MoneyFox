@@ -1,4 +1,5 @@
 namespace MoneyFox.Ui.Views.About;
+
 public partial class AboutPage
 {
     public AboutPage()
@@ -7,3 +8,5 @@ public partial class AboutPage
         BindingContext = App.GetViewModel<AboutViewModel>();
     }
 }
+
+

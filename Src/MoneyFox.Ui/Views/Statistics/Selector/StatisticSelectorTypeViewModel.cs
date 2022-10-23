@@ -1,6 +1,6 @@
-﻿namespace MoneyFox.Ui.ViewModels.Statistics;
+namespace MoneyFox.Ui.Views.Statistics.Selector;
 
-using MoneyFox.Core.Enums;
+using Core.Enums;
 
 public class StatisticSelectorTypeViewModel
 {
@@ -9,3 +9,5 @@ public class StatisticSelectorTypeViewModel
     public string Description { get; set; } = "";
     public StatisticType Type { get; set; }
 }
+
+

@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage
     x:Class="MoneyFox.Ui.Views.Backup.BackupPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-    xmlns:backup="using:MoneyFox.Ui.Views.Backup"
+    xmlns:backup="clr-namespace:MoneyFox.Ui.Views.Backup"
     x:DataType="backup:BackupViewModel"
     BackgroundColor="{DynamicResource WindowBackgroundColor}"
     Title="{x:Static resources:Strings.BackupTitle}">
@@ -19,19 +20,19 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <VerticalStackLayout Padding="16" Spacing="6" >
+            <VerticalStackLayout Padding="16" Spacing="6">
                 <VerticalStackLayout IsVisible="{Binding IsLoggedIn}"
-                                     Spacing="6" 
+                                     Spacing="6"
                                      Margin="0,0,0,10">
-                    <Frame CornerRadius="40" 
+                    <Frame CornerRadius="40"
                            WidthRequest="80"
                            HeightRequest="80"
                            HorizontalOptions="Center"
                            Padding="0"
                            IsClippedToBounds="True">
-                        <Image Source="{Binding ProfilePicture}"/>
+                        <Image Source="{Binding ProfilePicture}" />
                     </Frame>
-                    
+
                     <Label Style="{StaticResource TextTitle}"
                            Text="{Binding UserAccount.Name}"
                            FontAttributes="Bold"
@@ -50,7 +51,7 @@
                         Text="{x:Static resources:Strings.LogoutLabel}" />
 
                 <VerticalStackLayout IsVisible="{Binding IsLoggedIn}"
-                                     Spacing="6" >
+                                     Spacing="6">
 
                     <Label HorizontalOptions="StartAndExpand"
                            Text="{x:Static resources:Strings.BackupInformationLabel}" />
@@ -80,7 +81,7 @@
                         </ActivityIndicator.WidthRequest>
                     </ActivityIndicator>
                     <HorizontalStackLayout
-                        IsVisible="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}" >
+                        IsVisible="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}">
                         <Label HorizontalOptions="Start"
                                Text="{x:Static resources:Strings.LastBackupDateLabel}" />
                         <Label Margin="3,0,0,0"

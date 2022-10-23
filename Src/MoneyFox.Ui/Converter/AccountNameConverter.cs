@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Ui.Converter;
 
 using System.Globalization;
-using MoneyFox.Core.Common.Helpers;
+using Core.Common.Helpers;
 using ViewModels.Accounts;
 
 public class AccountNameConverter : IValueConverter
@@ -18,3 +18,4 @@ public class AccountNameConverter : IValueConverter
         throw new NotSupportedException();
     }
 }
+

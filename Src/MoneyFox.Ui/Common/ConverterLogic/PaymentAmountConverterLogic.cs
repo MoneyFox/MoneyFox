@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Ui.Common.ConverterLogic;
 
-using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using MoneyFox.Core.Common.Helpers;
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Core.Common.Helpers;
 using ViewModels.Payments;
 
 public static class PaymentAmountConverterLogic
@@ -24,3 +24,4 @@ public static class PaymentAmountConverterLogic
         return payment.Type == (int)PaymentType.Expense ? "-" : "+";
     }
 }
+

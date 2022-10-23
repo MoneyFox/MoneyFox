@@ -3,8 +3,9 @@
              x:Class="MoneyFox.Ui.Views.Statistics.StatisticCategoryProgressionPage"
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              xmlns:forms="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
-             xmlns:converter="using:MoneyFox.Ui.Converter"
-             xmlns:statistics="using:MoneyFox.Ui.ViewModels.Statistics"
+             xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
+             xmlns:statistics="clr-namespace:MoneyFox.Ui.ViewModels.Statistics"
+             xmlns:views="clr-namespace:MoneyFox.Ui.Views"
              x:DataType="statistics:StatisticCategoryProgressionViewModel">
 
     <ContentPage.Resources>
@@ -15,14 +16,13 @@
     </ContentPage.Resources>
 
     <Shell.TitleView>
-        <Grid ColumnDefinitions="*,66">
-            <Label Style="{StaticResource TextTitle}"
+        <Grid ColumnDefinitions="*,66" Margin="0,0,12,0">
+            <Label Style="{StaticResource PageTitle}"
                    HorizontalOptions="Start"
                    VerticalOptions="Center"
                    Text="{x:Static resources:Strings.CategoryProgressionTitle}" />
 
-            <ImageButton Margin="0,0,5,0"
-                         Grid.Column="1"
+            <ImageButton Grid.Column="1"
                          Padding="0"
                          BorderWidth="0"
                          Clicked="OpenFilterDialog"
@@ -31,8 +31,8 @@
                          VerticalOptions="Center"
                          WidthRequest="66">
                 <ImageButton.Source>
-                    <FontImageSource FontFamily="MaterialIconsRound"
-                                     Glyph="filter_alt"
+                    <FontImageSource FontFamily="MaterialIcons"
+                                     Glyph="{x:Static views:IconFont.FilterOutline}"
                                      Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                 </ImageButton.Source>
             </ImageButton>
@@ -40,28 +40,24 @@
     </Shell.TitleView>
 
     <ContentPage.Content>
-        <Grid RowDefinitions="38, auto, auto, *" Padding="15,0,15,15">
+        <Grid RowDefinitions="auto, auto, *" Padding="15,0,15,15">
 
-            <Label Style="{StaticResource TextHeadline}"
-                   Text="{x:Static resources:Strings.CategoryProgressionTitle}" />
-
-            <Label Grid.Row="1"
-                   Style="{StaticResource TextBodySecondary}"
+            <Label Style="{StaticResource TextBodySecondary}"
                    Text="{Binding Title}" />
 
-            <Button Grid.Row="2"
+            <Button Grid.Row="1"
                     Text="{Binding SelectedCategory, Converter={StaticResource NoCategorySelectedConverter}}"
                     Command="{Binding GoToSelectCategoryDialogCommand}" />
 
-            <forms:CartesianChart Grid.Row="3"
+            <forms:CartesianChart Grid.Row="2"
                                   Series="{Binding Series, Mode=OneWay}"
                                   XAxes="{Binding XAxis, Mode=OneWay}"
                                   LegendPosition="Hidden"
                                   IsVisible="{Binding HasNoData, Converter={StaticResource InverseBoolConverter}}" />
 
-            <Label Grid.Row="3"
+            <Label Grid.Row="2"
                    Text="{x:Static resources:Strings.SelectCategoryLabel}"
-                   Style="{DynamicResource DeemphasizedLabelStyle}"
+                   Style="{StaticResource ToneDownLabelStyle}"
                    IsVisible="{Binding HasNoData}" />
         </Grid>
     </ContentPage.Content>

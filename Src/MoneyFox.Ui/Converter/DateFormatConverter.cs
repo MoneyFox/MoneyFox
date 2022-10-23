@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Ui.Converter;
 
 using System.Globalization;
-using MoneyFox.Core.Common.Helpers;
+using Core.Common.Helpers;
 
 /// <summary>
 ///     Formats the date with the culture in the CultureHelper.
@@ -18,3 +18,4 @@ public class DateFormatConverter : IValueConverter
         throw new NotSupportedException();
     }
 }
+

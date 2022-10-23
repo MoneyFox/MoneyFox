@@ -1,6 +1,6 @@
 namespace MoneyFox.Ui.Infrastructure.Adapters;
 
-using MoneyFox.Core.Interfaces;
+using Core.Interfaces;
 using Serilog;
 
 public class ConnectivityAdapter : IConnectivityAdapter
@@ -22,3 +22,4 @@ public class ConnectivityAdapter : IConnectivityAdapter
         }
     }
 }
+

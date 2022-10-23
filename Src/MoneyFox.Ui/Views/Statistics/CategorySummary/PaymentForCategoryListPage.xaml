@@ -1,10 +1,12 @@
 ﻿<ContentPage
-    x:Class="MoneyFox.Ui.Views.Statistics.PaymentForCategoryListPage"
+    x:Class="MoneyFox.Ui.Views.Statistics.CategorySummary.PaymentForCategoryListPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-    xmlns:converter="using:MoneyFox.Ui.Converter"
-    xmlns:payments="using:MoneyFox.Ui.ViewModels.Payments"
+    xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
+    xmlns:payments="clr-namespace:MoneyFox.Ui.ViewModels.Payments"
+    xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
+    xmlns:views="clr-namespace:MoneyFox.Ui.Views"
     Title="{x:Static resources:Strings.PaymentsForCategoryTitle}">
 
     <ContentPage.Resources>
@@ -33,17 +35,7 @@
                                    Style="{StaticResource TextBodySecondary}"
                                    Text="{Binding Subtitle}" />
 
-                            <Border
-                                BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                                 Light={StaticResource CardBackgroundLight}}"
-                                StrokeShape="RoundRectangle 10,10,10,10"
-                                Grid.Row="2"
-                                HorizontalOptions="FillAndExpand">
-
-                                <Border.Shadow>
-                                    <Shadow />
-                                </Border.Shadow>
-
+                            <controls:Card Grid.Row="2">
                                 <StackLayout BindableLayout.ItemsSource="{Binding .}">
                                     <BindableLayout.ItemTemplate>
                                         <DataTemplate x:DataType="payments:PaymentViewModel">
@@ -55,13 +47,15 @@
                                                         CommandParameter="{Binding .}" />
                                                 </StackLayout.GestureRecognizers>
 
-                                                <Grid>
-                                                    <Label Style="{StaticResource TextBody}"
+                                                <Grid ColumnDefinitions="*, Auto">
+                                                    <Label Grid.Column="0"
+                                                           Style="{StaticResource TextBody}"
                                                            HorizontalTextAlignment="Start"
                                                            VerticalTextAlignment="Start"
                                                            Text="{Binding Date, Converter={StaticResource DateFormatConverter}}" />
 
-                                                    <Label Style="{StaticResource TextBody}"
+                                                    <Label Grid.Column="1"
+                                                           Style="{StaticResource TextBody}"
                                                            HorizontalTextAlignment="End"
                                                            VerticalTextAlignment="Start"
                                                            Text="{Binding ., Converter={StaticResource PaymentAmountConverter}}" />
@@ -72,13 +66,14 @@
                                                            Style="{StaticResource TextBodySecondary}"
                                                            Text="{Binding Category.Name}" />
 
-                                                    <StackLayout HorizontalOptions="End" Orientation="Horizontal">
+                                                    <HorizontalStackLayout HorizontalOptions="End">
                                                         <Image HeightRequest="15"
                                                                IsVisible="{Binding IsTransfer}"
                                                                WidthRequest="15">
                                                             <Image.Source>
-                                                                <FontImageSource FontFamily="MaterialIconsRound"
-                                                                    Glyph="sync_alt" />
+                                                                <FontImageSource FontFamily="MaterialIcons"
+                                                                    Glyph="{x:Static views:IconFont.SwapHorizontal}"
+                                                                    Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                                                             </Image.Source>
                                                         </Image>
 
@@ -86,8 +81,9 @@
                                                                IsVisible="{Binding IsRecurring}"
                                                                WidthRequest="15">
                                                             <Image.Source>
-                                                                <FontImageSource FontFamily="MaterialIconsRound"
-                                                                    Glyph="repeat" />
+                                                                <FontImageSource FontFamily="MaterialIcons"
+                                                                    Glyph="{x:Static views:IconFont.RepeatVariant}"
+                                                                    Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                                                             </Image.Source>
                                                         </Image>
 
@@ -95,11 +91,12 @@
                                                                IsVisible="{Binding IsCleared}"
                                                                WidthRequest="15">
                                                             <Image.Source>
-                                                                <FontImageSource FontFamily="MaterialIconsRound"
-                                                                    Glyph="done" />
+                                                                <FontImageSource FontFamily="MaterialIcons"
+                                                                    Glyph="{x:Static views:IconFont.Check}"
+                                                                    Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                                                             </Image.Source>
                                                         </Image>
-                                                    </StackLayout>
+                                                    </HorizontalStackLayout>
                                                 </Grid>
 
                                                 <Label Style="{StaticResource TextBodySecondary}"
@@ -110,7 +107,7 @@
                                         </DataTemplate>
                                     </BindableLayout.ItemTemplate>
                                 </StackLayout>
-                            </Border>
+                            </controls:Card>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

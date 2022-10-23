@@ -1,14 +1,11 @@
-﻿namespace MoneyFox.Ui.Platforms.iOS.Src
+﻿namespace MoneyFox.Ui.Platforms.iOS.Src;
+
+using Core.Common.Interfaces;
+using Foundation;
+
+/// <inheritdoc />
+public class AppInformation : IAppInformation
 {
-
-    using Core.Common.Interfaces;
-    using Foundation;
-
     /// <inheritdoc />
-    public class AppInformation : IAppInformation
-    {
-        /// <inheritdoc />
-        public string GetVersion => NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleVersion").ToString();
-    }
-
+    public string GetVersion => NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleVersion").ToString();
 }

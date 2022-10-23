@@ -1,48 +1,47 @@
-﻿namespace MoneyFox.Ui.ViewModels.Statistics;
+namespace MoneyFox.Ui.Views.Statistics.Selector;
 
 using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Core.Enums;
-using MoneyFox.Core.Resources;
+using Core.Enums;
+using Core.Resources;
+using ViewModels;
+using ViewModels.Statistics;
 
 internal sealed class StatisticSelectorViewModel : BaseViewModel, IStatisticSelectorViewModel
 {
-    /// <summary>
-    ///     All possible statistic to choose from
-    /// </summary>
     public List<StatisticSelectorTypeViewModel> StatisticItems
         => new()
         {
             new()
             {
-                IconGlyph = "bar_chart",
+                IconGlyph = IconFont.ChartBar,
                 Name = Strings.CashflowLabel,
                 Description = Strings.CashflowDescription,
                 Type = StatisticType.Cashflow
             },
             new()
             {
-                IconGlyph = "bar_chart",
+                IconGlyph = IconFont.ChartBar,
                 Name = Strings.MonthlyCashflowLabel,
                 Description = Strings.MonthlyCashflowDescription,
                 Type = StatisticType.MonthlyAccountCashFlow
             },
             new()
             {
-                IconGlyph = "bar_chart",
+                IconGlyph = IconFont.ChartBar,
                 Name = Strings.CategoryProgressionLabel,
                 Description = Strings.CategoryProgressionDescription,
                 Type = StatisticType.CategoryProgression
             },
             new()
             {
-                IconGlyph = "donut_large",
+                IconGlyph = IconFont.ChartDonut,
                 Name = Strings.CategorySpreadingLabel,
                 Description = Strings.CategorieSpreadingDescription,
                 Type = StatisticType.CategorySpreading
             },
             new()
             {
-                IconGlyph = "format_list_bulleted",
+                IconGlyph = IconFont.FormatListBulleted,
                 Name = Strings.CategorySummaryLabel,
                 Description = Strings.CategorySummaryDescription,
                 Type = StatisticType.CategorySummary
@@ -78,3 +77,5 @@ internal sealed class StatisticSelectorViewModel : BaseViewModel, IStatisticSele
         }
     }
 }
+
+

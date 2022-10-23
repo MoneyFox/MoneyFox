@@ -78,6 +78,7 @@
             </i:Interaction.Behaviors>
 
         </ComboBox>
+
         <TextBox
             Margin="{StaticResource SmallTitleContentMargin}"
             Header="{x:Bind resources:Strings.AmountLabel}"
