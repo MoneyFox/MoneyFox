@@ -67,7 +67,8 @@
                                         </SwipeItems>
                                     </SwipeView.RightItems>
 
-                                    <Grid>
+                                    <Grid BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                                            Light={StaticResource CardBackgroundLight}}">
                                         <Label
                                             Margin="10,2,0,0"
                                             HorizontalTextAlignment="Start"

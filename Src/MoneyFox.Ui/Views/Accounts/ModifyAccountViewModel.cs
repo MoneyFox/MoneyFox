@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Views.Accounts;
+namespace MoneyFox.Ui.Views.Accounts;
 
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -72,6 +72,3 @@ internal abstract partial class ModifyAccountViewModel : BaseViewModel
         await navigationService.GoBackFromModalAsync();
     }
 }
-
-
-
