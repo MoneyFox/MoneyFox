@@ -32,3 +32,4 @@ public partial class AddCategoryPage
     private AddCategoryViewModel ViewModel => (AddCategoryViewModel)BindingContext;
 }
 
+

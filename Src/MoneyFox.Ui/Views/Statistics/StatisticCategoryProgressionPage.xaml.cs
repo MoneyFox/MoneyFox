@@ -21,3 +21,4 @@ public partial class StatisticCategoryProgressionPage : ContentPage
     }
 }
 
+

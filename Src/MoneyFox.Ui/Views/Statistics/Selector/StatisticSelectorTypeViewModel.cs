@@ -10,3 +10,4 @@ public class StatisticSelectorTypeViewModel
     public StatisticType Type { get; set; }
 }
 
+

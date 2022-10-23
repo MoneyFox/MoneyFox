@@ -22,7 +22,7 @@
                     HorizontalOptions="Start"
                     IsChecked="{Binding SelectedCategory.RequireNote}"
                     VerticalOptions="Center" />
-                <Label 
+                <Label
                     HorizontalOptions="StartAndExpand"
                     Text="{x:Static resources:Strings.RequireNoteCheckbox}"
                     VerticalOptions="Center" />

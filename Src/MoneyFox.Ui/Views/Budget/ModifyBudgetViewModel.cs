@@ -72,3 +72,4 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
     protected abstract Task SaveBudgetAsync();
 }
 
+

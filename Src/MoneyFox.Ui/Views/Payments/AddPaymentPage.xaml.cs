@@ -13,6 +13,11 @@ public partial class AddPaymentPage
 
     private AddPaymentViewModel ViewModel => (AddPaymentViewModel)BindingContext;
 
+    protected override async void OnAppearing()
+    {
+        await ViewModel.InitializeAsync(defaultChargedAccountId);
+    }
+
 #pragma warning disable S2376 // Write-only properties should not be used
     private int defaultChargedAccountId;
     public string DefaultChargedAccountId
@@ -20,10 +25,6 @@ public partial class AddPaymentPage
         set => defaultChargedAccountId = Convert.ToInt32(Uri.UnescapeDataString(value));
     }
 #pragma warning restore S2376 // Write-only properties should not be used
-
-    protected override async void OnAppearing()
-    {
-        await ViewModel.InitializeAsync(defaultChargedAccountId);
-    }
 }
+
 

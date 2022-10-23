@@ -18,3 +18,4 @@ public partial class CategoryListPage : ContentPage
     }
 }
 
+

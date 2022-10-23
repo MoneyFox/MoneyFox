@@ -6,3 +6,4 @@ public class DashboardBudgetEntryViewModel
     public double Progress { get; set; }
 }
 
+

@@ -30,3 +30,4 @@ public sealed class BudgetViewModel : ObservableObject
     }
 }
 
+

@@ -25,3 +25,4 @@ public partial class EditAccountPage
 #pragma warning restore S2376 // Write-only properties should not be used
 }
 
+

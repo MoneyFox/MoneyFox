@@ -32,3 +32,4 @@ public partial class AddBudgetPage
     private AddBudgetViewModel ViewModel => (AddBudgetViewModel)BindingContext;
 }
 
+

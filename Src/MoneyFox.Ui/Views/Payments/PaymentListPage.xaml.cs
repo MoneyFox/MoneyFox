@@ -35,3 +35,4 @@ public partial class PaymentListPage : ContentPage
 #pragma warning restore S2376 // Write-only properties should not be used
 }
 
+
