@@ -60,7 +60,7 @@
                                                 CommandParameter="{Binding .}"
                                                 Text="{x:Static resources:Strings.EditLabel}" />
                                             <SwipeItem
-                                                BackgroundColor="{AppThemeBinding Dark={StaticResource Gray900}, Light={StaticResource Gray200}}"
+                                                BackgroundColor="{AppThemeBinding Dark={StaticResource Gray900}, Light={StaticResource Gray100}}"
                                                 Command="{Binding Source={x:Reference AccountCollectionView}, Path=BindingContext.DeleteAccountCommand}"
                                                 CommandParameter="{Binding .}"
                                                 Text="{x:Static resources:Strings.DeleteLabel}" />
