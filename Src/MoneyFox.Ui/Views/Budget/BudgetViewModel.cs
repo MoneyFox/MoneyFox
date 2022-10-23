@@ -1,7 +1,7 @@
-namespace MoneyFox.Ui.ViewModels.Budget;
+namespace MoneyFox.Ui.Views.Budget;
 
 using CommunityToolkit.Mvvm.ComponentModel;
-using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
+using MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
 
 public sealed class BudgetViewModel : ObservableObject
 {

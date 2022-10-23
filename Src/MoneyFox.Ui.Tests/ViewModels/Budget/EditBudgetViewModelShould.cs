@@ -12,7 +12,7 @@ using Core.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
 using NSubstitute;
-using Ui.ViewModels.Budget;
+using Views.Budget;
 using Views.Categories;
 using Xunit;
 

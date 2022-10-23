@@ -1,7 +1,5 @@
 namespace MoneyFox.Ui.Views.Budget;
 
-using ViewModels.Budget;
-
 public partial class BudgetListPage
 {
     public BudgetListPage()

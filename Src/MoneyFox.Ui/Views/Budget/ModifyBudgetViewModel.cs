@@ -1,13 +1,14 @@
-namespace MoneyFox.Ui.ViewModels.Budget;
+namespace MoneyFox.Ui.Views.Budget;
 
 using System.Collections;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
-using Core.Common.Messages;
-using Core.Interfaces;
-using Views.Categories;
+using MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
+using MoneyFox.Core.Common.Messages;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Ui.Views.Categories;
+using ViewModels;
 
 internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<CategorySelectedMessage>
 {
@@ -71,5 +72,3 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
 
     protected abstract Task SaveBudgetAsync();
 }
-
-

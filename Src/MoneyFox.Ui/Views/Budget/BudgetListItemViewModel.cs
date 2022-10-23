@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.ViewModels.Budget;
+﻿namespace MoneyFox.Ui.Views.Budget;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 

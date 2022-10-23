@@ -1,7 +1,5 @@
 namespace MoneyFox.Ui.Views.Budget;
 
-using ViewModels.Budget;
-
 [QueryProperty(name: "BudgetId", queryId: "budgetId")]
 public partial class EditBudgetPage
 {
