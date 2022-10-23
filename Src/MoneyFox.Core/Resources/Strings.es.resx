@@ -601,9 +601,9 @@
     <value>¿Desea sobrescribir?</value>
   </data>
   <data name="PaymentIntroductionText" xml:space="preserve">
-    <value>When you create a payment you can select the category for that payment along with the account and if it is an expense, an income or a transfer.
-Payments you created will show up under the account you choose.
-To get there go to the account list and select the respective account.</value>
+    <value>Cuando creas un pago puedes seleccionar la categoría para ese pago junto con la cuenta  a la cual le quieres registrar un gasto un ingreso o una transferencia.
+Los pagos que hayas creado aparecerán en la cuenta que elijas.
+Para llegar allí ve a la lista de cuentas y selecciona la cuenta correspondiente.</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
     <value>Transacciones por categoría.</value>
@@ -730,8 +730,8 @@ ATENCIÓN: ¡Los datos que creaste desde la copia de respaldo se perderán!</val
     <value>¡Me alegro de verte!</value>
   </data>
   <data name="WelcomePageText" xml:space="preserve">
-    <value>The MoneyFox helps you to track your expenses and incomes in an easy way.
-To start create a new account. Accounts are used to organize payments and money in collections.</value>
+    <value>MoneyFox le ayuda a regitrar sus gastos e ingresos de una manera sencilla. 
+Para empezar crea una nueva cuenta. Las cuentas se utilizan para organizar en grupos los pagos y cobros de dinero.</value>
   </data>
   <data name="WindowsDefaultLabel" xml:space="preserve">
     <value>Ventanas por defecto</value>
@@ -806,72 +806,72 @@ To start create a new account. Accounts are used to organize payments and money 
     <value>Abrir registro</value>
   </data>
   <data name="BudgetsTitle" xml:space="preserve">
-    <value>Budgets</value>
+    <value>Presupuesto</value>
   </data>
   <data name="NoBudgetsMessage" xml:space="preserve">
-    <value>There are no Budgets yet. Go ahead and create one!</value>
+    <value>Todavía no hay presupuestos. ¡Siga adelante y cree uno!</value>
   </data>
   <data name="AddBudgetLabel" xml:space="preserve">
-    <value>Add Budget</value>
+    <value>Añadir presupuesto</value>
   </data>
   <data name="AddBudgetTitle" xml:space="preserve">
-    <value>Add Budget</value>
+    <value>Añadir presupuesto</value>
   </data>
   <data name="BudgetNameLabel" xml:space="preserve">
-    <value>Budget Name</value>
+    <value>Nombre del Presupuesto</value>
   </data>
   <data name="MoreTitle" xml:space="preserve">
     <value>Más</value>
   </data>
   <data name="SelectedCategoriesLabel" xml:space="preserve">
-    <value>Selected Categories</value>
+    <value>Seleccionar categorías</value>
   </data>
   <data name="BackupUploadSkippedMessage" xml:space="preserve">
     <value>Subida de copia de seguridad omitida, ya que la versión remota ya estaba actualizada.</value>
   </data>
   <data name="EditBudgetTitle" xml:space="preserve">
-    <value>Edit Budget</value>
+    <value>Editar presupuesto</value>
   </data>
   <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this budget?</value>
+    <value>¿Realmente quiere eliminar este presupuesto?</value>
   </data>
   <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Monthly Budget:</value>
+    <value>Presupuesto mensual</value>
   </data>
   <data name="TimeRangeLabel" xml:space="preserve">
-    <value>Time Range</value>
+    <value>Rango de tiempo</value>
   </data>
   <data name="LastFiveYearsLabel" xml:space="preserve">
-    <value>Last Five Years</value>
+    <value>los últimos cinco años</value>
   </data>
   <data name="LastThreeYearsLabel" xml:space="preserve">
-    <value>Last Three Years</value>
+    <value>Últimos tres años</value>
   </data>
   <data name="LastTwoYearsLabel" xml:space="preserve">
-    <value>Last Two Years</value>
+    <value>Últimos dos años</value>
   </data>
   <data name="LastYearLabel" xml:space="preserve">
-    <value>Last Year</value>
+    <value>Último año</value>
   </data>
   <data name="YearToDateLabel" xml:space="preserve">
-    <value>Year to date</value>
+    <value>Año hasta hoy</value>
   </data>
   <data name="MonthlySpendingLimitLabel" xml:space="preserve">
-    <value>Monthly Spending Limit</value>
+    <value>Límite de gasto diario</value>
   </data>
   <data name="EvaluationTimeRangeLabel" xml:space="preserve">
-    <value>Evaluation Time Range</value>
+    <value>Rango de evaluaciones</value>
   </data>
   <data name="EvaluationTimeRangeMessage" xml:space="preserve">
-    <value>This defines the time range in which payments are included to calculate your monthly average to compare to your spending limit.</value>
+    <value>Esto define el rango de tiempo en el que se incluyen los pagos para calcular su promedio mensual para comparar con su límite de gastos.</value>
   </data>
   <data name="CategorySummaryPlaceholder" xml:space="preserve">
-    <value>No payments in the selected time range found.</value>
+    <value>No se encontraron pagos en el rango de tiempo seleccionado.</value>
   </data>
   <data name="InvalidSpendingLimitMessage" xml:space="preserve">
-    <value>The spending limit has to be larger than zero.</value>
+    <value>El límite de gasto debe ser mayor que cero.</value>
   </data>
   <data name="InvalidSpendingLimitTitle" xml:space="preserve">
-    <value>Invalid Spending Limit</value>
+    <value>Límite de gasto diario</value>
   </data>
 </root>
