@@ -14,7 +14,7 @@ public partial class EditAccountPage
 
 #pragma warning disable S2376 // Write-only properties should not be used
     private int accountId;
-    public string Accountid
+    public string AccountId
     {
         set => accountId = Convert.ToInt32(Uri.UnescapeDataString(value));
     }
