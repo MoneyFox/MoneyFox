@@ -1,12 +1,12 @@
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace MoneyFox.Ui.Platforms.Windows;
+namespace MoneyFox.Ui.WinUI;
 
 using Microsoft.Identity.Client;
 using MoneyFox.Core.Common.Interfaces;
 using MoneyFox.Core.Interfaces;
-using Src;
+using MoneyFox.Ui.Platforms.Windows.Src;
 
 /// <summary>
 ///     Provides application-specific behavior to supplement the default Application class.
