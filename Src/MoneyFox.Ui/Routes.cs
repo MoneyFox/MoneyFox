@@ -12,7 +12,7 @@ using Views.SetupAssistant;
 using Views.Statistics;
 using Views.Statistics.CategorySummary;
 
-public class Routes
+public static class Routes
 {
     public static string DashboardRoute => nameof(DashboardPage);
     public static string AccountListRoute => nameof(AccountListPage);
@@ -25,6 +25,7 @@ public class Routes
     public static string CategoryListRoute => nameof(CategoryListPage);
     public static string SelectCategoryRoute => nameof(SelectCategoryPage);
     public static string AddCategoryRoute => nameof(AddCategoryPage);
+    public static string EditCategoryRoute => nameof(EditCategoryPage);
     public static string BackupRoute => nameof(BackupPage);
     public static string SettingsRoute => nameof(SettingsPage);
     public static string AboutRoute => nameof(AboutPage);

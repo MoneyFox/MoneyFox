@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.ViewModels.Categories;
+namespace MoneyFox.Ui.ViewModels.Categories;
 
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -42,14 +42,13 @@ internal class CategoryListViewModel : BaseViewModel
         }
     }
 
-    public AsyncRelayCommand GoToAddCategoryCommand => new(async () => await Shell.Current.GoToModalAsync(Routes.AddCategoryRoute));
+    public AsyncRelayCommand GoToAddCategoryCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddCategoryRoute));
 
     public AsyncRelayCommand<string> SearchCategoryCommand => new(async searchTerm => await SearchCategoryAsync(searchTerm));
 
     public AsyncRelayCommand<CategoryViewModel> GoToEditCategoryCommand
-        => new(
-            async categoryViewModel => await Shell.Current.Navigation.PushModalAsync(
-                new NavigationPage(new EditCategoryPage(categoryViewModel.Id)) { BarBackgroundColor = Colors.Transparent }));
+
+            => new(async cvm => await Shell.Current.GoToAsync($"{Routes.EditCategoryRoute}?categoryId={cvm.Id}"));
 
     public AsyncRelayCommand<CategoryViewModel> DeleteCategoryCommand => new(async categoryViewModel => await DeleteAccountAsync(categoryViewModel));
 
