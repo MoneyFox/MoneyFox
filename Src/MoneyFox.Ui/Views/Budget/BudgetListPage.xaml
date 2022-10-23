@@ -21,12 +21,6 @@
 
     <ContentPage.Content>
         <Grid IsClippedToBounds="False" RowDefinitions="40, Auto, *">
-            <Button
-                Margin="0,0,16,0"
-                HorizontalOptions="End"
-                Text="{x:Static resources:Strings.AddBudgetLabel}"
-                VerticalOptions="Center"
-                Command="{Binding GoToAddBudgetCommand}" />
 
             <HorizontalStackLayout Margin="18,0,12,0" Spacing="6">
                 <Label Style="{StaticResource TextBodySecondary}"
@@ -34,6 +28,13 @@
                 <Label Style="{StaticResource TextBodySecondary}"
                        Text="{Binding BudgetedAmount, Converter={StaticResource DecimalToZeroFiveConverter}}" />
             </HorizontalStackLayout>
+            
+            <Button
+                Margin="0,0,16,0"
+                HorizontalOptions="End"
+                Text="{x:Static resources:Strings.AddBudgetLabel}"
+                VerticalOptions="Center"
+                Command="{Binding GoToAddBudgetCommand}" />
 
             <ListView Grid.Row="2"
                       BackgroundColor="Transparent"
