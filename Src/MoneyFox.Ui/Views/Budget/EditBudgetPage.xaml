@@ -10,12 +10,14 @@
     x:Class="MoneyFox.Ui.Views.Budget.EditBudgetPage"
     Visual="Material">
 
-    <VerticalStackLayout Spacing="6">
-        <budget:ModifyBudgetView />
-        <Button Command="{Binding SaveBudgetCommand}" Text="{x:Static resources:Strings.SaveLabel}" />
-        <Button Margin="12"
-                    Style="{StaticResource WarningButton}"
-                    Command="{Binding DeleteBudgetCommand}"
-                    Text="{x:Static resources:Strings.DeleteLabel}" />
-    </VerticalStackLayout>
+    <ScrollView Padding="15,0,15,0">
+        <VerticalStackLayout Spacing="6">
+            <budget:ModifyBudgetView />
+            <Button Command="{Binding SaveBudgetCommand}" Text="{x:Static resources:Strings.SaveLabel}" />
+            <Button Margin="12"
+                        Style="{StaticResource WarningButton}"
+                        Command="{Binding DeleteBudgetCommand}"
+                        Text="{x:Static resources:Strings.DeleteLabel}" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
