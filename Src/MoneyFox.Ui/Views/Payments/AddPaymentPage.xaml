@@ -10,12 +10,10 @@
     x:DataType="paymentsVm:AddPaymentViewModel"
     x:Class="MoneyFox.Ui.Views.Payments.AddPaymentPage">
 
-    <ContentPage.Content>
-        <ScrollView Padding="15,0,15,0">
-            <StackLayout Spacing="6">
-                <payments:ModifyPaymentContentView />
-                <Button Text="{x:Static resources:Strings.SaveLabel}" Command="{Binding SaveCommand}" />
-            </StackLayout>
-        </ScrollView>
-    </ContentPage.Content>
+    <ScrollView Padding="15,0,15,0">
+        <VerticalStackLayout Spacing="6">
+            <payments:ModifyPaymentContentView />
+            <Button Text="{x:Static resources:Strings.SaveLabel}" Command="{Binding SaveCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

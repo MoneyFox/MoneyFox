@@ -74,7 +74,7 @@
                         IsToggled="{Binding SelectedPayment.IsRecurring}" />
             </Grid>
 
-            <StackLayout IsVisible="{Binding SelectedPayment.IsRecurring}"
+            <VerticalStackLayout IsVisible="{Binding SelectedPayment.IsRecurring}"
                          Spacing="6">
                 <Label Text="{x:Static resources:Strings.RecurrenceLabel}" />
                 <Picker ItemsSource="{Binding RecurrenceList}"
@@ -108,7 +108,7 @@
                                            DateField="{Binding SelectedPayment.RecurringPayment.EndDate}"
                                            IsVisible="{Binding SelectedPayment.RecurringPayment.IsEndless, Converter={StaticResource Inverter}}" />
 
-            </StackLayout>
+            </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 </ContentView>
