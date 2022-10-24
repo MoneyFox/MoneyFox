@@ -54,11 +54,13 @@ internal class AboutViewModel : BaseViewModel
 
     private async Task SendMailAsync()
     {
+        var logFile = Path.Combine(path1: FileSystem.AppDataDirectory, path2: LogConfiguration.FileName);
+
         await emailAdapter.SendEmailAsync(
             subject: Strings.FeedbackSubject,
             body: string.Empty,
             recipients: new() { SUPPORT_MAIL },
-            filePaths: new() { Path.Combine(path1: FileSystem.AppDataDirectory, path2: LogConfiguration.FileName) });
+            filePaths: new() { logFile });
     }
 
     private void RateApp()
