@@ -47,10 +47,6 @@ internal class AboutViewModel : BaseViewModel
 
     public string Version => appInformation.GetVersion;
 
-    public string Website => WEBSITE_URI.ToString();
-
-    public string SupportMail => SUPPORT_MAIL;
-
     private async Task GoToWebsiteAsync()
     {
         await browserAdapter.OpenWebsiteAsync(WEBSITE_URI);
