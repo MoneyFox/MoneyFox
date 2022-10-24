@@ -7,8 +7,7 @@
     xmlns:budget="clr-namespace:MoneyFox.Ui.Views.Budget"
     Title="{x:Static resources:Strings.AddBudgetTitle}"
     x:DataType="budget:AddBudgetViewModel"
-    x:Class="MoneyFox.Ui.Views.Budget.AddBudgetPage"
-    Visual="Material">
+    x:Class="MoneyFox.Ui.Views.Budget.AddBudgetPage">
     
     <ScrollView Padding="15,0,15,0">  
         <VerticalStackLayout Spacing="6">
