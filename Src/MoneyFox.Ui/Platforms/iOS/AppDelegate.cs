@@ -22,7 +22,6 @@ public class AppDelegate : MauiUIApplicationDelegate
 
     protected override MauiApp CreateMauiApp()
     {
-        InitLogger();
         App.AddPlatformServicesAction = AddServices;
         RequestToastPermissions();
 
@@ -64,18 +63,6 @@ public class AppDelegate : MauiUIApplicationDelegate
             {
                 // Do something if needed
             });
-    }
-
-    private void InitLogger()
-    {
-        var logFile = Path.Combine(path1: FileSystem.AppDataDirectory, path2: LogConfiguration.FileName);
-        Log.Logger = new LoggerConfiguration().MinimumLevel.Debug()
-            .Enrich.FromLogContext()
-            .Enrich.WithExceptionDetails()
-            .WriteTo.File(path: logFile, rollingInterval: RollingInterval.Month, retainedFileCountLimit: 6, restrictedToMinimumLevel: LogEventLevel.Information)
-            .CreateLogger();
-
-        Log.Information("Application Startup");
     }
 }
 
