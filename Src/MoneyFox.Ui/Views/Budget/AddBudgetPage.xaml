@@ -9,10 +9,8 @@
     x:DataType="budget:AddBudgetViewModel"
     x:Class="MoneyFox.Ui.Views.Budget.AddBudgetPage">
     
-    <ScrollView Padding="15,0,15,0">  
-        <VerticalStackLayout Spacing="6">
-            <budget:ModifyBudgetView />
-            <Button Command="{Binding SaveBudgetCommand}" Text="{x:Static resources:Strings.SaveLabel}" />
-        </VerticalStackLayout>
-    </ScrollView>
+    <Grid RowDefinitions="*, 6, 40" Padding="12">
+        <budget:ModifyBudgetView Grid.Row="0" />
+        <Button Grid.Row="2"  Command="{Binding SaveBudgetCommand}" Text="{x:Static resources:Strings.SaveLabel}" />
+    </Grid>
 </ContentPage>

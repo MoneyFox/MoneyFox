@@ -12,4 +12,3 @@ public class Program
         UIApplication.Main(args: args, principalClass: null, delegateClass: typeof(AppDelegate));
     }
 }
-
