@@ -49,8 +49,9 @@
                             Command="{Binding ResetCategoryCommand}">
                 <ImageButton.Source>
                     <FontImageSource FontFamily="MaterialIcons"
-                                        Glyph="{x:Static views:IconFont.Close}"
-                                        Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray900}}" />
+                                     Size="24"
+                                     Glyph="{x:Static views:IconFont.Close}"
+                                     Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray900}}" />
                 </ImageButton.Source>
             </ImageButton>
         </Grid>
