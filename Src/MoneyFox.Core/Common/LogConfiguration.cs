@@ -4,5 +4,3 @@ public static class LogConfiguration
 {
     public static string FileName => "moneyfox.log";
 }
-
-
