@@ -12,28 +12,6 @@ using Xunit;
 public class AboutViewModelTests
 {
     [Fact]
-    public void SupportMail_NoParams_ReturnCorrectMail()
-    {
-        new AboutViewModel(
-                appInformation: Substitute.For<IAppInformation>(),
-                emailAdapter: Substitute.For<IEmailAdapter>(),
-                browserAdapter: Substitute.For<IBrowserAdapter>(),
-                storeOperations: Substitute.For<IStoreOperations>()).SupportMail.Should()
-            .Be("mobile.support@apply-solutions.ch");
-    }
-
-    [Fact]
-    public void Website_NoParams_ReturnCorrectMail()
-    {
-        new AboutViewModel(
-                appInformation: Substitute.For<IAppInformation>(),
-                emailAdapter: Substitute.For<IEmailAdapter>(),
-                browserAdapter: Substitute.For<IBrowserAdapter>(),
-                storeOperations: Substitute.For<IStoreOperations>()).Website.Should()
-            .Be("https://www.apply-solutions.ch");
-    }
-
-    [Fact]
     public void Version_NoParams_ReturnCorrectMail()
     {
         var appinfos = Substitute.For<IAppInformation>();

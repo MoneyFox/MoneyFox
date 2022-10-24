@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Views.About;
+namespace MoneyFox.Ui.Views.About;
 
 using CommunityToolkit.Mvvm.Input;
 using Core.Common;
@@ -9,7 +9,7 @@ using ViewModels;
 
 internal class AboutViewModel : BaseViewModel
 {
-    private const string WEBSITE_URL = "https://www.apply-solutions.ch";
+    private readonly Uri WEBSITE_URI = new("https://www.apply-solutions.ch", UriKind.Absolute);
     private const string SUPPORT_MAIL = "mobile.support@apply-solutions.ch";
     private const string GITHUB_PROJECT_URL = "https://github.com/MoneyFox/MoneyFox";
     private const string TRANSLATION_URL = "https://crowdin.com/project/money-fox";
@@ -47,13 +47,9 @@ internal class AboutViewModel : BaseViewModel
 
     public string Version => appInformation.GetVersion;
 
-    public string Website => WEBSITE_URL;
-
-    public string SupportMail => SUPPORT_MAIL;
-
     private async Task GoToWebsiteAsync()
     {
-        await browserAdapter.OpenWebsiteAsync(new(WEBSITE_URL));
+        await browserAdapter.OpenWebsiteAsync(WEBSITE_URI);
     }
 
     private async Task SendMailAsync()
