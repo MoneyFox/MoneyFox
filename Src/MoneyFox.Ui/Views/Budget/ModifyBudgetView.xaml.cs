@@ -7,6 +7,3 @@ public partial class ModifyBudgetView
         InitializeComponent();
     }
 }
-
-
-
