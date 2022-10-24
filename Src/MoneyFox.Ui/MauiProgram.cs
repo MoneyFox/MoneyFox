@@ -2,13 +2,18 @@ namespace MoneyFox.Ui;
 
 using CommunityToolkit.Maui;
 using Microsoft.Maui.Handlers;
+using MoneyFox.Core.Common;
 using MoneyFox.Ui.Controls;
+using Serilog;
+using Serilog.Events;
+using Serilog.Exceptions;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 
 public static class MauiProgram
 {
     public static MauiApp CreateMauiApp()
     {
+        InitLogger();
         var builder = MauiApp.CreateBuilder();
         builder.UseMauiApp<App>()
             .ConfigureFonts(
@@ -46,5 +51,17 @@ public static class MauiProgram
         });
 
         return builder.Build();
+    }
+
+    private static void InitLogger()
+    {
+        var logFile = Path.Combine(path1: FileSystem.AppDataDirectory, path2: LogConfiguration.FileName);
+        Log.Logger = new LoggerConfiguration().MinimumLevel.Debug()
+            .Enrich.FromLogContext()
+            .Enrich.WithExceptionDetails()
+            .WriteTo.File(path: logFile, rollingInterval: RollingInterval.Month, retainedFileCountLimit: 6, restrictedToMinimumLevel: LogEventLevel.Information)
+            .CreateLogger();
+
+        Log.Information("Application Startup");
     }
 }
