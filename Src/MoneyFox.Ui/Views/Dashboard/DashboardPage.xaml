@@ -35,6 +35,7 @@
                 <Button.ImageSource>
                     <FontImageSource FontFamily="MaterialIcons"
                                      Glyph="{x:Static views:IconFont.Plus}"
+                                     Size="24"
                                      Color="White" />
                 </Button.ImageSource>
             </Button>
