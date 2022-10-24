@@ -10,7 +10,9 @@
     x:Class="MoneyFox.Ui.Views.Budget.AddBudgetPage"
     Visual="Material">
 
-    <ContentPage.Content>
+    <VerticalStackLayout Spacing="6">
         <budget:ModifyBudgetView />
-    </ContentPage.Content>
+        <Button Command="{Binding SaveBudgetCommand}" Text="{x:Static resources:Strings.SaveLabel}" />
+    </VerticalStackLayout>
+    
 </ContentPage>

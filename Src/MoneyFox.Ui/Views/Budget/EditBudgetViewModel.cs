@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Views.Budget;
+namespace MoneyFox.Ui.Views.Budget;
 
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -72,6 +72,3 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
         await navigationService.GoBackFromModalAsync();
     }
 }
-
-
-
