@@ -7,27 +7,25 @@
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls">
 
-    <ContentView.Content>
-        <VerticalStackLayout Spacing="6">
-            <controls:TextEntry TextFieldTitle="{x:Static resources:Strings.CategoryNameLabel}"
-                                EntryPlaceholder="{x:Static resources:Strings.CategoryNameLabel}"
-                                EntryText="{Binding SelectedCategory.Name}" />
+    <VerticalStackLayout Spacing="6">
+        <controls:TextEntry TextFieldTitle="{x:Static resources:Strings.CategoryNameLabel}"
+                            EntryPlaceholder="{x:Static resources:Strings.CategoryNameLabel}"
+                            EntryText="{Binding SelectedCategory.Name}" />
 
-            <controls:TextEntry TextFieldTitle="{x:Static resources:Strings.NoteLabel}"
-                                EntryPlaceholder="{x:Static resources:Strings.NoteLabel}"
-                                EntryText="{Binding SelectedCategory.Note}" />
+        <controls:TextEntry TextFieldTitle="{x:Static resources:Strings.NoteLabel}"
+                            EntryPlaceholder="{x:Static resources:Strings.NoteLabel}"
+                            EntryText="{Binding SelectedCategory.Note}" />
 
-            <Grid ColumnDefinitions="*, Auto">
-                <Label
-                    Grid.Column="0"
-                    Text="{x:Static resources:Strings.RequireNoteCheckbox}"
-                    VerticalOptions="Center" />
+        <Grid ColumnDefinitions="*, Auto">
+            <Label
+                Grid.Column="0"
+                Text="{x:Static resources:Strings.RequireNoteCheckbox}"
+                VerticalOptions="Center" />
 
-                <CheckBox
-                    Grid.Column="1"
-                    IsChecked="{Binding SelectedCategory.RequireNote}"
-                    VerticalOptions="Center" />
-            </Grid>
-        </VerticalStackLayout>
-    </ContentView.Content>
+            <CheckBox
+                Grid.Column="1"
+                IsChecked="{Binding SelectedCategory.RequireNote}"
+                VerticalOptions="Center" />
+        </Grid>
+    </VerticalStackLayout>
 </ContentView>

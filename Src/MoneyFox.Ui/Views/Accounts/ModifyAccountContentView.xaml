@@ -9,41 +9,39 @@
     x:Class="MoneyFox.Ui.Views.Accounts.ModifyAccountContentView"
     x:DataType="account:EditAccountViewModel">
 
-    <ContentView.Content>
-        <VerticalStackLayout Spacing="12">
+    <VerticalStackLayout Spacing="12">
 
-            <controls:TextEntry
-                TextFieldTitle="{x:Static resources:Strings.AccountNameLabel}"
-                EntryPlaceholder="{x:Static resources:Strings.AccountNameLabel}"
-                EntryText="{Binding SelectedAccountVm.Name}" />
+        <controls:TextEntry
+            TextFieldTitle="{x:Static resources:Strings.AccountNameLabel}"
+            EntryPlaceholder="{x:Static resources:Strings.AccountNameLabel}"
+            EntryText="{Binding SelectedAccountVm.Name}" />
 
-            <controls:AmountEntry
-                AmountFieldTitle="{x:Static resources:Strings.CurrentBalanceLabel}"
-                EntryPlaceholder="{x:Static resources:Strings.CurrentBalanceLabel}"
-                Amount="{Binding SelectedAccountVm.CurrentBalance}"
-                IsReadOnly="{Binding IsEdit}" />
+        <controls:AmountEntry
+            AmountFieldTitle="{x:Static resources:Strings.CurrentBalanceLabel}"
+            EntryPlaceholder="{x:Static resources:Strings.CurrentBalanceLabel}"
+            Amount="{Binding SelectedAccountVm.CurrentBalance}"
+            IsReadOnly="{Binding IsEdit}" />
 
-            <controls:TextEntry
-                TextFieldTitle="{x:Static resources:Strings.NoteLabel}"
-                EntryPlaceholder="{x:Static resources:Strings.NoteLabel}"
-                EntryText="{Binding SelectedAccountVm.Note}" />
+        <controls:TextEntry
+            TextFieldTitle="{x:Static resources:Strings.NoteLabel}"
+            EntryPlaceholder="{x:Static resources:Strings.NoteLabel}"
+            EntryText="{Binding SelectedAccountVm.Note}" />
 
-            <Grid Margin="0,5,0,0" HorizontalOptions="FillAndExpand">
+        <Grid Margin="0,5,0,0" HorizontalOptions="FillAndExpand">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0"
-                       Text="{x:Static resources:Strings.IsExcludedLabel}"
-                       VerticalOptions="Center" />
-                <Switch
-                    Grid.Column="1"
-                    HorizontalOptions="End"
-                    VerticalOptions="Center"
-                    IsToggled="{Binding SelectedAccountVm.IsExcluded}" />
-            </Grid>
-        </VerticalStackLayout>
-    </ContentView.Content>
+            <Label Grid.Column="0"
+                    Text="{x:Static resources:Strings.IsExcludedLabel}"
+                    VerticalOptions="Center" />
+            <Switch
+                Grid.Column="1"
+                HorizontalOptions="End"
+                VerticalOptions="Center"
+                IsToggled="{Binding SelectedAccountVm.IsExcluded}" />
+        </Grid>
+    </VerticalStackLayout>
 </ContentView>

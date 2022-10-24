@@ -8,11 +8,9 @@
     Title="{x:Static resources:Strings.AddCategoryTitle}"
     x:Class="MoneyFox.Ui.Views.Categories.AddCategoryPage">
 
-    <ContentPage.Content>
-        <ScrollView Padding="15,0,15,0">
-            <StackLayout>
-                <categories:ModifyCategoryContentView />
-            </StackLayout>
-        </ScrollView>
-    </ContentPage.Content>
+    <ScrollView Padding="15,0,15,0">
+        <StackLayout>
+            <categories:ModifyCategoryContentView />
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

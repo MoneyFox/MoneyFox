@@ -18,97 +18,95 @@
         </ResourceDictionary>
     </ContentView.Resources>
 
-    <ScrollView x:DataType="payments:ModifyPaymentViewModel" Padding="6,0,6,0">
-        <VerticalStackLayout Spacing="12">
+    <VerticalStackLayout Spacing="12" x:DataType="payments:ModifyPaymentViewModel">
 
-            <controls:PaymentTypePicker PickerTitle="{x:Static resources:Strings.PaymentTypeLabel}"
-                                        PaymentTypeSource="{Binding PaymentTypeList}"
-                                        SelectedType="{Binding SelectedPayment.Type}" />
+        <controls:PaymentTypePicker PickerTitle="{x:Static resources:Strings.PaymentTypeLabel}"
+                                    PaymentTypeSource="{Binding PaymentTypeList}"
+                                    SelectedType="{Binding SelectedPayment.Type}" />
 
-            <controls:AccountPicker PickerTitle="{Binding AccountHeader, Mode=OneWay}"
-                                    AccountsSource="{Binding ChargedAccounts}"
-                                    SelectedAccount="{Binding SelectedPayment.ChargedAccount}" />
+        <controls:AccountPicker PickerTitle="{Binding AccountHeader, Mode=OneWay}"
+                                AccountsSource="{Binding ChargedAccounts}"
+                                SelectedAccount="{Binding SelectedPayment.ChargedAccount}" />
 
-            <controls:AccountPicker PickerTitle="{x:Static resources:Strings.TargetAccountLabel}"
-                                    AccountsSource="{Binding TargetAccounts}"
-                                    SelectedAccount="{Binding SelectedPayment.TargetAccount}"
-                                    IsVisible="{Binding SelectedPayment.IsTransfer}" />
+        <controls:AccountPicker PickerTitle="{x:Static resources:Strings.TargetAccountLabel}"
+                                AccountsSource="{Binding TargetAccounts}"
+                                SelectedAccount="{Binding SelectedPayment.TargetAccount}"
+                                IsVisible="{Binding SelectedPayment.IsTransfer}" />
 
-            <controls:AmountEntry
-                AmountFieldTitle="{x:Static resources:Strings.AmountLabel}"
-                Amount="{Binding SelectedPayment.Amount}"
-                EntryPlaceholder="{x:Static resources:Strings.AmountLabel}" />
+        <controls:AmountEntry
+            AmountFieldTitle="{x:Static resources:Strings.AmountLabel}"
+            Amount="{Binding SelectedPayment.Amount}"
+            EntryPlaceholder="{x:Static resources:Strings.AmountLabel}" />
 
-            <Label Text="{x:Static resources:Strings.CategoryLabel}" />
+        <Label Text="{x:Static resources:Strings.CategoryLabel}" />
 
-            <Grid ColumnDefinitions="70*, 6, 40">
-                <Button Grid.Column="0"
-                        Text="{Binding SelectedPayment.Category, Converter={StaticResource NoCategorySelectedConverter}}"
-                        Command="{Binding GoToSelectCategoryDialogCommand}" />
+        <Grid ColumnDefinitions="70*, 6, 40">
+            <Button Grid.Column="0"
+                    Text="{Binding SelectedPayment.Category, Converter={StaticResource NoCategorySelectedConverter}}"
+                    Command="{Binding GoToSelectCategoryDialogCommand}" />
 
-                <ImageButton Grid.Column="2"
-                             Command="{Binding ResetCategoryCommand}">
-                    <ImageButton.Source>
-                        <FontImageSource FontFamily="MaterialIcons"
-                                         Glyph="{x:Static views:IconFont.Close}"
-                                         Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray900}}" />
-                    </ImageButton.Source>
-                </ImageButton>
-            </Grid>
+            <ImageButton Grid.Column="2"
+                            Command="{Binding ResetCategoryCommand}">
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="MaterialIcons"
+                                        Glyph="{x:Static views:IconFont.Close}"
+                                        Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray900}}" />
+                </ImageButton.Source>
+            </ImageButton>
+        </Grid>
 
-            <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Strings.DateLabel}"
-                                       DateField="{Binding SelectedPayment.Date}" />
+        <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Strings.DateLabel}"
+                                    DateField="{Binding SelectedPayment.Date}" />
 
-            <controls:TextEntry
-                TextFieldTitle="{x:Static resources:Strings.NoteLabel}"
-                EntryPlaceholder="{x:Static resources:Strings.NoteLabel}"
-                EntryText="{Binding SelectedPayment.Note}" />
+        <controls:TextEntry
+            TextFieldTitle="{x:Static resources:Strings.NoteLabel}"
+            EntryPlaceholder="{x:Static resources:Strings.NoteLabel}"
+            EntryText="{Binding SelectedPayment.Note}" />
 
-            <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*, Auto">
+        <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*, Auto">
+            <Label Grid.Column="0"
+                    VerticalOptions="Center"
+                    Text="{x:Static resources:Strings.RecurringLabel}" />
+
+            <Switch Grid.Column="1"
+                    HorizontalOptions="End"
+                    IsToggled="{Binding SelectedPayment.IsRecurring}" />
+        </Grid>
+
+        <VerticalStackLayout IsVisible="{Binding SelectedPayment.IsRecurring}"
+                        Spacing="6">
+            <Label Text="{x:Static resources:Strings.RecurrenceLabel}" />
+            <Picker ItemsSource="{Binding RecurrenceList}"
+                    SelectedItem="{Binding SelectedPayment.RecurringPayment.Recurrence}" />
+
+            <Grid HorizontalOptions="FillAndExpand"
+                    ColumnDefinitions="70*, 15*"
+                    IsVisible="{Binding SelectedPayment.RecurringPayment.AllowLastDayOfMonth}">
+
                 <Label Grid.Column="0"
-                       VerticalOptions="Center"
-                       Text="{x:Static resources:Strings.RecurringLabel}" />
+                        VerticalOptions="Center"
+                        Text="{x:Static resources:Strings.LastDayOfMonthLabel}" />
 
                 <Switch Grid.Column="1"
                         HorizontalOptions="End"
-                        IsToggled="{Binding SelectedPayment.IsRecurring}" />
+                        IsToggled="{Binding SelectedPayment.RecurringPayment.IsLastDayOfMonth}" />
             </Grid>
 
-            <VerticalStackLayout IsVisible="{Binding SelectedPayment.IsRecurring}"
-                         Spacing="6">
-                <Label Text="{x:Static resources:Strings.RecurrenceLabel}" />
-                <Picker ItemsSource="{Binding RecurrenceList}"
-                        SelectedItem="{Binding SelectedPayment.RecurringPayment.Recurrence}" />
+            <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*, Auto">
 
-                <Grid HorizontalOptions="FillAndExpand"
-                      ColumnDefinitions="70*, 15*"
-                      IsVisible="{Binding SelectedPayment.RecurringPayment.AllowLastDayOfMonth}">
+                <Label Grid.Column="0"
+                        VerticalOptions="Center"
+                        Text="{x:Static resources:Strings.EndlessLabel}" />
 
-                    <Label Grid.Column="0"
-                           VerticalOptions="Center"
-                           Text="{x:Static resources:Strings.LastDayOfMonthLabel}" />
+                <Switch Grid.Column="1"
+                        HorizontalOptions="Start"
+                        IsToggled="{Binding SelectedPayment.RecurringPayment.IsEndless}" />
+            </Grid>
 
-                    <Switch Grid.Column="1"
-                            HorizontalOptions="End"
-                            IsToggled="{Binding SelectedPayment.RecurringPayment.IsLastDayOfMonth}" />
-                </Grid>
+            <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Strings.EnddateLabel}"
+                                        DateField="{Binding SelectedPayment.RecurringPayment.EndDate}"
+                                        IsVisible="{Binding SelectedPayment.RecurringPayment.IsEndless, Converter={StaticResource Inverter}}" />
 
-                <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*, Auto">
-
-                    <Label Grid.Column="0"
-                           VerticalOptions="Center"
-                           Text="{x:Static resources:Strings.EndlessLabel}" />
-
-                    <Switch Grid.Column="1"
-                            HorizontalOptions="Start"
-                            IsToggled="{Binding SelectedPayment.RecurringPayment.IsEndless}" />
-                </Grid>
-
-                <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Strings.EnddateLabel}"
-                                           DateField="{Binding SelectedPayment.RecurringPayment.EndDate}"
-                                           IsVisible="{Binding SelectedPayment.RecurringPayment.IsEndless, Converter={StaticResource Inverter}}" />
-
-            </VerticalStackLayout>
         </VerticalStackLayout>
-    </ScrollView>
+    </VerticalStackLayout>
 </ContentView>
