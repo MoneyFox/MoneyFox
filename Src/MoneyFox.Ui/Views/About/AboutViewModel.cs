@@ -54,13 +54,12 @@ internal class AboutViewModel : BaseViewModel
 
     private async Task SendMailAsync()
     {
-        var logFile = Path.Combine(path1: FileSystem.AppDataDirectory, path2: LogConfiguration.FileName);
-
+        FileInfo? latestLogFile = GetLatestLogFile();
         await emailAdapter.SendEmailAsync(
             subject: Strings.FeedbackSubject,
             body: string.Empty,
             recipients: new() { SUPPORT_MAIL },
-            filePaths: new() { logFile });
+            filePaths: latestLogFile != null ? new() { latestLogFile.FullName } : new());
     }
 
     private void RateApp()
@@ -90,14 +89,17 @@ internal class AboutViewModel : BaseViewModel
 
     private async Task OpenLogFile()
     {
-        var logFilePaths = Directory.GetFiles(path: FileSystem.AppDataDirectory, searchPattern: "moneyfox*").OrderByDescending(x => x);
-        var latestLogFile = logFilePaths.Select(logFilePath => new FileInfo(logFilePath)).OrderByDescending(fi => fi.LastWriteTime).FirstOrDefault();
+        FileInfo? latestLogFile = GetLatestLogFile();
         if (latestLogFile != null)
         {
             await Launcher.OpenAsync(new OpenFileRequest { File = new(latestLogFile.FullName) });
         }
     }
+
+    private static FileInfo? GetLatestLogFile()
+    {
+        var logFilePaths = Directory.GetFiles(path: FileSystem.AppDataDirectory, searchPattern: "moneyfox*").OrderByDescending(x => x);
+        var latestLogFile = logFilePaths.Select(logFilePath => new FileInfo(logFilePath)).OrderByDescending(fi => fi.LastWriteTime).FirstOrDefault();
+        return latestLogFile;
+    }
 }
-
-
-
