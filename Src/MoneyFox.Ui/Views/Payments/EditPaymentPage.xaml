@@ -9,26 +9,24 @@
     Title="{x:Static resources:Strings.EditPaymentTitle}"
     x:Class="MoneyFox.Ui.Views.Payments.EditPaymentPage">
 
-    <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Padding="15,0,15,0">
-                <payments:ModifyPaymentContentView />
+    <ScrollView>
+        <VerticalStackLayout Padding="15,0,15,0">
+            <payments:ModifyPaymentContentView />
 
-                <Label Style="{StaticResource TextBodySecondary}"
-                       Text="{Binding SelectedPayment.Created, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />
+            <Label Style="{StaticResource TextBodySecondary}"
+               Text="{Binding SelectedPayment.Created, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />
 
-                <Label Style="{StaticResource TextBodySecondary}"
-                       Text="{Binding SelectedPayment.LastModified, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
+            <Label Style="{StaticResource TextBodySecondary}"
+               Text="{Binding SelectedPayment.LastModified, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
 
-                <Button Text="{x:Static resources:Strings.SaveLabel}" Command="{Binding SaveCommand}" />
+            <Button Text="{x:Static resources:Strings.SaveLabel}" Command="{Binding SaveCommand}" />
 
-                <Button x:Name="DeletePaymentButton"
-                        Style="{StaticResource WarningButton}"
-                        Margin="0,12,0,12"
-                        Command="{Binding DeleteCommand}"
-                        CommandParameter="{Binding SelectedPayment}"
-                        Text="{x:Static resources:Strings.DeleteLabel}" />
-            </StackLayout>
-        </ScrollView>
-    </ContentPage.Content>
+            <Button x:Name="DeletePaymentButton"
+                Style="{StaticResource WarningButton}"
+                Margin="0,12,0,12"
+                Command="{Binding DeleteCommand}"
+                CommandParameter="{Binding SelectedPayment}"
+                Text="{x:Static resources:Strings.DeleteLabel}" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
