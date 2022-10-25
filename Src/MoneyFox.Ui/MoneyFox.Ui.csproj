@@ -45,7 +45,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <TrimmerRootAssembly Include="SkiaSharp.Views.Android" />
+        <TrimmerRootAssembly Include="SkiaSharp" />
     </ItemGroup>
 
     <ItemGroup>
