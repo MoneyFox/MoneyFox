@@ -40,9 +40,8 @@
         <CodesignProvision>MoneyFox Distribution 2022</CodesignProvision>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(TargetFramework)'=='net6.0-ios'">
-      <CodesignKey>Apple Development: Created via API (QN475XJ36W)</CodesignKey>
-      <CodesignProvision>VS: com.applysolutions.moneyfox Development</CodesignProvision>
+    <PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
+        <EnableLLVM>True</EnableLLVM>
     </PropertyGroup>
 
     <ItemGroup>
