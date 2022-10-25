@@ -876,4 +876,7 @@ To start create a new account. Accounts are used to organize payments and money 
   <data name="InvalidSpendingLimitTitle" xml:space="preserve">
     <value>Invalid Spending Limit</value>
   </data>
+  <data name="NotePlaceholderLabel" xml:space="preserve">
+    <value>Enter note to this payment..</value>
+  </data>
 </root>
