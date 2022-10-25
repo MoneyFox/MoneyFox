@@ -45,6 +45,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <TrimmerRootAssembly Include="SkiaSharp.Views.Android" />
+    </ItemGroup>
+
+    <ItemGroup>
         <!-- App Icon -->
         <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#efeadd" />
 
