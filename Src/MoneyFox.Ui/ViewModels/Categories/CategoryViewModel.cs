@@ -7,9 +7,9 @@ using Core.Common.Interfaces.Mapping;
 
 public class CategoryViewModel : ObservableObject, IHaveCustomMapping
 {
-    private DateTime creationTime;
+    private DateTime created;
     private int id;
-    private DateTime modificationDate;
+    private DateTime lastModified;
     private string name = "";
     private string note = "";
     private bool requireNote;
@@ -62,34 +62,34 @@ public class CategoryViewModel : ObservableObject, IHaveCustomMapping
         }
     }
 
-    public DateTime CreationTime
+    public DateTime Created
     {
-        get => creationTime;
+        get => created;
 
         set
         {
-            if (creationTime == value)
+            if (created == value)
             {
                 return;
             }
 
-            creationTime = value;
+            created = value;
             OnPropertyChanged();
         }
     }
 
-    public DateTime ModificationDate
+    public DateTime LastModified
     {
-        get => modificationDate;
+        get => lastModified;
 
         set
         {
-            if (modificationDate == value)
+            if (lastModified == value)
             {
                 return;
             }
 
-            modificationDate = value;
+            lastModified = value;
             OnPropertyChanged();
         }
     }
@@ -118,5 +118,3 @@ public class CategoryViewModel : ObservableObject, IHaveCustomMapping
         configuration.CreateMap<Category, CategoryViewModel>().ReverseMap();
     }
 }
-
-
