@@ -5,14 +5,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:categories="clr-namespace:MoneyFox.Ui.Views.Categories"
+    xmlns:categoryVm="clr-namespace:MoneyFox.Ui.ViewModels.Categories"
     xmlns:extensions="clr-namespace:MoneyFox.Ui.Common.Extensions"
+    x:DataType="categoryVm:EditCategoryViewModel"
     Title="{x:Static resources:Strings.EditCategoryTitle}"
 
     x:Class="MoneyFox.Ui.Views.Categories.EditCategoryPage">
 
     <ContentPage.Content>
         <ScrollView Padding="15,0,15,0">
-            <StackLayout>
+            <VerticalStackLayout Spacing="12">
                 <categories:ModifyCategoryContentView />
 
                 <Label Style="{StaticResource TextBodySecondary}"
@@ -21,12 +23,13 @@
                 <Label Style="{StaticResource TextBodySecondary}"
                        Text="{Binding SelectedCategory.LastModified, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
 
-                <Button x:Name="DeleteAccountButton"
-                        Style="{StaticResource WarningButton}"
-                        Margin="0,12,0,0"
+                <Button Command="{Binding SaveCommand}"
+                        Text="{x:Static resources:Strings.SaveLabel}" />
+                
+                <Button Style="{StaticResource WarningButton}"
                         Command="{Binding DeleteCommand}"
                         Text="{x:Static resources:Strings.DeleteLabel}" />
-            </StackLayout>
+            </VerticalStackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
