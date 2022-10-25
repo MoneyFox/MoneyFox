@@ -5,12 +5,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:payments="clr-namespace:MoneyFox.Ui.Views.Payments"
+    xmlns:paymentVm="clr-namespace:MoneyFox.Ui.ViewModels.Payments"
     xmlns:extensions="clr-namespace:MoneyFox.Ui.Common.Extensions"
+    x:DataType="paymentVm:EditPaymentViewModel"
     Title="{x:Static resources:Strings.EditPaymentTitle}"
     x:Class="MoneyFox.Ui.Views.Payments.EditPaymentPage">
 
     <ScrollView>
-        <VerticalStackLayout Padding="15,0,15,0">
+        <VerticalStackLayout Padding="15,0,15,0" Spacing="12">
             <payments:ModifyPaymentContentView />
 
             <Label Style="{StaticResource TextBodySecondary}"
@@ -23,7 +25,6 @@
 
             <Button x:Name="DeletePaymentButton"
                 Style="{StaticResource WarningButton}"
-                Margin="0,12,0,12"
                 Command="{Binding DeleteCommand}"
                 CommandParameter="{Binding SelectedPayment}"
                 Text="{x:Static resources:Strings.DeleteLabel}" />
