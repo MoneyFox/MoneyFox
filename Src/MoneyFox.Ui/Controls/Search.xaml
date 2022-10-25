@@ -12,6 +12,7 @@
         <Label Text="{Binding TextFieldTitle}" />
 
         <Border Padding="20,0"
+                StrokeThickness="{OnIdiom Desktop=0, Default=1}"
                 BackgroundColor="{AppThemeBinding Dark={StaticResource ControlBackgroundColorDark}, Light={StaticResource ControlBackgroundColorLight}}"
                 BindingContext="{x:Reference this}">
 

@@ -322,7 +322,7 @@
     <Style TargetType="DatePicker">
         <Setter Property="TextColor"
                 Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
-        <Setter Property="BackgroundColor" Value="Transparent" />
+        <!--<Setter Property="BackgroundColor" Value="Transparent" />-->
         <Setter Property="FontFamily" Value="OpenSansRegular" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="VisualStateManager.VisualStateGroups">
@@ -366,7 +366,7 @@
     <Style TargetType="Entry">
         <Setter Property="TextColor"
                 Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
-        <Setter Property="BackgroundColor" Value="Transparent" />
+        <!--<Setter Property="BackgroundColor" Value="Transparent" />-->
         <Setter Property="FontFamily" Value="OpenSansRegular" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="PlaceholderColor"
@@ -398,7 +398,7 @@
                 Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
         <Setter Property="TitleColor"
                 Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray200}}" />
-        <Setter Property="BackgroundColor" Value="Transparent" />
+        <!--<Setter Property="BackgroundColor" Value="Transparent" />-->
         <Setter Property="FontFamily" Value="OpenSansRegular" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="VisualStateManager.VisualStateGroups">
@@ -580,7 +580,7 @@
     <Style TargetType="TimePicker">
         <Setter Property="TextColor"
                 Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
-        <Setter Property="Background" Value="Transparent" />
+        <!--<Setter Property="Background" Value="Transparent" />-->
         <Setter Property="FontFamily" Value="OpenSansRegular" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="VisualStateManager.VisualStateGroups">
