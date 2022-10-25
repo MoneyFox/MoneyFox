@@ -27,5 +27,3 @@ public partial class CategorySelectionPopup
         await ViewModel.InitializeAsync();
     }
 }
-
-

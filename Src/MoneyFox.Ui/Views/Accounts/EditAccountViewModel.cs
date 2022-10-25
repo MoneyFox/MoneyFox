@@ -10,7 +10,6 @@ using Core.Common.Interfaces;
 using Core.Interfaces;
 using Core.Resources;
 using MediatR;
-using ViewModels.Accounts;
 
 internal partial class EditAccountViewModel : ModifyAccountViewModel
 {
@@ -31,7 +30,7 @@ internal partial class EditAccountViewModel : ModifyAccountViewModel
     }
 
     public override bool IsEdit => true;
-    public override string Title => Strings.EditAccountTitle;
+    public override string Title => string.Format(Strings.EditAccountTitle, SelectedAccountVm.Name);
 
     public async Task InitializeAsync(int accountId)
     {
@@ -53,5 +52,3 @@ internal partial class EditAccountViewModel : ModifyAccountViewModel
         }
     }
 }
-
-

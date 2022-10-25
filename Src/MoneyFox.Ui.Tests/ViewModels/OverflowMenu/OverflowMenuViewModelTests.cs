@@ -79,7 +79,3 @@ public class OverflowMenuViewModelTests
         await navigationService.Received(1).NavigateToAsync<AboutPage>();
     }
 }
-
-
-
-

@@ -3,7 +3,6 @@ namespace MoneyFox.Ui.ViewModels.Categories;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using AutoMapper;
-using Common.Extensions;
 using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -13,7 +12,6 @@ using Core.Common.Interfaces;
 using Core.Common.Messages;
 using Core.Resources;
 using MediatR;
-using Views.Categories;
 
 internal class CategoryListViewModel : BaseViewModel
 {
@@ -47,8 +45,7 @@ internal class CategoryListViewModel : BaseViewModel
     public AsyncRelayCommand<string> SearchCategoryCommand => new(async searchTerm => await SearchCategoryAsync(searchTerm));
 
     public AsyncRelayCommand<CategoryViewModel> GoToEditCategoryCommand
-
-            => new(async cvm => await Shell.Current.GoToAsync($"{Routes.EditCategoryRoute}?categoryId={cvm.Id}"));
+        => new(async cvm => await Shell.Current.GoToAsync($"{Routes.EditCategoryRoute}?categoryId={cvm.Id}"));
 
     public AsyncRelayCommand<CategoryViewModel> DeleteCategoryCommand => new(async categoryViewModel => await DeleteAccountAsync(categoryViewModel));
 
@@ -92,4 +89,5 @@ internal class CategoryListViewModel : BaseViewModel
         }
     }
 }
+
 

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.ViewModels.Budget;
+﻿namespace MoneyFox.Ui.Views.Budget;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 
@@ -28,5 +28,6 @@ public sealed class BudgetListItemViewModel : ObservableObject
         set => SetProperty(field: ref spendingLimit, newValue: value);
     }
 }
+
 
 

@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui.ViewModels.Payments;
 
-using Accounts;
 using AutoMapper;
 using Categories;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -8,6 +7,7 @@ using Core.ApplicationCore.Domain.Aggregates;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Common.Helpers;
 using Core.Common.Interfaces.Mapping;
+using Views.Accounts;
 
 public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
 {
@@ -247,4 +247,3 @@ public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
         configuration.CreateMap<RecurringPayment, RecurringPaymentViewModel>();
     }
 }
-

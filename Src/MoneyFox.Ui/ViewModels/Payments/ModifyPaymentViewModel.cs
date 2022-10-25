@@ -1,7 +1,6 @@
 namespace MoneyFox.Ui.ViewModels.Payments;
 
 using System.Collections.ObjectModel;
-using Accounts;
 using AutoMapper;
 using Categories;
 using Common.Extensions;
@@ -13,6 +12,7 @@ using Core.Common.Interfaces;
 using Core.Common.Messages;
 using Core.Resources;
 using MediatR;
+using Views.Accounts;
 
 internal abstract partial class ModifyPaymentViewModel : BaseViewModel
 {
@@ -161,4 +161,3 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel
         SelectedPayment.Category = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId)));
     }
 }
-

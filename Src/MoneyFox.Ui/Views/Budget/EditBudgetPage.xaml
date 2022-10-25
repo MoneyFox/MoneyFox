@@ -5,20 +5,17 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:budget="clr-namespace:MoneyFox.Ui.Views.Budget"
-    xmlns:budgetVm="clr-namespace:MoneyFox.Ui.ViewModels.Budget"
     Title="{x:Static resources:Strings.EditBudgetTitle}"
-    x:DataType="budgetVm:EditBudgetViewModel"
+    x:DataType="budget:EditBudgetViewModel"
     x:Class="MoneyFox.Ui.Views.Budget.EditBudgetPage"
     Visual="Material">
 
-    <ContentPage.Content>
-        <Grid RowDefinitions="*, Auto">
-            <budget:ModifyBudgetView Grid.Row="0" />
-            <Button Grid.Row="1"
-                    Margin="12"
-                    Style="{StaticResource WarningButton}"
-                    Command="{Binding DeleteBudgetCommand}"
-                    Text="{x:Static resources:Strings.DeleteLabel}" />
-        </Grid>
-    </ContentPage.Content>
+    <Grid RowDefinitions="*, 6, 40, 6, 40" Padding="12">
+        <budget:ModifyBudgetView />
+        <Button Grid.Row="2" Command="{Binding SaveBudgetCommand}" Text="{x:Static resources:Strings.SaveLabel}" />
+        <Button Grid.Row="4"
+                Style="{StaticResource WarningButton}"
+                Command="{Binding DeleteBudgetCommand}"
+                Text="{x:Static resources:Strings.DeleteLabel}" />
+    </Grid>
 </ContentPage>

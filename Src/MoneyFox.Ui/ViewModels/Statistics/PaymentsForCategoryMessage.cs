@@ -14,3 +14,4 @@ public class PaymentsForCategoryMessage
     public DateTime EndDate { get; set; }
 }
 
+

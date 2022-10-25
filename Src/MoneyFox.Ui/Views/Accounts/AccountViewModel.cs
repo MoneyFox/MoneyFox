@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.ViewModels.Accounts;
+namespace MoneyFox.Ui.Views.Accounts;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -8,14 +8,14 @@ using Core.Common.Interfaces.Mapping;
 public sealed class AccountViewModel : ObservableObject, IHaveCustomMapping, IEquatable<AccountViewModel>
 {
     private const decimal DECIMAL_DELTA = 0.01m;
-    private DateTime creationTime;
+    private DateTime created;
     private decimal currentBalance;
     private decimal endOfMonthBalance;
 
     private int id;
     private bool isExcluded;
     private bool isOverdrawn;
-    private DateTime modificationDate;
+    private DateTime lastModified;
     private string name = "";
     private string note = "";
 
@@ -141,34 +141,34 @@ public sealed class AccountViewModel : ObservableObject, IHaveCustomMapping, IEq
         }
     }
 
-    public DateTime CreationTime
+    public DateTime Created
     {
-        get => creationTime;
+        get => created;
 
         set
         {
-            if (creationTime == value)
+            if (created == value)
             {
                 return;
             }
 
-            creationTime = value;
+            created = value;
             OnPropertyChanged();
         }
     }
 
-    public DateTime ModificationDate
+    public DateTime LastModified
     {
-        get => modificationDate;
+        get => lastModified;
 
         set
         {
-            if (modificationDate == value)
+            if (lastModified == value)
             {
                 return;
             }
 
-            modificationDate = value;
+            lastModified = value;
             OnPropertyChanged();
         }
     }
@@ -193,5 +193,6 @@ public sealed class AccountViewModel : ObservableObject, IHaveCustomMapping, IEq
         return Id.GetHashCode();
     }
 }
+
 
 

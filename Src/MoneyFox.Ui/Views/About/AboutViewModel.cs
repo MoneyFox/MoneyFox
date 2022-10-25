@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Views.About;
+namespace MoneyFox.Ui.Views.About;
 
 using CommunityToolkit.Mvvm.Input;
 using Core.Common;
@@ -9,7 +9,7 @@ using ViewModels;
 
 internal class AboutViewModel : BaseViewModel
 {
-    private const string WEBSITE_URL = "https://www.apply-solutions.ch";
+    private readonly Uri WEBSITE_URI = new("https://www.apply-solutions.ch", UriKind.Absolute);
     private const string SUPPORT_MAIL = "mobile.support@apply-solutions.ch";
     private const string GITHUB_PROJECT_URL = "https://github.com/MoneyFox/MoneyFox";
     private const string TRANSLATION_URL = "https://crowdin.com/project/money-fox";
@@ -47,22 +47,19 @@ internal class AboutViewModel : BaseViewModel
 
     public string Version => appInformation.GetVersion;
 
-    public string Website => WEBSITE_URL;
-
-    public string SupportMail => SUPPORT_MAIL;
-
     private async Task GoToWebsiteAsync()
     {
-        await browserAdapter.OpenWebsiteAsync(new(WEBSITE_URL));
+        await browserAdapter.OpenWebsiteAsync(WEBSITE_URI);
     }
 
     private async Task SendMailAsync()
     {
+        FileInfo? latestLogFile = GetLatestLogFile();
         await emailAdapter.SendEmailAsync(
             subject: Strings.FeedbackSubject,
             body: string.Empty,
             recipients: new() { SUPPORT_MAIL },
-            filePaths: new() { Path.Combine(path1: FileSystem.AppDataDirectory, path2: LogConfiguration.FileName) });
+            filePaths: latestLogFile != null ? new() { latestLogFile.FullName } : new());
     }
 
     private void RateApp()
@@ -92,13 +89,17 @@ internal class AboutViewModel : BaseViewModel
 
     private async Task OpenLogFile()
     {
-        var logFilePaths = Directory.GetFiles(path: FileSystem.AppDataDirectory, searchPattern: "moneyfox*").OrderByDescending(x => x);
-        var latestLogFile = logFilePaths.Select(logFilePath => new FileInfo(logFilePath)).OrderByDescending(fi => fi.LastWriteTime).FirstOrDefault();
+        FileInfo? latestLogFile = GetLatestLogFile();
         if (latestLogFile != null)
         {
             await Launcher.OpenAsync(new OpenFileRequest { File = new(latestLogFile.FullName) });
         }
     }
+
+    private static FileInfo? GetLatestLogFile()
+    {
+        var logFilePaths = Directory.GetFiles(path: FileSystem.AppDataDirectory, searchPattern: "moneyfox*").OrderByDescending(x => x);
+        var latestLogFile = logFilePaths.Select(logFilePath => new FileInfo(logFilePath)).OrderByDescending(fi => fi.LastWriteTime).FirstOrDefault();
+        return latestLogFile;
+    }
 }
-
-

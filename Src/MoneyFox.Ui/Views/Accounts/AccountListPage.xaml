@@ -4,8 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
-    xmlns:accounts="clr-namespace:MoneyFox.Ui.ViewModels.Accounts"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
+    xmlns:accounts="clr-namespace:MoneyFox.Ui.Views.Accounts"
     Title="{x:Static resources:Strings.AccountsTitle}">
 
     <ContentPage.Resources>
@@ -45,29 +45,30 @@
                         <Grid Padding="15,6,15,12">
                             <controls:Card HeightRequest="80">
 
-                                <SwipeView
-                                    BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                             Light={StaticResource CardBackgroundLight}}">
-                                    <SwipeView.GestureRecognizers>
+                                <controls:Card.GestureRecognizers>
                                         <TapGestureRecognizer
                                             Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference Name=AccountCollectionView}}"
                                             CommandParameter="{Binding .}" />
-                                    </SwipeView.GestureRecognizers>
+                                    </controls:Card.GestureRecognizers>
 
+                                <SwipeView>
                                     <SwipeView.RightItems>
                                         <SwipeItems>
                                             <SwipeItem
+                                                BackgroundColor="{AppThemeBinding Dark={StaticResource Gray900}, Light={StaticResource Gray100}}"
                                                 Command="{Binding Source={x:Reference AccountCollectionView}, Path=BindingContext.GoToEditAccountCommand}"
                                                 CommandParameter="{Binding .}"
                                                 Text="{x:Static resources:Strings.EditLabel}" />
                                             <SwipeItem
+                                                BackgroundColor="{AppThemeBinding Dark={StaticResource Gray900}, Light={StaticResource Gray100}}"
                                                 Command="{Binding Source={x:Reference AccountCollectionView}, Path=BindingContext.DeleteAccountCommand}"
                                                 CommandParameter="{Binding .}"
                                                 Text="{x:Static resources:Strings.DeleteLabel}" />
                                         </SwipeItems>
                                     </SwipeView.RightItems>
 
-                                    <Grid>
+                                    <Grid BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                                            Light={StaticResource CardBackgroundLight}}">
                                         <Label
                                             Margin="10,2,0,0"
                                             HorizontalTextAlignment="Start"

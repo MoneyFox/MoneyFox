@@ -27,7 +27,3 @@ public class PaymentAmountConverterLogicTests
         _ = result.Should().StartWith(expectedResult);
     }
 }
-
-
-
-

@@ -119,3 +119,4 @@ public class CategoryViewModel : ObservableObject, IHaveCustomMapping
     }
 }
 
+

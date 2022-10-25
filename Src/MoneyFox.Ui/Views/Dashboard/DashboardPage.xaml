@@ -6,9 +6,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
-    xmlns:accounts="clr-namespace:MoneyFox.Ui.ViewModels.Accounts"
     xmlns:views="clr-namespace:MoneyFox.Ui.Views"
-    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core">
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:accounts1="clr-namespace:MoneyFox.Ui.Views.Accounts">
 
     <ContentPage.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
@@ -35,6 +35,7 @@
                 <Button.ImageSource>
                     <FontImageSource FontFamily="MaterialIcons"
                                      Glyph="{x:Static views:IconFont.Plus}"
+                                     Size="24"
                                      Color="White" />
                 </Button.ImageSource>
             </Button>
@@ -103,7 +104,7 @@
                         ItemsSource="{Binding Accounts}">
 
                         <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="accounts:AccountViewModel">
+                            <DataTemplate x:DataType="accounts1:AccountViewModel">
                                 <Grid Padding="10,15,10,15" WidthRequest="180">
 
                                     <Grid.GestureRecognizers>

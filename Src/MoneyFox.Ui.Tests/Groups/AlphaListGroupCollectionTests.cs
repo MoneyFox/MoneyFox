@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using Common.Groups;
 using FluentAssertions;
-using Ui.ViewModels.Accounts;
+using Views.Accounts;
 using Xunit;
 
 [ExcludeFromCodeCoverage]
@@ -28,7 +28,3 @@ public class AlphaListGroupCollectionTests
         createdGroup[1][0].Name.Should().Be("b");
     }
 }
-
-
-
-

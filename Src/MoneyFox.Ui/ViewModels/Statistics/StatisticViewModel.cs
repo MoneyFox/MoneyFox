@@ -96,3 +96,4 @@ internal abstract class StatisticViewModel : BaseViewModel
     protected abstract Task LoadAsync();
 }
 
+

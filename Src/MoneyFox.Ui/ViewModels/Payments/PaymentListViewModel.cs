@@ -2,7 +2,6 @@ namespace MoneyFox.Ui.ViewModels.Payments;
 
 using System.Collections.ObjectModel;
 using System.Globalization;
-using Accounts;
 using AutoMapper;
 using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
@@ -13,6 +12,7 @@ using Core.ApplicationCore.Queries.GetPaymentsForAccountIdQuery;
 using Core.Common.Messages;
 using Core.Resources;
 using MediatR;
+using Views.Accounts;
 
 internal sealed class PaymentListViewModel : BaseViewModel
 {
@@ -73,8 +73,8 @@ internal sealed class PaymentListViewModel : BaseViewModel
             PaymentRecurrence.Yearly
         };
 
-    public AsyncRelayCommand GoToAddPaymentCommand => new(async ()
-        => await Shell.Current.GoToAsync($"{Routes.AddPaymentRoute}?defaultChargedAccountId={SelectedAccount.Id}"));
+    public AsyncRelayCommand GoToAddPaymentCommand
+        => new(async () => await Shell.Current.GoToAsync($"{Routes.AddPaymentRoute}?defaultChargedAccountId={SelectedAccount.Id}"));
 
     public AsyncRelayCommand<PaymentViewModel> GoToEditPaymentCommand
         => new(async pvm => await Shell.Current.GoToAsync($"{Routes.EditPaymentRoute}?paymentId={pvm.Id}"));
@@ -144,4 +144,5 @@ internal sealed class PaymentListViewModel : BaseViewModel
                 .Sum(x => x.Amount));
     }
 }
+
 

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.ViewModels.Accounts;
+namespace MoneyFox.Ui.Views.Accounts;
 
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -8,6 +8,7 @@ using Core.Common.Messages;
 using Core.Interfaces;
 using Core.Resources;
 using MediatR;
+using ViewModels;
 
 internal abstract partial class ModifyAccountViewModel : BaseViewModel
 {
@@ -71,5 +72,3 @@ internal abstract partial class ModifyAccountViewModel : BaseViewModel
         await navigationService.GoBackFromModalAsync();
     }
 }
-
-

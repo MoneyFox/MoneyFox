@@ -37,8 +37,6 @@ public class MainApplication : MauiApplication
 
     public override void OnCreate()
     {
-        InitLogger();
-
         // Setup handler for uncaught exceptions.
         AndroidEnvironment.UnhandledExceptionRaiser += HandleAndroidException;
         base.OnCreate();
@@ -63,21 +61,4 @@ public class MainApplication : MauiApplication
     {
         Log.Fatal(exception: e.Exception, messageTemplate: "Application Terminating");
     }
-
-    private void InitLogger()
-    {
-        Log.Logger = new LoggerConfiguration().MinimumLevel.Debug()
-            .Enrich.FromLogContext()
-            .Enrich.WithExceptionDetails()
-            .WriteTo.File(
-                path: Path.Combine(path1: FileSystem.AppDataDirectory, path2: LogConfiguration.FileName),
-                rollingInterval: RollingInterval.Month,
-                retainedFileCountLimit: 6,
-                restrictedToMinimumLevel: LogEventLevel.Information)
-            .CreateLogger();
-
-        Log.Information("Application Startup");
-    }
 }
-
-

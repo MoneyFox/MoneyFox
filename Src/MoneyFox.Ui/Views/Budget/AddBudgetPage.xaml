@@ -1,17 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:budget="clr-namespace:MoneyFox.Ui.Views.Budget"
-    xmlns:budgetVm="clr-namespace:MoneyFox.Ui.ViewModels.Budget"
     Title="{x:Static resources:Strings.AddBudgetTitle}"
-    x:DataType="budgetVm:AddBudgetViewModel"
-    x:Class="MoneyFox.Ui.Views.Budget.AddBudgetPage"
-    Visual="Material">
-
-    <ContentPage.Content>
-        <budget:ModifyBudgetView />
-    </ContentPage.Content>
+    x:DataType="budget:AddBudgetViewModel"
+    x:Class="MoneyFox.Ui.Views.Budget.AddBudgetPage">
+    
+    <Grid RowDefinitions="*, 6, 40" Padding="12">
+        <budget:ModifyBudgetView Grid.Row="0" />
+        <Button Grid.Row="2"  Command="{Binding SaveBudgetCommand}" Text="{x:Static resources:Strings.SaveLabel}" />
+    </Grid>
 </ContentPage>
