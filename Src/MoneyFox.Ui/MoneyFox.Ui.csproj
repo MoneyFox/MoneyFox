@@ -9,7 +9,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <DefaultLanguage>en</DefaultLanguage>
-        <PublishTrimmed>false</PublishTrimmed>
+        <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
 
         <!-- Display name -->
         <ApplicationTitle>MoneyFox</ApplicationTitle>
@@ -43,6 +43,10 @@
     <PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
         <EnableLLVM>True</EnableLLVM>
     </PropertyGroup>
+
+    <ItemGroup>
+        <TrimmerRootAssembly Include="LiveChartsCore.SkiaSharpView.Maui" />
+    </ItemGroup>
 
     <ItemGroup>
         <!-- App Icon -->
