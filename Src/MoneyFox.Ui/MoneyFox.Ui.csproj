@@ -9,7 +9,10 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <DefaultLanguage>en</DefaultLanguage>
+        
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+        <PublishTrimmed>true</PublishTrimmed>
+        <TrimMode>partial</TrimMode>
 
         <!-- Display name -->
         <ApplicationTitle>MoneyFox</ApplicationTitle>
