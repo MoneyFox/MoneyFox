@@ -1790,6 +1790,15 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter note to this payment...
+        /// </summary>
+        public static string NotePlaceholderLabel {
+            get {
+                return ResourceManager.GetString("NotePlaceholderLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Not Now.
         /// </summary>
         public static string NotNowLabel {
