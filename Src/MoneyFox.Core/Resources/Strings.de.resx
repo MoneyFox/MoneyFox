@@ -875,4 +875,7 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
   <data name="InvalidSpendingLimitTitle" xml:space="preserve">
     <value>Ungültiges Ausgabenlimit</value>
   </data>
+  <data name="NotePlaceholderLabel" xml:space="preserve">
+    <value>Enter note to this payment..</value>
+  </data>
 </root>
