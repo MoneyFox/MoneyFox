@@ -874,6 +874,6 @@ Pour commencer, créez un nouveau compte. Les comptes sont utilisés pour organi
     <value>Limite de Dépenses Quotidienne</value>
   </data>
   <data name="NotePlaceholderLabel" xml:space="preserve">
-    <value>Enter note to this payment..</value>
+    <value>Entrez une note pour ce paiement..</value>
   </data>
 </root>
