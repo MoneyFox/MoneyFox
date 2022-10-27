@@ -602,9 +602,9 @@
     <value>Перезаписать?</value>
   </data>
   <data name="PaymentIntroductionText" xml:space="preserve">
-    <value>When you create a payment you can select the category for that payment along with the account and if it is an expense, an income or a transfer.
-Payments you created will show up under the account you choose.
-To get there go to the account list and select the respective account.</value>
+    <value>При создании платежа вы можете выбрать категорию для этого платежа вместе с счетом и если это будет расценкой, доход или перевод.
+Созданные вами платежи будут отображаться под выбранной учетной записью.
+Чтобы попасть туда перейдите в список счетов и выберите соответствующий аккаунт.</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
     <value>Операции в категории</value>
@@ -732,8 +732,8 @@ To get there go to the account list and select the respective account.</value>
     <value>Рады вас видеть!</value>
   </data>
   <data name="WelcomePageText" xml:space="preserve">
-    <value>The MoneyFox helps you to track your expenses and incomes in an easy way.
-To start create a new account. Accounts are used to organize payments and money in collections.</value>
+    <value>MoneyFox поможет Вам легко отслеживать Ваши расходы и доходы.
+Для создания нового счета. Счета используются для организации платежей и денег в коллекциях.</value>
   </data>
   <data name="WindowsDefaultLabel" xml:space="preserve">
     <value>По умолчанию</value>
@@ -808,72 +808,75 @@ To start create a new account. Accounts are used to organize payments and money 
     <value>Открыть лог</value>
   </data>
   <data name="BudgetsTitle" xml:space="preserve">
-    <value>Budgets</value>
+    <value>Бюджеты</value>
   </data>
   <data name="NoBudgetsMessage" xml:space="preserve">
-    <value>There are no Budgets yet. Go ahead and create one!</value>
+    <value>Пока нет бюджетов. Начните с создания бюджета!</value>
   </data>
   <data name="AddBudgetLabel" xml:space="preserve">
-    <value>Add Budget</value>
+    <value>Добавить бюджет</value>
   </data>
   <data name="AddBudgetTitle" xml:space="preserve">
-    <value>Add Budget</value>
+    <value>Добавить бюджет</value>
   </data>
   <data name="BudgetNameLabel" xml:space="preserve">
-    <value>Budget Name</value>
+    <value>Название бюджета</value>
   </data>
   <data name="MoreTitle" xml:space="preserve">
     <value>Другое</value>
   </data>
   <data name="SelectedCategoriesLabel" xml:space="preserve">
-    <value>Selected Categories</value>
+    <value>Выбранные категории</value>
   </data>
   <data name="BackupUploadSkippedMessage" xml:space="preserve">
     <value>Загрузка резервной копии пропущена, так как удаленная версия уже актуальна.</value>
   </data>
   <data name="EditBudgetTitle" xml:space="preserve">
-    <value>Edit Budget</value>
+    <value>Изменить бюджет</value>
   </data>
   <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this budget?</value>
+    <value>Вы действительно хотите удалить этот бюджет?</value>
   </data>
   <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Monthly Budget:</value>
+    <value>Ежемесячный бюджет:</value>
   </data>
   <data name="TimeRangeLabel" xml:space="preserve">
-    <value>Time Range</value>
+    <value>Диапазон времени</value>
   </data>
   <data name="LastFiveYearsLabel" xml:space="preserve">
-    <value>Last Five Years</value>
+    <value>Последние пять лет</value>
   </data>
   <data name="LastThreeYearsLabel" xml:space="preserve">
-    <value>Last Three Years</value>
+    <value>Последние три года</value>
   </data>
   <data name="LastTwoYearsLabel" xml:space="preserve">
-    <value>Last Two Years</value>
+    <value>Последние два года</value>
   </data>
   <data name="LastYearLabel" xml:space="preserve">
-    <value>Last Year</value>
+    <value>Прошлый год</value>
   </data>
   <data name="YearToDateLabel" xml:space="preserve">
-    <value>Year to date</value>
+    <value>Год до настоящего времени</value>
   </data>
   <data name="MonthlySpendingLimitLabel" xml:space="preserve">
-    <value>Monthly Spending Limit</value>
+    <value>Лимит расходов на месяц</value>
   </data>
   <data name="EvaluationTimeRangeLabel" xml:space="preserve">
-    <value>Evaluation Time Range</value>
+    <value>Период оценивания</value>
   </data>
   <data name="EvaluationTimeRangeMessage" xml:space="preserve">
-    <value>This defines the time range in which payments are included to calculate your monthly average to compare to your spending limit.</value>
+    <value>Это определяет промежуток времени, в котором включаются платежи для расчета среднемесячной суммы для сравнения с лимитом расходов.</value>
   </data>
   <data name="CategorySummaryPlaceholder" xml:space="preserve">
-    <value>No payments in the selected time range found.</value>
+    <value>В выбранном временном интервале не найдено.</value>
   </data>
   <data name="InvalidSpendingLimitMessage" xml:space="preserve">
-    <value>The spending limit has to be larger than zero.</value>
+    <value>Лимит расходов должен быть больше нуля.</value>
   </data>
   <data name="InvalidSpendingLimitTitle" xml:space="preserve">
-    <value>Invalid Spending Limit</value>
+    <value>Недопустимый лимит трат</value>
+  </data>
+  <data name="NotePlaceholderLabel" xml:space="preserve">
+    <value>Введите заметку для этого платежа..</value>
   </data>
 </root>

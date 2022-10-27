@@ -130,7 +130,7 @@
     <value>账户</value>
   </data>
   <data name="AddAccountLabel" xml:space="preserve">
-    <value>Add Account</value>
+    <value>新增帳戶</value>
   </data>
   <data name="AddAccountTitle" xml:space="preserve">
     <value>添加账户</value>
@@ -382,7 +382,7 @@
     <value>电子邮件</value>
   </data>
   <data name="EnddateLabel" xml:space="preserve">
-    <value>End Date</value>
+    <value>结束日期</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
     <value>无期限</value>
@@ -442,7 +442,7 @@
     <value>添加收入</value>
   </data>
   <data name="IncomeLabel" xml:space="preserve">
-    <value>Income</value>
+    <value>收入</value>
   </data>
   <data name="IncomeSpendingLabel" xml:space="preserve">
     <value>Income / Expenses:</value>
@@ -650,7 +650,7 @@ To get there go to the account list and select the respective account.</value>
     <value>利润</value>
   </data>
   <data name="SaveLabel" xml:space="preserve">
-    <value>Save</value>
+    <value>儲存</value>
   </data>
   <data name="SavingAccountMessage" xml:space="preserve">
     <value>Saving Account...</value>
@@ -677,7 +677,7 @@ To get there go to the account list and select the respective account.</value>
     <value>筛选</value>
   </data>
   <data name="SelectStatisticTitle" xml:space="preserve">
-    <value>Select Statistic</value>
+    <value>选择统计项</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>设置</value>
@@ -704,7 +704,7 @@ To get there go to the account list and select the respective account.</value>
     <value>添加转账</value>
   </data>
   <data name="TransferLabel" xml:space="preserve">
-    <value>Transfer</value>
+    <value>转账</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
     <value>有些文字没有翻译或者翻译有误？你可以在 crowdin 上改善 Money Fox 的翻译来帮助我们：</value>
@@ -725,7 +725,7 @@ To get there go to the account list and select the respective account.</value>
     <value>每周</value>
   </data>
   <data name="WelcomeLabel" xml:space="preserve">
-    <value>Welcome!</value>
+    <value>欢迎！</value>
   </data>
   <data name="WelcomePageSubtitle" xml:space="preserve">
     <value>Glad to have you!</value>
@@ -765,7 +765,7 @@ To start create a new account. Accounts are used to organize payments and money 
     <value>Failed to login to your backup service. Automatic backup upload was disabled. Please login and enable it again.</value>
   </data>
   <data name="FailedToLoginToBackupTitle" xml:space="preserve">
-    <value>Login failed!</value>
+    <value>登录失败！</value>
   </data>
   <data name="LoggedInTitle" xml:space="preserve">
     <value>Logged in!</value>
@@ -874,5 +874,8 @@ To start create a new account. Accounts are used to organize payments and money 
   </data>
   <data name="InvalidSpendingLimitTitle" xml:space="preserve">
     <value>Invalid Spending Limit</value>
+  </data>
+  <data name="NotePlaceholderLabel" xml:space="preserve">
+    <value>Enter note to this payment..</value>
   </data>
 </root>
