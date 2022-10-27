@@ -22,7 +22,7 @@
         <Grid>
             <Entry
                 x:Name="AmountField"
-                HeightRequest="40"
+                HeightRequest="36"
                 Text="{Binding Amount,Converter={StaticResource DecimalConverter}}"
                 IsEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBoolConverter}}"
                 Placeholder="{Binding EntryPlaceholder}"
