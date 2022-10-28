@@ -46,5 +46,3 @@ public class Category : EntityBase, IAggregateRoot
         RequireNote = requireNote;
     }
 }
-
-

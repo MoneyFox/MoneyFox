@@ -88,4 +88,3 @@ internal sealed class OneDriveAuthenticationService : IOneDriveAuthenticationSer
         }
     }
 }
-

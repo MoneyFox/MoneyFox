@@ -16,5 +16,3 @@ public interface IBackupService
 
     Task RestoreBackupAsync(BackupMode backupMode = BackupMode.Automatic);
 }
-
-

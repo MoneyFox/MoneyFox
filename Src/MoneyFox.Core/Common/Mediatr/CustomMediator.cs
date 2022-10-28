@@ -25,5 +25,3 @@ public class CustomMediator : Mediator
         return publish(arg1: allHandlers, arg2: notification, arg3: cancellationToken);
     }
 }
-
-

@@ -24,5 +24,3 @@ internal class BudgetConfiguration : IEntityTypeConfiguration<Budget>
             convertFromProviderExpression: s => string.IsNullOrWhiteSpace(s) ? Array.Empty<int>() : s.Split(new[] { ';' }).Select(int.Parse).ToArray());
     }
 }
-
-

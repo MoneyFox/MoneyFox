@@ -166,5 +166,3 @@ public class Payment : EntityBase
         }
     }
 }
-
-

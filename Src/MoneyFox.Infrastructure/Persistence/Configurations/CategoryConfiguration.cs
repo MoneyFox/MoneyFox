@@ -14,5 +14,3 @@ internal class CategoryConfiguration : IEntityTypeConfiguration<Category>
         _ = builder.HasMany(c => c.Payments).WithOne(t => t.Category!).HasForeignKey(p => p.CategoryId).OnDelete(DeleteBehavior.SetNull);
     }
 }
-
-

@@ -13,5 +13,3 @@ internal class AccountConfiguration : IEntityTypeConfiguration<Account>
         _ = builder.Property(b => b.Name).IsRequired();
     }
 }
-
-

@@ -139,5 +139,3 @@ public class GetCategorySummaryQueryHandler : IRequestHandler<GetCategorySummary
         return Math.Round(d: totalSumForPayments / (timeDiff.Days / DAY_DIVIDER), decimals: POSITIONS_TO_ROUND, mode: MidpointRounding.ToEven);
     }
 }
-
-

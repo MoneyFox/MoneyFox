@@ -11,5 +11,3 @@ public static class RecurringPaymentQueryObjects
         return queryable.Where(x => x.IsEndless || x.EndDate >= DateTime.Today);
     }
 }
-
-

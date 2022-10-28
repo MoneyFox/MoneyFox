@@ -21,4 +21,3 @@ internal class UserDto
     [JsonProperty("mail")]
     public string? Email { get; set; }
 }
-

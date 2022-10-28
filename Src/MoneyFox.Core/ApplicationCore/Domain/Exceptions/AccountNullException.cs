@@ -14,5 +14,3 @@ public class AccountNullException : Exception
 
     public AccountNullException(string message, Exception innerException) : base(message: message, innerException: innerException) { }
 }
-
-

@@ -38,5 +38,3 @@ public class GetPaymentByIdQuery : IRequest<Payment>
         }
     }
 }
-
-

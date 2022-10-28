@@ -11,5 +11,3 @@ internal class PaymentConfiguration : IEntityTypeConfiguration<Payment>
         _ = builder.HasKey(b => b.Id);
     }
 }
-
-

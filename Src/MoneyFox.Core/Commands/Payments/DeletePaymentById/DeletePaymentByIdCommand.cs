@@ -63,5 +63,3 @@ public class DeletePaymentByIdCommand : IRequest
         }
     }
 }
-
-

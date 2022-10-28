@@ -41,4 +41,3 @@ public static class InfrastructureConfig
         _ = serviceCollection.AddTransient<IOneDriveProfileService, OneDriveProfileService>();
     }
 }
-
