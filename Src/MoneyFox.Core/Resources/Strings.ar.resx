@@ -127,7 +127,7 @@
     <value>الرجاء اختيار حساب.</value>
   </data>
   <data name="AccountsTitle" xml:space="preserve">
-    <value>Accounts</value>
+    <value>الحسابات</value>
   </data>
   <data name="AddAccountLabel" xml:space="preserve">
     <value>Add Account</value>
@@ -136,7 +136,7 @@
     <value>Add Account</value>
   </data>
   <data name="AddCategoryLabel" xml:space="preserve">
-    <value>Add Category</value>
+    <value>إضافة فئة</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
     <value>إضافة فئة</value>
@@ -148,7 +148,7 @@
     <value>إضافة الدخل</value>
   </data>
   <data name="AddPaymentLabel" xml:space="preserve">
-    <value>Add Payment</value>
+    <value>إضافة دفعة</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
     <value>إضافة حوالة</value>
@@ -157,19 +157,19 @@
     <value>المبلغ</value>
   </data>
   <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
-    <value>The amount may not be negative. If it is subtracted or added is deteremined by the kind of payment you create.</value>
+    <value>المبلغ قد لا يكون سالبًا. إذا تم طرحه أو إضافته يتم تذكيره بنوع الدفع الذي قمت بإنشائه.</value>
   </data>
   <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
-    <value>Negative amount</value>
+    <value>المبلغ السلبي</value>
   </data>
   <data name="ANoteForPaymentIsRequired" xml:space="preserve">
-    <value>A note for payment is required</value>
+    <value>مطلوب ملاحظة للدفع</value>
   </data>
   <data name="ApplyFilterLabel" xml:space="preserve">
-    <value>Apply Filter</value>
+    <value>تطبيق عامل التصفية</value>
   </data>
   <data name="AssetsLabel" xml:space="preserve">
-    <value>Assets</value>
+    <value>الأصول</value>
   </data>
   <data name="AuthenticationFailedTitle" xml:space="preserve">
     <value>فشل التسجيل</value>
@@ -181,22 +181,22 @@
     <value>مزامنة النسخ الاحتياطية تلقائياً</value>
   </data>
   <data name="AutobackupTitle" xml:space="preserve">
-    <value>Autobackup</value>
+    <value>النسخ الاحتياطي التلقائي</value>
   </data>
   <data name="BackLabel" xml:space="preserve">
-    <value>Back</value>
+    <value>الرجوع</value>
   </data>
   <data name="BackupCreatedMessage" xml:space="preserve">
-    <value>Backup created successfully</value>
+    <value>تم إنشاء النسخ الاحتياطي بنجاح</value>
   </data>
   <data name="BackupFailedTitle" xml:space="preserve">
-    <value>Backup failed!</value>
+    <value>فشل النسخ الاحتياطي!</value>
   </data>
   <data name="BackupInformationLabel" xml:space="preserve">
     <value>سيتم حفظ بياناتك في حساب OneDrive الخاص بك. سوف تجد البيانات في مجلد جديد للتطبيق يسمى "MoneyFox".</value>
   </data>
   <data name="BackupRestoredMessage" xml:space="preserve">
-    <value>Backup restored successfully.</value>
+    <value>تمت استعادة النسخ الاحتياطي بنجاح.</value>
   </data>
   <data name="BackupTitle" xml:space="preserve">
     <value>النسخ الاحتياطي</value>
@@ -211,10 +211,10 @@
     <value>كل أسبوعين</value>
   </data>
   <data name="BudgetsLabel" xml:space="preserve">
-    <value>Budgets</value>
+    <value>الميزانيات</value>
   </data>
   <data name="CanceledTitle" xml:space="preserve">
-    <value>Canceled</value>
+    <value>ملغاة</value>
   </data>
   <data name="CancelLabel" xml:space="preserve">
     <value>إلغاء</value>
@@ -226,10 +226,10 @@
     <value>التدفق النقدي</value>
   </data>
   <data name="CashFlowStatisticTitle" xml:space="preserve">
-    <value>Cash Flow</value>
+    <value>التدفق النقدي</value>
   </data>
   <data name="CategorieIntroductionText" xml:space="preserve">
-    <value>Categories can help order your payments. Also they make it easier to analyze your spendings and incomes in the statistics.</value>
+    <value>يمكن للفئات أن تساعد في طلب المدفوعات الخاصة بك. كما أنها تجعل من الأسهل تحليل النفقات والدخل الخاص بك في الإحصاءات.</value>
   </data>
   <data name="CategorieSpreadingDescription" xml:space="preserve">
     <value> توزيع النفقات على الفئات.</value>
@@ -241,13 +241,13 @@
     <value>فئة</value>
   </data>
   <data name="CategoryNameLabel" xml:space="preserve">
-    <value>Category Name</value>
+    <value>اسم الفئة</value>
   </data>
   <data name="CategorySpreadingLabel" xml:space="preserve">
-    <value>Category Spreading</value>
+    <value>نشر الفئة</value>
   </data>
   <data name="CategorySpreadingTitle" xml:space="preserve">
-    <value>Category Spreading</value>
+    <value>نشر الفئة</value>
   </data>
   <data name="CategorySummaryDescription" xml:space="preserve">
     <value>ملخص الفئات مع الدفع.</value>
@@ -256,19 +256,19 @@
     <value>ملخص الفئة</value>
   </data>
   <data name="CategorySummaryTitle" xml:space="preserve">
-    <value>Category Summary</value>
+    <value>ملخص الفئة</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
-    <value>Charged Account</value>
+    <value>حساب مشحون</value>
   </data>
   <data name="ClearedFilterLabel" xml:space="preserve">
-    <value>Cleared</value>
+    <value>مسح</value>
   </data>
   <data name="CompletedText" xml:space="preserve">
-    <value>That's it! You're set for using the MoneyFox.</value>
+    <value>هذا كل شيء! أنت مستعد لاستخدام MoneyFox.</value>
   </data>
   <data name="CompletedTitle" xml:space="preserve">
-    <value>Done!</value>
+    <value>تم!</value>
   </data>
   <data name="CompleteLabel" xml:space="preserve">
     <value>Complete</value>
@@ -283,22 +283,22 @@
     <value>المساهمات</value>
   </data>
   <data name="CreateAccountNowLabel" xml:space="preserve">
-    <value>Create Account Now</value>
+    <value>إنشاء حساب الآن</value>
   </data>
   <data name="CreateBackupLabel" xml:space="preserve">
     <value>إنشاء نسخة احتياطية</value>
   </data>
   <data name="CreateCategoryNowLabel" xml:space="preserve">
-    <value>Create Category now</value>
+    <value>إنشاء فئة الآن</value>
   </data>
   <data name="CreationDateHeader" xml:space="preserve">
-    <value>Creation Date</value>
+    <value>تاريخ الإنشاء</value>
   </data>
   <data name="CreationDateLabel" xml:space="preserve">
-    <value>Creation Date:</value>
+    <value>تاريخ الإنشاء:</value>
   </data>
   <data name="CreationDateTemplateLabel" xml:space="preserve">
-    <value>Creation Date: {0}</value>
+    <value>تاريخ الإنشاء: {0}</value>
   </data>
   <data name="CurrentBalanceLabel" xml:space="preserve">
     <value>الرصيد الحالي</value>
@@ -310,10 +310,10 @@
     <value>يومياً عدا عطلة الأسبوع</value>
   </data>
   <data name="DarkLabel" xml:space="preserve">
-    <value>Dark</value>
+    <value>داكن</value>
   </data>
   <data name="DashboardTitle" xml:space="preserve">
-    <value>Dashboard</value>
+    <value>لوحة التحكم</value>
   </data>
   <data name="DateLabel" xml:space="preserve">
     <value>التاريخ</value>
@@ -352,7 +352,7 @@
     <value>تم</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>An account with that name already exists. Continue with saving?</value>
+    <value>يوجد حساب بهذا الاسم مسبقاً. هل تريد الاستمرار في الحفظ؟</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
     <value>توجد فئة بهذا الاسم مسبقاً</value>
@@ -379,19 +379,19 @@
     <value>تعديل التحويل</value>
   </data>
   <data name="EmailLabel" xml:space="preserve">
-    <value>Email</value>
+    <value>البريد الإلكتروني</value>
   </data>
   <data name="EnddateLabel" xml:space="preserve">
-    <value>End Date</value>
+    <value>تاريخ الانتهاء</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
     <value>لا نهائي</value>
   </data>
   <data name="EndOfMonthBalanceLabel" xml:space="preserve">
-    <value>End of Month</value>
+    <value>نهاية الشهر</value>
   </data>
   <data name="EndOfMonthLabel" xml:space="preserve">
-    <value>End Of Month:</value>
+    <value>نهاية الشهر:</value>
   </data>
   <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
     <value>حدث خطأ أثناء محاولة التسجيل. الرجاء المحاولة في وقت لاجق.</value>
@@ -400,7 +400,7 @@
     <value>الحسابات المستبعدة</value>
   </data>
   <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
-    <value>Expense: {0} / Income: {1}</value>
+    <value>المصروفات: {0} / الإيرادات: {1}</value>
   </data>
   <data name="ExpenseHeader" xml:space="preserve">
     <value>إضافة نفقات</value>
@@ -412,22 +412,22 @@
     <value>تقييم مانى فوكس</value>
   </data>
   <data name="FilterLabel" xml:space="preserve">
-    <value>Filter</value>
+    <value>تصفية</value>
   </data>
   <data name="ForceOverrideBackupMessage" xml:space="preserve">
-    <value>Your local database has a newer modification date than the one on OneDrive. Do you want to override your local data?</value>
+    <value>قاعدة البيانات المحلية لديك تاريخ تعديل أحدث من الذي على OneDrive. هل تريد تجاوز بياناتك المحلية؟</value>
   </data>
   <data name="ForceOverrideBackupTitle" xml:space="preserve">
-    <value>Override Local Data</value>
+    <value>تجاوز البيانات المحلية</value>
   </data>
   <data name="GeneralErrorTitle" xml:space="preserve">
-    <value>An error occured</value>
+    <value>حدث خطأ</value>
   </data>
   <data name="GoToAccountsLabel" xml:space="preserve">
-    <value>Go to Accounts</value>
+    <value>الذهاب إلى الحسابات</value>
   </data>
   <data name="GoToBudgetsLabel" xml:space="preserve">
-    <value>Go to Budgets</value>
+    <value>الذهاب إلى الميزانيات</value>
   </data>
   <data name="IconDesignerLabel" xml:space="preserve">
     <value>تم إنشاء أيقونة التطبيق بواسطة:</value>
@@ -436,16 +436,16 @@
     <value>الحسابات المدخلة</value>
   </data>
   <data name="IncomeAndExpensesLabel" xml:space="preserve">
-    <value>Income and Expenses</value>
+    <value>الإيرادات والنفقات</value>
   </data>
   <data name="IncomeHeader" xml:space="preserve">
     <value>إضافة دخل</value>
   </data>
   <data name="IncomeLabel" xml:space="preserve">
-    <value>Income</value>
+    <value>دخل</value>
   </data>
   <data name="IncomeSpendingLabel" xml:space="preserve">
-    <value>Income / Expenses:</value>
+    <value>الإيرادات / المصروفات:</value>
   </data>
   <data name="IncreaseLabel" xml:space="preserve">
     <value>المكاسب</value>
@@ -467,16 +467,16 @@
     <value>يبدو أن رصيدك المدخل غير صالح. الرجاء التأكد من إدخال رفم صالح دون أي أحرف وتحقق من اسنخدام الفاصل العشري الصحيح.</value>
   </data>
   <data name="InvalidNumberTitle" xml:space="preserve">
-    <value>Invalid Number</value>
+    <value>رقم غير صالح</value>
   </data>
   <data name="IsClearedLabel" xml:space="preserve">
-    <value>Cleared</value>
+    <value>مسح</value>
   </data>
   <data name="IsExcludedLabel" xml:space="preserve">
     <value>استبعاد الحساب من الرصيد</value>
   </data>
   <data name="IsGroupedLabel" xml:space="preserve">
-    <value>Group List</value>
+    <value>قائمة المجموعات</value>
   </data>
   <data name="IsRecurringFilterLabel" xml:space="preserve">
     <value>دفع متكرر</value>
@@ -488,31 +488,31 @@
     <value>أخر نسخة احتياطية تم إنشاءها في:</value>
   </data>
   <data name="LightLabel" xml:space="preserve">
-    <value>Light</value>
+    <value>فاتح</value>
   </data>
   <data name="LoadingLabel" xml:space="preserve">
     <value>جاري التحميل...</value>
   </data>
   <data name="LoggedInMessage" xml:space="preserve">
-    <value>Loggedin successfully.</value>
+    <value>تسجيل الدخول بنجاح.</value>
   </data>
   <data name="LoggedOutMessage" xml:space="preserve">
-    <value>Logged out successfully.</value>
+    <value>تم تسجيل الخروج بنجاح.</value>
   </data>
   <data name="LoggedOutTitle" xml:space="preserve">
-    <value>Logged out</value>
+    <value>تم تسجيل الخروج</value>
   </data>
   <data name="LoginCanceledMessage" xml:space="preserve">
-    <value>Login was canceled.</value>
+    <value>تم إلغاء تسجيل الدخول.</value>
   </data>
   <data name="LoginFailedTitle" xml:space="preserve">
-    <value>Login failed!</value>
+    <value>فشل تسجيل الدخول!</value>
   </data>
   <data name="LoginLabel" xml:space="preserve">
     <value>تسجيل الدخول</value>
   </data>
   <data name="LogoutCanceledMessage" xml:space="preserve">
-    <value>Logout was canceled.</value>
+    <value>تم إلغاء تسجيل الخروج.</value>
   </data>
   <data name="LogoutLabel" xml:space="preserve">
     <value>تسجيل الخروج</value>
@@ -521,13 +521,13 @@
     <value>حقل اجباري</value>
   </data>
   <data name="ModificationDateHeader" xml:space="preserve">
-    <value>Modification Date</value>
+    <value>تاريخ التعديل</value>
   </data>
   <data name="ModificationDateLabel" xml:space="preserve">
-    <value>Modification Date:</value>
+    <value>تاريخ التعديل:</value>
   </data>
   <data name="ModificationDateTemplateLabel" xml:space="preserve">
-    <value>Modification Date: {0}</value>
+    <value>تاريخ التعديل: {0}</value>
   </data>
   <data name="ModifyRecurrenceMessage" xml:space="preserve">
     <value>لقد قمت بتعديل دفعة متكررة. هل تريد تحديث التكرار؟</value>
@@ -536,16 +536,16 @@
     <value>تعديل التكرار</value>
   </data>
   <data name="MonthlyAverageLabel" xml:space="preserve">
-    <value>Last year monthly average: </value>
+    <value>المتوسط الشهري للسنة الماضية: </value>
   </data>
   <data name="MonthlyCashflowDescription" xml:space="preserve">
-    <value>Shows the monthly cashflow for the selected account.</value>
+    <value>يعرض التدفق النقدي الشهري للحساب المحدد.</value>
   </data>
   <data name="MonthlyCashflowLabel" xml:space="preserve">
-    <value>Monthly Cashflow</value>
+    <value>التدفق النقدي الشهري</value>
   </data>
   <data name="MonthlyCashflowTitle" xml:space="preserve">
-    <value>Monthly Cashflow</value>
+    <value>التدفق النقدي الشهري</value>
   </data>
   <data name="MonthlyLabel" xml:space="preserve">
     <value>شهرياً</value>
@@ -554,19 +554,19 @@
     <value>الرجاء إدخال اسم.</value>
   </data>
   <data name="NextLabel" xml:space="preserve">
-    <value>Next</value>
+    <value>التالي</value>
   </data>
   <data name="NoAccountsMessage" xml:space="preserve">
     <value>لا توجد حسابات لعرضها.</value>
   </data>
   <data name="NoCategoriesMessage" xml:space="preserve">
-    <value>There are no categories to display. </value>
+    <value>لا توجد فئات لعرضها. </value>
   </data>
   <data name="NoCategoryLabel" xml:space="preserve">
-    <value>[No Category]</value>
+    <value>[لا فئة]</value>
   </data>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
-    <value>No entry selected. Choose a entry in the list to see the payments for it.</value>
+    <value>لم يتم تحديد إدخال. اختر إدخال في القائمة لمشاهدة الدفعات لها.</value>
   </data>
   <data name="NoLabel" xml:space="preserve">
     <value>لا</value>
@@ -578,7 +578,7 @@
     <value>لا يوجد إتصال بالإنترنت</value>
   </data>
   <data name="NoPaymentsMessage" xml:space="preserve">
-    <value>There are no Payments. Add one by tapping on the plus button.</value>
+    <value>لا توجد مدفوعات. أضف واحدة عن طريق النقر على زر زائد</value>
   </data>
   <data name="NoteLabel" xml:space="preserve">
     <value>ملاحظة</value>
@@ -590,7 +590,7 @@
     <value>حسناً</value>
   </data>
   <data name="OthersLabel" xml:space="preserve">
-    <value>Others</value>
+    <value>أخرى</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
     <value>النسخ الاحتياطية القديمة سوف يتم استبدالها، هل تريد الاستمرار؟</value>
@@ -602,18 +602,18 @@
     <value>استبدال؟</value>
   </data>
   <data name="PaymentIntroductionText" xml:space="preserve">
-    <value>When you create a payment you can select the category for that payment along with the account and if it is an expense, an income or a transfer.
-Payments you created will show up under the account you choose.
-To get there go to the account list and select the respective account.</value>
+    <value>عند إنشاء عملية الدفع، يمكنك تحديد الفئة لهذا الدفع مع الحساب وإذا كان ذلك مصروفاً، الدخل أو التحويل.
+المدفوعات التي قمت بإنشائها ستظهر تحت الحساب الذي تختاره.
+للوصول إلى قائمة الحساب وتحديد الحساب المعني.</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Payments for Category</value>
+    <value>المدفوعات للفئة</value>
   </data>
   <data name="PaymentTypeLabel" xml:space="preserve">
-    <value>Payment type</value>
+    <value>نوع الدفع</value>
   </data>
   <data name="PersonalizationTitle" xml:space="preserve">
-    <value>Personalization</value>
+    <value>تخصيص</value>
   </data>
   <data name="QuarterlyLabel" xml:space="preserve">
     <value>كل 4 أشهر</value>
@@ -635,10 +635,10 @@ To get there go to the account list and select the respective account.</value>
     <value>دفع متكرر</value>
   </data>
   <data name="RequireNoteCheckbox" xml:space="preserve">
-    <value>Note required</value>
+    <value>الملاحظة مطلوبة</value>
   </data>
   <data name="RestoreBackupCanceledMessage" xml:space="preserve">
-    <value>Restoring backup was canceled.</value>
+    <value>تم إلغاء استعادة النسخ الاحتياطي.</value>
   </data>
   <data name="RestoreBackupInformationLabel" xml:space="preserve">
     <value>حمل النسخة الاحتباطية المرفوعة مسبقاَ واستبدل البيانات الحالية بها.
@@ -651,92 +651,92 @@ To get there go to the account list and select the respective account.</value>
     <value>الإيراد</value>
   </data>
   <data name="SaveLabel" xml:space="preserve">
-    <value>Save</value>
+    <value>حفظ</value>
   </data>
   <data name="SavingAccountMessage" xml:space="preserve">
-    <value>Saving Account...</value>
+    <value>جارٍ حفظ الحساب...</value>
   </data>
   <data name="SavingCategoryMessage" xml:space="preserve">
-    <value>Saving Category...</value>
+    <value>حفظ الفئة...</value>
   </data>
   <data name="SavingPaymentMessage" xml:space="preserve">
-    <value>Saving Payment...</value>
+    <value>حفظ الدفع...</value>
   </data>
   <data name="SearchLabel" xml:space="preserve">
-    <value>Search</value>
+    <value>البحث</value>
   </data>
   <data name="SelectCategoryTitle" xml:space="preserve">
-    <value>Select Category</value>
+    <value>حدد الفئة</value>
   </data>
   <data name="SelectDateLabel" xml:space="preserve">
-    <value>Select Date</value>
+    <value>حدد تاريخ</value>
   </data>
   <data name="SelectedAccountHeader" xml:space="preserve">
-    <value>Selected Account</value>
+    <value>الحساب المحدد</value>
   </data>
   <data name="SelectFilterTitle" xml:space="preserve">
-    <value>Select Filter</value>
+    <value>تحديد عامل التصفية</value>
   </data>
   <data name="SelectStatisticTitle" xml:space="preserve">
-    <value>Select Statistic</value>
+    <value>حدد إحصائيات</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>الإعدادات</value>
   </data>
   <data name="SkipLabel" xml:space="preserve">
-    <value>Skip</value>
+    <value>تخطي</value>
   </data>
   <data name="StatisticsTimeRangeTitle" xml:space="preserve">
-    <value>Time Range:</value>
+    <value>المدى الزمني:</value>
   </data>
   <data name="StatisticsTitle" xml:space="preserve">
     <value>الإحصائيات</value>
   </data>
   <data name="TargetAccountLabel" xml:space="preserve">
-    <value>Target Account</value>
+    <value>حساب الهدف</value>
   </data>
   <data name="TimeRangeEndLabel" xml:space="preserve">
-    <value>Time Range End</value>
+    <value>نهاية النطاق الزمني</value>
   </data>
   <data name="TimeRangeStartLabel" xml:space="preserve">
-    <value>Time Range Start</value>
+    <value>وقت البدء في النطاق</value>
   </data>
   <data name="TransferHeader" xml:space="preserve">
     <value>إضافة حوالة</value>
   </data>
   <data name="TransferLabel" xml:space="preserve">
-    <value>Transfer</value>
+    <value>تحويل</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
     <value>هل يوجد شيء غير مترجم بشكل صحيح أو غير مترجم على الإطلاق؟ ساعدنا! اذهب لـ Crowdin وساعدنا في ترجمة Money Fox:</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>حدثت مشكلة أثناء العملية. رسالة الخطأ {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
-    <value>Upload backup was canceled.</value>
+    <value>تم إلغاء النسخ الاحتياطي للتحميل.</value>
   </data>
   <data name="VersionLabel" xml:space="preserve">
     <value>الإصدار</value>
   </data>
   <data name="WebsiteLabel" xml:space="preserve">
-    <value>Website</value>
+    <value>الموقع</value>
   </data>
   <data name="WeeklyLabel" xml:space="preserve">
     <value>أسبوعياً</value>
   </data>
   <data name="WelcomeLabel" xml:space="preserve">
-    <value>Welcome!</value>
+    <value>مرحباً!</value>
   </data>
   <data name="WelcomePageSubtitle" xml:space="preserve">
-    <value>Glad to have you!</value>
+    <value>يسعدك أن يكون لديك!</value>
   </data>
   <data name="WelcomePageText" xml:space="preserve">
-    <value>The MoneyFox helps you to track your expenses and incomes in an easy way.
-To start create a new account. Accounts are used to organize payments and money in collections.</value>
+    <value>MoneyFx يساعدك على تتبع مصروفاتك ودخولك بطريقة سهلة.
+لبدء إنشاء حساب جديد. تستخدم الحسابات لتنظيم المدفوعات والأموال في المجموعات.</value>
   </data>
   <data name="WindowsDefaultLabel" xml:space="preserve">
-    <value>Windows Default</value>
+    <value>الافتراضي للويندوز</value>
   </data>
   <data name="YearlyLabel" xml:space="preserve">
     <value>سنوياً</value>
@@ -745,135 +745,138 @@ To start create a new account. Accounts are used to organize payments and money 
     <value>نعم</value>
   </data>
   <data name="AccountsToolTip" xml:space="preserve">
-    <value>Manage your Accounts</value>
+    <value>إدارة حساباتك</value>
   </data>
   <data name="AddPaymentTitle" xml:space="preserve">
-    <value>Add Payment</value>
+    <value>إضافة دفعة</value>
   </data>
   <data name="AddPaymentToolTip" xml:space="preserve">
-    <value>Add a Payment with details</value>
+    <value>إضافة دفعة مع التفاصيل</value>
   </data>
   <data name="BackupToolTip" xml:space="preserve">
-    <value>Backup your information</value>
+    <value>النسخ الاحتياطي للمعلومات الخاصة بك</value>
   </data>
   <data name="CategoriesToolTip" xml:space="preserve">
-    <value>Manage your Categories</value>
+    <value>إدارة التصنيفات الخاصة بك</value>
   </data>
   <data name="StatisticsToolTip" xml:space="preserve">
-    <value>View your Statistics</value>
+    <value>عرض إحصائياتك</value>
   </data>
   <data name="FailedToLoginToBackupMessage" xml:space="preserve">
-    <value>Failed to login to your backup service. Automatic backup upload was disabled. Please login and enable it again.</value>
+    <value>فشل في تسجيل الدخول إلى خدمة النسخ الاحتياطي الخاصة بك. تم تعطيل التحميل التلقائي للنسخ الاحتياطي. الرجاء تسجيل الدخول و تفعيله مرة أخرى.</value>
   </data>
   <data name="FailedToLoginToBackupTitle" xml:space="preserve">
-    <value>Login failed!</value>
+    <value>فشل تسجيل الدخول!</value>
   </data>
   <data name="LoggedInTitle" xml:space="preserve">
-    <value>Logged in!</value>
+    <value>تسجيل الدخول!</value>
   </data>
   <data name="SelectedPaymentTypeHeader" xml:space="preserve">
-    <value>Selected Payment Type</value>
+    <value>نوع الدفع المحدد</value>
   </data>
   <data name="CategoryProgressionDescription" xml:space="preserve">
-    <value>Shows the progression of a category by month.</value>
+    <value>يظهر تسلسل فئة شهريا.</value>
   </data>
   <data name="CategoryProgressionLabel" xml:space="preserve">
-    <value>Category Progression</value>
+    <value>تقدم الفئة</value>
   </data>
   <data name="SelectCategoryLabel" xml:space="preserve">
-    <value>Select category..</value>
+    <value>حدد الفئة..</value>
   </data>
   <data name="CategoryProgressionTitle" xml:space="preserve">
-    <value>Category Progression</value>
+    <value>تقدم الفئة</value>
   </data>
   <data name="EditPaymentTitle" xml:space="preserve">
-    <value>Edit Payment</value>
+    <value>تعديل الدفع</value>
   </data>
   <data name="InitialBalanceLabel" xml:space="preserve">
-    <value>Initial Balance</value>
+    <value>الرصيد الأولي</value>
   </data>
   <data name="AllLabel" xml:space="preserve">
-    <value>All</value>
+    <value>الكل</value>
   </data>
   <data name="HomeTitle" xml:space="preserve">
-    <value>Home</value>
+    <value>المنزل</value>
   </data>
   <data name="MenuTitle" xml:space="preserve">
-    <value>Menu</value>
+    <value>القائمة</value>
   </data>
   <data name="LastDayOfMonthLabel" xml:space="preserve">
-    <value>Last Day of Month</value>
+    <value>اليوم الأخير من الشهر</value>
   </data>
   <data name="OpenLogLabel" xml:space="preserve">
-    <value>Open Log</value>
+    <value>فتح السجل</value>
   </data>
   <data name="BudgetsTitle" xml:space="preserve">
-    <value>Budgets</value>
+    <value>الميزانيات</value>
   </data>
   <data name="NoBudgetsMessage" xml:space="preserve">
-    <value>There are no Budgets yet. Go ahead and create one!</value>
+    <value>لا توجد ميزانيات حتى الآن. امضي قدماً وقم بإنشاء واحدة!</value>
   </data>
   <data name="AddBudgetLabel" xml:space="preserve">
-    <value>Add Budget</value>
+    <value>إضافة ميزانية</value>
   </data>
   <data name="AddBudgetTitle" xml:space="preserve">
-    <value>Add Budget</value>
+    <value>إضافة ميزانية</value>
   </data>
   <data name="BudgetNameLabel" xml:space="preserve">
-    <value>Budget Name</value>
+    <value>اسم الميزانية</value>
   </data>
   <data name="MoreTitle" xml:space="preserve">
-    <value>More</value>
+    <value>المزيد</value>
   </data>
   <data name="SelectedCategoriesLabel" xml:space="preserve">
-    <value>Selected Categories</value>
+    <value>الفئات المحددة</value>
   </data>
   <data name="BackupUploadSkippedMessage" xml:space="preserve">
-    <value>Upload of backup skipped, since remote version was already up to date.</value>
+    <value>تم تخطي التحميل من النسخة الاحتياطية، لأن الإصدار البعيد قد تم تحديثه بالفعل.</value>
   </data>
   <data name="EditBudgetTitle" xml:space="preserve">
-    <value>Edit Budget</value>
+    <value>تعديل الميزانية</value>
   </data>
   <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this budget?</value>
+    <value>هل تريد حقاً حذف هذه الميزانية؟</value>
   </data>
   <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Monthly Budget:</value>
+    <value>الميزانية الشهرية:</value>
   </data>
   <data name="TimeRangeLabel" xml:space="preserve">
-    <value>Time Range</value>
+    <value>النطاق الزمني</value>
   </data>
   <data name="LastFiveYearsLabel" xml:space="preserve">
-    <value>Last Five Years</value>
+    <value>السنوات الخمس الأخيرة</value>
   </data>
   <data name="LastThreeYearsLabel" xml:space="preserve">
-    <value>Last Three Years</value>
+    <value>السنوات الثلاث الأخيرة</value>
   </data>
   <data name="LastTwoYearsLabel" xml:space="preserve">
-    <value>Last Two Years</value>
+    <value>آخر سنتين</value>
   </data>
   <data name="LastYearLabel" xml:space="preserve">
-    <value>Last Year</value>
+    <value>السنة الماضية</value>
   </data>
   <data name="YearToDateLabel" xml:space="preserve">
-    <value>Year to date</value>
+    <value>السنة حتى الآن</value>
   </data>
   <data name="MonthlySpendingLimitLabel" xml:space="preserve">
-    <value>Monthly Spending Limit</value>
+    <value>حد الإنفاق الشهري</value>
   </data>
   <data name="EvaluationTimeRangeLabel" xml:space="preserve">
-    <value>Evaluation Time Range</value>
+    <value>نطاق وقت التقييم</value>
   </data>
   <data name="EvaluationTimeRangeMessage" xml:space="preserve">
-    <value>This defines the time range in which payments are included to calculate your monthly average to compare to your spending limit.</value>
+    <value>هذا يحدد النطاق الزمني الذي يتم فيه تضمين المدفوعات لحساب المتوسط الشهري الخاص بك لمقارنة حد الإنفاق الخاص بك.</value>
   </data>
   <data name="CategorySummaryPlaceholder" xml:space="preserve">
-    <value>No payments in the selected time range found.</value>
+    <value>لم يتم العثور على دفعات في النطاق الزمني المحدد.</value>
   </data>
   <data name="InvalidSpendingLimitMessage" xml:space="preserve">
-    <value>The spending limit has to be larger than zero.</value>
+    <value>ويجب أن يكون حد الإنفاق أكبر من الصفر.</value>
   </data>
   <data name="InvalidSpendingLimitTitle" xml:space="preserve">
-    <value>Invalid Spending Limit</value>
+    <value>حد الإنفاق غير صالح</value>
+  </data>
+  <data name="NotePlaceholderLabel" xml:space="preserve">
+    <value>أدخل ملاحظة لهذه الدفعة..</value>
   </data>
 </root>

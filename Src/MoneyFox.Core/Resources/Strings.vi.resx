@@ -136,7 +136,7 @@
     <value>Thêm tài khoản</value>
   </data>
   <data name="AddCategoryLabel" xml:space="preserve">
-    <value>Add Category</value>
+    <value>Thêm danh mục</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
     <value>Thêm danh mục</value>
@@ -247,7 +247,7 @@
     <value>Lan truyền danh mục</value>
   </data>
   <data name="CategorySpreadingTitle" xml:space="preserve">
-    <value>Category Spreading</value>
+    <value>Lan truyền danh mục</value>
   </data>
   <data name="CategorySummaryDescription" xml:space="preserve">
     <value>Tóm tắt các danh mục có thanh toán.</value>
@@ -256,7 +256,7 @@
     <value>Tóm tắt danh mục</value>
   </data>
   <data name="CategorySummaryTitle" xml:space="preserve">
-    <value>Category Summary</value>
+    <value>Tóm tắt danh mục</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
     <value>Thay đổi tài khoản</value>
@@ -442,7 +442,7 @@
     <value>Thêm thu nhập</value>
   </data>
   <data name="IncomeLabel" xml:space="preserve">
-    <value>Income</value>
+    <value>Thu nhập</value>
   </data>
   <data name="IncomeSpendingLabel" xml:space="preserve">
     <value>Income / Expenses:</value>
@@ -705,7 +705,7 @@ CẢNH BÁO: Các thay đổi trên máy của bạn sẽ bị mất!</value>
     <value>Thêm chuyển khoản</value>
   </data>
   <data name="TransferLabel" xml:space="preserve">
-    <value>Transfer</value>
+    <value>Chuyển khoản</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
     <value>Có phải một số nơi không được dịch đúng cách hoặc không được dịch không? Giúp chúng tôi! Tham gia cộng đồng và giúp cải thiện Money Fox:</value>
@@ -766,7 +766,7 @@ To start create a new account. Accounts are used to organize payments and money 
     <value>Failed to login to your backup service. Automatic backup upload was disabled. Please login and enable it again.</value>
   </data>
   <data name="FailedToLoginToBackupTitle" xml:space="preserve">
-    <value>Login failed!</value>
+    <value>Đăng nhập thất bại!</value>
   </data>
   <data name="LoggedInTitle" xml:space="preserve">
     <value>Logged in!</value>
@@ -875,5 +875,8 @@ To start create a new account. Accounts are used to organize payments and money 
   </data>
   <data name="InvalidSpendingLimitTitle" xml:space="preserve">
     <value>Invalid Spending Limit</value>
+  </data>
+  <data name="NotePlaceholderLabel" xml:space="preserve">
+    <value>Enter note to this payment..</value>
   </data>
 </root>

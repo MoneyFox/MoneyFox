@@ -121,22 +121,22 @@
     <value>Hakkında</value>
   </data>
   <data name="AccountNameLabel" xml:space="preserve">
-    <value>Account Name</value>
+    <value>Hesap adı</value>
   </data>
   <data name="AccountRequiredMessage" xml:space="preserve">
     <value>Lütfen bir hesap seçin.</value>
   </data>
   <data name="AccountsTitle" xml:space="preserve">
-    <value>Accounts</value>
+    <value>Hesaplar</value>
   </data>
   <data name="AddAccountLabel" xml:space="preserve">
-    <value>Add Account</value>
+    <value>Hesap ekle</value>
   </data>
   <data name="AddAccountTitle" xml:space="preserve">
     <value>Hesap ekle</value>
   </data>
   <data name="AddCategoryLabel" xml:space="preserve">
-    <value>Add Category</value>
+    <value>Kategori Ekle</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
     <value>Kategori Ekle</value>
@@ -148,28 +148,28 @@
     <value>Gelir ekle</value>
   </data>
   <data name="AddPaymentLabel" xml:space="preserve">
-    <value>Add Payment</value>
+    <value>Ödeme Ekle</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
     <value>Transfer ekle</value>
   </data>
   <data name="AmountLabel" xml:space="preserve">
-    <value>Amount</value>
+    <value>Miktar</value>
   </data>
   <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
     <value>The amount may not be negative. If it is subtracted or added is deteremined by the kind of payment you create.</value>
   </data>
   <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
-    <value>Negative amount</value>
+    <value>&amp;Eksi Nicelik:</value>
   </data>
   <data name="ANoteForPaymentIsRequired" xml:space="preserve">
     <value>A note for payment is required</value>
   </data>
   <data name="ApplyFilterLabel" xml:space="preserve">
-    <value>Apply Filter</value>
+    <value>Filtre Uygula</value>
   </data>
   <data name="AssetsLabel" xml:space="preserve">
-    <value>Assets</value>
+    <value>Varlıklar</value>
   </data>
   <data name="AuthenticationFailedTitle" xml:space="preserve">
     <value>Kimlik doğrulama başarısız</value>
@@ -178,16 +178,16 @@
     <value>If you activate this setting we backup your data automatically to OneDrive. Also we check periodically if something changed on another device.</value>
   </data>
   <data name="AutobackupLabel" xml:space="preserve">
-    <value>Automatically upload and download backups</value>
+    <value>Otomatik olarak yedeklemeleri gönder ve al</value>
   </data>
   <data name="AutobackupTitle" xml:space="preserve">
-    <value>Autobackup</value>
+    <value>Otomatik Yedek</value>
   </data>
   <data name="BackLabel" xml:space="preserve">
-    <value>Back</value>
+    <value>Geri</value>
   </data>
   <data name="BackupCreatedMessage" xml:space="preserve">
-    <value>Backup created successfully</value>
+    <value>Yedekleme başarılı bir şekilde oluşturuldu</value>
   </data>
   <data name="BackupFailedTitle" xml:space="preserve">
     <value>Yedekleme başarısız!</value>
@@ -199,7 +199,7 @@
     <value>Backup restored successfully.</value>
   </data>
   <data name="BackupTitle" xml:space="preserve">
-    <value>Backup</value>
+    <value>Yedekleme</value>
   </data>
   <data name="BiannuallyLabel" xml:space="preserve">
     <value>Yılda iki defa</value>
@@ -211,10 +211,10 @@
     <value>İki haftada bir</value>
   </data>
   <data name="BudgetsLabel" xml:space="preserve">
-    <value>Budgets</value>
+    <value>Bütçeler</value>
   </data>
   <data name="CanceledTitle" xml:space="preserve">
-    <value>Canceled</value>
+    <value>İptal edildi</value>
   </data>
   <data name="CancelLabel" xml:space="preserve">
     <value>İptal</value>
@@ -226,7 +226,7 @@
     <value>Nakit Akışı</value>
   </data>
   <data name="CashFlowStatisticTitle" xml:space="preserve">
-    <value>Cash Flow</value>
+    <value>Nakit akışı</value>
   </data>
   <data name="CategorieIntroductionText" xml:space="preserve">
     <value>Categories can help order your payments. Also they make it easier to analyze your spendings and incomes in the statistics.</value>
@@ -235,19 +235,19 @@
     <value>Masrafları kategorilere dağıt.</value>
   </data>
   <data name="CategoriesTitle" xml:space="preserve">
-    <value>Categories</value>
+    <value>Kategoriler</value>
   </data>
   <data name="CategoryLabel" xml:space="preserve">
-    <value>Category</value>
+    <value>Kategori</value>
   </data>
   <data name="CategoryNameLabel" xml:space="preserve">
-    <value>Category Name</value>
+    <value>Kategori Adı</value>
   </data>
   <data name="CategorySpreadingLabel" xml:space="preserve">
     <value>Kategori dağılımı</value>
   </data>
   <data name="CategorySpreadingTitle" xml:space="preserve">
-    <value>Category Spreading</value>
+    <value>Kategori dağılımı</value>
   </data>
   <data name="CategorySummaryDescription" xml:space="preserve">
     <value>Ödeme kategorilerinin özeti.</value>
@@ -256,7 +256,7 @@
     <value>Kategori Özeti</value>
   </data>
   <data name="CategorySummaryTitle" xml:space="preserve">
-    <value>Category Summary</value>
+    <value>Kategori Özeti</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
     <value>Hedef hesap</value>
@@ -268,40 +268,40 @@
     <value>That's it! You're set for using the MoneyFox.</value>
   </data>
   <data name="CompletedTitle" xml:space="preserve">
-    <value>Done!</value>
+    <value>Bitti!</value>
   </data>
   <data name="CompleteLabel" xml:space="preserve">
-    <value>Complete</value>
+    <value>Tamamlandı</value>
   </data>
   <data name="ContactLabel" xml:space="preserve">
-    <value>Contact</value>
+    <value>İletişim</value>
   </data>
   <data name="ContributerLabel" xml:space="preserve">
-    <value>To see all contributions head over to GitHub:</value>
+    <value>Bütün katkı sağlayanları github üstünde gör:</value>
   </data>
   <data name="ContributionsLabel" xml:space="preserve">
-    <value>Contributions</value>
+    <value>Katkılar</value>
   </data>
   <data name="CreateAccountNowLabel" xml:space="preserve">
-    <value>Create Account Now</value>
+    <value>Şimdi Hesap Oluştur</value>
   </data>
   <data name="CreateBackupLabel" xml:space="preserve">
-    <value>Create Backup</value>
+    <value>Yedek Oluştur</value>
   </data>
   <data name="CreateCategoryNowLabel" xml:space="preserve">
-    <value>Create Category now</value>
+    <value>Kategori Oluştur</value>
   </data>
   <data name="CreationDateHeader" xml:space="preserve">
-    <value>Creation Date</value>
+    <value>Oluşturma Tarihi</value>
   </data>
   <data name="CreationDateLabel" xml:space="preserve">
-    <value>Creation Date:</value>
+    <value>Oluşturma Tarihi</value>
   </data>
   <data name="CreationDateTemplateLabel" xml:space="preserve">
     <value>Creation Date: {0}</value>
   </data>
   <data name="CurrentBalanceLabel" xml:space="preserve">
-    <value>Current Balance</value>
+    <value>Mevcut bakiye</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
     <value>Günlük</value>
@@ -310,13 +310,13 @@
     <value>Haftasonu hariç günlük</value>
   </data>
   <data name="DarkLabel" xml:space="preserve">
-    <value>Dark</value>
+    <value>Karanlık</value>
   </data>
   <data name="DashboardTitle" xml:space="preserve">
     <value>Dashboard</value>
   </data>
   <data name="DateLabel" xml:space="preserve">
-    <value>Date</value>
+    <value>Tarih</value>
   </data>
   <data name="DateRangeHeader" xml:space="preserve">
     <value>Date Range</value>
@@ -382,10 +382,10 @@
     <value>Email</value>
   </data>
   <data name="EnddateLabel" xml:space="preserve">
-    <value>End Date</value>
+    <value>Bitiş Tarihi</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
-    <value>Is Endless</value>
+    <value>Sonsuz</value>
   </data>
   <data name="EndOfMonthBalanceLabel" xml:space="preserve">
     <value>End of Month</value>
@@ -397,7 +397,7 @@
     <value>Doğrulama sırasında hata oluştu. Lütfen daha sonra deneyin.</value>
   </data>
   <data name="ExcludedAccountsHeader" xml:space="preserve">
-    <value>Excluded Accounts</value>
+    <value>Hariç tutulan hesaplar</value>
   </data>
   <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
     <value>Expense: {0} / Income: {1}</value>
@@ -430,10 +430,10 @@
     <value>Go to Budgets</value>
   </data>
   <data name="IconDesignerLabel" xml:space="preserve">
-    <value>The app icon was created by:</value>
+    <value>Uygulama simgesini oluşturan:</value>
   </data>
   <data name="IncludedAccountsHeader" xml:space="preserve">
-    <value>Included Accounts</value>
+    <value>Dahil edilmiş hesaplar</value>
   </data>
   <data name="IncomeAndExpensesLabel" xml:space="preserve">
     <value>Income and Expenses</value>
@@ -451,11 +451,11 @@
     <value>Kazançlar</value>
   </data>
   <data name="InfoLabel" xml:space="preserve">
-    <value>Info</value>
+    <value>Bilgi</value>
   </data>
   <data name="InfoOpenSource" xml:space="preserve">
-    <value>This is an open-source project – and we’d love to work with you! Feel free to contribute.
-Tap to visit the Repository:</value>
+    <value>Bu açık kaynaklı bir projedir - Katkıda bulunmaktan çekinmeyin! Sizinle çalışmayı çok isteriz. 
+Depoyu ziyaret etmek için dokunun:</value>
   </data>
   <data name="InvalidEnddateMessage" xml:space="preserve">
     <value>Yinelenecek ödemenin bitiş tarihi gelecekte olmalıdır. Lütfen girdiyi kontrol ediniz.</value>
@@ -470,10 +470,10 @@ Tap to visit the Repository:</value>
     <value>Invalid Number</value>
   </data>
   <data name="IsClearedLabel" xml:space="preserve">
-    <value>Cleared</value>
+    <value>Temizlendi</value>
   </data>
   <data name="IsExcludedLabel" xml:space="preserve">
-    <value>Exclude account from balance</value>
+    <value>Hesabı bakiyeden çıkart</value>
   </data>
   <data name="IsGroupedLabel" xml:space="preserve">
     <value>Group List</value>
@@ -485,10 +485,10 @@ Tap to visit the Repository:</value>
     <value>Recurring</value>
   </data>
   <data name="LastBackupDateLabel" xml:space="preserve">
-    <value>Last Backup created at:</value>
+    <value>Son yedekleme tarihi:</value>
   </data>
   <data name="LightLabel" xml:space="preserve">
-    <value>Light</value>
+    <value>Açık</value>
   </data>
   <data name="LoadingLabel" xml:space="preserve">
     <value>Yükleniyor...</value>
@@ -509,13 +509,13 @@ Tap to visit the Repository:</value>
     <value>Login failed!</value>
   </data>
   <data name="LoginLabel" xml:space="preserve">
-    <value>Login</value>
+    <value>Giriş</value>
   </data>
   <data name="LogoutCanceledMessage" xml:space="preserve">
     <value>Logout was canceled.</value>
   </data>
   <data name="LogoutLabel" xml:space="preserve">
-    <value>Logout</value>
+    <value>Çıkış</value>
   </data>
   <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
     <value>Zorunlu Alanlar</value>
@@ -581,7 +581,7 @@ Tap to visit the Repository:</value>
     <value>There are no Payments. Add one by tapping on the plus button.</value>
   </data>
   <data name="NoteLabel" xml:space="preserve">
-    <value>Note</value>
+    <value>Not</value>
   </data>
   <data name="NotNowLabel" xml:space="preserve">
     <value>Henüz değil</value>
@@ -619,7 +619,7 @@ To get there go to the account list and select the respective account.</value>
     <value>Üç Aylık</value>
   </data>
   <data name="RateLabel" xml:space="preserve">
-    <value>Rate this app!</value>
+    <value>Rate us!</value>
   </data>
   <data name="RateReminderText" xml:space="preserve">
     <value>Umarız uygulamamızı beğenmişsinizdir. Mağazada bize puan vererek destekleyebilirsiniz.
@@ -629,10 +629,10 @@ Puan vermek için mağazaya gitmek ister misiniz?</value>
     <value>Bu uygulamayı puanla</value>
   </data>
   <data name="RecurrenceLabel" xml:space="preserve">
-    <value>Recurrence</value>
+    <value>Yineleme</value>
   </data>
   <data name="RecurringLabel" xml:space="preserve">
-    <value>Is Recurring</value>
+    <value>Yinelenen</value>
   </data>
   <data name="RequireNoteCheckbox" xml:space="preserve">
     <value>Note required</value>
@@ -641,17 +641,17 @@ Puan vermek için mağazaya gitmek ister misiniz?</value>
     <value>Restoring backup was canceled.</value>
   </data>
   <data name="RestoreBackupInformationLabel" xml:space="preserve">
-    <value>Download the previous uploaded database backup and replace your local data with it.
-WARNING: Local changes you made meanwhile will be lost!</value>
+    <value>Bir önceki yedeklemenizi indirip, lokal verilerinizle değiştirin.
+UYARI: Lokal değişiklik yaptığınız sırada verileriniz kaybolabilir!</value>
   </data>
   <data name="RestoreBackupLabel" xml:space="preserve">
-    <value>Restore Backup</value>
+    <value>Yedeklemeyi geri yükle</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
     <value>Hasılat</value>
   </data>
   <data name="SaveLabel" xml:space="preserve">
-    <value>Save</value>
+    <value>Kaydet</value>
   </data>
   <data name="SavingAccountMessage" xml:space="preserve">
     <value>Saving Account...</value>
@@ -663,13 +663,13 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Saving Payment...</value>
   </data>
   <data name="SearchLabel" xml:space="preserve">
-    <value>Search</value>
+    <value>Ara</value>
   </data>
   <data name="SelectCategoryTitle" xml:space="preserve">
-    <value>Select Category</value>
+    <value>Kategori Seçin</value>
   </data>
   <data name="SelectDateLabel" xml:space="preserve">
-    <value>Select Date</value>
+    <value>Tarih Seç</value>
   </data>
   <data name="SelectedAccountHeader" xml:space="preserve">
     <value>Selected Account</value>
@@ -678,10 +678,10 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Filtre seçin</value>
   </data>
   <data name="SelectStatisticTitle" xml:space="preserve">
-    <value>Select Statistic</value>
+    <value>İstatistik seç</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>Ayarlar</value>
   </data>
   <data name="SkipLabel" xml:space="preserve">
     <value>Skip</value>
@@ -690,7 +690,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Time Range:</value>
   </data>
   <data name="StatisticsTitle" xml:space="preserve">
-    <value>Statistics</value>
+    <value>İstatistikler</value>
   </data>
   <data name="TargetAccountLabel" xml:space="preserve">
     <value>Hedef hesap</value>
@@ -708,7 +708,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Transfer</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
+    <value>Birşey düzgün çevrilmedi mi? veya hiç çevrilmemişse bize yardım et! Crowdin'e yol al ve Money Fox'un gelişmesine yardımcı ol:</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
     <value>There was an issue during the operation. Error Message {0}</value>
@@ -717,7 +717,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Upload backup was canceled.</value>
   </data>
   <data name="VersionLabel" xml:space="preserve">
-    <value>Version</value>
+    <value>Sürüm</value>
   </data>
   <data name="WebsiteLabel" xml:space="preserve">
     <value>Website</value>
@@ -726,7 +726,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Haftalık</value>
   </data>
   <data name="WelcomeLabel" xml:space="preserve">
-    <value>Welcome!</value>
+    <value>Hoşgeldiniz!</value>
   </data>
   <data name="WelcomePageSubtitle" xml:space="preserve">
     <value>Glad to have you!</value>
@@ -748,7 +748,7 @@ To start create a new account. Accounts are used to organize payments and money 
     <value>Manage your Accounts</value>
   </data>
   <data name="AddPaymentTitle" xml:space="preserve">
-    <value>Add Payment</value>
+    <value>Ödeme Ekle</value>
   </data>
   <data name="AddPaymentToolTip" xml:space="preserve">
     <value>Add a Payment with details</value>
@@ -808,7 +808,7 @@ To start create a new account. Accounts are used to organize payments and money 
     <value>Open Log</value>
   </data>
   <data name="BudgetsTitle" xml:space="preserve">
-    <value>Budgets</value>
+    <value>Bütçeler</value>
   </data>
   <data name="NoBudgetsMessage" xml:space="preserve">
     <value>There are no Budgets yet. Go ahead and create one!</value>
@@ -875,5 +875,8 @@ To start create a new account. Accounts are used to organize payments and money 
   </data>
   <data name="InvalidSpendingLimitTitle" xml:space="preserve">
     <value>Invalid Spending Limit</value>
+  </data>
+  <data name="NotePlaceholderLabel" xml:space="preserve">
+    <value>Enter note to this payment..</value>
   </data>
 </root>

@@ -121,22 +121,22 @@
     <value>Tungkol sa</value>
   </data>
   <data name="AccountNameLabel" xml:space="preserve">
-    <value>Account Name</value>
+    <value>Pangalan ng Account</value>
   </data>
   <data name="AccountRequiredMessage" xml:space="preserve">
     <value>Pumili ng isang Account.</value>
   </data>
   <data name="AccountsTitle" xml:space="preserve">
-    <value>Accounts</value>
+    <value>Mga Account</value>
   </data>
   <data name="AddAccountLabel" xml:space="preserve">
-    <value>Add Account</value>
+    <value>Magdagdag ng Account</value>
   </data>
   <data name="AddAccountTitle" xml:space="preserve">
     <value>Magdagdag ng Account</value>
   </data>
   <data name="AddCategoryLabel" xml:space="preserve">
-    <value>Add Category</value>
+    <value>Magdagdag ng kategorya</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
     <value>Magdagdag ng kategorya</value>
@@ -154,7 +154,7 @@
     <value>Magdagdag ng Paglipat</value>
   </data>
   <data name="AmountLabel" xml:space="preserve">
-    <value>Amount</value>
+    <value>Halaga</value>
   </data>
   <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
     <value>The amount may not be negative. If it is subtracted or added is deteremined by the kind of payment you create.</value>
@@ -178,7 +178,7 @@
     <value>If you activate this setting we backup your data automatically to OneDrive. Also we check periodically if something changed on another device.</value>
   </data>
   <data name="AutobackupLabel" xml:space="preserve">
-    <value>Automatically upload and download backups</value>
+    <value>Awtomatikong mag-upload at i-download ang mga backup</value>
   </data>
   <data name="AutobackupTitle" xml:space="preserve">
     <value>Autobackup</value>
@@ -235,19 +235,19 @@
     <value>Paghahati-hati ng mga gastusin sa mga kategorya.</value>
   </data>
   <data name="CategoriesTitle" xml:space="preserve">
-    <value>Categories</value>
+    <value>Mga kategorya</value>
   </data>
   <data name="CategoryLabel" xml:space="preserve">
-    <value>Category</value>
+    <value>Kategorya</value>
   </data>
   <data name="CategoryNameLabel" xml:space="preserve">
-    <value>Category Name</value>
+    <value>Pangalan nang kategorya</value>
   </data>
   <data name="CategorySpreadingLabel" xml:space="preserve">
     <value>Paghahati-hati ng Kategorya</value>
   </data>
   <data name="CategorySpreadingTitle" xml:space="preserve">
-    <value>Category Spreading</value>
+    <value>Paghahati-hati ng Kategorya</value>
   </data>
   <data name="CategorySummaryDescription" xml:space="preserve">
     <value>Buod ng ang mga kategorya na may pagbabayad.</value>
@@ -256,7 +256,7 @@
     <value>Buod ng kategorya</value>
   </data>
   <data name="CategorySummaryTitle" xml:space="preserve">
-    <value>Category Summary</value>
+    <value>Buod ng kategorya</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
     <value>Pinangbayad na Account</value>
@@ -277,7 +277,7 @@
     <value>Contact</value>
   </data>
   <data name="ContributerLabel" xml:space="preserve">
-    <value>To see all contributions head over to GitHub:</value>
+    <value>Upang makita ang lahat ng pinuno ng mga kontribusyon pumunta sa GitHub:</value>
   </data>
   <data name="ContributionsLabel" xml:space="preserve">
     <value>Contributions</value>
@@ -286,7 +286,7 @@
     <value>Create Account Now</value>
   </data>
   <data name="CreateBackupLabel" xml:space="preserve">
-    <value>Create Backup</value>
+    <value>Lumikha ng Backup</value>
   </data>
   <data name="CreateCategoryNowLabel" xml:space="preserve">
     <value>Create Category now</value>
@@ -301,7 +301,7 @@
     <value>Creation Date: {0}</value>
   </data>
   <data name="CurrentBalanceLabel" xml:space="preserve">
-    <value>Current Balance</value>
+    <value>Kasalukuyang balanse</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
     <value>Araw-araw</value>
@@ -310,13 +310,13 @@
     <value>Araw-araw maliban sa Sabado at Linggo</value>
   </data>
   <data name="DarkLabel" xml:space="preserve">
-    <value>Dark</value>
+    <value>Madilim</value>
   </data>
   <data name="DashboardTitle" xml:space="preserve">
     <value>Dashboard</value>
   </data>
   <data name="DateLabel" xml:space="preserve">
-    <value>Date</value>
+    <value>Petsa</value>
   </data>
   <data name="DateRangeHeader" xml:space="preserve">
     <value>Date Range</value>
@@ -382,10 +382,10 @@
     <value>Email</value>
   </data>
   <data name="EnddateLabel" xml:space="preserve">
-    <value>End Date</value>
+    <value>Petsa ng pagtatapos</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
-    <value>Is Endless</value>
+    <value>Walang hanggan</value>
   </data>
   <data name="EndOfMonthBalanceLabel" xml:space="preserve">
     <value>End of Month</value>
@@ -397,7 +397,7 @@
     <value>Nagkaroon ng error sa panahon ng pagpapatunay. Mangyaring subukan ulit mamaya.</value>
   </data>
   <data name="ExcludedAccountsHeader" xml:space="preserve">
-    <value>Excluded Accounts</value>
+    <value>Hindi isinamang mga Account</value>
   </data>
   <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
     <value>Expense: {0} / Income: {1}</value>
@@ -430,10 +430,10 @@
     <value>Go to Budgets</value>
   </data>
   <data name="IconDesignerLabel" xml:space="preserve">
-    <value>The app icon was created by:</value>
+    <value>Ang icon ng app ay nilikha ni:</value>
   </data>
   <data name="IncludedAccountsHeader" xml:space="preserve">
-    <value>Included Accounts</value>
+    <value>Mga Account na Isinali</value>
   </data>
   <data name="IncomeAndExpensesLabel" xml:space="preserve">
     <value>Income and Expenses</value>
@@ -451,11 +451,10 @@
     <value>Mga nadagdag</value>
   </data>
   <data name="InfoLabel" xml:space="preserve">
-    <value>Info</value>
+    <value>Impormasyon</value>
   </data>
   <data name="InfoOpenSource" xml:space="preserve">
-    <value>This is an open-source project – and we’d love to work with you! Feel free to contribute.
-Tap to visit the Repository:</value>
+    <value>Ito ay isang open source na proyekto – at nais naming makipagtulungan sa inyo! Huwag mag-atubiling mag-ambag. I-tap upang bisitahin ang pinagkukunan:</value>
   </data>
   <data name="InvalidEnddateMessage" xml:space="preserve">
     <value>Ang enddate ng isang umuulit na pagbabayad ay dapat na sa hinaharap. Mangyaring suriin ang iyong input.</value>
@@ -473,7 +472,7 @@ Tap to visit the Repository:</value>
     <value>Cleared</value>
   </data>
   <data name="IsExcludedLabel" xml:space="preserve">
-    <value>Exclude account from balance</value>
+    <value>Huwag bilangin ang account sa balanse</value>
   </data>
   <data name="IsGroupedLabel" xml:space="preserve">
     <value>Group List</value>
@@ -485,10 +484,10 @@ Tap to visit the Repository:</value>
     <value>Recurring</value>
   </data>
   <data name="LastBackupDateLabel" xml:space="preserve">
-    <value>Last Backup created at:</value>
+    <value>Huling Backup na nilikha nuong:</value>
   </data>
   <data name="LightLabel" xml:space="preserve">
-    <value>Light</value>
+    <value>Maliwanag</value>
   </data>
   <data name="LoadingLabel" xml:space="preserve">
     <value>Naglo-load...</value>
@@ -509,7 +508,7 @@ Tap to visit the Repository:</value>
     <value>Login failed!</value>
   </data>
   <data name="LoginLabel" xml:space="preserve">
-    <value>Login</value>
+    <value>Mag-Login</value>
   </data>
   <data name="LogoutCanceledMessage" xml:space="preserve">
     <value>Logout was canceled.</value>
@@ -581,7 +580,7 @@ Tap to visit the Repository:</value>
     <value>There are no Payments. Add one by tapping on the plus button.</value>
   </data>
   <data name="NoteLabel" xml:space="preserve">
-    <value>Note</value>
+    <value>Paalala</value>
   </data>
   <data name="NotNowLabel" xml:space="preserve">
     <value>Hindi Ngayon</value>
@@ -619,7 +618,7 @@ To get there go to the account list and select the respective account.</value>
     <value>Kada tatlong buwan</value>
   </data>
   <data name="RateLabel" xml:space="preserve">
-    <value>Rate this app!</value>
+    <value>Rate us!</value>
   </data>
   <data name="RateReminderText" xml:space="preserve">
     <value>Sana ay magustuhan mo ang aming app. Suportahan kami ng rating sa store. Gusto mo bang pumunta sa store upang mag-rate?</value>
@@ -628,10 +627,10 @@ To get there go to the account list and select the respective account.</value>
     <value>I-rate ang App na ito</value>
   </data>
   <data name="RecurrenceLabel" xml:space="preserve">
-    <value>Recurrence</value>
+    <value>Pag-uulit</value>
   </data>
   <data name="RecurringLabel" xml:space="preserve">
-    <value>Is Recurring</value>
+    <value>Ay umuulit</value>
   </data>
   <data name="RequireNoteCheckbox" xml:space="preserve">
     <value>Note required</value>
@@ -640,17 +639,16 @@ To get there go to the account list and select the respective account.</value>
     <value>Restoring backup was canceled.</value>
   </data>
   <data name="RestoreBackupInformationLabel" xml:space="preserve">
-    <value>Download the previous uploaded database backup and replace your local data with it.
-WARNING: Local changes you made meanwhile will be lost!</value>
+    <value>I-download ang nakaraang na-upload na database backup at ipalit ito sa iyong lokal na data. Babala: Ang mga Lokal na pagbabago na ginawa mo samantala ay mawawala!</value>
   </data>
   <data name="RestoreBackupLabel" xml:space="preserve">
-    <value>Restore Backup</value>
+    <value>Ibalik ang Backup</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
     <value>Kita</value>
   </data>
   <data name="SaveLabel" xml:space="preserve">
-    <value>Save</value>
+    <value>I-save</value>
   </data>
   <data name="SavingAccountMessage" xml:space="preserve">
     <value>Saving Account...</value>
@@ -662,13 +660,13 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Saving Payment...</value>
   </data>
   <data name="SearchLabel" xml:space="preserve">
-    <value>Search</value>
+    <value>Hanapin</value>
   </data>
   <data name="SelectCategoryTitle" xml:space="preserve">
-    <value>Select Category</value>
+    <value>Pumili ng kategorya</value>
   </data>
   <data name="SelectDateLabel" xml:space="preserve">
-    <value>Select Date</value>
+    <value>Pumili ng petsa</value>
   </data>
   <data name="SelectedAccountHeader" xml:space="preserve">
     <value>Selected Account</value>
@@ -677,10 +675,10 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Pumili ng Filter</value>
   </data>
   <data name="SelectStatisticTitle" xml:space="preserve">
-    <value>Select Statistic</value>
+    <value>Piliin ang estatistika</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>Mga setting</value>
   </data>
   <data name="SkipLabel" xml:space="preserve">
     <value>Skip</value>
@@ -689,7 +687,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Time Range:</value>
   </data>
   <data name="StatisticsTitle" xml:space="preserve">
-    <value>Statistics</value>
+    <value>Mga Istatistika</value>
   </data>
   <data name="TargetAccountLabel" xml:space="preserve">
     <value>Target na account</value>
@@ -707,7 +705,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Transfer</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
+    <value>May hindi ba wastong pagsasalin o hindi naisalin? Tulungan ninyo kami! Pumunta sa crowdin at makatulong sa amin na mapagbuti ang Money Fox:</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
     <value>There was an issue during the operation. Error Message {0}</value>
@@ -716,7 +714,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Upload backup was canceled.</value>
   </data>
   <data name="VersionLabel" xml:space="preserve">
-    <value>Version</value>
+    <value>Bersyon</value>
   </data>
   <data name="WebsiteLabel" xml:space="preserve">
     <value>Website</value>
@@ -725,7 +723,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Lingguhan</value>
   </data>
   <data name="WelcomeLabel" xml:space="preserve">
-    <value>Welcome!</value>
+    <value>Maligayang Pagdating!</value>
   </data>
   <data name="WelcomePageSubtitle" xml:space="preserve">
     <value>Glad to have you!</value>
@@ -874,5 +872,8 @@ To start create a new account. Accounts are used to organize payments and money 
   </data>
   <data name="InvalidSpendingLimitTitle" xml:space="preserve">
     <value>Invalid Spending Limit</value>
+  </data>
+  <data name="NotePlaceholderLabel" xml:space="preserve">
+    <value>Enter note to this payment..</value>
   </data>
 </root>

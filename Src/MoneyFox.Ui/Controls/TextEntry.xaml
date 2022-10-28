@@ -14,7 +14,7 @@
             Text="{Binding TextFieldTitle}" />
         <Entry 
             Text="{Binding EntryText}"
-            HeightRequest="40"
+            HeightRequest="36"
             Placeholder="{Binding EntryPlaceholder}" />
     </VerticalStackLayout>
 </ContentView>

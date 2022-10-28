@@ -121,22 +121,22 @@
     <value>Tentang</value>
   </data>
   <data name="AccountNameLabel" xml:space="preserve">
-    <value>Account Name</value>
+    <value>Nama Akun</value>
   </data>
   <data name="AccountRequiredMessage" xml:space="preserve">
     <value>Silahkan pilih Akun.</value>
   </data>
   <data name="AccountsTitle" xml:space="preserve">
-    <value>Accounts</value>
+    <value>Akun</value>
   </data>
   <data name="AddAccountLabel" xml:space="preserve">
-    <value>Add Account</value>
+    <value>Tambahkan Akun</value>
   </data>
   <data name="AddAccountTitle" xml:space="preserve">
     <value>Tambakan Akun</value>
   </data>
   <data name="AddCategoryLabel" xml:space="preserve">
-    <value>Add Category</value>
+    <value>Tambah Kategori</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
     <value>Tambahkan Kategori</value>
@@ -154,7 +154,7 @@
     <value>Tambahkan Transfer</value>
   </data>
   <data name="AmountLabel" xml:space="preserve">
-    <value>Amount</value>
+    <value>Nominal</value>
   </data>
   <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
     <value>The amount may not be negative. If it is subtracted or added is deteremined by the kind of payment you create.</value>
@@ -178,7 +178,7 @@
     <value>If you activate this setting we backup your data automatically to OneDrive. Also we check periodically if something changed on another device.</value>
   </data>
   <data name="AutobackupLabel" xml:space="preserve">
-    <value>Automatically upload and download backups</value>
+    <value>Otomatis unggah dan unduh cadangan</value>
   </data>
   <data name="AutobackupTitle" xml:space="preserve">
     <value>Autobackup</value>
@@ -199,7 +199,7 @@
     <value>Backup restored successfully.</value>
   </data>
   <data name="BackupTitle" xml:space="preserve">
-    <value>Backup</value>
+    <value>Cadangan</value>
   </data>
   <data name="BiannuallyLabel" xml:space="preserve">
     <value>Dua kali</value>
@@ -226,7 +226,7 @@
     <value>Aliran Tunai</value>
   </data>
   <data name="CashFlowStatisticTitle" xml:space="preserve">
-    <value>Cash Flow</value>
+    <value>Arus Tunai</value>
   </data>
   <data name="CategorieIntroductionText" xml:space="preserve">
     <value>Categories can help order your payments. Also they make it easier to analyze your spendings and incomes in the statistics.</value>
@@ -235,19 +235,19 @@
     <value>Penyebaran biaya ke kategori.</value>
   </data>
   <data name="CategoriesTitle" xml:space="preserve">
-    <value>Categories</value>
+    <value>Kategori</value>
   </data>
   <data name="CategoryLabel" xml:space="preserve">
-    <value>Category</value>
+    <value>Kategori</value>
   </data>
   <data name="CategoryNameLabel" xml:space="preserve">
-    <value>Category Name</value>
+    <value>Nama Kategori</value>
   </data>
   <data name="CategorySpreadingLabel" xml:space="preserve">
     <value>Penyebaran Kategori</value>
   </data>
   <data name="CategorySpreadingTitle" xml:space="preserve">
-    <value>Category Spreading</value>
+    <value>Penyebaran Kategori</value>
   </data>
   <data name="CategorySummaryDescription" xml:space="preserve">
     <value>Ringkasan kategori untuk Pembayaran.</value>
@@ -256,7 +256,7 @@
     <value>Ringkasan Kategori</value>
   </data>
   <data name="CategorySummaryTitle" xml:space="preserve">
-    <value>Category Summary</value>
+    <value>Ringkasan Kategori</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
     <value>Akun Dibebankan</value>
@@ -274,10 +274,10 @@
     <value>Complete</value>
   </data>
   <data name="ContactLabel" xml:space="preserve">
-    <value>Contact</value>
+    <value>Kontak</value>
   </data>
   <data name="ContributerLabel" xml:space="preserve">
-    <value>To see all contributions head over to GitHub:</value>
+    <value>Untuk melihat semua kontribusi ke Github:</value>
   </data>
   <data name="ContributionsLabel" xml:space="preserve">
     <value>Contributions</value>
@@ -286,7 +286,7 @@
     <value>Create Account Now</value>
   </data>
   <data name="CreateBackupLabel" xml:space="preserve">
-    <value>Create Backup</value>
+    <value>Buat Cadangan</value>
   </data>
   <data name="CreateCategoryNowLabel" xml:space="preserve">
     <value>Create Category now</value>
@@ -301,7 +301,7 @@
     <value>Creation Date: {0}</value>
   </data>
   <data name="CurrentBalanceLabel" xml:space="preserve">
-    <value>Current Balance</value>
+    <value>Saldo Saat ini</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
     <value>Harian</value>
@@ -310,13 +310,13 @@
     <value>Harian tanpa akhir pekan</value>
   </data>
   <data name="DarkLabel" xml:space="preserve">
-    <value>Dark</value>
+    <value>Gelap</value>
   </data>
   <data name="DashboardTitle" xml:space="preserve">
     <value>Dashboard</value>
   </data>
   <data name="DateLabel" xml:space="preserve">
-    <value>Date</value>
+    <value>Tanggal</value>
   </data>
   <data name="DateRangeHeader" xml:space="preserve">
     <value>Date Range</value>
@@ -382,10 +382,10 @@
     <value>Email</value>
   </data>
   <data name="EnddateLabel" xml:space="preserve">
-    <value>End Date</value>
+    <value>Tanggal Berakhir</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
-    <value>Is Endless</value>
+    <value>Tidak ada habisnya</value>
   </data>
   <data name="EndOfMonthBalanceLabel" xml:space="preserve">
     <value>End of Month</value>
@@ -397,7 +397,7 @@
     <value>Terjadi kesalahan saat melakukan otentidikasi. Silahkan coba lagi nanti.</value>
   </data>
   <data name="ExcludedAccountsHeader" xml:space="preserve">
-    <value>Excluded Accounts</value>
+    <value>Akun Dikecualikan</value>
   </data>
   <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
     <value>Expense: {0} / Income: {1}</value>
@@ -430,10 +430,10 @@
     <value>Go to Budgets</value>
   </data>
   <data name="IconDesignerLabel" xml:space="preserve">
-    <value>The app icon was created by:</value>
+    <value>Ikon aplikasi dibuat oleh:</value>
   </data>
   <data name="IncludedAccountsHeader" xml:space="preserve">
-    <value>Included Accounts</value>
+    <value>Termasuk Akun</value>
   </data>
   <data name="IncomeAndExpensesLabel" xml:space="preserve">
     <value>Income and Expenses</value>
@@ -451,11 +451,10 @@
     <value>Keuntungan</value>
   </data>
   <data name="InfoLabel" xml:space="preserve">
-    <value>Info</value>
+    <value>Informasi</value>
   </data>
   <data name="InfoOpenSource" xml:space="preserve">
-    <value>This is an open-source project – and we’d love to work with you! Feel free to contribute.
-Tap to visit the Repository:</value>
+    <value>Ini adalah proyek sumber terbuka dan kami akan senang bekerja dengan Anda! Bebas untuk berkontribusi. Ketuk untuk mengunjungi repositori:</value>
   </data>
   <data name="InvalidEnddateMessage" xml:space="preserve">
     <value>Berakhirnya pembayaran berulang harus dilakukan di masa depan. Silahkan periksa masukkan Anda.</value>
@@ -470,10 +469,10 @@ Tap to visit the Repository:</value>
     <value>Invalid Number</value>
   </data>
   <data name="IsClearedLabel" xml:space="preserve">
-    <value>Cleared</value>
+    <value>Dibersihkan</value>
   </data>
   <data name="IsExcludedLabel" xml:space="preserve">
-    <value>Exclude account from balance</value>
+    <value>Kecualikan akun dari saldo</value>
   </data>
   <data name="IsGroupedLabel" xml:space="preserve">
     <value>Group List</value>
@@ -485,10 +484,10 @@ Tap to visit the Repository:</value>
     <value>Recurring</value>
   </data>
   <data name="LastBackupDateLabel" xml:space="preserve">
-    <value>Last Backup created at:</value>
+    <value>Cadangan terakhir dibuat pada:</value>
   </data>
   <data name="LightLabel" xml:space="preserve">
-    <value>Light</value>
+    <value>Terang</value>
   </data>
   <data name="LoadingLabel" xml:space="preserve">
     <value>Memuat...</value>
@@ -509,13 +508,13 @@ Tap to visit the Repository:</value>
     <value>Login failed!</value>
   </data>
   <data name="LoginLabel" xml:space="preserve">
-    <value>Login</value>
+    <value>Masuk</value>
   </data>
   <data name="LogoutCanceledMessage" xml:space="preserve">
     <value>Logout was canceled.</value>
   </data>
   <data name="LogoutLabel" xml:space="preserve">
-    <value>Logout</value>
+    <value>Keluar</value>
   </data>
   <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
     <value>Bidang wajib</value>
@@ -581,7 +580,7 @@ Tap to visit the Repository:</value>
     <value>There are no Payments. Add one by tapping on the plus button.</value>
   </data>
   <data name="NoteLabel" xml:space="preserve">
-    <value>Note</value>
+    <value>Catatan</value>
   </data>
   <data name="NotNowLabel" xml:space="preserve">
     <value>Tidak Sekarang</value>
@@ -619,7 +618,7 @@ To get there go to the account list and select the respective account.</value>
     <value>Kuartalan</value>
   </data>
   <data name="RateLabel" xml:space="preserve">
-    <value>Rate this app!</value>
+    <value>Rate us!</value>
   </data>
   <data name="RateReminderText" xml:space="preserve">
     <value>Kami harap Anda menyukai aplikasi kami. Dukung kami dengan penilaian di toko.
@@ -629,10 +628,10 @@ Apakah Anda ingin pergi k toko untuk menilai?</value>
     <value>Beri nilai aplikasi ini</value>
   </data>
   <data name="RecurrenceLabel" xml:space="preserve">
-    <value>Recurrence</value>
+    <value>Perulangan</value>
   </data>
   <data name="RecurringLabel" xml:space="preserve">
-    <value>Is Recurring</value>
+    <value>Adalah Berulang</value>
   </data>
   <data name="RequireNoteCheckbox" xml:space="preserve">
     <value>Note required</value>
@@ -641,17 +640,16 @@ Apakah Anda ingin pergi k toko untuk menilai?</value>
     <value>Restoring backup was canceled.</value>
   </data>
   <data name="RestoreBackupInformationLabel" xml:space="preserve">
-    <value>Download the previous uploaded database backup and replace your local data with it.
-WARNING: Local changes you made meanwhile will be lost!</value>
+    <value>Unduh database cadangan yang sebelumnya diunggahdan ganti dengan data lokal Anda itu. PERINGATAN: Perubahan lokal yang Anda buat sementara akan kami hilangkan!</value>
   </data>
   <data name="RestoreBackupLabel" xml:space="preserve">
-    <value>Restore Backup</value>
+    <value>Mengembalikan Cadangan</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
     <value>Pendapatan</value>
   </data>
   <data name="SaveLabel" xml:space="preserve">
-    <value>Save</value>
+    <value>Simpan</value>
   </data>
   <data name="SavingAccountMessage" xml:space="preserve">
     <value>Saving Account...</value>
@@ -663,13 +661,13 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Saving Payment...</value>
   </data>
   <data name="SearchLabel" xml:space="preserve">
-    <value>Search</value>
+    <value>Pencarian</value>
   </data>
   <data name="SelectCategoryTitle" xml:space="preserve">
-    <value>Select Category</value>
+    <value>Pilih Kategori</value>
   </data>
   <data name="SelectDateLabel" xml:space="preserve">
-    <value>Select Date</value>
+    <value>Pilih Tanggal</value>
   </data>
   <data name="SelectedAccountHeader" xml:space="preserve">
     <value>Selected Account</value>
@@ -678,10 +676,10 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Menyaring pilihan</value>
   </data>
   <data name="SelectStatisticTitle" xml:space="preserve">
-    <value>Select Statistic</value>
+    <value>Pilih Statistik</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>Pengaturan</value>
   </data>
   <data name="SkipLabel" xml:space="preserve">
     <value>Skip</value>
@@ -690,7 +688,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Time Range:</value>
   </data>
   <data name="StatisticsTitle" xml:space="preserve">
-    <value>Statistics</value>
+    <value>Statistik</value>
   </data>
   <data name="TargetAccountLabel" xml:space="preserve">
     <value>Akun Tujuan</value>
@@ -708,7 +706,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Transfer</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
+    <value>Apakah ada sesuatu yang tidak diterjemahkan atau tidak diterjemahkan sama sekali? Bantu kami! Pergilah ke Crowdin dan bantu meningkatkan MoneyFox:</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
     <value>There was an issue during the operation. Error Message {0}</value>
@@ -717,7 +715,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Upload backup was canceled.</value>
   </data>
   <data name="VersionLabel" xml:space="preserve">
-    <value>Version</value>
+    <value>Versi</value>
   </data>
   <data name="WebsiteLabel" xml:space="preserve">
     <value>Website</value>
@@ -726,7 +724,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Mingguan</value>
   </data>
   <data name="WelcomeLabel" xml:space="preserve">
-    <value>Welcome!</value>
+    <value>Selamat Datang!</value>
   </data>
   <data name="WelcomePageSubtitle" xml:space="preserve">
     <value>Glad to have you!</value>
@@ -875,5 +873,8 @@ To start create a new account. Accounts are used to organize payments and money 
   </data>
   <data name="InvalidSpendingLimitTitle" xml:space="preserve">
     <value>Invalid Spending Limit</value>
+  </data>
+  <data name="NotePlaceholderLabel" xml:space="preserve">
+    <value>Enter note to this payment..</value>
   </data>
 </root>

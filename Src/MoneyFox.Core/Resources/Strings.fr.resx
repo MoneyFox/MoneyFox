@@ -873,4 +873,7 @@ Pour commencer, créez un nouveau compte. Les comptes sont utilisés pour organi
   <data name="InvalidSpendingLimitTitle" xml:space="preserve">
     <value>Limite de Dépenses Quotidienne</value>
   </data>
+  <data name="NotePlaceholderLabel" xml:space="preserve">
+    <value>Entrez une note pour ce paiement..</value>
+  </data>
 </root>
