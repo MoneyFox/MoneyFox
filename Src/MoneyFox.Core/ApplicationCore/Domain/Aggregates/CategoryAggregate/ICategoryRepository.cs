@@ -8,5 +8,3 @@ public interface ICategoryRepository : IRepository<Category>
 {
     Task AddAsync(Category category, CancellationToken cancellationToken = default);
 }
-
-

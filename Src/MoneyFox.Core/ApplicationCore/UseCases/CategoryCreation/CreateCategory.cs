@@ -39,5 +39,3 @@ public static class CreateCategory
         }
     }
 }
-
-

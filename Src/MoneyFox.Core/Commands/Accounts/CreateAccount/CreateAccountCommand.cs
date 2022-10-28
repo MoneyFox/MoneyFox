@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Commands.Accounts.CreateAccount;
+namespace MoneyFox.Core.Commands.Accounts.CreateAccount;
 
 using System.Threading;
 using System.Threading.Tasks;
@@ -40,5 +40,3 @@ public class CreateAccountCommand : IRequest
         }
     }
 }
-
-

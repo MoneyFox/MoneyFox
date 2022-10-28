@@ -20,5 +20,3 @@ internal sealed class CategoryRepository : ICategoryRepository
         _ = await appDbContext.SaveChangesAsync(cancellationToken: cancellationToken);
     }
 }
-
-

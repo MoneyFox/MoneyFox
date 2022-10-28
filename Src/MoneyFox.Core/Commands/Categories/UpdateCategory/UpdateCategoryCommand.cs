@@ -35,5 +35,3 @@ public class UpdateCategoryCommand : IRequest
         }
     }
 }
-
-

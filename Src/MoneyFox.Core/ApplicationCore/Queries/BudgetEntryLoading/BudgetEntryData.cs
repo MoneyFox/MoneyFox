@@ -33,5 +33,3 @@ public sealed class BudgetEntryData
         public string Name { get; }
     }
 }
-
-

@@ -18,5 +18,3 @@ public static class RecurringPaymentHelper
         };
     }
 }
-
-

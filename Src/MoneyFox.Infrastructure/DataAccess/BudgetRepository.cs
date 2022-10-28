@@ -44,5 +44,3 @@ internal sealed class BudgetRepository : IBudgetRepository
         _ = await appDbContext.SaveChangesAsync();
     }
 }
-
-

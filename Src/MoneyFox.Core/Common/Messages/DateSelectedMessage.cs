@@ -20,5 +20,3 @@ public class DateSelectedMessage
     /// </summary>
     public DateTime EndDate { get; }
 }
-
-

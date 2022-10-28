@@ -80,5 +80,3 @@ public class GetAccountProgressionHandler : IRequestHandler<GetAccountProgressio
         };
     }
 }
-
-

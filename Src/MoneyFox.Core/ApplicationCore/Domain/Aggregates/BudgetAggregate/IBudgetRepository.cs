@@ -16,5 +16,3 @@ public interface IBudgetRepository : IRepository<Budget>
 
     Task DeleteAsync(int testBudgetId);
 }
-
-

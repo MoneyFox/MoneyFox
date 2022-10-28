@@ -6,5 +6,3 @@ public static class CultureHelper
 {
     public static CultureInfo CurrentCulture { get; set; } = CultureInfo.CurrentCulture;
 }
-
-
