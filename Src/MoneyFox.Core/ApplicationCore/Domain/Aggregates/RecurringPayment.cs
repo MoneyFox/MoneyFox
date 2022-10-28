@@ -133,5 +133,3 @@ public class RecurringPayment : EntityBase
         LastRecurrenceCreated = DateTime.Now;
     }
 }
-
-

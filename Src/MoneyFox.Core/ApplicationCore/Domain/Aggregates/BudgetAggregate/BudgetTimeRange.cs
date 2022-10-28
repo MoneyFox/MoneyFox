@@ -8,5 +8,3 @@ public enum BudgetTimeRange
     Last3Years,
     Last5Years
 }
-
-

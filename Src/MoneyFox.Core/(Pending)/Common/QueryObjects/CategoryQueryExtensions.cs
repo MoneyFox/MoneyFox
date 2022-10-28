@@ -32,5 +32,3 @@ public static class CategoryQueryExtensions
         return query.OrderBy(category => category.Name);
     }
 }
-
-

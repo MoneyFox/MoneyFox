@@ -88,7 +88,7 @@ public class GetCategorySpreadingQueryHandler : IRequestHandler<GetCategorySprea
 
     private List<(decimal Value, string Label)> SelectRelevantDataFromList(IEnumerable<Payment> payments)
     {
-        IEnumerable<(decimal, string category)> query = from payment in payments
+        var query = from payment in payments
             group payment by new { category = payment.Category != null ? payment.Category.Name : string.Empty } into temp
             select (temp.Sum(x => x.Type == PaymentType.Income ? -x.Amount : x.Amount), temp.Key.category);
 
@@ -140,5 +140,3 @@ public class GetCategorySpreadingQueryHandler : IRequestHandler<GetCategorySprea
         }
     }
 }
-
-

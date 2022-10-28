@@ -16,5 +16,3 @@ public static class PaymentTypeFilterHelper
         };
     }
 }
-
-

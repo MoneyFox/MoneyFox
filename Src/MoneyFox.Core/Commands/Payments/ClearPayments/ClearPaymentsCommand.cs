@@ -38,5 +38,3 @@ public class ClearPaymentsCommand : IRequest
         }
     }
 }
-
-

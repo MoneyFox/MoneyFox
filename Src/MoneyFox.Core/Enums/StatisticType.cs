@@ -9,5 +9,3 @@ public enum StatisticType
     MonthlyAccountCashFlow,
     CategoryProgression
 }
-
-

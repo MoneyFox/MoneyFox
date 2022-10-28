@@ -31,5 +31,3 @@ public static class DateTimeExtension
         return (self - DateTime.Today).Days;
     }
 }
-
-

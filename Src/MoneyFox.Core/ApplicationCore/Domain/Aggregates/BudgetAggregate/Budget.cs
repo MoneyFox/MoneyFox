@@ -65,5 +65,3 @@ public class Budget : EntityBase, IAggregateRoot
         IncludedCategories = includedCategories;
     }
 }
-
-

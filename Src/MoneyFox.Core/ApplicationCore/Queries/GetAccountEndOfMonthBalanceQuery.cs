@@ -115,5 +115,3 @@ public class GetAccountEndOfMonthBalanceQuery : IRequest<decimal>
         }
     }
 }
-
-

@@ -91,5 +91,3 @@ internal static class RecurrenceHelper
         }
     }
 }
-
-

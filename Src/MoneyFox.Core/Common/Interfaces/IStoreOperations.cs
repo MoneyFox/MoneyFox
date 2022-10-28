@@ -7,5 +7,3 @@ public interface IStoreOperations
     /// </summary>
     void RateApp();
 }
-
-

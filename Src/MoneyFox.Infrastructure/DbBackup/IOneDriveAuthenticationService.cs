@@ -10,5 +10,3 @@ public interface IOneDriveAuthenticationService
 
     Task LogoutAsync(CancellationToken cancellationToken = default);
 }
-
-

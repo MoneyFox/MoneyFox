@@ -7,5 +7,3 @@ public interface ISystemDateHelper
     DateTime Today { get; }
     DateTime Now { get; }
 }
-
-

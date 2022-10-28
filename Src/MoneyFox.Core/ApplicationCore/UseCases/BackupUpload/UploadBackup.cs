@@ -58,5 +58,3 @@ public static class UploadBackup
         }
     }
 }
-
-

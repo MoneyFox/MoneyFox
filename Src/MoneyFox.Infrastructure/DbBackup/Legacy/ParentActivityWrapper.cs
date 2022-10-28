@@ -11,5 +11,3 @@ public static class ParentActivityWrapper
     /// </remarks>
     public static object? ParentActivity { get; set; }
 }
-
-
