@@ -74,5 +74,3 @@ public static class AccountQueriesExtensions
         return await query.AnyAsync(x => x.Name.ToUpper() == name.ToUpper() && !x.IsDeactivated && x.Id != Id);
     }
 }
-
-

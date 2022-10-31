@@ -5,12 +5,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:categories="clr-namespace:MoneyFox.Ui.Views.Categories"
+    xmlns:categoryVm="clr-namespace:MoneyFox.Ui.ViewModels.Categories"
+    x:DataType="categoryVm:AddCategoryViewModel"
     Title="{x:Static resources:Strings.AddCategoryTitle}"
     x:Class="MoneyFox.Ui.Views.Categories.AddCategoryPage">
 
     <ScrollView Padding="15,0,15,0">
-        <StackLayout>
+        <VerticalStackLayout Spacing="12">
             <categories:ModifyCategoryContentView />
-        </StackLayout>
+            <Button Command="{Binding SaveCommand}"
+                    Text="{x:Static resources:Strings.SaveLabel}" />
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

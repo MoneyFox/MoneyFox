@@ -93,5 +93,3 @@ public class AppDbContext : DbContext, IAppDbContext
         return SaveChangesAsync().GetAwaiter().GetResult();
     }
 }
-
-

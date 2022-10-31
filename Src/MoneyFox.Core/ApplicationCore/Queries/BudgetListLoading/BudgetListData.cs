@@ -18,5 +18,3 @@ public class BudgetListData
 
     public decimal CurrentSpending { get; }
 }
-
-

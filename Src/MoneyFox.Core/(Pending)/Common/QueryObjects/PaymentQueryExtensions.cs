@@ -133,5 +133,3 @@ public static class PaymentQueryExtensions
         return query.OrderByDescending(x => x.Date);
     }
 }
-
-

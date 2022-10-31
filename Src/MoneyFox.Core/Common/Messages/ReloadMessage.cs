@@ -4,5 +4,3 @@ namespace MoneyFox.Core.Common.Messages;
 ///     Message to tell view to reload
 /// </summary>
 public class ReloadMessage { }
-
-

@@ -5,13 +5,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:payments="clr-namespace:MoneyFox.Ui.Views.Payments"
-    xmlns:paymentsVm="clr-namespace:MoneyFox.Ui.ViewModels.Payments"
+    xmlns:paymentVm="clr-namespace:MoneyFox.Ui.ViewModels.Payments"
     Title="{x:Static resources:Strings.AddPaymentLabel}"
-    x:DataType="paymentsVm:AddPaymentViewModel"
+    x:DataType="paymentVm:AddPaymentViewModel"
     x:Class="MoneyFox.Ui.Views.Payments.AddPaymentPage">
 
     <ScrollView Padding="15,0,15,0">
-        <VerticalStackLayout Spacing="6">
+        <VerticalStackLayout Spacing="12">
             <payments:ModifyPaymentContentView />
             <Button Text="{x:Static resources:Strings.SaveLabel}" Command="{Binding SaveCommand}" />
         </VerticalStackLayout>

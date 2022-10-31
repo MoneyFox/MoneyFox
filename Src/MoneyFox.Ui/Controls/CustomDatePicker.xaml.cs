@@ -12,7 +12,8 @@ public partial class CustomDatePicker : ContentView
         propertyName: nameof(DateField),
         returnType: typeof(string),
         declaringType: typeof(CustomDatePicker),
-        defaultValue: string.Empty);
+        defaultValue: string.Empty,
+        defaultBindingMode: BindingMode.TwoWay);
 
     public CustomDatePicker()
     {
@@ -31,6 +32,3 @@ public partial class CustomDatePicker : ContentView
         set => SetValue(property: DateFieldProperty, value: value);
     }
 }
-
-
-

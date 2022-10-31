@@ -21,5 +21,3 @@ public sealed record SpendingLimit
         return spendingLimit.Value;
     }
 }
-
-

@@ -12,5 +12,3 @@ public interface IFileStore
 
     Task<Stream> OpenReadAsync(string path);
 }
-
-

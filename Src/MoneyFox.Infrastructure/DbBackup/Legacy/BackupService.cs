@@ -189,5 +189,3 @@ internal sealed class BackupService : ObservableRecipient, IBackupService, IDisp
         }
     }
 }
-
-

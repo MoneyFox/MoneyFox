@@ -41,5 +41,3 @@ public class GetCategoryBySearchTermQuery : IRequest<List<Category>>
         }
     }
 }
-
-

@@ -874,6 +874,9 @@ For at starte skal du oprette en ny konto. Konti bruges til at organisere betali
     <value>Udgiftsgrænsen skal være større end nul.</value>
   </data>
   <data name="InvalidSpendingLimitTitle" xml:space="preserve">
-    <value>Invalid Spending Limit</value>
+    <value>Ugyldig grænse for månedlige udgifter</value>
+  </data>
+  <data name="NotePlaceholderLabel" xml:space="preserve">
+    <value>Indtast bemærkning for denne betaling..</value>
   </data>
 </root>

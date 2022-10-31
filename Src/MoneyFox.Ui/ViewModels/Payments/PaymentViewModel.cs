@@ -15,7 +15,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
 
     private AccountViewModel chargedAccount = null!;
     private int chargedAccountId;
-    private DateTime creationTime;
+    private DateTime created;
 
     private int currentAccountId;
     private DateTime date;
@@ -23,7 +23,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     private int id;
     private bool isCleared;
     private bool isRecurring;
-    private DateTime modificationDate;
+    private DateTime lastModified;
     private string note = "";
     private RecurringPaymentViewModel? recurringPaymentViewModel;
     private AccountViewModel? targetAccount;
@@ -208,34 +208,34 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
         }
     }
 
-    public DateTime CreationTime
+    public DateTime Created
     {
-        get => creationTime;
+        get => created;
 
         set
         {
-            if (creationTime == value)
+            if (created == value)
             {
                 return;
             }
 
-            creationTime = value;
+            created = value;
             OnPropertyChanged();
         }
     }
 
-    public DateTime ModificationDate
+    public DateTime LastModified
     {
-        get => modificationDate;
+        get => lastModified;
 
         set
         {
-            if (modificationDate == value)
+            if (lastModified == value)
             {
                 return;
             }
 
-            modificationDate = value;
+            lastModified = value;
             OnPropertyChanged();
         }
     }

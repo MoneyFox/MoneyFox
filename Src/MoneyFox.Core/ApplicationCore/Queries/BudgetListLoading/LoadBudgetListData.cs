@@ -74,5 +74,3 @@ public static class LoadBudgetListData
         }
     }
 }
-
-

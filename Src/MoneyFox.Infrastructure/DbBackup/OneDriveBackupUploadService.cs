@@ -96,5 +96,3 @@ internal class OneDriveBackupUploadService : IBackupUploadService
         _ = await graphDriveUri.AppendPathSegments("items", $"{oldestBackup.Id}").WithOAuthBearerToken(authentication.AccessToken).DeleteAsync();
     }
 }
-
-

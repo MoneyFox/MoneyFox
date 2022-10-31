@@ -41,5 +41,3 @@ public enum PublishStrategy
     /// </summary>
     ParallelWhenAny = 5
 }
-
-

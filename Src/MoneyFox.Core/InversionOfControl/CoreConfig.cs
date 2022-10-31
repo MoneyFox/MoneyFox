@@ -32,5 +32,3 @@ public sealed class CoreConfig
         _ = serviceCollection.AddTransient<IConnectivityFacade, ConnectivityFacade>();
     }
 }
-
-

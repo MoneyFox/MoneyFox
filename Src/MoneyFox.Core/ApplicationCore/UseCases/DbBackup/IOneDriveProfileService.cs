@@ -9,4 +9,3 @@ public interface IOneDriveProfileService
 
     Task<Stream> GetProfilePictureAsync();
 }
-

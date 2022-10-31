@@ -30,4 +30,3 @@ internal class FileDto
     [JsonProperty("createdDateTime")]
     public DateTimeOffset CreatedDate { get; set; }
 }
-

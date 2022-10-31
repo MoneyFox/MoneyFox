@@ -105,5 +105,3 @@ public class GetCategoryProgressionHandler : IRequestHandler<GetCategoryProgress
         };
     }
 }
-
-

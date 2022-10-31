@@ -20,5 +20,3 @@ public class LoggingPreProcessor<TRequest> : IRequestPreProcessor<TRequest>
         return Task.CompletedTask;
     }
 }
-
-

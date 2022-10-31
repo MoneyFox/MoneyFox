@@ -4,5 +4,3 @@ public interface IDbPathProvider
 {
     public string GetDbPath();
 }
-
-

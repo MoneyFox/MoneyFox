@@ -130,7 +130,7 @@
     <value>Акаунти</value>
   </data>
   <data name="AddAccountLabel" xml:space="preserve">
-    <value>Add Account</value>
+    <value>Добави акаунт</value>
   </data>
   <data name="AddAccountTitle" xml:space="preserve">
     <value>Добави акаунт</value>
@@ -142,16 +142,16 @@
     <value>Добавяне на категория</value>
   </data>
   <data name="AddExpenseTitle" xml:space="preserve">
-    <value>Add Expense</value>
+    <value>Добави разход</value>
   </data>
   <data name="AddIncomeTitle" xml:space="preserve">
-    <value>Add Income</value>
+    <value>Добави приход</value>
   </data>
   <data name="AddPaymentLabel" xml:space="preserve">
     <value>Add Payment</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
-    <value>Add Transfer</value>
+    <value>Добави трансфер</value>
   </data>
   <data name="AmountLabel" xml:space="preserve">
     <value>Сума</value>
@@ -199,7 +199,7 @@
     <value>Backup restored successfully.</value>
   </data>
   <data name="BackupTitle" xml:space="preserve">
-    <value>Backup</value>
+    <value>Бекъпи</value>
   </data>
   <data name="BiannuallyLabel" xml:space="preserve">
     <value>Biannually</value>
@@ -226,7 +226,7 @@
     <value>Cashflow</value>
   </data>
   <data name="CashFlowStatisticTitle" xml:space="preserve">
-    <value>Cash Flow</value>
+    <value>Паричен поток</value>
   </data>
   <data name="CategorieIntroductionText" xml:space="preserve">
     <value>Categories can help order your payments. Also they make it easier to analyze your spendings and incomes in the statistics.</value>
@@ -253,7 +253,7 @@
     <value>Summary of the categories with a Payment.</value>
   </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
-    <value>Category Summary</value>
+    <value>За категорията</value>
   </data>
   <data name="CategorySummaryTitle" xml:space="preserve">
     <value>Накратко за категорията</value>
@@ -277,7 +277,7 @@
     <value>Контакт</value>
   </data>
   <data name="ContributerLabel" xml:space="preserve">
-    <value>To see all contributions head over to GitHub:</value>
+    <value>За да видите разработката се насочете към GitHub:</value>
   </data>
   <data name="ContributionsLabel" xml:space="preserve">
     <value>Приноси</value>
@@ -286,7 +286,7 @@
     <value>Create Account Now</value>
   </data>
   <data name="CreateBackupLabel" xml:space="preserve">
-    <value>Create Backup</value>
+    <value>Създай бекъп</value>
   </data>
   <data name="CreateCategoryNowLabel" xml:space="preserve">
     <value>Create Category now</value>
@@ -382,10 +382,10 @@
     <value>Имейл</value>
   </data>
   <data name="EnddateLabel" xml:space="preserve">
-    <value>End Date</value>
+    <value>Крайна дата</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
-    <value>Is Endless</value>
+    <value>Е безкраен</value>
   </data>
   <data name="EndOfMonthBalanceLabel" xml:space="preserve">
     <value>End of Month</value>
@@ -397,7 +397,7 @@
     <value>Възникна грешка по време на удостоверяване. Опитайте пак по-късно.</value>
   </data>
   <data name="ExcludedAccountsHeader" xml:space="preserve">
-    <value>Excluded Accounts</value>
+    <value>Изключени акаунти</value>
   </data>
   <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
     <value>Expense: {0} / Income: {1}</value>
@@ -433,7 +433,7 @@
     <value>Иконата на приложението е създадена от:</value>
   </data>
   <data name="IncludedAccountsHeader" xml:space="preserve">
-    <value>Included Accounts</value>
+    <value>Включени акаунти</value>
   </data>
   <data name="IncomeAndExpensesLabel" xml:space="preserve">
     <value>Income and Expenses</value>
@@ -454,8 +454,7 @@
     <value>Инфо</value>
   </data>
   <data name="InfoOpenSource" xml:space="preserve">
-    <value>This is an open-source project – and we’d love to work with you! Feel free to contribute.
-Tap to visit the Repository:</value>
+    <value>Това е проект с отворен код - бихме се радвали да работите с нас! Чувствайте се свободни да допринесете. Натиснете, за да посетите repository-то:</value>
   </data>
   <data name="InvalidEnddateMessage" xml:space="preserve">
     <value>The enddate of a recurring Payment has to be in the future. Please check your input.</value>
@@ -473,7 +472,7 @@ Tap to visit the Repository:</value>
     <value>Изчистено</value>
   </data>
   <data name="IsExcludedLabel" xml:space="preserve">
-    <value>Exclude account from balance</value>
+    <value>Изключи акаунта от баланса</value>
   </data>
   <data name="IsGroupedLabel" xml:space="preserve">
     <value>Group List</value>
@@ -629,7 +628,7 @@ To get there go to the account list and select the respective account.</value>
     <value>Оценете приложението</value>
   </data>
   <data name="RecurrenceLabel" xml:space="preserve">
-    <value>Recurrence</value>
+    <value>Повторение</value>
   </data>
   <data name="RecurringLabel" xml:space="preserve">
     <value>Is Recurring</value>
@@ -645,7 +644,7 @@ To get there go to the account list and select the respective account.</value>
 WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
   <data name="RestoreBackupLabel" xml:space="preserve">
-    <value>Restore Backup</value>
+    <value>Възстанови бекъп</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
     <value>Revenue</value>
@@ -678,7 +677,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Изберете филтър</value>
   </data>
   <data name="SelectStatisticTitle" xml:space="preserve">
-    <value>Select Statistic</value>
+    <value>Изберете статистика</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Настройки</value>
@@ -693,7 +692,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Статистика</value>
   </data>
   <data name="TargetAccountLabel" xml:space="preserve">
-    <value>Target Account</value>
+    <value>Избран акаунт</value>
   </data>
   <data name="TimeRangeEndLabel" xml:space="preserve">
     <value>Time Range End</value>
@@ -708,7 +707,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Transfer</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
+    <value>Нещо не е правилно преведено или изобщо не е преведено? Помогнете ни! Влезте в CrowdIn и помогнете да подобрим Money Fox:</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
     <value>There was an issue during the operation. Error Message {0}</value>
@@ -726,7 +725,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Седмично</value>
   </data>
   <data name="WelcomeLabel" xml:space="preserve">
-    <value>Welcome!</value>
+    <value>Добре дошли!</value>
   </data>
   <data name="WelcomePageSubtitle" xml:space="preserve">
     <value>Glad to have you!</value>
@@ -766,7 +765,7 @@ To start create a new account. Accounts are used to organize payments and money 
     <value>Failed to login to your backup service. Automatic backup upload was disabled. Please login and enable it again.</value>
   </data>
   <data name="FailedToLoginToBackupTitle" xml:space="preserve">
-    <value>Login failed!</value>
+    <value>Провали се влизането!</value>
   </data>
   <data name="LoggedInTitle" xml:space="preserve">
     <value>Logged in!</value>
@@ -875,5 +874,8 @@ To start create a new account. Accounts are used to organize payments and money 
   </data>
   <data name="InvalidSpendingLimitTitle" xml:space="preserve">
     <value>Invalid Spending Limit</value>
+  </data>
+  <data name="NotePlaceholderLabel" xml:space="preserve">
+    <value>Enter note to this payment..</value>
   </data>
 </root>

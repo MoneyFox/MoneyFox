@@ -879,4 +879,7 @@ Maak een nieuw account aan om hier dan uw budgetten op een gemakkelijke manier b
   <data name="InvalidSpendingLimitTitle" xml:space="preserve">
     <value>Maandelijkse verzendlimiet</value>
   </data>
+  <data name="NotePlaceholderLabel" xml:space="preserve">
+    <value>Voer notitie in voor deze betaling..</value>
+  </data>
 </root>

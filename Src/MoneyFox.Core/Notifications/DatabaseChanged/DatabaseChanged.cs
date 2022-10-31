@@ -32,5 +32,3 @@ public static class DataBaseChanged
         }
     }
 }
-
-

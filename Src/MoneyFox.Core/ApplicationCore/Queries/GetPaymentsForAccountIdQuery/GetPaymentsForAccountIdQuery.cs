@@ -80,5 +80,3 @@ public class GetPaymentsForAccountIdQuery : IRequest<List<Payment>>
         }
     }
 }
-
-

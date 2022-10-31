@@ -33,4 +33,3 @@ internal class OneDriveProfileService : IOneDriveProfileService
         return await graphProfileUri.AppendPathSegments("photo", "$value").WithOAuthBearerToken(authentication.AccessToken).GetStreamAsync();
     }
 }
-

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates;
+namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates;
 
 using System;
 
@@ -8,5 +8,3 @@ public class EntityBase
 
     public DateTime? LastModified { get; set; }
 }
-
-

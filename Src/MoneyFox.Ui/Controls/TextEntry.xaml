@@ -8,21 +8,13 @@
 
     <VerticalStackLayout Spacing="6"
                          BindingContext="{x:Reference this}">
-        <Label Text="{Binding TextFieldTitle}" />
-
-        <Border Padding="20,0"
-                BackgroundColor="{AppThemeBinding Dark={StaticResource ControlBackgroundColorDark}, Light={StaticResource ControlBackgroundColorLight}}"
-                BindingContext="{x:Reference this}">
-
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="10" />
-            </Border.StrokeShape>
-
-            <Grid>
-                <controls:BorderlessEntry Text="{Binding EntryText}"
-                                          HeightRequest="40"
-                                          Placeholder="{Binding EntryPlaceholder}" />
-            </Grid>
-        </Border>
+        <Label 
+            Margin="3,0,0,0"
+            Style="{StaticResource TextBodySecondary}"
+            Text="{Binding TextFieldTitle}" />
+        <Entry 
+            Text="{Binding EntryText}"
+            HeightRequest="36"
+            Placeholder="{Binding EntryPlaceholder}" />
     </VerticalStackLayout>
 </ContentView>

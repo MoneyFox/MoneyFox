@@ -14,5 +14,3 @@ public class InvalidPaymentTypeException : Exception
 
     protected InvalidPaymentTypeException(SerializationInfo info, StreamingContext context) : base(info: info, context: context) { }
 }
-
-

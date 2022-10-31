@@ -28,5 +28,3 @@ public static class HelperFunctions
         return new(year: today.Year, month: today.Month, day: DateTime.DaysInMonth(year: today.Year, month: today.Month));
     }
 }
-
-

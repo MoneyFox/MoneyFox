@@ -53,5 +53,3 @@ public interface ISettingsAdapter
     /// <param name="key">Settings key.</param>
     void Remove(string key);
 }
-
-

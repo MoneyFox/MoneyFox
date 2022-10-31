@@ -7,5 +7,3 @@ public enum PaymentTypeFilter
     Income,
     Transfer
 }
-
-

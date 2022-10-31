@@ -19,5 +19,3 @@ public class CategorySummaryModel
 
     public List<CategoryOverviewItem> CategoryOverviewItems { get; }
 }
-
-

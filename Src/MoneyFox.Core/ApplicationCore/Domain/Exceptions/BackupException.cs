@@ -29,5 +29,3 @@ public class BackupException : Exception
 
     protected BackupException(SerializationInfo info, StreamingContext context) : base(info: info, context: context) { }
 }
-
-

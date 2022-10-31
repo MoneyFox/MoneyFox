@@ -14,27 +14,21 @@
 
     <VerticalStackLayout Spacing="6"
                          BindingContext="{x:Reference this}">
-        <Label Text="{Binding AmountFieldTitle}" />
+        <Label 
+            Margin="3,0,0,0"
+            Style="{StaticResource TextBodySecondary}"
+            Text="{Binding AmountFieldTitle}" />
 
-        <Border Padding="20,0"
-                BackgroundColor="{AppThemeBinding Dark={StaticResource ControlBackgroundColorDark}, Light={StaticResource ControlBackgroundColorLight}}"
-                BindingContext="{x:Reference this}">
-
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="10" />
-            </Border.StrokeShape>
-
-            <Grid>
-                <controls:BorderlessEntry
-                    x:Name="AmountField"
-                    HeightRequest="40"
-                    Text="{Binding Amount,Converter={StaticResource DecimalConverter}}"
-                    IsEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBoolConverter}}"
-                    Placeholder="{Binding EntryPlaceholder}"
-                    Keyboard="Numeric"
-                    HorizontalTextAlignment="End"
-                    Focused="AmountFieldGotFocus" />
-            </Grid>
-        </Border>
+        <Grid>
+            <Entry
+                x:Name="AmountField"
+                HeightRequest="36"
+                Text="{Binding Amount,Converter={StaticResource DecimalConverter}}"
+                IsEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBoolConverter}}"
+                Placeholder="{Binding EntryPlaceholder}"
+                Keyboard="Numeric"
+                HorizontalTextAlignment="End"
+                Focused="AmountFieldGotFocus" />
+        </Grid>
     </VerticalStackLayout>
 </ContentView>

@@ -12,5 +12,3 @@ public enum PaymentRecurrence
     Quarterly = 7,
     Biannually = 8
 }
-
-

@@ -21,5 +21,3 @@ public static class StatisticUtilities
             });
     }
 }
-
-

@@ -31,5 +31,3 @@ public interface IDialogService
     /// </summary>
     Task HideLoadingDialogAsync();
 }
-
-

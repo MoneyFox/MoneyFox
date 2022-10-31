@@ -21,4 +21,3 @@ internal class FolderDto
     [JsonProperty("name")]
     public string Name { get; set; } = null!;
 }
-

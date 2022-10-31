@@ -106,5 +106,3 @@ public class SettingsFacade : ISettingsFacade
         set => settingsAdapter.AddOrUpdate(key: CategorySpreadingNumberKeyName, value: value);
     }
 }
-
-

@@ -71,5 +71,3 @@ public class GetCashFlowQueryHandler : IRequestHandler<GetCashFlowQuery, List<St
         return new() { income, spent, increased };
     }
 }
-
-

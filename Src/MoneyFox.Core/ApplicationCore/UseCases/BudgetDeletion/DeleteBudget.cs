@@ -34,5 +34,3 @@ public static class DeleteBudget
         }
     }
 }
-
-

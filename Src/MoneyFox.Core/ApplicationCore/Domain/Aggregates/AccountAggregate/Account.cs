@@ -84,5 +84,3 @@ public class Account : EntityBase, IAggregateRoot
         IsDeactivated = true;
     }
 }
-
-

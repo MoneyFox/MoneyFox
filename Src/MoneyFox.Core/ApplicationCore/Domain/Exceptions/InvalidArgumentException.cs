@@ -11,5 +11,3 @@ public sealed class InvalidArgumentException : Exception
 
     public string ParamName { get; }
 }
-
-

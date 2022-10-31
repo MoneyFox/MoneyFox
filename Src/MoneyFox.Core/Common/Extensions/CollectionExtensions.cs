@@ -12,5 +12,3 @@ public static class CollectionExtensions
         }
     }
 }
-
-

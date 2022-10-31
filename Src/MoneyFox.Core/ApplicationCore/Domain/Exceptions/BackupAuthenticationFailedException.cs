@@ -19,5 +19,3 @@ public class BackupAuthenticationFailedException : Exception
 
     protected BackupAuthenticationFailedException(SerializationInfo info, StreamingContext context) : base(info: info, context: context) { }
 }
-
-

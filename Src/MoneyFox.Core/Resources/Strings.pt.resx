@@ -130,7 +130,7 @@
     <value>Contas</value>
   </data>
   <data name="AddAccountLabel" xml:space="preserve">
-    <value>Add Account</value>
+    <value>Adicione uma conta</value>
   </data>
   <data name="AddAccountTitle" xml:space="preserve">
     <value>Adicione uma conta</value>
@@ -148,7 +148,7 @@
     <value>Adicionar renda</value>
   </data>
   <data name="AddPaymentLabel" xml:space="preserve">
-    <value>Add Payment</value>
+    <value>Adicionar pagamento</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
     <value>Adicionar transferência</value>
@@ -163,13 +163,13 @@
     <value>Montante negativo</value>
   </data>
   <data name="ANoteForPaymentIsRequired" xml:space="preserve">
-    <value>A note for payment is required</value>
+    <value>Uma nota para pagamento é necessária</value>
   </data>
   <data name="ApplyFilterLabel" xml:space="preserve">
-    <value>Apply Filter</value>
+    <value>Aplicar Filtros</value>
   </data>
   <data name="AssetsLabel" xml:space="preserve">
-    <value>Assets</value>
+    <value>Mídias</value>
   </data>
   <data name="AuthenticationFailedTitle" xml:space="preserve">
     <value>Falha de autenticação</value>
@@ -181,13 +181,13 @@
     <value>Fazer upload e download de backups automaticamente</value>
   </data>
   <data name="AutobackupTitle" xml:space="preserve">
-    <value>Autobackup</value>
+    <value>Backup automático</value>
   </data>
   <data name="BackLabel" xml:space="preserve">
-    <value>Back</value>
+    <value>Anterior</value>
   </data>
   <data name="BackupCreatedMessage" xml:space="preserve">
-    <value>Backup created successfully</value>
+    <value>Backup criado com sucesso</value>
   </data>
   <data name="BackupFailedTitle" xml:space="preserve">
     <value>O backup falhou!</value>
@@ -196,7 +196,7 @@
     <value>Seus dados serão salvos em sua conta do OneDrive. Você os encontrará na pasta do Application em uma nova pasta chamada "MoneyFox".</value>
   </data>
   <data name="BackupRestoredMessage" xml:space="preserve">
-    <value>Backup restored successfully.</value>
+    <value>Backup restaurado com sucesso.</value>
   </data>
   <data name="BackupTitle" xml:space="preserve">
     <value>Backup</value>
@@ -211,7 +211,7 @@
     <value>Quinzenal</value>
   </data>
   <data name="BudgetsLabel" xml:space="preserve">
-    <value>Budgets</value>
+    <value>Orçamentos</value>
   </data>
   <data name="CanceledTitle" xml:space="preserve">
     <value>Cancelado</value>
@@ -229,7 +229,7 @@
     <value>Fluxo de caixa</value>
   </data>
   <data name="CategorieIntroductionText" xml:space="preserve">
-    <value>Categories can help order your payments. Also they make it easier to analyze your spendings and incomes in the statistics.</value>
+    <value>Categorias podem ajudar a pedir seus pagamentos. Também tornam mais fácil analisar seus gastos e receitas nas estatísticas.</value>
   </data>
   <data name="CategorieSpreadingDescription" xml:space="preserve">
     <value>Propagação das despesas para as categorias.</value>
@@ -265,10 +265,10 @@
     <value>Processado</value>
   </data>
   <data name="CompletedText" xml:space="preserve">
-    <value>That's it! You're set for using the MoneyFox.</value>
+    <value>É isso! Você está pronto para usar o MoneyFox.</value>
   </data>
   <data name="CompletedTitle" xml:space="preserve">
-    <value>Done!</value>
+    <value>Concluído!</value>
   </data>
   <data name="CompleteLabel" xml:space="preserve">
     <value>Complete</value>
@@ -283,22 +283,22 @@
     <value>Contribuições</value>
   </data>
   <data name="CreateAccountNowLabel" xml:space="preserve">
-    <value>Create Account Now</value>
+    <value>Criar Conta Agora</value>
   </data>
   <data name="CreateBackupLabel" xml:space="preserve">
     <value>Criar backup</value>
   </data>
   <data name="CreateCategoryNowLabel" xml:space="preserve">
-    <value>Create Category now</value>
+    <value>Criar categoria agora</value>
   </data>
   <data name="CreationDateHeader" xml:space="preserve">
-    <value>Creation Date</value>
+    <value>Data de Criação</value>
   </data>
   <data name="CreationDateLabel" xml:space="preserve">
-    <value>Creation Date:</value>
+    <value>Data de criação:</value>
   </data>
   <data name="CreationDateTemplateLabel" xml:space="preserve">
-    <value>Creation Date: {0}</value>
+    <value>Data de criação: {0}</value>
   </data>
   <data name="CurrentBalanceLabel" xml:space="preserve">
     <value>Balanço atual</value>
@@ -313,7 +313,7 @@
     <value>Escuro</value>
   </data>
   <data name="DashboardTitle" xml:space="preserve">
-    <value>Dashboard</value>
+    <value>Painel</value>
   </data>
   <data name="DateLabel" xml:space="preserve">
     <value>Data</value>
@@ -322,10 +322,10 @@
     <value>Date Range</value>
   </data>
   <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Default Region</value>
+    <value>Região padrão</value>
   </data>
   <data name="DefaultRegionText" xml:space="preserve">
-    <value>This region will be used as a default for your application.</value>
+    <value>Esta região será usada como padrão para a sua aplicação.</value>
   </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
     <value>Você realmente quer deletar esta conta?</value>
@@ -352,7 +352,7 @@
     <value>Ok</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>An account with that name already exists. Continue with saving?</value>
+    <value>Já existe uma conta com esse nome. Continuar salvando?</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
     <value>Já existe uma pasta com o mesmo nome.</value>
@@ -382,16 +382,16 @@
     <value>E-mail</value>
   </data>
   <data name="EnddateLabel" xml:space="preserve">
-    <value>End Date</value>
+    <value>Data Final</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
     <value>Não tem fim</value>
   </data>
   <data name="EndOfMonthBalanceLabel" xml:space="preserve">
-    <value>End of Month</value>
+    <value>Fim do Mês</value>
   </data>
   <data name="EndOfMonthLabel" xml:space="preserve">
-    <value>End Of Month:</value>
+    <value>Final do Mês:</value>
   </data>
   <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
     <value>Ocorreu um erro durante a autenticação. Por favor, tente novamente mais tarde.</value>
@@ -400,7 +400,7 @@
     <value>Contas excluídas</value>
   </data>
   <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
-    <value>Expense: {0} / Income: {1}</value>
+    <value>Despesa: {0} / Receita: {1}</value>
   </data>
   <data name="ExpenseHeader" xml:space="preserve">
     <value>Adicionar despesa</value>
@@ -424,10 +424,10 @@
     <value>Ocorreu um erro</value>
   </data>
   <data name="GoToAccountsLabel" xml:space="preserve">
-    <value>Go to Accounts</value>
+    <value>Ir para Contas</value>
   </data>
   <data name="GoToBudgetsLabel" xml:space="preserve">
-    <value>Go to Budgets</value>
+    <value>Ir para Orçamentos</value>
   </data>
   <data name="IconDesignerLabel" xml:space="preserve">
     <value>O ícone do aplicativo foi criado por:</value>
@@ -436,13 +436,13 @@
     <value>Contas adicionadas</value>
   </data>
   <data name="IncomeAndExpensesLabel" xml:space="preserve">
-    <value>Income and Expenses</value>
+    <value>Receitas e Despesas</value>
   </data>
   <data name="IncomeHeader" xml:space="preserve">
     <value>Adicionar renda</value>
   </data>
   <data name="IncomeLabel" xml:space="preserve">
-    <value>Income</value>
+    <value>Receitas</value>
   </data>
   <data name="IncomeSpendingLabel" xml:space="preserve">
     <value>Receitas/Despesas:</value>
@@ -463,10 +463,10 @@
     <value>Data final inválida</value>
   </data>
   <data name="InvalidNumberCurrentBalanceMessage" xml:space="preserve">
-    <value>Your current balance seems to be an invalid number. Please check that you haven't entered any special characters and used the correct separator.</value>
+    <value>Seu saldo atual parece ser um número inválido. Por favor, verifique se você não inseriu nenhum caractere especial e usou o separador correto.</value>
   </data>
   <data name="InvalidNumberTitle" xml:space="preserve">
-    <value>Invalid Number</value>
+    <value>Número Inválido</value>
   </data>
   <data name="IsClearedLabel" xml:space="preserve">
     <value>Limpo</value>
@@ -475,7 +475,7 @@
     <value>Excluir conta de balanço</value>
   </data>
   <data name="IsGroupedLabel" xml:space="preserve">
-    <value>Group List</value>
+    <value>Lista de Grupos</value>
   </data>
   <data name="IsRecurringFilterLabel" xml:space="preserve">
     <value>É recorrente</value>
@@ -493,13 +493,13 @@
     <value>A Carregar...</value>
   </data>
   <data name="LoggedInMessage" xml:space="preserve">
-    <value>Loggedin successfully.</value>
+    <value>Loggedin com sucesso.</value>
   </data>
   <data name="LoggedOutMessage" xml:space="preserve">
-    <value>Logged out successfully.</value>
+    <value>Sessão encerrada com sucesso.</value>
   </data>
   <data name="LoggedOutTitle" xml:space="preserve">
-    <value>Logged out</value>
+    <value>Sessão terminada</value>
   </data>
   <data name="LoginCanceledMessage" xml:space="preserve">
     <value>Autenticação cancelada.</value>
@@ -520,13 +520,13 @@
     <value>Campo obrigatório</value>
   </data>
   <data name="ModificationDateHeader" xml:space="preserve">
-    <value>Modification Date</value>
+    <value>Data de modificação</value>
   </data>
   <data name="ModificationDateLabel" xml:space="preserve">
-    <value>Modification Date:</value>
+    <value>Data de modificação:</value>
   </data>
   <data name="ModificationDateTemplateLabel" xml:space="preserve">
-    <value>Modification Date: {0}</value>
+    <value>Data de modificação: {0}</value>
   </data>
   <data name="ModifyRecurrenceMessage" xml:space="preserve">
     <value>Você modificou um pagamento recorrente. Deseja atualizar a recorrência?</value>
@@ -538,13 +538,13 @@
     <value>Média mensal do ano passado: </value>
   </data>
   <data name="MonthlyCashflowDescription" xml:space="preserve">
-    <value>Shows the monthly cashflow for the selected account.</value>
+    <value>Mostra o fluxo de caixa mensal para a conta selecionada.</value>
   </data>
   <data name="MonthlyCashflowLabel" xml:space="preserve">
-    <value>Monthly Cashflow</value>
+    <value>Caixa Mensal</value>
   </data>
   <data name="MonthlyCashflowTitle" xml:space="preserve">
-    <value>Monthly Cashflow</value>
+    <value>Caixa Mensal</value>
   </data>
   <data name="MonthlyLabel" xml:space="preserve">
     <value>Mês</value>
@@ -553,19 +553,19 @@
     <value>Por favor, insira um nome.</value>
   </data>
   <data name="NextLabel" xml:space="preserve">
-    <value>Next</value>
+    <value>Próximo</value>
   </data>
   <data name="NoAccountsMessage" xml:space="preserve">
-    <value>There are no Accounts to display.</value>
+    <value>Não há Contas para exibir.</value>
   </data>
   <data name="NoCategoriesMessage" xml:space="preserve">
-    <value>There are no categories to display. </value>
+    <value>Não há categorias para exibir. </value>
   </data>
   <data name="NoCategoryLabel" xml:space="preserve">
     <value>[Sem Categoria]</value>
   </data>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
-    <value>No entry selected. Choose a entry in the list to see the payments for it.</value>
+    <value>Nenhum item selecionado. Escolha um registro na lista para ver os pagamentos para ele.</value>
   </data>
   <data name="NoLabel" xml:space="preserve">
     <value>Não</value>
@@ -577,7 +577,7 @@
     <value>Sem conexão com a Internet</value>
   </data>
   <data name="NoPaymentsMessage" xml:space="preserve">
-    <value>There are no Payments. Add one by tapping on the plus button.</value>
+    <value>Não há pagamentos. Adicione um tocando no botão "mais".</value>
   </data>
   <data name="NoteLabel" xml:space="preserve">
     <value>Nota</value>
@@ -601,15 +601,15 @@
     <value>Substituir?</value>
   </data>
   <data name="PaymentIntroductionText" xml:space="preserve">
-    <value>When you create a payment you can select the category for that payment along with the account and if it is an expense, an income or a transfer.
-Payments you created will show up under the account you choose.
-To get there go to the account list and select the respective account.</value>
+    <value>Quando você criar um pagamento, você pode selecionar a categoria para esse pagamento, juntamente com a conta e, se for uma despesa, uma renda ou uma transferência.
+Os pagamentos que você criou aparecerão na conta que você escolher.
+Para chegar lá na lista de contas e selecione a respectiva conta.</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Payments for Category</value>
+    <value>Pagamentos por Categoria</value>
   </data>
   <data name="PaymentTypeLabel" xml:space="preserve">
-    <value>Payment type</value>
+    <value>Tipo de pagamento</value>
   </data>
   <data name="PersonalizationTitle" xml:space="preserve">
     <value>Personalização</value>
@@ -634,7 +634,7 @@ Você deseja ir à loja para avaliar?</value>
     <value>É recorrente</value>
   </data>
   <data name="RequireNoteCheckbox" xml:space="preserve">
-    <value>Note required</value>
+    <value>Nota necessária</value>
   </data>
   <data name="RestoreBackupCanceledMessage" xml:space="preserve">
     <value>A restauração do backup foi cancelada.</value>
@@ -653,13 +653,13 @@ AVISO: As alterações locais feitas entretanto serão perdidas!</value>
     <value>Salvar</value>
   </data>
   <data name="SavingAccountMessage" xml:space="preserve">
-    <value>Saving Account...</value>
+    <value>Salvando conta...</value>
   </data>
   <data name="SavingCategoryMessage" xml:space="preserve">
-    <value>Saving Category...</value>
+    <value>Salvando categoria...</value>
   </data>
   <data name="SavingPaymentMessage" xml:space="preserve">
-    <value>Saving Payment...</value>
+    <value>Salvando pagamento...</value>
   </data>
   <data name="SearchLabel" xml:space="preserve">
     <value>Procurar</value>
@@ -671,19 +671,19 @@ AVISO: As alterações locais feitas entretanto serão perdidas!</value>
     <value>Selecionar Data</value>
   </data>
   <data name="SelectedAccountHeader" xml:space="preserve">
-    <value>Selected Account</value>
+    <value>Conta selecionada</value>
   </data>
   <data name="SelectFilterTitle" xml:space="preserve">
     <value>Selecione filtro</value>
   </data>
   <data name="SelectStatisticTitle" xml:space="preserve">
-    <value>Select Statistic</value>
+    <value>Selecionar estatística</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Configurações</value>
   </data>
   <data name="SkipLabel" xml:space="preserve">
-    <value>Skip</value>
+    <value>Ignorar</value>
   </data>
   <data name="StatisticsTimeRangeTitle" xml:space="preserve">
     <value>Período:</value>
@@ -704,7 +704,7 @@ AVISO: As alterações locais feitas entretanto serão perdidas!</value>
     <value>Adicionar transferência</value>
   </data>
   <data name="TransferLabel" xml:space="preserve">
-    <value>Transfer</value>
+    <value>Transferências</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
     <value>Há algo não devidamente traduzido ou não em todo traduzido? Ajude-nos! Vá ao Crowdin e ajude a melhorar o Money Fox:</value>
@@ -725,14 +725,14 @@ AVISO: As alterações locais feitas entretanto serão perdidas!</value>
     <value>Semanal</value>
   </data>
   <data name="WelcomeLabel" xml:space="preserve">
-    <value>Welcome!</value>
+    <value>Bem-vindo!</value>
   </data>
   <data name="WelcomePageSubtitle" xml:space="preserve">
-    <value>Glad to have you!</value>
+    <value>Que bom te comer!</value>
   </data>
   <data name="WelcomePageText" xml:space="preserve">
-    <value>The MoneyFox helps you to track your expenses and incomes in an easy way.
-To start create a new account. Accounts are used to organize payments and money in collections.</value>
+    <value>O MoneyFox ajuda você a acompanhar suas despesas e receitas de uma maneira fácil.
+Para começar a criar uma nova conta. Contas são usadas para organizar pagamentos e dinheiro em coleções.</value>
   </data>
   <data name="WindowsDefaultLabel" xml:space="preserve">
     <value>Padrão do Windows</value>
@@ -744,135 +744,138 @@ To start create a new account. Accounts are used to organize payments and money 
     <value>Sim</value>
   </data>
   <data name="AccountsToolTip" xml:space="preserve">
-    <value>Manage your Accounts</value>
+    <value>Gerenciar suas contas</value>
   </data>
   <data name="AddPaymentTitle" xml:space="preserve">
-    <value>Add Payment</value>
+    <value>Adicionar pagamento</value>
   </data>
   <data name="AddPaymentToolTip" xml:space="preserve">
-    <value>Add a Payment with details</value>
+    <value>Adicionar um pagamento com detalhes</value>
   </data>
   <data name="BackupToolTip" xml:space="preserve">
-    <value>Backup your information</value>
+    <value>Fazer backup de suas informações</value>
   </data>
   <data name="CategoriesToolTip" xml:space="preserve">
-    <value>Manage your Categories</value>
+    <value>Gerenciar suas categorias</value>
   </data>
   <data name="StatisticsToolTip" xml:space="preserve">
-    <value>View your Statistics</value>
+    <value>Ver suas Estatísticas</value>
   </data>
   <data name="FailedToLoginToBackupMessage" xml:space="preserve">
-    <value>Failed to login to your backup service. Automatic backup upload was disabled. Please login and enable it again.</value>
+    <value>Falha ao fazer login no seu serviço de backup. O upload automático de backup foi desativado. Faça o login e ative-o novamente.</value>
   </data>
   <data name="FailedToLoginToBackupTitle" xml:space="preserve">
-    <value>Login failed!</value>
+    <value>Falha no login!</value>
   </data>
   <data name="LoggedInTitle" xml:space="preserve">
-    <value>Logged in!</value>
+    <value>Sessão iniciada!</value>
   </data>
   <data name="SelectedPaymentTypeHeader" xml:space="preserve">
-    <value>Selected Payment Type</value>
+    <value>Tipo de pagamento selecionado</value>
   </data>
   <data name="CategoryProgressionDescription" xml:space="preserve">
-    <value>Shows the progression of a category by month.</value>
+    <value>Mostra o progresso de uma categoria por mês.</value>
   </data>
   <data name="CategoryProgressionLabel" xml:space="preserve">
-    <value>Category Progression</value>
+    <value>Progresso da Categoria</value>
   </data>
   <data name="SelectCategoryLabel" xml:space="preserve">
-    <value>Select category..</value>
+    <value>Selecione a categoria...</value>
   </data>
   <data name="CategoryProgressionTitle" xml:space="preserve">
-    <value>Category Progression</value>
+    <value>Progresso da Categoria</value>
   </data>
   <data name="EditPaymentTitle" xml:space="preserve">
-    <value>Edit Payment</value>
+    <value>Editar Pagamento</value>
   </data>
   <data name="InitialBalanceLabel" xml:space="preserve">
-    <value>Initial Balance</value>
+    <value>Saldo inicial</value>
   </data>
   <data name="AllLabel" xml:space="preserve">
-    <value>All</value>
+    <value>TODOS</value>
   </data>
   <data name="HomeTitle" xml:space="preserve">
-    <value>Home</value>
+    <value>Residencial</value>
   </data>
   <data name="MenuTitle" xml:space="preserve">
     <value>Menu</value>
   </data>
   <data name="LastDayOfMonthLabel" xml:space="preserve">
-    <value>Last Day of Month</value>
+    <value>Último dia do mês</value>
   </data>
   <data name="OpenLogLabel" xml:space="preserve">
-    <value>Open Log</value>
+    <value>Abrir log</value>
   </data>
   <data name="BudgetsTitle" xml:space="preserve">
-    <value>Budgets</value>
+    <value>Orçamentos</value>
   </data>
   <data name="NoBudgetsMessage" xml:space="preserve">
-    <value>There are no Budgets yet. Go ahead and create one!</value>
+    <value>Ainda não há orçamentos. Vá em frente e crie um!</value>
   </data>
   <data name="AddBudgetLabel" xml:space="preserve">
-    <value>Add Budget</value>
+    <value>Adicionar Orçamento</value>
   </data>
   <data name="AddBudgetTitle" xml:space="preserve">
-    <value>Add Budget</value>
+    <value>Adicionar Orçamento</value>
   </data>
   <data name="BudgetNameLabel" xml:space="preserve">
-    <value>Budget Name</value>
+    <value>Nome do Orçamento</value>
   </data>
   <data name="MoreTitle" xml:space="preserve">
-    <value>More</value>
+    <value>MAIS</value>
   </data>
   <data name="SelectedCategoriesLabel" xml:space="preserve">
-    <value>Selected Categories</value>
+    <value>Categorias selecionadas</value>
   </data>
   <data name="BackupUploadSkippedMessage" xml:space="preserve">
-    <value>Upload of backup skipped, since remote version was already up to date.</value>
+    <value>O envio do backup foi ignorado, pois a versão remota já estava atualizada.</value>
   </data>
   <data name="EditBudgetTitle" xml:space="preserve">
-    <value>Edit Budget</value>
+    <value>Editar Orçamento</value>
   </data>
   <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this budget?</value>
+    <value>Você realmente quer excluir este orçamento?</value>
   </data>
   <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Monthly Budget:</value>
+    <value>Orçamento mensal:</value>
   </data>
   <data name="TimeRangeLabel" xml:space="preserve">
-    <value>Time Range</value>
+    <value>Intervalo de tempo</value>
   </data>
   <data name="LastFiveYearsLabel" xml:space="preserve">
-    <value>Last Five Years</value>
+    <value>Últimos cinco anos</value>
   </data>
   <data name="LastThreeYearsLabel" xml:space="preserve">
-    <value>Last Three Years</value>
+    <value>Últimos três anos</value>
   </data>
   <data name="LastTwoYearsLabel" xml:space="preserve">
-    <value>Last Two Years</value>
+    <value>Últimos dois anos</value>
   </data>
   <data name="LastYearLabel" xml:space="preserve">
-    <value>Last Year</value>
+    <value>Ano passado</value>
   </data>
   <data name="YearToDateLabel" xml:space="preserve">
-    <value>Year to date</value>
+    <value>Ano por data</value>
   </data>
   <data name="MonthlySpendingLimitLabel" xml:space="preserve">
-    <value>Monthly Spending Limit</value>
+    <value>Limite mensal de gastos</value>
   </data>
   <data name="EvaluationTimeRangeLabel" xml:space="preserve">
-    <value>Evaluation Time Range</value>
+    <value>Intervalo de Tempo Avaliação</value>
   </data>
   <data name="EvaluationTimeRangeMessage" xml:space="preserve">
-    <value>This defines the time range in which payments are included to calculate your monthly average to compare to your spending limit.</value>
+    <value>Isto define o intervalo de tempo no qual os pagamentos são incluídos para calcular sua média mensal para comparar com seu limite de gastos.</value>
   </data>
   <data name="CategorySummaryPlaceholder" xml:space="preserve">
-    <value>No payments in the selected time range found.</value>
+    <value>Nenhum pagamento no intervalo de tempo selecionado foi encontrado.</value>
   </data>
   <data name="InvalidSpendingLimitMessage" xml:space="preserve">
-    <value>The spending limit has to be larger than zero.</value>
+    <value>O limite de despesas tem de ser superior a zero.</value>
   </data>
   <data name="InvalidSpendingLimitTitle" xml:space="preserve">
-    <value>Invalid Spending Limit</value>
+    <value>Limite de Gastos Inválido</value>
+  </data>
+  <data name="NotePlaceholderLabel" xml:space="preserve">
+    <value>Insira uma nota para este pagamento..</value>
   </data>
 </root>

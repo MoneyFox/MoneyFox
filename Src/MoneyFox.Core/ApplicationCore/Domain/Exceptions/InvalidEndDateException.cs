@@ -14,5 +14,3 @@ public class InvalidEndDateException : Exception
 
     protected InvalidEndDateException(SerializationInfo info, StreamingContext context) : base(info: info, context: context) { }
 }
-
-

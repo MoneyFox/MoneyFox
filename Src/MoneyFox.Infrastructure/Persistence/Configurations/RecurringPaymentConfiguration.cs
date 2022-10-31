@@ -11,5 +11,3 @@ internal class RecurringPaymentConfiguration : IEntityTypeConfiguration<Recurrin
         _ = builder.HasKey(b => b.Id);
     }
 }
-
-

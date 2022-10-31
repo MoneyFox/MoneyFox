@@ -11,5 +11,3 @@ public class OneDriveAuthentication
     public string AccessToken { get; }
     public string TokenType { get; }
 }
-
-

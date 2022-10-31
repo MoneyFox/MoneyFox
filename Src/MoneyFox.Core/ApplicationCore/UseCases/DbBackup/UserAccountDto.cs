@@ -12,4 +12,3 @@ public class UserAccountDto
 
     public string Email { get; }
 }
-

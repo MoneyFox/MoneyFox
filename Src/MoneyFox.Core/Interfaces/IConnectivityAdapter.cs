@@ -10,5 +10,3 @@ public interface IConnectivityAdapter
     /// </summary>
     bool IsConnected { get; }
 }
-
-

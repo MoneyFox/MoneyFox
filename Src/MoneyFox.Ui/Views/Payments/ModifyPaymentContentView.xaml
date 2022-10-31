@@ -61,13 +61,14 @@
 
         <controls:TextEntry
             TextFieldTitle="{x:Static resources:Strings.NoteLabel}"
-            EntryPlaceholder="{x:Static resources:Strings.NoteLabel}"
+            EntryPlaceholder="{x:Static resources:Strings.NotePlaceholderLabel}"
             EntryText="{Binding SelectedPayment.Note}" />
 
         <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*, Auto">
             <Label Grid.Column="0"
-                    VerticalOptions="Center"
-                    Text="{x:Static resources:Strings.RecurringLabel}" />
+                   Style="{StaticResource TextBodySecondary}" 
+                   VerticalOptions="Center"
+                   Text="{x:Static resources:Strings.RecurringLabel}" />
 
             <Switch Grid.Column="1"
                     HorizontalOptions="End"
@@ -76,7 +77,7 @@
 
         <VerticalStackLayout IsVisible="{Binding SelectedPayment.IsRecurring}"
                         Spacing="6">
-            <Label Text="{x:Static resources:Strings.RecurrenceLabel}" />
+            <Label Style="{StaticResource TextBodySecondary}" Text="{x:Static resources:Strings.RecurrenceLabel}" />
             <Picker ItemsSource="{Binding RecurrenceList}"
                     SelectedItem="{Binding SelectedPayment.RecurringPayment.Recurrence}" />
 
@@ -85,8 +86,9 @@
                     IsVisible="{Binding SelectedPayment.RecurringPayment.AllowLastDayOfMonth}">
 
                 <Label Grid.Column="0"
-                        VerticalOptions="Center"
-                        Text="{x:Static resources:Strings.LastDayOfMonthLabel}" />
+                       Style="{StaticResource TextBodySecondary}"
+                       VerticalOptions="Center"
+                       Text="{x:Static resources:Strings.LastDayOfMonthLabel}" />
 
                 <Switch Grid.Column="1"
                         HorizontalOptions="End"
@@ -96,8 +98,9 @@
             <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*, Auto">
 
                 <Label Grid.Column="0"
-                        VerticalOptions="Center"
-                        Text="{x:Static resources:Strings.EndlessLabel}" />
+                       Style="{StaticResource TextBodySecondary}" 
+                       VerticalOptions="Center"
+                       Text="{x:Static resources:Strings.EndlessLabel}" />
 
                 <Switch Grid.Column="1"
                         HorizontalOptions="Start"

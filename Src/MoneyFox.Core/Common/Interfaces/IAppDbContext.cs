@@ -36,5 +36,3 @@ public interface IAppDbContext : IDisposable
 
     void ReleaseLock();
 }
-
-
