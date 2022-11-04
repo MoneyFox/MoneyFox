@@ -14,7 +14,7 @@ using Views.Budget;
 using Views.Categories;
 using Xunit;
 
-public class AddBudgetViewModelShould
+public class AddBudgetViewModelTests
 {
     private const int CategoryId = 10;
     private readonly IDialogService dialogService;
@@ -23,7 +23,7 @@ public class AddBudgetViewModelShould
 
     private readonly AddBudgetViewModel viewModel;
 
-    public AddBudgetViewModelShould()
+    public AddBudgetViewModelTests()
     {
         sender = Substitute.For<ISender>();
         navigationService = Substitute.For<INavigationService>();

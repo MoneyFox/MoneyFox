@@ -17,7 +17,7 @@ using Views.Budget;
 using Views.Categories;
 using Xunit;
 
-public class EditBudgetViewModelShould
+public class EditBudgetViewModelTests
 {
     private const int CATEGORY_ID = 10;
     private readonly IDialogService dialogService;
@@ -26,7 +26,7 @@ public class EditBudgetViewModelShould
 
     private readonly EditBudgetViewModel viewModel;
 
-    protected EditBudgetViewModelShould()
+    protected EditBudgetViewModelTests()
     {
         sender = Substitute.For<ISender>();
         navigationService = Substitute.For<INavigationService>();
@@ -34,7 +34,7 @@ public class EditBudgetViewModelShould
         viewModel = new(sender: sender, navigationService: navigationService, dialogService: dialogService);
     }
 
-    public class OnReceiveMessage : EditBudgetViewModelShould
+    public class OnReceiveMessage : EditBudgetViewModelTests
     {
         [Fact]
         public void AddsSelectedCategoryToList()
@@ -62,7 +62,7 @@ public class EditBudgetViewModelShould
         }
     }
 
-    public class OnRemoveCategory : EditBudgetViewModelShould
+    public class OnRemoveCategory : EditBudgetViewModelTests
     {
         [Fact]
         public void Removes_SelectedCategory_OnCommand()
@@ -79,7 +79,7 @@ public class EditBudgetViewModelShould
         }
     }
 
-    public class OnOpenCategorySelection : EditBudgetViewModelShould
+    public class OnOpenCategorySelection : EditBudgetViewModelTests
     {
         [Fact]
         public async Task CallNavigationToCategorySelection()
@@ -92,7 +92,7 @@ public class EditBudgetViewModelShould
         }
     }
 
-    public class OnSaveBudget : EditBudgetViewModelShould
+    public class OnSaveBudget : EditBudgetViewModelTests
     {
         [Fact]
         public async Task SendsCorrectSaveCommand()
@@ -119,7 +119,7 @@ public class EditBudgetViewModelShould
         }
     }
 
-    public class OnInitialize : EditBudgetViewModelShould
+    public class OnInitialize : EditBudgetViewModelTests
     {
         [Fact]
         public async Task SendCorrectLoadingCommand()
@@ -147,7 +147,7 @@ public class EditBudgetViewModelShould
         }
     }
 
-    public class OnDelete : EditBudgetViewModelShould
+    public class OnDelete : EditBudgetViewModelTests
     {
         [Fact]
         public async Task SendsCorrectDeleteCommand()
