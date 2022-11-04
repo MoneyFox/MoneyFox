@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries;
+namespace MoneyFox.Core.Tests.ApplicationCore.Queries;
 
 using System.Collections.Immutable;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
@@ -10,13 +10,13 @@ using Infrastructure.Persistence;
 using NSubstitute;
 using TestFramework;
 
-public sealed class LoadBudgetListDataShould
+public sealed class LoadBudgetListDataTests
 {
     private readonly AppDbContext dbContext;
     private readonly LoadBudgetListData.Handler handler;
     private readonly ISystemDateHelper systemDateHelper;
 
-    public LoadBudgetListDataShould()
+    public LoadBudgetListDataTests()
     {
         systemDateHelper = Substitute.For<ISystemDateHelper>();
         systemDateHelper.Today.Returns(DateTime.Today);
