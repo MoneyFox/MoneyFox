@@ -17,7 +17,7 @@ public sealed class BudgetEntryData
         Categories = categories;
         TimeRange = timeRange;
     }
-
+    
     public int Id { get; }
 
     public string Name { get; }

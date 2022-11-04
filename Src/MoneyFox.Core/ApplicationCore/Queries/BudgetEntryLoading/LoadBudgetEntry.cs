@@ -49,7 +49,7 @@ public static class LoadBudgetEntry
                 .AsNoTracking()
                 .ToImmutableList();
 
-            return new(id: budgetData.Id, name: budgetData.Name, spendingLimit: budgetData.SpendingLimit, budgetData.BudgetTimeRange, categories: budgetEntryCategories);
+            return new(id: budgetData.Id, name: budgetData.Name, spendingLimit: budgetData.SpendingLimit, timeRange: budgetData.BudgetTimeRange, categories: budgetEntryCategories);
         }
     }
 }
