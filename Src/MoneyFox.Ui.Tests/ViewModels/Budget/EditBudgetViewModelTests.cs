@@ -129,7 +129,7 @@ public class EditBudgetViewModelTests
             var categories = testBudget.Categories.Select(c => new BudgetEntryData.BudgetCategory(id: c, name: "category")).ToImmutableList();
             LoadBudgetEntry.Query? capturedQuery = null;
             _ = sender.Send(Arg.Do<LoadBudgetEntry.Query>(q => capturedQuery = q))
-                .Returns(new BudgetEntryData(id: testBudget.Id, name: testBudget.Name, spendingLimit: testBudget.SpendingLimit, categories: categories));
+                .Returns(new BudgetEntryData(id: testBudget.Id, name: testBudget.Name, spendingLimit: testBudget.SpendingLimit, testBudget.BudgetTimeRange, categories: categories));
 
             // Arrange
 
@@ -142,6 +142,7 @@ public class EditBudgetViewModelTests
             viewModel.SelectedBudget.Id.Should().Be(testBudget.Id);
             viewModel.SelectedBudget.Name.Should().Be(testBudget.Name);
             viewModel.SelectedBudget.SpendingLimit.Should().Be(testBudget.SpendingLimit);
+            viewModel.SelectedBudget.TimeRange.Should().Be(testBudget.BudgetTimeRange);
             viewModel.SelectedCategories[0].CategoryId.Should().Be(categories[0].Id);
             viewModel.SelectedCategories[0].Name.Should().Be(categories[0].Name);
         }
@@ -167,6 +168,7 @@ public class EditBudgetViewModelTests
                         id: testBudget.Id,
                         name: testBudget.Name,
                         spendingLimit: testBudget.SpendingLimit,
+                        testBudget.BudgetTimeRange,
                         categories: new List<BudgetEntryData.BudgetCategory>()));
 
             await viewModel.InitializeCommand.ExecuteAsync(testBudget.Id);
