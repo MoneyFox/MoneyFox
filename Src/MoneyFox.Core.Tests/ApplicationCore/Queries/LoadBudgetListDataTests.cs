@@ -189,7 +189,6 @@ public sealed class LoadBudgetListDataTests
         actualBudgetListData.Id.Should().BeGreaterThan(0);
         actualBudgetListData.Name.Should().Be(expectedBudgetTestData.Name);
         actualBudgetListData.SpendingLimit.Should().BeApproximately(expectedValue: expectedBudgetTestData.SpendingLimit, precision: 0.01m);
-        actualBudgetListData.TimeRange.Should().Be(expectedBudgetTestData.BudgetTimeRange);
         actualBudgetListData.CurrentSpending.Should().BeApproximately(expectedValue: expectedCurrentSpending, precision: 0.01m);
     }
 }
