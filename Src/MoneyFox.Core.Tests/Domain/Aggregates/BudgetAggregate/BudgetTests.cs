@@ -5,7 +5,7 @@ using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
 using TestFramework;
 using static TestFramework.BudgetAssertion;
 
-public sealed class BudgetShould
+public sealed class BudgetTests
 {
     [Fact]
     public void BeCorrectlyInitialized()
