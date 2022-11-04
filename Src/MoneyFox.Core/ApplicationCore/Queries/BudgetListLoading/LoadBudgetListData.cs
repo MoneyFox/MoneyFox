@@ -43,7 +43,7 @@ public static class LoadBudgetListData
 
                 if (payments.Any() is false)
                 {
-                    budgetListDataList.Add(new(id: budget.Id, name: budget.Name, spendingLimit: budget.SpendingLimit, currentSpending: 0));
+                    budgetListDataList.Add(new(id: budget.Id, name: budget.Name,  spendingLimit: budget.SpendingLimit, currentSpending: 0, budget.BudgetTimeRange));
 
                     continue;
                 }
@@ -54,7 +54,7 @@ public static class LoadBudgetListData
                 // Since sum is not supported for decimal in Ef Core with SQLite we have to do this in two steps
                 var currentSpending = payments.Sum(selector: p => p.Type == PaymentType.Expense ? p.Amount : -p.Amount);
                 var monthlyAverage = currentSpending / numberOfMonthsInRange;
-                budgetListDataList.Add(new(id: budget.Id, name: budget.Name, spendingLimit: budget.SpendingLimit, currentSpending: monthlyAverage));
+                budgetListDataList.Add(new(id: budget.Id, name: budget.Name, spendingLimit: budget.SpendingLimit, currentSpending: monthlyAverage, budget.BudgetTimeRange));
             }
 
             return budgetListDataList;

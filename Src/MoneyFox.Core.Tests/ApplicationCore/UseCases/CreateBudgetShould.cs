@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Tests.ApplicationCore.UseCases;
+namespace MoneyFox.Core.Tests.ApplicationCore.UseCases;
 
 using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
 using Core.ApplicationCore.UseCases.BudgetCreation;
@@ -32,7 +32,7 @@ public sealed class CreateBudgetShould
         var query = new CreateBudget.Command(
             name: testData.Name,
             spendingLimit: testData.SpendingLimit,
-            budgetTimeRange: BudgetTimeRange.YearToDate,
+            budgetTimeRange: testData.BudgetTimeRange,
             categories: testData.Categories);
 
         await handler.Handle(request: query, cancellationToken: CancellationToken.None);
@@ -42,6 +42,3 @@ public sealed class CreateBudgetShould
         AssertBudget(actual: capturedBudget!, expected: testData);
     }
 }
-
-
-
