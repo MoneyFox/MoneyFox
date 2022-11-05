@@ -9,12 +9,12 @@ using NSubstitute;
 using Views.Budget;
 using Xunit;
 
-public class BudgetListPageViewModelShould
+public class BudgetListPageViewModelTests
 {
     private readonly ISender sender;
     private readonly BudgetListViewModel viewModel;
 
-    protected BudgetListPageViewModelShould()
+    protected BudgetListPageViewModelTests()
     {
         sender = Substitute.For<ISender>();
         viewModel = new(sender);
@@ -28,7 +28,7 @@ public class BudgetListPageViewModelShould
         _ = actualBudgetVm.CurrentSpending.Should().Be(expectedBudgetData.CurrentSpending);
     }
 
-    public class WithNoBudgetsAvailable : BudgetListPageViewModelShould
+    public class WithNoBudgetsAvailable : BudgetListPageViewModelTests
     {
         [Fact]
         public async Task InitializeBudgetsCollectionEmpty_WhenNotItemsFound()
@@ -41,7 +41,7 @@ public class BudgetListPageViewModelShould
         }
     }
 
-    public class WithBudgetAvailable : BudgetListPageViewModelShould
+    public class WithBudgetAvailable : BudgetListPageViewModelTests
     {
         private readonly TestData.DefaultBudget budgetTestData;
 
@@ -84,7 +84,7 @@ public class BudgetListPageViewModelShould
         }
     }
 
-    public class WithMultipleBudgetAvailable : BudgetListPageViewModelShould
+    public class WithMultipleBudgetAvailable : BudgetListPageViewModelTests
     {
         public WithMultipleBudgetAvailable()
         {

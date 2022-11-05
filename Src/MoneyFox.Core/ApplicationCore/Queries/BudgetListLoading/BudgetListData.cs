@@ -1,4 +1,6 @@
-﻿namespace MoneyFox.Core.ApplicationCore.Queries.BudgetListLoading;
+namespace MoneyFox.Core.ApplicationCore.Queries.BudgetListLoading;
+
+using Domain.Aggregates.BudgetAggregate;
 
 public class BudgetListData
 {

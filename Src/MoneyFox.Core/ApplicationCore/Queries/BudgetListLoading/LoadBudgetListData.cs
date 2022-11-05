@@ -43,7 +43,7 @@ public static class LoadBudgetListData
 
                 if (payments.Any() is false)
                 {
-                    budgetListDataList.Add(new(id: budget.Id, name: budget.Name, spendingLimit: budget.SpendingLimit, currentSpending: 0));
+                    budgetListDataList.Add(new(id: budget.Id, name: budget.Name,  spendingLimit: budget.SpendingLimit, currentSpending: 0));
 
                     continue;
                 }

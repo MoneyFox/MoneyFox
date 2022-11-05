@@ -11,7 +11,7 @@ internal static partial class TestData
         public string Name { get; set; } = "Beverages";
         public decimal SpendingLimit { get; set; } = 100.50m;
         public decimal CurrentSpending { get; set; } = 60.20m;
-        public BudgetTimeRange BudgetTimeRange { get; set; } = BudgetTimeRange.YearToDate;
+        public BudgetTimeRange BudgetTimeRange { get; set; } = BudgetTimeRange.Last2Years;
         public IReadOnlyList<int> Categories { get; set; } = ImmutableList.Create(11);
     }
 
