@@ -42,7 +42,7 @@ public sealed class UpdateBudgetShould
             budgetId: testBudget.Id,
             name: updatedBudget.Name,
             spendingLimit: updatedBudget.SpendingLimit,
-            budgetTimeRange: BudgetTimeRange.YearToDate,
+            budgetTimeRange: updatedBudget.BudgetTimeRange,
             categories: updatedBudget.Categories);
 
         await handler.Handle(request: command, cancellationToken: CancellationToken.None);

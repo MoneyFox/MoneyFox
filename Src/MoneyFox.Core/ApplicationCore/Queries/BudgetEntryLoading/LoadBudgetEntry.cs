@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.ApplicationCore.Queries.BudgetEntryLoading;
+namespace MoneyFox.Core.ApplicationCore.Queries.BudgetEntryLoading;
 
 using System.Collections.Immutable;
 using System.Linq;
@@ -37,6 +37,7 @@ public static class LoadBudgetEntry
                     {
                         b.Id,
                         b.Name,
+                        b.BudgetTimeRange,
                         b.SpendingLimit,
                         b.IncludedCategories
                     })
@@ -48,7 +49,7 @@ public static class LoadBudgetEntry
                 .AsNoTracking()
                 .ToImmutableList();
 
-            return new(id: budgetData.Id, name: budgetData.Name, spendingLimit: budgetData.SpendingLimit, categories: budgetEntryCategories);
+            return new(id: budgetData.Id, name: budgetData.Name, spendingLimit: budgetData.SpendingLimit, timeRange: budgetData.BudgetTimeRange, categories: budgetEntryCategories);
         }
     }
 }

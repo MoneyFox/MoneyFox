@@ -5,7 +5,7 @@ using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
 using TestFramework;
 using static TestFramework.BudgetAssertion;
 
-public sealed class BudgetShould
+public sealed class BudgetTests
 {
     [Fact]
     public void BeCorrectlyInitialized()
@@ -18,7 +18,7 @@ public sealed class BudgetShould
         var budget = new Budget(
             name: testBudget.Name,
             spendingLimit: spendingLimit,
-            timeRange: BudgetTimeRange.YearToDate,
+            timeRange: testBudget.BudgetTimeRange,
             includedCategories: testBudget.Categories);
 
         // Assert
@@ -38,7 +38,7 @@ public sealed class BudgetShould
             budgetName: testBudget.Name,
             spendingLimit: spendingLimit,
             includedCategories: testBudget.Categories,
-            timeRange: BudgetTimeRange.YearToDate);
+            timeRange: testBudget.BudgetTimeRange);
 
         // Assert
         AssertBudget(actual: budget, expected: testBudget);

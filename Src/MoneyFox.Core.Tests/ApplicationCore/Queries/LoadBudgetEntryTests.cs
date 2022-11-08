@@ -6,18 +6,18 @@ using FluentAssertions;
 using Infrastructure.Persistence;
 using TestFramework;
 
-public class LoadBudgetEntryShould
+public class LoadBudgetEntryTests
 {
     private readonly AppDbContext appDbContext;
     private readonly LoadBudgetEntry.Handler handler;
 
-    protected LoadBudgetEntryShould()
+    protected LoadBudgetEntryTests()
     {
         appDbContext = InMemoryAppDbContextFactory.Create();
         handler = new(appDbContext);
     }
 
-    public class GivenNoBudgets : LoadBudgetEntryShould
+    public class GivenNoBudgets : LoadBudgetEntryTests
     {
         [Fact]
         public void ThrowException()
@@ -31,7 +31,7 @@ public class LoadBudgetEntryShould
         }
     }
 
-    public class GivenBudgetsExist : LoadBudgetEntryShould
+    public class GivenBudgetsExist : LoadBudgetEntryTests
     {
         [Fact]
         public async Task ReturnBudgetWithCorrectId()

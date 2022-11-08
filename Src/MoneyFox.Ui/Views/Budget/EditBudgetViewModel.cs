@@ -36,6 +36,7 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
         SelectedBudget.Id = budgetData.Id;
         SelectedBudget.Name = budgetData.Name;
         SelectedBudget.SpendingLimit = budgetData.SpendingLimit;
+        SelectedBudget.TimeRange = budgetData.TimeRange;
         SelectedCategories.Clear();
         SelectedCategories.AddRange(budgetData.Categories.Select(bc => new BudgetCategoryViewModel(categoryId: bc.Id, name: bc.Name)));
     }
