@@ -4,5 +4,6 @@
   ],
   "azure-pipelines": {
     "enabled": false
-  }
+  },
+  "dependencyDashboard": true
 }
