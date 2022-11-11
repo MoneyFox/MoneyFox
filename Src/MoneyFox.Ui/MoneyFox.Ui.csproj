@@ -9,8 +9,6 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <DefaultLanguage>en</DefaultLanguage>
-        <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
-        <TrimMode>partial</TrimMode>
 
         <!-- Display name -->
         <ApplicationTitle>MoneyFox</ApplicationTitle>
@@ -23,7 +21,7 @@
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
         <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.22621.0</TargetPlatformMinVersion>
 
-        <EnableSGenConc>True</EnableSGenConc>
+        <EnableSGenConc>True</EnableSGenConc> 
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(TargetFramework)' == 'net7.0'">
@@ -42,6 +40,9 @@
     </PropertyGroup>
 
     <PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
+        <PublishTrimmed>False</PublishTrimmed>
+        <RunAOTCompilation>False</RunAOTCompilation>
+        <AndroidEnableProfiledAot>True</AndroidEnableProfiledAot>
         <EnableLLVM>True</EnableLLVM>
     </PropertyGroup>
 
