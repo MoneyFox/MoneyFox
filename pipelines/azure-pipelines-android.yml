@@ -19,7 +19,7 @@ steps:
   - task: UseDotNet@2
     displayName: 'Use correct .Net sdk'
     inputs:
-      version: 6.x
+      version: 7.x
 
   - task: PowerShell@2
     displayName: "Set App Version"
@@ -72,7 +72,7 @@ steps:
       command: 'publish'
       publishWebProjects: false
       projects: '**/MoneyFox.Ui.csproj'
-      arguments: '-c Release -f net6.0-android /p:AndroidKeyStore="True" /p:AndroidSigningKeyAlias="$(KeyStoreAlias)" /p:AndroidSigningKeyStore="$(keystore.secureFilePath)" /p:AndroidSigningKeyPass="$(KeyStorePass)" /p:AndroidSigningStorePass="$(KeyStorePass)"'
+      arguments: '-c Release -f net7.0-android /p:AndroidKeyStore="True" /p:AndroidSigningKeyAlias="$(KeyStoreAlias)" /p:AndroidSigningKeyStore="$(keystore.secureFilePath)" /p:AndroidSigningKeyPass="$(KeyStorePass)" /p:AndroidSigningStorePass="$(KeyStorePass)"'
 
   - task: DotNetCoreCLI@2
     displayName: 'Run Tests'

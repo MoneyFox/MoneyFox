@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup>
-        <TargetFrameworks>net6.0-ios;net6.0-android;net6.0</TargetFrameworks>
-        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.22621.0</TargetFrameworks>
+	<PropertyGroup>
+        <TargetFrameworks>net7.0-ios;net7.0-android;net7.0</TargetFrameworks>
+        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.22621.0</TargetFrameworks>
         <OutputType>Exe</OutputType>
         <RootNamespace>MoneyFox.Ui</RootNamespace>
         <UseMaui>true</UseMaui>
@@ -22,10 +21,10 @@
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
         <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.22621.0</TargetPlatformMinVersion>
 
-        <EnableSGenConc>True</EnableSGenConc>
+        <EnableSGenConc>True</EnableSGenConc> 
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(TargetFramework)' == 'net6.0'">
+    <PropertyGroup Condition="'$(TargetFramework)' == 'net7.0'">
         <OutputType>Library</OutputType>
     </PropertyGroup>
 
@@ -40,9 +39,11 @@
         <CodesignProvision>MoneyFox Distribution 2022</CodesignProvision>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(TargetFramework)'=='net6.0-ios'">
-      <CodesignKey>Apple Development: Created via API (QN475XJ36W)</CodesignKey>
-      <CodesignProvision>VS: com.applysolutions.moneyfox Development</CodesignProvision>
+    <PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
+        <PublishTrimmed>False</PublishTrimmed>
+        <RunAOTCompilation>False</RunAOTCompilation>
+        <AndroidEnableProfiledAot>True</AndroidEnableProfiledAot>
+        <EnableLLVM>True</EnableLLVM>
     </PropertyGroup>
 
     <ItemGroup>

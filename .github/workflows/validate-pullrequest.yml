@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-    DOTNETVERSION: "6.0.x"
+    DOTNETVERSION: "7.0.x"
     UI_PROJECT_PATH: "src/MoneyFox.Ui/MoneyFox.Ui.csproj"
     CORE_TEST_PROJECT_PATH: "src/MoneyFox.Core.Tests/MoneyFox.Core.Tests.csproj"
     UI_TEST_PROJECT_PATH: "src/MoneyFox.Ui.Tests/MoneyFox.Ui.Tests.csproj"
@@ -39,7 +39,7 @@ jobs:
         dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
 
     - name: Build MAUI Android
-      run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net6.0-android -c Release    
+      run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-android -c Release    
       
   buildiOS:
 
