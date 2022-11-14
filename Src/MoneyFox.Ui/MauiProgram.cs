@@ -28,6 +28,7 @@ public static class MauiProgram
             {
 #if IOS
                 handlers.AddHandler(typeof(Shell), typeof(Platforms.iOS.Renderer.CustomShellRenderer));
+                handlers.AddHandler(typeof(Entry), typeof(EntryHandler));
 #endif
             })
             .UseSkiaSharp(true)
