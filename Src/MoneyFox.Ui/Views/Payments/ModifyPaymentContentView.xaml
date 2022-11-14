@@ -38,7 +38,8 @@
             Amount="{Binding SelectedPayment.Amount}"
             EntryPlaceholder="{x:Static resources:Strings.AmountLabel}" />
 
-        <Label Text="{x:Static resources:Strings.CategoryLabel}" />
+        <Label Text="{x:Static resources:Strings.CategoryLabel}" 
+               Style="{StaticResource TextBodySecondary}" />
 
         <Grid ColumnDefinitions="70*, 6, 40">
             <Button Grid.Column="0"
