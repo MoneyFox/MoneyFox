@@ -4,6 +4,7 @@ using CommunityToolkit.Maui;
 using Microsoft.Maui.Handlers;
 using MoneyFox.Core.Common;
 using MoneyFox.Ui.Controls;
+using MoneyFox.Ui.Handler;
 using Serilog;
 using Serilog.Events;
 using Serilog.Exceptions;
@@ -28,7 +29,7 @@ public static class MauiProgram
             {
 #if IOS
                 handlers.AddHandler(typeof(Shell), typeof(Platforms.iOS.Renderer.CustomShellRenderer));
-                handlers.AddHandler(typeof(Entry), typeof(EntryHandler));
+                handlers.AddHandler(typeof(Entry), typeof(CustomEntryHandler));
 #endif
             })
             .UseSkiaSharp(true)

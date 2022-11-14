@@ -10,7 +10,7 @@ using UIKit;
 /// When this Handler is registered with the MAUI app, all Entries will automatically scroll the page to ensure the
 /// focused Entry rests above the keyboard
 /// </summary>
-public class EntryHandler : Microsoft.Maui.Handlers.EntryHandler
+public class CustomEntryHandler : Microsoft.Maui.Handlers.EntryHandler
 {
     private NSObject keyboardShowObserver;
     private NSObject keyboardHideObserver;
@@ -33,7 +33,7 @@ public class EntryHandler : Microsoft.Maui.Handlers.EntryHandler
 
         //If the entry that called this method is not the currently focused entry, do not scroll the page
         if (!PlatformView.Focused)
-            return;
+            //return;
 
         //Some devices have a pixel density for some reason. We want to convert the screen height into pixels by
         // dividing the MainDisplay Height by the pixel density (to get actual pixels)
