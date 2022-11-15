@@ -78,6 +78,12 @@ jobs:
           InjectVersion: false
           VersionRegex: '\d+.\d+.\d+'
           OutputVersion: 'OutputedVersion'
+    
+      - task: PowerShell@2
+        displayName: "install maui workload"
+        inputs:
+          targetType: 'inline'
+          script: 'dotnet workload install maui'
 
       - task: NuGetToolInstaller@1
         displayName: 'Use NuGet'
