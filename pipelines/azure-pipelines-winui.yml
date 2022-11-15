@@ -87,7 +87,7 @@ jobs:
       - task: NuGetCommand@2
         displayName: 'NuGet restore'
         inputs:
-          restoreSolution: '**/MoneyFox.WinUI.sln'
+          restoreSolution: '**/MoneyFox.sln'
 
       - task: DotNetCoreCLI@2
         displayName: 'Run Tests'
@@ -108,7 +108,7 @@ jobs:
       - task: VSBuild@1
         displayName: 'Build Windows Project'
         inputs:
-          solution: '**/*.wapproj'
+          solution: '**/MoneyFox.Ui.csproj'
           msbuildArgs: '
         /p:AppxBundlePlatforms="$(buildPlatform)"
         /p:AppxPackageDir="$(appxPackageDir)"

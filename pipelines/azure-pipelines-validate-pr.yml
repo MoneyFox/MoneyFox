@@ -11,7 +11,7 @@ jobs:
       vmImage: windows-2022
 
     variables:
-      solution: '**/*.wapproj'
+      solution: '**/MoneyFox.Ui.csproj'
       appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
     steps:
