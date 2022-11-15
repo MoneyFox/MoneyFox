@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.ApplicationCore.Queries.Statistics;
+namespace MoneyFox.Core.ApplicationCore.Queries.Statistics;
 
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ using Resources;
 
 public class GetCategorySpreadingQuery : IRequest<IEnumerable<StatisticEntry>>
 {
-    private const int NUMBER_OF_STATISTIC_ITEMS = 6;
+    private const int NUMBER_OF_STATISTIC_ITEMS = 10;
 
     public GetCategorySpreadingQuery(
         DateTime startDate,
