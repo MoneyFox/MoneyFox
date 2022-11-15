@@ -81,17 +81,17 @@
                                                      Orientation="Horizontal"
                                                      Spacing="0"
                                                      VerticalOptions="Center">
-                                            <Label
-                                                Text="{Binding Value, Converter={StaticResource AmountFormatConverter}}" />
+                                            <Label Text="{Binding Value, Converter={StaticResource AmountFormatConverter}}" />
                                             <Label Text="{Binding Percentage, StringFormat=' ({0} %)'}" />
 
                                         </StackLayout>
                                     </Grid>
 
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Text="{x:Static resources:Strings.MonthlyAverageLabel}" />
-                                        <Label
-                                            Text="{Binding Average, Converter={StaticResource AmountFormatConverter}}" />
+                                        <Label Style="{StaticResource TextBodySecondary}"  
+                                               Text="{x:Static resources:Strings.MonthlyAverageLabel}" />
+                                        <Label Style="{StaticResource TextBodySecondary}" 
+                                               Text="{Binding Average, Converter={StaticResource AmountFormatConverter}}" />
                                     </StackLayout>
                                 </StackLayout>
                             </controls:Card>
