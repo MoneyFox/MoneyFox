@@ -54,7 +54,7 @@ jobs:
         inputs:
           targetType: 'inline'
           script: |
-            [xml]$xmlDoc = Get-Content '$(Build.SourcesDirectory)\src\MoneyFox.Win\MoneyFox.Win (Package)\Package.appxmanifest'
+            [xml]$xmlDoc = Get-Content '$(Build.SourcesDirectory)\src\MoneyFox.Ui\Platforms\Windows\Package.appxmanifest'
             $xmlDoc.Package.Identity.Name="57598ApplySolutionsSoftwa.MoneyFox"
             $xmlDoc.Package.Identity.Publisher="CN=071307B1-B0E3-434A-AD0E-FFF714A7245C"
             $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Win\MoneyFox.Win (Package)\Package.appxmanifest')
@@ -65,7 +65,7 @@ jobs:
         inputs:
           targetType: 'inline'
           script: |
-            [xml]$xmlDoc = Get-Content '$(Build.SourcesDirectory)\src\MoneyFox.Win\MoneyFox.Win (Package)\Package.StoreAssociation.xml'
+            [xml]$xmlDoc = Get-Content '$(Build.SourcesDirectory)\src\MoneyFox.Ui\Platforms\Windows\Package.StoreAssociation.xml'
             $xmlDoc.StoreAssociation.Publisher="CN=071307B1-B0E3-434A-AD0E-FFF714A7245C"
             $xmlDoc.StoreAssociation.ProductReservedInfo.MainPackageIdentityName="57598ApplySolutionsSoftwa.MoneyFox"
             $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Win\MoneyFox.Win (Package)\Package.StoreAssociation.xml')
