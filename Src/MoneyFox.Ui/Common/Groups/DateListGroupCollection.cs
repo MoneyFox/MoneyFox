@@ -31,11 +31,12 @@ public class DateListGroupCollection<T> : List<T>
     /// </summary>
     /// <param name="key">The key for this group.</param>
     /// <param name="itemClickCommand">The command to execute on click</param>
-    private DateListGroupCollection(string key, RelayCommand<T>? itemClickCommand = null, bool isFutureDate = false)
+    /// <param name="date">The date for this group.</param>
+    private DateListGroupCollection(string key, RelayCommand<T>? itemClickCommand = null, DateTime? date = null)
     {
         Key = key;
         ItemClickCommand = itemClickCommand;
-        IsFutureDate = isFutureDate;
+        Date = date;
     }
 
     /// <summary>
@@ -48,7 +49,7 @@ public class DateListGroupCollection<T> : List<T>
     /// </summary>
     public string Subtitle { get; set; } = "";
 
-    public bool IsFutureDate { get; } = false;
+    public DateTime? Date { get; }
 
     /// <summary>
     ///     The command to execute on a click.
@@ -76,10 +77,9 @@ public class DateListGroupCollection<T> : List<T>
         foreach (var item in items)
         {
             var index = getKey(item);
-            var infuture = getSortKey(item).Date > DateTime.Today;
             if (list.All(a => a.Key != index))
             {
-                list.Add(new(key: index, itemClickCommand: itemClickCommand, isFutureDate: infuture));
+                list.Add(new(key: index, itemClickCommand: itemClickCommand, date: getSortKey(item).Date));
             }
 
             if (!string.IsNullOrEmpty(index))
