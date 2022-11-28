@@ -409,7 +409,7 @@
     <value>Gastos</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Comentarios Money Fox</value>
+    <value>Comentarios MoneyFox</value>
   </data>
   <data name="FilterLabel" xml:space="preserve">
     <value>Filtrar</value>
@@ -706,7 +706,7 @@ ATENCIÓN: ¡Los datos que creaste desde la copia de respaldo se perderán!</val
     <value>Transferir</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>¿Hay algo mal traducido o no traducido del todo? ¡Ayúdanos! Dirígete a crowdin y ayuda a mejorar Money Fox:</value>
+    <value>¿Hay algo mal traducido o no traducido del todo? ¡Ayúdanos! Dirígete a Crowdin y ayuda a mejorar MoneyFox:</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
     <value>Hubo un problema durante la operación. Mensaje de error {0}</value>
