@@ -409,7 +409,7 @@
     <value>Витрати</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Зворотній зв'язок з Money Fox</value>
+    <value>Зворотній зв'язок з MoneyFox</value>
   </data>
   <data name="FilterLabel" xml:space="preserve">
     <value>Фільтр</value>
@@ -708,7 +708,7 @@
     <value>Переказ</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Щось не перекладено або не перекладено взагалі? Допоможіть нам! Перейдіть на crowdin і допоможіть поліпшити Money Fox:</value>
+    <value>Щось не перекладено або не перекладено взагалі? Допоможіть нам! Перейдіть на crowdin і допоможіть поліпшити MoneyFox:</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
     <value>Виникла проблема під час операції. Повідомлення про помилку {0}</value>
