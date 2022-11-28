@@ -409,7 +409,7 @@
     <value>支出</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>向Money Fox反馈</value>
+    <value>向MoneyFox反馈</value>
   </data>
   <data name="FilterLabel" xml:space="preserve">
     <value>筛选器</value>
@@ -707,7 +707,7 @@
     <value>转账</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>有些文字没有翻译或者翻译有误？你可以在 crowdin 上改善 Money Fox 的翻译来帮助我们：</value>
+    <value>有些文字没有翻译或者翻译有误？你可以在 crowdin 上改善 MoneyFox 的翻译来帮助我们：</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
     <value>操作过程中出现了一个问题。错误消息 {0}</value>
