@@ -409,7 +409,7 @@
     <value>Udgifter</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Feedback Money Fox</value>
+    <value>Feedback MoneyFox</value>
   </data>
   <data name="FilterLabel" xml:space="preserve">
     <value>Filter</value>
@@ -708,7 +708,7 @@ ADVARSEL: Lokale ændringer, du lavede i mellemtiden, vil gå tabt!</value>
     <value>Overførsel</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Er noget ikke korrekt oversat eller slet ikke oversat? Hjælp os! Gå over til crowdin og hjælpe med at forbedre Money Fox:</value>
+    <value>Er noget ikke korrekt oversat eller slet ikke oversat? Hjælp os! Gå over til crowdin og hjælpe med at forbedre MoneyFox:</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
     <value>Der opstod et problem under handlingen. Fejlmeddelelse {0}</value>
