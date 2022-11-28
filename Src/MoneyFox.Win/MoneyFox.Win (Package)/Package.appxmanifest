@@ -31,7 +31,7 @@
                      Executable="$targetnametoken$.exe"
                      EntryPoint="$targetentrypoint$">
             <uap:VisualElements
-                    DisplayName="Money Fox"
+                    DisplayName="MoneyFox"
                     Description="A way to make budgeting easy. A basic idea for the community, made even better by the community."
                     BackgroundColor="transparent"
                     Square150x150Logo="Images\Square150x150Logo.png"

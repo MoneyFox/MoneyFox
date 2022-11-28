@@ -1132,7 +1132,7 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Feedback Money Fox.
+        ///   Looks up a localized string similar to Feedback MoneyFox.
         /// </summary>
         public static string FeedbackSubject {
             get {
@@ -2217,7 +2217,7 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:.
+        ///   Looks up a localized string similar to Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the MoneyFox:.
         /// </summary>
         public static string TranslationLabel {
             get {
