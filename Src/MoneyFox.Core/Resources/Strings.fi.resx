@@ -409,7 +409,7 @@
     <value>Menot</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Palautetta Money Foxista</value>
+    <value>Palautetta MoneyFox</value>
   </data>
   <data name="FilterLabel" xml:space="preserve">
     <value>Suodatin</value>
@@ -706,7 +706,7 @@ VAROITUS: Paikalliset muutokset jotka teit varmuuskopion jälkeen häviävät!</
     <value>Siirto</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Onko jokin käännetty virheellisesti, tai jäänyt kokonaan kääntämättä? Voit auttaa meitä! Mene crowdingiin ja auta meitä kehittämään Money Foxia:</value>
+    <value>Onko jokin käännetty virheellisesti, tai jäänyt kokonaan kääntämättä? Voit auttaa meitä! Mene crowdingiin ja auta meitä kehittämään MoneyFox:</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
     <value>Toiminnan aikana tapahtui virhe. Virheviesti {0}</value>
