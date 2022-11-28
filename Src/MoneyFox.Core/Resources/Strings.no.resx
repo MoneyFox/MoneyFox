@@ -708,7 +708,7 @@ ADVARSEL: Lokale endringer du har gjort betyr når du går tapt!</value>
     <value>Overfør</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Er noe ikke riktig oversatt eller ikke oversatt til alle? Hjelp oss å gå til crowdin og hjelp oss med å forbedre Money Fox:</value>
+    <value>Er noe ikke riktig oversatt eller ikke oversatt til alle? Hjelp oss å gå til Crowdin og hjelp oss med å forbedre MoneyFox:</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
     <value>Det oppstod et problem under operasjonen. Feilmelding {0}</value>
