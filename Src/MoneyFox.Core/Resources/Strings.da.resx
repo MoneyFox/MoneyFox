@@ -732,7 +732,7 @@ ADVARSEL: Lokale ændringer, du lavede i mellemtiden, vil gå tabt!</value>
     <value>Vi er glade for at se dig!</value>
   </data>
   <data name="WelcomePageText" xml:space="preserve">
-    <value>MoneyFox hjælper dig med at spore dine udgifter og indtægter på en nem måde.
+    <value>MoneyFox hjælper dig med at følge med i dine udgifter og indtægter på en nem måde.
 For at starte skal du oprette en ny konto. Konti bruges til at organisere betalinger og penge på et sted.</value>
   </data>
   <data name="WindowsDefaultLabel" xml:space="preserve">
