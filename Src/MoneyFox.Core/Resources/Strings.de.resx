@@ -707,7 +707,7 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Übertrag</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Ist etwas nicht richtig oder gar nicht übersetzt? Hilf uns! Gehen auf crowdin und Hilf uns den Money Fox zu verbessern:</value>
+    <value>Ist etwas nicht richtig oder gar nicht übersetzt? Hilf uns! Gehen auf Crowdin und Hilf uns den MoneyFox zu verbessern:</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
     <value>Es gab ein Problem während der Operation. Fehlermeldung {0}</value>
