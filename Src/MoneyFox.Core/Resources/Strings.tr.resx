@@ -409,7 +409,7 @@
     <value>Giderler</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Money Fox'a geri bildirim</value>
+    <value>MoneyFox'a geri bildirim</value>
   </data>
   <data name="FilterLabel" xml:space="preserve">
     <value>Filter</value>
@@ -708,7 +708,7 @@ UYARI: Lokal değişiklik yaptığınız sırada verileriniz kaybolabilir!</valu
     <value>Transfer</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Birşey düzgün çevrilmedi mi? veya hiç çevrilmemişse bize yardım et! Crowdin'e yol al ve Money Fox'un gelişmesine yardımcı ol:</value>
+    <value>Birşey düzgün çevrilmedi mi? veya hiç çevrilmemişse bize yardım et! Crowdin'e yol al ve MoneyFox'un gelişmesine yardımcı ol:</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
     <value>There was an issue during the operation. Error Message {0}</value>

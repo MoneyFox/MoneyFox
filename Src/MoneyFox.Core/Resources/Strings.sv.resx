@@ -708,7 +708,7 @@ VARNING: Lokala ändringar du gjort under tiden kommer att gå förlorade!</valu
     <value>Överföring</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Är något inte korrekt översatt eller inte översatt alls? Hjälp oss! Gå över till crowdin och bidra till att förbättra Pengar Fox :</value>
+    <value>Är något inte korrekt översatt eller inte översatt alls? Hjälp oss! Gå över till Crowdin och bidra till att förbättra MoneyFox :</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
     <value>Ett problem uppstod under åtgärden. Felmeddelande {0}</value>

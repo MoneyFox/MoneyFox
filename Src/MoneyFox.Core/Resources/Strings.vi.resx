@@ -409,7 +409,7 @@
     <value>Chi phí</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Phản hồi Money Fox</value>
+    <value>Phản hồi MoneyFox</value>
   </data>
   <data name="FilterLabel" xml:space="preserve">
     <value>Filter</value>
@@ -708,7 +708,7 @@ CẢNH BÁO: Các thay đổi trên máy của bạn sẽ bị mất!</value>
     <value>Chuyển khoản</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Có phải một số nơi không được dịch đúng cách hoặc không được dịch không? Giúp chúng tôi! Tham gia cộng đồng và giúp cải thiện Money Fox:</value>
+    <value>Có phải một số nơi không được dịch đúng cách hoặc không được dịch không? Giúp chúng tôi! Tham gia cộng đồng và giúp cải thiện MoneyFox:</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
     <value>There was an issue during the operation. Error Message {0}</value>
