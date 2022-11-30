@@ -4,10 +4,13 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
+using Android.Views;
 using Microsoft.Identity.Client;
 using Microsoft.Maui;
 using Microsoft.Maui.ApplicationModel;
+using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 using MoneyFox.Infrastructure.DbBackup.Legacy;
+using Platform = Microsoft.Maui.ApplicationModel.Platform;
 
 [Activity(
     Theme = "@style/Maui.SplashTheme",
@@ -25,6 +28,34 @@ public class MainActivity : MauiAppCompatActivity
         ParentActivityWrapper.ParentActivity = this;
         base.OnCreate(savedInstanceState);
         Platform.Init(activity: this, bundle: savedInstanceState);
+
+        SetStatusBarColor();
+    }
+
+    private void SetStatusBarColor()
+    {
+        Color backgroundColor;
+        if (Microsoft.Maui.Controls.Application.Current?.RequestedTheme == AppTheme.Light)
+        {
+            backgroundColor = Color.FromHex("#EFF2F5");
+
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.R)
+            {
+                Window?.InsetsController?.SetSystemBarsAppearance((int)WindowInsetsControllerAppearance.LightStatusBars,
+                    (int)WindowInsetsControllerAppearance.LightStatusBars);
+            }
+
+            if (Build.VERSION.SdkInt is >= BuildVersionCodes.M and < BuildVersionCodes.R && Window is not null)
+            {
+                Window.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.LightStatusBar;
+            }
+        }
+        else
+        {
+            backgroundColor = Color.FromHex("#121212");
+        }
+
+        Window?.SetStatusBarColor(backgroundColor.ToAndroid());
     }
 
     protected override void OnActivityResult(int requestCode, Result resultCode, Intent? data)
