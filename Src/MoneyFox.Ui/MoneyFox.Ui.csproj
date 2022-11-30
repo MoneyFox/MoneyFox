@@ -42,8 +42,6 @@
     <PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
         <PublishTrimmed>False</PublishTrimmed>
         <RunAOTCompilation>False</RunAOTCompilation>
-        <AndroidEnableProfiledAot>True</AndroidEnableProfiledAot>
-        <EnableLLVM>True</EnableLLVM>
     </PropertyGroup>
 
     <ItemGroup>
