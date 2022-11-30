@@ -4,6 +4,7 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
+using Android.Views;
 using Microsoft.Identity.Client;
 using Microsoft.Maui;
 using Microsoft.Maui.ApplicationModel;
@@ -25,6 +26,33 @@ public class MainActivity : MauiAppCompatActivity
         ParentActivityWrapper.ParentActivity = this;
         base.OnCreate(savedInstanceState);
         Platform.Init(activity: this, bundle: savedInstanceState);
+
+        SetStatusBarColor();
+    }
+
+    private void SetStatusBarColor()
+    {
+        Android.Graphics.Color backgroundColor;
+        if (Microsoft.Maui.Controls.Application.Current?.RequestedTheme == AppTheme.Light)
+        {
+            backgroundColor = new(239, 242, 245);
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.R)
+            {
+                Window?.InsetsController?.SetSystemBarsAppearance((int)WindowInsetsControllerAppearance.LightStatusBars,
+                    (int)WindowInsetsControllerAppearance.LightStatusBars);
+            }
+
+            if (Build.VERSION.SdkInt is >= BuildVersionCodes.M and < BuildVersionCodes.R && Window is not null)
+            {
+                Window.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.LightStatusBar;
+            }
+        }
+        else
+        {
+            backgroundColor = new(18, 18, 18);
+        }
+
+        Window?.SetStatusBarColor(backgroundColor);
     }
 
     protected override void OnActivityResult(int requestCode, Result resultCode, Intent? data)
