@@ -8,9 +8,7 @@ using Android.Views;
 using Microsoft.Identity.Client;
 using Microsoft.Maui;
 using Microsoft.Maui.ApplicationModel;
-using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 using MoneyFox.Infrastructure.DbBackup.Legacy;
-using Platform = Microsoft.Maui.ApplicationModel.Platform;
 
 [Activity(
     Theme = "@style/Maui.SplashTheme",
@@ -34,11 +32,10 @@ public class MainActivity : MauiAppCompatActivity
 
     private void SetStatusBarColor()
     {
-        Color backgroundColor;
+        Android.Graphics.Color backgroundColor;
         if (Microsoft.Maui.Controls.Application.Current?.RequestedTheme == AppTheme.Light)
         {
-            backgroundColor = Color.FromHex("#EFF2F5");
-
+            backgroundColor = new(239, 242, 245);
             if (Build.VERSION.SdkInt >= BuildVersionCodes.R)
             {
                 Window?.InsetsController?.SetSystemBarsAppearance((int)WindowInsetsControllerAppearance.LightStatusBars,
@@ -52,10 +49,10 @@ public class MainActivity : MauiAppCompatActivity
         }
         else
         {
-            backgroundColor = Color.FromHex("#121212");
+            backgroundColor = new(18, 18, 18);
         }
 
-        Window?.SetStatusBarColor(backgroundColor.ToAndroid());
+        Window?.SetStatusBarColor(backgroundColor);
     }
 
     protected override void OnActivityResult(int requestCode, Result resultCode, Intent? data)
