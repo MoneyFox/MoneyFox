@@ -11,8 +11,8 @@
             Version="7.3.7802.0"/>
 
     <Properties>
-        <DisplayName>MoneyFox</DisplayName>
-        <PublisherDisplayName>User Name</PublisherDisplayName>
+        <DisplayName>Money Fox</DisplayName>
+        <PublisherDisplayName>Apply Solutions Software</PublisherDisplayName>
         <Logo>$placeholder$.png</Logo>
     </Properties>
 
