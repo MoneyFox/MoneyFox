@@ -75,7 +75,7 @@ jobs:
         displayName: 'Settings'
         inputs:
           sourcePath: Src/MoneyFox.Win
-          filePattern: App.config
+          filePattern: appsettings.json
 
       - task: VersionAPPX@2
         inputs:
