@@ -57,14 +57,17 @@ jobs:
     - name: Install MAUI Workload
       run: dotnet workload install maui-android --ignore-failed-sources
 
-    - name: Build MAUI Android
-      run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-android -c Release   
+    - name: Restore Dependencies
+      run: dotnet restore ${{env.UI_PROJECT_PATH}}
 
     - name: Test
       run: |
         dotnet test ${{env.UI_TEST_PROJECT_PATH}}
         dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
-        dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}} 
+        dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
+
+    - name: Build MAUI Android
+      run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-android -c Release    
       
 
   buildiOS:
@@ -81,6 +84,9 @@ jobs:
 
     - name: Install MAUI Workloads
       run: dotnet workload install maui-ios --ignore-failed-sources
+
+    - name: Restore Dependencies
+      run: dotnet restore ${{env.UI_PROJECT_PATH}} 
 
     - name: Test
       run: |
