@@ -91,32 +91,6 @@ jobs:
           targetType: 'inline'
           script: 'dotnet workload install maui'
 
-      - task: NuGetToolInstaller@1
-        displayName: 'Use NuGet'
-        inputs:
-          versionSpec: 6.x
-
-      - task: NuGetCommand@2
-        displayName: 'NuGet restore'
-        inputs:
-          restoreSolution: '**/MoneyFox.sln'
-
-      - task: DotNetCoreCLI@2
-        displayName: 'Run Tests'
-        inputs:
-          command: 'test'
-          projects: |
-            **/MoneyFox.Core.Tests.csproj
-            **/MoneyFox.Infrastructure.Tests.csproj
-          arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
-
-      - task: CopyFiles@2
-        displayName: 'Copy coveragexml to staging'
-        inputs:
-          SourceFolder: '$(Agent.TempDirectory)'
-          Contents: '**\*.opencover.xml'
-          TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
       - task: DotNetCoreCLI@2
         inputs:
           command: 'publish'
@@ -133,6 +107,22 @@ jobs:
                     /p:PackageCertificatePassword="$(UWP_Certificate_Password)"'
           zipAfterPublish: false
           modifyOutputPath: false
+          
+      - task: DotNetCoreCLI@2
+        displayName: 'Run Tests'
+        inputs:
+          command: 'test'
+          projects: |
+            **/MoneyFox.Core.Tests.csproj
+            **/MoneyFox.Infrastructure.Tests.csproj
+          arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
+
+      - task: CopyFiles@2
+        displayName: 'Copy coveragexml to staging'
+        inputs:
+          SourceFolder: '$(Agent.TempDirectory)'
+          Contents: '**\*.opencover.xml'
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
       - task: PublishBuildArtifacts@1
         displayName: 'Publish Artifact: drop'
