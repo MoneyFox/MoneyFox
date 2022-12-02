@@ -117,21 +117,22 @@ jobs:
           Contents: '**\*.opencover.xml'
           TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-      - task: VSBuild@1
-        displayName: 'Build Windows Project'
+      - task: DotNetCoreCLI@2
         inputs:
-          solution: '**/MoneyFox.Ui.csproj'
-          msbuildArgs: '
-        /p:AppxBundlePlatforms="$(buildPlatform)"
-        /p:AppxPackageDir="$(appxPackageDir)"
-        /p:AppxBundle=Always
-        /p:UapAppxPackageBuildMode=CI
-        /p:AppxPackageSigningEnabled=true
-        /p:PackageCertificateThumbprint=""
-        /p:PackageCertificateKeyFile="$(signingCert.secureFilePath)"
-        /p:PackageCertificatePassword="$(UWP_Certificate_Password)"'
-          platform: x64
-          configuration: '$(BuildConfiguration)'
+          command: 'publish'
+          publishWebProjects: false
+          projects: '**/MoneyFox.Ui.csproj'
+          arguments: '-c Release -f:net7.0-windows10.0.22621.0
+                    /p:AppxBundlePlatforms="$(buildPlatform)"
+                    /p:AppxPackageDir="$(appxPackageDir)"
+                    /p:AppxBundle=Always
+                    /p:UapAppxPackageBuildMode=CI
+                    /p:AppxPackageSigningEnabled=true
+                    /p:PackageCertificateThumbprint=""
+                    /p:PackageCertificateKeyFile="$(signingCert.secureFilePath)"
+                    /p:PackageCertificatePassword="$(UWP_Certificate_Password)"'
+          zipAfterPublish: false
+          modifyOutputPath: false
 
       - task: PublishBuildArtifacts@1
         displayName: 'Publish Artifact: drop'
