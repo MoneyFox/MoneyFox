@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.ViewModels.Settings;
+namespace MoneyFox.Ui.ViewModels.Settings;
 
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -11,5 +11,3 @@ public interface ISettingsViewModel
 
     Task InitializeAsync();
 }
-
-

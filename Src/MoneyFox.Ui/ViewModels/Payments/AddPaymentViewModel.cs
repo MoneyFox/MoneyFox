@@ -24,26 +24,27 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
         this.mapper = mapper;
     }
 
-    public async Task InitializeAsync(int? defaultChargedAccountID = null)
+    public async Task InitializeAsync(int? defaultChargedAccountId = null)
     {
         await base.InitializeAsync();
-
         if (ChargedAccounts.Any())
         {
-            SelectedPayment.ChargedAccount = defaultChargedAccountID.HasValue
-                ? ChargedAccounts.First(n => n.Id == defaultChargedAccountID.Value)
+            SelectedPayment.ChargedAccount = defaultChargedAccountId.HasValue
+                ? ChargedAccounts.First(n => n.Id == defaultChargedAccountId.Value)
                 : ChargedAccounts.First();
         }
     }
 
     protected override async Task SavePaymentAsync()
     {
+        var chargedAccount = await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id));
+        var targetAccount = SelectedPayment.TargetAccount != null ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id)) : null;
         var payment = new Payment(
             date: SelectedPayment.Date,
             amount: SelectedPayment.Amount,
             type: SelectedPayment.Type,
-            chargedAccount: await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id)),
-            targetAccount: SelectedPayment.TargetAccount != null ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id)) : null,
+            chargedAccount: chargedAccount,
+            targetAccount: targetAccount,
             category: mapper.Map<Category>(SelectedPayment.Category),
             note: SelectedPayment.Note);
 
@@ -58,5 +59,3 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
         await mediator.Send(new CreatePaymentCommand(payment));
     }
 }
-
-
