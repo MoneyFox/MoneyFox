@@ -38,11 +38,12 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
 
     protected override async Task SavePaymentAsync()
     {
+        var chargedAccount = await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id));
         var payment = new Payment(
             date: SelectedPayment.Date,
             amount: SelectedPayment.Amount,
             type: SelectedPayment.Type,
-            chargedAccount: await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id)),
+            chargedAccount: chargedAccount,
             targetAccount: SelectedPayment.TargetAccount != null ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id)) : null,
             category: mapper.Map<Category>(SelectedPayment.Category),
             note: SelectedPayment.Note);
