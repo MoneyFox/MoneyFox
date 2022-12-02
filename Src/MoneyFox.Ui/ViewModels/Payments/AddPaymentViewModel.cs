@@ -24,13 +24,13 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
         this.mapper = mapper;
     }
 
-    public async Task InitializeAsync(int? defaultChargedAccountID = null)
+    public async Task InitializeAsync(int? defaultChargedAccountId = null)
     {
         await base.InitializeAsync();
         if (ChargedAccounts.Any())
         {
-            SelectedPayment.ChargedAccount = defaultChargedAccountID.HasValue
-                ? ChargedAccounts.First(n => n.Id == defaultChargedAccountID.Value)
+            SelectedPayment.ChargedAccount = defaultChargedAccountId.HasValue
+                ? ChargedAccounts.First(n => n.Id == defaultChargedAccountId.Value)
                 : ChargedAccounts.First();
         }
     }

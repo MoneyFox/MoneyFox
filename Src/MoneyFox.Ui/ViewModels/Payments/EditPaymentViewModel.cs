@@ -26,7 +26,7 @@ internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
         this.dialogService = dialogService;
     }
 
-    public RelayCommand<PaymentViewModel> DeleteCommand => new(async p => await DeletePaymentAsync(p));
+    public AsyncRelayCommand<PaymentViewModel> DeleteCommand => new(async p => await DeletePaymentAsync(p));
 
     public async Task InitializeAsync(int paymentId)
     {
