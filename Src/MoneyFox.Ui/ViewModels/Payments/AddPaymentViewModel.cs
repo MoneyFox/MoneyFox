@@ -27,7 +27,6 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
     public async Task InitializeAsync(int? defaultChargedAccountID = null)
     {
         await base.InitializeAsync();
-
         if (ChargedAccounts.Any())
         {
             SelectedPayment.ChargedAccount = defaultChargedAccountID.HasValue
@@ -39,12 +38,13 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
     protected override async Task SavePaymentAsync()
     {
         var chargedAccount = await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id));
+        var targetAccount = SelectedPayment.TargetAccount != null ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id)) : null;
         var payment = new Payment(
             date: SelectedPayment.Date,
             amount: SelectedPayment.Amount,
             type: SelectedPayment.Type,
             chargedAccount: chargedAccount,
-            targetAccount: SelectedPayment.TargetAccount != null ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id)) : null,
+            targetAccount: targetAccount,
             category: mapper.Map<Category>(SelectedPayment.Category),
             note: SelectedPayment.Note);
 
@@ -59,5 +59,3 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
         await mediator.Send(new CreatePaymentCommand(payment));
     }
 }
-
-

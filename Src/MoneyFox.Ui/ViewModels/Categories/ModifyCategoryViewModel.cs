@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.ViewModels.Categories;
+namespace MoneyFox.Ui.ViewModels.Categories;
 
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -23,9 +23,6 @@ internal abstract class ModifyCategoryViewModel : BaseViewModel
 
     public AsyncRelayCommand SaveCommand => new(async () => await SaveCategoryBaseAsync());
 
-    /// <summary>
-    ///     The currently selected CategoryViewModel
-    /// </summary>
     public CategoryViewModel SelectedCategory
     {
         get => selectedCategory;
@@ -59,7 +56,7 @@ internal abstract class ModifyCategoryViewModel : BaseViewModel
         await SaveCategoryAsync();
         Messenger.Send(new ReloadMessage());
         await dialogService.HideLoadingDialogAsync();
-        await Application.Current.MainPage.Navigation.PopModalAsync();
+        await Shell.Current.Navigation.PopModalAsync();
     }
 }
 
