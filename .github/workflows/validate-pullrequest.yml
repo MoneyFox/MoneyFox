@@ -27,7 +27,7 @@ jobs:
         dotnet-version: ${{env.DOTNETVERSION}}
 
     - name: Install MAUI Workload
-      run: dotnet workload install maui-windows --ignore-failed-sources
+      run: dotnet workload install maui --ignore-failed-sources
 
     - name: Restore Dependencies
       run: dotnet restore ${{env.UI_PROJECT_PATH}}
@@ -55,7 +55,7 @@ jobs:
         dotnet-version: ${{env.DOTNETVERSION}}
 
     - name: Install MAUI Workload
-      run: dotnet workload install maui-android --ignore-failed-sources
+      run: dotnet workload install maui --ignore-failed-sources
 
     - name: Restore Dependencies
       run: dotnet restore ${{env.UI_PROJECT_PATH}}
@@ -83,7 +83,7 @@ jobs:
         dotnet-version: ${{env.DOTNETVERSION}}
 
     - name: Install MAUI Workloads
-      run: dotnet workload install maui-ios --ignore-failed-sources
+      run: dotnet workload install maui --ignore-failed-sources
 
     - name: Restore Dependencies
       run: dotnet restore ${{env.UI_PROJECT_PATH}} 
