@@ -2,6 +2,7 @@ namespace MoneyFox.Win;
 
 using System;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
 using Common.Exceptions;
 using Core.ApplicationCore.UseCases.DbBackup;
 using Core.Commands.Payments.ClearPayments;
@@ -10,6 +11,7 @@ using Core.Common.Facades;
 using Core.Common.Interfaces;
 using InversionOfControl;
 using MediatR;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Pages;
@@ -73,9 +75,25 @@ public partial class App : Application
 
     protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
+        InitializeAppCenter();
+
         var mainWindow = new MainWindow();
         mainWindow.Activate();
+
         ExecuteStartupTasks();
+    }
+
+    private static void InitializeAppCenter()
+    {
+        var configuration = new ConfigurationBuilder()
+            .SetBasePath(Package.Current.InstalledLocation.Path)
+            .AddJsonFile("appsettings.json", optional: false)
+            .Build();
+
+        var appCenter = configuration.GetRequiredSection("AppCenter").Get<AppCenter>()!;
+
+        Microsoft.AppCenter.AppCenter.Start(appSecret: appCenter.Secret,
+            typeof(Microsoft.AppCenter.Analytics.Analytics), typeof(Microsoft.AppCenter.Crashes.Crashes));
     }
 
     private void ExecuteStartupTasks()
