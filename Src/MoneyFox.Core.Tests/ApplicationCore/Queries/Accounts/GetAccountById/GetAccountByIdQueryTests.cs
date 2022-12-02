@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Accounts.GetAccountById;
+namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Accounts.GetAccountById;
 
 using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
@@ -44,7 +44,14 @@ public class GetAccountByIdQueryTests : IDisposable
         // Assert
         result.Name.Should().Be(account1.Name);
     }
+
+    [Fact]
+    public async Task ThrowException_WhenAccountNotFound()
+    {
+        // Act
+        var act = () => new GetAccountByIdQuery.Handler(context).Handle(request: new(1), cancellationToken: default);
+
+        // Assert
+        await act.Should().ThrowAsync<InvalidOperationException>();
+    }
 }
-
-
-
