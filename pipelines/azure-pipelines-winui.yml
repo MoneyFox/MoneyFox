@@ -71,6 +71,12 @@ jobs:
             $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Win\MoneyFox.Win (Package)\Package.StoreAssociation.xml')
           failOnStderr: true
 
+      - task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
+        displayName: 'Settings'
+        inputs:
+          sourcePath: Src/MoneyFox.Win
+          filePattern: App.config
+
       - task: VersionAPPX@2
         inputs:
           Path: '$(Build.SourcesDirectory)'

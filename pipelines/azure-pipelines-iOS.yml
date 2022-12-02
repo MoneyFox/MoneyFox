@@ -80,6 +80,12 @@ steps:
     inputs:
       provProfileSecureFile: 'MoneyFox_Distribution_2022.mobileprovision'
 
+  - task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
+    displayName: 'Settings'
+    inputs:
+      sourcePath: Src/MoneyFox.Ui
+      filePattern: appsettings.json
+
   - task: PowerShell@2
     displayName: "install maui workload"
     inputs:
