@@ -409,7 +409,7 @@
     <value>Dépenses</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Commentaires sur Money Fox</value>
+    <value>Commentaires sur MoneyFox</value>
   </data>
   <data name="FilterLabel" xml:space="preserve">
     <value>Filtre</value>
@@ -705,7 +705,7 @@ Pour y arriver, allez dans la liste des comptes et sélectionnez le compte respe
     <value>Transférer</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Quelque chose n'est pas traduit correctement ou n'est pas traduit du tout ? Aidez-nous ! Rendez-vous sur crowdin et aider à améliorer Money Fox :</value>
+    <value>Quelque chose n'est pas traduit correctement ou n'est pas traduit du tout ? Aidez-nous ! Rendez-vous sur Crowdin et aider à améliorer MoneyFox :</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
     <value>Il y a eu un problème pendant l'opération. Message d'erreur {0}</value>

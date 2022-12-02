@@ -20,8 +20,6 @@ internal sealed class SelectCategoryViewModel : CategoryListViewModel
             {
                 var dataSet = new CategorySelectedDataSet(categoryId: c.Id, name: c.Name);
                 Messenger.Send(new CategorySelectedMessage(dataSet));
-                await Application.Current.MainPage.Navigation.PopModalAsync();
+                await Shell.Current.Navigation.PopModalAsync();
             });
 }
-
-

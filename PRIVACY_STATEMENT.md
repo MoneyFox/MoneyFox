@@ -12,7 +12,7 @@ The following describes the collection and use of data collected by the App.
 
 ### Error Logging
 
-To reduce the number of crashes and error conditions the App will report stack traces and sessions informations to an HockeyApp Account owned by the owner. 
+To reduce the number of crashes and error conditions the App will report stack traces and sessions informations to an Visual Studio App Center account owned by the owner.
 The data extracted from the devices include the following:
 
 - Error Message
@@ -25,7 +25,7 @@ The data extracted from the devices include the following:
 
 No personal information is extracted during this process.
 
-For detailed information see the privavy statement of HockeyApp:
+For detailed information see the privacy statement of Visual Studio App Center:
 
 https://privacy.microsoft.com/en-us/privacystatement
 

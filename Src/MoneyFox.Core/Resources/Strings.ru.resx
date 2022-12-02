@@ -409,7 +409,7 @@
     <value>Расходы</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Обратная связь Money Fox</value>
+    <value>Обратная связь MoneyFox</value>
   </data>
   <data name="FilterLabel" xml:space="preserve">
     <value>Фильтр</value>
@@ -708,7 +708,7 @@
     <value>Перевод</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Что-то неправильно переведено или вообще не переведено? Помогите нам! Перейдите на crowdin и помогите улучшить Money Fox:</value>
+    <value>Что-то неправильно переведено или вообще не переведено? Помогите нам! Перейдите на crowdin и помогите улучшить MoneyFox:</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
     <value>Во время операции возникла проблема. Сообщение об ошибке {0}</value>

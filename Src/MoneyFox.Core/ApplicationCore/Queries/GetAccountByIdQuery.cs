@@ -1,12 +1,13 @@
-﻿namespace MoneyFox.Core.ApplicationCore.Queries;
+namespace MoneyFox.Core.ApplicationCore.Queries;
 
 using System.Threading;
 using System.Threading.Tasks;
 using Common.Interfaces;
 using Domain.Aggregates.AccountAggregate;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
-public class GetAccountByIdQuery : IRequest<Account?>
+public class GetAccountByIdQuery : IRequest<Account>
 {
     public GetAccountByIdQuery(int accountId)
     {
@@ -15,7 +16,7 @@ public class GetAccountByIdQuery : IRequest<Account?>
 
     public int AccountId { get; }
 
-    public class Handler : IRequestHandler<GetAccountByIdQuery, Account?>
+    public class Handler : IRequestHandler<GetAccountByIdQuery, Account>
     {
         private readonly IAppDbContext appDbContext;
 
@@ -24,9 +25,9 @@ public class GetAccountByIdQuery : IRequest<Account?>
             this.appDbContext = appDbContext;
         }
 
-        public async Task<Account?> Handle(GetAccountByIdQuery request, CancellationToken cancellationToken)
+        public async Task<Account> Handle(GetAccountByIdQuery request, CancellationToken cancellationToken)
         {
-            return await appDbContext.Accounts.FindAsync(request.AccountId);
+            return await appDbContext.Accounts.FirstAsync(predicate: a => a.Id == request.AccountId, cancellationToken: cancellationToken);
         }
     }
 }

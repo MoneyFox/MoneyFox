@@ -409,7 +409,7 @@
     <value>Mga Gastusin</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Tugon sa Money Fox</value>
+    <value>Tugon sa MoneyFox</value>
   </data>
   <data name="FilterLabel" xml:space="preserve">
     <value>Filter</value>
@@ -705,7 +705,7 @@ To get there go to the account list and select the respective account.</value>
     <value>Transfer</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>May hindi ba wastong pagsasalin o hindi naisalin? Tulungan ninyo kami! Pumunta sa crowdin at makatulong sa amin na mapagbuti ang Money Fox:</value>
+    <value>May hindi ba wastong pagsasalin o hindi naisalin? Tulungan ninyo kami! Pumunta sa crowdin at makatulong sa amin na mapagbuti ang MoneyFox:</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
     <value>There was an issue during the operation. Error Message {0}</value>

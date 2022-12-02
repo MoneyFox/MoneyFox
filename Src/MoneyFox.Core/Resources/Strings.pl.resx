@@ -409,7 +409,7 @@
     <value>Wydatki</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Opinie zwrotne na temat Money Fox</value>
+    <value>Opinie zwrotne na temat MoneyFox</value>
   </data>
   <data name="FilterLabel" xml:space="preserve">
     <value>Filtr</value>
@@ -706,7 +706,7 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>Przelew</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Jest coś niepoprawnie przetłumaczone lub nieprzetłumaczone w ogóle? Pomóż nam! Udaj się do Crowdin aby pomóc poprawić Money Fox:</value>
+    <value>Jest coś niepoprawnie przetłumaczone lub nieprzetłumaczone w ogóle? Pomóż nam! Udaj się do Crowdin aby pomóc poprawić MoneyFox:</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
     <value>Wystąpił problem podczas operacji. Komunikat o błędzie {0}</value>

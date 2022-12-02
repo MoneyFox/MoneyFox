@@ -711,7 +711,7 @@ Categorie opslaan ...</value>
     <value>Overschrijving</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Is iets niet goed vertaald of helemaal niet vertaald? Help ons! Ga naar crowdin en help de Money Fox te verbeteren!</value>
+    <value>Is iets niet goed vertaald of helemaal niet vertaald? Help ons! Ga naar crowdin en help de MoneyFox te verbeteren!</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
     <value>Er is een probleem opgetreden tijdens de operatie. Foutbericht {0}</value>

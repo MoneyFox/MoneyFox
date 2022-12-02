@@ -1,6 +1,8 @@
 namespace MoneyFox.Ui;
 
+using System.Reflection;
 using CommunityToolkit.Maui;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Maui.Handlers;
 using MoneyFox.Core.Common;
 using MoneyFox.Ui.Controls;
@@ -13,8 +15,17 @@ public static class MauiProgram
 {
     public static MauiApp CreateMauiApp()
     {
+        using var stream = Assembly.GetExecutingAssembly()
+            .GetManifestResourceStream("MoneyFox.Ui.appsettings.json");
+
+        var configuration = new ConfigurationBuilder()
+                    .AddJsonStream(stream)
+                    .Build();
+
+        InitAppCenter(configuration);
         InitLogger();
         var builder = MauiApp.CreateBuilder();
+        builder.Configuration.AddConfiguration(configuration);
         builder.UseMauiApp<App>()
             .ConfigureFonts(
                 fonts =>
@@ -51,6 +62,15 @@ public static class MauiProgram
         });
 
         return builder.Build();
+    }
+
+    private static void InitAppCenter(IConfiguration configuration)
+    {
+        var appCenter = configuration.GetRequiredSection("AppCenter").Get<AppCenter>()!;
+        Microsoft.AppCenter.AppCenter.Start($"android={appCenter.AndroidSecret};" +
+                                            $"uwp={appCenter.WindowsSecret};" +
+                                            $"ios={appCenter.IosSecret};",
+            typeof(Microsoft.AppCenter.Analytics.Analytics), typeof(Microsoft.AppCenter.Crashes.Crashes));
     }
 
     private static void InitLogger()
