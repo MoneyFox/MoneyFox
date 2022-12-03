@@ -1,5 +1,3 @@
-﻿using MoneyFox.Ui.ViewModels.Statistics;
-
 namespace MoneyFox.Ui.Views.Statistics.CategorySummary;
 
 using System.Collections.ObjectModel;
@@ -10,6 +8,7 @@ using Core.ApplicationCore.Queries.Statistics.GetCategorySummary;
 using Core.Common.Interfaces;
 using MediatR;
 using Serilog;
+using ViewModels.Statistics;
 
 internal sealed class StatisticCategorySummaryViewModel : StatisticViewModel
 {
@@ -65,8 +64,6 @@ internal sealed class StatisticCategorySummaryViewModel : StatisticViewModel
     private async Task ShowCategoryPaymentsAsync(CategoryOverviewViewModel categoryOverviewModel)
     {
         await Shell.Current.GoToModalAsync(Routes.PaymentForCategoryListRoute);
-        Messenger.Send(new PaymentsForCategoryMessage(categoryId: categoryOverviewModel.CategoryId, startdate: StartDate, enddate: EndDate));
+        Messenger.Send(new PaymentsForCategoryMessage(categoryId: categoryOverviewModel.CategoryId, startDate: StartDate, endDate: EndDate));
     }
 }
-
-
