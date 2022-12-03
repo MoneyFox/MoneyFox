@@ -30,9 +30,15 @@ internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
 
     public async Task InitializeAsync(int paymentId)
     {
+        if(IsFirstLoad is false)
+        {
+            return;
+        }
+
         await InitializeAsync();
         var payment = await mediator.Send(new GetPaymentByIdQuery(paymentId));
         SelectedPayment = mapper.Map<PaymentViewModel>(payment);
+        IsFirstLoad = false;
     }
 
     protected override async Task SavePaymentAsync()
