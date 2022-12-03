@@ -122,7 +122,7 @@ jobs:
         displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
         inputs:
           SourceFolder: '$(System.DefaultWorkingDirectory)'
-          Contents: '**/*'
+          Contents: '**/*.msix'
           TargetFolder: '$(build.artifactstagingdirectory)'
           flattenFolders: true
 
