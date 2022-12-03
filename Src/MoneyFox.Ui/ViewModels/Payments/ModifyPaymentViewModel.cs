@@ -14,7 +14,7 @@ using Core.Resources;
 using MediatR;
 using Views.Accounts;
 
-internal abstract partial class ModifyPaymentViewModel : BaseViewModel
+internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipient<CategorySelectedMessage>
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
@@ -89,17 +89,14 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel
 
     public RelayCommand ResetCategoryCommand => new(() => SelectedPayment.Category = null);
 
+    protected bool IsFirstLoad { get; set; } = true;
     protected virtual async Task InitializeAsync()
     {
         var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
         ChargedAccounts = new(accounts);
         TargetAccounts = new(accounts);
         IsActive = true;
-    }
-
-    protected override void OnActivated()
-    {
-        Messenger.Register<ModifyPaymentViewModel, CategorySelectedMessage>(recipient: this, handler: async (r, m) => await r.ReceiveMessageAsync(m));
+        IsFirstLoad = false;
     }
 
     protected abstract Task SavePaymentAsync();
@@ -143,7 +140,7 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel
         {
             await SavePaymentAsync();
             Messenger.Send(new ReloadMessage());
-            await Application.Current.MainPage.Navigation.PopModalAsync();
+            await Shell.Current.Navigation.PopModalAsync();
         }
         finally
         {
@@ -151,13 +148,8 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel
         }
     }
 
-    private async Task ReceiveMessageAsync(CategorySelectedMessage message)
+    public async void Receive(CategorySelectedMessage message)
     {
-        if (SelectedPayment == null || message == null)
-        {
-            return;
-        }
-
         SelectedPayment.Category = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId)));
     }
 }

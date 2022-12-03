@@ -409,7 +409,7 @@
     <value>Costi</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Umpan Balik Money Fox</value>
+    <value>Umpan Balik MoneyFox</value>
   </data>
   <data name="FilterLabel" xml:space="preserve">
     <value>Filtro</value>
@@ -708,7 +708,7 @@ ATTENZIONE: i dati locali saranno persi!</value>
     <value>Trasferimento</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>C'è qualcosa che è tradotto male o non tradotto per niente? Aiutaci! Visita crowdin e dacci una mano a migliorare Money Fox:</value>
+    <value>C'è qualcosa che è tradotto male o non tradotto per niente? Aiutaci! Visita Crowdin e dacci una mano a migliorare MoneyFox:</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
     <value>Si è verificato un problema durante l'operazione. Messaggio di errore {0}</value>

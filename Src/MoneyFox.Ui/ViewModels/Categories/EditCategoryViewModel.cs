@@ -8,8 +8,8 @@ using Core.Commands.Categories.UpdateCategory;
 using Core.Common.Interfaces;
 using MediatR;
 using MoneyFox.Core.Commands.Categories.DeleteCategoryById;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Core.Resources;
+using Core.Interfaces;
+using Core.Resources;
 
 internal sealed partial class EditCategoryViewModel : ModifyCategoryViewModel
 {

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0"
           package="com.applysolutions.moneyfox" android:installLocation="auto">
     <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="33"/>
-    <application android:label="Money Fox" android:icon="@drawable/ic_launcher">
+    <application android:label="MoneyFox" android:icon="@drawable/ic_launcher">
         <activity android:name="microsoft.identity.client.BrowserTabActivity" android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>

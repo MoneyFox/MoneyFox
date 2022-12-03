@@ -67,9 +67,9 @@ internal class CategoryListViewModel : BaseViewModel
 
     private async Task SearchCategoryAsync(string searchTerm = "")
     {
-        var categorieVms = mapper.Map<List<CategoryViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery(searchTerm)));
+        var categoryVms = mapper.Map<List<CategoryViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery(searchTerm)));
         var groups = AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(
-            items: categorieVms,
+            items: categoryVms,
             ci: CultureInfo.CurrentUICulture,
             getKey: s => string.IsNullOrEmpty(s.Name) ? "-" : s.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture));
 
@@ -89,5 +89,3 @@ internal class CategoryListViewModel : BaseViewModel
         }
     }
 }
-
-

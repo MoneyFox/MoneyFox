@@ -409,7 +409,7 @@
     <value>Разходи</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Feedback Money Fox</value>
+    <value>Feedback MoneyFox</value>
   </data>
   <data name="FilterLabel" xml:space="preserve">
     <value>Филтър</value>
@@ -707,7 +707,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Transfer</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Нещо не е правилно преведено или изобщо не е преведено? Помогнете ни! Влезте в CrowdIn и помогнете да подобрим Money Fox:</value>
+    <value>Нещо не е правилно преведено или изобщо не е преведено? Помогнете ни! Влезте в CrowdIn и помогнете да подобрим MoneyFox:</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
     <value>There was an issue during the operation. Error Message {0}</value>

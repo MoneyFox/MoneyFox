@@ -60,6 +60,12 @@ steps:
       jdkArchitectureOption: 'x64'
       jdkSourceOption: 'PreInstalled'
 
+  - task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
+    displayName: 'Settings'
+    inputs:
+      sourcePath: Src/MoneyFox.Ui
+      filePattern: appsettings.json
+
   - task: PowerShell@2
     displayName: 'Install maui workload'
     inputs:

@@ -26,13 +26,19 @@ internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
         this.dialogService = dialogService;
     }
 
-    public RelayCommand<PaymentViewModel> DeleteCommand => new(async p => await DeletePaymentAsync(p));
+    public AsyncRelayCommand<PaymentViewModel> DeleteCommand => new(async p => await DeletePaymentAsync(p));
 
     public async Task InitializeAsync(int paymentId)
     {
+        if(IsFirstLoad is false)
+        {
+            return;
+        }
+
         await InitializeAsync();
         var payment = await mediator.Send(new GetPaymentByIdQuery(paymentId));
         SelectedPayment = mapper.Map<PaymentViewModel>(payment);
+        IsFirstLoad = false;
     }
 
     protected override async Task SavePaymentAsync()
