@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Payments.GetPaymentsForCategory;
+namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Payments.GetPaymentsForCategory;
 
 using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
@@ -12,7 +12,7 @@ using TestFramework;
 public class GetPaymentsForCategoryQueryHandlerTests
 {
     private readonly AppDbContext context;
-    private readonly GetPaymentsForCategoryQuery.Handler handler;
+    private readonly GetPaymentsForCategorySummary.Handler handler;
 
     public GetPaymentsForCategoryQueryHandlerTests()
     {
@@ -89,7 +89,45 @@ public class GetPaymentsForCategoryQueryHandlerTests
         // Assert
         result.Should().ContainSingle();
     }
+
+    [Fact]
+    public async Task IgnoresTransfers()
+    {
+        // Arrange
+        var account = new Account("asdf");
+        var category = new Category("Test");
+        var payment1 = new Payment(
+            date: DateTime.Now,
+            amount: 30,
+            type: PaymentType.Transfer,
+            chargedAccount: account,
+            category: category);
+
+        var payment2 = new Payment(
+            date: DateTime.Now,
+            amount: 30,
+            type: PaymentType.Expense,
+            chargedAccount: account,
+            category: category);
+
+        var payment3 = new Payment(
+            date: DateTime.Now,
+            amount: 40,
+            type: PaymentType.Expense,
+            chargedAccount: account,
+            category: category);
+
+        context.Add(payment1);
+        context.Add(payment2);
+        context.Add(payment3);
+        await context.SaveChangesAsync();
+
+        // Act
+        var result = await handler.Handle(
+            request: new(categoryId: category.Id, dateRangeFrom: DateTime.Now.AddDays(-1), dateRangeTo: DateTime.Now.AddDays(1)),
+            cancellationToken: default);
+
+        // Assert
+        result.Should().HaveCount(2);
+    }
 }
-
-
-

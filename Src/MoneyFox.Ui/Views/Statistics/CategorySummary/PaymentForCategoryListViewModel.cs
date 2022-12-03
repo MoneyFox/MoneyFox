@@ -45,7 +45,7 @@ internal sealed class PaymentForCategoryListViewModel : BaseViewModel, IRecipien
     {
         var loadedPayments = mapper.Map<List<PaymentViewModel>>(
             await mediator.Send(
-                new GetPaymentsForCategoryQuery(
+                new GetPaymentsForCategorySummary.Query(
                     categoryId: message.CategoryId,
                     dateRangeFrom: message.StartDate,
                     dateRangeTo: message.EndDate)));
