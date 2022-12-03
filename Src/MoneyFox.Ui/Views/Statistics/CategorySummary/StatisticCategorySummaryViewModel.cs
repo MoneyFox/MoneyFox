@@ -1,4 +1,6 @@
-﻿namespace MoneyFox.Ui.ViewModels.Statistics;
+﻿using MoneyFox.Ui.ViewModels.Statistics;
+
+namespace MoneyFox.Ui.Views.Statistics.CategorySummary;
 
 using System.Collections.ObjectModel;
 using Common.Extensions;

@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.ViewModels.Statistics;
+namespace MoneyFox.Ui.Views.Statistics.CategorySummary;
 
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -8,6 +8,8 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.ApplicationCore.Queries;
 using MediatR;
+using MoneyFox.Ui;
+using MoneyFox.Ui.ViewModels;
 using Payments;
 
 internal sealed class PaymentForCategoryListViewModel : BaseViewModel
