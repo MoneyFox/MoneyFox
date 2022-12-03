@@ -26,6 +26,11 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
 
     public async Task InitializeAsync(int? defaultChargedAccountId = null)
     {
+        if (IsFirstLoad is false)
+        {
+            return;
+        }
+
         await base.InitializeAsync();
         if (ChargedAccounts.Any())
         {
@@ -33,6 +38,7 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
                 ? ChargedAccounts.First(n => n.Id == defaultChargedAccountId.Value)
                 : ChargedAccounts.First();
         }
+        IsFirstLoad = false;
     }
 
     protected override async Task SavePaymentAsync()

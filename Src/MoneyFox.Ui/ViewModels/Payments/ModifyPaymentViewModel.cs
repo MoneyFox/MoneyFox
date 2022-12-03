@@ -89,12 +89,14 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
 
     public RelayCommand ResetCategoryCommand => new(() => SelectedPayment.Category = null);
 
+    protected bool IsFirstLoad { get; set; } = true;
     protected virtual async Task InitializeAsync()
     {
         var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
         ChargedAccounts = new(accounts);
         TargetAccounts = new(accounts);
         IsActive = true;
+        IsFirstLoad = false;
     }
 
     protected abstract Task SavePaymentAsync();
