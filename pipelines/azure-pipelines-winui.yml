@@ -78,7 +78,7 @@ jobs:
           filePattern: appsettings.json
 
       - task: VersionAPPX@2
-        displayname: set version
+        displayName: set version
         inputs:
           Path: '$(Build.SourcesDirectory)'
           VersionNumber: '$(Major).$(Minor).$(Build.BuildId)'
@@ -93,7 +93,7 @@ jobs:
           script: 'dotnet workload install maui'
 
       - task: DotNetCoreCLI@2
-        displayname: publish msix
+        displayName: publish msix
         inputs:
           command: 'publish'
           publishWebProjects: false
