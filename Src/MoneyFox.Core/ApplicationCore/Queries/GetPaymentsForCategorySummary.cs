@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using _Pending_.Common.QueryObjects;
 using Common.Interfaces;
 using Domain.Aggregates.AccountAggregate;
 using MediatR;
@@ -42,6 +43,7 @@ public static class GetPaymentsForCategorySummary
 
             return await query.Where(x => x.Date >= request.DateRangeFrom)
                 .Where(x => x.Date <= request.DateRangeTo)
+                .WithoutTransfers()
                 .ToListAsync(cancellationToken: cancellationToken);
         }
     }
