@@ -11,7 +11,7 @@ using MediatR;
 using ViewModels;
 using ViewModels.Payments;
 
-internal sealed class PaymentForCategoryListViewModel : BaseViewModel
+internal sealed class PaymentForCategoryListViewModel : BaseViewModel, IRecipient<PaymentsForCategoryMessage>
 {
     private readonly IMapper mapper;
 
@@ -40,25 +40,15 @@ internal sealed class PaymentForCategoryListViewModel : BaseViewModel
 
     public RelayCommand<PaymentViewModel> GoToEditPaymentCommand
         => new(async pvm => await Shell.Current.GoToAsync($"{Routes.EditPaymentRoute}?paymentId={pvm.Id}"));
-
-    protected override void OnActivated()
-    {
-        Messenger.Register<PaymentForCategoryListViewModel, PaymentsForCategoryMessage>(recipient: this, handler: async (r, m) => await r.InitializeAsync(m));
-    }
-
-    protected override void OnDeactivated()
-    {
-        Messenger.Unregister<PaymentsForCategoryMessage>(this);
-    }
-
-    private async Task InitializeAsync(PaymentsForCategoryMessage receivedMessage)
+    
+    public async void Receive(PaymentsForCategoryMessage message)
     {
         var loadedPayments = mapper.Map<List<PaymentViewModel>>(
             await mediator.Send(
                 new GetPaymentsForCategoryQuery(
-                    categoryId: receivedMessage.CategoryId,
-                    dateRangeFrom: receivedMessage.StartDate,
-                    dateRangeTo: receivedMessage.EndDate)));
+                    categoryId: message.CategoryId,
+                    dateRangeFrom: message.StartDate,
+                    dateRangeTo: message.EndDate)));
 
         var dailyItems = DateListGroupCollection<PaymentViewModel>.CreateGroups(
             items: loadedPayments,
