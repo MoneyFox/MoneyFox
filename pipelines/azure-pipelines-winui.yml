@@ -78,6 +78,7 @@ jobs:
           filePattern: appsettings.json
 
       - task: VersionAPPX@2
+        displayname: set version
         inputs:
           Path: '$(Build.SourcesDirectory)'
           VersionNumber: '$(Major).$(Minor).$(Build.BuildId)'
@@ -92,22 +93,15 @@ jobs:
           script: 'dotnet workload install maui'
 
       - task: DotNetCoreCLI@2
+        displayname: publish msix
         inputs:
           command: 'publish'
           publishWebProjects: false
           projects: '**/MoneyFox.Ui.csproj'
-          arguments: '-c Release -f:net7.0-windows10.0.22621.0
-                    /p:AppxBundlePlatforms="$(buildPlatform)"
-                    /p:AppxPackageDir="$(appxPackageDir)"
-                    /p:AppxBundle=Always
-                    /p:UapAppxPackageBuildMode=CI
-                    /p:AppxPackageSigningEnabled=true
-                    /p:PackageCertificateThumbprint=""
-                    /p:PackageCertificateKeyFile="$(signingCert.secureFilePath)"
-                    /p:PackageCertificatePassword="$(UWP_Certificate_Password)"'
+          arguments: '-c Release -f:net7.0-windows10.0.22621.0 /p:RuntimeIdentifierOverride=win10-x64'
           zipAfterPublish: false
           modifyOutputPath: false
-          
+
       - task: DotNetCoreCLI@2
         displayName: 'Run Tests'
         inputs:
@@ -123,6 +117,14 @@ jobs:
           SourceFolder: '$(Agent.TempDirectory)'
           Contents: '**\*.opencover.xml'
           TargetFolder: '$(Build.ArtifactStagingDirectory)'
+                
+      - task: CopyFiles@2
+        displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+        inputs:
+          SourceFolder: '$(System.DefaultWorkingDirectory)'
+          Contents: '**/*'
+          TargetFolder: '$(build.artifactstagingdirectory)'
+          flattenFolders: true
 
       - task: PublishBuildArtifacts@1
         displayName: 'Publish Artifact: drop'
