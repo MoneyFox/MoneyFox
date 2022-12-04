@@ -607,7 +607,7 @@
 要获取到帐户列表并选择相应的帐户。</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>类别付款</value>
+    <value>Details for {0}</value>
   </data>
   <data name="PaymentTypeLabel" xml:space="preserve">
     <value>付款类型</value>

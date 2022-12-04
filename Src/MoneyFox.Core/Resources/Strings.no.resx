@@ -607,7 +607,7 @@ Betalinger du opprettet vil vises under kontoen du velger.
 For å komme fram, gå til kontoplan og velg den respektive kontoen.</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Betalinger for kategori</value>
+    <value>Details for {0}</value>
   </data>
   <data name="PaymentTypeLabel" xml:space="preserve">
     <value>Betalings type</value>

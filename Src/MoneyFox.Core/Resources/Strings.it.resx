@@ -607,7 +607,7 @@ I pagamenti che hai creato verranno visualizzati sotto l'account che hai scelto.
 Per arrivarci vai alla lista degli account e seleziona il rispettivo account.</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Pagamenti per categoria</value>
+    <value>Details for {0}</value>
   </data>
   <data name="PaymentTypeLabel" xml:space="preserve">
     <value>Tipo di pagamento</value>
