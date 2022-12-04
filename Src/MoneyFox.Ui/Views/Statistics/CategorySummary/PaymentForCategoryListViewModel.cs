@@ -7,6 +7,7 @@ using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.ApplicationCore.Queries;
+using Core.Resources;
 using MediatR;
 using ViewModels;
 using ViewModels.Payments;
@@ -27,6 +28,14 @@ internal sealed class PaymentForCategoryListViewModel : BaseViewModel, IRecipien
         IsActive = true;
     }
 
+    private string title = string.Empty;
+
+    public string Title
+    {
+        get => title;
+        set => SetProperty(field: ref title, newValue: value);
+    }
+
     public ObservableCollection<DateListGroupCollection<PaymentViewModel>> PaymentList
     {
         get => paymentList;
@@ -43,6 +52,9 @@ internal sealed class PaymentForCategoryListViewModel : BaseViewModel, IRecipien
     
     public async void Receive(PaymentsForCategoryMessage message)
     {
+        var category = await mediator.Send(new GetCategoryByIdQuery(message.CategoryId));
+        Title = string.Format(Strings.PaymentsForCategoryTitle, category.Name);
+
         var loadedPayments = mapper.Map<List<PaymentViewModel>>(
             await mediator.Send(
                 new GetPaymentsForCategorySummary.Query(
