@@ -607,7 +607,7 @@
 للوصول إلى قائمة الحساب وتحديد الحساب المعني.</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Details for {0}</value>
+    <value>تفاصيل عن {0}</value>
   </data>
   <data name="PaymentTypeLabel" xml:space="preserve">
     <value>نوع الدفع</value>
