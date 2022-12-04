@@ -607,7 +607,7 @@
 Чтобы попасть туда перейдите в список счетов и выберите соответствующий аккаунт.</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Details for {0}</value>
+    <value>Детали для {0}</value>
   </data>
   <data name="PaymentTypeLabel" xml:space="preserve">
     <value>Тип операции</value>
