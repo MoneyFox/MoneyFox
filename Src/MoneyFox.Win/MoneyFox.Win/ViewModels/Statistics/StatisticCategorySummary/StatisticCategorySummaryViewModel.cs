@@ -79,7 +79,7 @@ internal sealed class StatisticCategorySummaryViewModel : StatisticViewModel, IS
     private async Task SummaryEntrySelectedAsync(CategoryOverviewViewModel summaryItem)
     {
         var loadedPayments = mapper.Map<List<PaymentViewModel>>(
-            await Mediator.Send(new GetPaymentsForCategoryQuery(categoryId: summaryItem.CategoryId, dateRangeFrom: StartDate, dateRangeTo: EndDate)));
+            await Mediator.Send(new GetPaymentsForCategorySummary.Query(categoryId: summaryItem.CategoryId, dateRangeFrom: StartDate, dateRangeTo: EndDate)));
 
         var dailyItems = DateListGroupCollection<PaymentViewModel>.CreateGroups(
             items: loadedPayments,

@@ -1873,7 +1873,7 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Payments for Category.
+        ///   Looks up a localized string similar to Details for {0}.
         /// </summary>
         public static string PaymentsForCategoryTitle {
             get {

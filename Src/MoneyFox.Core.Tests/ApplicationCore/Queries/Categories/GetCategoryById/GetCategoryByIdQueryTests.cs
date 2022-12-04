@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Categories.GetCategoryById;
+namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Categories.GetCategoryById;
 
 using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
@@ -25,10 +25,10 @@ public class GetCategoryByIdQueryTests
         // Arrange
 
         // Act
-        var result = await handler.Handle(request: new(999), cancellationToken: default);
+        var act = () => handler.Handle(request: new(999), cancellationToken: default);
 
         // Assert
-        result.Should().BeNull();
+        await act.Should().ThrowAsync<InvalidOperationException>();
     }
 
     [Fact]

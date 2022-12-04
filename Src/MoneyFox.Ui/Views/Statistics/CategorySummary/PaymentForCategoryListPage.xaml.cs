@@ -1,7 +1,5 @@
 namespace MoneyFox.Ui.Views.Statistics.CategorySummary;
 
-using ViewModels.Statistics;
-
 public partial class PaymentForCategoryListPage : ContentPage
 {
     public PaymentForCategoryListPage()
@@ -10,6 +8,3 @@ public partial class PaymentForCategoryListPage : ContentPage
         BindingContext = App.GetViewModel<PaymentForCategoryListViewModel>();
     }
 }
-
-
-
