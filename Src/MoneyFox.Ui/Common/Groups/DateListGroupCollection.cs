@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Common.Groups;
+namespace MoneyFox.Ui.Common.Groups;
 
 using CommunityToolkit.Mvvm.Input;
 using Core.ApplicationCore.Domain.Exceptions;
@@ -31,10 +31,12 @@ public class DateListGroupCollection<T> : List<T>
     /// </summary>
     /// <param name="key">The key for this group.</param>
     /// <param name="itemClickCommand">The command to execute on click</param>
-    private DateListGroupCollection(string key, RelayCommand<T>? itemClickCommand = null)
+    /// <param name="date">The date for this group.</param>
+    private DateListGroupCollection(string key, RelayCommand<T>? itemClickCommand = null, DateTime? date = null)
     {
         Key = key;
         ItemClickCommand = itemClickCommand;
+        Date = date;
     }
 
     /// <summary>
@@ -46,6 +48,8 @@ public class DateListGroupCollection<T> : List<T>
     ///     The Title of this group.
     /// </summary>
     public string Subtitle { get; set; } = "";
+
+    public DateTime? Date { get; }
 
     /// <summary>
     ///     The command to execute on a click.
@@ -75,7 +79,7 @@ public class DateListGroupCollection<T> : List<T>
             var index = getKey(item);
             if (list.All(a => a.Key != index))
             {
-                list.Add(new(key: index, itemClickCommand: itemClickCommand));
+                list.Add(new(key: index, itemClickCommand: itemClickCommand, date: getSortKey(item).Date));
             }
 
             if (!string.IsNullOrEmpty(index))
