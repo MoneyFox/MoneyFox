@@ -1,10 +1,11 @@
-﻿namespace MoneyFox.Core.ApplicationCore.Queries;
+namespace MoneyFox.Core.ApplicationCore.Queries;
 
 using System.Threading;
 using System.Threading.Tasks;
 using Common.Interfaces;
 using Domain.Aggregates.CategoryAggregate;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 public class GetCategoryByIdQuery : IRequest<Category?>
 {
@@ -26,7 +27,7 @@ public class GetCategoryByIdQuery : IRequest<Category?>
 
         public async Task<Category?> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
         {
-            return await appDbContext.Categories.FindAsync(request.CategoryId);
+            return await appDbContext.Categories.FirstAsync(predicate: c => c.Id == request.CategoryId, cancellationToken: cancellationToken);
         }
     }
 }
