@@ -14,6 +14,7 @@
     <ContentPage.Resources>
         <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
         <converter:DateFormatConverter x:Key="DateFormatConverter" />
+        <converter:DateGroupCardOpacityConverter x:Key="DateGroupCardOpacityConverter" />
     </ContentPage.Resources>
 
     <ContentPage.Content>
@@ -60,7 +61,7 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid RowDefinitions="20, 15, Auto" IsClippedToBounds="False" Padding="15">
+                        <Grid RowDefinitions="20, 18, Auto" IsClippedToBounds="False" Padding="15" Opacity="{Binding Date, Converter={StaticResource DateGroupCardOpacityConverter}}">
 
                             <Label FontAttributes="Bold"
                                    Style="{StaticResource TextSubheadSecondary}"
