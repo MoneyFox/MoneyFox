@@ -606,7 +606,7 @@ Payments you created will show up under the account you choose.
 To get there go to the account list and select the respective account.</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Payments for Category</value>
+    <value>Details for {0}</value>
   </data>
   <data name="PaymentTypeLabel" xml:space="preserve">
     <value>Payment type</value>
