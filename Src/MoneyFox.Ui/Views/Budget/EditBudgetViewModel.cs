@@ -29,8 +29,15 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
 
     public AsyncRelayCommand DeleteBudgetCommand => new(DeleteBudgetAsync);
 
+    private bool isFirstLoad = true;
+
     private async Task InitializeAsync(int budgetId)
     {
+        if (isFirstLoad is false)
+        {
+            return;
+        }
+
         var query = new LoadBudgetEntry.Query(budgetId: budgetId);
         var budgetData = await sender.Send(query);
         SelectedBudget.Id = budgetData.Id;
@@ -39,6 +46,7 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
         SelectedBudget.TimeRange = budgetData.TimeRange;
         SelectedCategories.Clear();
         SelectedCategories.AddRange(budgetData.Categories.Select(bc => new BudgetCategoryViewModel(categoryId: bc.Id, name: bc.Name)));
+        isFirstLoad = false;
     }
 
     private async Task DeleteBudgetAsync()
