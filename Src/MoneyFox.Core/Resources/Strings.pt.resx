@@ -606,7 +606,7 @@ Os pagamentos que você criou aparecerão na conta que você escolher.
 Para chegar lá na lista de contas e selecione a respectiva conta.</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Details for {0}</value>
+    <value>Detalhes para {0}</value>
   </data>
   <data name="PaymentTypeLabel" xml:space="preserve">
     <value>Tipo de pagamento</value>

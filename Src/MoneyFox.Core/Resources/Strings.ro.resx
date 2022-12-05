@@ -607,7 +607,7 @@ Plățile create vor apărea sub contul pe care îl alegi.
 Pentru a obține accesați lista de conturi și selectați contul respectiv.</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Details for {0}</value>
+    <value>Detalii pentru {0}</value>
   </data>
   <data name="PaymentTypeLabel" xml:space="preserve">
     <value>Tip de plată</value>

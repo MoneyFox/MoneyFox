@@ -607,7 +607,7 @@ Betalningar som du har skapat visas under det konto du väljer.
 För att komma dit gå till kontolistan och välj respektive konto.</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Details for {0}</value>
+    <value>Detaljer för {0}</value>
   </data>
   <data name="PaymentTypeLabel" xml:space="preserve">
     <value>Betalningstyp</value>

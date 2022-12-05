@@ -606,7 +606,7 @@ Utworzone płatności pojawią się pod wybranym kontem.
 Aby tam przejść do listy kont i wybierz odpowiednie konto.</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Details for {0}</value>
+    <value>Szczegóły dotyczące {0}</value>
   </data>
   <data name="PaymentTypeLabel" xml:space="preserve">
     <value>Rodzaj Płatności</value>

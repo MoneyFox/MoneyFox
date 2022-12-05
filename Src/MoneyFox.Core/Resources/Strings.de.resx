@@ -606,7 +606,7 @@ Klicke auf den Link um das Repository zu besuchen:</value>
 Erstellte Zahlungen werden dir unter dem ausgewählten Konto angezeigt. Um dorthin zu gelangen, gehe auf die Kontoübersicht und wähle das gewünschte Konto aus.</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Details for {0}</value>
+    <value>Details für {0}</value>
   </data>
   <data name="PaymentTypeLabel" xml:space="preserve">
     <value>Zahlungstyp</value>
