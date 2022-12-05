@@ -35,46 +35,41 @@
                 VerticalOptions="Center"
                 Command="{Binding GoToAddBudgetCommand}" />
 
-            <ListView Grid.Row="2"
+            <CollectionView Grid.Row="2"
                       BackgroundColor="Transparent"
                       ItemsSource="{Binding Budgets}"
-                      CachingStrategy="RetainElement"
-                      SelectionMode="None"
-                      SeparatorVisibility="None"
-                      RowHeight="100">
-                <ListView.ItemTemplate>
+                      SelectionMode="None">
+                <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="budget:BudgetListItemViewModel">
-                        <ViewCell>
-                            <Grid Padding="15,6,15,8">
-                                <controls:Card HeightRequest="90" Padding="12">
-                                    <Border.GestureRecognizers>
-                                        <TapGestureRecognizer
+                        <Grid Padding="15,6,15,8">
+                            <controls:Card HeightRequest="90" Padding="12">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer
                                             Command="{Binding ViewModel.EditBudgetCommand, Source={x:Reference BudgetList}}"
                                             CommandParameter="{Binding .}" />
-                                    </Border.GestureRecognizers>
+                                </Border.GestureRecognizers>
 
-                                    <StackLayout>
-                                        <Label Style="{StaticResource TextHead}"
+                                <StackLayout>
+                                    <Label Style="{StaticResource TextHead}"
                                                Text="{Binding Name}" />
-                                        <ProgressBar Progress="{Binding SpendingPercentage}"
+                                    <ProgressBar Progress="{Binding SpendingPercentage}"
                                                      ProgressColor="#FF8671" />
 
-                                        <Grid>
-                                            <Label Text="{Binding CurrentSpending, Converter={StaticResource DecimalToZeroFiveConverter}}"
+                                    <Grid>
+                                        <Label Text="{Binding CurrentSpending, Converter={StaticResource DecimalToZeroFiveConverter}}"
                                                    HorizontalOptions="Start"
                                                    Style="{StaticResource TextBodySecondary}" />
 
-                                            <Label Text="{Binding SpendingLimit, Converter={StaticResource DecimalToZeroFiveConverter}}"
+                                        <Label Text="{Binding SpendingLimit, Converter={StaticResource DecimalToZeroFiveConverter}}"
                                                    HorizontalOptions="End"
                                                    Style="{StaticResource TextBodySecondary}" />
-                                        </Grid>
-                                    </StackLayout>
-                                </controls:Card>
-                            </Grid>
-                        </ViewCell>
+                                    </Grid>
+                                </StackLayout>
+                            </controls:Card>
+                        </Grid>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
             <Label Grid.Row="2"
                    IsVisible="{Binding HasBudgets, Converter={StaticResource InverseBoolConverter}}"
