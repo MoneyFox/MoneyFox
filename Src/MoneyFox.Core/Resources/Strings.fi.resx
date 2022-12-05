@@ -606,7 +606,7 @@ Luomasi maksut näkyvät valitsemasi tilin alla.
 Jos haluat päästä sinne, mene tilille ja valitse vastaava tili.</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Details for {0}</value>
+    <value>Tiedot kohteelle {0}</value>
   </data>
   <data name="PaymentTypeLabel" xml:space="preserve">
     <value>Maksun tyyppi</value>

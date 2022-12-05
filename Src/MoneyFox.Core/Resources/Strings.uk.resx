@@ -607,7 +607,7 @@
 Щоб там сталося, перейдіть до списку облікових записів та оберіть відповідний обліковий запис.</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Details for {0}</value>
+    <value>Деталі для {0}</value>
   </data>
   <data name="PaymentTypeLabel" xml:space="preserve">
     <value>Тип оплати</value>
