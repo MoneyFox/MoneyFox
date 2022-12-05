@@ -56,9 +56,18 @@
                                     <StackLayout>
                                         <Label Style="{StaticResource TextHead}"
                                                Text="{Binding Name}" />
+                                        <ProgressBar Progress="{Binding SpendingPercentage}"
+                                                     ProgressColor="#FF8671" />
 
-                                        <budget:BudgetProgressView CurrentSpending="{Binding CurrentSpending}"
-                                                                   SpendingLimit="{Binding SpendingLimit}" />
+                                        <Grid>
+                                            <Label Text="{Binding CurrentSpending, Converter={StaticResource DecimalToZeroFiveConverter}}"
+                                                   HorizontalOptions="Start"
+                                                   Style="{StaticResource TextBodySecondary}" />
+
+                                            <Label Text="{Binding SpendingLimit, Converter={StaticResource DecimalToZeroFiveConverter}}"
+                                                   HorizontalOptions="End"
+                                                   Style="{StaticResource TextBodySecondary}" />
+                                        </Grid>
                                     </StackLayout>
                                 </controls:Card>
                             </Grid>
