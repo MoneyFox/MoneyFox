@@ -7,6 +7,7 @@ using Core.InversionOfControl;
 using Infrastructure.Adapters;
 using Mapping;
 using MoneyFox.Infrastructure.InversionOfControl;
+using MoneyFox.Ui.Views.Statistics.CategorySummary;
 using ViewModels.Categories;
 using ViewModels.Payments;
 using ViewModels.Settings;

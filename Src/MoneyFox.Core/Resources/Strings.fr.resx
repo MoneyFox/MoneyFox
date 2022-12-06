@@ -606,7 +606,7 @@ Les paiements que vous avez créés apparaîtront sous le compte que vous avez c
 Pour y arriver, allez dans la liste des comptes et sélectionnez le compte respectif.</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Paiements pour la catégorie</value>
+    <value>Détails de {0} </value>
   </data>
   <data name="PaymentTypeLabel" xml:space="preserve">
     <value>Type de paiement</value>

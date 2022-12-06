@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Payments.GetPaymentsForCategory;
+namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Payments.GetPaymentsForCategory;
 
 using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Queries;
@@ -16,7 +16,7 @@ public class GetPaymentsForCategoryQueryTests
         var dateRangeTo = DateTime.Now.AddDays(2);
 
         // Act
-        var query = new GetPaymentsForCategoryQuery(categoryId: catId, dateRangeFrom: dateRangeFrom, dateRangeTo: dateRangeTo);
+        var query = new GetPaymentsForCategorySummary.Query(categoryId: catId, dateRangeFrom: dateRangeFrom, dateRangeTo: dateRangeTo);
 
         // Assert
         query.CategoryId.Should().Be(catId);

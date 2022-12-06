@@ -51,6 +51,7 @@
     <Color x:Key="Blue100Accent">#3E8EED</Color>
     <Color x:Key="Blue200Accent">#72ACF1</Color>
     <Color x:Key="Blue300Accent">#A7CBF6</Color>
+    <Color x:Key="ProgressBarBackground">#314A9B</Color>
 
     <!-- Colors -->
     <Color x:Key="ThemeLighterAlt">#fff7f5</Color>

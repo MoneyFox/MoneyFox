@@ -608,7 +608,7 @@ Betalingen die u heeft gemaakt, worden zo weergegeven onder het account dat u ki
 Om daar te komen, gaat u naar de accountlijst en selecteert u het respectieve account.</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Betalingen voor categorie</value>
+    <value>Details voor {0}</value>
   </data>
   <data name="PaymentTypeLabel" xml:space="preserve">
     <value>Betalings wijze</value>

@@ -7,8 +7,9 @@
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:statistics="clr-namespace:MoneyFox.Ui.ViewModels.Statistics"
     x:Name="StatisticCategorySummary"
-    x:DataType="statistics:StatisticCategorySummaryViewModel"
-    xmlns:views="clr-namespace:MoneyFox.Ui.Views">
+    x:DataType="categorySummary:StatisticCategorySummaryViewModel"
+    xmlns:views="clr-namespace:MoneyFox.Ui.Views"
+    xmlns:categorySummary="clr-namespace:MoneyFox.Ui.Views.Statistics.CategorySummary">
 
     <ContentPage.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
@@ -81,16 +82,17 @@
                                                      Orientation="Horizontal"
                                                      Spacing="0"
                                                      VerticalOptions="Center">
-                                            <Label Text="{Binding Value, Converter={StaticResource AmountFormatConverter}}" />
+                                            <Label
+                                                Text="{Binding Value, Converter={StaticResource AmountFormatConverter}}" />
                                             <Label Text="{Binding Percentage, StringFormat=' ({0} %)'}" />
 
                                         </StackLayout>
                                     </Grid>
 
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Style="{StaticResource TextBodySecondary}"  
+                                        <Label Style="{StaticResource TextBodySecondary}"
                                                Text="{x:Static resources:Strings.MonthlyAverageLabel}" />
-                                        <Label Style="{StaticResource TextBodySecondary}" 
+                                        <Label Style="{StaticResource TextBodySecondary}"
                                                Text="{Binding Average, Converter={StaticResource AmountFormatConverter}}" />
                                     </StackLayout>
                                 </StackLayout>

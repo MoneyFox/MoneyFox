@@ -607,7 +607,7 @@ Vámi vytvořené platby se zobrazí pod účtem, který si vyberete.
 Chcete-li se tam dostat do seznamu účtů a vyberte příslušný účet.</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Platby za kategorii</value>
+    <value>Podrobnosti pro {0}</value>
   </data>
   <data name="PaymentTypeLabel" xml:space="preserve">
     <value>Typ platby</value>
