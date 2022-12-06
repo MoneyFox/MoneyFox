@@ -8,6 +8,7 @@ using MoneyFox.Core.Interfaces;
 using MoneyFox.Ui.ViewModels.Categories;
 using NSubstitute;
 using Xunit;
+using EditCategoryViewModel = Views.Categories.ModifyCategory.EditCategoryViewModel;
 
 public class EditCategoryViewModelTests
 {

@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.ViewModels.Categories;
+namespace MoneyFox.Ui.Views.Categories.ModifyCategory;
 
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -7,13 +7,14 @@ using Core.Common.Interfaces;
 using Core.Common.Messages;
 using Core.Resources;
 using MediatR;
+using ViewModels;
 
 internal abstract class ModifyCategoryViewModel : BaseViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
 
-    private CategoryViewModel selectedCategory = new();
+    private CategoryViewModel selectedCategory = null!;
 
     protected ModifyCategoryViewModel(IMediator mediator, IDialogService dialogService)
     {
@@ -59,5 +60,3 @@ internal abstract class ModifyCategoryViewModel : BaseViewModel
         await Shell.Current.Navigation.PopModalAsync();
     }
 }
-
-
