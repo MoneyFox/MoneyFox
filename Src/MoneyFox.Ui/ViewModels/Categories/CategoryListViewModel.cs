@@ -13,7 +13,7 @@ using Core.Common.Messages;
 using Core.Resources;
 using MediatR;
 
-internal class CategoryListViewModel : BaseViewModel
+internal partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadMessage>
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
@@ -42,22 +42,8 @@ internal class CategoryListViewModel : BaseViewModel
 
     public AsyncRelayCommand GoToAddCategoryCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddCategoryRoute));
 
-    public AsyncRelayCommand<string> SearchCategoryCommand => new(async searchTerm => await SearchCategoryAsync(searchTerm));
-
     public AsyncRelayCommand<CategoryViewModel> GoToEditCategoryCommand
         => new(async cvm => await Shell.Current.GoToAsync($"{Routes.EditCategoryRoute}?categoryId={cvm.Id}"));
-
-    public AsyncRelayCommand<CategoryViewModel> DeleteCategoryCommand => new(async categoryViewModel => await DeleteAccountAsync(categoryViewModel));
-
-    protected override void OnActivated()
-    {
-        Messenger.Register<CategoryListViewModel, ReloadMessage>(recipient: this, handler: (r, m) => r.SearchCategoryCommand.Execute(""));
-    }
-
-    protected override void OnDeactivated()
-    {
-        Messenger.Unregister<ReloadMessage>(this);
-    }
 
     public async Task InitializeAsync()
     {
@@ -65,6 +51,7 @@ internal class CategoryListViewModel : BaseViewModel
         IsActive = true;
     }
 
+    [RelayCommand]
     private async Task SearchCategoryAsync(string searchTerm = "")
     {
         var categoryVms = mapper.Map<List<CategoryViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery(searchTerm)));
@@ -76,7 +63,8 @@ internal class CategoryListViewModel : BaseViewModel
         Categories = new(groups);
     }
 
-    private async Task DeleteAccountAsync(CategoryViewModel categoryViewModel)
+    [RelayCommand]
+    private async Task DeleteCategoryAsync(CategoryViewModel categoryViewModel)
     {
         if (await dialogService.ShowConfirmMessageAsync(
                 title: Strings.DeleteTitle,
@@ -87,5 +75,10 @@ internal class CategoryListViewModel : BaseViewModel
             await mediator.Send(new DeleteCategoryByIdCommand(categoryViewModel.Id));
             await SearchCategoryAsync();
         }
+    }
+
+    public async void Receive(ReloadMessage message)
+    {
+        await SearchCategoryAsync();
     }
 }
