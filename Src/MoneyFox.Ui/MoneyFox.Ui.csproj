@@ -28,7 +28,7 @@
         <OutputType>Library</OutputType>
     </PropertyGroup>
 
-    <PropertyGroup Condition="$(TargetFramework.Contains('-windows'))">
+    <PropertyGroup Condition="$(TargetFramework.Contains('-windows')) and '$(Configuration)' == 'Release'">
         <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
         <PackageCertificateThumbprint>7F9842E02B4AE3B6E0E0271B99CDD1CB29EBE6DF</PackageCertificateThumbprint>
     </PropertyGroup>
