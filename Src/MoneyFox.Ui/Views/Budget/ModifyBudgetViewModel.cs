@@ -31,7 +31,6 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
 
         private set => SetProperty(field: ref selectedBudget, newValue: value);
     }
-    public int Id { get; set; }
 
     public string Name
     {

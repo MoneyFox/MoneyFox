@@ -24,6 +24,7 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
         this.navigationService = navigationService;
         this.dialogService = dialogService;
     }
+    public int Id { get; set; }
 
     public AsyncRelayCommand<int> InitializeCommand => new(InitializeAsync);
 
@@ -40,10 +41,10 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
 
         var query = new LoadBudgetEntry.Query(budgetId: budgetId);
         var budgetData = await sender.Send(query);
-        SelectedBudget.Id = budgetData.Id;
-        SelectedBudget.Name = budgetData.Name;
-        SelectedBudget.SpendingLimit = budgetData.SpendingLimit;
-        SelectedBudget.TimeRange = budgetData.TimeRange;
+        Id = budgetData.Id;
+        Name = budgetData.Name;
+        SpendingLimit = budgetData.SpendingLimit;
+        TimeRange = budgetData.TimeRange;
         SelectedCategories.Clear();
         SelectedCategories.AddRange(budgetData.Categories.Select(bc => new BudgetCategoryViewModel(categoryId: bc.Id, name: bc.Name)));
         isFirstLoad = false;
@@ -53,7 +54,7 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
     {
         if (await dialogService.ShowConfirmMessageAsync(title: Strings.DeleteTitle, message: Strings.DeleteBudgetConfirmationMessage))
         {
-            var command = new DeleteBudget.Command(budgetId: SelectedBudget.Id);
+            var command = new DeleteBudget.Command(budgetId: Id);
             await sender.Send(command);
             Messenger.Send(new ReloadMessage());
             await navigationService.GoBackFromModalAsync();
