@@ -102,7 +102,7 @@ public class EditBudgetViewModelTests
             _ = await sender.Send(Arg.Do<UpdateBudget.Command>(q => capturedCommand = q));
 
             // Arrange
-            var testBudget = new TestData.DefaultBudget();
+            TestData.DefaultBudget testBudget = new();
             viewModel.SelectedBudget.Name = testBudget.Name;
             viewModel.SelectedBudget.SpendingLimit = testBudget.SpendingLimit;
 
@@ -112,9 +112,9 @@ public class EditBudgetViewModelTests
 
             // Assert
             _ = capturedCommand.Should().NotBeNull();
-            capturedCommand!.Name.Should().Be(testBudget.Name);
-            capturedCommand.SpendingLimit.Should().Be(testBudget.SpendingLimit);
-            capturedCommand.Categories.Should().BeEquivalentTo(testBudget.Categories);
+            _ = capturedCommand!.Name.Should().Be(testBudget.Name);
+            _ = capturedCommand.SpendingLimit.Should().Be(testBudget.SpendingLimit);
+            _ = capturedCommand.Categories.Should().BeEquivalentTo(testBudget.Categories);
             await navigationService.Received(1).GoBackFromModalAsync();
         }
     }
@@ -125,8 +125,8 @@ public class EditBudgetViewModelTests
         public async Task SendCorrectLoadingCommand()
         {
             // Capture
-            var testBudget = new TestData.DefaultBudget();
-            var categories = testBudget.Categories.Select(c => new BudgetEntryData.BudgetCategory(id: c, name: "category")).ToImmutableList();
+            TestData.DefaultBudget testBudget = new();
+            ImmutableList<BudgetEntryData.BudgetCategory> categories = testBudget.Categories.Select(c => new BudgetEntryData.BudgetCategory(id: c, name: "category")).ToImmutableList();
             LoadBudgetEntry.Query? capturedQuery = null;
             _ = sender.Send(Arg.Do<LoadBudgetEntry.Query>(q => capturedQuery = q))
                 .Returns(new BudgetEntryData(id: testBudget.Id, name: testBudget.Name, spendingLimit: testBudget.SpendingLimit, testBudget.BudgetTimeRange, categories: categories));
@@ -138,13 +138,13 @@ public class EditBudgetViewModelTests
 
             // Assert
             _ = capturedQuery.Should().NotBeNull();
-            capturedQuery!.BudgetId.Should().Be(testBudget.Id);
-            viewModel.SelectedBudget.Id.Should().Be(testBudget.Id);
-            viewModel.SelectedBudget.Name.Should().Be(testBudget.Name);
-            viewModel.SelectedBudget.SpendingLimit.Should().Be(testBudget.SpendingLimit);
-            viewModel.SelectedBudget.TimeRange.Should().Be(testBudget.BudgetTimeRange);
-            viewModel.SelectedCategories[0].CategoryId.Should().Be(categories[0].Id);
-            viewModel.SelectedCategories[0].Name.Should().Be(categories[0].Name);
+            _ = capturedQuery!.BudgetId.Should().Be(testBudget.Id);
+            _ = viewModel.SelectedBudget.Id.Should().Be(testBudget.Id);
+            _ = viewModel.SelectedBudget.Name.Should().Be(testBudget.Name);
+            _ = viewModel.SelectedBudget.SpendingLimit.Should().Be(testBudget.SpendingLimit);
+            _ = viewModel.SelectedBudget.TimeRange.Should().Be(testBudget.BudgetTimeRange);
+            _ = viewModel.SelectedCategories[0].CategoryId.Should().Be(categories[0].Id);
+            _ = viewModel.SelectedCategories[0].Name.Should().Be(categories[0].Name);
         }
     }
 
@@ -178,7 +178,7 @@ public class EditBudgetViewModelTests
 
             // Assert
             _ = capturedCommand.Should().NotBeNull();
-            capturedCommand!.BudgetId.Should().Be(testBudget.Id);
+            _ = capturedCommand!.BudgetId.Should().Be(testBudget.Id);
             await navigationService.Received(1).GoBackFromModalAsync();
         }
 
@@ -211,8 +211,42 @@ public class EditBudgetViewModelTests
 
             // Assert
             await dialogService.Received().ShowMessageAsync(title: Strings.InvalidSpendingLimitTitle, message: Strings.InvalidSpendingLimitMessage);
-            await sender.Received(0).Send(Arg.Any<UpdateBudget.Command>());
+            _ = await sender.Received(0).Send(Arg.Any<UpdateBudget.Command>());
             await navigationService.Received(0).GoBackFromModalAsync();
+        }
+    }
+    public class SaveShouldBeDisabled : EditBudgetViewModelTests
+    {
+        [Fact]
+        public void OnInitialized()
+        {
+            // Assert
+            _ = viewModel.IsSaveEnable.Should().BeFalse();
+        }
+
+        [Fact]
+        public void WhenBudgetNameIsEmpty()
+        {
+            // Act
+            viewModel.SelectedBudget.Name = string.Empty;
+
+            // Assert
+            _ = viewModel.IsSaveEnable.Should().BeFalse();
+        }
+    }
+
+    public class SaveShouldBeEnabled : EditBudgetViewModelTests
+    {
+        [Theory]
+        [InlineData(" ")]
+        [InlineData("Test")]
+        public void SaveShouldBeEnabled_WhenBudgetNameIsNotEmpty(string budgetName)
+        {
+            // Act
+            viewModel.SelectedBudget.Name = budgetName;
+
+            // Assert
+            _ = viewModel.IsSaveEnable.Should().BeTrue();
         }
     }
 }

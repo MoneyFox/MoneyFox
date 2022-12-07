@@ -39,8 +39,8 @@ public class AddBudgetViewModelTests
         viewModel.Receive(categorySelectedMessage);
 
         // Assert
-        viewModel.SelectedCategories.Should().HaveCount(1);
-        viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CategoryId);
+        _ = viewModel.SelectedCategories.Should().HaveCount(1);
+        _ = viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CategoryId);
     }
 
     [Fact]
@@ -52,8 +52,8 @@ public class AddBudgetViewModelTests
         viewModel.Receive(categorySelectedMessage);
 
         // Assert
-        viewModel.SelectedCategories.Should().HaveCount(1);
-        viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CategoryId);
+        _ = viewModel.SelectedCategories.Should().HaveCount(1);
+        _ = viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CategoryId);
     }
 
     [Fact]
@@ -61,10 +61,10 @@ public class AddBudgetViewModelTests
     {
         // Capture
         CreateBudget.Command? passedQuery = null;
-        await sender.Send(Arg.Do<CreateBudget.Command>(q => passedQuery = q));
+        _ = await sender.Send(Arg.Do<CreateBudget.Command>(q => passedQuery = q));
 
         // Arrange
-        var testBudget = new TestData.DefaultBudget();
+        TestData.DefaultBudget testBudget = new();
         viewModel.SelectedBudget.Name = testBudget.Name;
         viewModel.SelectedBudget.SpendingLimit = testBudget.SpendingLimit;
 
@@ -74,9 +74,9 @@ public class AddBudgetViewModelTests
 
         // Assert
         _ = passedQuery.Should().NotBeNull();
-        passedQuery!.Name.Should().Be(testBudget.Name);
-        passedQuery.SpendingLimit.Should().Be(testBudget.SpendingLimit);
-        passedQuery.Categories.Should().BeEquivalentTo(testBudget.Categories);
+        _ = passedQuery!.Name.Should().Be(testBudget.Name);
+        _ = passedQuery.SpendingLimit.Should().Be(testBudget.SpendingLimit);
+        _ = passedQuery.Categories.Should().BeEquivalentTo(testBudget.Categories);
         await navigationService.Received(1).GoBackFromModalAsync();
     }
 
@@ -84,14 +84,14 @@ public class AddBudgetViewModelTests
     public void Removes_SelectedCategory_OnCommand()
     {
         // Arrange
-        var budgetCategoryViewModel = new BudgetCategoryViewModel(categoryId: 1, name: "test");
+        BudgetCategoryViewModel budgetCategoryViewModel = new(categoryId: 1, name: "test");
         viewModel.SelectedCategories.Add(budgetCategoryViewModel);
 
         // Act
         viewModel.RemoveCategoryCommand.Execute(budgetCategoryViewModel);
 
         // Assert
-        viewModel.SelectedCategories.Should().BeEmpty();
+        _ = viewModel.SelectedCategories.Should().BeEmpty();
     }
 
     [Fact]
@@ -110,7 +110,7 @@ public class AddBudgetViewModelTests
     public async Task ShowMessage_WhenSpendingLimitIsInvalid(decimal amount)
     {
         // Arrange
-        var testBudget = new TestData.DefaultBudget();
+        TestData.DefaultBudget testBudget = new();
         viewModel.SelectedBudget.Name = testBudget.Name;
         viewModel.SelectedBudget.SpendingLimit = amount;
 
@@ -119,7 +119,42 @@ public class AddBudgetViewModelTests
 
         // Assert
         await dialogService.Received().ShowMessageAsync(title: Strings.InvalidSpendingLimitTitle, message: Strings.InvalidSpendingLimitMessage);
-        await sender.Received(0).Send(Arg.Any<CreateBudget.Command>());
+        _ = await sender.Received(0).Send(Arg.Any<CreateBudget.Command>());
         await navigationService.Received(0).GoBackFromModalAsync();
+    }
+
+    public class SaveShouldBeDisabled : AddBudgetViewModelTests
+    {
+        [Fact]
+        public void OnInitialized()
+        {
+            // Assert
+            _ = viewModel.IsSaveEnable.Should().BeFalse();
+        }
+
+        [Fact]
+        public void WhenBudgetNameIsEmpty()
+        {
+            // Act
+            viewModel.SelectedBudget.Name = string.Empty;
+
+            // Assert
+            _ = viewModel.IsSaveEnable.Should().BeFalse();
+        }
+    }
+
+    public class SaveShouldBeEnabled : AddBudgetViewModelTests
+    {
+        [Theory]
+        [InlineData(" ")]
+        [InlineData("Test")]
+        public void SaveShouldBeEnabled_WhenBudgetNameIsNotEmpty(string budgetName)
+        {
+            // Act
+            viewModel.SelectedBudget.Name = budgetName;
+
+            // Assert
+            _ = viewModel.IsSaveEnable.Should().BeTrue();
+        }
     }
 }
