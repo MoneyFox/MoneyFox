@@ -7,6 +7,7 @@
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:budget="clr-namespace:MoneyFox.Ui.Views.Budget"
+    xmlns:behaviors="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:DataType="budget:ModifyBudgetViewModel"
     x:Class="MoneyFox.Ui.Views.Budget.ModifyBudgetView">
 
@@ -18,9 +19,18 @@
     </ContentView.Resources>
 
     <VerticalStackLayout Spacing="6">
+
         <controls:TextEntry TextFieldTitle="{x:Static resources:Strings.BudgetNameLabel}"
                             EntryPlaceholder="{x:Static resources:Strings.BudgetNameLabel}"
-                            EntryText="{Binding SelectedBudget.Name}" />
+                            EntryText="{Binding SelectedBudget.Name}" >
+            <controls:TextEntry.Behaviors>
+                <behaviors:TextValidationBehavior 
+                    InvalidStyle="{StaticResource InvalidEntryStyle}"
+                    ValidStyle="{StaticResource ValidEntryStyle}"
+                    Flags="ValidateOnValueChanged"
+                    MinimumLength="1" />
+            </controls:TextEntry.Behaviors>
+        </controls:TextEntry>
 
         <controls:AmountEntry x:Name="AmountEntry" 
                               AmountFieldTitle="{x:Static resources:Strings.AmountLabel}"
