@@ -13,7 +13,6 @@
     <Grid RowDefinitions="*, 6, 40, 6, 40" Padding="12">
         <budget:ModifyBudgetView />
         <Button Grid.Row="2"
-                IsEnabled="{Binding IsSaveEnable}"
                 Command="{Binding SaveBudgetCommand}"
                 Text="{x:Static resources:Strings.SaveLabel}" />
         <Button Grid.Row="4"

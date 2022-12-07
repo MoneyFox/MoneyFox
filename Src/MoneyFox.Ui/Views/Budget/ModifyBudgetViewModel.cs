@@ -28,11 +28,9 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
         private set
         {
             SetProperty(field: ref selectedBudget, newValue: value);
-            OnPropertyChanged(nameof(IsSaveEnable));
+            SaveBudgetCommand.NotifyCanExecuteChanged();
         }
     }
-
-    public bool IsSaveEnable => string.IsNullOrEmpty(SelectedBudget.Name) is false;
 
     public ICollection TimeRangeCollection
         => new List<BudgetTimeRange>
@@ -51,7 +49,7 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
 
     public RelayCommand<BudgetCategoryViewModel> RemoveCategoryCommand => new(RemoveCategory);
 
-    public AsyncRelayCommand SaveBudgetCommand => new(SaveBudgetAsync);
+    public AsyncRelayCommand SaveBudgetCommand => new(SaveBudgetAsync, canExecute: () => string.IsNullOrEmpty(SelectedBudget.Name) is false);
 
     public void Receive(CategorySelectedMessage message)
     {

@@ -22,15 +22,7 @@
 
         <controls:TextEntry TextFieldTitle="{x:Static resources:Strings.BudgetNameLabel}"
                             EntryPlaceholder="{x:Static resources:Strings.BudgetNameLabel}"
-                            EntryText="{Binding SelectedBudget.Name}" >
-            <controls:TextEntry.Behaviors>
-                <behaviors:TextValidationBehavior 
-                    InvalidStyle="{StaticResource InvalidEntryStyle}"
-                    ValidStyle="{StaticResource ValidEntryStyle}"
-                    Flags="ValidateOnValueChanged"
-                    MinimumLength="1" />
-            </controls:TextEntry.Behaviors>
-        </controls:TextEntry>
+                            EntryText="{Binding SelectedBudget.Name}" />
 
         <controls:AmountEntry x:Name="AmountEntry" 
                               AmountFieldTitle="{x:Static resources:Strings.AmountLabel}"

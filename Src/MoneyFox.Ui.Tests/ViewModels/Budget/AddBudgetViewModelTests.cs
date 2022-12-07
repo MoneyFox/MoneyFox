@@ -129,7 +129,7 @@ public class AddBudgetViewModelTests
         public void OnInitialized()
         {
             // Assert
-            _ = viewModel.IsSaveEnable.Should().BeFalse();
+            _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
         }
 
         [Fact]
@@ -139,7 +139,7 @@ public class AddBudgetViewModelTests
             viewModel.SelectedBudget.Name = string.Empty;
 
             // Assert
-            _ = viewModel.IsSaveEnable.Should().BeFalse();
+            _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
         }
     }
 
@@ -154,7 +154,7 @@ public class AddBudgetViewModelTests
             viewModel.SelectedBudget.Name = budgetName;
 
             // Assert
-            _ = viewModel.IsSaveEnable.Should().BeTrue();
+            _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeTrue();
         }
     }
 }

@@ -13,7 +13,6 @@
         <budget:ModifyBudgetView Grid.Row="0" />
         <Button Grid.Row="2" 
                 Text="{x:Static resources:Strings.SaveLabel}"
-                IsEnabled="{Binding IsSaveEnable}" 
-                Command="{Binding SaveBudgetCommand}"  />
+                Command="{Binding SaveBudgetCommand}"/>
     </Grid>
 </ContentPage>
