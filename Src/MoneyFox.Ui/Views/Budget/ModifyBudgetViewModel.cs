@@ -24,8 +24,15 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
     public BudgetViewModel SelectedBudget
     {
         get => selectedBudget;
-        private set => SetProperty(field: ref selectedBudget, newValue: value);
+
+        private set
+        {
+            SetProperty(field: ref selectedBudget, newValue: value);
+            OnPropertyChanged(nameof(IsSaveEnable));
+        }
     }
+
+    public bool IsSaveEnable => string.IsNullOrEmpty(SelectedBudget.Name) is false;
 
     public ICollection TimeRangeCollection
         => new List<BudgetTimeRange>
