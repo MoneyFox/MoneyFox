@@ -1,7 +1,6 @@
 namespace MoneyFox.Ui.Views.Budget;
 
 using CommunityToolkit.Mvvm.Messaging;
-using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
 using Core.ApplicationCore.UseCases.BudgetCreation;
 using Core.Common.Interfaces;
 using Core.Common.Messages;
@@ -32,13 +31,13 @@ internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
         }
 
         var query = new CreateBudget.Command(
-            name: SelectedBudget.Name,
-            spendingLimit: SelectedBudget.SpendingLimit,
-            budgetTimeRange: BudgetTimeRange.YearToDate,
+            name: Name,
+            spendingLimit: SpendingLimit,
+            budgetTimeRange: TimeRange,
             categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
 
-        await sender.Send(query);
-        Messenger.Send(new ReloadMessage());
+        _ = await sender.Send(query);
+        _ = Messenger.Send(new ReloadMessage());
         await navigationService.GoBackFromModalAsync();
     }
 }

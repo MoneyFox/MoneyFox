@@ -13,8 +13,9 @@
     <Grid RowDefinitions="*, 6, 40, 6, 40" Padding="12">
         <budget:ModifyBudgetView />
         <Button Grid.Row="2"
+                Text="{x:Static resources:Strings.SaveLabel}"
                 Command="{Binding SaveBudgetCommand}"
-                Text="{x:Static resources:Strings.SaveLabel}" />
+                CommandParameter="{Binding Name}" />
         <Button Grid.Row="4"
                 Style="{StaticResource WarningButton}"
                 Command="{Binding DeleteBudgetCommand}"

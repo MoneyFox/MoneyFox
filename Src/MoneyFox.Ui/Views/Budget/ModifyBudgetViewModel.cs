@@ -13,6 +13,10 @@ using ViewModels;
 internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<CategorySelectedMessage>
 {
     private readonly INavigationService navigationService;
+    private string name = null!;
+    private decimal spendingLimit;
+    private BudgetTimeRange timeRange;
+
     private BudgetViewModel selectedBudget = new();
 
     protected ModifyBudgetViewModel(INavigationService navigationService)
@@ -25,11 +29,31 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
     {
         get => selectedBudget;
 
-        private set
+        private set => SetProperty(field: ref selectedBudget, newValue: value);
+    }
+    public int Id { get; set; }
+
+    public string Name
+    {
+        get => name;
+
+        set
         {
-            SetProperty(field: ref selectedBudget, newValue: value);
+            SetProperty(field: ref name, newValue: value);
             SaveBudgetCommand.NotifyCanExecuteChanged();
         }
+    }
+
+    public BudgetTimeRange TimeRange
+    {
+        get => timeRange;
+        set => SetProperty(field: ref timeRange, newValue: value);
+    }
+
+    public decimal SpendingLimit
+    {
+        get => spendingLimit;
+        set => SetProperty(field: ref spendingLimit, newValue: value);
     }
 
     public ICollection TimeRangeCollection
@@ -49,7 +73,7 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
 
     public RelayCommand<BudgetCategoryViewModel> RemoveCategoryCommand => new(RemoveCategory);
 
-    public AsyncRelayCommand SaveBudgetCommand => new(SaveBudgetAsync, canExecute: () => string.IsNullOrEmpty(SelectedBudget.Name) is false);
+    public AsyncRelayCommand SaveBudgetCommand => new(SaveBudgetAsync, canExecute: () => string.IsNullOrEmpty(Name) is false);
 
     public void Receive(CategorySelectedMessage message)
     {
@@ -72,7 +96,7 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
             return;
         }
 
-        SelectedCategories.Remove(budgetCategory);
+        _ = SelectedCategories.Remove(budgetCategory);
     }
 
     protected abstract Task SaveBudgetAsync();

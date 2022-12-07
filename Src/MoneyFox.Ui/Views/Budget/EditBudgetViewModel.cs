@@ -71,9 +71,9 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
 
         var command = new UpdateBudget.Command(
             budgetId: SelectedBudget.Id,
-            name: SelectedBudget.Name,
-            spendingLimit: SelectedBudget.SpendingLimit,
-            budgetTimeRange: SelectedBudget.TimeRange,
+            name: Name,
+            spendingLimit: SpendingLimit,
+            budgetTimeRange: TimeRange,
             categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
 
         await sender.Send(command);
