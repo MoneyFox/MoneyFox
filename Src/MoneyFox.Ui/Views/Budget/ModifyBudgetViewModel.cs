@@ -35,12 +35,7 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
     public string Name
     {
         get => name;
-
-        set
-        {
-            SetProperty(field: ref name, newValue: value);
-            SaveBudgetCommand.NotifyCanExecuteChanged();
-        }
+        set => SetProperty(field: ref name, newValue: value);
     }
 
     public BudgetTimeRange TimeRange
