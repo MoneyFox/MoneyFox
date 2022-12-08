@@ -19,7 +19,7 @@ variables:
 
 jobs:
   - job: BuildWindows
-    displayName: 'Build Windows Release'
+    displayName: 'build windows release'
     
     steps:
       - task: UseDotNet@2
@@ -29,7 +29,7 @@ jobs:
           includePreviewVersions: true
 
       - task: DownloadSecureFile@1
-        displayName: 'Download secure file'
+        displayName: 'download certificate'
         name: 'signingCert'
         inputs:
           secureFile: 'MoneyFoxCert_2022.pfx'
@@ -50,7 +50,7 @@ jobs:
           CERT_PASSWORD_ENV: $(UWP_Certificate_Password)
 
       - task: PowerShell@2
-        displayName: "Set AppManifest"
+        displayName: "set values in manifest"
         inputs:
           targetType: 'inline'
           script: |
@@ -61,7 +61,7 @@ jobs:
           failOnStderr: true
 
       - task: PowerShell@2
-        displayName: "Set Store Association"
+        displayName: "set store association"
         inputs:
           targetType: 'inline'
           script: |
@@ -72,7 +72,7 @@ jobs:
           failOnStderr: true
 
       - task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
-        displayName: 'Settings'
+        displayName: 'update settings'
         inputs:
           sourcePath: Src/MoneyFox.Win/MoneyFox.Win
           filePattern: appsettings.json
@@ -103,23 +103,23 @@ jobs:
           modifyOutputPath: false     
           
       - task: CopyFiles@2
-        displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+        displayName: 'copy msix to apppackages'
         inputs:
           SourceFolder: '$(System.DefaultWorkingDirectory)/publish'
           Contents: '**/*.msix'
-          TargetFolder: '$(System.DefaultWorkingDirectory)/AppPackages'
+          TargetFolder: '$(System.DefaultWorkingDirectory)/apppackages'
           flattenFolders: true
 
       - task: PowerShell@2
-        displayName: "Make bundle"
+        displayName: "make bundle"
         inputs:
           targetType: 'inline'
           script: |
-            & 'C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\makeappx.exe' bundle /d $(System.DefaultWorkingDirectory)/AppPackages /p $(build.artifactstagingdirectory)/moneyfox.msixbundle
+            & 'C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\makeappx.exe' bundle /d $(System.DefaultWorkingDirectory)/apppackages /p $(build.artifactstagingdirectory)/moneyfox.msixbundle
           failOnStderr: true
 
       - task: DotNetCoreCLI@2
-        displayName: 'Run Tests'
+        displayName: 'run tests'
         inputs:
           command: 'test'
           projects: |
@@ -128,13 +128,11 @@ jobs:
           arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
 
       - task: CopyFiles@2
-        displayName: 'Copy coveragexml to staging'
+        displayName: 'copy coveragexml to staging'
         inputs:
           SourceFolder: '$(Agent.TempDirectory)'
           Contents: '**\*.opencover.xml'
-          TargetFolder: '$(Build.ArtifactStagingDirectory)'
-                
-
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'  
 
       - task: PublishBuildArtifacts@1
-        displayName: 'Publish Artifact: drop'
+        displayName: 'publish artifacts'
