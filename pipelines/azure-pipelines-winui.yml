@@ -127,11 +127,11 @@ jobs:
           flattenFolders: true
 
       - task: PowerShell@2
-        displayName: "Set Store Association"
+        displayName: "Make bundle"
         inputs:
           targetType: 'inline'
           script: |
-            'C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\MakeAppx.exe' bundle /d $(System.DefaultWorkingDirectory)/AppPackages /p $(build.artifactstagingdirectory)/moneyfox.msixbundle
+            & 'C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\makeappx.exe' bundle /d $(System.DefaultWorkingDirectory)/AppPackages /p $(build.artifactstagingdirectory)/moneyfox.msixbundle
           failOnStderr: true
 
       - task: PublishBuildArtifacts@1
