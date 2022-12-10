@@ -4,7 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 public sealed class BudgetCategoryViewModel : ObservableObject
 {
-    private string name;
+    private string name = string.Empty;
 
     public BudgetCategoryViewModel(int categoryId, string name)
     {
@@ -20,6 +20,3 @@ public sealed class BudgetCategoryViewModel : ObservableObject
         set => SetProperty(field: ref name, newValue: value);
     }
 }
-
-
-
