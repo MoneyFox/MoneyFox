@@ -148,10 +148,11 @@ public class AddBudgetViewModelTests
         [Theory]
         [InlineData(" ")]
         [InlineData("Test")]
-        public void SaveShouldBeEnabled_WhenBudgetNameIsNotEmpty(string budgetName)
+        public void SaveShouldBeEnabled_WhenBudgetNameIsNotEmptyAndSpendingLimitIsNotZero(string budgetName)
         {
             // Act
             viewModel.Name = budgetName;
+            viewModel.SpendingLimit = 10;
 
             // Assert
             _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeTrue();
