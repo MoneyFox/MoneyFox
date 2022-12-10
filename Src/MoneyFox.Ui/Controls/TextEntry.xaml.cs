@@ -21,6 +21,12 @@ public partial class TextEntry : ContentView
         declaringType: typeof(TextEntry),
         defaultValue: string.Empty);
 
+    public static readonly BindableProperty IsRequiredProperty = BindableProperty.Create(
+        propertyName: nameof(EntryPlaceholder),
+        returnType: typeof(bool),
+        declaringType: typeof(TextEntry),
+        defaultValue: false);
+
     public TextEntry()
     {
         InitializeComponent();
@@ -43,7 +49,10 @@ public partial class TextEntry : ContentView
         get => (string)GetValue(EntryPlaceholderProperty);
         set => SetValue(property: EntryPlaceholderProperty, value: value);
     }
+
+    public bool IsRequired
+    {
+        get => (bool)GetValue(IsRequiredProperty);
+        set => SetValue(property: IsRequiredProperty, value: value);
+    }
 }
-
-
-
