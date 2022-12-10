@@ -16,7 +16,7 @@ using Xunit;
 
 public class AddBudgetViewModelTests
 {
-    private const int CategoryId = 10;
+    private const int CATEGORY_ID = 10;
     private readonly IDialogService dialogService;
     private readonly INavigationService navigationService;
     private readonly ISender sender;
@@ -35,25 +35,25 @@ public class AddBudgetViewModelTests
     public void AddsSelectedCategoryToList()
     {
         // Act
-        CategorySelectedMessage categorySelectedMessage = new(new(categoryId: CategoryId, name: "Beer"));
+        CategorySelectedMessage categorySelectedMessage = new(new(categoryId: CATEGORY_ID, name: "Beer"));
         viewModel.Receive(categorySelectedMessage);
 
         // Assert
         _ = viewModel.SelectedCategories.Should().HaveCount(1);
-        _ = viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CategoryId);
+        _ = viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CATEGORY_ID);
     }
 
     [Fact]
     public void IgnoresSelectedCategory_WhenEntryWithSameIdAlreadyInList()
     {
         // Act
-        CategorySelectedMessage categorySelectedMessage = new(new(categoryId: CategoryId, name: "Beer"));
+        CategorySelectedMessage categorySelectedMessage = new(new(categoryId: CATEGORY_ID, name: "Beer"));
         viewModel.Receive(categorySelectedMessage);
         viewModel.Receive(categorySelectedMessage);
 
         // Assert
         _ = viewModel.SelectedCategories.Should().HaveCount(1);
-        _ = viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CategoryId);
+        _ = viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CATEGORY_ID);
     }
 
     [Fact]
@@ -65,8 +65,8 @@ public class AddBudgetViewModelTests
 
         // Arrange
         TestData.DefaultBudget testBudget = new();
-        viewModel.SelectedBudget.Name = testBudget.Name;
-        viewModel.SelectedBudget.SpendingLimit = testBudget.SpendingLimit;
+        viewModel.Name = testBudget.Name;
+        viewModel.SpendingLimit = testBudget.SpendingLimit;
 
         // Act
         viewModel.SelectedCategories.AddRange(testBudget.Categories.Select(c => new BudgetCategoryViewModel(categoryId: c, name: "Category")));
@@ -111,8 +111,8 @@ public class AddBudgetViewModelTests
     {
         // Arrange
         TestData.DefaultBudget testBudget = new();
-        viewModel.SelectedBudget.Name = testBudget.Name;
-        viewModel.SelectedBudget.SpendingLimit = amount;
+        viewModel.Name = testBudget.Name;
+        viewModel.SpendingLimit = amount;
 
         // Act
         await viewModel.SaveBudgetCommand.ExecuteAsync(null);
@@ -136,7 +136,7 @@ public class AddBudgetViewModelTests
         public void WhenBudgetNameIsEmpty()
         {
             // Act
-            viewModel.SelectedBudget.Name = string.Empty;
+            viewModel.Name = string.Empty;
 
             // Assert
             _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
@@ -151,7 +151,7 @@ public class AddBudgetViewModelTests
         public void SaveShouldBeEnabled_WhenBudgetNameIsNotEmpty(string budgetName)
         {
             // Act
-            viewModel.SelectedBudget.Name = budgetName;
+            viewModel.Name = budgetName;
 
             // Assert
             _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeTrue();

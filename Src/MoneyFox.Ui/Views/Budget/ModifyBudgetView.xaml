@@ -7,7 +7,6 @@
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:budget="clr-namespace:MoneyFox.Ui.Views.Budget"
-    xmlns:behaviors="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:DataType="budget:ModifyBudgetViewModel"
     x:Class="MoneyFox.Ui.Views.Budget.ModifyBudgetView">
 

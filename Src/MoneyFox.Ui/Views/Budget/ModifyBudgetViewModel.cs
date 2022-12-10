@@ -17,19 +17,10 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
     private decimal spendingLimit;
     private BudgetTimeRange timeRange;
 
-    private BudgetViewModel selectedBudget = new();
-
     protected ModifyBudgetViewModel(INavigationService navigationService)
     {
         this.navigationService = navigationService;
         WeakReferenceMessenger.Default.Register(this);
-    }
-
-    public BudgetViewModel SelectedBudget
-    {
-        get => selectedBudget;
-
-        private set => SetProperty(field: ref selectedBudget, newValue: value);
     }
 
     public string Name

@@ -103,8 +103,8 @@ public class EditBudgetViewModelTests
 
             // Arrange
             TestData.DefaultBudget testBudget = new();
-            viewModel.SelectedBudget.Name = testBudget.Name;
-            viewModel.SelectedBudget.SpendingLimit = testBudget.SpendingLimit;
+            viewModel.Name = testBudget.Name;
+            viewModel.SpendingLimit = testBudget.SpendingLimit;
 
             // Act
             viewModel.SelectedCategories.AddRange(testBudget.Categories.Select(c => new BudgetCategoryViewModel(categoryId: c, name: "Category")));
@@ -139,10 +139,10 @@ public class EditBudgetViewModelTests
             // Assert
             _ = capturedQuery.Should().NotBeNull();
             _ = capturedQuery!.BudgetId.Should().Be(testBudget.Id);
-            _ = viewModel.SelectedBudget.Id.Should().Be(testBudget.Id);
-            _ = viewModel.SelectedBudget.Name.Should().Be(testBudget.Name);
-            _ = viewModel.SelectedBudget.SpendingLimit.Should().Be(testBudget.SpendingLimit);
-            _ = viewModel.SelectedBudget.TimeRange.Should().Be(testBudget.BudgetTimeRange);
+            _ = viewModel.Id.Should().Be(testBudget.Id);
+            _ = viewModel.Name.Should().Be(testBudget.Name);
+            _ = viewModel.SpendingLimit.Should().Be(testBudget.SpendingLimit);
+            _ = viewModel.TimeRange.Should().Be(testBudget.BudgetTimeRange);
             _ = viewModel.SelectedCategories[0].CategoryId.Should().Be(categories[0].Id);
             _ = viewModel.SelectedCategories[0].Name.Should().Be(categories[0].Name);
         }
@@ -183,7 +183,7 @@ public class EditBudgetViewModelTests
         }
 
         [Fact]
-        public async Task DontSendCommand_WhenConfirmationWasDenied()
+        public async Task DoNotSendCommand_WhenConfirmationWasDenied()
         {
             // Arrange
             _ = dialogService.ShowConfirmMessageAsync(title: Arg.Any<string>(), message: Arg.Any<string>()).Returns(false);
@@ -203,8 +203,8 @@ public class EditBudgetViewModelTests
         {
             // Arrange
             var testBudget = new TestData.DefaultBudget();
-            viewModel.SelectedBudget.Name = testBudget.Name;
-            viewModel.SelectedBudget.SpendingLimit = amount;
+            viewModel.Name = testBudget.Name;
+            viewModel.SpendingLimit = amount;
 
             // Act
             await viewModel.SaveBudgetCommand.ExecuteAsync(null);
@@ -228,7 +228,7 @@ public class EditBudgetViewModelTests
         public void WhenBudgetNameIsEmpty()
         {
             // Act
-            viewModel.SelectedBudget.Name = string.Empty;
+            viewModel.Name = string.Empty;
 
             // Assert
             _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
@@ -243,7 +243,7 @@ public class EditBudgetViewModelTests
         public void SaveShouldBeEnabled_WhenBudgetNameIsNotEmpty(string budgetName)
         {
             // Act
-            viewModel.SelectedBudget.Name = budgetName;
+            viewModel.Name = budgetName;
 
             // Assert
             _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeTrue();
