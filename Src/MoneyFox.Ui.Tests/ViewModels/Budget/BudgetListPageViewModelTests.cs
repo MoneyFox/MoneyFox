@@ -123,7 +123,7 @@ public class BudgetListPageViewModelTests
             await viewModel.InitializeCommand.ExecuteAsync(null);
 
             // Assert
-            var expectedAmount = viewModel.Budgets.Sum(b => b.SpendingLimit);
+            var expectedAmount = viewModel.Budgets.ToList().Sum(b => b.SpendingLimit);
             _ = viewModel.BudgetedAmount.Should().Be(expectedAmount);
         }
     }
