@@ -102,9 +102,9 @@ public class EditBudgetViewModelTests
             _ = await sender.Send(Arg.Do<UpdateBudget.Command>(q => capturedCommand = q));
 
             // Arrange
-            var testBudget = new TestData.DefaultBudget();
-            viewModel.SelectedBudget.Name = testBudget.Name;
-            viewModel.SelectedBudget.SpendingLimit = testBudget.SpendingLimit;
+            TestData.DefaultBudget testBudget = new();
+            viewModel.Name = testBudget.Name;
+            viewModel.SpendingLimit = testBudget.SpendingLimit;
 
             // Act
             viewModel.SelectedCategories.AddRange(testBudget.Categories.Select(c => new BudgetCategoryViewModel(categoryId: c, name: "Category")));
@@ -112,9 +112,9 @@ public class EditBudgetViewModelTests
 
             // Assert
             _ = capturedCommand.Should().NotBeNull();
-            capturedCommand!.Name.Should().Be(testBudget.Name);
-            capturedCommand.SpendingLimit.Should().Be(testBudget.SpendingLimit);
-            capturedCommand.Categories.Should().BeEquivalentTo(testBudget.Categories);
+            _ = capturedCommand!.Name.Should().Be(testBudget.Name);
+            _ = capturedCommand.SpendingLimit.Should().Be(testBudget.SpendingLimit);
+            _ = capturedCommand.Categories.Should().BeEquivalentTo(testBudget.Categories);
             await navigationService.Received(1).GoBackFromModalAsync();
         }
     }
@@ -125,8 +125,8 @@ public class EditBudgetViewModelTests
         public async Task SendCorrectLoadingCommand()
         {
             // Capture
-            var testBudget = new TestData.DefaultBudget();
-            var categories = testBudget.Categories.Select(c => new BudgetEntryData.BudgetCategory(id: c, name: "category")).ToImmutableList();
+            TestData.DefaultBudget testBudget = new();
+            ImmutableList<BudgetEntryData.BudgetCategory> categories = testBudget.Categories.Select(c => new BudgetEntryData.BudgetCategory(id: c, name: "category")).ToImmutableList();
             LoadBudgetEntry.Query? capturedQuery = null;
             _ = sender.Send(Arg.Do<LoadBudgetEntry.Query>(q => capturedQuery = q))
                 .Returns(new BudgetEntryData(id: testBudget.Id, name: testBudget.Name, spendingLimit: testBudget.SpendingLimit, testBudget.BudgetTimeRange, categories: categories));
@@ -138,13 +138,13 @@ public class EditBudgetViewModelTests
 
             // Assert
             _ = capturedQuery.Should().NotBeNull();
-            capturedQuery!.BudgetId.Should().Be(testBudget.Id);
-            viewModel.SelectedBudget.Id.Should().Be(testBudget.Id);
-            viewModel.SelectedBudget.Name.Should().Be(testBudget.Name);
-            viewModel.SelectedBudget.SpendingLimit.Should().Be(testBudget.SpendingLimit);
-            viewModel.SelectedBudget.TimeRange.Should().Be(testBudget.BudgetTimeRange);
-            viewModel.SelectedCategories[0].CategoryId.Should().Be(categories[0].Id);
-            viewModel.SelectedCategories[0].Name.Should().Be(categories[0].Name);
+            _ = capturedQuery!.BudgetId.Should().Be(testBudget.Id);
+            _ = viewModel.Id.Should().Be(testBudget.Id);
+            _ = viewModel.Name.Should().Be(testBudget.Name);
+            _ = viewModel.SpendingLimit.Should().Be(testBudget.SpendingLimit);
+            _ = viewModel.TimeRange.Should().Be(testBudget.BudgetTimeRange);
+            _ = viewModel.SelectedCategories[0].CategoryId.Should().Be(categories[0].Id);
+            _ = viewModel.SelectedCategories[0].Name.Should().Be(categories[0].Name);
         }
     }
 
@@ -178,12 +178,12 @@ public class EditBudgetViewModelTests
 
             // Assert
             _ = capturedCommand.Should().NotBeNull();
-            capturedCommand!.BudgetId.Should().Be(testBudget.Id);
+            _ = capturedCommand!.BudgetId.Should().Be(testBudget.Id);
             await navigationService.Received(1).GoBackFromModalAsync();
         }
 
         [Fact]
-        public async Task DontSendCommand_WhenConfirmationWasDenied()
+        public async Task DoNotSendCommand_WhenConfirmationWasDenied()
         {
             // Arrange
             _ = dialogService.ShowConfirmMessageAsync(title: Arg.Any<string>(), message: Arg.Any<string>()).Returns(false);
@@ -195,24 +195,40 @@ public class EditBudgetViewModelTests
             _ = await sender.Received(0).Send(Arg.Any<DeleteBudget.Command>());
             await navigationService.Received(0).GoBackFromModalAsync();
         }
-
-        [Theory]
-        [InlineData(0)]
-        [InlineData(-1)]
-        public async Task ShowMessage_WhenSpendingLimitIsInvalid(decimal amount)
+    }
+    public class SaveShouldBeDisabled : EditBudgetViewModelTests
+    {
+        [Fact]
+        public void OnInitialized()
         {
-            // Arrange
-            var testBudget = new TestData.DefaultBudget();
-            viewModel.SelectedBudget.Name = testBudget.Name;
-            viewModel.SelectedBudget.SpendingLimit = amount;
+            // Assert
+            _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
+        }
 
+        [Fact]
+        public void WhenBudgetNameIsEmpty()
+        {
             // Act
-            await viewModel.SaveBudgetCommand.ExecuteAsync(null);
+            viewModel.Name = string.Empty;
 
             // Assert
-            await dialogService.Received().ShowMessageAsync(title: Strings.InvalidSpendingLimitTitle, message: Strings.InvalidSpendingLimitMessage);
-            await sender.Received(0).Send(Arg.Any<UpdateBudget.Command>());
-            await navigationService.Received(0).GoBackFromModalAsync();
+            _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
+        }
+    }
+
+    public class SaveShouldBeEnabled : EditBudgetViewModelTests
+    {
+        [Theory]
+        [InlineData(" ")]
+        [InlineData("Test")]
+        public void SaveShouldBeEnabled_WhenBudgetNameIsNotEmptyAndSpendingLimitNotZero(string budgetName)
+        {
+            // Act
+            viewModel.Name = budgetName;
+            viewModel.SpendingLimit = 10;
+
+            // Assert
+            _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeTrue();
         }
     }
 }

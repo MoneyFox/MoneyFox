@@ -18,14 +18,15 @@
     </ContentView.Resources>
 
     <VerticalStackLayout Spacing="6">
+
         <controls:TextEntry TextFieldTitle="{x:Static resources:Strings.BudgetNameLabel}"
                             EntryPlaceholder="{x:Static resources:Strings.BudgetNameLabel}"
-                            EntryText="{Binding SelectedBudget.Name}" />
+                            EntryText="{Binding Name}" />
 
         <controls:AmountEntry x:Name="AmountEntry" 
                               AmountFieldTitle="{x:Static resources:Strings.AmountLabel}"
                               EntryPlaceholder="{x:Static resources:Strings.MonthlySpendingLimitLabel}"
-                              Amount="{Binding SelectedBudget.SpendingLimit, Converter={StaticResource DecimalConverter}}" />
+                              Amount="{Binding SpendingLimit, Converter={StaticResource DecimalConverter}}" />
 
         <Label Margin="3,0,0,0"
                Style="{StaticResource TextBodySecondary}"
@@ -33,7 +34,7 @@
 
         <Picker Title="{x:Static resources:Strings.EvaluationTimeRangeLabel}"
                 ItemsSource="{Binding TimeRangeCollection}"
-                SelectedItem="{Binding SelectedBudget.TimeRange}"
+                SelectedItem="{Binding TimeRange}"
                 ItemDisplayBinding="{Binding ., Converter={StaticResource BudgetTimeRangeStringConverter}}" />
 
         <Label Text="{x:Static resources:Strings.EvaluationTimeRangeMessage}"

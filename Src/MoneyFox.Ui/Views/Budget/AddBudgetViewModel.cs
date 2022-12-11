@@ -1,12 +1,10 @@
 namespace MoneyFox.Ui.Views.Budget;
 
 using CommunityToolkit.Mvvm.Messaging;
-using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
 using Core.ApplicationCore.UseCases.BudgetCreation;
 using Core.Common.Interfaces;
 using Core.Common.Messages;
 using Core.Interfaces;
-using Core.Resources;
 using MediatR;
 
 internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
@@ -24,23 +22,14 @@ internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
 
     protected override async Task SaveBudgetAsync()
     {
-        if (SelectedBudget.SpendingLimit <= 0)
-        {
-            await dialogService.ShowMessageAsync(title: Strings.InvalidSpendingLimitTitle, message: Strings.InvalidSpendingLimitMessage);
-
-            return;
-        }
-
-        var query = new CreateBudget.Command(
-            name: SelectedBudget.Name,
-            spendingLimit: SelectedBudget.SpendingLimit,
-            budgetTimeRange: BudgetTimeRange.YearToDate,
+        CreateBudget.Command query = new(
+            name: Name,
+            spendingLimit: SpendingLimit,
+            budgetTimeRange: TimeRange,
             categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
 
-        await sender.Send(query);
-        Messenger.Send(new ReloadMessage());
+        _ = await sender.Send(query);
+        _ = Messenger.Send(new ReloadMessage());
         await navigationService.GoBackFromModalAsync();
     }
 }
-
-

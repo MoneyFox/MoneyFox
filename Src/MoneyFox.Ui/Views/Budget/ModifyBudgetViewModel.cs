@@ -13,7 +13,9 @@ using ViewModels;
 internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<CategorySelectedMessage>
 {
     private readonly INavigationService navigationService;
-    private BudgetViewModel selectedBudget = new();
+    private string name = null!;
+    private decimal spendingLimit;
+    private BudgetTimeRange timeRange;
 
     protected ModifyBudgetViewModel(INavigationService navigationService)
     {
@@ -21,10 +23,22 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
         WeakReferenceMessenger.Default.Register(this);
     }
 
-    public BudgetViewModel SelectedBudget
+    public string Name
     {
-        get => selectedBudget;
-        private set => SetProperty(field: ref selectedBudget, newValue: value);
+        get => name;
+        set => SetProperty(field: ref name, newValue: value);
+    }
+
+    public BudgetTimeRange TimeRange
+    {
+        get => timeRange;
+        set => SetProperty(field: ref timeRange, newValue: value);
+    }
+
+    public decimal SpendingLimit
+    {
+        get => spendingLimit;
+        set => SetProperty(field: ref spendingLimit, newValue: value);
     }
 
     public ICollection TimeRangeCollection
@@ -44,7 +58,8 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
 
     public RelayCommand<BudgetCategoryViewModel> RemoveCategoryCommand => new(RemoveCategory);
 
-    public AsyncRelayCommand SaveBudgetCommand => new(SaveBudgetAsync);
+    public AsyncRelayCommand SaveBudgetCommand => new(SaveBudgetAsync, canExecute: ()
+        => string.IsNullOrEmpty(Name) is false && SpendingLimit > 0);
 
     public void Receive(CategorySelectedMessage message)
     {
@@ -67,7 +82,7 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
             return;
         }
 
-        SelectedCategories.Remove(budgetCategory);
+        _ = SelectedCategories.Remove(budgetCategory);
     }
 
     protected abstract Task SaveBudgetAsync();
