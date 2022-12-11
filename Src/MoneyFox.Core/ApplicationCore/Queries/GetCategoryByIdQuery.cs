@@ -1,5 +1,6 @@
 namespace MoneyFox.Core.ApplicationCore.Queries;
 
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Common.Interfaces;

@@ -1,13 +1,14 @@
 namespace MoneyFox.Ui.Tests.ViewModels.Categories;
 
 using AutoMapper;
+using Core.ApplicationCore.Queries;
+using Core.Interfaces;
 using MediatR;
 using MoneyFox.Core.Commands.Categories.DeleteCategoryById;
 using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Interfaces;
 using NSubstitute;
+using Views.Categories.ModifyCategory;
 using Xunit;
-using EditCategoryViewModel = Views.Categories.ModifyCategory.EditCategoryViewModel;
 
 public class EditCategoryViewModelTests
 {
@@ -20,7 +21,7 @@ public class EditCategoryViewModelTests
     public EditCategoryViewModelTests()
     {
         mediator = Substitute.For<IMediator>();
-        var mapper = Substitute.For<IMapper>();
+        IMapper mapper = Substitute.For<IMapper>();
         dialogService = Substitute.For<IDialogService>();
         navigationService = Substitute.For<INavigationService>();
 
@@ -32,6 +33,15 @@ public class EditCategoryViewModelTests
     {
         // Arrange
         _ = dialogService.ShowConfirmMessageAsync(Arg.Any<string>(), Arg.Any<string>()).Returns(true);
+        _ = mediator.Send(Arg.Any<GetCategoryById.Query>())
+        .Returns(
+            new CategoryData(
+                4,
+                "Beer",
+                null,
+                false,
+                DateTime.Now,
+                DateTime.Now));
 
         // Act
         await vm.DeleteCommand.ExecuteAsync(null);
