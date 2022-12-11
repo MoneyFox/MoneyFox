@@ -30,7 +30,16 @@ internal sealed partial class EditCategoryViewModel : ModifyCategoryViewModel
 
     public async Task InitializeAsync(int categoryId)
     {
-        SelectedCategory = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(categoryId)));
+        var categoryData = await mediator.Send(new GetCategoryById.Query(categoryId));
+        SelectedCategory = new()
+        {
+            Id = categoryData.Id,
+            Name = categoryData.Name,
+            Note = categoryData.Note,
+            RequireNote = categoryData.NoteRequired,
+            Created = categoryData.Created,
+            LastModified = categoryData.LastModified
+        };
     }
 
     protected override async Task SaveCategoryAsync()

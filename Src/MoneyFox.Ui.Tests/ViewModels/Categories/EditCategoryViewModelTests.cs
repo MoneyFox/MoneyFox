@@ -44,6 +44,7 @@ public class EditCategoryViewModelTests
                 DateTime.Now));
 
         // Act
+        await vm.InitializeAsync(4);
         await vm.DeleteCommand.ExecuteAsync(null);
 
         // Assert
