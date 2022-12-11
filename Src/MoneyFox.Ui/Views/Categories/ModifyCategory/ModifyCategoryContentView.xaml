@@ -22,9 +22,9 @@
                 Text="{x:Static resources:Strings.RequireNoteCheckbox}"
                 VerticalOptions="Center" />
 
-            <CheckBox
+            <Switch
                 Grid.Column="1"
-                IsChecked="{Binding SelectedCategory.RequireNote}"
+                IsToggled="{Binding SelectedCategory.RequireNote}"
                 VerticalOptions="Center" />
         </Grid>
     </VerticalStackLayout>
