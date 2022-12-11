@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.ViewModels.Categories;
+namespace MoneyFox.Ui.Views.Categories.ModifyCategory;
 
 using Core.ApplicationCore.UseCases.CategoryCreation;
 using Core.Common.Interfaces;
@@ -13,6 +13,17 @@ internal sealed class AddCategoryViewModel : ModifyCategoryViewModel
     public AddCategoryViewModel(IMediator mediator, IDialogService dialogService) : base(mediator: mediator, dialogService: dialogService)
     {
         this.mediator = mediator;
+
+        // TODO: Create a separate create and edit model
+        SelectedCategory = new()
+        {
+            Id = 0,
+            Name = string.Empty,
+            Note = string.Empty,
+            RequireNote = false,
+            Created = DateTime.MinValue,
+            LastModified = null
+        };
     }
 
     protected override async Task SaveCategoryAsync()
@@ -21,5 +32,3 @@ internal sealed class AddCategoryViewModel : ModifyCategoryViewModel
         await mediator.Send(command);
     }
 }
-
-

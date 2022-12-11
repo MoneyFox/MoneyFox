@@ -1,18 +1,18 @@
 namespace MoneyFox.Ui.Tests.ViewModels.Categories;
 
 using AutoMapper;
+using Core.ApplicationCore.Queries;
+using Core.Interfaces;
 using MediatR;
 using MoneyFox.Core.Commands.Categories.DeleteCategoryById;
 using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Ui.ViewModels.Categories;
 using NSubstitute;
+using Views.Categories.ModifyCategory;
 using Xunit;
 
 public class EditCategoryViewModelTests
 {
     private readonly IMediator mediator;
-    private readonly IMapper mapper;
     private readonly IDialogService dialogService;
     private readonly INavigationService navigationService;
 
@@ -21,7 +21,7 @@ public class EditCategoryViewModelTests
     public EditCategoryViewModelTests()
     {
         mediator = Substitute.For<IMediator>();
-        mapper = Substitute.For<IMapper>();
+        IMapper mapper = Substitute.For<IMapper>();
         dialogService = Substitute.For<IDialogService>();
         navigationService = Substitute.For<INavigationService>();
 
@@ -32,27 +32,37 @@ public class EditCategoryViewModelTests
     public async Task CallsDelete_WhenConfirmationWasConfirmed()
     {
         // Arrange
-        dialogService.ShowConfirmMessageAsync(Arg.Any<string>(), Arg.Any<string>()).Returns(true);
+        _ = dialogService.ShowConfirmMessageAsync(Arg.Any<string>(), Arg.Any<string>()).Returns(true);
+        _ = mediator.Send(Arg.Any<GetCategoryById.Query>())
+        .Returns(
+            new CategoryData(
+                4,
+                "Beer",
+                null,
+                false,
+                DateTime.Now,
+                DateTime.Now));
 
         // Act
+        await vm.InitializeAsync(4);
         await vm.DeleteCommand.ExecuteAsync(null);
 
         // Assert
-        await mediator.Received(1).Send(Arg.Any<DeleteCategoryByIdCommand>(), Arg.Any<CancellationToken>());
+        _ = await mediator.Received(1).Send(Arg.Any<DeleteCategoryByIdCommand>(), Arg.Any<CancellationToken>());
         await navigationService.Received(1).GoBackFromModalAsync();
     }
 
     [Fact]
-    public async Task DoesntDelete_WhenConfirmationWasDeclined()
+    public async Task DoesNotDelete_WhenConfirmationWasDeclined()
     {
         // Arrange
-        dialogService.ShowConfirmMessageAsync(Arg.Any<string>(), Arg.Any<string>()).Returns(false);
+        _ = dialogService.ShowConfirmMessageAsync(Arg.Any<string>(), Arg.Any<string>()).Returns(false);
 
         // Act
         await vm.DeleteCommand.ExecuteAsync(null);
 
         // Assert
-        await mediator.Received(0).Send(Arg.Any<DeleteCategoryByIdCommand>(), Arg.Any<CancellationToken>());
+        _ = await mediator.Received(0).Send(Arg.Any<DeleteCategoryByIdCommand>(), Arg.Any<CancellationToken>());
         await navigationService.Received(0).GoBackFromModalAsync();
     }
 }
