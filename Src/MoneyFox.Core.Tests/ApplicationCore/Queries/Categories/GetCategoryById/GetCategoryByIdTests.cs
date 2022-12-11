@@ -45,7 +45,8 @@ public class GetCategoryByIdTests
         _ = result.Name.Should().Be(testCat.Name);
         _ = result.Note.Should().Be(testCat.Note);
         _ = result.NoteRequired.Should().Be(testCat.RequireNote);
-        _ = result.Created.Should().Be(testCat.LastModified);
+        _ = result.Created.Should().Be(testCat.Created);
+        _ = result.LastModified.Should().Be(testCat.LastModified);
     }
 }
 
