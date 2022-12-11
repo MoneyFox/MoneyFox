@@ -55,21 +55,14 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
         if (await dialogService.ShowConfirmMessageAsync(title: Strings.DeleteTitle, message: Strings.DeleteBudgetConfirmationMessage))
         {
             var command = new DeleteBudget.Command(budgetId: Id);
-            await sender.Send(command);
-            Messenger.Send(new ReloadMessage());
+            _ = await sender.Send(command);
+            _ = Messenger.Send(new ReloadMessage());
             await navigationService.GoBackFromModalAsync();
         }
     }
 
     protected override async Task SaveBudgetAsync()
     {
-        if (SpendingLimit <= 0)
-        {
-            await dialogService.ShowMessageAsync(title: Strings.InvalidSpendingLimitTitle, message: Strings.InvalidSpendingLimitMessage);
-
-            return;
-        }
-
         var command = new UpdateBudget.Command(
             budgetId: Id,
             name: Name,
@@ -77,8 +70,8 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
             budgetTimeRange: TimeRange,
             categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
 
-        await sender.Send(command);
-        Messenger.Send(new ReloadMessage());
+        _ = await sender.Send(command);
+        _ = Messenger.Send(new ReloadMessage());
         await navigationService.GoBackFromModalAsync();
     }
 }
