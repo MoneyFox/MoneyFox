@@ -278,6 +278,13 @@
                 Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
     </Style>
 
+    <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+        <Setter Property="TextColor" Value="IndianRed" />
+    </Style>
+    <Style x:Key="ValidEntryStyle" TargetType="Entry">
+        <Setter Property="TextColor" Value="DarkSeaGreen" />
+    </Style>
+
     <!-- Default Styles -->
     <Style TargetType="ActivityIndicator">
         <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
