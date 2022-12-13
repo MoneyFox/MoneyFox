@@ -72,7 +72,7 @@
         <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.221116.1" />
         <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.0">
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.1">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
         </PackageReference>
