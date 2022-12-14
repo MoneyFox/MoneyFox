@@ -5,7 +5,6 @@ using Core.ApplicationCore.UseCases.BudgetCreation;
 using Core.Common.Interfaces;
 using Core.Common.Messages;
 using Core.Interfaces;
-using Core.Resources;
 using MediatR;
 
 internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
@@ -23,14 +22,7 @@ internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
 
     protected override async Task SaveBudgetAsync()
     {
-        if (SpendingLimit <= 0)
-        {
-            await dialogService.ShowMessageAsync(title: Strings.InvalidSpendingLimitTitle, message: Strings.InvalidSpendingLimitMessage);
-
-            return;
-        }
-
-        var query = new CreateBudget.Command(
+        CreateBudget.Command query = new(
             name: Name,
             spendingLimit: SpendingLimit,
             budgetTimeRange: TimeRange,
@@ -41,5 +33,3 @@ internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
         await navigationService.GoBackFromModalAsync();
     }
 }
-
-

@@ -1,24 +1,26 @@
-namespace MoneyFox.Ui.ViewModels.Categories;
+namespace MoneyFox.Ui.Views.Categories.ModifyCategory;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.ApplicationCore.Queries;
+using Core.Commands.Categories.DeleteCategoryById;
 using Core.Commands.Categories.UpdateCategory;
 using Core.Common.Interfaces;
-using MediatR;
-using MoneyFox.Core.Commands.Categories.DeleteCategoryById;
 using Core.Interfaces;
 using Core.Resources;
+using MediatR;
 
 internal sealed partial class EditCategoryViewModel : ModifyCategoryViewModel
 {
+    private readonly IDialogService dialogService;
     private readonly IMapper mapper;
     private readonly IMediator mediator;
-    private readonly IDialogService dialogService;
     private readonly INavigationService navigationService;
 
-    public EditCategoryViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, INavigationService navigationService) : base(mediator: mediator, dialogService: dialogService)
+    public EditCategoryViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, INavigationService navigationService) : base(
+        mediator: mediator,
+        dialogService: dialogService)
     {
         this.mediator = mediator;
         this.mapper = mapper;
@@ -28,7 +30,16 @@ internal sealed partial class EditCategoryViewModel : ModifyCategoryViewModel
 
     public async Task InitializeAsync(int categoryId)
     {
-        SelectedCategory = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(categoryId)));
+        var categoryData = await mediator.Send(new GetCategoryById.Query(categoryId));
+        SelectedCategory = new()
+        {
+            Id = categoryData.Id,
+            Name = categoryData.Name,
+            Note = categoryData.Note,
+            RequireNote = categoryData.NoteRequired,
+            Created = categoryData.Created,
+            LastModified = categoryData.LastModified
+        };
     }
 
     protected override async Task SaveCategoryAsync()
@@ -46,4 +57,3 @@ internal sealed partial class EditCategoryViewModel : ModifyCategoryViewModel
         }
     }
 }
-

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <ContentView
-    x:Class="MoneyFox.Ui.Views.Categories.ModifyCategoryContentView"
+    x:Class="MoneyFox.Ui.Views.Categories.ModifyCategory.ModifyCategoryContentView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
@@ -22,9 +22,9 @@
                 Text="{x:Static resources:Strings.RequireNoteCheckbox}"
                 VerticalOptions="Center" />
 
-            <CheckBox
+            <Switch
                 Grid.Column="1"
-                IsChecked="{Binding SelectedCategory.RequireNote}"
+                IsToggled="{Binding SelectedCategory.RequireNote}"
                 VerticalOptions="Center" />
         </Grid>
     </VerticalStackLayout>

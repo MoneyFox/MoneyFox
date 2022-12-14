@@ -7,6 +7,7 @@ using Core.InversionOfControl;
 using Infrastructure.Adapters;
 using Mapping;
 using MoneyFox.Infrastructure.InversionOfControl;
+using MoneyFox.Ui.Views.Categories.ModifyCategory;
 using MoneyFox.Ui.Views.Statistics.CategorySummary;
 using ViewModels.Categories;
 using ViewModels.Payments;
@@ -21,6 +22,7 @@ using Views.Dashboard;
 using Views.OverflowMenu;
 using Views.Popups;
 using Views.Statistics.Selector;
+using EditCategoryViewModel = Views.Categories.ModifyCategory.EditCategoryViewModel;
 
 public sealed class MoneyFoxConfig
 {

@@ -104,25 +104,6 @@ public class AddBudgetViewModelTests
         await navigationService.Received(1).OpenModalAsync<SelectCategoryPage>();
     }
 
-    [Theory]
-    [InlineData(0)]
-    [InlineData(-1)]
-    public async Task ShowMessage_WhenSpendingLimitIsInvalid(decimal amount)
-    {
-        // Arrange
-        TestData.DefaultBudget testBudget = new();
-        viewModel.Name = testBudget.Name;
-        viewModel.SpendingLimit = amount;
-
-        // Act
-        await viewModel.SaveBudgetCommand.ExecuteAsync(null);
-
-        // Assert
-        await dialogService.Received().ShowMessageAsync(title: Strings.InvalidSpendingLimitTitle, message: Strings.InvalidSpendingLimitMessage);
-        _ = await sender.Received(0).Send(Arg.Any<CreateBudget.Command>());
-        await navigationService.Received(0).GoBackFromModalAsync();
-    }
-
     public class SaveShouldBeDisabled : AddBudgetViewModelTests
     {
         [Fact]
