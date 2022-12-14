@@ -4,18 +4,17 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-    xmlns:categories="clr-namespace:MoneyFox.Ui.Views.Categories"
-    xmlns:categoryVm="clr-namespace:MoneyFox.Ui.ViewModels.Categories"
     xmlns:extensions="clr-namespace:MoneyFox.Ui.Common.Extensions"
-    x:DataType="categoryVm:EditCategoryViewModel"
+    xmlns:modifyCategory="clr-namespace:MoneyFox.Ui.Views.Categories.ModifyCategory"
+    x:DataType="modifyCategory:EditCategoryViewModel"
     Title="{x:Static resources:Strings.EditCategoryTitle}"
 
-    x:Class="MoneyFox.Ui.Views.Categories.EditCategoryPage">
+    x:Class="MoneyFox.Ui.Views.Categories.ModifyCategory.EditCategoryPage">
 
     <ContentPage.Content>
         <ScrollView Padding="15,0,15,0">
             <VerticalStackLayout Spacing="12">
-                <categories:ModifyCategoryContentView />
+                <modifyCategory:ModifyCategoryContentView />
 
                 <Label Style="{StaticResource TextBodySecondary}"
                        Text="{Binding SelectedCategory.Created, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Views.Categories;
+﻿namespace MoneyFox.Ui.Views.Categories.ModifyCategory;
 
 public partial class ModifyCategoryContentView : ContentView
 {

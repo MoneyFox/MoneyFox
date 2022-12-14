@@ -1,6 +1,4 @@
-namespace MoneyFox.Ui.Views.Categories;
-
-using ViewModels.Categories;
+namespace MoneyFox.Ui.Views.Categories.ModifyCategory;
 
 [QueryProperty(name: "CategoryId", queryId: "categoryId")]
 public partial class EditCategoryPage
