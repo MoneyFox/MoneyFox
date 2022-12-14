@@ -4,15 +4,14 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
-    xmlns:categories="clr-namespace:MoneyFox.Ui.Views.Categories"
-    xmlns:categoryVm="clr-namespace:MoneyFox.Ui.ViewModels.Categories"
-    x:DataType="categoryVm:AddCategoryViewModel"
+    xmlns:modifyCategory="clr-namespace:MoneyFox.Ui.Views.Categories.ModifyCategory"
+    x:DataType="modifyCategory:AddCategoryViewModel"
     Title="{x:Static resources:Strings.AddCategoryTitle}"
-    x:Class="MoneyFox.Ui.Views.Categories.AddCategoryPage">
+    x:Class="MoneyFox.Ui.Views.Categories.ModifyCategory.AddCategoryPage">
 
     <ScrollView Padding="15,0,15,0">
         <VerticalStackLayout Spacing="12">
-            <categories:ModifyCategoryContentView />
+            <modifyCategory:ModifyCategoryContentView />
             <Button Command="{Binding SaveCommand}"
                     Text="{x:Static resources:Strings.SaveLabel}" />
         </VerticalStackLayout>
