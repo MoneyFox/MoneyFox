@@ -39,6 +39,11 @@
         <CodesignProvision>MoneyFox Distribution 2022</CodesignProvision>
     </PropertyGroup>
 
+    <PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
+        <EnableLLVM>True</EnableLLVM>
+        <AndroidLinkTool>r8</AndroidLinkTool>
+    </PropertyGroup>
+    
     <ItemGroup>
         <!-- App Icon -->
         <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#efeadd" />
