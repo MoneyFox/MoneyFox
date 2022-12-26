@@ -6,6 +6,7 @@ using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.ApplicationCore.Queries;
 using Core.Commands.Payments.CreatePayment;
 using Core.Common.Interfaces;
+using Core.Resources;
 using JetBrains.Annotations;
 using MediatR;
 
@@ -14,6 +15,7 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
 {
     private readonly IMapper mapper;
     private readonly IMediator mediator;
+    private readonly IDialogService dialogService;
 
     public AddPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService) : base(
         mediator: mediator,
@@ -22,6 +24,7 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
     {
         this.mediator = mediator;
         this.mapper = mapper;
+        this.dialogService = dialogService;
     }
 
     public async Task InitializeAsync(int? defaultChargedAccountId = null)
@@ -43,6 +46,8 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
 
     protected override async Task SavePaymentAsync()
     {
+        // Due to a bug in .net maui, the loading dialog can only be called after any other dialog
+        await dialogService.ShowLoadingDialogAsync(Strings.SavingPaymentMessage);
         var chargedAccount = await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id));
         var targetAccount = SelectedPayment.TargetAccount != null ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id)) : null;
         var payment = new Payment(

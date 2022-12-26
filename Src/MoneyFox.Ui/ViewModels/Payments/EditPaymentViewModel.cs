@@ -53,6 +53,8 @@ internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
                 negativeButtonText: Strings.NoLabel);
         }
 
+        // Due to a bug in .net maui, the loading dialog can only be called after any other dialog
+        await dialogService.ShowLoadingDialogAsync(Strings.SavingPaymentMessage);
         var command = new UpdatePaymentCommand(
             id: SelectedPayment.Id,
             date: SelectedPayment.Date,

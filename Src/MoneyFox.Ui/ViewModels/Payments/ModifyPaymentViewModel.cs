@@ -135,7 +135,6 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
             return;
         }
 
-        await dialogService.ShowLoadingDialogAsync(Strings.SavingPaymentMessage);
         try
         {
             await SavePaymentAsync();
