@@ -26,7 +26,12 @@ public partial class App
         CultureHelper.CurrentCulture = new(CultureInfo.CurrentCulture.Name);
         InitializeComponent();
         SetupServices();
-        MainPage = new AppShell();
+        MainPage = DeviceInfo.Current.Idiom == DeviceIdiom.Desktop
+                   || DeviceInfo.Current.Idiom == DeviceIdiom.Tablet
+                   || DeviceInfo.Current.Idiom == DeviceIdiom.TV
+            ? new AppShellDesktop()
+            : new AppShell();
+
         if (!settingsFacade.IsSetupCompleted)
         {
             Shell.Current.GoToAsync(Routes.WelcomeViewRoute).Wait();
@@ -85,8 +90,8 @@ public partial class App
                 await backupService.RestoreBackupAsync();
             }
 
-            await mediator.Send(new ClearPaymentsCommand());
-            await mediator.Send(new CreateRecurringPaymentsCommand());
+            _ = await mediator.Send(new ClearPaymentsCommand());
+            _ = await mediator.Send(new CreateRecurringPaymentsCommand());
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
         }
         catch (Exception ex)

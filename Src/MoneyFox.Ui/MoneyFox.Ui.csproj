@@ -102,4 +102,16 @@
       <EmbeddedResource Include="appsettings.json" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Update="AppShellDesktop.xaml.cs">
+        <DependentUpon>AppShellDesktop.xaml</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <MauiXaml Update="AppShellDesktop.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
+    </ItemGroup>
+
 </Project>
