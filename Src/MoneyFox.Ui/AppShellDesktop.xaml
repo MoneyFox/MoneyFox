@@ -5,45 +5,101 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
        xmlns:dashboard="clr-namespace:MoneyFox.Ui.Views.Dashboard"
-       xmlns:overflowMenu="clr-namespace:MoneyFox.Ui.Views.OverflowMenu"
        xmlns:setupAssistant="clr-namespace:MoneyFox.Ui.Views.SetupAssistant"
        xmlns:views="clr-namespace:MoneyFox.Ui.Views"
        xmlns:selector="clr-namespace:MoneyFox.Ui.Views.Statistics.Selector"
+       xmlns:budget="clr-namespace:MoneyFox.Ui.Views.Budget"
+       xmlns:backup="clr-namespace:MoneyFox.Ui.Views.Backup"
+       xmlns:categories="clr-namespace:MoneyFox.Ui.Views.Categories"
+       xmlns:settings="clr-namespace:MoneyFox.Ui.Views.Settings"
+       xmlns:about="clr-namespace:MoneyFox.Ui.Views.About"
        FlyoutBehavior="Locked"
        Title="MoneyFox">
 
-        <FlyoutItem Title="{x:Static resources:Strings.HomeTitle}">
-            <Tab.Icon>
-                <FontImageSource FontFamily="MaterialIcons"
-                                 Glyph="{x:Static views:IconFont.HomeOutline}"
-                                 Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}" Size="24" />
-            </Tab.Icon>
-            <ShellContent>
-                <dashboard:DashboardPage />
-            </ShellContent>
-        </FlyoutItem>
-
-    <FlyoutItem Title="{x:Static resources:Strings.StatisticsTitle}">
-            <Tab.Icon>
-                <FontImageSource FontFamily="MaterialIcons"
-                                 Glyph="{x:Static views:IconFont.ChartArc}"
-                                 Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}" Size="24" />
-            </Tab.Icon>
-            <ShellContent Title="{x:Static resources:Strings.StatisticsTitle}">
-                <selector:StatisticSelectorPage />
-            </ShellContent>
-        </FlyoutItem>
-
-    <FlyoutItem Title="{x:Static resources:Strings.MoreTitle}">
+    <FlyoutItem Title="{x:Static resources:Strings.HomeTitle}">
         <Tab.Icon>
             <FontImageSource FontFamily="MaterialIcons"
-                                 Glyph="{x:Static views:IconFont.DotsHorizontal}"
-                                 Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}" Size="24" />
+                             Glyph="{x:Static views:IconFont.HomeOutline}"
+                             Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
+                             Size="24" />
         </Tab.Icon>
         <ShellContent>
-            <overflowMenu:OverflowMenuPage />
+            <dashboard:DashboardPage />
         </ShellContent>
     </FlyoutItem>
+
+    <FlyoutItem Title="{x:Static resources:Strings.StatisticsTitle}">
+        <Tab.Icon>
+            <FontImageSource FontFamily="MaterialIcons"
+                             Glyph="{x:Static views:IconFont.ChartArc}"
+                             Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
+                             Size="24" />
+        </Tab.Icon>
+        <ShellContent Title="{x:Static resources:Strings.StatisticsTitle}">
+            <selector:StatisticSelectorPage />
+        </ShellContent>
+    </FlyoutItem>
+
+    <FlyoutItem Title="{x:Static resources:Strings.BudgetsTitle}">
+        <Tab.Icon>
+            <FontImageSource FontFamily="MaterialIcons"
+                             Glyph="{x:Static views:IconFont.PiggyBankOutline}"
+                             Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
+                             Size="24" />
+        </Tab.Icon>
+        <ShellContent>
+            <budget:BudgetListPage />
+        </ShellContent>
+    </FlyoutItem>
+
+    <FlyoutItem Title="{x:Static resources:Strings.BackupTitle}">
+        <Tab.Icon>
+            <FontImageSource FontFamily="MaterialIcons"
+                             Glyph="{x:Static views:IconFont.CloudUploadOutline}"
+                             Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
+                             Size="24" />
+        </Tab.Icon>
+        <ShellContent>
+            <backup:BackupPage />
+        </ShellContent>
+    </FlyoutItem>
+
+    <FlyoutItem Title="{x:Static resources:Strings.CategoriesTitle}">
+        <Tab.Icon>
+            <FontImageSource FontFamily="MaterialIcons"
+                             Glyph="{x:Static views:IconFont.TagOutline}"
+                             Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
+                             Size="24" />
+        </Tab.Icon>
+        <ShellContent>
+            <categories:CategoryListPage />
+        </ShellContent>
+    </FlyoutItem>
+
+    <FlyoutItem Title="{x:Static resources:Strings.SettingsTitle}">
+        <Tab.Icon>
+            <FontImageSource FontFamily="MaterialIcons"
+                             Glyph="{x:Static views:IconFont.CogOutline}"
+                             Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
+                             Size="24" />
+        </Tab.Icon>
+        <ShellContent>
+            <settings:SettingsPage />
+        </ShellContent>
+    </FlyoutItem>
+
+    <FlyoutItem Title="{x:Static resources:Strings.AboutTitle}">
+        <Tab.Icon>
+            <FontImageSource FontFamily="MaterialIcons"
+                             Glyph="{x:Static views:IconFont.InformationOutline}"
+                             Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
+                             Size="24" />
+        </Tab.Icon>
+        <ShellContent>
+            <about:AboutPage />
+        </ShellContent>
+    </FlyoutItem>
+
 
     <ShellContent Route="WelcomePage"
                   IsVisible="False"
