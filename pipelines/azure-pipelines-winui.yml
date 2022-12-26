@@ -106,7 +106,7 @@ jobs:
         displayName: 'copy msix to apppackages'
         inputs:
           SourceFolder: '$(System.DefaultWorkingDirectory)/publish'
-          Contents: '**/*.msix'
+          Contents: '**/MoneyFox.*.msix'
           TargetFolder: '$(System.DefaultWorkingDirectory)/apppackages'
           flattenFolders: true
 
