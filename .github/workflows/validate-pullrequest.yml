@@ -39,7 +39,7 @@ jobs:
         dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
 
     - name: Build MAUI Win
-      run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-windows10.0.22621.0 -c Release    
+      run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-windows10.0.22621.0 -c Release /p:AppxPackageSigningEnabled=false 
 
 
   buildAndroid:
