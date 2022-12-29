@@ -37,22 +37,22 @@
                 Command="{Binding GoToAddBudgetCommand}" />
 
             <CollectionView Grid.Row="2"
-                      BackgroundColor="Transparent"
-                      ItemsSource="{Binding Budgets}"
-                      SelectionMode="None">
+                            BackgroundColor="Transparent"
+                            ItemsSource="{Binding Budgets}"
+                            SelectionMode="None">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="budget:BudgetListItemViewModel">
                         <Grid Padding="15,6,15,8">
                             <controls:Card HeightRequest="90" Padding="12">
                                 <Border.GestureRecognizers>
                                     <TapGestureRecognizer
-                                            Command="{Binding ViewModel.EditBudgetCommand, Source={x:Reference BudgetList}}"
-                                            CommandParameter="{Binding .}" />
+                                        Command="{Binding ViewModel.EditBudgetCommand, Source={x:Reference BudgetList}}"
+                                        CommandParameter="{Binding .}" />
                                 </Border.GestureRecognizers>
 
                                 <StackLayout>
                                     <Label Style="{StaticResource TextHead}"
-                                               Text="{Binding Name}" />
+                                           Text="{Binding Name}" />
 
                                     <aloha:ProgressBar
                                         IsVertical="False"
@@ -62,16 +62,18 @@
                                         Background="{StaticResource ProgressBarBackground}"
                                         ProgressBrush="#FF8671"
                                         Progress="{Binding SpendingPercentage}"
-                                        Margin="0,0,0,12"/>
+                                        Margin="0,0,0,12" />
 
                                     <Grid>
-                                        <Label Text="{Binding CurrentSpending, Converter={StaticResource DecimalToZeroFiveConverter}}"
-                                                   HorizontalOptions="Start"
-                                                   Style="{StaticResource TextBodySecondary}" />
+                                        <Label
+                                            Text="{Binding CurrentSpending, Converter={StaticResource DecimalToZeroFiveConverter}}"
+                                            HorizontalOptions="Start"
+                                            Style="{StaticResource TextBodySecondary}" />
 
-                                        <Label Text="{Binding SpendingLimit, Converter={StaticResource DecimalToZeroFiveConverter}}"
-                                                   HorizontalOptions="End"
-                                                   Style="{StaticResource TextBodySecondary}" />
+                                        <Label
+                                            Text="{Binding SpendingLimit, Converter={StaticResource DecimalToZeroFiveConverter}}"
+                                            HorizontalOptions="End"
+                                            Style="{StaticResource TextBodySecondary}" />
                                     </Grid>
                                 </StackLayout>
                             </controls:Card>

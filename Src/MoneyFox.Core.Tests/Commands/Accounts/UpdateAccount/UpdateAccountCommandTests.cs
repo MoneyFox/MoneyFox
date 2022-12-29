@@ -36,6 +36,3 @@ public class UpdateCategoryCommandTests
         loadedAccount.Name.Should().Be("foo");
     }
 }
-
-
-

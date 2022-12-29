@@ -15,6 +15,3 @@ public partial class DashboardPage : ContentPage
         await ViewModel.InitializeAsync();
     }
 }
-
-
-

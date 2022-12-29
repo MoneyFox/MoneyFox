@@ -58,8 +58,7 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
 
     public RelayCommand<BudgetCategoryViewModel> RemoveCategoryCommand => new(RemoveCategory);
 
-    public AsyncRelayCommand SaveBudgetCommand => new(SaveBudgetAsync, canExecute: ()
-        => string.IsNullOrEmpty(Name) is false && SpendingLimit > 0);
+    public AsyncRelayCommand SaveBudgetCommand => new(execute: SaveBudgetAsync, canExecute: () => string.IsNullOrEmpty(Name) is false && SpendingLimit > 0);
 
     public void Receive(CategorySelectedMessage message)
     {
@@ -87,4 +86,3 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
 
     protected abstract Task SaveBudgetAsync();
 }
-

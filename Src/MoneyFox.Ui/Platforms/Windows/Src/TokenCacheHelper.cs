@@ -45,4 +45,3 @@ internal static class TokenCacheHelper
         tokenCache.SetAfterAccess(AfterAccessNotification);
     }
 }
-

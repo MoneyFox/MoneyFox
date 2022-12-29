@@ -38,7 +38,7 @@
             Amount="{Binding SelectedPayment.Amount}"
             EntryPlaceholder="{x:Static resources:Strings.AmountLabel}" />
 
-        <Label Text="{x:Static resources:Strings.CategoryLabel}" 
+        <Label Text="{x:Static resources:Strings.CategoryLabel}"
                Style="{StaticResource TextBodySecondary}" />
 
         <Grid ColumnDefinitions="70*, 6, 40">
@@ -47,7 +47,7 @@
                     Command="{Binding GoToSelectCategoryDialogCommand}" />
 
             <ImageButton Grid.Column="2"
-                            Command="{Binding ResetCategoryCommand}">
+                         Command="{Binding ResetCategoryCommand}">
                 <ImageButton.Source>
                     <FontImageSource FontFamily="MaterialIcons"
                                      Size="24"
@@ -58,7 +58,7 @@
         </Grid>
 
         <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Strings.DateLabel}"
-                                    DateField="{Binding SelectedPayment.Date}" />
+                                   DateField="{Binding SelectedPayment.Date}" />
 
         <controls:TextEntry
             TextFieldTitle="{x:Static resources:Strings.NoteLabel}"
@@ -67,7 +67,7 @@
 
         <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*, Auto">
             <Label Grid.Column="0"
-                   Style="{StaticResource TextBodySecondary}" 
+                   Style="{StaticResource TextBodySecondary}"
                    VerticalOptions="Center"
                    Text="{x:Static resources:Strings.RecurringLabel}" />
 
@@ -77,14 +77,14 @@
         </Grid>
 
         <VerticalStackLayout IsVisible="{Binding SelectedPayment.IsRecurring}"
-                        Spacing="6">
+                             Spacing="6">
             <Label Style="{StaticResource TextBodySecondary}" Text="{x:Static resources:Strings.RecurrenceLabel}" />
             <Picker ItemsSource="{Binding RecurrenceList}"
                     SelectedItem="{Binding SelectedPayment.RecurringPayment.Recurrence}" />
 
             <Grid HorizontalOptions="FillAndExpand"
-                    ColumnDefinitions="70*, 15*"
-                    IsVisible="{Binding SelectedPayment.RecurringPayment.AllowLastDayOfMonth}">
+                  ColumnDefinitions="70*, 15*"
+                  IsVisible="{Binding SelectedPayment.RecurringPayment.AllowLastDayOfMonth}">
 
                 <Label Grid.Column="0"
                        Style="{StaticResource TextBodySecondary}"
@@ -99,7 +99,7 @@
             <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*, Auto">
 
                 <Label Grid.Column="0"
-                       Style="{StaticResource TextBodySecondary}" 
+                       Style="{StaticResource TextBodySecondary}"
                        VerticalOptions="Center"
                        Text="{x:Static resources:Strings.EndlessLabel}" />
 
@@ -109,8 +109,8 @@
             </Grid>
 
             <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Strings.EnddateLabel}"
-                                        DateField="{Binding SelectedPayment.RecurringPayment.EndDate}"
-                                        IsVisible="{Binding SelectedPayment.RecurringPayment.IsEndless, Converter={StaticResource Inverter}}" />
+                                       DateField="{Binding SelectedPayment.RecurringPayment.EndDate}"
+                                       IsVisible="{Binding SelectedPayment.RecurringPayment.IsEndless, Converter={StaticResource Inverter}}" />
 
         </VerticalStackLayout>
     </VerticalStackLayout>

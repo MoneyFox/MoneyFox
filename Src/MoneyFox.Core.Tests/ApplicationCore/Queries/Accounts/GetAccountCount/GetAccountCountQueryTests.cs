@@ -54,6 +54,3 @@ public class GetAccountCountQueryTests
         result.Should().Be(1);
     }
 }
-
-
-

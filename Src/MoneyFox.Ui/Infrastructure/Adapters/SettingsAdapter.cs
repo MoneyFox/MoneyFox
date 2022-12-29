@@ -70,4 +70,3 @@ public class SettingsAdapter : ISettingsAdapter
         Preferences.Remove(key);
     }
 }
-

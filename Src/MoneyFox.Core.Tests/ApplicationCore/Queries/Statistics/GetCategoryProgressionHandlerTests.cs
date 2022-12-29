@@ -71,6 +71,3 @@ public class GetCategoryProgressionHandlerTests
         result[10].Value.Should().Be(-40);
     }
 }
-
-
-

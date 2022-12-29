@@ -18,5 +18,3 @@ public class DateFormatConverter : IValueConverter
         throw new NotSupportedException();
     }
 }
-
-

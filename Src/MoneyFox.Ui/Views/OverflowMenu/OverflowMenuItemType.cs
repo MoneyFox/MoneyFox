@@ -8,6 +8,3 @@ public enum OverflowMenuItemType
     About,
     Budgets
 }
-
-
-

@@ -50,6 +50,3 @@ public class DeactivateAccountByIdCommandTests
         (await context.Accounts.FirstOrDefaultAsync(x => x.Id == account.Id)).IsDeactivated.Should().BeTrue();
     }
 }
-
-
-

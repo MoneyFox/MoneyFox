@@ -99,5 +99,3 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
         Series.Add(columnSeries);
     }
 }
-
-

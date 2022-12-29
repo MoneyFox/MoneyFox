@@ -44,6 +44,3 @@ public sealed class BudgetTests
         AssertBudget(actual: budget, expected: testBudget);
     }
 }
-
-
-

@@ -24,4 +24,3 @@ public abstract class FileStoreBase : IFileStore
 
     protected abstract Task WriteFileCommonAsync(string path, Action<Stream> streamAction);
 }
-

@@ -53,4 +53,3 @@ public class DialogService : IDialogService
             cancel: negativeButtonText ?? Strings.NoLabel);
     }
 }
-

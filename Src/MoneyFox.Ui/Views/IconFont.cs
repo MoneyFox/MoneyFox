@@ -7085,6 +7085,3 @@ internal static class IconFont
     public const string FlagVariantRemoveOutline = "\U000f1bb7";
     public const string HdmiPort = "\U000f1bb8";
 }
-
-
-

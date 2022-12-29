@@ -16,6 +16,3 @@ internal static partial class TestData
         bool RequireNote { get; }
     }
 }
-
-
-

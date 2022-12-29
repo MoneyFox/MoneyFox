@@ -24,6 +24,3 @@ public partial class EditCategoryPage
     }
 #pragma warning restore S2376 // Write-only properties should not be used
 }
-
-
-

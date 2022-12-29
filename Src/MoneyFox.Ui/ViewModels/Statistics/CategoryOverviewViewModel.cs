@@ -107,5 +107,3 @@ public class CategoryOverviewViewModel : ObservableObject
         }
     }
 }
-
-

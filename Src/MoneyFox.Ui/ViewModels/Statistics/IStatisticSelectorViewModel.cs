@@ -9,5 +9,3 @@ public interface IStatisticSelectorViewModel
 
     RelayCommand<StatisticSelectorTypeViewModel> GoToStatisticCommand { get; }
 }
-
-

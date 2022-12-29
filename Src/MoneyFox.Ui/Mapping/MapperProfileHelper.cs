@@ -29,4 +29,3 @@ public static class MapperProfileHelper
         return mapsFrom;
     }
 }
-

@@ -36,6 +36,3 @@ public class CreateCategoryHandlerTests
         AssertCategory(actual: passedCategory!, expected: testCategory);
     }
 }
-
-
-

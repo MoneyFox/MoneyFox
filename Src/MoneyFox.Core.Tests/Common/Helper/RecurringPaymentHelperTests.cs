@@ -20,5 +20,3 @@ public class RecurringPaymentHelperTests
         RecurringPaymentHelper.AllowLastDayOfMonth(recurrence).Should().Be(expectedAllowLastDayOfMonth);
     }
 }
-
-

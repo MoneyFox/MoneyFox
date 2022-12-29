@@ -24,4 +24,3 @@ public static class PaymentAmountConverterLogic
         return payment.Type == (int)PaymentType.Expense ? "-" : "+";
     }
 }
-

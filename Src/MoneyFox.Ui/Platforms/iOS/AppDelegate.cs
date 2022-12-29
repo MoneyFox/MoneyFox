@@ -1,15 +1,11 @@
 namespace MoneyFox.Ui;
 
-using Core.Common;
 using Core.Common.Interfaces;
 using Core.Interfaces;
 using Foundation;
 using JetBrains.Annotations;
 using Microsoft.Identity.Client;
 using Platforms.iOS.Src;
-using Serilog;
-using Serilog.Events;
-using Serilog.Exceptions;
 using UIKit;
 using UserNotifications;
 
@@ -65,4 +61,3 @@ public class AppDelegate : MauiUIApplicationDelegate
             });
     }
 }
-

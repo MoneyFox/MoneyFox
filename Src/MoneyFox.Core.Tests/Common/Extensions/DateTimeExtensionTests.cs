@@ -30,6 +30,3 @@ public class DateTimeExtensionTests
         Assert.Equal(expected: dayOffset, actual: DateTime.Today.AddDays(dayOffset).GetDaysFromToday());
     }
 }
-
-
-

@@ -18,6 +18,3 @@ public class SystemDateHelperTests
         systemDateHelper.Today.Should().Be(DateTime.Today);
     }
 }
-
-
-

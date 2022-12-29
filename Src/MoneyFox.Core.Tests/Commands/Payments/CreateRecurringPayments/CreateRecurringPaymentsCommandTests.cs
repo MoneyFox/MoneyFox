@@ -72,6 +72,3 @@ public class CreateRecurringPaymentsCommandTests
         loadedPayments[1].Date.Should().Be(isLastDayOfMonth ? DateTime.Today.GetLastDayOfMonth() : DateTime.Today.GetFirstDayOfMonth());
     }
 }
-
-
-

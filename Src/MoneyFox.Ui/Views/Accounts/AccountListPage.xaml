@@ -60,7 +60,8 @@
                                         </SwipeItems>
                                     </SwipeView.RightItems>
 
-                                    <Grid BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                    <Grid
+                                        BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                             Light={StaticResource CardBackgroundLight}}">
                                         <Grid.GestureRecognizers>
                                             <TapGestureRecognizer

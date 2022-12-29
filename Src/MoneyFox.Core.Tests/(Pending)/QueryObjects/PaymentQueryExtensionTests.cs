@@ -165,6 +165,3 @@ public class PaymentQueryExtensionTests
         Assert.Equal(expected: amount, actual: resultList[1].Amount);
     }
 }
-
-
-

@@ -9,4 +9,3 @@ public class BrowserAdapter : IBrowserAdapter
         await Browser.Default.OpenAsync(uri: uri, launchMode: BrowserLaunchMode.External);
     }
 }
-

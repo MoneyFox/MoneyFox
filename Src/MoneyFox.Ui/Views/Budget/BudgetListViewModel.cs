@@ -70,6 +70,3 @@ public sealed class BudgetListViewModel : BaseViewModel, IRecipient<ReloadMessag
         await Shell.Current.GoToAsync($"{Routes.EditBudgetRoute}?budgetId={selectedBudget.Id}");
     }
 }
-
-
-

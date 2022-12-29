@@ -14,7 +14,7 @@ variables:
   Minor: '0'
 
 steps:
-       
+
   - task: UseDotNet@2
     displayName: 'Use correct .Net sdk'
     inputs:
@@ -67,7 +67,7 @@ steps:
     env:
       Major: $(Major)
       Minor: $(Minor)
-      
+
   - task: InstallAppleCertificate@2
     displayName: 'Install an Apple certificate'
     inputs:

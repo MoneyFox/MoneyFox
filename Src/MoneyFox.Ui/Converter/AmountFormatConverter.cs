@@ -32,5 +32,3 @@ public class AmountFormatConverter : IValueConverter
         return value;
     }
 }
-
-

@@ -68,6 +68,3 @@ internal static partial class TestData
         bool IsDeactivated { get; }
     }
 }
-
-
-

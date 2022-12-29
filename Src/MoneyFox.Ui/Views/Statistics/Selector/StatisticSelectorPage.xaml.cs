@@ -8,6 +8,3 @@ public partial class StatisticSelectorPage
         BindingContext = App.GetViewModel<StatisticSelectorViewModel>();
     }
 }
-
-
-

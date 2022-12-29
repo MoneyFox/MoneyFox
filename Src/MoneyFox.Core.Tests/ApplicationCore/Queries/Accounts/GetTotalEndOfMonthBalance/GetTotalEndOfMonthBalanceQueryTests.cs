@@ -62,6 +62,3 @@ public class GetTotalEndOfMonthBalanceQueryTests
         result.Should().Be(50);
     }
 }
-
-
-

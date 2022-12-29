@@ -44,4 +44,3 @@ public static class Routes
     public static string AddBudgetRoute => nameof(AddBudgetPage);
     public static string EditBudgetRoute => nameof(EditBudgetPage);
 }
-

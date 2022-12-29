@@ -47,6 +47,3 @@ public class GetCategoryByIdQueryTests
         result.Name.Should().Be(testCat1.Name);
     }
 }
-
-
-

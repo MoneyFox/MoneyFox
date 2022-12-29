@@ -26,6 +26,3 @@ internal static class TestPaymentDbFactory
             note: payment.Note);
     }
 }
-
-
-

@@ -19,5 +19,3 @@ internal class UserAccountViewModel : ObservableObject
         set => SetProperty(field: ref email, newValue: value);
     }
 }
-
-

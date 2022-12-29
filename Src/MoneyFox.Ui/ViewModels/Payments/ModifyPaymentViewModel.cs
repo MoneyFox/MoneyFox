@@ -90,6 +90,12 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
     public RelayCommand ResetCategoryCommand => new(() => SelectedPayment.Category = null);
 
     protected bool IsFirstLoad { get; set; } = true;
+
+    public async void Receive(CategorySelectedMessage message)
+    {
+        SelectedPayment.Category = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId)));
+    }
+
     protected virtual async Task InitializeAsync()
     {
         var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
@@ -145,10 +151,5 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
         {
             await dialogService.HideLoadingDialogAsync();
         }
-    }
-
-    public async void Receive(CategorySelectedMessage message)
-    {
-        SelectedPayment.Category = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId)));
     }
 }

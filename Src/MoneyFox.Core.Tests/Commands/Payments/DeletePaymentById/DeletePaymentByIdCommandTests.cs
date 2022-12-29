@@ -42,6 +42,3 @@ public class DeletePaymentByIdCommandTests
         Assert.Empty(context.Payments);
     }
 }
-
-
-

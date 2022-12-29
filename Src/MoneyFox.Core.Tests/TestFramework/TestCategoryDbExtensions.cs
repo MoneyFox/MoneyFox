@@ -24,6 +24,3 @@ internal static class TestCategoryDbExtensions
         return dbCategory;
     }
 }
-
-
-

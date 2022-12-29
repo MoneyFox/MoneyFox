@@ -30,7 +30,7 @@ internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
 
     public async Task InitializeAsync(int paymentId)
     {
-        if(IsFirstLoad is false)
+        if (IsFirstLoad is false)
         {
             return;
         }

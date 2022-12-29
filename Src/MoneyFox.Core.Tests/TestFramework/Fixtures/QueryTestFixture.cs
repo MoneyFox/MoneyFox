@@ -27,6 +27,3 @@ public class QueryTestFixture : IDisposable
 
 [CollectionDefinition("QueryCollection")]
 public class QueryCollection : ICollectionFixture<QueryTestFixture> { }
-
-
-

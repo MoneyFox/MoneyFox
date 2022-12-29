@@ -1,7 +1,6 @@
 namespace MoneyFox.Ui.Views.About;
 
 using CommunityToolkit.Mvvm.Input;
-using Core.Common;
 using Core.Common.Interfaces;
 using Core.Interfaces;
 using Core.Resources;
@@ -9,7 +8,6 @@ using ViewModels;
 
 internal class AboutViewModel : BaseViewModel
 {
-    private readonly Uri WEBSITE_URI = new("https://www.apply-solutions.ch", UriKind.Absolute);
     private const string SUPPORT_MAIL = "mobile.support@apply-solutions.ch";
     private const string GITHUB_PROJECT_URL = "https://github.com/MoneyFox/MoneyFox";
     private const string TRANSLATION_URL = "https://crowdin.com/project/money-fox";
@@ -20,6 +18,7 @@ internal class AboutViewModel : BaseViewModel
     private readonly IBrowserAdapter browserAdapter;
     private readonly IEmailAdapter emailAdapter;
     private readonly IStoreOperations storeFeatures;
+    private readonly Uri WEBSITE_URI = new(uriString: "https://www.apply-solutions.ch", uriKind: UriKind.Absolute);
 
     public AboutViewModel(IAppInformation appInformation, IEmailAdapter emailAdapter, IBrowserAdapter browserAdapter, IStoreOperations storeOperations)
     {
@@ -54,7 +53,7 @@ internal class AboutViewModel : BaseViewModel
 
     private async Task SendMailAsync()
     {
-        FileInfo? latestLogFile = GetLatestLogFile();
+        var latestLogFile = GetLatestLogFile();
         await emailAdapter.SendEmailAsync(
             subject: Strings.FeedbackSubject,
             body: string.Empty,
@@ -89,7 +88,7 @@ internal class AboutViewModel : BaseViewModel
 
     private async Task OpenLogFile()
     {
-        FileInfo? latestLogFile = GetLatestLogFile();
+        var latestLogFile = GetLatestLogFile();
         if (latestLogFile != null)
         {
             await Launcher.OpenAsync(new OpenFileRequest { File = new(latestLogFile.FullName) });
@@ -100,6 +99,7 @@ internal class AboutViewModel : BaseViewModel
     {
         var logFilePaths = Directory.GetFiles(path: FileSystem.AppDataDirectory, searchPattern: "moneyfox*").OrderByDescending(x => x);
         var latestLogFile = logFilePaths.Select(logFilePath => new FileInfo(logFilePath)).OrderByDescending(fi => fi.LastWriteTime).FirstOrDefault();
+
         return latestLogFile;
     }
 }

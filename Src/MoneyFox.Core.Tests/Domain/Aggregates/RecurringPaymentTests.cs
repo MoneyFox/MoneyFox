@@ -310,6 +310,3 @@ public class RecurringPaymentTests
         recurringPayment.LastRecurrenceCreated.Should().BeAfter(DateTime.Now.AddSeconds(-1));
     }
 }
-
-
-

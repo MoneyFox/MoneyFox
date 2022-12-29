@@ -11,6 +11,10 @@ public partial class EditAccountPage
 
     private EditAccountViewModel ViewModel => (EditAccountViewModel)BindingContext;
 
+    protected override async void OnAppearing()
+    {
+        await ViewModel.InitializeAsync(accountId);
+    }
 
 #pragma warning disable S2376 // Write-only properties should not be used
     private int accountId;
@@ -19,9 +23,4 @@ public partial class EditAccountPage
         set => accountId = Convert.ToInt32(Uri.UnescapeDataString(value));
     }
 #pragma warning restore S2376 // Write-only properties should not be used
-
-    protected override async void OnAppearing()
-    {
-        await ViewModel.InitializeAsync(accountId);
-    }
 }

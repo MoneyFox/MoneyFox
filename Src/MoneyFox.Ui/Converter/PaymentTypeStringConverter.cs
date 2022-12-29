@@ -24,5 +24,3 @@ public class PaymentTypeStringConverter : IValueConverter
         throw new NotSupportedException();
     }
 }
-
-

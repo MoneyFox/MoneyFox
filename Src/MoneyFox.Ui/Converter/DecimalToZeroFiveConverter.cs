@@ -25,5 +25,3 @@ public class DecimalToZeroFiveConverter : IValueConverter
         return (int)Math.Round(d: decimalValue * 20) / 20m;
     }
 }
-
-

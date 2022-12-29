@@ -27,6 +27,3 @@ public partial class DateSelectionPopup
         Close();
     }
 }
-
-
-

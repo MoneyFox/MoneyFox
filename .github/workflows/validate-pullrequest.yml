@@ -7,64 +7,93 @@ on:
   workflow_dispatch:
 
 env:
-    DOTNETVERSION: "7.0.x"
-    UI_PROJECT_PATH: "src/MoneyFox.Ui/MoneyFox.Ui.csproj"
-    CORE_TEST_PROJECT_PATH: "src/MoneyFox.Core.Tests/MoneyFox.Core.Tests.csproj"
-    UI_TEST_PROJECT_PATH: "src/MoneyFox.Ui.Tests/MoneyFox.Ui.Tests.csproj"
-    INFRASTRUCTURE_PROJECT_PATH: "src/MoneyFox.Infrastructure.Tests/MoneyFox.Infrastructure.Tests.csproj"
+  DOTNETVERSION: "7.0.x"
+  UI_PROJECT_PATH: "src/MoneyFox.Ui/MoneyFox.Ui.csproj"
+  CORE_TEST_PROJECT_PATH: "src/MoneyFox.Core.Tests/MoneyFox.Core.Tests.csproj"
+  UI_TEST_PROJECT_PATH: "src/MoneyFox.Ui.Tests/MoneyFox.Ui.Tests.csproj"
+  INFRASTRUCTURE_PROJECT_PATH: "src/MoneyFox.Infrastructure.Tests/MoneyFox.Infrastructure.Tests.csproj"
 
 jobs:
+  buildWin:
+
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{env.DOTNETVERSION}}
+
+      - name: Install MAUI Workload
+        run: dotnet workload install maui --ignore-failed-sources
+
+      - name: Restore Dependencies
+        run: dotnet restore ${{env.UI_PROJECT_PATH}}
+
+      - name: Test
+        run: |
+          dotnet test ${{env.UI_TEST_PROJECT_PATH}}
+          dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
+          dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
+
+      - name: Build MAUI Win
+        run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-windows10.0.22621.0 -c Release /p:AppxPackageSigningEnabled=false
+  
+  
   buildAndroid:
 
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: ${{env.DOTNETVERSION}}
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{env.DOTNETVERSION}}
 
-    - name: Install MAUI Workload
-      run: dotnet workload install maui --ignore-failed-sources
+      - name: Install MAUI Workload
+        run: dotnet workload install maui --ignore-failed-sources
 
-    - name: Restore Dependencies
-      run: dotnet restore ${{env.UI_PROJECT_PATH}}
+      - name: Restore Dependencies
+        run: dotnet restore ${{env.UI_PROJECT_PATH}}
 
-    - name: Test
-      run: |
-        dotnet test ${{env.UI_TEST_PROJECT_PATH}}
-        dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
-        dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
+      - name: Test
+        run: |
+          dotnet test ${{env.UI_TEST_PROJECT_PATH}}
+          dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
+          dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
 
-    - name: Build MAUI Android
-      run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-android -c Release    
-      
+      - name: Build MAUI Android
+        run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-android -c Release
+  
+  
   buildiOS:
 
     runs-on: macos-12
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: ${{env.DOTNETVERSION}}
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{env.DOTNETVERSION}}
 
-    - name: Install MAUI Workloads
-      run: dotnet workload install maui --ignore-failed-sources
+      - name: Install MAUI Workloads
+        run: dotnet workload install maui --ignore-failed-sources
 
-    - name: Restore Dependencies
-      run: dotnet restore ${{env.UI_PROJECT_PATH}} 
+      - name: Restore Dependencies
+        run: dotnet restore ${{env.UI_PROJECT_PATH}}
 
-    - name: Test
-      run: |
-        dotnet test ${{env.UI_TEST_PROJECT_PATH}}
-        dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
-        dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
+      - name: Test
+        run: |
+          dotnet test ${{env.UI_TEST_PROJECT_PATH}}
+          dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
+          dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
         
-#    - name: Build MAUI iOS
-#      run: dotnet build ${{env.UI_PROJECT_PATH}} -f net7.0-ios -c Debug /p:buildForSimulator=True /p:packageApp=True /p:ArchiveOnBuild=False
+        #    - name: Build MAUI iOS
+        #      run: dotnet build ${{env.UI_PROJECT_PATH}} -f net7.0-ios -c Debug /p:buildForSimulator=True /p:packageApp=True /p:ArchiveOnBuild=False
       

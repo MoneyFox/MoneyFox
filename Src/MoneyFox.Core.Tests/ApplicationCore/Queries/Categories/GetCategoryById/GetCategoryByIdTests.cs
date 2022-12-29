@@ -33,12 +33,12 @@ public class GetCategoryByIdTests
     public async Task GetCategory_CategoryFound()
     {
         // Arrange
-        Category testCat = new("Ausgehen", "My Note", true);
+        Category testCat = new(name: "Ausgehen", note: "My Note", requireNote: true);
         _ = await context.Categories.AddAsync(testCat);
         _ = await context.SaveChangesAsync();
 
         // Act
-        CategoryData result = await handler.Handle(request: new(testCat.Id), cancellationToken: default);
+        var result = await handler.Handle(request: new(testCat.Id), cancellationToken: default);
 
         // Assert
         _ = result.Should().NotBeNull();
@@ -49,6 +49,3 @@ public class GetCategoryByIdTests
         _ = result.LastModified.Should().Be(testCat.LastModified);
     }
 }
-
-
-

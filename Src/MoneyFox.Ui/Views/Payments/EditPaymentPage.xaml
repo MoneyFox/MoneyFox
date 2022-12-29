@@ -16,18 +16,18 @@
             <payments:ModifyPaymentContentView />
 
             <Label Style="{StaticResource TextBodySecondary}"
-               Text="{Binding SelectedPayment.Created, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />
+                   Text="{Binding SelectedPayment.Created, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />
 
             <Label Style="{StaticResource TextBodySecondary}"
-               Text="{Binding SelectedPayment.LastModified, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
+                   Text="{Binding SelectedPayment.LastModified, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
 
             <Button Text="{x:Static resources:Strings.SaveLabel}" Command="{Binding SaveCommand}" />
 
             <Button x:Name="DeletePaymentButton"
-                Style="{StaticResource WarningButton}"
-                Command="{Binding DeleteCommand}"
-                CommandParameter="{Binding SelectedPayment}"
-                Text="{x:Static resources:Strings.DeleteLabel}" />
+                    Style="{StaticResource WarningButton}"
+                    Command="{Binding DeleteCommand}"
+                    CommandParameter="{Binding SelectedPayment}"
+                    Text="{x:Static resources:Strings.DeleteLabel}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

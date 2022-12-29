@@ -23,5 +23,3 @@ public class AccountQueriesExtensionsTests
         Assert.Equal(expected: "absd", actual: resultList[1].Name);
     }
 }
-
-

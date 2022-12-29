@@ -78,5 +78,3 @@ internal sealed class StatisticAccountMonthlyCashFlowViewModel : StatisticViewMo
         Series.Add(columnSeries);
     }
 }
-
-

@@ -56,6 +56,3 @@ public class GetIncludedAccountBalanceSummaryQueryTests
         result.Should().Be(80);
     }
 }
-
-
-

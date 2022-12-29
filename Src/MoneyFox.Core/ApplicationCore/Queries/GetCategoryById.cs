@@ -33,12 +33,12 @@ public static class GetCategoryById
             var category = await appDbContext.Categories.FirstAsync(predicate: c => c.Id == request.CategoryId, cancellationToken: cancellationToken);
 
             return new(
-                category.Id,
-                category.Name,
-                category.Note,
-                category.RequireNote,
-                category.Created,
-                category.LastModified);
+                Id: category.Id,
+                Name: category.Name,
+                Note: category.Note,
+                NoteRequired: category.RequireNote,
+                Created: category.Created,
+                LastModified: category.LastModified);
         }
     }
 }

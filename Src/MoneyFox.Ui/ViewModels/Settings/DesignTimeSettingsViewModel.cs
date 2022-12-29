@@ -14,5 +14,3 @@ public class DesignTimeSettingsViewModel : ISettingsViewModel
         return Task.CompletedTask;
     }
 }
-
-

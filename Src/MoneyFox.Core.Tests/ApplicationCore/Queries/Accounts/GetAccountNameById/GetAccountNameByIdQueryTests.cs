@@ -44,6 +44,3 @@ public class GetAccountNameByIdQueryTests
         result.Should().Be(string.Empty);
     }
 }
-
-
-

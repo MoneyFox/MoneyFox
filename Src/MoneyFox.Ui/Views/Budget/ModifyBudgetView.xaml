@@ -23,7 +23,7 @@
                             EntryPlaceholder="{x:Static resources:Strings.BudgetNameLabel}"
                             EntryText="{Binding Name}" />
 
-        <controls:AmountEntry x:Name="AmountEntry" 
+        <controls:AmountEntry x:Name="AmountEntry"
                               AmountFieldTitle="{x:Static resources:Strings.AmountLabel}"
                               EntryPlaceholder="{x:Static resources:Strings.MonthlySpendingLimitLabel}"
                               Amount="{Binding SpendingLimit, Converter={StaticResource DecimalConverter}}" />

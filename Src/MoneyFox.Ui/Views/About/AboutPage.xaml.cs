@@ -8,6 +8,3 @@ public partial class AboutPage
         BindingContext = App.GetViewModel<AboutViewModel>();
     }
 }
-
-
-

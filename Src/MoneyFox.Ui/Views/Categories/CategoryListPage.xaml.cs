@@ -17,6 +17,3 @@ public partial class CategoryListPage : ContentPage
         await ViewModel.InitializeAsync();
     }
 }
-
-
-

@@ -8,7 +8,6 @@ using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Common.Messages;
 using Core.Interfaces;
-using Core.Resources;
 using Core.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
@@ -126,10 +125,16 @@ public class EditBudgetViewModelTests
         {
             // Capture
             TestData.DefaultBudget testBudget = new();
-            ImmutableList<BudgetEntryData.BudgetCategory> categories = testBudget.Categories.Select(c => new BudgetEntryData.BudgetCategory(id: c, name: "category")).ToImmutableList();
+            var categories = testBudget.Categories.Select(c => new BudgetEntryData.BudgetCategory(id: c, name: "category")).ToImmutableList();
             LoadBudgetEntry.Query? capturedQuery = null;
             _ = sender.Send(Arg.Do<LoadBudgetEntry.Query>(q => capturedQuery = q))
-                .Returns(new BudgetEntryData(id: testBudget.Id, name: testBudget.Name, spendingLimit: testBudget.SpendingLimit, testBudget.BudgetTimeRange, categories: categories));
+                .Returns(
+                    new BudgetEntryData(
+                        id: testBudget.Id,
+                        name: testBudget.Name,
+                        spendingLimit: testBudget.SpendingLimit,
+                        timeRange: testBudget.BudgetTimeRange,
+                        categories: categories));
 
             // Arrange
 
@@ -168,7 +173,7 @@ public class EditBudgetViewModelTests
                         id: testBudget.Id,
                         name: testBudget.Name,
                         spendingLimit: testBudget.SpendingLimit,
-                        testBudget.BudgetTimeRange,
+                        timeRange: testBudget.BudgetTimeRange,
                         categories: new List<BudgetEntryData.BudgetCategory>()));
 
             await viewModel.InitializeCommand.ExecuteAsync(testBudget.Id);
@@ -196,6 +201,7 @@ public class EditBudgetViewModelTests
             await navigationService.Received(0).GoBackFromModalAsync();
         }
     }
+
     public class SaveShouldBeDisabled : EditBudgetViewModelTests
     {
         [Fact]

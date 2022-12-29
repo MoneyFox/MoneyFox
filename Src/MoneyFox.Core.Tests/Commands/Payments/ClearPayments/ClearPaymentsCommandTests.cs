@@ -68,6 +68,3 @@ public class ClearPaymentsCommandTests
         loadedPayments[2].IsCleared.Should().BeTrue();
     }
 }
-
-
-

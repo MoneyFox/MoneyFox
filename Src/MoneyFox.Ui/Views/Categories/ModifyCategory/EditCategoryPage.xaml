@@ -24,7 +24,7 @@
 
                 <Button Command="{Binding SaveCommand}"
                         Text="{x:Static resources:Strings.SaveLabel}" />
-                
+
                 <Button Style="{StaticResource WarningButton}"
                         Command="{Binding DeleteCommand}"
                         Text="{x:Static resources:Strings.DeleteLabel}" />

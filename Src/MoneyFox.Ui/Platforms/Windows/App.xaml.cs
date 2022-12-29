@@ -43,4 +43,3 @@ public partial class App : MauiWinUIApplication
         _ = services.AddSingleton(publicClientApplication);
     }
 }
-

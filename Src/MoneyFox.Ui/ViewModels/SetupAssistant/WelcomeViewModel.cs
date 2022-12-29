@@ -33,5 +33,3 @@ internal sealed class WelcomeViewModel : BaseViewModel
         Application.Current.MainPage = new AppShell();
     }
 }
-
-

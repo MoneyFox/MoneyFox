@@ -70,6 +70,3 @@ public sealed class AppDbContextShould
                 cancellationToken: Arg.Any<CancellationToken>());
     }
 }
-
-
-

@@ -24,6 +24,3 @@ public class GetPaymentsForCategoryQueryTests
         query.DateRangeTo.Should().Be(dateRangeTo);
     }
 }
-
-
-

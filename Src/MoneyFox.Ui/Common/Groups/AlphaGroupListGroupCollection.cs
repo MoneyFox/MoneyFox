@@ -99,4 +99,3 @@ public class AlphaGroupListGroupCollection<T> : List<T>
         }
     }
 }
-

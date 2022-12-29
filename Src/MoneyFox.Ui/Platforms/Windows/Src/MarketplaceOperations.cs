@@ -13,4 +13,3 @@ public class MarketplaceOperations : IStoreOperations
         await Launcher.LaunchUriAsync(new($"{STORE_URL}{CurrentApp.AppId}"));
     }
 }
-

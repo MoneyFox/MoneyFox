@@ -55,5 +55,3 @@ internal sealed class StatisticCategorySpreadingViewModel : StatisticViewModel
         Series.AddRange(pieSeries);
     }
 }
-
-

@@ -49,6 +49,3 @@ public partial class Search : ContentView
         SearchCommand.Execute(e.NewTextValue);
     }
 }
-
-
-

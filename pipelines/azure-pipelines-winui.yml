@@ -19,7 +19,7 @@ variables:
 
 jobs:
   - job: BuildWindows
-    displayName: 'Build Windows Release'
+    displayName: 'build windows release'
     
     steps:
       - task: UseDotNet@2
@@ -29,7 +29,7 @@ jobs:
           includePreviewVersions: true
 
       - task: DownloadSecureFile@1
-        displayName: 'Download secure file'
+        displayName: 'download certificate'
         name: 'signingCert'
         inputs:
           secureFile: 'MoneyFoxCert_2022.pfx'
@@ -50,34 +50,35 @@ jobs:
           CERT_PASSWORD_ENV: $(UWP_Certificate_Password)
 
       - task: PowerShell@2
-        displayName: "Set AppManifest"
+        displayName: "set values in manifest"
         inputs:
           targetType: 'inline'
           script: |
-            [xml]$xmlDoc = Get-Content '$(Build.SourcesDirectory)\src\MoneyFox.Win\MoneyFox.Win (Package)\Package.appxmanifest'
+            [xml]$xmlDoc = Get-Content '$(Build.SourcesDirectory)\src\MoneyFox.Ui\Platforms\Windows\Package.appxmanifest'
             $xmlDoc.Package.Identity.Name="57598ApplySolutionsSoftwa.MoneyFox"
             $xmlDoc.Package.Identity.Publisher="CN=071307B1-B0E3-434A-AD0E-FFF714A7245C"
-            $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Win\MoneyFox.Win (Package)\Package.appxmanifest')
+            $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Ui\Platforms\Windows\Package.appxmanifest')
           failOnStderr: true
 
       - task: PowerShell@2
-        displayName: "Set Store Association"
+        displayName: "set store association"
         inputs:
           targetType: 'inline'
           script: |
-            [xml]$xmlDoc = Get-Content '$(Build.SourcesDirectory)\src\MoneyFox.Win\MoneyFox.Win (Package)\Package.StoreAssociation.xml'
+            [xml]$xmlDoc = Get-Content '$(Build.SourcesDirectory)\src\MoneyFox.Ui\Platforms\Windows\Package.StoreAssociation.xml'
             $xmlDoc.StoreAssociation.Publisher="CN=071307B1-B0E3-434A-AD0E-FFF714A7245C"
             $xmlDoc.StoreAssociation.ProductReservedInfo.MainPackageIdentityName="57598ApplySolutionsSoftwa.MoneyFox"
-            $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Win\MoneyFox.Win (Package)\Package.StoreAssociation.xml')
+            $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Ui\Platforms\Windows\Package.StoreAssociation.xml')
           failOnStderr: true
 
       - task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
-        displayName: 'Settings'
+        displayName: 'update settings'
         inputs:
           sourcePath: Src/MoneyFox.Win/MoneyFox.Win
           filePattern: appsettings.json
 
       - task: VersionAPPX@2
+        displayName: set version
         inputs:
           Path: '$(Build.SourcesDirectory)'
           VersionNumber: '$(Major).$(Minor).$(Build.BuildId)'
@@ -85,18 +86,40 @@ jobs:
           VersionRegex: '\d+.\d+.\d+'
           OutputVersion: 'OutputedVersion'
 
-      - task: NuGetToolInstaller@1
-        displayName: 'Use NuGet'
+      - task: PowerShell@2
+        displayName: "install maui workload"
         inputs:
-          versionSpec: 6.x
-
-      - task: NuGetCommand@2
-        displayName: 'NuGet restore'
-        inputs:
-          restoreSolution: '**/MoneyFox.WinUI.sln'
+          targetType: 'inline'
+          script: 'dotnet workload install maui'
 
       - task: DotNetCoreCLI@2
-        displayName: 'Run Tests'
+        displayName: publish msix
+        inputs:
+          command: 'publish'
+          publishWebProjects: false
+          projects: '**/MoneyFox.Ui.csproj'
+          arguments: "-c Release -f:net7.0-windows10.0.22621.0 /p:AppxPackageDir=$(System.DefaultWorkingDirectory)/publish/ "
+          zipAfterPublish: false
+          modifyOutputPath: false
+
+      - task: CopyFiles@2
+        displayName: 'copy msix to apppackages'
+        inputs:
+          SourceFolder: '$(System.DefaultWorkingDirectory)/publish'
+          Contents: '**/MoneyFox.*.msix'
+          TargetFolder: '$(System.DefaultWorkingDirectory)/apppackages'
+          flattenFolders: true
+
+      - task: PowerShell@2
+        displayName: "make bundle"
+        inputs:
+          targetType: 'inline'
+          script: |
+            & 'C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\makeappx.exe' bundle /d $(System.DefaultWorkingDirectory)/apppackages /p $(build.artifactstagingdirectory)/moneyfox.msixbundle
+          failOnStderr: true
+
+      - task: DotNetCoreCLI@2
+        displayName: 'run tests'
         inputs:
           command: 'test'
           projects: |
@@ -105,27 +128,11 @@ jobs:
           arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
 
       - task: CopyFiles@2
-        displayName: 'Copy coveragexml to staging'
+        displayName: 'copy coveragexml to staging'
         inputs:
           SourceFolder: '$(Agent.TempDirectory)'
           Contents: '**\*.opencover.xml'
           TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-      - task: VSBuild@1
-        displayName: 'Build Windows Project'
-        inputs:
-          solution: '**/*.wapproj'
-          msbuildArgs: '
-        /p:AppxBundlePlatforms="$(buildPlatform)"
-        /p:AppxPackageDir="$(appxPackageDir)"
-        /p:AppxBundle=Always
-        /p:UapAppxPackageBuildMode=CI
-        /p:AppxPackageSigningEnabled=true
-        /p:PackageCertificateThumbprint=""
-        /p:PackageCertificateKeyFile="$(signingCert.secureFilePath)"
-        /p:PackageCertificatePassword="$(UWP_Certificate_Password)"'
-          platform: x64
-          configuration: '$(BuildConfiguration)'
-
       - task: PublishBuildArtifacts@1
-        displayName: 'Publish Artifact: drop'
+        displayName: 'publish artifacts'

@@ -26,7 +26,6 @@ public class MainActivity : MauiAppCompatActivity
         ParentActivityWrapper.ParentActivity = this;
         base.OnCreate(savedInstanceState);
         Platform.Init(activity: this, bundle: savedInstanceState);
-
         SetStatusBarColor();
     }
 
@@ -38,7 +37,8 @@ public class MainActivity : MauiAppCompatActivity
             backgroundColor = new(239, 242, 245);
             if (Build.VERSION.SdkInt >= BuildVersionCodes.R)
             {
-                Window?.InsetsController?.SetSystemBarsAppearance((int)WindowInsetsControllerAppearance.LightStatusBars,
+                Window?.InsetsController?.SetSystemBarsAppearance(
+                    (int)WindowInsetsControllerAppearance.LightStatusBars,
                     (int)WindowInsetsControllerAppearance.LightStatusBars);
             }
 
@@ -67,4 +67,3 @@ public class MainActivity : MauiAppCompatActivity
         base.OnRequestPermissionsResult(requestCode: requestCode, permissions: permissions, grantResults: grantResults);
     }
 }
-

@@ -212,6 +212,3 @@ public class GetCategorySummaryQueryTests
         result.CategoryOverviewItems[0].Label.Should().Be(Strings.NoCategoryLabel);
     }
 }
-
-
-

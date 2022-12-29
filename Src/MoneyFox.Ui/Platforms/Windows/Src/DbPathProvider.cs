@@ -11,4 +11,3 @@ internal class DbPathProvider : IDbPathProvider
         return Path.Combine(path1: ApplicationData.Current.LocalFolder.Path, path2: DatabaseConfiguration.DatabaseName);
     }
 }
-

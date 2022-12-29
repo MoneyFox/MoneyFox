@@ -31,6 +31,3 @@ public sealed class SpendingLimitShould
         act.Should().Throw<InvalidArgumentException>();
     }
 }
-
-
-

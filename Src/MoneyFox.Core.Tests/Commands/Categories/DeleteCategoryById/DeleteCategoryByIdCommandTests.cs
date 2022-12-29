@@ -35,6 +35,3 @@ public class DeleteCategoryByIdCommandTests
         (await context.Categories.FirstOrDefaultAsync(x => x.Id == category1.Id)).Should().BeNull();
     }
 }
-
-
-

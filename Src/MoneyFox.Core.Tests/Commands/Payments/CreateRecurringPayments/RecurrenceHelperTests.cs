@@ -372,6 +372,3 @@ public class RecurrenceHelperTests
         }
     }
 }
-
-
-

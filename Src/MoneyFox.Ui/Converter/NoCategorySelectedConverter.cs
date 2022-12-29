@@ -22,5 +22,3 @@ public class NoCategorySelectedConverter : IValueConverter
         throw new NotSupportedException();
     }
 }
-
-
