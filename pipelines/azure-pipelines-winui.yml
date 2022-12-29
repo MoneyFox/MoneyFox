@@ -73,7 +73,7 @@ jobs:
       - task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
         displayName: 'update settings'
         inputs:
-          sourcePath: Src/MoneyFox.Win/MoneyFox.Win
+          sourcePath: Src/MoneyFox.Ui
           filePattern: appsettings.json
 
       - task: VersionAPPX@2
