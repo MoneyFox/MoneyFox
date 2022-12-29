@@ -143,76 +143,8 @@ public class GetCategorySpreadingQueryTests
             .ToList();
 
         // Assert
-        result[0].Label.Should().Be(testCat1.Name);
-        result[1].Label.Should().Be(testCat2.Name);
-    }
-
-    [Fact]
-    public async Task GetValues_CorrectColor()
-    {
-        // Arrange
-        var account = new Account("test");
-        var paymentList = new List<Payment>
-        {
-            new(
-                date: DateTime.Today,
-                amount: 10,
-                type: PaymentType.Expense,
-                chargedAccount: account,
-                category: new("a")),
-            new(
-                date: DateTime.Today,
-                amount: 10,
-                type: PaymentType.Expense,
-                chargedAccount: account,
-                category: new("b")),
-            new(
-                date: DateTime.Today,
-                amount: 10,
-                type: PaymentType.Expense,
-                chargedAccount: account,
-                category: new("c")),
-            new(
-                date: DateTime.Today,
-                amount: 10,
-                type: PaymentType.Expense,
-                chargedAccount: account,
-                category: new("d")),
-            new(
-                date: DateTime.Today,
-                amount: 10,
-                type: PaymentType.Expense,
-                chargedAccount: account,
-                category: new("e")),
-            new(
-                date: DateTime.Today,
-                amount: 10,
-                type: PaymentType.Expense,
-                chargedAccount: account,
-                category: new("f")),
-            new(
-                date: DateTime.Today,
-                amount: 10,
-                type: PaymentType.Expense,
-                chargedAccount: account,
-                category: new("g"))
-        };
-
-        context.Payments.AddRange(paymentList);
-        context.SaveChanges();
-
-        // Act
-        var result = (await handler.Handle(request: new(startDate: DateTime.Today.AddDays(-3), endDate: DateTime.Today.AddDays(3)), cancellationToken: default))
-            .ToList();
-
-        // Assert
-        result[0].Color.Should().Be("#266489");
-        result[1].Color.Should().Be("#68B9C0");
-        result[2].Color.Should().Be("#90D585");
-        result[3].Color.Should().Be("#F3C151");
-        result[4].Color.Should().Be("#F37F64");
-        result[5].Color.Should().Be("#424856");
-        result[6].Color.Should().Be("#8F97A4");
+        result[0].CategoryName.Should().Be(testCat1.Name);
+        result[1].CategoryName.Should().Be(testCat2.Name);
     }
 
     [Fact]

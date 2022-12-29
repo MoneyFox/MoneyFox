@@ -3,8 +3,8 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using _Pending_.Common;
-using _Pending_.Common.QueryObjects;
+using Common.Extensions;
+using Common.Extensions.QueryObjects;
 using Common.Helpers;
 using Common.Interfaces;
 using Domain.Aggregates.AccountAggregate;
@@ -31,7 +31,7 @@ public class GetUnclearedPaymentsOfThisMonthQuery : IRequest<List<Payment>>
             var query = appDbContext.Payments.Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
                 .AreNotCleared()
-                .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper));
+                .HasDateSmallerEqualsThan(systemDateHelper.GetEndOfMonth());
 
             if (request.AccountId != 0)
             {

@@ -47,14 +47,14 @@ internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
         if (SelectedPayment.IsRecurring)
         {
             updateRecurring = await dialogService.ShowConfirmMessageAsync(
-                title: Strings.ModifyRecurrenceTitle,
-                message: Strings.ModifyRecurrenceMessage,
-                positiveButtonText: Strings.YesLabel,
-                negativeButtonText: Strings.NoLabel);
+                title: Translations.ModifyRecurrenceTitle,
+                message: Translations.ModifyRecurrenceMessage,
+                positiveButtonText: Translations.YesLabel,
+                negativeButtonText: Translations.NoLabel);
         }
 
         // Due to a bug in .net maui, the loading dialog can only be called after any other dialog
-        await dialogService.ShowLoadingDialogAsync(Strings.SavingPaymentMessage);
+        await dialogService.ShowLoadingDialogAsync(Translations.SavingPaymentMessage);
         var command = new UpdatePaymentCommand(
             id: SelectedPayment.Id,
             date: SelectedPayment.Date,
@@ -77,14 +77,14 @@ internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
 
     private async Task DeletePaymentAsync(PaymentViewModel payment)
     {
-        if (await dialogService.ShowConfirmMessageAsync(title: Strings.DeleteTitle, message: Strings.DeletePaymentConfirmationMessage))
+        if (await dialogService.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeletePaymentConfirmationMessage))
         {
             var deleteCommand = new DeletePaymentByIdCommand(payment.Id);
             if (SelectedPayment.IsRecurring)
             {
                 deleteCommand.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(
-                    title: Strings.DeleteRecurringPaymentTitle,
-                    message: Strings.DeleteRecurringPaymentMessage);
+                    title: Translations.DeleteRecurringPaymentTitle,
+                    message: Translations.DeleteRecurringPaymentMessage);
             }
 
             try

@@ -3,9 +3,9 @@
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources"
     xmlns:budget="clr-namespace:MoneyFox.Ui.Views.Budget"
-    Title="{x:Static resources:Strings.EditBudgetTitle}"
+    Title="{x:Static resources:Translations.EditBudgetTitle}"
     x:DataType="budget:EditBudgetViewModel"
     x:Class="MoneyFox.Ui.Views.Budget.EditBudgetPage"
     Visual="Material">
@@ -13,12 +13,12 @@
     <Grid RowDefinitions="*, 6, 40, 6, 40" Padding="12">
         <budget:ModifyBudgetView />
         <Button Grid.Row="2"
-                Text="{x:Static resources:Strings.SaveLabel}"
+                Text="{x:Static resources:Translations.SaveLabel}"
                 Command="{Binding SaveBudgetCommand}"
                 CommandParameter="{Binding Name}" />
         <Button Grid.Row="4"
                 Style="{StaticResource WarningButton}"
                 Command="{Binding DeleteBudgetCommand}"
-                Text="{x:Static resources:Strings.DeleteLabel}" />
+                Text="{x:Static resources:Translations.DeleteLabel}" />
     </Grid>
 </ContentPage>

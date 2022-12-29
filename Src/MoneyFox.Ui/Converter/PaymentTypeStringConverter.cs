@@ -12,9 +12,9 @@ public class PaymentTypeStringConverter : IValueConverter
 
         return paymentType switch
         {
-            PaymentType.Expense => Strings.ExpenseLabel,
-            PaymentType.Income => Strings.IncomeLabel,
-            PaymentType.Transfer => Strings.TransferLabel,
+            PaymentType.Expense => Translations.ExpenseLabel,
+            PaymentType.Income => Translations.IncomeLabel,
+            PaymentType.Transfer => Translations.TransferLabel,
             _ => string.Empty
         };
     }

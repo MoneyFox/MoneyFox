@@ -3,11 +3,11 @@
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources"
     xmlns:categories="clr-namespace:MoneyFox.Ui.ViewModels.Categories"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     Shell.NavBarHasShadow="False"
-    Title="{x:Static resources:Strings.CategoriesTitle}"
+    Title="{x:Static resources:Translations.CategoriesTitle}"
     x:Class="MoneyFox.Ui.Views.Categories.CategoryListPage">
 
     <ContentPage.Content>
@@ -16,13 +16,13 @@
             <Button
                 Margin="0,0,6,0"
                 HorizontalOptions="End"
-                Text="{x:Static resources:Strings.AddCategoryLabel}"
+                Text="{x:Static resources:Translations.AddCategoryLabel}"
                 VerticalOptions="Center"
                 Command="{Binding GoToAddCategoryCommand}" />
 
             <controls:Search Grid.Row="1"
                              Margin="12,0,12,0"
-                             SearchPlaceholder="{x:Static resources:Strings.SearchLabel}"
+                             SearchPlaceholder="{x:Static resources:Translations.SearchLabel}"
                              SearchCommand="{Binding SearchCategoryCommand}" />
 
             <CollectionView Grid.Row="2"
@@ -54,11 +54,11 @@
                                 <SwipeView>
                                     <SwipeView.RightItems>
                                         <SwipeItems>
-                                            <SwipeItem Text="{x:Static resources:Strings.EditLabel}"
+                                            <SwipeItem Text="{x:Static resources:Translations.EditLabel}"
                                                        BackgroundColor="{AppThemeBinding Dark={StaticResource Gray900}, Light={StaticResource Gray100}}"
                                                        Command="{Binding Source={x:Reference CategoryCollectionView}, Path=BindingContext.GoToEditCategoryCommand}"
                                                        CommandParameter="{Binding .}" />
-                                            <SwipeItem Text="{x:Static resources:Strings.DeleteLabel}"
+                                            <SwipeItem Text="{x:Static resources:Translations.DeleteLabel}"
                                                        BackgroundColor="{AppThemeBinding Dark={StaticResource Gray900}, Light={StaticResource Gray100}}"
                                                        Command="{Binding Source={x:Reference CategoryCollectionView}, Path=BindingContext.DeleteCategoryCommand}"
                                                        CommandParameter="{Binding .}" />
@@ -86,7 +86,7 @@
                                Margin="10,0,10,0"
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Center"
-                               Text="{x:Static resources:Strings.NoCategoriesMessage}" />
+                               Text="{x:Static resources:Translations.NoCategoriesMessage}" />
                     </Grid>
                 </CollectionView.EmptyView>
             </CollectionView>

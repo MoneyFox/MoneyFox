@@ -7,7 +7,7 @@
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:views="clr-namespace:MoneyFox.Ui.Views"
-    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources"
     xmlns:accounts="clr-namespace:MoneyFox.Ui.Views.Accounts"
     xmlns:dashboard="clr-namespace:MoneyFox.Ui.Views.Dashboard"
     x:DataType="dashboard:DashboardViewModel">
@@ -33,7 +33,7 @@
                     VerticalOptions="Start"
                     HeightRequest="40"
                     Style="{StaticResource PrimaryButton}"
-                    Text="{x:Static resources:Strings.AddPaymentLabel}">
+                    Text="{x:Static resources:Translations.AddPaymentLabel}">
                 <Button.ImageSource>
                     <FontImageSource FontFamily="MaterialIcons"
                                      Glyph="{x:Static views:IconFont.Plus}"
@@ -50,11 +50,11 @@
                   IsClippedToBounds="False"
                   RowDefinitions="35, 40, 90, 160, 140, *">
 
-                <Label Style="{StaticResource TextHeadline}" Text="{x:Static resources:Strings.WelcomeLabel}" />
+                <Label Style="{StaticResource TextHeadline}" Text="{x:Static resources:Translations.WelcomeLabel}" />
 
                 <Label Grid.Row="1"
                        Style="{StaticResource TextTitle}"
-                       Text="{x:Static resources:Strings.AssetsLabel}"
+                       Text="{x:Static resources:Translations.AssetsLabel}"
                        VerticalOptions="Center" />
 
                 <!--  Assets card  -->
@@ -82,7 +82,7 @@
                                 Margin="0,0,0,2"
                                 FontSize="15"
                                 HorizontalTextAlignment="End"
-                                Text="{x:Static resources:Strings.EndOfMonthLabel}"
+                                Text="{x:Static resources:Translations.EndOfMonthLabel}"
                                 VerticalTextAlignment="End" />
 
                             <Label
@@ -101,7 +101,7 @@
 
                     <CollectionView
                         x:Name="AccountCollectionView"
-                        EmptyView="{x:Static resources:Strings.NoAccountsMessage}"
+                        EmptyView="{x:Static resources:Translations.NoAccountsMessage}"
                         ItemsLayout="HorizontalList"
                         ItemsSource="{Binding Accounts}">
 
@@ -141,7 +141,7 @@
                                                     FontFamily="Product"
                                                     FontSize="10"
                                                     VerticalOptions="End"
-                                                    Text="{x:Static resources:Strings.EndOfMonthLabel}" />
+                                                    Text="{x:Static resources:Translations.EndOfMonthLabel}" />
 
                                                 <Label
                                                     Margin="0,0,6,2"
@@ -165,14 +165,14 @@
                             Command="{Binding GoToAccountsCommand}"
                             HorizontalOptions="End"
                             Style="{StaticResource LinkButton}"
-                            Text="{x:Static resources:Strings.GoToAccountsLabel}" />
+                            Text="{x:Static resources:Translations.GoToAccountsLabel}" />
                 </Grid>
 
                 <!--  Income / Expenses  -->
                 <StackLayout Grid.Row="4" VerticalOptions="Start">
                     <Label
                         Style="{StaticResource TextTitle}"
-                        Text="{x:Static resources:Strings.IncomeAndExpensesLabel}"
+                        Text="{x:Static resources:Translations.IncomeAndExpensesLabel}"
                         VerticalOptions="Center" />
 
                     <Grid ColumnDefinitions="*, 10, *">

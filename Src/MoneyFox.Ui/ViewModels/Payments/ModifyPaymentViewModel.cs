@@ -83,7 +83,7 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
             PaymentRecurrence.Yearly
         };
 
-    public string AccountHeader => SelectedPayment?.Type == PaymentType.Income ? Strings.TargetAccountLabel : Strings.ChargedAccountLabel;
+    public string AccountHeader => SelectedPayment?.Type == PaymentType.Income ? Translations.TargetAccountLabel : Translations.ChargedAccountLabel;
 
     public AsyncRelayCommand GoToSelectCategoryDialogCommand => new(async () => await Shell.Current.GoToModalAsync(Routes.SelectCategoryRoute));
 
@@ -112,21 +112,21 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
     {
         if (SelectedPayment.ChargedAccount == null)
         {
-            await dialogService.ShowMessageAsync(title: Strings.MandatoryFieldEmptyTitle, message: Strings.AccountRequiredMessage);
+            await dialogService.ShowMessageAsync(title: Translations.MandatoryFieldEmptyTitle, message: Translations.AccountRequiredMessage);
 
             return;
         }
 
         if (SelectedPayment.Amount < 0)
         {
-            await dialogService.ShowMessageAsync(title: Strings.AmountMayNotBeNegativeTitle, message: Strings.AmountMayNotBeNegativeMessage);
+            await dialogService.ShowMessageAsync(title: Translations.AmountMayNotBeNegativeTitle, message: Translations.AmountMayNotBeNegativeMessage);
 
             return;
         }
 
         if (SelectedPayment.Category?.RequireNote == true && string.IsNullOrEmpty(SelectedPayment.Note))
         {
-            await dialogService.ShowMessageAsync(title: Strings.MandatoryFieldEmptyTitle, message: Strings.ANoteForPaymentIsRequired);
+            await dialogService.ShowMessageAsync(title: Translations.MandatoryFieldEmptyTitle, message: Translations.ANoteForPaymentIsRequired);
 
             return;
         }
@@ -136,7 +136,7 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
             && SelectedPayment.RecurringPayment.EndDate.HasValue
             && SelectedPayment.RecurringPayment.EndDate.Value.Date < DateTime.Today)
         {
-            await dialogService.ShowMessageAsync(title: Strings.InvalidEnddateTitle, message: Strings.InvalidEnddateMessage);
+            await dialogService.ShowMessageAsync(title: Translations.InvalidEnddateTitle, message: Translations.InvalidEnddateMessage);
 
             return;
         }

@@ -103,7 +103,7 @@ internal abstract class StatisticViewModel : BaseViewModel
     ///     Returns the title for the CategoryViewModel view
     /// </summary>
     public string Title
-        => $"{Strings.StatisticsTimeRangeTitle} {StartDate.ToString(format: "d", provider: CultureInfo.InvariantCulture)} - {EndDate.ToString(format: "d", provider: CultureInfo.InvariantCulture)}";
+        => $"{Translations.StatisticsTimeRangeTitle} {StartDate.ToString(format: "d", provider: CultureInfo.InvariantCulture)} - {EndDate.ToString(format: "d", provider: CultureInfo.InvariantCulture)}";
 
     protected override void OnActivated()
     {

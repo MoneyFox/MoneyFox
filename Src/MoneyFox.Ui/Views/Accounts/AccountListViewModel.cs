@@ -74,8 +74,8 @@ internal sealed class AccountListViewModel : BaseViewModel
             isRunning = true;
             var accountVms = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
             accountVms.ForEach(async x => x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
-            var includedAccountGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.IncludedAccountsHeader);
-            var excludedAccountGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.ExcludedAccountsHeader);
+            var includedAccountGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Translations.IncludedAccountsHeader);
+            var excludedAccountGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Translations.ExcludedAccountsHeader);
             includedAccountGroup.AddRange(accountVms.Where(x => !x.IsExcluded));
             excludedAccountGroup.AddRange(accountVms.Where(x => x.IsExcluded));
             var newAccountCollection = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
@@ -103,10 +103,10 @@ internal sealed class AccountListViewModel : BaseViewModel
     private async Task DeleteAccountAsync(AccountViewModel accountViewModel)
     {
         if (await dialogService.ShowConfirmMessageAsync(
-                title: Strings.DeleteTitle,
-                message: Strings.DeleteAccountConfirmationMessage,
-                positiveButtonText: Strings.YesLabel,
-                negativeButtonText: Strings.NoLabel))
+                title: Translations.DeleteTitle,
+                message: Translations.DeleteAccountConfirmationMessage,
+                positiveButtonText: Translations.YesLabel,
+                negativeButtonText: Translations.NoLabel))
         {
             await mediator.Send(new DeactivateAccountByIdCommand(accountViewModel.Id));
             await OnAppearingAsync();

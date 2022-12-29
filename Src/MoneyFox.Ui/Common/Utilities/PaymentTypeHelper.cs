@@ -39,9 +39,9 @@ public static class PaymentTypeHelper
     {
         return type switch
         {
-            PaymentType.Expense => isEditMode ? Strings.EditSpendingTitle : Strings.AddExpenseTitle,
-            PaymentType.Income => isEditMode ? Strings.EditIncomeTitle : Strings.AddIncomeTitle,
-            PaymentType.Transfer => isEditMode ? Strings.EditTransferTitle : Strings.AddTransferTitle,
+            PaymentType.Expense => isEditMode ? Translations.EditSpendingTitle : Translations.AddExpenseTitle,
+            PaymentType.Income => isEditMode ? Translations.EditIncomeTitle : Translations.AddIncomeTitle,
+            PaymentType.Transfer => isEditMode ? Translations.EditTransferTitle : Translations.AddTransferTitle,
             _ => string.Empty
         };
     }
@@ -58,7 +58,7 @@ public static class PaymentTypeHelper
             (int)PaymentType.Income => PaymentType.Income.ToString(),
             (int)PaymentType.Expense => PaymentType.Expense.ToString(),
             (int)PaymentType.Transfer => PaymentType.Transfer.ToString(),
-            _ => throw new ArgumentOutOfRangeException(paramName: nameof(type), message: "Passed Number didn't match to a payment type.")
+            _ => throw new ArgumentOutOfRangeException(paramName: nameof(type), message: "Passed Number didn't match to a payment type")
         };
     }
 }

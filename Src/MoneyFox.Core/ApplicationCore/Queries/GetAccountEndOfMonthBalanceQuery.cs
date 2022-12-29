@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using _Pending_.Common;
-using _Pending_.Common.QueryObjects;
+using Common.Extensions;
+using Common.Extensions.QueryObjects;
 using Common.Helpers;
 using Common.Interfaces;
 using Domain.Aggregates.AccountAggregate;
@@ -39,7 +39,7 @@ public class GetAccountEndOfMonthBalanceQuery : IRequest<decimal>
         public async Task<decimal> Handle(GetAccountEndOfMonthBalanceQuery request, CancellationToken cancellationToken)
         {
             accountId = request.AccountId;
-            var account = await appDbContext.Accounts.WithId(accountId).FirstAsync();
+            var account = await appDbContext.Accounts.WithId(accountId).FirstAsync(cancellationToken: cancellationToken);
             var balance = await GetCurrentAccountBalanceAsync();
             foreach (var payment in await GetUnclearedPaymentsForThisMonthAsync())
             {
@@ -110,7 +110,7 @@ public class GetAccountEndOfMonthBalanceQuery : IRequest<decimal>
                 .Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
                 .AreNotCleared()
-                .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper))
+                .HasDateSmallerEqualsThan(systemDateHelper.GetEndOfMonth())
                 .ToListAsync();
         }
     }

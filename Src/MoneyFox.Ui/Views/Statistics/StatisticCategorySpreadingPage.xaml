@@ -1,7 +1,7 @@
 ﻿<ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources"
     xmlns:maui="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:statistics="clr-namespace:MoneyFox.Ui.ViewModels.Statistics"
@@ -18,7 +18,7 @@
             <Label Style="{StaticResource PageTitle}"
                    HorizontalOptions="Start"
                    VerticalOptions="Center"
-                   Text="{x:Static resources:Strings.CategorySpreadingTitle}" />
+                   Text="{x:Static resources:Translations.CategorySpreadingTitle}" />
 
             <ImageButton Grid.Column="1"
                          Padding="0"
@@ -46,7 +46,7 @@
                    Text="{Binding Title}" />
 
             <Picker Grid.Row="1"
-                    Title="{x:Static resources:Strings.SelectedPaymentTypeHeader}"
+                    Title="{x:Static resources:Translations.SelectedPaymentTypeHeader}"
                     ItemsSource="{Binding PaymentTypes}"
                     SelectedItem="{Binding SelectedPaymentType, Mode=TwoWay}"
                     ItemDisplayBinding="{Binding ., Converter={StaticResource PaymentTypeStringConverter}}" />

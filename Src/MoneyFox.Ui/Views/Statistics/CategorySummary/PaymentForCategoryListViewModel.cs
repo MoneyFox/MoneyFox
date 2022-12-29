@@ -53,7 +53,7 @@ internal sealed class PaymentForCategoryListViewModel : BaseViewModel, IRecipien
     public async void Receive(PaymentsForCategoryMessage message)
     {
         var category = await mediator.Send(new GetCategoryByIdQuery(message.CategoryId));
-        Title = string.Format(format: Strings.PaymentsForCategoryTitle, arg0: category.Name);
+        Title = string.Format(format: Translations.PaymentsForCategoryTitle, arg0: category.Name);
         var loadedPayments = mapper.Map<List<PaymentViewModel>>(
             await mediator.Send(
                 new GetPaymentsForCategorySummary.Query(categoryId: message.CategoryId, dateRangeFrom: message.StartDate, dateRangeTo: message.EndDate)));

@@ -6,7 +6,7 @@ using FluentAssertions;
 using Xunit;
 
 [ExcludeFromCodeCoverage]
-public class HelperFunctionsTests
+public class DecimalFormatterTests
 {
     [Theory]
     [InlineData(6000000.45)]
@@ -14,6 +14,6 @@ public class HelperFunctionsTests
     [InlineData(6000000.4567)]
     public void FormatLargeNumbers_ValidString(decimal amount)
     {
-        _ = HelperFunctions.FormatLargeNumbers(amount).Should().Be(amount.ToString("N2"));
+        _ = DecimalFormatter.AsLargeNumber(amount).Should().Be(amount.ToString("N2"));
     }
 }

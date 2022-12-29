@@ -3,7 +3,7 @@
 <Shell x:Class="MoneyFox.Ui.AppShellDesktop"
        xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+       xmlns:resources="clr-namespace:MoneyFox.Core.Resources"
        xmlns:dashboard="clr-namespace:MoneyFox.Ui.Views.Dashboard"
        xmlns:setupAssistant="clr-namespace:MoneyFox.Ui.Views.SetupAssistant"
        xmlns:views="clr-namespace:MoneyFox.Ui.Views"
@@ -16,7 +16,7 @@
        FlyoutBehavior="Locked"
        Title="MoneyFox">
 
-    <FlyoutItem Title="{x:Static resources:Strings.HomeTitle}">
+    <FlyoutItem Title="{x:Static resources:Translations.HomeTitle}">
         <Tab.Icon>
             <FontImageSource FontFamily="MaterialIcons"
                              Glyph="{x:Static views:IconFont.HomeOutline}"
@@ -28,19 +28,19 @@
         </ShellContent>
     </FlyoutItem>
 
-    <FlyoutItem Title="{x:Static resources:Strings.StatisticsTitle}">
+    <FlyoutItem Title="{x:Static resources:Translations.StatisticsTitle}">
         <Tab.Icon>
             <FontImageSource FontFamily="MaterialIcons"
                              Glyph="{x:Static views:IconFont.ChartArc}"
                              Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
                              Size="24" />
         </Tab.Icon>
-        <ShellContent Title="{x:Static resources:Strings.StatisticsTitle}">
+        <ShellContent Title="{x:Static resources:Translations.StatisticsTitle}">
             <selector:StatisticSelectorPage />
         </ShellContent>
     </FlyoutItem>
 
-    <FlyoutItem Title="{x:Static resources:Strings.BudgetsTitle}">
+    <FlyoutItem Title="{x:Static resources:Translations.BudgetsTitle}">
         <Tab.Icon>
             <FontImageSource FontFamily="MaterialIcons"
                              Glyph="{x:Static views:IconFont.PiggyBankOutline}"
@@ -52,7 +52,7 @@
         </ShellContent>
     </FlyoutItem>
 
-    <FlyoutItem Title="{x:Static resources:Strings.BackupTitle}">
+    <FlyoutItem Title="{x:Static resources:Translations.BackupTitle}">
         <Tab.Icon>
             <FontImageSource FontFamily="MaterialIcons"
                              Glyph="{x:Static views:IconFont.CloudUploadOutline}"
@@ -64,7 +64,7 @@
         </ShellContent>
     </FlyoutItem>
 
-    <FlyoutItem Title="{x:Static resources:Strings.CategoriesTitle}">
+    <FlyoutItem Title="{x:Static resources:Translations.CategoriesTitle}">
         <Tab.Icon>
             <FontImageSource FontFamily="MaterialIcons"
                              Glyph="{x:Static views:IconFont.TagOutline}"
@@ -76,7 +76,7 @@
         </ShellContent>
     </FlyoutItem>
 
-    <FlyoutItem Title="{x:Static resources:Strings.SettingsTitle}">
+    <FlyoutItem Title="{x:Static resources:Translations.SettingsTitle}">
         <Tab.Icon>
             <FontImageSource FontFamily="MaterialIcons"
                              Glyph="{x:Static views:IconFont.CogOutline}"
@@ -88,7 +88,7 @@
         </ShellContent>
     </FlyoutItem>
 
-    <FlyoutItem Title="{x:Static resources:Strings.AboutTitle}">
+    <FlyoutItem Title="{x:Static resources:Translations.AboutTitle}">
         <Tab.Icon>
             <FontImageSource FontFamily="MaterialIcons"
                              Glyph="{x:Static views:IconFont.InformationOutline}"

@@ -41,7 +41,7 @@ public class DialogService : IDialogService
 
     public async Task ShowMessageAsync(string title, string message)
     {
-        await Shell.Current.DisplayAlert(title: title, message: message, cancel: Strings.OkLabel);
+        await Shell.Current.DisplayAlert(title: title, message: message, cancel: Translations.OkLabel);
     }
 
     public async Task<bool> ShowConfirmMessageAsync(string title, string message, string? positiveButtonText = null, string? negativeButtonText = null)
@@ -49,7 +49,7 @@ public class DialogService : IDialogService
         return await Shell.Current.DisplayAlert(
             title: title,
             message: message,
-            accept: positiveButtonText ?? Strings.YesLabel,
-            cancel: negativeButtonText ?? Strings.NoLabel);
+            accept: positiveButtonText ?? Translations.YesLabel,
+            cancel: negativeButtonText ?? Translations.NoLabel);
     }
 }

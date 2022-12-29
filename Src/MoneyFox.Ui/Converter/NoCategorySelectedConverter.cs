@@ -11,7 +11,7 @@ public class NoCategorySelectedConverter : IValueConverter
         var category = (CategoryViewModel)value;
         if (category == null)
         {
-            return Strings.SelectCategoryLabel;
+            return Translations.SelectCategoryLabel;
         }
 
         return category.Name;

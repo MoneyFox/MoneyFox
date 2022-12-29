@@ -3,7 +3,7 @@
 <ContentView
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:account="clr-namespace:MoneyFox.Ui.Views.Accounts"
     x:Class="MoneyFox.Ui.Views.Accounts.ModifyAccountContentView"
@@ -12,19 +12,19 @@
     <VerticalStackLayout Spacing="12">
 
         <controls:TextEntry
-            TextFieldTitle="{x:Static resources:Strings.AccountNameLabel}"
-            EntryPlaceholder="{x:Static resources:Strings.AccountNameLabel}"
+            TextFieldTitle="{x:Static resources:Translations.AccountNameLabel}"
+            EntryPlaceholder="{x:Static resources:Translations.AccountNameLabel}"
             EntryText="{Binding SelectedAccountVm.Name}" />
 
         <controls:AmountEntry
-            AmountFieldTitle="{x:Static resources:Strings.CurrentBalanceLabel}"
-            EntryPlaceholder="{x:Static resources:Strings.CurrentBalanceLabel}"
+            AmountFieldTitle="{x:Static resources:Translations.CurrentBalanceLabel}"
+            EntryPlaceholder="{x:Static resources:Translations.CurrentBalanceLabel}"
             Amount="{Binding SelectedAccountVm.CurrentBalance}"
             IsReadOnly="{Binding IsEdit}" />
 
         <controls:TextEntry
-            TextFieldTitle="{x:Static resources:Strings.NoteLabel}"
-            EntryPlaceholder="{x:Static resources:Strings.NoteLabel}"
+            TextFieldTitle="{x:Static resources:Translations.NoteLabel}"
+            EntryPlaceholder="{x:Static resources:Translations.NoteLabel}"
             EntryText="{Binding SelectedAccountVm.Note}" />
 
         <Grid Margin="0,5,0,0" HorizontalOptions="FillAndExpand">
@@ -36,7 +36,7 @@
 
             <Label Grid.Column="0"
                    Style="{StaticResource TextBodySecondary}"
-                   Text="{x:Static resources:Strings.IsExcludedLabel}"
+                   Text="{x:Static resources:Translations.IsExcludedLabel}"
                    VerticalOptions="Center" />
             <Switch
                 Grid.Column="1"
