@@ -27,7 +27,7 @@ public class GetMonthlyExpenseQuery : IRequest<decimal>
         public async Task<decimal> Handle(GetMonthlyExpenseQuery request, CancellationToken cancellationToken)
         {
             return (await appDbContext.Payments.HasDateLargerEqualsThan(SystemDateHelperExtensions.GetFirstDayMonth(systemDateHelper))
-                .HasDateSmallerEqualsThan(SystemDateHelperExtensions.GetEndOfMonth(systemDateHelper))
+                .HasDateSmallerEqualsThan(systemDateHelper.GetEndOfMonth())
                 .IsExpense()
                 .Select(x => x.Amount)
                 .ToListAsync(cancellationToken)).Sum();

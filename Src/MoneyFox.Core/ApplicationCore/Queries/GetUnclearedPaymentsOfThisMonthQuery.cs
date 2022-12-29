@@ -32,7 +32,7 @@ public class GetUnclearedPaymentsOfThisMonthQuery : IRequest<List<Payment>>
             var query = appDbContext.Payments.Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
                 .AreNotCleared()
-                .HasDateSmallerEqualsThan(SystemDateHelperExtensions.GetEndOfMonth(systemDateHelper));
+                .HasDateSmallerEqualsThan(systemDateHelper.GetEndOfMonth());
 
             if (request.AccountId != 0)
             {

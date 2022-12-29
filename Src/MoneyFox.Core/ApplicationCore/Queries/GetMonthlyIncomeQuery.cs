@@ -26,8 +26,8 @@ public class GetMonthlyIncomeQuery : IRequest<decimal>
 
         public async Task<decimal> Handle(GetMonthlyIncomeQuery request, CancellationToken cancellationToken)
         {
-            return (await appDbContext.Payments.HasDateLargerEqualsThan(SystemDateHelperExtensions.GetFirstDayMonth(systemDateHelper))
-                .HasDateSmallerEqualsThan(SystemDateHelperExtensions.GetEndOfMonth(systemDateHelper))
+            return (await appDbContext.Payments.HasDateLargerEqualsThan(systemDateHelper.GetFirstDayMonth())
+                .HasDateSmallerEqualsThan(systemDateHelper.GetEndOfMonth())
                 .IsIncome()
                 .Select(x => x.Amount)
                 .ToListAsync(cancellationToken)).Sum();

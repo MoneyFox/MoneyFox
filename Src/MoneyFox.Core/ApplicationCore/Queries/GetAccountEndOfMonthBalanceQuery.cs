@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using _Pending_.Common;
 using _Pending_.Common.QueryObjects;
 using Common.Extensions;
 using Common.Helpers;
@@ -40,7 +39,7 @@ public class GetAccountEndOfMonthBalanceQuery : IRequest<decimal>
         public async Task<decimal> Handle(GetAccountEndOfMonthBalanceQuery request, CancellationToken cancellationToken)
         {
             accountId = request.AccountId;
-            var account = await appDbContext.Accounts.WithId(accountId).FirstAsync();
+            var account = await appDbContext.Accounts.WithId(accountId).FirstAsync(cancellationToken: cancellationToken);
             var balance = await GetCurrentAccountBalanceAsync();
             foreach (var payment in await GetUnclearedPaymentsForThisMonthAsync())
             {

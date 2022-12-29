@@ -9,7 +9,7 @@ public static class SystemDateHelperExtensions
     ///     Returns the first day of the current month.
     /// </summary>
     /// <returns></returns>
-    public static DateTime GetFirstDayMonth(ISystemDateHelper systemDateHelper)
+    public static DateTime GetFirstDayMonth(this ISystemDateHelper systemDateHelper)
     {
         return new(year: systemDateHelper.Today.Year, month: systemDateHelper.Today.Month, day: 1);
     }
@@ -18,7 +18,7 @@ public static class SystemDateHelperExtensions
     ///     Returns the last day of the month
     /// </summary>
     /// <returns>Last day of the month</returns>
-    public static DateTime GetEndOfMonth(ISystemDateHelper systemDateHelper)
+    public static DateTime GetEndOfMonth(this ISystemDateHelper systemDateHelper)
     {
         var today = systemDateHelper.Today;
 
