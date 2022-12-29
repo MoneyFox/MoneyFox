@@ -109,6 +109,9 @@
       <Compile Update="Views\Accounts\DesktopAccountListPage.xaml.cs">
         <DependentUpon>DesktopAccountListPage.xaml</DependentUpon>
       </Compile>
+      <Compile Update="Views\Categories\DesktopCategoryListPage.xaml.cs">
+        <DependentUpon>DesktopCategoryListPage.xaml</DependentUpon>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -116,6 +119,9 @@
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
       <MauiXaml Update="Views\Accounts\DesktopAccountListPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
+      <MauiXaml Update="Views\Categories\DesktopCategoryListPage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
     </ItemGroup>
