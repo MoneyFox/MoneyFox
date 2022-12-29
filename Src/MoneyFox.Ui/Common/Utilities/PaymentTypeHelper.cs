@@ -58,7 +58,7 @@ public static class PaymentTypeHelper
             (int)PaymentType.Income => PaymentType.Income.ToString(),
             (int)PaymentType.Expense => PaymentType.Expense.ToString(),
             (int)PaymentType.Transfer => PaymentType.Transfer.ToString(),
-            _ => throw new ArgumentOutOfRangeException(paramName: nameof(type), message: "Passed Number didn't match to a payment type.")
+            _ => throw new ArgumentOutOfRangeException(paramName: nameof(type), message: "Passed Number didn't match to a payment type")
         };
     }
 }
