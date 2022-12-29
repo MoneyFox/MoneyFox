@@ -6,14 +6,14 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using _Pending_.Common.QueryObjects;
-using Common.Helpers;
 using Common.Interfaces;
 using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Resources;
 
-public class GetCategorySpreadingQuery : IRequest<IEnumerable<StatisticEntry>>
+public record CategorySpreadingDataSet(string CategoryName, decimal Value);
+
+public class GetCategorySpreadingQuery : IRequest<IEnumerable<CategorySpreadingDataSet>>
 {
     private const int NUMBER_OF_STATISTIC_ITEMS = 10;
 
@@ -38,27 +38,8 @@ public class GetCategorySpreadingQuery : IRequest<IEnumerable<StatisticEntry>>
     public int NumberOfCategoriesToShow { get; }
 }
 
-public class GetCategorySpreadingQueryHandler : IRequestHandler<GetCategorySpreadingQuery, IEnumerable<StatisticEntry>>
+public class GetCategorySpreadingQueryHandler : IRequestHandler<GetCategorySpreadingQuery, IEnumerable<CategorySpreadingDataSet>>
 {
-    public static readonly string[] Colors =
-    {
-        "#266489",
-        "#68B9C0",
-        "#90D585",
-        "#F3C151",
-        "#F37F64",
-        "#424856",
-        "#8F97A4",
-        "#7EAFC4",
-        "#69E1BD",
-        "#A6F297",
-        "#F9F871",
-        "#0087A3",
-        "#00AAA9",
-        "#3DCA9A",
-        "#9BE582"
-    };
-
     private readonly IAppDbContext appDbContext;
 
     private GetCategorySpreadingQuery currentRequest = null!;
@@ -68,7 +49,7 @@ public class GetCategorySpreadingQueryHandler : IRequestHandler<GetCategorySprea
         this.appDbContext = appDbContext;
     }
 
-    public async Task<IEnumerable<StatisticEntry>> Handle(GetCategorySpreadingQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<CategorySpreadingDataSet>> Handle(GetCategorySpreadingQuery request, CancellationToken cancellationToken)
     {
         currentRequest = request;
 
@@ -97,21 +78,20 @@ public class GetCategorySpreadingQueryHandler : IRequestHandler<GetCategorySprea
         return query.Select(x => (Math.Abs(x.Item1), x.category)).OrderByDescending(x => x.Item1).ToList();
     }
 
-    private IEnumerable<StatisticEntry> AggregateData(List<(decimal Value, string Label)> statisticData, int amountOfCategoriesToShow)
+    private IEnumerable<CategorySpreadingDataSet> AggregateData(List<(decimal Value, string Label)> statisticData, int amountOfCategoriesToShow)
     {
         var statisticList = statisticData.Take(amountOfCategoriesToShow)
-            .Select(x => new StatisticEntry(x.Value) { ValueLabel = x.Value.ToString(format: "C", provider: CultureHelper.CurrentCulture), Label = x.Label })
+            .Select(x => new CategorySpreadingDataSet(CategoryName: x.Label, Value: x.Value))
             .ToList();
 
         AddOtherItem(statisticData: statisticData, statisticList: statisticList, amountOfCategoriesToShow: amountOfCategoriesToShow);
-        SetColors(statisticList);
 
         return statisticList;
     }
 
     private static void AddOtherItem(
         IEnumerable<(decimal Value, string Label)> statisticData,
-        ICollection<StatisticEntry> statisticList,
+        ICollection<CategorySpreadingDataSet> statisticList,
         int amountOfCategoriesToShow)
     {
         if (statisticList.Count < amountOfCategoriesToShow)
@@ -119,24 +99,11 @@ public class GetCategorySpreadingQueryHandler : IRequestHandler<GetCategorySprea
             return;
         }
 
-        var otherValue = statisticData.Where(x => statisticList.All(y => x.Label != y.Label)).Sum(x => x.Value);
-        StatisticEntry othersItem = new(otherValue)
-        {
-            Label = Translations.OthersLabel, ValueLabel = otherValue.ToString(format: "C", provider: CultureHelper.CurrentCulture)
-        };
-
+        var otherValue = statisticData.Where(x => statisticList.All(y => x.Label != y.CategoryName)).Sum(x => x.Value);
+        var othersItem = new CategorySpreadingDataSet(CategoryName: "Other", Value: otherValue);
         if (othersItem.Value > 0)
         {
             statisticList.Add(othersItem);
-        }
-    }
-
-    private static void SetColors(List<StatisticEntry> statisticItems)
-    {
-        var counter = statisticItems.Count >= Colors.Length ? Colors.Length : statisticItems.Count;
-        for (var i = 0; i < counter; i++)
-        {
-            statisticItems[i].Color = Colors[i];
         }
     }
 }
