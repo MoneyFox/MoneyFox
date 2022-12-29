@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Accounts;
+namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Accounts;
 
 using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
