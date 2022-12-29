@@ -208,6 +208,6 @@ public class GetCategorySummaryQueryTests
             cancellationToken: default);
 
         // Assert
-        result.CategoryOverviewItems[0].Label.Should().Be("Other");
+        result.CategoryOverviewItems[0].Label.Should().Be("-");
     }
 }
