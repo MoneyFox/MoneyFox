@@ -122,43 +122,43 @@
         </value>
   </resheader>
   <data name="AboutTitle" xml:space="preserve">
-    <value>About</value>
+    <value>Tungkol sa</value>
   </data>
   <data name="AccountNameLabel" xml:space="preserve">
-    <value>Account Name</value>
+    <value>Pangalan ng Account</value>
   </data>
   <data name="AccountRequiredMessage" xml:space="preserve">
-    <value>Please select an Account.</value>
+    <value>Pumili ng isang Account.</value>
   </data>
   <data name="AccountsTitle" xml:space="preserve">
-    <value>Accounts</value>
+    <value>Mga Account</value>
   </data>
   <data name="AddAccountLabel" xml:space="preserve">
-    <value>Add Account</value>
+    <value>Magdagdag ng Account</value>
   </data>
   <data name="AddAccountTitle" xml:space="preserve">
-    <value>Add Account</value>
+    <value>Magdagdag ng Account</value>
   </data>
   <data name="AddCategoryLabel" xml:space="preserve">
-    <value>Add Category</value>
+    <value>Magdagdag ng kategorya</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
-    <value>Add Category</value>
+    <value>Magdagdag ng kategorya</value>
   </data>
   <data name="AddExpenseTitle" xml:space="preserve">
-    <value>Add Expense</value>
+    <value>Magdagdag ng Gastos</value>
   </data>
   <data name="AddIncomeTitle" xml:space="preserve">
-    <value>Add Income</value>
+    <value>Magdagdag ng Kita</value>
   </data>
   <data name="AddPaymentLabel" xml:space="preserve">
     <value>Add Payment</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
-    <value>Add Transfer</value>
+    <value>Magdagdag ng Paglipat</value>
   </data>
   <data name="AmountLabel" xml:space="preserve">
-    <value>Amount</value>
+    <value>Halaga</value>
   </data>
   <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
     <value>The amount may not be negative. If it is subtracted or added is deteremined by the kind of payment you create.</value>
@@ -176,13 +176,13 @@
     <value>Assets</value>
   </data>
   <data name="AuthenticationFailedTitle" xml:space="preserve">
-    <value>Authentication failed</value>
+    <value>Bigo ang authentication</value>
   </data>
   <data name="AutobackupInformationLabel" xml:space="preserve">
     <value>If you activate this setting we backup your data automatically to OneDrive. Also we check periodically if something changed on another device.</value>
   </data>
   <data name="AutobackupLabel" xml:space="preserve">
-    <value>Automatically upload and download backups</value>
+    <value>Awtomatikong mag-upload at i-download ang mga backup</value>
   </data>
   <data name="AutobackupTitle" xml:space="preserve">
     <value>Autobackup</value>
@@ -194,7 +194,7 @@
     <value>Backup created successfully</value>
   </data>
   <data name="BackupFailedTitle" xml:space="preserve">
-    <value>Backup failed!</value>
+    <value>Nabigo ang backup!</value>
   </data>
   <data name="BackupInformationLabel" xml:space="preserve">
     <value>Your data will be saved to your OneDrive Account. You’ll find them in the Application Folder in a new folder called "MoneyFox".</value>
@@ -206,13 +206,13 @@
     <value>Backup</value>
   </data>
   <data name="BiannuallyLabel" xml:space="preserve">
-    <value>Biannually</value>
+    <value>Dalawang beses isang taon</value>
   </data>
   <data name="BimonthlyLabel" xml:space="preserve">
-    <value>Bimonthly</value>
+    <value>Dalawang beses isang buwan</value>
   </data>
   <data name="BiweeklyLabel" xml:space="preserve">
-    <value>Biweekly</value>
+    <value>Dalawang beses isang linggo</value>
   </data>
   <data name="BudgetsLabel" xml:space="preserve">
     <value>Budgets</value>
@@ -221,10 +221,10 @@
     <value>Canceled</value>
   </data>
   <data name="CancelLabel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Kanselahin</value>
   </data>
   <data name="CashflowDescription" xml:space="preserve">
-    <value>Income, expenses and gains for the selected time period.</value>
+    <value>Kita, gastos at pakinabang para sa mga napiling oras.</value>
   </data>
   <data name="CashflowLabel" xml:space="preserve">
     <value>Cashflow</value>
@@ -236,34 +236,34 @@
     <value>Categories can help order your payments. Also they make it easier to analyze your spendings and incomes in the statistics.</value>
   </data>
   <data name="CategorieSpreadingDescription" xml:space="preserve">
-    <value>Spreading of the expenses to the categories.</value>
+    <value>Paghahati-hati ng mga gastusin sa mga kategorya.</value>
   </data>
   <data name="CategoriesTitle" xml:space="preserve">
-    <value>Categories</value>
+    <value>Mga kategorya</value>
   </data>
   <data name="CategoryLabel" xml:space="preserve">
-    <value>Category</value>
+    <value>Kategorya</value>
   </data>
   <data name="CategoryNameLabel" xml:space="preserve">
-    <value>Category Name</value>
+    <value>Pangalan nang kategorya</value>
   </data>
   <data name="CategorySpreadingLabel" xml:space="preserve">
-    <value>Category Spreading</value>
+    <value>Paghahati-hati ng Kategorya</value>
   </data>
   <data name="CategorySpreadingTitle" xml:space="preserve">
-    <value>Category Spreading</value>
+    <value>Paghahati-hati ng Kategorya</value>
   </data>
   <data name="CategorySummaryDescription" xml:space="preserve">
-    <value>Summary of the categories with a Payment.</value>
+    <value>Buod ng ang mga kategorya na may pagbabayad.</value>
   </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
-    <value>Category Summary</value>
+    <value>Buod ng kategorya</value>
   </data>
   <data name="CategorySummaryTitle" xml:space="preserve">
-    <value>Category Summary</value>
+    <value>Buod ng kategorya</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
-    <value>Charged Account</value>
+    <value>Pinangbayad na Account</value>
   </data>
   <data name="ClearedFilterLabel" xml:space="preserve">
     <value>Cleared</value>
@@ -281,7 +281,7 @@
     <value>Contact</value>
   </data>
   <data name="ContributerLabel" xml:space="preserve">
-    <value>To see all contributions head over to GitHub:</value>
+    <value>Upang makita ang lahat ng pinuno ng mga kontribusyon pumunta sa GitHub:</value>
   </data>
   <data name="ContributionsLabel" xml:space="preserve">
     <value>Contributions</value>
@@ -290,7 +290,7 @@
     <value>Create Account Now</value>
   </data>
   <data name="CreateBackupLabel" xml:space="preserve">
-    <value>Create Backup</value>
+    <value>Lumikha ng Backup</value>
   </data>
   <data name="CreateCategoryNowLabel" xml:space="preserve">
     <value>Create Category now</value>
@@ -305,22 +305,22 @@
     <value>Creation Date: {0}</value>
   </data>
   <data name="CurrentBalanceLabel" xml:space="preserve">
-    <value>Current Balance</value>
+    <value>Kasalukuyang balanse</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
-    <value>Daily</value>
+    <value>Araw-araw</value>
   </data>
   <data name="DailyWithoutWeekendLabel" xml:space="preserve">
-    <value>Daily without weekend</value>
+    <value>Araw-araw maliban sa Sabado at Linggo</value>
   </data>
   <data name="DarkLabel" xml:space="preserve">
-    <value>Dark</value>
+    <value>Madilim</value>
   </data>
   <data name="DashboardTitle" xml:space="preserve">
     <value>Dashboard</value>
   </data>
   <data name="DateLabel" xml:space="preserve">
-    <value>Date</value>
+    <value>Petsa</value>
   </data>
   <data name="DateRangeHeader" xml:space="preserve">
     <value>Date Range</value>
@@ -332,64 +332,64 @@
     <value>This region will be used as a default for your application.</value>
   </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this Account?</value>
+    <value>Gusto mo ba talagang i-delete ang Account na ito?</value>
   </data>
   <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this Category?</value>
+    <value>Gusto mo ba talagang i-delete ang Kategoryang ito?</value>
   </data>
   <data name="DeleteLabel" xml:space="preserve">
-    <value>Delete</value>
+    <value>Burahin</value>
   </data>
   <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this Payment?</value>
+    <value>Gusto mo ba talagang i-delete ang Pagbabayad na ito?</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
-    <value>You've deleted a recurring payment. Do you want to delete the recurrence as well?</value>
+    <value>Binura mo ang isang umuulit na pagbabayad. Gusto mo bang burahin din ang pagbabayad sa hinaharap?</value>
   </data>
   <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
-    <value>Delete Recurrence?</value>
+    <value>Burahin ang pag-uulit?</value>
   </data>
   <data name="DeleteTitle" xml:space="preserve">
-    <value>Delete?</value>
+    <value>Burahin?</value>
   </data>
   <data name="DoneLabel" xml:space="preserve">
-    <value>Done</value>
+    <value>Tapos</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
     <value>An account with that name already exists. Continue with saving?</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
-    <value>A Category with that name already exists.</value>
+    <value>Meron nang Kategorya na may gayong pangalan.</value>
   </data>
   <data name="DuplicatedNameTitle" xml:space="preserve">
-    <value>Name already used</value>
+    <value>Ang Pangalan ay ginamit na</value>
   </data>
   <data name="EditAccountTitle" xml:space="preserve">
-    <value>Edit {0}</value>
+    <value>I-edit {0}</value>
   </data>
   <data name="EditCategoryTitle" xml:space="preserve">
-    <value>Edit Category</value>
+    <value>I-edit ang Kategorya</value>
   </data>
   <data name="EditIncomeTitle" xml:space="preserve">
-    <value>Edit Income</value>
+    <value>I-edit ang Kita</value>
   </data>
   <data name="EditLabel" xml:space="preserve">
-    <value>Edit</value>
+    <value>I-edit</value>
   </data>
   <data name="EditSpendingTitle" xml:space="preserve">
-    <value>Edit Expense</value>
+    <value>I-edit ang Gastos</value>
   </data>
   <data name="EditTransferTitle" xml:space="preserve">
-    <value>Edit Transfer</value>
+    <value>I-edit ang Paglilipat</value>
   </data>
   <data name="EmailLabel" xml:space="preserve">
     <value>Email</value>
   </data>
   <data name="EnddateLabel" xml:space="preserve">
-    <value>End Date</value>
+    <value>Petsa ng pagtatapos</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
-    <value>Is Endless</value>
+    <value>Walang hanggan</value>
   </data>
   <data name="EndOfMonthBalanceLabel" xml:space="preserve">
     <value>End of Month</value>
@@ -398,22 +398,22 @@
     <value>End Of Month:</value>
   </data>
   <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
-    <value>There was an error during the authentication. Please try again later.</value>
+    <value>Nagkaroon ng error sa panahon ng pagpapatunay. Mangyaring subukan ulit mamaya.</value>
   </data>
   <data name="ExcludedAccountsHeader" xml:space="preserve">
-    <value>Excluded Accounts</value>
+    <value>Hindi isinamang mga Account</value>
   </data>
   <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
     <value>Expense: {0} / Income: {1}</value>
   </data>
   <data name="ExpenseHeader" xml:space="preserve">
-    <value>Add expense</value>
+    <value>Magdagdag ng gastos</value>
   </data>
   <data name="ExpenseLabel" xml:space="preserve">
-    <value>Expenses</value>
+    <value>Mga Gastusin</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Feedback MoneyFox</value>
+    <value>Tugon sa MoneyFox</value>
   </data>
   <data name="FilterLabel" xml:space="preserve">
     <value>Filter</value>
@@ -425,7 +425,7 @@
     <value>Override Local Data</value>
   </data>
   <data name="GeneralErrorTitle" xml:space="preserve">
-    <value>An error occured</value>
+    <value>May naganap na error</value>
   </data>
   <data name="GoToAccountsLabel" xml:space="preserve">
     <value>Go to Accounts</value>
@@ -434,16 +434,16 @@
     <value>Go to Budgets</value>
   </data>
   <data name="IconDesignerLabel" xml:space="preserve">
-    <value>The app icon was created by:</value>
+    <value>Ang icon ng app ay nilikha ni:</value>
   </data>
   <data name="IncludedAccountsHeader" xml:space="preserve">
-    <value>Included Accounts</value>
+    <value>Mga Account na Isinali</value>
   </data>
   <data name="IncomeAndExpensesLabel" xml:space="preserve">
     <value>Income and Expenses</value>
   </data>
   <data name="IncomeHeader" xml:space="preserve">
-    <value>Add income</value>
+    <value>Magdagdag ng Kita</value>
   </data>
   <data name="IncomeLabel" xml:space="preserve">
     <value>Income</value>
@@ -452,20 +452,19 @@
     <value>Income / Expenses:</value>
   </data>
   <data name="IncreaseLabel" xml:space="preserve">
-    <value>Gains</value>
+    <value>Mga nadagdag</value>
   </data>
   <data name="InfoLabel" xml:space="preserve">
-    <value>Info</value>
+    <value>Impormasyon</value>
   </data>
   <data name="InfoOpenSource" xml:space="preserve">
-    <value>This is an open-source project – and we’d love to work with you! Feel free to contribute.
-Tap to visit the Repository:</value>
+    <value>Ito ay isang open source na proyekto – at nais naming makipagtulungan sa inyo! Huwag mag-atubiling mag-ambag. I-tap upang bisitahin ang pinagkukunan:</value>
   </data>
   <data name="InvalidEnddateMessage" xml:space="preserve">
-    <value>The enddate of a recurring Payment has to be in the future. Please check your input.</value>
+    <value>Ang enddate ng isang umuulit na pagbabayad ay dapat na sa hinaharap. Mangyaring suriin ang iyong input.</value>
   </data>
   <data name="InvalidEnddateTitle" xml:space="preserve">
-    <value>Invalid End Date</value>
+    <value>Petsa ng katapusan ay di katanggap-tanggap</value>
   </data>
   <data name="InvalidNumberCurrentBalanceMessage" xml:space="preserve">
     <value>Your current balance seems to be an invalid number. Please check that you haven't entered any special characters and used the correct separator.</value>
@@ -477,25 +476,25 @@ Tap to visit the Repository:</value>
     <value>Cleared</value>
   </data>
   <data name="IsExcludedLabel" xml:space="preserve">
-    <value>Exclude account from balance</value>
+    <value>Huwag bilangin ang account sa balanse</value>
   </data>
   <data name="IsGroupedLabel" xml:space="preserve">
     <value>Group List</value>
   </data>
   <data name="IsRecurringFilterLabel" xml:space="preserve">
-    <value>Is Recurring</value>
+    <value>Ay umuulit</value>
   </data>
   <data name="IsRecurringLabel" xml:space="preserve">
     <value>Recurring</value>
   </data>
   <data name="LastBackupDateLabel" xml:space="preserve">
-    <value>Last Backup created at:</value>
+    <value>Huling Backup na nilikha nuong:</value>
   </data>
   <data name="LightLabel" xml:space="preserve">
-    <value>Light</value>
+    <value>Maliwanag</value>
   </data>
   <data name="LoadingLabel" xml:space="preserve">
-    <value>Loading...</value>
+    <value>Naglo-load...</value>
   </data>
   <data name="LoggedInMessage" xml:space="preserve">
     <value>Loggedin successfully.</value>
@@ -513,7 +512,7 @@ Tap to visit the Repository:</value>
     <value>Login failed!</value>
   </data>
   <data name="LoginLabel" xml:space="preserve">
-    <value>Login</value>
+    <value>Mag-Login</value>
   </data>
   <data name="LogoutCanceledMessage" xml:space="preserve">
     <value>Logout was canceled.</value>
@@ -522,7 +521,7 @@ Tap to visit the Repository:</value>
     <value>Logout</value>
   </data>
   <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
-    <value>Mandatory field</value>
+    <value>Kinakailangang field</value>
   </data>
   <data name="ModificationDateHeader" xml:space="preserve">
     <value>Modification Date</value>
@@ -552,10 +551,10 @@ Tap to visit the Repository:</value>
     <value>Monthly Cashflow</value>
   </data>
   <data name="MonthlyLabel" xml:space="preserve">
-    <value>Monthly</value>
+    <value>Buwanan</value>
   </data>
   <data name="NameRequiredMessage" xml:space="preserve">
-    <value>Please insert a name.</value>
+    <value>Pakilagay ang pangalan.</value>
   </data>
   <data name="NextLabel" xml:space="preserve">
     <value>Next</value>
@@ -573,37 +572,37 @@ Tap to visit the Repository:</value>
     <value>No entry selected. Choose a entry in the list to see the payments for it.</value>
   </data>
   <data name="NoLabel" xml:space="preserve">
-    <value>No</value>
+    <value>Hindi</value>
   </data>
   <data name="NoNetworkMessage" xml:space="preserve">
-    <value>You are not connected to the internet. Please check your connection and try again.</value>
+    <value>Hindi ka konektado sa Internet. Kumonekta at subukang muli.</value>
   </data>
   <data name="NoNetworkTitle" xml:space="preserve">
-    <value>No Internet Connection</value>
+    <value>Walang koneksyon sa internet</value>
   </data>
   <data name="NoPaymentsMessage" xml:space="preserve">
     <value>There are no Payments. Add one by tapping on the plus button.</value>
   </data>
   <data name="NoteLabel" xml:space="preserve">
-    <value>Note</value>
+    <value>Paalala</value>
   </data>
   <data name="NotNowLabel" xml:space="preserve">
-    <value>Not Now</value>
+    <value>Hindi Ngayon</value>
   </data>
   <data name="OkLabel" xml:space="preserve">
-    <value>Ok</value>
+    <value>Sige</value>
   </data>
   <data name="OthersLabel" xml:space="preserve">
     <value>Others</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
-    <value>Existing backups will be overwritten. Do you wanna continue?</value>
+    <value>Kasalukuyang backup ay mapapatungan. Gusto mo bang magpatuloy?</value>
   </data>
   <data name="OverwriteDataMessage" xml:space="preserve">
-    <value>Your local data will be deleted. Are you sure you wanna proceed?</value>
+    <value>Iyong lokal na data ay mabubura. Tiyak ka bang gusto mong magpatuloy?</value>
   </data>
   <data name="OverwriteTitle" xml:space="preserve">
-    <value>Overwrite?</value>
+    <value>Patungan?</value>
   </data>
   <data name="PaymentIntroductionText" xml:space="preserve">
     <value>When you create a payment you can select the category for that payment along with the account and if it is an expense, an income or a transfer.
@@ -620,23 +619,22 @@ To get there go to the account list and select the respective account.</value>
     <value>Personalization</value>
   </data>
   <data name="QuarterlyLabel" xml:space="preserve">
-    <value>Quarterly</value>
+    <value>Kada tatlong buwan</value>
   </data>
   <data name="RateLabel" xml:space="preserve">
-    <value>Rate this app!</value>
+    <value>Rate us!</value>
   </data>
   <data name="RateReminderText" xml:space="preserve">
-    <value>We hope you like our app. Support us with a rating in the store.
-Do you want to go the the store to rate?</value>
+    <value>Sana ay magustuhan mo ang aming app. Suportahan kami ng rating sa store. Gusto mo bang pumunta sa store upang mag-rate?</value>
   </data>
   <data name="RateReminderTitle" xml:space="preserve">
-    <value>Rate this app</value>
+    <value>I-rate ang App na ito</value>
   </data>
   <data name="RecurrenceLabel" xml:space="preserve">
-    <value>Recurrence</value>
+    <value>Pag-uulit</value>
   </data>
   <data name="RecurringLabel" xml:space="preserve">
-    <value>Is Recurring</value>
+    <value>Ay umuulit</value>
   </data>
   <data name="RequireNoteCheckbox" xml:space="preserve">
     <value>Note required</value>
@@ -645,17 +643,16 @@ Do you want to go the the store to rate?</value>
     <value>Restoring backup was canceled.</value>
   </data>
   <data name="RestoreBackupInformationLabel" xml:space="preserve">
-    <value>Download the previous uploaded database backup and replace your local data with it.
-WARNING: Local changes you made meanwhile will be lost!</value>
+    <value>I-download ang nakaraang na-upload na database backup at ipalit ito sa iyong lokal na data. Babala: Ang mga Lokal na pagbabago na ginawa mo samantala ay mawawala!</value>
   </data>
   <data name="RestoreBackupLabel" xml:space="preserve">
-    <value>Restore Backup</value>
+    <value>Ibalik ang Backup</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
-    <value>Revenue</value>
+    <value>Kita</value>
   </data>
   <data name="SaveLabel" xml:space="preserve">
-    <value>Save</value>
+    <value>I-save</value>
   </data>
   <data name="SavingAccountMessage" xml:space="preserve">
     <value>Saving Account...</value>
@@ -667,25 +664,25 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Saving Payment...</value>
   </data>
   <data name="SearchLabel" xml:space="preserve">
-    <value>Search</value>
+    <value>Hanapin</value>
   </data>
   <data name="SelectCategoryTitle" xml:space="preserve">
-    <value>Select Category</value>
+    <value>Pumili ng kategorya</value>
   </data>
   <data name="SelectDateLabel" xml:space="preserve">
-    <value>Select Date</value>
+    <value>Pumili ng petsa</value>
   </data>
   <data name="SelectedAccountHeader" xml:space="preserve">
     <value>Selected Account</value>
   </data>
   <data name="SelectFilterTitle" xml:space="preserve">
-    <value>Select Filter</value>
+    <value>Pumili ng Filter</value>
   </data>
   <data name="SelectStatisticTitle" xml:space="preserve">
-    <value>Select Statistic</value>
+    <value>Piliin ang estatistika</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>Mga setting</value>
   </data>
   <data name="SkipLabel" xml:space="preserve">
     <value>Skip</value>
@@ -694,10 +691,10 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Time Range:</value>
   </data>
   <data name="StatisticsTitle" xml:space="preserve">
-    <value>Statistics</value>
+    <value>Mga Istatistika</value>
   </data>
   <data name="TargetAccountLabel" xml:space="preserve">
-    <value>Target Account</value>
+    <value>Target na account</value>
   </data>
   <data name="TimeRangeEndLabel" xml:space="preserve">
     <value>Time Range End</value>
@@ -706,13 +703,13 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Time Range Start</value>
   </data>
   <data name="TransferHeader" xml:space="preserve">
-    <value>Add transfer</value>
+    <value>Magdagdag ng Paglipat</value>
   </data>
   <data name="TransferLabel" xml:space="preserve">
     <value>Transfer</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the MoneyFox:</value>
+    <value>May hindi ba wastong pagsasalin o hindi naisalin? Tulungan ninyo kami! Pumunta sa crowdin at makatulong sa amin na mapagbuti ang MoneyFox:</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
     <value>There was an issue during the operation. Error Message {0}</value>
@@ -721,16 +718,16 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Upload backup was canceled.</value>
   </data>
   <data name="VersionLabel" xml:space="preserve">
-    <value>Version</value>
+    <value>Bersyon</value>
   </data>
   <data name="WebsiteLabel" xml:space="preserve">
     <value>Website</value>
   </data>
   <data name="WeeklyLabel" xml:space="preserve">
-    <value>Weekly</value>
+    <value>Lingguhan</value>
   </data>
   <data name="WelcomeLabel" xml:space="preserve">
-    <value>Welcome!</value>
+    <value>Maligayang Pagdating!</value>
   </data>
   <data name="WelcomePageSubtitle" xml:space="preserve">
     <value>Glad to have you!</value>
@@ -743,10 +740,10 @@ To start create a new account. Accounts are used to organize payments and money 
     <value>Windows Default</value>
   </data>
   <data name="YearlyLabel" xml:space="preserve">
-    <value>Yearly</value>
+    <value>Taon-taon</value>
   </data>
   <data name="YesLabel" xml:space="preserve">
-    <value>Yes</value>
+    <value>Oo</value>
   </data>
   <data name="AccountsToolTip" xml:space="preserve">
     <value>Manage your Accounts</value>
@@ -884,6 +881,6 @@ To start create a new account. Accounts are used to organize payments and money 
     <value>Enter note to this payment..</value>
   </data>
   <data name="GainsLabel" xml:space="preserve">
-        <value>Gains</value>
+        <value>Mga nadagdag</value>
     </data>
 </root>
