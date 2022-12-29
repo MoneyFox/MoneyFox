@@ -7,5 +7,3 @@ internal class Card : Border
         Shadow = new Shadow { Opacity = 0.2f };
     }
 }
-
-
