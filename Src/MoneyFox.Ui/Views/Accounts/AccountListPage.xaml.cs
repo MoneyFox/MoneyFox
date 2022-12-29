@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Views.Accounts;
+namespace MoneyFox.Ui.Views.Accounts;
 
 public partial class AccountListPage
 {
@@ -15,6 +15,3 @@ public partial class AccountListPage
         await ViewModel.OnAppearingAsync();
     }
 }
-
-
-

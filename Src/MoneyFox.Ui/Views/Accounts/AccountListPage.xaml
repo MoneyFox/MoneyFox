@@ -44,13 +44,6 @@
                     <DataTemplate x:DataType="accounts:AccountViewModel">
                         <Grid Padding="15,6,15,12">
                             <controls:Card HeightRequest="80">
-
-                                <controls:Card.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                            Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference Name=AccountCollectionView}}"
-                                            CommandParameter="{Binding .}" />
-                                    </controls:Card.GestureRecognizers>
-
                                 <SwipeView>
                                     <SwipeView.RightItems>
                                         <SwipeItems>
@@ -69,6 +62,12 @@
 
                                     <Grid BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                             Light={StaticResource CardBackgroundLight}}">
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference Name=AccountCollectionView}}"
+                                                CommandParameter="{Binding .}" />
+                                        </Grid.GestureRecognizers>
+
                                         <Label
                                             Margin="10,2,0,0"
                                             HorizontalTextAlignment="Start"
