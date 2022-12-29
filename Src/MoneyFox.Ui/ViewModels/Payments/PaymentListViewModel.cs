@@ -138,7 +138,7 @@ internal sealed class PaymentListViewModel : BaseViewModel
     private void CalculateSubBalances(DateListGroupCollection<PaymentViewModel> group)
     {
         group.Subtitle = string.Format(
-            format: Strings.ExpenseAndIncomeTemplate,
+            format: Translations.ExpenseAndIncomeTemplate,
             arg0: group.Where(x => x.Type != PaymentType.Income && x.ChargedAccount.Id == SelectedAccount.Id)
                 .Sum(x => x.Amount)
                 .ToString(format: "C", provider: CultureHelper.CurrentCulture),

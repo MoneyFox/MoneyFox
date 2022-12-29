@@ -12,11 +12,11 @@ internal class BudgetTimeRangeStringConverter : IValueConverter
 
         return timeRange switch
         {
-            BudgetTimeRange.YearToDate => Strings.YearToDateLabel,
-            BudgetTimeRange.Last1Year => Strings.LastYearLabel,
-            BudgetTimeRange.Last2Years => Strings.LastTwoYearsLabel,
-            BudgetTimeRange.Last3Years => Strings.LastThreeYearsLabel,
-            BudgetTimeRange.Last5Years => Strings.LastFiveYearsLabel
+            BudgetTimeRange.YearToDate => Translations.YearToDateLabel,
+            BudgetTimeRange.Last1Year => Translations.LastYearLabel,
+            BudgetTimeRange.Last2Years => Translations.LastTwoYearsLabel,
+            BudgetTimeRange.Last3Years => Translations.LastThreeYearsLabel,
+            BudgetTimeRange.Last5Years => Translations.LastFiveYearsLabel
         };
     }
 

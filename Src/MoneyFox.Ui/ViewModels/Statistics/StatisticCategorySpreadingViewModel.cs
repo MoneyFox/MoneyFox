@@ -44,7 +44,7 @@ internal sealed class StatisticCategorySpreadingViewModel : StatisticViewModel
         var pieSeries = statisticEntries.Select(
             x => new PieSeries<decimal>
             {
-                Name = x.Label,
+                Name = x.CategoryName,
                 TooltipLabelFormatter = point => $"{point.Context.Series.Name}: {point.PrimaryValue:C}",
                 DataLabelsFormatter = point => $"{point.Context.Series.Name}: {point.PrimaryValue:C}",
                 Values = new List<decimal> { x.Value },

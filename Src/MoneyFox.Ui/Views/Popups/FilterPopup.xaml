@@ -1,7 +1,7 @@
 ﻿<views:Popup
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources"
     xmlns:views="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:popup="clr-namespace:MoneyFox.Ui.Views.Popups"
@@ -13,37 +13,37 @@
 
     <Grid RowDefinitions="*, 40">
         <StackLayout Padding="15" Spacing="6">
-            <Label Text="{x:Static resources:Strings.SelectFilterTitle}"
+            <Label Text="{x:Static resources:Translations.SelectFilterTitle}"
                    Style="{DynamicResource TextTitle}" />
 
             <Grid Margin="0,6,0,0">
-                <Label Text="{x:Static resources:Strings.IsClearedLabel}"
+                <Label Text="{x:Static resources:Translations.IsClearedLabel}"
                        HorizontalOptions="Start" />
                 <Switch IsToggled="{Binding IsClearedFilterActive}"
                         HorizontalOptions="End" />
             </Grid>
 
             <Grid Margin="0,6,0,0">
-                <Label Text="{x:Static resources:Strings.IsRecurringLabel}"
+                <Label Text="{x:Static resources:Translations.IsRecurringLabel}"
                        HorizontalOptions="Start" />
                 <Switch IsToggled="{Binding IsRecurringFilterActive}"
                         HorizontalOptions="End" />
             </Grid>
 
-            <controls:PaymentTypePicker PickerTitle="{x:Static resources:Strings.PaymentTypeLabel}"
+            <controls:PaymentTypePicker PickerTitle="{x:Static resources:Translations.PaymentTypeLabel}"
                                         PaymentTypeSource="{Binding PaymentTypeFilterList}"
                                         SelectedType="{Binding FilteredPaymentType}" />
 
 
-            <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Strings.TimeRangeStartLabel}"
+            <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Translations.TimeRangeStartLabel}"
                                        DateField="{Binding TimeRangeStart}" />
 
-            <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Strings.TimeRangeEndLabel}"
+            <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Translations.TimeRangeEndLabel}"
                                        DateField="{Binding TimeRangeEnd}" />
         </StackLayout>
 
         <Button Grid.Row="1"
-                Text="{x:Static resources:Strings.DoneLabel}"
+                Text="{x:Static resources:Translations.DoneLabel}"
                 Clicked="Button_OnClicked" />
     </Grid>
 </views:Popup>

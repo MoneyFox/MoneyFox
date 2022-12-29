@@ -885,4 +885,7 @@ To start create a new account. Accounts are used to organize payments and money 
     <data name="NotePlaceholderLabel" xml:space="preserve">
     <value>Enter note to this payment..</value>
   </data>
+    <data name="GainsLabel" xml:space="preserve">
+        <value>Gains</value>
+    </data>
 </root>

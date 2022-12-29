@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core._Pending_.Common.QueryObjects;
+﻿namespace MoneyFox.Core.Common.Extensions.QueryObjects;
 
 using System;
 using System.Linq;

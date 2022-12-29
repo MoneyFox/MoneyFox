@@ -1,7 +1,7 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MoneyFox.Ui.Views.Statistics.StatisticAccountMonthlyCashFlowPage"
-             xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+             xmlns:resources="clr-namespace:MoneyFox.Core.Resources"
              xmlns:forms="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
              xmlns:statistics="clr-namespace:MoneyFox.Ui.ViewModels.Statistics"
              xmlns:views="clr-namespace:MoneyFox.Ui.Views"
@@ -12,7 +12,7 @@
             <Label Style="{StaticResource PageTitle}"
                    HorizontalOptions="Start"
                    VerticalOptions="Center"
-                   Text="{x:Static resources:Strings.MonthlyCashflowTitle}" />
+                   Text="{x:Static resources:Translations.MonthlyCashflowTitle}" />
 
             <ImageButton Grid.Column="1"
                          Padding="0"
@@ -37,7 +37,7 @@
                    Text="{Binding Title}" />
 
             <Picker Grid.Row="1"
-                    Title="{x:Static resources:Strings.SelectedAccountHeader}"
+                    Title="{x:Static resources:Translations.SelectedAccountHeader}"
                     ItemsSource="{Binding Accounts}"
                     SelectedItem="{Binding SelectedAccount, Mode=TwoWay}"
                     ItemDisplayBinding="{Binding Name}" />

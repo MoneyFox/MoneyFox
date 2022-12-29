@@ -2,11 +2,11 @@
     x:Class="MoneyFox.Ui.Views.Accounts.AccountListPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:accounts="clr-namespace:MoneyFox.Ui.Views.Accounts"
-    Title="{x:Static resources:Strings.AccountsTitle}">
+    Title="{x:Static resources:Translations.AccountsTitle}">
 
     <ContentPage.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
@@ -18,7 +18,7 @@
             <Button
                 Margin="0,0,12,0"
                 HorizontalOptions="End"
-                Text="{x:Static resources:Strings.AddAccountLabel}"
+                Text="{x:Static resources:Translations.AddAccountLabel}"
                 VerticalOptions="Center"
                 Command="{Binding GoToAddAccountCommand}" />
 
@@ -51,12 +51,12 @@
                                                 BackgroundColor="{AppThemeBinding Dark={StaticResource Gray900}, Light={StaticResource Gray100}}"
                                                 Command="{Binding Source={x:Reference AccountCollectionView}, Path=BindingContext.GoToEditAccountCommand}"
                                                 CommandParameter="{Binding .}"
-                                                Text="{x:Static resources:Strings.EditLabel}" />
+                                                Text="{x:Static resources:Translations.EditLabel}" />
                                             <SwipeItem
                                                 BackgroundColor="{AppThemeBinding Dark={StaticResource Gray900}, Light={StaticResource Gray100}}"
                                                 Command="{Binding Source={x:Reference AccountCollectionView}, Path=BindingContext.DeleteAccountCommand}"
                                                 CommandParameter="{Binding .}"
-                                                Text="{x:Static resources:Strings.DeleteLabel}" />
+                                                Text="{x:Static resources:Translations.DeleteLabel}" />
                                         </SwipeItems>
                                     </SwipeView.RightItems>
 
@@ -94,7 +94,7 @@
                                                 FontFamily="Product"
                                                 FontSize="15"
                                                 HorizontalTextAlignment="End"
-                                                Text="{x:Static resources:Strings.EndOfMonthLabel}"
+                                                Text="{x:Static resources:Translations.EndOfMonthLabel}"
                                                 VerticalTextAlignment="End" />
 
                                             <Label
@@ -119,7 +119,7 @@
                                Margin="10,0,10,0"
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Center"
-                               Text="{x:Static resources:Strings.NoAccountsMessage}" />
+                               Text="{x:Static resources:Translations.NoAccountsMessage}" />
                     </Grid>
                 </CollectionView.EmptyView>
             </CollectionView>

@@ -1,18 +1,15 @@
-﻿namespace MoneyFox.Core._Pending_.Common;
+﻿namespace MoneyFox.Core.Common.Extensions;
 
 using System;
-using Core.Common.Helpers;
+using Helpers;
 
-/// <summary>
-///     Utility methods
-/// </summary>
-public static class HelperFunctions
+public static class SystemDateHelperExtensions
 {
     /// <summary>
     ///     Returns the first day of the current month.
     /// </summary>
     /// <returns></returns>
-    public static DateTime GetFirstDayMonth(ISystemDateHelper systemDateHelper)
+    public static DateTime GetFirstDayMonth(this ISystemDateHelper systemDateHelper)
     {
         return new(year: systemDateHelper.Today.Year, month: systemDateHelper.Today.Month, day: 1);
     }
@@ -21,7 +18,7 @@ public static class HelperFunctions
     ///     Returns the last day of the month
     /// </summary>
     /// <returns>Last day of the month</returns>
-    public static DateTime GetEndOfMonth(ISystemDateHelper systemDateHelper)
+    public static DateTime GetEndOfMonth(this ISystemDateHelper systemDateHelper)
     {
         var today = systemDateHelper.Today;
 

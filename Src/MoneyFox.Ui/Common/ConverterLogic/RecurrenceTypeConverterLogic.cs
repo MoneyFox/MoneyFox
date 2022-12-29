@@ -9,15 +9,15 @@ public static class RecurrenceTypeConverterLogic
     {
         return passedEnum switch
         {
-            PaymentRecurrence.Daily => Strings.DailyLabel,
-            PaymentRecurrence.DailyWithoutWeekend => Strings.DailyWithoutWeekendLabel,
-            PaymentRecurrence.Weekly => Strings.WeeklyLabel,
-            PaymentRecurrence.Biweekly => Strings.BiweeklyLabel,
-            PaymentRecurrence.Monthly => Strings.MonthlyLabel,
-            PaymentRecurrence.Bimonthly => Strings.BimonthlyLabel,
-            PaymentRecurrence.Quarterly => Strings.QuarterlyLabel,
-            PaymentRecurrence.Biannually => Strings.BiannuallyLabel,
-            PaymentRecurrence.Yearly => Strings.YearlyLabel,
+            PaymentRecurrence.Daily => Translations.DailyLabel,
+            PaymentRecurrence.DailyWithoutWeekend => Translations.DailyWithoutWeekendLabel,
+            PaymentRecurrence.Weekly => Translations.WeeklyLabel,
+            PaymentRecurrence.Biweekly => Translations.BiweeklyLabel,
+            PaymentRecurrence.Monthly => Translations.MonthlyLabel,
+            PaymentRecurrence.Bimonthly => Translations.BimonthlyLabel,
+            PaymentRecurrence.Quarterly => Translations.QuarterlyLabel,
+            PaymentRecurrence.Biannually => Translations.BiannuallyLabel,
+            PaymentRecurrence.Yearly => Translations.YearlyLabel,
             _ => string.Empty
         };
     }

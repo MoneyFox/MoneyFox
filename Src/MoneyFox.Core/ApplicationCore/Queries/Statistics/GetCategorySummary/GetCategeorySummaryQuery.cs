@@ -5,13 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using _Pending_.Common.QueryObjects;
+using Common.Extensions.QueryObjects;
 using Common.Interfaces;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.CategoryAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Resources;
 
 public class GetCategorySummaryQuery : IRequest<CategorySummaryModel>
 {
@@ -88,7 +87,7 @@ public class GetCategorySummaryQueryHandler : IRequestHandler<GetCategorySummary
         categoryOverviewItems.Add(
             new()
             {
-                Label = Strings.NoCategoryLabel,
+                Label = "-",
                 Value = payments.Where(x => x.Category == null)
                     .Where(x => x.Type != PaymentType.Transfer)
                     .Sum(x => x.Type == PaymentType.Expense ? -x.Amount : x.Amount),
@@ -96,7 +95,7 @@ public class GetCategorySummaryQueryHandler : IRequestHandler<GetCategorySummary
             });
     }
 
-    private static void CalculatePercentage(IEnumerable<CategoryOverviewItem> categories)
+    private static void CalculatePercentage(ICollection<CategoryOverviewItem> categories)
     {
         var sumNegative = categories.Where(x => x.Value < 0).Sum(x => x.Value);
         var sumPositive = categories.Where(x => x.Value > 0).Sum(x => x.Value);

@@ -13,7 +13,6 @@ using NSubstitute;
 [ExcludeFromCodeCoverage]
 public class BackupServiceTests
 {
-    private readonly IAppDbContext appDbMock;
     private readonly BackupService backupService;
     private readonly Mock<IOneDriveBackupService> cloudBackupServiceMock;
     private readonly Mock<IConnectivityAdapter> connectivityAdapterMock;
@@ -24,7 +23,7 @@ public class BackupServiceTests
         cloudBackupServiceMock = new();
         settingsFacadeMock = new();
         connectivityAdapterMock = new();
-        appDbMock = Substitute.For<IAppDbContext>();
+        var appDbMock = Substitute.For<IAppDbContext>();
         var dbPathProvider = Substitute.For<IDbPathProvider>();
         dbPathProvider.GetDbPath().Returns(Path.GetTempFileName());
         backupService = new(
@@ -32,7 +31,6 @@ public class BackupServiceTests
             fileStore: new Mock<IFileStore>().Object,
             settingsFacade: settingsFacadeMock.Object,
             connectivity: connectivityAdapterMock.Object,
-            toastService: Substitute.For<IToastService>(),
             dbPathProvider: dbPathProvider,
             appDbContext: appDbMock);
     }

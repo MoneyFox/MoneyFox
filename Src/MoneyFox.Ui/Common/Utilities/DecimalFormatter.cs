@@ -5,14 +5,14 @@ using System.Globalization;
 /// <summary>
 ///     Utility methods
 /// </summary>
-public static class HelperFunctions
+public static class DecimalFormatter
 {
     /// <summary>
     ///     Returns the decimal converted to a string in a proper format for this culture.
     /// </summary>
     /// <param name="value">decimal who shall be converted</param>
-    /// <returns>Formated string.</returns>
-    public static string FormatLargeNumbers(decimal value)
+    /// <returns>Formatted string.</returns>
+    public static string AsLargeNumber(decimal value)
     {
         return value.ToString(format: "N2", provider: CultureInfo.CurrentCulture);
     }

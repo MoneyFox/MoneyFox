@@ -12,10 +12,10 @@ public class PaymentTypeFilterConverter : IValueConverter
 
         return filteredPaymentType switch
         {
-            PaymentTypeFilter.All => Strings.AllLabel,
-            PaymentTypeFilter.Expense => Strings.ExpenseLabel,
-            PaymentTypeFilter.Income => Strings.IncomeLabel,
-            PaymentTypeFilter.Transfer => Strings.TransferLabel,
+            PaymentTypeFilter.All => Translations.AllLabel,
+            PaymentTypeFilter.Expense => Translations.ExpenseLabel,
+            PaymentTypeFilter.Income => Translations.IncomeLabel,
+            PaymentTypeFilter.Transfer => Translations.TransferLabel,
             _ => string.Empty
         };
     }

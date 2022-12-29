@@ -170,7 +170,7 @@ internal sealed class BackupViewModel : BaseViewModel
 
         if (!connectivity.IsConnected)
         {
-            await dialogService.ShowMessageAsync(title: Strings.NoNetworkTitle, message: Strings.NoNetworkMessage);
+            await dialogService.ShowMessageAsync(title: Translations.NoNetworkTitle, message: Translations.NoNetworkMessage);
         }
 
         IsLoadingBackupAvailability = true;
@@ -191,14 +191,14 @@ internal sealed class BackupViewModel : BaseViewModel
         {
             Log.Error(exception: ex, messageTemplate: "Issue during Login process");
             await backupService.LogoutAsync();
-            await dialogService.ShowMessageAsync(title: Strings.AuthenticationFailedTitle, message: Strings.ErrorMessageAuthenticationFailed);
+            await dialogService.ShowMessageAsync(title: Translations.AuthenticationFailedTitle, message: Translations.ErrorMessageAuthenticationFailed);
         }
         catch (Exception ex)
         {
             if (ex.StackTrace == "4f37.717b")
             {
                 await backupService.LogoutAsync();
-                await dialogService.ShowMessageAsync(title: Strings.AuthenticationFailedTitle, message: Strings.ErrorMessageAuthenticationFailed);
+                await dialogService.ShowMessageAsync(title: Translations.AuthenticationFailedTitle, message: Translations.ErrorMessageAuthenticationFailed);
             }
 
             Log.Error(exception: ex, messageTemplate: "Issue on loading backup view");
@@ -212,7 +212,7 @@ internal sealed class BackupViewModel : BaseViewModel
         if (!connectivity.IsConnected)
         {
             Log.Information("Tried to log in, but device isn't connected to the internet");
-            await dialogService.ShowMessageAsync(title: Strings.NoNetworkTitle, message: Strings.NoNetworkMessage);
+            await dialogService.ShowMessageAsync(title: Translations.NoNetworkTitle, message: Translations.NoNetworkMessage);
         }
 
         try
@@ -224,14 +224,14 @@ internal sealed class BackupViewModel : BaseViewModel
         }
         catch (BackupOperationCanceledException)
         {
-            await dialogService.ShowMessageAsync(title: Strings.CanceledTitle, message: Strings.LoginCanceledMessage);
+            await dialogService.ShowMessageAsync(title: Translations.CanceledTitle, message: Translations.LoginCanceledMessage);
         }
         catch (Exception ex)
         {
             Log.Error(exception: ex, messageTemplate: "Login Failed");
             await dialogService.ShowMessageAsync(
-                title: Strings.LoginFailedTitle,
-                message: string.Format(format: Strings.UnknownErrorMessage, arg0: ex.Message));
+                title: Translations.LoginFailedTitle,
+                message: string.Format(format: Translations.UnknownErrorMessage, arg0: ex.Message));
         }
 
         OnPropertyChanged(nameof(IsLoggedIn));
@@ -246,12 +246,12 @@ internal sealed class BackupViewModel : BaseViewModel
         }
         catch (BackupOperationCanceledException)
         {
-            await dialogService.ShowMessageAsync(title: Strings.CanceledTitle, message: Strings.LogoutCanceledMessage);
+            await dialogService.ShowMessageAsync(title: Translations.CanceledTitle, message: Translations.LogoutCanceledMessage);
         }
         catch (Exception ex)
         {
             Log.Error(exception: ex, messageTemplate: "Logout Failed");
-            await dialogService.ShowMessageAsync(title: Strings.GeneralErrorTitle, message: ex.Message);
+            await dialogService.ShowMessageAsync(title: Translations.GeneralErrorTitle, message: ex.Message);
         }
 
         // ReSharper disable once ExplicitCallerInfoArgument
@@ -273,12 +273,12 @@ internal sealed class BackupViewModel : BaseViewModel
         }
         catch (BackupOperationCanceledException)
         {
-            await dialogService.ShowMessageAsync(title: Strings.CanceledTitle, message: Strings.UploadBackupCanceledMessage);
+            await dialogService.ShowMessageAsync(title: Translations.CanceledTitle, message: Translations.UploadBackupCanceledMessage);
         }
         catch (Exception ex)
         {
             Log.Error(exception: ex, messageTemplate: "Create Backup failed");
-            await dialogService.ShowMessageAsync(title: Strings.BackupFailedTitle, message: ex.Message);
+            await dialogService.ShowMessageAsync(title: Translations.BackupFailedTitle, message: ex.Message);
         }
 
         await dialogService.HideLoadingDialogAsync();
@@ -289,12 +289,12 @@ internal sealed class BackupViewModel : BaseViewModel
         switch (uploadResult)
         {
             case UploadBackup.UploadResult.Successful:
-                await toastService.ShowToastAsync(Strings.BackupCreatedMessage);
+                await toastService.ShowToastAsync(Translations.BackupCreatedMessage);
                 BackupLastModified = DateTime.Now;
 
                 break;
             case UploadBackup.UploadResult.Skipped:
-                await toastService.ShowToastAsync(Strings.BackupUploadSkippedMessage);
+                await toastService.ShowToastAsync(Translations.BackupUploadSkippedMessage);
 
                 break;
         }
@@ -315,17 +315,17 @@ internal sealed class BackupViewModel : BaseViewModel
             try
             {
                 await backupService.RestoreBackupAsync(BackupMode.Manual);
-                await toastService.ShowToastAsync(Strings.BackupRestoredMessage);
+                await toastService.ShowToastAsync(Translations.BackupRestoredMessage);
             }
             catch (BackupOperationCanceledException)
             {
                 Log.Information("Restoring the backup was canceled by the user");
-                await dialogService.ShowMessageAsync(title: Strings.CanceledTitle, message: Strings.RestoreBackupCanceledMessage);
+                await dialogService.ShowMessageAsync(title: Translations.CanceledTitle, message: Translations.RestoreBackupCanceledMessage);
             }
             catch (Exception ex)
             {
                 Log.Error(exception: ex, messageTemplate: "Restore Backup failed");
-                await dialogService.ShowMessageAsync(title: Strings.BackupFailedTitle, message: ex.Message);
+                await dialogService.ShowMessageAsync(title: Translations.BackupFailedTitle, message: ex.Message);
             }
         }
         else
@@ -339,27 +339,27 @@ internal sealed class BackupViewModel : BaseViewModel
     private async Task<bool> ShowOverwriteBackupInfoAsync()
     {
         return await dialogService.ShowConfirmMessageAsync(
-            title: Strings.OverwriteTitle,
-            message: Strings.OverwriteBackupMessage,
-            positiveButtonText: Strings.YesLabel,
-            negativeButtonText: Strings.NoLabel);
+            title: Translations.OverwriteTitle,
+            message: Translations.OverwriteBackupMessage,
+            positiveButtonText: Translations.YesLabel,
+            negativeButtonText: Translations.NoLabel);
     }
 
     private async Task<bool> ShowOverwriteDataInfoAsync()
     {
         return await dialogService.ShowConfirmMessageAsync(
-            title: Strings.OverwriteTitle,
-            message: Strings.OverwriteDataMessage,
-            positiveButtonText: Strings.YesLabel,
-            negativeButtonText: Strings.NoLabel);
+            title: Translations.OverwriteTitle,
+            message: Translations.OverwriteDataMessage,
+            positiveButtonText: Translations.YesLabel,
+            negativeButtonText: Translations.NoLabel);
     }
 
     private async Task<bool> ShowForceOverrideConfirmationAsync()
     {
         return await dialogService.ShowConfirmMessageAsync(
-            title: Strings.ForceOverrideBackupTitle,
-            message: Strings.ForceOverrideBackupMessage,
-            positiveButtonText: Strings.YesLabel,
-            negativeButtonText: Strings.NoLabel);
+            title: Translations.ForceOverrideBackupTitle,
+            message: Translations.ForceOverrideBackupMessage,
+            positiveButtonText: Translations.YesLabel,
+            negativeButtonText: Translations.NoLabel);
     }
 }

@@ -3,7 +3,7 @@
 <ContentView
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:budget="clr-namespace:MoneyFox.Ui.Views.Budget"
@@ -19,31 +19,31 @@
 
     <VerticalStackLayout Spacing="6">
 
-        <controls:TextEntry TextFieldTitle="{x:Static resources:Strings.BudgetNameLabel}"
-                            EntryPlaceholder="{x:Static resources:Strings.BudgetNameLabel}"
+        <controls:TextEntry TextFieldTitle="{x:Static resources:Translations.BudgetNameLabel}"
+                            EntryPlaceholder="{x:Static resources:Translations.BudgetNameLabel}"
                             EntryText="{Binding Name}" />
 
         <controls:AmountEntry x:Name="AmountEntry"
-                              AmountFieldTitle="{x:Static resources:Strings.AmountLabel}"
-                              EntryPlaceholder="{x:Static resources:Strings.MonthlySpendingLimitLabel}"
+                              AmountFieldTitle="{x:Static resources:Translations.AmountLabel}"
+                              EntryPlaceholder="{x:Static resources:Translations.MonthlySpendingLimitLabel}"
                               Amount="{Binding SpendingLimit, Converter={StaticResource DecimalConverter}}" />
 
         <Label Margin="3,0,0,0"
                Style="{StaticResource TextBodySecondary}"
-               Text="{x:Static resources:Strings.EvaluationTimeRangeLabel}" />
+               Text="{x:Static resources:Translations.EvaluationTimeRangeLabel}" />
 
-        <Picker Title="{x:Static resources:Strings.EvaluationTimeRangeLabel}"
+        <Picker Title="{x:Static resources:Translations.EvaluationTimeRangeLabel}"
                 ItemsSource="{Binding TimeRangeCollection}"
                 SelectedItem="{Binding TimeRange}"
                 ItemDisplayBinding="{Binding ., Converter={StaticResource BudgetTimeRangeStringConverter}}" />
 
-        <Label Text="{x:Static resources:Strings.EvaluationTimeRangeMessage}"
+        <Label Text="{x:Static resources:Translations.EvaluationTimeRangeMessage}"
                Style="{StaticResource TextBodySecondary}" />
 
-        <Button Text="{x:Static resources:Strings.SelectCategoryLabel}"
+        <Button Text="{x:Static resources:Translations.SelectCategoryLabel}"
                 Command="{Binding OpenCategorySelectionCommand}" />
 
-        <Label Text="{x:Static resources:Strings.SelectedCategoriesLabel}" />
+        <Label Text="{x:Static resources:Translations.SelectedCategoriesLabel}" />
         <CollectionView x:Name="BudgetCategoryCollectionView"
                         SelectionMode="Single"
                         ItemsLayout="VerticalGrid, 2"

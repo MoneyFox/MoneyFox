@@ -41,19 +41,19 @@ internal abstract class ModifyCategoryViewModel : BaseViewModel
     {
         if (string.IsNullOrEmpty(SelectedCategory.Name))
         {
-            await dialogService.ShowMessageAsync(title: Strings.MandatoryFieldEmptyTitle, message: Strings.NameRequiredMessage);
+            await dialogService.ShowMessageAsync(title: Translations.MandatoryFieldEmptyTitle, message: Translations.NameRequiredMessage);
 
             return;
         }
 
         if (await mediator.Send(new GetIfCategoryWithNameExistsQuery(SelectedCategory.Name)))
         {
-            await dialogService.ShowMessageAsync(title: Strings.DuplicatedNameTitle, message: Strings.DuplicateCategoryMessage);
+            await dialogService.ShowMessageAsync(title: Translations.DuplicatedNameTitle, message: Translations.DuplicateCategoryMessage);
 
             return;
         }
 
-        await dialogService.ShowLoadingDialogAsync(Strings.SavingCategoryMessage);
+        await dialogService.ShowLoadingDialogAsync(Translations.SavingCategoryMessage);
         await SaveCategoryAsync();
         Messenger.Send(new ReloadMessage());
         await dialogService.HideLoadingDialogAsync();

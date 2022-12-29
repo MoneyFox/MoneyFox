@@ -12,7 +12,7 @@ public partial class CategorySelectionPopup
         var cancelItem = new ToolbarItem
         {
             Command = new Command(async () => await Navigation.PopModalAsync()),
-            Text = Strings.CancelLabel,
+            Text = Translations.CancelLabel,
             Priority = -1,
             Order = ToolbarItemOrder.Primary
         };
