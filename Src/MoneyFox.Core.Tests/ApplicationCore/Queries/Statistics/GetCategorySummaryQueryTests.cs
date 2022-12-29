@@ -6,7 +6,6 @@ using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.ApplicationCore.Queries.Statistics.GetCategorySummary;
 using FluentAssertions;
 using Infrastructure.Persistence;
-using Resources;
 using TestFramework;
 
 [ExcludeFromCodeCoverage]
@@ -65,7 +64,7 @@ public class GetCategorySummaryQueryTests
         };
 
         context.Payments.AddRange(paymentList);
-        context.SaveChanges();
+        await context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(
@@ -118,7 +117,7 @@ public class GetCategorySummaryQueryTests
         };
 
         context.Payments.AddRange(paymentList);
-        context.SaveChanges();
+        await context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(
@@ -163,7 +162,7 @@ public class GetCategorySummaryQueryTests
         };
 
         context.Payments.AddRange(paymentList);
-        context.SaveChanges();
+        await context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(
@@ -183,7 +182,7 @@ public class GetCategorySummaryQueryTests
         var account = new Account("test");
         var paymentList = new List<Payment> { new(date: DateTime.Today, amount: 60, type: PaymentType.Expense, chargedAccount: account) };
         context.Payments.AddRange(paymentList);
-        context.SaveChanges();
+        await context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(
@@ -201,7 +200,7 @@ public class GetCategorySummaryQueryTests
         var account = new Account("test");
         var paymentList = new List<Payment> { new(date: DateTime.Today, amount: 60, type: PaymentType.Expense, chargedAccount: account) };
         context.Payments.AddRange(paymentList);
-        context.SaveChanges();
+        await context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(
@@ -209,6 +208,6 @@ public class GetCategorySummaryQueryTests
             cancellationToken: default);
 
         // Assert
-        result.CategoryOverviewItems[0].Label.Should().Be(Translations.NoCategoryLabel);
+        result.CategoryOverviewItems[0].Label.Should().Be("Other");
     }
 }
