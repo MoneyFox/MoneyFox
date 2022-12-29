@@ -2,6 +2,7 @@
 
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Core.Common.Extensions;
 using Core.Common.Messages;
 using ViewModels;
 
