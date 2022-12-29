@@ -5,7 +5,6 @@ using ApplicationCore.Domain.Aggregates;
 using ApplicationCore.Domain.Aggregates.AccountAggregate;
 using ApplicationCore.Domain.Exceptions;
 using Common.Extensions;
-using Resources;
 
 internal static class RecurrenceHelper
 {
@@ -70,7 +69,8 @@ internal static class RecurrenceHelper
             case PaymentRecurrence.DailyWithoutWeekend:
                 if (currDate.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday)
                 {
-                    throw new InvalidOperationException($"Unable to create a {Translations.DailyWithoutWeekendLabel} recurring payment on a {currDate.DayOfWeek}");
+                    throw new InvalidOperationException(
+                        $"Unable to create a {Translations.DailyWithoutWeekendLabel} recurring payment on a {currDate.DayOfWeek}");
                 }
 
                 return currDate;
