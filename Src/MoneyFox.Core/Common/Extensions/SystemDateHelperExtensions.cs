@@ -1,12 +1,9 @@
-﻿namespace MoneyFox.Core._Pending_.Common;
+﻿namespace MoneyFox.Core.Common.Extensions;
 
 using System;
-using Core.Common.Helpers;
+using Helpers;
 
-/// <summary>
-///     Utility methods
-/// </summary>
-public static class HelperFunctions
+public static class SystemDateHelperExtensions
 {
     /// <summary>
     ///     Returns the first day of the current month.
