@@ -1,3 +1,3 @@
 files:
-  - source: /**/Strings.resx
-    translation: /**/Strings.%two_letters_code%.resx
+  - source: /**/Translations.resx
+    translation: /**/Translations.%two_letters_code%.resx
