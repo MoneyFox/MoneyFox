@@ -11,5 +11,3 @@ internal sealed class CategoryIntroductionViewModel : BaseViewModel
 
     public AsyncRelayCommand BackCommand => new(async () => await Shell.Current.Navigation.PopAsync());
 }
-
-

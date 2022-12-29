@@ -38,6 +38,3 @@ public class CategoryQueryExtensionsTests
         Assert.Equal(expected: "Foo3", actual: resultList[2].Name);
     }
 }
-
-
-

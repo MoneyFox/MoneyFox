@@ -16,7 +16,8 @@
             <Tab.Icon>
                 <FontImageSource FontFamily="MaterialIcons"
                                  Glyph="{x:Static views:IconFont.HomeOutline}"
-                                 Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}" Size="24" />
+                                 Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
+                                 Size="24" />
             </Tab.Icon>
             <ShellContent>
                 <dashboard:DashboardPage />
@@ -27,7 +28,8 @@
             <Tab.Icon>
                 <FontImageSource FontFamily="MaterialIcons"
                                  Glyph="{x:Static views:IconFont.ChartArc}"
-                                 Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}" Size="24" />
+                                 Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
+                                 Size="24" />
             </Tab.Icon>
             <ShellContent Title="{x:Static resources:Strings.StatisticsTitle}">
                 <selector:StatisticSelectorPage />
@@ -38,7 +40,8 @@
             <Tab.Icon>
                 <FontImageSource FontFamily="MaterialIcons"
                                  Glyph="{x:Static views:IconFont.DotsHorizontal}"
-                                 Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}" Size="24" />
+                                 Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
+                                 Size="24" />
             </Tab.Icon>
             <ShellContent>
                 <overflowMenu:OverflowMenuPage />

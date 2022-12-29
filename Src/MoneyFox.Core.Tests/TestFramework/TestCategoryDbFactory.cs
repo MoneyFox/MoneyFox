@@ -9,6 +9,3 @@ internal static class TestCategoryDbFactory
         return new(name: category.Name, note: category.Note, requireNote: category.RequireNote);
     }
 }
-
-
-

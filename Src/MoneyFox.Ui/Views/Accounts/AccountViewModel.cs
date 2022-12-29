@@ -193,6 +193,3 @@ public sealed class AccountViewModel : ObservableObject, IHaveCustomMapping, IEq
         return Id.GetHashCode();
     }
 }
-
-
-

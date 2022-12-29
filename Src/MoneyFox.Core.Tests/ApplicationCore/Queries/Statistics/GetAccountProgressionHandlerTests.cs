@@ -76,6 +76,3 @@ public class GetAccountProgressionHandlerTests
         result[2].Color.Should().Be("#cd3700");
     }
 }
-
-
-

@@ -17,6 +17,3 @@ public partial class SelectCategoryPage : ContentPage
         await ViewModel.InitializeAsync();
     }
 }
-
-
-

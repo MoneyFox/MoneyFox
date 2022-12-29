@@ -45,5 +45,3 @@ public partial class PaymentTypePicker : ContentView
         set => SetValue(property: SelectedTypeProperty, value: value);
     }
 }
-
-

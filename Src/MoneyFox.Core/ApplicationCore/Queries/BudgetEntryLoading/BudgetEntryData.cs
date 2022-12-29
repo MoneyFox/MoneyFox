@@ -5,7 +5,8 @@ using Domain.Aggregates.BudgetAggregate;
 
 public sealed class BudgetEntryData
 {
-    public BudgetEntryData(int id,
+    public BudgetEntryData(
+        int id,
         string name,
         decimal spendingLimit,
         BudgetTimeRange timeRange,

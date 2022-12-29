@@ -32,5 +32,3 @@ internal sealed class StatisticCashFlowViewModel : StatisticViewModel
         Series.AddRange(cartesianItems);
     }
 }
-
-

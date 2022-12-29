@@ -53,6 +53,3 @@ public class GetCategoryBySearchTermQueryTests
         Assert.Single(result);
     }
 }
-
-
-

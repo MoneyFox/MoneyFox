@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui.Converter;
 
-using System;
 using System.Globalization;
 
 public class DateGroupCardOpacityConverter : IValueConverter

@@ -70,6 +70,3 @@ public class GetAccountEndOfMonthBalanceQueryTests
         result.Should().Be(150);
     }
 }
-
-
-

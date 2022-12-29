@@ -13,4 +13,3 @@ public class ToastService : IToastService
         await toast.Show();
     }
 }
-

@@ -64,5 +64,3 @@ internal sealed class SettingsViewModel : BaseViewModel, ISettingsViewModel
         }
     }
 }
-
-

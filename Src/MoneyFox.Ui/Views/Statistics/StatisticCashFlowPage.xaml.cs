@@ -21,6 +21,3 @@ public partial class StatisticCashFlowPage
         Shell.Current.ShowPopup(popup);
     }
 }
-
-
-

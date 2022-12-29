@@ -25,6 +25,3 @@ internal static partial class TestData
         IReadOnlyList<int> Categories { get; }
     }
 }
-
-
-

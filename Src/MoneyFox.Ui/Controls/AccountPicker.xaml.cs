@@ -45,5 +45,3 @@ public partial class AccountPicker : ContentView
         set => SetValue(property: SelectedAccountProperty, value: value);
     }
 }
-
-

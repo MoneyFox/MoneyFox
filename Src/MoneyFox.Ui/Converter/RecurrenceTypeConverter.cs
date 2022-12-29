@@ -30,5 +30,3 @@ public class RecurrenceTypeConverter : IValueConverter
         throw new NotSupportedException();
     }
 }
-
-

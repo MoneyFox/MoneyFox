@@ -98,6 +98,3 @@ public class CategoryTests
         testCategory.RequireNote.Should().BeTrue();
     }
 }
-
-
-

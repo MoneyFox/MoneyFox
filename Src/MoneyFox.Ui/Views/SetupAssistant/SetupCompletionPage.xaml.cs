@@ -11,5 +11,3 @@ public partial class SetupCompletionPage : ContentPage
         BindingContext = App.GetViewModel<SetupCompletionViewModel>();
     }
 }
-
-

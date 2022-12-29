@@ -58,6 +58,3 @@ public class GetExcludedAccountQueryTests
         resultList[0].CurrentBalance.Should().Be(80);
     }
 }
-
-
-

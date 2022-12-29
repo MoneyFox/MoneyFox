@@ -1,7 +1,5 @@
 namespace MoneyFox.Core.ApplicationCore.Queries.BudgetListLoading;
 
-using Domain.Aggregates.BudgetAggregate;
-
 public class BudgetListData
 {
     public BudgetListData(int id, string name, decimal spendingLimit, decimal currentSpending)

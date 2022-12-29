@@ -10,6 +10,3 @@ public partial class AddAccountPage
 
     private AddAccountViewModel ViewModel => (AddAccountViewModel)BindingContext;
 }
-
-
-

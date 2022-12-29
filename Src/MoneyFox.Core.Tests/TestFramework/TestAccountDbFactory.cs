@@ -11,6 +11,3 @@ internal static class TestAccountDbFactory
             : new Account(name: account.Name, initialBalance: account.CurrentBalance, note: account.Note, isExcluded: account.IsExcluded);
     }
 }
-
-
-

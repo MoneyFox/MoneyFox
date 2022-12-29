@@ -20,5 +20,3 @@ public class DecimalConverter : IValueConverter
         return value;
     }
 }
-
-

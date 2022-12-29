@@ -1,15 +1,12 @@
 namespace MoneyFox.Ui.InversionOfControl;
 
 using Common.Services;
-using CommunityToolkit.Maui;
 using Core.Common.Interfaces;
 using Core.Interfaces;
 using Core.InversionOfControl;
 using Infrastructure.Adapters;
 using Mapping;
 using MoneyFox.Infrastructure.InversionOfControl;
-using MoneyFox.Ui.Views.Categories.ModifyCategory;
-using MoneyFox.Ui.Views.Statistics.CategorySummary;
 using ViewModels.Categories;
 using ViewModels.Payments;
 using ViewModels.Settings;
@@ -19,11 +16,12 @@ using Views.About;
 using Views.Accounts;
 using Views.Backup;
 using Views.Budget;
+using Views.Categories.ModifyCategory;
 using Views.Dashboard;
 using Views.OverflowMenu;
 using Views.Popups;
+using Views.Statistics.CategorySummary;
 using Views.Statistics.Selector;
-using EditCategoryViewModel = Views.Categories.ModifyCategory.EditCategoryViewModel;
 
 public sealed class MoneyFoxConfig
 {
@@ -86,4 +84,3 @@ public sealed class MoneyFoxConfig
             .AddTransient<ISettingsAdapter, SettingsAdapter>();
     }
 }
-

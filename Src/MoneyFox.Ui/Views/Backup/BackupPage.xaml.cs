@@ -15,5 +15,3 @@ public partial class BackupPage
         ViewModel.InitializeCommand.Execute(null);
     }
 }
-
-

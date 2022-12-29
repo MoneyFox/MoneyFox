@@ -11,6 +11,3 @@ internal static class TestBudgetDbFactory
         return new(name: budget.Name, spendingLimit: spendingLimit, timeRange: budget.BudgetTimeRange, includedCategories: budget.Categories);
     }
 }
-
-
-

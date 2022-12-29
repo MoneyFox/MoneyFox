@@ -4,6 +4,6 @@ internal class Card : Border
 {
     public Card()
     {
-        Shadow = new Shadow { Opacity = 0.2f };
+        Shadow = new() { Opacity = 0.2f };
     }
 }

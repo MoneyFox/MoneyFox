@@ -7,6 +7,3 @@ public partial class ModifyPaymentContentView
         InitializeComponent();
     }
 }
-
-
-

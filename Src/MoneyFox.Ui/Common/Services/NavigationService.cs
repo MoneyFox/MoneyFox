@@ -22,4 +22,3 @@ internal sealed class NavigationService : INavigationService
         await Shell.Current.Navigation.PopModalAsync();
     }
 }
-

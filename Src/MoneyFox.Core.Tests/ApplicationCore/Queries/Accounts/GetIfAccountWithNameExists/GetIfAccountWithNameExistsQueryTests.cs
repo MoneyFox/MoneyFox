@@ -39,6 +39,3 @@ public class GetIfAccountWithNameExistsQueryTests
         result.Should().Be(expectedResult);
     }
 }
-
-
-

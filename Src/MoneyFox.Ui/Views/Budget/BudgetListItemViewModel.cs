@@ -16,7 +16,7 @@ public sealed class BudgetListItemViewModel : ObservableObject
         set => SetProperty(field: ref name, newValue: value);
     }
 
-    public double SpendingPercentage => (double)CurrentSpending / (double) SpendingLimit;
+    public double SpendingPercentage => (double)CurrentSpending / (double)SpendingLimit;
 
     public decimal CurrentSpending
     {
@@ -30,6 +30,3 @@ public sealed class BudgetListItemViewModel : ObservableObject
         set => SetProperty(field: ref spendingLimit, newValue: value);
     }
 }
-
-
-

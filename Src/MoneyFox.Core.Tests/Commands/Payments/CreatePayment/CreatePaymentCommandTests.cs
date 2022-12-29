@@ -77,6 +77,3 @@ public class CreatePaymentCommandTests
         (await context.RecurringPayments.FindAsync(payment.RecurringPayment.Id)).Should().NotBeNull();
     }
 }
-
-
-

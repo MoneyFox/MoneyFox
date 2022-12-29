@@ -9,6 +9,3 @@ public class StatisticSelectorTypeViewModel
     public string Description { get; set; } = "";
     public StatisticType Type { get; set; }
 }
-
-
-

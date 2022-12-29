@@ -52,6 +52,3 @@ public sealed class UpdateBudgetShould
         AssertBudget(actual: capturedBudget!, expected: updatedBudget);
     }
 }
-
-
-

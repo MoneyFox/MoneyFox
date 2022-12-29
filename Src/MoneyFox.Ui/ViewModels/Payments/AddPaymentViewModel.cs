@@ -13,9 +13,9 @@ using MediatR;
 [UsedImplicitly]
 internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
 {
+    private readonly IDialogService dialogService;
     private readonly IMapper mapper;
     private readonly IMediator mediator;
-    private readonly IDialogService dialogService;
 
     public AddPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService) : base(
         mediator: mediator,
@@ -41,6 +41,7 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
                 ? ChargedAccounts.First(n => n.Id == defaultChargedAccountId.Value)
                 : ChargedAccounts.First();
         }
+
         IsFirstLoad = false;
     }
 

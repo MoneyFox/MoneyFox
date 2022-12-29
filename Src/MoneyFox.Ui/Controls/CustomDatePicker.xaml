@@ -2,29 +2,28 @@
 
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
              xmlns:views="clr-namespace:MoneyFox.Ui.Views"
              x:Name="this"
              x:Class="MoneyFox.Ui.Controls.CustomDatePicker">
 
     <VerticalStackLayout Spacing="6"
                          BindingContext="{x:Reference this}">
-        <Label 
+        <Label
             Margin="3,0,0,0"
             Style="{StaticResource TextBodySecondary}"
             Text="{Binding DatePickerTitle}" />
-        
+
         <Grid ColumnDefinitions="*, Auto">
             <DatePicker
                 Grid.ColumnSpan="2"
                 Date="{Binding DateField}"
                 Format="D" />
 
-            <Image Grid.Column="1" HeightRequest="20" WidthRequest="20" Margin="0,0,6,0" >
+            <Image Grid.Column="1" HeightRequest="20" WidthRequest="20" Margin="0,0,6,0">
                 <Image.Source>
                     <FontImageSource FontFamily="MaterialIcons"
-                                         Glyph="{x:Static views:IconFont.CalendarBlankOutline}"
-                                         Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                                     Glyph="{x:Static views:IconFont.CalendarBlankOutline}"
+                                     Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                 </Image.Source>
             </Image>
         </Grid>

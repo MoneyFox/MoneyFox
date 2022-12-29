@@ -5,7 +5,6 @@ using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Common.Messages;
 using Core.Interfaces;
-using Core.Resources;
 using Core.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;

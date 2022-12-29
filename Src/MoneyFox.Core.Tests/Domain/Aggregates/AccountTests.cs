@@ -265,6 +265,3 @@ public class AccountTests
         testAccount.IsDeactivated.Should().BeTrue();
     }
 }
-
-
-

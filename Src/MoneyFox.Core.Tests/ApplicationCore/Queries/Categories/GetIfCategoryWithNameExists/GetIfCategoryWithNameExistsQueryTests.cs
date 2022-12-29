@@ -58,6 +58,3 @@ public class GetIfCategoryWithNameExistsQueryTests : IDisposable
         result.Should().BeTrue();
     }
 }
-
-
-

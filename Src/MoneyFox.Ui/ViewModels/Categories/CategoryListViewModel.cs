@@ -45,6 +45,11 @@ internal partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadM
     public AsyncRelayCommand<CategoryViewModel> GoToEditCategoryCommand
         => new(async cvm => await Shell.Current.GoToAsync($"{Routes.EditCategoryRoute}?categoryId={cvm.Id}"));
 
+    public async void Receive(ReloadMessage message)
+    {
+        await SearchCategoryAsync();
+    }
+
     public async Task InitializeAsync()
     {
         await SearchCategoryAsync();
@@ -75,10 +80,5 @@ internal partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadM
             await mediator.Send(new DeleteCategoryByIdCommand(categoryViewModel.Id));
             await SearchCategoryAsync();
         }
-    }
-
-    public async void Receive(ReloadMessage message)
-    {
-        await SearchCategoryAsync();
     }
 }

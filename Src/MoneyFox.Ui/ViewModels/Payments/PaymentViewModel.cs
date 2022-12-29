@@ -349,5 +349,3 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
             .ReverseMap();
     }
 }
-
-

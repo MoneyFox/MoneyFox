@@ -35,7 +35,7 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Column="0"
-                   Style="{StaticResource TextBodySecondary}" 
+                   Style="{StaticResource TextBodySecondary}"
                    Text="{x:Static resources:Strings.IsExcludedLabel}"
                    VerticalOptions="Center" />
             <Switch

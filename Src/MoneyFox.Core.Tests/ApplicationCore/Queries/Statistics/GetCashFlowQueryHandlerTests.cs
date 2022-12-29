@@ -79,6 +79,3 @@ public class GetCashFlowQueryHandlerTests
         result[2].Label.Should().Be(Strings.IncreaseLabel);
     }
 }
-
-
-

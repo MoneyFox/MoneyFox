@@ -18,5 +18,3 @@ public class AccountNameConverter : IValueConverter
         throw new NotSupportedException();
     }
 }
-
-

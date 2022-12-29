@@ -363,5 +363,3 @@ internal sealed class BackupViewModel : BaseViewModel
             negativeButtonText: Strings.NoLabel);
     }
 }
-
-

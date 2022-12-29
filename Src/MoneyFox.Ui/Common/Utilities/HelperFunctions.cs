@@ -17,4 +17,3 @@ public static class HelperFunctions
         return value.ToString(format: "N2", provider: CultureInfo.CurrentCulture);
     }
 }
-

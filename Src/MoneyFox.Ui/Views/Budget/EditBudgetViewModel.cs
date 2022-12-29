@@ -18,19 +18,20 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
     private readonly INavigationService navigationService;
     private readonly ISender sender;
 
+    private bool isFirstLoad = true;
+
     public EditBudgetViewModel(ISender sender, INavigationService navigationService, IDialogService dialogService) : base(navigationService: navigationService)
     {
         this.sender = sender;
         this.navigationService = navigationService;
         this.dialogService = dialogService;
     }
+
     public int Id { get; set; }
 
     public AsyncRelayCommand<int> InitializeCommand => new(InitializeAsync);
 
     public AsyncRelayCommand DeleteBudgetCommand => new(DeleteBudgetAsync);
-
-    private bool isFirstLoad = true;
 
     private async Task InitializeAsync(int budgetId)
     {

@@ -2,10 +2,12 @@ namespace MoneyFox.Ui;
 
 using System.Reflection;
 using CommunityToolkit.Maui;
+using Controls;
+using Core.Common;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Maui.Handlers;
-using MoneyFox.Core.Common;
-using MoneyFox.Ui.Controls;
 using Serilog;
 using Serilog.Events;
 using Serilog.Exceptions;
@@ -15,13 +17,8 @@ public static class MauiProgram
 {
     public static MauiApp CreateMauiApp()
     {
-        using var stream = Assembly.GetExecutingAssembly()
-            .GetManifestResourceStream("MoneyFox.Ui.appsettings.json");
-
-        var configuration = new ConfigurationBuilder()
-                    .AddJsonStream(stream)
-                    .Build();
-
+        using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MoneyFox.Ui.appsettings.json");
+        var configuration = new ConfigurationBuilder().AddJsonStream(stream).Build();
         InitAppCenter(configuration);
         InitLogger();
         var builder = MauiApp.CreateBuilder();
@@ -35,31 +32,33 @@ public static class MauiProgram
                     fonts.AddFont(filename: "ProductSans-Regular.ttf", alias: "Product");
                     fonts.AddFont(filename: "materialdesignicons.ttf", alias: "MaterialIcons");
                 })
-            .ConfigureMauiHandlers(handlers =>
-            {
+            .ConfigureMauiHandlers(
+                handlers =>
+                {
 #if IOS
-                handlers.AddHandler(typeof(Shell), typeof(Platforms.iOS.Renderer.CustomShellRenderer));
+                    handlers.AddHandler(viewType: typeof(Shell), handlerType: typeof(CustomShellRenderer));
 #endif
-            })
+                })
             .UseSkiaSharp(true)
             .UseMauiCommunityToolkit();
 
-        EntryHandler.Mapper.AppendToMapping("Borderless", (handler, view) =>
-        {
-            if (view is BorderlessEntry)
+        EntryHandler.Mapper.AppendToMapping(
+            key: "Borderless",
+            method: (handler, view) =>
             {
+                if (view is BorderlessEntry)
+                {
 #if ANDROID
                 handler.PlatformView.Background = null;
                 handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
-#elif IOS    
-                handler.PlatformView.Layer.BorderWidth = 0;
-                handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
-
+#elif IOS
+                    handler.PlatformView.Layer.BorderWidth = 0;
+                    handler.PlatformView.BorderStyle = UITextBorderStyle.None;
 #elif WINDOWS
                 handler.PlatformView.BorderThickness = new Microsoft.UI.Xaml.Thickness(0);
 #endif
-            }
-        });
+                }
+            });
 
         return builder.Build();
     }
@@ -67,10 +66,10 @@ public static class MauiProgram
     private static void InitAppCenter(IConfiguration configuration)
     {
         var appCenter = configuration.GetRequiredSection("AppCenter").Get<AppCenter>()!;
-        Microsoft.AppCenter.AppCenter.Start($"android={appCenter.AndroidSecret};" +
-                                            $"uwp={appCenter.WindowsSecret};" +
-                                            $"ios={appCenter.IosSecret};",
-            typeof(Microsoft.AppCenter.Analytics.Analytics), typeof(Microsoft.AppCenter.Crashes.Crashes));
+        Microsoft.AppCenter.AppCenter.Start(
+            appSecret: $"android={appCenter.AndroidSecret};" + $"uwp={appCenter.WindowsSecret};" + $"ios={appCenter.IosSecret};",
+            typeof(Analytics),
+            typeof(Crashes));
     }
 
     private static void InitLogger()

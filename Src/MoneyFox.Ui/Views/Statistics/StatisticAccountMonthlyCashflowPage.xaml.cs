@@ -25,6 +25,3 @@ public partial class StatisticAccountMonthlyCashFlowPage
         Shell.Current.ShowPopup(popup);
     }
 }
-
-
-

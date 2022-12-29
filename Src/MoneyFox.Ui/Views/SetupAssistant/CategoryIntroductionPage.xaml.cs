@@ -11,6 +11,3 @@ public partial class CategoryIntroductionPage : ContentPage
         BindingContext = App.GetViewModel<CategoryIntroductionViewModel>();
     }
 }
-
-
-

@@ -22,4 +22,3 @@ public class TranslateExtension : IMarkupExtension
         return ResMgr.Value.GetString(name: Text, culture: CultureHelper.CurrentCulture) ?? Text;
     }
 }
-

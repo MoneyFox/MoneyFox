@@ -53,6 +53,3 @@ public class UpdateCategoryCommandTests
         loadedCategory.RequireNote.Should().BeTrue();
     }
 }
-
-
-

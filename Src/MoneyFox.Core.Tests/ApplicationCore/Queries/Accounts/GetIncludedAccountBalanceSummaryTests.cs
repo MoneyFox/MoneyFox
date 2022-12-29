@@ -38,6 +38,3 @@ public class GetIncludedAccountBalanceSummaryTests
         result.Should().Be(220);
     }
 }
-
-
-

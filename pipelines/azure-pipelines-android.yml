@@ -15,7 +15,7 @@ variables:
   Minor: '0'
 
 name: $(date:yyyy)$(DayOfYear)$(rev:rrr)
-steps:        
+steps:
   - task: UseDotNet@2
     displayName: 'Use correct .Net sdk'
     inputs:
@@ -86,7 +86,7 @@ steps:
       command: 'test'
       projects: '**/*.Tests.csproj'
       arguments: '--configuration $(BuildConfiguration)'
-      
+
   - task: CopyFiles@2
     displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
     inputs:

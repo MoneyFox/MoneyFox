@@ -20,6 +20,8 @@ internal sealed class PaymentForCategoryListViewModel : BaseViewModel, IRecipien
 
     private ObservableCollection<DateListGroupCollection<PaymentViewModel>> paymentList = new();
 
+    private string title = string.Empty;
+
     public PaymentForCategoryListViewModel(IMediator mediator, IMapper mapper)
     {
         this.mediator = mediator;
@@ -27,8 +29,6 @@ internal sealed class PaymentForCategoryListViewModel : BaseViewModel, IRecipien
         PaymentList = new();
         IsActive = true;
     }
-
-    private string title = string.Empty;
 
     public string Title
     {
@@ -49,18 +49,14 @@ internal sealed class PaymentForCategoryListViewModel : BaseViewModel, IRecipien
 
     public RelayCommand<PaymentViewModel> GoToEditPaymentCommand
         => new(async pvm => await Shell.Current.GoToAsync($"{Routes.EditPaymentRoute}?paymentId={pvm.Id}"));
-    
+
     public async void Receive(PaymentsForCategoryMessage message)
     {
         var category = await mediator.Send(new GetCategoryByIdQuery(message.CategoryId));
-        Title = string.Format(Strings.PaymentsForCategoryTitle, category.Name);
-
+        Title = string.Format(format: Strings.PaymentsForCategoryTitle, arg0: category.Name);
         var loadedPayments = mapper.Map<List<PaymentViewModel>>(
             await mediator.Send(
-                new GetPaymentsForCategorySummary.Query(
-                    categoryId: message.CategoryId,
-                    dateRangeFrom: message.StartDate,
-                    dateRangeTo: message.EndDate)));
+                new GetPaymentsForCategorySummary.Query(categoryId: message.CategoryId, dateRangeFrom: message.StartDate, dateRangeTo: message.EndDate)));
 
         var dailyItems = DateListGroupCollection<PaymentViewModel>.CreateGroups(
             items: loadedPayments,

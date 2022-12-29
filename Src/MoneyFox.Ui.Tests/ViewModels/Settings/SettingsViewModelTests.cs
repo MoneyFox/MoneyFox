@@ -42,7 +42,3 @@ public class SettingsViewModelTests
         settingsFacade.Received(1).DefaultCulture = newCulture.Name;
     }
 }
-
-
-
-

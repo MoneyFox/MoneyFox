@@ -62,4 +62,3 @@ public partial class AmountEntry : ContentView
         AmountField.SelectionLength = AmountField.Text != null ? AmountField.Text.Length : 0;
     }
 }
-

@@ -8,6 +8,3 @@ public partial class OverflowMenuPage
         BindingContext = App.GetViewModel<OverflowMenuViewModel>();
     }
 }
-
-
-

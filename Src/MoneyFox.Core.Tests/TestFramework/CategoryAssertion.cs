@@ -16,6 +16,3 @@ internal static class CategoryAssertion
         }
     }
 }
-
-
-

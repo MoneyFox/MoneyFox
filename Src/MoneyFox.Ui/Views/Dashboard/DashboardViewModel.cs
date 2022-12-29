@@ -159,6 +159,3 @@ internal class DashboardViewModel : BaseViewModel
         IsActive = true;
     }
 }
-
-
-

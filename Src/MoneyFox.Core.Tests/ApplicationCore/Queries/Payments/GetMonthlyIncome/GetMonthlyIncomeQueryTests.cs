@@ -44,6 +44,3 @@ public class GetMonthlyIncomeQueryTests
         sum.Should().Be(70);
     }
 }
-
-
-

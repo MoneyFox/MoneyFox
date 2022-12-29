@@ -30,7 +30,7 @@ internal partial class EditAccountViewModel : ModifyAccountViewModel
     }
 
     public override bool IsEdit => true;
-    public override string Title => string.Format(Strings.EditAccountTitle, SelectedAccountVm.Name);
+    public override string Title => string.Format(format: Strings.EditAccountTitle, arg0: SelectedAccountVm.Name);
 
     public async Task InitializeAsync(int accountId)
     {

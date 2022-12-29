@@ -22,5 +22,3 @@ public class PaymentAmountConverter : IValueConverter
         throw new NotSupportedException();
     }
 }
-
-

@@ -9,11 +9,11 @@ using CommunityToolkit.Mvvm.Messaging;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries;
 using Core.ApplicationCore.Queries.GetPaymentsForAccountIdQuery;
+using Core.Common.Helpers;
 using Core.Common.Messages;
 using Core.Resources;
 using MediatR;
 using Views.Accounts;
-using MoneyFox.Core.Common.Helpers;
 
 internal sealed class PaymentListViewModel : BaseViewModel
 {
@@ -139,11 +139,12 @@ internal sealed class PaymentListViewModel : BaseViewModel
     {
         group.Subtitle = string.Format(
             format: Strings.ExpenseAndIncomeTemplate,
-            arg0: group.Where(x => x.Type != PaymentType.Income && x.ChargedAccount.Id == SelectedAccount.Id).Sum(x => x.Amount).ToString(format: "C", provider: CultureHelper.CurrentCulture),
+            arg0: group.Where(x => x.Type != PaymentType.Income && x.ChargedAccount.Id == SelectedAccount.Id)
+                .Sum(x => x.Amount)
+                .ToString(format: "C", provider: CultureHelper.CurrentCulture),
             arg1: group.Where(
                     x => x.Type == PaymentType.Income || x.Type == PaymentType.Transfer && x.TargetAccount != null && x.TargetAccount.Id == SelectedAccount.Id)
-                .Sum(x => x.Amount).ToString(format: "C", provider: CultureHelper.CurrentCulture));
+                .Sum(x => x.Amount)
+                .ToString(format: "C", provider: CultureHelper.CurrentCulture));
     }
 }
-
-

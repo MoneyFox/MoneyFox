@@ -18,5 +18,3 @@ public class BalanceColorConverter : IValueConverter
         throw new NotSupportedException();
     }
 }
-
-

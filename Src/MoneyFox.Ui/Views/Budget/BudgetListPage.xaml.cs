@@ -15,6 +15,3 @@ public partial class BudgetListPage
         await ViewModel.InitializeCommand.ExecuteAsync(null);
     }
 }
-
-
-

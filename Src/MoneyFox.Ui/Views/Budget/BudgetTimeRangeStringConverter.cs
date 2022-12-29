@@ -25,6 +25,3 @@ internal class BudgetTimeRangeStringConverter : IValueConverter
         throw new NotImplementedException();
     }
 }
-
-
-

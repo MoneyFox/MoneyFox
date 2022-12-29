@@ -18,6 +18,3 @@ public partial class WelcomePage : ContentPage
         await ViewModel.InitAsync();
     }
 }
-
-
-

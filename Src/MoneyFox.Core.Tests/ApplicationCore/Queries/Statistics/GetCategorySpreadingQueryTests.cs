@@ -264,6 +264,3 @@ public class GetCategorySpreadingQueryTests
         result[1].Value.Should().Be(30);
     }
 }
-
-
-

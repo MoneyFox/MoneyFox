@@ -22,5 +22,3 @@ internal sealed class SetupCompletionViewModel : BaseViewModel
         Application.Current.MainPage = new AppShell();
     }
 }
-
-

@@ -80,6 +80,3 @@ public class PaymentTests
         testPayment.IsCleared.Should().Be(expectedIsCleared);
     }
 }
-
-
-

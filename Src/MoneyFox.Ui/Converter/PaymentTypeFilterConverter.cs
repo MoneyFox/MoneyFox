@@ -25,5 +25,3 @@ public class PaymentTypeFilterConverter : IValueConverter
         throw new NotSupportedException();
     }
 }
-
-

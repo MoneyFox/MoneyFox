@@ -181,6 +181,3 @@ public class UpdatePaymentCommandTests
         loadedPayments.ForEach(x => x.IsRecurring.Should().BeFalse());
     }
 }
-
-
-

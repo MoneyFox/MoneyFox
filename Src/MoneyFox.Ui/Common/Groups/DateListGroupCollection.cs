@@ -107,4 +107,3 @@ public class DateListGroupCollection<T> : List<T>
         }
     }
 }
-

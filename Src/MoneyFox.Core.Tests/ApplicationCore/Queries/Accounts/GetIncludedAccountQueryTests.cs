@@ -55,6 +55,3 @@ public class GetIncludedAccountQueryTests
         Assert.Single(result);
     }
 }
-
-
-

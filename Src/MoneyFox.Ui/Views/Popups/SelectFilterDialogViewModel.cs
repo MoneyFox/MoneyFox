@@ -155,6 +155,3 @@ internal sealed class SelectFilterDialogViewModel : BaseViewModel, ISelectFilter
         FilteredPaymentType = message.FilteredPaymentType;
     }
 }
-
-
-

@@ -64,6 +64,3 @@ internal sealed class SelectDateRangeDialogViewModel : BaseViewModel
         Messenger.Send(new DateSelectedMessage(startDate: StartDate, endDate: EndDate));
     }
 }
-
-
-

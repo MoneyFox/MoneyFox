@@ -44,6 +44,3 @@ public class GetPaymentByIdQueryTests
         result.Id.Should().Be(payment1.Id);
     }
 }
-
-
-

@@ -246,6 +246,3 @@ public class BackupServiceTests
         settingsFacadeMock.Object.LastDatabaseUpdate.Should().Be(expectedPassedDate);
     }
 }
-
-
-

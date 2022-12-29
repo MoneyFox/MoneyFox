@@ -25,6 +25,3 @@ public partial class FilterPopup
         Close();
     }
 }
-
-
-

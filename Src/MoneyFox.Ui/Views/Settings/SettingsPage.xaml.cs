@@ -17,6 +17,3 @@ public partial class SettingsPage
         await ViewModel.InitializeAsync();
     }
 }
-
-
-

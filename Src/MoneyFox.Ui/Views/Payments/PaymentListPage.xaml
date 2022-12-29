@@ -61,7 +61,8 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid RowDefinitions="20, 18, Auto" IsClippedToBounds="False" Padding="15" Opacity="{Binding Date, Converter={StaticResource DateGroupCardOpacityConverter}}">
+                        <Grid RowDefinitions="20, 18, Auto" IsClippedToBounds="False" Padding="15"
+                              Opacity="{Binding Date, Converter={StaticResource DateGroupCardOpacityConverter}}">
 
                             <Label FontAttributes="Bold"
                                    Style="{StaticResource TextSubheadSecondary}"

@@ -30,6 +30,3 @@ public sealed class DeleteBudgetShould
         await budgetRepository.Received().DeleteAsync(testBudget.Id);
     }
 }
-
-
-

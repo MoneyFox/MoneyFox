@@ -44,6 +44,3 @@ public class GetMonthlyExpenseQueryTests
         sum.Should().Be(70);
     }
 }
-
-
-
