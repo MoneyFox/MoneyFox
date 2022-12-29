@@ -4,7 +4,6 @@ using System;
 using ApplicationCore.Domain.Aggregates;
 using ApplicationCore.Domain.Aggregates.AccountAggregate;
 using ApplicationCore.Domain.Exceptions;
-using Common.Extensions;
 
 internal static class RecurrenceHelper
 {

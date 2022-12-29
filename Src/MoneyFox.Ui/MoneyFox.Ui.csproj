@@ -51,45 +51,45 @@
 
     <ItemGroup>
         <!-- App Icon -->
-        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#efeadd" />
+        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#efeadd"/>
 
         <!-- Splash Screen -->
-        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#efeadd" BaseSize="128,128" />
+        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#efeadd" BaseSize="128,128"/>
 
         <!-- Custom Fonts -->
-        <MauiFont Include="Resources\Fonts\*" />
+        <MauiFont Include="Resources\Fonts\*"/>
 
         <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
-        <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+        <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)"/>
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="appsettings.json" />
+        <None Remove="appsettings.json"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="AlohaKit" Version="1.0.74" />
-        <PackageReference Include="CommunityToolkit.Maui" Version="3.1.0" />
-        <PackageReference Include="JetBrains.Annotations" Version="2022.3.1" />
-        <PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-beta.516" />
-        <PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.1" />
-        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="5.0.1" />
-        <PackageReference Include="Serilog" Version="2.12.0" />
-        <PackageReference Include="Serilog.Exceptions" Version="8.4.0" />
-        <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
-        <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.1" />
-        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+        <PackageReference Include="AlohaKit" Version="1.0.74"/>
+        <PackageReference Include="CommunityToolkit.Maui" Version="3.1.0"/>
+        <PackageReference Include="JetBrains.Annotations" Version="2022.3.1"/>
+        <PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-beta.516"/>
+        <PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.1"/>
+        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="5.0.1"/>
+        <PackageReference Include="Serilog" Version="2.12.0"/>
+        <PackageReference Include="Serilog.Exceptions" Version="8.4.0"/>
+        <PackageReference Include="Serilog.Sinks.File" Version="5.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.1"/>
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0"/>
         <PackageReference Include="SonarAnalyzer.CSharp" Version="8.51.0.59060">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="MediatR" Version="11.1.0" />
-        <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.3" />
+        <PackageReference Include="MediatR" Version="11.1.0"/>
+        <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.3"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\MoneyFox.Core\MoneyFox.Core.csproj" />
-        <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj" />
+        <ProjectReference Include="..\MoneyFox.Core\MoneyFox.Core.csproj"/>
+        <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -99,12 +99,12 @@
     </ItemGroup>
 
     <ItemGroup>
-        <EmbeddedResource Include="appsettings.json" />
+        <EmbeddedResource Include="appsettings.json"/>
         <EmbeddedResource Update="Resources\Strings\Translations.resx">
-          <StronglyTypedFileName>obj\Debug\net7.0\\Strings.Designer.cs</StronglyTypedFileName>
-          <StronglyTypedLanguage>CSharp</StronglyTypedLanguage>
-          <Generator>PublicResXFileCodeGenerator</Generator>
-          <LastGenOutput>Translations.Designer.cs</LastGenOutput>
+            <StronglyTypedFileName>obj\Debug\net7.0\\Strings.Designer.cs</StronglyTypedFileName>
+            <StronglyTypedLanguage>CSharp</StronglyTypedLanguage>
+            <Generator>PublicResXFileCodeGenerator</Generator>
+            <LastGenOutput>Translations.Designer.cs</LastGenOutput>
         </EmbeddedResource>
     </ItemGroup>
 
@@ -119,9 +119,9 @@
             <DependentUpon>DesktopCategoryListPage.xaml</DependentUpon>
         </Compile>
         <Compile Update="Resources\Strings\Translations.Designer.cs">
-          <DesignTime>True</DesignTime>
-          <AutoGen>True</AutoGen>
-          <DependentUpon>Translations.resx</DependentUpon>
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Translations.resx</DependentUpon>
         </Compile>
     </ItemGroup>
 

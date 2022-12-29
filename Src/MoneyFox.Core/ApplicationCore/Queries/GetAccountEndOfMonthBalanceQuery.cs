@@ -110,7 +110,7 @@ public class GetAccountEndOfMonthBalanceQuery : IRequest<decimal>
                 .Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
                 .AreNotCleared()
-                .HasDateSmallerEqualsThan(SystemDateHelperExtensions.GetEndOfMonth(systemDateHelper))
+                .HasDateSmallerEqualsThan(systemDateHelper.GetEndOfMonth())
                 .ToListAsync();
         }
     }

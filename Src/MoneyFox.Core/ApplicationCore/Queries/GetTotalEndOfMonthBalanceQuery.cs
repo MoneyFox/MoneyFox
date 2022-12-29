@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using _Pending_.Common;
 using Common.Extensions;
 using Common.Extensions.QueryObjects;
 using Common.Helpers;
@@ -103,7 +102,7 @@ public class GetTotalEndOfMonthBalanceQuery : IRequest<decimal>
             return await appDbContext.Payments.Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
                 .AreNotCleared()
-                .HasDateSmallerEqualsThan(SystemDateHelperExtensions.GetEndOfMonth(systemDateHelper))
+                .HasDateSmallerEqualsThan(systemDateHelper.GetEndOfMonth())
                 .ToListAsync();
         }
     }

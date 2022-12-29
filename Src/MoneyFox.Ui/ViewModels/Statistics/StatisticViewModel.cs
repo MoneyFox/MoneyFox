@@ -3,7 +3,6 @@ namespace MoneyFox.Ui.ViewModels.Statistics;
 using System.Globalization;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.Common.Extensions;
 using Core.Common.Messages;
 using Core.Resources;
 using MediatR;

@@ -1,8 +1,8 @@
 ﻿namespace MoneyFox.Core.Tests.Common.Extensions.QueryObjects;
 
 using System.Diagnostics.CodeAnalysis;
-using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using MoneyFox.Core.Common.Extensions.QueryObjects;
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Core.Common.Extensions.QueryObjects;
 
 [ExcludeFromCodeCoverage]
 public class AccountQueriesExtensionsTests

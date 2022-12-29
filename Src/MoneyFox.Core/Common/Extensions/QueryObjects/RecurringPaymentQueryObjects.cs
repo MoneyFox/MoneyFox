@@ -2,7 +2,7 @@
 
 using System;
 using System.Linq;
-using MoneyFox.Core.ApplicationCore.Domain.Aggregates;
+using ApplicationCore.Domain.Aggregates;
 
 public static class RecurringPaymentQueryObjects
 {

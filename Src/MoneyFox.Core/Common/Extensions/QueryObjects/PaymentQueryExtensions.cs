@@ -2,7 +2,7 @@
 
 using System;
 using System.Linq;
-using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using ApplicationCore.Domain.Aggregates.AccountAggregate;
 
 /// <summary>
 ///     Provides Extensions for payments queries.

@@ -3,7 +3,6 @@ namespace MoneyFox.Core.Tests.Commands.Payments.CreateRecurringPayments;
 using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Commands.Payments.CreateRecurringPayments;
-using Core.Common.Extensions;
 using FluentAssertions;
 
 [ExcludeFromCodeCoverage]
