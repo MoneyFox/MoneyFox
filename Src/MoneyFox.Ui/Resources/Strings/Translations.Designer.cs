@@ -9,8 +9,8 @@
 
 namespace MoneyFox.Core.Resources {
     using System;
-
-
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -22,15 +22,15 @@ namespace MoneyFox.Core.Resources {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Translations {
-
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Translations() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -38,13 +38,13 @@ namespace MoneyFox.Core.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MoneyFox.Core.Resources.Strings", typeof(Translations).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MoneyFox.Ui.Resources.Strings.Translations", typeof(Translations).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -58,7 +58,7 @@ namespace MoneyFox.Core.Resources {
                 resourceCulture = value;
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
@@ -67,7 +67,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AboutTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Account Name.
         /// </summary>
@@ -76,7 +76,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AccountNameLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Please select an Account..
         /// </summary>
@@ -85,7 +85,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AccountRequiredMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Accounts.
         /// </summary>
@@ -94,7 +94,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AccountsTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Manage your Accounts.
         /// </summary>
@@ -103,7 +103,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AccountsToolTip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Add Account.
         /// </summary>
@@ -112,7 +112,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AddAccountLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Add Account.
         /// </summary>
@@ -121,7 +121,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AddAccountTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Add Budget.
         /// </summary>
@@ -130,7 +130,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AddBudgetLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Add Budget.
         /// </summary>
@@ -139,7 +139,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AddBudgetTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Add Category.
         /// </summary>
@@ -148,7 +148,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AddCategoryLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Add Category.
         /// </summary>
@@ -157,7 +157,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AddCategoryTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Add Expense.
         /// </summary>
@@ -166,7 +166,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AddExpenseTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Add Income.
         /// </summary>
@@ -175,7 +175,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AddIncomeTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Add Payment.
         /// </summary>
@@ -184,7 +184,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AddPaymentLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Add Payment.
         /// </summary>
@@ -193,7 +193,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AddPaymentTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Add a Payment with details.
         /// </summary>
@@ -202,7 +202,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AddPaymentToolTip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Add Transfer.
         /// </summary>
@@ -211,7 +211,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AddTransferTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to All.
         /// </summary>
@@ -220,7 +220,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AllLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Amount.
         /// </summary>
@@ -229,7 +229,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AmountLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to The amount may not be negative. If it is subtracted or added is deteremined by the kind of payment you create..
         /// </summary>
@@ -238,7 +238,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AmountMayNotBeNegativeMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Negative amount.
         /// </summary>
@@ -247,7 +247,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AmountMayNotBeNegativeTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to A note for payment is required.
         /// </summary>
@@ -256,7 +256,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("ANoteForPaymentIsRequired", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Apply Filter.
         /// </summary>
@@ -265,7 +265,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("ApplyFilterLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Assets.
         /// </summary>
@@ -274,7 +274,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AssetsLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Authentication failed.
         /// </summary>
@@ -283,7 +283,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AuthenticationFailedTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to If you activate this setting we backup your data automatically to OneDrive. Also we check periodically if something changed on another device..
         /// </summary>
@@ -292,7 +292,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AutobackupInformationLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Automatically upload and download backups.
         /// </summary>
@@ -301,7 +301,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AutobackupLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Autobackup.
         /// </summary>
@@ -310,7 +310,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("AutobackupTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
@@ -319,7 +319,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("BackLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Backup created successfully.
         /// </summary>
@@ -328,7 +328,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("BackupCreatedMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Backup failed!.
         /// </summary>
@@ -337,7 +337,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("BackupFailedTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Your data will be saved to your OneDrive Account. You’ll find them in the Application Folder in a new folder called &quot;MoneyFox&quot;..
         /// </summary>
@@ -346,7 +346,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("BackupInformationLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Backup restored successfully..
         /// </summary>
@@ -355,7 +355,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("BackupRestoredMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Backup.
         /// </summary>
@@ -364,7 +364,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("BackupTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Backup your information.
         /// </summary>
@@ -373,7 +373,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("BackupToolTip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Upload of backup skipped, since remote version was already up to date..
         /// </summary>
@@ -382,7 +382,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("BackupUploadSkippedMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Biannually.
         /// </summary>
@@ -391,7 +391,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("BiannuallyLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Bimonthly.
         /// </summary>
@@ -400,7 +400,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("BimonthlyLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Biweekly.
         /// </summary>
@@ -409,7 +409,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("BiweeklyLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Budget Name.
         /// </summary>
@@ -418,7 +418,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("BudgetNameLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Budgets.
         /// </summary>
@@ -427,7 +427,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("BudgetsLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Budgets.
         /// </summary>
@@ -436,7 +436,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("BudgetsTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Canceled.
         /// </summary>
@@ -445,7 +445,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CanceledTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
@@ -454,7 +454,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CancelLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Income, expenses and gains for the selected time period..
         /// </summary>
@@ -463,7 +463,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CashflowDescription", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Cashflow.
         /// </summary>
@@ -472,7 +472,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CashflowLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Cash Flow.
         /// </summary>
@@ -481,7 +481,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CashFlowStatisticTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Categories can help order your payments. Also they make it easier to analyze your spendings and incomes in the statistics..
         /// </summary>
@@ -490,7 +490,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CategorieIntroductionText", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Spreading of the expenses to the categories..
         /// </summary>
@@ -499,7 +499,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CategorieSpreadingDescription", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Categories.
         /// </summary>
@@ -508,7 +508,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CategoriesTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Manage your Categories.
         /// </summary>
@@ -517,7 +517,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CategoriesToolTip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Category.
         /// </summary>
@@ -526,7 +526,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CategoryLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Category Name.
         /// </summary>
@@ -535,7 +535,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CategoryNameLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Shows the progression of a category by month..
         /// </summary>
@@ -544,7 +544,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CategoryProgressionDescription", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Category Progression.
         /// </summary>
@@ -553,7 +553,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CategoryProgressionLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Category Progression.
         /// </summary>
@@ -562,7 +562,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CategoryProgressionTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Category Spreading.
         /// </summary>
@@ -571,7 +571,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CategorySpreadingLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Category Spreading.
         /// </summary>
@@ -580,7 +580,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CategorySpreadingTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Summary of the categories with a Payment..
         /// </summary>
@@ -589,7 +589,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CategorySummaryDescription", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Category Summary.
         /// </summary>
@@ -598,7 +598,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CategorySummaryLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to No payments in the selected time range found..
         /// </summary>
@@ -607,7 +607,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CategorySummaryPlaceholder", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Category Summary.
         /// </summary>
@@ -616,7 +616,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CategorySummaryTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Charged Account.
         /// </summary>
@@ -625,7 +625,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("ChargedAccountLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Cleared.
         /// </summary>
@@ -634,7 +634,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("ClearedFilterLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to That&apos;s it! You&apos;re set for using the MoneyFox..
         /// </summary>
@@ -643,7 +643,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CompletedText", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Done!.
         /// </summary>
@@ -652,7 +652,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CompletedTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Complete.
         /// </summary>
@@ -661,7 +661,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CompleteLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Contact.
         /// </summary>
@@ -670,7 +670,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("ContactLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to To see all contributions head over to GitHub:.
         /// </summary>
@@ -679,7 +679,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("ContributerLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Contributions.
         /// </summary>
@@ -688,7 +688,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("ContributionsLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Create Account Now.
         /// </summary>
@@ -697,7 +697,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CreateAccountNowLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Create Backup.
         /// </summary>
@@ -706,7 +706,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CreateBackupLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Create Category now.
         /// </summary>
@@ -715,7 +715,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CreateCategoryNowLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Creation Date.
         /// </summary>
@@ -724,7 +724,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CreationDateHeader", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Creation Date:.
         /// </summary>
@@ -733,7 +733,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CreationDateLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Creation Date: {0}.
         /// </summary>
@@ -742,7 +742,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CreationDateTemplateLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Current Balance.
         /// </summary>
@@ -751,7 +751,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("CurrentBalanceLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Daily.
         /// </summary>
@@ -760,7 +760,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("DailyLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Daily without weekend.
         /// </summary>
@@ -769,7 +769,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("DailyWithoutWeekendLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Dark.
         /// </summary>
@@ -778,7 +778,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("DarkLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Dashboard.
         /// </summary>
@@ -787,7 +787,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("DashboardTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Date.
         /// </summary>
@@ -796,7 +796,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("DateLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Date Range.
         /// </summary>
@@ -805,7 +805,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("DateRangeHeader", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Default Region.
         /// </summary>
@@ -814,7 +814,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("DefaultRegionHeader", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to This region will be used as a default for your application..
         /// </summary>
@@ -823,7 +823,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("DefaultRegionText", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Do you really want to delete this Account?.
         /// </summary>
@@ -832,7 +832,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("DeleteAccountConfirmationMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Do you really want to delete this budget?.
         /// </summary>
@@ -841,7 +841,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("DeleteBudgetConfirmationMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Do you really want to delete this Category?.
         /// </summary>
@@ -850,7 +850,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("DeleteCategoryConfirmationMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
@@ -859,7 +859,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("DeleteLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Do you really want to delete this Payment?.
         /// </summary>
@@ -868,7 +868,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("DeletePaymentConfirmationMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to You&apos;ve deleted a recurring payment. Do you want to delete the recurrence as well?.
         /// </summary>
@@ -877,7 +877,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("DeleteRecurringPaymentMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Delete Recurrence?.
         /// </summary>
@@ -886,7 +886,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("DeleteRecurringPaymentTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Delete?.
         /// </summary>
@@ -895,7 +895,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("DeleteTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Done.
         /// </summary>
@@ -904,7 +904,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("DoneLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to An account with that name already exists. Continue with saving?.
         /// </summary>
@@ -913,7 +913,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("DuplicateAccountMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to A Category with that name already exists..
         /// </summary>
@@ -922,7 +922,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("DuplicateCategoryMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Name already used.
         /// </summary>
@@ -931,7 +931,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("DuplicatedNameTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Edit {0}.
         /// </summary>
@@ -940,7 +940,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("EditAccountTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Edit Budget.
         /// </summary>
@@ -949,7 +949,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("EditBudgetTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Edit Category.
         /// </summary>
@@ -958,7 +958,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("EditCategoryTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Edit Income.
         /// </summary>
@@ -967,7 +967,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("EditIncomeTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
@@ -976,7 +976,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("EditLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Edit Payment.
         /// </summary>
@@ -985,7 +985,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("EditPaymentTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Edit Expense.
         /// </summary>
@@ -994,7 +994,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("EditSpendingTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Edit Transfer.
         /// </summary>
@@ -1003,7 +1003,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("EditTransferTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
@@ -1012,7 +1012,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("EmailLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to End Date.
         /// </summary>
@@ -1021,7 +1021,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("EnddateLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Is Endless.
         /// </summary>
@@ -1030,7 +1030,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("EndlessLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to End of Month.
         /// </summary>
@@ -1039,7 +1039,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("EndOfMonthBalanceLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to End Of Month:.
         /// </summary>
@@ -1048,7 +1048,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("EndOfMonthLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to There was an error during the authentication. Please try again later..
         /// </summary>
@@ -1057,7 +1057,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("ErrorMessageAuthenticationFailed", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Evaluation Time Range.
         /// </summary>
@@ -1066,7 +1066,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("EvaluationTimeRangeLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to This defines the time range in which payments are included to calculate your monthly average to compare to your spending limit..
         /// </summary>
@@ -1075,7 +1075,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("EvaluationTimeRangeMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Excluded Accounts.
         /// </summary>
@@ -1084,7 +1084,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("ExcludedAccountsHeader", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Expense: {0} / Income: {1}.
         /// </summary>
@@ -1093,7 +1093,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("ExpenseAndIncomeTemplate", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Add expense.
         /// </summary>
@@ -1102,7 +1102,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("ExpenseHeader", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Expenses.
         /// </summary>
@@ -1111,7 +1111,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("ExpenseLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Failed to login to your backup service. Automatic backup upload was disabled. Please login and enable it again..
         /// </summary>
@@ -1120,7 +1120,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("FailedToLoginToBackupMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Login failed!.
         /// </summary>
@@ -1129,7 +1129,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("FailedToLoginToBackupTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Feedback MoneyFox.
         /// </summary>
@@ -1138,7 +1138,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("FeedbackSubject", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Filter.
         /// </summary>
@@ -1147,7 +1147,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("FilterLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Your local database has a newer modification date than the one on OneDrive. Do you want to override your local data?.
         /// </summary>
@@ -1156,7 +1156,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("ForceOverrideBackupMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Override Local Data.
         /// </summary>
@@ -1165,7 +1165,16 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("ForceOverrideBackupTitle", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gains.
+        /// </summary>
+        public static string GainsLabel {
+            get {
+                return ResourceManager.GetString("GainsLabel", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to An error occured.
         /// </summary>
@@ -1174,7 +1183,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("GeneralErrorTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Go to Accounts.
         /// </summary>
@@ -1183,7 +1192,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("GoToAccountsLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Go to Budgets.
         /// </summary>
@@ -1192,7 +1201,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("GoToBudgetsLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
@@ -1201,7 +1210,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("HomeTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to The app icon was created by:.
         /// </summary>
@@ -1210,7 +1219,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("IconDesignerLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Included Accounts.
         /// </summary>
@@ -1219,7 +1228,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("IncludedAccountsHeader", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Income and Expenses.
         /// </summary>
@@ -1228,7 +1237,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("IncomeAndExpensesLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Add income.
         /// </summary>
@@ -1237,7 +1246,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("IncomeHeader", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Income.
         /// </summary>
@@ -1246,7 +1255,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("IncomeLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Income / Expenses:.
         /// </summary>
@@ -1255,7 +1264,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("IncomeSpendingLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Gains.
         /// </summary>
@@ -1264,7 +1273,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("IncreaseLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Info.
         /// </summary>
@@ -1273,7 +1282,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("InfoLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to This is an open-source project – and we’d love to work with you! Feel free to contribute.
         ///Tap to visit the Repository:.
@@ -1283,7 +1292,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("InfoOpenSource", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Initial Balance.
         /// </summary>
@@ -1292,7 +1301,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("InitialBalanceLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to The enddate of a recurring Payment has to be in the future. Please check your input..
         /// </summary>
@@ -1301,7 +1310,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("InvalidEnddateMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Invalid End Date.
         /// </summary>
@@ -1310,7 +1319,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("InvalidEnddateTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Your current balance seems to be an invalid number. Please check that you haven&apos;t entered any special characters and used the correct separator..
         /// </summary>
@@ -1319,7 +1328,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("InvalidNumberCurrentBalanceMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Invalid Number.
         /// </summary>
@@ -1328,7 +1337,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("InvalidNumberTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to The spending limit has to be larger than zero..
         /// </summary>
@@ -1337,7 +1346,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("InvalidSpendingLimitMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Invalid Spending Limit.
         /// </summary>
@@ -1346,7 +1355,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("InvalidSpendingLimitTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Cleared.
         /// </summary>
@@ -1355,7 +1364,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("IsClearedLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Exclude account from balance.
         /// </summary>
@@ -1364,7 +1373,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("IsExcludedLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Group List.
         /// </summary>
@@ -1373,7 +1382,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("IsGroupedLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Is Recurring.
         /// </summary>
@@ -1382,7 +1391,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("IsRecurringFilterLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Recurring.
         /// </summary>
@@ -1391,7 +1400,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("IsRecurringLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Last Backup created at:.
         /// </summary>
@@ -1400,7 +1409,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("LastBackupDateLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Last Day of Month.
         /// </summary>
@@ -1409,7 +1418,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("LastDayOfMonthLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Last Five Years.
         /// </summary>
@@ -1418,7 +1427,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("LastFiveYearsLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Last Three Years.
         /// </summary>
@@ -1427,7 +1436,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("LastThreeYearsLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Last Two Years.
         /// </summary>
@@ -1436,7 +1445,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("LastTwoYearsLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Last Year.
         /// </summary>
@@ -1445,7 +1454,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("LastYearLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Light.
         /// </summary>
@@ -1454,7 +1463,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("LightLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Loading....
         /// </summary>
@@ -1463,7 +1472,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("LoadingLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Loggedin successfully..
         /// </summary>
@@ -1472,7 +1481,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("LoggedInMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Logged in!.
         /// </summary>
@@ -1481,7 +1490,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("LoggedInTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Logged out successfully..
         /// </summary>
@@ -1490,7 +1499,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("LoggedOutMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Logged out.
         /// </summary>
@@ -1499,7 +1508,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("LoggedOutTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Login was canceled..
         /// </summary>
@@ -1508,7 +1517,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("LoginCanceledMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Login failed!.
         /// </summary>
@@ -1517,7 +1526,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("LoginFailedTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
@@ -1526,7 +1535,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("LoginLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Logout was canceled..
         /// </summary>
@@ -1535,7 +1544,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("LogoutCanceledMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Logout.
         /// </summary>
@@ -1544,7 +1553,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("LogoutLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Mandatory field.
         /// </summary>
@@ -1553,7 +1562,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("MandatoryFieldEmptyTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Menu.
         /// </summary>
@@ -1562,7 +1571,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("MenuTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Modification Date.
         /// </summary>
@@ -1571,7 +1580,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("ModificationDateHeader", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Modification Date:.
         /// </summary>
@@ -1580,7 +1589,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("ModificationDateLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Modification Date: {0}.
         /// </summary>
@@ -1589,7 +1598,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("ModificationDateTemplateLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to You have modified a recurring payment. Do you want to update the recurrence?.
         /// </summary>
@@ -1598,7 +1607,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("ModifyRecurrenceMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Modify Recurrence.
         /// </summary>
@@ -1607,7 +1616,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("ModifyRecurrenceTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Last year monthly average: .
         /// </summary>
@@ -1616,7 +1625,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("MonthlyAverageLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Monthly Budget:.
         /// </summary>
@@ -1625,7 +1634,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("MonthlyBudgetLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Shows the monthly cashflow for the selected account..
         /// </summary>
@@ -1634,7 +1643,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("MonthlyCashflowDescription", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Monthly Cashflow.
         /// </summary>
@@ -1643,7 +1652,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("MonthlyCashflowLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Monthly Cashflow.
         /// </summary>
@@ -1652,7 +1661,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("MonthlyCashflowTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Monthly.
         /// </summary>
@@ -1661,7 +1670,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("MonthlyLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Monthly Spending Limit.
         /// </summary>
@@ -1670,7 +1679,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("MonthlySpendingLimitLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to More.
         /// </summary>
@@ -1679,7 +1688,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("MoreTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Please insert a name..
         /// </summary>
@@ -1688,7 +1697,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("NameRequiredMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Next.
         /// </summary>
@@ -1697,7 +1706,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("NextLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to There are no Accounts to display..
         /// </summary>
@@ -1706,7 +1715,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("NoAccountsMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to There are no Budgets yet. Go ahead and create one!.
         /// </summary>
@@ -1715,7 +1724,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("NoBudgetsMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to There are no categories to display. .
         /// </summary>
@@ -1724,7 +1733,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("NoCategoriesMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to [No Category].
         /// </summary>
@@ -1733,7 +1742,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("NoCategoryLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to No entry selected. Choose a entry in the list to see the payments for it..
         /// </summary>
@@ -1742,7 +1751,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("NoCategorySummaryEntrySelectedMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
@@ -1751,7 +1760,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("NoLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to You are not connected to the internet. Please check your connection and try again..
         /// </summary>
@@ -1760,7 +1769,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("NoNetworkMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to No Internet Connection.
         /// </summary>
@@ -1769,7 +1778,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("NoNetworkTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to There are no Payments. Add one by tapping on the plus button..
         /// </summary>
@@ -1778,7 +1787,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("NoPaymentsMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Note.
         /// </summary>
@@ -1787,7 +1796,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("NoteLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Enter note to this payment...
         /// </summary>
@@ -1796,7 +1805,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("NotePlaceholderLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Not Now.
         /// </summary>
@@ -1805,7 +1814,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("NotNowLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Ok.
         /// </summary>
@@ -1814,7 +1823,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("OkLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Open Log.
         /// </summary>
@@ -1823,7 +1832,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("OpenLogLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Others.
         /// </summary>
@@ -1832,7 +1841,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("OthersLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Existing backups will be overwritten. Do you wanna continue?.
         /// </summary>
@@ -1841,7 +1850,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("OverwriteBackupMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Your local data will be deleted. Are you sure you wanna proceed?.
         /// </summary>
@@ -1850,7 +1859,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("OverwriteDataMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Overwrite?.
         /// </summary>
@@ -1859,7 +1868,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("OverwriteTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to When you create a payment you can select the category for that payment along with the account and if it is an expense, an income or a transfer.
         ///Payments you created will show up under the account you choose.
@@ -1870,7 +1879,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("PaymentIntroductionText", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Details for {0}.
         /// </summary>
@@ -1879,7 +1888,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("PaymentsForCategoryTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Payment type.
         /// </summary>
@@ -1888,7 +1897,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("PaymentTypeLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Personalization.
         /// </summary>
@@ -1897,7 +1906,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("PersonalizationTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Quarterly.
         /// </summary>
@@ -1906,7 +1915,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("QuarterlyLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Rate this app!.
         /// </summary>
@@ -1915,7 +1924,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("RateLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to We hope you like our app. Support us with a rating in the store.
         ///Do you want to go the the store to rate?.
@@ -1925,7 +1934,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("RateReminderText", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Rate this app.
         /// </summary>
@@ -1934,7 +1943,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("RateReminderTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Recurrence.
         /// </summary>
@@ -1943,7 +1952,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("RecurrenceLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Is Recurring.
         /// </summary>
@@ -1952,7 +1961,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("RecurringLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Note required.
         /// </summary>
@@ -1961,7 +1970,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("RequireNoteCheckbox", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Restoring backup was canceled..
         /// </summary>
@@ -1970,7 +1979,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("RestoreBackupCanceledMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Download the previous uploaded database backup and replace your local data with it.
         ///WARNING: Local changes you made meanwhile will be lost!.
@@ -1980,7 +1989,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("RestoreBackupInformationLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Restore Backup.
         /// </summary>
@@ -1989,7 +1998,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("RestoreBackupLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Revenue.
         /// </summary>
@@ -1998,7 +2007,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("RevenueLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
@@ -2007,7 +2016,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("SaveLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Saving Account....
         /// </summary>
@@ -2016,7 +2025,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("SavingAccountMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Saving Category....
         /// </summary>
@@ -2025,7 +2034,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("SavingCategoryMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Saving Payment....
         /// </summary>
@@ -2034,7 +2043,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("SavingPaymentMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
@@ -2043,7 +2052,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("SearchLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Select category...
         /// </summary>
@@ -2052,7 +2061,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("SelectCategoryLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Select Category.
         /// </summary>
@@ -2061,7 +2070,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("SelectCategoryTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Select Date.
         /// </summary>
@@ -2070,7 +2079,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("SelectDateLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Selected Account.
         /// </summary>
@@ -2079,7 +2088,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("SelectedAccountHeader", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Selected Categories.
         /// </summary>
@@ -2088,7 +2097,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("SelectedCategoriesLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Selected Payment Type.
         /// </summary>
@@ -2097,7 +2106,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("SelectedPaymentTypeHeader", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Select Filter.
         /// </summary>
@@ -2106,7 +2115,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("SelectFilterTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Select Statistic.
         /// </summary>
@@ -2115,7 +2124,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("SelectStatisticTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
@@ -2124,7 +2133,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("SettingsTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Skip.
         /// </summary>
@@ -2133,7 +2142,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("SkipLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Time Range:.
         /// </summary>
@@ -2142,7 +2151,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("StatisticsTimeRangeTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Statistics.
         /// </summary>
@@ -2151,7 +2160,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("StatisticsTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to View your Statistics.
         /// </summary>
@@ -2160,7 +2169,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("StatisticsToolTip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Target Account.
         /// </summary>
@@ -2169,7 +2178,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("TargetAccountLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Time Range End.
         /// </summary>
@@ -2178,7 +2187,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("TimeRangeEndLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Time Range.
         /// </summary>
@@ -2187,7 +2196,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("TimeRangeLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Time Range Start.
         /// </summary>
@@ -2196,7 +2205,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("TimeRangeStartLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Add transfer.
         /// </summary>
@@ -2205,7 +2214,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("TransferHeader", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Transfer.
         /// </summary>
@@ -2214,7 +2223,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("TransferLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the MoneyFox:.
         /// </summary>
@@ -2223,7 +2232,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("TranslationLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to There was an issue during the operation. Error Message {0}.
         /// </summary>
@@ -2232,7 +2241,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("UnknownErrorMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Upload backup was canceled..
         /// </summary>
@@ -2241,7 +2250,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("UploadBackupCanceledMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Version.
         /// </summary>
@@ -2250,7 +2259,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("VersionLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Website.
         /// </summary>
@@ -2259,7 +2268,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("WebsiteLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Weekly.
         /// </summary>
@@ -2268,7 +2277,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("WeeklyLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Welcome!.
         /// </summary>
@@ -2277,7 +2286,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("WelcomeLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Glad to have you!.
         /// </summary>
@@ -2286,7 +2295,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("WelcomePageSubtitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to The MoneyFox helps you to track your expenses and incomes in an easy way.
         ///To start create a new account. Accounts are used to organize payments and money in collections..
@@ -2296,7 +2305,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("WelcomePageText", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Windows Default.
         /// </summary>
@@ -2305,7 +2314,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("WindowsDefaultLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Yearly.
         /// </summary>
@@ -2314,7 +2323,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("YearlyLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Year to date.
         /// </summary>
@@ -2323,7 +2332,7 @@ namespace MoneyFox.Core.Resources {
                 return ResourceManager.GetString("YearToDateLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Yes.
         /// </summary>

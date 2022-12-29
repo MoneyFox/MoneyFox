@@ -2,7 +2,7 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+             xmlns:resources="clr-namespace:MoneyFox.Core.Resources"
              xmlns:setupassistant="clr-namespace:MoneyFox.Ui.ViewModels.SetupAssistant"
              x:Class="MoneyFox.Ui.Views.SetupAssistant.WelcomePage"
              Shell.NavBarIsVisible="False"

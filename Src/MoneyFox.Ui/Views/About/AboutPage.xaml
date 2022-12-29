@@ -1,7 +1,7 @@
 ﻿<ContentPage x:Class="MoneyFox.Ui.Views.About.AboutPage"
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+             xmlns:resources="clr-namespace:MoneyFox.Core.Resources"
              xmlns:about="clr-namespace:MoneyFox.Ui.Views.About"
              x:DataType="about:AboutViewModel"
              Title="{x:Static resources:Translations.AboutTitle}">

@@ -4,7 +4,7 @@
     x:Class="MoneyFox.Ui.Views.Categories.SelectCategoryPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources"
     xmlns:categories="clr-namespace:MoneyFox.Ui.ViewModels.Categories"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     Title="{x:Static resources:Translations.CategoriesTitle}">
