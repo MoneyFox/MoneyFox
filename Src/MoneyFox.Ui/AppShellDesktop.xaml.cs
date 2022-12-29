@@ -28,7 +28,7 @@ public partial class AppShellDesktop : Shell
         Routing.RegisterRoute(route: Routes.CategoryIntroductionRoute, type: typeof(CategoryIntroductionPage));
         Routing.RegisterRoute(route: Routes.SetupCompletionRoute, type: typeof(SetupCompletionPage));
         Routing.RegisterRoute(route: Routes.DashboardRoute, type: typeof(DashboardPage));
-        Routing.RegisterRoute(route: Routes.AccountListRoute, type: typeof(AccountListPage));
+        Routing.RegisterRoute(route: Routes.AccountListRoute, type: typeof(DesktopAccountListPage));
         Routing.RegisterRoute(route: Routes.AddAccountRoute, type: typeof(AddAccountPage));
         Routing.RegisterRoute(route: Routes.EditAccountRoute, type: typeof(EditAccountPage));
         Routing.RegisterRoute(route: Routes.BudgetListRoute, type: typeof(BudgetListPage));

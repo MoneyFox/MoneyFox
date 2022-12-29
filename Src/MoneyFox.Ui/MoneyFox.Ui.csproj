@@ -106,10 +106,16 @@
       <Compile Update="AppShellDesktop.xaml.cs">
         <DependentUpon>AppShellDesktop.xaml</DependentUpon>
       </Compile>
+      <Compile Update="Views\Accounts\DesktopAccountListPage.xaml.cs">
+        <DependentUpon>DesktopAccountListPage.xaml</DependentUpon>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
       <MauiXaml Update="AppShellDesktop.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
+      <MauiXaml Update="Views\Accounts\DesktopAccountListPage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
     </ItemGroup>
