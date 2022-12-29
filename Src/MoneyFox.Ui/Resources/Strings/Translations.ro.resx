@@ -122,157 +122,157 @@
         </value>
   </resheader>
   <data name="AboutTitle" xml:space="preserve">
-    <value>About</value>
+    <value>Despre</value>
   </data>
   <data name="AccountNameLabel" xml:space="preserve">
-    <value>Account Name</value>
+    <value>Nume cont</value>
   </data>
   <data name="AccountRequiredMessage" xml:space="preserve">
-    <value>Please select an Account.</value>
+    <value>Vă rugăm să selectaţi un cont.</value>
   </data>
   <data name="AccountsTitle" xml:space="preserve">
-    <value>Accounts</value>
+    <value>Conturi</value>
   </data>
   <data name="AddAccountLabel" xml:space="preserve">
-    <value>Add Account</value>
+    <value>Adaugă cont</value>
   </data>
   <data name="AddAccountTitle" xml:space="preserve">
-    <value>Add Account</value>
+    <value>Adaugă cont</value>
   </data>
   <data name="AddCategoryLabel" xml:space="preserve">
-    <value>Add Category</value>
+    <value>Adaugă Categorie</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
-    <value>Add Category</value>
+    <value>Adaugă Categorie</value>
   </data>
   <data name="AddExpenseTitle" xml:space="preserve">
-    <value>Add Expense</value>
+    <value>Adaugă Cheltuială</value>
   </data>
   <data name="AddIncomeTitle" xml:space="preserve">
-    <value>Add Income</value>
+    <value>Adăugare venit</value>
   </data>
   <data name="AddPaymentLabel" xml:space="preserve">
-    <value>Add Payment</value>
+    <value>Adăugare plată</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
-    <value>Add Transfer</value>
+    <value>Adaugă Transfer</value>
   </data>
   <data name="AmountLabel" xml:space="preserve">
-    <value>Amount</value>
+    <value>Sumă</value>
   </data>
   <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
-    <value>The amount may not be negative. If it is subtracted or added is deteremined by the kind of payment you create.</value>
+    <value>Suma nu poate fi negativă. Dacă este scăzută sau adăugată este detașată de tipul de plată pe care o creați.</value>
   </data>
   <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
-    <value>Negative amount</value>
+    <value>Sumă negativă</value>
   </data>
   <data name="ANoteForPaymentIsRequired" xml:space="preserve">
-    <value>A note for payment is required</value>
+    <value>Este necesară o notă de plată</value>
   </data>
   <data name="ApplyFilterLabel" xml:space="preserve">
-    <value>Apply Filter</value>
+    <value>Aplică filtru</value>
   </data>
   <data name="AssetsLabel" xml:space="preserve">
-    <value>Assets</value>
+    <value>Active</value>
   </data>
   <data name="AuthenticationFailedTitle" xml:space="preserve">
-    <value>Authentication failed</value>
+    <value>Autentificare eșuată</value>
   </data>
   <data name="AutobackupInformationLabel" xml:space="preserve">
-    <value>If you activate this setting we backup your data automatically to OneDrive. Also we check periodically if something changed on another device.</value>
+    <value>Dacă activați această setare, vă salvăm datele automat în OneDrive. De asemenea, verificăm periodic dacă ceva s-a schimbat pe un alt dispozitiv.</value>
   </data>
   <data name="AutobackupLabel" xml:space="preserve">
-    <value>Automatically upload and download backups</value>
+    <value>Încarcă și descarcă automat copiile de rezervă</value>
   </data>
   <data name="AutobackupTitle" xml:space="preserve">
     <value>Autobackup</value>
   </data>
   <data name="BackLabel" xml:space="preserve">
-    <value>Back</value>
+    <value>Înapoi</value>
   </data>
   <data name="BackupCreatedMessage" xml:space="preserve">
-    <value>Backup created successfully</value>
+    <value>Backup creat cu succes</value>
   </data>
   <data name="BackupFailedTitle" xml:space="preserve">
-    <value>Backup failed!</value>
+    <value>Copie de rezervă eșuată!</value>
   </data>
   <data name="BackupInformationLabel" xml:space="preserve">
-    <value>Your data will be saved to your OneDrive Account. You’ll find them in the Application Folder in a new folder called "MoneyFox".</value>
+    <value>Datele tale vor fi salvate în contul tău OneDrive. Le vei găsi în Dosarul cu Aplicații într-un nou dosar numit "MoneyFox".</value>
   </data>
   <data name="BackupRestoredMessage" xml:space="preserve">
-    <value>Backup restored successfully.</value>
+    <value>Backup restaurat cu succes.</value>
   </data>
   <data name="BackupTitle" xml:space="preserve">
     <value>Backup</value>
   </data>
   <data name="BiannuallyLabel" xml:space="preserve">
-    <value>Biannually</value>
+    <value>Bianual</value>
   </data>
   <data name="BimonthlyLabel" xml:space="preserve">
-    <value>Bimonthly</value>
+    <value>Binecuvântat</value>
   </data>
   <data name="BiweeklyLabel" xml:space="preserve">
-    <value>Biweekly</value>
+    <value>Bisăptămânal</value>
   </data>
   <data name="BudgetsLabel" xml:space="preserve">
-    <value>Budgets</value>
+    <value>Bugete</value>
   </data>
   <data name="CanceledTitle" xml:space="preserve">
-    <value>Canceled</value>
+    <value>Anulat</value>
   </data>
   <data name="CancelLabel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Anulează</value>
   </data>
   <data name="CashflowDescription" xml:space="preserve">
-    <value>Income, expenses and gains for the selected time period.</value>
+    <value>Venit, cheltuieli și câștiguri pentru perioada de timp selectată.</value>
   </data>
   <data name="CashflowLabel" xml:space="preserve">
     <value>Cashflow</value>
   </data>
   <data name="CashFlowStatisticTitle" xml:space="preserve">
-    <value>Cash Flow</value>
+    <value>Fluxul de numerar</value>
   </data>
   <data name="CategorieIntroductionText" xml:space="preserve">
-    <value>Categories can help order your payments. Also they make it easier to analyze your spendings and incomes in the statistics.</value>
+    <value>Categoriile pot ajuta la ordonarea plăților. De asemenea, ele facilitează analiza cheltuielilor și veniturilor în statistici.</value>
   </data>
   <data name="CategorieSpreadingDescription" xml:space="preserve">
-    <value>Spreading of the expenses to the categories.</value>
+    <value>Răspândirea cheltuielilor pe categorii.</value>
   </data>
   <data name="CategoriesTitle" xml:space="preserve">
-    <value>Categories</value>
+    <value>Categorii</value>
   </data>
   <data name="CategoryLabel" xml:space="preserve">
-    <value>Category</value>
+    <value>Categorie</value>
   </data>
   <data name="CategoryNameLabel" xml:space="preserve">
-    <value>Category Name</value>
+    <value>Numele categoriei</value>
   </data>
   <data name="CategorySpreadingLabel" xml:space="preserve">
-    <value>Category Spreading</value>
+    <value>Spreadare categorie</value>
   </data>
   <data name="CategorySpreadingTitle" xml:space="preserve">
-    <value>Category Spreading</value>
+    <value>Spreadare categorie</value>
   </data>
   <data name="CategorySummaryDescription" xml:space="preserve">
-    <value>Summary of the categories with a Payment.</value>
+    <value>Rezumatul categoriilor cu o plată.</value>
   </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
-    <value>Category Summary</value>
+    <value>Rezumat Categorie</value>
   </data>
   <data name="CategorySummaryTitle" xml:space="preserve">
-    <value>Category Summary</value>
+    <value>Rezumat Categorie</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
-    <value>Charged Account</value>
+    <value>Cont încărcat</value>
   </data>
   <data name="ClearedFilterLabel" xml:space="preserve">
-    <value>Cleared</value>
+    <value>Eliminat</value>
   </data>
   <data name="CompletedText" xml:space="preserve">
-    <value>That's it! You're set for using the MoneyFox.</value>
+    <value>Asta e tot! Ești pregătit să folosești MoneyFox.</value>
   </data>
   <data name="CompletedTitle" xml:space="preserve">
-    <value>Done!</value>
+    <value>Gata!</value>
   </data>
   <data name="CompleteLabel" xml:space="preserve">
     <value>Complete</value>
@@ -281,609 +281,609 @@
     <value>Contact</value>
   </data>
   <data name="ContributerLabel" xml:space="preserve">
-    <value>To see all contributions head over to GitHub:</value>
+    <value>Pentru a vedea toate contribuțiile direct către GitHub:</value>
   </data>
   <data name="ContributionsLabel" xml:space="preserve">
-    <value>Contributions</value>
+    <value>Contribuții</value>
   </data>
   <data name="CreateAccountNowLabel" xml:space="preserve">
-    <value>Create Account Now</value>
+    <value>Creează un cont acum</value>
   </data>
   <data name="CreateBackupLabel" xml:space="preserve">
-    <value>Create Backup</value>
+    <value>Creare copie de rezervă</value>
   </data>
   <data name="CreateCategoryNowLabel" xml:space="preserve">
-    <value>Create Category now</value>
+    <value>Creează Categoria acum</value>
   </data>
   <data name="CreationDateHeader" xml:space="preserve">
-    <value>Creation Date</value>
+    <value>Data creării</value>
   </data>
   <data name="CreationDateLabel" xml:space="preserve">
-    <value>Creation Date:</value>
+    <value>Data creării:</value>
   </data>
   <data name="CreationDateTemplateLabel" xml:space="preserve">
-    <value>Creation Date: {0}</value>
+    <value>Data creării: {0}</value>
   </data>
   <data name="CurrentBalanceLabel" xml:space="preserve">
-    <value>Current Balance</value>
+    <value>Soldul curent</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
-    <value>Daily</value>
+    <value>Zilnic</value>
   </data>
   <data name="DailyWithoutWeekendLabel" xml:space="preserve">
-    <value>Daily without weekend</value>
+    <value>Zilnic fără weekend</value>
   </data>
   <data name="DarkLabel" xml:space="preserve">
-    <value>Dark</value>
+    <value>Întunecat</value>
   </data>
   <data name="DashboardTitle" xml:space="preserve">
-    <value>Dashboard</value>
+    <value>Panou</value>
   </data>
   <data name="DateLabel" xml:space="preserve">
-    <value>Date</value>
+    <value>Data</value>
   </data>
   <data name="DateRangeHeader" xml:space="preserve">
     <value>Date Range</value>
   </data>
   <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Default Region</value>
+    <value>Regiunea implicită</value>
   </data>
   <data name="DefaultRegionText" xml:space="preserve">
-    <value>This region will be used as a default for your application.</value>
+    <value>Această regiune va fi folosită în mod implicit pentru aplicația dvs.</value>
   </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this Account?</value>
+    <value>Sigur doriți să ștergeți acest cont?</value>
   </data>
   <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this Category?</value>
+    <value>Eşti sigur că vrei să ştergi această categorie?</value>
   </data>
   <data name="DeleteLabel" xml:space="preserve">
-    <value>Delete</value>
+    <value>Ștergere</value>
   </data>
   <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this Payment?</value>
+    <value>Sigur doriți să ștergeți această plată?</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
-    <value>You've deleted a recurring payment. Do you want to delete the recurrence as well?</value>
+    <value>Ați șters o plată recurentă. Doriți să ștergeți și recurența?</value>
   </data>
   <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
-    <value>Delete Recurrence?</value>
+    <value>Ștergeți Recurrența?</value>
   </data>
   <data name="DeleteTitle" xml:space="preserve">
-    <value>Delete?</value>
+    <value>Șterge?</value>
   </data>
   <data name="DoneLabel" xml:space="preserve">
-    <value>Done</value>
+    <value>Terminat</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>An account with that name already exists. Continue with saving?</value>
+    <value>Există deja un cont cu acest nume. Continuați salvarea?</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
-    <value>A Category with that name already exists.</value>
+    <value>Există deja o categorie cu acest nume.</value>
   </data>
   <data name="DuplicatedNameTitle" xml:space="preserve">
-    <value>Name already used</value>
+    <value>Nume deja utilizat</value>
   </data>
   <data name="EditAccountTitle" xml:space="preserve">
-    <value>Edit {0}</value>
+    <value>Editare {0}</value>
   </data>
   <data name="EditCategoryTitle" xml:space="preserve">
-    <value>Edit Category</value>
+    <value>Editează Categoria</value>
   </data>
   <data name="EditIncomeTitle" xml:space="preserve">
-    <value>Edit Income</value>
+    <value>Editează Veniturile</value>
   </data>
   <data name="EditLabel" xml:space="preserve">
-    <value>Edit</value>
+    <value>Editare</value>
   </data>
   <data name="EditSpendingTitle" xml:space="preserve">
-    <value>Edit Expense</value>
+    <value>Editează cheltuială</value>
   </data>
   <data name="EditTransferTitle" xml:space="preserve">
-    <value>Edit Transfer</value>
+    <value>Editați transferul</value>
   </data>
   <data name="EmailLabel" xml:space="preserve">
-    <value>Email</value>
+    <value>E-mail</value>
   </data>
   <data name="EnddateLabel" xml:space="preserve">
-    <value>End Date</value>
+    <value>Data de încheiere</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
-    <value>Is Endless</value>
+    <value>Este fara sfarsit</value>
   </data>
   <data name="EndOfMonthBalanceLabel" xml:space="preserve">
-    <value>End of Month</value>
+    <value>Sfârșitul lunii</value>
   </data>
   <data name="EndOfMonthLabel" xml:space="preserve">
-    <value>End Of Month:</value>
+    <value>Sfârșit de lună:</value>
   </data>
   <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
-    <value>There was an error during the authentication. Please try again later.</value>
+    <value>A apărut o eroare în timpul autentificării. Vă rugăm să încercaţi din nou mai târziu.</value>
   </data>
   <data name="ExcludedAccountsHeader" xml:space="preserve">
-    <value>Excluded Accounts</value>
+    <value>Conturi excluse</value>
   </data>
   <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
-    <value>Expense: {0} / Income: {1}</value>
+    <value>Cheltuieli: {0} / Venituri: {1}</value>
   </data>
   <data name="ExpenseHeader" xml:space="preserve">
-    <value>Add expense</value>
+    <value>Adaugă cheltuială</value>
   </data>
   <data name="ExpenseLabel" xml:space="preserve">
-    <value>Expenses</value>
+    <value>Cheltuieli</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
     <value>Feedback MoneyFox</value>
   </data>
   <data name="FilterLabel" xml:space="preserve">
-    <value>Filter</value>
+    <value>Filtrare</value>
   </data>
   <data name="ForceOverrideBackupMessage" xml:space="preserve">
-    <value>Your local database has a newer modification date than the one on OneDrive. Do you want to override your local data?</value>
+    <value>Baza de date locală are o dată de modificare mai nouă decât cea de pe OneDrive. Doriți să suprascrieți datele locale?</value>
   </data>
   <data name="ForceOverrideBackupTitle" xml:space="preserve">
-    <value>Override Local Data</value>
+    <value>Suprascrie datele locale</value>
   </data>
   <data name="GeneralErrorTitle" xml:space="preserve">
-    <value>An error occured</value>
+    <value>A apărut o eroare</value>
   </data>
   <data name="GoToAccountsLabel" xml:space="preserve">
-    <value>Go to Accounts</value>
+    <value>Du-te la Conturi</value>
   </data>
   <data name="GoToBudgetsLabel" xml:space="preserve">
-    <value>Go to Budgets</value>
+    <value>Du-te la bugete</value>
   </data>
   <data name="IconDesignerLabel" xml:space="preserve">
-    <value>The app icon was created by:</value>
+    <value>Pictograma aplicației a fost creată de:</value>
   </data>
   <data name="IncludedAccountsHeader" xml:space="preserve">
-    <value>Included Accounts</value>
+    <value>Conturi incluse</value>
   </data>
   <data name="IncomeAndExpensesLabel" xml:space="preserve">
-    <value>Income and Expenses</value>
+    <value>Venituri și Cheltuieli</value>
   </data>
   <data name="IncomeHeader" xml:space="preserve">
-    <value>Add income</value>
+    <value>Adăugare venit</value>
   </data>
   <data name="IncomeLabel" xml:space="preserve">
-    <value>Income</value>
+    <value>Venituri</value>
   </data>
   <data name="IncomeSpendingLabel" xml:space="preserve">
-    <value>Income / Expenses:</value>
+    <value>Venituri / Cheltuieli:</value>
   </data>
   <data name="IncreaseLabel" xml:space="preserve">
-    <value>Gains</value>
+    <value>Câștiguri</value>
   </data>
   <data name="InfoLabel" xml:space="preserve">
     <value>Info</value>
   </data>
   <data name="InfoOpenSource" xml:space="preserve">
-    <value>This is an open-source project – and we’d love to work with you! Feel free to contribute.
-Tap to visit the Repository:</value>
+    <value>Acesta este un proiect open-source – și ne-ar plăcea să lucrăm cu tine! Simțiți liber să contribuiți.
+Atinge pentru a vizita Repozitorul:</value>
   </data>
   <data name="InvalidEnddateMessage" xml:space="preserve">
-    <value>The enddate of a recurring Payment has to be in the future. Please check your input.</value>
+    <value>Sfârșitul unei plăți recurente trebuie să fie în viitor. Vă rugăm să verificați intrările.</value>
   </data>
   <data name="InvalidEnddateTitle" xml:space="preserve">
-    <value>Invalid End Date</value>
+    <value>Dată de sfârșit nevalidă</value>
   </data>
   <data name="InvalidNumberCurrentBalanceMessage" xml:space="preserve">
-    <value>Your current balance seems to be an invalid number. Please check that you haven't entered any special characters and used the correct separator.</value>
+    <value>Soldul tău curent pare să fie un număr nevalid. Te rugăm să verifici că nu ai introdus caractere speciale și nu ai folosit separatorul corect.</value>
   </data>
   <data name="InvalidNumberTitle" xml:space="preserve">
-    <value>Invalid Number</value>
+    <value>Număr nevalid</value>
   </data>
   <data name="IsClearedLabel" xml:space="preserve">
-    <value>Cleared</value>
+    <value>Eliminat</value>
   </data>
   <data name="IsExcludedLabel" xml:space="preserve">
-    <value>Exclude account from balance</value>
+    <value>Exclude contul din sold</value>
   </data>
   <data name="IsGroupedLabel" xml:space="preserve">
-    <value>Group List</value>
+    <value>Listă de grupuri</value>
   </data>
   <data name="IsRecurringFilterLabel" xml:space="preserve">
-    <value>Is Recurring</value>
+    <value>Este recurent</value>
   </data>
   <data name="IsRecurringLabel" xml:space="preserve">
-    <value>Recurring</value>
+    <value>Recurent</value>
   </data>
   <data name="LastBackupDateLabel" xml:space="preserve">
-    <value>Last Backup created at:</value>
+    <value>Ultima copie de rezervă creată la:</value>
   </data>
   <data name="LightLabel" xml:space="preserve">
-    <value>Light</value>
+    <value>Lumină</value>
   </data>
   <data name="LoadingLabel" xml:space="preserve">
-    <value>Loading...</value>
+    <value>Încărcare...</value>
   </data>
   <data name="LoggedInMessage" xml:space="preserve">
-    <value>Loggedin successfully.</value>
+    <value>Autentificare cu succes.</value>
   </data>
   <data name="LoggedOutMessage" xml:space="preserve">
-    <value>Logged out successfully.</value>
+    <value>Deconectat cu succes.</value>
   </data>
   <data name="LoggedOutTitle" xml:space="preserve">
-    <value>Logged out</value>
+    <value>Delogat</value>
   </data>
   <data name="LoginCanceledMessage" xml:space="preserve">
-    <value>Login was canceled.</value>
+    <value>Autentificarea a fost anulată.</value>
   </data>
   <data name="LoginFailedTitle" xml:space="preserve">
-    <value>Login failed!</value>
+    <value>Autentificare eșuată!</value>
   </data>
   <data name="LoginLabel" xml:space="preserve">
-    <value>Login</value>
+    <value>Autentificare</value>
   </data>
   <data name="LogoutCanceledMessage" xml:space="preserve">
-    <value>Logout was canceled.</value>
+    <value>Deconectarea a fost anulată.</value>
   </data>
   <data name="LogoutLabel" xml:space="preserve">
-    <value>Logout</value>
+    <value>Deconectare</value>
   </data>
   <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
     <value>Mandatory field</value>
   </data>
   <data name="ModificationDateHeader" xml:space="preserve">
-    <value>Modification Date</value>
+    <value>Data modificării</value>
   </data>
   <data name="ModificationDateLabel" xml:space="preserve">
-    <value>Modification Date:</value>
+    <value>Data modificării:</value>
   </data>
   <data name="ModificationDateTemplateLabel" xml:space="preserve">
-    <value>Modification Date: {0}</value>
+    <value>Data Modificării: {0}</value>
   </data>
   <data name="ModifyRecurrenceMessage" xml:space="preserve">
-    <value>You have modified a recurring payment. Do you want to update the recurrence?</value>
+    <value>Ați modificat o plată recurentă. Doriți să actualizați recursul?</value>
   </data>
   <data name="ModifyRecurrenceTitle" xml:space="preserve">
-    <value>Modify Recurrence</value>
+    <value>Modifică recurența</value>
   </data>
   <data name="MonthlyAverageLabel" xml:space="preserve">
-    <value>Last year monthly average: </value>
+    <value>Media lunară a anului trecut: </value>
   </data>
   <data name="MonthlyCashflowDescription" xml:space="preserve">
-    <value>Shows the monthly cashflow for the selected account.</value>
+    <value>Arată fluxul lunar de cashflow pentru contul selectat.</value>
   </data>
   <data name="MonthlyCashflowLabel" xml:space="preserve">
-    <value>Monthly Cashflow</value>
+    <value>Cashflow lunar</value>
   </data>
   <data name="MonthlyCashflowTitle" xml:space="preserve">
-    <value>Monthly Cashflow</value>
+    <value>Cashflow lunar</value>
   </data>
   <data name="MonthlyLabel" xml:space="preserve">
-    <value>Monthly</value>
+    <value>Lunar</value>
   </data>
   <data name="NameRequiredMessage" xml:space="preserve">
-    <value>Please insert a name.</value>
+    <value>Vă rugăm să introduceţi un nume.</value>
   </data>
   <data name="NextLabel" xml:space="preserve">
-    <value>Next</value>
+    <value>Următoarea</value>
   </data>
   <data name="NoAccountsMessage" xml:space="preserve">
-    <value>There are no Accounts to display.</value>
+    <value>Nu există conturi de afișat.</value>
   </data>
   <data name="NoCategoriesMessage" xml:space="preserve">
-    <value>There are no categories to display. </value>
+    <value>Nu există nici o categorie de afișat. </value>
   </data>
   <data name="NoCategoryLabel" xml:space="preserve">
-    <value>[No Category]</value>
+    <value>[Nicio categorie]</value>
   </data>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
-    <value>No entry selected. Choose a entry in the list to see the payments for it.</value>
+    <value>Nici o intrare selectată. Alegeți o intrare în listă pentru a vedea plățile pentru ea.</value>
   </data>
   <data name="NoLabel" xml:space="preserve">
-    <value>No</value>
+    <value>Nr</value>
   </data>
   <data name="NoNetworkMessage" xml:space="preserve">
-    <value>You are not connected to the internet. Please check your connection and try again.</value>
+    <value>Nu sunteți conectat la internet. Vă rugăm să verificați conexiunea și să încercați din nou.</value>
   </data>
   <data name="NoNetworkTitle" xml:space="preserve">
-    <value>No Internet Connection</value>
+    <value>Lipsă conexiune la internet</value>
   </data>
   <data name="NoPaymentsMessage" xml:space="preserve">
-    <value>There are no Payments. Add one by tapping on the plus button.</value>
+    <value>Nu există nicio plată. Adăugați una apăsând pe butonul plus.</value>
   </data>
   <data name="NoteLabel" xml:space="preserve">
-    <value>Note</value>
+    <value>Notă</value>
   </data>
   <data name="NotNowLabel" xml:space="preserve">
-    <value>Not Now</value>
+    <value>Nu acum</value>
   </data>
   <data name="OkLabel" xml:space="preserve">
     <value>Ok</value>
   </data>
   <data name="OthersLabel" xml:space="preserve">
-    <value>Others</value>
+    <value>Altele</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
-    <value>Existing backups will be overwritten. Do you wanna continue?</value>
+    <value>Copiile de rezervă existente vor fi suprascrise. Doriţi să continuaţi?</value>
   </data>
   <data name="OverwriteDataMessage" xml:space="preserve">
-    <value>Your local data will be deleted. Are you sure you wanna proceed?</value>
+    <value>Datele locale vor fi șterse. Sigur doriți să continuați?</value>
   </data>
   <data name="OverwriteTitle" xml:space="preserve">
     <value>Overwrite?</value>
   </data>
   <data name="PaymentIntroductionText" xml:space="preserve">
-    <value>When you create a payment you can select the category for that payment along with the account and if it is an expense, an income or a transfer.
-Payments you created will show up under the account you choose.
-To get there go to the account list and select the respective account.</value>
+    <value>Când creați o plată puteți selecta categoria pentru acea plată împreună cu contul și dacă este o cheltuială, un venit sau un transfer.
+Plățile create vor apărea sub contul pe care îl alegi.
+Pentru a obține accesați lista de conturi și selectați contul respectiv.</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Details for {0}</value>
+    <value>Detalii pentru {0}</value>
   </data>
   <data name="PaymentTypeLabel" xml:space="preserve">
-    <value>Payment type</value>
+    <value>Tip de plată</value>
   </data>
   <data name="PersonalizationTitle" xml:space="preserve">
-    <value>Personalization</value>
+    <value>Personalizare</value>
   </data>
   <data name="QuarterlyLabel" xml:space="preserve">
-    <value>Quarterly</value>
+    <value>trimestrial</value>
   </data>
   <data name="RateLabel" xml:space="preserve">
-    <value>Rate this app!</value>
+    <value>Evaluează această aplicație!</value>
   </data>
   <data name="RateReminderText" xml:space="preserve">
-    <value>We hope you like our app. Support us with a rating in the store.
-Do you want to go the the store to rate?</value>
+    <value>Sperăm că îți place aplicația noastră. Susține-ne cu un rating în magazin.
+Vrei să mergi la magazin pentru a evalua?</value>
   </data>
   <data name="RateReminderTitle" xml:space="preserve">
-    <value>Rate this app</value>
+    <value>Evaluează această aplicație</value>
   </data>
   <data name="RecurrenceLabel" xml:space="preserve">
-    <value>Recurrence</value>
+    <value>Reapariţie</value>
   </data>
   <data name="RecurringLabel" xml:space="preserve">
-    <value>Is Recurring</value>
+    <value>Este recurent</value>
   </data>
   <data name="RequireNoteCheckbox" xml:space="preserve">
-    <value>Note required</value>
+    <value>Notă necesară</value>
   </data>
   <data name="RestoreBackupCanceledMessage" xml:space="preserve">
-    <value>Restoring backup was canceled.</value>
+    <value>Restaurarea backup-ului a fost anulată.</value>
   </data>
   <data name="RestoreBackupInformationLabel" xml:space="preserve">
-    <value>Download the previous uploaded database backup and replace your local data with it.
-WARNING: Local changes you made meanwhile will be lost!</value>
+    <value>Descarcă copia de siguranță a bazei de date încărcate anterior și înlocuiește datele locale cu aceasta.
+ATENȚIE: Modificările locale pe care le-ai făcut între timp vor fi pierdute!</value>
   </data>
   <data name="RestoreBackupLabel" xml:space="preserve">
-    <value>Restore Backup</value>
+    <value>Restabilire copie de rezervă</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
-    <value>Revenue</value>
+    <value>Venituri</value>
   </data>
   <data name="SaveLabel" xml:space="preserve">
-    <value>Save</value>
+    <value>Salvează</value>
   </data>
   <data name="SavingAccountMessage" xml:space="preserve">
-    <value>Saving Account...</value>
+    <value>Se salvează contul...</value>
   </data>
   <data name="SavingCategoryMessage" xml:space="preserve">
-    <value>Saving Category...</value>
+    <value>Se salvează categoria...</value>
   </data>
   <data name="SavingPaymentMessage" xml:space="preserve">
-    <value>Saving Payment...</value>
+    <value>Se salvează plata...</value>
   </data>
   <data name="SearchLabel" xml:space="preserve">
-    <value>Search</value>
+    <value>Caută</value>
   </data>
   <data name="SelectCategoryTitle" xml:space="preserve">
-    <value>Select Category</value>
+    <value>Selectaţi categoria</value>
   </data>
   <data name="SelectDateLabel" xml:space="preserve">
-    <value>Select Date</value>
+    <value>Selectați data</value>
   </data>
   <data name="SelectedAccountHeader" xml:space="preserve">
-    <value>Selected Account</value>
+    <value>Cont selectat</value>
   </data>
   <data name="SelectFilterTitle" xml:space="preserve">
-    <value>Select Filter</value>
+    <value>Selectați Filtru</value>
   </data>
   <data name="SelectStatisticTitle" xml:space="preserve">
-    <value>Select Statistic</value>
+    <value>Selectează statistici</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>Setări</value>
   </data>
   <data name="SkipLabel" xml:space="preserve">
-    <value>Skip</value>
+    <value>Omitere</value>
   </data>
   <data name="StatisticsTimeRangeTitle" xml:space="preserve">
-    <value>Time Range:</value>
+    <value>Interval de timp:</value>
   </data>
   <data name="StatisticsTitle" xml:space="preserve">
-    <value>Statistics</value>
+    <value>Statistici</value>
   </data>
   <data name="TargetAccountLabel" xml:space="preserve">
-    <value>Target Account</value>
+    <value>Cont țintă</value>
   </data>
   <data name="TimeRangeEndLabel" xml:space="preserve">
-    <value>Time Range End</value>
+    <value>Sfârșit interval de timp</value>
   </data>
   <data name="TimeRangeStartLabel" xml:space="preserve">
-    <value>Time Range Start</value>
+    <value>Pornire interval de timp</value>
   </data>
   <data name="TransferHeader" xml:space="preserve">
-    <value>Add transfer</value>
+    <value>Adaugă transfer</value>
   </data>
   <data name="TransferLabel" xml:space="preserve">
     <value>Transfer</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the MoneyFox:</value>
+    <value>Ceva nu este tradus corect sau nu este tradus deloc? Ajută-ne! Du-te la crowdin și ajută la îmbunătățirea Căsuței de Bani:</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>A apărut o problemă în timpul operațiunii. Mesaj de eroare {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
-    <value>Upload backup was canceled.</value>
+    <value>Copia de rezervă a fost anulată.</value>
   </data>
   <data name="VersionLabel" xml:space="preserve">
-    <value>Version</value>
+    <value>Versiune</value>
   </data>
   <data name="WebsiteLabel" xml:space="preserve">
     <value>Website</value>
   </data>
   <data name="WeeklyLabel" xml:space="preserve">
-    <value>Weekly</value>
+    <value>Săptămânal</value>
   </data>
   <data name="WelcomeLabel" xml:space="preserve">
-    <value>Welcome!</value>
+    <value>Bun venit!</value>
   </data>
   <data name="WelcomePageSubtitle" xml:space="preserve">
-    <value>Glad to have you!</value>
+    <value>Lovitura de a te avea!</value>
   </data>
   <data name="WelcomePageText" xml:space="preserve">
-    <value>The MoneyFox helps you to track your expenses and incomes in an easy way.
-To start create a new account. Accounts are used to organize payments and money in collections.</value>
+    <value>MoneyFox vă ajută să vă urmăriți cheltuielile și veniturile într-un mod ușor.
+Pentru a începe crearea unui nou cont. Conturile sunt utilizate pentru a organiza plățile și banii în colecții.</value>
   </data>
   <data name="WindowsDefaultLabel" xml:space="preserve">
-    <value>Windows Default</value>
+    <value>Windows implicit</value>
   </data>
   <data name="YearlyLabel" xml:space="preserve">
-    <value>Yearly</value>
+    <value>Anual</value>
   </data>
   <data name="YesLabel" xml:space="preserve">
-    <value>Yes</value>
+    <value>Da</value>
   </data>
   <data name="AccountsToolTip" xml:space="preserve">
-    <value>Manage your Accounts</value>
+    <value>Gestionează-ți conturile</value>
   </data>
   <data name="AddPaymentTitle" xml:space="preserve">
-    <value>Add Payment</value>
+    <value>Adăugare plată</value>
   </data>
   <data name="AddPaymentToolTip" xml:space="preserve">
-    <value>Add a Payment with details</value>
+    <value>Adaugă o plată cu detalii</value>
   </data>
   <data name="BackupToolTip" xml:space="preserve">
-    <value>Backup your information</value>
+    <value>Copie de rezervă informaţii</value>
   </data>
   <data name="CategoriesToolTip" xml:space="preserve">
-    <value>Manage your Categories</value>
+    <value>Gestionează-ți categoriile</value>
   </data>
   <data name="StatisticsToolTip" xml:space="preserve">
-    <value>View your Statistics</value>
+    <value>Vezi statisticile tale</value>
   </data>
   <data name="FailedToLoginToBackupMessage" xml:space="preserve">
-    <value>Failed to login to your backup service. Automatic backup upload was disabled. Please login and enable it again.</value>
+    <value>Conectarea la serviciul de backup a eșuat. Încărcarea automată a fost dezactivată. Te rugăm să te autentifici și să o activezi din nou.</value>
   </data>
   <data name="FailedToLoginToBackupTitle" xml:space="preserve">
-    <value>Login failed!</value>
+    <value>Autentificare eșuată!</value>
   </data>
   <data name="LoggedInTitle" xml:space="preserve">
-    <value>Logged in!</value>
+    <value>Conectat!</value>
   </data>
   <data name="SelectedPaymentTypeHeader" xml:space="preserve">
-    <value>Selected Payment Type</value>
+    <value>Tipul de plată selectat</value>
   </data>
   <data name="CategoryProgressionDescription" xml:space="preserve">
-    <value>Shows the progression of a category by month.</value>
+    <value>Arată progresia unei categorii pe lună.</value>
   </data>
   <data name="CategoryProgressionLabel" xml:space="preserve">
-    <value>Category Progression</value>
+    <value>Progresie categorie</value>
   </data>
   <data name="SelectCategoryLabel" xml:space="preserve">
-    <value>Select category..</value>
+    <value>Selectați categoria..</value>
   </data>
   <data name="CategoryProgressionTitle" xml:space="preserve">
-    <value>Category Progression</value>
+    <value>Progresie categorie</value>
   </data>
   <data name="EditPaymentTitle" xml:space="preserve">
-    <value>Edit Payment</value>
+    <value>Editare plată</value>
   </data>
   <data name="InitialBalanceLabel" xml:space="preserve">
-    <value>Initial Balance</value>
+    <value>Soldul inițial</value>
   </data>
   <data name="AllLabel" xml:space="preserve">
-    <value>All</value>
+    <value>Toate</value>
   </data>
   <data name="HomeTitle" xml:space="preserve">
-    <value>Home</value>
+    <value>Acasă</value>
   </data>
   <data name="MenuTitle" xml:space="preserve">
-    <value>Menu</value>
+    <value>Meniu</value>
   </data>
   <data name="LastDayOfMonthLabel" xml:space="preserve">
-    <value>Last Day of Month</value>
+    <value>Ultima zi a lunii</value>
   </data>
   <data name="OpenLogLabel" xml:space="preserve">
-    <value>Open Log</value>
+    <value>Deschide jurnal</value>
   </data>
   <data name="BudgetsTitle" xml:space="preserve">
-    <value>Budgets</value>
+    <value>Bugete</value>
   </data>
   <data name="NoBudgetsMessage" xml:space="preserve">
-    <value>There are no Budgets yet. Go ahead and create one!</value>
+    <value>Nu există încă niciun buget. Continuați și creați unul!</value>
   </data>
   <data name="AddBudgetLabel" xml:space="preserve">
-    <value>Add Budget</value>
+    <value>Adaugă buget</value>
   </data>
   <data name="AddBudgetTitle" xml:space="preserve">
-    <value>Add Budget</value>
+    <value>Adaugă buget</value>
   </data>
   <data name="BudgetNameLabel" xml:space="preserve">
-    <value>Budget Name</value>
+    <value>Nume buget</value>
   </data>
   <data name="MoreTitle" xml:space="preserve">
-    <value>More</value>
+    <value>Mai</value>
   </data>
   <data name="SelectedCategoriesLabel" xml:space="preserve">
-    <value>Selected Categories</value>
+    <value>Categorii selectate</value>
   </data>
   <data name="BackupUploadSkippedMessage" xml:space="preserve">
-    <value>Upload of backup skipped, since remote version was already up to date.</value>
+    <value>Încărcarea copiei de rezervă a fost omisă, deoarece versiunea la distanță era deja actualizată.</value>
   </data>
   <data name="EditBudgetTitle" xml:space="preserve">
-    <value>Edit Budget</value>
+    <value>Editare buget</value>
   </data>
   <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this budget?</value>
+    <value>Sunteţi sigur că doriţi să ştergeţi acest buget?</value>
   </data>
   <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Monthly Budget:</value>
+    <value>Buget lunar:</value>
   </data>
   <data name="TimeRangeLabel" xml:space="preserve">
-    <value>Time Range</value>
+    <value>Interval de timp</value>
   </data>
   <data name="LastFiveYearsLabel" xml:space="preserve">
-    <value>Last Five Years</value>
+    <value>Ultimii cinci ani</value>
   </data>
   <data name="LastThreeYearsLabel" xml:space="preserve">
-    <value>Last Three Years</value>
+    <value>Ultimii trei ani</value>
   </data>
   <data name="LastTwoYearsLabel" xml:space="preserve">
-    <value>Last Two Years</value>
+    <value>Ultimii doi ani</value>
   </data>
   <data name="LastYearLabel" xml:space="preserve">
-    <value>Last Year</value>
+    <value>Anul trecut</value>
   </data>
   <data name="YearToDateLabel" xml:space="preserve">
-    <value>Year to date</value>
+    <value>Anul până în prezent</value>
   </data>
   <data name="MonthlySpendingLimitLabel" xml:space="preserve">
-    <value>Monthly Spending Limit</value>
+    <value>Limita lunară a cheltuielilor</value>
   </data>
   <data name="EvaluationTimeRangeLabel" xml:space="preserve">
-    <value>Evaluation Time Range</value>
+    <value>Interval de timp evaluare</value>
   </data>
   <data name="EvaluationTimeRangeMessage" xml:space="preserve">
-    <value>This defines the time range in which payments are included to calculate your monthly average to compare to your spending limit.</value>
+    <value>Aceasta definește intervalul de timp în care sunt incluse plățile pentru a calcula media lunară pentru a compara limita cheltuielilor.</value>
   </data>
   <data name="CategorySummaryPlaceholder" xml:space="preserve">
-    <value>No payments in the selected time range found.</value>
+    <value>Nu s-au găsit plăți în intervalul de timp selectat.</value>
   </data>
   <data name="InvalidSpendingLimitMessage" xml:space="preserve">
-    <value>The spending limit has to be larger than zero.</value>
+    <value>Limita de cheltuieli trebuie să fie mai mare decât zero.</value>
   </data>
   <data name="InvalidSpendingLimitTitle" xml:space="preserve">
-    <value>Invalid Spending Limit</value>
+    <value>Limită de cheltuieli nevalidă</value>
   </data>
   <data name="NotePlaceholderLabel" xml:space="preserve">
-    <value>Enter note to this payment..</value>
+    <value>Introdu nota la această plată..</value>
   </data>
   <data name="GainsLabel" xml:space="preserve">
-        <value>Gains</value>
+        <value>Câștiguri</value>
     </data>
 </root>
