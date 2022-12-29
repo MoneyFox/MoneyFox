@@ -42,8 +42,8 @@
                                  Series="{Binding Series, Mode=OneWay}"
                                  XAxes="{Binding XAxis, Mode=OneWay}"
                                  LegendPosition="Bottom"
-                                 LegendBackground="{AppThemeBinding Dark={StaticResource StatisticLegendDark}, Light={StaticResource StatisticLegendLight}}"
-                                 LegendTextBrush="{AppThemeBinding Dark={StaticResource TextPrimaryColorDark}, Light={StaticResource TextPrimaryColorLight}}" />
+                                 LegendBackgroundPaint="{Binding LegendBackgroundPaint, Mode=OneWay}"
+                                 LegendTextPaint="{Binding LegendTextPaint, Mode=OneWay}" />
 
         </Grid>
     </ContentPage.Content>

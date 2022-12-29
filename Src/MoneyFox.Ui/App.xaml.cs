@@ -26,6 +26,14 @@ public partial class App
         CultureHelper.CurrentCulture = new(CultureInfo.CurrentCulture.Name);
         InitializeComponent();
         SetupServices();
+
+        ResourceDictionary = new Dictionary<string, ResourceDictionary>();
+        foreach (var dictionary in Resources.MergedDictionaries)
+        {
+            string key = dictionary.Source.OriginalString.Split(';').First().Split('/').Last().Split('.').First(); // Alternatively If you are good in Regex you can use that as well
+            ResourceDictionary.Add(key, dictionary);
+        }
+
         MainPage = DeviceInfo.Current.Idiom == DeviceIdiom.Desktop
                    || DeviceInfo.Current.Idiom == DeviceIdiom.Tablet
                    || DeviceInfo.Current.Idiom == DeviceIdiom.TV
@@ -37,6 +45,8 @@ public partial class App
             Shell.Current.GoToAsync(Routes.WelcomeViewRoute).Wait();
         }
     }
+
+    public static Dictionary<string,ResourceDictionary> ResourceDictionary { get; set; }
 
     public static Action<IServiceCollection>? AddPlatformServicesAction { get; set; }
 
