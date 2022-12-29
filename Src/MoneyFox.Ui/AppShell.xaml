@@ -12,7 +12,7 @@
        Title="MoneyFox">
 
     <TabBar>
-        <Tab Title="{x:Static resources:Strings.HomeTitle}">
+        <Tab Title="{x:Static resources:Translations.HomeTitle}">
             <Tab.Icon>
                 <FontImageSource FontFamily="MaterialIcons"
                                  Glyph="{x:Static views:IconFont.HomeOutline}"
@@ -24,19 +24,19 @@
             </ShellContent>
         </Tab>
 
-        <Tab Title="{x:Static resources:Strings.StatisticsTitle}">
+        <Tab Title="{x:Static resources:Translations.StatisticsTitle}">
             <Tab.Icon>
                 <FontImageSource FontFamily="MaterialIcons"
                                  Glyph="{x:Static views:IconFont.ChartArc}"
                                  Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
                                  Size="24" />
             </Tab.Icon>
-            <ShellContent Title="{x:Static resources:Strings.StatisticsTitle}">
+            <ShellContent Title="{x:Static resources:Translations.StatisticsTitle}">
                 <selector:StatisticSelectorPage />
             </ShellContent>
         </Tab>
 
-        <Tab Title="{x:Static resources:Strings.MoreTitle}">
+        <Tab Title="{x:Static resources:Translations.MoreTitle}">
             <Tab.Icon>
                 <FontImageSource FontFamily="MaterialIcons"
                                  Glyph="{x:Static views:IconFont.DotsHorizontal}"

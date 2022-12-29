@@ -14,20 +14,20 @@
             RowDefinitions="35, 20, Auto, *, 40">
 
             <Label Style="{StaticResource TextHeadline}"
-                   Text="{x:Static resources:Strings.CompletedTitle}" />
+                   Text="{x:Static resources:Translations.CompletedTitle}" />
 
             <Label Grid.Row="2"
-                   Text="{x:Static resources:Strings.CompletedText}" />
+                   Text="{x:Static resources:Translations.CompletedText}" />
 
             <Grid Grid.Row="4" ColumnDefinitions="*, 6, 2*">
                 <Button Grid.Column="0"
                         VerticalOptions="Center"
-                        Text="{x:Static resources:Strings.BackLabel}"
+                        Text="{x:Static resources:Translations.BackLabel}"
                         Command="{Binding BackCommand}" />
 
                 <Button Grid.Column="2"
                         VerticalOptions="Center"
-                        Text="{x:Static resources:Strings.CompleteLabel}"
+                        Text="{x:Static resources:Translations.CompleteLabel}"
                         Command="{Binding CompleteCommand}" />
             </Grid>
         </Grid>

@@ -39,9 +39,9 @@ public static class PaymentTypeHelper
     {
         return type switch
         {
-            PaymentType.Expense => isEditMode ? Strings.EditSpendingTitle : Strings.AddExpenseTitle,
-            PaymentType.Income => isEditMode ? Strings.EditIncomeTitle : Strings.AddIncomeTitle,
-            PaymentType.Transfer => isEditMode ? Strings.EditTransferTitle : Strings.AddTransferTitle,
+            PaymentType.Expense => isEditMode ? Translations.EditSpendingTitle : Translations.AddExpenseTitle,
+            PaymentType.Income => isEditMode ? Translations.EditIncomeTitle : Translations.AddIncomeTitle,
+            PaymentType.Transfer => isEditMode ? Translations.EditTransferTitle : Translations.AddTransferTitle,
             _ => string.Empty
         };
     }

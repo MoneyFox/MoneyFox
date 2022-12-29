@@ -50,7 +50,7 @@ internal sealed partial class EditCategoryViewModel : ModifyCategoryViewModel
     [RelayCommand]
     private async Task Delete()
     {
-        if (await dialogService.ShowConfirmMessageAsync(title: Strings.DeleteTitle, message: Strings.DeleteCategoryConfirmationMessage))
+        if (await dialogService.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeleteCategoryConfirmationMessage))
         {
             await mediator.Send(new DeleteCategoryByIdCommand(SelectedCategory.Id));
             await navigationService.GoBackFromModalAsync();

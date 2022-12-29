@@ -12,7 +12,7 @@
             <Label Style="{StaticResource PageTitle}"
                    HorizontalOptions="Start"
                    VerticalOptions="Center"
-                   Text="{x:Static resources:Strings.MonthlyCashflowTitle}" />
+                   Text="{x:Static resources:Translations.MonthlyCashflowTitle}" />
 
             <ImageButton Grid.Column="1"
                          Padding="0"
@@ -37,7 +37,7 @@
                    Text="{Binding Title}" />
 
             <Picker Grid.Row="1"
-                    Title="{x:Static resources:Strings.SelectedAccountHeader}"
+                    Title="{x:Static resources:Translations.SelectedAccountHeader}"
                     ItemsSource="{Binding Accounts}"
                     SelectedItem="{Binding SelectedAccount, Mode=TwoWay}"
                     ItemDisplayBinding="{Binding Name}" />

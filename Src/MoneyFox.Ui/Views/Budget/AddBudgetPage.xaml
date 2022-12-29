@@ -5,14 +5,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:budget="clr-namespace:MoneyFox.Ui.Views.Budget"
-    Title="{x:Static resources:Strings.AddBudgetTitle}"
+    Title="{x:Static resources:Translations.AddBudgetTitle}"
     x:DataType="budget:AddBudgetViewModel"
     x:Class="MoneyFox.Ui.Views.Budget.AddBudgetPage">
 
     <Grid RowDefinitions="*, 6, 40" Padding="12">
         <budget:ModifyBudgetView Grid.Row="0" />
         <Button Grid.Row="2"
-                Text="{x:Static resources:Strings.SaveLabel}"
+                Text="{x:Static resources:Translations.SaveLabel}"
                 Command="{Binding SaveBudgetCommand}"
                 CommandParameter="{Binding Name}" />
     </Grid>

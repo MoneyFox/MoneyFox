@@ -58,7 +58,7 @@ internal sealed class BackupService : ObservableRecipient, IBackupService, IDisp
 
         await oneDriveBackupService.LoginAsync();
         settingsFacade.IsLoggedInToBackupService = true;
-        await toastService.ShowToastAsync(message: Strings.LoggedInMessage, title: Strings.LoggedInTitle);
+        await toastService.ShowToastAsync(message: Translations.LoggedInMessage, title: Translations.LoggedInTitle);
     }
 
     public async Task LogoutAsync()
@@ -71,7 +71,7 @@ internal sealed class BackupService : ObservableRecipient, IBackupService, IDisp
         await oneDriveBackupService.LogoutAsync();
         settingsFacade.IsLoggedInToBackupService = false;
         settingsFacade.IsBackupAutoUploadEnabled = false;
-        await toastService.ShowToastAsync(message: Strings.LoggedOutMessage, title: Strings.LoggedOutTitle);
+        await toastService.ShowToastAsync(message: Translations.LoggedOutMessage, title: Translations.LoggedOutTitle);
     }
 
     public async Task<bool> IsBackupExistingAsync()
@@ -101,7 +101,7 @@ internal sealed class BackupService : ObservableRecipient, IBackupService, IDisp
         {
             Log.Error(exception: ex, messageTemplate: "Operation canceled during get backup date. Execute logout");
             await LogoutAsync();
-            await toastService.ShowToastAsync(message: Strings.FailedToLoginToBackupMessage, title: Strings.FailedToLoginToBackupTitle);
+            await toastService.ShowToastAsync(message: Translations.FailedToLoginToBackupMessage, title: Translations.FailedToLoginToBackupTitle);
         }
 
         return DateTime.MinValue.ToLocalTime();
@@ -127,7 +127,7 @@ internal sealed class BackupService : ObservableRecipient, IBackupService, IDisp
             if (result == BackupRestoreResult.NewBackupRestored)
             {
                 appDbContext.Migratedb();
-                await toastService.ShowToastAsync(Strings.BackupRestoredMessage);
+                await toastService.ShowToastAsync(Translations.BackupRestoredMessage);
                 _ = Messenger.Send(new ReloadMessage());
             }
         }
@@ -135,7 +135,7 @@ internal sealed class BackupService : ObservableRecipient, IBackupService, IDisp
         {
             Log.Error(exception: ex, messageTemplate: "Operation canceled during restore backup. Execute logout");
             await LogoutAsync();
-            await toastService.ShowToastAsync(message: Strings.FailedToLoginToBackupMessage, title: Strings.FailedToLoginToBackupTitle);
+            await toastService.ShowToastAsync(message: Translations.FailedToLoginToBackupMessage, title: Translations.FailedToLoginToBackupTitle);
         }
     }
 
@@ -174,7 +174,7 @@ internal sealed class BackupService : ObservableRecipient, IBackupService, IDisp
         {
             Log.Error(exception: ex, messageTemplate: "Operation canceled during restore backup. Execute logout");
             await LogoutAsync();
-            await toastService.ShowToastAsync(message: Strings.FailedToLoginToBackupMessage, title: Strings.FailedToLoginToBackupTitle);
+            await toastService.ShowToastAsync(message: Translations.FailedToLoginToBackupMessage, title: Translations.FailedToLoginToBackupTitle);
         }
 
         return BackupRestoreResult.BackupNotFound;

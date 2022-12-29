@@ -20,7 +20,7 @@
 
             <CollectionView Grid.Row="1"
                             ItemsSource="{Binding PaymentList}"
-                            EmptyView="{x:Static resources:Strings.NoPaymentsMessage}"
+                            EmptyView="{x:Static resources:Translations.NoPaymentsMessage}"
                             x:Name="PaymentCollectionView">
 
                 <CollectionView.ItemTemplate>

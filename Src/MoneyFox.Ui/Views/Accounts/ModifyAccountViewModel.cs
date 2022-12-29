@@ -26,7 +26,7 @@ internal abstract partial class ModifyAccountViewModel : BaseViewModel
 
     public virtual bool IsEdit => false;
 
-    public virtual string Title => Strings.AddAccountTitle;
+    public virtual string Title => Translations.AddAccountTitle;
 
     protected IMediator Mediator { get; }
 
@@ -51,7 +51,7 @@ internal abstract partial class ModifyAccountViewModel : BaseViewModel
     {
         if (string.IsNullOrWhiteSpace(SelectedAccountVm.Name))
         {
-            await dialogService.ShowMessageAsync(title: Strings.MandatoryFieldEmptyTitle, message: Strings.NameRequiredMessage);
+            await dialogService.ShowMessageAsync(title: Translations.MandatoryFieldEmptyTitle, message: Translations.NameRequiredMessage);
 
             return;
         }
@@ -59,13 +59,13 @@ internal abstract partial class ModifyAccountViewModel : BaseViewModel
         var nameChanged = SelectedAccountVm.Id == 0 || !SelectedAccountVm.Name.Equals(await Mediator.Send(new GetAccountNameByIdQuery(SelectedAccountVm.Id)));
         if (nameChanged && await Mediator.Send(new GetIfAccountWithNameExistsQuery(accountName: SelectedAccountVm.Name, accountId: SelectedAccountVm.Id)))
         {
-            if (!await dialogService.ShowConfirmMessageAsync(title: Strings.DuplicatedNameTitle, message: Strings.DuplicateAccountMessage))
+            if (!await dialogService.ShowConfirmMessageAsync(title: Translations.DuplicatedNameTitle, message: Translations.DuplicateAccountMessage))
             {
                 return;
             }
         }
 
-        await dialogService.ShowLoadingDialogAsync(Strings.SavingAccountMessage);
+        await dialogService.ShowLoadingDialogAsync(Translations.SavingAccountMessage);
         await SaveAccountAsync();
         Messenger.Send(new ReloadMessage());
         await dialogService.HideLoadingDialogAsync();

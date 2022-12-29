@@ -14,36 +14,36 @@ internal sealed class StatisticSelectorViewModel : BaseViewModel, IStatisticSele
             new()
             {
                 IconGlyph = IconFont.ChartBar,
-                Name = Strings.CashflowLabel,
-                Description = Strings.CashflowDescription,
+                Name = Translations.CashflowLabel,
+                Description = Translations.CashflowDescription,
                 Type = StatisticType.Cashflow
             },
             new()
             {
                 IconGlyph = IconFont.ChartBar,
-                Name = Strings.MonthlyCashflowLabel,
-                Description = Strings.MonthlyCashflowDescription,
+                Name = Translations.MonthlyCashflowLabel,
+                Description = Translations.MonthlyCashflowDescription,
                 Type = StatisticType.MonthlyAccountCashFlow
             },
             new()
             {
                 IconGlyph = IconFont.ChartBar,
-                Name = Strings.CategoryProgressionLabel,
-                Description = Strings.CategoryProgressionDescription,
+                Name = Translations.CategoryProgressionLabel,
+                Description = Translations.CategoryProgressionDescription,
                 Type = StatisticType.CategoryProgression
             },
             new()
             {
                 IconGlyph = IconFont.ChartDonut,
-                Name = Strings.CategorySpreadingLabel,
-                Description = Strings.CategorieSpreadingDescription,
+                Name = Translations.CategorySpreadingLabel,
+                Description = Translations.CategorieSpreadingDescription,
                 Type = StatisticType.CategorySpreading
             },
             new()
             {
                 IconGlyph = IconFont.FormatListBulleted,
-                Name = Strings.CategorySummaryLabel,
-                Description = Strings.CategorySummaryDescription,
+                Name = Translations.CategorySummaryLabel,
+                Description = Translations.CategorySummaryDescription,
                 Type = StatisticType.CategorySummary
             }
         };

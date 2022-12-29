@@ -30,7 +30,7 @@ internal partial class EditAccountViewModel : ModifyAccountViewModel
     }
 
     public override bool IsEdit => true;
-    public override string Title => string.Format(format: Strings.EditAccountTitle, arg0: SelectedAccountVm.Name);
+    public override string Title => string.Format(format: Translations.EditAccountTitle, arg0: SelectedAccountVm.Name);
 
     public async Task InitializeAsync(int accountId)
     {
@@ -45,7 +45,7 @@ internal partial class EditAccountViewModel : ModifyAccountViewModel
     [RelayCommand]
     private async Task DeleteAsync()
     {
-        if (await dialogService.ShowConfirmMessageAsync(title: Strings.DeleteTitle, message: Strings.DeleteAccountConfirmationMessage))
+        if (await dialogService.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeleteAccountConfirmationMessage))
         {
             await mediator.Send(new DeactivateAccountByIdCommand(SelectedAccountVm.Id));
             await navigationService.GoBackFromModalAsync();

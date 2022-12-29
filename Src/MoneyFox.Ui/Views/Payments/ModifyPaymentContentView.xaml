@@ -20,7 +20,7 @@
 
     <VerticalStackLayout Spacing="12" x:DataType="payments:ModifyPaymentViewModel">
 
-        <controls:PaymentTypePicker PickerTitle="{x:Static resources:Strings.PaymentTypeLabel}"
+        <controls:PaymentTypePicker PickerTitle="{x:Static resources:Translations.PaymentTypeLabel}"
                                     PaymentTypeSource="{Binding PaymentTypeList}"
                                     SelectedType="{Binding SelectedPayment.Type}" />
 
@@ -28,17 +28,17 @@
                                 AccountsSource="{Binding ChargedAccounts}"
                                 SelectedAccount="{Binding SelectedPayment.ChargedAccount}" />
 
-        <controls:AccountPicker PickerTitle="{x:Static resources:Strings.TargetAccountLabel}"
+        <controls:AccountPicker PickerTitle="{x:Static resources:Translations.TargetAccountLabel}"
                                 AccountsSource="{Binding TargetAccounts}"
                                 SelectedAccount="{Binding SelectedPayment.TargetAccount}"
                                 IsVisible="{Binding SelectedPayment.IsTransfer}" />
 
         <controls:AmountEntry
-            AmountFieldTitle="{x:Static resources:Strings.AmountLabel}"
+            AmountFieldTitle="{x:Static resources:Translations.AmountLabel}"
             Amount="{Binding SelectedPayment.Amount}"
-            EntryPlaceholder="{x:Static resources:Strings.AmountLabel}" />
+            EntryPlaceholder="{x:Static resources:Translations.AmountLabel}" />
 
-        <Label Text="{x:Static resources:Strings.CategoryLabel}"
+        <Label Text="{x:Static resources:Translations.CategoryLabel}"
                Style="{StaticResource TextBodySecondary}" />
 
         <Grid ColumnDefinitions="70*, 6, 40">
@@ -57,19 +57,19 @@
             </ImageButton>
         </Grid>
 
-        <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Strings.DateLabel}"
+        <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Translations.DateLabel}"
                                    DateField="{Binding SelectedPayment.Date}" />
 
         <controls:TextEntry
-            TextFieldTitle="{x:Static resources:Strings.NoteLabel}"
-            EntryPlaceholder="{x:Static resources:Strings.NotePlaceholderLabel}"
+            TextFieldTitle="{x:Static resources:Translations.NoteLabel}"
+            EntryPlaceholder="{x:Static resources:Translations.NotePlaceholderLabel}"
             EntryText="{Binding SelectedPayment.Note}" />
 
         <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*, Auto">
             <Label Grid.Column="0"
                    Style="{StaticResource TextBodySecondary}"
                    VerticalOptions="Center"
-                   Text="{x:Static resources:Strings.RecurringLabel}" />
+                   Text="{x:Static resources:Translations.RecurringLabel}" />
 
             <Switch Grid.Column="1"
                     HorizontalOptions="End"
@@ -78,7 +78,7 @@
 
         <VerticalStackLayout IsVisible="{Binding SelectedPayment.IsRecurring}"
                              Spacing="6">
-            <Label Style="{StaticResource TextBodySecondary}" Text="{x:Static resources:Strings.RecurrenceLabel}" />
+            <Label Style="{StaticResource TextBodySecondary}" Text="{x:Static resources:Translations.RecurrenceLabel}" />
             <Picker ItemsSource="{Binding RecurrenceList}"
                     SelectedItem="{Binding SelectedPayment.RecurringPayment.Recurrence}" />
 
@@ -89,7 +89,7 @@
                 <Label Grid.Column="0"
                        Style="{StaticResource TextBodySecondary}"
                        VerticalOptions="Center"
-                       Text="{x:Static resources:Strings.LastDayOfMonthLabel}" />
+                       Text="{x:Static resources:Translations.LastDayOfMonthLabel}" />
 
                 <Switch Grid.Column="1"
                         HorizontalOptions="End"
@@ -101,14 +101,14 @@
                 <Label Grid.Column="0"
                        Style="{StaticResource TextBodySecondary}"
                        VerticalOptions="Center"
-                       Text="{x:Static resources:Strings.EndlessLabel}" />
+                       Text="{x:Static resources:Translations.EndlessLabel}" />
 
                 <Switch Grid.Column="1"
                         HorizontalOptions="Start"
                         IsToggled="{Binding SelectedPayment.RecurringPayment.IsEndless}" />
             </Grid>
 
-            <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Strings.EnddateLabel}"
+            <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Translations.EnddateLabel}"
                                        DateField="{Binding SelectedPayment.RecurringPayment.EndDate}"
                                        IsVisible="{Binding SelectedPayment.RecurringPayment.IsEndless, Converter={StaticResource Inverter}}" />
 

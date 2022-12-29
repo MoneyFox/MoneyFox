@@ -44,7 +44,7 @@ public class GetCashFlowQueryHandler : IRequestHandler<GetCashFlowQuery, List<St
         var incomeAmount = payments.Where(x => x.Type == PaymentType.Income).Sum(x => x.Amount);
         StatisticEntry income = new(incomeAmount)
         {
-            Label = Strings.RevenueLabel,
+            Label = Translations.RevenueLabel,
             ValueLabel = Math.Round(d: incomeAmount, decimals: 2, mode: MidpointRounding.AwayFromZero)
                 .ToString(format: "C", provider: CultureHelper.CurrentCulture),
             Color = GREEN_HEX_CODE
@@ -53,7 +53,7 @@ public class GetCashFlowQueryHandler : IRequestHandler<GetCashFlowQuery, List<St
         var expenseAmount = payments.Where(x => x.Type == PaymentType.Expense).Sum(x => x.Amount);
         StatisticEntry spent = new(expenseAmount)
         {
-            Label = Strings.ExpenseLabel,
+            Label = Translations.ExpenseLabel,
             ValueLabel = Math.Round(d: expenseAmount, decimals: 2, mode: MidpointRounding.AwayFromZero)
                 .ToString(format: "C", provider: CultureHelper.CurrentCulture),
             Color = RED_HEX_CODE
@@ -62,7 +62,7 @@ public class GetCashFlowQueryHandler : IRequestHandler<GetCashFlowQuery, List<St
         var valueIncreased = incomeAmount - expenseAmount;
         StatisticEntry increased = new(valueIncreased)
         {
-            Label = Strings.IncreaseLabel,
+            Label = Translations.IncreaseLabel,
             ValueLabel = Math.Round(d: valueIncreased, decimals: 2, mode: MidpointRounding.AwayFromZero)
                 .ToString(format: "C", provider: CultureHelper.CurrentCulture),
             Color = BLUE_HEX_CODE

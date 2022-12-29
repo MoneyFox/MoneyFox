@@ -209,6 +209,6 @@ public class GetCategorySummaryQueryTests
             cancellationToken: default);
 
         // Assert
-        result.CategoryOverviewItems[0].Label.Should().Be(Strings.NoCategoryLabel);
+        result.CategoryOverviewItems[0].Label.Should().Be(Translations.NoCategoryLabel);
     }
 }

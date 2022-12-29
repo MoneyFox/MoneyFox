@@ -9,7 +9,7 @@
 
     <Grid ColumnDefinitions="40, 10, *" Padding="20">
         <ActivityIndicator IsRunning="True" Grid.Column="0" />
-        <Label Text="{x:Static resources:Strings.LoadingLabel}"
+        <Label Text="{x:Static resources:Translations.LoadingLabel}"
                Grid.Column="2" VerticalOptions="Center" />
     </Grid>
 </views:Popup>

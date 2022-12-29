@@ -72,10 +72,10 @@ internal partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadM
     private async Task DeleteCategoryAsync(CategoryViewModel categoryViewModel)
     {
         if (await dialogService.ShowConfirmMessageAsync(
-                title: Strings.DeleteTitle,
-                message: Strings.DeleteCategoryConfirmationMessage,
-                positiveButtonText: Strings.YesLabel,
-                negativeButtonText: Strings.NoLabel))
+                title: Translations.DeleteTitle,
+                message: Translations.DeleteCategoryConfirmationMessage,
+                positiveButtonText: Translations.YesLabel,
+                negativeButtonText: Translations.NoLabel))
         {
             await mediator.Send(new DeleteCategoryByIdCommand(categoryViewModel.Id));
             await SearchCategoryAsync();

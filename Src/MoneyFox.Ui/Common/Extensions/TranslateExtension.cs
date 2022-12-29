@@ -8,7 +8,7 @@ using Core.Resources;
 [ContentProperty("Text")]
 public class TranslateExtension : IMarkupExtension
 {
-    private static readonly Lazy<ResourceManager> ResMgr = new(() => new(baseName: typeof(Strings).FullName, assembly: typeof(Strings).GetTypeInfo().Assembly));
+    private static readonly Lazy<ResourceManager> ResMgr = new(() => new(baseName: typeof(Translations).FullName, assembly: typeof(Translations).GetTypeInfo().Assembly));
 
     public string? Text { get; set; }
 

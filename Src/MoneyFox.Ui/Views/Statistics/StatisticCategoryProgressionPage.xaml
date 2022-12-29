@@ -20,7 +20,7 @@
             <Label Style="{StaticResource PageTitle}"
                    HorizontalOptions="Start"
                    VerticalOptions="Center"
-                   Text="{x:Static resources:Strings.CategoryProgressionTitle}" />
+                   Text="{x:Static resources:Translations.CategoryProgressionTitle}" />
 
             <ImageButton Grid.Column="1"
                          Padding="0"
@@ -56,7 +56,7 @@
                                   IsVisible="{Binding HasNoData, Converter={StaticResource InverseBoolConverter}}" />
 
             <Label Grid.Row="3"
-                   Text="{x:Static resources:Strings.SelectCategoryLabel}"
+                   Text="{x:Static resources:Translations.SelectCategoryLabel}"
                    Style="{StaticResource TextBodySecondary}"
                    IsVisible="{Binding HasNoData}" />
         </Grid>

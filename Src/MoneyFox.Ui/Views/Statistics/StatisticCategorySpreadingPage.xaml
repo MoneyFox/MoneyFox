@@ -18,7 +18,7 @@
             <Label Style="{StaticResource PageTitle}"
                    HorizontalOptions="Start"
                    VerticalOptions="Center"
-                   Text="{x:Static resources:Strings.CategorySpreadingTitle}" />
+                   Text="{x:Static resources:Translations.CategorySpreadingTitle}" />
 
             <ImageButton Grid.Column="1"
                          Padding="0"
@@ -46,7 +46,7 @@
                    Text="{Binding Title}" />
 
             <Picker Grid.Row="1"
-                    Title="{x:Static resources:Strings.SelectedPaymentTypeHeader}"
+                    Title="{x:Static resources:Translations.SelectedPaymentTypeHeader}"
                     ItemsSource="{Binding PaymentTypes}"
                     SelectedItem="{Binding SelectedPaymentType, Mode=TwoWay}"
                     ItemDisplayBinding="{Binding ., Converter={StaticResource PaymentTypeStringConverter}}" />

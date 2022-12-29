@@ -19,7 +19,7 @@
         <Label
             Margin="3,0,0,0"
             Style="{StaticResource TextBodySecondary}"
-            Text="{x:Static resources:Strings.PaymentTypeLabel}" />
+            Text="{x:Static resources:Translations.PaymentTypeLabel}" />
         <Grid ColumnDefinitions="*, Auto">
             <Picker
                 Grid.ColumnSpan="2"

@@ -18,18 +18,18 @@
 
             <VerticalStackLayout Spacing="6">
                 <Label Style="{StaticResource TextHeadline}"
-                       Text="{x:Static resources:Strings.WelcomeLabel}" />
+                       Text="{x:Static resources:Translations.WelcomeLabel}" />
 
                 <Label
                     Style="{StaticResource TextTitle}"
-                    Text="{x:Static resources:Strings.WelcomePageSubtitle}" />
+                    Text="{x:Static resources:Translations.WelcomePageSubtitle}" />
 
                 <Label
-                    Text="{x:Static resources:Strings.WelcomePageText}" />
+                    Text="{x:Static resources:Translations.WelcomePageText}" />
 
                 <Button
                     VerticalOptions="Center"
-                    Text="{x:Static resources:Strings.CreateAccountNowLabel}"
+                    Text="{x:Static resources:Translations.CreateAccountNowLabel}"
                     Command="{Binding GoToAddAccountCommand}" />
             </VerticalStackLayout>
 
@@ -37,12 +37,12 @@
                 <Button Grid.Column="0"
                         VerticalOptions="Center"
                         Style="{StaticResource LinkButton}"
-                        Text="{x:Static resources:Strings.SkipLabel}"
+                        Text="{x:Static resources:Translations.SkipLabel}"
                         Command="{Binding SkipCommand}" />
 
                 <Button Grid.Column="2"
                         VerticalOptions="Center"
-                        Text="{x:Static resources:Strings.NextLabel}"
+                        Text="{x:Static resources:Translations.NextLabel}"
                         Command="{Binding NextStepCommand}" />
             </Grid>
         </Grid>

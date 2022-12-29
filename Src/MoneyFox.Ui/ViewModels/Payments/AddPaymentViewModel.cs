@@ -48,7 +48,7 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
     protected override async Task SavePaymentAsync()
     {
         // Due to a bug in .net maui, the loading dialog can only be called after any other dialog
-        await dialogService.ShowLoadingDialogAsync(Strings.SavingPaymentMessage);
+        await dialogService.ShowLoadingDialogAsync(Translations.SavingPaymentMessage);
         var chargedAccount = await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id));
         var targetAccount = SelectedPayment.TargetAccount != null ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id)) : null;
         var payment = new Payment(

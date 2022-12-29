@@ -70,7 +70,7 @@ internal static class RecurrenceHelper
             case PaymentRecurrence.DailyWithoutWeekend:
                 if (currDate.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday)
                 {
-                    throw new InvalidOperationException($"Unable to create a {Strings.DailyWithoutWeekendLabel} recurring payment on a {currDate.DayOfWeek}");
+                    throw new InvalidOperationException($"Unable to create a {Translations.DailyWithoutWeekendLabel} recurring payment on a {currDate.DayOfWeek}");
                 }
 
                 return currDate;

@@ -5,7 +5,7 @@
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:statistics="clr-namespace:MoneyFox.Ui.Views.Statistics.Selector"
     x:Class="MoneyFox.Ui.Views.Statistics.Selector.StatisticSelectorPage"
-    Title="{x:Static resources:Strings.SelectStatisticTitle}"
+    Title="{x:Static resources:Translations.SelectStatisticTitle}"
     x:Name="root">
 
     <ContentPage.Content>

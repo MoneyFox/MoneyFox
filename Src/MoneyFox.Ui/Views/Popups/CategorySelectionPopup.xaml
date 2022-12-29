@@ -7,14 +7,14 @@
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
     x:Class="MoneyFox.Ui.Views.Popups.CategorySelectionPopup"
     ios:Page.ModalPresentationStyle="OverFullScreen"
-    Title="{x:Static resources:Strings.CategoriesTitle}">
+    Title="{x:Static resources:Translations.CategoriesTitle}">
 
     <Grid IsClippedToBounds="False"
           RowDefinitions="40, 40, *"
           Padding="15,0,15,0">
 
         <Label Style="{StaticResource TextTitle}"
-               Text="{x:Static resources:Strings.AddPaymentTitle}"
+               Text="{x:Static resources:Translations.AddPaymentTitle}"
                VerticalOptions="Center" />
 
         <SearchBar Grid.Row="1"
@@ -26,7 +26,7 @@
         <CollectionView Grid.Row="2"
                         x:Name="CategoryCollectionView"
                         IsGrouped="true"
-                        EmptyView="{x:Static resources:Strings.NoCategoriesMessage}"
+                        EmptyView="{x:Static resources:Translations.NoCategoriesMessage}"
                         ItemsSource="{Binding Categories}">
 
             <CollectionView.GroupHeaderTemplate>
@@ -55,10 +55,10 @@
 
                                 <SwipeView.RightItems>
                                     <SwipeItems>
-                                        <SwipeItem Text="{x:Static resources:Strings.EditLabel}"
+                                        <SwipeItem Text="{x:Static resources:Translations.EditLabel}"
                                                    Command="{Binding Source={x:Reference CategoryCollectionView}, Path=BindingContext.GoToEditCategoryCommand}"
                                                    CommandParameter="{Binding .}" />
-                                        <SwipeItem Text="{x:Static resources:Strings.DeleteLabel}"
+                                        <SwipeItem Text="{x:Static resources:Translations.DeleteLabel}"
                                                    Command="{Binding Source={x:Reference CategoryCollectionView}, Path=BindingContext.DeleteCategoryCommand}"
                                                    CommandParameter="{Binding .}" />
                                     </SwipeItems>

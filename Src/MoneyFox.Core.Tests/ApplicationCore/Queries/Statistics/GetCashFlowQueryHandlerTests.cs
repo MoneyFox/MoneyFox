@@ -74,8 +74,8 @@ public class GetCashFlowQueryHandlerTests
             cancellationToken: default);
 
         // Assert
-        result[0].Label.Should().Be(Strings.RevenueLabel);
-        result[1].Label.Should().Be(Strings.ExpenseLabel);
-        result[2].Label.Should().Be(Strings.IncreaseLabel);
+        result[0].Label.Should().Be(Translations.RevenueLabel);
+        result[1].Label.Should().Be(Translations.ExpenseLabel);
+        result[2].Label.Should().Be(Translations.IncreaseLabel);
     }
 }

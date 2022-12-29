@@ -4,48 +4,48 @@
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              xmlns:about="clr-namespace:MoneyFox.Ui.Views.About"
              x:DataType="about:AboutViewModel"
-             Title="{x:Static resources:Strings.AboutTitle}">
+             Title="{x:Static resources:Translations.AboutTitle}">
 
     <ContentPage.Content>
         <ScrollView>
             <VerticalStackLayout Padding="15" Spacing="12">
                 <HorizontalStackLayout Spacing="6">
-                    <Label Text="{x:Static resources:Strings.VersionLabel}" />
+                    <Label Text="{x:Static resources:Translations.VersionLabel}" />
                     <Label Text="{Binding Version}" />
                 </HorizontalStackLayout>
 
                 <Button
                     Command="{Binding GoToWebsiteCommand}"
-                    Text="{x:Static resources:Strings.WebsiteLabel}" />
+                    Text="{x:Static resources:Translations.WebsiteLabel}" />
 
                 <Button
                     Command="{Binding SendMailCommand}"
-                    Text="{x:Static resources:Strings.EmailLabel}" />
+                    Text="{x:Static resources:Translations.EmailLabel}" />
 
                 <Button
                     Command="{Binding RateAppCommand}"
-                    Text="{x:Static resources:Strings.RateLabel}" />
+                    Text="{x:Static resources:Translations.RateLabel}" />
 
                 <Button
                     Command="{Binding OpenLogFileCommand}"
-                    Text="{x:Static resources:Strings.OpenLogLabel}" />
+                    Text="{x:Static resources:Translations.OpenLogLabel}" />
 
-                <Label Text="{x:Static resources:Strings.TranslationLabel}" />
+                <Label Text="{x:Static resources:Translations.TranslationLabel}" />
                 <Button Style="{StaticResource LinkButton}"
                         Command="{Binding GoToTranslationProjectCommand}"
                         Text="www.crowdin.com" />
 
-                <Label Text="{x:Static resources:Strings.InfoOpenSource}" />
+                <Label Text="{x:Static resources:Translations.InfoOpenSource}" />
                 <Button Style="{StaticResource LinkButton}"
                         Command="{Binding GoToRepositoryCommand}"
                         Text="www.github.com" />
 
-                <Label Text="{x:Static resources:Strings.ContributerLabel}" />
+                <Label Text="{x:Static resources:Translations.ContributerLabel}" />
                 <Button Style="{StaticResource LinkButton}"
                         Command="{Binding GoToContributionPageCommand}"
                         Text="GitHub Contribution" />
 
-                <Label Text="{x:Static resources:Strings.IconDesignerLabel}" />
+                <Label Text="{x:Static resources:Translations.IconDesignerLabel}" />
                 <Button Style="{StaticResource LinkButton}"
                         Command="{Binding GoToDesignerTwitterAccountCommand}"
                         Text="@Toledo Vanderson" />

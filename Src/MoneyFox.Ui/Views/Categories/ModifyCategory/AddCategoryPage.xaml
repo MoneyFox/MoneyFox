@@ -6,14 +6,14 @@
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:modifyCategory="clr-namespace:MoneyFox.Ui.Views.Categories.ModifyCategory"
     x:DataType="modifyCategory:AddCategoryViewModel"
-    Title="{x:Static resources:Strings.AddCategoryTitle}"
+    Title="{x:Static resources:Translations.AddCategoryTitle}"
     x:Class="MoneyFox.Ui.Views.Categories.ModifyCategory.AddCategoryPage">
 
     <ScrollView Padding="15,0,15,0">
         <VerticalStackLayout Spacing="12">
             <modifyCategory:ModifyCategoryContentView />
             <Button Command="{Binding SaveCommand}"
-                    Text="{x:Static resources:Strings.SaveLabel}" />
+                    Text="{x:Static resources:Translations.SaveLabel}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

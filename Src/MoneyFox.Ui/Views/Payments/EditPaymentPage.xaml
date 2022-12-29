@@ -8,7 +8,7 @@
     xmlns:paymentVm="clr-namespace:MoneyFox.Ui.ViewModels.Payments"
     xmlns:extensions="clr-namespace:MoneyFox.Ui.Common.Extensions"
     x:DataType="paymentVm:EditPaymentViewModel"
-    Title="{x:Static resources:Strings.EditPaymentTitle}"
+    Title="{x:Static resources:Translations.EditPaymentTitle}"
     x:Class="MoneyFox.Ui.Views.Payments.EditPaymentPage">
 
     <ScrollView>
@@ -21,13 +21,13 @@
             <Label Style="{StaticResource TextBodySecondary}"
                    Text="{Binding SelectedPayment.LastModified, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
 
-            <Button Text="{x:Static resources:Strings.SaveLabel}" Command="{Binding SaveCommand}" />
+            <Button Text="{x:Static resources:Translations.SaveLabel}" Command="{Binding SaveCommand}" />
 
             <Button x:Name="DeletePaymentButton"
                     Style="{StaticResource WarningButton}"
                     Command="{Binding DeleteCommand}"
                     CommandParameter="{Binding SelectedPayment}"
-                    Text="{x:Static resources:Strings.DeleteLabel}" />
+                    Text="{x:Static resources:Translations.DeleteLabel}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -7,7 +7,7 @@
     xmlns:extensions="clr-namespace:MoneyFox.Ui.Common.Extensions"
     xmlns:modifyCategory="clr-namespace:MoneyFox.Ui.Views.Categories.ModifyCategory"
     x:DataType="modifyCategory:EditCategoryViewModel"
-    Title="{x:Static resources:Strings.EditCategoryTitle}"
+    Title="{x:Static resources:Translations.EditCategoryTitle}"
 
     x:Class="MoneyFox.Ui.Views.Categories.ModifyCategory.EditCategoryPage">
 
@@ -23,11 +23,11 @@
                        Text="{Binding SelectedCategory.LastModified, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
 
                 <Button Command="{Binding SaveCommand}"
-                        Text="{x:Static resources:Strings.SaveLabel}" />
+                        Text="{x:Static resources:Translations.SaveLabel}" />
 
                 <Button Style="{StaticResource WarningButton}"
                         Command="{Binding DeleteCommand}"
-                        Text="{x:Static resources:Strings.DeleteLabel}" />
+                        Text="{x:Static resources:Translations.DeleteLabel}" />
             </VerticalStackLayout>
         </ScrollView>
     </ContentPage.Content>

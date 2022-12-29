@@ -21,12 +21,12 @@
                 <Label Style="{StaticResource TextBodySecondary}"
                        Text="{Binding SelectedAccountVm.LastModified, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
 
-                <Button Command="{Binding SaveCommand}" Text="{x:Static resources:Strings.SaveLabel}" />
+                <Button Command="{Binding SaveCommand}" Text="{x:Static resources:Translations.SaveLabel}" />
 
                 <Button x:Name="DeleteAccountButton"
                         Style="{StaticResource WarningButton}"
                         Command="{Binding DeleteCommand}"
-                        Text="{x:Static resources:Strings.DeleteLabel}" />
+                        Text="{x:Static resources:Translations.DeleteLabel}" />
             </VerticalStackLayout>
         </ScrollView>
     </ContentPage.Content>

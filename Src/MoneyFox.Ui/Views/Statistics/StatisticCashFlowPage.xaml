@@ -14,7 +14,7 @@
             <Label Style="{StaticResource PageTitle}"
                    HorizontalOptions="Start"
                    VerticalOptions="Center"
-                   Text="{x:Static resources:Strings.CashFlowStatisticTitle}" />
+                   Text="{x:Static resources:Translations.CashFlowStatisticTitle}" />
 
             <ImageButton Grid.Column="1"
                          Padding="0"

@@ -55,7 +55,7 @@ internal class AboutViewModel : BaseViewModel
     {
         var latestLogFile = GetLatestLogFile();
         await emailAdapter.SendEmailAsync(
-            subject: Strings.FeedbackSubject,
+            subject: Translations.FeedbackSubject,
             body: string.Empty,
             recipients: new() { SUPPORT_MAIL },
             filePaths: latestLogFile != null ? new() { latestLogFile.FullName } : new());

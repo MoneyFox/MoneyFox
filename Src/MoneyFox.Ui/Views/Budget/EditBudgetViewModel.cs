@@ -53,7 +53,7 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
 
     private async Task DeleteBudgetAsync()
     {
-        if (await dialogService.ShowConfirmMessageAsync(title: Strings.DeleteTitle, message: Strings.DeleteBudgetConfirmationMessage))
+        if (await dialogService.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeleteBudgetConfirmationMessage))
         {
             var command = new DeleteBudget.Command(budgetId: Id);
             _ = await sender.Send(command);

@@ -88,7 +88,7 @@ public class GetCategorySummaryQueryHandler : IRequestHandler<GetCategorySummary
         categoryOverviewItems.Add(
             new()
             {
-                Label = Strings.NoCategoryLabel,
+                Label = Translations.NoCategoryLabel,
                 Value = payments.Where(x => x.Category == null)
                     .Where(x => x.Type != PaymentType.Transfer)
                     .Sum(x => x.Type == PaymentType.Expense ? -x.Amount : x.Amount),

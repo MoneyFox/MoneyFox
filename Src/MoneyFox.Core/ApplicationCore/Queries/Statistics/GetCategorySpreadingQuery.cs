@@ -122,7 +122,7 @@ public class GetCategorySpreadingQueryHandler : IRequestHandler<GetCategorySprea
         var otherValue = statisticData.Where(x => statisticList.All(y => x.Label != y.Label)).Sum(x => x.Value);
         StatisticEntry othersItem = new(otherValue)
         {
-            Label = Strings.OthersLabel, ValueLabel = otherValue.ToString(format: "C", provider: CultureHelper.CurrentCulture)
+            Label = Translations.OthersLabel, ValueLabel = otherValue.ToString(format: "C", provider: CultureHelper.CurrentCulture)
         };
 
         if (othersItem.Value > 0)

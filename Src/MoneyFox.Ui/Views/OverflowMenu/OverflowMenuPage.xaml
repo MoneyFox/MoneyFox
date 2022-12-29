@@ -6,7 +6,7 @@
              xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
              xmlns:overflowMenu="clr-namespace:MoneyFox.Ui.Views.OverflowMenu"
-             Title="{x:Static resources:Strings.MenuTitle}">
+             Title="{x:Static resources:Translations.MenuTitle}">
 
     <ContentPage.Content>
         <VerticalStackLayout>

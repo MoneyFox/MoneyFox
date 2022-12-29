@@ -8,18 +8,18 @@
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls">
 
     <VerticalStackLayout Spacing="6">
-        <controls:TextEntry TextFieldTitle="{x:Static resources:Strings.CategoryNameLabel}"
-                            EntryPlaceholder="{x:Static resources:Strings.CategoryNameLabel}"
+        <controls:TextEntry TextFieldTitle="{x:Static resources:Translations.CategoryNameLabel}"
+                            EntryPlaceholder="{x:Static resources:Translations.CategoryNameLabel}"
                             EntryText="{Binding SelectedCategory.Name}" />
 
-        <controls:TextEntry TextFieldTitle="{x:Static resources:Strings.NoteLabel}"
-                            EntryPlaceholder="{x:Static resources:Strings.NoteLabel}"
+        <controls:TextEntry TextFieldTitle="{x:Static resources:Translations.NoteLabel}"
+                            EntryPlaceholder="{x:Static resources:Translations.NoteLabel}"
                             EntryText="{Binding SelectedCategory.Note}" />
 
         <Grid ColumnDefinitions="*, Auto">
             <Label
                 Grid.Column="0"
-                Text="{x:Static resources:Strings.RequireNoteCheckbox}"
+                Text="{x:Static resources:Translations.RequireNoteCheckbox}"
                 VerticalOptions="Center" />
 
             <Switch

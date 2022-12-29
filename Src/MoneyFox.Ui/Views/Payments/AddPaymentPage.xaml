@@ -6,14 +6,14 @@
     xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     xmlns:payments="clr-namespace:MoneyFox.Ui.Views.Payments"
     xmlns:paymentVm="clr-namespace:MoneyFox.Ui.ViewModels.Payments"
-    Title="{x:Static resources:Strings.AddPaymentLabel}"
+    Title="{x:Static resources:Translations.AddPaymentLabel}"
     x:DataType="paymentVm:AddPaymentViewModel"
     x:Class="MoneyFox.Ui.Views.Payments.AddPaymentPage">
 
     <ScrollView Padding="15,0,15,0">
         <VerticalStackLayout Spacing="12">
             <payments:ModifyPaymentContentView />
-            <Button Text="{x:Static resources:Strings.SaveLabel}" Command="{Binding SaveCommand}" />
+            <Button Text="{x:Static resources:Translations.SaveLabel}" Command="{Binding SaveCommand}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
