@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using _Pending_.Common.QueryObjects;
+using Common.Extensions.QueryObjects;
 using Common.Interfaces;
 using Domain.Aggregates.AccountAggregate;
 using MediatR;

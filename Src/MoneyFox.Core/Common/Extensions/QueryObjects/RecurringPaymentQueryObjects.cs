@@ -1,8 +1,8 @@
-﻿namespace MoneyFox.Core._Pending_.Common.QueryObjects;
+﻿namespace MoneyFox.Core.Common.Extensions.QueryObjects;
 
 using System;
 using System.Linq;
-using ApplicationCore.Domain.Aggregates;
+using MoneyFox.Core.ApplicationCore.Domain.Aggregates;
 
 public static class RecurringPaymentQueryObjects
 {

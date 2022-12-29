@@ -1,8 +1,8 @@
-﻿namespace MoneyFox.Core.Tests._Pending_.QueryObjects;
+﻿namespace MoneyFox.Core.Tests.Common.Extensions.QueryObjects;
 
 using System.Diagnostics.CodeAnalysis;
-using Core._Pending_.Common.QueryObjects;
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using MoneyFox.Core.Common.Extensions.QueryObjects;
 
 [ExcludeFromCodeCoverage]
 public class PaymentQueryExtensionTests
