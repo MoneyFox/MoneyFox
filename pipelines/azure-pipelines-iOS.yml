@@ -10,8 +10,8 @@ pool:
   vmImage: 'macOS-12'
 
 variables:
-  Major: '7'
-  Minor: '9'
+  Major: '8'
+  Minor: '0'
 
 steps:
        
