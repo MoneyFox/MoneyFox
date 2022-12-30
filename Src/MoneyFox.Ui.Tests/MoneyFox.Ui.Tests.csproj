@@ -5,7 +5,6 @@
         <UseMaui>true</UseMaui>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-
         <IsPackable>false</IsPackable>
     </PropertyGroup>
 

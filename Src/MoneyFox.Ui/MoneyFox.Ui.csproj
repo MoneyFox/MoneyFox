@@ -101,7 +101,7 @@
     <ItemGroup>
         <EmbeddedResource Include="appsettings.json"/>
         <EmbeddedResource Update="Resources\Strings\Translations.resx">
-            <StronglyTypedFileName>obj\Debug\net7.0\\Strings.Designer.cs</StronglyTypedFileName>
+            <StronglyTypedFileName>obj\Debug\net7.0\Translations.Designer.cs</StronglyTypedFileName>
             <StronglyTypedLanguage>CSharp</StronglyTypedLanguage>
             <Generator>PublicResXFileCodeGenerator</Generator>
             <LastGenOutput>Translations.Designer.cs</LastGenOutput>
