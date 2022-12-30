@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-    <!-- 
+  <!-- 
       Microsoft ResX Schema 
       
       Version 2.0
@@ -59,829 +59,831 @@
               : using a System.ComponentModel.TypeConverter
               : and then encoded with base64 encoding.
       -->
-    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"
-                xmlns="" id="root">
-        <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
-        <xsd:element name="root" msdata:IsDataSet="true">
+  <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns="" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
             <xsd:complexType>
-                <xsd:choice maxOccurs="unbounded">
-                    <xsd:element name="metadata">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
-                            </xsd:sequence>
-                            <xsd:attribute name="name" use="required" type="xsd:string"/>
-                            <xsd:attribute name="type" type="xsd:string"/>
-                            <xsd:attribute name="mimetype" type="xsd:string"/>
-                            <xsd:attribute ref="xml:space"/>
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="assembly">
-                        <xsd:complexType>
-                            <xsd:attribute name="alias" type="xsd:string"/>
-                            <xsd:attribute name="name" type="xsd:string"/>
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="data">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
-                            </xsd:sequence>
-                            <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-                            <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-                            <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-                            <xsd:attribute ref="xml:space"/>
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="resheader">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                            </xsd:sequence>
-                            <xsd:attribute name="name" type="xsd:string" use="required"/>
-                        </xsd:complexType>
-                    </xsd:element>
-                </xsd:choice>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
-        </xsd:element>
-    </xsd:schema>
-    <resheader name="resmimetype">
-        <value>text/microsoft-resx</value>
-    </resheader>
-    <resheader name="version">
-        <value>2.0</value>
-    </resheader>
-    <resheader name="reader">
-        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
             PublicKeyToken=b77a5c561934e089
         </value>
-    </resheader>
-    <resheader name="writer">
-        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
             PublicKeyToken=b77a5c561934e089
         </value>
-    </resheader>
-    <data name="AboutTitle" xml:space="preserve">
-    <value>Om</value>
+  </resheader>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>About</value>
   </data>
-    <data name="AccountNameLabel" xml:space="preserve">
-    <value>Kontonavn</value>
+  <data name="AccountNameLabel" xml:space="preserve">
+    <value>Account Name</value>
   </data>
-    <data name="AccountRequiredMessage" xml:space="preserve">
-    <value>Vælg en konto.</value>
+  <data name="AccountRequiredMessage" xml:space="preserve">
+    <value>Please select an Account.</value>
   </data>
-    <data name="AccountsTitle" xml:space="preserve">
-    <value>Konti</value>
+  <data name="AccountsTitle" xml:space="preserve">
+    <value>Accounts</value>
   </data>
-    <data name="AddAccountLabel" xml:space="preserve">
-    <value>Tilføj konto</value>
+  <data name="AddAccountLabel" xml:space="preserve">
+    <value>Add Account</value>
   </data>
-    <data name="AddAccountTitle" xml:space="preserve">
-    <value>Tilføj konto</value>
+  <data name="AddAccountTitle" xml:space="preserve">
+    <value>Add Account</value>
   </data>
-    <data name="AddCategoryLabel" xml:space="preserve">
-    <value>Tilføj kategori</value>
+  <data name="AddCategoryLabel" xml:space="preserve">
+    <value>Add Category</value>
   </data>
-    <data name="AddCategoryTitle" xml:space="preserve">
-    <value>Tilføj kategori</value>
+  <data name="AddCategoryTitle" xml:space="preserve">
+    <value>Add Category</value>
   </data>
-    <data name="AddExpenseTitle" xml:space="preserve">
-    <value>Tilføj udgift</value>
+  <data name="AddExpenseTitle" xml:space="preserve">
+    <value>Add Expense</value>
   </data>
-    <data name="AddIncomeTitle" xml:space="preserve">
-    <value>Tilføj indtægt</value>
+  <data name="AddIncomeTitle" xml:space="preserve">
+    <value>Add Income</value>
   </data>
-    <data name="AddPaymentLabel" xml:space="preserve">
-    <value>Tilføj betaling</value>
+  <data name="AddPaymentLabel" xml:space="preserve">
+    <value>Add Payment</value>
   </data>
-    <data name="AddTransferTitle" xml:space="preserve">
-    <value>Tilføj overførsel</value>
+  <data name="AddTransferTitle" xml:space="preserve">
+    <value>Add Transfer</value>
   </data>
-    <data name="AmountLabel" xml:space="preserve">
-    <value>Beløb</value>
+  <data name="AmountLabel" xml:space="preserve">
+    <value>Amount</value>
   </data>
-    <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
-    <value>Beløbet må ikke være negativt. Om det trækkes fra eller lægges til, bliver afgjort af den form for betaling, du opretter.</value>
+  <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
+    <value>The amount may not be negative. If it is subtracted or added is deteremined by the kind of payment you create.</value>
   </data>
-    <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
-    <value>Negativt beløb</value>
+  <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
+    <value>Negative amount</value>
   </data>
-    <data name="ANoteForPaymentIsRequired" xml:space="preserve">
-    <value>En kommentar er påkrævet</value>
+  <data name="ANoteForPaymentIsRequired" xml:space="preserve">
+    <value>A note for payment is required</value>
   </data>
-    <data name="ApplyFilterLabel" xml:space="preserve">
-    <value>Anvend filter</value>
+  <data name="ApplyFilterLabel" xml:space="preserve">
+    <value>Apply Filter</value>
   </data>
-    <data name="AssetsLabel" xml:space="preserve">
-    <value>Formue</value>
+  <data name="AssetsLabel" xml:space="preserve">
+    <value>Assets</value>
   </data>
-    <data name="AuthenticationFailedTitle" xml:space="preserve">
-    <value>Godkendelse mislykkedes</value>
+  <data name="AuthenticationFailedTitle" xml:space="preserve">
+    <value>Authentication failed</value>
   </data>
-    <data name="AutobackupInformationLabel" xml:space="preserve">
-    <value>Hvis du aktiverer denne indstilling, laver vi automatiske backups af dine data til OneDrive. Vi tjekker også periodisk, om noget ændres på en anden enhed.</value>
+  <data name="AutobackupInformationLabel" xml:space="preserve">
+    <value>If you activate this setting we backup your data automatically to OneDrive. Also we check periodically if something changed on another device.</value>
   </data>
-    <data name="AutobackupLabel" xml:space="preserve">
-    <value>Upload og download backup automatisk</value>
+  <data name="AutobackupLabel" xml:space="preserve">
+    <value>Automatically upload and download backups</value>
   </data>
-    <data name="AutobackupTitle" xml:space="preserve">
+  <data name="AutobackupTitle" xml:space="preserve">
     <value>Autobackup</value>
   </data>
-    <data name="BackLabel" xml:space="preserve">
-    <value>Tilbage</value>
+  <data name="BackLabel" xml:space="preserve">
+    <value>Back</value>
   </data>
-    <data name="BackupCreatedMessage" xml:space="preserve">
-    <value>Backup oprettet</value>
+  <data name="BackupCreatedMessage" xml:space="preserve">
+    <value>Backup created successfully</value>
   </data>
-    <data name="BackupFailedTitle" xml:space="preserve">
-    <value>Backup mislykkedes!</value>
+  <data name="BackupFailedTitle" xml:space="preserve">
+    <value>Backup failed!</value>
   </data>
-    <data name="BackupInformationLabel" xml:space="preserve">
-    <value>Dine data vil blive gemt til din OneDrive konto. Du kan finde dem i applikationsmappen i en ny mappe kaldet "MoneyFox".</value>
+  <data name="BackupInformationLabel" xml:space="preserve">
+    <value>Your data will be saved to your OneDrive Account. You’ll find them in the Application Folder in a new folder called "MoneyFox".</value>
   </data>
-    <data name="BackupRestoredMessage" xml:space="preserve">
-    <value>Backup gendannet.</value>
+  <data name="BackupRestoredMessage" xml:space="preserve">
+    <value>Backup restored successfully.</value>
   </data>
-    <data name="BackupTitle" xml:space="preserve">
+  <data name="BackupTitle" xml:space="preserve">
     <value>Backup</value>
   </data>
-    <data name="BiannuallyLabel" xml:space="preserve">
-    <value>Halvårligt</value>
+  <data name="BiannuallyLabel" xml:space="preserve">
+    <value>Biannually</value>
   </data>
-    <data name="BimonthlyLabel" xml:space="preserve">
-    <value>Hver anden måned</value>
+  <data name="BimonthlyLabel" xml:space="preserve">
+    <value>Bimonthly</value>
   </data>
-    <data name="BiweeklyLabel" xml:space="preserve">
-    <value>Hver anden uge</value>
+  <data name="BiweeklyLabel" xml:space="preserve">
+    <value>Biweekly</value>
   </data>
-    <data name="BudgetsLabel" xml:space="preserve">
-    <value>Budgetter</value>
+  <data name="BudgetsLabel" xml:space="preserve">
+    <value>Budgets</value>
   </data>
-    <data name="CanceledTitle" xml:space="preserve">
-    <value>Annulleret</value>
+  <data name="CanceledTitle" xml:space="preserve">
+    <value>Canceled</value>
   </data>
-    <data name="CancelLabel" xml:space="preserve">
-    <value>Annullér</value>
+  <data name="CancelLabel" xml:space="preserve">
+    <value>Cancel</value>
   </data>
-    <data name="CashflowDescription" xml:space="preserve">
-    <value>Indtægter, udgifter og overskud for den valgte tidsperiode.</value>
+  <data name="CashflowDescription" xml:space="preserve">
+    <value>Income, expenses and gains for the selected time period.</value>
   </data>
-    <data name="CashflowLabel" xml:space="preserve">
-    <value>Pengestrøm</value>
+  <data name="CashflowLabel" xml:space="preserve">
+    <value>Cashflow</value>
   </data>
-    <data name="CashFlowStatisticTitle" xml:space="preserve">
-    <value>Pengestrøm</value>
+  <data name="CashFlowStatisticTitle" xml:space="preserve">
+    <value>Cash Flow</value>
   </data>
-    <data name="CategorieIntroductionText" xml:space="preserve">
-    <value>Kategorier kan hjælpe med at organisere dine betalinger. De gør det også lettere at analysere dine udgifter og indtægter i statistikken.</value>
+  <data name="CategorieIntroductionText" xml:space="preserve">
+    <value>Categories can help order your payments. Also they make it easier to analyze your spendings and incomes in the statistics.</value>
   </data>
-    <data name="CategorieSpreadingDescription" xml:space="preserve">
-    <value>Spredning af udgifterne for kategorierne</value>
+  <data name="CategorieSpreadingDescription" xml:space="preserve">
+    <value>Spreading of the expenses to the categories.</value>
   </data>
-    <data name="CategoriesTitle" xml:space="preserve">
-    <value>Kategorier</value>
+  <data name="CategoriesTitle" xml:space="preserve">
+    <value>Categories</value>
   </data>
-    <data name="CategoryLabel" xml:space="preserve">
-    <value>Kategori</value>
+  <data name="CategoryLabel" xml:space="preserve">
+    <value>Category</value>
   </data>
-    <data name="CategoryNameLabel" xml:space="preserve">
-    <value>Kategorinavn</value>
+  <data name="CategoryNameLabel" xml:space="preserve">
+    <value>Category Name</value>
   </data>
-    <data name="CategorySpreadingLabel" xml:space="preserve">
-    <value>Kategori spredning</value>
+  <data name="CategorySpreadingLabel" xml:space="preserve">
+    <value>Category Spreading</value>
   </data>
-    <data name="CategorySpreadingTitle" xml:space="preserve">
-    <value>Kategori spredning</value>
+  <data name="CategorySpreadingTitle" xml:space="preserve">
+    <value>Category Spreading</value>
   </data>
-    <data name="CategorySummaryDescription" xml:space="preserve">
-    <value>Oversigt over kategorierne med en betaling.</value>
+  <data name="CategorySummaryDescription" xml:space="preserve">
+    <value>Summary of the categories with a Payment.</value>
   </data>
-    <data name="CategorySummaryLabel" xml:space="preserve">
-    <value>Kategori overblik</value>
+  <data name="CategorySummaryLabel" xml:space="preserve">
+    <value>Category Summary</value>
   </data>
-    <data name="CategorySummaryTitle" xml:space="preserve">
-    <value>Kategori overblik</value>
+  <data name="CategorySummaryTitle" xml:space="preserve">
+    <value>Category Summary</value>
   </data>
-    <data name="ChargedAccountLabel" xml:space="preserve">
-    <value>Afsender konto</value>
+  <data name="ChargedAccountLabel" xml:space="preserve">
+    <value>Charged Account</value>
   </data>
-    <data name="ClearedFilterLabel" xml:space="preserve">
-    <value>Ryddet</value>
+  <data name="ClearedFilterLabel" xml:space="preserve">
+    <value>Cleared</value>
   </data>
-    <data name="CompletedText" xml:space="preserve">
-    <value>Det var det! Du er nu klar til at bruge MoneyFox</value>
+  <data name="CompletedText" xml:space="preserve">
+    <value>That's it! You're set for using the MoneyFox.</value>
   </data>
-    <data name="CompletedTitle" xml:space="preserve">
-    <value>Udført!</value>
+  <data name="CompletedTitle" xml:space="preserve">
+    <value>Done!</value>
   </data>
-    <data name="CompleteLabel" xml:space="preserve">
-    <value>Fuldført</value>
+  <data name="CompleteLabel" xml:space="preserve">
+    <value>Complete</value>
   </data>
-    <data name="ContactLabel" xml:space="preserve">
-    <value>Kontakt os</value>
+  <data name="ContactLabel" xml:space="preserve">
+    <value>Contact</value>
   </data>
-    <data name="ContributerLabel" xml:space="preserve">
-    <value>For at se alle bidrag gå ind på GitHub:</value>
+  <data name="ContributerLabel" xml:space="preserve">
+    <value>To see all contributions head over to GitHub:</value>
   </data>
-    <data name="ContributionsLabel" xml:space="preserve">
-    <value>Bidrag</value>
+  <data name="ContributionsLabel" xml:space="preserve">
+    <value>Contributions</value>
   </data>
-    <data name="CreateAccountNowLabel" xml:space="preserve">
-    <value>Opret en konto</value>
+  <data name="CreateAccountNowLabel" xml:space="preserve">
+    <value>Create Account Now</value>
   </data>
-    <data name="CreateBackupLabel" xml:space="preserve">
-    <value>Opret backup</value>
+  <data name="CreateBackupLabel" xml:space="preserve">
+    <value>Create Backup</value>
   </data>
-    <data name="CreateCategoryNowLabel" xml:space="preserve">
-    <value>Opret en kategori</value>
+  <data name="CreateCategoryNowLabel" xml:space="preserve">
+    <value>Create Category now</value>
   </data>
-    <data name="CreationDateHeader" xml:space="preserve">
-    <value>Oprettelsesdato</value>
+  <data name="CreationDateHeader" xml:space="preserve">
+    <value>Creation Date</value>
   </data>
-    <data name="CreationDateLabel" xml:space="preserve">
-    <value>Oprettelsesdato:</value>
+  <data name="CreationDateLabel" xml:space="preserve">
+    <value>Creation Date:</value>
   </data>
-    <data name="CreationDateTemplateLabel" xml:space="preserve">
-    <value>Oprettelsesdato: {0}</value>
+  <data name="CreationDateTemplateLabel" xml:space="preserve">
+    <value>Creation Date: {0}</value>
   </data>
-    <data name="CurrentBalanceLabel" xml:space="preserve">
-    <value>Nuværende saldo</value>
+  <data name="CurrentBalanceLabel" xml:space="preserve">
+    <value>Current Balance</value>
   </data>
-    <data name="DailyLabel" xml:space="preserve">
-    <value>Dagligt</value>
+  <data name="DailyLabel" xml:space="preserve">
+    <value>Daily</value>
   </data>
-    <data name="DailyWithoutWeekendLabel" xml:space="preserve">
-    <value>Hverdage</value>
+  <data name="DailyWithoutWeekendLabel" xml:space="preserve">
+    <value>Daily without weekend</value>
   </data>
-    <data name="DarkLabel" xml:space="preserve">
-    <value>Mørkt</value>
+  <data name="DarkLabel" xml:space="preserve">
+    <value>Dark</value>
   </data>
-    <data name="DashboardTitle" xml:space="preserve">
-    <value>Oversigt</value>
+  <data name="DashboardTitle" xml:space="preserve">
+    <value>Dashboard</value>
   </data>
-    <data name="DateLabel" xml:space="preserve">
-    <value>Dato</value>
+  <data name="DateLabel" xml:space="preserve">
+    <value>Date</value>
   </data>
-    <data name="DateRangeHeader" xml:space="preserve">
-    <value>Datointerval</value>
+  <data name="DateRangeHeader" xml:space="preserve">
+    <value>Date Range</value>
   </data>
-    <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Standard område</value>
+  <data name="DefaultRegionHeader" xml:space="preserve">
+    <value>Default Region</value>
   </data>
-    <data name="DefaultRegionText" xml:space="preserve">
-    <value>Dette område vil blive brugt som standard</value>
+  <data name="DefaultRegionText" xml:space="preserve">
+    <value>This region will be used as a default for your application.</value>
   </data>
-    <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
-    <value>Er du sikker på at du vil slette denne konto?</value>
+  <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
+    <value>Do you really want to delete this Account?</value>
   </data>
-    <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
-    <value>Er du sikker på at du vil slette denne kategori?</value>
+  <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
+    <value>Do you really want to delete this Category?</value>
   </data>
-    <data name="DeleteLabel" xml:space="preserve">
-    <value>Slet</value>
+  <data name="DeleteLabel" xml:space="preserve">
+    <value>Delete</value>
   </data>
-    <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
-    <value>Er du sikker på at du vil slette denne betaling?</value>
+  <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
+    <value>Do you really want to delete this Payment?</value>
   </data>
-    <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
-    <value>Du har slettet en gentagende betaling. Vil du også slette gentagelserne?</value>
+  <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
+    <value>You've deleted a recurring payment. Do you want to delete the recurrence as well?</value>
   </data>
-    <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
-    <value>Slet gentagelse?</value>
+  <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
+    <value>Delete Recurrence?</value>
   </data>
-    <data name="DeleteTitle" xml:space="preserve">
-    <value>Slet?</value>
+  <data name="DeleteTitle" xml:space="preserve">
+    <value>Delete?</value>
   </data>
-    <data name="DoneLabel" xml:space="preserve">
-    <value>Udført</value>
+  <data name="DoneLabel" xml:space="preserve">
+    <value>Done</value>
   </data>
-    <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>En konto med dette navn findes allerede. Fortsæt med at gemme?</value>
+  <data name="DuplicateAccountMessage" xml:space="preserve">
+    <value>An account with that name already exists. Continue with saving?</value>
   </data>
-    <data name="DuplicateCategoryMessage" xml:space="preserve">
-    <value>Kategori med dette navn findes allerede.</value>
+  <data name="DuplicateCategoryMessage" xml:space="preserve">
+    <value>A Category with that name already exists.</value>
   </data>
-    <data name="DuplicatedNameTitle" xml:space="preserve">
-    <value>Navnet er allerede i brug</value>
+  <data name="DuplicatedNameTitle" xml:space="preserve">
+    <value>Name already used</value>
   </data>
-    <data name="EditAccountTitle" xml:space="preserve">
-    <value>Redigér {0}</value>
+  <data name="EditAccountTitle" xml:space="preserve">
+    <value>Edit {0}</value>
   </data>
-    <data name="EditCategoryTitle" xml:space="preserve">
-    <value>Redigér kategori</value>
+  <data name="EditCategoryTitle" xml:space="preserve">
+    <value>Edit Category</value>
   </data>
-    <data name="EditIncomeTitle" xml:space="preserve">
-    <value>Redigér indtægt</value>
+  <data name="EditIncomeTitle" xml:space="preserve">
+    <value>Edit Income</value>
   </data>
-    <data name="EditLabel" xml:space="preserve">
-    <value>Redigér</value>
+  <data name="EditLabel" xml:space="preserve">
+    <value>Edit</value>
   </data>
-    <data name="EditSpendingTitle" xml:space="preserve">
-    <value>Ændr udgift</value>
+  <data name="EditSpendingTitle" xml:space="preserve">
+    <value>Edit Expense</value>
   </data>
-    <data name="EditTransferTitle" xml:space="preserve">
-    <value>Rediger overførsel</value>
+  <data name="EditTransferTitle" xml:space="preserve">
+    <value>Edit Transfer</value>
   </data>
-    <data name="EmailLabel" xml:space="preserve">
-    <value>E-mail</value>
+  <data name="EmailLabel" xml:space="preserve">
+    <value>Email</value>
   </data>
-    <data name="EnddateLabel" xml:space="preserve">
-    <value>Slutdato</value>
+  <data name="EnddateLabel" xml:space="preserve">
+    <value>End Date</value>
   </data>
-    <data name="EndlessLabel" xml:space="preserve">
-    <value>Er uendelig</value>
+  <data name="EndlessLabel" xml:space="preserve">
+    <value>Is Endless</value>
   </data>
-    <data name="EndOfMonthBalanceLabel" xml:space="preserve">
-    <value>Ultimo</value>
+  <data name="EndOfMonthBalanceLabel" xml:space="preserve">
+    <value>End of Month</value>
   </data>
-    <data name="EndOfMonthLabel" xml:space="preserve">
-    <value>Ultimo:</value>
+  <data name="EndOfMonthLabel" xml:space="preserve">
+    <value>End Of Month:</value>
   </data>
-    <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
-    <value>Der opstod en fejl under godkendelsen. Prøv igen senere.</value>
+  <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
+    <value>There was an error during the authentication. Please try again later.</value>
   </data>
-    <data name="ExcludedAccountsHeader" xml:space="preserve">
-    <value>Udeladte konti</value>
+  <data name="ExcludedAccountsHeader" xml:space="preserve">
+    <value>Excluded Accounts</value>
   </data>
-    <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
-    <value>Udgift: {0} / Indtægt: {1}</value>
+  <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
+    <value>Expense: {0} / Income: {1}</value>
   </data>
-    <data name="ExpenseHeader" xml:space="preserve">
-    <value>Tilføj udgift</value>
+  <data name="ExpenseHeader" xml:space="preserve">
+    <value>Add expense</value>
   </data>
-    <data name="ExpenseLabel" xml:space="preserve">
-    <value>Udgifter</value>
+  <data name="ExpenseLabel" xml:space="preserve">
+    <value>Expenses</value>
   </data>
-    <data name="FeedbackSubject" xml:space="preserve">
+  <data name="FeedbackSubject" xml:space="preserve">
     <value>Feedback MoneyFox</value>
   </data>
-    <data name="FilterLabel" xml:space="preserve">
+  <data name="FilterLabel" xml:space="preserve">
     <value>Filter</value>
   </data>
-    <data name="ForceOverrideBackupMessage" xml:space="preserve">
-    <value>Din lokale database har en nyere ændringsdato end den på OneDrive. Vil du overskrive dine lokale data?</value>
+  <data name="ForceOverrideBackupMessage" xml:space="preserve">
+    <value>Your local database has a newer modification date than the one on OneDrive. Do you want to override your local data?</value>
   </data>
-    <data name="ForceOverrideBackupTitle" xml:space="preserve">
-    <value>Overskriv lokale data</value>
+  <data name="ForceOverrideBackupTitle" xml:space="preserve">
+    <value>Override Local Data</value>
   </data>
-    <data name="GeneralErrorTitle" xml:space="preserve">
-    <value>Der er opstået en fejl</value>
+  <data name="GeneralErrorTitle" xml:space="preserve">
+    <value>An error occured</value>
   </data>
-    <data name="GoToAccountsLabel" xml:space="preserve">
-    <value>Gå til konti</value>
+  <data name="GoToAccountsLabel" xml:space="preserve">
+    <value>Go to Accounts</value>
   </data>
-    <data name="GoToBudgetsLabel" xml:space="preserve">
-    <value>Gå til budgetter</value>
+  <data name="GoToBudgetsLabel" xml:space="preserve">
+    <value>Go to Budgets</value>
   </data>
-    <data name="IconDesignerLabel" xml:space="preserve">
-    <value>App-ikonet blev lavet af:</value>
+  <data name="IconDesignerLabel" xml:space="preserve">
+    <value>The app icon was created by:</value>
   </data>
-    <data name="IncludedAccountsHeader" xml:space="preserve">
-    <value>Inkluderede konti</value>
+  <data name="IncludedAccountsHeader" xml:space="preserve">
+    <value>Included Accounts</value>
   </data>
-    <data name="IncomeAndExpensesLabel" xml:space="preserve">
-    <value>Indtægter og udgifter</value>
+  <data name="IncomeAndExpensesLabel" xml:space="preserve">
+    <value>Income and Expenses</value>
   </data>
-    <data name="IncomeHeader" xml:space="preserve">
-    <value>Tilføj indtægt</value>
+  <data name="IncomeHeader" xml:space="preserve">
+    <value>Add income</value>
   </data>
-    <data name="IncomeLabel" xml:space="preserve">
-    <value>Indtægter</value>
+  <data name="IncomeLabel" xml:space="preserve">
+    <value>Income</value>
   </data>
-    <data name="IncomeSpendingLabel" xml:space="preserve">
-    <value>Indtægter / Udgifter:</value>
+  <data name="IncomeSpendingLabel" xml:space="preserve">
+    <value>Income / Expenses:</value>
   </data>
-    <data name="IncreaseLabel" xml:space="preserve">
-    <value>Overskud</value>
+  <data name="IncreaseLabel" xml:space="preserve">
+    <value>Gains</value>
   </data>
-    <data name="InfoLabel" xml:space="preserve">
+  <data name="InfoLabel" xml:space="preserve">
     <value>Info</value>
   </data>
-    <data name="InfoOpenSource" xml:space="preserve">
-    <value>Dette er et open source-projekt – og vi vil elske at arbejde sammen med dig! Du er velkommen til at bidrage.
-Tryk for at besøge projektets hjemmeside:</value>
+  <data name="InfoOpenSource" xml:space="preserve">
+    <value>This is an open-source project – and we’d love to work with you! Feel free to contribute.
+Tap to visit the Repository:</value>
   </data>
-    <data name="InvalidEnddateMessage" xml:space="preserve">
-    <value>Slutdatoen for en tilbagevendende betaling skal være i fremtiden. Tjek venligst dit input.</value>
+  <data name="InvalidEnddateMessage" xml:space="preserve">
+    <value>The enddate of a recurring Payment has to be in the future. Please check your input.</value>
   </data>
-    <data name="InvalidEnddateTitle" xml:space="preserve">
-    <value>Ugyldig slutdato</value>
+  <data name="InvalidEnddateTitle" xml:space="preserve">
+    <value>Invalid End Date</value>
   </data>
-    <data name="InvalidNumberCurrentBalanceMessage" xml:space="preserve">
-    <value>Din aktuelle saldo ser ud til at være et ugyldigt tal. Tjek venligst at du ikke har indtastet nogen specialtegn og brugt den korrekte separator.</value>
+  <data name="InvalidNumberCurrentBalanceMessage" xml:space="preserve">
+    <value>Your current balance seems to be an invalid number. Please check that you haven't entered any special characters and used the correct separator.</value>
   </data>
-    <data name="InvalidNumberTitle" xml:space="preserve">
-    <value>Ugyldigt tal</value>
+  <data name="InvalidNumberTitle" xml:space="preserve">
+    <value>Invalid Number</value>
   </data>
-    <data name="IsClearedLabel" xml:space="preserve">
-    <value>Ryddet</value>
+  <data name="IsClearedLabel" xml:space="preserve">
+    <value>Cleared</value>
   </data>
-    <data name="IsExcludedLabel" xml:space="preserve">
-    <value>Ekskludér konto fra saldo</value>
+  <data name="IsExcludedLabel" xml:space="preserve">
+    <value>Exclude account from balance</value>
   </data>
-    <data name="IsGroupedLabel" xml:space="preserve">
-    <value>Gruppe liste</value>
+  <data name="IsGroupedLabel" xml:space="preserve">
+    <value>Group List</value>
   </data>
-    <data name="IsRecurringFilterLabel" xml:space="preserve">
-    <value>Er tilbagevendende</value>
+  <data name="IsRecurringFilterLabel" xml:space="preserve">
+    <value>Is Recurring</value>
   </data>
-    <data name="IsRecurringLabel" xml:space="preserve">
-    <value>Tilbagevendende</value>
+  <data name="IsRecurringLabel" xml:space="preserve">
+    <value>Recurring</value>
   </data>
-    <data name="LastBackupDateLabel" xml:space="preserve">
-    <value>Seneste backup oprettet den:</value>
+  <data name="LastBackupDateLabel" xml:space="preserve">
+    <value>Last Backup created at:</value>
   </data>
-    <data name="LightLabel" xml:space="preserve">
-    <value>Lyst</value>
+  <data name="LightLabel" xml:space="preserve">
+    <value>Light</value>
   </data>
-    <data name="LoadingLabel" xml:space="preserve">
-    <value>Indlæser...</value>
+  <data name="LoadingLabel" xml:space="preserve">
+    <value>Loading...</value>
   </data>
-    <data name="LoggedInMessage" xml:space="preserve">
-    <value>Loggede ind succesfuldt</value>
+  <data name="LoggedInMessage" xml:space="preserve">
+    <value>Loggedin successfully.</value>
   </data>
-    <data name="LoggedOutMessage" xml:space="preserve">
-    <value>Loggede ud succesfuldt</value>
+  <data name="LoggedOutMessage" xml:space="preserve">
+    <value>Logged out successfully.</value>
   </data>
-    <data name="LoggedOutTitle" xml:space="preserve">
-    <value>Logget ud</value>
+  <data name="LoggedOutTitle" xml:space="preserve">
+    <value>Logged out</value>
   </data>
-    <data name="LoginCanceledMessage" xml:space="preserve">
-    <value>Login blev annulleret.</value>
+  <data name="LoginCanceledMessage" xml:space="preserve">
+    <value>Login was canceled.</value>
   </data>
-    <data name="LoginFailedTitle" xml:space="preserve">
-    <value>Kunne ikke logge ind</value>
+  <data name="LoginFailedTitle" xml:space="preserve">
+    <value>Login failed!</value>
   </data>
-    <data name="LoginLabel" xml:space="preserve">
-    <value>Log ind</value>
+  <data name="LoginLabel" xml:space="preserve">
+    <value>Login</value>
   </data>
-    <data name="LogoutCanceledMessage" xml:space="preserve">
-    <value>Log ud blev annulleret.</value>
+  <data name="LogoutCanceledMessage" xml:space="preserve">
+    <value>Logout was canceled.</value>
   </data>
-    <data name="LogoutLabel" xml:space="preserve">
-    <value>Log ud</value>
+  <data name="LogoutLabel" xml:space="preserve">
+    <value>Logout</value>
   </data>
-    <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
-    <value>Obligatorisk felt</value>
+  <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
+    <value>Mandatory field</value>
   </data>
-    <data name="ModificationDateHeader" xml:space="preserve">
-    <value>Ændringsdato</value>
+  <data name="ModificationDateHeader" xml:space="preserve">
+    <value>Modification Date</value>
   </data>
-    <data name="ModificationDateLabel" xml:space="preserve">
-    <value>Ændringsdato:</value>
+  <data name="ModificationDateLabel" xml:space="preserve">
+    <value>Modification Date:</value>
   </data>
-    <data name="ModificationDateTemplateLabel" xml:space="preserve">
-    <value>Ændringsdato: {0}</value>
+  <data name="ModificationDateTemplateLabel" xml:space="preserve">
+    <value>Modification Date: {0}</value>
   </data>
-    <data name="ModifyRecurrenceMessage" xml:space="preserve">
-    <value>Du har ændret en gentagende betaling. Vil du opdatere gentagelsen?</value>
+  <data name="ModifyRecurrenceMessage" xml:space="preserve">
+    <value>You have modified a recurring payment. Do you want to update the recurrence?</value>
   </data>
-    <data name="ModifyRecurrenceTitle" xml:space="preserve">
-    <value>Ændr gentagelse</value>
+  <data name="ModifyRecurrenceTitle" xml:space="preserve">
+    <value>Modify Recurrence</value>
   </data>
-    <data name="MonthlyAverageLabel" xml:space="preserve">
-    <value>Sidste års månedlige gennemsnit: </value>
+  <data name="MonthlyAverageLabel" xml:space="preserve">
+    <value>Last year monthly average: </value>
   </data>
-    <data name="MonthlyCashflowDescription" xml:space="preserve">
-    <value>Viser den månedlige pengestrøm for den valgte konto.</value>
+  <data name="MonthlyCashflowDescription" xml:space="preserve">
+    <value>Shows the monthly cashflow for the selected account.</value>
   </data>
-    <data name="MonthlyCashflowLabel" xml:space="preserve">
-    <value>Månedlig pengestrøm</value>
+  <data name="MonthlyCashflowLabel" xml:space="preserve">
+    <value>Monthly Cashflow</value>
   </data>
-    <data name="MonthlyCashflowTitle" xml:space="preserve">
-    <value>Månedlig pengestrøm</value>
+  <data name="MonthlyCashflowTitle" xml:space="preserve">
+    <value>Monthly Cashflow</value>
   </data>
-    <data name="MonthlyLabel" xml:space="preserve">
-    <value>Månedligt</value>
+  <data name="MonthlyLabel" xml:space="preserve">
+    <value>Monthly</value>
   </data>
-    <data name="NameRequiredMessage" xml:space="preserve">
-    <value>Indtast venligst et navn.</value>
+  <data name="NameRequiredMessage" xml:space="preserve">
+    <value>Please insert a name.</value>
   </data>
-    <data name="NextLabel" xml:space="preserve">
-    <value>Fortsæt</value>
+  <data name="NextLabel" xml:space="preserve">
+    <value>Next</value>
   </data>
-    <data name="NoAccountsMessage" xml:space="preserve">
-    <value>Der er ingen konti at vise.</value>
+  <data name="NoAccountsMessage" xml:space="preserve">
+    <value>There are no Accounts to display.</value>
   </data>
-    <data name="NoCategoriesMessage" xml:space="preserve">
-    <value>Der er ingen kategorier at vise.</value>
+  <data name="NoCategoriesMessage" xml:space="preserve">
+    <value>There are no categories to display. </value>
   </data>
-    <data name="NoCategoryLabel" xml:space="preserve">
-    <value>[Ingen kategori]</value>
+  <data name="NoCategoryLabel" xml:space="preserve">
+    <value>[No Category]</value>
   </data>
-    <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
-    <value>Intet emne valgt. Vælg et emne fra listen for at se betalingerne.</value>
+  <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
+    <value>No entry selected. Choose a entry in the list to see the payments for it.</value>
   </data>
-    <data name="NoLabel" xml:space="preserve">
-    <value>Nej</value>
+  <data name="NoLabel" xml:space="preserve">
+    <value>No</value>
   </data>
-    <data name="NoNetworkMessage" xml:space="preserve">
-    <value>Du er ikke forbundet til internet, tjek forbindelsen og prøv igen.</value>
+  <data name="NoNetworkMessage" xml:space="preserve">
+    <value>You are not connected to the internet. Please check your connection and try again.</value>
   </data>
-    <data name="NoNetworkTitle" xml:space="preserve">
-    <value>Ingen internetforbindelse</value>
+  <data name="NoNetworkTitle" xml:space="preserve">
+    <value>No Internet Connection</value>
   </data>
-    <data name="NoPaymentsMessage" xml:space="preserve">
-    <value>Der er ingen betalinger. Tilføj en ved at trykke på plus-knappen.</value>
+  <data name="NoPaymentsMessage" xml:space="preserve">
+    <value>There are no Payments. Add one by tapping on the plus button.</value>
   </data>
-    <data name="NoteLabel" xml:space="preserve">
-    <value>Kommentar</value>
+  <data name="NoteLabel" xml:space="preserve">
+    <value>Note</value>
   </data>
-    <data name="NotNowLabel" xml:space="preserve">
-    <value>Ikke nu</value>
+  <data name="NotNowLabel" xml:space="preserve">
+    <value>Not Now</value>
   </data>
-    <data name="OkLabel" xml:space="preserve">
-    <value>OK</value>
+  <data name="OkLabel" xml:space="preserve">
+    <value>Ok</value>
   </data>
-    <data name="OthersLabel" xml:space="preserve">
-    <value>Andet</value>
+  <data name="OthersLabel" xml:space="preserve">
+    <value>Others</value>
   </data>
-    <data name="OverwriteBackupMessage" xml:space="preserve">
-    <value>Eksisterende backups vil blive overskrevet. Vil du fortsætte?</value>
+  <data name="OverwriteBackupMessage" xml:space="preserve">
+    <value>Existing backups will be overwritten. Do you wanna continue?</value>
   </data>
-    <data name="OverwriteDataMessage" xml:space="preserve">
-    <value>Dine lokale data vil blive slettet. Er du sikker på, at du vil fortsætte?</value>
+  <data name="OverwriteDataMessage" xml:space="preserve">
+    <value>Your local data will be deleted. Are you sure you wanna proceed?</value>
   </data>
-    <data name="OverwriteTitle" xml:space="preserve">
-    <value>Overskriv?</value>
+  <data name="OverwriteTitle" xml:space="preserve">
+    <value>Overwrite?</value>
   </data>
-    <data name="PaymentIntroductionText" xml:space="preserve">
-    <value>Når du opretter en betaling, kan du vælge kategorien for denne betaling sammen med kontoen, og hvis det er en udgift, en indkomst eller en overførsel.
-Betalinger, du har oprettet, vil blive vist under den konto, du vælger.
-For at komme dertil gå til kontolisten og vælg kontoen.</value>
+  <data name="PaymentIntroductionText" xml:space="preserve">
+    <value>When you create a payment you can select the category for that payment along with the account and if it is an expense, an income or a transfer.
+Payments you created will show up under the account you choose.
+To get there go to the account list and select the respective account.</value>
   </data>
-    <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Detaljer for {0}</value>
+  <data name="PaymentsForCategoryTitle" xml:space="preserve">
+    <value>Details for {0}</value>
   </data>
-    <data name="PaymentTypeLabel" xml:space="preserve">
-    <value>Betalingstype</value>
+  <data name="PaymentTypeLabel" xml:space="preserve">
+    <value>Payment type</value>
   </data>
-    <data name="PersonalizationTitle" xml:space="preserve">
-    <value>Personliggørelse</value>
+  <data name="PersonalizationTitle" xml:space="preserve">
+    <value>Personalization</value>
   </data>
-    <data name="QuarterlyLabel" xml:space="preserve">
-    <value>Kvartalsvis</value>
+  <data name="QuarterlyLabel" xml:space="preserve">
+    <value>Quarterly</value>
   </data>
-    <data name="RateLabel" xml:space="preserve">
-    <value>Bedøm app'en</value>
+  <data name="RateLabel" xml:space="preserve">
+    <value>Rate this app!</value>
   </data>
-    <data name="RateReminderText" xml:space="preserve">
-    <value>Vi håber du kan lide vores app. Støt os med en bedømmelse i butikken.
-Vil du gå til butikken for at bedømme?</value>
+  <data name="RateReminderText" xml:space="preserve">
+    <value>We hope you like our app. Support us with a rating in the store.
+Do you want to go the the store to rate?</value>
   </data>
-    <data name="RateReminderTitle" xml:space="preserve">
-    <value>Bedøm app'en</value>
+  <data name="RateReminderTitle" xml:space="preserve">
+    <value>Rate this app</value>
   </data>
-    <data name="RecurrenceLabel" xml:space="preserve">
-    <value>Tilbagevendelse</value>
+  <data name="RecurrenceLabel" xml:space="preserve">
+    <value>Recurrence</value>
   </data>
-    <data name="RecurringLabel" xml:space="preserve">
-    <value>Er tilbagevendende</value>
+  <data name="RecurringLabel" xml:space="preserve">
+    <value>Is Recurring</value>
   </data>
-    <data name="RequireNoteCheckbox" xml:space="preserve">
-    <value>Kommentar påkrævet</value>
+  <data name="RequireNoteCheckbox" xml:space="preserve">
+    <value>Note required</value>
   </data>
-    <data name="RestoreBackupCanceledMessage" xml:space="preserve">
-    <value>Gendannelse af backup blev annulleret.</value>
+  <data name="RestoreBackupCanceledMessage" xml:space="preserve">
+    <value>Restoring backup was canceled.</value>
   </data>
-    <data name="RestoreBackupInformationLabel" xml:space="preserve">
-    <value>Download den tidligere uploadede database backup og overskriv dine lokale data med det.
-ADVARSEL: Lokale ændringer, du lavede i mellemtiden, vil gå tabt!</value>
+  <data name="RestoreBackupInformationLabel" xml:space="preserve">
+    <value>Download the previous uploaded database backup and replace your local data with it.
+WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
-    <data name="RestoreBackupLabel" xml:space="preserve">
-    <value>Gendan backup</value>
+  <data name="RestoreBackupLabel" xml:space="preserve">
+    <value>Restore Backup</value>
   </data>
-    <data name="RevenueLabel" xml:space="preserve">
-    <value>Omsætning</value>
+  <data name="RevenueLabel" xml:space="preserve">
+    <value>Revenue</value>
   </data>
-    <data name="SaveLabel" xml:space="preserve">
-    <value>Gem</value>
+  <data name="SaveLabel" xml:space="preserve">
+    <value>Save</value>
   </data>
-    <data name="SavingAccountMessage" xml:space="preserve">
-    <value>Gemmer konto...</value>
+  <data name="SavingAccountMessage" xml:space="preserve">
+    <value>Saving Account...</value>
   </data>
-    <data name="SavingCategoryMessage" xml:space="preserve">
-    <value>Gemmer kategori...</value>
+  <data name="SavingCategoryMessage" xml:space="preserve">
+    <value>Saving Category...</value>
   </data>
-    <data name="SavingPaymentMessage" xml:space="preserve">
-    <value>Gemmer betaling...</value>
+  <data name="SavingPaymentMessage" xml:space="preserve">
+    <value>Saving Payment...</value>
   </data>
-    <data name="SearchLabel" xml:space="preserve">
-    <value>Søg</value>
+  <data name="SearchLabel" xml:space="preserve">
+    <value>Search</value>
   </data>
-    <data name="SelectCategoryTitle" xml:space="preserve">
-    <value>Vælg kategori</value>
+  <data name="SelectCategoryTitle" xml:space="preserve">
+    <value>Select Category</value>
   </data>
-    <data name="SelectDateLabel" xml:space="preserve">
-    <value>Vælg dato</value>
+  <data name="SelectDateLabel" xml:space="preserve">
+    <value>Select Date</value>
   </data>
-    <data name="SelectedAccountHeader" xml:space="preserve">
-    <value>Valgt konto</value>
+  <data name="SelectedAccountHeader" xml:space="preserve">
+    <value>Selected Account</value>
   </data>
-    <data name="SelectFilterTitle" xml:space="preserve">
-    <value>Vælg filter</value>
+  <data name="SelectFilterTitle" xml:space="preserve">
+    <value>Select Filter</value>
   </data>
-    <data name="SelectStatisticTitle" xml:space="preserve">
-    <value>Vælg statistik</value>
+  <data name="SelectStatisticTitle" xml:space="preserve">
+    <value>Select Statistic</value>
   </data>
-    <data name="SettingsTitle" xml:space="preserve">
-    <value>Indstillinger</value>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Settings</value>
   </data>
-    <data name="SkipLabel" xml:space="preserve">
-    <value>Spring over</value>
+  <data name="SkipLabel" xml:space="preserve">
+    <value>Skip</value>
   </data>
-    <data name="StatisticsTimeRangeTitle" xml:space="preserve">
-    <value>Tidsinterval:</value>
+  <data name="StatisticsTimeRangeTitle" xml:space="preserve">
+    <value>Time Range:</value>
   </data>
-    <data name="StatisticsTitle" xml:space="preserve">
-    <value>Statistikker</value>
+  <data name="StatisticsTitle" xml:space="preserve">
+    <value>Statistics</value>
   </data>
-    <data name="TargetAccountLabel" xml:space="preserve">
-    <value>Modtager konto</value>
+  <data name="TargetAccountLabel" xml:space="preserve">
+    <value>Target Account</value>
   </data>
-    <data name="TimeRangeEndLabel" xml:space="preserve">
-    <value>Slutdato</value>
+  <data name="TimeRangeEndLabel" xml:space="preserve">
+    <value>Time Range End</value>
   </data>
-    <data name="TimeRangeStartLabel" xml:space="preserve">
-    <value>Startdato</value>
+  <data name="TimeRangeStartLabel" xml:space="preserve">
+    <value>Time Range Start</value>
   </data>
-    <data name="TransferHeader" xml:space="preserve">
-    <value>Tilføj overførsel</value>
+  <data name="TransferHeader" xml:space="preserve">
+    <value>Add transfer</value>
   </data>
-    <data name="TransferLabel" xml:space="preserve">
-    <value>Overførsel</value>
+  <data name="TransferLabel" xml:space="preserve">
+    <value>Transfer</value>
   </data>
-    <data name="TranslationLabel" xml:space="preserve">
-    <value>Er noget ikke korrekt oversat eller slet ikke oversat? Hjælp os! Gå over til crowdin og hjælpe med at forbedre MoneyFox:</value>
+  <data name="TranslationLabel" xml:space="preserve">
+    <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the MoneyFox:</value>
   </data>
-    <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>Der opstod et problem under handlingen. Fejlmeddelelse {0}</value>
+  <data name="UnknownErrorMessage" xml:space="preserve">
+    <value>There was an issue during the operation. Error Message {0}</value>
   </data>
-    <data name="UploadBackupCanceledMessage" xml:space="preserve">
-    <value>Upload af backup blev annulleret.</value>
+  <data name="UploadBackupCanceledMessage" xml:space="preserve">
+    <value>Upload backup was canceled.</value>
   </data>
-    <data name="VersionLabel" xml:space="preserve">
+  <data name="VersionLabel" xml:space="preserve">
     <value>Version</value>
   </data>
-    <data name="WebsiteLabel" xml:space="preserve">
-    <value>Hjemmeside</value>
+  <data name="WebsiteLabel" xml:space="preserve">
+    <value>Website</value>
   </data>
-    <data name="WeeklyLabel" xml:space="preserve">
-    <value>Ugentligt</value>
+  <data name="WeeklyLabel" xml:space="preserve">
+    <value>Weekly</value>
   </data>
-    <data name="WelcomeLabel" xml:space="preserve">
-    <value>Velkommen!</value>
+  <data name="WelcomeLabel" xml:space="preserve">
+    <value>Welcome!</value>
   </data>
-    <data name="WelcomePageSubtitle" xml:space="preserve">
-    <value>Vi er glade for at se dig!</value>
+  <data name="WelcomePageSubtitle" xml:space="preserve">
+    <value>Glad to have you!</value>
   </data>
-    <data name="WelcomePageText" xml:space="preserve">
-    <value>MoneyFox hjælper dig med at følge med i dine udgifter og indtægter på en nem måde.
-For at starte skal du oprette en ny konto. Konti bruges til at organisere betalinger og penge på et sted.</value>
+  <data name="WelcomePageText" xml:space="preserve">
+    <value>The MoneyFox helps you to track your expenses and incomes in an easy way.
+To start create a new account. Accounts are used to organize payments and money in collections.</value>
   </data>
-    <data name="WindowsDefaultLabel" xml:space="preserve">
-    <value>Windows Standard</value>
+  <data name="WindowsDefaultLabel" xml:space="preserve">
+    <value>Windows Default</value>
   </data>
-    <data name="YearlyLabel" xml:space="preserve">
-    <value>Årligt</value>
+  <data name="YearlyLabel" xml:space="preserve">
+    <value>Yearly</value>
   </data>
-    <data name="YesLabel" xml:space="preserve">
-    <value>Ja</value>
+  <data name="YesLabel" xml:space="preserve">
+    <value>Yes</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Administrér dine konti</value>
+  <data name="AccountsToolTip" xml:space="preserve">
+    <value>Manage your Accounts</value>
   </data>
-    <data name="AddPaymentTitle" xml:space="preserve">
-    <value>Tilføj betaling</value>
+  <data name="AddPaymentTitle" xml:space="preserve">
+    <value>Add Payment</value>
   </data>
-    <data name="AddPaymentToolTip" xml:space="preserve">
-    <value>Tilføj en betaling med detaljer</value>
+  <data name="AddPaymentToolTip" xml:space="preserve">
+    <value>Add a Payment with details</value>
   </data>
-    <data name="BackupToolTip" xml:space="preserve">
-    <value>Lav backup af dine oplysninger</value>
+  <data name="BackupToolTip" xml:space="preserve">
+    <value>Backup your information</value>
   </data>
-    <data name="CategoriesToolTip" xml:space="preserve">
-    <value>Administrer dine kategorier</value>
+  <data name="CategoriesToolTip" xml:space="preserve">
+    <value>Manage your Categories</value>
   </data>
-    <data name="StatisticsToolTip" xml:space="preserve">
-    <value>Vis statistikker</value>
+  <data name="StatisticsToolTip" xml:space="preserve">
+    <value>View your Statistics</value>
   </data>
-    <data name="FailedToLoginToBackupMessage" xml:space="preserve">
-    <value>Kunne ikke logge ind på din backup-tjeneste. Automatisk upload af backup blev deaktiveret. Log venligst ind og aktivér den igen.</value>
+  <data name="FailedToLoginToBackupMessage" xml:space="preserve">
+    <value>Failed to login to your backup service. Automatic backup upload was disabled. Please login and enable it again.</value>
   </data>
-    <data name="FailedToLoginToBackupTitle" xml:space="preserve">
-    <value>Kunne ikke logge ind</value>
+  <data name="FailedToLoginToBackupTitle" xml:space="preserve">
+    <value>Login failed!</value>
   </data>
-    <data name="LoggedInTitle" xml:space="preserve">
-    <value>Logget ind!</value>
+  <data name="LoggedInTitle" xml:space="preserve">
+    <value>Logged in!</value>
   </data>
-    <data name="SelectedPaymentTypeHeader" xml:space="preserve">
-    <value>Vælg betalingstype</value>
+  <data name="SelectedPaymentTypeHeader" xml:space="preserve">
+    <value>Selected Payment Type</value>
   </data>
-    <data name="CategoryProgressionDescription" xml:space="preserve">
-    <value>Viser fremskridt for en kategori pr. måned.</value>
+  <data name="CategoryProgressionDescription" xml:space="preserve">
+    <value>Shows the progression of a category by month.</value>
   </data>
-    <data name="CategoryProgressionLabel" xml:space="preserve">
-    <value>Kategori fremskridt</value>
+  <data name="CategoryProgressionLabel" xml:space="preserve">
+    <value>Category Progression</value>
   </data>
-    <data name="SelectCategoryLabel" xml:space="preserve">
-    <value>Vælg en kategori...</value>
+  <data name="SelectCategoryLabel" xml:space="preserve">
+    <value>Select category..</value>
   </data>
-    <data name="CategoryProgressionTitle" xml:space="preserve">
-    <value>Kategori fremskridt</value>
+  <data name="CategoryProgressionTitle" xml:space="preserve">
+    <value>Category Progression</value>
   </data>
-    <data name="EditPaymentTitle" xml:space="preserve">
-    <value>Rediger betaling</value>
+  <data name="EditPaymentTitle" xml:space="preserve">
+    <value>Edit Payment</value>
   </data>
-    <data name="InitialBalanceLabel" xml:space="preserve">
-    <value>Oprindelig Saldo</value>
+  <data name="InitialBalanceLabel" xml:space="preserve">
+    <value>Initial Balance</value>
   </data>
-    <data name="AllLabel" xml:space="preserve">
-    <value>Alt</value>
+  <data name="AllLabel" xml:space="preserve">
+    <value>All</value>
   </data>
-    <data name="HomeTitle" xml:space="preserve">
-    <value>Startside</value>
+  <data name="HomeTitle" xml:space="preserve">
+    <value>Home</value>
   </data>
-    <data name="MenuTitle" xml:space="preserve">
+  <data name="MenuTitle" xml:space="preserve">
     <value>Menu</value>
   </data>
-    <data name="LastDayOfMonthLabel" xml:space="preserve">
-    <value>Månedens sidste dag</value>
+  <data name="LastDayOfMonthLabel" xml:space="preserve">
+    <value>Last Day of Month</value>
   </data>
-    <data name="OpenLogLabel" xml:space="preserve">
-    <value>Åbn log</value>
+  <data name="OpenLogLabel" xml:space="preserve">
+    <value>Open Log</value>
   </data>
-    <data name="BudgetsTitle" xml:space="preserve">
-    <value>Budgetter</value>
+  <data name="BudgetsTitle" xml:space="preserve">
+    <value>Budgets</value>
   </data>
-    <data name="NoBudgetsMessage" xml:space="preserve">
-    <value>Der er endnu ingen budgetter. Start ved at oprette et</value>
+  <data name="NoBudgetsMessage" xml:space="preserve">
+    <value>There are no Budgets yet. Go ahead and create one!</value>
   </data>
-    <data name="AddBudgetLabel" xml:space="preserve">
-    <value>Tilføj budget</value>
+  <data name="AddBudgetLabel" xml:space="preserve">
+    <value>Add Budget</value>
   </data>
-    <data name="AddBudgetTitle" xml:space="preserve">
-    <value>Tilføj budget</value>
+  <data name="AddBudgetTitle" xml:space="preserve">
+    <value>Add Budget</value>
   </data>
-    <data name="BudgetNameLabel" xml:space="preserve">
-    <value>Budgetnavn</value>
+  <data name="BudgetNameLabel" xml:space="preserve">
+    <value>Budget Name</value>
   </data>
-    <data name="MoreTitle" xml:space="preserve">
-    <value>Mere</value>
+  <data name="MoreTitle" xml:space="preserve">
+    <value>More</value>
   </data>
-    <data name="SelectedCategoriesLabel" xml:space="preserve">
-    <value>Valgte kategorier</value>
+  <data name="SelectedCategoriesLabel" xml:space="preserve">
+    <value>Selected Categories</value>
   </data>
-    <data name="BackupUploadSkippedMessage" xml:space="preserve">
-    <value>Upload af backup sprunget over, da ekstern version allerede var opdateret.</value>
+  <data name="BackupUploadSkippedMessage" xml:space="preserve">
+    <value>Upload of backup skipped, since remote version was already up to date.</value>
   </data>
-    <data name="EditBudgetTitle" xml:space="preserve">
-    <value>Redigér budget</value>
+  <data name="EditBudgetTitle" xml:space="preserve">
+    <value>Edit Budget</value>
   </data>
-    <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
-    <value>Er du sikker på at du vil slette dette budget?</value>
+  <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
+    <value>Do you really want to delete this budget?</value>
   </data>
-    <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Månedligt budget:</value>
+  <data name="MonthlyBudgetLabel" xml:space="preserve">
+    <value>Monthly Budget:</value>
   </data>
-    <data name="TimeRangeLabel" xml:space="preserve">
-    <value>Tidsinterval</value>
+  <data name="TimeRangeLabel" xml:space="preserve">
+    <value>Time Range</value>
   </data>
-    <data name="LastFiveYearsLabel" xml:space="preserve">
-    <value>Sidste 5 år</value>
+  <data name="LastFiveYearsLabel" xml:space="preserve">
+    <value>Last Five Years</value>
   </data>
-    <data name="LastThreeYearsLabel" xml:space="preserve">
-    <value>Sidste 3 år</value>
+  <data name="LastThreeYearsLabel" xml:space="preserve">
+    <value>Last Three Years</value>
   </data>
-    <data name="LastTwoYearsLabel" xml:space="preserve">
-    <value>Sidste 2 år</value>
+  <data name="LastTwoYearsLabel" xml:space="preserve">
+    <value>Last Two Years</value>
   </data>
-    <data name="LastYearLabel" xml:space="preserve">
-    <value>Sidste år</value>
+  <data name="LastYearLabel" xml:space="preserve">
+    <value>Last Year</value>
   </data>
-    <data name="YearToDateLabel" xml:space="preserve">
-    <value>År til dato</value>
+  <data name="YearToDateLabel" xml:space="preserve">
+    <value>Year to date</value>
   </data>
-    <data name="MonthlySpendingLimitLabel" xml:space="preserve">
-    <value>Grænse for månedlige udgifter</value>
+  <data name="MonthlySpendingLimitLabel" xml:space="preserve">
+    <value>Monthly Spending Limit</value>
   </data>
-    <data name="EvaluationTimeRangeLabel" xml:space="preserve">
-    <value>Evalueringsinterval</value>
+  <data name="EvaluationTimeRangeLabel" xml:space="preserve">
+    <value>Evaluation Time Range</value>
   </data>
-    <data name="EvaluationTimeRangeMessage" xml:space="preserve">
-    <value>Dette definerer tidsintervallet, hvor betalinger er inkluderet for at beregne dit månedlige gennemsnit for at sammenligne med din udgiftsgrænse.</value>
+  <data name="EvaluationTimeRangeMessage" xml:space="preserve">
+    <value>This defines the time range in which payments are included to calculate your monthly average to compare to your spending limit.</value>
   </data>
-    <data name="CategorySummaryPlaceholder" xml:space="preserve">
-    <value>Ingen betalinger i det valgte tidsinterval fundet.</value>
+  <data name="CategorySummaryPlaceholder" xml:space="preserve">
+    <value>No payments in the selected time range found.</value>
   </data>
-    <data name="InvalidSpendingLimitMessage" xml:space="preserve">
-    <value>Udgiftsgrænsen skal være større end nul.</value>
+  <data name="InvalidSpendingLimitMessage" xml:space="preserve">
+    <value>The spending limit has to be larger than zero.</value>
   </data>
-    <data name="InvalidSpendingLimitTitle" xml:space="preserve">
-    <value>Ugyldig grænse for månedlige udgifter</value>
+  <data name="InvalidSpendingLimitTitle" xml:space="preserve">
+    <value>Invalid Spending Limit</value>
   </data>
-    <data name="NotePlaceholderLabel" xml:space="preserve">
-    <value>Indtast bemærkning for denne betaling..</value>
+  <data name="NotePlaceholderLabel" xml:space="preserve">
+    <value>Enter note to this payment..</value>
   </data>
+  <data name="GainsLabel" xml:space="preserve">
+        <value>Gains</value>
+    </data>
 </root>

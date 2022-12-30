@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-    <!-- 
+  <!-- 
       Microsoft ResX Schema 
       
       Version 2.0
@@ -59,829 +59,831 @@
               : using a System.ComponentModel.TypeConverter
               : and then encoded with base64 encoding.
       -->
-    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"
-                xmlns="" id="root">
-        <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
-        <xsd:element name="root" msdata:IsDataSet="true">
+  <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns="" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
             <xsd:complexType>
-                <xsd:choice maxOccurs="unbounded">
-                    <xsd:element name="metadata">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
-                            </xsd:sequence>
-                            <xsd:attribute name="name" use="required" type="xsd:string"/>
-                            <xsd:attribute name="type" type="xsd:string"/>
-                            <xsd:attribute name="mimetype" type="xsd:string"/>
-                            <xsd:attribute ref="xml:space"/>
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="assembly">
-                        <xsd:complexType>
-                            <xsd:attribute name="alias" type="xsd:string"/>
-                            <xsd:attribute name="name" type="xsd:string"/>
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="data">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
-                            </xsd:sequence>
-                            <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-                            <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-                            <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-                            <xsd:attribute ref="xml:space"/>
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="resheader">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                            </xsd:sequence>
-                            <xsd:attribute name="name" type="xsd:string" use="required"/>
-                        </xsd:complexType>
-                    </xsd:element>
-                </xsd:choice>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
-        </xsd:element>
-    </xsd:schema>
-    <resheader name="resmimetype">
-        <value>text/microsoft-resx</value>
-    </resheader>
-    <resheader name="version">
-        <value>2.0</value>
-    </resheader>
-    <resheader name="reader">
-        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
             PublicKeyToken=b77a5c561934e089
         </value>
-    </resheader>
-    <resheader name="writer">
-        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
             PublicKeyToken=b77a5c561934e089
         </value>
-    </resheader>
-    <data name="AboutTitle" xml:space="preserve">
-    <value>О приложении</value>
+  </resheader>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>About</value>
   </data>
-    <data name="AccountNameLabel" xml:space="preserve">
-    <value>Название счёта</value>
+  <data name="AccountNameLabel" xml:space="preserve">
+    <value>Account Name</value>
   </data>
-    <data name="AccountRequiredMessage" xml:space="preserve">
-    <value>Пожалуйста, выберите счёт.</value>
+  <data name="AccountRequiredMessage" xml:space="preserve">
+    <value>Please select an Account.</value>
   </data>
-    <data name="AccountsTitle" xml:space="preserve">
-    <value>Счета</value>
+  <data name="AccountsTitle" xml:space="preserve">
+    <value>Accounts</value>
   </data>
-    <data name="AddAccountLabel" xml:space="preserve">
-    <value>Добавить счёт</value>
+  <data name="AddAccountLabel" xml:space="preserve">
+    <value>Add Account</value>
   </data>
-    <data name="AddAccountTitle" xml:space="preserve">
-    <value>Добавить счёт</value>
+  <data name="AddAccountTitle" xml:space="preserve">
+    <value>Add Account</value>
   </data>
-    <data name="AddCategoryLabel" xml:space="preserve">
-    <value>Добавить категорию</value>
+  <data name="AddCategoryLabel" xml:space="preserve">
+    <value>Add Category</value>
   </data>
-    <data name="AddCategoryTitle" xml:space="preserve">
-    <value>Добавить категорию</value>
+  <data name="AddCategoryTitle" xml:space="preserve">
+    <value>Add Category</value>
   </data>
-    <data name="AddExpenseTitle" xml:space="preserve">
-    <value>Добавить расход</value>
+  <data name="AddExpenseTitle" xml:space="preserve">
+    <value>Add Expense</value>
   </data>
-    <data name="AddIncomeTitle" xml:space="preserve">
-    <value>Добавить доход</value>
+  <data name="AddIncomeTitle" xml:space="preserve">
+    <value>Add Income</value>
   </data>
-    <data name="AddPaymentLabel" xml:space="preserve">
-    <value>Добавить операцию</value>
+  <data name="AddPaymentLabel" xml:space="preserve">
+    <value>Add Payment</value>
   </data>
-    <data name="AddTransferTitle" xml:space="preserve">
-    <value>Добавить перевод</value>
+  <data name="AddTransferTitle" xml:space="preserve">
+    <value>Add Transfer</value>
   </data>
-    <data name="AmountLabel" xml:space="preserve">
-    <value>Сумма</value>
+  <data name="AmountLabel" xml:space="preserve">
+    <value>Amount</value>
   </data>
-    <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
-    <value>Сумма не может быть отрицательной. Вычет или пополнение суммы зависит от вида создаваемой вами операции.</value>
+  <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
+    <value>The amount may not be negative. If it is subtracted or added is deteremined by the kind of payment you create.</value>
   </data>
-    <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
-    <value>Отрицательная сумма</value>
+  <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
+    <value>Negative amount</value>
   </data>
-    <data name="ANoteForPaymentIsRequired" xml:space="preserve">
-    <value>Требуется заметка для оплаты</value>
+  <data name="ANoteForPaymentIsRequired" xml:space="preserve">
+    <value>A note for payment is required</value>
   </data>
-    <data name="ApplyFilterLabel" xml:space="preserve">
-    <value>Применить фильтр</value>
+  <data name="ApplyFilterLabel" xml:space="preserve">
+    <value>Apply Filter</value>
   </data>
-    <data name="AssetsLabel" xml:space="preserve">
-    <value>Активы</value>
+  <data name="AssetsLabel" xml:space="preserve">
+    <value>Assets</value>
   </data>
-    <data name="AuthenticationFailedTitle" xml:space="preserve">
-    <value>Сбой авторизации</value>
+  <data name="AuthenticationFailedTitle" xml:space="preserve">
+    <value>Authentication failed</value>
   </data>
-    <data name="AutobackupInformationLabel" xml:space="preserve">
-    <value>Если вы активируете эту настройку, мы автоматически создадим резервную копию ваших данных на OneDrive. Также периодически проверяем, если что-то изменилось на другом устройстве.</value>
+  <data name="AutobackupInformationLabel" xml:space="preserve">
+    <value>If you activate this setting we backup your data automatically to OneDrive. Also we check periodically if something changed on another device.</value>
   </data>
-    <data name="AutobackupLabel" xml:space="preserve">
-    <value>Автоматически загружать и скачивать резервные копии</value>
+  <data name="AutobackupLabel" xml:space="preserve">
+    <value>Automatically upload and download backups</value>
   </data>
-    <data name="AutobackupTitle" xml:space="preserve">
-    <value>Авторезервное копирование</value>
+  <data name="AutobackupTitle" xml:space="preserve">
+    <value>Autobackup</value>
   </data>
-    <data name="BackLabel" xml:space="preserve">
-    <value>Назад</value>
+  <data name="BackLabel" xml:space="preserve">
+    <value>Back</value>
   </data>
-    <data name="BackupCreatedMessage" xml:space="preserve">
-    <value>Резервная копия успешно создана</value>
+  <data name="BackupCreatedMessage" xml:space="preserve">
+    <value>Backup created successfully</value>
   </data>
-    <data name="BackupFailedTitle" xml:space="preserve">
-    <value>Ошибка резервного копирования!</value>
+  <data name="BackupFailedTitle" xml:space="preserve">
+    <value>Backup failed!</value>
   </data>
-    <data name="BackupInformationLabel" xml:space="preserve">
-    <value>Ваши данные будут сохранены в аккаунте OneDrive. Вы найдете их в папке приложения под названием MoneyFox.</value>
+  <data name="BackupInformationLabel" xml:space="preserve">
+    <value>Your data will be saved to your OneDrive Account. You’ll find them in the Application Folder in a new folder called "MoneyFox".</value>
   </data>
-    <data name="BackupRestoredMessage" xml:space="preserve">
-    <value>Резервная копия успешно восстановлена.</value>
+  <data name="BackupRestoredMessage" xml:space="preserve">
+    <value>Backup restored successfully.</value>
   </data>
-    <data name="BackupTitle" xml:space="preserve">
-    <value>Резервная копия</value>
+  <data name="BackupTitle" xml:space="preserve">
+    <value>Backup</value>
   </data>
-    <data name="BiannuallyLabel" xml:space="preserve">
-    <value>Раз в полгода</value>
+  <data name="BiannuallyLabel" xml:space="preserve">
+    <value>Biannually</value>
   </data>
-    <data name="BimonthlyLabel" xml:space="preserve">
-    <value>Два раза в месяц</value>
+  <data name="BimonthlyLabel" xml:space="preserve">
+    <value>Bimonthly</value>
   </data>
-    <data name="BiweeklyLabel" xml:space="preserve">
-    <value>Раз в две недели</value>
+  <data name="BiweeklyLabel" xml:space="preserve">
+    <value>Biweekly</value>
   </data>
-    <data name="BudgetsLabel" xml:space="preserve">
-    <value>Бюджеты</value>
+  <data name="BudgetsLabel" xml:space="preserve">
+    <value>Budgets</value>
   </data>
-    <data name="CanceledTitle" xml:space="preserve">
-    <value>Отменено</value>
+  <data name="CanceledTitle" xml:space="preserve">
+    <value>Canceled</value>
   </data>
-    <data name="CancelLabel" xml:space="preserve">
-    <value>Отмена</value>
+  <data name="CancelLabel" xml:space="preserve">
+    <value>Cancel</value>
   </data>
-    <data name="CashflowDescription" xml:space="preserve">
-    <value>Доходы, расходы и выгоды для выбранного периода времени.</value>
+  <data name="CashflowDescription" xml:space="preserve">
+    <value>Income, expenses and gains for the selected time period.</value>
   </data>
-    <data name="CashflowLabel" xml:space="preserve">
-    <value>Денежный поток</value>
+  <data name="CashflowLabel" xml:space="preserve">
+    <value>Cashflow</value>
   </data>
-    <data name="CashFlowStatisticTitle" xml:space="preserve">
-    <value>Денежный поток</value>
+  <data name="CashFlowStatisticTitle" xml:space="preserve">
+    <value>Cash Flow</value>
   </data>
-    <data name="CategorieIntroductionText" xml:space="preserve">
-    <value>Категории могут помочь отсортировать ваши операции. Также они облегчают анализ ваших расходов и доходов в статистике.</value>
+  <data name="CategorieIntroductionText" xml:space="preserve">
+    <value>Categories can help order your payments. Also they make it easier to analyze your spendings and incomes in the statistics.</value>
   </data>
-    <data name="CategorieSpreadingDescription" xml:space="preserve">
-    <value>Распространение расходов к категории.</value>
+  <data name="CategorieSpreadingDescription" xml:space="preserve">
+    <value>Spreading of the expenses to the categories.</value>
   </data>
-    <data name="CategoriesTitle" xml:space="preserve">
-    <value>Категории</value>
+  <data name="CategoriesTitle" xml:space="preserve">
+    <value>Categories</value>
   </data>
-    <data name="CategoryLabel" xml:space="preserve">
-    <value>Категория</value>
+  <data name="CategoryLabel" xml:space="preserve">
+    <value>Category</value>
   </data>
-    <data name="CategoryNameLabel" xml:space="preserve">
-    <value>Название категории</value>
+  <data name="CategoryNameLabel" xml:space="preserve">
+    <value>Category Name</value>
   </data>
-    <data name="CategorySpreadingLabel" xml:space="preserve">
-    <value>Распределение категорий</value>
+  <data name="CategorySpreadingLabel" xml:space="preserve">
+    <value>Category Spreading</value>
   </data>
-    <data name="CategorySpreadingTitle" xml:space="preserve">
-    <value>Распределение категорий</value>
+  <data name="CategorySpreadingTitle" xml:space="preserve">
+    <value>Category Spreading</value>
   </data>
-    <data name="CategorySummaryDescription" xml:space="preserve">
-    <value>Краткое описание категорий с платежом.</value>
+  <data name="CategorySummaryDescription" xml:space="preserve">
+    <value>Summary of the categories with a Payment.</value>
   </data>
-    <data name="CategorySummaryLabel" xml:space="preserve">
-    <value>Категории</value>
+  <data name="CategorySummaryLabel" xml:space="preserve">
+    <value>Category Summary</value>
   </data>
-    <data name="CategorySummaryTitle" xml:space="preserve">
-    <value>По категориям</value>
+  <data name="CategorySummaryTitle" xml:space="preserve">
+    <value>Category Summary</value>
   </data>
-    <data name="ChargedAccountLabel" xml:space="preserve">
-    <value>Исходный счёт</value>
+  <data name="ChargedAccountLabel" xml:space="preserve">
+    <value>Charged Account</value>
   </data>
-    <data name="ClearedFilterLabel" xml:space="preserve">
-    <value>Очищено</value>
+  <data name="ClearedFilterLabel" xml:space="preserve">
+    <value>Cleared</value>
   </data>
-    <data name="CompletedText" xml:space="preserve">
-    <value>Вот и все! Вы можете использовать MoneyFox.</value>
+  <data name="CompletedText" xml:space="preserve">
+    <value>That's it! You're set for using the MoneyFox.</value>
   </data>
-    <data name="CompletedTitle" xml:space="preserve">
-    <value>Готово!</value>
+  <data name="CompletedTitle" xml:space="preserve">
+    <value>Done!</value>
   </data>
-    <data name="CompleteLabel" xml:space="preserve">
-    <value>Готово</value>
+  <data name="CompleteLabel" xml:space="preserve">
+    <value>Complete</value>
   </data>
-    <data name="ContactLabel" xml:space="preserve">
-    <value>Обратная связь</value>
+  <data name="ContactLabel" xml:space="preserve">
+    <value>Contact</value>
   </data>
-    <data name="ContributerLabel" xml:space="preserve">
-    <value>Чтобы увидеть весь вклад, посетите нас на GitHub:</value>
+  <data name="ContributerLabel" xml:space="preserve">
+    <value>To see all contributions head over to GitHub:</value>
   </data>
-    <data name="ContributionsLabel" xml:space="preserve">
-    <value>Вклад</value>
+  <data name="ContributionsLabel" xml:space="preserve">
+    <value>Contributions</value>
   </data>
-    <data name="CreateAccountNowLabel" xml:space="preserve">
-    <value>Создать счёт</value>
+  <data name="CreateAccountNowLabel" xml:space="preserve">
+    <value>Create Account Now</value>
   </data>
-    <data name="CreateBackupLabel" xml:space="preserve">
-    <value>Создать резервную копию</value>
+  <data name="CreateBackupLabel" xml:space="preserve">
+    <value>Create Backup</value>
   </data>
-    <data name="CreateCategoryNowLabel" xml:space="preserve">
-    <value>Создать категорию</value>
+  <data name="CreateCategoryNowLabel" xml:space="preserve">
+    <value>Create Category now</value>
   </data>
-    <data name="CreationDateHeader" xml:space="preserve">
-    <value>Дата создания</value>
+  <data name="CreationDateHeader" xml:space="preserve">
+    <value>Creation Date</value>
   </data>
-    <data name="CreationDateLabel" xml:space="preserve">
-    <value>Дата создания:</value>
+  <data name="CreationDateLabel" xml:space="preserve">
+    <value>Creation Date:</value>
   </data>
-    <data name="CreationDateTemplateLabel" xml:space="preserve">
-    <value>Дата создания: {0}</value>
+  <data name="CreationDateTemplateLabel" xml:space="preserve">
+    <value>Creation Date: {0}</value>
   </data>
-    <data name="CurrentBalanceLabel" xml:space="preserve">
-    <value>Текущий баланс</value>
+  <data name="CurrentBalanceLabel" xml:space="preserve">
+    <value>Current Balance</value>
   </data>
-    <data name="DailyLabel" xml:space="preserve">
-    <value>Каждый день</value>
+  <data name="DailyLabel" xml:space="preserve">
+    <value>Daily</value>
   </data>
-    <data name="DailyWithoutWeekendLabel" xml:space="preserve">
-    <value>Каждый день без выходных</value>
+  <data name="DailyWithoutWeekendLabel" xml:space="preserve">
+    <value>Daily without weekend</value>
   </data>
-    <data name="DarkLabel" xml:space="preserve">
-    <value>Тёмная тема</value>
+  <data name="DarkLabel" xml:space="preserve">
+    <value>Dark</value>
   </data>
-    <data name="DashboardTitle" xml:space="preserve">
-    <value>Главный экран</value>
+  <data name="DashboardTitle" xml:space="preserve">
+    <value>Dashboard</value>
   </data>
-    <data name="DateLabel" xml:space="preserve">
-    <value>Дата</value>
+  <data name="DateLabel" xml:space="preserve">
+    <value>Date</value>
   </data>
-    <data name="DateRangeHeader" xml:space="preserve">
-    <value>Период</value>
+  <data name="DateRangeHeader" xml:space="preserve">
+    <value>Date Range</value>
   </data>
-    <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Регион по умолчанию</value>
+  <data name="DefaultRegionHeader" xml:space="preserve">
+    <value>Default Region</value>
   </data>
-    <data name="DefaultRegionText" xml:space="preserve">
-    <value>Этот регион будет использоваться по умолчанию для вашего приложения.</value>
+  <data name="DefaultRegionText" xml:space="preserve">
+    <value>This region will be used as a default for your application.</value>
   </data>
-    <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
-    <value>Вы действительно хотите удалить этот счёт?</value>
+  <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
+    <value>Do you really want to delete this Account?</value>
   </data>
-    <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
-    <value>Вы действительно хотите удалить эту категорию?</value>
+  <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
+    <value>Do you really want to delete this Category?</value>
   </data>
-    <data name="DeleteLabel" xml:space="preserve">
-    <value>Удалить</value>
+  <data name="DeleteLabel" xml:space="preserve">
+    <value>Delete</value>
   </data>
-    <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
-    <value>Вы действительно хотите удалить эту операцию?</value>
+  <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
+    <value>Do you really want to delete this Payment?</value>
   </data>
-    <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
-    <value>Вы обновили периодическую операцию. Вы хотите обновить будущие операции?</value>
+  <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
+    <value>You've deleted a recurring payment. Do you want to delete the recurrence as well?</value>
   </data>
-    <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
-    <value>Удалить периодичность?</value>
+  <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
+    <value>Delete Recurrence?</value>
   </data>
-    <data name="DeleteTitle" xml:space="preserve">
-    <value>Удалить?</value>
+  <data name="DeleteTitle" xml:space="preserve">
+    <value>Delete?</value>
   </data>
-    <data name="DoneLabel" xml:space="preserve">
-    <value>Готово</value>
+  <data name="DoneLabel" xml:space="preserve">
+    <value>Done</value>
   </data>
-    <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>Аккаунт с таким именем уже существует. Продолжить сохранение?</value>
+  <data name="DuplicateAccountMessage" xml:space="preserve">
+    <value>An account with that name already exists. Continue with saving?</value>
   </data>
-    <data name="DuplicateCategoryMessage" xml:space="preserve">
-    <value>Категория с таким названием уже существует.</value>
+  <data name="DuplicateCategoryMessage" xml:space="preserve">
+    <value>A Category with that name already exists.</value>
   </data>
-    <data name="DuplicatedNameTitle" xml:space="preserve">
-    <value>Имя уже используется</value>
+  <data name="DuplicatedNameTitle" xml:space="preserve">
+    <value>Name already used</value>
   </data>
-    <data name="EditAccountTitle" xml:space="preserve">
-    <value>Редактировать {0}</value>
+  <data name="EditAccountTitle" xml:space="preserve">
+    <value>Edit {0}</value>
   </data>
-    <data name="EditCategoryTitle" xml:space="preserve">
-    <value>Изменить категорию</value>
+  <data name="EditCategoryTitle" xml:space="preserve">
+    <value>Edit Category</value>
   </data>
-    <data name="EditIncomeTitle" xml:space="preserve">
-    <value>Редактировать доход</value>
+  <data name="EditIncomeTitle" xml:space="preserve">
+    <value>Edit Income</value>
   </data>
-    <data name="EditLabel" xml:space="preserve">
-    <value>Изменить</value>
+  <data name="EditLabel" xml:space="preserve">
+    <value>Edit</value>
   </data>
-    <data name="EditSpendingTitle" xml:space="preserve">
-    <value>Изменить расход</value>
+  <data name="EditSpendingTitle" xml:space="preserve">
+    <value>Edit Expense</value>
   </data>
-    <data name="EditTransferTitle" xml:space="preserve">
-    <value>Изменить перевод</value>
+  <data name="EditTransferTitle" xml:space="preserve">
+    <value>Edit Transfer</value>
   </data>
-    <data name="EmailLabel" xml:space="preserve">
+  <data name="EmailLabel" xml:space="preserve">
     <value>Email</value>
   </data>
-    <data name="EnddateLabel" xml:space="preserve">
-    <value>Дата окончания публикации</value>
+  <data name="EnddateLabel" xml:space="preserve">
+    <value>End Date</value>
   </data>
-    <data name="EndlessLabel" xml:space="preserve">
-    <value>Бесконечный</value>
+  <data name="EndlessLabel" xml:space="preserve">
+    <value>Is Endless</value>
   </data>
-    <data name="EndOfMonthBalanceLabel" xml:space="preserve">
-    <value>На конец месяца</value>
+  <data name="EndOfMonthBalanceLabel" xml:space="preserve">
+    <value>End of Month</value>
   </data>
-    <data name="EndOfMonthLabel" xml:space="preserve">
-    <value>На конец месяца:</value>
+  <data name="EndOfMonthLabel" xml:space="preserve">
+    <value>End Of Month:</value>
   </data>
-    <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
-    <value>Произошла ошибка при аутентификации. Пожалуйста, повторите попытку позже.</value>
+  <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
+    <value>There was an error during the authentication. Please try again later.</value>
   </data>
-    <data name="ExcludedAccountsHeader" xml:space="preserve">
-    <value>Исключенные счета</value>
+  <data name="ExcludedAccountsHeader" xml:space="preserve">
+    <value>Excluded Accounts</value>
   </data>
-    <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
-    <value>Расход: {0} / Доход: {1}</value>
+  <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
+    <value>Expense: {0} / Income: {1}</value>
   </data>
-    <data name="ExpenseHeader" xml:space="preserve">
-    <value>Добавить расход</value>
+  <data name="ExpenseHeader" xml:space="preserve">
+    <value>Add expense</value>
   </data>
-    <data name="ExpenseLabel" xml:space="preserve">
-    <value>Расходы</value>
+  <data name="ExpenseLabel" xml:space="preserve">
+    <value>Expenses</value>
   </data>
-    <data name="FeedbackSubject" xml:space="preserve">
-    <value>Обратная связь MoneyFox</value>
+  <data name="FeedbackSubject" xml:space="preserve">
+    <value>Feedback MoneyFox</value>
   </data>
-    <data name="FilterLabel" xml:space="preserve">
-    <value>Фильтр</value>
+  <data name="FilterLabel" xml:space="preserve">
+    <value>Filter</value>
   </data>
-    <data name="ForceOverrideBackupMessage" xml:space="preserve">
-    <value>База данных на вашем компьютере новее, чем на OneDrive. Вы точно хотите перезаписать локальные данные?</value>
+  <data name="ForceOverrideBackupMessage" xml:space="preserve">
+    <value>Your local database has a newer modification date than the one on OneDrive. Do you want to override your local data?</value>
   </data>
-    <data name="ForceOverrideBackupTitle" xml:space="preserve">
-    <value>Перезаписать локальные данные</value>
+  <data name="ForceOverrideBackupTitle" xml:space="preserve">
+    <value>Override Local Data</value>
   </data>
-    <data name="GeneralErrorTitle" xml:space="preserve">
-    <value>Произошла ошибка</value>
+  <data name="GeneralErrorTitle" xml:space="preserve">
+    <value>An error occured</value>
   </data>
-    <data name="GoToAccountsLabel" xml:space="preserve">
-    <value>Перейти к счетам</value>
+  <data name="GoToAccountsLabel" xml:space="preserve">
+    <value>Go to Accounts</value>
   </data>
-    <data name="GoToBudgetsLabel" xml:space="preserve">
-    <value>Перейти к бюджетам</value>
+  <data name="GoToBudgetsLabel" xml:space="preserve">
+    <value>Go to Budgets</value>
   </data>
-    <data name="IconDesignerLabel" xml:space="preserve">
-    <value>Значок приложения был создан:</value>
+  <data name="IconDesignerLabel" xml:space="preserve">
+    <value>The app icon was created by:</value>
   </data>
-    <data name="IncludedAccountsHeader" xml:space="preserve">
-    <value>Включенные счета</value>
+  <data name="IncludedAccountsHeader" xml:space="preserve">
+    <value>Included Accounts</value>
   </data>
-    <data name="IncomeAndExpensesLabel" xml:space="preserve">
-    <value>Доходы и расходы</value>
+  <data name="IncomeAndExpensesLabel" xml:space="preserve">
+    <value>Income and Expenses</value>
   </data>
-    <data name="IncomeHeader" xml:space="preserve">
-    <value>Добавить доход</value>
+  <data name="IncomeHeader" xml:space="preserve">
+    <value>Add income</value>
   </data>
-    <data name="IncomeLabel" xml:space="preserve">
-    <value>Доход</value>
+  <data name="IncomeLabel" xml:space="preserve">
+    <value>Income</value>
   </data>
-    <data name="IncomeSpendingLabel" xml:space="preserve">
-    <value>Доход / Расход:</value>
+  <data name="IncomeSpendingLabel" xml:space="preserve">
+    <value>Income / Expenses:</value>
   </data>
-    <data name="IncreaseLabel" xml:space="preserve">
-    <value>Прирост</value>
+  <data name="IncreaseLabel" xml:space="preserve">
+    <value>Gains</value>
   </data>
-    <data name="InfoLabel" xml:space="preserve">
-    <value>Информация</value>
+  <data name="InfoLabel" xml:space="preserve">
+    <value>Info</value>
   </data>
-    <data name="InfoOpenSource" xml:space="preserve">
-    <value>Это проект с открытым исходным кодом. Мы будем рады поработать с вами!
-Нажмите, чтобы перейти в репозиторий:</value>
+  <data name="InfoOpenSource" xml:space="preserve">
+    <value>This is an open-source project – and we’d love to work with you! Feel free to contribute.
+Tap to visit the Repository:</value>
   </data>
-    <data name="InvalidEnddateMessage" xml:space="preserve">
-    <value>Дата окончания повторений должна быть в будущем. Проверьте введенные данные.</value>
+  <data name="InvalidEnddateMessage" xml:space="preserve">
+    <value>The enddate of a recurring Payment has to be in the future. Please check your input.</value>
   </data>
-    <data name="InvalidEnddateTitle" xml:space="preserve">
-    <value>Недопустимая дата окончания</value>
+  <data name="InvalidEnddateTitle" xml:space="preserve">
+    <value>Invalid End Date</value>
   </data>
-    <data name="InvalidNumberCurrentBalanceMessage" xml:space="preserve">
-    <value>Ваш текущий баланс, кажется, имеет неверный формат. Пожалуйста, проверьте, что вы не ввели никаких специальных символов и использовали правильный разделитель.</value>
+  <data name="InvalidNumberCurrentBalanceMessage" xml:space="preserve">
+    <value>Your current balance seems to be an invalid number. Please check that you haven't entered any special characters and used the correct separator.</value>
   </data>
-    <data name="InvalidNumberTitle" xml:space="preserve">
-    <value>Неправильный формат числа</value>
+  <data name="InvalidNumberTitle" xml:space="preserve">
+    <value>Invalid Number</value>
   </data>
-    <data name="IsClearedLabel" xml:space="preserve">
-    <value>Очищено</value>
+  <data name="IsClearedLabel" xml:space="preserve">
+    <value>Cleared</value>
   </data>
-    <data name="IsExcludedLabel" xml:space="preserve">
-    <value>Исключить счёт из баланса</value>
+  <data name="IsExcludedLabel" xml:space="preserve">
+    <value>Exclude account from balance</value>
   </data>
-    <data name="IsGroupedLabel" xml:space="preserve">
-    <value>Список групп</value>
+  <data name="IsGroupedLabel" xml:space="preserve">
+    <value>Group List</value>
   </data>
-    <data name="IsRecurringFilterLabel" xml:space="preserve">
-    <value>Переодически</value>
+  <data name="IsRecurringFilterLabel" xml:space="preserve">
+    <value>Is Recurring</value>
   </data>
-    <data name="IsRecurringLabel" xml:space="preserve">
-    <value>Переодически</value>
+  <data name="IsRecurringLabel" xml:space="preserve">
+    <value>Recurring</value>
   </data>
-    <data name="LastBackupDateLabel" xml:space="preserve">
-    <value>Последняя резервная копия:</value>
+  <data name="LastBackupDateLabel" xml:space="preserve">
+    <value>Last Backup created at:</value>
   </data>
-    <data name="LightLabel" xml:space="preserve">
-    <value>Светлая тема</value>
+  <data name="LightLabel" xml:space="preserve">
+    <value>Light</value>
   </data>
-    <data name="LoadingLabel" xml:space="preserve">
-    <value>Загрузка...</value>
+  <data name="LoadingLabel" xml:space="preserve">
+    <value>Loading...</value>
   </data>
-    <data name="LoggedInMessage" xml:space="preserve">
-    <value>Вы успешно вошли.</value>
+  <data name="LoggedInMessage" xml:space="preserve">
+    <value>Loggedin successfully.</value>
   </data>
-    <data name="LoggedOutMessage" xml:space="preserve">
-    <value>Вы успешно вышли.</value>
+  <data name="LoggedOutMessage" xml:space="preserve">
+    <value>Logged out successfully.</value>
   </data>
-    <data name="LoggedOutTitle" xml:space="preserve">
-    <value>Выход</value>
+  <data name="LoggedOutTitle" xml:space="preserve">
+    <value>Logged out</value>
   </data>
-    <data name="LoginCanceledMessage" xml:space="preserve">
-    <value>Вход в систему отменен.</value>
+  <data name="LoginCanceledMessage" xml:space="preserve">
+    <value>Login was canceled.</value>
   </data>
-    <data name="LoginFailedTitle" xml:space="preserve">
-    <value>Ошибка входа</value>
+  <data name="LoginFailedTitle" xml:space="preserve">
+    <value>Login failed!</value>
   </data>
-    <data name="LoginLabel" xml:space="preserve">
-    <value>Войти</value>
+  <data name="LoginLabel" xml:space="preserve">
+    <value>Login</value>
   </data>
-    <data name="LogoutCanceledMessage" xml:space="preserve">
-    <value>Выход из системы отменен.</value>
+  <data name="LogoutCanceledMessage" xml:space="preserve">
+    <value>Logout was canceled.</value>
   </data>
-    <data name="LogoutLabel" xml:space="preserve">
-    <value>Выйти</value>
+  <data name="LogoutLabel" xml:space="preserve">
+    <value>Logout</value>
   </data>
-    <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
-    <value>Обязательные поля</value>
+  <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
+    <value>Mandatory field</value>
   </data>
-    <data name="ModificationDateHeader" xml:space="preserve">
-    <value>Изменение даты</value>
+  <data name="ModificationDateHeader" xml:space="preserve">
+    <value>Modification Date</value>
   </data>
-    <data name="ModificationDateLabel" xml:space="preserve">
-    <value>Дата изменения:</value>
+  <data name="ModificationDateLabel" xml:space="preserve">
+    <value>Modification Date:</value>
   </data>
-    <data name="ModificationDateTemplateLabel" xml:space="preserve">
-    <value>Дата изменения: {0}</value>
+  <data name="ModificationDateTemplateLabel" xml:space="preserve">
+    <value>Modification Date: {0}</value>
   </data>
-    <data name="ModifyRecurrenceMessage" xml:space="preserve">
-    <value>Вы обновили периодическую операцию. Вы хотите обновить будущие операции?</value>
+  <data name="ModifyRecurrenceMessage" xml:space="preserve">
+    <value>You have modified a recurring payment. Do you want to update the recurrence?</value>
   </data>
-    <data name="ModifyRecurrenceTitle" xml:space="preserve">
-    <value>Изменить периодичность</value>
+  <data name="ModifyRecurrenceTitle" xml:space="preserve">
+    <value>Modify Recurrence</value>
   </data>
-    <data name="MonthlyAverageLabel" xml:space="preserve">
-    <value>Средний показатель за прошлый год: </value>
+  <data name="MonthlyAverageLabel" xml:space="preserve">
+    <value>Last year monthly average: </value>
   </data>
-    <data name="MonthlyCashflowDescription" xml:space="preserve">
-    <value>Показывает ежемесячный денежный поток для выбранного счета.</value>
+  <data name="MonthlyCashflowDescription" xml:space="preserve">
+    <value>Shows the monthly cashflow for the selected account.</value>
   </data>
-    <data name="MonthlyCashflowLabel" xml:space="preserve">
-    <value>Ежемесячный доход</value>
+  <data name="MonthlyCashflowLabel" xml:space="preserve">
+    <value>Monthly Cashflow</value>
   </data>
-    <data name="MonthlyCashflowTitle" xml:space="preserve">
-    <value>Ежемесячный доход</value>
+  <data name="MonthlyCashflowTitle" xml:space="preserve">
+    <value>Monthly Cashflow</value>
   </data>
-    <data name="MonthlyLabel" xml:space="preserve">
-    <value>Ежемесячно</value>
+  <data name="MonthlyLabel" xml:space="preserve">
+    <value>Monthly</value>
   </data>
-    <data name="NameRequiredMessage" xml:space="preserve">
-    <value>Пожалуйста, введите имя.</value>
+  <data name="NameRequiredMessage" xml:space="preserve">
+    <value>Please insert a name.</value>
   </data>
-    <data name="NextLabel" xml:space="preserve">
-    <value>Далее</value>
+  <data name="NextLabel" xml:space="preserve">
+    <value>Next</value>
   </data>
-    <data name="NoAccountsMessage" xml:space="preserve">
-    <value>Нет счетов для отображения.</value>
+  <data name="NoAccountsMessage" xml:space="preserve">
+    <value>There are no Accounts to display.</value>
   </data>
-    <data name="NoCategoriesMessage" xml:space="preserve">
-    <value>Нет категорий для отображения.</value>
+  <data name="NoCategoriesMessage" xml:space="preserve">
+    <value>There are no categories to display. </value>
   </data>
-    <data name="NoCategoryLabel" xml:space="preserve">
-    <value>[Нет категории]</value>
+  <data name="NoCategoryLabel" xml:space="preserve">
+    <value>[No Category]</value>
   </data>
-    <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
-    <value>Не выбрана запись. Выберите запись в списке, чтобы увидеть операции в ней.</value>
+  <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
+    <value>No entry selected. Choose a entry in the list to see the payments for it.</value>
   </data>
-    <data name="NoLabel" xml:space="preserve">
-    <value>Нет</value>
+  <data name="NoLabel" xml:space="preserve">
+    <value>No</value>
   </data>
-    <data name="NoNetworkMessage" xml:space="preserve">
-    <value>Вы не подключены к Интернету. Проверьте подключение и повторите попытку.</value>
+  <data name="NoNetworkMessage" xml:space="preserve">
+    <value>You are not connected to the internet. Please check your connection and try again.</value>
   </data>
-    <data name="NoNetworkTitle" xml:space="preserve">
-    <value>Нет подключения к Интернету</value>
+  <data name="NoNetworkTitle" xml:space="preserve">
+    <value>No Internet Connection</value>
   </data>
-    <data name="NoPaymentsMessage" xml:space="preserve">
-    <value>У вас нет операций. Добавьте новую, нажав на кнопку «плюс».</value>
+  <data name="NoPaymentsMessage" xml:space="preserve">
+    <value>There are no Payments. Add one by tapping on the plus button.</value>
   </data>
-    <data name="NoteLabel" xml:space="preserve">
-    <value>Примечание</value>
+  <data name="NoteLabel" xml:space="preserve">
+    <value>Note</value>
   </data>
-    <data name="NotNowLabel" xml:space="preserve">
-    <value>Не сейчас</value>
+  <data name="NotNowLabel" xml:space="preserve">
+    <value>Not Now</value>
   </data>
-    <data name="OkLabel" xml:space="preserve">
-    <value>ОК</value>
+  <data name="OkLabel" xml:space="preserve">
+    <value>Ok</value>
   </data>
-    <data name="OthersLabel" xml:space="preserve">
-    <value>Другое</value>
+  <data name="OthersLabel" xml:space="preserve">
+    <value>Others</value>
   </data>
-    <data name="OverwriteBackupMessage" xml:space="preserve">
-    <value>Будут перезаписаны существующие резервные копии. Вы хотите продолжить?</value>
+  <data name="OverwriteBackupMessage" xml:space="preserve">
+    <value>Existing backups will be overwritten. Do you wanna continue?</value>
   </data>
-    <data name="OverwriteDataMessage" xml:space="preserve">
-    <value>Локальные данные будут удалены. Вы уверены, что хотите продолжить?</value>
+  <data name="OverwriteDataMessage" xml:space="preserve">
+    <value>Your local data will be deleted. Are you sure you wanna proceed?</value>
   </data>
-    <data name="OverwriteTitle" xml:space="preserve">
-    <value>Перезаписать?</value>
+  <data name="OverwriteTitle" xml:space="preserve">
+    <value>Overwrite?</value>
   </data>
-    <data name="PaymentIntroductionText" xml:space="preserve">
-    <value>При создании платежа вы можете выбрать категорию для этого платежа вместе с счетом и если это будет расценкой, доход или перевод.
-Созданные вами платежи будут отображаться под выбранной учетной записью.
-Чтобы попасть туда перейдите в список счетов и выберите соответствующий аккаунт.</value>
+  <data name="PaymentIntroductionText" xml:space="preserve">
+    <value>When you create a payment you can select the category for that payment along with the account and if it is an expense, an income or a transfer.
+Payments you created will show up under the account you choose.
+To get there go to the account list and select the respective account.</value>
   </data>
-    <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Детали для {0}</value>
+  <data name="PaymentsForCategoryTitle" xml:space="preserve">
+    <value>Details for {0}</value>
   </data>
-    <data name="PaymentTypeLabel" xml:space="preserve">
-    <value>Тип операции</value>
+  <data name="PaymentTypeLabel" xml:space="preserve">
+    <value>Payment type</value>
   </data>
-    <data name="PersonalizationTitle" xml:space="preserve">
-    <value>Персонализация</value>
+  <data name="PersonalizationTitle" xml:space="preserve">
+    <value>Personalization</value>
   </data>
-    <data name="QuarterlyLabel" xml:space="preserve">
-    <value>Ежеквартально</value>
+  <data name="QuarterlyLabel" xml:space="preserve">
+    <value>Quarterly</value>
   </data>
-    <data name="RateLabel" xml:space="preserve">
-    <value>Оцените это приложение!</value>
+  <data name="RateLabel" xml:space="preserve">
+    <value>Rate this app!</value>
   </data>
-    <data name="RateReminderText" xml:space="preserve">
-    <value>Мы надеемся, что вам понравилось наше приложение. Помогите нам с оценкой в магазине.
-Перейти в магазин для оценки?</value>
+  <data name="RateReminderText" xml:space="preserve">
+    <value>We hope you like our app. Support us with a rating in the store.
+Do you want to go the the store to rate?</value>
   </data>
-    <data name="RateReminderTitle" xml:space="preserve">
-    <value>Оценить приложение</value>
+  <data name="RateReminderTitle" xml:space="preserve">
+    <value>Rate this app</value>
   </data>
-    <data name="RecurrenceLabel" xml:space="preserve">
-    <value>Периодичность</value>
+  <data name="RecurrenceLabel" xml:space="preserve">
+    <value>Recurrence</value>
   </data>
-    <data name="RecurringLabel" xml:space="preserve">
-    <value>Переодический</value>
+  <data name="RecurringLabel" xml:space="preserve">
+    <value>Is Recurring</value>
   </data>
-    <data name="RequireNoteCheckbox" xml:space="preserve">
-    <value>Заметка обязательна</value>
+  <data name="RequireNoteCheckbox" xml:space="preserve">
+    <value>Note required</value>
   </data>
-    <data name="RestoreBackupCanceledMessage" xml:space="preserve">
-    <value>Восстановление резервной копии отменено.</value>
+  <data name="RestoreBackupCanceledMessage" xml:space="preserve">
+    <value>Restoring backup was canceled.</value>
   </data>
-    <data name="RestoreBackupInformationLabel" xml:space="preserve">
-    <value>Скачать резервную копию и заменить ей локальные данные.
-ВНИМАНИЕ: Ваши локальные изменения будут утеряны!</value>
+  <data name="RestoreBackupInformationLabel" xml:space="preserve">
+    <value>Download the previous uploaded database backup and replace your local data with it.
+WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
-    <data name="RestoreBackupLabel" xml:space="preserve">
-    <value>Восстановить из резервной копии</value>
+  <data name="RestoreBackupLabel" xml:space="preserve">
+    <value>Restore Backup</value>
   </data>
-    <data name="RevenueLabel" xml:space="preserve">
-    <value>Прибыль</value>
+  <data name="RevenueLabel" xml:space="preserve">
+    <value>Revenue</value>
   </data>
-    <data name="SaveLabel" xml:space="preserve">
-    <value>Сохранить</value>
+  <data name="SaveLabel" xml:space="preserve">
+    <value>Save</value>
   </data>
-    <data name="SavingAccountMessage" xml:space="preserve">
-    <value>Сохранение счёта...</value>
+  <data name="SavingAccountMessage" xml:space="preserve">
+    <value>Saving Account...</value>
   </data>
-    <data name="SavingCategoryMessage" xml:space="preserve">
-    <value>Сохранение категории...</value>
+  <data name="SavingCategoryMessage" xml:space="preserve">
+    <value>Saving Category...</value>
   </data>
-    <data name="SavingPaymentMessage" xml:space="preserve">
-    <value>Сохранение операции...</value>
+  <data name="SavingPaymentMessage" xml:space="preserve">
+    <value>Saving Payment...</value>
   </data>
-    <data name="SearchLabel" xml:space="preserve">
-    <value>Поиск</value>
+  <data name="SearchLabel" xml:space="preserve">
+    <value>Search</value>
   </data>
-    <data name="SelectCategoryTitle" xml:space="preserve">
-    <value>Выберите категорию</value>
+  <data name="SelectCategoryTitle" xml:space="preserve">
+    <value>Select Category</value>
   </data>
-    <data name="SelectDateLabel" xml:space="preserve">
-    <value>Выбрать дату</value>
+  <data name="SelectDateLabel" xml:space="preserve">
+    <value>Select Date</value>
   </data>
-    <data name="SelectedAccountHeader" xml:space="preserve">
-    <value>Выбранный аккаунт</value>
+  <data name="SelectedAccountHeader" xml:space="preserve">
+    <value>Selected Account</value>
   </data>
-    <data name="SelectFilterTitle" xml:space="preserve">
-    <value>Фильтр</value>
+  <data name="SelectFilterTitle" xml:space="preserve">
+    <value>Select Filter</value>
   </data>
-    <data name="SelectStatisticTitle" xml:space="preserve">
-    <value>Выберите статистику</value>
+  <data name="SelectStatisticTitle" xml:space="preserve">
+    <value>Select Statistic</value>
   </data>
-    <data name="SettingsTitle" xml:space="preserve">
-    <value>Настройки</value>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Settings</value>
   </data>
-    <data name="SkipLabel" xml:space="preserve">
-    <value>Пропустить</value>
+  <data name="SkipLabel" xml:space="preserve">
+    <value>Skip</value>
   </data>
-    <data name="StatisticsTimeRangeTitle" xml:space="preserve">
-    <value>Диапазон времени:</value>
+  <data name="StatisticsTimeRangeTitle" xml:space="preserve">
+    <value>Time Range:</value>
   </data>
-    <data name="StatisticsTitle" xml:space="preserve">
-    <value>Статистика</value>
+  <data name="StatisticsTitle" xml:space="preserve">
+    <value>Statistics</value>
   </data>
-    <data name="TargetAccountLabel" xml:space="preserve">
-    <value>Целевой счет</value>
+  <data name="TargetAccountLabel" xml:space="preserve">
+    <value>Target Account</value>
   </data>
-    <data name="TimeRangeEndLabel" xml:space="preserve">
-    <value>Время до</value>
+  <data name="TimeRangeEndLabel" xml:space="preserve">
+    <value>Time Range End</value>
   </data>
-    <data name="TimeRangeStartLabel" xml:space="preserve">
-    <value>Время от</value>
+  <data name="TimeRangeStartLabel" xml:space="preserve">
+    <value>Time Range Start</value>
   </data>
-    <data name="TransferHeader" xml:space="preserve">
-    <value>Добавить перевод</value>
+  <data name="TransferHeader" xml:space="preserve">
+    <value>Add transfer</value>
   </data>
-    <data name="TransferLabel" xml:space="preserve">
-    <value>Перевод</value>
+  <data name="TransferLabel" xml:space="preserve">
+    <value>Transfer</value>
   </data>
-    <data name="TranslationLabel" xml:space="preserve">
-    <value>Что-то неправильно переведено или вообще не переведено? Помогите нам! Перейдите на crowdin и помогите улучшить MoneyFox:</value>
+  <data name="TranslationLabel" xml:space="preserve">
+    <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the MoneyFox:</value>
   </data>
-    <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>Во время операции возникла проблема. Сообщение об ошибке {0}</value>
+  <data name="UnknownErrorMessage" xml:space="preserve">
+    <value>There was an issue during the operation. Error Message {0}</value>
   </data>
-    <data name="UploadBackupCanceledMessage" xml:space="preserve">
-    <value>Загрузка резервной копии отменена.</value>
+  <data name="UploadBackupCanceledMessage" xml:space="preserve">
+    <value>Upload backup was canceled.</value>
   </data>
-    <data name="VersionLabel" xml:space="preserve">
-    <value>Версия</value>
+  <data name="VersionLabel" xml:space="preserve">
+    <value>Version</value>
   </data>
-    <data name="WebsiteLabel" xml:space="preserve">
-    <value>Сайт</value>
+  <data name="WebsiteLabel" xml:space="preserve">
+    <value>Website</value>
   </data>
-    <data name="WeeklyLabel" xml:space="preserve">
-    <value>Еженедельно</value>
+  <data name="WeeklyLabel" xml:space="preserve">
+    <value>Weekly</value>
   </data>
-    <data name="WelcomeLabel" xml:space="preserve">
-    <value>Добро пожаловать!</value>
+  <data name="WelcomeLabel" xml:space="preserve">
+    <value>Welcome!</value>
   </data>
-    <data name="WelcomePageSubtitle" xml:space="preserve">
-    <value>Рады вас видеть!</value>
+  <data name="WelcomePageSubtitle" xml:space="preserve">
+    <value>Glad to have you!</value>
   </data>
-    <data name="WelcomePageText" xml:space="preserve">
-    <value>MoneyFox поможет Вам легко отслеживать Ваши расходы и доходы.
-Для создания нового счета. Счета используются для организации платежей и денег в коллекциях.</value>
+  <data name="WelcomePageText" xml:space="preserve">
+    <value>The MoneyFox helps you to track your expenses and incomes in an easy way.
+To start create a new account. Accounts are used to organize payments and money in collections.</value>
   </data>
-    <data name="WindowsDefaultLabel" xml:space="preserve">
-    <value>По умолчанию</value>
+  <data name="WindowsDefaultLabel" xml:space="preserve">
+    <value>Windows Default</value>
   </data>
-    <data name="YearlyLabel" xml:space="preserve">
-    <value>Ежегодно</value>
+  <data name="YearlyLabel" xml:space="preserve">
+    <value>Yearly</value>
   </data>
-    <data name="YesLabel" xml:space="preserve">
-    <value>Да</value>
+  <data name="YesLabel" xml:space="preserve">
+    <value>Yes</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Управление своим Аккаунтом</value>
+  <data name="AccountsToolTip" xml:space="preserve">
+    <value>Manage your Accounts</value>
   </data>
-    <data name="AddPaymentTitle" xml:space="preserve">
-    <value>Добавить операцию</value>
+  <data name="AddPaymentTitle" xml:space="preserve">
+    <value>Add Payment</value>
   </data>
-    <data name="AddPaymentToolTip" xml:space="preserve">
-    <value>Добавить платеж с подробностями</value>
+  <data name="AddPaymentToolTip" xml:space="preserve">
+    <value>Add a Payment with details</value>
   </data>
-    <data name="BackupToolTip" xml:space="preserve">
-    <value>Данные о файле резервной копии</value>
+  <data name="BackupToolTip" xml:space="preserve">
+    <value>Backup your information</value>
   </data>
-    <data name="CategoriesToolTip" xml:space="preserve">
-    <value>Управление категориями</value>
+  <data name="CategoriesToolTip" xml:space="preserve">
+    <value>Manage your Categories</value>
   </data>
-    <data name="StatisticsToolTip" xml:space="preserve">
-    <value>Просмотр статистики форума</value>
+  <data name="StatisticsToolTip" xml:space="preserve">
+    <value>View your Statistics</value>
   </data>
-    <data name="FailedToLoginToBackupMessage" xml:space="preserve">
-    <value>Не удалось войти в службу резервного копирования. Автоматическая загрузка резервного копирования была отключена. Пожалуйста, войдите в систему и включите её снова.</value>
+  <data name="FailedToLoginToBackupMessage" xml:space="preserve">
+    <value>Failed to login to your backup service. Automatic backup upload was disabled. Please login and enable it again.</value>
   </data>
-    <data name="FailedToLoginToBackupTitle" xml:space="preserve">
-    <value>Ошибка входа</value>
+  <data name="FailedToLoginToBackupTitle" xml:space="preserve">
+    <value>Login failed!</value>
   </data>
-    <data name="LoggedInTitle" xml:space="preserve">
-    <value>Осуществлен вход</value>
+  <data name="LoggedInTitle" xml:space="preserve">
+    <value>Logged in!</value>
   </data>
-    <data name="SelectedPaymentTypeHeader" xml:space="preserve">
-    <value>Выбрать вид платежа</value>
+  <data name="SelectedPaymentTypeHeader" xml:space="preserve">
+    <value>Selected Payment Type</value>
   </data>
-    <data name="CategoryProgressionDescription" xml:space="preserve">
-    <value>Показывает прогресс категории по месяцам.</value>
+  <data name="CategoryProgressionDescription" xml:space="preserve">
+    <value>Shows the progression of a category by month.</value>
   </data>
-    <data name="CategoryProgressionLabel" xml:space="preserve">
-    <value>Прогресс категории</value>
+  <data name="CategoryProgressionLabel" xml:space="preserve">
+    <value>Category Progression</value>
   </data>
-    <data name="SelectCategoryLabel" xml:space="preserve">
-    <value>Выберите категорию</value>
+  <data name="SelectCategoryLabel" xml:space="preserve">
+    <value>Select category..</value>
   </data>
-    <data name="CategoryProgressionTitle" xml:space="preserve">
-    <value>Прогресс категории</value>
+  <data name="CategoryProgressionTitle" xml:space="preserve">
+    <value>Category Progression</value>
   </data>
-    <data name="EditPaymentTitle" xml:space="preserve">
-    <value>Изменить платеж</value>
+  <data name="EditPaymentTitle" xml:space="preserve">
+    <value>Edit Payment</value>
   </data>
-    <data name="InitialBalanceLabel" xml:space="preserve">
-    <value>Начальный баланс</value>
+  <data name="InitialBalanceLabel" xml:space="preserve">
+    <value>Initial Balance</value>
   </data>
-    <data name="AllLabel" xml:space="preserve">
-    <value>Все</value>
+  <data name="AllLabel" xml:space="preserve">
+    <value>All</value>
   </data>
-    <data name="HomeTitle" xml:space="preserve">
-    <value>Главная</value>
+  <data name="HomeTitle" xml:space="preserve">
+    <value>Home</value>
   </data>
-    <data name="MenuTitle" xml:space="preserve">
-    <value>Меню</value>
+  <data name="MenuTitle" xml:space="preserve">
+    <value>Menu</value>
   </data>
-    <data name="LastDayOfMonthLabel" xml:space="preserve">
-    <value>Последняя работа cron</value>
+  <data name="LastDayOfMonthLabel" xml:space="preserve">
+    <value>Last Day of Month</value>
   </data>
-    <data name="OpenLogLabel" xml:space="preserve">
-    <value>Открыть лог</value>
+  <data name="OpenLogLabel" xml:space="preserve">
+    <value>Open Log</value>
   </data>
-    <data name="BudgetsTitle" xml:space="preserve">
-    <value>Бюджеты</value>
+  <data name="BudgetsTitle" xml:space="preserve">
+    <value>Budgets</value>
   </data>
-    <data name="NoBudgetsMessage" xml:space="preserve">
-    <value>Пока нет бюджетов. Начните с создания бюджета!</value>
+  <data name="NoBudgetsMessage" xml:space="preserve">
+    <value>There are no Budgets yet. Go ahead and create one!</value>
   </data>
-    <data name="AddBudgetLabel" xml:space="preserve">
-    <value>Добавить бюджет</value>
+  <data name="AddBudgetLabel" xml:space="preserve">
+    <value>Add Budget</value>
   </data>
-    <data name="AddBudgetTitle" xml:space="preserve">
-    <value>Добавить бюджет</value>
+  <data name="AddBudgetTitle" xml:space="preserve">
+    <value>Add Budget</value>
   </data>
-    <data name="BudgetNameLabel" xml:space="preserve">
-    <value>Название бюджета</value>
+  <data name="BudgetNameLabel" xml:space="preserve">
+    <value>Budget Name</value>
   </data>
-    <data name="MoreTitle" xml:space="preserve">
-    <value>Другое</value>
+  <data name="MoreTitle" xml:space="preserve">
+    <value>More</value>
   </data>
-    <data name="SelectedCategoriesLabel" xml:space="preserve">
-    <value>Выбранные категории</value>
+  <data name="SelectedCategoriesLabel" xml:space="preserve">
+    <value>Selected Categories</value>
   </data>
-    <data name="BackupUploadSkippedMessage" xml:space="preserve">
-    <value>Загрузка резервной копии пропущена, так как удаленная версия уже актуальна.</value>
+  <data name="BackupUploadSkippedMessage" xml:space="preserve">
+    <value>Upload of backup skipped, since remote version was already up to date.</value>
   </data>
-    <data name="EditBudgetTitle" xml:space="preserve">
-    <value>Изменить бюджет</value>
+  <data name="EditBudgetTitle" xml:space="preserve">
+    <value>Edit Budget</value>
   </data>
-    <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
-    <value>Вы действительно хотите удалить этот бюджет?</value>
+  <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
+    <value>Do you really want to delete this budget?</value>
   </data>
-    <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Ежемесячный бюджет:</value>
+  <data name="MonthlyBudgetLabel" xml:space="preserve">
+    <value>Monthly Budget:</value>
   </data>
-    <data name="TimeRangeLabel" xml:space="preserve">
-    <value>Диапазон времени</value>
+  <data name="TimeRangeLabel" xml:space="preserve">
+    <value>Time Range</value>
   </data>
-    <data name="LastFiveYearsLabel" xml:space="preserve">
-    <value>Последние пять лет</value>
+  <data name="LastFiveYearsLabel" xml:space="preserve">
+    <value>Last Five Years</value>
   </data>
-    <data name="LastThreeYearsLabel" xml:space="preserve">
-    <value>Последние три года</value>
+  <data name="LastThreeYearsLabel" xml:space="preserve">
+    <value>Last Three Years</value>
   </data>
-    <data name="LastTwoYearsLabel" xml:space="preserve">
-    <value>Последние два года</value>
+  <data name="LastTwoYearsLabel" xml:space="preserve">
+    <value>Last Two Years</value>
   </data>
-    <data name="LastYearLabel" xml:space="preserve">
-    <value>Прошлый год</value>
+  <data name="LastYearLabel" xml:space="preserve">
+    <value>Last Year</value>
   </data>
-    <data name="YearToDateLabel" xml:space="preserve">
-    <value>Год до настоящего времени</value>
+  <data name="YearToDateLabel" xml:space="preserve">
+    <value>Year to date</value>
   </data>
-    <data name="MonthlySpendingLimitLabel" xml:space="preserve">
-    <value>Лимит расходов на месяц</value>
+  <data name="MonthlySpendingLimitLabel" xml:space="preserve">
+    <value>Monthly Spending Limit</value>
   </data>
-    <data name="EvaluationTimeRangeLabel" xml:space="preserve">
-    <value>Период оценивания</value>
+  <data name="EvaluationTimeRangeLabel" xml:space="preserve">
+    <value>Evaluation Time Range</value>
   </data>
-    <data name="EvaluationTimeRangeMessage" xml:space="preserve">
-    <value>Это определяет промежуток времени, в котором включаются платежи для расчета среднемесячной суммы для сравнения с лимитом расходов.</value>
+  <data name="EvaluationTimeRangeMessage" xml:space="preserve">
+    <value>This defines the time range in which payments are included to calculate your monthly average to compare to your spending limit.</value>
   </data>
-    <data name="CategorySummaryPlaceholder" xml:space="preserve">
-    <value>В выбранном временном интервале не найдено.</value>
+  <data name="CategorySummaryPlaceholder" xml:space="preserve">
+    <value>No payments in the selected time range found.</value>
   </data>
-    <data name="InvalidSpendingLimitMessage" xml:space="preserve">
-    <value>Лимит расходов должен быть больше нуля.</value>
+  <data name="InvalidSpendingLimitMessage" xml:space="preserve">
+    <value>The spending limit has to be larger than zero.</value>
   </data>
-    <data name="InvalidSpendingLimitTitle" xml:space="preserve">
-    <value>Недопустимый лимит трат</value>
+  <data name="InvalidSpendingLimitTitle" xml:space="preserve">
+    <value>Invalid Spending Limit</value>
   </data>
-    <data name="NotePlaceholderLabel" xml:space="preserve">
-    <value>Введите заметку для этого платежа..</value>
+  <data name="NotePlaceholderLabel" xml:space="preserve">
+    <value>Enter note to this payment..</value>
   </data>
+  <data name="GainsLabel" xml:space="preserve">
+        <value>Gains</value>
+    </data>
 </root>
