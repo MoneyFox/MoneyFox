@@ -6,7 +6,9 @@ using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;
 using Core.Common.Messages;
 using Core.Resources;
+using LiveChartsCore.SkiaSharpView.Painting;
 using MediatR;
+using SkiaSharp;
 
 internal abstract class StatisticViewModel : BaseViewModel
 {
@@ -26,13 +28,44 @@ internal abstract class StatisticViewModel : BaseViewModel
     /// <summary>
     ///     Creates a Statistic ViewModel with custom start and end date
     /// </summary>
-    protected StatisticViewModel(DateTime startDate, DateTime endDate, IMediator mediator)
+    private StatisticViewModel(DateTime startDate, DateTime endDate, IMediator mediator)
     {
         StartDate = startDate;
         EndDate = endDate;
         Mediator = mediator;
         IsActive = true;
+
+        // If Application.Current is null, application is running in the context of a unit test
+        if (Application.Current is not null)
+        {
+            Color? textColor;
+            if (Application.Current.RequestedTheme == AppTheme.Dark)
+            {
+                textColor = (Color)App.ResourceDictionary["Colors"]["TextPrimaryColorDark"];
+            }
+            else
+            {
+                textColor = (Color)App.ResourceDictionary["Colors"]["TextPrimaryColorLight"];
+            }
+
+            LegendTextPaint = new() { Color = new(textColor.ToUint()), SKTypeface = SKTypeface.FromFamilyName("Courier New") };
+            Color? legendBackgroundColor;
+            if (Application.Current.RequestedTheme == AppTheme.Dark)
+            {
+                legendBackgroundColor = (Color)App.ResourceDictionary["Colors"]["StatisticLegendDark"];
+            }
+            else
+            {
+                legendBackgroundColor = (Color)App.ResourceDictionary["Colors"]["StatisticLegendLight"];
+            }
+
+            LegendBackgroundPaint = new() { Color = new(legendBackgroundColor.ToUint()) };
+        }
     }
+
+    public SolidColorPaint LegendTextPaint { get; set; }
+
+    public SolidColorPaint LegendBackgroundPaint { get; set; }
 
     public RelayCommand LoadedCommand => new(async () => await LoadAsync());
 
