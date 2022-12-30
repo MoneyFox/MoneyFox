@@ -122,7 +122,7 @@
         </value>
   </resheader>
   <data name="AboutTitle" xml:space="preserve">
-    <value>About</value>
+    <value>Tungkol sa</value>
   </data>
   <data name="AccountNameLabel" xml:space="preserve">
     <value>Account Name</value>
@@ -278,10 +278,10 @@
     <value>Complete</value>
   </data>
   <data name="ContactLabel" xml:space="preserve">
-    <value>Contact</value>
+    <value>Ang Makipagugnayan</value>
   </data>
   <data name="ContributerLabel" xml:space="preserve">
-    <value>To see all contributions head over to GitHub:</value>
+    <value>Upang makita ang lahat ng mga kontribusyon patungo sa taas ng GitHub:</value>
   </data>
   <data name="ContributionsLabel" xml:space="preserve">
     <value>Contributions</value>
@@ -712,7 +712,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Transfer</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the MoneyFox:</value>
+    <value>Is something not properly translated or not translated at all? Help us! Head over to Crowdin and help improve the MoneyFox:</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
     <value>There was an issue during the operation. Error Message {0}</value>

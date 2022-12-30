@@ -122,765 +122,768 @@
         </value>
   </resheader>
   <data name="AboutTitle" xml:space="preserve">
-    <value>A propos</value>
+    <value>O stránke</value>
   </data>
   <data name="AccountNameLabel" xml:space="preserve">
-    <value>Nom du compte</value>
+    <value>Názov účtu</value>
   </data>
   <data name="AccountRequiredMessage" xml:space="preserve">
-    <value>Veuillez sélectionner un compte.</value>
+    <value>Vyberte si účet.</value>
   </data>
   <data name="AccountsTitle" xml:space="preserve">
-    <value>Comptes</value>
+    <value>Účty</value>
   </data>
   <data name="AddAccountLabel" xml:space="preserve">
-    <value>Ajouter un compte</value>
+    <value>Pridať účet</value>
   </data>
   <data name="AddAccountTitle" xml:space="preserve">
-    <value>Ajouter un compte</value>
+    <value>Pridať účet</value>
   </data>
   <data name="AddCategoryLabel" xml:space="preserve">
-    <value>Ajouter une catégorie</value>
+    <value>Pridať kategóriu</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
-    <value>Ajouter une catégorie</value>
+    <value>Pridať kategóriu</value>
   </data>
   <data name="AddExpenseTitle" xml:space="preserve">
-    <value>Ajouter une dépense</value>
+    <value>Pridať výdavky</value>
   </data>
   <data name="AddIncomeTitle" xml:space="preserve">
-    <value>Ajouter un revenu</value>
+    <value>Pridať príjem</value>
   </data>
   <data name="AddPaymentLabel" xml:space="preserve">
-    <value>Ajouter un paiement</value>
+    <value>Pridať platbu</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
-    <value>Ajouter un transfert</value>
+    <value>Pridať prenos</value>
   </data>
   <data name="AmountLabel" xml:space="preserve">
-    <value>Montant</value>
+    <value>Suma</value>
   </data>
   <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
-    <value>Le montant ne peut pas être négatif. S'il est soustrait ou ajouté est déterminé par le type de paiement que vous créez.</value>
+    <value>Táto suma nesmie byť záporná. To, či sa odpočíta alebo pripočíta, závisí od druhu vytvorenej platby.</value>
   </data>
   <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
-    <value>Montant négatif</value>
+    <value>Záporná suma</value>
   </data>
   <data name="ANoteForPaymentIsRequired" xml:space="preserve">
-    <value>Le paiement est requis</value>
+    <value>Vyžaduje sa poznámka o platbe</value>
   </data>
   <data name="ApplyFilterLabel" xml:space="preserve">
-    <value>Appliquer Filtre</value>
+    <value>Použiť filter</value>
   </data>
   <data name="AssetsLabel" xml:space="preserve">
-    <value>Documents</value>
+    <value>Aktíva</value>
   </data>
   <data name="AuthenticationFailedTitle" xml:space="preserve">
-    <value>Échec de l'authentification</value>
+    <value>Overovanie zlyhalo</value>
   </data>
   <data name="AutobackupInformationLabel" xml:space="preserve">
-    <value>Si vous activez se paramètre nous sauvegardons vos données sur OneDrive automatiquement. Nous vérifierons aussi périodiquement si quelque chose à changé sur un autre périphérique.</value>
+    <value>Ak toto nastavenie aktivujete, vaše údaje budeme automaticky zálohovať do služby OneDrive. Taktiež pravidelne kontrolujeme, či sa niečo nezmenilo na inom zariadení.</value>
   </data>
   <data name="AutobackupLabel" xml:space="preserve">
-    <value>Sauvegardes automatique</value>
+    <value>Automatické nahrávanie a sťahovanie záloh</value>
   </data>
   <data name="AutobackupTitle" xml:space="preserve">
-    <value>SauvegardeAutomatique</value>
+    <value>Automatické zálohovanie</value>
   </data>
   <data name="BackLabel" xml:space="preserve">
-    <value>Précédent</value>
+    <value>Späť</value>
   </data>
   <data name="BackupCreatedMessage" xml:space="preserve">
-    <value>Sauvegarde créée avec succès</value>
+    <value>Zálohovanie vytvorené úspešne</value>
   </data>
   <data name="BackupFailedTitle" xml:space="preserve">
-    <value>Sauvegarde échouée!</value>
+    <value>Zálohovanie zlyhalo!</value>
   </data>
   <data name="BackupInformationLabel" xml:space="preserve">
-    <value>Vos données seront enregistrées dans votre compte OneDrive. Vous les trouverez dans le dossier Application dans un nouveau dossier appelé "MoneyFox".</value>
+    <value>Vaše údaje sa uložia do konta OneDrive. Nájdete ich v priečinku aplikácií v novom priečinku s názvom "MoneyFox".</value>
   </data>
   <data name="BackupRestoredMessage" xml:space="preserve">
-    <value>Votre sauvegarde a été restaurée avec succès.</value>
+    <value>Zálohovanie bolo úspešne obnovené.</value>
   </data>
   <data name="BackupTitle" xml:space="preserve">
-    <value>Sauvegarde</value>
+    <value>Zálohovanie</value>
   </data>
   <data name="BiannuallyLabel" xml:space="preserve">
-    <value>Semestrielle</value>
+    <value>Raz za dva roky</value>
   </data>
   <data name="BimonthlyLabel" xml:space="preserve">
-    <value>Bimensuel</value>
+    <value>Dvojmesačník</value>
   </data>
   <data name="BiweeklyLabel" xml:space="preserve">
-    <value>Bi-hebdomadaire</value>
+    <value>Dvojtýždenník</value>
   </data>
   <data name="BudgetsLabel" xml:space="preserve">
-    <value>Budgets</value>
+    <value>Rozpočty</value>
   </data>
   <data name="CanceledTitle" xml:space="preserve">
-    <value>Annulé</value>
+    <value>Zrušené</value>
   </data>
   <data name="CancelLabel" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Zrušiť</value>
   </data>
   <data name="CashflowDescription" xml:space="preserve">
-    <value>Recettes, dépenses et gain pour la période sélectionnée.</value>
+    <value>Príjmy, výdavky a zisky za vybrané časové obdobie.</value>
   </data>
   <data name="CashflowLabel" xml:space="preserve">
-    <value>Balance</value>
+    <value>Cashflow</value>
   </data>
   <data name="CashFlowStatisticTitle" xml:space="preserve">
-    <value>Trésorerie</value>
+    <value>Peňažný tok</value>
   </data>
   <data name="CategorieIntroductionText" xml:space="preserve">
-    <value>Les catégories peuvent aider à trier vos paiements. Cela facilite également les analyses statistiques.</value>
+    <value>Kategórie môžu pomôcť usporiadať vaše platby. Tiež uľahčujú analýzu vašich výdavkov a príjmov v štatistikách.</value>
   </data>
   <data name="CategorieSpreadingDescription" xml:space="preserve">
-    <value>Report des dépenses aux catégories.</value>
+    <value>Rozdelenie výdavkov do kategórií.</value>
   </data>
   <data name="CategoriesTitle" xml:space="preserve">
-    <value>Catégories</value>
+    <value>Kategórie</value>
   </data>
   <data name="CategoryLabel" xml:space="preserve">
-    <value>Catégorie</value>
+    <value>Kategória</value>
   </data>
   <data name="CategoryNameLabel" xml:space="preserve">
-    <value>Nom de la Catégorie</value>
+    <value>Názov kategórie</value>
   </data>
   <data name="CategorySpreadingLabel" xml:space="preserve">
-    <value>Report de la catégorie</value>
+    <value>Šírenie kategórie</value>
   </data>
   <data name="CategorySpreadingTitle" xml:space="preserve">
-    <value>Report de la catégorie</value>
+    <value>Šírenie kategórie</value>
   </data>
   <data name="CategorySummaryDescription" xml:space="preserve">
-    <value>Résumé des catégories avec un paiement.</value>
+    <value>Súhrn kategórií s platbou.</value>
   </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
-    <value>Résumé des catégories</value>
+    <value>Zhrnutie kategórie</value>
   </data>
   <data name="CategorySummaryTitle" xml:space="preserve">
-    <value>Résumé des catégories</value>
+    <value>Zhrnutie kategórie</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
-    <value>Compte cible</value>
+    <value>Účtovaný účet</value>
   </data>
   <data name="ClearedFilterLabel" xml:space="preserve">
-    <value>Effacé</value>
+    <value>Vymazané</value>
   </data>
   <data name="CompletedText" xml:space="preserve">
-    <value>Voilà ! Vous êtes prêts à utiliser le MoneyFox.</value>
+    <value>To je všetko! Ste pripravení na používanie MoneyFox.</value>
   </data>
   <data name="CompletedTitle" xml:space="preserve">
-    <value>Fini !</value>
+    <value>Hotovo!</value>
   </data>
   <data name="CompleteLabel" xml:space="preserve">
-    <value>Terminé</value>
+    <value>Kompletné</value>
   </data>
   <data name="ContactLabel" xml:space="preserve">
-    <value>Contact</value>
+    <value>Kontakt</value>
   </data>
   <data name="ContributerLabel" xml:space="preserve">
-    <value>Voir toutes les contributions sur GitHub :</value>
+    <value>Ak si chcete pozrieť všetky príspevky, prejdite na GitHub:</value>
   </data>
   <data name="ContributionsLabel" xml:space="preserve">
-    <value>Contributions</value>
+    <value>Príspevky</value>
   </data>
   <data name="CreateAccountNowLabel" xml:space="preserve">
-    <value>Créer un compte maintenant</value>
+    <value>Vytvoriť konto teraz</value>
   </data>
   <data name="CreateBackupLabel" xml:space="preserve">
-    <value>Créer une sauvegarde</value>
+    <value>Vytvorenie záložnej kópie</value>
   </data>
   <data name="CreateCategoryNowLabel" xml:space="preserve">
-    <value>Créer une catégorie</value>
+    <value>Vytvoriť kategóriu teraz</value>
   </data>
   <data name="CreationDateHeader" xml:space="preserve">
-    <value>Date création</value>
+    <value>Dátum vytvorenia</value>
   </data>
   <data name="CreationDateLabel" xml:space="preserve">
-    <value>Date de création :</value>
+    <value>Dátum vytvorenia:</value>
   </data>
   <data name="CreationDateTemplateLabel" xml:space="preserve">
-    <value>Date de création : {0}</value>
+    <value>Dátum vytvorenia: {0}</value>
   </data>
   <data name="CurrentBalanceLabel" xml:space="preserve">
-    <value>Solde courant</value>
+    <value>Aktuálny zostatok</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
-    <value>Chaque jour</value>
+    <value>Denne</value>
   </data>
   <data name="DailyWithoutWeekendLabel" xml:space="preserve">
-    <value>Tous les jours sauf le week-end</value>
+    <value>Denne bez víkendu</value>
   </data>
   <data name="DarkLabel" xml:space="preserve">
-    <value>Sombre</value>
+    <value>Dark</value>
   </data>
   <data name="DashboardTitle" xml:space="preserve">
-    <value>Tableau de bord</value>
+    <value>Prístrojová doska</value>
   </data>
   <data name="DateLabel" xml:space="preserve">
-    <value>Date</value>
+    <value>Dátum</value>
   </data>
   <data name="DateRangeHeader" xml:space="preserve">
-    <value>Date (période)</value>
+    <value>Rozsah dátumov</value>
   </data>
   <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Région par défaut</value>
+    <value>Predvolená oblasť</value>
   </data>
   <data name="DefaultRegionText" xml:space="preserve">
-    <value>Cette région sera utilisée par défaut pour votre application.</value>
+    <value>Táto oblasť sa použije ako predvolená pre vašu aplikáciu.</value>
   </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
-    <value>Voulez-vous vraiment supprimer ce compte?</value>
+    <value>Naozaj chcete odstrániť tento účet?</value>
   </data>
   <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
-    <value>Voulez-vous vraiment supprimer cette catégorie?</value>
+    <value>Naozaj chcete túto kategóriu vymazať?</value>
   </data>
   <data name="DeleteLabel" xml:space="preserve">
-    <value>Supprimer</value>
+    <value>Odstrániť</value>
   </data>
   <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
-    <value>Confirmez-vous la suppression de ce paiement ?</value>
+    <value>Naozaj chcete túto platbu vymazať?</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
-    <value>Vous avez supprimé un paiement récurrent. Vous voulez supprimer aussi la récurrence ?</value>
+    <value>Odstránili ste opakovanú platbu. Chcete vymazať aj opakovanú platbu?</value>
   </data>
   <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
-    <value>Supprimer la récurrence ?</value>
+    <value>Vymazať recidívu?</value>
   </data>
   <data name="DeleteTitle" xml:space="preserve">
-    <value>Supprimer ?</value>
+    <value>Vymazať?</value>
   </data>
   <data name="DoneLabel" xml:space="preserve">
-    <value>Terminé</value>
+    <value>Hotovo</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>Un compte portant ce nom existe déjà. Continuer l'enregistrement ?</value>
+    <value>Účet s týmto názvom už existuje. Pokračovať v ukladaní?</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
-    <value>Une catégorie avec ce nom existe déjà.</value>
+    <value>Kategória s týmto názvom už existuje.</value>
   </data>
   <data name="DuplicatedNameTitle" xml:space="preserve">
-    <value>Nom déjà utilisé</value>
+    <value>Už použitý názov</value>
   </data>
   <data name="EditAccountTitle" xml:space="preserve">
-    <value>Modifier {0}</value>
+    <value>Upraviť {0}</value>
   </data>
   <data name="EditCategoryTitle" xml:space="preserve">
-    <value>Modifier une catégorie</value>
+    <value>Upraviť kategóriu</value>
   </data>
   <data name="EditIncomeTitle" xml:space="preserve">
-    <value>Modifier le revenu</value>
+    <value>Úprava príjmov</value>
   </data>
   <data name="EditLabel" xml:space="preserve">
-    <value>Edition</value>
+    <value>Upraviť</value>
   </data>
   <data name="EditSpendingTitle" xml:space="preserve">
-    <value>Modifier la dépense</value>
+    <value>Upraviť výdavky</value>
   </data>
   <data name="EditTransferTitle" xml:space="preserve">
-    <value>Modifier le transfert</value>
+    <value>Upraviť prenos</value>
   </data>
   <data name="EmailLabel" xml:space="preserve">
-    <value>Email</value>
+    <value>E-mail</value>
   </data>
   <data name="EnddateLabel" xml:space="preserve">
-    <value>Date de fin</value>
+    <value>Dátum ukončenia</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
-    <value>Sans fin</value>
+    <value>Je nekonečný</value>
   </data>
   <data name="EndOfMonthBalanceLabel" xml:space="preserve">
-    <value>Fin du mois</value>
+    <value>Koniec mesiaca</value>
   </data>
   <data name="EndOfMonthLabel" xml:space="preserve">
-    <value>Fin du mois</value>
+    <value>Koniec mesiaca:</value>
   </data>
   <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
-    <value>Une erreur est survenue lors de l'authentification. Veuillez réessayer ultérieurement.</value>
+    <value>Počas overovania došlo k chybe. Skúste to prosím neskôr.</value>
   </data>
   <data name="ExcludedAccountsHeader" xml:space="preserve">
-    <value>Comptes exclus</value>
+    <value>Vylúčené účty</value>
   </data>
   <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
-    <value>Dépense {1} / Revenue: {0}</value>
+    <value>Výdavky: {0} / Príjmy: {1}</value>
   </data>
   <data name="ExpenseHeader" xml:space="preserve">
-    <value>Ajouter une dépense</value>
+    <value>Pridať výdavky</value>
   </data>
   <data name="ExpenseLabel" xml:space="preserve">
-    <value>Dépenses</value>
+    <value>Výdavky</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Commentaires sur MoneyFox</value>
+    <value>Spätná väzba MoneyFox</value>
   </data>
   <data name="FilterLabel" xml:space="preserve">
-    <value>Filtre</value>
+    <value>Filter</value>
   </data>
   <data name="ForceOverrideBackupMessage" xml:space="preserve">
-    <value>Votre base de données locale a une date de modification plus récente que celle de OneDrive. Voulez-vous remplacer vos données locales ?</value>
+    <value>Vaša lokálna databáza má novší dátum úpravy ako databáza v službe OneDrive. Chcete prepísať svoje miestne údaje?</value>
   </data>
   <data name="ForceOverrideBackupTitle" xml:space="preserve">
-    <value>Remplacer les données locales</value>
+    <value>Prepísanie miestnych údajov</value>
   </data>
   <data name="GeneralErrorTitle" xml:space="preserve">
-    <value>Une erreur s'est produite</value>
+    <value>Vyskytla sa chyba</value>
   </data>
   <data name="GoToAccountsLabel" xml:space="preserve">
-    <value>Accéder aux comptes</value>
+    <value>Prejsť na účty</value>
   </data>
   <data name="GoToBudgetsLabel" xml:space="preserve">
-    <value>Accéder aux budgets</value>
+    <value>Prejsť na rozpočty</value>
   </data>
   <data name="IconDesignerLabel" xml:space="preserve">
-    <value>L’icône de l’application a été créée par :</value>
+    <value>Ikonu aplikácie vytvorili:</value>
   </data>
   <data name="IncludedAccountsHeader" xml:space="preserve">
-    <value>Comptes inclus</value>
+    <value>Zahrnuté účty</value>
   </data>
   <data name="IncomeAndExpensesLabel" xml:space="preserve">
-    <value>Revenus et Dépenses</value>
+    <value>Príjmy a výdavky</value>
   </data>
   <data name="IncomeHeader" xml:space="preserve">
-    <value>Ajouter un revenu</value>
+    <value>Pridajte príjem</value>
   </data>
   <data name="IncomeLabel" xml:space="preserve">
-    <value>Revenu</value>
+    <value>Príjmy</value>
   </data>
   <data name="IncomeSpendingLabel" xml:space="preserve">
-    <value>Revenus / Dépenses :</value>
+    <value>Príjmy/výdavky:</value>
   </data>
   <data name="IncreaseLabel" xml:space="preserve">
-    <value>Gains</value>
+    <value>Zisky</value>
   </data>
   <data name="InfoLabel" xml:space="preserve">
-    <value>Infos</value>
+    <value>Informácie</value>
   </data>
   <data name="InfoOpenSource" xml:space="preserve">
-    <value>C'est un projet open-source – et nous aimerions travailler avec vous ! N’hésitez pas à contribuer. Cliquez pour visiter le dépôt :</value>
+    <value>Toto je projekt s otvoreným zdrojovým kódom - a my by sme s vami radi spolupracovali! Neváhajte prispieť.
+Ťuknutím na položku navštívte úložisko:</value>
   </data>
   <data name="InvalidEnddateMessage" xml:space="preserve">
-    <value>L’échéance d’un paiement périodique doit être à l’avenir. Veuillez vérifier votre saisie.</value>
+    <value>Dátum ukončenia opakovanej platby musí byť v budúcnosti. Skontrolujte, či ste zadali údaje.</value>
   </data>
   <data name="InvalidEnddateTitle" xml:space="preserve">
-    <value>Date de fin non valide</value>
+    <value>Neplatný dátum ukončenia</value>
   </data>
   <data name="InvalidNumberCurrentBalanceMessage" xml:space="preserve">
-    <value>Votre solde actuel semble être un nombre non valide. Veuillez vérifier que vous n'avez pas entré de caractères spéciaux et que vous avez utilisé le séparateur correct.</value>
+    <value>Zdá sa, že váš aktuálny zostatok je neplatné číslo. Skontrolujte, či ste nezadali žiadne špeciálne znaky a či ste použili správny oddeľovač.</value>
   </data>
   <data name="InvalidNumberTitle" xml:space="preserve">
-    <value>Nombre non valide</value>
+    <value>Neplatné číslo</value>
   </data>
   <data name="IsClearedLabel" xml:space="preserve">
-    <value>Effacé</value>
+    <value>Vymazané</value>
   </data>
   <data name="IsExcludedLabel" xml:space="preserve">
-    <value>Exclure le compte du solde</value>
+    <value>Vylúčiť účet zo zostatku</value>
   </data>
   <data name="IsGroupedLabel" xml:space="preserve">
-    <value>Liste des groupes</value>
+    <value>Zoznam skupín</value>
   </data>
   <data name="IsRecurringFilterLabel" xml:space="preserve">
-    <value>Récurrent</value>
+    <value>Opakuje sa</value>
   </data>
   <data name="IsRecurringLabel" xml:space="preserve">
-    <value>Récurrent</value>
+    <value>Opakujúce sa</value>
   </data>
   <data name="LastBackupDateLabel" xml:space="preserve">
-    <value>Dernière sauvegarde créée à :</value>
+    <value>Posledná záloha vytvorená na:</value>
   </data>
   <data name="LightLabel" xml:space="preserve">
-    <value>Clair</value>
+    <value>Svetlo</value>
   </data>
   <data name="LoadingLabel" xml:space="preserve">
-    <value>Chargement en cours...</value>
+    <value>Načítavanie...</value>
   </data>
   <data name="LoggedInMessage" xml:space="preserve">
-    <value>Déconnexion réussie.</value>
+    <value>Úspešne sa prihlásil.</value>
   </data>
   <data name="LoggedOutMessage" xml:space="preserve">
-    <value>Déconnexion réussie.</value>
+    <value>Úspešne sa odhlásil.</value>
   </data>
   <data name="LoggedOutTitle" xml:space="preserve">
-    <value>Déconnecté</value>
+    <value>Odhlásený</value>
   </data>
   <data name="LoginCanceledMessage" xml:space="preserve">
-    <value>La connexion a été annulée.</value>
+    <value>Prihlásenie bolo zrušené.</value>
   </data>
   <data name="LoginFailedTitle" xml:space="preserve">
-    <value>Échec de la connexion !</value>
+    <value>Prihlásenie zlyhalo!</value>
   </data>
   <data name="LoginLabel" xml:space="preserve">
-    <value>S'identifier</value>
+    <value>Prihlásenie</value>
   </data>
   <data name="LogoutCanceledMessage" xml:space="preserve">
-    <value>La déconnexion a été annulée.</value>
+    <value>Odhlásenie bolo zrušené.</value>
   </data>
   <data name="LogoutLabel" xml:space="preserve">
-    <value>Se déconnecter</value>
+    <value>Odhlásenie</value>
   </data>
   <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
-    <value>Champ obligatoire</value>
+    <value>Povinné pole</value>
   </data>
   <data name="ModificationDateHeader" xml:space="preserve">
-    <value>Date de modification</value>
+    <value>Dátum úpravy</value>
   </data>
   <data name="ModificationDateLabel" xml:space="preserve">
-    <value>Date de modification :</value>
+    <value>Dátum úpravy:</value>
   </data>
   <data name="ModificationDateTemplateLabel" xml:space="preserve">
-    <value>Date de modification : {0}</value>
+    <value>Dátum úpravy: {0}</value>
   </data>
   <data name="ModifyRecurrenceMessage" xml:space="preserve">
-    <value>Vous avez modifié un paiement récurrent. Voulez-vous mettre à jour la récurrence ?</value>
+    <value>Upravili ste opakovanú platbu. Chcete aktualizovať opakovanú platbu?</value>
   </data>
   <data name="ModifyRecurrenceTitle" xml:space="preserve">
-    <value>Modifier la récurrence</value>
+    <value>Úprava opakovania</value>
   </data>
   <data name="MonthlyAverageLabel" xml:space="preserve">
-    <value>Moyenne mensuelle de l'année dernière: </value>
+    <value>Mesačný priemer za minulý rok: </value>
   </data>
   <data name="MonthlyCashflowDescription" xml:space="preserve">
-    <value>Affiche le flux de trésorerie mensuel pour le compte sélectionné.</value>
+    <value>Zobrazí mesačný tok peňazí pre vybraný účet.</value>
   </data>
   <data name="MonthlyCashflowLabel" xml:space="preserve">
-    <value>Flux de trésorerie mensuel</value>
+    <value>Mesačný cashflow</value>
   </data>
   <data name="MonthlyCashflowTitle" xml:space="preserve">
-    <value>Flux de trésorerie mensuel</value>
+    <value>Mesačný cashflow</value>
   </data>
   <data name="MonthlyLabel" xml:space="preserve">
-    <value>Mensuel</value>
+    <value>Mesačne</value>
   </data>
   <data name="NameRequiredMessage" xml:space="preserve">
-    <value>Veuillez saisir un nom.</value>
+    <value>Prosím, vložte meno.</value>
   </data>
   <data name="NextLabel" xml:space="preserve">
-    <value>Suivant</value>
+    <value>Ďalšie</value>
   </data>
   <data name="NoAccountsMessage" xml:space="preserve">
-    <value>Il n'y a aucun compte à afficher.</value>
+    <value>Neexistujú žiadne účty, ktoré by sa mali zobraziť.</value>
   </data>
   <data name="NoCategoriesMessage" xml:space="preserve">
-    <value>Il n'y a aucune catégorie à afficher.</value>
+    <value>Neexistujú žiadne kategórie na zobrazenie. </value>
   </data>
   <data name="NoCategoryLabel" xml:space="preserve">
-    <value>[Aucune catégorie]</value>
+    <value>[Bez kategórie]</value>
   </data>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
-    <value>Aucune entrée sélectionnée. Choisissez une entrée dans la liste pour voir les paiements pour celle-ci.</value>
+    <value>Nie je vybraná žiadna položka. Ak chcete zobraziť platby, vyberte položku v zozname.</value>
   </data>
   <data name="NoLabel" xml:space="preserve">
-    <value>Non</value>
+    <value>Nie</value>
   </data>
   <data name="NoNetworkMessage" xml:space="preserve">
-    <value>Vous n’êtes pas connecté à internet. Veuillez vérifier votre connexion et réessayez.</value>
+    <value>Nie ste pripojení na internet. Skontrolujte svoje pripojenie a skúste to znova.</value>
   </data>
   <data name="NoNetworkTitle" xml:space="preserve">
-    <value>Pas de connexion internet</value>
+    <value>Žiadne pripojenie k internetu</value>
   </data>
   <data name="NoPaymentsMessage" xml:space="preserve">
-    <value>Il n’y a aucun paiement. Ajoutez en un en appuyant sur le bouton "+".</value>
+    <value>Neexistujú žiadne platby. Pridajte ju ťuknutím na tlačidlo plus.</value>
   </data>
   <data name="NoteLabel" xml:space="preserve">
-    <value>Commentaire</value>
+    <value>Poznámka</value>
   </data>
   <data name="NotNowLabel" xml:space="preserve">
-    <value>Pas maintenant</value>
+    <value>Teraz nie</value>
   </data>
   <data name="OkLabel" xml:space="preserve">
-    <value>Valider</value>
+    <value>Ok</value>
   </data>
   <data name="OthersLabel" xml:space="preserve">
-    <value>Autres</value>
+    <value>Iné</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
-    <value>Les sauvegardes existantes seront écrasées. Voulez-vous continuer ?</value>
+    <value>Existujúce zálohy sa prepíšu. Chcete pokračovať?</value>
   </data>
   <data name="OverwriteDataMessage" xml:space="preserve">
-    <value>Vos données locales seront supprimées. Êtes-vous sûr de que vouloir continuer ?</value>
+    <value>Vaše miestne údaje budú vymazané. Ste si istí, že chcete pokračovať?</value>
   </data>
   <data name="OverwriteTitle" xml:space="preserve">
-    <value>Remplacer ?</value>
+    <value>Prepísať?</value>
   </data>
   <data name="PaymentIntroductionText" xml:space="preserve">
-    <value>Lorsque vous créez un paiement, vous pouvez sélectionner la catégorie pour ce paiement ainsi que le compte et si c'est une dépense, un revenu ou un transfert.
-Les paiements que vous avez créés apparaîtront sous le compte que vous avez choisi.
-Pour y arriver, allez dans la liste des comptes et sélectionnez le compte respectif.</value>
+    <value>Pri vytváraní platby môžete vybrať kategóriu tejto platby spolu s účtom a určiť, či ide o výdavok, príjem alebo prevod.
+Vytvorené platby sa zobrazia pod vybraným účtom.
+Ak sa tam chcete dostať, prejdite do zoznamu účtov a vyberte príslušný účet.</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Détails de {0} </value>
+    <value>Podrobnosti pre {0}</value>
   </data>
   <data name="PaymentTypeLabel" xml:space="preserve">
-    <value>Type de paiement</value>
+    <value>Typ platby</value>
   </data>
   <data name="PersonalizationTitle" xml:space="preserve">
-    <value>Personnalisation</value>
+    <value>Personalizácia</value>
   </data>
   <data name="QuarterlyLabel" xml:space="preserve">
-    <value>Trimestriel</value>
+    <value>Štvrťročne</value>
   </data>
   <data name="RateLabel" xml:space="preserve">
-    <value>Notez cette application!</value>
+    <value>Ohodnoťte túto aplikáciu!</value>
   </data>
   <data name="RateReminderText" xml:space="preserve">
-    <value>Nous espérons que vous appréciez notre App. soutenez nous avec un vote dans le store. Voulez vous aller dans le store pour nous évaluer ?</value>
+    <value>Dúfame, že sa vám naša aplikácia páči. Podporte nás hodnotením v obchode.
+Chcete ísť do obchodu hodnotiť?</value>
   </data>
   <data name="RateReminderTitle" xml:space="preserve">
-    <value>Notez cette appli</value>
+    <value>Hodnotiť túto aplikáciu</value>
   </data>
   <data name="RecurrenceLabel" xml:space="preserve">
-    <value>Récurrence</value>
+    <value>Opakovanie</value>
   </data>
   <data name="RecurringLabel" xml:space="preserve">
-    <value>Récurrent</value>
+    <value>Opakuje sa</value>
   </data>
   <data name="RequireNoteCheckbox" xml:space="preserve">
-    <value>Note obligatoire</value>
+    <value>Požadovaná poznámka</value>
   </data>
   <data name="RestoreBackupCanceledMessage" xml:space="preserve">
-    <value>La restauration de la sauvegarde a été annulée.</value>
+    <value>Obnovenie zálohy bolo zrušené.</value>
   </data>
   <data name="RestoreBackupInformationLabel" xml:space="preserve">
-    <value>Télécharger la dernière sauvegarde de base de données et écraser vos données locales. AVERTISSEMENT : Des modifications locales apportées entre-temps seront perdues!</value>
+    <value>Stiahnite si predchádzajúcu nahranú zálohu databázy a nahraďte ňou svoje miestne údaje.
+VAROVANIE: Miestne zmeny, ktoré ste medzitým vykonali, sa stratia!</value>
   </data>
   <data name="RestoreBackupLabel" xml:space="preserve">
-    <value>Restaurer la sauvegarde</value>
+    <value>Obnovenie zálohovania</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
-    <value>Revenu</value>
+    <value>Príjmy</value>
   </data>
   <data name="SaveLabel" xml:space="preserve">
-    <value>Sauvegarder</value>
+    <value>Uložiť</value>
   </data>
   <data name="SavingAccountMessage" xml:space="preserve">
-    <value>Enregistrement du compte...</value>
+    <value>Sporiaci účet...</value>
   </data>
   <data name="SavingCategoryMessage" xml:space="preserve">
-    <value>Enregistrement de la catégorie...</value>
+    <value>Uloženie kategórie...</value>
   </data>
   <data name="SavingPaymentMessage" xml:space="preserve">
-    <value>Enregistrement du paiement...</value>
+    <value>Úspora platieb...</value>
   </data>
   <data name="SearchLabel" xml:space="preserve">
-    <value>Rechercher</value>
+    <value>Vyhľadávanie</value>
   </data>
   <data name="SelectCategoryTitle" xml:space="preserve">
-    <value>Selectionner une catégorie</value>
+    <value>Vyberte kategóriu</value>
   </data>
   <data name="SelectDateLabel" xml:space="preserve">
-    <value>Sélectionner la date</value>
+    <value>Zvoľte dátum</value>
   </data>
   <data name="SelectedAccountHeader" xml:space="preserve">
-    <value>Compte sélectionné</value>
+    <value>Vybraný účet</value>
   </data>
   <data name="SelectFilterTitle" xml:space="preserve">
-    <value>Choisir un Filtre</value>
+    <value>Vybrať filter</value>
   </data>
   <data name="SelectStatisticTitle" xml:space="preserve">
-    <value>Sélectionnez une statistique</value>
+    <value>Vyberte štatistiku</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>Paramètres</value>
+    <value>Nastavenia</value>
   </data>
   <data name="SkipLabel" xml:space="preserve">
-    <value>Ignorer</value>
+    <value>Vynechať</value>
   </data>
   <data name="StatisticsTimeRangeTitle" xml:space="preserve">
-    <value>Période:</value>
+    <value>Časový rozsah:</value>
   </data>
   <data name="StatisticsTitle" xml:space="preserve">
-    <value>Statistiques</value>
+    <value>Štatistika</value>
   </data>
   <data name="TargetAccountLabel" xml:space="preserve">
-    <value>Compte cible</value>
+    <value>Cieľový účet</value>
   </data>
   <data name="TimeRangeEndLabel" xml:space="preserve">
-    <value>Date de fin</value>
+    <value>Koniec časového rozsahu</value>
   </data>
   <data name="TimeRangeStartLabel" xml:space="preserve">
-    <value>Date de début</value>
+    <value>Časový rozsah Začiatok</value>
   </data>
   <data name="TransferHeader" xml:space="preserve">
-    <value>Ajouter un transfert</value>
+    <value>Pridať prenos</value>
   </data>
   <data name="TransferLabel" xml:space="preserve">
-    <value>Transférer</value>
+    <value>Prenos</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Quelque chose n'est pas traduit correctement ou n'est pas traduit du tout ? Aidez-nous ! Rendez-vous sur Crowdin et aider à améliorer MoneyFox :</value>
+    <value>Niečo nie je správne preložené alebo nie je preložené vôbec? Pomôžte nám! Prejdite na crowdin a pomôžte zlepšiť MoneyFox:</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>Il y a eu un problème pendant l'opération. Message d'erreur {0}</value>
+    <value>Počas operácie sa vyskytol problém. Chybová správa {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
-    <value>Le téléversement de la sauvegarde a été annulé.</value>
+    <value>Nahrávanie zálohy bolo zrušené.</value>
   </data>
   <data name="VersionLabel" xml:space="preserve">
-    <value>Version</value>
+    <value>Verzia</value>
   </data>
   <data name="WebsiteLabel" xml:space="preserve">
-    <value>Site internet</value>
+    <value>Webová lokalita</value>
   </data>
   <data name="WeeklyLabel" xml:space="preserve">
-    <value>Hebdomadaire</value>
+    <value>Týždeň</value>
   </data>
   <data name="WelcomeLabel" xml:space="preserve">
-    <value>Bienvenue!</value>
+    <value>Vitajte!</value>
   </data>
   <data name="WelcomePageSubtitle" xml:space="preserve">
-    <value>Heureux de vous avoir !</value>
+    <value>Sme radi, že vás máme!</value>
   </data>
   <data name="WelcomePageText" xml:space="preserve">
-    <value>Le MoneyFox vous aide à suivre facilement vos dépenses et vos revenus.
-Pour commencer, créez un nouveau compte. Les comptes sont utilisés pour organiser les paiements et l'argent dans les collections.</value>
+    <value>MoneyFox vám pomôže jednoducho sledovať vaše výdavky a príjmy.
+Ak chcete začať, vytvorte si nový účet. Účty slúžia na organizáciu platieb a peňazí v zbierkach.</value>
   </data>
   <data name="WindowsDefaultLabel" xml:space="preserve">
-    <value>Windows par défaut</value>
+    <value>Predvolené nastavenie systému Windows</value>
   </data>
   <data name="YearlyLabel" xml:space="preserve">
-    <value>Annuel</value>
+    <value>Ročný</value>
   </data>
   <data name="YesLabel" xml:space="preserve">
-    <value>Oui</value>
+    <value>Áno</value>
   </data>
   <data name="AccountsToolTip" xml:space="preserve">
-    <value>Gérez votre compte</value>
+    <value>Spravujte svoje účty</value>
   </data>
   <data name="AddPaymentTitle" xml:space="preserve">
-    <value>Ajouter un paiement</value>
+    <value>Pridať platbu</value>
   </data>
   <data name="AddPaymentToolTip" xml:space="preserve">
-    <value>Ajouter un paiement avec les détails</value>
+    <value>Pridanie platby s podrobnosťami</value>
   </data>
   <data name="BackupToolTip" xml:space="preserve">
-    <value>Informations du fichier de sauvegarde</value>
+    <value>Zálohovanie informácií</value>
   </data>
   <data name="CategoriesToolTip" xml:space="preserve">
-    <value>Gérer vos catégories</value>
+    <value>Správa kategórií</value>
   </data>
   <data name="StatisticsToolTip" xml:space="preserve">
-    <value>Voir les stats du forum</value>
+    <value>Zobrazenie vašich štatistík</value>
   </data>
   <data name="FailedToLoginToBackupMessage" xml:space="preserve">
-    <value>Impossible de se connecter à votre service de sauvegarde. Le téléchargement automatique de la sauvegarde a été désactivé. Veuillez vous connecter et l'activer à nouveau.</value>
+    <value>Nepodarilo sa prihlásiť do služby zálohovania. Automatické odosielanie záloh bolo vypnuté. Prihláste sa a znovu ho povoľte.</value>
   </data>
   <data name="FailedToLoginToBackupTitle" xml:space="preserve">
-    <value>Échec de la connexion !</value>
+    <value>Prihlásenie zlyhalo!</value>
   </data>
   <data name="LoggedInTitle" xml:space="preserve">
-    <value>Connecté le</value>
+    <value>Prihlásený!</value>
   </data>
   <data name="SelectedPaymentTypeHeader" xml:space="preserve">
-    <value>Sélectionner un mode de paiement</value>
+    <value>Vybraný typ platby</value>
   </data>
   <data name="CategoryProgressionDescription" xml:space="preserve">
-    <value>Affiche la progression d'une catégorie par mois.</value>
+    <value>Zobrazuje vývoj kategórie podľa mesiacov.</value>
   </data>
   <data name="CategoryProgressionLabel" xml:space="preserve">
-    <value>Progression de la catégorie</value>
+    <value>Postup v kategórii</value>
   </data>
   <data name="SelectCategoryLabel" xml:space="preserve">
-    <value>Entrez une catégorie...</value>
+    <value>Vyberte kategóriu..</value>
   </data>
   <data name="CategoryProgressionTitle" xml:space="preserve">
-    <value>Progression de la catégorie</value>
+    <value>Postup v kategórii</value>
   </data>
   <data name="EditPaymentTitle" xml:space="preserve">
-    <value>Modifier le paiement</value>
+    <value>Upraviť platbu</value>
   </data>
   <data name="InitialBalanceLabel" xml:space="preserve">
-    <value>Solde initial</value>
+    <value>Počiatočný zostatok</value>
   </data>
   <data name="AllLabel" xml:space="preserve">
-    <value>Tout</value>
+    <value>Všetky</value>
   </data>
   <data name="HomeTitle" xml:space="preserve">
-    <value>Accueil</value>
+    <value>Domov</value>
   </data>
   <data name="MenuTitle" xml:space="preserve">
-    <value>Menu</value>
+    <value>Ponuka</value>
   </data>
   <data name="LastDayOfMonthLabel" xml:space="preserve">
-    <value>Dernier jour du mois</value>
+    <value>Posledný deň mesiaca</value>
   </data>
   <data name="OpenLogLabel" xml:space="preserve">
-    <value>Ouvrir le journal</value>
+    <value>Otvoriť denník</value>
   </data>
   <data name="BudgetsTitle" xml:space="preserve">
-    <value>Budgets</value>
+    <value>Rozpočty</value>
   </data>
   <data name="NoBudgetsMessage" xml:space="preserve">
-    <value>Il n'y a pas encore de budget. Allez-y et créez-en un!</value>
+    <value>Zatiaľ nie sú k dispozícii žiadne rozpočty. Pokračujte a vytvorte ho!</value>
   </data>
   <data name="AddBudgetLabel" xml:space="preserve">
-    <value>Ajouter un budget</value>
+    <value>Pridať rozpočet</value>
   </data>
   <data name="AddBudgetTitle" xml:space="preserve">
-    <value>Ajouter un budget</value>
+    <value>Pridať rozpočet</value>
   </data>
   <data name="BudgetNameLabel" xml:space="preserve">
-    <value>Nom du budget</value>
+    <value>Názov rozpočtu</value>
   </data>
   <data name="MoreTitle" xml:space="preserve">
-    <value>Plus</value>
+    <value>Viac na</value>
   </data>
   <data name="SelectedCategoriesLabel" xml:space="preserve">
-    <value>catégories sélectionnées</value>
+    <value>Vybrané kategórie</value>
   </data>
   <data name="BackupUploadSkippedMessage" xml:space="preserve">
-    <value>Téléchargement de sauvegarde ignoré, car la version distante était déjà à jour.</value>
+    <value>Nahrávanie zálohy bolo preskočené, pretože vzdialená verzia už bola aktuálna.</value>
   </data>
   <data name="EditBudgetTitle" xml:space="preserve">
-    <value>Modifier le budget</value>
+    <value>Úprava rozpočtu</value>
   </data>
   <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
-    <value>Voulez-vous vraiment supprimer ce budget ?</value>
+    <value>Naozaj chcete tento rozpočet vymazať?</value>
   </data>
   <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Budget Mensuel</value>
+    <value>Mesačný rozpočet:</value>
   </data>
   <data name="TimeRangeLabel" xml:space="preserve">
-    <value>Période</value>
+    <value>Časový rozsah</value>
   </data>
   <data name="LastFiveYearsLabel" xml:space="preserve">
-    <value>cinq dernières années</value>
+    <value>Posledných päť rokov</value>
   </data>
   <data name="LastThreeYearsLabel" xml:space="preserve">
-    <value>Trois dernières années</value>
+    <value>Posledné tri roky</value>
   </data>
   <data name="LastTwoYearsLabel" xml:space="preserve">
-    <value>Deux dernières années</value>
+    <value>Posledné dva roky</value>
   </data>
   <data name="LastYearLabel" xml:space="preserve">
-    <value>Année dernière</value>
+    <value>Minulý rok</value>
   </data>
   <data name="YearToDateLabel" xml:space="preserve">
-    <value>Année en cours</value>
+    <value>Od začiatku roka</value>
   </data>
   <data name="MonthlySpendingLimitLabel" xml:space="preserve">
-    <value>Limite de Dépenses Quotidienne</value>
+    <value>Mesačný limit výdavkov</value>
   </data>
   <data name="EvaluationTimeRangeLabel" xml:space="preserve">
-    <value>Plage de temps de l'évaluation</value>
+    <value>Časový rozsah hodnotenia</value>
   </data>
   <data name="EvaluationTimeRangeMessage" xml:space="preserve">
-    <value>Ceci définit la plage de temps dans laquelle les paiements sont inclus pour calculer votre moyenne mensuelle pour la comparer à votre limite de dépenses.</value>
+    <value>Definuje časový rozsah, v ktorom sú zahrnuté platby na výpočet vášho mesačného priemeru na porovnanie s limitom výdavkov.</value>
   </data>
   <data name="CategorySummaryPlaceholder" xml:space="preserve">
-    <value>Pas de paiement pour la période sélectionnée.</value>
+    <value>Nenašli sa žiadne platby vo vybranom časovom rozmedzí.</value>
   </data>
   <data name="InvalidSpendingLimitMessage" xml:space="preserve">
-    <value>La limite de dépenses doit être supérieure à zéro.</value>
+    <value>Limit výdavkov musí byť vyšší ako nula.</value>
   </data>
   <data name="InvalidSpendingLimitTitle" xml:space="preserve">
-    <value>Limite de Dépenses Quotidienne</value>
+    <value>Neplatný limit výdavkov</value>
   </data>
   <data name="NotePlaceholderLabel" xml:space="preserve">
-    <value>Entrez une note pour ce paiement..</value>
+    <value>Zadajte poznámku k tejto platbe.</value>
   </data>
   <data name="GainsLabel" xml:space="preserve">
-        <value>Gains</value>
+        <value>Zisky</value>
     </data>
 </root>

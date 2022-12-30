@@ -122,765 +122,768 @@
         </value>
   </resheader>
   <data name="AboutTitle" xml:space="preserve">
-    <value>A propos</value>
+    <value>Apie</value>
   </data>
   <data name="AccountNameLabel" xml:space="preserve">
-    <value>Nom du compte</value>
+    <value>Sąskaitos pavadinimas</value>
   </data>
   <data name="AccountRequiredMessage" xml:space="preserve">
-    <value>Veuillez sélectionner un compte.</value>
+    <value>Pasirinkite paskyrą.</value>
   </data>
   <data name="AccountsTitle" xml:space="preserve">
-    <value>Comptes</value>
+    <value>Sąskaitos</value>
   </data>
   <data name="AddAccountLabel" xml:space="preserve">
-    <value>Ajouter un compte</value>
+    <value>Pridėti paskyrą</value>
   </data>
   <data name="AddAccountTitle" xml:space="preserve">
-    <value>Ajouter un compte</value>
+    <value>Pridėti paskyrą</value>
   </data>
   <data name="AddCategoryLabel" xml:space="preserve">
-    <value>Ajouter une catégorie</value>
+    <value>Pridėti kategoriją</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
-    <value>Ajouter une catégorie</value>
+    <value>Pridėti kategoriją</value>
   </data>
   <data name="AddExpenseTitle" xml:space="preserve">
-    <value>Ajouter une dépense</value>
+    <value>Pridėti išlaidas</value>
   </data>
   <data name="AddIncomeTitle" xml:space="preserve">
-    <value>Ajouter un revenu</value>
+    <value>Pridėti pajamas</value>
   </data>
   <data name="AddPaymentLabel" xml:space="preserve">
-    <value>Ajouter un paiement</value>
+    <value>Pridėti mokėjimą</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
-    <value>Ajouter un transfert</value>
+    <value>Pridėti perkėlimą</value>
   </data>
   <data name="AmountLabel" xml:space="preserve">
-    <value>Montant</value>
+    <value>Suma</value>
   </data>
   <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
-    <value>Le montant ne peut pas être négatif. S'il est soustrait ou ajouté est déterminé par le type de paiement que vous créez.</value>
+    <value>Suma negali būti neigiama. Ar ji bus atimta, ar pridėta, priklauso nuo sukurto mokėjimo rūšies.</value>
   </data>
   <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
-    <value>Montant négatif</value>
+    <value>Neigiama suma</value>
   </data>
   <data name="ANoteForPaymentIsRequired" xml:space="preserve">
-    <value>Le paiement est requis</value>
+    <value>Reikia pateikti mokėjimo raštą</value>
   </data>
   <data name="ApplyFilterLabel" xml:space="preserve">
-    <value>Appliquer Filtre</value>
+    <value>Taikyti filtrą</value>
   </data>
   <data name="AssetsLabel" xml:space="preserve">
-    <value>Documents</value>
+    <value>Turtas</value>
   </data>
   <data name="AuthenticationFailedTitle" xml:space="preserve">
-    <value>Échec de l'authentification</value>
+    <value>Autentifikavimas nepavyko</value>
   </data>
   <data name="AutobackupInformationLabel" xml:space="preserve">
-    <value>Si vous activez se paramètre nous sauvegardons vos données sur OneDrive automatiquement. Nous vérifierons aussi périodiquement si quelque chose à changé sur un autre périphérique.</value>
+    <value>Jei įjungsite šį nustatymą, atsarginę duomenų kopiją į "OneDrive" sukursime automatiškai. Taip pat periodiškai tikriname, ar kitame įrenginyje kas nors pasikeitė.</value>
   </data>
   <data name="AutobackupLabel" xml:space="preserve">
-    <value>Sauvegardes automatique</value>
+    <value>Automatiškai įkelkite ir atsisiųskite atsargines kopijas</value>
   </data>
   <data name="AutobackupTitle" xml:space="preserve">
-    <value>SauvegardeAutomatique</value>
+    <value>Automatinė atsarginė kopija</value>
   </data>
   <data name="BackLabel" xml:space="preserve">
-    <value>Précédent</value>
+    <value>Atgal</value>
   </data>
   <data name="BackupCreatedMessage" xml:space="preserve">
-    <value>Sauvegarde créée avec succès</value>
+    <value>Sėkmingai sukurta atsarginė kopija</value>
   </data>
   <data name="BackupFailedTitle" xml:space="preserve">
-    <value>Sauvegarde échouée!</value>
+    <value>Atsarginė kopija nepavyko!</value>
   </data>
   <data name="BackupInformationLabel" xml:space="preserve">
-    <value>Vos données seront enregistrées dans votre compte OneDrive. Vous les trouverez dans le dossier Application dans un nouveau dossier appelé "MoneyFox".</value>
+    <value>Duomenys bus įrašyti į "OneDrive" paskyrą. Juos rasite programų aplanke naujame aplanke pavadinimu "MoneyFox".</value>
   </data>
   <data name="BackupRestoredMessage" xml:space="preserve">
-    <value>Votre sauvegarde a été restaurée avec succès.</value>
+    <value>Atsarginė kopija atkurta sėkmingai.</value>
   </data>
   <data name="BackupTitle" xml:space="preserve">
-    <value>Sauvegarde</value>
+    <value>Atsarginė kopija</value>
   </data>
   <data name="BiannuallyLabel" xml:space="preserve">
-    <value>Semestrielle</value>
+    <value>Kas dvejus metus</value>
   </data>
   <data name="BimonthlyLabel" xml:space="preserve">
-    <value>Bimensuel</value>
+    <value>Dvimėnesinis</value>
   </data>
   <data name="BiweeklyLabel" xml:space="preserve">
-    <value>Bi-hebdomadaire</value>
+    <value>Kas dvi savaites</value>
   </data>
   <data name="BudgetsLabel" xml:space="preserve">
-    <value>Budgets</value>
+    <value>Biudžetai</value>
   </data>
   <data name="CanceledTitle" xml:space="preserve">
-    <value>Annulé</value>
+    <value>Atšauktas</value>
   </data>
   <data name="CancelLabel" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Atšaukti</value>
   </data>
   <data name="CashflowDescription" xml:space="preserve">
-    <value>Recettes, dépenses et gain pour la période sélectionnée.</value>
+    <value>Pasirinkto laikotarpio pajamos, išlaidos ir pelnas.</value>
   </data>
   <data name="CashflowLabel" xml:space="preserve">
-    <value>Balance</value>
+    <value>Pinigų srautas</value>
   </data>
   <data name="CashFlowStatisticTitle" xml:space="preserve">
-    <value>Trésorerie</value>
+    <value>Pinigų srautai</value>
   </data>
   <data name="CategorieIntroductionText" xml:space="preserve">
-    <value>Les catégories peuvent aider à trier vos paiements. Cela facilite également les analyses statistiques.</value>
+    <value>Kategorijos gali padėti sutvarkyti mokėjimus. Be to, jos padeda lengviau analizuoti jūsų išlaidas ir pajamas statistikoje.</value>
   </data>
   <data name="CategorieSpreadingDescription" xml:space="preserve">
-    <value>Report des dépenses aux catégories.</value>
+    <value>Išlaidų paskirstymas pagal kategorijas.</value>
   </data>
   <data name="CategoriesTitle" xml:space="preserve">
-    <value>Catégories</value>
+    <value>Kategorijos</value>
   </data>
   <data name="CategoryLabel" xml:space="preserve">
-    <value>Catégorie</value>
+    <value>Kategorija</value>
   </data>
   <data name="CategoryNameLabel" xml:space="preserve">
-    <value>Nom de la Catégorie</value>
+    <value>Kategorijos pavadinimas</value>
   </data>
   <data name="CategorySpreadingLabel" xml:space="preserve">
-    <value>Report de la catégorie</value>
+    <value>Kategorijos sklaida</value>
   </data>
   <data name="CategorySpreadingTitle" xml:space="preserve">
-    <value>Report de la catégorie</value>
+    <value>Kategorijos sklaida</value>
   </data>
   <data name="CategorySummaryDescription" xml:space="preserve">
-    <value>Résumé des catégories avec un paiement.</value>
+    <value>Kategorijų suvestinė su Mokėjimas.</value>
   </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
-    <value>Résumé des catégories</value>
+    <value>Kategorijos santrauka</value>
   </data>
   <data name="CategorySummaryTitle" xml:space="preserve">
-    <value>Résumé des catégories</value>
+    <value>Kategorijos santrauka</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
-    <value>Compte cible</value>
+    <value>Įskaityta sąskaita</value>
   </data>
   <data name="ClearedFilterLabel" xml:space="preserve">
-    <value>Effacé</value>
+    <value>Išvalyta</value>
   </data>
   <data name="CompletedText" xml:space="preserve">
-    <value>Voilà ! Vous êtes prêts à utiliser le MoneyFox.</value>
+    <value>Štai ir viskas! Esate pasirengę naudoti "MoneyFox".</value>
   </data>
   <data name="CompletedTitle" xml:space="preserve">
-    <value>Fini !</value>
+    <value>Atlikta!</value>
   </data>
   <data name="CompleteLabel" xml:space="preserve">
-    <value>Terminé</value>
+    <value>Pilnas</value>
   </data>
   <data name="ContactLabel" xml:space="preserve">
-    <value>Contact</value>
+    <value>Susisiekite su</value>
   </data>
   <data name="ContributerLabel" xml:space="preserve">
-    <value>Voir toutes les contributions sur GitHub :</value>
+    <value>Jei norite peržiūrėti visus įnašus, eikite į "GitHub":</value>
   </data>
   <data name="ContributionsLabel" xml:space="preserve">
-    <value>Contributions</value>
+    <value>Įnašai</value>
   </data>
   <data name="CreateAccountNowLabel" xml:space="preserve">
-    <value>Créer un compte maintenant</value>
+    <value>Sukurti paskyrą dabar</value>
   </data>
   <data name="CreateBackupLabel" xml:space="preserve">
-    <value>Créer une sauvegarde</value>
+    <value>Sukurti atsarginę kopiją</value>
   </data>
   <data name="CreateCategoryNowLabel" xml:space="preserve">
-    <value>Créer une catégorie</value>
+    <value>Sukurti kategoriją dabar</value>
   </data>
   <data name="CreationDateHeader" xml:space="preserve">
-    <value>Date création</value>
+    <value>Sukūrimo data</value>
   </data>
   <data name="CreationDateLabel" xml:space="preserve">
-    <value>Date de création :</value>
+    <value>Sukūrimo data:</value>
   </data>
   <data name="CreationDateTemplateLabel" xml:space="preserve">
-    <value>Date de création : {0}</value>
+    <value>Sukūrimo data: {0}</value>
   </data>
   <data name="CurrentBalanceLabel" xml:space="preserve">
-    <value>Solde courant</value>
+    <value>Dabartinis balansas</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
-    <value>Chaque jour</value>
+    <value>Kasdien</value>
   </data>
   <data name="DailyWithoutWeekendLabel" xml:space="preserve">
-    <value>Tous les jours sauf le week-end</value>
+    <value>Kasdien be savaitgalio</value>
   </data>
   <data name="DarkLabel" xml:space="preserve">
-    <value>Sombre</value>
+    <value>Tamsus</value>
   </data>
   <data name="DashboardTitle" xml:space="preserve">
-    <value>Tableau de bord</value>
+    <value>Prietaisų skydelis</value>
   </data>
   <data name="DateLabel" xml:space="preserve">
-    <value>Date</value>
+    <value>Data</value>
   </data>
   <data name="DateRangeHeader" xml:space="preserve">
-    <value>Date (période)</value>
+    <value>Datų intervalas</value>
   </data>
   <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Région par défaut</value>
+    <value>Numatytasis regionas</value>
   </data>
   <data name="DefaultRegionText" xml:space="preserve">
-    <value>Cette région sera utilisée par défaut pour votre application.</value>
+    <value>Šis regionas bus naudojamas kaip numatytasis jūsų programai.</value>
   </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
-    <value>Voulez-vous vraiment supprimer ce compte?</value>
+    <value>Ar tikrai norite ištrinti šią paskyrą?</value>
   </data>
   <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
-    <value>Voulez-vous vraiment supprimer cette catégorie?</value>
+    <value>Ar tikrai norite ištrinti šią kategoriją?</value>
   </data>
   <data name="DeleteLabel" xml:space="preserve">
-    <value>Supprimer</value>
+    <value>Ištrinti</value>
   </data>
   <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
-    <value>Confirmez-vous la suppression de ce paiement ?</value>
+    <value>Ar tikrai norite ištrinti šį Mokėjimą?</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
-    <value>Vous avez supprimé un paiement récurrent. Vous voulez supprimer aussi la récurrence ?</value>
+    <value>Ištrynėte pasikartojantį mokėjimą. Ar norite ištrinti ir pasikartojantį mokėjimą?</value>
   </data>
   <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
-    <value>Supprimer la récurrence ?</value>
+    <value>Ištrinti pasikartojimą?</value>
   </data>
   <data name="DeleteTitle" xml:space="preserve">
-    <value>Supprimer ?</value>
+    <value>Ištrinti?</value>
   </data>
   <data name="DoneLabel" xml:space="preserve">
-    <value>Terminé</value>
+    <value>Atlikta</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>Un compte portant ce nom existe déjà. Continuer l'enregistrement ?</value>
+    <value>Tokio pavadinimo paskyra jau egzistuoja. Tęsti išsaugojimą?</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
-    <value>Une catégorie avec ce nom existe déjà.</value>
+    <value>Kategorija tokiu pavadinimu jau egzistuoja.</value>
   </data>
   <data name="DuplicatedNameTitle" xml:space="preserve">
-    <value>Nom déjà utilisé</value>
+    <value>Jau naudojamas pavadinimas</value>
   </data>
   <data name="EditAccountTitle" xml:space="preserve">
-    <value>Modifier {0}</value>
+    <value>Redaguoti {0}</value>
   </data>
   <data name="EditCategoryTitle" xml:space="preserve">
-    <value>Modifier une catégorie</value>
+    <value>Redaguoti kategoriją</value>
   </data>
   <data name="EditIncomeTitle" xml:space="preserve">
-    <value>Modifier le revenu</value>
+    <value>Redaguoti pajamas</value>
   </data>
   <data name="EditLabel" xml:space="preserve">
-    <value>Edition</value>
+    <value>Redaguoti</value>
   </data>
   <data name="EditSpendingTitle" xml:space="preserve">
-    <value>Modifier la dépense</value>
+    <value>Redaguoti išlaidas</value>
   </data>
   <data name="EditTransferTitle" xml:space="preserve">
-    <value>Modifier le transfert</value>
+    <value>Redaguoti perkėlimą</value>
   </data>
   <data name="EmailLabel" xml:space="preserve">
-    <value>Email</value>
+    <value>El. paštas</value>
   </data>
   <data name="EnddateLabel" xml:space="preserve">
-    <value>Date de fin</value>
+    <value>Pabaigos data</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
-    <value>Sans fin</value>
+    <value>yra begalinis</value>
   </data>
   <data name="EndOfMonthBalanceLabel" xml:space="preserve">
-    <value>Fin du mois</value>
+    <value>Mėnesio pabaiga</value>
   </data>
   <data name="EndOfMonthLabel" xml:space="preserve">
-    <value>Fin du mois</value>
+    <value>Mėnesio pabaiga:</value>
   </data>
   <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
-    <value>Une erreur est survenue lors de l'authentification. Veuillez réessayer ultérieurement.</value>
+    <value>Autentifikavimo metu įvyko klaida. Prašome pabandyti vėliau.</value>
   </data>
   <data name="ExcludedAccountsHeader" xml:space="preserve">
-    <value>Comptes exclus</value>
+    <value>Neįtrauktos sąskaitos</value>
   </data>
   <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
-    <value>Dépense {1} / Revenue: {0}</value>
+    <value>Išlaidos: {0} / Pajamos: {1}</value>
   </data>
   <data name="ExpenseHeader" xml:space="preserve">
-    <value>Ajouter une dépense</value>
+    <value>Pridėti išlaidas</value>
   </data>
   <data name="ExpenseLabel" xml:space="preserve">
-    <value>Dépenses</value>
+    <value>Išlaidos</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Commentaires sur MoneyFox</value>
+    <value>Atsiliepimai MoneyFox</value>
   </data>
   <data name="FilterLabel" xml:space="preserve">
-    <value>Filtre</value>
+    <value>Filtras</value>
   </data>
   <data name="ForceOverrideBackupMessage" xml:space="preserve">
-    <value>Votre base de données locale a une date de modification plus récente que celle de OneDrive. Voulez-vous remplacer vos données locales ?</value>
+    <value>Vietinės duomenų bazės pakeitimo data yra naujesnė nei OneDrive esančios duomenų bazės. Ar norite pakeisti vietinius duomenis?</value>
   </data>
   <data name="ForceOverrideBackupTitle" xml:space="preserve">
-    <value>Remplacer les données locales</value>
+    <value>Vietinių duomenų pakeitimas</value>
   </data>
   <data name="GeneralErrorTitle" xml:space="preserve">
-    <value>Une erreur s'est produite</value>
+    <value>Įvyko klaida</value>
   </data>
   <data name="GoToAccountsLabel" xml:space="preserve">
-    <value>Accéder aux comptes</value>
+    <value>Eikite į paskyras</value>
   </data>
   <data name="GoToBudgetsLabel" xml:space="preserve">
-    <value>Accéder aux budgets</value>
+    <value>Eiti į biudžetus</value>
   </data>
   <data name="IconDesignerLabel" xml:space="preserve">
-    <value>L’icône de l’application a été créée par :</value>
+    <value>Programėlės piktogramą sukūrė:</value>
   </data>
   <data name="IncludedAccountsHeader" xml:space="preserve">
-    <value>Comptes inclus</value>
+    <value>Įtrauktos sąskaitos</value>
   </data>
   <data name="IncomeAndExpensesLabel" xml:space="preserve">
-    <value>Revenus et Dépenses</value>
+    <value>Pajamos ir išlaidos</value>
   </data>
   <data name="IncomeHeader" xml:space="preserve">
-    <value>Ajouter un revenu</value>
+    <value>Pridėti pajamas</value>
   </data>
   <data name="IncomeLabel" xml:space="preserve">
-    <value>Revenu</value>
+    <value>Pajamos</value>
   </data>
   <data name="IncomeSpendingLabel" xml:space="preserve">
-    <value>Revenus / Dépenses :</value>
+    <value>Pajamos / išlaidos:</value>
   </data>
   <data name="IncreaseLabel" xml:space="preserve">
-    <value>Gains</value>
+    <value>Pelnas</value>
   </data>
   <data name="InfoLabel" xml:space="preserve">
-    <value>Infos</value>
+    <value>Informacija</value>
   </data>
   <data name="InfoOpenSource" xml:space="preserve">
-    <value>C'est un projet open-source – et nous aimerions travailler avec vous ! N’hésitez pas à contribuer. Cliquez pour visiter le dépôt :</value>
+    <value>Tai atvirojo kodo projektas, todėl norėtume su jumis bendradarbiauti! Kviečiame prisidėti.
+Bakstelėkite , jei norite aplankyti saugyklą:</value>
   </data>
   <data name="InvalidEnddateMessage" xml:space="preserve">
-    <value>L’échéance d’un paiement périodique doit être à l’avenir. Veuillez vérifier votre saisie.</value>
+    <value>Pasikartojančio Mokėjimo pabaigos data turi būti ateityje. Patikrinkite savo įvestį.</value>
   </data>
   <data name="InvalidEnddateTitle" xml:space="preserve">
-    <value>Date de fin non valide</value>
+    <value>Neteisinga pabaigos data</value>
   </data>
   <data name="InvalidNumberCurrentBalanceMessage" xml:space="preserve">
-    <value>Votre solde actuel semble être un nombre non valide. Veuillez vérifier que vous n'avez pas entré de caractères spéciaux et que vous avez utilisé le séparateur correct.</value>
+    <value>Atrodo, kad jūsų dabartinis balansas yra neteisingas skaičius. Patikrinkite, ar neįvedėte jokių specialiųjų simbolių ir ar naudojate teisingą skirtuką.</value>
   </data>
   <data name="InvalidNumberTitle" xml:space="preserve">
-    <value>Nombre non valide</value>
+    <value>Neteisingas numeris</value>
   </data>
   <data name="IsClearedLabel" xml:space="preserve">
-    <value>Effacé</value>
+    <value>Išvalyta</value>
   </data>
   <data name="IsExcludedLabel" xml:space="preserve">
-    <value>Exclure le compte du solde</value>
+    <value>Neįtraukti sąskaitos į balansą</value>
   </data>
   <data name="IsGroupedLabel" xml:space="preserve">
-    <value>Liste des groupes</value>
+    <value>Grupių sąrašas</value>
   </data>
   <data name="IsRecurringFilterLabel" xml:space="preserve">
-    <value>Récurrent</value>
+    <value>Ar pasikartoja</value>
   </data>
   <data name="IsRecurringLabel" xml:space="preserve">
-    <value>Récurrent</value>
+    <value>Pasikartojantis</value>
   </data>
   <data name="LastBackupDateLabel" xml:space="preserve">
-    <value>Dernière sauvegarde créée à :</value>
+    <value>Paskutinė atsarginė kopija sukurta adresu:</value>
   </data>
   <data name="LightLabel" xml:space="preserve">
-    <value>Clair</value>
+    <value>Šviesa</value>
   </data>
   <data name="LoadingLabel" xml:space="preserve">
-    <value>Chargement en cours...</value>
+    <value>Pakraunama...</value>
   </data>
   <data name="LoggedInMessage" xml:space="preserve">
-    <value>Déconnexion réussie.</value>
+    <value>Sėkmingai prisijungta.</value>
   </data>
   <data name="LoggedOutMessage" xml:space="preserve">
-    <value>Déconnexion réussie.</value>
+    <value>Sėkmingai atsijungta.</value>
   </data>
   <data name="LoggedOutTitle" xml:space="preserve">
-    <value>Déconnecté</value>
+    <value>Išregistruotas</value>
   </data>
   <data name="LoginCanceledMessage" xml:space="preserve">
-    <value>La connexion a été annulée.</value>
+    <value>Prisijungimas buvo atšauktas.</value>
   </data>
   <data name="LoginFailedTitle" xml:space="preserve">
-    <value>Échec de la connexion !</value>
+    <value>Prisijungti nepavyko!</value>
   </data>
   <data name="LoginLabel" xml:space="preserve">
-    <value>S'identifier</value>
+    <value>Prisijungimas</value>
   </data>
   <data name="LogoutCanceledMessage" xml:space="preserve">
-    <value>La déconnexion a été annulée.</value>
+    <value>Atsijungimas buvo atšauktas.</value>
   </data>
   <data name="LogoutLabel" xml:space="preserve">
-    <value>Se déconnecter</value>
+    <value>Atsijungimas</value>
   </data>
   <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
-    <value>Champ obligatoire</value>
+    <value>Privalomas laukas</value>
   </data>
   <data name="ModificationDateHeader" xml:space="preserve">
-    <value>Date de modification</value>
+    <value>Pakeitimo data</value>
   </data>
   <data name="ModificationDateLabel" xml:space="preserve">
-    <value>Date de modification :</value>
+    <value>Pakeitimo data:</value>
   </data>
   <data name="ModificationDateTemplateLabel" xml:space="preserve">
-    <value>Date de modification : {0}</value>
+    <value>Pakeitimo data: {0}</value>
   </data>
   <data name="ModifyRecurrenceMessage" xml:space="preserve">
-    <value>Vous avez modifié un paiement récurrent. Voulez-vous mettre à jour la récurrence ?</value>
+    <value>Pakeitėte pasikartojantį mokėjimą. Ar norite atnaujinti pasikartojantį mokėjimą?</value>
   </data>
   <data name="ModifyRecurrenceTitle" xml:space="preserve">
-    <value>Modifier la récurrence</value>
+    <value>Pakeisti pasikartojimą</value>
   </data>
   <data name="MonthlyAverageLabel" xml:space="preserve">
-    <value>Moyenne mensuelle de l'année dernière: </value>
+    <value>Praėjusių metų mėnesio vidurkis: </value>
   </data>
   <data name="MonthlyCashflowDescription" xml:space="preserve">
-    <value>Affiche le flux de trésorerie mensuel pour le compte sélectionné.</value>
+    <value>Rodomas pasirinktos sąskaitos mėnesio pinigų srautas.</value>
   </data>
   <data name="MonthlyCashflowLabel" xml:space="preserve">
-    <value>Flux de trésorerie mensuel</value>
+    <value>Mėnesinis pinigų srautas</value>
   </data>
   <data name="MonthlyCashflowTitle" xml:space="preserve">
-    <value>Flux de trésorerie mensuel</value>
+    <value>Mėnesinis pinigų srautas</value>
   </data>
   <data name="MonthlyLabel" xml:space="preserve">
-    <value>Mensuel</value>
+    <value>Mėnesinis</value>
   </data>
   <data name="NameRequiredMessage" xml:space="preserve">
-    <value>Veuillez saisir un nom.</value>
+    <value>Prašome įrašyti vardą ir pavardę.</value>
   </data>
   <data name="NextLabel" xml:space="preserve">
-    <value>Suivant</value>
+    <value>Kitas</value>
   </data>
   <data name="NoAccountsMessage" xml:space="preserve">
-    <value>Il n'y a aucun compte à afficher.</value>
+    <value>Sąskaitų, kurias reikia rodyti, nėra.</value>
   </data>
   <data name="NoCategoriesMessage" xml:space="preserve">
-    <value>Il n'y a aucune catégorie à afficher.</value>
+    <value>Nėra rodomų kategorijų. </value>
   </data>
   <data name="NoCategoryLabel" xml:space="preserve">
-    <value>[Aucune catégorie]</value>
+    <value>[Nėra kategorijos]</value>
   </data>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
-    <value>Aucune entrée sélectionnée. Choisissez une entrée dans la liste pour voir les paiements pour celle-ci.</value>
+    <value>Įrašas nepasirinktas. Pasirinkite įrašą sąraše, kad pamatytumėte jo mokėjimus.</value>
   </data>
   <data name="NoLabel" xml:space="preserve">
-    <value>Non</value>
+    <value>Ne</value>
   </data>
   <data name="NoNetworkMessage" xml:space="preserve">
-    <value>Vous n’êtes pas connecté à internet. Veuillez vérifier votre connexion et réessayez.</value>
+    <value>Nesate prisijungę prie interneto. Patikrinkite ryšį ir bandykite dar kartą.</value>
   </data>
   <data name="NoNetworkTitle" xml:space="preserve">
-    <value>Pas de connexion internet</value>
+    <value>Nėra interneto ryšio</value>
   </data>
   <data name="NoPaymentsMessage" xml:space="preserve">
-    <value>Il n’y a aucun paiement. Ajoutez en un en appuyant sur le bouton "+".</value>
+    <value>Mokėjimų nėra. Pridėkite vieną bakstelėdami pliuso mygtuką.</value>
   </data>
   <data name="NoteLabel" xml:space="preserve">
-    <value>Commentaire</value>
+    <value>Pastaba</value>
   </data>
   <data name="NotNowLabel" xml:space="preserve">
-    <value>Pas maintenant</value>
+    <value>Ne dabar</value>
   </data>
   <data name="OkLabel" xml:space="preserve">
-    <value>Valider</value>
+    <value>Gerai</value>
   </data>
   <data name="OthersLabel" xml:space="preserve">
-    <value>Autres</value>
+    <value>Kiti</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
-    <value>Les sauvegardes existantes seront écrasées. Voulez-vous continuer ?</value>
+    <value>Esamos atsarginės kopijos bus perrašytos. Ar norite tęsti?</value>
   </data>
   <data name="OverwriteDataMessage" xml:space="preserve">
-    <value>Vos données locales seront supprimées. Êtes-vous sûr de que vouloir continuer ?</value>
+    <value>Jūsų vietiniai duomenys bus ištrinti. Ar tikrai norite tęsti?</value>
   </data>
   <data name="OverwriteTitle" xml:space="preserve">
-    <value>Remplacer ?</value>
+    <value>Perrašyti?</value>
   </data>
   <data name="PaymentIntroductionText" xml:space="preserve">
-    <value>Lorsque vous créez un paiement, vous pouvez sélectionner la catégorie pour ce paiement ainsi que le compte et si c'est une dépense, un revenu ou un transfert.
-Les paiements que vous avez créés apparaîtront sous le compte que vous avez choisi.
-Pour y arriver, allez dans la liste des comptes et sélectionnez le compte respectif.</value>
+    <value>Kurdami mokėjimą galite pasirinkti mokėjimo kategoriją ir sąskaitą, taip pat nurodyti, ar tai yra išlaidos, pajamos ar pervedimas.
+Sukurti mokėjimai bus rodomi pasirinktoje sąskaitoje.
+Norėdami ten patekti, eikite į sąskaitų sąrašą ir pasirinkite atitinkamą sąskaitą.</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Détails de {0} </value>
+    <value>Išsami informacija apie {0}</value>
   </data>
   <data name="PaymentTypeLabel" xml:space="preserve">
-    <value>Type de paiement</value>
+    <value>Mokėjimo tipas</value>
   </data>
   <data name="PersonalizationTitle" xml:space="preserve">
-    <value>Personnalisation</value>
+    <value>Personalizavimas</value>
   </data>
   <data name="QuarterlyLabel" xml:space="preserve">
-    <value>Trimestriel</value>
+    <value>Kas ketvirtį</value>
   </data>
   <data name="RateLabel" xml:space="preserve">
-    <value>Notez cette application!</value>
+    <value>Įvertinkite šią programą!</value>
   </data>
   <data name="RateReminderText" xml:space="preserve">
-    <value>Nous espérons que vous appréciez notre App. soutenez nous avec un vote dans le store. Voulez vous aller dans le store pour nous évaluer ?</value>
+    <value>Tikimės, kad jums patiks mūsų programėlė. Palaikykite mus su įvertinimu parduotuvėje.
+Ar norite eiti į parduotuvę ir įvertinti?</value>
   </data>
   <data name="RateReminderTitle" xml:space="preserve">
-    <value>Notez cette appli</value>
+    <value>Įvertinkite šią programėlę</value>
   </data>
   <data name="RecurrenceLabel" xml:space="preserve">
-    <value>Récurrence</value>
+    <value>Pasikartojimas</value>
   </data>
   <data name="RecurringLabel" xml:space="preserve">
-    <value>Récurrent</value>
+    <value>Ar pasikartoja</value>
   </data>
   <data name="RequireNoteCheckbox" xml:space="preserve">
-    <value>Note obligatoire</value>
+    <value>Reikalinga pastaba</value>
   </data>
   <data name="RestoreBackupCanceledMessage" xml:space="preserve">
-    <value>La restauration de la sauvegarde a été annulée.</value>
+    <value>Atsarginės kopijos atkūrimas buvo atšauktas.</value>
   </data>
   <data name="RestoreBackupInformationLabel" xml:space="preserve">
-    <value>Télécharger la dernière sauvegarde de base de données et écraser vos données locales. AVERTISSEMENT : Des modifications locales apportées entre-temps seront perdues!</value>
+    <value>Atsisiųskite anksčiau įkeltą atsarginę duomenų bazės kopiją ir pakeiskite ja vietinius duomenis.
+ĮSPĖJIMAS: per tą laiką atlikti vietiniai pakeitimai bus prarasti!</value>
   </data>
   <data name="RestoreBackupLabel" xml:space="preserve">
-    <value>Restaurer la sauvegarde</value>
+    <value>Atkurti atsarginę kopiją</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
-    <value>Revenu</value>
+    <value>Pajamos</value>
   </data>
   <data name="SaveLabel" xml:space="preserve">
-    <value>Sauvegarder</value>
+    <value>Išsaugoti</value>
   </data>
   <data name="SavingAccountMessage" xml:space="preserve">
-    <value>Enregistrement du compte...</value>
+    <value>Taupomoji sąskaita...</value>
   </data>
   <data name="SavingCategoryMessage" xml:space="preserve">
-    <value>Enregistrement de la catégorie...</value>
+    <value>Taupymo kategorija...</value>
   </data>
   <data name="SavingPaymentMessage" xml:space="preserve">
-    <value>Enregistrement du paiement...</value>
+    <value>Mokėjimo taupymas...</value>
   </data>
   <data name="SearchLabel" xml:space="preserve">
-    <value>Rechercher</value>
+    <value>Paieška</value>
   </data>
   <data name="SelectCategoryTitle" xml:space="preserve">
-    <value>Selectionner une catégorie</value>
+    <value>Pasirinkite kategoriją</value>
   </data>
   <data name="SelectDateLabel" xml:space="preserve">
-    <value>Sélectionner la date</value>
+    <value>Pasirinkite datą</value>
   </data>
   <data name="SelectedAccountHeader" xml:space="preserve">
-    <value>Compte sélectionné</value>
+    <value>Pasirinkta paskyra</value>
   </data>
   <data name="SelectFilterTitle" xml:space="preserve">
-    <value>Choisir un Filtre</value>
+    <value>Pasirinkite filtrą</value>
   </data>
   <data name="SelectStatisticTitle" xml:space="preserve">
-    <value>Sélectionnez une statistique</value>
+    <value>Pasirinkite statistiką</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>Paramètres</value>
+    <value>Nustatymai</value>
   </data>
   <data name="SkipLabel" xml:space="preserve">
-    <value>Ignorer</value>
+    <value>Praleisti</value>
   </data>
   <data name="StatisticsTimeRangeTitle" xml:space="preserve">
-    <value>Période:</value>
+    <value>Laiko intervalas:</value>
   </data>
   <data name="StatisticsTitle" xml:space="preserve">
-    <value>Statistiques</value>
+    <value>Statistika</value>
   </data>
   <data name="TargetAccountLabel" xml:space="preserve">
-    <value>Compte cible</value>
+    <value>Tikslinė paskyra</value>
   </data>
   <data name="TimeRangeEndLabel" xml:space="preserve">
-    <value>Date de fin</value>
+    <value>Laiko diapazono pabaiga</value>
   </data>
   <data name="TimeRangeStartLabel" xml:space="preserve">
-    <value>Date de début</value>
+    <value>Laiko intervalas Pradžia</value>
   </data>
   <data name="TransferHeader" xml:space="preserve">
-    <value>Ajouter un transfert</value>
+    <value>Pridėti perkėlimą</value>
   </data>
   <data name="TransferLabel" xml:space="preserve">
-    <value>Transférer</value>
+    <value>Perdavimas</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Quelque chose n'est pas traduit correctement ou n'est pas traduit du tout ? Aidez-nous ! Rendez-vous sur Crowdin et aider à améliorer MoneyFox :</value>
+    <value>Ar kas nors išversta netinkamai, ar visai neišversta? Padėkite mums! Eikite į crowdin ir padėkite tobulinti "MoneyFox":</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>Il y a eu un problème pendant l'opération. Message d'erreur {0}</value>
+    <value>Operacijos metu iškilo problema. Klaidos pranešimas {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
-    <value>Le téléversement de la sauvegarde a été annulé.</value>
+    <value>Atsarginės kopijos įkėlimas buvo atšauktas.</value>
   </data>
   <data name="VersionLabel" xml:space="preserve">
-    <value>Version</value>
+    <value>Versija</value>
   </data>
   <data name="WebsiteLabel" xml:space="preserve">
-    <value>Site internet</value>
+    <value>Svetainė</value>
   </data>
   <data name="WeeklyLabel" xml:space="preserve">
-    <value>Hebdomadaire</value>
+    <value>Savaitinis</value>
   </data>
   <data name="WelcomeLabel" xml:space="preserve">
-    <value>Bienvenue!</value>
+    <value>Sveiki atvykę!</value>
   </data>
   <data name="WelcomePageSubtitle" xml:space="preserve">
-    <value>Heureux de vous avoir !</value>
+    <value>Džiaugiuosi, kad jus turime!</value>
   </data>
   <data name="WelcomePageText" xml:space="preserve">
-    <value>Le MoneyFox vous aide à suivre facilement vos dépenses et vos revenus.
-Pour commencer, créez un nouveau compte. Les comptes sont utilisés pour organiser les paiements et l'argent dans les collections.</value>
+    <value>"MoneyFox" padeda lengvai sekti savo išlaidas ir pajamas.
+Norėdami pradėti, sukurkite naują paskyrą. Sąskaitos naudojamos mokėjimams ir pinigų rinkiniams tvarkyti.</value>
   </data>
   <data name="WindowsDefaultLabel" xml:space="preserve">
-    <value>Windows par défaut</value>
+    <value>Numatytoji "Windows" versija</value>
   </data>
   <data name="YearlyLabel" xml:space="preserve">
-    <value>Annuel</value>
+    <value>Metinis</value>
   </data>
   <data name="YesLabel" xml:space="preserve">
-    <value>Oui</value>
+    <value>Taip</value>
   </data>
   <data name="AccountsToolTip" xml:space="preserve">
-    <value>Gérez votre compte</value>
+    <value>Tvarkykite savo paskyras</value>
   </data>
   <data name="AddPaymentTitle" xml:space="preserve">
-    <value>Ajouter un paiement</value>
+    <value>Pridėti mokėjimą</value>
   </data>
   <data name="AddPaymentToolTip" xml:space="preserve">
-    <value>Ajouter un paiement avec les détails</value>
+    <value>Pridėti mokėjimą su išsamia informacija</value>
   </data>
   <data name="BackupToolTip" xml:space="preserve">
-    <value>Informations du fichier de sauvegarde</value>
+    <value>Kurkite atsarginę informacijos kopiją</value>
   </data>
   <data name="CategoriesToolTip" xml:space="preserve">
-    <value>Gérer vos catégories</value>
+    <value>Tvarkykite savo kategorijas</value>
   </data>
   <data name="StatisticsToolTip" xml:space="preserve">
-    <value>Voir les stats du forum</value>
+    <value>Peržiūrėkite savo statistiką</value>
   </data>
   <data name="FailedToLoginToBackupMessage" xml:space="preserve">
-    <value>Impossible de se connecter à votre service de sauvegarde. Le téléchargement automatique de la sauvegarde a été désactivé. Veuillez vous connecter et l'activer à nouveau.</value>
+    <value>Nepavyko prisijungti prie atsarginių kopijų kūrimo paslaugos. Automatinis atsarginių kopijų įkėlimas buvo išjungtas. Prisijunkite ir įjunkite jį dar kartą.</value>
   </data>
   <data name="FailedToLoginToBackupTitle" xml:space="preserve">
-    <value>Échec de la connexion !</value>
+    <value>Prisijungti nepavyko!</value>
   </data>
   <data name="LoggedInTitle" xml:space="preserve">
-    <value>Connecté le</value>
+    <value>Prisijungta!</value>
   </data>
   <data name="SelectedPaymentTypeHeader" xml:space="preserve">
-    <value>Sélectionner un mode de paiement</value>
+    <value>Pasirinktas mokėjimo tipas</value>
   </data>
   <data name="CategoryProgressionDescription" xml:space="preserve">
-    <value>Affiche la progression d'une catégorie par mois.</value>
+    <value>Rodoma kategorijos raida pagal mėnesius.</value>
   </data>
   <data name="CategoryProgressionLabel" xml:space="preserve">
-    <value>Progression de la catégorie</value>
+    <value>Kategorijos progresavimas</value>
   </data>
   <data name="SelectCategoryLabel" xml:space="preserve">
-    <value>Entrez une catégorie...</value>
+    <value>Pasirinkite kategoriją..</value>
   </data>
   <data name="CategoryProgressionTitle" xml:space="preserve">
-    <value>Progression de la catégorie</value>
+    <value>Kategorijos progresavimas</value>
   </data>
   <data name="EditPaymentTitle" xml:space="preserve">
-    <value>Modifier le paiement</value>
+    <value>Redaguoti mokėjimą</value>
   </data>
   <data name="InitialBalanceLabel" xml:space="preserve">
-    <value>Solde initial</value>
+    <value>Pradinis balansas</value>
   </data>
   <data name="AllLabel" xml:space="preserve">
-    <value>Tout</value>
+    <value>Visi</value>
   </data>
   <data name="HomeTitle" xml:space="preserve">
-    <value>Accueil</value>
+    <value>Pagrindinis</value>
   </data>
   <data name="MenuTitle" xml:space="preserve">
-    <value>Menu</value>
+    <value>Meniu</value>
   </data>
   <data name="LastDayOfMonthLabel" xml:space="preserve">
-    <value>Dernier jour du mois</value>
+    <value>Paskutinė mėnesio diena</value>
   </data>
   <data name="OpenLogLabel" xml:space="preserve">
-    <value>Ouvrir le journal</value>
+    <value>Atviras žurnalas</value>
   </data>
   <data name="BudgetsTitle" xml:space="preserve">
-    <value>Budgets</value>
+    <value>Biudžetai</value>
   </data>
   <data name="NoBudgetsMessage" xml:space="preserve">
-    <value>Il n'y a pas encore de budget. Allez-y et créez-en un!</value>
+    <value>Biudžetų dar nėra. Pirmyn ir sukurkite jį!</value>
   </data>
   <data name="AddBudgetLabel" xml:space="preserve">
-    <value>Ajouter un budget</value>
+    <value>Pridėti biudžetą</value>
   </data>
   <data name="AddBudgetTitle" xml:space="preserve">
-    <value>Ajouter un budget</value>
+    <value>Pridėti biudžetą</value>
   </data>
   <data name="BudgetNameLabel" xml:space="preserve">
-    <value>Nom du budget</value>
+    <value>Biudžeto pavadinimas</value>
   </data>
   <data name="MoreTitle" xml:space="preserve">
-    <value>Plus</value>
+    <value>Daugiau</value>
   </data>
   <data name="SelectedCategoriesLabel" xml:space="preserve">
-    <value>catégories sélectionnées</value>
+    <value>Pasirinktos kategorijos</value>
   </data>
   <data name="BackupUploadSkippedMessage" xml:space="preserve">
-    <value>Téléchargement de sauvegarde ignoré, car la version distante était déjà à jour.</value>
+    <value>Atsarginės kopijos įkėlimas praleistas, nes nuotolinė versija jau buvo atnaujinta.</value>
   </data>
   <data name="EditBudgetTitle" xml:space="preserve">
-    <value>Modifier le budget</value>
+    <value>Redaguoti biudžetą</value>
   </data>
   <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
-    <value>Voulez-vous vraiment supprimer ce budget ?</value>
+    <value>Ar tikrai norite ištrinti šį biudžetą?</value>
   </data>
   <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Budget Mensuel</value>
+    <value>Mėnesio biudžetas:</value>
   </data>
   <data name="TimeRangeLabel" xml:space="preserve">
-    <value>Période</value>
+    <value>Laiko intervalas</value>
   </data>
   <data name="LastFiveYearsLabel" xml:space="preserve">
-    <value>cinq dernières années</value>
+    <value>Pastarieji penkeri metai</value>
   </data>
   <data name="LastThreeYearsLabel" xml:space="preserve">
-    <value>Trois dernières années</value>
+    <value>Paskutiniai treji metai</value>
   </data>
   <data name="LastTwoYearsLabel" xml:space="preserve">
-    <value>Deux dernières années</value>
+    <value>Pastarieji dveji metai</value>
   </data>
   <data name="LastYearLabel" xml:space="preserve">
-    <value>Année dernière</value>
+    <value>Praėjusiais metais</value>
   </data>
   <data name="YearToDateLabel" xml:space="preserve">
-    <value>Année en cours</value>
+    <value>Nuo metų pradžios</value>
   </data>
   <data name="MonthlySpendingLimitLabel" xml:space="preserve">
-    <value>Limite de Dépenses Quotidienne</value>
+    <value>Mėnesio išlaidų limitas</value>
   </data>
   <data name="EvaluationTimeRangeLabel" xml:space="preserve">
-    <value>Plage de temps de l'évaluation</value>
+    <value>Vertinimo laiko intervalas</value>
   </data>
   <data name="EvaluationTimeRangeMessage" xml:space="preserve">
-    <value>Ceci définit la plage de temps dans laquelle les paiements sont inclus pour calculer votre moyenne mensuelle pour la comparer à votre limite de dépenses.</value>
+    <value>Tai apibrėžia laiko intervalą, į kurį įtraukiami mokėjimai apskaičiuojant mėnesio vidurkį, kad būtų galima palyginti su jūsų išlaidų limitu.</value>
   </data>
   <data name="CategorySummaryPlaceholder" xml:space="preserve">
-    <value>Pas de paiement pour la période sélectionnée.</value>
+    <value>Pasirinktame laiko intervale mokėjimų nerasta.</value>
   </data>
   <data name="InvalidSpendingLimitMessage" xml:space="preserve">
-    <value>La limite de dépenses doit être supérieure à zéro.</value>
+    <value>Išlaidų riba turi būti didesnė už nulį.</value>
   </data>
   <data name="InvalidSpendingLimitTitle" xml:space="preserve">
-    <value>Limite de Dépenses Quotidienne</value>
+    <value>Netinkamas išlaidų limitas</value>
   </data>
   <data name="NotePlaceholderLabel" xml:space="preserve">
-    <value>Entrez une note pour ce paiement..</value>
+    <value>Įveskite šio mokėjimo pastabą..</value>
   </data>
   <data name="GainsLabel" xml:space="preserve">
-        <value>Gains</value>
+        <value>Pelnas</value>
     </data>
 </root>
