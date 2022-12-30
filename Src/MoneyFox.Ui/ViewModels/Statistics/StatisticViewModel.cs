@@ -35,28 +35,32 @@ internal abstract class StatisticViewModel : BaseViewModel
         Mediator = mediator;
         IsActive = true;
 
-        Color? textColor;
-        if (Application.Current!.RequestedTheme == AppTheme.Dark)
+        // If Application.Current is null, application is running in the context of a unit test
+        if (Application.Current is not null)
         {
-            textColor = (Color)App.ResourceDictionary["Colors"]["TextPrimaryColorDark"];
-        }
-        else
-        {
-            textColor = (Color)App.ResourceDictionary["Colors"]["TextPrimaryColorLight"];
-        }
+            Color? textColor;
+            if (Application.Current.RequestedTheme == AppTheme.Dark)
+            {
+                textColor = (Color)App.ResourceDictionary["Colors"]["TextPrimaryColorDark"];
+            }
+            else
+            {
+                textColor = (Color)App.ResourceDictionary["Colors"]["TextPrimaryColorLight"];
+            }
 
-        LegendTextPaint = new() { Color = new(textColor.ToUint()), SKTypeface = SKTypeface.FromFamilyName("Courier New") };
-        Color? legendBackgroundColor;
-        if (Application.Current.RequestedTheme == AppTheme.Dark)
-        {
-            legendBackgroundColor = (Color)App.ResourceDictionary["Colors"]["StatisticLegendDark"];
-        }
-        else
-        {
-            legendBackgroundColor = (Color)App.ResourceDictionary["Colors"]["StatisticLegendLight"];
-        }
+            LegendTextPaint = new() { Color = new(textColor.ToUint()), SKTypeface = SKTypeface.FromFamilyName("Courier New") };
+            Color? legendBackgroundColor;
+            if (Application.Current.RequestedTheme == AppTheme.Dark)
+            {
+                legendBackgroundColor = (Color)App.ResourceDictionary["Colors"]["StatisticLegendDark"];
+            }
+            else
+            {
+                legendBackgroundColor = (Color)App.ResourceDictionary["Colors"]["StatisticLegendLight"];
+            }
 
-        LegendBackgroundPaint = new() { Color = new(legendBackgroundColor.ToUint()) };
+            LegendBackgroundPaint = new() { Color = new(legendBackgroundColor.ToUint()) };
+        }
     }
 
     public SolidColorPaint LegendTextPaint { get; set; }
