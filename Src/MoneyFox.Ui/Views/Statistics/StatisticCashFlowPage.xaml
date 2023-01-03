@@ -2,7 +2,7 @@
     x:Class="MoneyFox.Ui.Views.Statistics.StatisticCashFlowPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:resources="clr-namespace:MoneyFox.Core.Resources"
+    xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
     xmlns:maui="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
     xmlns:statistics="clr-namespace:MoneyFox.Ui.ViewModels.Statistics"
     xmlns:views="clr-namespace:MoneyFox.Ui.Views"

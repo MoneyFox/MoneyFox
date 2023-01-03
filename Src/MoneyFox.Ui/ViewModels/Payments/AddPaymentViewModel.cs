@@ -6,9 +6,9 @@ using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.ApplicationCore.Queries;
 using Core.Commands.Payments.CreatePayment;
 using Core.Common.Interfaces;
-using Core.Resources;
 using JetBrains.Annotations;
 using MediatR;
+using Resources.Strings;
 
 [UsedImplicitly]
 internal sealed class AddPaymentViewModel : ModifyPaymentViewModel

@@ -2,34 +2,34 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0"
           package="com.applysolutions.moneyfox" android:installLocation="auto">
-    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="33"/>
+    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="33" />
     <application android:label="MoneyFox" android:icon="@drawable/ic_launcher">
         <activity android:name="microsoft.identity.client.BrowserTabActivity" android:exported="false">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="msal00a3e4cd-b4b0-4730-be62-5fcf90a94a1d" android:host="auth"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="msal00a3e4cd-b4b0-4730-be62-5fcf90a94a1d" android:host="auth" />
             </intent-filter>
         </activity>
     </application>
     <queries>
         <intent>
-            <action android:name="android.intent.action.VIEW"/>
-            <data android:scheme="http"/>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="http" />
         </intent>
         <intent>
-            <action android:name="android.intent.action.VIEW"/>
-            <data android:scheme="https"/>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
         </intent>
         <intent>
-            <action android:name="android.intent.action.SENDTO"/>
-            <data android:scheme="mailto"/>
+            <action android:name="android.intent.action.SENDTO" />
+            <data android:scheme="mailto" />
         </intent>
     </queries>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 </manifest>

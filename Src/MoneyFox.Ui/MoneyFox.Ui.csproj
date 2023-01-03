@@ -98,6 +98,11 @@
     <ItemGroup>
         <None Remove="appsettings.json" />
         <EmbeddedResource Include="appsettings.json" />
+        <Compile Update="Resources\Strings\Translations.Designer.cs">
+          <DesignTime>True</DesignTime>
+          <AutoGen>True</AutoGen>
+          <DependentUpon>Translations.resx</DependentUpon>
+        </Compile>
         <EmbeddedResource Update="Resources\Strings\Translations.resx">
             <StronglyTypedFileName>$(IntermediateOutputPath)\Translations.Designer.cs</StronglyTypedFileName>
             <StronglyTypedLanguage>CSharp</StronglyTypedLanguage>

@@ -10,8 +10,8 @@ using Core.ApplicationCore.Queries;
 using Core.Commands.Categories.DeleteCategoryById;
 using Core.Common.Interfaces;
 using Core.Common.Messages;
-using Core.Resources;
 using MediatR;
+using Resources.Strings;
 
 internal partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadMessage>
 {

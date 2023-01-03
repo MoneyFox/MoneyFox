@@ -8,8 +8,8 @@ using Core.Commands.Accounts.DeleteAccountById;
 using Core.Commands.Accounts.UpdateAccount;
 using Core.Common.Interfaces;
 using Core.Interfaces;
-using Core.Resources;
 using MediatR;
+using Resources.Strings;
 
 internal partial class EditAccountViewModel : ModifyAccountViewModel
 {

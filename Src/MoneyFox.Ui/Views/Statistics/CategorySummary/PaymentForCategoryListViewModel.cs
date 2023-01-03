@@ -7,8 +7,8 @@ using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.ApplicationCore.Queries;
-using Core.Resources;
 using MediatR;
+using Resources.Strings;
 using ViewModels;
 using ViewModels.Payments;
 

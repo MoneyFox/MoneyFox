@@ -5,9 +5,9 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;
 using Core.Common.Messages;
-using Core.Resources;
 using LiveChartsCore.SkiaSharpView.Painting;
 using MediatR;
+using Resources.Strings;
 using SkiaSharp;
 
 internal abstract class StatisticViewModel : BaseViewModel
