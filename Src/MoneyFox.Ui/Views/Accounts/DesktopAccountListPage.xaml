@@ -45,6 +45,17 @@
                         <Grid Padding="15,6,15,12">
                             <controls:Card HeightRequest="80">
 
+                                <FlyoutBase.ContextFlyout>
+                                    <MenuFlyout>
+                                        <MenuFlyoutItem Text="{x:Static resources:Translations.EditLabel}"
+                                                        Command="{Binding Source={x:Reference AccountCollectionView}, Path=BindingContext.GoToEditAccountCommand}"
+                                                        CommandParameter="{Binding .}" />
+                                        <MenuFlyoutItem Text="{x:Static resources:Translations.DeleteLabel}"
+                                                        Command="{Binding Source={x:Reference AccountCollectionView}, Path=BindingContext.DeleteAccountCommand}"
+                                                        CommandParameter="{Binding .}" />
+                                    </MenuFlyout>
+                                </FlyoutBase.ContextFlyout>
+
                                 <controls:Card.GestureRecognizers>
                                     <TapGestureRecognizer
                                         Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference Name=AccountCollectionView}}"
