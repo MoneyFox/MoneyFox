@@ -3,7 +3,7 @@ namespace MoneyFox.Ui.Views.About;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Interfaces;
 using Core.Interfaces;
-using Core.Resources;
+using Resources.Strings;
 using ViewModels;
 
 internal class AboutViewModel : BaseViewModel
@@ -98,7 +98,7 @@ internal class AboutViewModel : BaseViewModel
     private static FileInfo? GetLatestLogFile()
     {
         var logFilePaths = Directory.GetFiles(path: FileSystem.AppDataDirectory, searchPattern: "moneyfox*").OrderByDescending(x => x);
-        var latestLogFile = logFilePaths.Select(logFilePath => new FileInfo(logFilePath)).OrderByDescending(fi => fi.LastWriteTime).FirstOrDefault();
+        var latestLogFile = logFilePaths.Select(logFilePath => new FileInfo(logFilePath)).MaxBy(fi => fi.LastWriteTime);
 
         return latestLogFile;
     }

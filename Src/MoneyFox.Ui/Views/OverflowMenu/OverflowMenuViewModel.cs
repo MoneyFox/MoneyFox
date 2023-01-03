@@ -6,8 +6,8 @@ using Budget;
 using Categories;
 using CommunityToolkit.Mvvm.Input;
 using Core.Interfaces;
-using Core.Resources;
 using JetBrains.Annotations;
+using Resources.Strings;
 using Settings;
 using ViewModels;
 

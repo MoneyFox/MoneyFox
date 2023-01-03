@@ -26,12 +26,17 @@ public partial class App
         CultureHelper.CurrentCulture = new(CultureInfo.CurrentCulture.Name);
         InitializeComponent();
         SetupServices();
-
-        ResourceDictionary = new Dictionary<string, ResourceDictionary>();
+        ResourceDictionary = new();
         foreach (var dictionary in Resources.MergedDictionaries)
         {
-            string key = dictionary.Source.OriginalString.Split(';').First().Split('/').Last().Split('.').First(); // Alternatively If you are good in Regex you can use that as well
-            ResourceDictionary.Add(key, dictionary);
+            var key = dictionary.Source.OriginalString.Split(';')
+                .First()
+                .Split('/')
+                .Last()
+                .Split('.')
+                .First(); // Alternatively If you are good in Regex you can use that as well
+
+            ResourceDictionary.Add(key: key, value: dictionary);
         }
 
         MainPage = DeviceInfo.Current.Idiom == DeviceIdiom.Desktop
@@ -46,7 +51,7 @@ public partial class App
         }
     }
 
-    public static Dictionary<string,ResourceDictionary> ResourceDictionary { get; set; }
+    public static Dictionary<string, ResourceDictionary> ResourceDictionary { get; set; }
 
     public static Action<IServiceCollection>? AddPlatformServicesAction { get; set; }
 

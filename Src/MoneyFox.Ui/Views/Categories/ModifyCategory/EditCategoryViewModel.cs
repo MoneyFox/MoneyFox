@@ -8,8 +8,8 @@ using Core.Commands.Categories.DeleteCategoryById;
 using Core.Commands.Categories.UpdateCategory;
 using Core.Common.Interfaces;
 using Core.Interfaces;
-using Core.Resources;
 using MediatR;
+using Resources.Strings;
 
 internal sealed partial class EditCategoryViewModel : ModifyCategoryViewModel
 {

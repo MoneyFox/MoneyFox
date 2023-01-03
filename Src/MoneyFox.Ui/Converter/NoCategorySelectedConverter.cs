@@ -1,7 +1,7 @@
-﻿namespace MoneyFox.Ui.Converter;
+namespace MoneyFox.Ui.Converter;
 
 using System.Globalization;
-using Core.Resources;
+using Resources.Strings;
 using ViewModels.Categories;
 
 public class NoCategorySelectedConverter : IValueConverter

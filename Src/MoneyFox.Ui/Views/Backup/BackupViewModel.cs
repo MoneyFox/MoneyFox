@@ -7,8 +7,8 @@ using Core.ApplicationCore.UseCases.DbBackup;
 using Core.Common.Facades;
 using Core.Common.Interfaces;
 using Core.Interfaces;
-using Core.Resources;
 using MediatR;
+using Resources.Strings;
 using Serilog;
 using ViewModels;
 

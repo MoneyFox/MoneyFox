@@ -1,6 +1,6 @@
 namespace MoneyFox.Ui.Views.Popups;
 
-using Core.Resources;
+using Resources.Strings;
 using ViewModels.Categories;
 
 public partial class CategorySelectionPopup

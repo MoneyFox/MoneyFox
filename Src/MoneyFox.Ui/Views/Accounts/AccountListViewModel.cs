@@ -9,8 +9,8 @@ using Core.ApplicationCore.Queries;
 using Core.Commands.Accounts.DeleteAccountById;
 using Core.Common.Interfaces;
 using Core.Common.Messages;
-using Core.Resources;
 using MediatR;
+using Resources.Strings;
 using ViewModels;
 
 internal sealed class AccountListViewModel : BaseViewModel

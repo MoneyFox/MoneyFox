@@ -11,8 +11,8 @@ using Core.ApplicationCore.Queries;
 using Core.ApplicationCore.Queries.GetPaymentsForAccountIdQuery;
 using Core.Common.Helpers;
 using Core.Common.Messages;
-using Core.Resources;
 using MediatR;
+using Resources.Strings;
 using Views.Accounts;
 
 internal sealed class PaymentListViewModel : BaseViewModel

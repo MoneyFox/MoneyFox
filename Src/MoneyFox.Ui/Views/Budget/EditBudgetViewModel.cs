@@ -9,8 +9,8 @@ using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Common.Messages;
 using Core.Interfaces;
-using Core.Resources;
 using MediatR;
+using Resources.Strings;
 
 internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
 {

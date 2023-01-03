@@ -10,8 +10,8 @@ using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries;
 using Core.Common.Interfaces;
 using Core.Common.Messages;
-using Core.Resources;
 using MediatR;
+using Resources.Strings;
 using Views.Accounts;
 
 internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipient<CategorySelectedMessage>

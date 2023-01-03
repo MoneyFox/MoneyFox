@@ -1,7 +1,7 @@
-﻿namespace MoneyFox.Ui.Common.Utilities;
+namespace MoneyFox.Ui.Common.Utilities;
 
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using Core.Resources;
+using Resources.Strings;
 
 /// <summary>
 ///     A collection of helper methods for handling PaymentTypes

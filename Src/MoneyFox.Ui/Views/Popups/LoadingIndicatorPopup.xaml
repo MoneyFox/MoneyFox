@@ -1,6 +1,6 @@
 ﻿<views:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:resources="clr-namespace:MoneyFox.Core.Resources"
+             xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
              xmlns:views="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              CanBeDismissedByTappingOutsideOfPopup="false"
              Size="200, 80"

@@ -3,7 +3,7 @@
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:resources="clr-namespace:MoneyFox.Core.Resources"
+    xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
     xmlns:accounts="clr-namespace:MoneyFox.Ui.Views.Accounts"
     xmlns:extensions="clr-namespace:MoneyFox.Ui.Common.Extensions"
     Title="{Binding Title}"

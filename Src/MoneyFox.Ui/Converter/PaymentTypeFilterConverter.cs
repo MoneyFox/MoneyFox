@@ -1,8 +1,8 @@
-﻿namespace MoneyFox.Ui.Converter;
+namespace MoneyFox.Ui.Converter;
 
 using System.Globalization;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using Core.Resources;
+using Resources.Strings;
 
 public class PaymentTypeFilterConverter : IValueConverter
 {

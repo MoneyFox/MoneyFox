@@ -2,7 +2,7 @@ namespace MoneyFox.Ui.Views.Statistics.Selector;
 
 using CommunityToolkit.Mvvm.Input;
 using Core.Enums;
-using Core.Resources;
+using Resources.Strings;
 using ViewModels;
 using ViewModels.Statistics;
 

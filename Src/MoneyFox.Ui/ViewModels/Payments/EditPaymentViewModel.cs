@@ -6,8 +6,8 @@ using Core.ApplicationCore.Queries;
 using Core.Commands.Payments.DeletePaymentById;
 using Core.Commands.Payments.UpdatePayment;
 using Core.Common.Interfaces;
-using Core.Resources;
 using MediatR;
+using Resources.Strings;
 
 internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
 {
