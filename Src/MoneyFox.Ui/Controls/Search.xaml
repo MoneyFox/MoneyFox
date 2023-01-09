@@ -23,6 +23,7 @@
             <Grid ColumnDefinitions="*, Auto">
                 <controls:BorderlessEntry x:Name="SearchEntry"
                                           HeightRequest="40"
+                                          BackgroundColor="Transparent"
                                           TextChanged="SearchEntry_OnTextChanged"
                                           Placeholder="{Binding SearchPlaceholder}" />
 
