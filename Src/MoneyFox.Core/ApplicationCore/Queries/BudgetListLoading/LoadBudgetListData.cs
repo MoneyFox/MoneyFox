@@ -51,6 +51,11 @@ public static class LoadBudgetListData
                 var timeDeltaFirstPaymentAndNow = systemDateHelper.Now.Date - thresholdDate.Date;
                 var numberOfMonthsInRange = (int)Math.Floor(timeDeltaFirstPaymentAndNow.TotalDays / 30);
 
+                if (numberOfMonthsInRange == 0)
+                {
+                    numberOfMonthsInRange = 1;
+                }
+
                 // Since sum is not supported for decimal in Ef Core with SQLite we have to do this in two steps
                 var currentSpending = payments.Sum(selector: p => p.Type == PaymentType.Expense ? p.Amount : -p.Amount);
                 var monthlyAverage = currentSpending / numberOfMonthsInRange;
