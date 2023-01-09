@@ -66,20 +66,12 @@
                     <Button Command="{Binding RestoreCommand}"
                             Text="{x:Static resources:Translations.RestoreBackupLabel}" />
 
-                    <ActivityIndicator Color="DarkBlue"
-                                       HeightRequest="20"
+                    <ActivityIndicator HeightRequest="20"
+                                       WidthRequest="20"
                                        HorizontalOptions="End"
                                        IsRunning="{Binding IsLoadingBackupAvailability}"
                                        IsVisible="{Binding IsLoadingBackupAvailability}"
-                                       VerticalOptions="CenterAndExpand">
-                        <ActivityIndicator.WidthRequest>
-                            <OnPlatform x:TypeArguments="x:Double">
-                                <On Value="20" Platform="iOS" />
-                                <On Value="80" Platform="UWP" />
-                                <On Value="20" Platform="Android" />
-                            </OnPlatform>
-                        </ActivityIndicator.WidthRequest>
-                    </ActivityIndicator>
+                                       VerticalOptions="CenterAndExpand" />
                     <HorizontalStackLayout
                         IsVisible="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}">
                         <Label HorizontalOptions="Start"
@@ -91,7 +83,7 @@
                     </HorizontalStackLayout>
 
 
-                    <!-- Autobackup -->
+                    <!-- Auto Backup -->
                     <Label Text="{x:Static resources:Translations.AutobackupTitle}"
                            Style="{StaticResource TextTitle}" />
 
