@@ -42,27 +42,25 @@
                             SelectionMode="None">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="budget:BudgetListItemViewModel">
-                        <Grid Padding="15,6,15,8">
-                            <controls:Card HeightRequest="90" Padding="12">
+                        <Grid Padding="12,6,12,8">
+                            <controls:Card HeightRequest="80" Padding="12">
                                 <Border.GestureRecognizers>
                                     <TapGestureRecognizer
                                         Command="{Binding ViewModel.EditBudgetCommand, Source={x:Reference BudgetList}}"
                                         CommandParameter="{Binding .}" />
                                 </Border.GestureRecognizers>
 
-                                <StackLayout>
+                                <VerticalStackLayout Spacing="6">
                                     <Label Style="{StaticResource TextHead}"
                                            Text="{Binding Name}" />
 
                                     <aloha:ProgressBar
                                         IsVertical="False"
                                         RoundCorners="True"
-                                        HeightRequest="10"
-                                        VerticalOptions="Center"
+                                        HeightRequest="5"
                                         Background="{StaticResource ProgressBarBackground}"
                                         ProgressBrush="#FF8671"
-                                        Progress="{Binding SpendingPercentage}"
-                                        Margin="0,0,0,12" />
+                                        Progress="{Binding SpendingPercentage}" />
 
                                     <Grid>
                                         <Label
@@ -75,7 +73,7 @@
                                             HorizontalOptions="End"
                                             Style="{StaticResource TextBodySecondary}" />
                                     </Grid>
-                                </StackLayout>
+                                </VerticalStackLayout>
                             </controls:Card>
                         </Grid>
                     </DataTemplate>
