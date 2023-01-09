@@ -103,6 +103,9 @@
           <AutoGen>True</AutoGen>
           <DependentUpon>Translations.resx</DependentUpon>
         </Compile>
+        <Compile Update="Views\Categories\DesktopSelectedCategoryPage.xaml.cs">
+          <DependentUpon>DesktopSelectedCategoryPage.xaml</DependentUpon>
+        </Compile>
         <EmbeddedResource Update="Resources\Strings\Translations.resx">
             <StronglyTypedFileName>$(IntermediateOutputPath)\Translations.Designer.cs</StronglyTypedFileName>
             <StronglyTypedLanguage>CSharp</StronglyTypedLanguage>
@@ -113,6 +116,12 @@
           <Generator>PublicResXFileCodeGenerator</Generator>
           <LastGenOutput>Translations.Designer.cs</LastGenOutput>
         </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <MauiXaml Update="Views\Categories\DesktopSelectedCategoryPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
     </ItemGroup>
 
 </Project>

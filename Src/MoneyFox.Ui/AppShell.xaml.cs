@@ -29,6 +29,7 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(route: Routes.SetupCompletionRoute, type: typeof(SetupCompletionPage));
         Routing.RegisterRoute(route: Routes.DashboardRoute, type: typeof(DashboardPage));
         Routing.RegisterRoute(route: Routes.AddAccountRoute, type: typeof(AddAccountPage));
+        Routing.RegisterRoute(route: Routes.AccountListRoute, type: typeof(AccountListPage));
         Routing.RegisterRoute(route: Routes.EditAccountRoute, type: typeof(EditAccountPage));
         Routing.RegisterRoute(route: Routes.BudgetListRoute, type: typeof(BudgetListPage));
         Routing.RegisterRoute(route: Routes.PaymentListRoute, type: typeof(PaymentListPage));
@@ -51,10 +52,5 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(route: Routes.BudgetListRoute, type: typeof(BudgetListPage));
         Routing.RegisterRoute(route: Routes.AddBudgetRoute, type: typeof(AddBudgetPage));
         Routing.RegisterRoute(route: Routes.EditBudgetRoute, type: typeof(EditBudgetPage));
-
-        if (DeviceInfo.Current.Idiom != DeviceIdiom.Desktop || DeviceInfo.Current.Idiom != DeviceIdiom.Tablet || DeviceInfo.Current.Idiom != DeviceIdiom.TV)
-        {
-            Routing.RegisterRoute(route: Routes.AccountListRoute, type: typeof(AccountListPage));
-        }
     }
 }
