@@ -23,7 +23,7 @@
         <Grid ColumnDefinitions="*, Auto">
             <Picker
                 Grid.ColumnSpan="2"
-                Title="{Binding PickerTitle}"
+                Title="{OnPlatform Android={Binding PickerTitle}, iOS={Binding PickerTitle}}"
                 ItemsSource="{Binding PaymentTypeSource}"
                 SelectedItem="{Binding SelectedType}"
                 ItemDisplayBinding="{Binding ., Converter={StaticResource PaymentTypeStringConverter}}" />

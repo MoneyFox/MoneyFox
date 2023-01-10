@@ -21,7 +21,7 @@
 
             <Picker
                 Grid.ColumnSpan="2"
-                Title="{Binding PickerTitle}"
+                Title="{OnPlatform Android={Binding PickerTitle}, iOS={Binding PickerTitle}}"
                 ItemsSource="{Binding AccountsSource}"
                 SelectedItem="{Binding SelectedAccount}"
                 ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}" />

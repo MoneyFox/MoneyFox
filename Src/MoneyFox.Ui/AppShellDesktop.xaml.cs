@@ -28,13 +28,10 @@ public partial class AppShellDesktop : Shell
         Routing.RegisterRoute(route: Routes.CategoryIntroductionRoute, type: typeof(CategoryIntroductionPage));
         Routing.RegisterRoute(route: Routes.SetupCompletionRoute, type: typeof(SetupCompletionPage));
         Routing.RegisterRoute(route: Routes.DashboardRoute, type: typeof(DashboardPage));
-        Routing.RegisterRoute(route: Routes.AccountListRoute, type: typeof(DesktopAccountListPage));
         Routing.RegisterRoute(route: Routes.AddAccountRoute, type: typeof(AddAccountPage));
         Routing.RegisterRoute(route: Routes.EditAccountRoute, type: typeof(EditAccountPage));
         Routing.RegisterRoute(route: Routes.BudgetListRoute, type: typeof(BudgetListPage));
         Routing.RegisterRoute(route: Routes.PaymentListRoute, type: typeof(PaymentListPage));
-        Routing.RegisterRoute(route: Routes.CategoryListRoute, type: typeof(DesktopCategoryListPage));
-        Routing.RegisterRoute(route: Routes.SelectCategoryRoute, type: typeof(SelectCategoryPage));
         Routing.RegisterRoute(route: Routes.AddCategoryRoute, type: typeof(AddCategoryPage));
         Routing.RegisterRoute(route: Routes.EditCategoryRoute, type: typeof(EditCategoryPage));
         Routing.RegisterRoute(route: Routes.AddPaymentRoute, type: typeof(AddPaymentPage));
@@ -52,5 +49,9 @@ public partial class AppShellDesktop : Shell
         Routing.RegisterRoute(route: Routes.BudgetListRoute, type: typeof(BudgetListPage));
         Routing.RegisterRoute(route: Routes.AddBudgetRoute, type: typeof(AddBudgetPage));
         Routing.RegisterRoute(route: Routes.EditBudgetRoute, type: typeof(EditBudgetPage));
+
+        Routing.RegisterRoute(route: Routes.CategoryListRoute, type: typeof(DesktopCategoryListPage));
+        Routing.RegisterRoute(route: Routes.AccountListRoute, type: typeof(DesktopAccountListPage));
+        Routing.RegisterRoute(route: Routes.SelectCategoryRoute, type: typeof(DesktopSelectedCategoryPage));
     }
 }
