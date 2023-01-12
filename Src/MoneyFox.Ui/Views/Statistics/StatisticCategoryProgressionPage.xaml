@@ -6,7 +6,8 @@
              xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
              xmlns:statistics="clr-namespace:MoneyFox.Ui.ViewModels.Statistics"
              xmlns:views="clr-namespace:MoneyFox.Ui.Views"
-             x:DataType="statistics:StatisticCategoryProgressionViewModel">
+             x:DataType="statistics:StatisticCategoryProgressionViewModel"
+             Title="{x:Static resources:Translations.CategoryProgressionTitle}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -15,35 +16,28 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Shell.TitleView>
-        <Grid ColumnDefinitions="*,66" Margin="0,0,12,0">
-            <Label Style="{StaticResource PageTitle}"
-                   HorizontalOptions="Start"
-                   VerticalOptions="Center"
-                   Text="{x:Static resources:Translations.CategoryProgressionTitle}" />
-
-            <ImageButton Grid.Column="1"
-                         Padding="0"
-                         BorderWidth="0"
-                         Clicked="OpenFilterDialog"
-                         HeightRequest="44"
-                         HorizontalOptions="End"
-                         VerticalOptions="Center"
-                         WidthRequest="66">
-                <ImageButton.Source>
-                    <FontImageSource FontFamily="MaterialIcons"
-                                     Glyph="{x:Static views:IconFont.FilterOutline}"
-                                     Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
-                </ImageButton.Source>
-            </ImageButton>
-        </Grid>
-    </Shell.TitleView>
-
     <ContentPage.Content>
         <Grid RowDefinitions="auto, auto, 6, *" Padding="15,0,15,15">
 
-            <Label Style="{StaticResource TextBodySecondary}"
-                   Text="{Binding Title}" />
+            <Grid ColumnDefinitions="*, Auto">
+
+                <Label VerticalOptions="Center"
+                       Style="{StaticResource TextBodySecondary}"
+                       Text="{Binding Title}" />
+
+                <ImageButton Grid.Column="1"
+                             Padding="0"
+                             BorderWidth="0"
+                             Clicked="OpenFilterDialog"
+                             HeightRequest="44"
+                             WidthRequest="66">
+                    <ImageButton.Source>
+                        <FontImageSource FontFamily="MaterialIcons"
+                                         Glyph="{x:Static views:IconFont.FilterOutline}"
+                                         Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                    </ImageButton.Source>
+                </ImageButton>
+            </Grid>
 
             <Button Grid.Row="1"
                     Text="{Binding SelectedCategory, Converter={StaticResource NoCategorySelectedConverter}}"
