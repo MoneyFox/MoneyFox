@@ -16,7 +16,7 @@ variables:
 steps:
 
   - task: UseDotNet@2
-    displayName: 'Use correct .Net sdk'
+    displayName: 'Install .net sdk'
     inputs:
       version: 7.x
 

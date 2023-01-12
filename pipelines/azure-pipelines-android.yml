@@ -17,7 +17,7 @@ variables:
 name: $(date:yyyy)$(DayOfYear)$(rev:rrr)
 steps:
   - task: UseDotNet@2
-    displayName: 'Use correct .Net sdk'
+    displayName: 'Install .net sdk'
     inputs:
       version: 7.x
 
