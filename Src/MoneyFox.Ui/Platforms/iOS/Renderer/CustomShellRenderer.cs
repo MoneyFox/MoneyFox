@@ -14,9 +14,10 @@ public class CustomShellRenderer : ShellRenderer
 
 public class NoLineAppearanceTracker : IShellNavBarAppearanceTracker
 {
-    public void Dispose() { }
-
-    public void ResetAppearance(UINavigationController controller) { }
+    public void ResetAppearance(UINavigationController controller)
+    {
+        // Not needed
+    }
 
     public void SetAppearance(UINavigationController controller, ShellAppearance appearance)
     {
@@ -28,7 +29,23 @@ public class NoLineAppearanceTracker : IShellNavBarAppearanceTracker
         navBar.ScrollEdgeAppearance = navBar.StandardAppearance = navigationBarAppearance;
     }
 
-    public void SetHasShadow(UINavigationController controller, bool hasShadow) { }
+    public void SetHasShadow(UINavigationController controller, bool hasShadow)
+    {
+        // Not needed
+    }
 
-    public void UpdateLayout(UINavigationController controller) { }
+    public void UpdateLayout(UINavigationController controller)
+    {
+        // Not needed
+    }
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        // Nothing to dispose
+    }
 }
