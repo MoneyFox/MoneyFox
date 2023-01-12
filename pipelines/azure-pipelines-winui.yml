@@ -22,7 +22,7 @@ jobs:
     
     steps:
       - task: UseDotNet@2
-        displayName: 'Use preview .Net sdk'
+        displayName: 'Install .net sdk'
         inputs:
           version: 7.x
 
