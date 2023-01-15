@@ -27,17 +27,7 @@ public partial class App
         InitializeComponent();
         SetupServices();
         ResourceDictionary = new();
-        foreach (var dictionary in Resources.MergedDictionaries)
-        {
-            var key = dictionary.Source.OriginalString.Split(';')
-                .First()
-                .Split('/')
-                .Last()
-                .Split('.')
-                .First(); // Alternatively If you are good in Regex you can use that as well
-
-            ResourceDictionary.Add(key: key, value: dictionary);
-        }
+        FillResourceDictionary();
 
         MainPage = DeviceInfo.Current.Idiom == DeviceIdiom.Desktop
                    || DeviceInfo.Current.Idiom == DeviceIdiom.Tablet
@@ -48,6 +38,21 @@ public partial class App
         if (!settingsFacade.IsSetupCompleted)
         {
             Shell.Current.GoToAsync(Routes.WelcomeViewRoute).Wait();
+        }
+    }
+
+    private void FillResourceDictionary()
+    {
+        foreach (var dictionary in Resources.MergedDictionaries)
+        {
+            var key = dictionary.Source.OriginalString.Split(';')
+                .First()
+                .Split('/')
+                .Last()
+                .Split('.')
+                .First();
+
+            ResourceDictionary.Add(key: key, value: dictionary);
         }
     }
 
