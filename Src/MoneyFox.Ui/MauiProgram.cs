@@ -67,7 +67,7 @@ public static class MauiProgram
     {
         var appCenter = configuration.GetRequiredSection("AppCenter").Get<AppCenter>()!;
         Microsoft.AppCenter.AppCenter.Start(
-            appSecret: $"android={appCenter.AndroidSecret};" + $"uwp={appCenter.WindowsSecret};" + $"ios={appCenter.IosSecret};",
+            appSecret: $"android={appCenter.AndroidSecret};" + $"windowsdesktop={appCenter.WindowsSecret};" + $"ios={appCenter.IosSecret};",
             typeof(Analytics),
             typeof(Crashes));
     }
