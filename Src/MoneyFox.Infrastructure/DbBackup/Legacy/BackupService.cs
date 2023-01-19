@@ -119,7 +119,7 @@ internal sealed class BackupService : ObservableRecipient, IBackupService, IDisp
             var result = await DownloadBackupAsync(backupMode);
             if (result == BackupRestoreResult.NewBackupRestored)
             {
-                appDbContext.Migratedb();
+                appDbContext.MigrateDb();
                 _ = Messenger.Send(new ReloadMessage());
             }
         }

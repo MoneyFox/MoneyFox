@@ -10,7 +10,7 @@ internal static class InMemoryAppDbContextFactory
     public static AppDbContext Create()
     {
         var options = new DbContextOptionsBuilder<AppDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
-        var context = new AppDbContext(options: options, publisher: null, settingsFacade: null);
+        var context = new AppDbContext(options: options, publisher: null, settingsFaçade: null);
         context.Database.EnsureCreated();
         context.SaveChanges();
 
