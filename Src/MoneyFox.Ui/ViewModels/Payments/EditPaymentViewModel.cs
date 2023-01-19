@@ -11,19 +11,24 @@ using Resources.Strings;
 
 internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
 {
-    private readonly IDialogService dialogService;
     private readonly IMapper mapper;
-
     private readonly IMediator mediator;
+    private readonly IDialogService dialogService;
+    private readonly IToastService toastService;
 
-    public EditPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService) : base(
+    public EditPaymentViewModel(IMediator mediator,
+                                IMapper mapper,
+                                IDialogService dialogService,
+                                IToastService toastService) : base(
         mediator: mediator,
         mapper: mapper,
-        dialogService: dialogService)
+        dialogService: dialogService,
+        toastService: toastService)
     {
         this.mediator = mediator;
         this.mapper = mapper;
         this.dialogService = dialogService;
+        this.toastService = toastService;
     }
 
     public AsyncRelayCommand<PaymentViewModel> DeleteCommand => new(async p => await DeletePaymentAsync(p));
