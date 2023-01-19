@@ -8,7 +8,7 @@ using Resources.Strings;
 using Ui.ViewModels.Payments;
 using Xunit;
 
-public sealed class AddPaymentViewModelTests
+public sealed class EditPaymentViewModelTests
 {
     [Fact]
     public void ShowToast_WhenExceptionThrownDuringSave()

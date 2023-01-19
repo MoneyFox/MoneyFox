@@ -155,7 +155,7 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
         catch(Exception ex)
         {
             Crashes.TrackError(ex);
-            await toastService.ShowToastAsync(Translations.GeneralErrorTitle, Translations.UnknownErrorMessage);
+            await toastService.ShowToastAsync(Translations.UnknownErrorMessage);
         }
         finally
         {
