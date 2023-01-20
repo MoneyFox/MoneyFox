@@ -17,11 +17,10 @@ public static class MauiProgram
 {
     public static MauiApp CreateMauiApp()
     {
-        using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MoneyFox.Ui.appsettings.json");
-        var configuration = new ConfigurationBuilder().AddJsonStream(stream).Build();
+        IConfigurationRoot configuration = GetConfiguration();
         InitLogger();
         InitAppCenter(configuration);
-        var builder = MauiApp.CreateBuilder();
+        MauiAppBuilder builder = MauiApp.CreateBuilder();
         builder.Configuration.AddConfiguration(configuration);
         builder.UseMauiApp<App>()
             .ConfigureFonts(
@@ -63,18 +62,26 @@ public static class MauiProgram
         return builder.Build();
     }
 
+    private static IConfigurationRoot GetConfiguration()
+    {
+        using Stream? stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MoneyFox.Ui.appsettings.json");
+        return stream == null
+            ? throw new FileNotFoundException("Appsettings.json was not found.")
+            : new ConfigurationBuilder().AddJsonStream(stream).Build();
+    }
+
     private static void InitAppCenter(IConfiguration configuration)
     {
         Crashes.GetErrorAttachments = (ErrorReport report) =>
         {
-            var logFile = LogFileService.GetLatestLogFileInfo();
+            FileInfo? logFile = LogFileService.GetLatestLogFileInfo();
             return new ErrorAttachmentLog[]
             {
                 ErrorAttachmentLog.AttachmentWithText("Hello world!", logFile.FullName)
             };
         };
 
-        var appCenter = configuration.GetRequiredSection("AppCenter").Get<AppCenterOption>()!;
+        AppCenterOption appCenter = configuration.GetRequiredSection("AppCenter").Get<AppCenterOption>()!;
         Microsoft.AppCenter.AppCenter.Start(
             appSecret: $"android={appCenter.AndroidSecret};" + $"windowsdesktop={appCenter.WindowsSecret};" + $"ios={appCenter.IosSecret};",
             typeof(Analytics),
@@ -83,7 +90,7 @@ public static class MauiProgram
 
     private static void InitLogger()
     {
-        var logFile = Path.Combine(path1: FileSystem.AppDataDirectory, path2: LogConfiguration.FileName);
+        string logFile = Path.Combine(path1: FileSystem.AppDataDirectory, path2: LogConfiguration.FileName);
         Log.Logger = new LoggerConfiguration().MinimumLevel.Debug()
             .Enrich.FromLogContext()
             .Enrich.WithExceptionDetails()
