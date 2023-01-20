@@ -19,8 +19,8 @@ public static class MauiProgram
     {
         using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MoneyFox.Ui.appsettings.json");
         var configuration = new ConfigurationBuilder().AddJsonStream(stream).Build();
-        InitAppCenter(configuration);
         InitLogger();
+        InitAppCenter(configuration);
         var builder = MauiApp.CreateBuilder();
         builder.Configuration.AddConfiguration(configuration);
         builder.UseMauiApp<App>()
@@ -49,13 +49,13 @@ public static class MauiProgram
                 if (view is BorderlessEntry)
                 {
 #if ANDROID
-                handler.PlatformView.Background = null;
-                handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
+                    handler.PlatformView.Background = null;
+                    handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
 #elif IOS
                     handler.PlatformView.Layer.BorderWidth = 0;
                     handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
 #elif WINDOWS
-                handler.PlatformView.BorderThickness = new Microsoft.UI.Xaml.Thickness(0);
+                    handler.PlatformView.BorderThickness = new Microsoft.UI.Xaml.Thickness(0);
 #endif
                 }
             });
@@ -74,7 +74,7 @@ public static class MauiProgram
             };
         };
 
-        var appCenter = configuration.GetRequiredSection("AppCenter").Get<AppCenter>()!;
+        var appCenter = configuration.GetRequiredSection("AppCenter").Get<AppCenterOption>()!;
         Microsoft.AppCenter.AppCenter.Start(
             appSecret: $"android={appCenter.AndroidSecret};" + $"windowsdesktop={appCenter.WindowsSecret};" + $"ios={appCenter.IosSecret};",
             typeof(Analytics),
