@@ -65,6 +65,16 @@ public static class MauiProgram
 
     private static void InitAppCenter(IConfiguration configuration)
     {
+        Crashes.GetErrorAttachments = (ErrorReport report) =>
+        {
+            // Your code goes here.
+            return new ErrorAttachmentLog[]
+            {
+                ErrorAttachmentLog.AttachmentWithText("Hello world!", "hello.txt"),
+                ErrorAttachmentLog.AttachmentWithBinary(Encoding.UTF8.GetBytes("Fake image"), "fake_image.jpeg", "image/jpeg")
+            };
+        };
+
         var appCenter = configuration.GetRequiredSection("AppCenter").Get<AppCenter>()!;
         Microsoft.AppCenter.AppCenter.Start(
             appSecret: $"android={appCenter.AndroidSecret};" + $"windowsdesktop={appCenter.WindowsSecret};" + $"ios={appCenter.IosSecret};",

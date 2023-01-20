@@ -9,10 +9,10 @@ using ViewModels;
 internal class AboutViewModel : BaseViewModel
 {
     private const string SUPPORT_MAIL = "mobile.support@apply-solutions.ch";
-    private const string GITHUB_PROJECT_URL = "https://github.com/MoneyFox/MoneyFox";
-    private const string TRANSLATION_URL = "https://crowdin.com/project/money-fox";
-    private const string ICON_DESIGNER_URL = "https://twitter.com/vandert9";
-    private const string GITHUB_CONTRIBUTOR_URL = "https://github.com/MoneyFox/MoneyFox/graphs/contributors";
+    private static readonly Uri projectUri = new("https://github.com/MoneyFox/MoneyFox");
+    private static readonly Uri translationUri = new("https://crowdin.com/project/money-fox");
+    private static readonly Uri iconDesignerUrl = new("https://twitter.com/vandert9");
+    private static readonly Uri contributorUrl = new("https://github.com/MoneyFox/MoneyFox/graphs/contributors");
 
     private readonly IAppInformation appInformation;
     private readonly IBrowserAdapter browserAdapter;
@@ -28,21 +28,21 @@ internal class AboutViewModel : BaseViewModel
         storeFeatures = storeOperations;
     }
 
-    public AsyncRelayCommand GoToWebsiteCommand => new(async () => await GoToWebsiteAsync());
+    public AsyncRelayCommand GoToWebsiteCommand => new(GoToWebsiteAsync);
 
-    public AsyncRelayCommand SendMailCommand => new(async () => await SendMailAsync());
+    public AsyncRelayCommand SendMailCommand => new(SendMailAsync);
 
     public RelayCommand RateAppCommand => new(RateApp);
 
-    public AsyncRelayCommand GoToRepositoryCommand => new(async () => await GoToRepositoryAsync());
+    public AsyncRelayCommand GoToRepositoryCommand => new(GoToRepositoryAsync);
 
-    public AsyncRelayCommand GoToTranslationProjectCommand => new(async () => await GoToTranslationProjectAsync());
+    public AsyncRelayCommand GoToTranslationProjectCommand => new(GoToTranslationProjectAsync);
 
-    public AsyncRelayCommand GoToDesignerTwitterAccountCommand => new(async () => await GoToDesignerTwitterAccountAsync());
+    public AsyncRelayCommand GoToDesignerTwitterAccountCommand => new(GoToDesignerTwitterAccountAsync);
 
-    public AsyncRelayCommand GoToContributionPageCommand => new(async () => await GoToContributionPageAsync());
+    public AsyncRelayCommand GoToContributionPageCommand => new(GoToContributionPageAsync);
 
-    public AsyncRelayCommand OpenLogFileCommand => new(async () => await OpenLogFile());
+    public AsyncRelayCommand OpenLogFileCommand => new(OpenLogFile);
 
     public string Version => appInformation.GetVersion;
 
@@ -68,22 +68,22 @@ internal class AboutViewModel : BaseViewModel
 
     private async Task GoToRepositoryAsync()
     {
-        await browserAdapter.OpenWebsiteAsync(new(GITHUB_PROJECT_URL));
+        await browserAdapter.OpenWebsiteAsync(projectUri);
     }
 
     private async Task GoToTranslationProjectAsync()
     {
-        await browserAdapter.OpenWebsiteAsync(new(TRANSLATION_URL));
+        await browserAdapter.OpenWebsiteAsync(translationUri);
     }
 
     private async Task GoToDesignerTwitterAccountAsync()
     {
-        await browserAdapter.OpenWebsiteAsync(new(ICON_DESIGNER_URL));
+        await browserAdapter.OpenWebsiteAsync(iconDesignerUrl);
     }
 
     private async Task GoToContributionPageAsync()
     {
-        await browserAdapter.OpenWebsiteAsync(new(GITHUB_CONTRIBUTOR_URL));
+        await browserAdapter.OpenWebsiteAsync(contributorUrl);
     }
 
     private async Task OpenLogFile()
