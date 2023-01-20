@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Infrastructure.Tests;
+namespace MoneyFox.Infrastructure.Tests;
 
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Common.Facades;
@@ -25,7 +25,7 @@ public sealed class AppDbContextShould
     {
         // Arrange
         var options = new DbContextOptionsBuilder<AppDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
-        var context = new AppDbContext(options: options, publisher: publisher, settingsFaçade: settingsFacade);
+        var context = new AppDbContext(options: options, publisher: publisher, settingsFacade: settingsFacade);
         var account = new Account("Test");
 
         // Act
@@ -50,7 +50,7 @@ public sealed class AppDbContextShould
     {
         // Arrange
         var options = new DbContextOptionsBuilder<AppDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
-        var context = new AppDbContext(options: options, publisher: publisher, settingsFaçade: settingsFacade);
+        var context = new AppDbContext(options: options, publisher: publisher, settingsFacade: settingsFacade);
         var account = new Account("Test");
         context.Add(account);
         await context.SaveChangesAsync();
