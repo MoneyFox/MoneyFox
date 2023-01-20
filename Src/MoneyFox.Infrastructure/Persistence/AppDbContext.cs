@@ -35,7 +35,7 @@ public class AppDbContext : DbContext, IAppDbContext
 
     public DbSet<Category> Categories { get; set; } = null!;
 
-    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         foreach (var entry in ChangeTracker.Entries<EntityBase>())
         {
@@ -73,7 +73,7 @@ public class AppDbContext : DbContext, IAppDbContext
         return changeCount;
     }
 
-    public void Migratedb()
+    public void MigrateDb()
     {
         Database.Migrate();
     }

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Infrastructure.Tests;
+namespace MoneyFox.Infrastructure.Tests;
 
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Common.Facades;

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Tests.TestFramework;
+namespace MoneyFox.Core.Tests.TestFramework;
 
 using System.Diagnostics.CodeAnalysis;
 using Infrastructure.Persistence;
