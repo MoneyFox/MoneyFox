@@ -66,7 +66,7 @@ public static class MauiProgram
     {
         using Stream? stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MoneyFox.Ui.appsettings.json");
         return stream == null
-            ? throw new FileNotFoundException("Appsettings.json was not found.")
+            ? throw new FileNotFoundException("'appsettings.json' was not found.")
             : new ConfigurationBuilder().AddJsonStream(stream).Build();
     }
 
