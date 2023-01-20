@@ -17,11 +17,10 @@ public static class MauiProgram
 {
     public static MauiApp CreateMauiApp()
     {
-        using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MoneyFox.Ui.appsettings.json");
-        var configuration = new ConfigurationBuilder().AddJsonStream(stream).Build();
-        InitAppCenter(configuration);
+        IConfigurationRoot configuration = GetConfiguration();
         InitLogger();
-        var builder = MauiApp.CreateBuilder();
+        InitAppCenter(configuration);
+        MauiAppBuilder builder = MauiApp.CreateBuilder();
         builder.Configuration.AddConfiguration(configuration);
         builder.UseMauiApp<App>()
             .ConfigureFonts(
@@ -49,13 +48,13 @@ public static class MauiProgram
                 if (view is BorderlessEntry)
                 {
 #if ANDROID
-                handler.PlatformView.Background = null;
-                handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
+                    handler.PlatformView.Background = null;
+                    handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
 #elif IOS
                     handler.PlatformView.Layer.BorderWidth = 0;
                     handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
 #elif WINDOWS
-                handler.PlatformView.BorderThickness = new Microsoft.UI.Xaml.Thickness(0);
+                    handler.PlatformView.BorderThickness = new Microsoft.UI.Xaml.Thickness(0);
 #endif
                 }
             });
@@ -63,9 +62,28 @@ public static class MauiProgram
         return builder.Build();
     }
 
+    private static IConfigurationRoot GetConfiguration()
+    {
+        using Stream? stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MoneyFox.Ui.appsettings.json");
+        return stream == null
+            ? throw new FileNotFoundException("'appsettings.json' was not found.")
+            : new ConfigurationBuilder().AddJsonStream(stream).Build();
+    }
+
     private static void InitAppCenter(IConfiguration configuration)
     {
-        var appCenter = configuration.GetRequiredSection("AppCenter").Get<AppCenter>()!;
+        Crashes.GetErrorAttachments = (ErrorReport report) =>
+        {
+            var logFile = LogFileService.GetLatestLogFileInfo();
+            return logFile == null
+                ? Array.Empty<ErrorAttachmentLog>()
+                : (IEnumerable<ErrorAttachmentLog>)(new ErrorAttachmentLog[]
+            {
+                ErrorAttachmentLog.AttachmentWithText("MoneyFox Log", logFile.FullName)
+            });
+        };
+
+        var appCenter = configuration.GetRequiredSection("AppCenter").Get<AppCenterOption>()!;
         Microsoft.AppCenter.AppCenter.Start(
             appSecret: $"android={appCenter.AndroidSecret};" + $"windowsdesktop={appCenter.WindowsSecret};" + $"ios={appCenter.IosSecret};",
             typeof(Analytics),
@@ -74,7 +92,7 @@ public static class MauiProgram
 
     private static void InitLogger()
     {
-        var logFile = Path.Combine(path1: FileSystem.AppDataDirectory, path2: LogConfiguration.FileName);
+        string logFile = Path.Combine(path1: FileSystem.AppDataDirectory, path2: LogConfiguration.FileName);
         Log.Logger = new LoggerConfiguration().MinimumLevel.Debug()
             .Enrich.FromLogContext()
             .Enrich.WithExceptionDetails()
