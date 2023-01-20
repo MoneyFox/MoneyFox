@@ -83,7 +83,7 @@ public partial class App
         AddPlatformServicesAction?.Invoke(services);
         new MoneyFoxConfig().Register(services);
         ServiceProvider = services.BuildServiceProvider();
-        ServiceProvider.GetService<IAppDbContext>()?.Migratedb();
+        ServiceProvider.GetService<IAppDbContext>()?.MigrateDb();
     }
 
     private async Task StartupTasksAsync()

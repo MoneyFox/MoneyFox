@@ -33,8 +33,8 @@ public class CreateAccountCommand : IRequest
         public async Task<Unit> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
         {
             Account account = new(name: request.Name, initialBalance: request.CurrentBalance, note: request.Note, isExcluded: request.IsExcluded);
-            _ = await appDbContext.Accounts.AddAsync(entity: account, cancellationToken: cancellationToken);
-            _ = await appDbContext.SaveChangesAsync(cancellationToken);
+            await appDbContext.Accounts.AddAsync(entity: account, cancellationToken: cancellationToken);
+            await appDbContext.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;
         }
