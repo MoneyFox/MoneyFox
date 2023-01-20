@@ -74,14 +74,16 @@ public static class MauiProgram
     {
         Crashes.GetErrorAttachments = (ErrorReport report) =>
         {
-            FileInfo? logFile = LogFileService.GetLatestLogFileInfo();
-            return new ErrorAttachmentLog[]
+            var logFile = LogFileService.GetLatestLogFileInfo();
+            return logFile == null
+                ? Array.Empty<ErrorAttachmentLog>()
+                : (IEnumerable<ErrorAttachmentLog>)(new ErrorAttachmentLog[]
             {
-                ErrorAttachmentLog.AttachmentWithText("Hello world!", logFile.FullName)
-            };
+                ErrorAttachmentLog.AttachmentWithText("MoneyFox Log", logFile.FullName)
+            });
         };
 
-        AppCenterOption appCenter = configuration.GetRequiredSection("AppCenter").Get<AppCenterOption>()!;
+        var appCenter = configuration.GetRequiredSection("AppCenter").Get<AppCenterOption>()!;
         Microsoft.AppCenter.AppCenter.Start(
             appSecret: $"android={appCenter.AndroidSecret};" + $"windowsdesktop={appCenter.WindowsSecret};" + $"ios={appCenter.IosSecret};",
             typeof(Analytics),
