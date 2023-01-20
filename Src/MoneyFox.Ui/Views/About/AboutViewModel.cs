@@ -53,7 +53,7 @@ internal class AboutViewModel : BaseViewModel
 
     private async Task SendMailAsync()
     {
-        var latestLogFile = GetLatestLogFile();
+        var latestLogFile = LogFileService.GetLatestLogFileInfo();
         await emailAdapter.SendEmailAsync(
             subject: Translations.FeedbackSubject,
             body: string.Empty,
