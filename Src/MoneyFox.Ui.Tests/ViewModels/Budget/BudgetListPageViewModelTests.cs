@@ -22,10 +22,10 @@ public class BudgetListPageViewModelTests
 
     private static void AssertBudgetListViewModel(BudgetListItemViewModel actualBudgetVm, TestData.IBudget expectedBudgetData)
     {
-        _ = actualBudgetVm.Id.Should().Be(expectedBudgetData.Id);
-        _ = actualBudgetVm.Name.Should().Be(expectedBudgetData.Name);
-        _ = actualBudgetVm.SpendingLimit.Should().Be(expectedBudgetData.SpendingLimit);
-        _ = actualBudgetVm.CurrentSpending.Should().Be(expectedBudgetData.CurrentSpending);
+        actualBudgetVm.Id.Should().Be(expectedBudgetData.Id);
+        actualBudgetVm.Name.Should().Be(expectedBudgetData.Name);
+        actualBudgetVm.SpendingLimit.Should().Be(expectedBudgetData.SpendingLimit);
+        actualBudgetVm.CurrentSpending.Should().Be(expectedBudgetData.CurrentSpending);
     }
 
     public class WithNoBudgetsAvailable : BudgetListPageViewModelTests
@@ -37,7 +37,7 @@ public class BudgetListPageViewModelTests
             await viewModel.InitializeCommand.ExecuteAsync(null);
 
             // Assert
-            _ = viewModel.Budgets.Should().BeEmpty();
+            viewModel.Budgets.Should().BeEmpty();
         }
     }
 
@@ -48,7 +48,7 @@ public class BudgetListPageViewModelTests
         public WithBudgetAvailable()
         {
             budgetTestData = new();
-            _ = sender.Send(Arg.Any<LoadBudgetListData.Query>())
+            sender.Send(Arg.Any<LoadBudgetListData.Query>())
                 .Returns(
                     ImmutableList.Create(
                         new BudgetListData(
@@ -65,7 +65,7 @@ public class BudgetListPageViewModelTests
             await viewModel.InitializeCommand.ExecuteAsync(null);
 
             // Assert
-            _ = viewModel.Budgets.Should().HaveCount(1);
+            viewModel.Budgets.Should().HaveCount(1);
             var loadedBudget = viewModel.Budgets.Single();
             AssertBudgetListViewModel(actualBudgetVm: loadedBudget, expectedBudgetData: budgetTestData);
         }
@@ -78,7 +78,7 @@ public class BudgetListPageViewModelTests
             await viewModel.InitializeCommand.ExecuteAsync(null);
 
             // Assert
-            _ = viewModel.Budgets.Should().HaveCount(1);
+            viewModel.Budgets.Should().HaveCount(1);
             var loadedBudget = viewModel.Budgets.Single();
             AssertBudgetListViewModel(actualBudgetVm: loadedBudget, expectedBudgetData: budgetTestData);
         }
