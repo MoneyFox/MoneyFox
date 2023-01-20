@@ -67,11 +67,10 @@ public static class MauiProgram
     {
         Crashes.GetErrorAttachments = (ErrorReport report) =>
         {
-            // Your code goes here.
+            var logFile = LogFileService.GetLatestLogFileInfo();
             return new ErrorAttachmentLog[]
             {
-                ErrorAttachmentLog.AttachmentWithText("Hello world!", "hello.txt"),
-                ErrorAttachmentLog.AttachmentWithBinary(Encoding.UTF8.GetBytes("Fake image"), "fake_image.jpeg", "image/jpeg")
+                ErrorAttachmentLog.AttachmentWithText("Hello world!", logFile.FullName)
             };
         };
 

@@ -88,18 +88,10 @@ internal class AboutViewModel : BaseViewModel
 
     private async Task OpenLogFile()
     {
-        var latestLogFile = GetLatestLogFile();
+        var latestLogFile = LogFileService.GetLatestLogFileInfo();
         if (latestLogFile != null)
         {
             await Launcher.OpenAsync(new OpenFileRequest { File = new(latestLogFile.FullName) });
         }
-    }
-
-    private static FileInfo? GetLatestLogFile()
-    {
-        var logFilePaths = Directory.GetFiles(path: FileSystem.AppDataDirectory, searchPattern: "moneyfox*").OrderByDescending(x => x);
-        var latestLogFile = logFilePaths.Select(logFilePath => new FileInfo(logFilePath)).MaxBy(fi => fi.LastWriteTime);
-
-        return latestLogFile;
     }
 }
