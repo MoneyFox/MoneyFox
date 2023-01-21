@@ -884,6 +884,6 @@ Pour commencer, créez un nouveau compte. Les comptes sont utilisés pour organi
         <value>Gains</value>
     </data>
   <data name="SendEmailFailedMessage" xml:space="preserve">
-        <value>Failed to open the email application. Please try again later or contact us via 'mobile.support@apply-solutions.ch'.</value>
+        <value>Impossible d'ouvrir l'application de messagerie. Essaie à nouveau plus tard ou contacte-nous via 'mobile.support@apply-solutions.ch'.</value>
     </data>
 </root>
