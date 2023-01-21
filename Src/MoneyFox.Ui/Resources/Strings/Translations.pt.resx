@@ -885,4 +885,7 @@ Para começar a criar uma nova conta. Contas são usadas para organizar pagament
   <data name="GainsLabel" xml:space="preserve">
         <value>Ganhos</value>
     </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+        <value>Failed to open the email application. Please try again later or contact us via 'mobile.support@apply-solutions.ch'.</value>
+    </data>
 </root>
