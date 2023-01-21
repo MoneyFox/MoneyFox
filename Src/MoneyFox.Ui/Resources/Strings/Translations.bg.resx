@@ -886,6 +886,6 @@
         <value>Печалби</value>
     </data>
   <data name="SendEmailFailedMessage" xml:space="preserve">
-        <value>Failed to open the email application. Please try again later or contact us via 'mobile.support@apply-solutions.ch'.</value>
+        <value>Не успя да отвори приложението за електронна поща. Моля, опитайте отново по-късно или се свържете с нас чрез "mobile.support@apply-solutions.ch".</value>
     </data>
 </root>
