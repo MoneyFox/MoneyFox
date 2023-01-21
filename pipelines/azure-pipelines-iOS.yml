@@ -61,7 +61,7 @@ steps:
       echo $INFO_PLIST_FILE
 
       echo "Updating version name to $VERSION_NAME in Info.plist"
-      plutil -replace CFBundleShortVersionString -string $BUILD_BUILDNUMBER $INFO_PLIST_FILE
+      plutil -replace CFBundleShortVersionString -string $VERSION $INFO_PLIST_FILE
       plutil -replace CFBundleVersion -string $VERSION $INFO_PLIST_FILE
     displayName: 'Set App Version'
     env:
