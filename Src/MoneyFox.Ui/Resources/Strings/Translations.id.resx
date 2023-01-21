@@ -885,6 +885,6 @@ Untuk memulai, buat akun baru. Akun digunakan untuk mengatur pembayaran dan uang
         <value>Keuntungan</value>
     </data>
   <data name="SendEmailFailedMessage" xml:space="preserve">
-        <value>Failed to open the email application. Please try again later or contact us via 'mobile.support@apply-solutions.ch'.</value>
+        <value>Gagal membuka aplikasi email. Silakan coba lagi nanti atau hubungi kami melalui 'mobile.support@apply-solutions.ch'.</value>
     </data>
 </root>
