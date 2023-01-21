@@ -887,6 +887,6 @@ Alustamiseks looge uus konto. Kontod on mõeldud maksete ja raha kogumise korral
         <value>Kasumid</value>
     </data>
   <data name="SendEmailFailedMessage" xml:space="preserve">
-        <value>Failed to open the email application. Please try again later or contact us via 'mobile.support@apply-solutions.ch'.</value>
+        <value>Ebaõnnestus meilirakenduse avamine. Palun proovige hiljem uuesti või võtke meiega ühendust aadressil mobile.support@apply-solutions.ch.</value>
     </data>
 </root>
