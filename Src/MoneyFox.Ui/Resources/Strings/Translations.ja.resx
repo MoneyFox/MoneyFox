@@ -887,6 +887,6 @@
         <value>ゲインズ</value>
     </data>
   <data name="SendEmailFailedMessage" xml:space="preserve">
-        <value>Failed to open the email application. Please try again later or contact us via 'mobile.support@apply-solutions.ch'.</value>
+        <value>メールアプリケーションを開くのに失敗しました。後でもう一度試してみるか、'mobile.support@apply-solutions.ch'からご連絡ください。</value>
     </data>
 </root>
