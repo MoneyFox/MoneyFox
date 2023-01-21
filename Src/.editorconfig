@@ -26,7 +26,7 @@ end_of_line = crlf
 # https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/formatting-rules
 
 #Code-block Preferences
-csharp_style_namespace_declarations = block_scoped:suggestion
+csharp_style_namespace_declarations = file_scoped:suggestion
 csharp_style_prefer_method_group_conversion = true:suggestion
 csharp_style_prefer_top_level_statements = true:suggestion
 
@@ -150,9 +150,7 @@ dotnet_style_coalesce_expression = true:warning
 dotnet_style_null_propagation = true:warning
 dotnet_style_prefer_is_null_check_over_reference_equality_method = true:suggestion
 csharp_style_throw_expression = true:warning
-csharp_style_conditional_delegate_call = true:warning
-
-# Expression-bodied-members
+csharp_style_conditional_delegate_call = true:warning# Expression-bodied-members
 # https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/expression-bodied-members
 csharp_style_expression_bodied_constructors = false:suggestion
 csharp_style_expression_bodied_methods = false:suggestion
@@ -162,6 +160,8 @@ csharp_style_expression_bodied_indexers = when_on_single_line:suggestion
 csharp_style_expression_bodied_accessors = when_on_single_line:suggestion
 csharp_style_expression_bodied_lambdas = when_on_single_line:suggestion
 csharp_style_expression_bodied_local_functions = when_on_single_line:suggestion
+
+
 
 # Pattern matching preferences
 # https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/pattern-matching-preferences
