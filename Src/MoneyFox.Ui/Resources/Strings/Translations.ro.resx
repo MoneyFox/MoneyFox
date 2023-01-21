@@ -887,6 +887,6 @@ Pentru a începe crearea unui nou cont. Conturile sunt utilizate pentru a organi
         <value>Câștiguri</value>
     </data>
   <data name="SendEmailFailedMessage" xml:space="preserve">
-        <value>Failed to open the email application. Please try again later or contact us via 'mobile.support@apply-solutions.ch'.</value>
+        <value>Nu a reușit să deschidă aplicația de e-mail. Vă rugăm să încercați din nou mai târziu sau să ne contactați prin "mobile.support@apply-solutions.ch".</value>
     </data>
 </root>
