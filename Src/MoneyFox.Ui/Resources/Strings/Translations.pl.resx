@@ -885,6 +885,6 @@ Aby rozpocząć tworzenie nowego konta. Konta są używane do organizowania pła
         <value>Zyski</value>
     </data>
   <data name="SendEmailFailedMessage" xml:space="preserve">
-        <value>Failed to open the email application. Please try again later or contact us via 'mobile.support@apply-solutions.ch'.</value>
+        <value>Nie udało się otworzyć aplikacji poczty elektronicznej. Spróbuj ponownie później lub skontaktuj się z nami przez stronę mobile.support@apply-solutions.ch.</value>
     </data>
 </root>
