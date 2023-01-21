@@ -33,7 +33,7 @@ steps:
         Write-Host "Version:" $Version
 
         [xml]$xml = Get-Content -Path ./src/MoneyFox.Ui/MoneyFox.Ui.csproj
-        $xml.Project.PropertyGroup[0].ApplicationDisplayVersion = $DisplayVersion 
+        $xml.Project.PropertyGroup[0].ApplicationDisplayVersion = $Version 
         $xml.Project.PropertyGroup[0].ApplicationVersion = $DisplayVersion
         Set-Content "./src/MoneyFox.Ui/MoneyFox.Ui.csproj" -Value $xml.InnerXml -Force
         Write-Host $xml.InnerXml
@@ -61,7 +61,7 @@ steps:
       echo $INFO_PLIST_FILE
 
       echo "Updating version name to $VERSION_NAME in Info.plist"
-      plutil -replace CFBundleShortVersionString -string $VERSION $INFO_PLIST_FILE
+      plutil -replace CFBundleShortVersionString -string $BUILD_BUILDNUMBER $INFO_PLIST_FILE
       plutil -replace CFBundleVersion -string $VERSION $INFO_PLIST_FILE
     displayName: 'Set App Version'
     env:
