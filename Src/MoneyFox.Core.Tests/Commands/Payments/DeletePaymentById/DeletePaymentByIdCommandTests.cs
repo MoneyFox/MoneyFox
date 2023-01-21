@@ -20,15 +20,19 @@ public class DeletePaymentByIdCommandTests
     }
 
     [Fact]
-    public async Task ThrowExceptionWhenPaymentNotFound()
+    public async Task DontThrowExceptionWhenIdNotFound ()
     {
-        // Act / Assert
         // Arrange
-        await Assert.ThrowsAsync<PaymentNotFoundException>(async () => await handler.Handle(request: new(12), cancellationToken: default));
+        var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new(name: "test", initialBalance: 80));
+        await context.AddAsync(payment1);
+        await context.SaveChangesAsync();
+
+        // Act
+        await handler.Handle(request: new(12), cancellationToken: default);
     }
 
     [Fact]
-    public async Task DeletePayment_PaymentDeleted()
+    public async Task PaymentIsRemovedWhenAnEntryWithPassedIdExists()
     {
         // Arrange
         var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new(name: "test", initialBalance: 80));
