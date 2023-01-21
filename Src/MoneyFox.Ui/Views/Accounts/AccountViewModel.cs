@@ -173,14 +173,9 @@ public sealed class AccountViewModel : ObservableObject, IHaveCustomMapping, IEq
         }
     }
 
-    public bool Equals(AccountViewModel other)
+    public bool Equals(AccountViewModel? other)
     {
-        if (other == null)
-        {
-            return false;
-        }
-
-        return Id.Equals(other.Id);
+        return other != null && Id.Equals(other.Id);
     }
 
     public void CreateMappings(Profile configuration)
