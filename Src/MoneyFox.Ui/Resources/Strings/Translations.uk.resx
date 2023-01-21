@@ -887,6 +887,6 @@
         <value>Озеро</value>
     </data>
   <data name="SendEmailFailedMessage" xml:space="preserve">
-        <value>Failed to open the email application. Please try again later or contact us via 'mobile.support@apply-solutions.ch'.</value>
+        <value>Не вдалося відкрити поштову програму. Будь ласка, спробуйте пізніше або зв'яжіться з нами через 'mobile.support@apply-solutions.ch'.</value>
     </data>
 </root>
