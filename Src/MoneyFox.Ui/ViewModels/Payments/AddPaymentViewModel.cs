@@ -10,17 +10,17 @@ using JetBrains.Annotations;
 using MediatR;
 using Resources.Strings;
 
-[UsedImplicitly]
 internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
     private readonly IMediator mediator;
 
-    public AddPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService) : base(
+    public AddPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, IToastService toastService) : base(
         mediator: mediator,
         mapper: mapper,
-        dialogService: dialogService)
+        dialogService: dialogService,
+        toastService: toastService)
     {
         this.mediator = mediator;
         this.mapper = mapper;

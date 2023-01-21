@@ -11,25 +11,30 @@ using Core.ApplicationCore.Queries;
 using Core.Common.Interfaces;
 using Core.Common.Messages;
 using MediatR;
+using Microsoft.AppCenter.Crashes;
 using Resources.Strings;
 using Views.Accounts;
 
 internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipient<CategorySelectedMessage>
 {
-    private readonly IDialogService dialogService;
     private readonly IMapper mapper;
-
     private readonly IMediator mediator;
-    private ObservableCollection<AccountViewModel> chargedAccounts = new();
+    private readonly IDialogService dialogService;
+    private readonly IToastService toastService;
 
     private PaymentViewModel selectedPayment = new();
+    private ObservableCollection<AccountViewModel> chargedAccounts = new();
     private ObservableCollection<AccountViewModel> targetAccounts = new();
 
-    protected ModifyPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService)
+    protected ModifyPaymentViewModel(IMediator mediator,
+                                     IMapper mapper,
+                                     IDialogService dialogService,
+                                     IToastService toastService)
     {
         this.mediator = mediator;
         this.mapper = mapper;
         this.dialogService = dialogService;
+        this.toastService = toastService;
     }
 
     public PaymentViewModel SelectedPayment
@@ -67,9 +72,9 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
 
     public bool IsTransfer => SelectedPayment.IsTransfer;
 
-    public List<PaymentType> PaymentTypeList => new() { PaymentType.Expense, PaymentType.Income, PaymentType.Transfer };
+    public static List<PaymentType> PaymentTypeList => new() { PaymentType.Expense, PaymentType.Income, PaymentType.Transfer };
 
-    public List<PaymentRecurrence> RecurrenceList
+    public static List<PaymentRecurrence> RecurrenceList
         => new()
         {
             PaymentRecurrence.Daily,
@@ -146,6 +151,11 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
             await SavePaymentAsync();
             Messenger.Send(new ReloadMessage());
             await Shell.Current.Navigation.PopModalAsync();
+        }
+        catch(Exception ex)
+        {
+            Crashes.TrackError(ex);
+            await toastService.ShowToastAsync(Translations.UnknownErrorMessage);
         }
         finally
         {
