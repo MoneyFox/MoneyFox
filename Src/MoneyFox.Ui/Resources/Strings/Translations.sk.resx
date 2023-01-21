@@ -887,6 +887,6 @@ Ak chcete začať, vytvorte si nový účet. Účty slúžia na organizáciu pla
         <value>Zisky</value>
     </data>
   <data name="SendEmailFailedMessage" xml:space="preserve">
-        <value>Failed to open the email application. Please try again later or contact us via 'mobile.support@apply-solutions.ch'.</value>
+        <value>Nepodarilo sa otvoriť e-mailovú aplikáciu. Skúste to prosím neskôr alebo nás kontaktujte prostredníctvom 'mobile.support@apply-solutions.ch'.</value>
     </data>
 </root>
