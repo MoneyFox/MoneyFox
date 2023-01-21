@@ -170,7 +170,8 @@ internal sealed class BackupViewModel : BaseViewModel
 
         if (!connectivity.IsConnected)
         {
-            await dialogService.ShowMessageAsync(title: Translations.NoNetworkTitle, message: Translations.NoNetworkMessage);
+            await toastService.ShowToastAsync(Translations.NoNetworkMessage);
+            return;
         }
 
         IsLoadingBackupAvailability = true;
@@ -182,23 +183,24 @@ internal sealed class BackupViewModel : BaseViewModel
             UserAccount.Name = userAccountDto.Name;
             UserAccount.Email = userAccountDto.Email;
             var profilePictureStream = await oneDriveProfileService.GetProfilePictureAsync();
-            if (profilePictureStream != null)
-            {
-                ProfilePicture = ImageSource.FromStream(() => profilePictureStream);
-            }
+            ProfilePicture = ImageSource.FromStream(() => profilePictureStream);
         }
         catch (BackupAuthenticationFailedException ex)
         {
             Log.Error(exception: ex, messageTemplate: "Issue during Login process");
-            await backupService.LogoutAsync();
-            await dialogService.ShowMessageAsync(title: Translations.AuthenticationFailedTitle, message: Translations.ErrorMessageAuthenticationFailed);
+            await LogoutAsync();
+            await toastService.ShowToastAsync(Translations.ErrorMessageAuthenticationFailed);
+        }
+        catch (NetworkConnectionException)
+        {
+            await toastService.ShowToastAsync(Translations.NoNetworkMessage);
         }
         catch (Exception ex)
         {
             if (ex.StackTrace == "4f37.717b")
             {
-                await backupService.LogoutAsync();
-                await dialogService.ShowMessageAsync(title: Translations.AuthenticationFailedTitle, message: Translations.ErrorMessageAuthenticationFailed);
+                await LogoutAsync();
+                await toastService.ShowToastAsync(Translations.ErrorMessageAuthenticationFailed);
             }
 
             Log.Error(exception: ex, messageTemplate: "Issue on loading backup view");
@@ -211,8 +213,7 @@ internal sealed class BackupViewModel : BaseViewModel
     {
         if (!connectivity.IsConnected)
         {
-            Log.Information("Tried to log in, but device isn't connected to the internet");
-            await dialogService.ShowMessageAsync(title: Translations.NoNetworkTitle, message: Translations.NoNetworkMessage);
+            await toastService.ShowToastAsync(Translations.NoNetworkMessage);
         }
 
         try
@@ -224,7 +225,11 @@ internal sealed class BackupViewModel : BaseViewModel
         }
         catch (BackupOperationCanceledException)
         {
-            await dialogService.ShowMessageAsync(title: Translations.CanceledTitle, message: Translations.LoginCanceledMessage);
+            await toastService.ShowToastAsync(Translations.LoginCanceledMessage);
+        }
+        catch (NetworkConnectionException)
+        {
+            await toastService.ShowToastAsync(Translations.NoNetworkMessage);
         }
         catch (Exception ex)
         {
@@ -246,12 +251,16 @@ internal sealed class BackupViewModel : BaseViewModel
         }
         catch (BackupOperationCanceledException)
         {
-            await dialogService.ShowMessageAsync(title: Translations.CanceledTitle, message: Translations.LogoutCanceledMessage);
+            await toastService.ShowToastAsync(Translations.LogoutCanceledMessage);
+        }
+        catch (NetworkConnectionException)
+        {
+            await toastService.ShowToastAsync(Translations.NoNetworkMessage);
         }
         catch (Exception ex)
         {
             Log.Error(exception: ex, messageTemplate: "Logout Failed");
-            await dialogService.ShowMessageAsync(title: Translations.GeneralErrorTitle, message: ex.Message);
+            await toastService.ShowToastAsync(Translations.GeneralErrorTitle);
         }
 
         // ReSharper disable once ExplicitCallerInfoArgument
@@ -273,12 +282,16 @@ internal sealed class BackupViewModel : BaseViewModel
         }
         catch (BackupOperationCanceledException)
         {
-            await dialogService.ShowMessageAsync(title: Translations.CanceledTitle, message: Translations.UploadBackupCanceledMessage);
+            await toastService.ShowToastAsync(Translations.UploadBackupCanceledMessage);
+        }
+        catch (NetworkConnectionException)
+        {
+            await toastService.ShowToastAsync(Translations.NoNetworkMessage);
         }
         catch (Exception ex)
         {
             Log.Error(exception: ex, messageTemplate: "Create Backup failed");
-            await dialogService.ShowMessageAsync(title: Translations.BackupFailedTitle, message: ex.Message);
+            await toastService.ShowToastAsync(Translations.BackupFailedTitle);
         }
 
         await dialogService.HideLoadingDialogAsync();
