@@ -889,4 +889,7 @@ Maak een nieuw account aan om hier dan uw budgetten op een gemakkelijke manier b
   <data name="GainsLabel" xml:space="preserve">
         <value>Winst</value>
     </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+        <value>Failed to open the email application. Please try again later or contact us via 'mobile.support@apply-solutions.ch'.</value>
+    </data>
 </root>
