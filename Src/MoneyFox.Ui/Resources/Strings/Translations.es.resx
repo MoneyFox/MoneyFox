@@ -885,6 +885,6 @@ Para empezar crea una nueva cuenta. Las cuentas se utilizan para organizar en gr
         <value>Ganancias</value>
     </data>
   <data name="SendEmailFailedMessage" xml:space="preserve">
-        <value>Failed to open the email application. Please try again later or contact us via 'mobile.support@apply-solutions.ch'.</value>
+        <value>No se ha podido abrir la aplicación de correo electrónico. Inténtalo de nuevo más tarde o ponte en contacto con nosotros a través de 'mobile.support@apply-solutions.ch'.</value>
     </data>
 </root>
