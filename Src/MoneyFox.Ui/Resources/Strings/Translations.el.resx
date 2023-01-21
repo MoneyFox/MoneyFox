@@ -887,6 +887,6 @@
         <value>Κέρδη</value>
     </data>
   <data name="SendEmailFailedMessage" xml:space="preserve">
-        <value>Failed to open the email application. Please try again later or contact us via 'mobile.support@apply-solutions.ch'.</value>
+        <value>Απέτυχε να ανοίξει η εφαρμογή ηλεκτρονικού ταχυδρομείου. Προσπαθήστε ξανά αργότερα ή επικοινωνήστε μαζί μας μέσω του 'mobile.support@apply-solutions.ch'.</value>
     </data>
 </root>
