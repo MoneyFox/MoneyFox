@@ -234,9 +234,7 @@ internal sealed class BackupViewModel : BaseViewModel
         catch (Exception ex)
         {
             Log.Error(exception: ex, messageTemplate: "Login Failed");
-            await dialogService.ShowMessageAsync(
-                title: Translations.LoginFailedTitle,
-                message: string.Format(format: Translations.UnknownErrorMessage, arg0: ex.Message));
+            await toastService.ShowToastAsync(Translations.LoginFailedTitle);
         }
 
         OnPropertyChanged(nameof(IsLoggedIn));
@@ -332,13 +330,12 @@ internal sealed class BackupViewModel : BaseViewModel
             }
             catch (BackupOperationCanceledException)
             {
-                Log.Information("Restoring the backup was canceled by the user");
-                await dialogService.ShowMessageAsync(title: Translations.CanceledTitle, message: Translations.RestoreBackupCanceledMessage);
+                await toastService.ShowToastAsync(Translations.RestoreBackupCanceledMessage);
             }
             catch (Exception ex)
             {
                 Log.Error(exception: ex, messageTemplate: "Restore Backup failed");
-                await dialogService.ShowMessageAsync(title: Translations.BackupFailedTitle, message: ex.Message);
+                await toastService.ShowToastAsync(Translations.BackupFailedTitle);
             }
         }
         else
