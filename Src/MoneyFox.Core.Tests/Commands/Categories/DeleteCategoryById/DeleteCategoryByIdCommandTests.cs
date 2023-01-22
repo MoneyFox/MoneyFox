@@ -21,7 +21,7 @@ public class DeleteCategoryByIdCommandTests
     }
 
     [Fact]
-    public async Task GetExcludedAccountQuery_WithoutFilter_CorrectNumberLoaded()
+    public async Task DeleteCategoryWithPassedId()
     {
         // Arrange
         var category1 = new Category("test");
@@ -33,5 +33,20 @@ public class DeleteCategoryByIdCommandTests
 
         // Assert
         (await context.Categories.FirstOrDefaultAsync(x => x.Id == category1.Id)).Should().BeNull();
+    }
+
+    [Fact]
+    public async Task DoesNothingWhenCategoryNotFound()
+    {
+        // Arrange
+        var category1 = new Category("test");
+        await context.AddAsync(category1);
+        await context.SaveChangesAsync();
+
+        // Act
+        await handler.Handle(request: new(99), cancellationToken: default);
+
+        // Assert
+        (await context.Categories.FirstOrDefaultAsync(x => x.Id == category1.Id)).Should().NotBeNull();
     }
 }

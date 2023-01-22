@@ -69,9 +69,9 @@ public class GetTotalEndOfMonthBalanceQuery : IRequest<decimal>
 
         private static decimal CalculateBalanceForTransfer(List<Account> excluded, decimal balance, Payment payment)
         {
-            foreach (var account in excluded)
+            foreach (var accountId in excluded.Select(a => a.Id))
             {
-                if (Equals(objA: account.Id, objB: payment.ChargedAccount.Id))
+                if (Equals(objA: accountId, objB: payment.ChargedAccount.Id))
                 {
                     //Transfer from excluded account
                     balance += payment.Amount;
@@ -82,7 +82,7 @@ public class GetTotalEndOfMonthBalanceQuery : IRequest<decimal>
                     throw new InvalidOperationException($"Navigation Property not initialized properly: {nameof(payment.TargetAccount)}");
                 }
 
-                if (Equals(objA: account.Id, objB: payment.TargetAccount.Id))
+                if (Equals(objA: accountId, objB: payment.TargetAccount.Id))
                 {
                     //Transfer to excluded account
                     balance -= payment.Amount;

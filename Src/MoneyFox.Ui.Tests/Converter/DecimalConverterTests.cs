@@ -6,7 +6,7 @@ using FluentAssertions;
 using Ui.Converter;
 using Xunit;
 
-[ExcludeFromCodeCoverage]
+[Collection("Conversion")]
 public class DecimalConverterTests
 {
     [Theory]

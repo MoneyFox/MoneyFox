@@ -38,7 +38,7 @@ public class DeletePaymentByIdCommand : IRequest
 
             if (entityToDelete == null)
             {
-                throw new PaymentNotFoundException();
+                return Unit.Value;
             }
 
             entityToDelete.ChargedAccount.RemovePaymentAmount(entityToDelete);
@@ -48,7 +48,6 @@ public class DeletePaymentByIdCommand : IRequest
                 await DeleteRecurringPaymentAsync(entityToDelete.RecurringPayment.Id);
             }
 
-            _ = await appDbContext.SaveChangesAsync(cancellationToken);
             _ = appDbContext.Payments.Remove(entityToDelete);
             _ = await appDbContext.SaveChangesAsync(cancellationToken);
 

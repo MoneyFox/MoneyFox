@@ -10,7 +10,10 @@ using JetBrains.Annotations;
 public class RecurringPayment : EntityBase
 {
     [UsedImplicitly]
-    private RecurringPayment() { }
+    private RecurringPayment()
+    {
+        ChargedAccount = default!;
+    }
 
     public RecurringPayment(
         DateTime startDate,

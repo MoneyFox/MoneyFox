@@ -7,7 +7,10 @@ using JetBrains.Annotations;
 public class Budget : EntityBase, IAggregateRoot
 {
     [UsedImplicitly]
-    private Budget() { }
+    private Budget()
+    {
+        SpendingLimit = default!;
+    }
 
     public Budget(string name, SpendingLimit spendingLimit, BudgetTimeRange timeRange, IReadOnlyList<int> includedCategories)
     {
