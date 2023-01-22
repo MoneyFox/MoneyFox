@@ -886,4 +886,7 @@
   <data name="GainsLabel" xml:space="preserve">
         <value>Озеро</value>
     </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+        <value>Не вдалося відкрити поштову програму. Будь ласка, спробуйте пізніше або зв'яжіться з нами через 'mobile.support@apply-solutions.ch'.</value>
+    </data>
 </root>

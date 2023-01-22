@@ -884,4 +884,7 @@ Untuk memulai, buat akun baru. Akun digunakan untuk mengatur pembayaran dan uang
   <data name="GainsLabel" xml:space="preserve">
         <value>Keuntungan</value>
     </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+        <value>Gagal membuka aplikasi email. Silakan coba lagi nanti atau hubungi kami melalui 'mobile.support@apply-solutions.ch'.</value>
+    </data>
 </root>

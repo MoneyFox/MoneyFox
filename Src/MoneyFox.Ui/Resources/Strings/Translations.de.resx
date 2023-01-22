@@ -885,4 +885,7 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
   <data name="GainsLabel" xml:space="preserve">
         <value>Gewinn</value>
     </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+        <value>Die E-Mail-Anwendung konnte nicht geöffnet werden. Bitte versuche es später noch einmal oder kontaktiere uns über 'mobile.support@apply-solutions.ch'.</value>
+    </data>
 </root>

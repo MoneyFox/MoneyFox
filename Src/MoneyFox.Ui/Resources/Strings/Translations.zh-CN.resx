@@ -885,4 +885,7 @@
   <data name="GainsLabel" xml:space="preserve">
         <value>收益</value>
     </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+        <value>打开电子邮件应用程序失败。请稍后再试或通过'mobile.support@apply-solutions.ch'联系我们。</value>
+    </data>
 </root>

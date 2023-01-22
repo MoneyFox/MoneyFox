@@ -885,4 +885,7 @@
   <data name="GainsLabel" xml:space="preserve">
         <value>Печалби</value>
     </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+        <value>Не успя да отвори приложението за електронна поща. Моля, опитайте отново по-късно или се свържете с нас чрез "mobile.support@apply-solutions.ch".</value>
+    </data>
 </root>

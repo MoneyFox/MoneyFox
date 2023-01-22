@@ -886,4 +886,7 @@ Pentru a începe crearea unui nou cont. Conturile sunt utilizate pentru a organi
   <data name="GainsLabel" xml:space="preserve">
         <value>Câștiguri</value>
     </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+        <value>Nu a reușit să deschidă aplicația de e-mail. Vă rugăm să încercați din nou mai târziu sau să ne contactați prin "mobile.support@apply-solutions.ch".</value>
+    </data>
 </root>

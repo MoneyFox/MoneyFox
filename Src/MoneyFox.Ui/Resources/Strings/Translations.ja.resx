@@ -886,4 +886,7 @@
   <data name="GainsLabel" xml:space="preserve">
         <value>ゲインズ</value>
     </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+        <value>メールアプリケーションを開くのに失敗しました。後でもう一度試してみるか、'mobile.support@apply-solutions.ch'からご連絡ください。</value>
+    </data>
 </root>

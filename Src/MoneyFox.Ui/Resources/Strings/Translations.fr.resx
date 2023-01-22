@@ -883,4 +883,7 @@ Pour commencer, créez un nouveau compte. Les comptes sont utilisés pour organi
   <data name="GainsLabel" xml:space="preserve">
         <value>Gains</value>
     </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+        <value>Impossible d'ouvrir l'application de messagerie. Essaie à nouveau plus tard ou contacte-nous via 'mobile.support@apply-solutions.ch'.</value>
+    </data>
 </root>

@@ -886,4 +886,7 @@ Ak chcete začať, vytvorte si nový účet. Účty slúžia na organizáciu pla
   <data name="GainsLabel" xml:space="preserve">
         <value>Zisky</value>
     </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+        <value>Nepodarilo sa otvoriť e-mailovú aplikáciu. Skúste to prosím neskôr alebo nás kontaktujte prostredníctvom 'mobile.support@apply-solutions.ch'.</value>
+    </data>
 </root>

@@ -886,4 +886,7 @@
   <data name="GainsLabel" xml:space="preserve">
         <value>Κέρδη</value>
     </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+        <value>Απέτυχε να ανοίξει η εφαρμογή ηλεκτρονικού ταχυδρομείου. Προσπαθήστε ξανά αργότερα ή επικοινωνήστε μαζί μας μέσω του 'mobile.support@apply-solutions.ch'.</value>
+    </data>
 </root>

@@ -886,4 +886,7 @@
   <data name="GainsLabel" xml:space="preserve">
         <value>Прирост</value>
     </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+        <value>Не удалось открыть почтовое приложение. Пожалуйста, повтори попытку позже или свяжись с нами через 'mobile.support@apply-solutions.ch'.</value>
+    </data>
 </root>

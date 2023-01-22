@@ -886,4 +886,7 @@ För att börja skapa ett nytt konto. Konton används för att organisera betaln
   <data name="GainsLabel" xml:space="preserve">
         <value>Vinster</value>
     </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+        <value>Det gick inte att öppna e-postprogrammet. Försök igen senare eller kontakta oss via "mobile.support@apply-solutions.ch".</value>
+    </data>
 </root>

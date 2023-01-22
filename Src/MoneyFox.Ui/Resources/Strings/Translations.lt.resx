@@ -886,4 +886,7 @@ Norėdami pradėti, sukurkite naują paskyrą. Sąskaitos naudojamos mokėjimams
   <data name="GainsLabel" xml:space="preserve">
         <value>Pelnas</value>
     </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+        <value>Nepavyko atidaryti el. pašto programos. Prašome pabandyti vėliau arba susisiekti su mumis per "mobile.support@apply-solutions.ch".</value>
+    </data>
 </root>

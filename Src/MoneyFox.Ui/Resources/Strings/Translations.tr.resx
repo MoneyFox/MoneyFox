@@ -886,4 +886,7 @@ Başlamak için yeni bir hesap oluşturun. Hesaplar, ödemeleri ve tahsilatlarda
   <data name="GainsLabel" xml:space="preserve">
         <value>Kazançlar</value>
     </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+        <value>E-posta uygulaması açılamadı. Lütfen daha sonra tekrar deneyin veya 'mobile.support@apply-solutions.ch' adresinden bizimle iletişime geçin.</value>
+    </data>
 </root>

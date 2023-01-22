@@ -886,4 +886,7 @@ For å starte å opprette en ny konto. Kontoer benyttes til å organisere betali
   <data name="GainsLabel" xml:space="preserve">
         <value>Styrker</value>
     </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+        <value>Kunne ikke åpne e-postprogrammet. Prøv igjen senere, eller kontakt oss via "mobil.support@apply-solutions.ch".</value>
+    </data>
 </root>

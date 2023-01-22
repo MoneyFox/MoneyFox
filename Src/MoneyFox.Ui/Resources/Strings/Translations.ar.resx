@@ -886,4 +886,7 @@
   <data name="GainsLabel" xml:space="preserve">
         <value>المكاسب</value>
     </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+        <value>فشل في فتح تطبيق البريد الإلكتروني. الرجاء المحاولة مرة أخرى لاحقاً أو الاتصال بنا عبر 'mobile.support@apply-solutions.ch'.</value>
+    </data>
 </root>

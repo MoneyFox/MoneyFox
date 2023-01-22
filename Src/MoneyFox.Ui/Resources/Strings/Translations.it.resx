@@ -886,4 +886,7 @@ Per iniziare a creare un nuovo conto. I conti sono utilizzati per organizzare pa
   <data name="GainsLabel" xml:space="preserve">
         <value>Guadagni</value>
     </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+        <value>Non è stato possibile aprire l'applicazione di posta elettronica. Riprova più tardi o contattaci tramite "mobile.support@apply-solutions.ch".</value>
+    </data>
 </root>

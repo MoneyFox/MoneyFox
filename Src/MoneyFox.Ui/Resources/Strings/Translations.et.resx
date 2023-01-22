@@ -886,4 +886,7 @@ Alustamiseks looge uus konto. Kontod on mõeldud maksete ja raha kogumise korral
   <data name="GainsLabel" xml:space="preserve">
         <value>Kasumid</value>
     </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+        <value>Ebaõnnestus meilirakenduse avamine. Palun proovige hiljem uuesti või võtke meiega ühendust aadressil mobile.support@apply-solutions.ch.</value>
+    </data>
 </root>

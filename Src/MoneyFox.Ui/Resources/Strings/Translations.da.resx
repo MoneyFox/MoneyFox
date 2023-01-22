@@ -886,4 +886,7 @@ For at starte skal du oprette en ny konto. Konti bruges til at organisere betali
   <data name="GainsLabel" xml:space="preserve">
         <value>Overskud</value>
     </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+        <value>Det lykkedes ikke at åbne e-mail-programmet. Prøv igen senere, eller kontakt os via "mobile.support@apply-solutions.ch".</value>
+    </data>
 </root>
