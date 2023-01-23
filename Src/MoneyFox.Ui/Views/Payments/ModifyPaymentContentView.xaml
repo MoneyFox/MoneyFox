@@ -21,7 +21,7 @@
     <VerticalStackLayout Spacing="12" x:DataType="payments:ModifyPaymentViewModel">
 
         <controls:PaymentTypePicker PickerTitle="{x:Static resources:Translations.PaymentTypeLabel}"
-                                    PaymentTypeSource="{Binding PaymentTypeList}"
+                                    PaymentTypeSource="{x:Static payments:ModifyPaymentViewModel.PaymentTypeList}"
                                     SelectedType="{Binding SelectedPayment.Type}" />
 
         <controls:AccountPicker PickerTitle="{Binding AccountHeader, Mode=OneWay}"
@@ -79,7 +79,7 @@
         <VerticalStackLayout IsVisible="{Binding SelectedPayment.IsRecurring}"
                              Spacing="6">
             <Label Style="{StaticResource TextBodySecondary}" Text="{x:Static resources:Translations.RecurrenceLabel}" />
-            <Picker ItemsSource="{Binding RecurrenceList}"
+            <Picker ItemsSource="{x:Static payments:ModifyPaymentViewModel.RecurrenceList}"
                     SelectedItem="{Binding SelectedPayment.RecurringPayment.Recurrence}" />
 
             <Grid HorizontalOptions="FillAndExpand"
