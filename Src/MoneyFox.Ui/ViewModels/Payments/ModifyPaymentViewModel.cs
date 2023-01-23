@@ -72,9 +72,9 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
 
     public bool IsTransfer => SelectedPayment.IsTransfer;
 
-    public static List<PaymentType> PaymentTypeList => new() { PaymentType.Expense, PaymentType.Income, PaymentType.Transfer };
+    public List<PaymentType> PaymentTypeList => new() { PaymentType.Expense, PaymentType.Income, PaymentType.Transfer };
 
-    public static List<PaymentRecurrence> RecurrenceList
+    public List<PaymentRecurrence> RecurrenceList
         => new()
         {
             PaymentRecurrence.Daily,
