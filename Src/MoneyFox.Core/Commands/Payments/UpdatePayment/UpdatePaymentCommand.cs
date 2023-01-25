@@ -91,15 +91,13 @@ public class UpdatePaymentCommand : IRequest
                 .Include(x => x.TargetAccount)
                 .Include(x => x.Category)
                 .Include(x => x.RecurringPayment)
-                .FirstAsync(x => x.Id == request.Id);
+                .FirstAsync(predicate: x => x.Id == request.Id, cancellationToken: cancellationToken);
 
-            if (existingPayment == null)
-            {
-                return Unit.Value;
-            }
+            var chargedAccount = await appDbContext.Accounts.SingleAsync(
+                predicate: a => a.Id == request.ChargedAccountId,
+                cancellationToken: cancellationToken);
 
-            var chargedAccount = await appDbContext.Accounts.FindAsync(request.ChargedAccountId);
-            var targetAccount = await appDbContext.Accounts.FindAsync(request.TargetAccountId);
+            var targetAccount = await appDbContext.Accounts.SingleAsync(predicate: a => a.Id == request.TargetAccountId, cancellationToken: cancellationToken);
             existingPayment.UpdatePayment(
                 date: request.Date,
                 amount: request.Amount,
@@ -109,7 +107,7 @@ public class UpdatePaymentCommand : IRequest
                 category: await appDbContext.Categories.FindAsync(request.CategoryId),
                 note: request.Note);
 
-            if (request.IsRecurring && request.UpdateRecurringPayment && request.PaymentRecurrence.HasValue)
+            if (request is { IsRecurring: true, UpdateRecurringPayment: true, PaymentRecurrence: { } })
             {
                 HandleRecurringPayment(request: request, existingPayment: existingPayment);
             }
