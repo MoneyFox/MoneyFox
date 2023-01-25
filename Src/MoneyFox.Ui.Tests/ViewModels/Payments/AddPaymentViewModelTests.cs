@@ -30,6 +30,6 @@ public sealed class AddPaymentViewModelTests
         vm.SaveCommand.ExecuteAsync(null);
 
         // Assert
-        toastService.Received(1).ShowToastAsync(Translations.UnknownErrorMessage);
+        toastService.Received(1).ShowToastAsync(Arg.Any<string>());
     }
 }

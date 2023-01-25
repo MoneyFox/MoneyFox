@@ -13,11 +13,14 @@ public sealed class ServiceCollectionShould
     public void AllDependenciesPresentAndAccountedFor()
     {
         // Arrange
-        var serviceCollection = new ServiceCollection().AddSingleton(Substitute.For<IDbPathProvider>())
+        var serviceCollection = new ServiceCollection()
+            .AddSingleton(Substitute.For<IDbPathProvider>())
             .AddSingleton(Substitute.For<IStoreOperations>())
             .AddSingleton(Substitute.For<IAppInformation>())
             .AddSingleton(Substitute.For<IFileStore>())
             .AddSingleton(Substitute.For<IPublicClientApplication>());
+
+        serviceCollection.AddLogging();
 
         // Act
         new MoneyFoxConfig().Register(serviceCollection);
