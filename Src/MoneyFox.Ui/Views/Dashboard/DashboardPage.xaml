@@ -21,14 +21,14 @@
         <ScrollView>
             <Grid Padding="15"
                   IsClippedToBounds="False"
-                  RowDefinitions="35, 40, 90, 160, 140, *">
+                  RowDefinitions="35, 60, 40, 90, 160, 140, *">
 
-                <Grid ColumnDefinitions="*, Auto">
-                    <Label Style="{StaticResource TextHeadline}" Text="{x:Static resources:Translations.WelcomeLabel}" />
-
+                <Label Style="{StaticResource TextHeadline}" Text="{x:Static resources:Translations.WelcomeLabel}" />
+                
+                <Grid Grid.Row="1" ColumnDefinitions="*, Auto">
                     <Button Command="{Binding GoToAddPaymentCommand}"
                             HorizontalOptions="End"
-                            HeightRequest="40"
+                            VerticalOptions="End"
                             Style="{StaticResource PrimaryButton}"
                             Text="{x:Static resources:Translations.AddPaymentLabel}">
                         <Button.ImageSource>
@@ -40,13 +40,13 @@
                     </Button>
                 </Grid>
                 
-                <Label Grid.Row="1"
+                <Label Grid.Row="2"
                        Style="{StaticResource TextTitle}"
                        Text="{x:Static resources:Translations.AssetsLabel}"
                        VerticalOptions="Center" />
 
                 <!--  Assets card  -->
-                <controls:Card Grid.Row="2"
+                <controls:Card Grid.Row="3"
                                HeightRequest="90">
                     <Grid>
 
@@ -85,7 +85,7 @@
                 </controls:Card>
 
                 <!--  Accounts  -->
-                <Grid Grid.Row="3" VerticalOptions="FillAndExpand" RowDefinitions="*, 35">
+                <Grid Grid.Row="4" VerticalOptions="FillAndExpand" RowDefinitions="*, 35">
 
                     <CollectionView
                         x:Name="AccountCollectionView"
@@ -157,7 +157,7 @@
                 </Grid>
 
                 <!--  Income / Expenses  -->
-                <StackLayout Grid.Row="4" VerticalOptions="Start">
+                <StackLayout Grid.Row="5" VerticalOptions="Start">
                     <Label
                         Style="{StaticResource TextTitle}"
                         Text="{x:Static resources:Translations.IncomeAndExpensesLabel}"
