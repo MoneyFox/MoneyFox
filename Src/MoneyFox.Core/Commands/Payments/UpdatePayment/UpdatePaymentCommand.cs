@@ -10,73 +10,26 @@ using Common.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-public class UpdatePaymentCommand : IRequest
+public static class UpdatePayment
 {
-    public UpdatePaymentCommand(
-        int id,
-        DateTime date,
-        decimal amount,
-        bool isCleared,
-        PaymentType type,
-        string note,
-        bool isRecurring,
-        int categoryId,
-        int chargedAccountId,
-        int targetAccountId,
-        bool updateRecurringPayment,
-        PaymentRecurrence? recurrence,
-        bool? isEndless,
-        DateTime? endDate,
-        bool isLastDayOfMonth)
-    {
-        Id = id;
-        Date = date;
-        Amount = amount;
-        IsCleared = isCleared;
-        Type = type;
-        Note = note;
-        IsRecurring = isRecurring;
-        CategoryId = categoryId;
-        ChargedAccountId = chargedAccountId;
-        TargetAccountId = targetAccountId;
-        UpdateRecurringPayment = updateRecurringPayment;
-        PaymentRecurrence = recurrence;
-        IsEndless = isEndless;
-        EndDate = endDate;
-        IsLastDayOfMonth = isLastDayOfMonth;
-    }
+    public record Command(
+        int Id,
+        DateTime Date,
+        decimal Amount,
+        bool IsCleared,
+        PaymentType Type,
+        string Note,
+        bool IsRecurring,
+        int CategoryId,
+        int ChargedAccountId,
+        int TargetAccountId,
+        bool UpdateRecurringPayment,
+        PaymentRecurrence? Recurrence,
+        bool? IsEndless,
+        DateTime? EndDate,
+        bool IsLastDayOfMonth) : IRequest;
 
-    public int Id { get; }
-
-    public DateTime Date { get; }
-
-    public decimal Amount { get; }
-
-    public bool IsCleared { get; }
-
-    public PaymentType Type { get; }
-
-    public string Note { get; }
-
-    public bool IsRecurring { get; }
-
-    public int CategoryId { get; }
-
-    public int ChargedAccountId { get; }
-
-    public int TargetAccountId { get; }
-
-    public PaymentRecurrence? PaymentRecurrence { get; private set; }
-
-    public bool? IsEndless { get; }
-
-    public DateTime? EndDate { get; }
-
-    public bool IsLastDayOfMonth { get; }
-
-    public bool UpdateRecurringPayment { get; }
-
-    public class Handler : IRequestHandler<UpdatePaymentCommand>
+    public class Handler : IRequestHandler<Command>
     {
         private readonly IAppDbContext appDbContext;
 
@@ -85,33 +38,33 @@ public class UpdatePaymentCommand : IRequest
             this.appDbContext = appDbContext;
         }
 
-        public async Task<Unit> Handle(UpdatePaymentCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(Command command, CancellationToken cancellationToken)
         {
             var existingPayment = await appDbContext.Payments.Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
                 .Include(x => x.Category)
                 .Include(x => x.RecurringPayment)
-                .FirstAsync(predicate: x => x.Id == request.Id, cancellationToken: cancellationToken);
+                .FirstAsync(predicate: x => x.Id == command.Id, cancellationToken: cancellationToken);
 
             var chargedAccount = await appDbContext.Accounts.SingleAsync(
-                predicate: a => a.Id == request.ChargedAccountId,
+                predicate: a => a.Id == command.ChargedAccountId,
                 cancellationToken: cancellationToken);
 
-            var targetAccount = await appDbContext.Accounts.SingleAsync(predicate: a => a.Id == request.TargetAccountId, cancellationToken: cancellationToken);
+            var targetAccount = await appDbContext.Accounts.FindAsync(command.TargetAccountId);
             existingPayment.UpdatePayment(
-                date: request.Date,
-                amount: request.Amount,
-                type: request.Type,
+                date: command.Date,
+                amount: command.Amount,
+                type: command.Type,
                 chargedAccount: chargedAccount,
                 targetAccount: targetAccount,
-                category: await appDbContext.Categories.FindAsync(request.CategoryId),
-                note: request.Note);
+                category: await appDbContext.Categories.FindAsync(command.CategoryId),
+                note: command.Note);
 
-            if (request is { IsRecurring: true, UpdateRecurringPayment: true, PaymentRecurrence: { } })
+            if (command is { IsRecurring: true, UpdateRecurringPayment: true, Recurrence: { } })
             {
-                HandleRecurringPayment(request: request, existingPayment: existingPayment);
+                HandleRecurringPayment(request: command, existingPayment: existingPayment);
             }
-            else if (!request.IsRecurring && existingPayment.RecurringPayment != null)
+            else if (!command.IsRecurring && existingPayment.RecurringPayment != null)
             {
                 var linkedPayments = appDbContext.Payments.Where(x => x.IsRecurring)
                     .Where(x => x.RecurringPayment!.Id == existingPayment.RecurringPayment!.Id)
@@ -126,13 +79,13 @@ public class UpdatePaymentCommand : IRequest
             return Unit.Value;
         }
 
-        private static void HandleRecurringPayment(UpdatePaymentCommand request, Payment existingPayment)
+        private static void HandleRecurringPayment(Command request, Payment existingPayment)
         {
             if (existingPayment.IsRecurring)
             {
                 existingPayment.RecurringPayment!.UpdateRecurringPayment(
                     amount: request.Amount,
-                    recurrence: request.PaymentRecurrence ?? existingPayment.RecurringPayment.Recurrence,
+                    recurrence: request.Recurrence ?? existingPayment.RecurringPayment.Recurrence,
                     chargedAccount: existingPayment.ChargedAccount,
                     isLastDayOfMonth: request.IsLastDayOfMonth,
                     note: request.Note,
@@ -142,13 +95,13 @@ public class UpdatePaymentCommand : IRequest
             }
             else
             {
-                if (!request.PaymentRecurrence.HasValue)
+                if (!request.Recurrence.HasValue)
                 {
-                    throw new RecurrenceNullException(nameof(request.PaymentRecurrence));
+                    throw new RecurrenceNullException(nameof(request.Recurrence));
                 }
 
                 existingPayment.AddRecurringPayment(
-                    recurrence: request.PaymentRecurrence.Value,
+                    recurrence: request.Recurrence.Value,
                     isLastDayOfMonth: request.IsLastDayOfMonth,
                     endDate: request.IsEndless.HasValue && request.IsEndless.Value ? null : request.EndDate);
             }

@@ -62,22 +62,22 @@ internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
 
         // Due to a bug in .net maui, the loading dialog can only be called after any other dialog
         await dialogService.ShowLoadingDialogAsync(Translations.SavingPaymentMessage);
-        var command = new UpdatePaymentCommand(
-            id: SelectedPayment.Id,
-            date: SelectedPayment.Date,
-            amount: SelectedPayment.Amount,
-            isCleared: SelectedPayment.IsCleared,
-            type: SelectedPayment.Type,
-            note: SelectedPayment.Note,
-            isRecurring: SelectedPayment.IsRecurring,
-            categoryId: SelectedPayment.Category?.Id ?? 0,
-            chargedAccountId: SelectedPayment.ChargedAccount?.Id ?? 0,
-            targetAccountId: SelectedPayment.TargetAccount?.Id ?? 0,
-            updateRecurringPayment: updateRecurring,
-            recurrence: SelectedPayment.RecurringPayment?.Recurrence,
-            isEndless: SelectedPayment.RecurringPayment?.IsEndless,
-            endDate: SelectedPayment.RecurringPayment?.EndDate,
-            isLastDayOfMonth: SelectedPayment.RecurringPayment?.IsLastDayOfMonth ?? false);
+        var command = new UpdatePayment.Command(
+            Id: SelectedPayment.Id,
+            Date: SelectedPayment.Date,
+            Amount: SelectedPayment.Amount,
+            IsCleared: SelectedPayment.IsCleared,
+            Type: SelectedPayment.Type,
+            Note: SelectedPayment.Note,
+            IsRecurring: SelectedPayment.IsRecurring,
+            CategoryId: SelectedPayment.Category?.Id ?? 0,
+            ChargedAccountId: SelectedPayment.ChargedAccount?.Id ?? 0,
+            TargetAccountId: SelectedPayment.TargetAccount?.Id ?? 0,
+            UpdateRecurringPayment: updateRecurring,
+            Recurrence: SelectedPayment.RecurringPayment?.Recurrence,
+            IsEndless: SelectedPayment.RecurringPayment?.IsEndless,
+            EndDate: SelectedPayment.RecurringPayment?.EndDate,
+            IsLastDayOfMonth: SelectedPayment.RecurringPayment?.IsLastDayOfMonth ?? false);
 
         await mediator.Send(command);
     }

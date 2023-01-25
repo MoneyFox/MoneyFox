@@ -13,7 +13,7 @@ using TestFramework;
 public class UpdatePaymentCommandTests
 {
     private readonly AppDbContext context;
-    private readonly UpdatePaymentCommand.Handler handler;
+    private readonly UpdatePayment.Handler handler;
 
     public UpdatePaymentCommandTests()
     {
@@ -32,22 +32,22 @@ public class UpdatePaymentCommandTests
 
         // Act
         await handler.Handle(
-            request: new(
-                id: payment1.Id,
-                date: payment1.Date,
-                amount: payment1.Amount,
-                isCleared: payment1.IsCleared,
-                type: payment1.Type,
-                note: payment1.Note,
-                isRecurring: payment1.IsRecurring,
-                categoryId: payment1.Category != null ? payment1.Category.Id : 0,
-                chargedAccountId: payment1.ChargedAccount != null ? payment1.ChargedAccount.Id : 0,
-                targetAccountId: payment1.TargetAccount != null ? payment1.TargetAccount.Id : 0,
-                updateRecurringPayment: false,
-                recurrence: null,
-                isEndless: null,
-                endDate: null,
-                isLastDayOfMonth: false),
+            command: new(
+                Id: payment1.Id,
+                Date: payment1.Date,
+                Amount: payment1.Amount,
+                IsCleared: payment1.IsCleared,
+                Type: payment1.Type,
+                Note: payment1.Note,
+                IsRecurring: payment1.IsRecurring,
+                CategoryId: payment1.Category != null ? payment1.Category.Id : 0,
+                ChargedAccountId: payment1.ChargedAccount != null ? payment1.ChargedAccount.Id : 0,
+                TargetAccountId: payment1.TargetAccount != null ? payment1.TargetAccount.Id : 0,
+                UpdateRecurringPayment: false,
+                Recurrence: null,
+                IsEndless: null,
+                EndDate: null,
+                IsLastDayOfMonth: false),
             cancellationToken: default);
 
         // Assert
@@ -74,22 +74,22 @@ public class UpdatePaymentCommandTests
 
         // Act
         await handler.Handle(
-            request: new(
-                id: payment1.Id,
-                date: payment1.Date,
-                amount: payment1.Amount,
-                isCleared: payment1.IsCleared,
-                type: payment1.Type,
-                note: payment1.Note,
-                isRecurring: payment1.IsRecurring,
-                categoryId: payment1.Category.Id,
-                chargedAccountId: payment1.ChargedAccount != null ? payment1.ChargedAccount.Id : 0,
-                targetAccountId: payment1.TargetAccount != null ? payment1.TargetAccount.Id : 0,
-                updateRecurringPayment: true,
-                recurrence: PaymentRecurrence.Monthly,
-                isEndless: null,
-                endDate: null,
-                isLastDayOfMonth: false),
+            command: new(
+                Id: payment1.Id,
+                Date: payment1.Date,
+                Amount: payment1.Amount,
+                IsCleared: payment1.IsCleared,
+                Type: payment1.Type,
+                Note: payment1.Note,
+                IsRecurring: payment1.IsRecurring,
+                CategoryId: payment1.Category.Id,
+                ChargedAccountId: payment1.ChargedAccount != null ? payment1.ChargedAccount.Id : 0,
+                TargetAccountId: payment1.TargetAccount != null ? payment1.TargetAccount.Id : 0,
+                UpdateRecurringPayment: true,
+                Recurrence: PaymentRecurrence.Monthly,
+                IsEndless: null,
+                EndDate: null,
+                IsLastDayOfMonth: false),
             cancellationToken: default);
 
         // Assert
@@ -116,22 +116,22 @@ public class UpdatePaymentCommandTests
 
         // Act
         await handler.Handle(
-            request: new(
-                id: payment1.Id,
-                date: payment1.Date,
-                amount: payment1.Amount,
-                isCleared: payment1.IsCleared,
-                type: payment1.Type,
-                note: payment1.Note,
-                isRecurring: payment1.IsRecurring,
-                categoryId: payment1.Category.Id,
-                chargedAccountId: payment1.ChargedAccount != null ? payment1.ChargedAccount.Id : 0,
-                targetAccountId: payment1.TargetAccount != null ? payment1.TargetAccount.Id : 0,
-                updateRecurringPayment: true,
-                recurrence: PaymentRecurrence.Daily,
-                isEndless: null,
-                endDate: null,
-                isLastDayOfMonth: false),
+            command: new(
+                Id: payment1.Id,
+                Date: payment1.Date,
+                Amount: payment1.Amount,
+                IsCleared: payment1.IsCleared,
+                Type: payment1.Type,
+                Note: payment1.Note,
+                IsRecurring: payment1.IsRecurring,
+                CategoryId: payment1.Category.Id,
+                ChargedAccountId: payment1.ChargedAccount != null ? payment1.ChargedAccount.Id : 0,
+                TargetAccountId: payment1.TargetAccount != null ? payment1.TargetAccount.Id : 0,
+                UpdateRecurringPayment: true,
+                Recurrence: PaymentRecurrence.Daily,
+                IsEndless: null,
+                EndDate: null,
+                IsLastDayOfMonth: false),
             cancellationToken: default);
 
         // Assert
@@ -157,22 +157,22 @@ public class UpdatePaymentCommandTests
 
         // Disable recurrence on the payment
         await handler.Handle(
-            request: new(
-                id: payment1.Id,
-                date: payment1.Date,
-                amount: payment1.Amount,
-                isCleared: payment1.IsCleared,
-                type: payment1.Type,
-                note: payment1.Note,
-                isRecurring: false,
-                categoryId: 0,
-                chargedAccountId: payment1.ChargedAccount != null ? payment1.ChargedAccount.Id : 0,
-                targetAccountId: payment1.TargetAccount != null ? payment1.TargetAccount.Id : 0,
-                updateRecurringPayment: true,
-                recurrence: PaymentRecurrence.Daily,
-                isEndless: null,
-                endDate: null,
-                isLastDayOfMonth: false),
+            command: new(
+                Id: payment1.Id,
+                Date: payment1.Date,
+                Amount: payment1.Amount,
+                IsCleared: payment1.IsCleared,
+                Type: payment1.Type,
+                Note: payment1.Note,
+                IsRecurring: false,
+                CategoryId: 0,
+                ChargedAccountId: payment1.ChargedAccount != null ? payment1.ChargedAccount.Id : 0,
+                TargetAccountId: payment1.TargetAccount != null ? payment1.TargetAccount.Id : 0,
+                UpdateRecurringPayment: true,
+                Recurrence: PaymentRecurrence.Daily,
+                IsEndless: null,
+                EndDate: null,
+                IsLastDayOfMonth: false),
             cancellationToken: default);
 
         // Assert
