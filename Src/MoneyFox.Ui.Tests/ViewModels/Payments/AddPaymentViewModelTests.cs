@@ -3,6 +3,7 @@ namespace MoneyFox.Ui.Tests.ViewModels.Payments;
 using AutoMapper;
 using Core.Common.Interfaces;
 using MediatR;
+using Microsoft.Extensions.Logging.Abstractions;
 using NSubstitute;
 using Resources.Strings;
 using Ui.ViewModels.Payments;
@@ -20,7 +21,8 @@ public sealed class AddPaymentViewModelTests
             mediator: Substitute.For<IMediator>(),
             mapper: Substitute.For<IMapper>(),
             dialogService: dialogService,
-            toastService: toastService) { SelectedPayment = new() { ChargedAccount = new() } };
+            toastService: toastService,
+            logger: NullLogger<AddPaymentViewModel>.Instance) { SelectedPayment = new() { ChargedAccount = new() } };
 
         dialogService.ShowConfirmMessageAsync(title: Arg.Any<string>(), message: Arg.Any<string>()).Returns(true);
 

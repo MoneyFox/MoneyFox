@@ -12,6 +12,7 @@ using Core.Common.Interfaces;
 using Core.Common.Messages;
 using MediatR;
 using Microsoft.AppCenter.Crashes;
+using Microsoft.Extensions.Logging;
 using Resources.Strings;
 using Views.Accounts;
 
@@ -21,6 +22,7 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
     private readonly IMediator mediator;
     private readonly IDialogService dialogService;
     private readonly IToastService toastService;
+    private readonly ILogger<ModifyPaymentViewModel> logger;
 
     private PaymentViewModel selectedPayment = new();
     private ObservableCollection<AccountViewModel> chargedAccounts = new();
@@ -29,12 +31,14 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
     protected ModifyPaymentViewModel(IMediator mediator,
                                      IMapper mapper,
                                      IDialogService dialogService,
-                                     IToastService toastService)
+                                     IToastService toastService,
+                                     ILogger<ModifyPaymentViewModel> logger)
     {
         this.mediator = mediator;
         this.mapper = mapper;
         this.dialogService = dialogService;
         this.toastService = toastService;
+        this.logger = logger;
     }
 
     public PaymentViewModel SelectedPayment
@@ -155,7 +159,8 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
         catch(Exception ex)
         {
             Crashes.TrackError(ex);
-            await toastService.ShowToastAsync(Translations.UnknownErrorMessage);
+            logger.LogError(ex, "Failed to modify payment");
+            await toastService.ShowToastAsync(string.Format(Translations.UnknownErrorMessage, ex.Message));
         }
         finally
         {

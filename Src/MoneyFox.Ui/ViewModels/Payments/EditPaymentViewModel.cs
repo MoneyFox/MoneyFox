@@ -7,28 +7,30 @@ using Core.Commands.Payments.DeletePaymentById;
 using Core.Commands.Payments.UpdatePayment;
 using Core.Common.Interfaces;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using Resources.Strings;
 
 internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
 {
+    private readonly IDialogService dialogService;
     private readonly IMapper mapper;
     private readonly IMediator mediator;
-    private readonly IDialogService dialogService;
-    private readonly IToastService toastService;
 
-    public EditPaymentViewModel(IMediator mediator,
-                                IMapper mapper,
-                                IDialogService dialogService,
-                                IToastService toastService) : base(
+    public EditPaymentViewModel(
+        IMediator mediator,
+        IMapper mapper,
+        IDialogService dialogService,
+        IToastService toastService,
+        ILogger<EditPaymentViewModel> logger) : base(
         mediator: mediator,
         mapper: mapper,
         dialogService: dialogService,
-        toastService: toastService)
+        toastService: toastService,
+        logger: logger)
     {
         this.mediator = mediator;
         this.mapper = mapper;
         this.dialogService = dialogService;
-        this.toastService = toastService;
     }
 
     public AsyncRelayCommand<PaymentViewModel> DeleteCommand => new(async p => await DeletePaymentAsync(p));

@@ -6,8 +6,8 @@ using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.ApplicationCore.Queries;
 using Core.Commands.Payments.CreatePayment;
 using Core.Common.Interfaces;
-using JetBrains.Annotations;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using Resources.Strings;
 
 internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
@@ -16,11 +16,17 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
     private readonly IMapper mapper;
     private readonly IMediator mediator;
 
-    public AddPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, IToastService toastService) : base(
+    public AddPaymentViewModel(
+        IMediator mediator,
+        IMapper mapper,
+        IDialogService dialogService,
+        IToastService toastService,
+        ILogger<AddPaymentViewModel> logger) : base(
         mediator: mediator,
         mapper: mapper,
         dialogService: dialogService,
-        toastService: toastService)
+        toastService: toastService,
+        logger: logger)
     {
         this.mediator = mediator;
         this.mapper = mapper;
