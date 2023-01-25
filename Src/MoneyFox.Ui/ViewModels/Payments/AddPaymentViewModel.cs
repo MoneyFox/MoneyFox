@@ -20,13 +20,11 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
         IMediator mediator,
         IMapper mapper,
         IDialogService dialogService,
-        IToastService toastService,
-        ILogger<AddPaymentViewModel> logger) : base(
+        IToastService toastService) : base(
         mediator: mediator,
         mapper: mapper,
         dialogService: dialogService,
-        toastService: toastService,
-        logger: logger)
+        toastService: toastService)
     {
         this.mediator = mediator;
         this.mapper = mapper;

@@ -20,8 +20,6 @@ public sealed class ServiceCollectionShould
             .AddSingleton(Substitute.For<IFileStore>())
             .AddSingleton(Substitute.For<IPublicClientApplication>());
 
-        serviceCollection.AddLogging();
-
         // Act
         new MoneyFoxConfig().Register(serviceCollection);
 

@@ -12,33 +12,27 @@ using Core.Common.Interfaces;
 using Core.Common.Messages;
 using MediatR;
 using Microsoft.AppCenter.Crashes;
-using Microsoft.Extensions.Logging;
 using Resources.Strings;
+using Serilog;
 using Views.Accounts;
 
 internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipient<CategorySelectedMessage>
 {
+    private readonly IDialogService dialogService;
     private readonly IMapper mapper;
     private readonly IMediator mediator;
-    private readonly IDialogService dialogService;
     private readonly IToastService toastService;
-    private readonly ILogger<ModifyPaymentViewModel> logger;
+    private ObservableCollection<AccountViewModel> chargedAccounts = new();
 
     private PaymentViewModel selectedPayment = new();
-    private ObservableCollection<AccountViewModel> chargedAccounts = new();
     private ObservableCollection<AccountViewModel> targetAccounts = new();
 
-    protected ModifyPaymentViewModel(IMediator mediator,
-                                     IMapper mapper,
-                                     IDialogService dialogService,
-                                     IToastService toastService,
-                                     ILogger<ModifyPaymentViewModel> logger)
+    protected ModifyPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, IToastService toastService)
     {
         this.mediator = mediator;
         this.mapper = mapper;
         this.dialogService = dialogService;
         this.toastService = toastService;
-        this.logger = logger;
     }
 
     public PaymentViewModel SelectedPayment
@@ -156,11 +150,11 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
             Messenger.Send(new ReloadMessage());
             await Shell.Current.Navigation.PopModalAsync();
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Crashes.TrackError(ex);
-            logger.LogError(ex, "Failed to modify payment");
-            await toastService.ShowToastAsync(string.Format(Translations.UnknownErrorMessage, ex.Message));
+            Log.Error("Failed to modify payment");
+            await toastService.ShowToastAsync(string.Format(format: Translations.UnknownErrorMessage, arg0: ex.Message));
         }
         finally
         {

@@ -4,6 +4,7 @@ using System.Reflection;
 using CommunityToolkit.Maui;
 using Controls;
 using Core.Common;
+using JetBrains.Annotations;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
@@ -13,10 +14,10 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Exceptions;
 using SkiaSharp.Views.Maui.Controls.Hosting;
-using Path = System.IO.Path;
 
 public static class MauiProgram
 {
+    [UsedImplicitly]
     public static MauiApp CreateMauiApp()
     {
         var configuration = GetConfiguration();
@@ -24,7 +25,6 @@ public static class MauiProgram
         SetupAppCenter(configuration);
         var builder = MauiApp.CreateBuilder();
         builder.Configuration.AddConfiguration(configuration);
-        builder.Logging.AddSerilog(dispose: true);
         builder.UseMauiApp<App>()
             .ConfigureFonts(
                 fonts =>

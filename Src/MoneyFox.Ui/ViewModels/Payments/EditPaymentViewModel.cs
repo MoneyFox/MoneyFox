@@ -7,7 +7,6 @@ using Core.Commands.Payments.DeletePaymentById;
 using Core.Commands.Payments.UpdatePayment;
 using Core.Common.Interfaces;
 using MediatR;
-using Microsoft.Extensions.Logging;
 using Resources.Strings;
 
 internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
@@ -20,13 +19,11 @@ internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
         IMediator mediator,
         IMapper mapper,
         IDialogService dialogService,
-        IToastService toastService,
-        ILogger<EditPaymentViewModel> logger) : base(
+        IToastService toastService) : base(
         mediator: mediator,
         mapper: mapper,
         dialogService: dialogService,
-        toastService: toastService,
-        logger: logger)
+        toastService: toastService)
     {
         this.mediator = mediator;
         this.mapper = mapper;
