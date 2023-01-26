@@ -13,23 +13,21 @@ using Core.Common.Messages;
 using MediatR;
 using Microsoft.AppCenter.Crashes;
 using Resources.Strings;
+using Serilog;
 using Views.Accounts;
 
 internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipient<CategorySelectedMessage>
 {
+    private readonly IDialogService dialogService;
     private readonly IMapper mapper;
     private readonly IMediator mediator;
-    private readonly IDialogService dialogService;
     private readonly IToastService toastService;
+    private ObservableCollection<AccountViewModel> chargedAccounts = new();
 
     private PaymentViewModel selectedPayment = new();
-    private ObservableCollection<AccountViewModel> chargedAccounts = new();
     private ObservableCollection<AccountViewModel> targetAccounts = new();
 
-    protected ModifyPaymentViewModel(IMediator mediator,
-                                     IMapper mapper,
-                                     IDialogService dialogService,
-                                     IToastService toastService)
+    protected ModifyPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, IToastService toastService)
     {
         this.mediator = mediator;
         this.mapper = mapper;
@@ -152,10 +150,11 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
             Messenger.Send(new ReloadMessage());
             await Shell.Current.Navigation.PopModalAsync();
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Crashes.TrackError(ex);
-            await toastService.ShowToastAsync(Translations.UnknownErrorMessage);
+            Log.Error("Failed to modify payment");
+            await toastService.ShowToastAsync(string.Format(format: Translations.UnknownErrorMessage, arg0: ex.Message));
         }
         finally
         {

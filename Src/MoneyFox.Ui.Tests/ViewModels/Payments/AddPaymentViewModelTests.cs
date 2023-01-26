@@ -3,6 +3,7 @@ namespace MoneyFox.Ui.Tests.ViewModels.Payments;
 using AutoMapper;
 using Core.Common.Interfaces;
 using MediatR;
+using Microsoft.Extensions.Logging.Abstractions;
 using NSubstitute;
 using Resources.Strings;
 using Ui.ViewModels.Payments;
@@ -28,6 +29,6 @@ public sealed class AddPaymentViewModelTests
         vm.SaveCommand.ExecuteAsync(null);
 
         // Assert
-        toastService.Received(1).ShowToastAsync(Translations.UnknownErrorMessage);
+        toastService.Received(1).ShowToastAsync(Arg.Any<string>());
     }
 }

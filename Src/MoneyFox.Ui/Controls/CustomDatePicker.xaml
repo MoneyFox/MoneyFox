@@ -17,7 +17,7 @@
             <DatePicker
                 Grid.ColumnSpan="2"
                 Date="{Binding DateField}"
-                Format="D" />
+                Format="d" />
 
             <Image Grid.Column="1" HeightRequest="20" WidthRequest="20" Margin="0,0,6,0" IsVisible="{OnPlatform WinUI=false}">
                 <Image.Source>

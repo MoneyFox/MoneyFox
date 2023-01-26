@@ -4,6 +4,8 @@ using System.Reflection;
 using CommunityToolkit.Maui;
 using Controls;
 using Core.Common;
+using JetBrains.Annotations;
+using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.Extensions.Configuration;
@@ -15,12 +17,13 @@ using SkiaSharp.Views.Maui.Controls.Hosting;
 
 public static class MauiProgram
 {
+    [UsedImplicitly]
     public static MauiApp CreateMauiApp()
     {
-        IConfigurationRoot configuration = GetConfiguration();
-        InitLogger();
-        InitAppCenter(configuration);
-        MauiAppBuilder builder = MauiApp.CreateBuilder();
+        var configuration = GetConfiguration();
+        SetupSerilog();
+        SetupAppCenter(configuration);
+        var builder = MauiApp.CreateBuilder();
         builder.Configuration.AddConfiguration(configuration);
         builder.UseMauiApp<App>()
             .ConfigureFonts(
@@ -64,35 +67,32 @@ public static class MauiProgram
 
     private static IConfigurationRoot GetConfiguration()
     {
-        using Stream? stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MoneyFox.Ui.appsettings.json");
-        return stream == null
-            ? throw new FileNotFoundException("'appsettings.json' was not found.")
-            : new ConfigurationBuilder().AddJsonStream(stream).Build();
+        using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MoneyFox.Ui.appsettings.json");
+
+        return stream == null ? throw new FileNotFoundException("'appsettings.json' was not found.") : new ConfigurationBuilder().AddJsonStream(stream).Build();
     }
 
-    private static void InitAppCenter(IConfiguration configuration)
+    private static void SetupAppCenter(IConfiguration configuration)
     {
-        Crashes.GetErrorAttachments = (ErrorReport report) =>
+        Crashes.GetErrorAttachments = report =>
         {
             var logFile = LogFileService.GetLatestLogFileInfo();
+
             return logFile == null
                 ? Array.Empty<ErrorAttachmentLog>()
-                : (IEnumerable<ErrorAttachmentLog>)(new ErrorAttachmentLog[]
-            {
-                ErrorAttachmentLog.AttachmentWithText("MoneyFox Log", logFile.FullName)
-            });
+                : (IEnumerable<ErrorAttachmentLog>)new[] { ErrorAttachmentLog.AttachmentWithText(text: "MoneyFox Log", fileName: logFile.FullName) };
         };
 
         var appCenter = configuration.GetRequiredSection("AppCenter").Get<AppCenterOption>()!;
-        Microsoft.AppCenter.AppCenter.Start(
+        AppCenter.Start(
             appSecret: $"android={appCenter.AndroidSecret};" + $"windowsdesktop={appCenter.WindowsSecret};" + $"ios={appCenter.IosSecret};",
             typeof(Analytics),
             typeof(Crashes));
     }
 
-    private static void InitLogger()
+    private static void SetupSerilog()
     {
-        string logFile = Path.Combine(path1: FileSystem.AppDataDirectory, path2: LogConfiguration.FileName);
+        var logFile = Path.Combine(path1: FileSystem.AppDataDirectory, path2: LogConfiguration.FileName);
         Log.Logger = new LoggerConfiguration().MinimumLevel.Debug()
             .Enrich.FromLogContext()
             .Enrich.WithExceptionDetails()
