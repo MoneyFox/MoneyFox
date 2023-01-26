@@ -9,7 +9,7 @@
 
     <VerticalStackLayout Spacing="6"
                          BindingContext="{x:Reference this}">
-        <Label Text="{Binding TextFieldTitle}" />
+        <Label Text="{OnPlatform WinUI={Binding SearchPlaceholder}, Default={x:Null}}" />
 
         <Border Padding="20,0"
                 StrokeThickness="{OnIdiom Desktop=0, Default=1}"
@@ -25,7 +25,7 @@
                                           HeightRequest="40"
                                           BackgroundColor="Transparent"
                                           TextChanged="SearchEntry_OnTextChanged"
-                                          Placeholder="{Binding SearchPlaceholder}" />
+                                          Placeholder="{OnPlatform WinUI={x:Null}, Default={Binding SearchPlaceholder}}" />
 
                 <Image Grid.Column="1" HeightRequest="20" WidthRequest="20">
                     <Image.Source>
