@@ -2,7 +2,6 @@
 
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
-        <UseMaui>true</UseMaui>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>

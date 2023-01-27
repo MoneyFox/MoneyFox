@@ -3,6 +3,7 @@ namespace MoneyFox.Ui.Tests;
 using Core.Common.Interfaces;
 using Core.Interfaces;
 using InversionOfControl;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Identity.Client;
 using NSubstitute;
 using Xunit;
