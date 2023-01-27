@@ -20,7 +20,7 @@ internal partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadM
 
     private readonly IMediator mediator;
 
-    private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> categories = new();
+    private ObservableCollection<AlphaGroupListGroupCollection<CategoryListItemViewModel>> categories = new();
 
     public CategoryListViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService)
     {
@@ -29,7 +29,7 @@ internal partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadM
         this.dialogService = dialogService;
     }
 
-    public ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> Categories
+    public ObservableCollection<AlphaGroupListGroupCollection<CategoryListItemViewModel>> Categories
     {
         get => categories;
 
@@ -42,7 +42,7 @@ internal partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadM
 
     public AsyncRelayCommand GoToAddCategoryCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddCategoryRoute));
 
-    public AsyncRelayCommand<CategoryViewModel> GoToEditCategoryCommand
+    public AsyncRelayCommand<CategoryListItemViewModel> GoToEditCategoryCommand
         => new(async cvm => await Shell.Current.GoToAsync($"{Routes.EditCategoryRoute}?categoryId={cvm.Id}"));
 
     public async void Receive(ReloadMessage message)
@@ -59,8 +59,8 @@ internal partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadM
     [RelayCommand]
     private async Task SearchCategoryAsync(string searchTerm = "")
     {
-        var categoryVms = mapper.Map<List<CategoryViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery(searchTerm)));
-        var groups = AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(
+        var categoryVms = mapper.Map<List<CategoryListItemViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery(searchTerm)));
+        var groups = AlphaGroupListGroupCollection<CategoryListItemViewModel>.CreateGroups(
             items: categoryVms,
             ci: CultureInfo.CurrentUICulture,
             getKey: s => string.IsNullOrEmpty(s.Name) ? "-" : s.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture));
@@ -69,7 +69,7 @@ internal partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadM
     }
 
     [RelayCommand]
-    private async Task DeleteCategoryAsync(CategoryViewModel categoryViewModel)
+    private async Task DeleteCategoryAsync(CategoryListItemViewModel categoryListItemViewModel)
     {
         if (await dialogService.ShowConfirmMessageAsync(
                 title: Translations.DeleteTitle,
@@ -77,7 +77,7 @@ internal partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadM
                 positiveButtonText: Translations.YesLabel,
                 negativeButtonText: Translations.NoLabel))
         {
-            await mediator.Send(new DeleteCategoryByIdCommand(categoryViewModel.Id));
+            await mediator.Send(new DeleteCategoryByIdCommand(categoryListItemViewModel.Id));
             await SearchCategoryAsync();
         }
     }

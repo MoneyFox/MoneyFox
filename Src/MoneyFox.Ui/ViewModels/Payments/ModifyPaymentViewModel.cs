@@ -96,7 +96,7 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
 
     public async void Receive(CategorySelectedMessage message)
     {
-        SelectedPayment.Category = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId)));
+        SelectedPayment.Category = mapper.Map<CategoryListItemViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId)));
     }
 
     protected virtual async Task InitializeAsync()

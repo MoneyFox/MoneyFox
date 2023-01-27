@@ -20,7 +20,7 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
 {
     private readonly IMapper mapper;
     private bool hasNoData = true;
-    private CategoryViewModel? selectedCategory;
+    private CategoryListItemViewModel? selectedCategory;
 
     public StatisticCategoryProgressionViewModel(IMediator mediator, IMapper mapper) : base(mediator)
     {
@@ -28,7 +28,7 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
         StartDate = DateTime.Now.AddYears(-1);
     }
 
-    public CategoryViewModel? SelectedCategory
+    public CategoryListItemViewModel? SelectedCategory
     {
         get => selectedCategory;
         private set => SetProperty(field: ref selectedCategory, newValue: value);
@@ -64,7 +64,7 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
             recipient: this,
             handler: async (r, m) =>
             {
-                SelectedCategory = mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(m.Value.CategoryId)));
+                SelectedCategory = mapper.Map<CategoryListItemViewModel>(await Mediator.Send(new GetCategoryByIdQuery(m.Value.CategoryId)));
                 await r.LoadAsync();
             });
     }

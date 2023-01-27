@@ -14,7 +14,7 @@ internal sealed class SelectCategoryViewModel : CategoryListViewModel
         mapper: mapper,
         dialogService: dialogService) { }
 
-    public AsyncRelayCommand<CategoryViewModel> SelectCategoryCommand
+    public AsyncRelayCommand<CategoryListItemViewModel> SelectCategoryCommand
         => new(
             async c =>
             {
