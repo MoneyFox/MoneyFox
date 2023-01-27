@@ -8,7 +8,7 @@ using Core.Common.Interfaces;
 using FluentAssertions;
 using MediatR;
 using NSubstitute;
-using Ui.ViewModels.Categories;
+using Views.Categories;
 using Xunit;
 
 [ExcludeFromCodeCoverage]

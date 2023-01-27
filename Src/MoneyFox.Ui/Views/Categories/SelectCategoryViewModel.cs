@@ -1,11 +1,11 @@
-namespace MoneyFox.Ui.ViewModels.Categories;
+namespace MoneyFox.Ui.Views.Categories;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.Common.Interfaces;
-using Core.Common.Messages;
 using MediatR;
+using MoneyFox.Core.Common.Interfaces;
+using MoneyFox.Core.Common.Messages;
 
 internal sealed class SelectCategoryViewModel : CategoryListViewModel
 {

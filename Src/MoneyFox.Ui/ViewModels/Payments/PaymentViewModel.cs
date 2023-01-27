@@ -1,11 +1,11 @@
 namespace MoneyFox.Ui.ViewModels.Payments;
 
 using AutoMapper;
-using Categories;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Common.Interfaces.Mapping;
 using Views.Accounts;
+using Views.Categories;
 
 public class PaymentViewModel : ObservableObject, IHaveCustomMapping
 {

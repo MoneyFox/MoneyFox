@@ -2,7 +2,6 @@ namespace MoneyFox.Ui.ViewModels.Payments;
 
 using System.Collections.ObjectModel;
 using AutoMapper;
-using Categories;
 using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -15,6 +14,7 @@ using Microsoft.AppCenter.Crashes;
 using Resources.Strings;
 using Serilog;
 using Views.Accounts;
+using Views.Categories;
 
 internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipient<CategorySelectedMessage>
 {

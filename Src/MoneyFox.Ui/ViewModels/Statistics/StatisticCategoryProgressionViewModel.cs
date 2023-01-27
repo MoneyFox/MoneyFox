@@ -2,7 +2,6 @@ namespace MoneyFox.Ui.ViewModels.Statistics;
 
 using System.Collections.ObjectModel;
 using AutoMapper;
-using Categories;
 using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -15,6 +14,7 @@ using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using MediatR;
 using SkiaSharp;
+using Views.Categories;
 
 internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
 {

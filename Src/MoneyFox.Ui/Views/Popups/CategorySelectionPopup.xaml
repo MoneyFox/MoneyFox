@@ -2,9 +2,9 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
-    xmlns:categories="clr-namespace:MoneyFox.Ui.ViewModels.Categories"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    xmlns:categories="clr-namespace:MoneyFox.Ui.Views.Categories"
     x:Class="MoneyFox.Ui.Views.Popups.CategorySelectionPopup"
     ios:Page.ModalPresentationStyle="OverFullScreen"
     Title="{x:Static resources:Translations.CategoriesTitle}">

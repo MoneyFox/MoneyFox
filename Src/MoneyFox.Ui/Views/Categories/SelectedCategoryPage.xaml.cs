@@ -1,7 +1,5 @@
 namespace MoneyFox.Ui.Views.Categories;
 
-using ViewModels.Categories;
-
 public partial class SelectCategoryPage : ContentPage
 {
     public SelectCategoryPage()
