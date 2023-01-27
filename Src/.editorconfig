@@ -482,3 +482,9 @@ dotnet_naming_symbols.const_fields.required_modifiers = const
 dotnet_naming_rule.const_fields_must_be_all_upper.symbols = const_fields
 dotnet_naming_rule.const_fields_must_be_all_upper.style = all_upper_case_style
 dotnet_naming_rule.const_fields_must_be_all_upper.severity = warning
+
+########################
+# SonarAnalyzer.CSharp #
+########################
+
+dotnet_diagnostic.S3925.severity = suggestion
