@@ -714,7 +714,7 @@
   <data name="TranslationLabel" xml:space="preserve">
     <value>هل يوجد شيء غير مترجم بشكل صحيح أو غير مترجم على الإطلاق؟ ساعدنا! اذهب لـ Crowdin وساعدنا في ترجمة MoneyFox:</value>
   </data>
-  <data name="UnknownErrorMessage" xml:space="preserve">
+  <data name="UnknownErrorWithTextMessage" xml:space="preserve">
     <value>حدثت مشكلة أثناء العملية. رسالة الخطأ {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">

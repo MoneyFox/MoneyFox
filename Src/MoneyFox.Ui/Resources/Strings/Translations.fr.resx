@@ -711,7 +711,7 @@ Pour y arriver, allez dans la liste des comptes et sélectionnez le compte respe
   <data name="TranslationLabel" xml:space="preserve">
     <value>Quelque chose n'est pas traduit correctement ou n'est pas traduit du tout ? Aidez-nous ! Rendez-vous sur Crowdin et aider à améliorer MoneyFox :</value>
   </data>
-  <data name="UnknownErrorMessage" xml:space="preserve">
+  <data name="UnknownErrorWithTextMessage" xml:space="preserve">
     <value>Il y a eu un problème pendant l'opération. Message d'erreur {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
