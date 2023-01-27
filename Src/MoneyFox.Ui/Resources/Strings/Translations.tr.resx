@@ -714,7 +714,7 @@ UYARI: Lokal değişiklik yaptığınız sırada verileriniz kaybolabilir!</valu
   <data name="TranslationLabel" xml:space="preserve">
     <value>Birşey düzgün çevrilmedi mi? veya hiç çevrilmemişse bize yardım et! Crowdin'e yol al ve MoneyFox'un gelişmesine yardımcı ol:</value>
   </data>
-  <data name="UnknownErrorMessage" xml:space="preserve">
+  <data name="UnknownErrorWithTextMessage" xml:space="preserve">
     <value>İşlem sırasında bir sorun oluştu. Hata Mesajı {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">

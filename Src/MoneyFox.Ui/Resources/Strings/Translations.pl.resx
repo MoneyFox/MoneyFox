@@ -712,7 +712,7 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
   <data name="TranslationLabel" xml:space="preserve">
     <value>Jest coś niepoprawnie przetłumaczone lub nieprzetłumaczone w ogóle? Pomóż nam! Udaj się do Crowdin aby pomóc poprawić MoneyFox:</value>
   </data>
-  <data name="UnknownErrorMessage" xml:space="preserve">
+  <data name="UnknownErrorWithTextMessage" xml:space="preserve">
     <value>Wystąpił problem podczas operacji. Komunikat o błędzie {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">

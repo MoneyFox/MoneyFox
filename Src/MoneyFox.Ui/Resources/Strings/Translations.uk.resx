@@ -714,7 +714,7 @@
   <data name="TranslationLabel" xml:space="preserve">
     <value>Щось не перекладено або не перекладено взагалі? Допоможіть нам! Перейдіть на crowdin і допоможіть поліпшити MoneyFox:</value>
   </data>
-  <data name="UnknownErrorMessage" xml:space="preserve">
+  <data name="UnknownErrorWithTextMessage" xml:space="preserve">
     <value>Виникла проблема під час операції. Повідомлення про помилку {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
