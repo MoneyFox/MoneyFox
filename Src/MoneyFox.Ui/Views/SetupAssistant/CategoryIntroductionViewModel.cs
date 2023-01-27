@@ -1,7 +1,8 @@
-﻿namespace MoneyFox.Ui.ViewModels.SetupAssistant;
+﻿namespace MoneyFox.Ui.Views.SetupAssistant;
 
-using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
+using MoneyFox.Ui.Common.Extensions;
+using ViewModels;
 
 internal sealed class CategoryIntroductionViewModel : BaseViewModel
 {

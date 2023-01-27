@@ -9,7 +9,6 @@ using Mapping;
 using MoneyFox.Infrastructure.InversionOfControl;
 using ViewModels.Categories;
 using ViewModels.Payments;
-using ViewModels.SetupAssistant;
 using ViewModels.Statistics;
 using Views.About;
 using Views.Accounts;
@@ -20,6 +19,7 @@ using Views.Dashboard;
 using Views.OverflowMenu;
 using Views.Popups;
 using Views.Settings;
+using Views.SetupAssistant;
 using Views.Statistics.CategorySummary;
 using Views.Statistics.Selector;
 
