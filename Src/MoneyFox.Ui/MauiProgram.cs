@@ -78,6 +78,8 @@ public static class MauiProgram
         {
             var logFile = LogFileService.GetLatestLogFileInfo();
 
+
+
             return logFile == null
                 ? Array.Empty<ErrorAttachmentLog>()
                 : (IEnumerable<ErrorAttachmentLog>)new[] { ErrorAttachmentLog.AttachmentWithText(text: "MoneyFox Log", fileName: logFile.FullName) };
