@@ -77,7 +77,6 @@ public static class MauiProgram
         Crashes.GetErrorAttachments = _ =>
         {
             var logFile = LogFileService.GetLatestLogFileInfo();
-
             if (logFile == null)
             {
                 return Array.Empty<ErrorAttachmentLog>();
