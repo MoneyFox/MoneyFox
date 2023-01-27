@@ -712,7 +712,7 @@ ATENCIÓN: ¡Los datos que creaste desde la copia de respaldo se perderán!</val
   <data name="TranslationLabel" xml:space="preserve">
     <value>¿Hay algo mal traducido o no traducido del todo? ¡Ayúdanos! Dirígete a Crowdin y ayuda a mejorar MoneyFox:</value>
   </data>
-  <data name="UnknownErrorMessage" xml:space="preserve">
+  <data name="UnknownErrorWithTextMessage" xml:space="preserve">
     <value>Hubo un problema durante la operación. Mensaje de error {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">

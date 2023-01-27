@@ -28,6 +28,7 @@ public class BudgetListPageViewModelTests
         actualBudgetVm.CurrentSpending.Should().Be(expectedBudgetData.CurrentSpending);
     }
 
+    [Collection("BudgetListPageViewModelTests")]
     public class WithNoBudgetsAvailable : BudgetListPageViewModelTests
     {
         [Fact]
@@ -41,6 +42,7 @@ public class BudgetListPageViewModelTests
         }
     }
 
+    [Collection("BudgetListPageViewModelTests")]
     public class WithBudgetAvailable : BudgetListPageViewModelTests
     {
         private readonly TestData.DefaultBudget budgetTestData;
@@ -84,6 +86,7 @@ public class BudgetListPageViewModelTests
         }
     }
 
+    [Collection("BudgetListPageViewModelTests")]
     public class WithMultipleBudgetAvailable : BudgetListPageViewModelTests
     {
         public WithMultipleBudgetAvailable()
