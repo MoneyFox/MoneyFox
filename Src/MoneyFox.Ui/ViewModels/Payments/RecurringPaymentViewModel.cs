@@ -110,7 +110,7 @@ public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
             }
 
             isEndless = value;
-            EndDate = isEndless is false ? EndDate = DateTime.Today : null;
+            EndDate = isEndless is false ? DateTime.Today : null;
             OnPropertyChanged();
         }
     }
