@@ -10,7 +10,7 @@
     x:DataType="payments:AddPaymentViewModel"
     x:Class="MoneyFox.Ui.Views.Payments.AddPaymentPage">
 
-    <controls:NonOverlappingScrollView Padding="15,0,15,0">
+    <controls:NonOverlappingScrollView Padding="15,0,15,8">
         <VerticalStackLayout Spacing="12">
             <payments:ModifyPaymentContentView />
             <Button Text="{x:Static resources:Translations.SaveLabel}" Command="{Binding SaveCommand}" />
