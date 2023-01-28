@@ -2,7 +2,7 @@
 
 using System.Linq;
 using System.Threading.Tasks;
-using ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Domain.Aggregates.AccountAggregate;
 using Microsoft.EntityFrameworkCore;
 
 /// <summary>

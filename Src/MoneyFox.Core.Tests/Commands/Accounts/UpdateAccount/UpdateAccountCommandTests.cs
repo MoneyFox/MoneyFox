@@ -1,9 +1,9 @@
 ﻿namespace MoneyFox.Core.Tests.Commands.Accounts.UpdateAccount;
 
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Commands.Accounts.UpdateAccount;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
+using MoneyFox.Domain.Aggregates.AccountAggregate;
 
 public class UpdateCategoryCommandTests : InMemoryTestBase
 {

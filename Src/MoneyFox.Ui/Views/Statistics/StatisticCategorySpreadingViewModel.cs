@@ -2,9 +2,9 @@ namespace MoneyFox.Ui.Views.Statistics;
 
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries.Statistics;
 using Core.Common.Extensions;
+using Domain.Aggregates.AccountAggregate;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using MediatR;

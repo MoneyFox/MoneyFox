@@ -2,7 +2,7 @@
 
 using System;
 using System.Linq;
-using ApplicationCore.Domain.Aggregates;
+using Domain.Aggregates;
 
 public static class RecurringPaymentQueryObjects
 {

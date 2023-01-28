@@ -50,7 +50,7 @@ public class GetCategoryProgressionHandler : IRequestHandler<GetCategoryProgress
     {
         var payments = await appDbContext.Payments.Include(x => x.Category)
             .Include(x => x.ChargedAccount)
-            .HasCategoryId(request.CategoryId)
+            .HasCategoryId(categoryId: request.CategoryId)
             .HasDateLargerEqualsThan(request.StartDate.Date)
             .HasDateSmallerEqualsThan(request.EndDate.Date)
             .ToListAsync(cancellationToken);

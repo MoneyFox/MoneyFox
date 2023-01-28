@@ -56,7 +56,7 @@ public class GetPaymentsForAccountIdQuery : IRequest<List<Payment>>
                 .Include(x => x.TargetAccount)
                 .Include(x => x.Category)
                 .Include(x => x.RecurringPayment)
-                .HasAccountId(request.AccountId);
+                .HasAccountId(accountId: request.AccountId);
 
             if (request.IsClearedFilterActive)
             {

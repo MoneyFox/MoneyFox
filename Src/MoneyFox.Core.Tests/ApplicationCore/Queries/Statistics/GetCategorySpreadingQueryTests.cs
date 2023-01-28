@@ -1,9 +1,9 @@
 namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Statistics;
 
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.ApplicationCore.Queries.Statistics;
 using FluentAssertions;
+using MoneyFox.Domain.Aggregates.AccountAggregate;
+using MoneyFox.Domain.Aggregates.CategoryAggregate;
 
 [Collection("CultureCollection")]
 public class GetCategorySpreadingQueryTests : InMemoryTestBase

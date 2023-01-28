@@ -7,12 +7,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.ApplicationCore.Domain.Exceptions;
 using Core.ApplicationCore.UseCases.DbBackup;
 using Core.Common.Facades;
 using Core.Common.Interfaces;
 using Core.Common.Messages;
 using Core.Interfaces;
+using Domain.Exceptions;
 using Serilog;
 
 internal sealed class BackupService : ObservableRecipient, IBackupService, IDisposable

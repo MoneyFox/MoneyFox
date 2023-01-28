@@ -34,4 +34,12 @@
         </AssemblyAttribute>
     </ItemGroup>
 
+    <ItemGroup>
+        <Folder Include="ApplicationCore\Domain"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\MoneyFox.Domain\MoneyFox.Domain.csproj"/>
+    </ItemGroup>
+
 </Project>

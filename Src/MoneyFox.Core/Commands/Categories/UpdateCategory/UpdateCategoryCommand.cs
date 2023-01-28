@@ -2,8 +2,8 @@
 
 using System.Threading;
 using System.Threading.Tasks;
-using ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Common.Interfaces;
+using Domain.Aggregates.CategoryAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

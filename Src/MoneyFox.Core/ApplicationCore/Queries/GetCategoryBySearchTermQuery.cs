@@ -34,7 +34,7 @@ public class GetCategoryBySearchTermQuery : IRequest<List<Category>>
             var categories = await categoriesQuery.ToListAsync(cancellationToken);
             if (!string.IsNullOrEmpty(request.SearchTerm))
             {
-                categories = categories.WhereNameContains(request.SearchTerm).ToList();
+                categories = categories.WhereNameContains(searchterm: request.SearchTerm).ToList();
             }
 
             return categories;

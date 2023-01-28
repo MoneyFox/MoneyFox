@@ -13,7 +13,7 @@ using Core.Common.Messages;
 using MediatR;
 using Resources.Strings;
 
-internal partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadMessage>
+public partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadMessage>
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;

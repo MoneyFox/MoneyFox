@@ -1,11 +1,11 @@
 namespace MoneyFox.Ui.Views.Payments;
 
 using AutoMapper;
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.ApplicationCore.Queries;
 using Core.Commands.Payments.CreatePayment;
 using Core.Common.Interfaces;
+using Domain.Aggregates.AccountAggregate;
+using Domain.Aggregates.CategoryAggregate;
 using MediatR;
 using Resources.Strings;
 

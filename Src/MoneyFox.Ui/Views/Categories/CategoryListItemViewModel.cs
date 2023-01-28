@@ -2,8 +2,8 @@ namespace MoneyFox.Ui.Views.Categories;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.Common.Interfaces.Mapping;
+using Domain.Aggregates.CategoryAggregate;
 
 public class CategoryListItemViewModel : ObservableObject, IHaveCustomMapping
 {

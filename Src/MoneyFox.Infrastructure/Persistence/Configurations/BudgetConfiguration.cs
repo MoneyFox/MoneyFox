@@ -3,7 +3,7 @@ namespace MoneyFox.Infrastructure.Persistence.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
+using Domain.Aggregates.BudgetAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;

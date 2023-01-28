@@ -49,7 +49,7 @@ public class GetAccountProgressionHandler : IRequestHandler<GetAccountProgressio
     {
         var payments = await appDbContext.Payments.Include(x => x.Category)
             .Include(x => x.ChargedAccount)
-            .HasAccountId(request.AccountId)
+            .HasAccountId(accountId: request.AccountId)
             .HasDateLargerEqualsThan(request.StartDate.Date)
             .HasDateSmallerEqualsThan(request.EndDate.Date)
             .ToListAsync(cancellationToken);

@@ -5,9 +5,9 @@ using System.Collections.ObjectModel;
 using Categories;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
 using Core.Common.Messages;
 using Core.Interfaces;
+using Domain.Aggregates.BudgetAggregate;
 
 internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<CategorySelectedMessage>
 {

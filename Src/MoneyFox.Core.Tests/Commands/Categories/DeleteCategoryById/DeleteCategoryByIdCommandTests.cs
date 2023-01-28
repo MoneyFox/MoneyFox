@@ -1,9 +1,9 @@
 ﻿namespace MoneyFox.Core.Tests.Commands.Categories.DeleteCategoryById;
 
-using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.Commands.Categories.DeleteCategoryById;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
+using MoneyFox.Domain.Aggregates.CategoryAggregate;
 
 public class DeleteCategoryByIdCommandTests : InMemoryTestBase
 {

@@ -1,10 +1,10 @@
 ﻿namespace MoneyFox.Core.Commands.Payments.CreateRecurringPayments;
 
 using System;
-using ApplicationCore.Domain.Aggregates;
-using ApplicationCore.Domain.Aggregates.AccountAggregate;
-using ApplicationCore.Domain.Exceptions;
 using Common.Extensions;
+using Domain.Aggregates;
+using Domain.Aggregates.AccountAggregate;
+using Domain.Exceptions;
 
 internal static class RecurrenceHelper
 {

@@ -1,9 +1,9 @@
 ﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Accounts.GetTotalEndOfMonthBalance;
 
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries;
 using Core.Common.Helpers;
 using FluentAssertions;
+using MoneyFox.Domain.Aggregates.AccountAggregate;
 using NSubstitute;
 
 public class GetTotalEndOfMonthBalanceQueryTests : InMemoryTestBase

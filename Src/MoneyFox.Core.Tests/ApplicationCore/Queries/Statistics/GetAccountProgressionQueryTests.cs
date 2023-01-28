@@ -1,8 +1,8 @@
 ﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Statistics;
 
-using Core.ApplicationCore.Domain.Exceptions;
 using Core.ApplicationCore.Queries.Statistics;
 using FluentAssertions;
+using MoneyFox.Domain.Exceptions;
 
 public class GetAccountProgressionQueryTests
 {

@@ -68,7 +68,9 @@ public class AddBudgetViewModelTests
         viewModel.SpendingLimit = testBudget.SpendingLimit;
 
         // Act
-        viewModel.SelectedCategories.AddRange(testBudget.Categories.Select(c => new BudgetCategoryViewModel(categoryId: c, name: "Category")));
+        viewModel.SelectedCategories.AddRange(
+            Enumerable.Select<int, BudgetCategoryViewModel>(testBudget.Categories, c => new BudgetCategoryViewModel(categoryId: c, name: "Category")));
+
         await viewModel.SaveBudgetCommand.ExecuteAsync(null);
 
         // Assert

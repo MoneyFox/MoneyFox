@@ -2,16 +2,16 @@ namespace MoneyFox.Ui.Views.Accounts;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries;
 using Core.Commands.Accounts.DeleteAccountById;
 using Core.Commands.Accounts.UpdateAccount;
 using Core.Common.Interfaces;
 using Core.Interfaces;
+using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Resources.Strings;
 
-internal partial class EditAccountViewModel : ModifyAccountViewModel
+public partial  class EditAccountViewModel : ModifyAccountViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;

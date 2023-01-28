@@ -1,8 +1,8 @@
 ﻿namespace MoneyFox.Core.Tests.Commands.Payments.ClearPayments;
 
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Commands.Payments.ClearPayments;
 using FluentAssertions;
+using MoneyFox.Domain.Aggregates.AccountAggregate;
 
 public class ClearPaymentsCommandTests : InMemoryTestBase
 {

@@ -2,7 +2,6 @@ namespace MoneyFox.Ui.Views.Budget;
 
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
 using Core.ApplicationCore.Queries.BudgetEntryLoading;
 using Core.ApplicationCore.UseCases.BudgetDeletion;
 using Core.ApplicationCore.UseCases.BudgetUpdate;
@@ -10,6 +9,7 @@ using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Common.Messages;
 using Core.Interfaces;
+using Domain.Aggregates.BudgetAggregate;
 using MediatR;
 using Resources.Strings;
 

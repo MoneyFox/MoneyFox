@@ -1,9 +1,9 @@
 ﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Payments.GetPaymentById;
 
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using Core.ApplicationCore.Domain.Exceptions;
 using Core.ApplicationCore.Queries;
 using FluentAssertions;
+using MoneyFox.Domain.Aggregates.AccountAggregate;
+using MoneyFox.Domain.Exceptions;
 
 public class GetPaymentByIdQueryTests : InMemoryTestBase
 {

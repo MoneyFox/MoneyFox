@@ -2,7 +2,7 @@
 
 using System.Globalization;
 using Common.ConverterLogic;
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Domain.Aggregates.AccountAggregate;
 
 /// <summary>
 ///     Converts the RecurrenceType to a string.

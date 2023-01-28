@@ -7,11 +7,11 @@ using AutoMapper;
 using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries;
 using Core.ApplicationCore.Queries.GetPaymentsForAccountIdQuery;
 using Core.Common.Helpers;
 using Core.Common.Messages;
+using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Resources.Strings;
 

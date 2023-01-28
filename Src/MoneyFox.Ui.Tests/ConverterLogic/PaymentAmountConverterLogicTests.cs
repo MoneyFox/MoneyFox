@@ -1,7 +1,7 @@
 namespace MoneyFox.Ui.Tests.ConverterLogic;
 
 using Common.ConverterLogic;
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Domain.Aggregates.AccountAggregate;
 using FluentAssertions;
 using Views.Payments;
 using Xunit;

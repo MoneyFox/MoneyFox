@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using ApplicationCore.Domain.Aggregates.CategoryAggregate;
+using Domain.Aggregates.CategoryAggregate;
 
 /// <summary>
 ///     Provides Extensions for categories queries.

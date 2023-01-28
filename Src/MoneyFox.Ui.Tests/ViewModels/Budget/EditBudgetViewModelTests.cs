@@ -106,7 +106,9 @@ public class EditBudgetViewModelTests
             viewModel.SpendingLimit = testBudget.SpendingLimit;
 
             // Act
-            viewModel.SelectedCategories.AddRange(testBudget.Categories.Select(c => new BudgetCategoryViewModel(categoryId: c, name: "Category")));
+            viewModel.SelectedCategories.AddRange(
+                Enumerable.Select<int, BudgetCategoryViewModel>(testBudget.Categories, c => new BudgetCategoryViewModel(categoryId: c, name: "Category")));
+
             await viewModel.SaveBudgetCommand.ExecuteAsync(null);
 
             // Assert
@@ -125,7 +127,11 @@ public class EditBudgetViewModelTests
         {
             // Capture
             TestData.DefaultBudget testBudget = new();
-            var categories = testBudget.Categories.Select(c => new BudgetEntryData.BudgetCategory(id: c, name: "category")).ToImmutableList();
+            var categories = Enumerable.Select<int, BudgetEntryData.BudgetCategory>(
+                    testBudget.Categories,
+                    c => new BudgetEntryData.BudgetCategory(id: c, name: "category"))
+                .ToImmutableList();
+
             LoadBudgetEntry.Query? capturedQuery = null;
             _ = sender.Send(Arg.Do<LoadBudgetEntry.Query>(q => capturedQuery = q))
                 .Returns(

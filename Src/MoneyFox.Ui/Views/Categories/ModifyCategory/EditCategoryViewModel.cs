@@ -2,12 +2,12 @@ namespace MoneyFox.Ui.Views.Categories.ModifyCategory;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
-using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.ApplicationCore.Queries;
 using Core.Commands.Categories.DeleteCategoryById;
 using Core.Commands.Categories.UpdateCategory;
 using Core.Common.Interfaces;
 using Core.Interfaces;
+using Domain.Aggregates.CategoryAggregate;
 using MediatR;
 using Resources.Strings;
 

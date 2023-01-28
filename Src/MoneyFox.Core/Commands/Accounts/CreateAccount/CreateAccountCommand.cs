@@ -2,8 +2,8 @@ namespace MoneyFox.Core.Commands.Accounts.CreateAccount;
 
 using System.Threading;
 using System.Threading.Tasks;
-using ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Common.Interfaces;
+using Domain.Aggregates.AccountAggregate;
 using MediatR;
 
 public class CreateAccountCommand : IRequest

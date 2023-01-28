@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Core.Tests.Common.Extensions.QueryObjects;
 
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Common.Extensions.QueryObjects;
+using MoneyFox.Domain.Aggregates.AccountAggregate;
 
 public class AccountQueriesExtensionsTests
 {
