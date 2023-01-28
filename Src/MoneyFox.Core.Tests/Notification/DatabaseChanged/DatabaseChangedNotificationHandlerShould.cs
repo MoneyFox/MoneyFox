@@ -13,7 +13,7 @@ public class DatabaseChangedNotificationHandlerShould
     private readonly ISender sender;
     private readonly ISettingsFacade settingsFacade;
 
-    public DatabaseChangedNotificationHandlerShould()
+    protected DatabaseChangedNotificationHandlerShould()
     {
         sender = Substitute.For<ISender>();
         settingsFacade = Substitute.For<ISettingsFacade>();
