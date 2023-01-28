@@ -1,22 +1,17 @@
 namespace MoneyFox.Core.Tests.Commands.Payments.CreatePayment;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Commands.Payments.CreatePayment;
 using FluentAssertions;
 using Infrastructure.Persistence;
 
-
-public class CreatePaymentCommandTests
+public class CreatePaymentCommandTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
-
     private readonly CreatePaymentCommand.Handler handler;
 
     public CreatePaymentCommandTests()
     {
-        context = InMemoryAppDbContextFactory.Create();
-        handler = new(context);
+        handler = new(Context);
     }
 
     [Fact]
@@ -24,16 +19,16 @@ public class CreatePaymentCommandTests
     {
         // Arrange
         var account = new Account(name: "test", initialBalance: 80);
-        context.Add(account);
-        await context.SaveChangesAsync();
+        Context.Add(account);
+        await Context.SaveChangesAsync();
         var payment = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: account);
 
         // Act
         await handler.Handle(request: new(payment), cancellationToken: default);
 
         // Assert
-        Assert.Single(context.Payments);
-        (await context.Payments.FindAsync(payment.Id)).Should().NotBeNull();
+        Assert.Single(Context.Payments);
+        (await Context.Payments.FindAsync(payment.Id)).Should().NotBeNull();
     }
 
     [Theory]
@@ -43,15 +38,15 @@ public class CreatePaymentCommandTests
     {
         // Arrange
         var account = new Account(name: "test", initialBalance: 80);
-        context.Add(account);
-        await context.SaveChangesAsync();
+        Context.Add(account);
+        await Context.SaveChangesAsync();
         var payment = new Payment(date: DateTime.Now, amount: 20, type: paymentType, chargedAccount: account);
 
         // Act
         await handler.Handle(request: new(payment), cancellationToken: default);
 
         // Assert
-        var loadedAccount = await context.Accounts.FindAsync(account.Id);
+        var loadedAccount = await Context.Accounts.FindAsync(account.Id);
         loadedAccount.Should().NotBeNull();
         loadedAccount.CurrentBalance.Should().Be(newCurrentBalance);
     }
@@ -61,8 +56,8 @@ public class CreatePaymentCommandTests
     {
         // Arrange
         var account = new Account(name: "test", initialBalance: 80);
-        context.Add(account);
-        await context.SaveChangesAsync();
+        Context.Add(account);
+        await Context.SaveChangesAsync();
         var payment = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: account);
         payment.AddRecurringPayment(recurrence: PaymentRecurrence.Monthly, isLastDayOfMonth: false);
 
@@ -70,9 +65,9 @@ public class CreatePaymentCommandTests
         await handler.Handle(request: new(payment), cancellationToken: default);
 
         // Assert
-        Assert.Single(context.Payments);
-        Assert.Single(context.RecurringPayments);
-        (await context.Payments.FindAsync(payment.Id)).Should().NotBeNull();
-        (await context.RecurringPayments.FindAsync(payment.RecurringPayment.Id)).Should().NotBeNull();
+        Assert.Single(Context.Payments);
+        Assert.Single(Context.RecurringPayments);
+        (await Context.Payments.FindAsync(payment.Id)).Should().NotBeNull();
+        (await Context.RecurringPayments.FindAsync(payment.RecurringPayment.Id)).Should().NotBeNull();
     }
 }

@@ -1,9 +1,7 @@
 ﻿namespace MoneyFox.Core.Tests.Common.Helper;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.Common.Helpers;
 using FluentAssertions;
-
 
 public class SystemDateHelperTests
 {

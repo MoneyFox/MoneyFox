@@ -5,15 +5,13 @@ using Core.ApplicationCore.Queries;
 using FluentAssertions;
 using Infrastructure.Persistence;
 
-public class GetCategoryBySearchTermQueryTests
+public class GetCategoryBySearchTermQueryTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
     private readonly GetCategoryBySearchTermQuery.Handler handler;
 
     public GetCategoryBySearchTermQueryTests()
     {
-        context = InMemoryAppDbContextFactory.Create();
-        handler = new(context);
+        handler = new(Context);
     }
 
     [Fact]
@@ -22,9 +20,9 @@ public class GetCategoryBySearchTermQueryTests
         // Arrange
         var category1 = new Category("test");
         var category2 = new Category("test2");
-        await context.AddAsync(category1);
-        await context.AddAsync(category2);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(category1);
+        await Context.AddAsync(category2);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(request: new(), cancellationToken: default);
@@ -39,9 +37,9 @@ public class GetCategoryBySearchTermQueryTests
         // Arrange
         var category1 = new Category("this is a guid");
         var category2 = new Category("test2");
-        await context.AddAsync(category1);
-        await context.AddAsync(category2);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(category1);
+        await Context.AddAsync(category2);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(request: new("guid"), cancellationToken: default);

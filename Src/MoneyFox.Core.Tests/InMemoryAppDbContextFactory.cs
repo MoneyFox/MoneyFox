@@ -1,9 +1,7 @@
 namespace MoneyFox.Core.Tests;
 
-using System.Diagnostics.CodeAnalysis;
+using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.Infrastructure.Persistence;
-
 
 internal static class InMemoryAppDbContextFactory
 {

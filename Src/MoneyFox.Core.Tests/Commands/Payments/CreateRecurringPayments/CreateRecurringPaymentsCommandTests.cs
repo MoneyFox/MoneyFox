@@ -1,22 +1,18 @@
 namespace MoneyFox.Core.Tests.Commands.Payments.CreateRecurringPayments;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Commands.Payments.CreateRecurringPayments;
 using Core.Common.Extensions;
 using FluentAssertions;
 using Infrastructure.Persistence;
 
-
-public class CreateRecurringPaymentsCommandTests
+public class CreateRecurringPaymentsCommandTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
     private readonly CreateRecurringPaymentsCommand.Handler handler;
 
     public CreateRecurringPaymentsCommandTests()
     {
-        context = InMemoryAppDbContextFactory.Create();
-        handler = new(context);
+        handler = new(Context);
     }
 
     [Fact]
@@ -25,12 +21,12 @@ public class CreateRecurringPaymentsCommandTests
         // Arrange
         var payment = new Payment(date: DateTime.Now.AddDays(-1), amount: 166, type: PaymentType.Expense, chargedAccount: new("Foo"));
         payment.AddRecurringPayment(recurrence: PaymentRecurrence.Daily, isLastDayOfMonth: false);
-        context.AddRange(payment);
-        await context.SaveChangesAsync();
+        Context.AddRange(payment);
+        await Context.SaveChangesAsync();
 
         // Act
         await handler.Handle(request: new(), cancellationToken: default);
-        var loadedPayments = context.Payments.ToList();
+        var loadedPayments = Context.Payments.ToList();
 
         // Assert
         loadedPayments.Should().HaveCount(2);
@@ -58,12 +54,12 @@ public class CreateRecurringPaymentsCommandTests
             chargedAccount: new("Foo"));
 
         payment.AddRecurringPayment(recurrence: recurrence, isLastDayOfMonth: isLastDayOfMonth);
-        context.AddRange(payment);
-        await context.SaveChangesAsync();
+        Context.AddRange(payment);
+        await Context.SaveChangesAsync();
 
         // Act
         await handler.Handle(request: new(), cancellationToken: default);
-        var loadedPayments = context.Payments.ToList();
+        var loadedPayments = Context.Payments.ToList();
 
         // Assert
         loadedPayments.Should().HaveCount(2);

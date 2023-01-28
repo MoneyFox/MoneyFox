@@ -1,8 +1,6 @@
 ﻿namespace MoneyFox.Core.Tests.Fixtures;
 
-using System.Diagnostics.CodeAnalysis;
-using MoneyFox.Infrastructure.Persistence;
-
+using Infrastructure.Persistence;
 
 public class QueryTestFixture : IDisposable
 {

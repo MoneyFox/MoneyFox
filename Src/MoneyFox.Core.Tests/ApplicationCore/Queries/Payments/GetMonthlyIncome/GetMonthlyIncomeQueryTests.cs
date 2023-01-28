@@ -7,17 +7,15 @@ using FluentAssertions;
 using Infrastructure.Persistence;
 using NSubstitute;
 
-public class GetMonthlyIncomeQueryTests
+public class GetMonthlyIncomeQueryTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
     private readonly GetMonthlyIncomeQuery.Handler handler;
     private readonly ISystemDateHelper systemDateHelper;
 
     public GetMonthlyIncomeQueryTests()
     {
-        context = InMemoryAppDbContextFactory.Create();
         systemDateHelper = Substitute.For<ISystemDateHelper>();
-        handler = new(appDbContext: context, systemDateHelper: systemDateHelper);
+        handler = new(appDbContext: Context, systemDateHelper: systemDateHelper);
     }
 
     [Fact]
@@ -29,10 +27,10 @@ public class GetMonthlyIncomeQueryTests
         var payment1 = new Payment(date: new(year: 2020, month: 09, day: 10), amount: 50, type: PaymentType.Income, chargedAccount: account);
         var payment2 = new Payment(date: new(year: 2020, month: 09, day: 18), amount: 20, type: PaymentType.Income, chargedAccount: account);
         var payment3 = new Payment(date: new(year: 2020, month: 09, day: 4), amount: 30, type: PaymentType.Expense, chargedAccount: account);
-        await context.AddAsync(payment1);
-        await context.AddAsync(payment2);
-        await context.AddAsync(payment3);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(payment1);
+        await Context.AddAsync(payment2);
+        await Context.AddAsync(payment3);
+        await Context.SaveChangesAsync();
 
         // Act
         var sum = await handler.Handle(request: new(), cancellationToken: default);

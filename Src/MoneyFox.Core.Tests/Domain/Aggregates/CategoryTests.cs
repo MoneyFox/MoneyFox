@@ -1,9 +1,7 @@
 ﻿namespace MoneyFox.Core.Tests.Domain.Aggregates;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using FluentAssertions;
-
 
 public class CategoryTests
 {

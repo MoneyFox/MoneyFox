@@ -6,15 +6,13 @@ using FluentAssertions;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-public class DeactivateAccountByIdCommandTests
+public class DeactivateAccountByIdCommandTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
     private readonly DeactivateAccountByIdCommand.Handler handler;
 
     public DeactivateAccountByIdCommandTests()
     {
-        context = InMemoryAppDbContextFactory.Create();
-        handler = new(context);
+        handler = new(Context);
     }
 
     [Fact]
@@ -22,14 +20,14 @@ public class DeactivateAccountByIdCommandTests
     {
         // Arrange
         var account = new Account("test");
-        await context.AddAsync(account);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(account);
+        await Context.SaveChangesAsync();
 
         // Act
         await handler.Handle(request: new(account.Id), cancellationToken: default);
 
         // Assert
-        (await context.Accounts.FirstOrDefaultAsync(x => x.Id == account.Id)).Should().NotBeNull();
+        (await Context.Accounts.FirstOrDefaultAsync(x => x.Id == account.Id)).Should().NotBeNull();
     }
 
     [Fact]
@@ -37,13 +35,13 @@ public class DeactivateAccountByIdCommandTests
     {
         // Arrange
         var account = new Account("test");
-        await context.AddAsync(account);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(account);
+        await Context.SaveChangesAsync();
 
         // Act
         await handler.Handle(request: new(account.Id), cancellationToken: default);
 
         // Assert
-        (await context.Accounts.FirstOrDefaultAsync(x => x.Id == account.Id)).IsDeactivated.Should().BeTrue();
+        (await Context.Accounts.FirstOrDefaultAsync(x => x.Id == account.Id)).IsDeactivated.Should().BeTrue();
     }
 }

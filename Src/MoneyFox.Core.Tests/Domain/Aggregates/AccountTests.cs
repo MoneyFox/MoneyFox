@@ -1,10 +1,8 @@
 ﻿namespace MoneyFox.Core.Tests.Domain.Aggregates;
 
-using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using FluentAssertions;
-
 
 public class AccountTests
 {
