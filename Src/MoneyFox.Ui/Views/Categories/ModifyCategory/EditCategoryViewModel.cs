@@ -11,8 +11,7 @@ using Core.Interfaces;
 using MediatR;
 using Resources.Strings;
 
-// ReSharper disable once PartialTypeWithSinglePart
-internal partial class EditCategoryViewModel : ModifyCategoryViewModel
+public partial class EditCategoryViewModel : ModifyCategoryViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
