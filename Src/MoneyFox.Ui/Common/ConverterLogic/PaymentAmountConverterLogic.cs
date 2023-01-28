@@ -2,7 +2,7 @@
 
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Common.Helpers;
-using ViewModels.Payments;
+using Views.Payments;
 
 public static class PaymentAmountConverterLogic
 {

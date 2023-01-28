@@ -1,20 +1,21 @@
-namespace MoneyFox.Ui.ViewModels.Payments;
+namespace MoneyFox.Ui.Views.Payments;
 
 using System.Collections.ObjectModel;
 using AutoMapper;
-using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using Core.ApplicationCore.Queries;
-using Core.Common.Interfaces;
-using Core.Common.Messages;
 using MediatR;
 using Microsoft.AppCenter.Crashes;
-using Resources.Strings;
+using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using MoneyFox.Core.ApplicationCore.Queries;
+using MoneyFox.Core.Common.Interfaces;
+using MoneyFox.Core.Common.Messages;
+using MoneyFox.Ui.Common.Extensions;
+using MoneyFox.Ui.Resources.Strings;
+using MoneyFox.Ui.Views.Accounts;
+using MoneyFox.Ui.Views.Categories;
 using Serilog;
-using Views.Accounts;
-using Views.Categories;
+using ViewModels;
 
 internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipient<CategorySelectedMessage>
 {

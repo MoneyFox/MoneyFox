@@ -8,9 +8,9 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.ApplicationCore.Queries;
 using MediatR;
+using Payments;
 using Resources.Strings;
 using ViewModels;
-using ViewModels.Payments;
 
 internal sealed class PaymentForCategoryListViewModel : BaseViewModel, IRecipient<PaymentsForCategoryMessage>
 {

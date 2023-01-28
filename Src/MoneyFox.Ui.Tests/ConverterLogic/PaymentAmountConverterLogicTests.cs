@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using Common.ConverterLogic;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using FluentAssertions;
-using Ui.ViewModels.Payments;
+using Views.Payments;
 using Xunit;
 
 [ExcludeFromCodeCoverage]

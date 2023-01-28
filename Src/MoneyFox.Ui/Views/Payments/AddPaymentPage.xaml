@@ -5,9 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
     xmlns:payments="clr-namespace:MoneyFox.Ui.Views.Payments"
-    xmlns:paymentVm="clr-namespace:MoneyFox.Ui.ViewModels.Payments"
     Title="{x:Static resources:Translations.AddPaymentLabel}"
-    x:DataType="paymentVm:AddPaymentViewModel"
+    x:DataType="payments:AddPaymentViewModel"
     x:Class="MoneyFox.Ui.Views.Payments.AddPaymentPage">
 
     <ScrollView Padding="15,0,15,0">
