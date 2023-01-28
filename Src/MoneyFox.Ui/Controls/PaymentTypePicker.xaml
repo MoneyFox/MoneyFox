@@ -5,7 +5,7 @@
              xmlns:views="clr-namespace:MoneyFox.Ui.Views"
              xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
              xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
-             x:Name="this"
+             x:Name="This"
              x:Class="MoneyFox.Ui.Controls.PaymentTypePicker">
 
     <ContentView.Resources>
@@ -15,7 +15,7 @@
     </ContentView.Resources>
 
     <VerticalStackLayout Spacing="6"
-                         BindingContext="{x:Reference this}">
+                         BindingContext="{x:Reference This}">
         <Label
             Margin="3,0,0,0"
             Style="{StaticResource TextBodySecondary}"

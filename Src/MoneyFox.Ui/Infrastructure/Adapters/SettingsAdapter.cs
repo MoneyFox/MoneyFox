@@ -13,7 +13,7 @@ public class SettingsAdapter : ISettingsAdapter
         }
         catch (InvalidCastException)
         {
-            Log.Error(messageTemplate: "Value {Key} couldn't be parsed to bool", propertyValue: key);
+            Log.Error(messageTemplate: "Value {key} couldn't be parsed to bool", propertyValue: key);
             Preferences.Set(key: key, value: defaultValue);
 
             return defaultValue;
@@ -28,7 +28,7 @@ public class SettingsAdapter : ISettingsAdapter
         }
         catch (InvalidCastException)
         {
-            Log.Error(messageTemplate: "Value {Key} couldn't be parsed to string", propertyValue: key);
+            Log.Error(messageTemplate: "Value {key} couldn't be parsed to string", propertyValue: key);
             Preferences.Set(key: key, value: defaultValue);
 
             return defaultValue;

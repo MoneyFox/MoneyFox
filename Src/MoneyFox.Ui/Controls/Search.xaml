@@ -4,25 +4,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
              xmlns:views="clr-namespace:MoneyFox.Ui.Views"
-             x:Name="this"
+             x:Name="This"
              x:Class="MoneyFox.Ui.Controls.Search">
 
     <VerticalStackLayout Spacing="6"
-                         BindingContext="{x:Reference this}">
+                         BindingContext="{x:Reference This}">
         <Label Text="{OnPlatform WinUI={Binding SearchPlaceholder}, Default={x:Null}}" />
 
         <Border Padding="20,0"
                 StrokeThickness="{OnIdiom Desktop=0, Default=1}"
                 BackgroundColor="{AppThemeBinding Dark={StaticResource ControlBackgroundColorDark}, Light={StaticResource ControlBackgroundColorLight}}"
-                BindingContext="{x:Reference this}">
+                BindingContext="{x:Reference This}">
 
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="10" />
             </Border.StrokeShape>
 
             <Grid ColumnDefinitions="*, Auto">
-                <controls:BorderlessEntry x:Name="SearchEntry"
-                                          HeightRequest="40"
+                <controls:BorderlessEntry HeightRequest="40"
                                           BackgroundColor="Transparent"
                                           TextChanged="SearchEntry_OnTextChanged"
                                           Placeholder="{OnPlatform WinUI={x:Null}, Default={Binding SearchPlaceholder}}" />
