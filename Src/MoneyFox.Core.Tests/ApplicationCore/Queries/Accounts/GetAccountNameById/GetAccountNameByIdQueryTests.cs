@@ -1,12 +1,9 @@
 ﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Accounts.GetAccountNameById;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries;
 using FluentAssertions;
-using Infrastructure.Persistence;
 
-[ExcludeFromCodeCoverage]
 public class GetAccountNameByIdQueryTests : InMemoryTestBase
 {
     private readonly GetAccountNameByIdQuery.Handler handler;

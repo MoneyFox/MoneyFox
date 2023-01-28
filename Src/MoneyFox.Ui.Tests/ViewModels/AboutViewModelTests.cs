@@ -8,7 +8,7 @@ using NSubstitute;
 using Views.About;
 using Xunit;
 
-[ExcludeFromCodeCoverage]
+
 public class AboutViewModelTests
 {
     private readonly IBrowserAdapter browserAdapter;

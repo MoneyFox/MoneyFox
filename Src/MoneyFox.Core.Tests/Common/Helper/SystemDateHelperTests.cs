@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using Core.Common.Helpers;
 using FluentAssertions;
 
-[ExcludeFromCodeCoverage]
+
 public class SystemDateHelperTests
 {
     [Fact]

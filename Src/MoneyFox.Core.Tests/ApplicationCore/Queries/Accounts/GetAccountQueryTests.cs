@@ -1,11 +1,9 @@
 namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Accounts;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries;
 using Infrastructure.Persistence;
 
-[ExcludeFromCodeCoverage]
 public class GetAccountQueryTests
 {
     private readonly AppDbContext context;

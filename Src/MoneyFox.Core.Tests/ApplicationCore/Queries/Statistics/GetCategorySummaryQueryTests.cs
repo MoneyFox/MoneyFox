@@ -1,13 +1,10 @@
 ﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Statistics;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.ApplicationCore.Queries.Statistics.GetCategorySummary;
 using FluentAssertions;
-using Infrastructure.Persistence;
 
-[ExcludeFromCodeCoverage]
 public class GetCategorySummaryQueryTests : InMemoryTestBase
 {
     private readonly GetCategorySummaryQueryHandler handler;

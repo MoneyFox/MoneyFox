@@ -7,7 +7,7 @@ using Core.Common.Extensions;
 using FluentAssertions;
 using Infrastructure.Persistence;
 
-[ExcludeFromCodeCoverage]
+
 public class CreateRecurringPaymentsCommandTests
 {
     private readonly AppDbContext context;

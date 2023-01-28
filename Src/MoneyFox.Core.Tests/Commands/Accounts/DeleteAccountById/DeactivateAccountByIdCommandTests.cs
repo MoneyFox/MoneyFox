@@ -1,13 +1,11 @@
 ﻿namespace MoneyFox.Core.Tests.Commands.Accounts.DeleteAccountById;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Commands.Accounts.DeleteAccountById;
 using FluentAssertions;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-[ExcludeFromCodeCoverage]
 public class DeactivateAccountByIdCommandTests
 {
     private readonly AppDbContext context;

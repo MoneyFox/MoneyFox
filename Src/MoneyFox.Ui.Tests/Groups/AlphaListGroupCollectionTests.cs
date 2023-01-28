@@ -7,7 +7,7 @@ using FluentAssertions;
 using Views.Accounts;
 using Xunit;
 
-[ExcludeFromCodeCoverage]
+
 public class AlphaListGroupCollectionTests
 {
     [Fact]

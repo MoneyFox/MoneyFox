@@ -1,9 +1,7 @@
 namespace MoneyFox.Core.Tests.Commands.Accounts.CreateAccount;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.Commands.Accounts.CreateAccount;
 
-[ExcludeFromCodeCoverage]
 public class CreateAccountCommandTests : InMemoryTestBase
 {
     private readonly CreateAccountCommand.Handler handler;

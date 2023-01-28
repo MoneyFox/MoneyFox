@@ -1,13 +1,10 @@
 ﻿namespace MoneyFox.Core.Tests.Commands.Categories.DeleteCategoryById;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.Commands.Categories.DeleteCategoryById;
 using FluentAssertions;
-using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-[ExcludeFromCodeCoverage]
 public class DeleteCategoryByIdCommandTests : InMemoryTestBase
 {
     private readonly DeleteCategoryByIdCommand.Handler handler;

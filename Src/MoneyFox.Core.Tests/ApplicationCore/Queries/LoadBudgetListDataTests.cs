@@ -6,7 +6,6 @@ using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
 using Core.ApplicationCore.Queries.BudgetListLoading;
 using Core.Common.Helpers;
 using FluentAssertions;
-using Infrastructure.Persistence;
 using NSubstitute;
 
 public sealed class LoadBudgetListDataTests : InMemoryTestBase

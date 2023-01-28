@@ -7,7 +7,7 @@ using FluentAssertions;
 using Views.Payments;
 using Xunit;
 
-[ExcludeFromCodeCoverage]
+
 public class PaymentAmountConverterLogicTests
 {
     [Theory]

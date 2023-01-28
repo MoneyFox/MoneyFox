@@ -5,7 +5,7 @@ using Common.Utilities;
 using FluentAssertions;
 using Xunit;
 
-[ExcludeFromCodeCoverage]
+
 public class DecimalFormatterTests
 {
     [Theory]

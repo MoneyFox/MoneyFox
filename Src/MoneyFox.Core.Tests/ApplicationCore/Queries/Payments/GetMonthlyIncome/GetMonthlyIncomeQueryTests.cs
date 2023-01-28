@@ -1,6 +1,5 @@
 ﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Payments.GetMonthlyIncome;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries;
 using Core.Common.Helpers;
@@ -8,7 +7,6 @@ using FluentAssertions;
 using Infrastructure.Persistence;
 using NSubstitute;
 
-[ExcludeFromCodeCoverage]
 public class GetMonthlyIncomeQueryTests
 {
     private readonly AppDbContext context;

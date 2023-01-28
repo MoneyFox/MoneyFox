@@ -1,12 +1,10 @@
 ﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Accounts.GetIfAccountWithNameExists;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries;
 using FluentAssertions;
 using Infrastructure.Persistence;
 
-[ExcludeFromCodeCoverage]
 public class GetIfAccountWithNameExistsQueryTests
 {
     private readonly AppDbContext context;

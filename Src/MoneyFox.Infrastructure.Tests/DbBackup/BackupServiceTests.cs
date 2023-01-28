@@ -10,7 +10,7 @@ using Infrastructure.DbBackup.Legacy;
 using Moq;
 using NSubstitute;
 
-[ExcludeFromCodeCoverage]
+
 public class BackupServiceTests
 {
     private readonly BackupService backupService;

@@ -8,7 +8,7 @@ using Core.Commands.Payments.UpdatePayment;
 using FluentAssertions;
 using Infrastructure.Persistence;
 
-[ExcludeFromCodeCoverage]
+
 public class UpdatePaymentCommandTests
 {
     private readonly AppDbContext context;

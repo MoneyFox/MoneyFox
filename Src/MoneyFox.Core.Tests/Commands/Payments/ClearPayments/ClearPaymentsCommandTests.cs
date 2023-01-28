@@ -1,12 +1,9 @@
 ﻿namespace MoneyFox.Core.Tests.Commands.Payments.ClearPayments;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Commands.Payments.ClearPayments;
 using FluentAssertions;
-using Infrastructure.Persistence;
 
-[ExcludeFromCodeCoverage]
 public class ClearPaymentsCommandTests : InMemoryTestBase
 {
     private readonly ClearPaymentsCommand.Handler handler;

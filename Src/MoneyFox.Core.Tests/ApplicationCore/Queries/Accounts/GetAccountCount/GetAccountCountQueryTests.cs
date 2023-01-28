@@ -1,12 +1,9 @@
 ﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Accounts.GetAccountCount;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries;
 using FluentAssertions;
-using Infrastructure.Persistence;
 
-[ExcludeFromCodeCoverage]
 public class GetAccountCountQueryTests : InMemoryTestBase
 {
     private readonly GetAccountCountQuery.Handler handler;

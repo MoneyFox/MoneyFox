@@ -9,7 +9,7 @@ using NSubstitute;
 using Views.Settings;
 using Xunit;
 
-[ExcludeFromCodeCoverage]
+
 public class SettingsViewModelTests
 {
     [Fact]

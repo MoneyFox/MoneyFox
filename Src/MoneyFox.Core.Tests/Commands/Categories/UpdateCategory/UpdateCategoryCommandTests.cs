@@ -1,12 +1,10 @@
 ﻿namespace MoneyFox.Core.Tests.Commands.Categories.UpdateCategory;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.Commands.Categories.UpdateCategory;
 using FluentAssertions;
 using Infrastructure.Persistence;
 
-[ExcludeFromCodeCoverage]
 public class UpdateCategoryCommandTests
 {
     private readonly AppDbContext context;

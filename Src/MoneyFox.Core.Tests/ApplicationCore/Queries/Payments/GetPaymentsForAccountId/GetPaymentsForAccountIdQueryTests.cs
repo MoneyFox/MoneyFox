@@ -1,12 +1,10 @@
 ﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Payments.GetPaymentsForAccountId;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries.GetPaymentsForAccountIdQuery;
 using FluentAssertions;
 using Infrastructure.Persistence;
 
-[ExcludeFromCodeCoverage]
 public class GetPaymentsForAccountIdQueryTests
 {
     private readonly AppDbContext context;

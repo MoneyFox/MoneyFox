@@ -1,13 +1,11 @@
 ﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Payments.GetPaymentById;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Domain.Exceptions;
 using Core.ApplicationCore.Queries;
 using FluentAssertions;
 using Infrastructure.Persistence;
 
-[ExcludeFromCodeCoverage]
 public class GetPaymentByIdQueryTests
 {
     private readonly AppDbContext context;

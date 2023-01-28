@@ -5,7 +5,7 @@ using FluentAssertions;
 using Views.Accounts;
 using Xunit;
 
-[ExcludeFromCodeCoverage]
+
 public class AccountViewModelTests
 {
     public static IEnumerable<object[]> Data

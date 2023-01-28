@@ -11,7 +11,7 @@ using NSubstitute;
 using Views.Categories;
 using Xunit;
 
-[ExcludeFromCodeCoverage]
+
 public class CategoryListViewModelTests
 {
     private readonly IDialogService dialogService;

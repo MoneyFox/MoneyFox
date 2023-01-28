@@ -3,7 +3,7 @@
 using System.Diagnostics.CodeAnalysis;
 using MoneyFox.Infrastructure.Persistence;
 
-[ExcludeFromCodeCoverage]
+
 public class QueryTestFixture : IDisposable
 {
     public QueryTestFixture()

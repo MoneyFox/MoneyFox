@@ -11,7 +11,7 @@ using NSubstitute;
 using Views.Backup;
 using Xunit;
 
-[ExcludeFromCodeCoverage]
+
 public class BackupViewModelShould
 {
     private readonly IBackupService backupService;

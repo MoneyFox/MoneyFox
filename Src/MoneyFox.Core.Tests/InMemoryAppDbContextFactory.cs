@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Infrastructure.Persistence;
 
-[ExcludeFromCodeCoverage]
+
 internal static class InMemoryAppDbContextFactory
 {
     public static AppDbContext Create()

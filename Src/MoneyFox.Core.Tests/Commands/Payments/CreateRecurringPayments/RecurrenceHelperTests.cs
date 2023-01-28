@@ -6,7 +6,7 @@ using Core.Commands.Payments.CreateRecurringPayments;
 using Core.Common.Extensions;
 using FluentAssertions;
 
-[ExcludeFromCodeCoverage]
+
 public class RecurrenceHelperTests
 {
     public static IEnumerable<object[]> CheckIfRepeatableTestData()

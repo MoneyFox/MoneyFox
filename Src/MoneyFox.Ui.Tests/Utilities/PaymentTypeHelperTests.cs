@@ -6,7 +6,7 @@ using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Resources.Strings;
 using Xunit;
 
-[ExcludeFromCodeCoverage]
+
 public class PaymentTypeHelperTests
 {
     [Theory]

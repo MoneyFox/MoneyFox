@@ -5,7 +5,7 @@ using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Commands.Payments.DeletePaymentById;
 using Infrastructure.Persistence;
 
-[ExcludeFromCodeCoverage]
+
 public class DeletePaymentByIdCommandTests : InMemoryTestBase
 {
     private readonly DeletePaymentByIdCommand.Handler handler;

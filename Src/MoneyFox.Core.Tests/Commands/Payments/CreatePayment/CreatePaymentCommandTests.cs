@@ -6,7 +6,7 @@ using Core.Commands.Payments.CreatePayment;
 using FluentAssertions;
 using Infrastructure.Persistence;
 
-[ExcludeFromCodeCoverage]
+
 public class CreatePaymentCommandTests
 {
     private readonly AppDbContext context;

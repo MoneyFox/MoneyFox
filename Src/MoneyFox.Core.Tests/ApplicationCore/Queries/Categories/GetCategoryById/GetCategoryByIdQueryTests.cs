@@ -1,12 +1,10 @@
 namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Categories.GetCategoryById;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.ApplicationCore.Queries;
 using FluentAssertions;
 using Infrastructure.Persistence;
 
-[ExcludeFromCodeCoverage]
 public class GetCategoryByIdQueryTests
 {
     private readonly AppDbContext context;

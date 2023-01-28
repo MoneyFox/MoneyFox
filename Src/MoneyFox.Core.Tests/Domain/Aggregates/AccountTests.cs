@@ -5,7 +5,7 @@ using System.Reflection;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using FluentAssertions;
 
-[ExcludeFromCodeCoverage]
+
 public class AccountTests
 {
     [Fact]

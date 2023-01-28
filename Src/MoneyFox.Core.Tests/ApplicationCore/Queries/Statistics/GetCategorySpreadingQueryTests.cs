@@ -1,13 +1,11 @@
 namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Statistics;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.ApplicationCore.Queries.Statistics;
 using FluentAssertions;
 using Infrastructure.Persistence;
 
-[ExcludeFromCodeCoverage]
 [Collection("CultureCollection")]
 public class GetCategorySpreadingQueryTests
 {
