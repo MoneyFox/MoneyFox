@@ -5,7 +5,6 @@ using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Commands.Payments.CreatePayment;
 using FluentAssertions;
 using Infrastructure.Persistence;
-using TestFramework;
 
 [ExcludeFromCodeCoverage]
 public class CreatePaymentCommandTests

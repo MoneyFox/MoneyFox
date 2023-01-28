@@ -5,7 +5,6 @@ using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries;
 using FluentAssertions;
 using Infrastructure.Persistence;
-using TestFramework;
 
 [ExcludeFromCodeCoverage]
 public class GetIfAccountWithNameExistsQueryTests

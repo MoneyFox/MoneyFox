@@ -5,7 +5,6 @@ using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.Commands.Categories.UpdateCategory;
 using FluentAssertions;
 using Infrastructure.Persistence;
-using TestFramework;
 
 [ExcludeFromCodeCoverage]
 public class UpdateCategoryCommandTests

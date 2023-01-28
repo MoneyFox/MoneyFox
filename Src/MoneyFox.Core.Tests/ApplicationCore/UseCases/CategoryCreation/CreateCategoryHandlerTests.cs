@@ -2,8 +2,7 @@
 
 using Core.ApplicationCore.UseCases.CategoryCreation;
 using Microsoft.EntityFrameworkCore;
-using TestFramework;
-using static TestFramework.CategoryAssertion;
+using static CategoryAssertion;
 
 public class CreateCategoryHandlerTests : InMemoryTestBase
 {

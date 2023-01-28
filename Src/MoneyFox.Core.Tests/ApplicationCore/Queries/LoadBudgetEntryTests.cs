@@ -4,7 +4,6 @@ using System.Collections.Immutable;
 using Core.ApplicationCore.Queries.BudgetEntryLoading;
 using FluentAssertions;
 using Infrastructure.Persistence;
-using TestFramework;
 
 public class LoadBudgetEntryTests
 {

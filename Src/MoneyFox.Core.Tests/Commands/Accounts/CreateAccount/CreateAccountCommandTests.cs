@@ -3,7 +3,6 @@ namespace MoneyFox.Core.Tests.Commands.Accounts.CreateAccount;
 using System.Diagnostics.CodeAnalysis;
 using Core.Commands.Accounts.CreateAccount;
 using Infrastructure.Persistence;
-using TestFramework;
 
 [ExcludeFromCodeCoverage]
 public class CreateAccountCommandTests

@@ -6,7 +6,6 @@ using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.ApplicationCore.Queries.Statistics.GetCategorySummary;
 using FluentAssertions;
 using Infrastructure.Persistence;
-using TestFramework;
 
 [ExcludeFromCodeCoverage]
 public class GetCategorySummaryQueryTests

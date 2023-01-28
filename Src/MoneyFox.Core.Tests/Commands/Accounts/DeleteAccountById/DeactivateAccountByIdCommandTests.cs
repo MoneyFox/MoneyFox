@@ -6,7 +6,6 @@ using Core.Commands.Accounts.DeleteAccountById;
 using FluentAssertions;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using TestFramework;
 
 [ExcludeFromCodeCoverage]
 public class DeactivateAccountByIdCommandTests

@@ -2,8 +2,7 @@ namespace MoneyFox.Core.Tests.Domain.Aggregates.BudgetAggregate;
 
 using System.Collections.Immutable;
 using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
-using TestFramework;
-using static TestFramework.BudgetAssertion;
+using static BudgetAssertion;
 
 public sealed class BudgetTests
 {

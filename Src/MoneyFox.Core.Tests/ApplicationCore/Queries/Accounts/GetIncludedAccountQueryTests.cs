@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries;
 using Infrastructure.Persistence;
-using TestFramework;
 
 [ExcludeFromCodeCoverage]
 public class GetIncludedAccountQueryTests

@@ -5,7 +5,6 @@ using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Commands.Payments.ClearPayments;
 using FluentAssertions;
 using Infrastructure.Persistence;
-using TestFramework;
 
 [ExcludeFromCodeCoverage]
 public class ClearPaymentsCommandTests

@@ -6,7 +6,6 @@ using Core.Commands.Payments.CreateRecurringPayments;
 using Core.Common.Extensions;
 using FluentAssertions;
 using Infrastructure.Persistence;
-using TestFramework;
 
 [ExcludeFromCodeCoverage]
 public class CreateRecurringPaymentsCommandTests

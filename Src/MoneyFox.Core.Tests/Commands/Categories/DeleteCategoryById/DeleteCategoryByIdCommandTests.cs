@@ -6,7 +6,6 @@ using Core.Commands.Categories.DeleteCategoryById;
 using FluentAssertions;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using TestFramework;
 
 [ExcludeFromCodeCoverage]
 public class DeleteCategoryByIdCommandTests

@@ -5,7 +5,6 @@ using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries.Statistics;
 using FluentAssertions;
 using Infrastructure.Persistence;
-using TestFramework;
 
 [ExcludeFromCodeCoverage]
 [Collection("CultureCollection")]

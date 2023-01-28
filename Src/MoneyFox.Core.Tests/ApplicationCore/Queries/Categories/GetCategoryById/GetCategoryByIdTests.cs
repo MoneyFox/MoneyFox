@@ -4,7 +4,6 @@ using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.ApplicationCore.Queries;
 using FluentAssertions;
 using Infrastructure.Persistence;
-using TestFramework;
 
 public class GetCategoryByIdTests
 {
