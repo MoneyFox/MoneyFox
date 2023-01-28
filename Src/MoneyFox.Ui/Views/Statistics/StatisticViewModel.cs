@@ -65,6 +65,7 @@ internal abstract class StatisticViewModel : BaseViewModel
     public DateTime StartDate
     {
         get => startDate;
+
         protected set
         {
             startDate = value;
@@ -78,6 +79,7 @@ internal abstract class StatisticViewModel : BaseViewModel
     public DateTime EndDate
     {
         get => endDate;
+
         private set
         {
             endDate = value;

@@ -2,7 +2,6 @@
 
 using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using Core.ApplicationCore.Domain.Exceptions;
 using Core.Commands.Payments.DeletePaymentById;
 using Infrastructure.Persistence;
 using TestFramework;
@@ -20,7 +19,7 @@ public class DeletePaymentByIdCommandTests
     }
 
     [Fact]
-    public async Task DontThrowExceptionWhenIdNotFound ()
+    public async Task DontThrowExceptionWhenIdNotFound()
     {
         // Arrange
         var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new(name: "test", initialBalance: 80));

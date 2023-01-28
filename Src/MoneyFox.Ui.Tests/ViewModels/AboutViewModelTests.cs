@@ -11,13 +11,12 @@ using Xunit;
 [ExcludeFromCodeCoverage]
 public class AboutViewModelTests
 {
-    private AboutViewModel aboutViewModel;
-
     private readonly IAppInformation appInformation;
     private readonly IBrowserAdapter browserAdapter;
     private readonly IEmailAdapter emailAdapter;
     private readonly IStoreOperations storeOperations;
     private readonly IToastService toastService;
+    private readonly AboutViewModel aboutViewModel;
 
     public AboutViewModelTests()
     {
@@ -26,14 +25,12 @@ public class AboutViewModelTests
         emailAdapter = Substitute.For<IEmailAdapter>();
         storeOperations = Substitute.For<IStoreOperations>();
         toastService = Substitute.For<IToastService>();
-
         aboutViewModel = new(
             appInformation: appInformation,
             emailAdapter: emailAdapter,
             browserAdapter: browserAdapter,
             storeOperations: storeOperations,
-            toastService);
-
+            toastService: toastService);
     }
 
     [Fact]
@@ -43,8 +40,7 @@ public class AboutViewModelTests
         _ = appInformation.GetVersion.Returns("42");
 
         // Assert
-        aboutViewModel.Version.Should()
-            .Be("42");
+        aboutViewModel.Version.Should().Be("42");
     }
 
     [Fact]

@@ -17,7 +17,7 @@ internal static partial class TestData
 
     internal interface IBudget
     {
-        int Id { get; }
+        int Id { get; set; }
         string Name { get; }
         decimal SpendingLimit { get; }
         decimal CurrentSpending { get; }

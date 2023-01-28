@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package
-        xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-        xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-        xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
-        IgnorableNamespaces="uap rescap">
+    xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+    xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+    xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+    IgnorableNamespaces="uap rescap">
 
     <Identity
-            Name="57598ApplySolutionsSoftwa.MoneyFoxBeta"
-            Publisher="CN=071307B1-B0E3-434A-AD0E-FFF714A7245C"
-            Version="7.3.7802.0"/>
+        Name="57598ApplySolutionsSoftwa.MoneyFoxBeta"
+        Publisher="CN=071307B1-B0E3-434A-AD0E-FFF714A7245C"
+        Version="7.3.7802.0"/>
 
     <Properties>
         <DisplayName>Money Fox</DisplayName>
@@ -28,11 +28,11 @@
     <Applications>
         <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="$targetentrypoint$">
             <uap:VisualElements
-                    DisplayName="MoneyFox"
-                    Square150x150Logo="$placeholder$.png"
-                    Square44x44Logo="$placeholder$.png"
-                    BackgroundColor="transparent"
-                    Description="A way to make budgeting easy. A basic idea for the community, made even better by the community.">
+                DisplayName="MoneyFox"
+                Square150x150Logo="$placeholder$.png"
+                Square44x44Logo="$placeholder$.png"
+                BackgroundColor="transparent"
+                Description="A way to make budgeting easy. A basic idea for the community, made even better by the community.">
                 <uap:DefaultTile Square71x71Logo="$placeholder$.png" Wide310x150Logo="$placeholder$.png"
                                  Square310x310Logo="$placeholder$.png"/>
                 <uap:SplashScreen Image="$placeholder$.png"/>

@@ -1,10 +1,9 @@
 namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 
-using Common.Interfaces;
 using Dawn;
 using JetBrains.Annotations;
 
-public class Account : EntityBase, IAggregateRoot
+public class Account : EntityBase
 {
     [UsedImplicitly]
     private Account() { }

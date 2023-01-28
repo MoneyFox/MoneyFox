@@ -2,11 +2,11 @@
 
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Name="this"
+             x:Name="This"
              x:Class="MoneyFox.Ui.Controls.TextEntry">
 
     <VerticalStackLayout Spacing="6"
-                         BindingContext="{x:Reference this}">
+                         BindingContext="{x:Reference This}">
         <Label
             Margin="3,0,0,0"
             Style="{StaticResource TextBodySecondary}"

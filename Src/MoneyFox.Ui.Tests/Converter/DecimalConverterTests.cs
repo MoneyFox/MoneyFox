@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui.Tests.Converter;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.Common.Helpers;
 using FluentAssertions;
 using Ui.Converter;

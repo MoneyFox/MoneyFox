@@ -2,7 +2,7 @@ namespace MoneyFox.Ui.Controls;
 
 using System.Collections;
 
-public partial class AccountPicker : ContentView
+public partial class AccountPicker
 {
     public static readonly BindableProperty PickerTitleProperty = BindableProperty.Create(
         propertyName: nameof(PickerTitle),

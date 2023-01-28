@@ -30,6 +30,7 @@ public class DeleteCategoryByIdCommand : IRequest
             {
                 return Unit.Value;
             }
+
             appDbContext.Categories.Remove(entityToDelete);
             await appDbContext.SaveChangesAsync(cancellationToken);
 
