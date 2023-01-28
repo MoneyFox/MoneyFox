@@ -1,5 +1,6 @@
-namespace MoneyFox.Ui.ViewModels.Payments;
+namespace MoneyFox.Ui.Views.Payments;
 
+using Accounts;
 using AutoMapper;
 using Categories;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -7,13 +8,12 @@ using Core.ApplicationCore.Domain.Aggregates;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Common.Helpers;
 using Core.Common.Interfaces.Mapping;
-using Views.Accounts;
 
 public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
 {
     private const decimal DECIMAL_DELTA = 0.01m;
     private decimal amount;
-    private CategoryViewModel? categoryViewModel;
+    private CategoryListItemViewModel? categoryViewModel;
 
     private AccountViewModel chargedAccount = null!;
     private DateTime? endDate;
@@ -110,7 +110,7 @@ public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
             }
 
             isEndless = value;
-            EndDate = isEndless is false ? EndDate = DateTime.Today : null;
+            EndDate = isEndless is false ? DateTime.Today : null;
             OnPropertyChanged();
         }
     }
@@ -226,7 +226,7 @@ public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
     /// <summary>
     ///     The <see cref="Category" /> for this payment
     /// </summary>
-    public CategoryViewModel? Category
+    public CategoryListItemViewModel? Category
     {
         get => categoryViewModel;
 

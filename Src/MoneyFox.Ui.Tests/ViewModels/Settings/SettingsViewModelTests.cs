@@ -6,7 +6,7 @@ using Core.Common.Facades;
 using Core.Common.Interfaces;
 using FluentAssertions;
 using NSubstitute;
-using Ui.ViewModels.Settings;
+using Views.Settings;
 using Xunit;
 
 [ExcludeFromCodeCoverage]

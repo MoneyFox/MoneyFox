@@ -1,7 +1,5 @@
 namespace MoneyFox.Ui.Views.Payments;
 
-using ViewModels.Payments;
-
 [QueryProperty(name: "PaymentId", queryId: "paymentId")]
 public partial class EditPaymentPage
 {

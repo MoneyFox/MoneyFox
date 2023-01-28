@@ -8,7 +8,6 @@ using Core.Common.Messages;
 using Core.Interfaces;
 using MediatR;
 using Resources.Strings;
-using ViewModels;
 
 internal abstract partial class ModifyAccountViewModel : BaseViewModel
 {
@@ -30,9 +29,6 @@ internal abstract partial class ModifyAccountViewModel : BaseViewModel
 
     protected IMediator Mediator { get; }
 
-    /// <summary>
-    ///     The currently selected CategoryViewModel
-    /// </summary>
     public AccountViewModel SelectedAccountVm
     {
         get => selectedAccountVm;

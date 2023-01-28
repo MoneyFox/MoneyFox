@@ -16,7 +16,8 @@ internal class BudgetTimeRangeStringConverter : IValueConverter
             BudgetTimeRange.Last1Year => Translations.LastYearLabel,
             BudgetTimeRange.Last2Years => Translations.LastTwoYearsLabel,
             BudgetTimeRange.Last3Years => Translations.LastThreeYearsLabel,
-            BudgetTimeRange.Last5Years => Translations.LastFiveYearsLabel
+            BudgetTimeRange.Last5Years => Translations.LastFiveYearsLabel,
+            _ => throw new ArgumentOutOfRangeException(paramName: nameof(value), message: "Unsupported BudgetTimeRange")
         };
     }
 

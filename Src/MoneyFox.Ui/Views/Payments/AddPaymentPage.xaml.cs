@@ -1,7 +1,5 @@
 namespace MoneyFox.Ui.Views.Payments;
 
-using ViewModels.Payments;
-
 [QueryProperty(name: "DefaultChargedAccountId", queryId: "defaultChargedAccountId")]
 public partial class AddPaymentPage
 {

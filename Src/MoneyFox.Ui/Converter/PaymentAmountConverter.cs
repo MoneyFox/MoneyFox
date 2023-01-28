@@ -2,7 +2,7 @@
 
 using System.Globalization;
 using Common.ConverterLogic;
-using ViewModels.Payments;
+using Views.Payments;
 
 public class PaymentAmountConverter : IValueConverter
 {

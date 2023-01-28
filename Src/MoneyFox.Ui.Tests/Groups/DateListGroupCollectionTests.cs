@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using Common.Groups;
 using FluentAssertions;
-using Ui.ViewModels.Payments;
+using Views.Payments;
 using Xunit;
 
 [ExcludeFromCodeCoverage]

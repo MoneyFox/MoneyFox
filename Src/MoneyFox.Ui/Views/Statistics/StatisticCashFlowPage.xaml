@@ -4,8 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
     xmlns:maui="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
-    xmlns:statistics="clr-namespace:MoneyFox.Ui.ViewModels.Statistics"
     xmlns:views="clr-namespace:MoneyFox.Ui.Views"
+    xmlns:statistics="clr-namespace:MoneyFox.Ui.Views.Statistics"
     x:DataType="statistics:StatisticCashFlowViewModel"
     Title="{x:Static resources:Translations.CashFlowStatisticTitle}">
 

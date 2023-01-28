@@ -3,10 +3,8 @@ namespace MoneyFox.Ui.Tests.ViewModels.Payments;
 using AutoMapper;
 using Core.Common.Interfaces;
 using MediatR;
-using Microsoft.Extensions.Logging.Abstractions;
 using NSubstitute;
-using Resources.Strings;
-using Ui.ViewModels.Payments;
+using Views.Payments;
 using Xunit;
 
 public sealed class AddPaymentViewModelTests

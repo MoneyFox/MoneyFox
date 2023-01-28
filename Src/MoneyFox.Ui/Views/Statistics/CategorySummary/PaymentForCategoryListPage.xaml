@@ -4,9 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
-    xmlns:payments="clr-namespace:MoneyFox.Ui.ViewModels.Payments"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:views="clr-namespace:MoneyFox.Ui.Views"
+    xmlns:payments="clr-namespace:MoneyFox.Ui.Views.Payments"
     Title="{Binding Title}">
 
     <ContentPage.Resources>

@@ -1,6 +1,7 @@
-namespace MoneyFox.Ui.ViewModels.Payments;
+namespace MoneyFox.Ui.Views.Payments;
 
 using System.Collections.ObjectModel;
+using Accounts;
 using AutoMapper;
 using Categories;
 using Common.Extensions;
@@ -14,8 +15,8 @@ using MediatR;
 using Microsoft.AppCenter.Crashes;
 using Resources.Strings;
 using Serilog;
-using Views.Accounts;
 
+// ReSharper disable once PartialTypeWithSinglePart
 internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipient<CategorySelectedMessage>
 {
     private readonly IDialogService dialogService;
@@ -96,10 +97,10 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
 
     public async void Receive(CategorySelectedMessage message)
     {
-        SelectedPayment.Category = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId)));
+        SelectedPayment.Category = mapper.Map<CategoryListItemViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId)));
     }
 
-    protected virtual async Task InitializeAsync()
+    protected async Task InitializeAsync()
     {
         var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
         ChargedAccounts = new(accounts);
@@ -153,7 +154,7 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
         catch (Exception ex)
         {
             Crashes.TrackError(ex);
-            Log.Error("Failed to modify payment");
+            Log.Error(exception: ex, messageTemplate: "Failed to modify payment");
             await toastService.ShowToastAsync(string.Format(format: Translations.UnknownErrorMessage, arg0: ex.Message));
         }
         finally

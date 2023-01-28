@@ -8,7 +8,7 @@ using Core.Common.Interfaces;
 using FluentAssertions;
 using MediatR;
 using NSubstitute;
-using Ui.ViewModels.Categories;
+using Views.Categories;
 using Xunit;
 
 [ExcludeFromCodeCoverage]
@@ -40,7 +40,7 @@ public class CategoryListViewModelTests
     public async Task ItemLoadedInInit()
     {
         // Arrange
-        _ = mapper.Map<List<CategoryViewModel>>(Arg.Any<List<Category>>()).Returns(new List<CategoryViewModel> { new() { Name = "asdf" } });
+        _ = mapper.Map<List<CategoryListItemViewModel>>(Arg.Any<List<Category>>()).Returns(new List<CategoryListItemViewModel> { new() { Name = "asdf" } });
         var viewModel = new CategoryListViewModel(mediator: mediator, mapper: mapper, dialogService: dialogService);
 
         // Act
@@ -48,6 +48,6 @@ public class CategoryListViewModelTests
 
         // Assert
         _ = await mediator.Received(1).Send(Arg.Any<GetCategoryBySearchTermQuery>());
-        _ = mapper.Received(1).Map<List<CategoryViewModel>>(Arg.Any<List<Category>>());
+        _ = mapper.Received(1).Map<List<CategoryListItemViewModel>>(Arg.Any<List<Category>>());
     }
 }

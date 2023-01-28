@@ -4,7 +4,6 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Common.Messages;
-using ViewModels;
 
 public interface ISelectFilterDialogViewModel
 {

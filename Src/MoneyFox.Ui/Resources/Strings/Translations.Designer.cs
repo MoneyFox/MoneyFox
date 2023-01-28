@@ -2243,11 +2243,20 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There was an issue during the operation. Error Message {0}.
+        ///   Looks up a localized string similar to There was an unknown error. If the error persists, please restart the app..
         /// </summary>
         public static string UnknownErrorMessage {
             get {
                 return ResourceManager.GetString("UnknownErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was an issue during the operation. Error Message {0}.
+        /// </summary>
+        public static string UnknownErrorWithTextMessage {
+            get {
+                return ResourceManager.GetString("UnknownErrorWithTextMessage", resourceCulture);
             }
         }
         

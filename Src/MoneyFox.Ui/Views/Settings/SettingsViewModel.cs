@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.ViewModels.Settings;
+﻿namespace MoneyFox.Ui.Views.Settings;
 
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -7,7 +7,7 @@ using Core.Common.Helpers;
 using Core.Common.Interfaces;
 using Serilog;
 
-internal sealed class SettingsViewModel : BaseViewModel, ISettingsViewModel
+internal sealed class SettingsViewModel : BaseViewModel
 {
     private readonly IDialogService dialogService;
     private readonly ISettingsFacade settingsFacade;
@@ -19,11 +19,6 @@ internal sealed class SettingsViewModel : BaseViewModel, ISettingsViewModel
         this.settingsFacade = settingsFacade;
         this.dialogService = dialogService;
         AvailableCultures = new();
-    }
-
-    public async Task InitializeAsync()
-    {
-        await LoadAvailableCulturesAsync();
     }
 
     public CultureInfo SelectedCulture
@@ -45,6 +40,11 @@ internal sealed class SettingsViewModel : BaseViewModel, ISettingsViewModel
     }
 
     public ObservableCollection<CultureInfo> AvailableCultures { get; }
+
+    public async Task InitializeAsync()
+    {
+        await LoadAvailableCulturesAsync();
+    }
 
     private async Task LoadAvailableCulturesAsync()
     {

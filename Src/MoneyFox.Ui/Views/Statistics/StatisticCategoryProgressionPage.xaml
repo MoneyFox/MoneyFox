@@ -4,8 +4,8 @@
              xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
              xmlns:forms="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
              xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
-             xmlns:statistics="clr-namespace:MoneyFox.Ui.ViewModels.Statistics"
              xmlns:views="clr-namespace:MoneyFox.Ui.Views"
+             xmlns:statistics="clr-namespace:MoneyFox.Ui.Views.Statistics"
              x:DataType="statistics:StatisticCategoryProgressionViewModel"
              Title="{x:Static resources:Translations.CategoryProgressionTitle}">
 

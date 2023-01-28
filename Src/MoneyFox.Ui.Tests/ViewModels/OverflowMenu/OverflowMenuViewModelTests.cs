@@ -18,7 +18,7 @@ public class OverflowMenuViewModelTests
         var navigationService = Substitute.For<INavigationService>();
 
         // Arrange
-        OverflowItemViewModel overflowItem = new() { Name = "Some Name", Type = OverflowMenuItemType.Categories };
+        OverflowItemViewModel overflowItem = new(IconGlyph: "Icon", Name: "Some Name", Type: OverflowMenuItemType.Categories);
 
         // Act
         OverflowMenuViewModel viewModel = new(navigationService);
@@ -35,7 +35,7 @@ public class OverflowMenuViewModelTests
         var navigationService = Substitute.For<INavigationService>();
 
         // Arrange
-        OverflowItemViewModel overflowItem = new() { Name = "Some Name", Type = OverflowMenuItemType.Backup };
+        OverflowItemViewModel overflowItem = new(IconGlyph: "Icon", Name: "Some Name", Type: OverflowMenuItemType.Backup);
 
         // Act
         OverflowMenuViewModel viewModel = new(navigationService);
@@ -52,7 +52,7 @@ public class OverflowMenuViewModelTests
         var navigationService = Substitute.For<INavigationService>();
 
         // Arrange
-        OverflowItemViewModel overflowItem = new() { Name = "Some Name", Type = OverflowMenuItemType.Settings };
+        OverflowItemViewModel overflowItem = new(IconGlyph: "Icon", Name: "Some Name", Type: OverflowMenuItemType.Settings);
 
         // Act
         OverflowMenuViewModel viewModel = new(navigationService);
@@ -69,7 +69,7 @@ public class OverflowMenuViewModelTests
         var navigationService = Substitute.For<INavigationService>();
 
         // Arrange
-        OverflowItemViewModel overflowItem = new() { Name = "Some Name", Type = OverflowMenuItemType.About };
+        OverflowItemViewModel overflowItem = new(IconGlyph: "Icon", Name: "Some Name", Type: OverflowMenuItemType.About);
 
         // Act
         OverflowMenuViewModel viewModel = new(navigationService);

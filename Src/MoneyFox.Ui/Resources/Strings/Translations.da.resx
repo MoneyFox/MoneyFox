@@ -714,7 +714,7 @@ ADVARSEL: Lokale ændringer, du lavede i mellemtiden, vil gå tabt!</value>
   <data name="TranslationLabel" xml:space="preserve">
     <value>Er noget ikke korrekt oversat eller slet ikke oversat? Hjælp os! Gå over til crowdin og hjælpe med at forbedre MoneyFox:</value>
   </data>
-  <data name="UnknownErrorMessage" xml:space="preserve">
+  <data name="UnknownErrorWithTextMessage" xml:space="preserve">
     <value>Der opstod et problem under handlingen. Fejlmeddelelse {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
