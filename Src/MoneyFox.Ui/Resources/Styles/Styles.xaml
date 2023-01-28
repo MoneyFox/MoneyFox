@@ -129,6 +129,7 @@
         <Setter Property="FontSize" Value="14" />
         <Setter Property="CornerRadius" Value="8" />
         <Setter Property="Padding" Value="14,10" />
+        <Setter Property="HeightRequest" Value="{OnPlatform WinUI=38, MacCatalyst=38, Default=48}" />
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup x:Name="CommonStates">
@@ -161,6 +162,7 @@
     <Style x:Key="PrimaryButton" TargetType="Button">
         <Setter Property="TextColor" Value="{StaticResource White}" />
         <Setter Property="BorderColor" Value="Transparent" />
+        <Setter Property="HeightRequest" Value="48" />
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup x:Name="CommonStates">
@@ -169,9 +171,16 @@
                             <Setter Property="BackgroundColor" Value="{StaticResource ThemePrimary}" />
                         </VisualState.Setters>
                     </VisualState>
-                    <VisualState x:Name="Focused">
+                    <VisualState x:Name="Pressed">
                         <VisualState.Setters>
                             <Setter Property="BackgroundColor" Value="{StaticResource ThemeDark}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Focused">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource ThemePrimary}" />
+                            <Setter Property="BorderColor" Value="{StaticResource Gray300}" />
+                            <Setter Property="BorderWidth" Value="1" />
                         </VisualState.Setters>
                     </VisualState>
                     <VisualState x:Name="Disabled">
@@ -237,24 +246,24 @@
     </Style>
 
     <Style TargetType="Shell" ApplyToDerivedTypes="True">
-        <Setter Property="Shell.BackgroundColor"
+        <Setter Property="BackgroundColor"
                 Value="{AppThemeBinding Light={StaticResource BackgroundColorLight}, Dark={StaticResource BackgroundColorDark}}" />
-        <Setter Property="Shell.ForegroundColor"
+        <Setter Property="ForegroundColor"
                 Value="{AppThemeBinding Light={StaticResource TextPrimaryColorLight}, Dark={StaticResource TextPrimaryColorDark}}" />
-        <Setter Property="Shell.TitleColor"
+        <Setter Property="TitleColor"
                 Value="{AppThemeBinding Light={StaticResource TextPrimaryColorLight}, Dark={StaticResource TextPrimaryColorDark}}" />
-        <Setter Property="Shell.DisabledColor"
+        <Setter Property="DisabledColor"
                 Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" />
-        <Setter Property="Shell.UnselectedColor"
+        <Setter Property="UnselectedColor"
                 Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray200}}" />
-        <Setter Property="Shell.NavBarHasShadow" Value="False" />
-        <Setter Property="Shell.TabBarBackgroundColor"
+        <Setter Property="NavBarHasShadow" Value="False" />
+        <Setter Property="TabBarBackgroundColor"
                 Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
-        <Setter Property="Shell.TabBarForegroundColor"
+        <Setter Property="TabBarForegroundColor"
                 Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
-        <Setter Property="Shell.TabBarTitleColor"
+        <Setter Property="TabBarTitleColor"
                 Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
-        <Setter Property="Shell.TabBarUnselectedColor"
+        <Setter Property="TabBarUnselectedColor"
                 Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray200}}" />
     </Style>
 
