@@ -9,7 +9,6 @@ using Core.Interfaces;
 using MediatR;
 using Resources.Strings;
 
-// ReSharper disable once PartialTypeWithSinglePart
 internal abstract partial class ModifyAccountViewModel : BaseViewModel
 {
     private readonly IDialogService dialogService;
@@ -30,9 +29,6 @@ internal abstract partial class ModifyAccountViewModel : BaseViewModel
 
     protected IMediator Mediator { get; }
 
-    /// <summary>
-    ///     The currently selected CategoryViewModel
-    /// </summary>
     public AccountViewModel SelectedAccountVm
     {
         get => selectedAccountVm;

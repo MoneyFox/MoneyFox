@@ -11,7 +11,6 @@ using Core.Interfaces;
 using MediatR;
 using Resources.Strings;
 
-// ReSharper disable once PartialTypeWithSinglePart
 internal partial class EditAccountViewModel : ModifyAccountViewModel
 {
     private readonly IDialogService dialogService;

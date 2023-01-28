@@ -15,7 +15,7 @@ public sealed class EditPaymentViewModelTests
         // Arrange
         var dialogService = Substitute.For<IDialogService>();
         var toastService = Substitute.For<IToastService>();
-        var vm = new AddPaymentViewModel(
+        var vm = new EditPaymentViewModel(
             mediator: Substitute.For<IMediator>(),
             mapper: Substitute.For<IMapper>(),
             dialogService: dialogService,

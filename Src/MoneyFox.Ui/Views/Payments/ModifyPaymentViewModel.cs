@@ -100,7 +100,7 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
         SelectedPayment.Category = mapper.Map<CategoryListItemViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId)));
     }
 
-    protected virtual async Task InitializeAsync()
+    protected async Task InitializeAsync()
     {
         var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
         ChargedAccounts = new(accounts);

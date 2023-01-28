@@ -16,18 +16,11 @@ internal abstract class StatisticViewModel : BaseViewModel
     private DateTime endDate;
     private DateTime startDate;
 
-    /// <summary>
-    ///     Creates a StatisticViewModel Object and passes the first and last day of the current month     as a start
-    ///     and end date.
-    /// </summary>
     protected StatisticViewModel(IMediator mediator) : this(
         startDate: DateTime.Today.GetFirstDayOfMonth(),
         endDate: DateTime.Today.GetLastDayOfMonth(),
         mediator: mediator) { }
 
-    /// <summary>
-    ///     Creates a Statistic ViewModel with custom start and end date
-    /// </summary>
     private StatisticViewModel(DateTime startDate, DateTime endDate, IMediator mediator)
     {
         StartDate = startDate;
@@ -69,14 +62,10 @@ internal abstract class StatisticViewModel : BaseViewModel
 
     public AsyncRelayCommand LoadedCommand => new(async () => await LoadAsync());
 
-    /// <summary>
-    ///     Start date for a custom statistic
-    /// </summary>
     public DateTime StartDate
     {
         get => startDate;
-
-        set
+        protected set
         {
             startDate = value;
             OnPropertyChanged();
@@ -86,14 +75,10 @@ internal abstract class StatisticViewModel : BaseViewModel
         }
     }
 
-    /// <summary>
-    ///     End date for a custom statistic
-    /// </summary>
     public DateTime EndDate
     {
         get => endDate;
-
-        set
+        private set
         {
             endDate = value;
             OnPropertyChanged();
@@ -103,9 +88,6 @@ internal abstract class StatisticViewModel : BaseViewModel
         }
     }
 
-    /// <summary>
-    ///     Returns the title for the CategoryViewModel view
-    /// </summary>
     public string Title
         => $"{Translations.StatisticsTimeRangeTitle} {StartDate.ToString(format: "d", provider: CultureInfo.InvariantCulture)} - {EndDate.ToString(format: "d", provider: CultureInfo.InvariantCulture)}";
 

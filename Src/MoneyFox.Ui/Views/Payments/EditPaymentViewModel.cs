@@ -9,7 +9,7 @@ using Core.Common.Interfaces;
 using MediatR;
 using Resources.Strings;
 
-internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
+internal class EditPaymentViewModel : ModifyPaymentViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
