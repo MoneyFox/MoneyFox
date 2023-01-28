@@ -1,7 +1,7 @@
-namespace MoneyFox.Ui.Views.Statistics;
+namespace MoneyFox.Ui.Views.Statistics.CategoryProgression;
 
 using CommunityToolkit.Maui.Views;
-using Popups;
+using MoneyFox.Ui.Views.Popups;
 
 public partial class StatisticCategoryProgressionPage : ContentPage
 {

@@ -1,7 +1,7 @@
-namespace MoneyFox.Ui.Views.Statistics;
+namespace MoneyFox.Ui.Views.Statistics.MonthlyAccountCashFlow;
 
 using CommunityToolkit.Maui.Views;
-using Popups;
+using MoneyFox.Ui.Views.Popups;
 
 public partial class StatisticAccountMonthlyCashFlowPage
 {
