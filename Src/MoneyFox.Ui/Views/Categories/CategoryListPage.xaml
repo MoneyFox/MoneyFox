@@ -4,8 +4,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
-    xmlns:categories="clr-namespace:MoneyFox.Ui.ViewModels.Categories"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
+    xmlns:categories="clr-namespace:MoneyFox.Ui.Views.Categories"
     Shell.NavBarHasShadow="False"
     Title="{x:Static resources:Translations.CategoriesTitle}"
     x:Class="MoneyFox.Ui.Views.Categories.CategoryListPage">
@@ -42,7 +42,7 @@
                 </CollectionView.GroupHeaderTemplate>
 
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="categories:CategoryViewModel">
+                    <DataTemplate x:DataType="categories:CategoryListItemViewModel">
                         <Grid Padding="15, 6, 15, 8">
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer

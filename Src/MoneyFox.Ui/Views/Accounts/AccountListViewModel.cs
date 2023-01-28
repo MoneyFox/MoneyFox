@@ -11,7 +11,6 @@ using Core.Common.Interfaces;
 using Core.Common.Messages;
 using MediatR;
 using Resources.Strings;
-using ViewModels;
 
 internal sealed class AccountListViewModel : BaseViewModel
 {

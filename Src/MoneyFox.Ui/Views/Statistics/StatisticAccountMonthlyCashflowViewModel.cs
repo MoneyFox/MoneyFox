@@ -1,6 +1,7 @@
-namespace MoneyFox.Ui.ViewModels.Statistics;
+namespace MoneyFox.Ui.Views.Statistics;
 
 using System.Collections.ObjectModel;
+using Accounts;
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using Core.ApplicationCore.Queries;
@@ -11,7 +12,6 @@ using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using MediatR;
 using SkiaSharp;
-using Views.Accounts;
 
 internal sealed class StatisticAccountMonthlyCashFlowViewModel : StatisticViewModel
 {

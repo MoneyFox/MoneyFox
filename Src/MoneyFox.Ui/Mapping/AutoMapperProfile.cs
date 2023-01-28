@@ -1,7 +1,7 @@
 namespace MoneyFox.Ui.Mapping;
 
 using AutoMapper;
-using ViewModels.Payments;
+using Views.Payments;
 
 public class AutoMapperProfile : Profile
 {

@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.ViewModels.Statistics;
+namespace MoneyFox.Ui.Views.Statistics;
 
 using System.Collections.ObjectModel;
 using Core.ApplicationCore.Queries.Statistics;

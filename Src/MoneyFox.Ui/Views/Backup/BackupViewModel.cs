@@ -10,7 +10,6 @@ using Core.Interfaces;
 using MediatR;
 using Resources.Strings;
 using Serilog;
-using ViewModels;
 
 internal sealed class BackupViewModel : BaseViewModel
 {
@@ -171,6 +170,7 @@ internal sealed class BackupViewModel : BaseViewModel
         if (!connectivity.IsConnected)
         {
             await toastService.ShowToastAsync(Translations.NoNetworkMessage);
+
             return;
         }
 

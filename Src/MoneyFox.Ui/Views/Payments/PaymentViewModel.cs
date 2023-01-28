@@ -1,17 +1,17 @@
-namespace MoneyFox.Ui.ViewModels.Payments;
+namespace MoneyFox.Ui.Views.Payments;
 
+using Accounts;
 using AutoMapper;
 using Categories;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Common.Interfaces.Mapping;
-using Views.Accounts;
 
 public class PaymentViewModel : ObservableObject, IHaveCustomMapping
 {
     private const decimal DECIMAL_DELTA = 0.01m;
     private decimal amount;
-    private CategoryViewModel? categoryViewModel;
+    private CategoryListItemViewModel? categoryViewModel;
 
     private AccountViewModel chargedAccount = null!;
     private int chargedAccountId;
@@ -283,7 +283,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     /// <summary>
     ///     The <see cref="Category" /> for this payment
     /// </summary>
-    public CategoryViewModel? Category
+    public CategoryListItemViewModel? Category
     {
         get => categoryViewModel;
 

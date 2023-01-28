@@ -1,11 +1,11 @@
-namespace MoneyFox.Ui.ViewModels.Categories;
+namespace MoneyFox.Ui.Views.Categories;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.Common.Interfaces.Mapping;
 
-public class CategoryViewModel : ObservableObject, IHaveCustomMapping
+public class CategoryListItemViewModel : ObservableObject, IHaveCustomMapping
 {
     private DateTime created;
     private int id;
@@ -115,6 +115,6 @@ public class CategoryViewModel : ObservableObject, IHaveCustomMapping
 
     public void CreateMappings(Profile configuration)
     {
-        configuration.CreateMap<Category, CategoryViewModel>().ReverseMap();
+        configuration.CreateMap<Category, CategoryListItemViewModel>().ReverseMap();
     }
 }

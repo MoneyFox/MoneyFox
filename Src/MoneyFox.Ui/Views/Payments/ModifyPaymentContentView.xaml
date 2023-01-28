@@ -6,8 +6,8 @@
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
-    xmlns:payments="clr-namespace:MoneyFox.Ui.ViewModels.Payments"
     xmlns:views="clr-namespace:MoneyFox.Ui.Views"
+    xmlns:payments="clr-namespace:MoneyFox.Ui.Views.Payments"
     x:Class="MoneyFox.Ui.Views.Payments.ModifyPaymentContentView"
     x:DataType="payments:ModifyPaymentViewModel">
 

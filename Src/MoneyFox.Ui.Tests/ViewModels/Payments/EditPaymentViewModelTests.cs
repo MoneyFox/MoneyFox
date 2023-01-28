@@ -3,10 +3,8 @@ namespace MoneyFox.Ui.Tests.ViewModels.Payments;
 using AutoMapper;
 using Core.Common.Interfaces;
 using MediatR;
-using Microsoft.Extensions.Logging.Abstractions;
 using NSubstitute;
-using Resources.Strings;
-using Ui.ViewModels.Payments;
+using Views.Payments;
 using Xunit;
 
 public sealed class EditPaymentViewModelTests
@@ -17,7 +15,7 @@ public sealed class EditPaymentViewModelTests
         // Arrange
         var dialogService = Substitute.For<IDialogService>();
         var toastService = Substitute.For<IToastService>();
-        var vm = new AddPaymentViewModel(
+        var vm = new EditPaymentViewModel(
             mediator: Substitute.For<IMediator>(),
             mapper: Substitute.For<IMapper>(),
             dialogService: dialogService,

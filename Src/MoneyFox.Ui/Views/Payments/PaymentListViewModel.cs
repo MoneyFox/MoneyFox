@@ -1,7 +1,8 @@
-namespace MoneyFox.Ui.ViewModels.Payments;
+namespace MoneyFox.Ui.Views.Payments;
 
 using System.Collections.ObjectModel;
 using System.Globalization;
+using Accounts;
 using AutoMapper;
 using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
@@ -13,7 +14,6 @@ using Core.Common.Helpers;
 using Core.Common.Messages;
 using MediatR;
 using Resources.Strings;
-using Views.Accounts;
 
 internal sealed class PaymentListViewModel : BaseViewModel
 {
