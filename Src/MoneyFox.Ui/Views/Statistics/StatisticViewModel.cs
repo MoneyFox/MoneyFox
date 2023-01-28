@@ -1,14 +1,15 @@
-namespace MoneyFox.Ui.ViewModels.Statistics;
+namespace MoneyFox.Ui.Views.Statistics;
 
 using System.Globalization;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.Common.Extensions;
-using Core.Common.Messages;
 using LiveChartsCore.SkiaSharpView.Painting;
 using MediatR;
-using Resources.Strings;
+using MoneyFox.Core.Common.Extensions;
+using MoneyFox.Core.Common.Messages;
+using MoneyFox.Ui.Resources.Strings;
 using SkiaSharp;
+using ViewModels;
 
 internal abstract class StatisticViewModel : BaseViewModel
 {

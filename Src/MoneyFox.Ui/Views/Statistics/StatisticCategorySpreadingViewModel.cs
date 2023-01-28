@@ -1,13 +1,13 @@
-namespace MoneyFox.Ui.ViewModels.Statistics;
+namespace MoneyFox.Ui.Views.Statistics;
 
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using Core.ApplicationCore.Queries.Statistics;
-using Core.Common.Extensions;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using MediatR;
+using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using MoneyFox.Core.ApplicationCore.Queries.Statistics;
+using MoneyFox.Core.Common.Extensions;
 
 internal sealed class StatisticCategorySpreadingViewModel : StatisticViewModel
 {

@@ -8,7 +8,6 @@ using Core.ApplicationCore.Queries.Statistics.GetCategorySummary;
 using Core.Common.Interfaces;
 using MediatR;
 using Serilog;
-using ViewModels.Statistics;
 
 internal sealed class StatisticCategorySummaryViewModel : StatisticViewModel
 {

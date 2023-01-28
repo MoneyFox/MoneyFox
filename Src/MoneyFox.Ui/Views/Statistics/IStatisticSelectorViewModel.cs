@@ -1,7 +1,7 @@
-﻿namespace MoneyFox.Ui.ViewModels.Statistics;
+﻿namespace MoneyFox.Ui.Views.Statistics;
 
 using CommunityToolkit.Mvvm.Input;
-using Views.Statistics.Selector;
+using MoneyFox.Ui.Views.Statistics.Selector;
 
 public interface IStatisticSelectorViewModel
 {

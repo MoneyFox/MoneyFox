@@ -5,10 +5,10 @@
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
-    xmlns:statistics="clr-namespace:MoneyFox.Ui.ViewModels.Statistics"
     x:DataType="categorySummary:StatisticCategorySummaryViewModel"
     xmlns:views="clr-namespace:MoneyFox.Ui.Views"
     xmlns:categorySummary="clr-namespace:MoneyFox.Ui.Views.Statistics.CategorySummary"
+    xmlns:statistics="clr-namespace:MoneyFox.Ui.Views.Statistics"
     Title="{x:Static resources:Translations.CategorySummaryTitle}">
 
     <ContentPage.Resources>
