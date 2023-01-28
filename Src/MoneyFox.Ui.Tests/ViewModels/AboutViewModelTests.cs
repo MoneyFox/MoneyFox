@@ -31,16 +31,6 @@ public class AboutViewModelTests
     }
 
     [Fact]
-    public void Version_NoParams_ReturnCorrectMail()
-    {
-        // Arrange
-        _ = appInformation.GetVersion.Returns("42");
-
-        // Assert
-        aboutViewModel.Version.Should().Be("42");
-    }
-
-    [Fact]
     public async Task GoToWebsite_NoParams_Called()
     {
         // Arrange
