@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui;
 
-using Core.Common.Interfaces;
 using Core.Interfaces;
 using Foundation;
 using JetBrains.Annotations;
@@ -13,8 +12,8 @@ using UserNotifications;
 [UsedImplicitly]
 public class AppDelegate : MauiUIApplicationDelegate
 {
-    private const string MSAL_APPLICATIONID = "00a3e4cd-b4b0-4730-be62-5fcf90a94a1d";
-    private const string MSAL_URI = $"msal{MSAL_APPLICATIONID}://auth";
+    private const string MSAL_APPLICATION_ID = "00a3e4cd-b4b0-4730-be62-5fcf90a94a1d";
+    private const string MSAL_URI = $"msal{MSAL_APPLICATION_ID}://auth";
 
     protected override MauiApp CreateMauiApp()
     {
@@ -27,15 +26,13 @@ public class AppDelegate : MauiUIApplicationDelegate
     private static void AddServices(IServiceCollection services)
     {
         services.AddSingleton<IDbPathProvider, DbPathProvider>();
-        services.AddSingleton<IStoreOperations, StoreOperations>();
-        services.AddSingleton<IAppInformation, AppInformation>();
         services.AddTransient<IFileStore>(_ => new IosFileStore(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)));
         RegisterIdentityClient(services);
     }
 
     private static void RegisterIdentityClient(IServiceCollection serviceCollection)
     {
-        var publicClientApplication = PublicClientApplicationBuilder.Create(MSAL_APPLICATIONID)
+        var publicClientApplication = PublicClientApplicationBuilder.Create(MSAL_APPLICATION_ID)
             .WithRedirectUri(MSAL_URI)
             .WithIosKeychainSecurityGroup("com.microsoft.adalcache")
             .Build();
