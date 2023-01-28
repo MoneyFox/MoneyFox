@@ -1,9 +1,9 @@
 ﻿namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 
+using System;
 using System.Collections.Generic;
 using AccountAggregate;
 using Common.Interfaces;
-using Dawn;
 using JetBrains.Annotations;
 
 public class Category : EntityBase, IAggregateRoot
@@ -40,7 +40,7 @@ public class Category : EntityBase, IAggregateRoot
 
     public void UpdateData(string name, string? note = "", bool requireNote = false)
     {
-        _ = Guard.Argument(value: name, name: nameof(name)).NotWhiteSpace();
+        ArgumentException.ThrowIfNullOrEmpty(name);
         Name = name;
         Note = note;
         RequireNote = requireNote;
