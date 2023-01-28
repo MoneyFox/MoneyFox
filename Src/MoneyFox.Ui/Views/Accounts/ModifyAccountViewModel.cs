@@ -53,12 +53,12 @@ internal abstract partial class ModifyAccountViewModel : BaseViewModel
         }
 
         var nameChanged = SelectedAccountVm.Id == 0 || !SelectedAccountVm.Name.Equals(await Mediator.Send(new GetAccountNameByIdQuery(SelectedAccountVm.Id)));
-        if (nameChanged && await Mediator.Send(new GetIfAccountWithNameExistsQuery(accountName: SelectedAccountVm.Name, accountId: SelectedAccountVm.Id)))
+        var nameAlreadyTaken = await Mediator.Send(new GetIfAccountWithNameExistsQuery(accountName: SelectedAccountVm.Name, accountId: SelectedAccountVm.Id));
+        if (nameChanged
+            && nameAlreadyTaken
+            && await dialogService.ShowConfirmMessageAsync(title: Translations.DuplicatedNameTitle, message: Translations.DuplicateAccountMessage) is false)
         {
-            if (!await dialogService.ShowConfirmMessageAsync(title: Translations.DuplicatedNameTitle, message: Translations.DuplicateAccountMessage))
-            {
-                return;
-            }
+            return;
         }
 
         await dialogService.ShowLoadingDialogAsync(Translations.SavingAccountMessage);

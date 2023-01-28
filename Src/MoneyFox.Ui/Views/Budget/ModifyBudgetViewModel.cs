@@ -50,7 +50,6 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
             BudgetTimeRange.Last5Years
         };
 
-    // Todo: use ReadOnly Collection?
     public ObservableCollection<BudgetCategoryViewModel> SelectedCategories { get; set; } = new();
 
     public AsyncRelayCommand OpenCategorySelectionCommand => new(OpenCategorySelection);
