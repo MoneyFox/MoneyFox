@@ -4,16 +4,15 @@ using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Commands.Accounts.UpdateAccount;
 using FluentAssertions;
 using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
-public class UpdateCategoryCommandTests
+public class UpdateCategoryCommandTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
     private readonly UpdateAccountCommand.Handler handler;
 
     public UpdateCategoryCommandTests()
     {
-        context = InMemoryAppDbContextFactory.Create();
-        handler = new(context);
+        handler = new(Context);
     }
 
     [Fact]
@@ -21,13 +20,13 @@ public class UpdateCategoryCommandTests
     {
         // Arrange
         var account = new Account(name: "test", initialBalance: 80);
-        await context.AddAsync(account);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(account);
+        await Context.SaveChangesAsync();
 
         // Act
         account.Change("foo");
-        await new UpdateAccountCommand.Handler(context).Handle(request: new(account), cancellationToken: default);
-        var loadedAccount = await context.Accounts.FindAsync(account.Id);
+        await handler.Handle(request: new(account), cancellationToken: default);
+        var loadedAccount = await Context.Accounts.SingleAsync(a => a.Id == account.Id);
 
         // Assert
         loadedAccount.Name.Should().Be("foo");

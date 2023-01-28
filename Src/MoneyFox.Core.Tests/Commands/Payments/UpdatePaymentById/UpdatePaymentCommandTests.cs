@@ -7,15 +7,13 @@ using Core.Commands.Payments.UpdatePayment;
 using FluentAssertions;
 using Infrastructure.Persistence;
 
-public class UpdatePaymentCommandTests
+public class UpdatePaymentCommandTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
     private readonly UpdatePayment.Handler handler;
 
     public UpdatePaymentCommandTests()
     {
-        context = InMemoryAppDbContextFactory.Create();
-        handler = new(context);
+        handler = new(Context);
     }
 
     [Fact]
@@ -23,8 +21,8 @@ public class UpdatePaymentCommandTests
     {
         // Arrange
         var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new(name: "test", initialBalance: 80));
-        await context.AddAsync(payment1);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(payment1);
+        await Context.SaveChangesAsync();
         payment1.UpdatePayment(date: payment1.Date, amount: 100, type: payment1.Type, chargedAccount: payment1.ChargedAccount);
 
         // Act
@@ -48,7 +46,7 @@ public class UpdatePaymentCommandTests
             cancellationToken: default);
 
         // Assert
-        (await context.Payments.FindAsync(payment1.Id)).Amount.Should().Be(payment1.Amount);
+        (await Context.Payments.FindAsync(payment1.Id)).Amount.Should().Be(payment1.Amount);
     }
 
     [Fact]
@@ -57,11 +55,11 @@ public class UpdatePaymentCommandTests
         // Arrange
         var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new(name: "test", initialBalance: 80));
         payment1.AddRecurringPayment(recurrence: PaymentRecurrence.Monthly, isLastDayOfMonth: false);
-        await context.AddAsync(payment1);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(payment1);
+        await Context.SaveChangesAsync();
         var category = new Category("Test");
-        await context.AddAsync(category);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(category);
+        await Context.SaveChangesAsync();
         payment1.UpdatePayment(
             date: payment1.Date,
             amount: 100,
@@ -90,7 +88,7 @@ public class UpdatePaymentCommandTests
             cancellationToken: default);
 
         // Assert
-        (await context.RecurringPayments.FindAsync(payment1.RecurringPayment.Id)).Category.Id.Should().Be(payment1.Category.Id);
+        (await Context.RecurringPayments.FindAsync(payment1.RecurringPayment.Id)).Category.Id.Should().Be(payment1.Category.Id);
     }
 
     [Fact]
@@ -99,11 +97,11 @@ public class UpdatePaymentCommandTests
         // Arrange
         var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new(name: "test", initialBalance: 80));
         payment1.AddRecurringPayment(recurrence: PaymentRecurrence.Monthly, isLastDayOfMonth: false);
-        await context.AddAsync(payment1);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(payment1);
+        await Context.SaveChangesAsync();
         var category = new Category("Test");
-        await context.AddAsync(category);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(category);
+        await Context.SaveChangesAsync();
         payment1.UpdatePayment(
             date: payment1.Date,
             amount: 100,
@@ -132,7 +130,7 @@ public class UpdatePaymentCommandTests
             cancellationToken: default);
 
         // Assert
-        (await context.RecurringPayments.FindAsync(payment1.RecurringPayment.Id)).Recurrence.Should().Be(PaymentRecurrence.Daily);
+        (await Context.RecurringPayments.FindAsync(payment1.RecurringPayment.Id)).Recurrence.Should().Be(PaymentRecurrence.Daily);
     }
 
     [Fact]
@@ -146,11 +144,11 @@ public class UpdatePaymentCommandTests
             chargedAccount: new(name: "test", initialBalance: 80));
 
         payment1.AddRecurringPayment(recurrence: PaymentRecurrence.Daily);
-        await context.AddAsync(payment1);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(payment1);
+        await Context.SaveChangesAsync();
 
         // Trigger creation of recurring payment transactions
-        await new CreateRecurringPaymentsCommand.Handler(context).Handle(request: new(), cancellationToken: default);
+        await new CreateRecurringPaymentsCommand.Handler(Context).Handle(request: new(), cancellationToken: default);
 
         // Disable recurrence on the payment
         await handler.Handle(
@@ -173,7 +171,7 @@ public class UpdatePaymentCommandTests
             cancellationToken: default);
 
         // Assert
-        var loadedPayments = context.Payments.ToList();
+        var loadedPayments = Context.Payments.ToList();
         loadedPayments.Should().HaveCount(2);
         loadedPayments.ForEach(x => x.IsRecurring.Should().BeFalse());
     }
