@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Common.Interfaces;
 using Domain.Aggregates.BudgetAggregate;
 using MediatR;
 
@@ -26,18 +27,19 @@ public static class CreateBudget
 
     public class Handler : IRequestHandler<Command>
     {
-        private readonly IBudgetRepository repository;
+        private readonly IAppDbContext appDbContext;
 
-        public Handler(IBudgetRepository repository)
+        public Handler(IAppDbContext appDbContext)
         {
-            this.repository = repository;
+            this.appDbContext = appDbContext;
         }
 
         public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
         {
             SpendingLimit spendingLimit = new(request.SpendingLimit);
             Budget budget = new(name: request.Name, spendingLimit: spendingLimit, timeRange: request.BudgetTimeRange, includedCategories: request.Categories);
-            await repository.AddAsync(budget);
+            await appDbContext.AddAsync(budget, cancellationToken);
+            await appDbContext.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;
         }

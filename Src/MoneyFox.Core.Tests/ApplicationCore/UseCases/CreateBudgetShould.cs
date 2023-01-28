@@ -7,24 +7,18 @@ using NSubstitute;
 using TestFramework;
 using static TestFramework.BudgetAssertion;
 
-public sealed class CreateBudgetShould
+public sealed class CreateBudgetShould : InMemoryTestBase
 {
-    private readonly IBudgetRepository budgetRepository;
     private readonly CreateBudget.Handler handler;
 
     public CreateBudgetShould()
     {
-        budgetRepository = Substitute.For<IBudgetRepository>();
-        handler = new(budgetRepository);
+        handler = new(Context);
     }
 
     [Fact]
     public async Task AddBudgetToRepository()
     {
-        // Capture
-        Budget? capturedBudget = null;
-        await budgetRepository.AddAsync(Arg.Do<Budget>(b => capturedBudget = b));
-
         // Arrange
         var testData = new TestData.DefaultBudget();
 
@@ -38,7 +32,7 @@ public sealed class CreateBudgetShould
         await handler.Handle(request: query, cancellationToken: CancellationToken.None);
 
         // Assert
-        capturedBudget.Should().NotBeNull();
-        AssertBudget(actual: capturedBudget!, expected: testData);
+        var loadedBudget = Context.Budgets.First();
+        AssertBudget(actual: loadedBudget, expected: testData);
     }
 }

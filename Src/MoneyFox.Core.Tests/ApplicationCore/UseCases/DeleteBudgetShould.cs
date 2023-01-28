@@ -2,18 +2,18 @@ namespace MoneyFox.Core.Tests.ApplicationCore.UseCases;
 
 using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
 using Core.ApplicationCore.UseCases.BudgetDeletion;
+using Core.Common.Interfaces;
+using FluentAssertions;
 using NSubstitute;
 using TestFramework;
 
-public sealed class DeleteBudgetShould
+public sealed class DeleteBudgetShould : InMemoryTestBase
 {
-    private readonly IBudgetRepository budgetRepository;
     private readonly DeleteBudget.Handler handler;
 
     public DeleteBudgetShould()
     {
-        budgetRepository = Substitute.For<IBudgetRepository>();
-        handler = new(budgetRepository);
+        handler = new(Context);
     }
 
     [Fact]
@@ -27,6 +27,6 @@ public sealed class DeleteBudgetShould
         await handler.Handle(request: command, cancellationToken: CancellationToken.None);
 
         // Assert
-        await budgetRepository.Received().DeleteAsync(testBudget.Id);
+        Context.Budgets.Should().BeEmpty();
     }
 }
