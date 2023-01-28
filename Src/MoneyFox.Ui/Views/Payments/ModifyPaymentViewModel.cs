@@ -16,7 +16,8 @@ using Microsoft.AppCenter.Crashes;
 using Resources.Strings;
 using Serilog;
 
-internal abstract class ModifyPaymentViewModel : BaseViewModel, IRecipient<CategorySelectedMessage>
+// ReSharper disable once PartialTypeWithSinglePart
+internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipient<CategorySelectedMessage>
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;

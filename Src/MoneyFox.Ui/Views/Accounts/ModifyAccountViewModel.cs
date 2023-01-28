@@ -9,7 +9,8 @@ using Core.Interfaces;
 using MediatR;
 using Resources.Strings;
 
-internal abstract class ModifyAccountViewModel : BaseViewModel
+// ReSharper disable once PartialTypeWithSinglePart
+internal abstract partial class ModifyAccountViewModel : BaseViewModel
 {
     private readonly IDialogService dialogService;
     private readonly INavigationService navigationService;

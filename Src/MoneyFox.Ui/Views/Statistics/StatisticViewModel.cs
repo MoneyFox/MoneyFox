@@ -63,9 +63,9 @@ internal abstract class StatisticViewModel : BaseViewModel
         }
     }
 
-    public SolidColorPaint LegendTextPaint { get; set; }
+    public SolidColorPaint LegendTextPaint { get; } = new();
 
-    public SolidColorPaint LegendBackgroundPaint { get; set; }
+    public SolidColorPaint LegendBackgroundPaint { get; } = new();
 
     public RelayCommand LoadedCommand => new(async () => await LoadAsync());
 
