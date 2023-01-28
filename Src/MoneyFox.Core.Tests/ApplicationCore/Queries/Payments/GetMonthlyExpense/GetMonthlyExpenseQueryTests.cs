@@ -4,7 +4,6 @@ using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries;
 using Core.Common.Helpers;
 using FluentAssertions;
-using Infrastructure.Persistence;
 using NSubstitute;
 
 public class GetMonthlyExpenseQueryTests : InMemoryTestBase

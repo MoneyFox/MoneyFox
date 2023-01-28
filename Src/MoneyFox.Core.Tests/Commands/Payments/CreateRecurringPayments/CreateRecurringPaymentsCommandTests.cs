@@ -4,7 +4,6 @@ using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Commands.Payments.CreateRecurringPayments;
 using Core.Common.Extensions;
 using FluentAssertions;
-using Infrastructure.Persistence;
 
 public class CreateRecurringPaymentsCommandTests : InMemoryTestBase
 {

@@ -4,7 +4,6 @@ using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.ApplicationCore.Queries.Statistics;
 using FluentAssertions;
-using Infrastructure.Persistence;
 
 [Collection("CultureCollection")]
 public class GetCategoryProgressionHandlerTests : InMemoryTestBase

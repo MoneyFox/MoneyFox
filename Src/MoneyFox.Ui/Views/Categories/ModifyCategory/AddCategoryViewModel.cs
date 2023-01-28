@@ -2,7 +2,6 @@ namespace MoneyFox.Ui.Views.Categories.ModifyCategory;
 
 using Core.ApplicationCore.UseCases.CategoryCreation;
 using Core.Common.Interfaces;
-using JetBrains.Annotations;
 using MediatR;
 
 public sealed class AddCategoryViewModel : ModifyCategoryViewModel

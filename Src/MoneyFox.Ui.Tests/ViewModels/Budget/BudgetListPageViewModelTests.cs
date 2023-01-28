@@ -41,8 +41,8 @@ public static class BudgetListPageViewModelTests
 
     public class WithBudgetAvailable
     {
-        private readonly BudgetListViewModel viewModel;
         private readonly TestData.DefaultBudget budgetTestData;
+        private readonly BudgetListViewModel viewModel;
 
         public WithBudgetAvailable()
         {
@@ -88,6 +88,7 @@ public static class BudgetListPageViewModelTests
     public class WithMultipleBudgetAvailable
     {
         private readonly BudgetListViewModel viewModel;
+
         public WithMultipleBudgetAvailable()
         {
             var sender = Substitute.For<ISender>();

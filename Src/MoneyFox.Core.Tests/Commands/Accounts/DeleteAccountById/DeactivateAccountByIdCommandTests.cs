@@ -3,7 +3,6 @@
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Commands.Accounts.DeleteAccountById;
 using FluentAssertions;
-using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 public class DeactivateAccountByIdCommandTests : InMemoryTestBase

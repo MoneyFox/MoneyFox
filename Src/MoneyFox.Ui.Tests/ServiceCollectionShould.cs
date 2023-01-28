@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui.Tests;
 
-using Core.Common.Interfaces;
 using Core.Interfaces;
 using InversionOfControl;
 using Microsoft.Identity.Client;
@@ -13,8 +12,7 @@ public sealed class ServiceCollectionShould
     public void AllDependenciesPresentAndAccountedFor()
     {
         // Arrange
-        var serviceCollection = new ServiceCollection()
-            .AddSingleton(Substitute.For<IDbPathProvider>())
+        var serviceCollection = new ServiceCollection().AddSingleton(Substitute.For<IDbPathProvider>())
             .AddSingleton(Substitute.For<IFileStore>())
             .AddSingleton(Substitute.For<IPublicClientApplication>());
 

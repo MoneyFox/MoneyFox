@@ -1,6 +1,5 @@
 namespace MoneyFox.Infrastructure.Tests.DbBackup;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Exceptions;
 using Core.Common.Facades;
 using Core.Common.Interfaces;
@@ -9,7 +8,6 @@ using FluentAssertions;
 using Infrastructure.DbBackup.Legacy;
 using Moq;
 using NSubstitute;
-
 
 public class BackupServiceTests
 {

@@ -5,7 +5,6 @@ using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.Commands.Payments.CreateRecurringPayments;
 using Core.Commands.Payments.UpdatePayment;
 using FluentAssertions;
-using Infrastructure.Persistence;
 
 public class UpdatePaymentCommandTests : InMemoryTestBase
 {

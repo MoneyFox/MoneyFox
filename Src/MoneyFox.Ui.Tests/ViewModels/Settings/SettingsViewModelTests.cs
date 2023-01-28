@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui.Tests.ViewModels.Settings;
 
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using Core.Common.Facades;
 using Core.Common.Interfaces;
@@ -8,7 +7,6 @@ using FluentAssertions;
 using NSubstitute;
 using Views.Settings;
 using Xunit;
-
 
 public class SettingsViewModelTests
 {

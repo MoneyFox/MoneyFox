@@ -3,7 +3,6 @@
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries.Statistics;
 using FluentAssertions;
-using Infrastructure.Persistence;
 
 [Collection("CultureCollection")]
 public class GetAccountProgressionHandlerTests : InMemoryTestBase

@@ -1,12 +1,10 @@
 namespace MoneyFox.Ui.Tests.ConverterLogic;
 
-using System.Diagnostics.CodeAnalysis;
 using Common.ConverterLogic;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using FluentAssertions;
 using Views.Payments;
 using Xunit;
-
 
 public class PaymentAmountConverterLogicTests
 {

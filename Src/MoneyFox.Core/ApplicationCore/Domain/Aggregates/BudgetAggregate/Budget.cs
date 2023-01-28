@@ -2,7 +2,6 @@ namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
 
 using System.Collections.Generic;
 using JetBrains.Annotations;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 public record struct BudgetId(int Value);
 

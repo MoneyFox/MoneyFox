@@ -1,28 +1,22 @@
 namespace MoneyFox.Ui.Tests.ViewModels;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.Common.Interfaces;
 using Core.Interfaces;
-using FluentAssertions;
 using NSubstitute;
 using Views.About;
 using Xunit;
 
-
 public class AboutViewModelTests
 {
-    private readonly IBrowserAdapter browserAdapter;
     private readonly AboutViewModel aboutViewModel;
+    private readonly IBrowserAdapter browserAdapter;
 
     public AboutViewModelTests()
     {
         browserAdapter = Substitute.For<IBrowserAdapter>();
         var emailAdapter = Substitute.For<IEmailAdapter>();
         var toastService = Substitute.For<IToastService>();
-        aboutViewModel = new(
-            emailAdapter: emailAdapter,
-            browserAdapter: browserAdapter,
-            toastService: toastService);
+        aboutViewModel = new(emailAdapter: emailAdapter, browserAdapter: browserAdapter, toastService: toastService);
     }
 
     [Fact]

@@ -1,10 +1,8 @@
 ﻿namespace MoneyFox.Ui.Tests.Utilities;
 
-using System.Diagnostics.CodeAnalysis;
 using Common.Utilities;
 using FluentAssertions;
 using Xunit;
-
 
 public class DecimalFormatterTests
 {

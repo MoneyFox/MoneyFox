@@ -1,10 +1,8 @@
 namespace MoneyFox.Ui.Tests.ViewModels.Accounts;
 
-using System.Diagnostics.CodeAnalysis;
 using FluentAssertions;
 using Views.Accounts;
 using Xunit;
-
 
 public class AccountViewModelTests
 {

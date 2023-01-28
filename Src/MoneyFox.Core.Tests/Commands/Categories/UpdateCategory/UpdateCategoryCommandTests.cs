@@ -3,7 +3,6 @@
 using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.Commands.Categories.UpdateCategory;
 using FluentAssertions;
-using Infrastructure.Persistence;
 
 public class UpdateCategoryCommandTests : InMemoryTestBase
 {
