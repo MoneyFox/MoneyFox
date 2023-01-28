@@ -11,20 +11,15 @@ using Xunit;
 [ExcludeFromCodeCoverage]
 public class AboutViewModelTests
 {
-    private readonly IAppInformation appInformation;
     private readonly IBrowserAdapter browserAdapter;
-    private readonly IEmailAdapter emailAdapter;
-    private readonly IToastService toastService;
     private readonly AboutViewModel aboutViewModel;
 
     public AboutViewModelTests()
     {
-        appInformation = Substitute.For<IAppInformation>();
         browserAdapter = Substitute.For<IBrowserAdapter>();
-        emailAdapter = Substitute.For<IEmailAdapter>();
-        toastService = Substitute.For<IToastService>();
+        var emailAdapter = Substitute.For<IEmailAdapter>();
+        var toastService = Substitute.For<IToastService>();
         aboutViewModel = new(
-            appInformation: appInformation,
             emailAdapter: emailAdapter,
             browserAdapter: browserAdapter,
             toastService: toastService);

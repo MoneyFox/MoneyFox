@@ -32,7 +32,6 @@ public partial class App : MauiWinUIApplication
 
     private static void AddServices(IServiceCollection services)
     {
-        _ = services.AddTransient<IAppInformation, WindowsAppInformation>();
         _ = services.AddTransient<IFileStore, WindowsFileStore>();
         _ = services.AddTransient<IDbPathProvider, DbPathProvider>();
         var publicClientApplication = PublicClientApplicationBuilder.Create(MSAL_APPLICATION_ID).WithRedirectUri($"msal{MSAL_APPLICATION_ID}://auth").Build();

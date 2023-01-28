@@ -27,7 +27,6 @@ public class AppDelegate : MauiUIApplicationDelegate
     private static void AddServices(IServiceCollection services)
     {
         services.AddSingleton<IDbPathProvider, DbPathProvider>();
-        services.AddSingleton<IAppInformation, AppInformation>();
         services.AddTransient<IFileStore>(_ => new IosFileStore(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)));
         RegisterIdentityClient(services);
     }
