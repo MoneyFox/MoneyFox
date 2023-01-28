@@ -19,10 +19,7 @@ public partial class AboutViewModel : BaseViewModel
     private readonly IEmailAdapter emailAdapter;
     private readonly IToastService toastService;
 
-    public AboutViewModel(
-        IEmailAdapter emailAdapter,
-        IBrowserAdapter browserAdapter,
-        IToastService toastService)
+    public AboutViewModel(IEmailAdapter emailAdapter, IBrowserAdapter browserAdapter, IToastService toastService)
     {
         this.emailAdapter = emailAdapter;
         this.browserAdapter = browserAdapter;

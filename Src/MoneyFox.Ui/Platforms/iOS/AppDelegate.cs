@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui;
 
-using Core.Common.Interfaces;
 using Core.Interfaces;
 using Foundation;
 using JetBrains.Annotations;
