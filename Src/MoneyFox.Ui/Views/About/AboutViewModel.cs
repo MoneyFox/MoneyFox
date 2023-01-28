@@ -3,9 +3,7 @@ namespace MoneyFox.Ui.Views.About;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Interfaces;
 using Core.Interfaces;
-using Microsoft.AppCenter.Crashes;
 using Resources.Strings;
-using ViewModels;
 
 internal class AboutViewModel : BaseViewModel
 {
@@ -22,7 +20,11 @@ internal class AboutViewModel : BaseViewModel
     private readonly IStoreOperations storeFeatures;
     private readonly IToastService toastService;
 
-    public AboutViewModel(IAppInformation appInformation, IEmailAdapter emailAdapter, IBrowserAdapter browserAdapter, IStoreOperations storeOperations,
+    public AboutViewModel(
+        IAppInformation appInformation,
+        IEmailAdapter emailAdapter,
+        IBrowserAdapter browserAdapter,
+        IStoreOperations storeOperations,
         IToastService toastService)
     {
         this.appInformation = appInformation;

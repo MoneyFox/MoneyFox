@@ -8,7 +8,6 @@ using CommunityToolkit.Mvvm.Messaging;
 using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
 using Core.Common.Messages;
 using Core.Interfaces;
-using ViewModels;
 
 internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<CategorySelectedMessage>
 {

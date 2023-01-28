@@ -2,7 +2,6 @@
 
 using CommunityToolkit.Maui.Views;
 using Popups;
-using ViewModels.Statistics;
 
 public partial class StatisticCategorySpreadingPage
 {

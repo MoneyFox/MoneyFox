@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.ViewModels.SetupAssistant;
+namespace MoneyFox.Ui.Views.SetupAssistant;
 
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Facades;

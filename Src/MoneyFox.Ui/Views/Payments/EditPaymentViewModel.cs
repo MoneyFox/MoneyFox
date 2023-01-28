@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.ViewModels.Payments;
+namespace MoneyFox.Ui.Views.Payments;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
@@ -9,17 +9,13 @@ using Core.Common.Interfaces;
 using MediatR;
 using Resources.Strings;
 
-internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
+internal class EditPaymentViewModel : ModifyPaymentViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
     private readonly IMediator mediator;
 
-    public EditPaymentViewModel(
-        IMediator mediator,
-        IMapper mapper,
-        IDialogService dialogService,
-        IToastService toastService) : base(
+    public EditPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, IToastService toastService) : base(
         mediator: mediator,
         mapper: mapper,
         dialogService: dialogService,
