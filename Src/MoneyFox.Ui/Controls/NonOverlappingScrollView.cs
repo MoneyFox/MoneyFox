@@ -1,9 +1,9 @@
 namespace MoneyFox.Ui.Controls;
 
-public class MyScroll: ScrollView
+public class NonOverlappingScrollView: ScrollView
 {
 #if __IOS__
-    public MyScroll()
+    public NonOverlappingScrollView()
     {
 
         UIKit.UIKeyboard.Notifications.ObserveDidShow(OnKeyboardShow);
