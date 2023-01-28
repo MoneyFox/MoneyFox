@@ -14,7 +14,6 @@ public sealed class ServiceCollectionShould
     {
         // Arrange
         var serviceCollection = new ServiceCollection().AddSingleton(Substitute.For<IDbPathProvider>())
-            .AddSingleton(Substitute.For<IStoreOperations>())
             .AddSingleton(Substitute.For<IAppInformation>())
             .AddSingleton(Substitute.For<IFileStore>())
             .AddSingleton(Substitute.For<IPublicClientApplication>());

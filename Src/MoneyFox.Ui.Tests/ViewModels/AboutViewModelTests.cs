@@ -14,7 +14,6 @@ public class AboutViewModelTests
     private readonly IAppInformation appInformation;
     private readonly IBrowserAdapter browserAdapter;
     private readonly IEmailAdapter emailAdapter;
-    private readonly IStoreOperations storeOperations;
     private readonly IToastService toastService;
     private readonly AboutViewModel aboutViewModel;
 
@@ -23,13 +22,11 @@ public class AboutViewModelTests
         appInformation = Substitute.For<IAppInformation>();
         browserAdapter = Substitute.For<IBrowserAdapter>();
         emailAdapter = Substitute.For<IEmailAdapter>();
-        storeOperations = Substitute.For<IStoreOperations>();
         toastService = Substitute.For<IToastService>();
         aboutViewModel = new(
             appInformation: appInformation,
             emailAdapter: emailAdapter,
             browserAdapter: browserAdapter,
-            storeOperations: storeOperations,
             toastService: toastService);
     }
 
@@ -67,15 +64,5 @@ public class AboutViewModelTests
 
         // Assert
         await browserAdapter.Received(1).OpenWebsiteAsync(Arg.Is<Uri>(s => s == new Uri("https://github.com/MoneyFox/MoneyFox")));
-    }
-
-    [Fact]
-    public void RateApp_NoParams_CommandCalled()
-    {
-        // Act
-        aboutViewModel.RateAppCommand.Execute(null);
-
-        // Assert
-        storeOperations.Received(1).RateApp();
     }
 }

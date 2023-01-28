@@ -18,20 +18,17 @@ public partial class AboutViewModel : BaseViewModel
     private readonly IAppInformation appInformation;
     private readonly IBrowserAdapter browserAdapter;
     private readonly IEmailAdapter emailAdapter;
-    private readonly IStoreOperations storeFeatures;
     private readonly IToastService toastService;
 
     public AboutViewModel(
         IAppInformation appInformation,
         IEmailAdapter emailAdapter,
         IBrowserAdapter browserAdapter,
-        IStoreOperations storeOperations,
         IToastService toastService)
     {
         this.appInformation = appInformation;
         this.emailAdapter = emailAdapter;
         this.browserAdapter = browserAdapter;
-        storeFeatures = storeOperations;
         this.toastService = toastService;
     }
 
