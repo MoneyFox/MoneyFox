@@ -713,7 +713,7 @@ AVISO: As alterações locais feitas entretanto serão perdidas!</value>
   <data name="TranslationLabel" xml:space="preserve">
     <value>Há algo não devidamente traduzido ou não em todo traduzido? Ajude-nos! Vá ao Crowdin e ajude a melhorar o MoneyFox:</value>
   </data>
-  <data name="UnknownErrorMessage" xml:space="preserve">
+  <data name="UnknownErrorWithTextMessage" xml:space="preserve">
     <value>Houve um problema durante a operação. Mensagem de erro {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">

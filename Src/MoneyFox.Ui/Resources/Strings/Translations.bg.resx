@@ -713,7 +713,7 @@
   <data name="TranslationLabel" xml:space="preserve">
     <value>Нещо не е правилно преведено или изобщо не е преведено? Помогнете ни! Влезте в CrowdIn и помогнете да подобрим MoneyFox:</value>
   </data>
-  <data name="UnknownErrorMessage" xml:space="preserve">
+  <data name="UnknownErrorWithTextMessage" xml:space="preserve">
     <value>По време на операцията възникна проблем. Съобщение за грешка {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">

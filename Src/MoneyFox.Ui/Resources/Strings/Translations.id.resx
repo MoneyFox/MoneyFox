@@ -712,7 +712,7 @@ Apakah Anda ingin pergi k toko untuk menilai?</value>
   <data name="TranslationLabel" xml:space="preserve">
     <value>Apakah ada sesuatu yang tidak diterjemahkan atau tidak diterjemahkan sama sekali? Bantu kami! Pergilah ke Crowdin dan bantu meningkatkan MoneyFox:</value>
   </data>
-  <data name="UnknownErrorMessage" xml:space="preserve">
+  <data name="UnknownErrorWithTextMessage" xml:space="preserve">
     <value>Ada masalah selama operasi. Pesan Kesalahan {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">

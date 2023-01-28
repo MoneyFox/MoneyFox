@@ -153,7 +153,7 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
         catch (Exception ex)
         {
             Crashes.TrackError(ex);
-            Log.Error("Failed to modify payment");
+            Log.Error(ex, "Failed to modify payment");
             await toastService.ShowToastAsync(string.Format(format: Translations.UnknownErrorMessage, arg0: ex.Message));
         }
         finally

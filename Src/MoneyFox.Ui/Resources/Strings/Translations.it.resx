@@ -714,7 +714,7 @@ ATTENZIONE: i dati locali saranno persi!</value>
   <data name="TranslationLabel" xml:space="preserve">
     <value>C'è qualcosa che è tradotto male o non tradotto per niente? Aiutaci! Visita Crowdin e dacci una mano a migliorare MoneyFox:</value>
   </data>
-  <data name="UnknownErrorMessage" xml:space="preserve">
+  <data name="UnknownErrorWithTextMessage" xml:space="preserve">
     <value>Si è verificato un problema durante l'operazione. Messaggio di errore {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">

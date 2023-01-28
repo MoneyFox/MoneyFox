@@ -711,7 +711,7 @@ To get there go to the account list and select the respective account.</value>
   <data name="TranslationLabel" xml:space="preserve">
     <value>May hindi ba wastong pagsasalin o hindi naisalin? Tulungan ninyo kami! Pumunta sa crowdin at makatulong sa amin na mapagbuti ang MoneyFox:</value>
   </data>
-  <data name="UnknownErrorMessage" xml:space="preserve">
+  <data name="UnknownErrorWithTextMessage" xml:space="preserve">
     <value>There was an issue during the operation. Error Message {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
