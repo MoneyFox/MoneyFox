@@ -23,8 +23,8 @@ using Microsoft.Identity.Client;
 [UsedImplicitly]
 public class MainApplication : MauiApplication
 {
-    private const string MSAL_APPLICATIONID = "00a3e4cd-b4b0-4730-be62-5fcf90a94a1d";
-    private const string MSAL_URI = $"msal{MSAL_APPLICATIONID}://auth";
+    private const string MSAL_APPLICATION_ID = "00a3e4cd-b4b0-4730-be62-5fcf90a94a1d";
+    private const string MSAL_URI = $"msal{MSAL_APPLICATION_ID}://auth";
 
     public MainApplication(IntPtr handle, JniHandleOwnership ownership) : base(handle, ownership) { }
 
@@ -45,15 +45,13 @@ public class MainApplication : MauiApplication
     private static void AddServices(IServiceCollection services)
     {
         services.AddSingleton<IDbPathProvider, DbPathProvider>();
-        services.AddSingleton<IStoreOperations, PlayStoreOperations>();
-        services.AddSingleton<IAppInformation, DroidAppInformation>();
         services.AddTransient<IFileStore>(_ => new FileStoreIoBase(Context.FilesDir?.Path ?? ""));
         RegisterIdentityClient(services);
     }
 
     private static void RegisterIdentityClient(IServiceCollection serviceCollection)
     {
-        IPublicClientApplication publicClientApplication = PublicClientApplicationBuilder.Create(MSAL_APPLICATIONID).WithRedirectUri(MSAL_URI).Build();
+        var publicClientApplication = PublicClientApplicationBuilder.Create(MSAL_APPLICATION_ID).WithRedirectUri(MSAL_URI).Build();
         serviceCollection.AddSingleton(publicClientApplication);
     }
 
