@@ -28,7 +28,6 @@ public static class InfrastructureConfig
     private static void RegisterRepositories(IServiceCollection serviceCollection)
     {
         _ = serviceCollection.AddTransient<ICategoryRepository, CategoryRepository>();
-        _ = serviceCollection.AddTransient<IBudgetRepository, BudgetRepository>();
     }
 
     private static void RegisterBackupServices(IServiceCollection serviceCollection)
