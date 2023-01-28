@@ -1,7 +1,7 @@
-﻿namespace MoneyFox.Core.Tests.TestFramework.Fixtures;
+﻿namespace MoneyFox.Core.Tests.Fixtures;
 
 using System.Diagnostics.CodeAnalysis;
-using Infrastructure.Persistence;
+using MoneyFox.Infrastructure.Persistence;
 
 [ExcludeFromCodeCoverage]
 public class QueryTestFixture : IDisposable

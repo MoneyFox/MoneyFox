@@ -1,8 +1,8 @@
-namespace MoneyFox.Core.Tests.TestFramework;
+namespace MoneyFox.Core.Tests;
 
 using System.Diagnostics.CodeAnalysis;
-using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using MoneyFox.Infrastructure.Persistence;
 
 [ExcludeFromCodeCoverage]
 internal static class InMemoryAppDbContextFactory
