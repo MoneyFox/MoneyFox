@@ -2,7 +2,7 @@ namespace MoneyFox.Ui.Controls;
 
 using System.Windows.Input;
 
-public partial class Search : ContentView
+public partial class Search
 {
     public static readonly BindableProperty SearchPlaceholderProperty = BindableProperty.Create(
         propertyName: nameof(SearchPlaceholder),

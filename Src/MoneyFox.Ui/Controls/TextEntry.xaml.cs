@@ -1,6 +1,6 @@
 namespace MoneyFox.Ui.Controls;
 
-public partial class TextEntry : ContentView
+public partial class TextEntry
 {
     public static readonly BindableProperty TextFieldTitleProperty = BindableProperty.Create(
         propertyName: nameof(TextFieldTitle),

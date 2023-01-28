@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:MoneyFox.Ui.Views"
              xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
-             x:Name="this"
+             x:Name="This"
              x:Class="MoneyFox.Ui.Controls.AccountPicker">
 
     <ContentView.Resources>
@@ -12,12 +12,12 @@
     </ContentView.Resources>
 
     <VerticalStackLayout Spacing="6"
-                         BindingContext="{x:Reference this}">
+                         BindingContext="{x:Reference This}">
         <Label
             Margin="3,0,0,0"
             Style="{StaticResource TextBodySecondary}"
             Text="{Binding PickerTitle}" />
-        <Grid ColumnDefinitions="*, Auto" >
+        <Grid ColumnDefinitions="*, Auto">
 
             <Picker
                 Grid.ColumnSpan="2"
@@ -26,7 +26,8 @@
                 SelectedItem="{Binding SelectedAccount}"
                 ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}" />
 
-            <Image Grid.Column="1" HeightRequest="20" WidthRequest="20" Margin="0,0,6,0" IsVisible="{OnPlatform WinUI=false}">
+            <Image Grid.Column="1" HeightRequest="20" WidthRequest="20" Margin="0,0,6,0"
+                   IsVisible="{OnPlatform WinUI=false}">
                 <Image.Source>
                     <FontImageSource FontFamily="MaterialIcons"
                                      Glyph="{x:Static views:IconFont.ChevronDown}"

@@ -13,8 +13,6 @@ internal sealed class AddCategoryViewModel : ModifyCategoryViewModel
     public AddCategoryViewModel(IMediator mediator, IDialogService dialogService) : base(mediator: mediator, dialogService: dialogService)
     {
         this.mediator = mediator;
-
-        // TODO: Create a separate create and edit model
         SelectedCategory = new()
         {
             Id = 0,

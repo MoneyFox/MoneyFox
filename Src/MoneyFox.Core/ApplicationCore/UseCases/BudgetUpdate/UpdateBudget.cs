@@ -3,8 +3,10 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Common.Interfaces;
 using Domain.Aggregates.BudgetAggregate;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 public static class UpdateBudget
 {
@@ -33,16 +35,16 @@ public static class UpdateBudget
 
     public class Handler : IRequestHandler<Command>
     {
-        private readonly IBudgetRepository budgetRepository;
+        private readonly IAppDbContext appDbContext;
 
-        public Handler(IBudgetRepository budgetRepository)
+        public Handler(IAppDbContext appDbContext)
         {
-            this.budgetRepository = budgetRepository;
+            this.appDbContext = appDbContext;
         }
 
         public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
         {
-            var loadedBudget = await budgetRepository.GetAsync(request.BudgetId);
+            var loadedBudget = await appDbContext.Budgets.SingleAsync(predicate: b => b.Id == request.BudgetId, cancellationToken: cancellationToken);
             SpendingLimit spendingLimit = new(request.SpendingLimit);
             loadedBudget.Change(
                 budgetName: request.Name,
@@ -50,7 +52,7 @@ public static class UpdateBudget
                 includedCategories: request.Categories,
                 timeRange: request.BudgetTimeRange);
 
-            await budgetRepository.UpdateAsync(loadedBudget);
+            await appDbContext.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;
         }

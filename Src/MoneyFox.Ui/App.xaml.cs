@@ -28,7 +28,6 @@ public partial class App
         SetupServices();
         ResourceDictionary = new();
         FillResourceDictionary();
-
         MainPage = DeviceInfo.Current.Idiom == DeviceIdiom.Desktop
                    || DeviceInfo.Current.Idiom == DeviceIdiom.Tablet
                    || DeviceInfo.Current.Idiom == DeviceIdiom.TV
@@ -41,26 +40,20 @@ public partial class App
         }
     }
 
-    private void FillResourceDictionary()
-    {
-        foreach (var dictionary in Resources.MergedDictionaries)
-        {
-            var key = dictionary.Source.OriginalString.Split(';')
-                .First()
-                .Split('/')
-                .Last()
-                .Split('.')
-                .First();
-
-            ResourceDictionary.Add(key: key, value: dictionary);
-        }
-    }
-
     public static Dictionary<string, ResourceDictionary> ResourceDictionary { get; set; }
 
     public static Action<IServiceCollection>? AddPlatformServicesAction { get; set; }
 
     private static IServiceProvider? ServiceProvider { get; set; }
+
+    private void FillResourceDictionary()
+    {
+        foreach (var dictionary in Resources.MergedDictionaries)
+        {
+            var key = dictionary.Source.OriginalString.Split(';').First().Split('/').Last().Split('.').First();
+            ResourceDictionary.Add(key: key, value: dictionary);
+        }
+    }
 
     internal static TViewModel GetViewModel<TViewModel>() where TViewModel : BaseViewModel
     {

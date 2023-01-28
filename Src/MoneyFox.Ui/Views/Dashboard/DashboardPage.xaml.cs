@@ -1,6 +1,6 @@
 namespace MoneyFox.Ui.Views.Dashboard;
 
-public partial class DashboardPage : ContentPage
+public partial class DashboardPage
 {
     public DashboardPage()
     {

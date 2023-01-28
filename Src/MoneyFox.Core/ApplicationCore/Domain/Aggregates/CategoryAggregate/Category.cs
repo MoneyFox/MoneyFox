@@ -3,10 +3,9 @@
 using System;
 using System.Collections.Generic;
 using AccountAggregate;
-using Common.Interfaces;
 using JetBrains.Annotations;
 
-public class Category : EntityBase, IAggregateRoot
+public class Category : EntityBase
 {
     [UsedImplicitly]
     private Category() { }

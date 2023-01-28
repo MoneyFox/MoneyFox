@@ -1,6 +1,6 @@
 namespace MoneyFox.Ui.Controls;
 
-public partial class CustomDatePicker : ContentView
+public partial class CustomDatePicker
 {
     public static readonly BindableProperty DatePickerTitleProperty = BindableProperty.Create(
         propertyName: nameof(DatePickerTitle),
