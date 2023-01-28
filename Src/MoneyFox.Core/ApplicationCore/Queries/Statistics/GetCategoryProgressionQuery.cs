@@ -70,7 +70,7 @@ public class GetCategoryProgressionHandler : IRequestHandler<GetCategoryProgress
         return FillReturnList(request: request, statisticEntries: statisticList);
     }
 
-    private static IImmutableList<StatisticEntry> FillReturnList(GetCategoryProgressionQuery request, IEnumerable<StatisticEntry> statisticEntries)
+    private static IImmutableList<StatisticEntry> FillReturnList(GetCategoryProgressionQuery request, ICollection<StatisticEntry> statisticEntries)
     {
         List<StatisticEntry> returnList = new();
         var startDate = request.StartDate;
