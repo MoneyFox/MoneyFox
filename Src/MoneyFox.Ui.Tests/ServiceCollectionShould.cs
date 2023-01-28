@@ -13,8 +13,8 @@ public sealed class ServiceCollectionShould
     public void AllDependenciesPresentAndAccountedFor()
     {
         // Arrange
-        var serviceCollection = new ServiceCollection().AddSingleton(Substitute.For<IDbPathProvider>())
-            .AddSingleton(Substitute.For<IAppInformation>())
+        var serviceCollection = new ServiceCollection()
+            .AddSingleton(Substitute.For<IDbPathProvider>())
             .AddSingleton(Substitute.For<IFileStore>())
             .AddSingleton(Substitute.For<IPublicClientApplication>());
 

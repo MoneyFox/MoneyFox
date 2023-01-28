@@ -11,33 +11,18 @@ using Xunit;
 [ExcludeFromCodeCoverage]
 public class AboutViewModelTests
 {
-    private readonly IAppInformation appInformation;
     private readonly IBrowserAdapter browserAdapter;
-    private readonly IEmailAdapter emailAdapter;
-    private readonly IToastService toastService;
     private readonly AboutViewModel aboutViewModel;
 
     public AboutViewModelTests()
     {
-        appInformation = Substitute.For<IAppInformation>();
         browserAdapter = Substitute.For<IBrowserAdapter>();
-        emailAdapter = Substitute.For<IEmailAdapter>();
-        toastService = Substitute.For<IToastService>();
+        var emailAdapter = Substitute.For<IEmailAdapter>();
+        var toastService = Substitute.For<IToastService>();
         aboutViewModel = new(
-            appInformation: appInformation,
             emailAdapter: emailAdapter,
             browserAdapter: browserAdapter,
             toastService: toastService);
-    }
-
-    [Fact]
-    public void Version_NoParams_ReturnCorrectMail()
-    {
-        // Arrange
-        _ = appInformation.GetVersion.Returns("42");
-
-        // Assert
-        aboutViewModel.Version.Should().Be("42");
     }
 
     [Fact]

@@ -15,24 +15,18 @@ public partial class AboutViewModel : BaseViewModel
     private static readonly Uri contributorUrl = new("https://github.com/MoneyFox/MoneyFox/graphs/contributors");
     private static readonly Uri websiteUri = new(uriString: "https://www.apply-solutions.ch", uriKind: UriKind.Absolute);
 
-    private readonly IAppInformation appInformation;
     private readonly IBrowserAdapter browserAdapter;
     private readonly IEmailAdapter emailAdapter;
     private readonly IToastService toastService;
 
-    public AboutViewModel(
-        IAppInformation appInformation,
-        IEmailAdapter emailAdapter,
-        IBrowserAdapter browserAdapter,
-        IToastService toastService)
+    public AboutViewModel(IEmailAdapter emailAdapter, IBrowserAdapter browserAdapter, IToastService toastService)
     {
-        this.appInformation = appInformation;
         this.emailAdapter = emailAdapter;
         this.browserAdapter = browserAdapter;
         this.toastService = toastService;
     }
 
-    public string Version => appInformation.GetVersion;
+    public static string Version => AppInfo.VersionString;
 
     [RelayCommand]
     private async Task GoToWebsiteAsync()
