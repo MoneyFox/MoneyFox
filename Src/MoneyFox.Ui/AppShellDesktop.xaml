@@ -14,6 +14,7 @@
        xmlns:about="clr-namespace:MoneyFox.Ui.Views.About"
        xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
        FlyoutBehavior="Locked"
+       FlyoutWidth="250"
        Title="MoneyFox">
 
     <FlyoutItem Title="{x:Static resources:Translations.HomeTitle}">
