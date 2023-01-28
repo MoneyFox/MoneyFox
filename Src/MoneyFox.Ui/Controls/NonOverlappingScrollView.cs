@@ -6,20 +6,20 @@ public class NonOverlappingScrollView: ScrollView
     public NonOverlappingScrollView()
     {
 
-        UIKit.UIKeyboard.Notifications.ObserveDidShow(OnKeyboardShow);
-        UIKit.UIKeyboard.Notifications.ObserveDidHide(OnKeyboardHide);
+        UIKit.UIKeyboard.Notifications.ObserveDidShow(OnKeyboardShow!);
+        UIKit.UIKeyboard.Notifications.ObserveDidHide(OnKeyboardHide!);
 
     }
 
     private void OnKeyboardShow(object sender, UIKit.UIKeyboardEventArgs args) {
-        var result = (Foundation.NSValue)args.Notification.UserInfo.ObjectForKey(new Foundation.NSString(UIKit.UIKeyboard.FrameEndUserInfoKey));
+        var result = (Foundation.NSValue)args.Notification.UserInfo!.ObjectForKey(new Foundation.NSString(UIKit.UIKeyboard.FrameEndUserInfoKey));
         var keyboardSize = result.RectangleFValue.Size;
         Margin = new(Margin.Left, Margin.Top, Margin.Right, Margin.Bottom + keyboardSize.Height);
     }
 
     private void OnKeyboardHide(object sender, UIKit.UIKeyboardEventArgs args)
     {
-        var result = (Foundation.NSValue)args.Notification.UserInfo.ObjectForKey(new Foundation.NSString(UIKit.UIKeyboard.FrameEndUserInfoKey));
+        var result = (Foundation.NSValue)args.Notification.UserInfo!.ObjectForKey(new Foundation.NSString(UIKit.UIKeyboard.FrameEndUserInfoKey));
         var keyboardSize = result.RectangleFValue.Size;
         Margin = new(Margin.Left, Margin.Top, Margin.Right, Margin.Bottom - keyboardSize.Height);
     }
