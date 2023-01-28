@@ -2,18 +2,15 @@ namespace MoneyFox.Core.Tests.Commands.Accounts.CreateAccount;
 
 using System.Diagnostics.CodeAnalysis;
 using Core.Commands.Accounts.CreateAccount;
-using Infrastructure.Persistence;
 
 [ExcludeFromCodeCoverage]
-public class CreateAccountCommandTests
+public class CreateAccountCommandTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
     private readonly CreateAccountCommand.Handler handler;
 
     public CreateAccountCommandTests()
     {
-        context = InMemoryAppDbContextFactory.Create();
-        handler = new(context);
+        handler = new(Context);
     }
 
     [Fact]
@@ -24,6 +21,6 @@ public class CreateAccountCommandTests
         _ = await handler.Handle(request: new(name: "test", currentBalance: 80), cancellationToken: default);
 
         // Assert
-        _ = Assert.Single(context.Accounts);
+        _ = Assert.Single(Context.Accounts);
     }
 }
