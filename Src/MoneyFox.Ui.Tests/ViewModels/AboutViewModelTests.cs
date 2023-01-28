@@ -11,36 +11,18 @@ using Xunit;
 [ExcludeFromCodeCoverage]
 public class AboutViewModelTests
 {
-    private readonly IAppInformation appInformation;
     private readonly IBrowserAdapter browserAdapter;
-    private readonly IEmailAdapter emailAdapter;
-    private readonly IStoreOperations storeOperations;
-    private readonly IToastService toastService;
     private readonly AboutViewModel aboutViewModel;
 
     public AboutViewModelTests()
     {
-        appInformation = Substitute.For<IAppInformation>();
         browserAdapter = Substitute.For<IBrowserAdapter>();
-        emailAdapter = Substitute.For<IEmailAdapter>();
-        storeOperations = Substitute.For<IStoreOperations>();
-        toastService = Substitute.For<IToastService>();
+        var emailAdapter = Substitute.For<IEmailAdapter>();
+        var toastService = Substitute.For<IToastService>();
         aboutViewModel = new(
-            appInformation: appInformation,
             emailAdapter: emailAdapter,
             browserAdapter: browserAdapter,
-            storeOperations: storeOperations,
             toastService: toastService);
-    }
-
-    [Fact]
-    public void Version_NoParams_ReturnCorrectMail()
-    {
-        // Arrange
-        _ = appInformation.GetVersion.Returns("42");
-
-        // Assert
-        aboutViewModel.Version.Should().Be("42");
     }
 
     [Fact]
@@ -67,15 +49,5 @@ public class AboutViewModelTests
 
         // Assert
         await browserAdapter.Received(1).OpenWebsiteAsync(Arg.Is<Uri>(s => s == new Uri("https://github.com/MoneyFox/MoneyFox")));
-    }
-
-    [Fact]
-    public void RateApp_NoParams_CommandCalled()
-    {
-        // Act
-        aboutViewModel.RateAppCommand.Execute(null);
-
-        // Assert
-        storeOperations.Received(1).RateApp();
     }
 }
