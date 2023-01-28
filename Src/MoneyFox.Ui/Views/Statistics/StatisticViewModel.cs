@@ -67,7 +67,7 @@ internal abstract class StatisticViewModel : BaseViewModel
 
     public SolidColorPaint LegendBackgroundPaint { get; } = new();
 
-    public RelayCommand LoadedCommand => new(async () => await LoadAsync());
+    public AsyncRelayCommand LoadedCommand => new(async () => await LoadAsync());
 
     /// <summary>
     ///     Start date for a custom statistic
