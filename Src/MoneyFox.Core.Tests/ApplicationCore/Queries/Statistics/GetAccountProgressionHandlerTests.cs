@@ -6,15 +6,13 @@ using FluentAssertions;
 using Infrastructure.Persistence;
 
 [Collection("CultureCollection")]
-public class GetAccountProgressionHandlerTests
+public class GetAccountProgressionHandlerTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
     private readonly GetAccountProgressionHandler getAccountProgressionHandler;
 
     public GetAccountProgressionHandlerTests()
     {
-        context = InMemoryAppDbContextFactory.Create();
-        getAccountProgressionHandler = new(context);
+        getAccountProgressionHandler = new(Context);
     }
 
     [Fact]
@@ -22,7 +20,7 @@ public class GetAccountProgressionHandlerTests
     {
         // Arrange
         var account = new Account("Foo1");
-        context.AddRange(
+        Context.AddRange(
             new List<Payment>
             {
                 new(date: DateTime.Today, amount: 60, type: PaymentType.Income, chargedAccount: account),
@@ -31,8 +29,8 @@ public class GetAccountProgressionHandlerTests
                 new(date: DateTime.Today.AddMonths(-2), amount: 40, type: PaymentType.Expense, chargedAccount: account)
             });
 
-        context.Add(account);
-        context.SaveChanges();
+        Context.Add(account);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await getAccountProgressionHandler.Handle(
@@ -50,7 +48,7 @@ public class GetAccountProgressionHandlerTests
     {
         // Arrange
         var account = new Account("Foo1");
-        context.AddRange(
+        Context.AddRange(
             new List<Payment>
             {
                 new(date: DateTime.Today, amount: 60, type: PaymentType.Income, chargedAccount: account),
@@ -59,8 +57,8 @@ public class GetAccountProgressionHandlerTests
                 new(date: DateTime.Today.AddMonths(-2), amount: 40, type: PaymentType.Expense, chargedAccount: account)
             });
 
-        context.Add(account);
-        context.SaveChanges();
+        Context.Add(account);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await getAccountProgressionHandler.Handle(

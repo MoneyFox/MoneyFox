@@ -7,15 +7,13 @@ using FluentAssertions;
 using Infrastructure.Persistence;
 
 [Collection("CultureCollection")]
-public class GetCategoryProgressionHandlerTests
+public class GetCategoryProgressionHandlerTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
     private readonly GetCategoryProgressionHandler handler;
 
     public GetCategoryProgressionHandlerTests()
     {
-        context = InMemoryAppDbContextFactory.Create();
-        handler = new(context);
+        handler = new(Context);
     }
 
     [Fact]
@@ -24,7 +22,7 @@ public class GetCategoryProgressionHandlerTests
         // Arrange
         var account = new Account("Foo1");
         var category = new Category("abcd");
-        context.AddRange(
+        Context.AddRange(
             new List<Payment>
             {
                 new(
@@ -53,9 +51,9 @@ public class GetCategoryProgressionHandlerTests
                     category: category)
             });
 
-        context.Add(account);
-        context.Add(category);
-        await context.SaveChangesAsync();
+        Context.Add(account);
+        Context.Add(category);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(

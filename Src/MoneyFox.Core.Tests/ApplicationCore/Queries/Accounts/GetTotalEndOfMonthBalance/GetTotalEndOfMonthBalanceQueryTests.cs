@@ -7,17 +7,15 @@ using FluentAssertions;
 using Infrastructure.Persistence;
 using NSubstitute;
 
-public class GetTotalEndOfMonthBalanceQueryTests
+public class GetTotalEndOfMonthBalanceQueryTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
     private readonly GetTotalEndOfMonthBalanceQuery.Handler handler;
     private readonly ISystemDateHelper systemDateHelper;
 
     public GetTotalEndOfMonthBalanceQueryTests()
     {
-        context = InMemoryAppDbContextFactory.Create();
         systemDateHelper = Substitute.For<ISystemDateHelper>();
-        handler = new(appDbContext: context, systemDateHelper: systemDateHelper);
+        handler = new(appDbContext: Context, systemDateHelper: systemDateHelper);
     }
 
     [Fact]
@@ -27,9 +25,9 @@ public class GetTotalEndOfMonthBalanceQueryTests
         systemDateHelper.Today.Returns(new DateTime(year: 2020, month: 09, day: 05));
         var accountIncluded = new Account(name: "test", initialBalance: 100);
         var payment = new Payment(date: new(year: 2020, month: 09, day: 25), amount: 50, type: PaymentType.Expense, chargedAccount: accountIncluded);
-        await context.AddAsync(accountIncluded);
-        await context.AddAsync(payment);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(accountIncluded);
+        await Context.AddAsync(payment);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(request: new(), cancellationToken: default);
@@ -47,10 +45,10 @@ public class GetTotalEndOfMonthBalanceQueryTests
         var accountDeactivated = new Account(name: "test", initialBalance: 100);
         accountDeactivated.Deactivate();
         var payment = new Payment(date: new(year: 2020, month: 09, day: 25), amount: 50, type: PaymentType.Expense, chargedAccount: accountIncluded);
-        await context.AddAsync(accountIncluded);
-        await context.AddAsync(accountDeactivated);
-        await context.AddAsync(payment);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(accountIncluded);
+        await Context.AddAsync(accountDeactivated);
+        await Context.AddAsync(payment);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(request: new(), cancellationToken: default);

@@ -5,36 +5,18 @@ using Core.ApplicationCore.Queries;
 using FluentAssertions;
 using Infrastructure.Persistence;
 
-public class GetIfCategoryWithNameExistsQueryTests : IDisposable
+public class GetIfCategoryWithNameExistsQueryTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
-
-    public GetIfCategoryWithNameExistsQueryTests()
-    {
-        context = InMemoryAppDbContextFactory.Create();
-    }
-
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    protected virtual void Dispose(bool disposing)
-    {
-        InMemoryAppDbContextFactory.Destroy(context);
-    }
-
     [Fact]
     public async Task CategoryWithSameNameDontExist()
     {
         // Arrange
         var testCat1 = new Category("Ausgehen");
-        await context.Categories.AddAsync(testCat1);
-        await context.SaveChangesAsync();
+        await Context.Categories.AddAsync(testCat1);
+        await Context.SaveChangesAsync();
 
         // Act
-        var result = await new GetIfCategoryWithNameExistsQuery.Handler(context).Handle(request: new("Foo"), cancellationToken: default);
+        var result = await new GetIfCategoryWithNameExistsQuery.Handler(Context).Handle(request: new("Foo"), cancellationToken: default);
 
         // Assert
         result.Should().BeFalse();
@@ -45,11 +27,11 @@ public class GetIfCategoryWithNameExistsQueryTests : IDisposable
     {
         // Arrange
         var testCat1 = new Category("Ausgehen");
-        await context.Categories.AddAsync(testCat1);
-        await context.SaveChangesAsync();
+        await Context.Categories.AddAsync(testCat1);
+        await Context.SaveChangesAsync();
 
         // Act
-        var result = await new GetIfCategoryWithNameExistsQuery.Handler(context).Handle(request: new(testCat1.Name), cancellationToken: default);
+        var result = await new GetIfCategoryWithNameExistsQuery.Handler(Context).Handle(request: new(testCat1.Name), cancellationToken: default);
 
         // Assert
         result.Should().BeTrue();
