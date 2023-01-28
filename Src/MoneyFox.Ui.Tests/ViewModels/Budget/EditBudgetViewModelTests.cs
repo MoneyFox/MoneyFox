@@ -130,7 +130,7 @@ public class EditBudgetViewModelTests
             _ = sender.Send(Arg.Do<LoadBudgetEntry.Query>(q => capturedQuery = q))
                 .Returns(
                     new BudgetEntryData(
-                        id: testBudget.Id,
+                        id: new(testBudget.Id),
                         name: testBudget.Name,
                         spendingLimit: testBudget.SpendingLimit,
                         timeRange: testBudget.BudgetTimeRange,
@@ -170,7 +170,7 @@ public class EditBudgetViewModelTests
             _ = sender.Send(Arg.Any<LoadBudgetEntry.Query>())
                 .Returns(
                     new BudgetEntryData(
-                        id: testBudget.Id,
+                        id: new(testBudget.Id),
                         name: testBudget.Name,
                         spendingLimit: testBudget.SpendingLimit,
                         timeRange: testBudget.BudgetTimeRange,

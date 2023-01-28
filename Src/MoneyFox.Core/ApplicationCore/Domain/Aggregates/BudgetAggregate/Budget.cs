@@ -2,6 +2,16 @@ namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
 
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+
+public record struct BudgetId(int Value)
+{
+    [UsedImplicitly]
+    public sealed class Converter : ValueConverter<BudgetId, int>
+    {
+        public Converter() : base(convertToProviderExpression: v => v.Value, convertFromProviderExpression: v => new(v)) { }
+    }
+}
 
 public class Budget : EntityBase
 {
@@ -19,7 +29,7 @@ public class Budget : EntityBase
         IncludedCategories = includedCategories;
     }
 
-    public int Id
+    public BudgetId Id
     {
         get;
 

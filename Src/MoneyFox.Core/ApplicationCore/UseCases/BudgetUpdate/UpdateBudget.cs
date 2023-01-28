@@ -13,7 +13,7 @@ public static class UpdateBudget
     public class Command : IRequest
     {
         public Command(
-            int budgetId,
+            BudgetId budgetId,
             string name,
             decimal spendingLimit,
             BudgetTimeRange budgetTimeRange,
@@ -26,7 +26,7 @@ public static class UpdateBudget
             BudgetTimeRange = budgetTimeRange;
         }
 
-        public int BudgetId { get; }
+        public BudgetId BudgetId { get; }
         public string Name { get; }
         public decimal SpendingLimit { get; }
         public BudgetTimeRange BudgetTimeRange { get; }
@@ -42,15 +42,15 @@ public static class UpdateBudget
             this.appDbContext = appDbContext;
         }
 
-        public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(Command command, CancellationToken cancellationToken)
         {
-            var loadedBudget = await appDbContext.Budgets.SingleAsync(predicate: b => b.Id == request.BudgetId, cancellationToken: cancellationToken);
-            SpendingLimit spendingLimit = new(request.SpendingLimit);
+            var loadedBudget = await appDbContext.Budgets.SingleAsync(predicate: b => b.Id == command.BudgetId, cancellationToken: cancellationToken);
+            SpendingLimit spendingLimit = new(command.SpendingLimit);
             loadedBudget.Change(
-                budgetName: request.Name,
+                budgetName: command.Name,
                 spendingLimit: spendingLimit,
-                includedCategories: request.Categories,
-                timeRange: request.BudgetTimeRange);
+                includedCategories: command.Categories,
+                timeRange: command.BudgetTimeRange);
 
             await appDbContext.SaveChangesAsync(cancellationToken);
 

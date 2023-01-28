@@ -85,6 +85,12 @@ public class AppDbContext : DbContext, IAppDbContext
         Analytics.TrackEvent(nameof(ReleaseLock));
     }
 
+    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+    {
+        base.ConfigureConventions(configurationBuilder);
+        configurationBuilder.Properties<Budget>().HaveConversion<BudgetId.Converter>();
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);

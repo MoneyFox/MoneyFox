@@ -43,7 +43,7 @@ public class LoadBudgetEntryTests
             var dbBudget = appDbContext.RegisterBudget(testBudget);
 
             // Act
-            var query = new LoadBudgetEntry.Query(dbBudget.Id);
+            var query = new LoadBudgetEntry.Query(dbBudget.Id.Value);
             var budgetEntryData = await handler.Handle(request: query, cancellationToken: CancellationToken.None);
 
             // Assert
