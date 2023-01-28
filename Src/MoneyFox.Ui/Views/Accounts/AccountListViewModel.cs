@@ -41,7 +41,7 @@ internal sealed class AccountListViewModel : BaseViewModel
         }
     }
 
-    public RelayCommand GoToAddAccountCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddAccountRoute));
+    public AsyncRelayCommand GoToAddAccountCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddAccountRoute));
 
     public AsyncRelayCommand<AccountViewModel> GoToEditAccountCommand
         => new(async avm => await Shell.Current.GoToAsync($"{Routes.EditAccountRoute}?accountId={avm.Id}"));
