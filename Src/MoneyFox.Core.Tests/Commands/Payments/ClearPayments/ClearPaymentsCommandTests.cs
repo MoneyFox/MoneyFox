@@ -7,15 +7,13 @@ using FluentAssertions;
 using Infrastructure.Persistence;
 
 [ExcludeFromCodeCoverage]
-public class ClearPaymentsCommandTests
+public class ClearPaymentsCommandTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
     private readonly ClearPaymentsCommand.Handler handler;
 
     public ClearPaymentsCommandTests()
     {
-        context = InMemoryAppDbContextFactory.Create();
-        handler = new(context);
+        handler = new(Context);
     }
 
     [Fact]
@@ -29,8 +27,8 @@ public class ClearPaymentsCommandTests
             new(date: DateTime.Now.AddDays(-1), amount: 100, type: PaymentType.Expense, chargedAccount: new("Foo"))
         };
 
-        context.AddRange(paymentList);
-        await context.SaveChangesAsync();
+        Context.AddRange(paymentList);
+        await Context.SaveChangesAsync();
 
         // Act
         var command = new ClearPaymentsCommand();
@@ -53,13 +51,13 @@ public class ClearPaymentsCommandTests
             new(date: DateTime.Now.AddDays(-1), amount: 100, type: PaymentType.Expense, chargedAccount: new("Foo"))
         };
 
-        context.AddRange(paymentList);
-        await context.SaveChangesAsync();
+        Context.AddRange(paymentList);
+        await Context.SaveChangesAsync();
 
         // Act
         var command = new ClearPaymentsCommand();
         await handler.Handle(request: command, cancellationToken: default);
-        var loadedPayments = context.Payments.ToList();
+        var loadedPayments = Context.Payments.ToList();
 
         // Assert
         loadedPayments[0].IsCleared.Should().BeFalse();

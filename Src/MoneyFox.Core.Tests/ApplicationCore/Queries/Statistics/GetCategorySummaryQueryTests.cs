@@ -8,15 +8,13 @@ using FluentAssertions;
 using Infrastructure.Persistence;
 
 [ExcludeFromCodeCoverage]
-public class GetCategorySummaryQueryTests
+public class GetCategorySummaryQueryTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
     private readonly GetCategorySummaryQueryHandler handler;
 
     public GetCategorySummaryQueryTests()
     {
-        context = InMemoryAppDbContextFactory.Create();
-        handler = new(context);
+        handler = new(Context);
     }
 
     [Fact]
@@ -62,8 +60,8 @@ public class GetCategorySummaryQueryTests
                 category: testCat4)
         };
 
-        context.Payments.AddRange(paymentList);
-        await context.SaveChangesAsync();
+        Context.Payments.AddRange(paymentList);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(
@@ -115,8 +113,8 @@ public class GetCategorySummaryQueryTests
                 category: testCat4)
         };
 
-        context.Payments.AddRange(paymentList);
-        await context.SaveChangesAsync();
+        Context.Payments.AddRange(paymentList);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(
@@ -160,8 +158,8 @@ public class GetCategorySummaryQueryTests
                 category: testCat3)
         };
 
-        context.Payments.AddRange(paymentList);
-        await context.SaveChangesAsync();
+        Context.Payments.AddRange(paymentList);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(
@@ -180,8 +178,8 @@ public class GetCategorySummaryQueryTests
         // Arrange
         var account = new Account("test");
         var paymentList = new List<Payment> { new(date: DateTime.Today, amount: 60, type: PaymentType.Expense, chargedAccount: account) };
-        context.Payments.AddRange(paymentList);
-        await context.SaveChangesAsync();
+        Context.Payments.AddRange(paymentList);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(
@@ -198,8 +196,8 @@ public class GetCategorySummaryQueryTests
         // Arrange
         var account = new Account("test");
         var paymentList = new List<Payment> { new(date: DateTime.Today, amount: 60, type: PaymentType.Expense, chargedAccount: account) };
-        context.Payments.AddRange(paymentList);
-        await context.SaveChangesAsync();
+        Context.Payments.AddRange(paymentList);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(

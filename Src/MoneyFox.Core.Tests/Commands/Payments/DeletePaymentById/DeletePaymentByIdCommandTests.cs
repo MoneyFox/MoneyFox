@@ -6,15 +6,13 @@ using Core.Commands.Payments.DeletePaymentById;
 using Infrastructure.Persistence;
 
 [ExcludeFromCodeCoverage]
-public class DeletePaymentByIdCommandTests
+public class DeletePaymentByIdCommandTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
     private readonly DeletePaymentByIdCommand.Handler handler;
 
     public DeletePaymentByIdCommandTests()
     {
-        context = InMemoryAppDbContextFactory.Create();
-        handler = new(context);
+        handler = new(Context);
     }
 
     [Fact]
@@ -22,8 +20,8 @@ public class DeletePaymentByIdCommandTests
     {
         // Arrange
         var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new(name: "test", initialBalance: 80));
-        await context.AddAsync(payment1);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(payment1);
+        await Context.SaveChangesAsync();
 
         // Act
         await handler.Handle(request: new(12), cancellationToken: default);
@@ -34,13 +32,13 @@ public class DeletePaymentByIdCommandTests
     {
         // Arrange
         var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new(name: "test", initialBalance: 80));
-        await context.AddAsync(payment1);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(payment1);
+        await Context.SaveChangesAsync();
 
         // Act
         await handler.Handle(request: new(payment1.Id), cancellationToken: default);
 
         // Assert
-        Assert.Empty(context.Payments);
+        Assert.Empty(Context.Payments);
     }
 }
