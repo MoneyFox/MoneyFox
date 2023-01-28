@@ -2,7 +2,7 @@ namespace MoneyFox.Ui.Views.Categories.ModifyCategory;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 
-internal class CategoryViewModel : ObservableObject
+public class CategoryViewModel : ObservableObject
 {
     private DateTime created;
     private int id;
