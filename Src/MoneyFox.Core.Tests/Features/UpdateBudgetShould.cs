@@ -1,7 +1,7 @@
-namespace MoneyFox.Core.Tests.ApplicationCore.UseCases;
+namespace MoneyFox.Core.Tests.Features;
 
 using System.Collections.Immutable;
-using Core.ApplicationCore.UseCases.BudgetUpdate;
+using Core.Features.BudgetUpdate;
 using Domain.Tests.TestFramework;
 using Microsoft.EntityFrameworkCore;
 using static Domain.Tests.TestFramework.BudgetAssertion;

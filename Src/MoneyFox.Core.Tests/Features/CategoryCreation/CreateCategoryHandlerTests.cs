@@ -1,6 +1,6 @@
-﻿namespace MoneyFox.Core.Tests.ApplicationCore.UseCases.CategoryCreation;
+﻿namespace MoneyFox.Core.Tests.Features.CategoryCreation;
 
-using Core.ApplicationCore.UseCases.CategoryCreation;
+using Core.Features.CategoryCreation;
 using Domain.Tests.TestFramework;
 using Microsoft.EntityFrameworkCore;
 using static Domain.Tests.TestFramework.CategoryAssertion;

@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Domain.Tests.TestFramework;
 
-using MoneyFox.Domain.Aggregates.BudgetAggregate;
+using Aggregates.BudgetAggregate;
 
 internal static class TestBudgetDbFactory
 {

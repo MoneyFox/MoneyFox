@@ -1,6 +1,6 @@
-namespace MoneyFox.Core.Tests.ApplicationCore.UseCases;
+namespace MoneyFox.Core.Tests.Features;
 
-using Core.ApplicationCore.UseCases.BudgetCreation;
+using Core.Features.BudgetCreation;
 using Domain.Tests.TestFramework;
 using static Domain.Tests.TestFramework.BudgetAssertion;
 

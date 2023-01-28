@@ -1,4 +1,4 @@
-namespace MoneyFox.Core.Commands.Categories.DeleteCategoryById;
+namespace MoneyFox.Core.Features._Legacy_.Categories.DeleteCategoryById;
 
 using System.Threading;
 using System.Threading.Tasks;

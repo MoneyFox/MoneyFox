@@ -1,9 +1,9 @@
-﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Statistics;
+﻿namespace MoneyFox.Core.Tests.Queries.Statistics;
 
-using Core.ApplicationCore.Queries.Statistics.GetCategorySummary;
+using Core.Queries.Statistics.GetCategorySummary;
+using Domain.Aggregates.AccountAggregate;
+using Domain.Aggregates.CategoryAggregate;
 using FluentAssertions;
-using MoneyFox.Domain.Aggregates.AccountAggregate;
-using MoneyFox.Domain.Aggregates.CategoryAggregate;
 
 public class GetCategorySummaryQueryTests : InMemoryTestBase
 {

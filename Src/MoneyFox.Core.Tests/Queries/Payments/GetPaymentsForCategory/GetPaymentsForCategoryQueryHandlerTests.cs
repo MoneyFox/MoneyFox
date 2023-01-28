@@ -1,9 +1,9 @@
-namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Payments.GetPaymentsForCategory;
+namespace MoneyFox.Core.Tests.Queries.Payments.GetPaymentsForCategory;
 
-using Core.ApplicationCore.Queries;
+using Core.Queries;
+using Domain.Aggregates.AccountAggregate;
+using Domain.Aggregates.CategoryAggregate;
 using FluentAssertions;
-using MoneyFox.Domain.Aggregates.AccountAggregate;
-using MoneyFox.Domain.Aggregates.CategoryAggregate;
 
 public class GetPaymentsForCategoryQueryHandlerTests : InMemoryTestBase
 {

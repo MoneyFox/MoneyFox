@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.ApplicationCore.Queries.GetPaymentsForAccountIdQuery;
+﻿namespace MoneyFox.Core.Queries.GetPaymentsForAccountIdQuery;
 
 using System;
 using System.Collections.Generic;

@@ -1,6 +1,6 @@
-namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Payments.GetPaymentsForCategory;
+namespace MoneyFox.Core.Tests.Queries.Payments.GetPaymentsForCategory;
 
-using Core.ApplicationCore.Queries;
+using Core.Queries;
 using FluentAssertions;
 
 public class GetPaymentsForCategoryQueryTests

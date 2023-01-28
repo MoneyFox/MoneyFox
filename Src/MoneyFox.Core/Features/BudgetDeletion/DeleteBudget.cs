@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.ApplicationCore.UseCases.BudgetDeletion;
+﻿namespace MoneyFox.Core.Features.BudgetDeletion;
 
 using System.Threading;
 using System.Threading.Tasks;

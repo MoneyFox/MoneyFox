@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Commands.Payments.DeletePaymentById;
+﻿namespace MoneyFox.Core.Features._Legacy_.Payments.DeletePaymentById;
 
 using System.Linq;
 using System.Threading;

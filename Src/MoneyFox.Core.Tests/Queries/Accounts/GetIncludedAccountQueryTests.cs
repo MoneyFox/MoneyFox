@@ -1,7 +1,7 @@
-﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Accounts;
+﻿namespace MoneyFox.Core.Tests.Queries.Accounts;
 
-using Core.ApplicationCore.Queries;
-using MoneyFox.Domain.Aggregates.AccountAggregate;
+using Core.Queries;
+using Domain.Aggregates.AccountAggregate;
 
 public class GetIncludedAccountQueryTests : InMemoryTestBase
 {

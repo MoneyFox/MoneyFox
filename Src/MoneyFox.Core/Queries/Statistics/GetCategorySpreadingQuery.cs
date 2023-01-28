@@ -1,4 +1,4 @@
-namespace MoneyFox.Core.ApplicationCore.Queries.Statistics;
+namespace MoneyFox.Core.Queries.Statistics;
 
 using System;
 using System.Collections.Generic;

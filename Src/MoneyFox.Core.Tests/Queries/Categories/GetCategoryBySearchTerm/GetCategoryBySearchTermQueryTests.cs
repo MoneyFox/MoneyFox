@@ -1,8 +1,8 @@
-﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Categories.GetCategoryBySearchTerm;
+﻿namespace MoneyFox.Core.Tests.Queries.Categories.GetCategoryBySearchTerm;
 
-using Core.ApplicationCore.Queries;
+using Core.Queries;
+using Domain.Aggregates.CategoryAggregate;
 using FluentAssertions;
-using MoneyFox.Domain.Aggregates.CategoryAggregate;
 
 public class GetCategoryBySearchTermQueryTests : InMemoryTestBase
 {

@@ -1,4 +1,4 @@
-namespace MoneyFox.Core.Commands.Payments.CreatePayment;
+namespace MoneyFox.Core.Features._Legacy_.Payments.CreatePayment;
 
 using System.Threading;
 using System.Threading.Tasks;

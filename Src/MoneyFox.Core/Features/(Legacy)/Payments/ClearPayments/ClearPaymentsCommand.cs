@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Commands.Payments.ClearPayments;
+﻿namespace MoneyFox.Core.Features._Legacy_.Payments.ClearPayments;
 
 using System.Linq;
 using System.Threading;

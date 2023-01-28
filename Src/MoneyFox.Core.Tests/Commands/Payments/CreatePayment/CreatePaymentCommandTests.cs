@@ -1,8 +1,8 @@
 namespace MoneyFox.Core.Tests.Commands.Payments.CreatePayment;
 
-using Core.Commands.Payments.CreatePayment;
+using Core.Features._Legacy_.Payments.CreatePayment;
+using Domain.Aggregates.AccountAggregate;
 using FluentAssertions;
-using MoneyFox.Domain.Aggregates.AccountAggregate;
 
 public class CreatePaymentCommandTests : InMemoryTestBase
 {

@@ -1,8 +1,8 @@
-﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Accounts;
+﻿namespace MoneyFox.Core.Tests.Queries.Accounts;
 
-using Core.ApplicationCore.Queries;
+using Core.Queries;
+using Domain.Aggregates.AccountAggregate;
 using FluentAssertions;
-using MoneyFox.Domain.Aggregates.AccountAggregate;
 
 public class GetIncludedAccountBalanceSummaryTests : InMemoryTestBase
 {

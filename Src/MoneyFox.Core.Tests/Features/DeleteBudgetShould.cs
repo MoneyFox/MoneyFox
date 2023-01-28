@@ -1,6 +1,6 @@
-namespace MoneyFox.Core.Tests.ApplicationCore.UseCases;
+namespace MoneyFox.Core.Tests.Features;
 
-using Core.ApplicationCore.UseCases.BudgetDeletion;
+using Core.Features.BudgetDeletion;
 using Domain.Tests.TestFramework;
 using FluentAssertions;
 

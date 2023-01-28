@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.ApplicationCore.UseCases.CategoryCreation;
+﻿namespace MoneyFox.Core.Features.CategoryCreation;
 
 using System.Threading;
 using System.Threading.Tasks;

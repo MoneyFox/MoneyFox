@@ -1,4 +1,4 @@
-namespace MoneyFox.Core.Commands.Accounts.CreateAccount;
+namespace MoneyFox.Core.Features._Legacy_.Accounts.CreateAccount;
 
 using System.Threading;
 using System.Threading.Tasks;

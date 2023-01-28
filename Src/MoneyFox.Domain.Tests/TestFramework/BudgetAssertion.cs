@@ -1,8 +1,8 @@
 ﻿namespace MoneyFox.Domain.Tests.TestFramework;
 
+using Aggregates.BudgetAggregate;
 using FluentAssertions;
 using FluentAssertions.Execution;
-using MoneyFox.Domain.Aggregates.BudgetAggregate;
 
 internal static class BudgetAssertion
 {

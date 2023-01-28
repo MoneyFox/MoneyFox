@@ -1,8 +1,8 @@
 namespace MoneyFox.Ui.Tests.ViewModels;
 
 using AutoMapper;
-using Core.ApplicationCore.Queries;
 using Core.Common.Interfaces;
+using Core.Queries;
 using Domain.Aggregates.CategoryAggregate;
 using FluentAssertions;
 using MediatR;

@@ -1,4 +1,4 @@
-namespace MoneyFox.Core.ApplicationCore.Queries.BudgetEntryLoading;
+namespace MoneyFox.Core.Queries.BudgetEntryLoading;
 
 using System.Collections.Immutable;
 using System.Linq;

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.ApplicationCore.UseCases.BudgetCreation;
+﻿namespace MoneyFox.Core.Features.BudgetCreation;
 
 using System.Collections.Generic;
 using System.Threading;

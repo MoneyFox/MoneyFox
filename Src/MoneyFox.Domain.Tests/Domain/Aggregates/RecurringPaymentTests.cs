@@ -1,9 +1,9 @@
 namespace MoneyFox.Domain.Tests.Domain.Aggregates;
 
+using Exceptions;
 using FluentAssertions;
 using MoneyFox.Domain.Aggregates;
 using MoneyFox.Domain.Aggregates.AccountAggregate;
-using MoneyFox.Domain.Exceptions;
 
 public class RecurringPaymentTests
 {

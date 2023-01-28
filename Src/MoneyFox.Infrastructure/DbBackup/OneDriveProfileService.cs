@@ -3,7 +3,7 @@ namespace MoneyFox.Infrastructure.DbBackup;
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using Core.ApplicationCore.UseCases.DbBackup;
+using Core.Features.DbBackup;
 using Flurl;
 using Flurl.Http;
 using OneDriveModels;

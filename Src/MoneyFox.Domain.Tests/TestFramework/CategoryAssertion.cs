@@ -1,8 +1,8 @@
 ﻿namespace MoneyFox.Domain.Tests.TestFramework;
 
+using Aggregates.CategoryAggregate;
 using FluentAssertions;
 using FluentAssertions.Execution;
-using MoneyFox.Domain.Aggregates.CategoryAggregate;
 
 internal static class CategoryAssertion
 {

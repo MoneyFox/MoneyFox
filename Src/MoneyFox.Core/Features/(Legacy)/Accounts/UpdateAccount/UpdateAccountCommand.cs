@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Commands.Accounts.UpdateAccount;
+﻿namespace MoneyFox.Core.Features._Legacy_.Accounts.UpdateAccount;
 
 using System.Threading;
 using System.Threading.Tasks;

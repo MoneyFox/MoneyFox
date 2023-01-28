@@ -1,4 +1,4 @@
-namespace MoneyFox.Core.ApplicationCore.Queries.BudgetListLoading;
+namespace MoneyFox.Core.Queries.BudgetListLoading;
 
 using System;
 using System.Collections.Generic;

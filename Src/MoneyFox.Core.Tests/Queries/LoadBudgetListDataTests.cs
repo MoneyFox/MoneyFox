@@ -1,12 +1,12 @@
-namespace MoneyFox.Core.Tests.ApplicationCore.Queries;
+namespace MoneyFox.Core.Tests.Queries;
 
 using System.Collections.Immutable;
-using Core.ApplicationCore.Queries.BudgetListLoading;
 using Core.Common.Helpers;
+using Core.Queries.BudgetListLoading;
+using Domain.Aggregates.AccountAggregate;
+using Domain.Aggregates.BudgetAggregate;
 using Domain.Tests.TestFramework;
 using FluentAssertions;
-using MoneyFox.Domain.Aggregates.AccountAggregate;
-using MoneyFox.Domain.Aggregates.BudgetAggregate;
 using NSubstitute;
 
 public sealed class LoadBudgetListDataTests : InMemoryTestBase

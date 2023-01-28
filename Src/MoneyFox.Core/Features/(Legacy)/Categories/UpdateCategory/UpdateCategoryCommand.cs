@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Commands.Categories.UpdateCategory;
+﻿namespace MoneyFox.Core.Features._Legacy_.Categories.UpdateCategory;
 
 using System.Threading;
 using System.Threading.Tasks;

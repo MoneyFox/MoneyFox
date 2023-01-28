@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Domain.Tests.TestFramework;
 
-using MoneyFox.Domain.Aggregates.CategoryAggregate;
-using MoneyFox.Infrastructure.Persistence;
+using Aggregates.CategoryAggregate;
+using Infrastructure.Persistence;
 
 internal static class TestCategoryDbExtensions
 {

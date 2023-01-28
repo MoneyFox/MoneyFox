@@ -1,8 +1,8 @@
 namespace MoneyFox.Infrastructure.InversionOfControl;
 
-using Core.ApplicationCore.UseCases.BackupUpload;
-using Core.ApplicationCore.UseCases.DbBackup;
 using Core.Common.Interfaces;
+using Core.Features.BackupUpload;
+using Core.Features.DbBackup;
 using Core.Interfaces;
 using DbBackup;
 using DbBackup.Legacy;

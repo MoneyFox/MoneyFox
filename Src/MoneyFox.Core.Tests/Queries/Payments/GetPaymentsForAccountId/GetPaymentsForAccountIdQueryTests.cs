@@ -1,8 +1,8 @@
-﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Payments.GetPaymentsForAccountId;
+﻿namespace MoneyFox.Core.Tests.Queries.Payments.GetPaymentsForAccountId;
 
-using Core.ApplicationCore.Queries.GetPaymentsForAccountIdQuery;
+using Core.Queries.GetPaymentsForAccountIdQuery;
+using Domain.Aggregates.AccountAggregate;
 using FluentAssertions;
-using MoneyFox.Domain.Aggregates.AccountAggregate;
 
 public class GetPaymentsForAccountIdQueryTests : InMemoryTestBase
 {

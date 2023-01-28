@@ -1,7 +1,7 @@
-namespace MoneyFox.Core.Tests.ApplicationCore.Queries;
+namespace MoneyFox.Core.Tests.Queries;
 
 using System.Collections.Immutable;
-using Core.ApplicationCore.Queries.BudgetEntryLoading;
+using Core.Queries.BudgetEntryLoading;
 using Domain.Tests.TestFramework;
 using FluentAssertions;
 

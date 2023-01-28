@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Core.Tests.Commands.Payments.DeletePaymentById;
 
-using Core.Commands.Payments.DeletePaymentById;
-using MoneyFox.Domain.Aggregates.AccountAggregate;
+using Core.Features._Legacy_.Payments.DeletePaymentById;
+using Domain.Aggregates.AccountAggregate;
 
 public class DeletePaymentByIdCommandTests : InMemoryTestBase
 {

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.ApplicationCore.UseCases.BudgetUpdate;
+﻿namespace MoneyFox.Core.Features.BudgetUpdate;
 
 using System.Collections.Generic;
 using System.Threading;

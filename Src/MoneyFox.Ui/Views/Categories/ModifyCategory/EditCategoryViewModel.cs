@@ -2,16 +2,16 @@ namespace MoneyFox.Ui.Views.Categories.ModifyCategory;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
-using Core.ApplicationCore.Queries;
-using Core.Commands.Categories.DeleteCategoryById;
-using Core.Commands.Categories.UpdateCategory;
 using Core.Common.Interfaces;
+using Core.Features._Legacy_.Categories.DeleteCategoryById;
+using Core.Features._Legacy_.Categories.UpdateCategory;
 using Core.Interfaces;
+using Core.Queries;
 using Domain.Aggregates.CategoryAggregate;
 using MediatR;
 using Resources.Strings;
 
-public partial class EditCategoryViewModel : ModifyCategoryViewModel
+public class EditCategoryViewModel : ModifyCategoryViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;

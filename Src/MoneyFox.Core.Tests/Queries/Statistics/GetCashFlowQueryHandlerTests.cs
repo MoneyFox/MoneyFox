@@ -1,8 +1,8 @@
-namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Statistics;
+namespace MoneyFox.Core.Tests.Queries.Statistics;
 
-using Core.ApplicationCore.Queries.Statistics;
+using Core.Queries.Statistics;
+using Domain.Aggregates.AccountAggregate;
 using FluentAssertions;
-using MoneyFox.Domain.Aggregates.AccountAggregate;
 
 [Collection("CultureCollection")]
 public class GetCashFlowQueryHandlerTests : InMemoryTestBase

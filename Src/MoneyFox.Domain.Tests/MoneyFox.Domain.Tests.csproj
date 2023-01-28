@@ -29,7 +29,7 @@
         <ProjectReference Include="..\MoneyFox.Domain\MoneyFox.Domain.csproj"/>
         <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj"/>
     </ItemGroup>
-    
+
     <ItemGroup>
         <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
             <_Parameter1>MoneyFox.Core.Tests</_Parameter1>

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Commands.Accounts.DeleteAccountById;
+﻿namespace MoneyFox.Core.Features._Legacy_.Accounts.DeleteAccountById;
 
 using System.Threading;
 using System.Threading.Tasks;

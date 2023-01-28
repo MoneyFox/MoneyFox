@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.ApplicationCore.Queries.Statistics.GetCategorySummary;
+﻿namespace MoneyFox.Core.Queries.Statistics.GetCategorySummary;
 
 using System;
 using System.Collections.Generic;

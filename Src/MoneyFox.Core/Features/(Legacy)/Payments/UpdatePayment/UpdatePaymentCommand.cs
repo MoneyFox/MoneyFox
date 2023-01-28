@@ -1,4 +1,4 @@
-namespace MoneyFox.Core.Commands.Payments.UpdatePayment;
+namespace MoneyFox.Core.Features._Legacy_.Payments.UpdatePayment;
 
 using System;
 using System.Linq;

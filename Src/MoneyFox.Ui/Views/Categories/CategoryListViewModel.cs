@@ -6,14 +6,14 @@ using AutoMapper;
 using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.ApplicationCore.Queries;
-using Core.Commands.Categories.DeleteCategoryById;
 using Core.Common.Interfaces;
 using Core.Common.Messages;
+using Core.Features._Legacy_.Categories.DeleteCategoryById;
+using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-public partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadMessage>
+public class CategoryListViewModel : BaseViewModel, IRecipient<ReloadMessage>
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;

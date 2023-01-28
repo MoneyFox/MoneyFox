@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Domain.Tests.TestFramework;
 
-using MoneyFox.Domain.Aggregates.CategoryAggregate;
+using Aggregates.CategoryAggregate;
 
 internal static class TestCategoryDbFactory
 {

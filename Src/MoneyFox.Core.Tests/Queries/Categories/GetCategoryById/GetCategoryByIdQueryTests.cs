@@ -1,8 +1,8 @@
-namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Categories.GetCategoryById;
+namespace MoneyFox.Core.Tests.Queries.Categories.GetCategoryById;
 
-using Core.ApplicationCore.Queries;
+using Core.Queries;
+using Domain.Aggregates.CategoryAggregate;
 using FluentAssertions;
-using MoneyFox.Domain.Aggregates.CategoryAggregate;
 
 public class GetCategoryByIdQueryTests : InMemoryTestBase
 {

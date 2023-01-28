@@ -1,9 +1,9 @@
 namespace MoneyFox.Core.Tests.Commands.Payments.CreateRecurringPayments;
 
-using Core.Commands.Payments.CreateRecurringPayments;
 using Core.Common.Extensions;
+using Core.Features._Legacy_.Payments.CreateRecurringPayments;
+using Domain.Aggregates.AccountAggregate;
 using FluentAssertions;
-using MoneyFox.Domain.Aggregates.AccountAggregate;
 
 public class RecurrenceHelperTests
 {

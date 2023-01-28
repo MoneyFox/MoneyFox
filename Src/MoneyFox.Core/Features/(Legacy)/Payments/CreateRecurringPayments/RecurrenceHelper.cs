@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Commands.Payments.CreateRecurringPayments;
+﻿namespace MoneyFox.Core.Features._Legacy_.Payments.CreateRecurringPayments;
 
 using System;
 using Common.Extensions;

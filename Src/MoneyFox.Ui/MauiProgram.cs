@@ -10,10 +10,12 @@ using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Maui.Handlers;
+using Platforms.iOS.Renderer;
 using Serilog;
 using Serilog.Events;
 using Serilog.Exceptions;
 using SkiaSharp.Views.Maui.Controls.Hosting;
+using UIKit;
 
 public static class MauiProgram
 {
@@ -38,7 +40,7 @@ public static class MauiProgram
                 handlers =>
                 {
 #if IOS
-                    handlers.AddHandler(viewType: typeof(Shell), handlerType: typeof(Platforms.iOS.Renderer.CustomShellRenderer));
+                    handlers.AddHandler(viewType: typeof(Shell), handlerType: typeof(CustomShellRenderer));
 #endif
                 })
             .UseSkiaSharp(true)
@@ -55,7 +57,7 @@ public static class MauiProgram
                     handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
 #elif IOS
                     handler.PlatformView.Layer.BorderWidth = 0;
-                    handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
+                    handler.PlatformView.BorderStyle = UITextBorderStyle.None;
 #elif WINDOWS
                     handler.PlatformView.BorderThickness = new(0);
 #endif
@@ -100,7 +102,12 @@ public static class MauiProgram
         Log.Logger = new LoggerConfiguration().MinimumLevel.Debug()
             .Enrich.FromLogContext()
             .Enrich.WithExceptionDetails()
-            .WriteTo.File(path: logFile, rollingInterval: RollingInterval.Month, retainedFileCountLimit: 6, restrictedToMinimumLevel: LogEventLevel.Information, shared: true)
+            .WriteTo.File(
+                path: logFile,
+                rollingInterval: RollingInterval.Month,
+                retainedFileCountLimit: 6,
+                restrictedToMinimumLevel: LogEventLevel.Information,
+                shared: true)
             .CreateLogger();
 
         Log.Information("Application Startup");

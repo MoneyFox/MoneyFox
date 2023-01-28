@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.ApplicationCore.Queries;
+﻿namespace MoneyFox.Core.Queries;
 
 using System.Linq;
 using System.Threading;
