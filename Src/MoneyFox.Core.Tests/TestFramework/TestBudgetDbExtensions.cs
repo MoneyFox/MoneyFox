@@ -21,6 +21,8 @@ internal static class TestBudgetDbExtensions
         db.Add(dbBudget);
         db.SaveChanges();
 
+        budget.Id = dbBudget.Id;
+
         return dbBudget;
     }
 }
