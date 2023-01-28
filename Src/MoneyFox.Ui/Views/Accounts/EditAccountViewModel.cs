@@ -11,7 +11,8 @@ using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Resources.Strings;
 
-public class EditAccountViewModel : ModifyAccountViewModel
+// ReSharper disable once PartialTypeWithSinglePart
+public partial class EditAccountViewModel : ModifyAccountViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;

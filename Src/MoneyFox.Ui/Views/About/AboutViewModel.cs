@@ -6,7 +6,8 @@ using Core.Interfaces;
 using Plugin.StoreReview;
 using Resources.Strings;
 
-public class AboutViewModel : BaseViewModel
+// ReSharper disable once PartialTypeWithSinglePart
+public partial class AboutViewModel : BaseViewModel
 {
     private const string SUPPORT_MAIL = "mobile.support@apply-solutions.ch";
     private static readonly Uri projectUri = new("https://github.com/MoneyFox/MoneyFox");

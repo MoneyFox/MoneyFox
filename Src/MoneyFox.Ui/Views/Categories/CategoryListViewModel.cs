@@ -13,7 +13,8 @@ using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-public class CategoryListViewModel : BaseViewModel, IRecipient<ReloadMessage>
+// ReSharper disable once PartialTypeWithSinglePart
+public partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadMessage>
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;

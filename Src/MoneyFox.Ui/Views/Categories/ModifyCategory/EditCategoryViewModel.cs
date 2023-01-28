@@ -11,7 +11,8 @@ using Domain.Aggregates.CategoryAggregate;
 using MediatR;
 using Resources.Strings;
 
-public class EditCategoryViewModel : ModifyCategoryViewModel
+// ReSharper disable once PartialTypeWithSinglePart
+public partial class EditCategoryViewModel : ModifyCategoryViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;

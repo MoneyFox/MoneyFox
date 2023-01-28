@@ -6,7 +6,7 @@
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:views="clr-namespace:MoneyFox.Ui.Views"
     xmlns:statistics="clr-namespace:MoneyFox.Ui.Views.Statistics"
-    x:DataType="statistics:StatisticCategorySpreadingViewModel"
+    xmlns:categorySpreading="clr-namespace:MoneyFox.Ui.Views.Statistics.CategorySpreading"
     x:Class="MoneyFox.Ui.Views.Statistics.CategorySpreading.StatisticCategorySpreadingPage"
     Title="{x:Static resources:Translations.CategorySpreadingTitle}">
 
@@ -16,7 +16,7 @@
 
     <ContentPage.Content>
         <Grid RowDefinitions="38, auto, *" Padding="15,0,15,15"
-              x:DataType="statistics:StatisticCategorySpreadingViewModel">
+              x:DataType="categorySpreading:StatisticCategorySpreadingViewModel">
 
             <Grid ColumnDefinitions="*, Auto">
                 <Label VerticalOptions="Center"
