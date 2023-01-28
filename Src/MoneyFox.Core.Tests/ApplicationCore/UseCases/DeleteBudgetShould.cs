@@ -17,10 +17,22 @@ public sealed class DeleteBudgetShould : InMemoryTestBase
     }
 
     [Fact]
+    public async Task DoesNotThrowExceptionWhenBudgetWithIdNotFound()
+    {
+        // Act
+        var command = new DeleteBudget.Command(budgetId: 999);
+        await handler.Handle(request: command, cancellationToken: CancellationToken.None);
+
+        // Assert
+        Context.Budgets.Should().BeEmpty();
+    }
+
+    [Fact]
     public async Task PassCorrectIdToDeleteToRepository()
     {
         // Arrange
         var testBudget = new TestData.DefaultBudget();
+        Context.RegisterBudget(testBudget);
 
         // Act
         var command = new DeleteBudget.Command(budgetId: testBudget.Id);
