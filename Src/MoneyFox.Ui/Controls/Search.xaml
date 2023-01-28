@@ -9,7 +9,7 @@
 
     <VerticalStackLayout Spacing="6"
                          BindingContext="{x:Reference This}">
-        <Label Text="{OnPlatform WinUI={Binding SearchPlaceholder}, Default={x:Null}}" />
+        <Label Text="{OnPlatform WinUI={Binding SearchPlaceholder}}" />
 
         <Border Padding="20,0"
                 StrokeThickness="{OnIdiom Desktop=0, Default=1}"

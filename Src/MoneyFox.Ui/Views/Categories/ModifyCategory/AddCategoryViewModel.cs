@@ -5,8 +5,7 @@ using Core.Common.Interfaces;
 using JetBrains.Annotations;
 using MediatR;
 
-[UsedImplicitly]
-internal sealed class AddCategoryViewModel : ModifyCategoryViewModel
+public sealed class AddCategoryViewModel : ModifyCategoryViewModel
 {
     private readonly IMediator mediator;
 
