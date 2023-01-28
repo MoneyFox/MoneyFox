@@ -4,14 +4,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-public record struct BudgetId(int Value)
-{
-    [UsedImplicitly]
-    public sealed class Converter : ValueConverter<BudgetId, int>
-    {
-        public Converter() : base(convertToProviderExpression: v => v.Value, convertFromProviderExpression: v => new(v)) { }
-    }
-}
+public record struct BudgetId(int Value);
 
 public class Budget : EntityBase
 {

@@ -13,6 +13,10 @@ internal class BudgetConfiguration : IEntityTypeConfiguration<Budget>
     public void Configure(EntityTypeBuilder<Budget> builder)
     {
         _ = builder.HasKey(c => c.Id);
+        _ = builder.Property(i => i.Id)
+            .ValueGeneratedOnAdd()
+            .HasConversion(convertToProviderExpression: v => v.Value, convertFromProviderExpression: v => new(v));
+
         _ = builder.OwnsOne(b => b.SpendingLimit).Property(sl => sl.Value).HasColumnName("SpendingLimit");
         _ = builder.Property(nameof(Budget.IncludedCategories)).HasConversion(GetSplitStringConverter());
     }
