@@ -34,7 +34,7 @@ public static class CreateCategory
         public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
         {
             Category category = new(name: request.Name, note: request.Note, requireNote: request.RequireNote);
-            await appDbContext.AddAsync(category, cancellationToken: cancellationToken);
+            await appDbContext.AddAsync(entity: category, cancellationToken: cancellationToken);
             await appDbContext.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;

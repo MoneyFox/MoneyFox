@@ -3,7 +3,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Common.Interfaces;
-using Domain.Aggregates.BudgetAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,7 +29,7 @@ public static class DeleteBudget
 
         public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
         {
-            var budgetToRemove = await appDbContext.Budgets.FirstOrDefaultAsync(b => b.Id == request.BudgetId, cancellationToken);
+            var budgetToRemove = await appDbContext.Budgets.FirstOrDefaultAsync(predicate: b => b.Id == request.BudgetId, cancellationToken: cancellationToken);
             if (budgetToRemove is null)
             {
                 return Unit.Value;
@@ -38,6 +37,7 @@ public static class DeleteBudget
 
             appDbContext.Budgets.Remove(budgetToRemove);
             await appDbContext.SaveChangesAsync(cancellationToken);
+
             return Unit.Value;
         }
     }

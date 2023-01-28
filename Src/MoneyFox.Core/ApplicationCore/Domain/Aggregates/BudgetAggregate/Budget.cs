@@ -1,7 +1,6 @@
 namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
 
 using System.Collections.Generic;
-using Common.Interfaces;
 using JetBrains.Annotations;
 
 public class Budget : EntityBase

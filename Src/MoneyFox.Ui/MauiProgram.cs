@@ -57,7 +57,7 @@ public static class MauiProgram
                     handler.PlatformView.Layer.BorderWidth = 0;
                     handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
 #elif WINDOWS
-                    handler.PlatformView.BorderThickness = new Microsoft.UI.Xaml.Thickness(0);
+                    handler.PlatformView.BorderThickness = new(0);
 #endif
                 }
             });
@@ -83,6 +83,7 @@ public static class MauiProgram
             }
 
             var logText = File.ReadAllText(logFile.FullName);
+
             return new[] { ErrorAttachmentLog.AttachmentWithText(text: logText, fileName: logFile.Name) };
         };
 

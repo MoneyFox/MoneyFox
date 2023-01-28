@@ -1,9 +1,6 @@
 namespace MoneyFox.Core.Tests.ApplicationCore.UseCases;
 
-using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
 using Core.ApplicationCore.UseCases.BudgetCreation;
-using FluentAssertions;
-using NSubstitute;
 using TestFramework;
 using static TestFramework.BudgetAssertion;
 

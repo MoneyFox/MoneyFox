@@ -38,6 +38,7 @@ public class NoLineAppearanceTracker : IShellNavBarAppearanceTracker
     {
         // Not needed
     }
+
     public void Dispose()
     {
         Dispose(true);

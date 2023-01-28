@@ -38,7 +38,7 @@ public static class CreateBudget
         {
             SpendingLimit spendingLimit = new(request.SpendingLimit);
             Budget budget = new(name: request.Name, spendingLimit: spendingLimit, timeRange: request.BudgetTimeRange, includedCategories: request.Categories);
-            await appDbContext.AddAsync(budget, cancellationToken);
+            await appDbContext.AddAsync(entity: budget, cancellationToken: cancellationToken);
             await appDbContext.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;

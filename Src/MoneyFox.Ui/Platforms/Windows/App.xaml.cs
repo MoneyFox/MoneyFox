@@ -3,10 +3,10 @@
 
 namespace MoneyFox.Ui.WinUI;
 
+using Core.Common.Interfaces;
+using Core.Interfaces;
 using Microsoft.Identity.Client;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Ui.Platforms.Windows.Src;
+using Platforms.Windows.Src;
 
 /// <summary>
 ///     Provides application-specific behavior to supplement the default Application class.
@@ -36,9 +36,7 @@ public partial class App : MauiWinUIApplication
         _ = services.AddTransient<IStoreOperations, MarketplaceOperations>();
         _ = services.AddTransient<IFileStore, WindowsFileStore>();
         _ = services.AddTransient<IDbPathProvider, DbPathProvider>();
-        IPublicClientApplication publicClientApplication
-            = PublicClientApplicationBuilder.Create(MSAL_APPLICATION_ID).WithRedirectUri($"msal{MSAL_APPLICATION_ID}://auth").Build();
-
+        var publicClientApplication = PublicClientApplicationBuilder.Create(MSAL_APPLICATION_ID).WithRedirectUri($"msal{MSAL_APPLICATION_ID}://auth").Build();
         TokenCacheHelper.EnableSerialization(publicClientApplication.UserTokenCache);
         _ = services.AddSingleton(publicClientApplication);
     }

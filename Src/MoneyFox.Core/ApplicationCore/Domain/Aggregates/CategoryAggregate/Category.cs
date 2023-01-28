@@ -2,7 +2,6 @@
 
 using System.Collections.Generic;
 using AccountAggregate;
-using Common.Interfaces;
 using Dawn;
 using JetBrains.Annotations;
 

@@ -50,7 +50,6 @@ public static class LoadBudgetListData
 
                 var timeDeltaFirstPaymentAndNow = systemDateHelper.Now.Date - thresholdDate.Date;
                 var numberOfMonthsInRange = (int)Math.Floor(timeDeltaFirstPaymentAndNow.TotalDays / 30);
-
                 if (numberOfMonthsInRange == 0)
                 {
                     numberOfMonthsInRange = 1;

@@ -1,6 +1,5 @@
 namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 
-using Common.Interfaces;
 using Dawn;
 using JetBrains.Annotations;
 
