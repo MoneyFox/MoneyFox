@@ -3,9 +3,10 @@ namespace MoneyFox.Ui.Views.About;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Interfaces;
 using Core.Interfaces;
+using Plugin.StoreReview;
 using Resources.Strings;
 
-internal class AboutViewModel : BaseViewModel
+public partial class AboutViewModel : BaseViewModel
 {
     private const string SUPPORT_MAIL = "mobile.support@apply-solutions.ch";
     private static readonly Uri projectUri = new("https://github.com/MoneyFox/MoneyFox");
@@ -17,46 +18,29 @@ internal class AboutViewModel : BaseViewModel
     private readonly IAppInformation appInformation;
     private readonly IBrowserAdapter browserAdapter;
     private readonly IEmailAdapter emailAdapter;
-    private readonly IStoreOperations storeFeatures;
     private readonly IToastService toastService;
 
     public AboutViewModel(
         IAppInformation appInformation,
         IEmailAdapter emailAdapter,
         IBrowserAdapter browserAdapter,
-        IStoreOperations storeOperations,
         IToastService toastService)
     {
         this.appInformation = appInformation;
         this.emailAdapter = emailAdapter;
         this.browserAdapter = browserAdapter;
-        storeFeatures = storeOperations;
         this.toastService = toastService;
     }
 
-    public AsyncRelayCommand GoToWebsiteCommand => new(GoToWebsiteAsync);
-
-    public AsyncRelayCommand SendMailCommand => new(SendMailAsync);
-
-    public RelayCommand RateAppCommand => new(RateApp);
-
-    public AsyncRelayCommand GoToRepositoryCommand => new(GoToRepositoryAsync);
-
-    public AsyncRelayCommand GoToTranslationProjectCommand => new(GoToTranslationProjectAsync);
-
-    public AsyncRelayCommand GoToDesignerTwitterAccountCommand => new(GoToDesignerTwitterAccountAsync);
-
-    public AsyncRelayCommand GoToContributionPageCommand => new(GoToContributionPageAsync);
-
-    public AsyncRelayCommand OpenLogFileCommand => new(OpenLogFile);
-
     public string Version => appInformation.GetVersion;
 
+    [RelayCommand]
     private async Task GoToWebsiteAsync()
     {
         await browserAdapter.OpenWebsiteAsync(websiteUri);
     }
 
+    [RelayCommand]
     private async Task SendMailAsync()
     {
         try
@@ -74,31 +58,37 @@ internal class AboutViewModel : BaseViewModel
         }
     }
 
-    private void RateApp()
+    [RelayCommand]
+    private async Task RateApp()
     {
-        storeFeatures.RateApp();
+        await CrossStoreReview.Current.RequestReview(false);
     }
 
+    [RelayCommand]
     private async Task GoToRepositoryAsync()
     {
         await browserAdapter.OpenWebsiteAsync(projectUri);
     }
 
+    [RelayCommand]
     private async Task GoToTranslationProjectAsync()
     {
         await browserAdapter.OpenWebsiteAsync(translationUri);
     }
 
+    [RelayCommand]
     private async Task GoToDesignerTwitterAccountAsync()
     {
         await browserAdapter.OpenWebsiteAsync(iconDesignerUrl);
     }
 
+    [RelayCommand]
     private async Task GoToContributionPageAsync()
     {
         await browserAdapter.OpenWebsiteAsync(contributorUrl);
     }
 
+    [RelayCommand]
     private async Task OpenLogFile()
     {
         var latestLogFile = LogFileService.GetLatestLogFileInfo();
