@@ -1,6 +1,6 @@
 namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 
-using Dawn;
+using System;
 using JetBrains.Annotations;
 
 public class Account : EntityBase
@@ -10,7 +10,7 @@ public class Account : EntityBase
 
     public Account(string name, decimal initialBalance = 0, string note = "", bool isExcluded = false)
     {
-        _ = Guard.Argument(value: name, name: nameof(name)).NotNull().NotWhiteSpace();
+        ArgumentException.ThrowIfNullOrEmpty(name);
         Name = name;
         CurrentBalance = initialBalance;
         Note = note;
@@ -37,7 +37,7 @@ public class Account : EntityBase
 
     public void Change(string name, string note = "", bool isExcluded = false)
     {
-        _ = Guard.Argument(value: name, name: nameof(name)).NotNull().NotWhiteSpace();
+        ArgumentException.ThrowIfNullOrEmpty(name);
         Name = name;
         Note = note;
         IsExcluded = isExcluded;
@@ -62,7 +62,6 @@ public class Account : EntityBase
 
     public void RemovePaymentAmount(Payment payment)
     {
-        _ = Guard.Argument(value: payment, name: nameof(payment)).NotNull();
         if (!payment.IsCleared)
         {
             return;
