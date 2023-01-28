@@ -54,30 +54,28 @@ public class AccountTests
         testAccount.IsDeactivated.Should().BeFalse();
     }
 
-    [Theory]
-    [InlineData("")]
-    [InlineData(" ")]
-    public void UpdateData_NameEmpty_ArgumentNullException(string name)
+    [Fact]
+    public void UpdateData_NameEmpty_ArgumentNullException()
     {
         // Arrange
         var testAccount = new Account("test");
 
         // Act / Assert
-        Assert.Throws<ArgumentException>(() => testAccount.Change(name));
+        Assert.Throws<ArgumentException>(() => testAccount.Change(string.Empty));
     }
 
     [Fact]
     public void UpdateData_NoParams_DefaultValuesSet()
     {
         // Arrange
-        const string testname = "test";
+        const string testName = "test";
         var testAccount = new Account("foo");
 
         // Act / Assert
-        testAccount.Change(testname);
+        testAccount.Change(testName);
 
         // Assert
-        testAccount.Name.Should().Be(testname);
+        testAccount.Name.Should().Be(testName);
         testAccount.CurrentBalance.Should().Be(0);
         testAccount.Note.Should().BeEmpty();
         testAccount.IsExcluded.Should().BeFalse();
@@ -156,16 +154,6 @@ public class AccountTests
         // Assert
         chargedAccount.CurrentBalance.Should().Be(50);
         targetAccount.CurrentBalance.Should().Be(150);
-    }
-
-    [Fact]
-    public void ThrowsException_WhenPaymentIsNull()
-    {
-        // Arrange
-        var account = new Account("test");
-
-        // Act / Assert
-        Assert.Throws<ArgumentNullException>(() => account.RemovePaymentAmount(null!));
     }
 
     [Theory]

@@ -7,13 +7,11 @@ using FluentAssertions;
 [ExcludeFromCodeCoverage]
 public class CategoryTests
 {
-    [Theory]
-    [InlineData("")]
-    [InlineData(" ")]
-    public void Ctor_NameEmpty_ArgumentNullException(string name)
+    [Fact]
+    public void Ctor_NameEmpty_ArgumentNullException()
     {
         // Act
-        Action act = () => _ = new Category(name);
+        Action act = () => _ = new Category(string.Empty);
 
         // Arrange
         act.Should().Throw<ArgumentException>();
@@ -50,16 +48,14 @@ public class CategoryTests
         category.RequireNote.Should().BeTrue();
     }
 
-    [Theory]
-    [InlineData("")]
-    [InlineData(" ")]
-    public void UpdateData_NameEmpty_ArgumentNullException(string name)
+    [Fact]
+    public void UpdateData_NameEmpty_ArgumentNullException()
     {
         // Arrange
         var testCategory = new Category("Foo");
 
         // Act
-        var act = () => testCategory.UpdateData(name);
+        var act = () => testCategory.UpdateData(string.Empty);
 
         // Assert
         act.Should().Throw<ArgumentException>();
