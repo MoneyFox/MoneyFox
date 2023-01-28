@@ -12,7 +12,7 @@ using Infrastructure.Adapters;
 using InversionOfControl;
 using MediatR;
 using Serilog;
-using ViewModels;
+using Views;
 
 public partial class App
 {

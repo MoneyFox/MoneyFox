@@ -1,13 +1,13 @@
 namespace MoneyFox.Ui.Views.Payments;
 
 using AutoMapper;
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
+using Core.ApplicationCore.Queries;
+using Core.Commands.Payments.CreatePayment;
+using Core.Common.Interfaces;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using MoneyFox.Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
-using MoneyFox.Core.ApplicationCore.Queries;
-using MoneyFox.Core.Commands.Payments.CreatePayment;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Ui.Resources.Strings;
+using Resources.Strings;
 
 internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
 {
@@ -15,11 +15,7 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
     private readonly IMapper mapper;
     private readonly IMediator mediator;
 
-    public AddPaymentViewModel(
-        IMediator mediator,
-        IMapper mapper,
-        IDialogService dialogService,
-        IToastService toastService) : base(
+    public AddPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, IToastService toastService) : base(
         mediator: mediator,
         mapper: mapper,
         dialogService: dialogService,

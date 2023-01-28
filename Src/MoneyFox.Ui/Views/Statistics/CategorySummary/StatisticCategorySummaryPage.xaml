@@ -18,7 +18,7 @@
     <ContentPage.Content>
         <Grid RowDefinitions="50, *">
 
-            <Grid ColumnDefinitions="*, Auto" 
+            <Grid ColumnDefinitions="*, Auto"
                   Margin="15,0,15,0">
                 <Label Grid.Row="0"
                        VerticalOptions="Center"

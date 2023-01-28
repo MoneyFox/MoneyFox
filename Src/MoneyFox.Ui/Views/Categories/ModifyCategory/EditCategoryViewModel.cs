@@ -11,7 +11,7 @@ using Core.Interfaces;
 using MediatR;
 using Resources.Strings;
 
-internal sealed partial class EditCategoryViewModel : ModifyCategoryViewModel
+internal sealed class EditCategoryViewModel : ModifyCategoryViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;

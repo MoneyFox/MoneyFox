@@ -2,12 +2,12 @@ namespace MoneyFox.Ui.Views.Payments;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
+using Core.ApplicationCore.Queries;
+using Core.Commands.Payments.DeletePaymentById;
+using Core.Commands.Payments.UpdatePayment;
+using Core.Common.Interfaces;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.Queries;
-using MoneyFox.Core.Commands.Payments.DeletePaymentById;
-using MoneyFox.Core.Commands.Payments.UpdatePayment;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Ui.Resources.Strings;
+using Resources.Strings;
 
 internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
 {
@@ -15,11 +15,7 @@ internal sealed class EditPaymentViewModel : ModifyPaymentViewModel
     private readonly IMapper mapper;
     private readonly IMediator mediator;
 
-    public EditPaymentViewModel(
-        IMediator mediator,
-        IMapper mapper,
-        IDialogService dialogService,
-        IToastService toastService) : base(
+    public EditPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, IToastService toastService) : base(
         mediator: mediator,
         mapper: mapper,
         dialogService: dialogService,

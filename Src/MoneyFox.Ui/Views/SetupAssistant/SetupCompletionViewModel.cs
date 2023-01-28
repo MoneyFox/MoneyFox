@@ -1,8 +1,7 @@
 namespace MoneyFox.Ui.Views.SetupAssistant;
 
 using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Core.Common.Facades;
-using ViewModels;
+using Core.Common.Facades;
 
 internal sealed class SetupCompletionViewModel : BaseViewModel
 {

@@ -10,7 +10,6 @@ using Core.ApplicationCore.Queries;
 using MediatR;
 using Payments;
 using Resources.Strings;
-using ViewModels;
 
 internal sealed class PaymentForCategoryListViewModel : BaseViewModel, IRecipient<PaymentsForCategoryMessage>
 {

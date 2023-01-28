@@ -3,18 +3,17 @@ namespace MoneyFox.Ui.Views.Categories;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using AutoMapper;
+using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Core.ApplicationCore.Queries;
+using Core.Commands.Categories.DeleteCategoryById;
+using Core.Common.Interfaces;
+using Core.Common.Messages;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.Queries;
-using MoneyFox.Core.Commands.Categories.DeleteCategoryById;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Common.Messages;
-using MoneyFox.Ui.Common.Groups;
-using MoneyFox.Ui.Resources.Strings;
-using ViewModels;
+using Resources.Strings;
 
-internal partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadMessage>
+internal class CategoryListViewModel : BaseViewModel, IRecipient<ReloadMessage>
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;

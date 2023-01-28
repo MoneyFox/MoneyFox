@@ -2,19 +2,18 @@ namespace MoneyFox.Ui.Views.Payments;
 
 using System.Collections.ObjectModel;
 using System.Globalization;
+using Accounts;
 using AutoMapper;
+using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Core.ApplicationCore.Queries;
+using Core.ApplicationCore.Queries.GetPaymentsForAccountIdQuery;
+using Core.Common.Helpers;
+using Core.Common.Messages;
 using MediatR;
-using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using MoneyFox.Core.ApplicationCore.Queries;
-using MoneyFox.Core.ApplicationCore.Queries.GetPaymentsForAccountIdQuery;
-using MoneyFox.Core.Common.Helpers;
-using MoneyFox.Core.Common.Messages;
-using MoneyFox.Ui.Common.Groups;
-using MoneyFox.Ui.Resources.Strings;
-using MoneyFox.Ui.Views.Accounts;
-using ViewModels;
+using Resources.Strings;
 
 internal sealed class PaymentListViewModel : BaseViewModel
 {

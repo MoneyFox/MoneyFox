@@ -6,7 +6,6 @@ using Core.Common.Facades;
 using Core.Common.Helpers;
 using Core.Common.Interfaces;
 using Serilog;
-using ViewModels;
 
 internal sealed class SettingsViewModel : BaseViewModel
 {

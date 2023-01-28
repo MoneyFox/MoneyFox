@@ -9,7 +9,6 @@ using Core.Interfaces;
 using JetBrains.Annotations;
 using Resources.Strings;
 using Settings;
-using ViewModels;
 
 internal sealed record OverflowItemViewModel(string IconGlyph, string Name, OverflowMenuItemType Type);
 

@@ -8,9 +8,8 @@ using Core.Common.Messages;
 using Core.Interfaces;
 using MediatR;
 using Resources.Strings;
-using ViewModels;
 
-internal abstract partial class ModifyAccountViewModel : BaseViewModel
+internal abstract class ModifyAccountViewModel : BaseViewModel
 {
     private readonly IDialogService dialogService;
     private readonly INavigationService navigationService;

@@ -7,7 +7,6 @@ using Core.Common.Interfaces;
 using Core.Common.Messages;
 using MediatR;
 using Resources.Strings;
-using ViewModels;
 
 internal abstract class ModifyCategoryViewModel : BaseViewModel
 {

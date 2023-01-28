@@ -9,7 +9,6 @@ using Core.ApplicationCore.Queries;
 using Core.Common.Interfaces;
 using Core.Common.Messages;
 using MediatR;
-using ViewModels;
 
 internal class DashboardViewModel : BaseViewModel
 {

@@ -1,23 +1,22 @@
 namespace MoneyFox.Ui.Views.Payments;
 
 using System.Collections.ObjectModel;
+using Accounts;
 using AutoMapper;
+using Categories;
+using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Core.ApplicationCore.Queries;
+using Core.Common.Interfaces;
+using Core.Common.Messages;
 using MediatR;
 using Microsoft.AppCenter.Crashes;
-using MoneyFox.Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using MoneyFox.Core.ApplicationCore.Queries;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Common.Messages;
-using MoneyFox.Ui.Common.Extensions;
-using MoneyFox.Ui.Resources.Strings;
-using MoneyFox.Ui.Views.Accounts;
-using MoneyFox.Ui.Views.Categories;
+using Resources.Strings;
 using Serilog;
-using ViewModels;
 
-internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipient<CategorySelectedMessage>
+internal abstract class ModifyPaymentViewModel : BaseViewModel, IRecipient<CategorySelectedMessage>
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
@@ -154,7 +153,7 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
         catch (Exception ex)
         {
             Crashes.TrackError(ex);
-            Log.Error(ex, "Failed to modify payment");
+            Log.Error(exception: ex, messageTemplate: "Failed to modify payment");
             await toastService.ShowToastAsync(string.Format(format: Translations.UnknownErrorMessage, arg0: ex.Message));
         }
         finally

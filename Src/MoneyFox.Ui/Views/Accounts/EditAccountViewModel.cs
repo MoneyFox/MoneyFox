@@ -11,7 +11,7 @@ using Core.Interfaces;
 using MediatR;
 using Resources.Strings;
 
-internal partial class EditAccountViewModel : ModifyAccountViewModel
+internal class EditAccountViewModel : ModifyAccountViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
