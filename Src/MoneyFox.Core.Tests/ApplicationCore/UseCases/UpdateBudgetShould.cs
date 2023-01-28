@@ -2,8 +2,9 @@ namespace MoneyFox.Core.Tests.ApplicationCore.UseCases;
 
 using System.Collections.Immutable;
 using Core.ApplicationCore.UseCases.BudgetUpdate;
+using Domain.Tests.TestFramework;
 using Microsoft.EntityFrameworkCore;
-using static BudgetAssertion;
+using static Domain.Tests.TestFramework.BudgetAssertion;
 
 public sealed class UpdateBudgetShould : InMemoryTestBase
 {

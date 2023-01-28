@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Tests.TestFramework;
+﻿namespace MoneyFox.Domain.Tests.TestFramework;
 
 using System.Collections.Immutable;
 using MoneyFox.Domain.Aggregates.BudgetAggregate;

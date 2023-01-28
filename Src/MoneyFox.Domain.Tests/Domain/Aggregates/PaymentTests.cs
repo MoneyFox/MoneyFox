@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Tests.Domain.Aggregates;
+﻿namespace MoneyFox.Domain.Tests.Domain.Aggregates;
 
 using FluentAssertions;
 using MoneyFox.Domain.Aggregates.AccountAggregate;

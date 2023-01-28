@@ -2,7 +2,7 @@ namespace MoneyFox.Ui.Tests.ViewModels.Budget;
 
 using System.Collections.Immutable;
 using Core.ApplicationCore.Queries.BudgetListLoading;
-using Core.Tests.TestFramework;
+using Domain.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
 using NSubstitute;

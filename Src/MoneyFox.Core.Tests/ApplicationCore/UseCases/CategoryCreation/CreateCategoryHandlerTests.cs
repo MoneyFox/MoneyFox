@@ -1,8 +1,9 @@
 ﻿namespace MoneyFox.Core.Tests.ApplicationCore.UseCases.CategoryCreation;
 
 using Core.ApplicationCore.UseCases.CategoryCreation;
+using Domain.Tests.TestFramework;
 using Microsoft.EntityFrameworkCore;
-using static CategoryAssertion;
+using static Domain.Tests.TestFramework.CategoryAssertion;
 
 public class CreateCategoryHandlerTests : InMemoryTestBase
 {

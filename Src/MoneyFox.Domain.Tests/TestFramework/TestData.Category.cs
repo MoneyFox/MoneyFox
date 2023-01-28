@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Tests.TestFramework;
+﻿namespace MoneyFox.Domain.Tests.TestFramework;
 
 internal static partial class TestData
 {

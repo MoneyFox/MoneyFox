@@ -5,7 +5,7 @@ using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Common.Messages;
 using Core.Interfaces;
-using Core.Tests.TestFramework;
+using Domain.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
 using NSubstitute;

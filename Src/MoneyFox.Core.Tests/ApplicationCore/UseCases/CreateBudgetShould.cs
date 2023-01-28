@@ -1,7 +1,8 @@
 namespace MoneyFox.Core.Tests.ApplicationCore.UseCases;
 
 using Core.ApplicationCore.UseCases.BudgetCreation;
-using static BudgetAssertion;
+using Domain.Tests.TestFramework;
+using static Domain.Tests.TestFramework.BudgetAssertion;
 
 public sealed class CreateBudgetShould : InMemoryTestBase
 {

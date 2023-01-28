@@ -1,6 +1,7 @@
 namespace MoneyFox.Core.Tests.ApplicationCore.UseCases;
 
 using Core.ApplicationCore.UseCases.BudgetDeletion;
+using Domain.Tests.TestFramework;
 using FluentAssertions;
 
 public sealed class DeleteBudgetShould : InMemoryTestBase

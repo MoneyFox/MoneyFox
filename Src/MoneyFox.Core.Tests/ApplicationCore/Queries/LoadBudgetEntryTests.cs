@@ -2,6 +2,7 @@ namespace MoneyFox.Core.Tests.ApplicationCore.Queries;
 
 using System.Collections.Immutable;
 using Core.ApplicationCore.Queries.BudgetEntryLoading;
+using Domain.Tests.TestFramework;
 using FluentAssertions;
 
 public class LoadBudgetEntryTests : InMemoryTestBase
