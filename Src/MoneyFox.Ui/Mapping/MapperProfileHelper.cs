@@ -3,19 +3,6 @@ namespace MoneyFox.Ui.Mapping;
 using System.Reflection;
 using Core.Common.Interfaces.Mapping;
 
-public sealed class Map
-{
-    public Map(Type source, Type destination)
-    {
-        Source = source;
-        Destination = destination;
-    }
-
-    public Type Source { get; }
-
-    public Type Destination { get; }
-}
-
 public static class MapperProfileHelper
 {
     public static IList<IHaveCustomMapping> LoadCustomMappings(Assembly rootAssembly)
