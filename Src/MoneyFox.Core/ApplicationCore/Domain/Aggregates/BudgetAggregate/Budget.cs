@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Common.Interfaces;
 using JetBrains.Annotations;
 
-public class Budget : EntityBase, IAggregateRoot
+public class Budget : EntityBase
 {
     [UsedImplicitly]
     private Budget()

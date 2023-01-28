@@ -6,7 +6,7 @@ using Common.Interfaces;
 using Dawn;
 using JetBrains.Annotations;
 
-public class Category : EntityBase, IAggregateRoot
+public class Category : EntityBase
 {
     [UsedImplicitly]
     private Category() { }
