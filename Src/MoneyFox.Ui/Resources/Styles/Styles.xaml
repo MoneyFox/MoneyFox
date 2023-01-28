@@ -129,6 +129,7 @@
         <Setter Property="FontSize" Value="14" />
         <Setter Property="CornerRadius" Value="8" />
         <Setter Property="Padding" Value="14,10" />
+        <Setter Property="HeightRequest" Value="{OnPlatform WinUI=38, MacCatalyst=38, Default=48}" />
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup x:Name="CommonStates">
@@ -161,6 +162,7 @@
     <Style x:Key="PrimaryButton" TargetType="Button">
         <Setter Property="TextColor" Value="{StaticResource White}" />
         <Setter Property="BorderColor" Value="Transparent" />
+        <Setter Property="HeightRequest" Value="48" />
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup x:Name="CommonStates">
