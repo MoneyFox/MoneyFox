@@ -12,9 +12,8 @@ public class Ledger : EntityBase
         CurrentBalance = default!;
     }
 
-    private Ledger(string name, Money currentBalance, string note = "", bool isExcluded = false)
+    private Ledger(string name, Money currentBalance, string? note, bool isExcluded)
     {
-        ArgumentException.ThrowIfNullOrEmpty(name);
         Name = name;
         CurrentBalance = currentBalance;
         Note = note;
@@ -61,8 +60,13 @@ public class Ledger : EntityBase
         private set;
     }
 
-    public static Ledger Create(string name, Money currentBalance, string note = "", bool isExcluded = false)
+    public static Ledger Create(string name, Money currentBalance, string? note = null, bool isExcluded = false)
     {
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            throw new ArgumentNullException(nameof(name));
+        }
+
         return new(name: name, currentBalance: currentBalance, note: note, isExcluded: isExcluded);
     }
 
