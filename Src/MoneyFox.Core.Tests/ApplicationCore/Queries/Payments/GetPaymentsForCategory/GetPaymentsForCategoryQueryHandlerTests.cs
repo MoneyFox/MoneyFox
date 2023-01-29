@@ -1,23 +1,17 @@
 namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Payments.GetPaymentsForCategory;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.ApplicationCore.Queries;
 using FluentAssertions;
-using Infrastructure.Persistence;
-using TestFramework;
 
-[ExcludeFromCodeCoverage]
-public class GetPaymentsForCategoryQueryHandlerTests
+public class GetPaymentsForCategoryQueryHandlerTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
     private readonly GetPaymentsForCategorySummary.Handler handler;
 
     public GetPaymentsForCategoryQueryHandlerTests()
     {
-        context = InMemoryAppDbContextFactory.Create();
-        handler = new(context);
+        handler = new(Context);
     }
 
     [Fact]
@@ -41,10 +35,10 @@ public class GetPaymentsForCategoryQueryHandlerTests
             chargedAccount: account,
             category: category);
 
-        context.Add(payment1);
-        context.Add(payment2);
-        context.Add(payment3);
-        await context.SaveChangesAsync();
+        Context.Add(payment1);
+        Context.Add(payment2);
+        Context.Add(payment3);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(
@@ -76,10 +70,10 @@ public class GetPaymentsForCategoryQueryHandlerTests
             chargedAccount: account,
             category: category);
 
-        context.Add(payment1);
-        context.Add(payment2);
-        context.Add(payment3);
-        await context.SaveChangesAsync();
+        Context.Add(payment1);
+        Context.Add(payment2);
+        Context.Add(payment3);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(
@@ -117,10 +111,10 @@ public class GetPaymentsForCategoryQueryHandlerTests
             chargedAccount: account,
             category: category);
 
-        context.Add(payment1);
-        context.Add(payment2);
-        context.Add(payment3);
-        await context.SaveChangesAsync();
+        Context.Add(payment1);
+        Context.Add(payment2);
+        Context.Add(payment3);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(

@@ -6,7 +6,7 @@ using Domain.Aggregates.BudgetAggregate;
 public sealed class BudgetEntryData
 {
     public BudgetEntryData(
-        int id,
+        BudgetId id,
         string name,
         decimal spendingLimit,
         BudgetTimeRange timeRange,
@@ -19,7 +19,7 @@ public sealed class BudgetEntryData
         TimeRange = timeRange;
     }
 
-    public int Id { get; }
+    public BudgetId Id { get; }
 
     public string Name { get; }
 

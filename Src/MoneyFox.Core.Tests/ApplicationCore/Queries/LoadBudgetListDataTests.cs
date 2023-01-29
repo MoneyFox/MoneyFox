@@ -6,13 +6,10 @@ using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
 using Core.ApplicationCore.Queries.BudgetListLoading;
 using Core.Common.Helpers;
 using FluentAssertions;
-using Infrastructure.Persistence;
 using NSubstitute;
-using TestFramework;
 
-public sealed class LoadBudgetListDataTests
+public sealed class LoadBudgetListDataTests : InMemoryTestBase
 {
-    private readonly AppDbContext dbContext;
     private readonly LoadBudgetListData.Handler handler;
     private readonly ISystemDateHelper systemDateHelper;
 
@@ -21,8 +18,7 @@ public sealed class LoadBudgetListDataTests
         systemDateHelper = Substitute.For<ISystemDateHelper>();
         systemDateHelper.Today.Returns(DateTime.Today);
         systemDateHelper.Now.Returns(DateTime.Now);
-        dbContext = InMemoryAppDbContextFactory.Create();
-        handler = new(systemDateHelper: systemDateHelper, appDbContext: dbContext);
+        handler = new(systemDateHelper: systemDateHelper, appDbContext: Context);
     }
 
     [Fact]
@@ -74,16 +70,16 @@ public sealed class LoadBudgetListDataTests
             Date = DateTime.Now.AddYears(-1)
         };
 
-        var dbPayment1 = dbContext.RegisterPayment(testExpense1);
-        var dbPayment2 = dbContext.RegisterPayment(testExpense2);
-        var dbPayment3 = dbContext.RegisterPayment(testExpense3);
+        var dbPayment1 = Context.RegisterPayment(testExpense1);
+        var dbPayment2 = Context.RegisterPayment(testExpense2);
+        var dbPayment3 = Context.RegisterPayment(testExpense3);
         var testBudget = new TestData.DefaultBudget
         {
             BudgetTimeRange = BudgetTimeRange.YearToDate,
             Categories = ImmutableList.Create(dbPayment1.CategoryId!.Value, dbPayment2.CategoryId!.Value, dbPayment3.CategoryId!.Value)
         };
 
-        dbContext.RegisterBudget(testBudget);
+        Context.RegisterBudget(testBudget);
 
         // Act
         var query = new LoadBudgetListData.Query();
@@ -137,16 +133,16 @@ public sealed class LoadBudgetListDataTests
             Date = now.AddYears(-(yearsToDeduct + 1))
         };
 
-        var dbPayment1 = dbContext.RegisterPayment(testExpense1);
-        var dbPayment2 = dbContext.RegisterPayment(testExpense2);
-        var dbPayment3 = dbContext.RegisterPayment(testExpense3);
+        var dbPayment1 = Context.RegisterPayment(testExpense1);
+        var dbPayment2 = Context.RegisterPayment(testExpense2);
+        var dbPayment3 = Context.RegisterPayment(testExpense3);
         var testBudget = new TestData.DefaultBudget
         {
             BudgetTimeRange = timeRange,
             Categories = ImmutableList.Create(dbPayment1.CategoryId!.Value, dbPayment2.CategoryId!.Value, dbPayment3.CategoryId!.Value)
         };
 
-        dbContext.RegisterBudget(testBudget);
+        Context.RegisterBudget(testBudget);
 
         // Act
         var query = new LoadBudgetListData.Query();
@@ -171,10 +167,10 @@ public sealed class LoadBudgetListDataTests
             Date = new(year: DateTime.Today.Year, month: 1, day: 20)
         };
 
-        var dbPayment1 = dbContext.RegisterPayment(testExpense1);
+        var dbPayment1 = Context.RegisterPayment(testExpense1);
         var testBudget1 = new TestData.DefaultBudget { Categories = ImmutableList<int>.Empty };
-        var testBudget2 = new TestData.DefaultBudget { Categories = ImmutableList.Create(dbPayment1.CategoryId.Value) };
-        dbContext.RegisterBudgets(testBudget1, testBudget2);
+        var testBudget2 = new TestData.DefaultBudget { Categories = ImmutableList.Create(dbPayment1.CategoryId!.Value) };
+        Context.RegisterBudgets(testBudget1, testBudget2);
 
         // Act
         var query = new LoadBudgetListData.Query();

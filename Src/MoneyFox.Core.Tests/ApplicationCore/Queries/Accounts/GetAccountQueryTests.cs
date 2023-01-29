@@ -1,21 +1,15 @@
 namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Accounts;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries;
-using Infrastructure.Persistence;
-using TestFramework;
 
-[ExcludeFromCodeCoverage]
-public class GetAccountQueryTests
+public class GetAccountQueryTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
     private readonly GetAccountsQuery.Handler handler;
 
     public GetAccountQueryTests()
     {
-        context = InMemoryAppDbContextFactory.Create();
-        handler = new(context);
+        handler = new(Context);
     }
 
     [Fact]
@@ -23,8 +17,8 @@ public class GetAccountQueryTests
     {
         // Arrange
         var account = new Account(name: "test", initialBalance: 80);
-        await context.AddAsync(account);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(account);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(request: new(), cancellationToken: default);
@@ -40,9 +34,9 @@ public class GetAccountQueryTests
         var account1 = new Account(name: "test", initialBalance: 80);
         var account2 = new Account(name: "test", initialBalance: 80);
         account2.Deactivate();
-        await context.AddAsync(account1);
-        await context.AddAsync(account2);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(account1);
+        await Context.AddAsync(account2);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(request: new(), cancellationToken: default);

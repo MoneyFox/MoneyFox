@@ -1,22 +1,16 @@
 namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Categories.GetCategoryById;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.ApplicationCore.Queries;
 using FluentAssertions;
-using Infrastructure.Persistence;
-using TestFramework;
 
-[ExcludeFromCodeCoverage]
-public class GetCategoryByIdQueryTests
+public class GetCategoryByIdQueryTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
     private readonly GetCategoryByIdQuery.Handler handler;
 
     public GetCategoryByIdQueryTests()
     {
-        context = InMemoryAppDbContextFactory.Create();
-        handler = new(context);
+        handler = new(Context);
     }
 
     [Fact]
@@ -36,8 +30,8 @@ public class GetCategoryByIdQueryTests
     {
         // Arrange
         var testCat1 = new Category("Ausgehen");
-        await context.Categories.AddAsync(testCat1);
-        await context.SaveChangesAsync();
+        await Context.Categories.AddAsync(testCat1);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(request: new(testCat1.Id), cancellationToken: default);

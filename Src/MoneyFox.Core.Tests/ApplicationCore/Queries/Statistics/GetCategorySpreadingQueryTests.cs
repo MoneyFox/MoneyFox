@@ -1,24 +1,18 @@
 namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Statistics;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.ApplicationCore.Queries.Statistics;
 using FluentAssertions;
-using Infrastructure.Persistence;
-using TestFramework;
 
-[ExcludeFromCodeCoverage]
 [Collection("CultureCollection")]
-public class GetCategorySpreadingQueryTests
+public class GetCategorySpreadingQueryTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
     private readonly GetCategorySpreadingQueryHandler handler;
 
     public GetCategorySpreadingQueryTests()
     {
-        context = InMemoryAppDbContextFactory.Create();
-        handler = new(context);
+        handler = new(Context);
     }
 
     [Fact]
@@ -57,8 +51,8 @@ public class GetCategorySpreadingQueryTests
                 category: testCat2)
         };
 
-        context.Payments.AddRange(paymentList);
-        context.SaveChanges();
+        Context.Payments.AddRange(paymentList);
+        Context.SaveChanges();
 
         // Act
         var result = (await handler.Handle(request: new(startDate: DateTime.Today.AddDays(-3), endDate: DateTime.Today.AddDays(3)), cancellationToken: default))
@@ -101,8 +95,8 @@ public class GetCategorySpreadingQueryTests
                 category: testCat3)
         };
 
-        context.Payments.AddRange(paymentList);
-        context.SaveChanges();
+        Context.Payments.AddRange(paymentList);
+        Context.SaveChanges();
 
         // Act
         var result = (await handler.Handle(request: new(startDate: DateTime.Today.AddDays(-3), endDate: DateTime.Today.AddDays(3)), cancellationToken: default))
@@ -135,8 +129,8 @@ public class GetCategorySpreadingQueryTests
                 category: testCat2)
         };
 
-        context.Payments.AddRange(paymentList);
-        context.SaveChanges();
+        Context.Payments.AddRange(paymentList);
+        Context.SaveChanges();
 
         // Act
         var result = (await handler.Handle(request: new(startDate: DateTime.Today.AddDays(-3), endDate: DateTime.Today.AddDays(3)), cancellationToken: default))
@@ -182,8 +176,8 @@ public class GetCategorySpreadingQueryTests
                 category: testCat2)
         };
 
-        context.Payments.AddRange(paymentList);
-        context.SaveChanges();
+        Context.Payments.AddRange(paymentList);
+        Context.SaveChanges();
 
         // Act
         var result = (await handler.Handle(

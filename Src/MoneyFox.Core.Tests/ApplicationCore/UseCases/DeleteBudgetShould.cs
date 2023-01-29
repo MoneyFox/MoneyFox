@@ -2,7 +2,6 @@ namespace MoneyFox.Core.Tests.ApplicationCore.UseCases;
 
 using Core.ApplicationCore.UseCases.BudgetDeletion;
 using FluentAssertions;
-using TestFramework;
 
 public sealed class DeleteBudgetShould : InMemoryTestBase
 {
@@ -17,8 +16,8 @@ public sealed class DeleteBudgetShould : InMemoryTestBase
     public async Task DoesNotThrowExceptionWhenBudgetWithIdNotFound()
     {
         // Act
-        var command = new DeleteBudget.Command(budgetId: 999);
-        await handler.Handle(request: command, cancellationToken: CancellationToken.None);
+        var command = new DeleteBudget.Command(budgetId: new(999));
+        await handler.Handle(command: command, cancellationToken: CancellationToken.None);
 
         // Assert
         Context.Budgets.Should().BeEmpty();
@@ -32,8 +31,8 @@ public sealed class DeleteBudgetShould : InMemoryTestBase
         Context.RegisterBudget(testBudget);
 
         // Act
-        var command = new DeleteBudget.Command(budgetId: testBudget.Id);
-        await handler.Handle(request: command, cancellationToken: CancellationToken.None);
+        var command = new DeleteBudget.Command(budgetId: new(testBudget.Id));
+        await handler.Handle(command: command, cancellationToken: CancellationToken.None);
 
         // Assert
         Context.Budgets.Should().BeEmpty();

@@ -1,22 +1,16 @@
 ﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Accounts.GetAccountNameById;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries;
 using FluentAssertions;
-using Infrastructure.Persistence;
-using TestFramework;
 
-[ExcludeFromCodeCoverage]
-public class GetAccountNameByIdQueryTests
+public class GetAccountNameByIdQueryTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
     private readonly GetAccountNameByIdQuery.Handler handler;
 
     public GetAccountNameByIdQueryTests()
     {
-        context = InMemoryAppDbContextFactory.Create();
-        handler = new(context);
+        handler = new(Context);
     }
 
     [Fact]
@@ -24,8 +18,8 @@ public class GetAccountNameByIdQueryTests
     {
         // Arrange
         var account1 = new Account(name: "test2", initialBalance: 80);
-        await context.AddAsync(account1);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(account1);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(request: new(account1.Id), cancellationToken: default);

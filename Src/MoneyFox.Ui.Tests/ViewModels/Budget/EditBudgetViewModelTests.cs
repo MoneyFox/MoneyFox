@@ -130,7 +130,7 @@ public class EditBudgetViewModelTests
             _ = sender.Send(Arg.Do<LoadBudgetEntry.Query>(q => capturedQuery = q))
                 .Returns(
                     new BudgetEntryData(
-                        id: testBudget.Id,
+                        id: new(testBudget.Id),
                         name: testBudget.Name,
                         spendingLimit: testBudget.SpendingLimit,
                         timeRange: testBudget.BudgetTimeRange,
@@ -144,7 +144,7 @@ public class EditBudgetViewModelTests
             // Assert
             _ = capturedQuery.Should().NotBeNull();
             _ = capturedQuery!.BudgetId.Should().Be(testBudget.Id);
-            _ = viewModel.Id.Should().Be(testBudget.Id);
+            _ = viewModel.Id.Value.Should().Be(testBudget.Id);
             _ = viewModel.Name.Should().Be(testBudget.Name);
             _ = viewModel.SpendingLimit.Should().Be(testBudget.SpendingLimit);
             _ = viewModel.TimeRange.Should().Be(testBudget.BudgetTimeRange);
@@ -170,7 +170,7 @@ public class EditBudgetViewModelTests
             _ = sender.Send(Arg.Any<LoadBudgetEntry.Query>())
                 .Returns(
                     new BudgetEntryData(
-                        id: testBudget.Id,
+                        id: new(testBudget.Id),
                         name: testBudget.Name,
                         spendingLimit: testBudget.SpendingLimit,
                         timeRange: testBudget.BudgetTimeRange,
@@ -183,7 +183,7 @@ public class EditBudgetViewModelTests
 
             // Assert
             _ = capturedCommand.Should().NotBeNull();
-            _ = capturedCommand!.BudgetId.Should().Be(testBudget.Id);
+            _ = capturedCommand!.BudgetId.Value.Should().Be(testBudget.Id);
             await navigationService.Received(1).GoBackFromModalAsync();
         }
 

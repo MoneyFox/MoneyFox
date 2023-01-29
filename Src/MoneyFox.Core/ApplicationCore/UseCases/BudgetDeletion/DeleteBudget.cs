@@ -3,6 +3,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Common.Interfaces;
+using Domain.Aggregates.BudgetAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,12 +11,12 @@ public static class DeleteBudget
 {
     public class Command : IRequest
     {
-        public Command(int budgetId)
+        public Command(BudgetId budgetId)
         {
             BudgetId = budgetId;
         }
 
-        public int BudgetId { get; }
+        public BudgetId BudgetId { get; }
     }
 
     public class Handler : IRequestHandler<Command, Unit>
@@ -27,9 +28,9 @@ public static class DeleteBudget
             this.appDbContext = appDbContext;
         }
 
-        public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(Command command, CancellationToken cancellationToken)
         {
-            var budgetToRemove = await appDbContext.Budgets.FirstOrDefaultAsync(predicate: b => b.Id == request.BudgetId, cancellationToken: cancellationToken);
+            var budgetToRemove = await appDbContext.Budgets.FirstOrDefaultAsync(predicate: b => b.Id == command.BudgetId, cancellationToken: cancellationToken);
             if (budgetToRemove is null)
             {
                 return Unit.Value;

@@ -1,12 +1,10 @@
 namespace MoneyFox.Core.Tests.Domain.Aggregates;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Domain.Exceptions;
 using FluentAssertions;
 
-[ExcludeFromCodeCoverage]
 public class RecurringPaymentTests
 {
     [Fact]

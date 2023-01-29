@@ -1,13 +1,11 @@
 namespace MoneyFox.Ui.Tests.Groups;
 
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using Common.Groups;
 using FluentAssertions;
 using Views.Payments;
 using Xunit;
 
-[ExcludeFromCodeCoverage]
 public class DateListGroupCollectionTests
 {
     [Fact]

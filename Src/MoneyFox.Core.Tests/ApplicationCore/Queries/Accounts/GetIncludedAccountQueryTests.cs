@@ -1,21 +1,15 @@
 ﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Accounts;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries;
-using Infrastructure.Persistence;
-using TestFramework;
 
-[ExcludeFromCodeCoverage]
-public class GetIncludedAccountQueryTests
+public class GetIncludedAccountQueryTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
     private readonly GetIncludedAccountQuery.Handler handler;
 
     public GetIncludedAccountQueryTests()
     {
-        context = InMemoryAppDbContextFactory.Create();
-        handler = new(context);
+        handler = new(Context);
     }
 
     [Fact]
@@ -24,9 +18,9 @@ public class GetIncludedAccountQueryTests
         // Arrange
         var accountExcluded = new Account(name: "test", initialBalance: 80, isExcluded: true);
         var accountIncluded = new Account(name: "test", initialBalance: 80);
-        await context.AddAsync(accountExcluded);
-        await context.AddAsync(accountIncluded);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(accountExcluded);
+        await Context.AddAsync(accountIncluded);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(request: new(), cancellationToken: default);
@@ -43,10 +37,10 @@ public class GetIncludedAccountQueryTests
         var accountIncluded = new Account(name: "test", initialBalance: 80);
         var accountDeactivated = new Account(name: "test", initialBalance: 80);
         accountDeactivated.Deactivate();
-        await context.AddAsync(accountExcluded);
-        await context.AddAsync(accountIncluded);
-        await context.AddAsync(accountDeactivated);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(accountExcluded);
+        await Context.AddAsync(accountIncluded);
+        await Context.AddAsync(accountDeactivated);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(request: new(), cancellationToken: default);

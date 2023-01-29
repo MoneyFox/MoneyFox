@@ -1,30 +1,24 @@
 namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Statistics;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries.Statistics;
 using FluentAssertions;
-using Infrastructure.Persistence;
-using TestFramework;
 
-[ExcludeFromCodeCoverage]
 [Collection("CultureCollection")]
-public class GetCashFlowQueryHandlerTests
+public class GetCashFlowQueryHandlerTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
     private readonly GetCashFlowQueryHandler getCashFlowQueryHandler;
 
     public GetCashFlowQueryHandlerTests()
     {
-        context = InMemoryAppDbContextFactory.Create();
-        getCashFlowQueryHandler = new(context);
+        getCashFlowQueryHandler = new(Context);
     }
 
     [Fact]
     public async Task GetValues_CorrectSums()
     {
         // Arrange
-        context.AddRange(
+        Context.AddRange(
             new List<Payment>
             {
                 new(date: DateTime.Today, amount: 60, type: PaymentType.Income, chargedAccount: new("Foo1")),
@@ -33,7 +27,7 @@ public class GetCashFlowQueryHandlerTests
                 new(date: DateTime.Today, amount: 40, type: PaymentType.Expense, chargedAccount: new("Foo3"))
             });
 
-        await context.SaveChangesAsync();
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await getCashFlowQueryHandler.Handle(

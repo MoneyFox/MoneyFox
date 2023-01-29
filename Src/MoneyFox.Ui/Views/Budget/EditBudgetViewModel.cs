@@ -2,6 +2,7 @@ namespace MoneyFox.Ui.Views.Budget;
 
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
 using Core.ApplicationCore.Queries.BudgetEntryLoading;
 using Core.ApplicationCore.UseCases.BudgetDeletion;
 using Core.ApplicationCore.UseCases.BudgetUpdate;
@@ -27,7 +28,7 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
         this.dialogService = dialogService;
     }
 
-    public int Id { get; set; }
+    public BudgetId Id { get; private set; }
 
     public AsyncRelayCommand<int> InitializeCommand => new(InitializeAsync);
 

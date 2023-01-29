@@ -3,18 +3,14 @@ namespace MoneyFox.Core.Tests.ApplicationCore.Queries;
 using System.Collections.Immutable;
 using Core.ApplicationCore.Queries.BudgetEntryLoading;
 using FluentAssertions;
-using Infrastructure.Persistence;
-using TestFramework;
 
-public class LoadBudgetEntryTests
+public class LoadBudgetEntryTests : InMemoryTestBase
 {
-    private readonly AppDbContext appDbContext;
     private readonly LoadBudgetEntry.Handler handler;
 
     protected LoadBudgetEntryTests()
     {
-        appDbContext = InMemoryAppDbContextFactory.Create();
-        handler = new(appDbContext);
+        handler = new(Context);
     }
 
     public class GivenNoBudgets : LoadBudgetEntryTests
@@ -38,12 +34,12 @@ public class LoadBudgetEntryTests
         {
             // Arrange
             var testCategory = new TestData.DefaultCategory();
-            var dbCategory = appDbContext.RegisterCategory(testCategory);
+            var dbCategory = Context.RegisterCategory(testCategory);
             var testBudget = new TestData.DefaultBudget { Categories = ImmutableList.Create(dbCategory.Id) };
-            var dbBudget = appDbContext.RegisterBudget(testBudget);
+            var dbBudget = Context.RegisterBudget(testBudget);
 
             // Act
-            var query = new LoadBudgetEntry.Query(dbBudget.Id);
+            var query = new LoadBudgetEntry.Query(dbBudget.Id.Value);
             var budgetEntryData = await handler.Handle(request: query, cancellationToken: CancellationToken.None);
 
             // Assert

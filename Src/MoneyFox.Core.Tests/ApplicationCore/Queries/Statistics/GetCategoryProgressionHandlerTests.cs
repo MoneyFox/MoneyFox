@@ -1,24 +1,18 @@
 ﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Statistics;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.ApplicationCore.Queries.Statistics;
 using FluentAssertions;
-using Infrastructure.Persistence;
-using TestFramework;
 
-[ExcludeFromCodeCoverage]
 [Collection("CultureCollection")]
-public class GetCategoryProgressionHandlerTests
+public class GetCategoryProgressionHandlerTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
     private readonly GetCategoryProgressionHandler handler;
 
     public GetCategoryProgressionHandlerTests()
     {
-        context = InMemoryAppDbContextFactory.Create();
-        handler = new(context);
+        handler = new(Context);
     }
 
     [Fact]
@@ -27,7 +21,7 @@ public class GetCategoryProgressionHandlerTests
         // Arrange
         var account = new Account("Foo1");
         var category = new Category("abcd");
-        context.AddRange(
+        Context.AddRange(
             new List<Payment>
             {
                 new(
@@ -56,9 +50,9 @@ public class GetCategoryProgressionHandlerTests
                     category: category)
             });
 
-        context.Add(account);
-        context.Add(category);
-        await context.SaveChangesAsync();
+        Context.Add(account);
+        Context.Add(category);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(

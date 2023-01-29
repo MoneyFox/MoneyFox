@@ -3,6 +3,8 @@ namespace MoneyFox.Core.ApplicationCore.Domain.Aggregates.BudgetAggregate;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 
+public record struct BudgetId(int Value);
+
 public class Budget : EntityBase
 {
     [UsedImplicitly]
@@ -19,7 +21,7 @@ public class Budget : EntityBase
         IncludedCategories = includedCategories;
     }
 
-    public int Id
+    public BudgetId Id
     {
         get;
 

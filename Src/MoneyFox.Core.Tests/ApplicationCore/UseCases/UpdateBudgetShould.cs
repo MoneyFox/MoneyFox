@@ -3,8 +3,7 @@ namespace MoneyFox.Core.Tests.ApplicationCore.UseCases;
 using System.Collections.Immutable;
 using Core.ApplicationCore.UseCases.BudgetUpdate;
 using Microsoft.EntityFrameworkCore;
-using TestFramework;
-using static TestFramework.BudgetAssertion;
+using static BudgetAssertion;
 
 public sealed class UpdateBudgetShould : InMemoryTestBase
 {
@@ -33,13 +32,13 @@ public sealed class UpdateBudgetShould : InMemoryTestBase
 
         // Act
         var command = new UpdateBudget.Command(
-            budgetId: testBudget.Id,
+            budgetId: new(testBudget.Id),
             name: updatedBudget.Name,
             spendingLimit: updatedBudget.SpendingLimit,
             budgetTimeRange: updatedBudget.BudgetTimeRange,
             categories: updatedBudget.Categories);
 
-        await handler.Handle(request: command, cancellationToken: CancellationToken.None);
+        await handler.Handle(command: command, cancellationToken: CancellationToken.None);
 
         // Assert
         var loadedBudget = await Context.Budgets.SingleAsync();

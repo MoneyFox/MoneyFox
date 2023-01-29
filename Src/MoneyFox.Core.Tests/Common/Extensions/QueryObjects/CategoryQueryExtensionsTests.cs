@@ -1,10 +1,8 @@
 ﻿namespace MoneyFox.Core.Tests.Common.Extensions.QueryObjects;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.Common.Extensions.QueryObjects;
 
-[ExcludeFromCodeCoverage]
 public class CategoryQueryExtensionsTests
 {
     [Fact]

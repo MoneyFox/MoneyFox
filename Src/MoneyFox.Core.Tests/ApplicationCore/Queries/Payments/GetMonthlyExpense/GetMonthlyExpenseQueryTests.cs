@@ -1,26 +1,20 @@
 ﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Payments.GetMonthlyExpense;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries;
 using Core.Common.Helpers;
 using FluentAssertions;
-using Infrastructure.Persistence;
 using NSubstitute;
-using TestFramework;
 
-[ExcludeFromCodeCoverage]
-public class GetMonthlyExpenseQueryTests
+public class GetMonthlyExpenseQueryTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
     private readonly GetMonthlyExpenseQuery.Handler handler;
     private readonly ISystemDateHelper systemDateHelper;
 
     public GetMonthlyExpenseQueryTests()
     {
-        context = InMemoryAppDbContextFactory.Create();
         systemDateHelper = Substitute.For<ISystemDateHelper>();
-        handler = new(appDbContext: context, systemDateHelper: systemDateHelper);
+        handler = new(appDbContext: Context, systemDateHelper: systemDateHelper);
     }
 
     [Fact]
@@ -32,10 +26,10 @@ public class GetMonthlyExpenseQueryTests
         var payment1 = new Payment(date: new(year: 2020, month: 09, day: 03), amount: 50, type: PaymentType.Expense, chargedAccount: account);
         var payment2 = new Payment(date: new(year: 2020, month: 09, day: 04), amount: 20, type: PaymentType.Expense, chargedAccount: account);
         var payment3 = new Payment(date: new(year: 2020, month: 09, day: 04), amount: 30, type: PaymentType.Income, chargedAccount: account);
-        await context.AddAsync(payment1);
-        await context.AddAsync(payment2);
-        await context.AddAsync(payment3);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(payment1);
+        await Context.AddAsync(payment2);
+        await Context.AddAsync(payment3);
+        await Context.SaveChangesAsync();
 
         // Act
         var sum = await handler.Handle(request: new(), cancellationToken: default);

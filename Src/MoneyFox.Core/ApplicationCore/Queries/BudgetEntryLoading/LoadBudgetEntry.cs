@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Common.Interfaces;
+using Domain.Aggregates.BudgetAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -31,7 +32,7 @@ public static class LoadBudgetEntry
 
         public async Task<BudgetEntryData> Handle(Query request, CancellationToken cancellationToken)
         {
-            var budgetData = await appDbContext.Budgets.Where(b => b.Id == request.BudgetId)
+            var budgetData = await appDbContext.Budgets.Where(b => b.Id == new BudgetId(request.BudgetId))
                 .Select(
                     b => new
                     {

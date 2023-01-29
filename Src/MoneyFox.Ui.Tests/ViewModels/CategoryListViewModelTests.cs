@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui.Tests.ViewModels;
 
-using System.Diagnostics.CodeAnalysis;
 using AutoMapper;
 using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
 using Core.ApplicationCore.Queries;
@@ -11,7 +10,6 @@ using NSubstitute;
 using Views.Categories;
 using Xunit;
 
-[ExcludeFromCodeCoverage]
 public class CategoryListViewModelTests
 {
     private readonly IDialogService dialogService;

@@ -1,22 +1,16 @@
 ﻿namespace MoneyFox.Core.Tests.ApplicationCore.Queries.Payments.GetPaymentsForAccountId;
 
-using System.Diagnostics.CodeAnalysis;
 using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.ApplicationCore.Queries.GetPaymentsForAccountIdQuery;
 using FluentAssertions;
-using Infrastructure.Persistence;
-using TestFramework;
 
-[ExcludeFromCodeCoverage]
-public class GetPaymentsForAccountIdQueryTests
+public class GetPaymentsForAccountIdQueryTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
     private readonly GetPaymentsForAccountIdQuery.Handler handler;
 
     public GetPaymentsForAccountIdQueryTests()
     {
-        context = InMemoryAppDbContextFactory.Create();
-        handler = new(context);
+        handler = new(Context);
     }
 
     [Fact]
@@ -26,9 +20,9 @@ public class GetPaymentsForAccountIdQueryTests
         var account = new Account(name: "test", initialBalance: 80);
         var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: account);
         var payment2 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new(name: "test", initialBalance: 80));
-        await context.AddAsync(payment1);
-        await context.AddAsync(payment2);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(payment1);
+        await Context.AddAsync(payment2);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(
@@ -46,9 +40,9 @@ public class GetPaymentsForAccountIdQueryTests
         var account = new Account(name: "test", initialBalance: 80);
         var payment1 = new Payment(date: DateTime.Now.AddDays(-2), amount: 20, type: PaymentType.Expense, chargedAccount: account);
         var payment2 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: account);
-        await context.AddAsync(payment1);
-        await context.AddAsync(payment2);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(payment1);
+        await Context.AddAsync(payment2);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(
@@ -78,10 +72,10 @@ public class GetPaymentsForAccountIdQueryTests
             chargedAccount: account,
             targetAccount: accountxfer);
 
-        await context.AddAsync(payment1);
-        await context.AddAsync(payment2);
-        await context.AddAsync(payment3);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(payment1);
+        await Context.AddAsync(payment2);
+        await Context.AddAsync(payment3);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await handler.Handle(
