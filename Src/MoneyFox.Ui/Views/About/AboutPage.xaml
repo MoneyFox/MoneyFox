@@ -11,7 +11,7 @@
             <VerticalStackLayout Padding="15" Spacing="12">
                 <HorizontalStackLayout Spacing="6">
                     <Label Text="{x:Static resources:Translations.VersionLabel}" />
-                    <Label Text="{Binding Version}" />
+                    <Label Text="{x:Static about:AboutViewModel.Version}" />
                 </HorizontalStackLayout>
 
                 <Button
