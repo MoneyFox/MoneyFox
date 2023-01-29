@@ -3,39 +3,33 @@
 using JetBrains.Annotations;
 
 public record struct TransactionId(int Value);
+public enum TransactionType { Expense, Income }
 
-public enum TransactionType
+public class InvalidTransactionAmountException : Exception
 {
-    Expense,
-    Income
+    public InvalidTransactionAmountException(string message) : base(message: message) { }
 }
 
 public class Transaction : EntityBase
 {
-
     [UsedImplicitly]
     private Transaction()
     {
         Amount = default!;
     }
 
-    private Transaction(TransactionType type, Money amount, DateOnly bookingDate, int? categoryId, string? note)
+    private Transaction(
+        TransactionType type,
+        Money amount,
+        DateOnly bookingDate,
+        int? categoryId,
+        string? note)
     {
         Type = type;
         Amount = amount;
         BookingDate = bookingDate;
         CategoryId = categoryId;
         Note = note;
-    }
-
-    public static Transaction Create(TransactionType type, Money amount, DateOnly bookingDate, int? categoryId = null, string? note = null)
-    {
-        return new(
-            type,
-            amount,
-            bookingDate,
-            categoryId,
-            note);
     }
 
     public TransactionId Id
@@ -84,5 +78,25 @@ public class Transaction : EntityBase
 
         [UsedImplicitly]
         private set;
+    }
+
+    public static Transaction Create(
+        TransactionType type,
+        Money amount,
+        DateOnly bookingDate,
+        int? categoryId = null,
+        string? note = null)
+    {
+        if (amount.Amount == 0)
+        {
+            throw new InvalidTransactionAmountException("Amount can't be zero.");
+        }
+
+        return new(
+            type: type,
+            amount: amount,
+            bookingDate: bookingDate,
+            categoryId: categoryId,
+            note: note);
     }
 }
