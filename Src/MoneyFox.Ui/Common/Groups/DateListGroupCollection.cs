@@ -1,7 +1,7 @@
 namespace MoneyFox.Ui.Common.Groups;
 
 using CommunityToolkit.Mvvm.Input;
-using Core.ApplicationCore.Domain.Exceptions;
+using Domain.Exceptions;
 
 public class DateListGroupCollection<T> : List<T>
 {

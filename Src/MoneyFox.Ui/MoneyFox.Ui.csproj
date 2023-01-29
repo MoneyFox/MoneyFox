@@ -117,11 +117,39 @@
             <Generator>PublicResXFileCodeGenerator</Generator>
             <LastGenOutput>Translations.Designer.cs</LastGenOutput>
         </EmbeddedResource>
+        <Compile Update="Views\Statistics\CashFlow\StatisticCashFlowPage.xaml.cs">
+            <DependentUpon>StatisticCashFlowPage.xaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Statistics\MonthlyCashFlow\StatisticAccountMonthlyCashflowPage.xaml.cs">
+            <DependentUpon>StatisticAccountMonthlyCashflowPage.xaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Statistics\CategoryProgression\StatisticCategoryProgressionPage.xaml.cs">
+            <DependentUpon>StatisticCategoryProgressionPage.xaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Statistics\CategorySpreading\StatisticCategorySpreadingPage.xaml.cs">
+            <DependentUpon>StatisticCategorySpreadingPage.xaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>
         <MauiXaml Update="Views\Categories\DesktopSelectedCategoryPage.xaml">
             <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Views\Statistics\CashFlow\StatisticCashFlowPage.xaml">
+            <SubType>Designer</SubType>
+        </MauiXaml>
+        <MauiXaml Update="Views\Statistics\MonthlyCashFlow\StatisticAccountMonthlyCashflowPage.xaml">
+            <SubType>Designer</SubType>
+        </MauiXaml>
+        <MauiXaml Update="Views\Statistics\CategoryProgression\StatisticCategoryProgressionPage.xaml">
+            <SubType>Designer</SubType>
+        </MauiXaml>
+        <MauiXaml Update="Views\Statistics\CategorySpreading\StatisticCategorySpreadingPage.xaml">
+            <SubType>Designer</SubType>
         </MauiXaml>
     </ItemGroup>
 

@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Core.Tests.Commands.Categories.UpdateCategory;
 
-using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
-using Core.Commands.Categories.UpdateCategory;
+using Core.Features._Legacy_.Categories.UpdateCategory;
+using Domain.Aggregates.CategoryAggregate;
 using FluentAssertions;
 
 public class UpdateCategoryCommandTests : InMemoryTestBase

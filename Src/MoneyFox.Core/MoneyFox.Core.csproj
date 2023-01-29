@@ -34,4 +34,12 @@
         </AssemblyAttribute>
     </ItemGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\MoneyFox.Domain\MoneyFox.Domain.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Features\(Legacy)"/>
+    </ItemGroup>
+
 </Project>

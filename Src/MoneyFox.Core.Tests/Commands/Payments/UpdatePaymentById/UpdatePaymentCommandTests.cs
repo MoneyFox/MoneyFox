@@ -1,9 +1,9 @@
 namespace MoneyFox.Core.Tests.Commands.Payments.UpdatePaymentById;
 
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
-using Core.Commands.Payments.CreateRecurringPayments;
-using Core.Commands.Payments.UpdatePayment;
+using Core.Features._Legacy_.Payments.CreateRecurringPayments;
+using Core.Features._Legacy_.Payments.UpdatePayment;
+using Domain.Aggregates.AccountAggregate;
+using Domain.Aggregates.CategoryAggregate;
 using FluentAssertions;
 
 public class UpdatePaymentCommandTests : InMemoryTestBase

@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Core.Tests.Commands.Accounts.DeleteAccountById;
 
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
-using Core.Commands.Accounts.DeleteAccountById;
+using Core.Features._Legacy_.Accounts.DeleteAccountById;
+using Domain.Aggregates.AccountAggregate;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 

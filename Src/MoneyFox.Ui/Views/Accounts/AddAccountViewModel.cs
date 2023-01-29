@@ -1,7 +1,7 @@
 namespace MoneyFox.Ui.Views.Accounts;
 
-using Core.Commands.Accounts.CreateAccount;
 using Core.Common.Interfaces;
+using Core.Features._Legacy_.Accounts.CreateAccount;
 using Core.Interfaces;
 using MediatR;
 

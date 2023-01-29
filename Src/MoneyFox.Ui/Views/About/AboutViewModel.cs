@@ -6,6 +6,7 @@ using Core.Interfaces;
 using Plugin.StoreReview;
 using Resources.Strings;
 
+// ReSharper disable once PartialTypeWithSinglePart
 public partial class AboutViewModel : BaseViewModel
 {
     private const string SUPPORT_MAIL = "mobile.support@apply-solutions.ch";

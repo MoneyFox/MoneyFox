@@ -1,7 +1,7 @@
 namespace MoneyFox.Ui.Tests.Utilities;
 
 using Common.Utilities;
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Domain.Aggregates.AccountAggregate;
 using Resources.Strings;
 using Xunit;
 

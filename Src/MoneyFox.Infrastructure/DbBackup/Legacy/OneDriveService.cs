@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Core.ApplicationCore.Domain.Exceptions;
+using Domain.Exceptions;
 using Flurl;
 using Flurl.Http;
 using Microsoft.Identity.Client;

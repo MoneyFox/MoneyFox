@@ -1,14 +1,14 @@
 namespace MoneyFox.Ui.Tests.ViewModels.Budget;
 
 using System.Collections.Immutable;
-using Core.ApplicationCore.Queries.BudgetEntryLoading;
-using Core.ApplicationCore.UseCases.BudgetDeletion;
-using Core.ApplicationCore.UseCases.BudgetUpdate;
 using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Common.Messages;
+using Core.Features.BudgetDeletion;
+using Core.Features.BudgetUpdate;
 using Core.Interfaces;
-using Core.Tests.TestFramework;
+using Core.Queries.BudgetEntryLoading;
+using Domain.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
 using NSubstitute;
@@ -106,7 +106,9 @@ public class EditBudgetViewModelTests
             viewModel.SpendingLimit = testBudget.SpendingLimit;
 
             // Act
-            viewModel.SelectedCategories.AddRange(testBudget.Categories.Select(c => new BudgetCategoryViewModel(categoryId: c, name: "Category")));
+            viewModel.SelectedCategories.AddRange(
+                testBudget.Categories.Select<int, BudgetCategoryViewModel>(selector: c => new(categoryId: c, name: "Category")));
+
             await viewModel.SaveBudgetCommand.ExecuteAsync(null);
 
             // Assert
@@ -125,7 +127,7 @@ public class EditBudgetViewModelTests
         {
             // Capture
             TestData.DefaultBudget testBudget = new();
-            var categories = testBudget.Categories.Select(c => new BudgetEntryData.BudgetCategory(id: c, name: "category")).ToImmutableList();
+            var categories = testBudget.Categories.Select<int, BudgetEntryData.BudgetCategory>(selector: c => new(id: c, name: "category")).ToImmutableList();
             LoadBudgetEntry.Query? capturedQuery = null;
             _ = sender.Send(Arg.Do<LoadBudgetEntry.Query>(q => capturedQuery = q))
                 .Returns(

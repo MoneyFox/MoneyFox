@@ -6,7 +6,7 @@ using AutoMapper;
 using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.ApplicationCore.Queries;
+using Core.Queries;
 using MediatR;
 using Payments;
 using Resources.Strings;
