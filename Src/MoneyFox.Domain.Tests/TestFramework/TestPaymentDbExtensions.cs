@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Domain.Tests.TestFramework;
 
-using Aggregates.AccountAggregate;
+using Domain.Aggregates.AccountAggregate;
 using Infrastructure.Persistence;
 
 internal static class TestPaymentDbExtensions

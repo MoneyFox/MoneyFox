@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Domain.Tests.TestFramework;
 
-using Aggregates.CategoryAggregate;
+using Domain.Aggregates.CategoryAggregate;
 using FluentAssertions;
 using FluentAssertions.Execution;
 

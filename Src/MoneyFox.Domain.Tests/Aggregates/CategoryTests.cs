@@ -1,7 +1,7 @@
-﻿namespace MoneyFox.Domain.Tests.Domain.Aggregates;
+﻿namespace MoneyFox.Domain.Tests.Aggregates;
 
+using Domain.Aggregates.CategoryAggregate;
 using FluentAssertions;
-using MoneyFox.Domain.Aggregates.CategoryAggregate;
 
 public class CategoryTests
 {

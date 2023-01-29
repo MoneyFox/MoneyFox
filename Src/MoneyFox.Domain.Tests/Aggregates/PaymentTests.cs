@@ -1,8 +1,8 @@
-﻿namespace MoneyFox.Domain.Tests.Domain.Aggregates;
+﻿namespace MoneyFox.Domain.Tests.Aggregates;
 
+using Domain.Aggregates.AccountAggregate;
 using Exceptions;
 using FluentAssertions;
-using MoneyFox.Domain.Aggregates.AccountAggregate;
 
 public class PaymentTests
 {

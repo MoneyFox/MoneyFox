@@ -1,8 +1,8 @@
-namespace MoneyFox.Domain.Tests.Domain.Aggregates.BudgetAggregate;
+namespace MoneyFox.Domain.Tests.Aggregates.BudgetAggregate;
 
+using Domain.Aggregates.BudgetAggregate;
 using Exceptions;
 using FluentAssertions;
-using MoneyFox.Domain.Aggregates.BudgetAggregate;
 
 public sealed class SpendingLimitShould
 {

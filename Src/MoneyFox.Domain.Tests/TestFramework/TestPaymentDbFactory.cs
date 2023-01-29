@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Domain.Tests.TestFramework;
 
-using Aggregates.AccountAggregate;
-using Aggregates.CategoryAggregate;
+using Domain.Aggregates.AccountAggregate;
+using Domain.Aggregates.CategoryAggregate;
 
 internal static class TestPaymentDbFactory
 {
