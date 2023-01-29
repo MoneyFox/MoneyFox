@@ -12,6 +12,7 @@ using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.BudgetAggregate;
 using Domain.Aggregates.CategoryAggregate;
+using JetBrains.Annotations;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
@@ -98,6 +99,7 @@ public class AppDbContext : DbContext, IAppDbContext
         configurationBuilder.Properties<Currency>().HaveConversion<CurrencyConverter>();
     }
 
+    [UsedImplicitly]
     private sealed class CurrencyConverter : ValueConverter<Currency, string>
     {
         public CurrencyConverter() : base(convertToProviderExpression: v => v.AlphaIsoCode, convertFromProviderExpression: v => Currencies.Get(v)) { }
