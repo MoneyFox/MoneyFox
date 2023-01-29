@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Domain.Aggregates.LedgerAggregate;
 
+using System.Collections.Immutable;
 using JetBrains.Annotations;
 
 public record struct LedgerId(int Value);
@@ -60,6 +61,14 @@ public class Ledger : EntityBase
         private set;
     }
 
+    public IReadOnlyCollection<Transaction> Transactions
+    {
+        get;
+
+        [UsedImplicitly]
+        private set;
+    } = ImmutableList<Transaction>.Empty;
+
     public static Ledger Create(string name, Money currentBalance, string? note = null, bool isExcluded = false)
     {
         if (string.IsNullOrWhiteSpace(name))
@@ -68,13 +77,5 @@ public class Ledger : EntityBase
         }
 
         return new(name: name, currentBalance: currentBalance, note: note, isExcluded: isExcluded);
-    }
-
-    public void Change(string name, string note = "", bool isExcluded = false)
-    {
-        ArgumentException.ThrowIfNullOrEmpty(name);
-        Name = name;
-        Note = note;
-        IsExcluded = isExcluded;
     }
 }
