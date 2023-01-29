@@ -7,6 +7,7 @@ using Core.Common.Facades;
 using Core.Common.Interfaces;
 using Core.Common.Mediatr;
 using Core.Notifications.DatabaseChanged;
+using Domain;
 using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.BudgetAggregate;
@@ -14,6 +15,7 @@ using Domain.Aggregates.CategoryAggregate;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 public class AppDbContext : DbContext, IAppDbContext
 {
@@ -89,6 +91,18 @@ public class AppDbContext : DbContext, IAppDbContext
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
     }
+
+    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+    {
+        base.ConfigureConventions(configurationBuilder);
+        configurationBuilder.Properties<Currency>().HaveConversion<CurrencyConverter>();
+    }
+
+    private sealed class CurrencyConverter : ValueConverter<Currency, string>
+    {
+        public CurrencyConverter() : base(convertToProviderExpression: v => v.AlphaIsoCode, convertFromProviderExpression: v => Currencies.Get(v)) { }
+    }
+
 
     public override int SaveChanges()
     {

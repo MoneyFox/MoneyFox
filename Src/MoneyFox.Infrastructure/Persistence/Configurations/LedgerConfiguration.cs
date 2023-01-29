@@ -16,13 +16,11 @@ public class LedgerConfiguration : IEntityTypeConfiguration<Ledger>
 
         _ = builder.HasIndex(b => b.Name);
         _ = builder.Property(b => b.Name).IsRequired();
-
         _ = builder.Property(b => b.Note);
         _ = builder.Property(b => b.IsExcluded);
-
         _ = builder.OwnsOne<Money>(
-            i => i.CurrentBalance,
-            m =>
+            navigationExpression: i => i.CurrentBalance,
+            buildAction: m =>
             {
                 m.Property(p => p.Amount).HasColumnName("CurrentBalance");
                 m.Property(p => p.Currency).HasColumnName("Currency");
