@@ -82,9 +82,20 @@ public static class MauiProgram
                 return Array.Empty<ErrorAttachmentLog>();
             }
 
-            var logText = File.ReadAllText(logFile.FullName);
+            try
+            {
+                using var logFileStream = new FileStream(logFile.FullName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                using var logFileReader = new StreamReader(logFileStream);
+                var logText = logFileReader.ReadToEnd();
 
-            return new[] { ErrorAttachmentLog.AttachmentWithText(text: logText, fileName: logFile.Name) };
+                return new[] { ErrorAttachmentLog.AttachmentWithText(text: logText, fileName: logFile.Name) };
+            }
+            catch (Exception)
+            {
+                // Don't block the normal exception upload.
+            }
+
+            return Array.Empty<ErrorAttachmentLog>();
         };
 
         var appCenter = configuration.GetRequiredSection("AppCenter").Get<AppCenterOption>()!;
