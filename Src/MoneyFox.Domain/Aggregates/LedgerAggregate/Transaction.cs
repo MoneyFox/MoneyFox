@@ -87,9 +87,13 @@ public class Transaction : EntityBase
         int? categoryId = null,
         string? note = null)
     {
-        if (amount.Amount == 0)
+        if (type == TransactionType.Income && amount.Amount < 0)
         {
-            throw new InvalidTransactionAmountException("Amount can't be zero.");
+            throw new InvalidTransactionAmountException("Income has to have a a positive amount.");
+        }
+        if (type == TransactionType.Expense && amount.Amount > 0)
+        {
+            throw new InvalidTransactionAmountException("Expense has to have a a negative amount.");
         }
 
         return new(

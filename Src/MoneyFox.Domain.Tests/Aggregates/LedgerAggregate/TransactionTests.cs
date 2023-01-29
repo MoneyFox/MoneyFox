@@ -8,16 +8,33 @@ using TestFramework;
 public class TransactionTests
 {
     [Fact]
-    public void ValidateThatAmountIsBiggerThanZero()
+    public void ValidateThatIncomeHasPositiveAmount()
     {
-
         // Arrange
         var testTransaction = new TestData.SavingsLedger.SalaryTransaction();
 
         // Act
         var act = () => Transaction.Create(
-            testTransaction.Type,
-            Money.Zero(Currencies.EUR),
+            TransactionType.Income,
+            new Money(-13, Currencies.EUR),
+            testTransaction.BookingDate,
+            testTransaction.CategoryId,
+            testTransaction.Note);
+
+        // Assert
+        act.Should().Throw<InvalidTransactionAmountException>();
+    }
+
+    [Fact]
+    public void ValidateThatExpanseHasNegativeAmount()
+    {
+        // Arrange
+        var testTransaction = new TestData.SavingsLedger.SalaryTransaction();
+
+        // Act
+        var act = () => Transaction.Create(
+            TransactionType.Expense,
+            new Money(13, Currencies.EUR),
             testTransaction.BookingDate,
             testTransaction.CategoryId,
             testTransaction.Note);
