@@ -1,7 +1,5 @@
 ﻿namespace MoneyFox.Domain.Tests.TestFramework;
 
-using Aggregates.AccountAggregate;
-
 internal static partial class TestData
 {
     internal static DateTime DefaultDate = new(year: 2022, month: 04, day: 06);

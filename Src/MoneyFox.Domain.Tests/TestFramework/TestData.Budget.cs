@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Domain.Tests.TestFramework;
 
 using System.Collections.Immutable;
-using Aggregates.BudgetAggregate;
 
 internal static partial class TestData
 {

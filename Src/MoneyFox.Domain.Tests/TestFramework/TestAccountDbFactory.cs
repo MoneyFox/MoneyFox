@@ -1,7 +1,5 @@
 ﻿namespace MoneyFox.Domain.Tests.TestFramework;
 
-using Aggregates.AccountAggregate;
-
 internal static class TestAccountDbFactory
 {
     internal static Account CreateDbAccount(this TestData.IAccount? account)

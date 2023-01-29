@@ -1,7 +1,5 @@
 ﻿namespace MoneyFox.Domain.Tests.TestFramework;
 
-using Aggregates.BudgetAggregate;
-
 internal static class TestBudgetDbFactory
 {
     internal static Budget CreateDbBudget(this TestData.IBudget budget)
