@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Converter;
+namespace MoneyFox.Ui.Converter;
 
 using System.Globalization;
 using Core.Common.Helpers;
@@ -8,7 +8,7 @@ public class AccountNameConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        return !(value is AccountViewModel account)
+        return value is not AccountViewModel account
             ? string.Empty
             : $"{account.Name} ({account.CurrentBalance.ToString(format: "C", provider: CultureHelper.CurrentCulture)})";
     }
