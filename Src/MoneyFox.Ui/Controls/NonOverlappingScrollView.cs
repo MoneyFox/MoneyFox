@@ -1,27 +1,31 @@
 namespace MoneyFox.Ui.Controls;
 
-public class NonOverlappingScrollView: ScrollView
+#if __IOS__
+using Foundation;
+using UIKit;
+#endif
+
+public class NonOverlappingScrollView : ScrollView
 {
 #if __IOS__
     public NonOverlappingScrollView()
     {
-
-        UIKit.UIKeyboard.Notifications.ObserveDidShow(OnKeyboardShow!);
-        UIKit.UIKeyboard.Notifications.ObserveDidHide(OnKeyboardHide!);
-
+        UIKeyboard.Notifications.ObserveDidShow(OnKeyboardShow!);
+        UIKeyboard.Notifications.ObserveDidHide(OnKeyboardHide!);
     }
 
-    private void OnKeyboardShow(object sender, UIKit.UIKeyboardEventArgs args) {
-        var result = (Foundation.NSValue)args.Notification.UserInfo!.ObjectForKey(new Foundation.NSString(UIKit.UIKeyboard.FrameEndUserInfoKey));
-        var keyboardSize = result.RectangleFValue.Size;
-        Margin = new(Margin.Left, Margin.Top, Margin.Right, Margin.Bottom + keyboardSize.Height);
-    }
-
-    private void OnKeyboardHide(object sender, UIKit.UIKeyboardEventArgs args)
+    private void OnKeyboardShow(object sender, UIKeyboardEventArgs args)
     {
-        var result = (Foundation.NSValue)args.Notification.UserInfo!.ObjectForKey(new Foundation.NSString(UIKit.UIKeyboard.FrameEndUserInfoKey));
+        var result = (NSValue)args.Notification.UserInfo!.ObjectForKey(new NSString(UIKeyboard.FrameEndUserInfoKey));
         var keyboardSize = result.RectangleFValue.Size;
-        Margin = new(Margin.Left, Margin.Top, Margin.Right, Margin.Bottom - keyboardSize.Height);
+        Margin = new(left: Margin.Left, top: Margin.Top, right: Margin.Right, bottom: Margin.Bottom + keyboardSize.Height);
+    }
+
+    private void OnKeyboardHide(object sender, UIKeyboardEventArgs args)
+    {
+        var result = (NSValue)args.Notification.UserInfo!.ObjectForKey(new NSString(UIKeyboard.FrameEndUserInfoKey));
+        var keyboardSize = result.RectangleFValue.Size;
+        Margin = new(left: Margin.Left, top: Margin.Top, right: Margin.Right, bottom: Margin.Bottom - keyboardSize.Height);
     }
 #endif
 }

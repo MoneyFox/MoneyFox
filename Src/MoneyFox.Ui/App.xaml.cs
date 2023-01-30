@@ -2,12 +2,12 @@ namespace MoneyFox.Ui;
 
 using System.Globalization;
 using Common.Exceptions;
-using Core.ApplicationCore.UseCases.DbBackup;
-using Core.Commands.Payments.ClearPayments;
-using Core.Commands.Payments.CreateRecurringPayments;
 using Core.Common.Facades;
 using Core.Common.Helpers;
 using Core.Common.Interfaces;
+using Core.Features._Legacy_.Payments.ClearPayments;
+using Core.Features._Legacy_.Payments.CreateRecurringPayments;
+using Core.Features.DbBackup;
 using Infrastructure.Adapters;
 using InversionOfControl;
 using MediatR;

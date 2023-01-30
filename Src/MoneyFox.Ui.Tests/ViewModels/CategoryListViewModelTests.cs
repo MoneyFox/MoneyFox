@@ -1,17 +1,15 @@
 namespace MoneyFox.Ui.Tests.ViewModels;
 
-using System.Diagnostics.CodeAnalysis;
 using AutoMapper;
-using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
-using Core.ApplicationCore.Queries;
 using Core.Common.Interfaces;
+using Core.Queries;
+using Domain.Aggregates.CategoryAggregate;
 using FluentAssertions;
 using MediatR;
 using NSubstitute;
 using Views.Categories;
 using Xunit;
 
-[ExcludeFromCodeCoverage]
 public class CategoryListViewModelTests
 {
     private readonly IDialogService dialogService;

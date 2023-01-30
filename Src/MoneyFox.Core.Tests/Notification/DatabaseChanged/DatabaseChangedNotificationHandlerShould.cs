@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Core.Tests.Notification.DatabaseChanged;
 
-using Core.ApplicationCore.UseCases.BackupUpload;
 using Core.Common.Facades;
+using Core.Features.BackupUpload;
 using FluentAssertions;
 using MediatR;
 using Notifications.DatabaseChanged;
@@ -13,7 +13,7 @@ public class DatabaseChangedNotificationHandlerShould
     private readonly ISender sender;
     private readonly ISettingsFacade settingsFacade;
 
-    public DatabaseChangedNotificationHandlerShould()
+    protected DatabaseChangedNotificationHandlerShould()
     {
         sender = Substitute.For<ISender>();
         settingsFacade = Substitute.For<ISettingsFacade>();

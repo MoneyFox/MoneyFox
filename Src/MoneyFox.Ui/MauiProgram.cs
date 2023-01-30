@@ -111,7 +111,12 @@ public static class MauiProgram
         Log.Logger = new LoggerConfiguration().MinimumLevel.Debug()
             .Enrich.FromLogContext()
             .Enrich.WithExceptionDetails()
-            .WriteTo.File(path: logFile, rollingInterval: RollingInterval.Month, retainedFileCountLimit: 6, restrictedToMinimumLevel: LogEventLevel.Information, shared: true)
+            .WriteTo.File(
+                path: logFile,
+                rollingInterval: RollingInterval.Month,
+                retainedFileCountLimit: 6,
+                restrictedToMinimumLevel: LogEventLevel.Information,
+                shared: true)
             .CreateLogger();
 
         Log.Information("Application Startup");

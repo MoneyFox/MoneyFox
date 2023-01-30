@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Core.Tests.Common.Helper;
 
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Common.Helpers;
+using Domain.Aggregates.AccountAggregate;
 using FluentAssertions;
 
 public class RecurringPaymentHelperTests

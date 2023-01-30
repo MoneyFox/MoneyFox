@@ -1,11 +1,11 @@
 namespace MoneyFox.Ui.Tests.ViewModels.Budget;
 
-using Core.ApplicationCore.UseCases.BudgetCreation;
 using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Common.Messages;
+using Core.Features.BudgetCreation;
 using Core.Interfaces;
-using Core.Tests.TestFramework;
+using Domain.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
 using NSubstitute;
@@ -68,7 +68,7 @@ public class AddBudgetViewModelTests
         viewModel.SpendingLimit = testBudget.SpendingLimit;
 
         // Act
-        viewModel.SelectedCategories.AddRange(testBudget.Categories.Select(c => new BudgetCategoryViewModel(categoryId: c, name: "Category")));
+        viewModel.SelectedCategories.AddRange(testBudget.Categories.Select<int, BudgetCategoryViewModel>(selector: c => new(categoryId: c, name: "Category")));
         await viewModel.SaveBudgetCommand.ExecuteAsync(null);
 
         // Assert

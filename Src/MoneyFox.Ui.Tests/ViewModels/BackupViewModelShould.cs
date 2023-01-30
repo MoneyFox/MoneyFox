@@ -1,9 +1,8 @@
 namespace MoneyFox.Ui.Tests.ViewModels;
 
-using System.Diagnostics.CodeAnalysis;
-using Core.ApplicationCore.UseCases.DbBackup;
 using Core.Common.Facades;
 using Core.Common.Interfaces;
+using Core.Features.DbBackup;
 using Core.Interfaces;
 using FluentAssertions;
 using MediatR;
@@ -11,7 +10,6 @@ using NSubstitute;
 using Views.Backup;
 using Xunit;
 
-[ExcludeFromCodeCoverage]
 public class BackupViewModelShould
 {
     private readonly IBackupService backupService;

@@ -1,12 +1,10 @@
 namespace MoneyFox.Ui.Tests.Utilities;
 
-using System.Diagnostics.CodeAnalysis;
 using Common.Utilities;
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Domain.Aggregates.AccountAggregate;
 using Resources.Strings;
 using Xunit;
 
-[ExcludeFromCodeCoverage]
 public class PaymentTypeHelperTests
 {
     [Theory]

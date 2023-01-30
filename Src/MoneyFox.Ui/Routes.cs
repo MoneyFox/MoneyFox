@@ -10,8 +10,11 @@ using Views.Dashboard;
 using Views.Payments;
 using Views.Settings;
 using Views.SetupAssistant;
-using Views.Statistics;
+using Views.Statistics.CashFlow;
+using Views.Statistics.CategoryProgression;
+using Views.Statistics.CategorySpreading;
 using Views.Statistics.CategorySummary;
+using Views.Statistics.MonthlyAccountCashFlow;
 using Views.Statistics.Selector;
 
 public static class Routes

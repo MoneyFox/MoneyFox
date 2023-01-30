@@ -1,6 +1,6 @@
 namespace MoneyFox.Ui.Common.ConverterLogic;
 
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
+using Domain.Aggregates.AccountAggregate;
 using Resources.Strings;
 
 public static class RecurrenceTypeConverterLogic

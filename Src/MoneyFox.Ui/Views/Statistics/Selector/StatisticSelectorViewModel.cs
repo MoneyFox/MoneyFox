@@ -1,10 +1,9 @@
 namespace MoneyFox.Ui.Views.Statistics.Selector;
 
 using CommunityToolkit.Mvvm.Input;
-using Core.Enums;
 using Resources.Strings;
 
-internal sealed class StatisticSelectorViewModel : BaseViewModel, IStatisticSelectorViewModel
+internal sealed class StatisticSelectorViewModel : BaseViewModel
 {
     public List<StatisticSelectorTypeViewModel> StatisticItems
         => new()
@@ -46,32 +45,36 @@ internal sealed class StatisticSelectorViewModel : BaseViewModel, IStatisticSele
             }
         };
 
-    /// <summary>
-    ///     Navigates to the statistic view and shows the selected statistic
-    /// </summary>
-    public RelayCommand<StatisticSelectorTypeViewModel> GoToStatisticCommand => new(async s => await GoToStatisticAsync(s));
+    public AsyncRelayCommand<StatisticSelectorTypeViewModel> GoToStatisticCommand => new(async s => await GoToStatisticAsync(s));
 
     private static async Task GoToStatisticAsync(StatisticSelectorTypeViewModel item)
     {
-        if (item.Type == StatisticType.Cashflow)
+        switch (item.Type)
         {
-            await Shell.Current.GoToAsync(Routes.StatisticCashFlowRoute);
-        }
-        else if (item.Type == StatisticType.CategorySpreading)
-        {
-            await Shell.Current.GoToAsync(Routes.StatisticCategorySpreadingRoute);
-        }
-        else if (item.Type == StatisticType.CategorySummary)
-        {
-            await Shell.Current.GoToAsync(Routes.StatisticCategorySummaryRoute);
-        }
-        else if (item.Type == StatisticType.MonthlyAccountCashFlow)
-        {
-            await Shell.Current.GoToAsync(Routes.StatisticAccountMonthlyCashFlowRoute);
-        }
-        else if (item.Type == StatisticType.CategoryProgression)
-        {
-            await Shell.Current.GoToAsync(Routes.StatisticCategoryProgressionRoute);
+            case StatisticType.Cashflow:
+                await Shell.Current.GoToAsync(Routes.StatisticCashFlowRoute);
+
+                break;
+            case StatisticType.CategorySpreading:
+                await Shell.Current.GoToAsync(Routes.StatisticCategorySpreadingRoute);
+
+                break;
+            case StatisticType.CategorySummary:
+                await Shell.Current.GoToAsync(Routes.StatisticCategorySummaryRoute);
+
+                break;
+            case StatisticType.MonthlyAccountCashFlow:
+                await Shell.Current.GoToAsync(Routes.StatisticAccountMonthlyCashFlowRoute);
+
+                break;
+            case StatisticType.CategoryProgression:
+                await Shell.Current.GoToAsync(Routes.StatisticCategoryProgressionRoute);
+
+                break;
+            case StatisticType.CashflowHistory:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 }

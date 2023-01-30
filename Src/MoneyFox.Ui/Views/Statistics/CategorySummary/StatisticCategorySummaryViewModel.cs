@@ -4,8 +4,8 @@ using System.Collections.ObjectModel;
 using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.ApplicationCore.Queries.Statistics.GetCategorySummary;
 using Core.Common.Interfaces;
+using Core.Queries.Statistics.GetCategorySummary;
 using MediatR;
 using Serilog;
 

@@ -1,22 +1,16 @@
 ﻿namespace MoneyFox.Core.Tests.Commands.Categories.UpdateCategory;
 
-using System.Diagnostics.CodeAnalysis;
-using Core.ApplicationCore.Domain.Aggregates.CategoryAggregate;
-using Core.Commands.Categories.UpdateCategory;
+using Core.Features._Legacy_.Categories.UpdateCategory;
+using Domain.Aggregates.CategoryAggregate;
 using FluentAssertions;
-using Infrastructure.Persistence;
-using TestFramework;
 
-[ExcludeFromCodeCoverage]
-public class UpdateCategoryCommandTests
+public class UpdateCategoryCommandTests : InMemoryTestBase
 {
-    private readonly AppDbContext context;
     private readonly UpdateCategoryCommand.Handler handler;
 
     public UpdateCategoryCommandTests()
     {
-        context = InMemoryAppDbContextFactory.Create();
-        handler = new(context);
+        handler = new(Context);
     }
 
     [Fact]
@@ -24,13 +18,13 @@ public class UpdateCategoryCommandTests
     {
         // Arrange
         var category = new Category("test");
-        await context.AddAsync(category);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(category);
+        await Context.SaveChangesAsync();
 
         // Act
         category.UpdateData("foo");
         await handler.Handle(request: new(category), cancellationToken: default);
-        var loadedCategory = await context.Categories.FindAsync(category.Id);
+        var loadedCategory = await Context.Categories.FindAsync(category.Id);
 
         // Assert
         loadedCategory.Name.Should().Be("foo");
@@ -41,13 +35,13 @@ public class UpdateCategoryCommandTests
     {
         // Arrange
         var category = new Category(name: "test", requireNote: false);
-        await context.AddAsync(category);
-        await context.SaveChangesAsync();
+        await Context.AddAsync(category);
+        await Context.SaveChangesAsync();
 
         // Act
         category.UpdateData(name: "foo", requireNote: true);
         await handler.Handle(request: new(category), cancellationToken: default);
-        var loadedCategory = await context.Categories.FindAsync(category.Id);
+        var loadedCategory = await Context.Categories.FindAsync(category.Id);
 
         // Assert
         loadedCategory.RequireNote.Should().BeTrue();

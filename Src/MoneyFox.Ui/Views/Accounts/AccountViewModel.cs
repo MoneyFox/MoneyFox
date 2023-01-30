@@ -2,8 +2,8 @@ namespace MoneyFox.Ui.Views.Accounts;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Core.ApplicationCore.Domain.Aggregates.AccountAggregate;
 using Core.Common.Interfaces.Mapping;
+using Domain.Aggregates.AccountAggregate;
 
 public sealed class AccountViewModel : ObservableObject, IHaveCustomMapping, IEquatable<AccountViewModel>
 {

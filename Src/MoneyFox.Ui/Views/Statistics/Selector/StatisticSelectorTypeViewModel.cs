@@ -1,7 +1,5 @@
 namespace MoneyFox.Ui.Views.Statistics.Selector;
 
-using Core.Enums;
-
 public class StatisticSelectorTypeViewModel
 {
     public string IconGlyph { get; set; } = "";

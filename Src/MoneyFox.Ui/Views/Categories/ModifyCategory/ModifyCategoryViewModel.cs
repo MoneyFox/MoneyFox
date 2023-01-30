@@ -2,9 +2,9 @@ namespace MoneyFox.Ui.Views.Categories.ModifyCategory;
 
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.ApplicationCore.Queries;
 using Core.Common.Interfaces;
 using Core.Common.Messages;
+using Core.Queries;
 using MediatR;
 using Resources.Strings;
 

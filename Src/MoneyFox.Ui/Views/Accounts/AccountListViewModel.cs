@@ -5,10 +5,10 @@ using AutoMapper;
 using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.ApplicationCore.Queries;
-using Core.Commands.Accounts.DeleteAccountById;
 using Core.Common.Interfaces;
 using Core.Common.Messages;
+using Core.Features._Legacy_.Accounts.DeleteAccountById;
+using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
