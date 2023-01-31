@@ -1,15 +1,15 @@
-namespace MoneyFox.Ui.Views.Categories;
+namespace MoneyFox.Ui.Views.Categories.CategorySelection;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.Common.Interfaces;
-using Core.Common.Messages;
 using MediatR;
+using MoneyFox.Core.Common.Interfaces;
+using MoneyFox.Core.Common.Messages;
 
-internal sealed class SelectCategoryViewModel : CategoryListViewModel
+internal sealed class CategorySelectionViewModel : CategoryListViewModel
 {
-    public SelectCategoryViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService) : base(
+    public CategorySelectionViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService) : base(
         mediator: mediator,
         mapper: mapper,
         dialogService: dialogService) { }
