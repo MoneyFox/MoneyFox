@@ -94,7 +94,9 @@
                                                     <Label Grid.Column="1"
                                                            Style="{StaticResource TextBody}"
                                                            LineBreakMode="TailTruncation"
-                                                           Text="{Binding ., Converter={StaticResource PaymentAmountConverter}}" />
+                                                           Text="{Binding ., Converter={StaticResource PaymentAmountConverter}}"
+                                                           HorizontalTextAlignment="End"
+                                                           HorizontalOptions="End"/>
                                                 </Grid>
 
                                                 <Grid>
