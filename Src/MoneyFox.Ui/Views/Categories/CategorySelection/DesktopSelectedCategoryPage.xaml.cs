@@ -1,17 +1,17 @@
-namespace MoneyFox.Ui.Views.Categories;
+namespace MoneyFox.Ui.Views.Categories.CategorySelection;
 
 public partial class DesktopSelectedCategoryPage : ContentPage
 {
     public DesktopSelectedCategoryPage()
     {
         InitializeComponent();
-        BindingContext = App.GetViewModel<SelectCategoryViewModel>();
+        BindingContext = App.GetViewModel<CategorySelectionViewModel>();
     }
 
-    private SelectCategoryViewModel ViewModel => (SelectCategoryViewModel)BindingContext;
+    private CategorySelectionViewModel SelectionViewModel => (CategorySelectionViewModel)BindingContext;
 
     protected override async void OnAppearing()
     {
-        await ViewModel.InitializeAsync();
+        await SelectionViewModel.InitializeAsync();
     }
 }

@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Views.Popups;
 
 using Categories;
+using Categories.CategorySelection;
 using Resources.Strings;
 
 public partial class CategorySelectionPopup
@@ -8,7 +9,7 @@ public partial class CategorySelectionPopup
     public CategorySelectionPopup()
     {
         InitializeComponent();
-        BindingContext = App.GetViewModel<SelectCategoryViewModel>();
+        BindingContext = App.GetViewModel<CategorySelectionViewModel>();
         var cancelItem = new ToolbarItem
         {
             Command = new Command(async () => await Navigation.PopModalAsync()),
@@ -20,10 +21,10 @@ public partial class CategorySelectionPopup
         ToolbarItems.Add(cancelItem);
     }
 
-    private SelectCategoryViewModel ViewModel => (SelectCategoryViewModel)BindingContext;
+    private CategorySelectionViewModel SelectionViewModel => (CategorySelectionViewModel)BindingContext;
 
     protected override async void OnAppearing()
     {
-        await ViewModel.InitializeAsync();
+        await SelectionViewModel.InitializeAsync();
     }
 }

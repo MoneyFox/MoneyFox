@@ -12,6 +12,7 @@ using Views.Accounts;
 using Views.Backup;
 using Views.Budget;
 using Views.Categories;
+using Views.Categories.CategorySelection;
 using Views.Categories.ModifyCategory;
 using Views.Dashboard;
 using Views.OverflowMenu;
@@ -54,7 +55,7 @@ public sealed class MoneyFoxConfig
             .AddTransient<AddCategoryViewModel>()
             .AddTransient<CategoryListViewModel>()
             .AddTransient<EditCategoryViewModel>()
-            .AddTransient<SelectCategoryViewModel>()
+            .AddTransient<CategorySelectionViewModel>()
             .AddTransient<DashboardViewModel>()
             .AddTransient<BackupViewModel>()
             .AddTransient<OverflowMenuViewModel>()

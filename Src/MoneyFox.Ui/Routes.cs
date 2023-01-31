@@ -5,6 +5,7 @@ using Views.Accounts;
 using Views.Backup;
 using Views.Budget;
 using Views.Categories;
+using Views.Categories.CategorySelection;
 using Views.Categories.ModifyCategory;
 using Views.Dashboard;
 using Views.Payments;
