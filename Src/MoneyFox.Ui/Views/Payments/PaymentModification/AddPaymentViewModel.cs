@@ -50,13 +50,20 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
         await dialogService.ShowLoadingDialogAsync(Translations.SavingPaymentMessage);
         var chargedAccount = await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id));
         var targetAccount = SelectedPayment.TargetAccount != null ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id)) : null;
+
+        Category? category = null;
+        if (SelectedPayment.Category is not null)
+        {
+            category = await mediator.Send(new GetCategoryByIdQuery(SelectedPayment.Category.Id));
+        }
+
         var payment = new Payment(
             date: SelectedPayment.Date,
             amount: SelectedPayment.Amount,
             type: SelectedPayment.Type,
             chargedAccount: chargedAccount,
             targetAccount: targetAccount,
-            category: mapper.Map<Category>(SelectedPayment.Category),
+            category: category,
             note: SelectedPayment.Note);
 
         if (SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment != null)
