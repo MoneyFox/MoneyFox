@@ -17,13 +17,11 @@ using SkiaSharp;
 
 internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel, IRecipient<CategorySelectedMessage>
 {
-    private readonly IMapper mapper;
     private bool hasNoData = true;
     private SelectedCategoryViewModel? selectedCategory;
 
-    public StatisticCategoryProgressionViewModel(IMediator mediator, IMapper mapper) : base(mediator)
+    public StatisticCategoryProgressionViewModel(IMediator mediator) : base(mediator)
     {
-        this.mapper = mapper;
         StartDate = DateTime.Now.AddYears(-1);
     }
 
