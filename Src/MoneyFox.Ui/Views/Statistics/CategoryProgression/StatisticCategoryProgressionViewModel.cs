@@ -2,7 +2,6 @@ namespace MoneyFox.Ui.Views.Statistics.CategoryProgression;
 
 using System.Collections.ObjectModel;
 using AutoMapper;
-using Categories;
 using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -16,11 +15,11 @@ using LiveChartsCore.SkiaSharpView.Painting;
 using MediatR;
 using SkiaSharp;
 
-internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
+internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel, IRecipient<CategorySelectedMessage>
 {
     private readonly IMapper mapper;
     private bool hasNoData = true;
-    private CategoryListItemViewModel? selectedCategory;
+    private SelectedCategoryViewModel? selectedCategory;
 
     public StatisticCategoryProgressionViewModel(IMediator mediator, IMapper mapper) : base(mediator)
     {
@@ -28,7 +27,7 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
         StartDate = DateTime.Now.AddYears(-1);
     }
 
-    public CategoryListItemViewModel? SelectedCategory
+    public SelectedCategoryViewModel? SelectedCategory
     {
         get => selectedCategory;
         private set => SetProperty(field: ref selectedCategory, newValue: value);
@@ -58,20 +57,11 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
 
     public AsyncRelayCommand GoToSelectCategoryDialogCommand => new(async () => await Shell.Current.GoToModalAsync(Routes.SelectCategoryRoute));
 
-    protected override void OnActivated()
+    public async void Receive(CategorySelectedMessage message)
     {
-        Messenger.Register<StatisticCategoryProgressionViewModel, CategorySelectedMessage>(
-            recipient: this,
-            handler: async (r, m) =>
-            {
-                SelectedCategory = mapper.Map<CategoryListItemViewModel>(await Mediator.Send(new GetCategoryByIdQuery(m.Value.CategoryId)));
-                await r.LoadAsync();
-            });
-    }
-
-    protected override void OnDeactivated()
-    {
-        Messenger.Unregister<CategorySelectedMessage>(this);
+        var category = await Mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId));
+        SelectedCategory = new() { Id = category.Id, Name = category.Name };
+        await LoadAsync();
     }
 
     protected override async Task LoadAsync()
