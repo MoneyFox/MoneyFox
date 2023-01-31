@@ -9,9 +9,9 @@ public class CategoryListItemViewModel : ObservableObject, IHaveCustomMapping
 {
     private DateTime created;
     private int id;
-    private DateTime lastModified;
+    private DateTime? lastModified;
     private string name = "";
-    private string note = "";
+    private string? note = "";
     private bool requireNote;
 
     public int Id
@@ -78,7 +78,7 @@ public class CategoryListItemViewModel : ObservableObject, IHaveCustomMapping
         }
     }
 
-    public DateTime LastModified
+    public DateTime? LastModified
     {
         get => lastModified;
 
@@ -94,10 +94,7 @@ public class CategoryListItemViewModel : ObservableObject, IHaveCustomMapping
         }
     }
 
-    /// <summary>
-    ///     Additional details about the CategoryViewModel
-    /// </summary>
-    public string Note
+    public string? Note
     {
         get => note;
 
