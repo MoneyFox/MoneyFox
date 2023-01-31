@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Common.ConverterLogic;
+namespace MoneyFox.Ui.Common.ConverterLogic;
 
 using Core.Common.Helpers;
 using Domain.Aggregates.AccountAggregate;
