@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Tests.Queries.Categories.GetIfCategoryWithNameExists;
+namespace MoneyFox.Core.Tests.Queries.Categories.GetIfCategoryWithNameExists;
 
 using Core.Queries;
 using Domain.Aggregates.CategoryAggregate;
@@ -15,7 +15,7 @@ public class GetIfCategoryWithNameExistsQueryTests : InMemoryTestBase
         await Context.SaveChangesAsync();
 
         // Act
-        var result = await new GetIfCategoryWithNameExistsQuery.Handler(Context).Handle(request: new("Foo"), cancellationToken: default);
+        var result = await new GetIfCategoryWithNameExistsQuery.Handler(Context).Handle(request: new("Foo", 0), cancellationToken: default);
 
         // Assert
         result.Should().BeFalse();
@@ -30,7 +30,7 @@ public class GetIfCategoryWithNameExistsQueryTests : InMemoryTestBase
         await Context.SaveChangesAsync();
 
         // Act
-        var result = await new GetIfCategoryWithNameExistsQuery.Handler(Context).Handle(request: new(testCat1.Name), cancellationToken: default);
+        var result = await new GetIfCategoryWithNameExistsQuery.Handler(Context).Handle(request: new(testCat1.Name, 0), cancellationToken: default);
 
         // Assert
         result.Should().BeTrue();
