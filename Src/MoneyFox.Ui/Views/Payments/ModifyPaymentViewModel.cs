@@ -3,7 +3,6 @@ namespace MoneyFox.Ui.Views.Payments;
 using System.Collections.ObjectModel;
 using Accounts;
 using AutoMapper;
-using Categories;
 using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -98,16 +97,7 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
     public async void Receive(CategorySelectedMessage message)
     {
         var category = await mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId));
-
-        SelectedPayment.Category = new CategoryListItemViewModel
-        {
-            Id = category.Id,
-            Name = category.Name,
-            Note = category.Note,
-            RequireNote = category.RequireNote,
-            Created = category.Created,
-            LastModified = category.LastModified
-        };
+        SelectedPayment.Category = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
     }
 
     protected async Task InitializeAsync()
@@ -138,7 +128,7 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
             return;
         }
 
-        if (SelectedPayment.Category?.RequireNote == true && string.IsNullOrEmpty(SelectedPayment.Note))
+        if (SelectedPayment.Category?.RequireNote is true && string.IsNullOrEmpty(SelectedPayment.Note))
         {
             await dialogService.ShowMessageAsync(title: Translations.MandatoryFieldEmptyTitle, message: Translations.ANoteForPaymentIsRequired);
 

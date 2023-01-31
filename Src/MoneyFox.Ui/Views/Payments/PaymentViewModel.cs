@@ -11,7 +11,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
 {
     private const decimal DECIMAL_DELTA = 0.01m;
     private decimal amount;
-    private CategoryListItemViewModel? categoryViewModel;
+    private SelectedCategoryViewModel? categoryViewModel;
 
     private AccountViewModel chargedAccount = null!;
     private int chargedAccountId;
@@ -283,7 +283,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     /// <summary>
     ///     The <see cref="Category" /> for this payment
     /// </summary>
-    public CategoryListItemViewModel? Category
+    public SelectedCategoryViewModel? Category
     {
         get => categoryViewModel;
 
