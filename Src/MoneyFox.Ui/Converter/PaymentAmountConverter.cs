@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Converter;
+namespace MoneyFox.Ui.Converter;
 
 using System.Globalization;
 using Common.ConverterLogic;
@@ -8,9 +8,9 @@ public class PaymentAmountConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        var payment = (PaymentViewModel)value;
-
-        return PaymentAmountConverterLogic.GetAmountSign(payment);
+        return value is not PaymentViewModel
+            ? string.Empty
+            : PaymentAmountConverterLogic.GetAmountSign((PaymentViewModel)value);
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
