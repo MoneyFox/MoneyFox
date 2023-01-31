@@ -9,6 +9,7 @@ using Views.Categories.CategorySelection;
 using Views.Categories.ModifyCategory;
 using Views.Dashboard;
 using Views.Payments;
+using Views.Payments.PaymentModification;
 using Views.Settings;
 using Views.SetupAssistant;
 using Views.Statistics.CashFlow;

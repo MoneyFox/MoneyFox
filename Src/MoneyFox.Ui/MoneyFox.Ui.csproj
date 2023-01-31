@@ -133,6 +133,18 @@
             <DependentUpon>StatisticCategorySpreadingPage.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Compile Update="Views\Payments\PaymentModification\AddPaymentPage.xaml.cs">
+          <DependentUpon>AddPaymentPage.xaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Payments\PaymentModification\EditPaymentPage.xaml.cs">
+          <DependentUpon>EditPaymentPage.xaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Payments\PaymentModification\ModifyPaymentContentView.xaml.cs">
+          <DependentUpon>ModifyPaymentContentView.xaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -150,6 +162,15 @@
         </MauiXaml>
         <MauiXaml Update="Views\Statistics\CategorySpreading\StatisticCategorySpreadingPage.xaml">
             <SubType>Designer</SubType>
+        </MauiXaml>
+        <MauiXaml Update="Views\Payments\PaymentModification\AddPaymentPage.xaml">
+          <SubType>Designer</SubType>
+        </MauiXaml>
+        <MauiXaml Update="Views\Payments\PaymentModification\EditPaymentPage.xaml">
+          <SubType>Designer</SubType>
+        </MauiXaml>
+        <MauiXaml Update="Views\Payments\PaymentModification\ModifyPaymentContentView.xaml">
+          <SubType>Designer</SubType>
         </MauiXaml>
     </ItemGroup>
 
