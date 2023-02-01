@@ -7,13 +7,14 @@
     xmlns:payments="clr-namespace:MoneyFox.Ui.Views.Payments"
     xmlns:extensions="clr-namespace:MoneyFox.Ui.Common.Extensions"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
-    x:DataType="payments:EditPaymentViewModel"
+    xmlns:paymentModification="clr-namespace:MoneyFox.Ui.Views.Payments.PaymentModification"
+    x:DataType="paymentModification:EditPaymentViewModel"
     Title="{x:Static resources:Translations.EditPaymentTitle}"
-    x:Class="MoneyFox.Ui.Views.Payments.EditPaymentPage">
+    x:Class="MoneyFox.Ui.Views.Payments.PaymentModification.EditPaymentPage">
 
     <controls:NonOverlappingScrollView>
         <VerticalStackLayout Padding="15,0,15,0" Spacing="12">
-            <payments:ModifyPaymentContentView />
+            <paymentModification:ModifyPaymentContentView />
 
             <Label Style="{StaticResource TextBodySecondary}"
                    Text="{Binding SelectedPayment.Created, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />

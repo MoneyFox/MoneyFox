@@ -7,7 +7,6 @@ using Core.Features._Legacy_.Accounts.DeleteAccountById;
 using Core.Features._Legacy_.Accounts.UpdateAccount;
 using Core.Interfaces;
 using Core.Queries;
-using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Resources.Strings;
 
@@ -40,7 +39,15 @@ public partial class EditAccountViewModel : ModifyAccountViewModel
 
     protected override async Task SaveAccountAsync()
     {
-        await mediator.Send(new UpdateAccountCommand(mapper.Map<Account>(SelectedAccountVm)));
+        // Due to a bug in .net maui, the loading dialog can only be called after any other dialog
+        await dialogService.ShowLoadingDialogAsync(Translations.SavingAccountMessage);
+        var command = new UpdateAccount.Command(
+            Id: SelectedAccountVm.Id,
+            Name: SelectedAccountVm.Name,
+            Note: SelectedAccountVm.Note,
+            IsExcluded: SelectedAccountVm.IsExcluded);
+
+        await mediator.Send(command);
     }
 
     [RelayCommand]

@@ -7,21 +7,21 @@
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:views="clr-namespace:MoneyFox.Ui.Views"
-    xmlns:payments="clr-namespace:MoneyFox.Ui.Views.Payments"
-    x:Class="MoneyFox.Ui.Views.Payments.ModifyPaymentContentView"
-    x:DataType="payments:ModifyPaymentViewModel">
+    xmlns:paymentModification="clr-namespace:MoneyFox.Ui.Views.Payments.PaymentModification"
+    x:Class="MoneyFox.Ui.Views.Payments.PaymentModification.ModifyPaymentContentView"
+    x:DataType="paymentModification:ModifyPaymentViewModel">
 
     <ContentView.Resources>
         <ResourceDictionary>
             <converter:InverseBoolConverter x:Key="Inverter" />
-            <converter:NoCategorySelectedConverter x:Key="NoCategorySelectedConverter" />
+            <paymentModification:NoCategorySelectedConverter x:Key="NoCategorySelectedConverter" />
         </ResourceDictionary>
     </ContentView.Resources>
 
-    <VerticalStackLayout Spacing="12" x:DataType="payments:ModifyPaymentViewModel">
+    <VerticalStackLayout Spacing="12" x:DataType="paymentModification:ModifyPaymentViewModel">
 
         <controls:PaymentTypePicker PickerTitle="{x:Static resources:Translations.PaymentTypeLabel}"
-                                    PaymentTypeSource="{x:Static payments:ModifyPaymentViewModel.PaymentTypeList}"
+                                    PaymentTypeSource="{x:Static paymentModification:ModifyPaymentViewModel.PaymentTypeList}"
                                     SelectedType="{Binding SelectedPayment.Type}" />
 
         <controls:AccountPicker PickerTitle="{Binding AccountHeader, Mode=OneWay}"
@@ -79,7 +79,7 @@
         <VerticalStackLayout IsVisible="{Binding SelectedPayment.IsRecurring}"
                              Spacing="6">
             <Label Style="{StaticResource TextBodySecondary}" Text="{x:Static resources:Translations.RecurrenceLabel}" />
-            <Picker ItemsSource="{x:Static payments:ModifyPaymentViewModel.RecurrenceList}"
+            <Picker ItemsSource="{x:Static paymentModification:ModifyPaymentViewModel.RecurrenceList}"
                     SelectedItem="{Binding SelectedPayment.RecurringPayment.Recurrence}" />
 
             <Grid HorizontalOptions="FillAndExpand"

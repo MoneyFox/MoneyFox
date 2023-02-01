@@ -1,13 +1,13 @@
-namespace MoneyFox.Ui.Views.Payments;
+namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
-using Core.Common.Interfaces;
-using Core.Features._Legacy_.Payments.DeletePaymentById;
-using Core.Features._Legacy_.Payments.UpdatePayment;
-using Core.Queries;
 using MediatR;
-using Resources.Strings;
+using MoneyFox.Core.Common.Interfaces;
+using MoneyFox.Core.Features._Legacy_.Payments.DeletePaymentById;
+using MoneyFox.Core.Features._Legacy_.Payments.UpdatePayment;
+using MoneyFox.Core.Queries;
+using MoneyFox.Ui.Resources.Strings;
 
 internal class EditPaymentViewModel : ModifyPaymentViewModel
 {
