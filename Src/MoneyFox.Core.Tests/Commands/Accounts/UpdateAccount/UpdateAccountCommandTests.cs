@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Tests.Commands.Accounts.UpdateAccount;
+namespace MoneyFox.Core.Tests.Commands.Accounts.UpdateAccount;
 
 using Core.Features._Legacy_.Accounts.UpdateAccount;
 using Domain.Aggregates.AccountAggregate;
@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 public class UpdateCategoryCommandTests : InMemoryTestBase
 {
-    private readonly UpdateAccountCommand.Handler handler;
+    private readonly UpdateAccount.Handler handler;
 
     public UpdateCategoryCommandTests()
     {
@@ -15,7 +15,7 @@ public class UpdateCategoryCommandTests : InMemoryTestBase
     }
 
     [Fact]
-    public async Task UpdateCategoryCommand_CorrectNumberLoaded()
+    public async Task UpdateCategoryCommand_CorrectNameLoaded()
     {
         // Arrange
         var account = new Account(name: "test", initialBalance: 80);
@@ -24,7 +24,13 @@ public class UpdateCategoryCommandTests : InMemoryTestBase
 
         // Act
         account.Change("foo");
-        await handler.Handle(request: new(account), cancellationToken: default);
+        await handler.Handle(
+            command: new(
+                Id: account.Id,
+                Name: account.Name,
+                Note: account.Note,
+                IsExcluded: account.IsExcluded),
+            cancellationToken: default);
         var loadedAccount = await Context.Accounts.SingleAsync(a => a.Id == account.Id);
 
         // Assert
