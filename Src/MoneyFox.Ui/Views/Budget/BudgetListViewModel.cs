@@ -15,7 +15,7 @@ public sealed class BudgetListViewModel : BaseViewModel, IRecipient<ReloadMessag
     public BudgetListViewModel(ISender sender)
     {
         this.sender = sender;
-        WeakReferenceMessenger.Default.RegisterAll(this);
+        IsActive = true;
     }
 
     public bool HasBudgets => Budgets.Any();

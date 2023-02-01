@@ -33,7 +33,7 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
         this.mapper = mapper;
         this.dialogService = dialogService;
         this.toastService = toastService;
-        WeakReferenceMessenger.Default.RegisterAll(this);
+        IsActive = true;
     }
 
     public PaymentViewModel SelectedPayment

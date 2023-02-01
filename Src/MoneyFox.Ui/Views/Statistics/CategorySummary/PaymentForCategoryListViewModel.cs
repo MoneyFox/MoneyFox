@@ -27,7 +27,6 @@ internal sealed class PaymentForCategoryListViewModel : BaseViewModel, IRecipien
         this.mapper = mapper;
         PaymentList = new();
         IsActive = true;
-        WeakReferenceMessenger.Default.RegisterAll(this);
     }
 
     public string Title
