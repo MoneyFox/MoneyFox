@@ -1,16 +1,13 @@
-namespace MoneyFox.Ui.Converter;
+namespace MoneyFox.Ui.Views.Statistics.CategoryProgression;
 
 using System.Globalization;
-using Common.ConverterLogic;
-using Views.Payments;
+using MoneyFox.Ui.Resources.Strings;
 
-public class PaymentAmountConverter : IValueConverter
+public class NoCategorySelectedConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        return value is PaymentViewModel model
-            ? PaymentAmountConverterLogic.GetAmountSign(model)
-            : string.Empty;
+        return value is not SelectedCategoryViewModel category ? Translations.SelectCategoryLabel : category.Name;
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

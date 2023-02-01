@@ -3,6 +3,7 @@ namespace MoneyFox.Ui.Views.Budget;
 using System.Collections;
 using System.Collections.ObjectModel;
 using Categories;
+using Categories.CategorySelection;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Messages;

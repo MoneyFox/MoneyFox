@@ -10,7 +10,7 @@ using MediatR;
 using Resources.Strings;
 using SkiaSharp;
 
-internal abstract class StatisticViewModel : BaseViewModel
+internal abstract class StatisticViewModel : BaseViewModel, IRecipient<DateSelectedMessage>
 {
     protected readonly IMediator Mediator;
     private DateTime endDate;
@@ -93,22 +93,12 @@ internal abstract class StatisticViewModel : BaseViewModel
     public string Title
         => $"{Translations.StatisticsTimeRangeTitle} {StartDate.ToString(format: "d", provider: CultureInfo.InvariantCulture)} - {EndDate.ToString(format: "d", provider: CultureInfo.InvariantCulture)}";
 
-    protected override void OnActivated()
-    {
-        Messenger.Register<StatisticViewModel, DateSelectedMessage>(
-            recipient: this,
-            handler: (r, m) =>
-            {
-                r.StartDate = m.StartDate;
-                r.EndDate = m.EndDate;
-                LoadAsync();
-            });
-    }
-
-    protected override void OnDeactivated()
-    {
-        Messenger.Unregister<DateSelectedMessage>(this);
-    }
-
     protected abstract Task LoadAsync();
+
+    public async void Receive(DateSelectedMessage message)
+    {
+        StartDate = message.StartDate;
+        EndDate = message.EndDate;
+        await LoadAsync();
+    }
 }
