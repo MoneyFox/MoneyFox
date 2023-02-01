@@ -1,22 +1,21 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
 using System.Collections.ObjectModel;
+using Accounts;
 using AutoMapper;
+using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Core.Common.Interfaces;
+using Core.Common.Messages;
+using Core.Queries;
+using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Microsoft.AppCenter.Crashes;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Common.Messages;
-using MoneyFox.Core.Queries;
-using MoneyFox.Domain.Aggregates.AccountAggregate;
-using MoneyFox.Ui.Common.Extensions;
-using MoneyFox.Ui.Resources.Strings;
-using MoneyFox.Ui.Views.Accounts;
+using Resources.Strings;
 using Serilog;
 
-// ReSharper disable once PartialTypeWithSinglePart
-internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipient<CategorySelectedMessage>
+public abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipient<CategorySelectedMessage>
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
