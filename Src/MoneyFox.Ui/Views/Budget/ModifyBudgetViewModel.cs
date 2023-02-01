@@ -27,7 +27,12 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
     public string Name
     {
         get => name;
-        set => SetProperty(field: ref name, newValue: value);
+
+        set
+        {
+            SetProperty(field: ref name, newValue: value);
+            OnPropertyChanged(nameof(IsValid));
+        }
     }
 
     public BudgetTimeRange TimeRange
@@ -39,8 +44,15 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
     public decimal SpendingLimit
     {
         get => spendingLimit;
-        set => SetProperty(field: ref spendingLimit, newValue: value);
+
+        set
+        {
+            SetProperty(field: ref spendingLimit, newValue: value);
+            OnPropertyChanged(nameof(IsValid));
+        }
     }
+
+    public bool IsValid => string.IsNullOrEmpty(Name) is false && SpendingLimit > 0;
 
     public static List<BudgetTimeRange> TimeRangeCollection
         => new (){
@@ -56,7 +68,7 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
 
     public RelayCommand<BudgetCategoryViewModel> RemoveCategoryCommand => new(RemoveCategory);
 
-    public AsyncRelayCommand SaveBudgetCommand => new(execute: SaveBudgetAsync, canExecute: () => string.IsNullOrEmpty(Name) is false && SpendingLimit > 0);
+    public AsyncRelayCommand SaveBudgetCommand => new(execute: SaveBudgetAsync, canExecute: () => IsValid);
 
     public void Receive(CategorySelectedMessage message)
     {
