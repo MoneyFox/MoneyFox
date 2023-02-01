@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Features._Legacy_.Accounts.UpdateAccount;
+namespace MoneyFox.Core.Features._Legacy_.Accounts.UpdateAccount;
 
 using System.Threading;
 using System.Threading.Tasks;
@@ -7,16 +7,15 @@ using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-public class UpdateAccountCommand : IRequest
+public static class UpdateAccount
 {
-    public UpdateAccountCommand(Account account)
-    {
-        Account = account;
-    }
+    public record Command(
+        int Id,
+        string Name,
+        string? Note,
+        bool IsExcluded) : IRequest;
 
-    public Account Account { get; }
-
-    public class Handler : IRequestHandler<UpdateAccountCommand>
+    public class Handler : IRequestHandler<Command>
     {
         private readonly IAppDbContext appDbContext;
 
@@ -25,11 +24,12 @@ public class UpdateAccountCommand : IRequest
             this.appDbContext = appDbContext;
         }
 
-        public async Task<Unit> Handle(UpdateAccountCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(Command command, CancellationToken cancellationToken)
         {
-            var existingAccount = await appDbContext.Accounts.SingleAsync(predicate: a => a.Id == request.Account.Id, cancellationToken: cancellationToken);
-            existingAccount.Change(name: request.Account.Name, note: request.Account.Note ?? "", isExcluded: request.Account.IsExcluded);
-            _ = await appDbContext.SaveChangesAsync(cancellationToken);
+            var existingAccount = await appDbContext.Accounts.SingleAsync(predicate: b => b.Id == command.Id, cancellationToken: cancellationToken);
+            existingAccount.Change(name: command.Name, note: command.Note ?? "", isExcluded: command.IsExcluded);
+
+            await appDbContext.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;
         }

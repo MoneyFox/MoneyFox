@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Tests.Commands.Categories.UpdateCategory;
+namespace MoneyFox.Core.Tests.Commands.Categories.UpdateCategory;
 
 using Core.Features._Legacy_.Categories.UpdateCategory;
 using Domain.Aggregates.CategoryAggregate;
@@ -6,7 +6,7 @@ using FluentAssertions;
 
 public class UpdateCategoryCommandTests : InMemoryTestBase
 {
-    private readonly UpdateCategoryCommand.Handler handler;
+    private readonly UpdateCategory.Handler handler;
 
     public UpdateCategoryCommandTests()
     {
@@ -14,7 +14,7 @@ public class UpdateCategoryCommandTests : InMemoryTestBase
     }
 
     [Fact]
-    public async Task UpdateCategoryCommand_CorrectNumberLoaded()
+    public async Task UpdateCategoryCommand_CorrectNameLoaded()
     {
         // Arrange
         var category = new Category("test");
@@ -23,7 +23,13 @@ public class UpdateCategoryCommandTests : InMemoryTestBase
 
         // Act
         category.UpdateData("foo");
-        await handler.Handle(request: new(category), cancellationToken: default);
+        await handler.Handle(
+            command: new(
+                Id: category.Id,
+                Name: category.Name,
+                Note: category.Note,
+                RequireNote: category.RequireNote),
+            cancellationToken: default);
         var loadedCategory = await Context.Categories.FindAsync(category.Id);
 
         // Assert
@@ -40,7 +46,13 @@ public class UpdateCategoryCommandTests : InMemoryTestBase
 
         // Act
         category.UpdateData(name: "foo", requireNote: true);
-        await handler.Handle(request: new(category), cancellationToken: default);
+        await handler.Handle(
+            command: new(
+                Id: category.Id,
+                Name: category.Name,
+                Note: category.Note,
+                RequireNote: category.RequireNote),
+            cancellationToken: default);
         var loadedCategory = await Context.Categories.FindAsync(category.Id);
 
         // Assert

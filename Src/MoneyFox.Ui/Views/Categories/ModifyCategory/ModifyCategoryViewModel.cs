@@ -45,7 +45,7 @@ public abstract class ModifyCategoryViewModel : BaseViewModel
             return;
         }
 
-        if (await mediator.Send(new GetIfCategoryWithNameExistsQuery(SelectedCategory.Name)))
+        if (await mediator.Send(new GetIfCategoryWithNameExistsQuery(SelectedCategory.Name, SelectedCategory.Id)))
         {
             await dialogService.ShowMessageAsync(title: Translations.DuplicatedNameTitle, message: Translations.DuplicateCategoryMessage);
 
