@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Views.Budget;
 
 using System.Collections;
+using System.Collections.Immutable;
 using System.Collections.ObjectModel;
 using Categories;
 using Categories.CategorySelection;
@@ -41,15 +42,13 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
         set => SetProperty(field: ref spendingLimit, newValue: value);
     }
 
-    public ICollection TimeRangeCollection
-        => new List<BudgetTimeRange>
-        {
+    public static List<BudgetTimeRange> TimeRangeCollection
+        => new (){
             BudgetTimeRange.YearToDate,
             BudgetTimeRange.Last1Year,
             BudgetTimeRange.Last2Years,
             BudgetTimeRange.Last3Years,
-            BudgetTimeRange.Last5Years
-        };
+            BudgetTimeRange.Last5Years};
 
     public ObservableCollection<BudgetCategoryViewModel> SelectedCategories { get; set; } = new();
 

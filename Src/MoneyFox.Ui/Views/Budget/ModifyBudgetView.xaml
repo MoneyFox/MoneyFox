@@ -33,7 +33,7 @@
                Text="{x:Static resources:Translations.EvaluationTimeRangeLabel}" />
 
         <Picker Title="{x:Static resources:Translations.EvaluationTimeRangeLabel}"
-                ItemsSource="{Binding TimeRangeCollection}"
+                ItemsSource="{x:Static budget:ModifyBudgetViewModel.TimeRangeCollection}"
                 SelectedItem="{Binding TimeRange}"
                 ItemDisplayBinding="{Binding ., Converter={StaticResource BudgetTimeRangeStringConverter}}" />
 
