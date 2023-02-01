@@ -35,7 +35,7 @@ public class LedgerTests
             ledger.Name.Should().Be(testLedger.Name);
             ledger.CurrentBalance.Should().Be(testLedger.CurrentBalance);
             ledger.Note.Should().Be(testLedger.Note);
-            ledger.IsExcluded.Should().Be(testLedger.IsExcluded);
+            ledger.ExcludeFromEndOfMonthSummary.Should().Be(testLedger.IsExcluded);
         }
     }
 }
