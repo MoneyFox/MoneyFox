@@ -28,6 +28,7 @@ public partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadMes
         this.mediator = mediator;
         this.mapper = mapper;
         this.dialogService = dialogService;
+        WeakReferenceMessenger.Default.RegisterAll(this);
     }
 
     public ObservableCollection<AlphaGroupListGroupCollection<CategoryListItemViewModel>> Categories

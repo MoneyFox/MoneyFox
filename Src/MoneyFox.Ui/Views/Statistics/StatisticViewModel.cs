@@ -28,6 +28,8 @@ internal abstract class StatisticViewModel : BaseViewModel, IRecipient<DateSelec
         Mediator = mediator;
         IsActive = true;
 
+        WeakReferenceMessenger.Default.RegisterAll(this);
+
         // If Application.Current is null, application is running in the context of a unit test
         if (Application.Current is not null)
         {

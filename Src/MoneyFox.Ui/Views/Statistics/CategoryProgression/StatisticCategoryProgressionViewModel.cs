@@ -23,6 +23,7 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
     public StatisticCategoryProgressionViewModel(IMediator mediator) : base(mediator)
     {
         StartDate = DateTime.Now.AddYears(-1);
+        WeakReferenceMessenger.Default.RegisterAll(this);
     }
 
     public SelectedCategoryViewModel? SelectedCategory
