@@ -10,9 +10,9 @@ public partial class AmountEntry
 
     public static readonly BindableProperty AmountProperty = BindableProperty.Create(
         propertyName: nameof(Amount),
-        returnType: typeof(string),
+        returnType: typeof(decimal),
         declaringType: typeof(AmountEntry),
-        defaultValue: string.Empty,
+        defaultValue: 0m,
         defaultBindingMode: BindingMode.TwoWay);
 
     public static readonly BindableProperty EntryPlaceholderProperty = BindableProperty.Create(
@@ -38,9 +38,9 @@ public partial class AmountEntry
         set => SetValue(property: AmountFieldTitleProperty, value: value);
     }
 
-    public string Amount
+    public decimal Amount
     {
-        get => (string)GetValue(AmountProperty);
+        get => (decimal)GetValue(AmountProperty);
         set => SetValue(property: AmountProperty, value: value);
     }
 
