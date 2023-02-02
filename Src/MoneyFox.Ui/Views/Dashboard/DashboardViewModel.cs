@@ -154,7 +154,5 @@ internal class DashboardViewModel : BasePageViewModel
         {
             isRunning = false;
         }
-
-        IsActive = true;
     }
 }

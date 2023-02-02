@@ -15,7 +15,6 @@ public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<ReloadMe
     public BudgetListViewModel(ISender sender)
     {
         this.sender = sender;
-        IsActive = true;
     }
 
     public bool HasBudgets => Budgets.Any();
@@ -29,11 +28,6 @@ public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<ReloadMe
     public AsyncRelayCommand GoToAddBudgetCommand => new(GoToAddBudget);
 
     public AsyncRelayCommand<BudgetListItemViewModel> EditBudgetCommand => new(EditBudgetAsync);
-
-    public async void Receive(ReloadMessage message)
-    {
-        await Initialize();
-    }
 
     private async Task Initialize()
     {
@@ -52,6 +46,11 @@ public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<ReloadMe
 
         OnPropertyChanged(nameof(BudgetedAmount));
         OnPropertyChanged(nameof(HasBudgets));
+    }
+
+    public async void Receive(ReloadMessage message)
+    {
+        await Initialize();
     }
 
     private static async Task GoToAddBudget()

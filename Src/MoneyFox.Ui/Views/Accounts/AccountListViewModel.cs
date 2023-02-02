@@ -95,8 +95,6 @@ internal sealed class AccountListViewModel : BasePageViewModel
         {
             isRunning = false;
         }
-
-        IsActive = true;
     }
 
     private async Task DeleteAccountAsync(AccountViewModel accountViewModel)

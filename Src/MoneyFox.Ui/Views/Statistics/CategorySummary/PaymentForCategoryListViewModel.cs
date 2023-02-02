@@ -26,7 +26,6 @@ internal sealed class PaymentForCategoryListViewModel : BasePageViewModel, IReci
         this.mediator = mediator;
         this.mapper = mapper;
         PaymentList = new();
-        IsActive = true;
     }
 
     public string Title

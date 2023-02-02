@@ -21,7 +21,6 @@ internal abstract class ModifyBudgetViewModel : BasePageViewModel, IRecipient<Ca
     protected ModifyBudgetViewModel(INavigationService navigationService)
     {
         this.navigationService = navigationService;
-        IsActive = true;
     }
 
     public string Name

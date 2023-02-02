@@ -32,7 +32,6 @@ public abstract partial class ModifyPaymentViewModel : BasePageViewModel, IRecip
         this.mapper = mapper;
         this.dialogService = dialogService;
         this.toastService = toastService;
-        IsActive = true;
     }
 
     public PaymentViewModel SelectedPayment
@@ -105,7 +104,6 @@ public abstract partial class ModifyPaymentViewModel : BasePageViewModel, IRecip
         var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
         ChargedAccounts = new(accounts);
         TargetAccounts = new(accounts);
-        IsActive = true;
         IsFirstLoad = false;
     }
 

@@ -28,7 +28,6 @@ public partial class CategoryListViewModel : BasePageViewModel, IRecipient<Reloa
         this.mediator = mediator;
         this.mapper = mapper;
         this.dialogService = dialogService;
-        IsActive = true;
     }
 
     public ObservableCollection<AlphaGroupListGroupCollection<CategoryListItemViewModel>> Categories
@@ -55,7 +54,6 @@ public partial class CategoryListViewModel : BasePageViewModel, IRecipient<Reloa
     public async Task InitializeAsync()
     {
         await SearchCategoryAsync();
-        IsActive = true;
     }
 
     [RelayCommand]
