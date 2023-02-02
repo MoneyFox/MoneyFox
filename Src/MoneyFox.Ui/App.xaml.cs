@@ -9,6 +9,7 @@ using Core.Common.Interfaces;
 using Core.Features._Legacy_.Payments.ClearPayments;
 using Core.Features._Legacy_.Payments.CreateRecurringPayments;
 using Core.Features.DbBackup;
+using Core.Interfaces;
 using Infrastructure.Adapters;
 using InversionOfControl;
 using MediatR;
@@ -19,11 +20,13 @@ using Views;
 
 public partial class App
 {
+    private const string IS_CATEGORY_CLEANUP_EXECUTED_KEY_NAME = "IsCategoryCleanupExecuted";
     private bool isRunning;
 
     public App()
     {
-        var settingsFacade = new SettingsFacade(new SettingsAdapter());
+        var settingsAdapter = new SettingsAdapter();
+        var settingsFacade = new SettingsFacade(settingsAdapter);
 
         // TODO: use setting?
         CultureHelper.CurrentCulture = new(CultureInfo.CurrentCulture.Name);
@@ -42,21 +45,27 @@ public partial class App
             Shell.Current.GoToAsync(Routes.WelcomeViewRoute).Wait();
         }
 
-        if (settingsFacade.IsCategoryCleanupExecuted is false)
+        FixCorruptPayments(settingsAdapter);
+    }
+
+    private static void FixCorruptPayments(ISettingsAdapter settingsAdapter)
+    {
+        if (settingsAdapter.GetValue(key: IS_CATEGORY_CLEANUP_EXECUTED_KEY_NAME, defaultValue: false) is false)
         {
             if (ServiceProvider?.GetService<IAppDbContext>() != null)
             {
                 var dbContext = ServiceProvider.GetService<IAppDbContext>();
                 var categoryIds = dbContext!.Categories.Select(c => c.Id).ToList();
-                var paymentsWithCategory = dbContext.Payments.Include(p => p.Category).Where(p => p.Category != null).ToList();
-
-                foreach (var payment in paymentsWithCategory.Where(payment => categoryIds.Contains(payment.Category!.Id) is false))
+                var paymentsWithCategory =
+                    dbContext.Payments.Include(p => p.Category).Where(p => p.Category != null).ToList();
+                foreach (var payment in paymentsWithCategory.Where(payment =>
+                             categoryIds.Contains(payment.Category!.Id) is false))
                 {
                     payment.RemoveCategory();
                 }
 
                 dbContext.SaveChangesAsync().GetAwaiter().GetResult();
-                settingsFacade.IsCategoryCleanupExecuted = true;
+                settingsAdapter.AddOrUpdate(key: IS_CATEGORY_CLEANUP_EXECUTED_KEY_NAME, value: true);
             }
         }
     }
