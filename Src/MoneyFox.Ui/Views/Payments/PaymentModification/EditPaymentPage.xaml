@@ -13,7 +13,7 @@
     x:Class="MoneyFox.Ui.Views.Payments.PaymentModification.EditPaymentPage">
 
     <controls:NonOverlappingScrollView>
-        <VerticalStackLayout Padding="15,0,15,0" Spacing="12">
+        <VerticalStackLayout Padding="15,12,15,12" Spacing="12">
             <paymentModification:ModifyPaymentContentView />
 
             <Label Style="{StaticResource TextBodySecondary}"
