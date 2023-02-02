@@ -24,7 +24,7 @@ public sealed class AddCategoryViewModel : ModifyCategoryViewModel
 
     protected override async Task SaveCategoryAsync()
     {
-        var command = new CreateCategory.Command(name: SelectedCategory.Name, note: SelectedCategory.Note, requireNote: SelectedCategory.RequireNote);
+        var command = new CreateCategory.Command(Name: SelectedCategory.Name, Note: SelectedCategory.Note, RequireNote: SelectedCategory.RequireNote);
         await mediator.Send(command);
     }
 }
