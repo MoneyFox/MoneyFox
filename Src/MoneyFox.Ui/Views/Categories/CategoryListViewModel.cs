@@ -14,7 +14,7 @@ using MediatR;
 using Resources.Strings;
 
 // ReSharper disable once PartialTypeWithSinglePart
-public partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadMessage>
+public partial class CategoryListViewModel : BasePageViewModel, IRecipient<ReloadMessage>
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
@@ -28,7 +28,6 @@ public partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadMes
         this.mediator = mediator;
         this.mapper = mapper;
         this.dialogService = dialogService;
-        IsActive = true;
     }
 
     public ObservableCollection<AlphaGroupListGroupCollection<CategoryListItemViewModel>> Categories
@@ -55,7 +54,6 @@ public partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadMes
     public async Task InitializeAsync()
     {
         await SearchCategoryAsync();
-        IsActive = true;
     }
 
     [RelayCommand]

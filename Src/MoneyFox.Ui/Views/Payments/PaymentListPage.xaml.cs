@@ -16,7 +16,7 @@ public partial class PaymentListPage : ContentPage
 
     protected override async void OnAppearing()
     {
-        await ViewModel.OnAppearingAsync(accountId);
+        await ViewModel.InitializeAsync(accountId);
     }
 
     private void ShowFilterPopup(object sender, EventArgs e)

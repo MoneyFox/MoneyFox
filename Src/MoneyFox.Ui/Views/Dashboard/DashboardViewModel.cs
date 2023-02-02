@@ -5,14 +5,12 @@ using Accounts;
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.Common.Interfaces;
 using Core.Common.Messages;
 using Core.Queries;
 using MediatR;
 
-internal class DashboardViewModel : BaseViewModel
+internal class DashboardViewModel : BasePageViewModel, IRecipient<ReloadMessage>
 {
-    private readonly IDialogService dialogService;
     private readonly IMapper mapper;
 
     private readonly IMediator mediator;
@@ -27,11 +25,10 @@ internal class DashboardViewModel : BaseViewModel
     private decimal monthlyExpenses;
     private decimal monthlyIncomes;
 
-    public DashboardViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService)
+    public DashboardViewModel(IMediator mediator, IMapper mapper)
     {
         this.mediator = mediator;
         this.mapper = mapper;
-        this.dialogService = dialogService;
     }
 
     public decimal Assets
@@ -119,14 +116,9 @@ internal class DashboardViewModel : BaseViewModel
     public AsyncRelayCommand<AccountViewModel> GoToTransactionListCommand
         => new(async accountViewModel => await Shell.Current.GoToAsync($"{Routes.PaymentListRoute}?accountId={accountViewModel!.Id}"));
 
-    protected override void OnActivated()
+    public async void Receive(ReloadMessage message)
     {
-        Messenger.Register<DashboardViewModel, ReloadMessage>(recipient: this, handler: async (r, m) => await r.InitializeAsync());
-    }
-
-    protected override void OnDeactivated()
-    {
-        Messenger.Unregister<ReloadMessage>(this);
+        await InitializeAsync();
     }
 
     public async Task InitializeAsync()
@@ -154,7 +146,5 @@ internal class DashboardViewModel : BaseViewModel
         {
             isRunning = false;
         }
-
-        IsActive = true;
     }
 }

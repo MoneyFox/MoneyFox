@@ -8,7 +8,7 @@ using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-public abstract class ModifyCategoryViewModel : BaseViewModel
+public abstract class ModifyCategoryViewModel : BasePageViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;

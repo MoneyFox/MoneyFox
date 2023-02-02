@@ -3,7 +3,7 @@ namespace MoneyFox.Ui.Views.SetupAssistant;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Facades;
 
-internal sealed class SetupCompletionViewModel : BaseViewModel
+internal sealed class SetupCompletionViewModel : BasePageViewModel
 {
     private readonly ISettingsFacade settingsFacade;
 

@@ -15,7 +15,7 @@ using Microsoft.AppCenter.Crashes;
 using Resources.Strings;
 using Serilog;
 
-public abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipient<CategorySelectedMessage>
+public abstract partial class ModifyPaymentViewModel : BasePageViewModel, IRecipient<CategorySelectedMessage>
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
@@ -32,7 +32,6 @@ public abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipient
         this.mapper = mapper;
         this.dialogService = dialogService;
         this.toastService = toastService;
-        IsActive = true;
     }
 
     public PaymentViewModel SelectedPayment
@@ -105,7 +104,6 @@ public abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipient
         var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
         ChargedAccounts = new(accounts);
         TargetAccounts = new(accounts);
-        IsActive = true;
         IsFirstLoad = false;
     }
 
