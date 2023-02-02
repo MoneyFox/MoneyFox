@@ -14,6 +14,8 @@ using Infrastructure.Adapters;
 using InversionOfControl;
 using MediatR;
 using Messages;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Views;
@@ -48,25 +50,37 @@ public partial class App
         FixCorruptPayments(settingsAdapter);
     }
 
+    /// <summary>
+    ///     This removes the link from payments to categories that no longer exists.
+    ///     https://github.com/MoneyFox/MoneyFox/issues/2717
+    ///     This can be removed in a future release.
+    /// </summary>
     private static void FixCorruptPayments(ISettingsAdapter settingsAdapter)
     {
-        if (settingsAdapter.GetValue(key: IS_CATEGORY_CLEANUP_EXECUTED_KEY_NAME, defaultValue: false) is false)
+        try
         {
-            if (ServiceProvider?.GetService<IAppDbContext>() != null)
+            if (settingsAdapter.GetValue(key: IS_CATEGORY_CLEANUP_EXECUTED_KEY_NAME, defaultValue: false) is false)
             {
-                var dbContext = ServiceProvider.GetService<IAppDbContext>();
-                var categoryIds = dbContext!.Categories.Select(c => c.Id).ToList();
-                var paymentsWithCategory =
-                    dbContext.Payments.Include(p => p.Category).Where(p => p.Category != null).ToList();
-                foreach (var payment in paymentsWithCategory.Where(payment =>
-                             categoryIds.Contains(payment.Category!.Id) is false))
+                if (ServiceProvider?.GetService<IAppDbContext>() != null)
                 {
-                    payment.RemoveCategory();
-                }
+                    var dbContext = ServiceProvider.GetService<IAppDbContext>();
+                    var categoryIds = dbContext!.Categories.Select(c => c.Id).ToList();
+                    var paymentsWithCategory = dbContext.Payments.Include(p => p.Category).Where(p => p.Category != null).ToList();
+                    foreach (var payment in paymentsWithCategory.Where(payment => categoryIds.Contains(payment.Category!.Id) is false))
+                    {
+                        payment.RemoveCategory();
+                        Analytics.TrackEvent(nameof(FixCorruptPayments));
+                    }
 
-                dbContext.SaveChangesAsync().GetAwaiter().GetResult();
-                settingsAdapter.AddOrUpdate(key: IS_CATEGORY_CLEANUP_EXECUTED_KEY_NAME, value: true);
+                    dbContext.SaveChangesAsync().GetAwaiter().GetResult();
+                    settingsAdapter.AddOrUpdate(key: IS_CATEGORY_CLEANUP_EXECUTED_KEY_NAME, value: true);
+                }
             }
+        }
+        catch(Exception ex)
+        {
+            Log.Error(ex, "Error while fixing payment with non existing category");
+            Crashes.TrackError(ex);
         }
     }
 
