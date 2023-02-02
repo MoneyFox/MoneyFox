@@ -73,19 +73,19 @@ steps:
       script: 'dotnet workload install maui --ignore-failed-sources'
 
   - task: DotNetCoreCLI@2
+    displayName: 'Run Tests'
+    inputs:
+      command: 'test'
+      projects: '**/*.Tests.csproj'
+      arguments: '--configuration $(BuildConfiguration)'
+      
+  - task: DotNetCoreCLI@2
     displayName: 'build Android app'
     inputs:
       command: 'publish'
       publishWebProjects: false
       projects: '**/MoneyFox.Ui.csproj'
       arguments: '-c Release -f net7.0-android /p:AndroidKeyStore="True" /p:AndroidSigningKeyAlias="$(KeyStoreAlias)" /p:AndroidSigningKeyStore="$(keystore.secureFilePath)" /p:AndroidSigningKeyPass="$(KeyStorePass)" /p:AndroidSigningStorePass="$(KeyStorePass)"'
-
-  - task: DotNetCoreCLI@2
-    displayName: 'Run Tests'
-    inputs:
-      command: 'test'
-      projects: '**/*.Tests.csproj'
-      arguments: '--configuration $(BuildConfiguration)'
 
   - task: CopyFiles@2
     displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
