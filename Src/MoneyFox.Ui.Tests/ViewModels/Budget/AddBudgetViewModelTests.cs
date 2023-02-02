@@ -18,7 +18,6 @@ using Xunit;
 public class AddBudgetViewModelTests
 {
     private const int CATEGORY_ID = 10;
-    private readonly IDialogService dialogService;
     private readonly INavigationService navigationService;
     private readonly ISender sender;
 
@@ -28,8 +27,8 @@ public class AddBudgetViewModelTests
     {
         sender = Substitute.For<ISender>();
         navigationService = Substitute.For<INavigationService>();
-        dialogService = Substitute.For<IDialogService>();
-        viewModel = new(sender: sender, navigationService: navigationService, dialogService: dialogService);
+        Substitute.For<IDialogService>();
+        viewModel = new(sender: sender, navigationService: navigationService);
     }
 
     [Fact]
