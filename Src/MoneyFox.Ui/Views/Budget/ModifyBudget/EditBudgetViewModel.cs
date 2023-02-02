@@ -73,7 +73,7 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
             categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
 
         _ = await sender.Send(command);
-        _ = Messenger.Send(new ReloadMessage());
+        _ = Messenger.Send(new BudgetsChangedMessage());
         await navigationService.GoBackFromModalAsync();
     }
 }

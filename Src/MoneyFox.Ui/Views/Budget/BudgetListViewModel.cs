@@ -8,7 +8,7 @@ using Core.Common.Messages;
 using Core.Queries.BudgetListLoading;
 using MediatR;
 
-public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<ReloadMessage>
+public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<BudgetsChangedMessage>
 {
     private readonly ISender sender;
 
@@ -48,7 +48,7 @@ public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<ReloadMe
         OnPropertyChanged(nameof(HasBudgets));
     }
 
-    public async void Receive(ReloadMessage message)
+    public async void Receive(BudgetsChangedMessage message)
     {
         await Initialize();
     }
