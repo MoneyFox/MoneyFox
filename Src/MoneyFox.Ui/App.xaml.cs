@@ -64,23 +64,27 @@ public partial class App
     {
         try
         {
-            if (settingsAdapter.GetValue(key: IS_CATEGORY_CLEANUP_EXECUTED_KEY_NAME, defaultValue: false) is false)
+            if (settingsAdapter.GetValue(key: IS_CATEGORY_CLEANUP_EXECUTED_KEY_NAME, defaultValue: false) is true)
             {
-                if (ServiceProvider?.GetService<IAppDbContext>() != null)
-                {
-                    var dbContext = ServiceProvider.GetService<IAppDbContext>();
-                    var categoryIds = dbContext!.Categories.Select(c => c.Id).ToList();
-                    var paymentsWithCategory = dbContext.Payments.Include(p => p.Category).Where(p => p.Category != null).ToList();
-                    foreach (var payment in paymentsWithCategory.Where(payment => categoryIds.Contains(payment.Category!.Id) is false))
-                    {
-                        payment.RemoveCategory();
-                        Analytics.TrackEvent(nameof(FixCorruptPayments));
-                    }
-
-                    dbContext.SaveChangesAsync().GetAwaiter().GetResult();
-                    settingsAdapter.AddOrUpdate(key: IS_CATEGORY_CLEANUP_EXECUTED_KEY_NAME, value: true);
-                }
+                return;
             }
+
+            if (ServiceProvider?.GetService<IAppDbContext>() == null)
+            {
+                return;
+            }
+
+            var dbContext = ServiceProvider.GetService<IAppDbContext>();
+            var categoryIds = dbContext!.Categories.Select(c => c.Id).ToList();
+            var paymentsWithCategory = dbContext.Payments.Include(p => p.Category).Where(p => p.Category != null).ToList();
+            foreach (var payment in paymentsWithCategory.Where(payment => categoryIds.Contains(payment.Category!.Id) is false))
+            {
+                payment.RemoveCategory();
+                Analytics.TrackEvent(nameof(FixCorruptPayments));
+            }
+
+            dbContext.SaveChangesAsync().GetAwaiter().GetResult();
+            settingsAdapter.AddOrUpdate(key: IS_CATEGORY_CLEANUP_EXECUTED_KEY_NAME, value: true);
         }
         catch (Exception ex)
         {
