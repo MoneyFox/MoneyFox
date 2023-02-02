@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.Views.Budget;
+namespace MoneyFox.Ui.Views.Budget.ModifyBudget;
 
 public partial class ModifyBudgetView
 {

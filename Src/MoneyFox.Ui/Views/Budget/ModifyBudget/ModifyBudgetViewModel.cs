@@ -1,15 +1,12 @@
-namespace MoneyFox.Ui.Views.Budget;
+namespace MoneyFox.Ui.Views.Budget.ModifyBudget;
 
-using System.Collections;
-using System.Collections.Immutable;
 using System.Collections.ObjectModel;
-using Categories;
-using Categories.CategorySelection;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.Common.Messages;
-using Core.Interfaces;
-using Domain.Aggregates.BudgetAggregate;
+using MoneyFox.Core.Common.Messages;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Domain.Aggregates.BudgetAggregate;
+using MoneyFox.Ui.Views.Categories.CategorySelection;
 
 internal abstract class ModifyBudgetViewModel : BasePageViewModel, IRecipient<CategorySelectedMessage>
 {

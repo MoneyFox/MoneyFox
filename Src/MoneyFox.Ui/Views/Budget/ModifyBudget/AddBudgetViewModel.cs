@@ -1,11 +1,11 @@
-namespace MoneyFox.Ui.Views.Budget;
+namespace MoneyFox.Ui.Views.Budget.ModifyBudget;
 
 using CommunityToolkit.Mvvm.Messaging;
-using Core.Common.Interfaces;
-using Core.Common.Messages;
-using Core.Features.BudgetCreation;
-using Core.Interfaces;
 using MediatR;
+using MoneyFox.Core.Common.Interfaces;
+using MoneyFox.Core.Common.Messages;
+using MoneyFox.Core.Features.BudgetCreation;
+using MoneyFox.Core.Interfaces;
 
 internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
 {

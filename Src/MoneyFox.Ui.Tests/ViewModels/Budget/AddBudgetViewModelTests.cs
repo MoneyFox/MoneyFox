@@ -10,6 +10,7 @@ using FluentAssertions;
 using MediatR;
 using NSubstitute;
 using Views.Budget;
+using Views.Budget.ModifyBudget;
 using Views.Categories;
 using Views.Categories.CategorySelection;
 using Xunit;

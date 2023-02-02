@@ -1,17 +1,17 @@
-namespace MoneyFox.Ui.Views.Budget;
+namespace MoneyFox.Ui.Views.Budget.ModifyBudget;
 
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.Common.Extensions;
-using Core.Common.Interfaces;
-using Core.Common.Messages;
-using Core.Features.BudgetDeletion;
-using Core.Features.BudgetUpdate;
-using Core.Interfaces;
-using Core.Queries.BudgetEntryLoading;
-using Domain.Aggregates.BudgetAggregate;
 using MediatR;
-using Resources.Strings;
+using MoneyFox.Core.Common.Extensions;
+using MoneyFox.Core.Common.Interfaces;
+using MoneyFox.Core.Common.Messages;
+using MoneyFox.Core.Features.BudgetDeletion;
+using MoneyFox.Core.Features.BudgetUpdate;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.Queries.BudgetEntryLoading;
+using MoneyFox.Domain.Aggregates.BudgetAggregate;
+using MoneyFox.Ui.Resources.Strings;
 
 internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
 {
