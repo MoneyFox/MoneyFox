@@ -64,7 +64,7 @@ public abstract partial class ModifyAccountViewModel : BasePageViewModel
 
         await dialogService.ShowLoadingDialogAsync(Translations.SavingAccountMessage);
         await SaveAccountAsync();
-        Messenger.Send(new ReloadMessage());
+        Messenger.Send(new AccountsChangedMessage());
         await dialogService.HideLoadingDialogAsync();
         await navigationService.GoBackFromModalAsync();
     }

@@ -12,7 +12,7 @@ using MediatR;
 using Messages;
 using Resources.Strings;
 
-internal sealed class AccountListViewModel : BasePageViewModel, IRecipient<ReloadMessage>
+internal sealed class AccountListViewModel : BasePageViewModel, IRecipient<AccountsChangedMessage>
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
@@ -51,7 +51,7 @@ internal sealed class AccountListViewModel : BasePageViewModel, IRecipient<Reloa
 
     public AsyncRelayCommand<AccountViewModel> DeleteAccountCommand => new(async avm => await DeleteAccountAsync(avm));
 
-    public async void Receive(ReloadMessage message)
+    public async void Receive(AccountsChangedMessage message)
     {
         await InitializeAsync();
     }
