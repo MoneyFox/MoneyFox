@@ -24,13 +24,7 @@ public class UpdateCategoryCommandTests : InMemoryTestBase
 
         // Act
         account.Change("foo");
-        await handler.Handle(
-            command: new(
-                Id: account.Id,
-                Name: account.Name,
-                Note: account.Note,
-                IsExcluded: account.IsExcluded),
-            cancellationToken: default);
+        await handler.Handle(command: new(Id: account.Id, Name: account.Name, Note: account.Note, IsExcluded: account.IsExcluded), cancellationToken: default);
         var loadedAccount = await Context.Accounts.SingleAsync(a => a.Id == account.Id);
 
         // Assert

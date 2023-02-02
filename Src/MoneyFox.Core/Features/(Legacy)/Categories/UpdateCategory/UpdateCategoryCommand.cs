@@ -1,6 +1,5 @@
 namespace MoneyFox.Core.Features._Legacy_.Categories.UpdateCategory;
 
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Common.Interfaces;
@@ -9,11 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 public static class UpdateCategory
 {
-    public record Command(
-    int Id,
-    string Name,
-    string? Note,
-    bool RequireNote) : IRequest;
+    public record Command(int Id, string Name, string? Note, bool RequireNote) : IRequest;
 
     public class Handler : IRequestHandler<Command>
     {
@@ -28,7 +23,6 @@ public static class UpdateCategory
         {
             var existingCategory = await appDbContext.Categories.SingleAsync(predicate: b => b.Id == command.Id, cancellationToken: cancellationToken);
             existingCategory.UpdateData(name: command.Name, note: command.Note ?? "", requireNote: command.RequireNote);
-
             await appDbContext.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;

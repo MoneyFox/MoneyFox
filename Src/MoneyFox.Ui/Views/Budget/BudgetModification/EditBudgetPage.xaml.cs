@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.Views.Budget;
+namespace MoneyFox.Ui.Views.Budget.BudgetModification;
 
 [QueryProperty(name: "BudgetId", queryId: "budgetId")]
 public partial class EditBudgetPage

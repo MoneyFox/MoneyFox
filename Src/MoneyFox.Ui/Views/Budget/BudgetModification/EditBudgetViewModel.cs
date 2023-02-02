@@ -1,16 +1,16 @@
-namespace MoneyFox.Ui.Views.Budget;
+namespace MoneyFox.Ui.Views.Budget.BudgetModification;
 
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;
 using Core.Common.Interfaces;
-using Core.Common.Messages;
 using Core.Features.BudgetDeletion;
 using Core.Features.BudgetUpdate;
 using Core.Interfaces;
 using Core.Queries.BudgetEntryLoading;
 using Domain.Aggregates.BudgetAggregate;
 using MediatR;
+using Messages;
 using Resources.Strings;
 
 internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
@@ -73,7 +73,7 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
             categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
 
         _ = await sender.Send(command);
-        _ = Messenger.Send(new ReloadMessage());
+        _ = Messenger.Send(new BudgetsChangedMessage());
         await navigationService.GoBackFromModalAsync();
     }
 }

@@ -1,15 +1,12 @@
-namespace MoneyFox.Ui.Views.Budget;
+namespace MoneyFox.Ui.Views.Budget.BudgetModification;
 
-using System.Collections;
-using System.Collections.Immutable;
 using System.Collections.ObjectModel;
-using Categories;
 using Categories.CategorySelection;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.Common.Messages;
 using Core.Interfaces;
 using Domain.Aggregates.BudgetAggregate;
+using Messages;
 
 internal abstract class ModifyBudgetViewModel : BasePageViewModel, IRecipient<CategorySelectedMessage>
 {
@@ -54,12 +51,14 @@ internal abstract class ModifyBudgetViewModel : BasePageViewModel, IRecipient<Ca
     public bool IsValid => string.IsNullOrEmpty(Name) is false && SpendingLimit > 0;
 
     public static List<BudgetTimeRange> TimeRangeCollection
-        => new (){
+        => new()
+        {
             BudgetTimeRange.YearToDate,
             BudgetTimeRange.Last1Year,
             BudgetTimeRange.Last2Years,
             BudgetTimeRange.Last3Years,
-            BudgetTimeRange.Last5Years};
+            BudgetTimeRange.Last5Years
+        };
 
     public ObservableCollection<BudgetCategoryViewModel> SelectedCategories { get; set; } = new();
 
