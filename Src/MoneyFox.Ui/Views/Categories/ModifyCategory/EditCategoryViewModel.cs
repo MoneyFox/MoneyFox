@@ -68,7 +68,7 @@ public partial class EditCategoryViewModel : ModifyCategoryViewModel
                     positiveButtonText: Translations.RemoveLabel,
                     negativeButtonText: Translations.CancelLabel))
             {
-                await mediator.Send(new DeleteCategoryByIdCommand(SelectedCategory.Id));
+                await mediator.Send(new DeleteCategoryById.Command(SelectedCategory.Id));
                 await navigationService.GoBackFromModalAsync();
             }
         }

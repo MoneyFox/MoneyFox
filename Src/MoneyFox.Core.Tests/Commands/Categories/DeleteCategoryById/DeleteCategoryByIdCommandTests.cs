@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 public class DeleteCategoryByIdCommandTests : InMemoryTestBase
 {
-    private readonly DeleteCategoryByIdCommand.Handler handler;
+    private readonly DeleteCategoryById.Handler handler;
 
     public DeleteCategoryByIdCommandTests()
     {

@@ -7,16 +7,11 @@ using Common.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-public class DeleteCategoryByIdCommand : IRequest
+public static class DeleteCategoryById
 {
-    public DeleteCategoryByIdCommand(int categoryId)
-    {
-        CategoryId = categoryId;
-    }
+    public record Command(int CategoryId) : IRequest;
 
-    public int CategoryId { get; }
-
-    public class Handler : IRequestHandler<DeleteCategoryByIdCommand>
+    public class Handler : IRequestHandler<Command>
     {
         private readonly IAppDbContext dbContext;
 
@@ -25,7 +20,7 @@ public class DeleteCategoryByIdCommand : IRequest
             this.dbContext = dbContext;
         }
 
-        public async Task<Unit> Handle(DeleteCategoryByIdCommand command, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(Command command, CancellationToken cancellationToken)
         {
             var paymentsWithCategory = await dbContext.Payments.Include(p => p.Category)
                 .Where(p => p.Category != null)
@@ -33,7 +28,6 @@ public class DeleteCategoryByIdCommand : IRequest
                 .ToListAsync(cancellationToken);
 
             paymentsWithCategory.ForEach(p => p.RemoveCategory());
-
             var entityToDelete = await dbContext.Categories.FindAsync(command.CategoryId);
             if (entityToDelete is null)
             {
