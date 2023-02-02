@@ -6,8 +6,7 @@ using Core.Interfaces;
 using Plugin.StoreReview;
 using Resources.Strings;
 
-// ReSharper disable once PartialTypeWithSinglePart
-public partial class AboutViewModel : BasePageViewModel
+public class AboutViewModel : BasePageViewModel
 {
     private const string SUPPORT_MAIL = "mobile.support@apply-solutions.ch";
     private static readonly Uri projectUri = new("https://github.com/MoneyFox/MoneyFox");
@@ -29,13 +28,20 @@ public partial class AboutViewModel : BasePageViewModel
 
     public static string Version => AppInfo.VersionString;
 
-    [RelayCommand]
+    public AsyncRelayCommand GoToWebsiteCommand => new(GoToWebsiteAsync);
+    public AsyncRelayCommand SendMailCommand => new(SendMailAsync);
+    public AsyncRelayCommand RateAppCommand => new(RateAppAsync);
+    public AsyncRelayCommand GoToRepositoryCommand => new(GoToRepositoryAsync);
+    public AsyncRelayCommand GoToTranslationProjectCommand => new(GoToTranslationProjectAsync);
+    public AsyncRelayCommand GoToDesignerTwitterAccountCommand => new(GoToDesignerTwitterAccountAsync);
+    public AsyncRelayCommand GoToContributionPageCommand => new(GoToContributionPageAsync);
+    public AsyncRelayCommand OpenLogFileCommand => new(OpenLogFile);
+
     private async Task GoToWebsiteAsync()
     {
         await browserAdapter.OpenWebsiteAsync(websiteUri);
     }
 
-    [RelayCommand]
     private async Task SendMailAsync()
     {
         try
@@ -53,37 +59,32 @@ public partial class AboutViewModel : BasePageViewModel
         }
     }
 
-    [RelayCommand]
-    private async Task RateApp()
+    private async Task RateAppAsync()
     {
         await CrossStoreReview.Current.RequestReview(false);
     }
 
-    [RelayCommand]
     private async Task GoToRepositoryAsync()
     {
         await browserAdapter.OpenWebsiteAsync(projectUri);
     }
 
-    [RelayCommand]
+
     private async Task GoToTranslationProjectAsync()
     {
         await browserAdapter.OpenWebsiteAsync(translationUri);
     }
 
-    [RelayCommand]
     private async Task GoToDesignerTwitterAccountAsync()
     {
         await browserAdapter.OpenWebsiteAsync(iconDesignerUrl);
     }
 
-    [RelayCommand]
     private async Task GoToContributionPageAsync()
     {
         await browserAdapter.OpenWebsiteAsync(contributorUrl);
     }
 
-    [RelayCommand]
     private async Task OpenLogFile()
     {
         var latestLogFile = LogFileService.GetLatestLogFileInfo();

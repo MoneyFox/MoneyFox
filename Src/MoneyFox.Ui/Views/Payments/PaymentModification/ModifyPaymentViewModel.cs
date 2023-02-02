@@ -15,7 +15,7 @@ using Microsoft.AppCenter.Crashes;
 using Resources.Strings;
 using Serilog;
 
-public abstract partial class ModifyPaymentViewModel : BasePageViewModel, IRecipient<CategorySelectedMessage>
+public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<CategorySelectedMessage>
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
@@ -109,8 +109,9 @@ public abstract partial class ModifyPaymentViewModel : BasePageViewModel, IRecip
 
     protected abstract Task SavePaymentAsync();
 
-    [RelayCommand]
-    private async Task Save()
+    public AsyncRelayCommand SaveCommand => new(SaveAsync);
+
+    private async Task SaveAsync()
     {
         if (SelectedPayment.ChargedAccount == null)
         {
