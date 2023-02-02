@@ -4,8 +4,8 @@ using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
+using Messages;
 using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Common.Messages;
 
 internal sealed class CategorySelectionViewModel : CategoryListViewModel
 {

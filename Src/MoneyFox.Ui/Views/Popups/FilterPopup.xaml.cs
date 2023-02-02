@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui.Views.Popups;
 
-using Core.Common.Messages;
 using Payments;
 
 public partial class FilterPopup

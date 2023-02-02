@@ -6,10 +6,10 @@ using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
-using Core.Common.Messages;
 using Core.Features._Legacy_.Accounts.DeleteAccountById;
 using Core.Queries;
 using MediatR;
+using Messages;
 using Resources.Strings;
 
 internal sealed class AccountListViewModel : BasePageViewModel, IRecipient<ReloadMessage>

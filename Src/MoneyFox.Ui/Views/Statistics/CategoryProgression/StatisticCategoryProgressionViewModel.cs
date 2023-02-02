@@ -5,7 +5,6 @@ using AutoMapper;
 using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.Common.Messages;
 using Core.Queries;
 using Core.Queries.Statistics;
 using LiveChartsCore;
@@ -13,6 +12,7 @@ using LiveChartsCore.Kernel.Sketches;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using MediatR;
+using Messages;
 using SkiaSharp;
 
 internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel, IRecipient<CategorySelectedMessage>

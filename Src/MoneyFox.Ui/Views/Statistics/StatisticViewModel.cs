@@ -4,9 +4,9 @@ using System.Globalization;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;
-using Core.Common.Messages;
 using LiveChartsCore.SkiaSharpView.Painting;
 using MediatR;
+using Messages;
 using Resources.Strings;
 using SkiaSharp;
 

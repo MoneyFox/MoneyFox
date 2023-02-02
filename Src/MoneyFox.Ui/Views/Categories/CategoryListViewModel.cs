@@ -7,10 +7,10 @@ using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
-using Core.Common.Messages;
 using Core.Features._Legacy_.Categories.DeleteCategoryById;
 using Core.Queries;
 using MediatR;
+using Messages;
 using Resources.Strings;
 
 // ReSharper disable once PartialTypeWithSinglePart

@@ -8,11 +8,11 @@ using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Helpers;
-using Core.Common.Messages;
 using Core.Queries;
 using Core.Queries.GetPaymentsForAccountIdQuery;
 using Domain.Aggregates.AccountAggregate;
 using MediatR;
+using Messages;
 using Resources.Strings;
 
 internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<ReloadMessage>, IRecipient<PaymentListFilterChangedMessage>

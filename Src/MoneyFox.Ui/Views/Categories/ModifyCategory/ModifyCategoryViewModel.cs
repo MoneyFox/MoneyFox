@@ -3,9 +3,9 @@ namespace MoneyFox.Ui.Views.Categories.ModifyCategory;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
-using Core.Common.Messages;
 using Core.Queries;
 using MediatR;
+using Messages;
 using Resources.Strings;
 
 public abstract class ModifyCategoryViewModel : BasePageViewModel

@@ -3,10 +3,10 @@ namespace MoneyFox.Ui.Views.Accounts;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
-using Core.Common.Messages;
 using Core.Interfaces;
 using Core.Queries;
 using MediatR;
+using Messages;
 using Resources.Strings;
 
 // ReSharper disable once PartialTypeWithSinglePart

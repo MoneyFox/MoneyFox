@@ -5,9 +5,9 @@ using Accounts;
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.Common.Messages;
 using Core.Queries;
 using MediatR;
+using Messages;
 
 internal class DashboardViewModel : BasePageViewModel, IRecipient<ReloadMessage>
 {

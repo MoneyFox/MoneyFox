@@ -2,7 +2,6 @@ namespace MoneyFox.Ui.Views.Budget.ModifyBudget;
 
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
-using MoneyFox.Core.Common.Messages;
 using MoneyFox.Core.Features.BudgetCreation;
 using MoneyFox.Core.Interfaces;
 
