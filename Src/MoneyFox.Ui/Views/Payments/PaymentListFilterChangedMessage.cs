@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Ui.Views.Payments;
 
-using System;
-using MoneyFox.Domain.Aggregates.AccountAggregate;
+using Domain.Aggregates.AccountAggregate;
 
 /// <summary>
 ///     Used to notify the payment list that a filter changed.

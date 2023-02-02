@@ -28,6 +28,11 @@ public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<BudgetsC
 
     public AsyncRelayCommand<BudgetListItemViewModel> EditBudgetCommand => new(EditBudgetAsync);
 
+    public async void Receive(BudgetsChangedMessage message)
+    {
+        await Initialize();
+    }
+
     private async Task Initialize()
     {
         var budgetsListData = await sender.Send(new LoadBudgetListData.Query());
@@ -45,11 +50,6 @@ public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<BudgetsC
 
         OnPropertyChanged(nameof(BudgetedAmount));
         OnPropertyChanged(nameof(HasBudgets));
-    }
-
-    public async void Receive(BudgetsChangedMessage message)
-    {
-        await Initialize();
     }
 
     private static async Task GoToAddBudget()

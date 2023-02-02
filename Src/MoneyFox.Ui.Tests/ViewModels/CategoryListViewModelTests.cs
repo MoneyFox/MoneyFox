@@ -12,9 +12,9 @@ using Xunit;
 
 public class CategoryListViewModelTests
 {
-    private readonly CategoryListViewModel viewModel;
     private readonly IMapper mapper;
     private readonly IMediator mediator;
+    private readonly CategoryListViewModel viewModel;
 
     public CategoryListViewModelTests()
     {

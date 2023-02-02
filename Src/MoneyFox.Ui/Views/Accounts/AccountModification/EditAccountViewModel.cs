@@ -2,13 +2,13 @@ namespace MoneyFox.Ui.Views.Accounts.AccountModification;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
+using Core.Common.Interfaces;
+using Core.Features._Legacy_.Accounts.DeleteAccountById;
+using Core.Features._Legacy_.Accounts.UpdateAccount;
+using Core.Interfaces;
+using Core.Queries;
 using MediatR;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Features._Legacy_.Accounts.DeleteAccountById;
-using MoneyFox.Core.Features._Legacy_.Accounts.UpdateAccount;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Core.Queries;
-using MoneyFox.Ui.Resources.Strings;
+using Resources.Strings;
 
 // ReSharper disable once PartialTypeWithSinglePart
 public partial class EditAccountViewModel : ModifyAccountViewModel

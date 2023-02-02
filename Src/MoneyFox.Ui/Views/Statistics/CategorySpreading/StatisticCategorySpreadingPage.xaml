@@ -5,7 +5,6 @@
     xmlns:maui="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:views="clr-namespace:MoneyFox.Ui.Views"
-    xmlns:statistics="clr-namespace:MoneyFox.Ui.Views.Statistics"
     xmlns:categorySpreading="clr-namespace:MoneyFox.Ui.Views.Statistics.CategorySpreading"
     x:Class="MoneyFox.Ui.Views.Statistics.CategorySpreading.StatisticCategorySpreadingPage"
     Title="{x:Static resources:Translations.CategorySpreadingTitle}">

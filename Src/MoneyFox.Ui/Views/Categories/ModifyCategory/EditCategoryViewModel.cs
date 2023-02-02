@@ -7,7 +7,6 @@ using Core.Features._Legacy_.Categories.DeleteCategoryById;
 using Core.Features._Legacy_.Categories.UpdateCategory;
 using Core.Interfaces;
 using Core.Queries;
-using Domain.Aggregates.CategoryAggregate;
 using MediatR;
 using Resources.Strings;
 

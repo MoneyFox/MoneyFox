@@ -29,7 +29,6 @@ using Views.Statistics.CategorySpreading;
 using Views.Statistics.CategorySummary;
 using Views.Statistics.MonthlyAccountCashFlow;
 using Views.Statistics.Selector;
-using EditAccountViewModel = Views.Accounts.AccountModification.EditAccountViewModel;
 
 public sealed class MoneyFoxConfig
 {

@@ -75,10 +75,9 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Reloa
     public AsyncRelayCommand<PaymentViewModel> GoToEditPaymentCommand
         => new(async pvm => await Shell.Current.GoToAsync($"{Routes.EditPaymentRoute}?paymentId={pvm.Id}"));
 
-    public async Task InitializeAsync(int accountId)
+    public async void Receive(PaymentListFilterChangedMessage message)
     {
-        SelectedAccount = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
-        await LoadPaymentsByMessageAsync(new());
+        await LoadPaymentsByMessageAsync(message);
     }
 
     public async void Receive(ReloadMessage message)
@@ -86,9 +85,10 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Reloa
         await InitializeAsync(SelectedAccount.Id);
     }
 
-    public async void Receive(PaymentListFilterChangedMessage message)
+    public async Task InitializeAsync(int accountId)
     {
-        await LoadPaymentsByMessageAsync(message);
+        SelectedAccount = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
+        await LoadPaymentsByMessageAsync(new());
     }
 
     private async Task LoadPaymentsByMessageAsync(PaymentListFilterChangedMessage message)

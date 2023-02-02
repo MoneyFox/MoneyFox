@@ -10,7 +10,6 @@ using Core.Common.Interfaces;
 using Core.Features._Legacy_.Categories.DeleteCategoryById;
 using Core.Queries;
 using MediatR;
-using Messages;
 using Resources.Strings;
 
 // ReSharper disable once PartialTypeWithSinglePart

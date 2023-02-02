@@ -5,7 +5,6 @@ using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
 using Core.Queries;
 using MediatR;
-using Messages;
 using Resources.Strings;
 
 public abstract class ModifyCategoryViewModel : BasePageViewModel
@@ -45,7 +44,7 @@ public abstract class ModifyCategoryViewModel : BasePageViewModel
             return;
         }
 
-        if (await mediator.Send(new GetIfCategoryWithNameExistsQuery(SelectedCategory.Name, SelectedCategory.Id)))
+        if (await mediator.Send(new GetIfCategoryWithNameExistsQuery(categoryName: SelectedCategory.Name, categoryId: SelectedCategory.Id)))
         {
             await dialogService.ShowMessageAsync(title: Translations.DuplicatedNameTitle, message: Translations.DuplicateCategoryMessage);
 

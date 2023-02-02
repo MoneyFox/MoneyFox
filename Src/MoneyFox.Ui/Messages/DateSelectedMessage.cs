@@ -1,7 +1,5 @@
 ﻿namespace MoneyFox.Ui.Messages;
 
-using System;
-
 public class DateSelectedMessage
 {
     public DateSelectedMessage(DateTime startDate, DateTime endDate)

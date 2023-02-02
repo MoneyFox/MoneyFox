@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Common.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.Domain.Aggregates.CategoryAggregate;
 
 public class GetIfCategoryWithNameExistsQuery : IRequest<bool>
 {
@@ -29,8 +28,9 @@ public class GetIfCategoryWithNameExistsQuery : IRequest<bool>
 
         public async Task<bool> Handle(GetIfCategoryWithNameExistsQuery request, CancellationToken cancellationToken)
         {
-            return await context.Categories.AnyAsync(predicate: x => x.Name == request.CategoryName && x.Id != request.CategoryId, cancellationToken: cancellationToken);
-
+            return await context.Categories.AnyAsync(
+                predicate: x => x.Name == request.CategoryName && x.Id != request.CategoryId,
+                cancellationToken: cancellationToken);
         }
     }
 }
