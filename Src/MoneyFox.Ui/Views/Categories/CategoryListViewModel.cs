@@ -13,8 +13,7 @@ using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-// ReSharper disable once PartialTypeWithSinglePart
-public partial class CategoryListViewModel : BasePageViewModel, IRecipient<ReloadMessage>
+public class CategoryListViewModel : BasePageViewModel, IRecipient<ReloadMessage>
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
@@ -46,6 +45,9 @@ public partial class CategoryListViewModel : BasePageViewModel, IRecipient<Reloa
     public AsyncRelayCommand<CategoryListItemViewModel> GoToEditCategoryCommand
         => new(async cvm => await Shell.Current.GoToAsync($"{Routes.EditCategoryRoute}?categoryId={cvm.Id}"));
 
+    public AsyncRelayCommand<string> SearchCategoryCommand => new(async s => await SearchCategoryAsync(s ?? string.Empty));
+    public AsyncRelayCommand<CategoryListItemViewModel> DeleteCategoryCommand => new(async vm => await DeleteCategoryAsync(vm));
+
     public async void Receive(ReloadMessage message)
     {
         await SearchCategoryAsync();
@@ -56,7 +58,6 @@ public partial class CategoryListViewModel : BasePageViewModel, IRecipient<Reloa
         await SearchCategoryAsync();
     }
 
-    [RelayCommand]
     private async Task SearchCategoryAsync(string searchTerm = "")
     {
         var categoryVms = mapper.Map<List<CategoryListItemViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery(searchTerm)));
@@ -68,9 +69,13 @@ public partial class CategoryListViewModel : BasePageViewModel, IRecipient<Reloa
         Categories = new(groups);
     }
 
-    [RelayCommand]
-    private async Task DeleteCategoryAsync(CategoryListItemViewModel categoryListItemViewModel)
+    private async Task DeleteCategoryAsync(CategoryListItemViewModel? categoryListItemViewModel)
     {
+        if (categoryListItemViewModel == null)
+        {
+            return;
+        }
+
         if (await dialogService.ShowConfirmMessageAsync(
                 title: Translations.DeleteTitle,
                 message: Translations.DeleteCategoryConfirmationMessage,
