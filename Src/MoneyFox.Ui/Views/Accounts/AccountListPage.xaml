@@ -6,6 +6,7 @@
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:accounts="clr-namespace:MoneyFox.Ui.Views.Accounts"
+    x:DataType="accounts:AccountListViewModel"
     Title="{x:Static resources:Translations.AccountsTitle}">
 
     <ContentPage.Resources>
@@ -14,7 +15,7 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <Grid IsClippedToBounds="False" RowDefinitions="40, *">
+        <VerticalStackLayout IsClippedToBounds="False">
             <Button
                 Margin="0,0,12,0"
                 HorizontalOptions="End"
@@ -23,23 +24,9 @@
                 Command="{Binding GoToAddAccountCommand}" />
 
             <CollectionView
-                x:Name="AccountCollectionView"
-                Grid.Row="1"
                 IsGrouped="true"
                 ItemsSource="{Binding Accounts}">
-
-                <CollectionView.GroupHeaderTemplate>
-                    <DataTemplate>
-                        <Label
-                            Margin="15"
-                            Padding="15,0,0,0"
-                            FontFamily="Product"
-                            FontSize="18"
-                            Text="{Binding Key}"
-                            VerticalTextAlignment="End" />
-                    </DataTemplate>
-                </CollectionView.GroupHeaderTemplate>
-
+                
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="accounts:AccountViewModel">
                         <Grid Padding="15,6,15,12">
@@ -123,6 +110,6 @@
                     </Grid>
                 </CollectionView.EmptyView>
             </CollectionView>
-        </Grid>
+        </VerticalStackLayout>
     </ContentPage.Content>
 </ContentPage>
