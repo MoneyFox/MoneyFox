@@ -16,8 +16,6 @@ public interface ISettingsFacade
 
     bool IsSetupCompleted { get; set; }
 
-    int CategorySpreadingNumber { get; set; }
-
     DateTime LastExecutionTimeStampSyncBackup { get; set; }
 }
 
@@ -38,8 +36,6 @@ public class SettingsFacade : ISettingsFacade
     private const string IS_SETUP_COMPLETED_KEY_NAME = "IsSetupCompleted";
     private const bool IS_SETUP_COMPLETED_KEY_DEFAULT = false;
 
-    private const string CATEGORY_SPREADING_NUMBER_KEY_NAME = "CategorySpreadingNumber";
-    private const int CATEGORY_SPREADING_NUMBER_DEFAULT = 6;
     private readonly string defaultCultureKeyDefault = CultureInfo.CurrentCulture.Name;
 
     private readonly ISettingsAdapter settingsAdapter;
@@ -97,11 +93,5 @@ public class SettingsFacade : ISettingsFacade
     {
         get => settingsAdapter.GetValue(key: IS_SETUP_COMPLETED_KEY_NAME, defaultValue: IS_SETUP_COMPLETED_KEY_DEFAULT);
         set => settingsAdapter.AddOrUpdate(key: IS_SETUP_COMPLETED_KEY_NAME, value: value);
-    }
-
-    public int CategorySpreadingNumber
-    {
-        get => settingsAdapter.GetValue(key: CATEGORY_SPREADING_NUMBER_KEY_NAME, defaultValue: CATEGORY_SPREADING_NUMBER_DEFAULT);
-        set => settingsAdapter.AddOrUpdate(key: CATEGORY_SPREADING_NUMBER_KEY_NAME, value: value);
     }
 }
