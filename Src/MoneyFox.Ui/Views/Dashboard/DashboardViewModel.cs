@@ -5,14 +5,12 @@ using Accounts;
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.Common.Interfaces;
 using Core.Common.Messages;
 using Core.Queries;
 using MediatR;
 
 internal class DashboardViewModel : BasePageViewModel, IRecipient<ReloadMessage>
 {
-    private readonly IDialogService dialogService;
     private readonly IMapper mapper;
 
     private readonly IMediator mediator;
@@ -27,11 +25,10 @@ internal class DashboardViewModel : BasePageViewModel, IRecipient<ReloadMessage>
     private decimal monthlyExpenses;
     private decimal monthlyIncomes;
 
-    public DashboardViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService)
+    public DashboardViewModel(IMediator mediator, IMapper mapper)
     {
         this.mediator = mediator;
         this.mapper = mapper;
-        this.dialogService = dialogService;
     }
 
     public decimal Assets
