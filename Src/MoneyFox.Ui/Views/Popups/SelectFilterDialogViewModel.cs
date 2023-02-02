@@ -18,7 +18,7 @@ public interface ISelectFilterDialogViewModel
     DateTime TimeRangeEnd { get; set; }
 }
 
-internal sealed class SelectFilterDialogViewModel : BaseViewModel, ISelectFilterDialogViewModel
+internal sealed class SelectFilterDialogViewModel : BasePageViewModel, ISelectFilterDialogViewModel
 {
     private PaymentTypeFilter filteredPaymentType = PaymentTypeFilter.All;
     private bool isClearedFilterActive;

@@ -11,7 +11,7 @@ using MediatR;
 using Payments;
 using Resources.Strings;
 
-internal sealed class PaymentForCategoryListViewModel : BaseViewModel, IRecipient<PaymentsForCategoryMessage>
+internal sealed class PaymentForCategoryListViewModel : BasePageViewModel, IRecipient<PaymentsForCategoryMessage>
 {
     private readonly IMapper mapper;
 

@@ -10,7 +10,7 @@ using MediatR;
 using Resources.Strings;
 
 // ReSharper disable once PartialTypeWithSinglePart
-public abstract partial class ModifyAccountViewModel : BaseViewModel
+public abstract partial class ModifyAccountViewModel : BasePageViewModel
 {
     private readonly IDialogService dialogService;
     private readonly INavigationService navigationService;

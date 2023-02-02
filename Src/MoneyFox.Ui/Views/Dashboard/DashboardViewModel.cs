@@ -10,7 +10,7 @@ using Core.Common.Messages;
 using Core.Queries;
 using MediatR;
 
-internal class DashboardViewModel : BaseViewModel
+internal class DashboardViewModel : BasePageViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;

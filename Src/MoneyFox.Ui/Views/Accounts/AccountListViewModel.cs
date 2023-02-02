@@ -12,7 +12,7 @@ using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-internal sealed class AccountListViewModel : BaseViewModel
+internal sealed class AccountListViewModel : BasePageViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;

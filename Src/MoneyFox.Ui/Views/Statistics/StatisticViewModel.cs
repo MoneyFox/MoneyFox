@@ -10,7 +10,7 @@ using MediatR;
 using Resources.Strings;
 using SkiaSharp;
 
-internal abstract class StatisticViewModel : BaseViewModel, IRecipient<DateSelectedMessage>
+internal abstract class StatisticViewModel : BasePageViewModel, IRecipient<DateSelectedMessage>
 {
     protected readonly IMediator Mediator;
     private DateTime endDate;
@@ -26,7 +26,6 @@ internal abstract class StatisticViewModel : BaseViewModel, IRecipient<DateSelec
         StartDate = startDate;
         EndDate = endDate;
         Mediator = mediator;
-        IsActive = true;
 
         // If Application.Current is null, application is running in the context of a unit test
         if (Application.Current is not null)

@@ -55,7 +55,7 @@ public partial class App
         }
     }
 
-    internal static TViewModel GetViewModel<TViewModel>() where TViewModel : BaseViewModel
+    internal static TViewModel GetViewModel<TViewModel>() where TViewModel : BasePageViewModel
     {
         return ServiceProvider?.GetService<TViewModel>() ?? throw new ResolveViewModelException<TViewModel>();
     }

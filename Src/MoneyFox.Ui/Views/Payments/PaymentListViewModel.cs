@@ -15,7 +15,7 @@ using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Resources.Strings;
 
-internal sealed class PaymentListViewModel : BaseViewModel
+internal sealed class PaymentListViewModel : BasePageViewModel
 {
     private readonly IMapper mapper;
 

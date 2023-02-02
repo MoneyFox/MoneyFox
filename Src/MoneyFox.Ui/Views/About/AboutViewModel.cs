@@ -7,7 +7,7 @@ using Plugin.StoreReview;
 using Resources.Strings;
 
 // ReSharper disable once PartialTypeWithSinglePart
-public partial class AboutViewModel : BaseViewModel
+public partial class AboutViewModel : BasePageViewModel
 {
     private const string SUPPORT_MAIL = "mobile.support@apply-solutions.ch";
     private static readonly Uri projectUri = new("https://github.com/MoneyFox/MoneyFox");

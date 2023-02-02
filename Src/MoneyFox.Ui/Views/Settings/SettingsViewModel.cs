@@ -7,7 +7,7 @@ using Core.Common.Helpers;
 using Core.Common.Interfaces;
 using Serilog;
 
-internal sealed class SettingsViewModel : BaseViewModel
+internal sealed class SettingsViewModel : BasePageViewModel
 {
     private readonly IDialogService dialogService;
     private readonly ISettingsFacade settingsFacade;

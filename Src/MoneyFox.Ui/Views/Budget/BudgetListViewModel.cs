@@ -8,7 +8,7 @@ using Core.Common.Messages;
 using Core.Queries.BudgetListLoading;
 using MediatR;
 
-public sealed class BudgetListViewModel : BaseViewModel, IRecipient<ReloadMessage>
+public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<ReloadMessage>
 {
     private readonly ISender sender;
 

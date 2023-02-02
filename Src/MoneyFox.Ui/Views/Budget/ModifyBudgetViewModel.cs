@@ -11,7 +11,7 @@ using Core.Common.Messages;
 using Core.Interfaces;
 using Domain.Aggregates.BudgetAggregate;
 
-internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<CategorySelectedMessage>
+internal abstract class ModifyBudgetViewModel : BasePageViewModel, IRecipient<CategorySelectedMessage>
 {
     private readonly INavigationService navigationService;
     private string name = null!;
