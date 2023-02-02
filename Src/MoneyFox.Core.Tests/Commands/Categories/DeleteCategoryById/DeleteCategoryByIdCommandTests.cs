@@ -2,6 +2,7 @@
 
 using Core.Features._Legacy_.Categories.DeleteCategoryById;
 using Domain.Aggregates.CategoryAggregate;
+using Domain.Tests.TestFramework;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,29 +19,27 @@ public class DeleteCategoryByIdCommandTests : InMemoryTestBase
     public async Task DeleteCategoryWithPassedId()
     {
         // Arrange
-        var category1 = new Category("test");
-        await Context.AddAsync(category1);
-        await Context.SaveChangesAsync();
+        var testCategory = new TestData.DefaultCategory();
+        Context.RegisterCategory(testCategory:testCategory);
 
         // Act
-        await handler.Handle(request: new(category1.Id), cancellationToken: default);
+        await handler.Handle(request: new(testCategory.Id), cancellationToken: default);
 
         // Assert
-        (await Context.Categories.FirstOrDefaultAsync(x => x.Id == category1.Id)).Should().BeNull();
+        (await Context.Categories.FirstOrDefaultAsync(x => x.Id == testCategory.Id)).Should().BeNull();
     }
 
     [Fact]
     public async Task DoesNothingWhenCategoryNotFound()
     {
         // Arrange
-        var category1 = new Category("test");
-        await Context.AddAsync(category1);
-        await Context.SaveChangesAsync();
+        var testCategory = new TestData.DefaultCategory();
+        Context.RegisterCategory(testCategory:testCategory);
 
         // Act
         await handler.Handle(request: new(99), cancellationToken: default);
 
         // Assert
-        (await Context.Categories.FirstOrDefaultAsync(x => x.Id == category1.Id)).Should().NotBeNull();
+        (await Context.Categories.FirstOrDefaultAsync(x => x.Id == testCategory.Id)).Should().NotBeNull();
     }
 }
