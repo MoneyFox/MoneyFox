@@ -23,24 +23,23 @@ public interface ISettingsFacade
 
 public class SettingsFacade : ISettingsFacade
 {
-    private const string AutoUploadBackupKeyName = "AutoUploadBackup";
-    private const bool AutoUploadBackupKeyDefault = false;
+    private const string AUTO_UPLOAD_BACKUP_KEY_NAME = "AutoUploadBackup";
+    private const bool AUTO_UPLOAD_BACKUP_KEY_DEFAULT = false;
 
-    private const string BackupLoggedInKeyName = "BackupLoggedIn";
-    private const bool BackupLoggedInKeyDefault = false;
+    private const string BACKUP_LOGGED_IN_KEY_NAME = "BackupLoggedIn";
+    private const bool BACKUP_LOGGED_IN_KEY_DEFAULT = false;
 
-    private const string LastExecutionTimeStampSyncBackupKeyName = "LastExecutionTimeStampSyncBackup";
-    private const string LastExecutionTimeStampSyncBackupKeyDefault = "";
+    private const string LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME = "LastExecutionTimeStampSyncBackup";
+    private const string LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_DEFAULT = "";
 
-    private const string DefaultCultureKeyName = "DefaultCulture";
+    private const string DEFAULT_CULTURE_KEY_NAME = "DefaultCulture";
+    private const string DATABASE_LAST_UPDATE_KEY_NAME = "DatabaseLastUpdate";
 
-    private const string DatabaseLastUpdateKeyName = "DatabaseLastUpdate";
+    private const string IS_SETUP_COMPLETED_KEY_NAME = "IsSetupCompleted";
+    private const bool IS_SETUP_COMPLETED_KEY_DEFAULT = false;
 
-    private const string IsSetupCompletedKeyName = "IsSetupCompleted";
-    private const bool IsSetupCompletedKeyDefault = false;
-
-    private const string CategorySpreadingNumberKeyName = "CategorySpreadingNumber";
-    private const int CategorySpreadingNumberDefault = 6;
+    private const string CATEGORY_SPREADING_NUMBER_KEY_NAME = "CategorySpreadingNumber";
+    private const int CATEGORY_SPREADING_NUMBER_DEFAULT = 6;
     private readonly string defaultCultureKeyDefault = CultureInfo.CurrentCulture.Name;
 
     private readonly ISettingsAdapter settingsAdapter;
@@ -52,57 +51,57 @@ public class SettingsFacade : ISettingsFacade
 
     public bool IsBackupAutoUploadEnabled
     {
-        get => settingsAdapter.GetValue(key: AutoUploadBackupKeyName, defaultValue: AutoUploadBackupKeyDefault);
-        set => settingsAdapter.AddOrUpdate(key: AutoUploadBackupKeyName, value: value);
+        get => settingsAdapter.GetValue(key: AUTO_UPLOAD_BACKUP_KEY_NAME, defaultValue: AUTO_UPLOAD_BACKUP_KEY_DEFAULT);
+        set => settingsAdapter.AddOrUpdate(key: AUTO_UPLOAD_BACKUP_KEY_NAME, value: value);
     }
 
     public DateTime LastDatabaseUpdate
     {
         get
         {
-            var dateString = settingsAdapter.GetValue(key: DatabaseLastUpdateKeyName, defaultValue: DateTime.MinValue.ToString(CultureInfo.InvariantCulture));
+            var dateString = settingsAdapter.GetValue(key: DATABASE_LAST_UPDATE_KEY_NAME, defaultValue: DateTime.MinValue.ToString(CultureInfo.InvariantCulture));
 
             return Convert.ToDateTime(value: dateString, provider: CultureInfo.InvariantCulture);
         }
 
-        set => settingsAdapter.AddOrUpdate(key: DatabaseLastUpdateKeyName, value: value.ToString(CultureInfo.InvariantCulture));
+        set => settingsAdapter.AddOrUpdate(key: DATABASE_LAST_UPDATE_KEY_NAME, value: value.ToString(CultureInfo.InvariantCulture));
     }
 
     public bool IsLoggedInToBackupService
     {
-        get => settingsAdapter.GetValue(key: BackupLoggedInKeyName, defaultValue: BackupLoggedInKeyDefault);
-        set => settingsAdapter.AddOrUpdate(key: BackupLoggedInKeyName, value: value);
+        get => settingsAdapter.GetValue(key: BACKUP_LOGGED_IN_KEY_NAME, defaultValue: BACKUP_LOGGED_IN_KEY_DEFAULT);
+        set => settingsAdapter.AddOrUpdate(key: BACKUP_LOGGED_IN_KEY_NAME, value: value);
     }
 
     public DateTime LastExecutionTimeStampSyncBackup
     {
         get
             => DateTime.TryParse(
-                s: settingsAdapter.GetValue(key: LastExecutionTimeStampSyncBackupKeyName, defaultValue: LastExecutionTimeStampSyncBackupKeyDefault),
+                s: settingsAdapter.GetValue(key: LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME, defaultValue: LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_DEFAULT),
                 provider: CultureInfo.InvariantCulture,
                 styles: DateTimeStyles.None,
                 result: out var outValue)
                 ? outValue
                 : DateTime.MinValue;
 
-        set => settingsAdapter.AddOrUpdate(key: LastExecutionTimeStampSyncBackupKeyName, value: value.ToString(CultureInfo.InvariantCulture));
+        set => settingsAdapter.AddOrUpdate(key: LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME, value: value.ToString(CultureInfo.InvariantCulture));
     }
 
     public string DefaultCulture
     {
-        get => settingsAdapter.GetValue(key: DefaultCultureKeyName, defaultValue: defaultCultureKeyDefault);
-        set => settingsAdapter.AddOrUpdate(key: DefaultCultureKeyName, value: value);
+        get => settingsAdapter.GetValue(key: DEFAULT_CULTURE_KEY_NAME, defaultValue: defaultCultureKeyDefault);
+        set => settingsAdapter.AddOrUpdate(key: DEFAULT_CULTURE_KEY_NAME, value: value);
     }
 
     public bool IsSetupCompleted
     {
-        get => settingsAdapter.GetValue(key: IsSetupCompletedKeyName, defaultValue: IsSetupCompletedKeyDefault);
-        set => settingsAdapter.AddOrUpdate(key: IsSetupCompletedKeyName, value: value);
+        get => settingsAdapter.GetValue(key: IS_SETUP_COMPLETED_KEY_NAME, defaultValue: IS_SETUP_COMPLETED_KEY_DEFAULT);
+        set => settingsAdapter.AddOrUpdate(key: IS_SETUP_COMPLETED_KEY_NAME, value: value);
     }
 
     public int CategorySpreadingNumber
     {
-        get => settingsAdapter.GetValue(key: CategorySpreadingNumberKeyName, defaultValue: CategorySpreadingNumberDefault);
-        set => settingsAdapter.AddOrUpdate(key: CategorySpreadingNumberKeyName, value: value);
+        get => settingsAdapter.GetValue(key: CATEGORY_SPREADING_NUMBER_KEY_NAME, defaultValue: CATEGORY_SPREADING_NUMBER_DEFAULT);
+        set => settingsAdapter.AddOrUpdate(key: CATEGORY_SPREADING_NUMBER_KEY_NAME, value: value);
     }
 }
