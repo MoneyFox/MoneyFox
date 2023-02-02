@@ -4,7 +4,7 @@ using Domain.Aggregates.BudgetAggregate;
 using Exceptions;
 using FluentAssertions;
 
-public sealed class SpendingLimitShould
+public sealed class SpendingLimitTests
 {
     [Fact]
     public void BeCorrectlyCreated()

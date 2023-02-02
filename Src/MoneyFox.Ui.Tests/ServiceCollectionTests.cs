@@ -6,7 +6,7 @@ using Microsoft.Identity.Client;
 using NSubstitute;
 using Xunit;
 
-public sealed class ServiceCollectionShould
+public sealed class ServiceCollectionTests
 {
     [Fact]
     public void AllDependenciesPresentAndAccountedFor()
