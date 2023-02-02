@@ -3,7 +3,6 @@ namespace MoneyFox.Infrastructure.DbBackup.Legacy;
 using System;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Core.Common.Facades;
 using Core.Common.Interfaces;
@@ -12,18 +11,15 @@ using Core.Interfaces;
 using Domain.Exceptions;
 using Serilog;
 
-internal sealed class BackupService : IBackupService, IDisposable
+internal sealed class BackupService : IBackupService
 {
     private const string TEMP_DOWNLOAD_PATH = "backupmoneyfox3.db";
     private readonly IAppDbContext appDbContext;
 
-    private readonly CancellationTokenSource cancellationTokenSource = new();
     private readonly IConnectivityAdapter connectivity;
     private readonly IDbPathProvider dbPathProvider;
     private readonly IFileStore fileStore;
-
     private readonly IOneDriveBackupService oneDriveBackupService;
-    private readonly SemaphoreSlim semaphoreSlim = new(initialCount: 1, maxCount: 1);
     private readonly ISettingsFacade settingsFacade;
 
     public BackupService(
@@ -158,19 +154,5 @@ internal sealed class BackupService : IBackupService, IDisposable
         }
 
         return BackupRestoreResult.BackupNotFound;
-    }
-
-    public void Dispose()
-    {
-        Dispose(true);
-    }
-
-    private void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            cancellationTokenSource.Dispose();
-            semaphoreSlim.Dispose();
-        }
     }
 }
