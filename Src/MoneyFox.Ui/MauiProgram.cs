@@ -89,7 +89,9 @@ public static class MauiProgram
             LayoutAlignment.Center => Microsoft.UI.Xaml.HorizontalAlignment.Center,
             LayoutAlignment.End    => Microsoft.UI.Xaml.HorizontalAlignment.Right,
             LayoutAlignment.Fill   => Microsoft.UI.Xaml.HorizontalAlignment.Stretch,
-            _ => throw new ArgumentOutOfRangeException(nameof(element))
+#pragma warning disable S3928
+            _ => throw new ArgumentOutOfRangeException()
+#pragma warning restore S3928
         };
     }
 #endif
