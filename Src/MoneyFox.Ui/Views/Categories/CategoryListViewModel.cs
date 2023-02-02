@@ -14,7 +14,7 @@ using MediatR;
 using Resources.Strings;
 
 // ReSharper disable once PartialTypeWithSinglePart
-public partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadMessage>
+public partial class CategoryListViewModel : BasePageViewModel, IRecipient<ReloadMessage>
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
@@ -54,7 +54,6 @@ public partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadMes
     public async Task InitializeAsync()
     {
         await SearchCategoryAsync();
-        IsActive = true;
     }
 
     [RelayCommand]

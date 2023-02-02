@@ -3,7 +3,7 @@ namespace MoneyFox.Ui.Views.SetupAssistant;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Facades;
 
-internal sealed class SetupCompletionViewModel : BaseViewModel
+internal sealed class SetupCompletionViewModel : BasePageViewModel
 {
     private readonly ISettingsFacade settingsFacade;
 
@@ -12,13 +12,13 @@ internal sealed class SetupCompletionViewModel : BaseViewModel
         this.settingsFacade = settingsFacade;
     }
 
-    public RelayCommand CompleteCommand => new(CompleteSetup);
+    public AsyncRelayCommand CompleteCommand => new(CompleteSetup);
 
-    public RelayCommand BackCommand => new(async () => await Shell.Current.Navigation.PopAsync());
+    public AsyncRelayCommand BackCommand => new(async () => await Shell.Current.Navigation.PopAsync());
 
-    private void CompleteSetup()
+    private async Task CompleteSetup()
     {
         settingsFacade.IsSetupCompleted = true;
-        Application.Current.MainPage = new AppShell();
+        await Shell.Current.GoToAsync(Routes.DashboardRoute);
     }
 }

@@ -3,7 +3,7 @@ namespace MoneyFox.Ui.Views.Statistics.Selector;
 using CommunityToolkit.Mvvm.Input;
 using Resources.Strings;
 
-internal sealed class StatisticSelectorViewModel : BaseViewModel
+internal sealed class StatisticSelectorViewModel : BasePageViewModel
 {
     public List<StatisticSelectorTypeViewModel> StatisticItems
         => new()

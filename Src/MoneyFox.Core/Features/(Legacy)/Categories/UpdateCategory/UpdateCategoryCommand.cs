@@ -1,22 +1,21 @@
-﻿namespace MoneyFox.Core.Features._Legacy_.Categories.UpdateCategory;
+namespace MoneyFox.Core.Features._Legacy_.Categories.UpdateCategory;
 
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Common.Interfaces;
-using Domain.Aggregates.CategoryAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-public class UpdateCategoryCommand : IRequest
+public static class UpdateCategory
 {
-    public UpdateCategoryCommand(Category category)
-    {
-        Category = category;
-    }
+    public record Command(
+    int Id,
+    string Name,
+    string? Note,
+    bool RequireNote) : IRequest;
 
-    public Category Category { get; }
-
-    public class Handler : IRequestHandler<UpdateCategoryCommand>
+    public class Handler : IRequestHandler<Command>
     {
         private readonly IAppDbContext appDbContext;
 
@@ -25,11 +24,12 @@ public class UpdateCategoryCommand : IRequest
             this.appDbContext = appDbContext;
         }
 
-        public async Task<Unit> Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(Command command, CancellationToken cancellationToken)
         {
-            var existingCategory = await appDbContext.Categories.SingleAsync(predicate: c => c.Id == request.Category.Id, cancellationToken: cancellationToken);
-            existingCategory.UpdateData(name: request.Category.Name, note: request.Category.Note ?? "", requireNote: request.Category.RequireNote);
-            _ = await appDbContext.SaveChangesAsync(cancellationToken);
+            var existingCategory = await appDbContext.Categories.SingleAsync(predicate: b => b.Id == command.Id, cancellationToken: cancellationToken);
+            existingCategory.UpdateData(name: command.Name, note: command.Note ?? "", requireNote: command.RequireNote);
+
+            await appDbContext.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;
         }

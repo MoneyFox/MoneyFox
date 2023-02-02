@@ -15,7 +15,7 @@
         <Button Grid.Row="2"
                 Text="{x:Static resources:Translations.SaveLabel}"
                 Command="{Binding SaveBudgetCommand}"
-                CommandParameter="{Binding Name}" />
+                CommandParameter="{Binding IsValid}" />
         <Button Grid.Row="4"
                 Style="{StaticResource WarningButton}"
                 Command="{Binding DeleteBudgetCommand}"

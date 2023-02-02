@@ -2,16 +2,17 @@ namespace MoneyFox.Ui.Views.Payments;
 
 using Accounts;
 using AutoMapper;
-using Categories;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Core.Common.Interfaces.Mapping;
 using Domain.Aggregates.AccountAggregate;
+using MoneyFox.Domain.Aggregates.CategoryAggregate;
+using PaymentModification;
 
 public class PaymentViewModel : ObservableObject, IHaveCustomMapping
 {
     private const decimal DECIMAL_DELTA = 0.01m;
     private decimal amount;
-    private CategoryListItemViewModel? categoryViewModel;
+    private SelectedCategoryViewModel? categoryViewModel;
 
     private AccountViewModel chargedAccount = null!;
     private int chargedAccountId;
@@ -283,7 +284,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     /// <summary>
     ///     The <see cref="Category" /> for this payment
     /// </summary>
-    public CategoryListItemViewModel? Category
+    public SelectedCategoryViewModel? Category
     {
         get => categoryViewModel;
 
@@ -344,6 +345,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
 
     public void CreateMappings(Profile configuration)
     {
+        configuration.CreateMap<Category, SelectedCategoryViewModel>();
         configuration.CreateMap<Payment, PaymentViewModel>()
             .ForMember(destinationMember: x => x.CurrentAccountId, memberOptions: opt => opt.Ignore())
             .ReverseMap();

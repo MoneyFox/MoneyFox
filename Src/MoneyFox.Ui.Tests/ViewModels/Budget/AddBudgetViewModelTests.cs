@@ -11,6 +11,7 @@ using MediatR;
 using NSubstitute;
 using Views.Budget;
 using Views.Categories;
+using Views.Categories.CategorySelection;
 using Xunit;
 
 public class AddBudgetViewModelTests

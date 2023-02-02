@@ -1,15 +1,17 @@
 namespace MoneyFox.Ui.Views.Budget;
 
 using System.Collections;
+using System.Collections.Immutable;
 using System.Collections.ObjectModel;
 using Categories;
+using Categories.CategorySelection;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Messages;
 using Core.Interfaces;
 using Domain.Aggregates.BudgetAggregate;
 
-internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<CategorySelectedMessage>
+internal abstract class ModifyBudgetViewModel : BasePageViewModel, IRecipient<CategorySelectedMessage>
 {
     private readonly INavigationService navigationService;
     private string name = null!;
@@ -19,13 +21,17 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
     protected ModifyBudgetViewModel(INavigationService navigationService)
     {
         this.navigationService = navigationService;
-        WeakReferenceMessenger.Default.Register(this);
     }
 
     public string Name
     {
         get => name;
-        set => SetProperty(field: ref name, newValue: value);
+
+        set
+        {
+            SetProperty(field: ref name, newValue: value);
+            OnPropertyChanged(nameof(IsValid));
+        }
     }
 
     public BudgetTimeRange TimeRange
@@ -37,18 +43,23 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
     public decimal SpendingLimit
     {
         get => spendingLimit;
-        set => SetProperty(field: ref spendingLimit, newValue: value);
+
+        set
+        {
+            SetProperty(field: ref spendingLimit, newValue: value);
+            OnPropertyChanged(nameof(IsValid));
+        }
     }
 
-    public ICollection TimeRangeCollection
-        => new List<BudgetTimeRange>
-        {
+    public bool IsValid => string.IsNullOrEmpty(Name) is false && SpendingLimit > 0;
+
+    public static List<BudgetTimeRange> TimeRangeCollection
+        => new (){
             BudgetTimeRange.YearToDate,
             BudgetTimeRange.Last1Year,
             BudgetTimeRange.Last2Years,
             BudgetTimeRange.Last3Years,
-            BudgetTimeRange.Last5Years
-        };
+            BudgetTimeRange.Last5Years};
 
     public ObservableCollection<BudgetCategoryViewModel> SelectedCategories { get; set; } = new();
 
@@ -56,7 +67,7 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
 
     public RelayCommand<BudgetCategoryViewModel> RemoveCategoryCommand => new(RemoveCategory);
 
-    public AsyncRelayCommand SaveBudgetCommand => new(execute: SaveBudgetAsync, canExecute: () => string.IsNullOrEmpty(Name) is false && SpendingLimit > 0);
+    public AsyncRelayCommand SaveBudgetCommand => new(execute: SaveBudgetAsync, canExecute: () => IsValid);
 
     public void Receive(CategorySelectedMessage message)
     {

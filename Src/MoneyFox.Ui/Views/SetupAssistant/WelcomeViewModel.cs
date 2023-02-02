@@ -4,7 +4,7 @@ using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Facades;
 
-internal sealed class WelcomeViewModel : BaseViewModel
+internal sealed class WelcomeViewModel : BasePageViewModel
 {
     private readonly ISettingsFacade settingsFacade;
 
@@ -17,7 +17,7 @@ internal sealed class WelcomeViewModel : BaseViewModel
 
     public AsyncRelayCommand NextStepCommand => new(async () => await Shell.Current.GoToAsync(Routes.CategoryIntroductionRoute));
 
-    public RelayCommand SkipCommand => new(SkipSetup);
+    public AsyncRelayCommand SkipCommand => new(SkipSetup);
 
     public async Task InitAsync()
     {
@@ -27,9 +27,9 @@ internal sealed class WelcomeViewModel : BaseViewModel
         }
     }
 
-    private void SkipSetup()
+    private async Task SkipSetup()
     {
         settingsFacade.IsSetupCompleted = true;
-        Application.Current.MainPage = new AppShell();
+        await Shell.Current.GoToAsync(Routes.DashboardRoute);
     }
 }

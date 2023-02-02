@@ -12,6 +12,6 @@ public partial class DesktopAccountListPage
 
     protected override async void OnAppearing()
     {
-        await ViewModel.OnAppearingAsync();
+        await ViewModel.InitializeAsync();
     }
 }

@@ -11,7 +11,7 @@ using MediatR;
 using Payments;
 using Resources.Strings;
 
-internal sealed class PaymentForCategoryListViewModel : BaseViewModel, IRecipient<PaymentsForCategoryMessage>
+internal sealed class PaymentForCategoryListViewModel : BasePageViewModel, IRecipient<PaymentsForCategoryMessage>
 {
     private readonly IMapper mapper;
 
@@ -26,7 +26,6 @@ internal sealed class PaymentForCategoryListViewModel : BaseViewModel, IRecipien
         this.mediator = mediator;
         this.mapper = mapper;
         PaymentList = new();
-        IsActive = true;
     }
 
     public string Title

@@ -45,7 +45,15 @@ public partial class EditCategoryViewModel : ModifyCategoryViewModel
 
     protected override async Task SaveCategoryAsync()
     {
-        await mediator.Send(new UpdateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
+        // Due to a bug in .net maui, the loading dialog can only be called after any other dialog
+        await dialogService.ShowLoadingDialogAsync(Translations.SavingCategoryMessage);
+        var command = new UpdateCategory.Command(
+            Id: SelectedCategory.Id,
+            Name: SelectedCategory.Name,
+            Note: SelectedCategory.Note,
+            RequireNote: SelectedCategory.RequireNote);
+
+        await mediator.Send(command);
     }
 
     [RelayCommand]

@@ -12,7 +12,7 @@ using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-internal sealed class AccountListViewModel : BaseViewModel
+internal sealed class AccountListViewModel : BasePageViewModel, IRecipient<ReloadMessage>
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
@@ -51,17 +51,12 @@ internal sealed class AccountListViewModel : BaseViewModel
 
     public AsyncRelayCommand<AccountViewModel> DeleteAccountCommand => new(async avm => await DeleteAccountAsync(avm));
 
-    protected override void OnActivated()
+    public async void Receive(ReloadMessage message)
     {
-        Messenger.Register<AccountListViewModel, ReloadMessage>(recipient: this, handler: async (r, m) => await r.OnAppearingAsync());
+        await InitializeAsync();
     }
 
-    protected override void OnDeactivated()
-    {
-        Messenger.Unregister<ReloadMessage>(this);
-    }
-
-    public async Task OnAppearingAsync()
+    public async Task InitializeAsync()
     {
         try
         {
@@ -95,8 +90,6 @@ internal sealed class AccountListViewModel : BaseViewModel
         {
             isRunning = false;
         }
-
-        IsActive = true;
     }
 
     private async Task DeleteAccountAsync(AccountViewModel accountViewModel)
@@ -108,7 +101,7 @@ internal sealed class AccountListViewModel : BaseViewModel
                 negativeButtonText: Translations.NoLabel))
         {
             await mediator.Send(new DeactivateAccountByIdCommand(accountViewModel.Id));
-            await OnAppearingAsync();
+            await InitializeAsync();
         }
     }
 }

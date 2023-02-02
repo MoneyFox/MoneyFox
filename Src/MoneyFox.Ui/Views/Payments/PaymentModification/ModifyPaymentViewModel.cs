@@ -1,9 +1,8 @@
-namespace MoneyFox.Ui.Views.Payments;
+namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
 using System.Collections.ObjectModel;
 using Accounts;
 using AutoMapper;
-using Categories;
 using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -16,8 +15,7 @@ using Microsoft.AppCenter.Crashes;
 using Resources.Strings;
 using Serilog;
 
-// ReSharper disable once PartialTypeWithSinglePart
-internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipient<CategorySelectedMessage>
+public abstract partial class ModifyPaymentViewModel : BasePageViewModel, IRecipient<CategorySelectedMessage>
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
@@ -97,7 +95,8 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
 
     public async void Receive(CategorySelectedMessage message)
     {
-        SelectedPayment.Category = mapper.Map<CategoryListItemViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId)));
+        var category = await mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId));
+        SelectedPayment.Category = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
     }
 
     protected async Task InitializeAsync()
@@ -105,7 +104,6 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
         var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
         ChargedAccounts = new(accounts);
         TargetAccounts = new(accounts);
-        IsActive = true;
         IsFirstLoad = false;
     }
 
@@ -128,7 +126,7 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
             return;
         }
 
-        if (SelectedPayment.Category?.RequireNote == true && string.IsNullOrEmpty(SelectedPayment.Note))
+        if (SelectedPayment.Category?.RequireNote is true && string.IsNullOrEmpty(SelectedPayment.Note))
         {
             await dialogService.ShowMessageAsync(title: Translations.MandatoryFieldEmptyTitle, message: Translations.ANoteForPaymentIsRequired);
 

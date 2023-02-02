@@ -8,7 +8,7 @@ using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-public abstract class ModifyCategoryViewModel : BaseViewModel
+public abstract class ModifyCategoryViewModel : BasePageViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
@@ -45,7 +45,7 @@ public abstract class ModifyCategoryViewModel : BaseViewModel
             return;
         }
 
-        if (await mediator.Send(new GetIfCategoryWithNameExistsQuery(SelectedCategory.Name)))
+        if (await mediator.Send(new GetIfCategoryWithNameExistsQuery(SelectedCategory.Name, SelectedCategory.Id)))
         {
             await dialogService.ShowMessageAsync(title: Translations.DuplicatedNameTitle, message: Translations.DuplicateCategoryMessage);
 

@@ -10,9 +10,9 @@ public partial class CustomDatePicker
 
     public static readonly BindableProperty DateFieldProperty = BindableProperty.Create(
         propertyName: nameof(DateField),
-        returnType: typeof(string),
+        returnType: typeof(DateTime),
         declaringType: typeof(CustomDatePicker),
-        defaultValue: string.Empty,
+        defaultValue: DateTime.Today,
         defaultBindingMode: BindingMode.TwoWay);
 
     public CustomDatePicker()
@@ -26,9 +26,9 @@ public partial class CustomDatePicker
         set => SetValue(property: DatePickerTitleProperty, value: value);
     }
 
-    public string DateField
+    public DateTime DateField
     {
-        get => (string)GetValue(DateFieldProperty);
+        get => (DateTime)GetValue(DateFieldProperty);
         set => SetValue(property: DateFieldProperty, value: value);
     }
 }

@@ -6,13 +6,14 @@
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
     xmlns:payments="clr-namespace:MoneyFox.Ui.Views.Payments"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
+    xmlns:paymentModification="clr-namespace:MoneyFox.Ui.Views.Payments.PaymentModification"
     Title="{x:Static resources:Translations.AddPaymentLabel}"
-    x:DataType="payments:AddPaymentViewModel"
-    x:Class="MoneyFox.Ui.Views.Payments.AddPaymentPage">
+    x:DataType="paymentModification:AddPaymentViewModel"
+    x:Class="MoneyFox.Ui.Views.Payments.PaymentModification.AddPaymentPage">
 
     <controls:NonOverlappingScrollView Padding="15,0,15,8">
         <VerticalStackLayout Spacing="12">
-            <payments:ModifyPaymentContentView />
+            <paymentModification:ModifyPaymentContentView />
             <Button Text="{x:Static resources:Translations.SaveLabel}" Command="{Binding SaveCommand}" />
         </VerticalStackLayout>
     </controls:NonOverlappingScrollView>
