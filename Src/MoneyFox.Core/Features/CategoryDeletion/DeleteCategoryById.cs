@@ -1,11 +1,11 @@
-namespace MoneyFox.Core.Features._Legacy_.Categories.DeleteCategoryById;
+namespace MoneyFox.Core.Features.CategoryDeletion;
 
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Common.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using MoneyFox.Core.Common.Interfaces;
 
 public static class DeleteCategoryById
 {

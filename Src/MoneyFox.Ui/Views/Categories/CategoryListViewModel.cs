@@ -7,7 +7,7 @@ using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
-using Core.Features._Legacy_.Categories.DeleteCategoryById;
+using Core.Features.CategoryDeletion;
 using Core.Queries;
 using MediatR;
 using Resources.Strings;

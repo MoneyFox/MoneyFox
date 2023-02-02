@@ -2,7 +2,6 @@ namespace MoneyFox.Ui.Tests.ViewModels.Categories;
 
 using AutoMapper;
 using Core.Common.Interfaces;
-using Core.Features._Legacy_.Categories.DeleteCategoryById;
 using Core.Interfaces;
 using Core.Queries;
 using MediatR;
