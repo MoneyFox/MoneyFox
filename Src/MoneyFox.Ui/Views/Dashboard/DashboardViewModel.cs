@@ -10,7 +10,7 @@ using Core.Common.Messages;
 using Core.Queries;
 using MediatR;
 
-internal class DashboardViewModel : BasePageViewModel
+internal class DashboardViewModel : BasePageViewModel, IRecipient<ReloadMessage>
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
@@ -119,14 +119,9 @@ internal class DashboardViewModel : BasePageViewModel
     public AsyncRelayCommand<AccountViewModel> GoToTransactionListCommand
         => new(async accountViewModel => await Shell.Current.GoToAsync($"{Routes.PaymentListRoute}?accountId={accountViewModel!.Id}"));
 
-    protected override void OnActivated()
+    public async void Receive(ReloadMessage message)
     {
-        Messenger.Register<DashboardViewModel, ReloadMessage>(recipient: this, handler: async (r, m) => await r.InitializeAsync());
-    }
-
-    protected override void OnDeactivated()
-    {
-        Messenger.Unregister<ReloadMessage>(this);
+        await InitializeAsync();
     }
 
     public async Task InitializeAsync()
