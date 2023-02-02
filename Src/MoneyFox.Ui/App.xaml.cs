@@ -34,7 +34,6 @@ public partial class App
         CultureHelper.CurrentCulture = new(CultureInfo.CurrentCulture.Name);
         InitializeComponent();
         SetupServices();
-        ResourceDictionary = new();
         FillResourceDictionary();
         MainPage = DeviceInfo.Current.Idiom == DeviceIdiom.Desktop
                    || DeviceInfo.Current.Idiom == DeviceIdiom.Tablet
@@ -49,6 +48,12 @@ public partial class App
 
         FixCorruptPayments(settingsAdapter);
     }
+
+    public static Dictionary<string, ResourceDictionary> ResourceDictionary { get; } = new();
+
+    public static Action<IServiceCollection>? AddPlatformServicesAction { get; set; }
+
+    private static IServiceProvider? ServiceProvider { get; set; }
 
     /// <summary>
     ///     This removes the link from payments to categories that no longer exists.
@@ -77,18 +82,12 @@ public partial class App
                 }
             }
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
-            Log.Error(ex, "Error while fixing payment with non existing category");
+            Log.Error(exception: ex, messageTemplate: "Error while fixing payment with non existing category");
             Crashes.TrackError(ex);
         }
     }
-
-    public static Dictionary<string, ResourceDictionary> ResourceDictionary { get; set; }
-
-    public static Action<IServiceCollection>? AddPlatformServicesAction { get; set; }
-
-    private static IServiceProvider? ServiceProvider { get; set; }
 
     private void FillResourceDictionary()
     {
