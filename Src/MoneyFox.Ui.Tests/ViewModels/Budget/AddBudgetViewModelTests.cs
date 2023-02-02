@@ -2,22 +2,20 @@ namespace MoneyFox.Ui.Tests.ViewModels.Budget;
 
 using Core.Common.Extensions;
 using Core.Common.Interfaces;
-using Core.Common.Messages;
 using Core.Features.BudgetCreation;
 using Core.Interfaces;
 using Domain.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
+using Messages;
 using NSubstitute;
-using Views.Budget;
-using Views.Categories;
+using Views.Budget.BudgetModification;
 using Views.Categories.CategorySelection;
 using Xunit;
 
 public class AddBudgetViewModelTests
 {
     private const int CATEGORY_ID = 10;
-    private readonly IDialogService dialogService;
     private readonly INavigationService navigationService;
     private readonly ISender sender;
 
@@ -27,8 +25,8 @@ public class AddBudgetViewModelTests
     {
         sender = Substitute.For<ISender>();
         navigationService = Substitute.For<INavigationService>();
-        dialogService = Substitute.For<IDialogService>();
-        viewModel = new(sender: sender, navigationService: navigationService, dialogService: dialogService);
+        Substitute.For<IDialogService>();
+        viewModel = new(sender: sender, navigationService: navigationService);
     }
 
     [Fact]

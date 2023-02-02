@@ -7,14 +7,13 @@ using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
-using Core.Common.Messages;
 using Core.Features._Legacy_.Categories.DeleteCategoryById;
 using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
 // ReSharper disable once PartialTypeWithSinglePart
-public partial class CategoryListViewModel : BasePageViewModel, IRecipient<ReloadMessage>
+public partial class CategoryListViewModel : BasePageViewModel, IRecipient<CategoriesChangedMessage>
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
@@ -46,7 +45,7 @@ public partial class CategoryListViewModel : BasePageViewModel, IRecipient<Reloa
     public AsyncRelayCommand<CategoryListItemViewModel> GoToEditCategoryCommand
         => new(async cvm => await Shell.Current.GoToAsync($"{Routes.EditCategoryRoute}?categoryId={cvm.Id}"));
 
-    public async void Receive(ReloadMessage message)
+    public async void Receive(CategoriesChangedMessage message)
     {
         await SearchCategoryAsync();
     }

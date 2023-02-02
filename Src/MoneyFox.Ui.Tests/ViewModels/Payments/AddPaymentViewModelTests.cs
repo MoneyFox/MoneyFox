@@ -4,7 +4,6 @@ using AutoMapper;
 using Core.Common.Interfaces;
 using MediatR;
 using NSubstitute;
-using Views.Payments;
 using Views.Payments.PaymentModification;
 using Xunit;
 

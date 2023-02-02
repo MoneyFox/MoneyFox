@@ -4,9 +4,9 @@ using System.Globalization;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;
-using Core.Common.Messages;
 using LiveChartsCore.SkiaSharpView.Painting;
 using MediatR;
+using Messages;
 using Resources.Strings;
 using SkiaSharp;
 
@@ -92,12 +92,12 @@ internal abstract class StatisticViewModel : BasePageViewModel, IRecipient<DateS
     public string Title
         => $"{Translations.StatisticsTimeRangeTitle} {StartDate.ToString(format: "d", provider: CultureInfo.InvariantCulture)} - {EndDate.ToString(format: "d", provider: CultureInfo.InvariantCulture)}";
 
-    protected abstract Task LoadAsync();
-
     public async void Receive(DateSelectedMessage message)
     {
         StartDate = message.StartDate;
         EndDate = message.EndDate;
         await LoadAsync();
     }
+
+    protected abstract Task LoadAsync();
 }

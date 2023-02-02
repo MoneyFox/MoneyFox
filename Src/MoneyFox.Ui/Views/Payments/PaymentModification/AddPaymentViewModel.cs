@@ -1,13 +1,13 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
 using AutoMapper;
+using Core.Common.Interfaces;
+using Core.Features._Legacy_.Payments.CreatePayment;
+using Core.Queries;
+using Domain.Aggregates.AccountAggregate;
+using Domain.Aggregates.CategoryAggregate;
 using MediatR;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Features._Legacy_.Payments.CreatePayment;
-using MoneyFox.Core.Queries;
-using MoneyFox.Domain.Aggregates.AccountAggregate;
-using MoneyFox.Domain.Aggregates.CategoryAggregate;
-using MoneyFox.Ui.Resources.Strings;
+using Resources.Strings;
 
 internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
 {
@@ -50,7 +50,6 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
         await dialogService.ShowLoadingDialogAsync(Translations.SavingPaymentMessage);
         var chargedAccount = await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id));
         var targetAccount = SelectedPayment.TargetAccount != null ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id)) : null;
-
         Category? category = null;
         if (SelectedPayment.Category is not null)
         {

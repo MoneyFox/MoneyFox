@@ -78,7 +78,7 @@ steps:
       command: 'test'
       projects: '**/*.Tests.csproj'
       arguments: '--configuration $(BuildConfiguration)'
-      
+
   - task: DotNetCoreCLI@2
     displayName: 'build Android app'
     inputs:
