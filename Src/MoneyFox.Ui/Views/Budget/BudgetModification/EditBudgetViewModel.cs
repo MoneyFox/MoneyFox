@@ -1,9 +1,8 @@
-namespace MoneyFox.Ui.Views.Budget.ModifyBudget;
+namespace MoneyFox.Ui.Views.Budget.BudgetModification;
 
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
-using Messages;
 using MoneyFox.Core.Common.Extensions;
 using MoneyFox.Core.Common.Interfaces;
 using MoneyFox.Core.Features.BudgetDeletion;
@@ -11,6 +10,7 @@ using MoneyFox.Core.Features.BudgetUpdate;
 using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Queries.BudgetEntryLoading;
 using MoneyFox.Domain.Aggregates.BudgetAggregate;
+using MoneyFox.Ui.Messages;
 using MoneyFox.Ui.Resources.Strings;
 
 internal sealed class EditBudgetViewModel : ModifyBudgetViewModel

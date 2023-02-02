@@ -4,7 +4,7 @@ using Views.About;
 using Views.Accounts;
 using Views.Backup;
 using Views.Budget;
-using Views.Budget.ModifyBudget;
+using Views.Budget.BudgetModification;
 using Views.Categories;
 using Views.Categories.CategorySelection;
 using Views.Categories.ModifyCategory;

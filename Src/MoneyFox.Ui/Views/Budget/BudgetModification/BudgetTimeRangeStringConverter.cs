@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.Views.Budget.ModifyBudget;
+namespace MoneyFox.Ui.Views.Budget.BudgetModification;
 
 using System.Globalization;
 using MoneyFox.Domain.Aggregates.BudgetAggregate;

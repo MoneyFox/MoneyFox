@@ -10,7 +10,7 @@ using MediatR;
 using Messages;
 using NSubstitute;
 using Views.Budget;
-using Views.Budget.ModifyBudget;
+using Views.Budget.BudgetModification;
 using Views.Categories;
 using Views.Categories.CategorySelection;
 using Xunit;
