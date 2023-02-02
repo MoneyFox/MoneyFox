@@ -60,8 +60,17 @@ public partial class EditCategoryViewModel : ModifyCategoryViewModel
     {
         if (await dialogService.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeleteCategoryConfirmationMessage))
         {
-            await mediator.Send(new DeleteCategoryByIdCommand(SelectedCategory.Id));
-            await navigationService.GoBackFromModalAsync();
+            var numberOfAssignedPayments = await mediator.Send(new GetNumberOfPaymentsAssignedToCategory.Query(SelectedCategory.Id));
+            if (numberOfAssignedPayments == 0
+                || await dialogService.ShowConfirmMessageAsync(
+                    title: Translations.UnassignPaymentTitle,
+                    message: string.Format(format: Translations.UnassignPaymentMessage, arg0: numberOfAssignedPayments),
+                    positiveButtonText: Translations.UnassignLabel,
+                    negativeButtonText: Translations.CancelLabel))
+            {
+                await mediator.Send(new DeleteCategoryByIdCommand(SelectedCategory.Id));
+                await navigationService.GoBackFromModalAsync();
+            }
         }
     }
 }

@@ -2243,6 +2243,33 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unassign.
+        /// </summary>
+        public static string UnassignLabel {
+            get {
+                return ResourceManager.GetString("UnassignLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are {0} payments assigned. Those will be unassigned. Do you want to proceed?.
+        /// </summary>
+        public static string UnassignPaymentMessage {
+            get {
+                return ResourceManager.GetString("UnassignPaymentMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unassign Payments.
+        /// </summary>
+        public static string UnassignPaymentTitle {
+            get {
+                return ResourceManager.GetString("UnassignPaymentTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There was an unknown error. If the error persists, please restart the app..
         /// </summary>
         public static string UnknownErrorMessage {

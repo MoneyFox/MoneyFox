@@ -894,4 +894,13 @@ To start create a new account. Accounts are used to organize payments and money 
     <data name="UnknownErrorMessage" xml:space="preserve">
         <value>There was an unknown error. If the error persists, please restart the app.</value>
     </data>
+    <data name="UnassignPaymentTitle" xml:space="preserve">
+        <value>Unassign Payments</value>
+    </data>
+    <data name="UnassignPaymentMessage" xml:space="preserve">
+        <value>There are {0} payments assigned. Those will be unassigned. Do you want to proceed?</value>
+    </data>
+    <data name="UnassignLabel" xml:space="preserve">
+        <value>Unassign</value>
+    </data>
 </root>
