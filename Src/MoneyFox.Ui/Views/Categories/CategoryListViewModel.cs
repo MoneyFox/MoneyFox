@@ -14,7 +14,7 @@ using Messages;
 using Resources.Strings;
 
 // ReSharper disable once PartialTypeWithSinglePart
-public partial class CategoryListViewModel : BasePageViewModel, IRecipient<ReloadMessage>
+public partial class CategoryListViewModel : BasePageViewModel, IRecipient<CategoriesChangedMessage>
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
@@ -46,7 +46,7 @@ public partial class CategoryListViewModel : BasePageViewModel, IRecipient<Reloa
     public AsyncRelayCommand<CategoryListItemViewModel> GoToEditCategoryCommand
         => new(async cvm => await Shell.Current.GoToAsync($"{Routes.EditCategoryRoute}?categoryId={cvm.Id}"));
 
-    public async void Receive(ReloadMessage message)
+    public async void Receive(CategoriesChangedMessage message)
     {
         await SearchCategoryAsync();
     }

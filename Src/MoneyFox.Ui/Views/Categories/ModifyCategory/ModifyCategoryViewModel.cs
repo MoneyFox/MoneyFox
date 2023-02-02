@@ -54,7 +54,7 @@ public abstract class ModifyCategoryViewModel : BasePageViewModel
 
         await dialogService.ShowLoadingDialogAsync(Translations.SavingCategoryMessage);
         await SaveCategoryAsync();
-        Messenger.Send(new ReloadMessage());
+        Messenger.Send(new CategoriesChangedMessage());
         await dialogService.HideLoadingDialogAsync();
         await Shell.Current.Navigation.PopModalAsync();
     }
