@@ -5,14 +5,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
     xmlns:accounts="clr-namespace:MoneyFox.Ui.Views.Accounts"
+    xmlns:accountModification="clr-namespace:MoneyFox.Ui.Views.Accounts.AccountModification"
     Title="{x:Static resources:Translations.AddAccountLabel}"
-    x:DataType="accounts:AddAccountViewModel"
-    x:Class="MoneyFox.Ui.Views.Accounts.AddAccountPage">
+    x:DataType="accountModification:AddAccountViewModel"
+    x:Class="MoneyFox.Ui.Views.Accounts.AccountModification.AddAccountPage">
 
     <ContentPage.Content>
         <ScrollView Padding="15,0,15,0">
             <StackLayout Spacing="6">
-                <accounts:ModifyAccountContentView />
+                <accountModification:ModifyAccountContentView />
                 <Button Command="{Binding SaveCommand}" Text="{x:Static resources:Translations.SaveLabel}" />
             </StackLayout>
         </ScrollView>

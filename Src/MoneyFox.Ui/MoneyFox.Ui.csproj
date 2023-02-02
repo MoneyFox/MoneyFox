@@ -157,6 +157,18 @@
           <DependentUpon>AddBudgetPage.xaml</DependentUpon>
           <SubType>Code</SubType>
         </Compile>
+        <Compile Update="Views\Accounts\AccountModification\AddAccountPage.xaml.cs">
+          <DependentUpon>AddAccountPage.xaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Accounts\AccountModification\EditAccountPage.xaml.cs">
+          <DependentUpon>EditAccountPage.xaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Accounts\AccountModification\ModifyAccountContentView.xaml.cs">
+          <DependentUpon>ModifyAccountContentView.xaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -191,6 +203,15 @@
           <SubType>Designer</SubType>
         </MauiXaml>
         <MauiXaml Update="Views\Budget\ModifyBudget\AddBudgetPage.xaml">
+          <SubType>Designer</SubType>
+        </MauiXaml>
+        <MauiXaml Update="Views\Accounts\AccountModification\AddAccountPage.xaml">
+          <SubType>Designer</SubType>
+        </MauiXaml>
+        <MauiXaml Update="Views\Accounts\AccountModification\EditAccountPage.xaml">
+          <SubType>Designer</SubType>
+        </MauiXaml>
+        <MauiXaml Update="Views\Accounts\AccountModification\ModifyAccountContentView.xaml">
           <SubType>Designer</SubType>
         </MauiXaml>
     </ItemGroup>

@@ -6,8 +6,9 @@
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:account="clr-namespace:MoneyFox.Ui.Views.Accounts"
-    x:Class="MoneyFox.Ui.Views.Accounts.ModifyAccountContentView"
-    x:DataType="account:EditAccountViewModel">
+    xmlns:accountModification="clr-namespace:MoneyFox.Ui.Views.Accounts.AccountModification"
+    x:Class="MoneyFox.Ui.Views.Accounts.AccountModification.ModifyAccountContentView"
+    x:DataType="accountModification:EditAccountViewModel">
 
     <VerticalStackLayout Spacing="12">
 

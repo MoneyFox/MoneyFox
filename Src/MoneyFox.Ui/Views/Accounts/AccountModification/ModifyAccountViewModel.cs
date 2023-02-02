@@ -1,13 +1,13 @@
-namespace MoneyFox.Ui.Views.Accounts;
+namespace MoneyFox.Ui.Views.Accounts.AccountModification;
 
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.Common.Interfaces;
-using Core.Interfaces;
-using Core.Queries;
 using MediatR;
-using Messages;
-using Resources.Strings;
+using MoneyFox.Core.Common.Interfaces;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.Queries;
+using MoneyFox.Ui.Messages;
+using MoneyFox.Ui.Resources.Strings;
 
 // ReSharper disable once PartialTypeWithSinglePart
 public abstract partial class ModifyAccountViewModel : BasePageViewModel

@@ -9,6 +9,7 @@ using Mapping;
 using MoneyFox.Infrastructure.InversionOfControl;
 using Views.About;
 using Views.Accounts;
+using Views.Accounts.AccountModification;
 using Views.Backup;
 using Views.Budget;
 using Views.Budget.BudgetModification;
@@ -28,6 +29,7 @@ using Views.Statistics.CategorySpreading;
 using Views.Statistics.CategorySummary;
 using Views.Statistics.MonthlyAccountCashFlow;
 using Views.Statistics.Selector;
+using EditAccountViewModel = Views.Accounts.AccountModification.EditAccountViewModel;
 
 public sealed class MoneyFoxConfig
 {
