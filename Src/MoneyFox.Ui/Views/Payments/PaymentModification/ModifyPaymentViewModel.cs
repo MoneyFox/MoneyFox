@@ -32,6 +32,7 @@ public abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipient
         this.mapper = mapper;
         this.dialogService = dialogService;
         this.toastService = toastService;
+        IsActive = true;
     }
 
     public PaymentViewModel SelectedPayment

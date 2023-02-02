@@ -21,7 +21,7 @@ internal abstract class ModifyBudgetViewModel : BaseViewModel, IRecipient<Catego
     protected ModifyBudgetViewModel(INavigationService navigationService)
     {
         this.navigationService = navigationService;
-        WeakReferenceMessenger.Default.Register(this);
+        IsActive = true;
     }
 
     public string Name
