@@ -1,9 +1,11 @@
 namespace MoneyFox.Core.Features._Legacy_.Categories.DeleteCategoryById;
 
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Common.Interfaces;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 public class DeleteCategoryByIdCommand : IRequest
 {
@@ -16,23 +18,30 @@ public class DeleteCategoryByIdCommand : IRequest
 
     public class Handler : IRequestHandler<DeleteCategoryByIdCommand>
     {
-        private readonly IAppDbContext appDbContext;
+        private readonly IAppDbContext dbContext;
 
-        public Handler(IAppDbContext appDbContext)
+        public Handler(IAppDbContext dbContext)
         {
-            this.appDbContext = appDbContext;
+            this.dbContext = dbContext;
         }
 
         public async Task<Unit> Handle(DeleteCategoryByIdCommand request, CancellationToken cancellationToken)
         {
-            var entityToDelete = await appDbContext.Categories.FindAsync(request.CategoryId);
+            var paymentsWithCategory = await dbContext.Payments.Include(p => p.Category)
+                .Where(p => p.Category != null)
+                .Where(p => p.Category!.Id == request.CategoryId)
+                .ToListAsync(cancellationToken);
+
+            paymentsWithCategory.ForEach(p => p.RemoveCategory());
+
+            var entityToDelete = await dbContext.Categories.FindAsync(request.CategoryId);
             if (entityToDelete is null)
             {
                 return Unit.Value;
             }
 
-            appDbContext.Categories.Remove(entityToDelete);
-            await appDbContext.SaveChangesAsync(cancellationToken);
+            dbContext.Categories.Remove(entityToDelete);
+            await dbContext.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;
         }

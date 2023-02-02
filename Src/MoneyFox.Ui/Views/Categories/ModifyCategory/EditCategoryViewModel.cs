@@ -65,7 +65,7 @@ public partial class EditCategoryViewModel : ModifyCategoryViewModel
                 || await dialogService.ShowConfirmMessageAsync(
                     title: Translations.UnassignPaymentTitle,
                     message: string.Format(format: Translations.UnassignPaymentMessage, arg0: numberOfAssignedPayments),
-                    positiveButtonText: Translations.UnassignLabel,
+                    positiveButtonText: Translations.RemoveLabel,
                     negativeButtonText: Translations.CancelLabel))
             {
                 await mediator.Send(new DeleteCategoryByIdCommand(SelectedCategory.Id));
