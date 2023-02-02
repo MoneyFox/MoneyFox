@@ -25,16 +25,16 @@ public class DeleteCategoryByIdCommand : IRequest
             this.dbContext = dbContext;
         }
 
-        public async Task<Unit> Handle(DeleteCategoryByIdCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteCategoryByIdCommand command, CancellationToken cancellationToken)
         {
             var paymentsWithCategory = await dbContext.Payments.Include(p => p.Category)
                 .Where(p => p.Category != null)
-                .Where(p => p.Category!.Id == request.CategoryId)
+                .Where(p => p.Category!.Id == command.CategoryId)
                 .ToListAsync(cancellationToken);
 
             paymentsWithCategory.ForEach(p => p.RemoveCategory());
 
-            var entityToDelete = await dbContext.Categories.FindAsync(request.CategoryId);
+            var entityToDelete = await dbContext.Categories.FindAsync(command.CategoryId);
             if (entityToDelete is null)
             {
                 return Unit.Value;

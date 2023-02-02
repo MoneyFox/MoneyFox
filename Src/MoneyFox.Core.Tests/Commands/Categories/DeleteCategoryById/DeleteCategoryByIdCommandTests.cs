@@ -23,7 +23,7 @@ public class DeleteCategoryByIdCommandTests : InMemoryTestBase
         Context.RegisterCategory(testCategory:testCategory);
 
         // Act
-        await handler.Handle(request: new(testCategory.Id), cancellationToken: default);
+        await handler.Handle(command: new(testCategory.Id), cancellationToken: default);
 
         // Assert
         (await Context.Categories.SingleOrDefaultAsync(x => x.Id == testCategory.Id)).Should().BeNull();
@@ -37,7 +37,7 @@ public class DeleteCategoryByIdCommandTests : InMemoryTestBase
         Context.RegisterCategory(testCategory:testCategory);
 
         // Act
-        await handler.Handle(request: new(99), cancellationToken: default);
+        await handler.Handle(command: new(99), cancellationToken: default);
 
         // Assert
         (await Context.Categories.SingleOrDefaultAsync(x => x.Id == testCategory.Id)).Should().NotBeNull();
@@ -53,7 +53,7 @@ public class DeleteCategoryByIdCommandTests : InMemoryTestBase
         var dbIncome = Context.RegisterPayment(testCategory:income);
 
         // Act
-        await handler.Handle(request: new(dbExpense.Category!.Id), cancellationToken: default);
+        await handler.Handle(command: new(dbExpense.Category!.Id), cancellationToken: default);
 
         // Assert
         var unassignedPayment = await Context.Payments.SingleAsync(x => x.Id == dbExpense.Id);
