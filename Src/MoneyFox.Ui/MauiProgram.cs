@@ -10,6 +10,7 @@ using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Maui.Handlers;
+using Microsoft.UI.Xaml;
 using Serilog;
 using Serilog.Events;
 using Serilog.Exceptions;
@@ -57,7 +58,7 @@ public static class MauiProgram
             });
 
 #if WINDOWS
-        PickerHandler.Mapper.Add(nameof(View.HorizontalOptions), MapHorizontalOptions);
+        PickerHandler.Mapper.Add(key: nameof(View.HorizontalOptions), action: MapHorizontalOptions);
 #endif
         return builder.Build();
     }
@@ -78,17 +79,17 @@ public static class MauiProgram
             return;
         }
 
-        if (handler.PlatformView is not Microsoft.UI.Xaml.FrameworkElement element)
+        if (handler.PlatformView is not FrameworkElement element)
         {
             return;
         }
 
         element.HorizontalAlignment = mauiView.HorizontalOptions.Alignment switch
         {
-            LayoutAlignment.Start  => Microsoft.UI.Xaml.HorizontalAlignment.Left,
-            LayoutAlignment.Center => Microsoft.UI.Xaml.HorizontalAlignment.Center,
-            LayoutAlignment.End    => Microsoft.UI.Xaml.HorizontalAlignment.Right,
-            LayoutAlignment.Fill   => Microsoft.UI.Xaml.HorizontalAlignment.Stretch,
+            LayoutAlignment.Start => HorizontalAlignment.Left,
+            LayoutAlignment.Center => HorizontalAlignment.Center,
+            LayoutAlignment.End => HorizontalAlignment.Right,
+            LayoutAlignment.Fill => HorizontalAlignment.Stretch,
 #pragma warning disable S3928
             _ => throw new ArgumentOutOfRangeException()
 #pragma warning restore S3928
