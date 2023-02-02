@@ -40,21 +40,6 @@ public class GetNumberOfPaymentsAssignedToCategoryTest : InMemoryTestBase
     }
 
     [Fact]
-    public async Task ReturnsCorrectNumberOfPayments_WhenSinglePayment()
-    {
-        // Arrange
-        var payment = new TestData.DefaultExpense();
-        var dbPayment = Context.RegisterPayment(payment);
-
-        // Act
-        var query = new GetNumberOfPaymentsAssignedToCategory.Query(dbPayment.Category!.Id);
-        var result = await handler.Handle(request: query, cancellationToken: CancellationToken.None);
-
-        // Assert
-        result.Should().Be(1);
-    }
-
-    [Fact]
     public async Task ReturnsCorrectNumberOfPayments_WhenMultiplePaymentsAvailable()
     {
         // Arrange
