@@ -2,6 +2,7 @@ namespace MoneyFox.Ui;
 
 using System.Globalization;
 using Common.Exceptions;
+using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Facades;
 using Core.Common.Helpers;
 using Core.Common.Interfaces;
@@ -11,6 +12,7 @@ using Core.Features.DbBackup;
 using Infrastructure.Adapters;
 using InversionOfControl;
 using MediatR;
+using Messages;
 using Serilog;
 using Views;
 
@@ -95,12 +97,14 @@ public partial class App
         isRunning = true;
         var settingsFacade = ServiceProvider.GetService<ISettingsFacade>() ?? throw new ResolveDependencyException<ISettingsFacade>();
         var mediator = ServiceProvider.GetService<IMediator>() ?? throw new ResolveDependencyException<IMediator>();
+        var messenger = ServiceProvider.GetService<IMessenger>() ?? throw new ResolveDependencyException<IMessenger>();
         try
         {
             if (settingsFacade.IsBackupAutoUploadEnabled && settingsFacade.IsLoggedInToBackupService)
             {
                 var backupService = ServiceProvider.GetService<IBackupService>() ?? throw new ResolveDependencyException<IBackupService>();
                 await backupService.RestoreBackupAsync();
+                messenger.Send(new BackupRestoredMessage());
             }
 
             _ = await mediator.Send(new ClearPaymentsCommand());

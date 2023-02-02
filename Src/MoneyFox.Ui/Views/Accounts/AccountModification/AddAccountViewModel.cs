@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.Views.Accounts;
+namespace MoneyFox.Ui.Views.Accounts.AccountModification;
 
 using Core.Common.Interfaces;
 using Core.Features._Legacy_.Accounts.CreateAccount;

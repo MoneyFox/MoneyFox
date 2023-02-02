@@ -24,12 +24,9 @@ public class UpdateCategoryCommandTests : InMemoryTestBase
         // Act
         category.UpdateData("foo");
         await handler.Handle(
-            command: new(
-                Id: category.Id,
-                Name: category.Name,
-                Note: category.Note,
-                RequireNote: category.RequireNote),
+            command: new(Id: category.Id, Name: category.Name, Note: category.Note, RequireNote: category.RequireNote),
             cancellationToken: default);
+
         var loadedCategory = await Context.Categories.FindAsync(category.Id);
 
         // Assert
@@ -47,12 +44,9 @@ public class UpdateCategoryCommandTests : InMemoryTestBase
         // Act
         category.UpdateData(name: "foo", requireNote: true);
         await handler.Handle(
-            command: new(
-                Id: category.Id,
-                Name: category.Name,
-                Note: category.Note,
-                RequireNote: category.RequireNote),
+            command: new(Id: category.Id, Name: category.Name, Note: category.Note, RequireNote: category.RequireNote),
             cancellationToken: default);
+
         var loadedCategory = await Context.Categories.FindAsync(category.Id);
 
         // Assert
