@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.Views.Accounts;
+namespace MoneyFox.Ui.Views.Accounts.AccountModification;
 
 [QueryProperty(name: "AccountId", queryId: "accountId")]
 public partial class EditAccountPage

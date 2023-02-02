@@ -4,11 +4,10 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;
-using Core.Common.Messages;
 using Core.Queries.BudgetListLoading;
 using MediatR;
 
-public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<ReloadMessage>
+public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<BudgetsChangedMessage>
 {
     private readonly ISender sender;
 
@@ -29,6 +28,11 @@ public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<ReloadMe
 
     public AsyncRelayCommand<BudgetListItemViewModel> EditBudgetCommand => new(EditBudgetAsync);
 
+    public async void Receive(BudgetsChangedMessage message)
+    {
+        await Initialize();
+    }
+
     private async Task Initialize()
     {
         var budgetsListData = await sender.Send(new LoadBudgetListData.Query());
@@ -46,11 +50,6 @@ public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<ReloadMe
 
         OnPropertyChanged(nameof(BudgetedAmount));
         OnPropertyChanged(nameof(HasBudgets));
-    }
-
-    public async void Receive(ReloadMessage message)
-    {
-        await Initialize();
     }
 
     private static async Task GoToAddBudget()

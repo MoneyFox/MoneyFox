@@ -1,6 +1,4 @@
-﻿namespace MoneyFox.Core.Common.Messages;
-
-using System;
+﻿namespace MoneyFox.Ui.Messages;
 
 public class DateSelectedMessage
 {

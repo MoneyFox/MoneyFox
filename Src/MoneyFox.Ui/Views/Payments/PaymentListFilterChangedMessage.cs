@@ -1,6 +1,5 @@
-﻿namespace MoneyFox.Core.Common.Messages;
+﻿namespace MoneyFox.Ui.Views.Payments;
 
-using System;
 using Domain.Aggregates.AccountAggregate;
 
 /// <summary>

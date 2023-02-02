@@ -4,16 +4,16 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
-    xmlns:accounts="clr-namespace:MoneyFox.Ui.Views.Accounts"
     xmlns:extensions="clr-namespace:MoneyFox.Ui.Common.Extensions"
+    xmlns:accountModification="clr-namespace:MoneyFox.Ui.Views.Accounts.AccountModification"
     Title="{Binding Title}"
-    x:DataType="accounts:EditAccountViewModel"
-    x:Class="MoneyFox.Ui.Views.Accounts.EditAccountPage">
+    x:DataType="accountModification:EditAccountViewModel"
+    x:Class="MoneyFox.Ui.Views.Accounts.AccountModification.EditAccountPage">
 
     <ContentPage.Content>
         <ScrollView>
             <VerticalStackLayout Padding="15,0,15,0" Spacing="12">
-                <accounts:ModifyAccountContentView />
+                <accountModification:ModifyAccountContentView />
 
                 <Label Style="{StaticResource TextBodySecondary}"
                        Text="{Binding SelectedAccountVm.Created, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />

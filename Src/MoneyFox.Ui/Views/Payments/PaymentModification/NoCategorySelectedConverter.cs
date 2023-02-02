@@ -1,8 +1,7 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
 using System.Globalization;
-using MoneyFox.Ui.Resources.Strings;
-using MoneyFox.Ui.Views.Payments;
+using Resources.Strings;
 
 public class NoCategorySelectedConverter : IValueConverter
 {
