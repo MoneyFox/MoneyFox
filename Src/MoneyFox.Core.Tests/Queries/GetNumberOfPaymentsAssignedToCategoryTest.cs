@@ -1,33 +1,8 @@
 ﻿namespace MoneyFox.Core.Tests.Queries;
 
-using Core.Common.Interfaces;
+using Core.Queries;
 using Domain.Tests.TestFramework;
 using FluentAssertions;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-
-public class GetNumberOfPaymentsAssignedToCategory
-{
-    public record Query(int CategoryId) : IRequest<int>;
-
-    public class Handler : IRequestHandler<Query, int>
-    {
-        private readonly IAppDbContext dbContext;
-
-        public Handler(IAppDbContext dbContext)
-        {
-            this.dbContext = dbContext;
-        }
-
-        public async Task<int> Handle(Query request, CancellationToken cancellationToken)
-        {
-            return await dbContext.Payments
-                .Where(p => p.Category != null)
-                .Where(p => p.Category!.Id == request.CategoryId)
-                .CountAsync(cancellationToken);
-        }
-    }
-}
 
 public class GetNumberOfPaymentsAssignedToCategoryTest : InMemoryTestBase
 {
