@@ -9,7 +9,7 @@ using Core.Queries;
 using MediatR;
 using Messages;
 
-internal class DashboardViewModel : BasePageViewModel, IRecipient<ReloadMessage>
+internal class DashboardViewModel : BasePageViewModel, IRecipient<BackupRestoredMessage>
 {
     private readonly IMapper mapper;
 
@@ -116,7 +116,7 @@ internal class DashboardViewModel : BasePageViewModel, IRecipient<ReloadMessage>
     public AsyncRelayCommand<AccountViewModel> GoToTransactionListCommand
         => new(async accountViewModel => await Shell.Current.GoToAsync($"{Routes.PaymentListRoute}?accountId={accountViewModel!.Id}"));
 
-    public async void Receive(ReloadMessage message)
+    public async void Receive(BackupRestoredMessage message)
     {
         await InitializeAsync();
     }
