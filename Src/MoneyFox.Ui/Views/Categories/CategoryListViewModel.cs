@@ -7,13 +7,12 @@ using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
-using Core.Common.Messages;
 using Core.Features._Legacy_.Categories.DeleteCategoryById;
 using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-public class CategoryListViewModel : BasePageViewModel, IRecipient<ReloadMessage>
+public class CategoryListViewModel : BasePageViewModel, IRecipient<CategoriesChangedMessage>
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
@@ -43,12 +42,13 @@ public class CategoryListViewModel : BasePageViewModel, IRecipient<ReloadMessage
     public AsyncRelayCommand GoToAddCategoryCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddCategoryRoute));
 
     public AsyncRelayCommand<CategoryListItemViewModel> GoToEditCategoryCommand
-        => new(async cvm => await Shell.Current.GoToAsync($"{Routes.EditCategoryRoute}?categoryId={cvm.Id}"));
+        => new(async cvm => await Shell.Current.GoToAsync($"{Routes.EditCategoryRoute}?categoryId={cvm?.Id}"));
 
     public AsyncRelayCommand<string> SearchCategoryCommand => new(async s => await SearchCategoryAsync(s ?? string.Empty));
+
     public AsyncRelayCommand<CategoryListItemViewModel> DeleteCategoryCommand => new(async vm => await DeleteCategoryAsync(vm));
 
-    public async void Receive(ReloadMessage message)
+    public async void Receive(CategoriesChangedMessage message)
     {
         await SearchCategoryAsync();
     }

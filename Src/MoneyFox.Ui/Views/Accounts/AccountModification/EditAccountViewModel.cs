@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.Views.Accounts;
+namespace MoneyFox.Ui.Views.Accounts.AccountModification;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;

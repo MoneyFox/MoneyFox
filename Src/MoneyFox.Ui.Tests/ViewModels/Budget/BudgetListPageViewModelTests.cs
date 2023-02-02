@@ -9,8 +9,16 @@ using NSubstitute;
 using Views.Budget;
 using Xunit;
 
-public static class BudgetListPageViewModelTests
+public abstract class BudgetListPageViewModelTests
 {
+    private readonly BudgetListViewModel viewModel;
+    private readonly ISender sender = Substitute.For<ISender>();
+
+    protected BudgetListPageViewModelTests()
+    {
+        viewModel = new(sender);
+    }
+
     private static void AssertBudgetListViewModel(BudgetListItemViewModel actualBudgetVm, TestData.IBudget expectedBudgetData)
     {
         actualBudgetVm.Id.Should().Be(expectedBudgetData.Id);
@@ -19,15 +27,9 @@ public static class BudgetListPageViewModelTests
         actualBudgetVm.CurrentSpending.Should().Be(expectedBudgetData.CurrentSpending);
     }
 
-    public class WithNoBudgetsAvailable
+    [Collection(nameof(BudgetListPageViewModelTests))]
+    public class WithNoBudgetsAvailable : BudgetListPageViewModelTests
     {
-        private readonly BudgetListViewModel viewModel;
-
-        public WithNoBudgetsAvailable()
-        {
-            viewModel = new(Substitute.For<ISender>());
-        }
-
         [Fact]
         public async Task InitializeBudgetsCollectionEmpty_WhenNotItemsFound()
         {
@@ -39,15 +41,13 @@ public static class BudgetListPageViewModelTests
         }
     }
 
-    public class WithBudgetAvailable
+    [Collection(nameof(BudgetListPageViewModelTests))]
+    public class WithBudgetAvailable : BudgetListPageViewModelTests
     {
         private readonly TestData.DefaultBudget budgetTestData;
-        private readonly BudgetListViewModel viewModel;
 
         public WithBudgetAvailable()
         {
-            var sender = Substitute.For<ISender>();
-            viewModel = new(sender);
             budgetTestData = new();
             sender.Send(Arg.Any<LoadBudgetListData.Query>())
                 .Returns(
@@ -85,14 +85,11 @@ public static class BudgetListPageViewModelTests
         }
     }
 
-    public class WithMultipleBudgetAvailable
+    [Collection(nameof(BudgetListPageViewModelTests))]
+    public class WithMultipleBudgetAvailable : BudgetListPageViewModelTests
     {
-        private readonly BudgetListViewModel viewModel;
-
         public WithMultipleBudgetAvailable()
         {
-            var sender = Substitute.For<ISender>();
-            viewModel = new(sender);
             TestData.DefaultBudget budgetTestData1 = new();
             _ = sender.Send(Arg.Any<LoadBudgetListData.Query>())
                 .Returns(
