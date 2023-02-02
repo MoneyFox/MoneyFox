@@ -13,6 +13,7 @@ using Infrastructure.Adapters;
 using InversionOfControl;
 using MediatR;
 using Messages;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Views;
 
@@ -36,9 +37,27 @@ public partial class App
             ? new AppShellDesktop()
             : new AppShell();
 
-        if (!settingsFacade.IsSetupCompleted)
+        if (settingsFacade.IsSetupCompleted is false)
         {
             Shell.Current.GoToAsync(Routes.WelcomeViewRoute).Wait();
+        }
+
+        if (settingsFacade.IsCategoryCleanupExecuted is false)
+        {
+            if (ServiceProvider?.GetService<IAppDbContext>() != null)
+            {
+                var dbContext = ServiceProvider.GetService<IAppDbContext>();
+                var categoryIds = dbContext!.Categories.Select(c => c.Id).ToList();
+                var paymentsWithCategory = dbContext.Payments.Include(p => p.Category).Where(p => p.Category != null).ToList();
+
+                foreach (var payment in paymentsWithCategory.Where(payment => categoryIds.Contains(payment.Category!.Id) is false))
+                {
+                    payment.RemoveCategory();
+                }
+
+                dbContext.SaveChangesAsync().GetAwaiter().GetResult();
+                settingsFacade.IsCategoryCleanupExecuted = true;
+            }
         }
     }
 
