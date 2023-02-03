@@ -1,22 +1,17 @@
+// ReSharper disable once CheckNamespace
 namespace MoneyFox.Ui;
 
 using System;
-using System.IO;
-using Core.Common;
 using Android.App;
 using Android.Runtime;
 using JetBrains.Annotations;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Maui;
 using Microsoft.Maui.Hosting;
-using Microsoft.Maui.Storage;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Ui.Common;
+using Core.Interfaces;
+using Common;
 using MoneyFox.Ui.Platforms.Android.Resources.Src;
 using Serilog;
-using Serilog.Events;
-using Serilog.Exceptions;
 using Microsoft.Identity.Client;
 
 [Application]

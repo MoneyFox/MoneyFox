@@ -1,9 +1,9 @@
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
+// ReSharper disable once CheckNamespace
 namespace MoneyFox.Ui.WinUI;
 
-using Core.Common.Interfaces;
 using Core.Interfaces;
 using Microsoft.Identity.Client;
 using Platforms.Windows.Src;
