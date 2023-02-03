@@ -52,16 +52,16 @@
 
     <ItemGroup>
         <!-- App Icon -->
-        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#efeadd" />
+        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#efeadd"/>
 
         <!-- Splash Screen -->
-        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#efeadd" BaseSize="128,128" />
+        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#efeadd" BaseSize="128,128"/>
 
         <!-- Custom Fonts -->
-        <MauiFont Include="Resources\Fonts\*" />
+        <MauiFont Include="Resources\Fonts\*"/>
 
         <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
-        <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+        <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -81,13 +81,13 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="MediatR" Version="11.1.0" />
-        <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.4" />
+        <PackageReference Include="MediatR" Version="11.1.0"/>
+        <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.4"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\MoneyFox.Core\MoneyFox.Core.csproj" />
-        <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj" />
+        <ProjectReference Include="..\MoneyFox.Core\MoneyFox.Core.csproj"/>
+        <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -97,8 +97,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="appsettings.json" />
-        <EmbeddedResource Include="appsettings.json" />
+        <None Remove="appsettings.json"/>
+        <EmbeddedResource Include="appsettings.json"/>
         <Compile Update="Resources\Strings\Translations.Designer.cs">
             <DesignTime>True</DesignTime>
             <AutoGen>True</AutoGen>
@@ -134,16 +134,40 @@
             <SubType>Code</SubType>
         </Compile>
         <Compile Update="Views\Payments\PaymentModification\AddPaymentPage.xaml.cs">
-          <DependentUpon>AddPaymentPage.xaml</DependentUpon>
-          <SubType>Code</SubType>
+            <DependentUpon>AddPaymentPage.xaml</DependentUpon>
+            <SubType>Code</SubType>
         </Compile>
         <Compile Update="Views\Payments\PaymentModification\EditPaymentPage.xaml.cs">
-          <DependentUpon>EditPaymentPage.xaml</DependentUpon>
-          <SubType>Code</SubType>
+            <DependentUpon>EditPaymentPage.xaml</DependentUpon>
+            <SubType>Code</SubType>
         </Compile>
         <Compile Update="Views\Payments\PaymentModification\ModifyPaymentContentView.xaml.cs">
-          <DependentUpon>ModifyPaymentContentView.xaml</DependentUpon>
-          <SubType>Code</SubType>
+            <DependentUpon>ModifyPaymentContentView.xaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Budget\ModifyBudget\ModifyBudgetView.xaml.cs">
+            <DependentUpon>ModifyBudgetView.xaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Budget\ModifyBudget\EditBudgetPage.xaml.cs">
+            <DependentUpon>EditBudgetPage.xaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Budget\ModifyBudget\AddBudgetPage.xaml.cs">
+            <DependentUpon>AddBudgetPage.xaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Accounts\AccountModification\AddAccountPage.xaml.cs">
+            <DependentUpon>AddAccountPage.xaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Accounts\AccountModification\EditAccountPage.xaml.cs">
+            <DependentUpon>EditAccountPage.xaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Accounts\AccountModification\ModifyAccountContentView.xaml.cs">
+            <DependentUpon>ModifyAccountContentView.xaml</DependentUpon>
+            <SubType>Code</SubType>
         </Compile>
     </ItemGroup>
 
@@ -164,13 +188,31 @@
             <SubType>Designer</SubType>
         </MauiXaml>
         <MauiXaml Update="Views\Payments\PaymentModification\AddPaymentPage.xaml">
-          <SubType>Designer</SubType>
+            <SubType>Designer</SubType>
         </MauiXaml>
         <MauiXaml Update="Views\Payments\PaymentModification\EditPaymentPage.xaml">
-          <SubType>Designer</SubType>
+            <SubType>Designer</SubType>
         </MauiXaml>
         <MauiXaml Update="Views\Payments\PaymentModification\ModifyPaymentContentView.xaml">
-          <SubType>Designer</SubType>
+            <SubType>Designer</SubType>
+        </MauiXaml>
+        <MauiXaml Update="Views\Budget\ModifyBudget\ModifyBudgetView.xaml">
+            <SubType>Designer</SubType>
+        </MauiXaml>
+        <MauiXaml Update="Views\Budget\ModifyBudget\EditBudgetPage.xaml">
+            <SubType>Designer</SubType>
+        </MauiXaml>
+        <MauiXaml Update="Views\Budget\ModifyBudget\AddBudgetPage.xaml">
+            <SubType>Designer</SubType>
+        </MauiXaml>
+        <MauiXaml Update="Views\Accounts\AccountModification\AddAccountPage.xaml">
+            <SubType>Designer</SubType>
+        </MauiXaml>
+        <MauiXaml Update="Views\Accounts\AccountModification\EditAccountPage.xaml">
+            <SubType>Designer</SubType>
+        </MauiXaml>
+        <MauiXaml Update="Views\Accounts\AccountModification\ModifyAccountContentView.xaml">
+            <SubType>Designer</SubType>
         </MauiXaml>
     </ItemGroup>
 

@@ -4,7 +4,7 @@ using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Facades;
 
-internal sealed class WelcomeViewModel : BaseViewModel
+internal sealed class WelcomeViewModel : BasePageViewModel
 {
     private readonly ISettingsFacade settingsFacade;
 

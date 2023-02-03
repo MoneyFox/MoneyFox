@@ -1,22 +1,21 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
 using System.Collections.ObjectModel;
+using Accounts;
 using AutoMapper;
+using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Core.Common.Interfaces;
+using Core.Queries;
+using Domain.Aggregates.AccountAggregate;
 using MediatR;
+using Messages;
 using Microsoft.AppCenter.Crashes;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Common.Messages;
-using MoneyFox.Core.Queries;
-using MoneyFox.Domain.Aggregates.AccountAggregate;
-using MoneyFox.Ui.Common.Extensions;
-using MoneyFox.Ui.Resources.Strings;
-using MoneyFox.Ui.Views.Accounts;
+using Resources.Strings;
 using Serilog;
 
-// ReSharper disable once PartialTypeWithSinglePart
-internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipient<CategorySelectedMessage>
+public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<CategorySelectedMessage>
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
@@ -105,14 +104,14 @@ internal abstract partial class ModifyPaymentViewModel : BaseViewModel, IRecipie
         var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
         ChargedAccounts = new(accounts);
         TargetAccounts = new(accounts);
-        IsActive = true;
         IsFirstLoad = false;
     }
 
     protected abstract Task SavePaymentAsync();
 
-    [RelayCommand]
-    private async Task Save()
+    public AsyncRelayCommand SaveCommand => new(SaveAsync);
+
+    private async Task SaveAsync()
     {
         if (SelectedPayment.ChargedAccount == null)
         {

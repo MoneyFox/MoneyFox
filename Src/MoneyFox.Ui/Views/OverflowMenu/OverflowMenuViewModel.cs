@@ -13,7 +13,7 @@ using Settings;
 internal sealed record OverflowItemViewModel(string IconGlyph, string Name, OverflowMenuItemType Type);
 
 [UsedImplicitly]
-internal sealed class OverflowMenuViewModel : BaseViewModel
+internal sealed class OverflowMenuViewModel : BasePageViewModel
 {
     private readonly INavigationService navigationService;
 

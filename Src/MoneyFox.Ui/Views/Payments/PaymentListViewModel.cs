@@ -8,14 +8,14 @@ using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Helpers;
-using Core.Common.Messages;
 using Core.Queries;
 using Core.Queries.GetPaymentsForAccountIdQuery;
 using Domain.Aggregates.AccountAggregate;
 using MediatR;
+using Messages;
 using Resources.Strings;
 
-internal sealed class PaymentListViewModel : BaseViewModel
+internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<ReloadMessage>, IRecipient<PaymentListFilterChangedMessage>
 {
     private readonly IMapper mapper;
 
@@ -31,7 +31,6 @@ internal sealed class PaymentListViewModel : BaseViewModel
     {
         this.mediator = mediator;
         this.mapper = mapper;
-        IsActive = true;
     }
 
     public AccountViewModel SelectedAccount
@@ -56,10 +55,6 @@ internal sealed class PaymentListViewModel : BaseViewModel
         }
     }
 
-    /// <summary>
-    ///     List with the different recurrence types.
-    ///     This has to have the same order as the enum
-    /// </summary>
     public static List<PaymentRecurrence> RecurrenceList
         => new()
         {
@@ -80,27 +75,23 @@ internal sealed class PaymentListViewModel : BaseViewModel
     public AsyncRelayCommand<PaymentViewModel> GoToEditPaymentCommand
         => new(async pvm => await Shell.Current.GoToAsync($"{Routes.EditPaymentRoute}?paymentId={pvm.Id}"));
 
-    protected override void OnActivated()
+    public async void Receive(PaymentListFilterChangedMessage message)
     {
-        Messenger.Register<PaymentListViewModel, ReloadMessage>(recipient: this, handler: async (r, m) => await OnAppearingAsync(SelectedAccount.Id));
-        Messenger.Register<PaymentListViewModel, PaymentListFilterChangedMessage>(
-            recipient: this,
-            handler: async (r, m) => await LoadPaymentsByMessageAsync(m));
+        await LoadPaymentsByMessageAsync(message);
     }
 
-    protected override void OnDeactivated()
+    public async void Receive(ReloadMessage message)
     {
-        Messenger.Unregister<ReloadMessage>(this);
-        Messenger.Unregister<PaymentListFilterChangedMessage>(this);
+        await InitializeAsync(SelectedAccount.Id);
     }
 
-    public async Task OnAppearingAsync(int accountId)
+    public async Task InitializeAsync(int accountId)
     {
         SelectedAccount = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
         await LoadPaymentsByMessageAsync(new());
     }
 
-    public async Task LoadPaymentsByMessageAsync(PaymentListFilterChangedMessage message)
+    private async Task LoadPaymentsByMessageAsync(PaymentListFilterChangedMessage message)
     {
         try
         {

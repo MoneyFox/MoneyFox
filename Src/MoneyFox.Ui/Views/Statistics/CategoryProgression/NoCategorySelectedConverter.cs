@@ -1,7 +1,7 @@
 namespace MoneyFox.Ui.Views.Statistics.CategoryProgression;
 
 using System.Globalization;
-using MoneyFox.Ui.Resources.Strings;
+using Resources.Strings;
 
 public class NoCategorySelectedConverter : IValueConverter
 {

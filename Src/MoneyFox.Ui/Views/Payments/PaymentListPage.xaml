@@ -96,7 +96,7 @@
                                                            LineBreakMode="TailTruncation"
                                                            Text="{Binding ., Converter={StaticResource PaymentAmountConverter}}"
                                                            HorizontalTextAlignment="End"
-                                                           HorizontalOptions="End"/>
+                                                           HorizontalOptions="End" />
                                                 </Grid>
 
                                                 <Grid>

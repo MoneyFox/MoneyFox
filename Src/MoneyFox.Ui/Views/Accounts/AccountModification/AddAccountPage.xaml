@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
+    xmlns:accountModification="clr-namespace:MoneyFox.Ui.Views.Accounts.AccountModification"
+    Title="{x:Static resources:Translations.AddAccountLabel}"
+    x:DataType="accountModification:AddAccountViewModel"
+    x:Class="MoneyFox.Ui.Views.Accounts.AccountModification.AddAccountPage">
+
+    <ContentPage.Content>
+        <ScrollView Padding="15,0,15,0">
+            <StackLayout Spacing="6">
+                <accountModification:ModifyAccountContentView />
+                <Button Command="{Binding SaveCommand}" Text="{x:Static resources:Translations.SaveLabel}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

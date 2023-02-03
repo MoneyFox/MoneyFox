@@ -12,24 +12,21 @@ using Xunit;
 
 public class CategoryListViewModelTests
 {
-    private readonly IDialogService dialogService;
     private readonly IMapper mapper;
     private readonly IMediator mediator;
+    private readonly CategoryListViewModel viewModel;
 
     public CategoryListViewModelTests()
     {
         mediator = Substitute.For<IMediator>();
         mapper = Substitute.For<IMapper>();
-        dialogService = Substitute.For<IDialogService>();
+        var dialogService = Substitute.For<IDialogService>();
+        viewModel = new(mediator: mediator, mapper: mapper, dialogService: dialogService);
     }
 
     [Fact]
     public void ListNotNullOnCtor()
     {
-        // Arrange
-        // Act
-        var viewModel = new CategoryListViewModel(mediator: mediator, mapper: mapper, dialogService: dialogService);
-
         // Assert
         viewModel.Categories.Should().NotBeNull();
     }
@@ -39,7 +36,6 @@ public class CategoryListViewModelTests
     {
         // Arrange
         _ = mapper.Map<List<CategoryListItemViewModel>>(Arg.Any<List<Category>>()).Returns(new List<CategoryListItemViewModel> { new() { Name = "asdf" } });
-        var viewModel = new CategoryListViewModel(mediator: mediator, mapper: mapper, dialogService: dialogService);
 
         // Act
         await viewModel.InitializeAsync();

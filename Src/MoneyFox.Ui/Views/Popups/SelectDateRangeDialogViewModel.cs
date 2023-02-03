@@ -3,9 +3,9 @@
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;
-using Core.Common.Messages;
+using Messages;
 
-internal sealed class SelectDateRangeDialogViewModel : BaseViewModel
+internal sealed class SelectDateRangeDialogViewModel : BasePageViewModel
 {
     private DateTime endDate;
     private DateTime startDate;

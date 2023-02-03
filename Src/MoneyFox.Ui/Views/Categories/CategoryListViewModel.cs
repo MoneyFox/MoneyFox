@@ -7,14 +7,12 @@ using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
-using Core.Common.Messages;
-using Core.Features._Legacy_.Categories.DeleteCategoryById;
+using Core.Features.CategoryDeletion;
 using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-// ReSharper disable once PartialTypeWithSinglePart
-public partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadMessage>
+public class CategoryListViewModel : BasePageViewModel, IRecipient<CategoriesChangedMessage>
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
@@ -44,9 +42,13 @@ public partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadMes
     public AsyncRelayCommand GoToAddCategoryCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddCategoryRoute));
 
     public AsyncRelayCommand<CategoryListItemViewModel> GoToEditCategoryCommand
-        => new(async cvm => await Shell.Current.GoToAsync($"{Routes.EditCategoryRoute}?categoryId={cvm.Id}"));
+        => new(async cvm => await Shell.Current.GoToAsync($"{Routes.EditCategoryRoute}?categoryId={cvm?.Id}"));
 
-    public async void Receive(ReloadMessage message)
+    public AsyncRelayCommand<string> SearchCategoryCommand => new(async s => await SearchCategoryAsync(s ?? string.Empty));
+
+    public AsyncRelayCommand<CategoryListItemViewModel> DeleteCategoryCommand => new(async vm => await DeleteCategoryAsync(vm));
+
+    public async void Receive(CategoriesChangedMessage message)
     {
         await SearchCategoryAsync();
     }
@@ -54,10 +56,8 @@ public partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadMes
     public async Task InitializeAsync()
     {
         await SearchCategoryAsync();
-        IsActive = true;
     }
 
-    [RelayCommand]
     private async Task SearchCategoryAsync(string searchTerm = "")
     {
         var categoryVms = mapper.Map<List<CategoryListItemViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery(searchTerm)));
@@ -69,17 +69,26 @@ public partial class CategoryListViewModel : BaseViewModel, IRecipient<ReloadMes
         Categories = new(groups);
     }
 
-    [RelayCommand]
-    private async Task DeleteCategoryAsync(CategoryListItemViewModel categoryListItemViewModel)
+    private async Task DeleteCategoryAsync(CategoryListItemViewModel? categoryListItemViewModel)
     {
-        if (await dialogService.ShowConfirmMessageAsync(
-                title: Translations.DeleteTitle,
-                message: Translations.DeleteCategoryConfirmationMessage,
-                positiveButtonText: Translations.YesLabel,
-                negativeButtonText: Translations.NoLabel))
+        if (categoryListItemViewModel == null)
         {
-            await mediator.Send(new DeleteCategoryByIdCommand(categoryListItemViewModel.Id));
-            await SearchCategoryAsync();
+            return;
+        }
+        
+        if (await dialogService.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeleteCategoryConfirmationMessage))
+        {
+            var numberOfAssignedPayments = await mediator.Send(new GetNumberOfPaymentsAssignedToCategory.Query(categoryListItemViewModel.Id));
+            if (numberOfAssignedPayments == 0
+                || await dialogService.ShowConfirmMessageAsync(
+                    title: Translations.UnassignPaymentTitle,
+                    message: string.Format(format: Translations.UnassignPaymentMessage, arg0: numberOfAssignedPayments),
+                    positiveButtonText: Translations.RemoveLabel,
+                    negativeButtonText: Translations.CancelLabel))
+            {
+                await mediator.Send(new DeleteCategoryById.Command(categoryListItemViewModel.Id));
+                await SearchCategoryAsync();
+            }
         }
     }
 }

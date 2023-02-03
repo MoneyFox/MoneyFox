@@ -4,18 +4,16 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;
-using Core.Common.Messages;
 using Core.Queries.BudgetListLoading;
 using MediatR;
 
-public sealed class BudgetListViewModel : BaseViewModel, IRecipient<ReloadMessage>
+public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<BudgetsChangedMessage>
 {
     private readonly ISender sender;
 
     public BudgetListViewModel(ISender sender)
     {
         this.sender = sender;
-        WeakReferenceMessenger.Default.Register(this);
     }
 
     public bool HasBudgets => Budgets.Any();
@@ -30,7 +28,7 @@ public sealed class BudgetListViewModel : BaseViewModel, IRecipient<ReloadMessag
 
     public AsyncRelayCommand<BudgetListItemViewModel> EditBudgetCommand => new(EditBudgetAsync);
 
-    public async void Receive(ReloadMessage message)
+    public async void Receive(BudgetsChangedMessage message)
     {
         await Initialize();
     }

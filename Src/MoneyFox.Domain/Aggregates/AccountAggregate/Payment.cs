@@ -164,4 +164,9 @@ public class Payment : EntityBase
             TargetAccount.AddPaymentAmount(this);
         }
     }
+
+    public void RemoveCategory()
+    {
+        Category = null;
+    }
 }

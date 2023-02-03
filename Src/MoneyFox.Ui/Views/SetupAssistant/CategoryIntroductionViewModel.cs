@@ -3,7 +3,7 @@
 using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
 
-internal sealed class CategoryIntroductionViewModel : BaseViewModel
+internal sealed class CategoryIntroductionViewModel : BasePageViewModel
 {
     public AsyncRelayCommand GoToAddCategoryCommand => new(async () => await Shell.Current.GoToModalAsync(Routes.AddCategoryRoute));
 

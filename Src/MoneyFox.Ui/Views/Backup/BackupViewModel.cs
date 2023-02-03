@@ -11,7 +11,7 @@ using MediatR;
 using Resources.Strings;
 using Serilog;
 
-internal sealed class BackupViewModel : BaseViewModel
+internal sealed class BackupViewModel : BasePageViewModel
 {
     private readonly IBackupService backupService;
     private readonly IConnectivityAdapter connectivity;

@@ -3,12 +3,11 @@ namespace MoneyFox.Ui.Views.Categories.ModifyCategory;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
-using Core.Common.Messages;
 using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-public abstract class ModifyCategoryViewModel : BaseViewModel
+public abstract class ModifyCategoryViewModel : BasePageViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
@@ -45,7 +44,7 @@ public abstract class ModifyCategoryViewModel : BaseViewModel
             return;
         }
 
-        if (await mediator.Send(new GetIfCategoryWithNameExistsQuery(SelectedCategory.Name, SelectedCategory.Id)))
+        if (await mediator.Send(new GetIfCategoryWithNameExistsQuery(categoryName: SelectedCategory.Name, categoryId: SelectedCategory.Id)))
         {
             await dialogService.ShowMessageAsync(title: Translations.DuplicatedNameTitle, message: Translations.DuplicateCategoryMessage);
 
@@ -54,7 +53,7 @@ public abstract class ModifyCategoryViewModel : BaseViewModel
 
         await dialogService.ShowLoadingDialogAsync(Translations.SavingCategoryMessage);
         await SaveCategoryAsync();
-        Messenger.Send(new ReloadMessage());
+        Messenger.Send(new CategoriesChangedMessage());
         await dialogService.HideLoadingDialogAsync();
         await Shell.Current.Navigation.PopModalAsync();
     }

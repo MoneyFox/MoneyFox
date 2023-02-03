@@ -34,13 +34,7 @@ public static class MauiProgram
                     fonts.AddFont(filename: "ProductSans-Regular.ttf", alias: "Product");
                     fonts.AddFont(filename: "materialdesignicons.ttf", alias: "MaterialIcons");
                 })
-            .ConfigureMauiHandlers(
-                handlers =>
-                {
-#if IOS
-                    handlers.AddHandler(viewType: typeof(Shell), handlerType: typeof(Platforms.iOS.Renderer.CustomShellRenderer));
-#endif
-                })
+            .AddCustomAppShellHandler()
             .UseSkiaSharp(true)
             .UseMauiCommunityToolkit();
 
@@ -62,8 +56,45 @@ public static class MauiProgram
                 }
             });
 
+#if WINDOWS
+        PickerHandler.Mapper.Add(nameof(View.HorizontalOptions), MapHorizontalOptions);
+#endif
         return builder.Build();
     }
+
+    private static MauiAppBuilder AddCustomAppShellHandler(this MauiAppBuilder builder)
+    {
+#if IOS
+        builder.ConfigureMauiHandlers(handlers => { handlers.AddHandler(viewType: typeof(Shell), handlerType: typeof(Platforms.iOS.Renderer.CustomShellRenderer)); });
+#endif
+        return builder;
+    }
+
+#if WINDOWS
+    private static void MapHorizontalOptions(IViewHandler handler, IView view)
+    {
+        if (view is not View mauiView)
+        {
+            return;
+        }
+
+        if (handler.PlatformView is not Microsoft.UI.Xaml.FrameworkElement element)
+        {
+            return;
+        }
+
+        element.HorizontalAlignment = mauiView.HorizontalOptions.Alignment switch
+        {
+            LayoutAlignment.Start  => Microsoft.UI.Xaml.HorizontalAlignment.Left,
+            LayoutAlignment.Center => Microsoft.UI.Xaml.HorizontalAlignment.Center,
+            LayoutAlignment.End    => Microsoft.UI.Xaml.HorizontalAlignment.Right,
+            LayoutAlignment.Fill   => Microsoft.UI.Xaml.HorizontalAlignment.Stretch,
+#pragma warning disable S3928
+            _ => throw new ArgumentOutOfRangeException()
+#pragma warning restore S3928
+        };
+    }
+#endif
 
     private static IConfigurationRoot GetConfiguration()
     {
@@ -84,7 +115,7 @@ public static class MauiProgram
 
             try
             {
-                using var logFileStream = new FileStream(logFile.FullName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                using var logFileStream = new FileStream(path: logFile.FullName, mode: FileMode.Open, access: FileAccess.Read, share: FileShare.ReadWrite);
                 using var logFileReader = new StreamReader(logFileStream);
                 var logText = logFileReader.ReadToEnd();
 
