@@ -9,12 +9,12 @@ using Microsoft.EntityFrameworkCore;
 using NSubstitute;
 using Persistence;
 
-public sealed class AppDbContextShould
+public sealed class AppDbContextTests
 {
     private readonly ICustomPublisher publisher;
     private readonly ISettingsFacade settingsFacade;
 
-    public AppDbContextShould()
+    public AppDbContextTests()
     {
         publisher = Substitute.For<ICustomPublisher>();
         settingsFacade = Substitute.For<ISettingsFacade>();

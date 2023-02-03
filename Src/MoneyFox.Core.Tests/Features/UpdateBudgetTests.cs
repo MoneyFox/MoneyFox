@@ -6,11 +6,11 @@ using Domain.Tests.TestFramework;
 using Microsoft.EntityFrameworkCore;
 using static Domain.Tests.TestFramework.BudgetAssertion;
 
-public sealed class UpdateBudgetShould : InMemoryTestBase
+public sealed class UpdateBudgetTests : InMemoryTestBase
 {
     private readonly UpdateBudget.Handler handler;
 
-    public UpdateBudgetShould()
+    public UpdateBudgetTests()
     {
         handler = new(Context);
     }

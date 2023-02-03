@@ -4,11 +4,11 @@ using Core.Features.BudgetDeletion;
 using Domain.Tests.TestFramework;
 using FluentAssertions;
 
-public sealed class DeleteBudgetShould : InMemoryTestBase
+public sealed class DeleteBudgetTests : InMemoryTestBase
 {
     private readonly DeleteBudget.Handler handler;
 
-    public DeleteBudgetShould()
+    public DeleteBudgetTests()
     {
         handler = new(Context);
     }

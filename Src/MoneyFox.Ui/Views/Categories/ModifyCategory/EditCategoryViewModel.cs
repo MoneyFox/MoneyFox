@@ -3,8 +3,8 @@ namespace MoneyFox.Ui.Views.Categories.ModifyCategory;
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Interfaces;
-using Core.Features._Legacy_.Categories.DeleteCategoryById;
 using Core.Features._Legacy_.Categories.UpdateCategory;
+using Core.Features.CategoryDeletion;
 using Core.Interfaces;
 using Core.Queries;
 using MediatR;
@@ -60,8 +60,17 @@ public class EditCategoryViewModel : ModifyCategoryViewModel
     {
         if (await dialogService.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeleteCategoryConfirmationMessage))
         {
-            await mediator.Send(new DeleteCategoryByIdCommand(SelectedCategory.Id));
-            await navigationService.GoBackFromModalAsync();
+            var numberOfAssignedPayments = await mediator.Send(new GetNumberOfPaymentsAssignedToCategory.Query(SelectedCategory.Id));
+            if (numberOfAssignedPayments == 0
+                || await dialogService.ShowConfirmMessageAsync(
+                    title: Translations.UnassignPaymentTitle,
+                    message: string.Format(format: Translations.UnassignPaymentMessage, arg0: numberOfAssignedPayments),
+                    positiveButtonText: Translations.RemoveLabel,
+                    negativeButtonText: Translations.CancelLabel))
+            {
+                await mediator.Send(new DeleteCategoryById.Command(SelectedCategory.Id));
+                await navigationService.GoBackFromModalAsync();
+            }
         }
     }
 }

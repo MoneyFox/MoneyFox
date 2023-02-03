@@ -5,20 +5,20 @@ using Infrastructure.DbBackup;
 using Infrastructure.DbBackup.OneDriveModels;
 using NSubstitute;
 
-public class OneDriveProfileServiceShould
+public class OneDriveProfileServiceTests
 {
     private readonly HttpTest httpTest;
     private readonly IOneDriveAuthenticationService oneDriveAuthenticationService;
     private readonly OneDriveProfileService oneDriveProfileService;
 
-    public OneDriveProfileServiceShould()
+    protected OneDriveProfileServiceTests()
     {
         httpTest = new();
         oneDriveAuthenticationService = Substitute.For<IOneDriveAuthenticationService>();
         oneDriveProfileService = new(oneDriveAuthenticationService);
     }
 
-    public class GetUserAccountAsync : OneDriveProfileServiceShould
+    public class GetUserAccountAsync : OneDriveProfileServiceTests
     {
         [Fact]
         public async Task CallCorrectUrl()
@@ -35,7 +35,7 @@ public class OneDriveProfileServiceShould
         }
     }
 
-    public class GetProfilePictureAsync : OneDriveProfileServiceShould
+    public class GetProfilePictureAsync : OneDriveProfileServiceTests
     {
         [Fact]
         public async Task CallCorrectUrl()
