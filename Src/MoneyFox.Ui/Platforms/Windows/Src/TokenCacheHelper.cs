@@ -9,17 +9,17 @@ internal static class TokenCacheHelper
     /// <summary>
     ///     Path to the token cache
     /// </summary>
-    private static readonly string CacheFilePath = ApplicationData.Current.LocalFolder.Path + ".msalcache.bin";
+    private static readonly string cacheFilePath = ApplicationData.Current.LocalFolder.Path + ".msalcache.bin";
 
-    private static readonly object FileLock = new();
+    private static readonly object fileLock = new();
 
     private static void BeforeAccessNotification(TokenCacheNotificationArgs args)
     {
-        lock (FileLock)
+        lock (fileLock)
         {
             args.TokenCache.DeserializeMsalV3(
-                File.Exists(CacheFilePath)
-                    ? ProtectedData.Unprotect(encryptedData: File.ReadAllBytes(CacheFilePath), optionalEntropy: null, scope: DataProtectionScope.CurrentUser)
+                File.Exists(cacheFilePath)
+                    ? ProtectedData.Unprotect(encryptedData: File.ReadAllBytes(cacheFilePath), optionalEntropy: null, scope: DataProtectionScope.CurrentUser)
                     : null);
         }
     }
@@ -29,11 +29,11 @@ internal static class TokenCacheHelper
         // if the access operation resulted in a cache update
         if (args.HasStateChanged)
         {
-            lock (FileLock)
+            lock (fileLock)
             {
                 // reflect changes in the persistent store
                 File.WriteAllBytes(
-                    path: CacheFilePath,
+                    path: cacheFilePath,
                     bytes: ProtectedData.Protect(userData: args.TokenCache.SerializeMsalV3(), optionalEntropy: null, scope: DataProtectionScope.CurrentUser));
             }
         }

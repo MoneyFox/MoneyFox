@@ -1,7 +1,6 @@
 // ReSharper disable once CheckNamespace
 namespace MoneyFox.Ui;
 
-using System;
 using Android.App;
 using Android.Runtime;
 using JetBrains.Annotations;
