@@ -99,7 +99,7 @@
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="accounts:AccountViewModel">
                                 <Grid Padding="10,15,10,15" WidthRequest="180">
-                                    <controls:Card HeightRequest="80">
+                                    <controls:Card >
                                         <Grid>
                                             <Label
                                                 Margin="10,2,0,0"
@@ -160,7 +160,8 @@
 
                     <Grid ColumnDefinitions="*, 10, *">
 
-                        <controls:Card Grid.Column="0"
+                        <controls:Card Grid.Column="0" 
+                                       Style="{StaticResource UnclickclickableCard}"
                                        HeightRequest="80">
 
                             <Grid>
@@ -173,6 +174,7 @@
                         </controls:Card>
 
                         <controls:Card Grid.Column="2"
+                                       Style="{StaticResource UnclickclickableCard}"
                                        HeightRequest="80">
                             <Grid>
                                 <Label
