@@ -31,6 +31,16 @@
                 SelectionChangedCommand="{Binding GoToTransactionListCommand}"
                 SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference AccountCollectionView}}">
                 
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <Label
+                            Margin="6"
+                            FontFamily="Product"
+                            FontSize="18"
+                            Text="{Binding Key}" />
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+                
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="accounts:AccountViewModel">
                         <Grid Padding="15,6,15,12">
