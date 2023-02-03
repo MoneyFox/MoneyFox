@@ -24,8 +24,12 @@
                 Command="{Binding GoToAddAccountCommand}" />
 
             <CollectionView
+                x:Name="AccountCollectionView"
                 IsGrouped="true"
-                ItemsSource="{Binding Accounts}">
+                ItemsSource="{Binding Accounts}"
+                SelectionMode="Single"
+                SelectionChangedCommand="{Binding GoToTransactionListCommand}"
+                SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference AccountCollectionView}}">
                 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="accounts:AccountViewModel">
@@ -50,12 +54,7 @@
                                     <Grid
                                         BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                             Light={StaticResource CardBackgroundLight}}">
-                                        <Grid.GestureRecognizers>
-                                            <TapGestureRecognizer
-                                                Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference Name=AccountCollectionView}}"
-                                                CommandParameter="{Binding .}" />
-                                        </Grid.GestureRecognizers>
-
+        
                                         <Label
                                             Margin="10,2,0,0"
                                             HorizontalTextAlignment="Start"

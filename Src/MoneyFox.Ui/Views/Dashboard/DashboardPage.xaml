@@ -89,21 +89,16 @@
 
                     <CollectionView
                         x:Name="AccountCollectionView"
-                        EmptyView="{x:Static resources:Translations.NoAccountsMessage}"
+                        SelectionMode="Single"
                         ItemsLayout="HorizontalList"
-                        ItemsSource="{Binding Accounts}">
+                        ItemsSource="{Binding Accounts}"
+                        EmptyView="{x:Static resources:Translations.NoAccountsMessage}"
+                        SelectionChangedCommand="{Binding GoToTransactionListCommand}"
+                        SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference AccountCollectionView}}">
 
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="accounts:AccountViewModel">
                                 <Grid Padding="10,15,10,15" WidthRequest="180">
-
-                                    <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                            Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference Name=AccountCollectionView}}"
-                                            CommandParameter="{Binding .}" />
-                                    </Grid.GestureRecognizers>
-
-
                                     <controls:Card HeightRequest="80">
                                         <Grid>
                                             <Label
