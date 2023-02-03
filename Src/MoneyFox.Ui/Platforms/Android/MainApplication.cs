@@ -21,7 +21,7 @@ public class MainApplication : MauiApplication
     private const string MSAL_APPLICATION_ID = "00a3e4cd-b4b0-4730-be62-5fcf90a94a1d";
     private const string MSAL_URI = $"msal{MSAL_APPLICATION_ID}://auth";
 
-    public MainApplication(IntPtr handle, JniHandleOwnership ownership) : base(handle, ownership) { }
+    public MainApplication(nint handle, JniHandleOwnership ownership) : base(handle, ownership) { }
 
     protected override MauiApp CreateMauiApp()
     {
@@ -50,7 +50,7 @@ public class MainApplication : MauiApplication
         serviceCollection.AddSingleton(publicClientApplication);
     }
 
-    private void HandleAndroidException(object sender, RaiseThrowableEventArgs e)
+    private void HandleAndroidException(object? sender, RaiseThrowableEventArgs e)
     {
         Log.Fatal(exception: e.Exception, messageTemplate: "Application Terminating");
     }
