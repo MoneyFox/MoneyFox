@@ -10,8 +10,7 @@ using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-// ReSharper disable once PartialTypeWithSinglePart
-public partial class EditCategoryViewModel : ModifyCategoryViewModel
+public class EditCategoryViewModel : ModifyCategoryViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
@@ -27,6 +26,8 @@ public partial class EditCategoryViewModel : ModifyCategoryViewModel
         this.dialogService = dialogService;
         this.navigationService = navigationService;
     }
+
+    public AsyncRelayCommand DeleteCommand => new(DeleteAsync);
 
     public async Task InitializeAsync(int categoryId)
     {
@@ -55,8 +56,7 @@ public partial class EditCategoryViewModel : ModifyCategoryViewModel
         await mediator.Send(command);
     }
 
-    [RelayCommand]
-    private async Task Delete()
+    private async Task DeleteAsync()
     {
         if (await dialogService.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeleteCategoryConfirmationMessage))
         {

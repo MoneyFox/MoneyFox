@@ -10,8 +10,7 @@ using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-// ReSharper disable once PartialTypeWithSinglePart
-public partial class EditAccountViewModel : ModifyAccountViewModel
+public class EditAccountViewModel : ModifyAccountViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
@@ -32,6 +31,8 @@ public partial class EditAccountViewModel : ModifyAccountViewModel
     public override bool IsEdit => true;
     public override string Title => string.Format(format: Translations.EditAccountTitle, arg0: SelectedAccountVm.Name);
 
+    public AsyncRelayCommand DeleteCommand => new(DeleteAsync);
+
     public async Task InitializeAsync(int accountId)
     {
         SelectedAccountVm = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
@@ -50,7 +51,6 @@ public partial class EditAccountViewModel : ModifyAccountViewModel
         await mediator.Send(command);
     }
 
-    [RelayCommand]
     private async Task DeleteAsync()
     {
         if (await dialogService.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeleteAccountConfirmationMessage))

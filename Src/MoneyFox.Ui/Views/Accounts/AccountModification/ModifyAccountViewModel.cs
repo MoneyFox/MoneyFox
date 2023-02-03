@@ -8,8 +8,7 @@ using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-// ReSharper disable once PartialTypeWithSinglePart
-public abstract partial class ModifyAccountViewModel : BasePageViewModel
+public abstract class ModifyAccountViewModel : BasePageViewModel
 {
     private readonly IDialogService dialogService;
     private readonly INavigationService navigationService;
@@ -40,9 +39,10 @@ public abstract partial class ModifyAccountViewModel : BasePageViewModel
         }
     }
 
+    public AsyncRelayCommand SaveCommand => new(SaveAsync);
+
     protected abstract Task SaveAccountAsync();
 
-    [RelayCommand]
     private async Task SaveAsync()
     {
         if (string.IsNullOrWhiteSpace(SelectedAccountVm.Name))
