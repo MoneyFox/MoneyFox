@@ -1963,6 +1963,15 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        public static string RemoveLabel {
+            get {
+                return ResourceManager.GetString("RemoveLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Note required.
         /// </summary>
         public static string RequireNoteCheckbox {
@@ -2239,6 +2248,24 @@ namespace MoneyFox.Ui.Resources.Strings {
         public static string TranslationLabel {
             get {
                 return ResourceManager.GetString("TranslationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are {0} payments assigned. Those will be unassigned. Do you want to proceed?.
+        /// </summary>
+        public static string UnassignPaymentMessage {
+            get {
+                return ResourceManager.GetString("UnassignPaymentMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unassign Payments.
+        /// </summary>
+        public static string UnassignPaymentTitle {
+            get {
+                return ResourceManager.GetString("UnassignPaymentTitle", resourceCulture);
             }
         }
         

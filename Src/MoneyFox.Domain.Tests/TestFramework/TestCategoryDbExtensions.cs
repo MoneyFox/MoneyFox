@@ -2,6 +2,7 @@
 
 using Domain.Aggregates.CategoryAggregate;
 using Infrastructure.Persistence;
+using NSubstitute;
 
 internal static class TestCategoryDbExtensions
 {
@@ -21,6 +22,7 @@ internal static class TestCategoryDbExtensions
         db.Add(dbCategory);
         db.SaveChanges();
 
+        testCategory.Id = dbCategory.Id;
         return dbCategory;
     }
 }

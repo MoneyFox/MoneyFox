@@ -4,11 +4,11 @@ using Core.Features.BudgetCreation;
 using Domain.Tests.TestFramework;
 using static Domain.Tests.TestFramework.BudgetAssertion;
 
-public sealed class CreateBudgetShould : InMemoryTestBase
+public sealed class CreateBudgetTests : InMemoryTestBase
 {
     private readonly CreateBudget.Handler handler;
 
-    public CreateBudgetShould()
+    public CreateBudgetTests()
     {
         handler = new(Context);
     }

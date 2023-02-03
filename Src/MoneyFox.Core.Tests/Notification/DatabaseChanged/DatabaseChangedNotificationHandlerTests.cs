@@ -7,20 +7,20 @@ using MediatR;
 using Notifications.DatabaseChanged;
 using NSubstitute;
 
-public class DatabaseChangedNotificationHandlerShould
+public class DatabaseChangedNotificationHandlerTests
 {
     private readonly DataBaseChanged.Handler handler;
     private readonly ISender sender;
     private readonly ISettingsFacade settingsFacade;
 
-    protected DatabaseChangedNotificationHandlerShould()
+    protected DatabaseChangedNotificationHandlerTests()
     {
         sender = Substitute.For<ISender>();
         settingsFacade = Substitute.For<ISettingsFacade>();
         handler = new(sender: sender, settingsFacade: settingsFacade);
     }
 
-    public class GivenBackupAutoUploadEnabled : DatabaseChangedNotificationHandlerShould
+    public class GivenBackupAutoUploadEnabled : DatabaseChangedNotificationHandlerTests
     {
         public GivenBackupAutoUploadEnabled()
         {
@@ -58,7 +58,7 @@ public class DatabaseChangedNotificationHandlerShould
         }
     }
 
-    public class GivenBackupAutoUploadDisabled : DatabaseChangedNotificationHandlerShould
+    public class GivenBackupAutoUploadDisabled : DatabaseChangedNotificationHandlerTests
     {
         public GivenBackupAutoUploadDisabled()
         {

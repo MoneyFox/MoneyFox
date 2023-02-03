@@ -7,12 +7,9 @@ internal static class TestPaymentDbFactory
 {
     internal static Payment CreateDbPayment(this TestData.IPayment payment)
     {
-        // todo switch this around to have the account be the aggregate
-        var chargedAccount = payment.ChargedAccount.CreateDbAccount();
-        var targetAccount = payment.TargetAccount.CreateDbAccount();
-
-        //TODO Handle category better
-        var category = new Category(payment.CategoryName);
+        var dbChargedAccount = payment.ChargedAccount.CreateDbAccount();
+        var dbTargetAccount = payment.TargetAccount?.CreateDbAccount();
+        var dbCategory = payment.Category?.CreateDbCategory();
 
         //TODO Handle RecurringPayment better
 
@@ -20,9 +17,9 @@ internal static class TestPaymentDbFactory
             date: payment.Date,
             amount: payment.Amount,
             type: payment.Type,
-            chargedAccount: chargedAccount,
-            targetAccount: targetAccount,
-            category: category,
+            chargedAccount: dbChargedAccount,
+            targetAccount: dbTargetAccount,
+            category: dbCategory,
             note: payment.Note);
     }
 }

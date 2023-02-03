@@ -10,27 +10,23 @@ using NSubstitute;
 using Views.Backup;
 using Xunit;
 
-public class BackupViewModelShould
+public class BackupViewModelTests
 {
     private readonly IBackupService backupService;
     private readonly IConnectivityAdapter connectivityAdapter;
-    private readonly IDialogService dialogService;
-    private readonly IMediator mediator;
-    private readonly IOneDriveProfileService oneDriveProfileService;
     private readonly ISettingsFacade settingsManager;
-    private readonly IToastService toastService;
 
     private readonly BackupViewModel viewModel;
 
-    protected BackupViewModelShould()
+    protected BackupViewModelTests()
     {
         backupService = Substitute.For<IBackupService>();
-        oneDriveProfileService = Substitute.For<IOneDriveProfileService>();
+        var oneDriveProfileService = Substitute.For<IOneDriveProfileService>();
         connectivityAdapter = Substitute.For<IConnectivityAdapter>();
-        toastService = Substitute.For<IToastService>();
-        mediator = Substitute.For<IMediator>();
+        var toastService = Substitute.For<IToastService>();
+        var mediator = Substitute.For<IMediator>();
         settingsManager = Substitute.For<ISettingsFacade>();
-        dialogService = Substitute.For<IDialogService>();
+        var dialogService = Substitute.For<IDialogService>();
         viewModel = new(
             mediator: mediator,
             backupService: backupService,
@@ -41,7 +37,7 @@ public class BackupViewModelShould
             oneDriveProfileService: oneDriveProfileService);
     }
 
-    public sealed class InitializeCommand : BackupViewModelShould
+    public sealed class InitializeCommand : BackupViewModelTests
     {
         [Fact]
         public async Task CallNothing_OnInitialize_WhenDeviceIsDisconnected()
@@ -93,14 +89,14 @@ public class BackupViewModelShould
         }
     }
 
-    public class LogoutCommand : BackupViewModelShould
+    public class LogoutCommand : BackupViewModelTests
     {
         [Fact]
         public void UpdateSettingsCorrectly_OnLogout()
         {
             // Arrange
             var logoutCommandCalled = false;
-            backupService.When(x => x.LogoutAsync()).Do(x => logoutCommandCalled = true);
+            backupService.When(x => x.LogoutAsync()).Do(_ => logoutCommandCalled = true);
 
             // Act
             viewModel.LogoutCommand.Execute(null);

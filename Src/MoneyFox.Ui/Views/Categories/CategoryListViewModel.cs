@@ -7,7 +7,7 @@ using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
-using Core.Features._Legacy_.Categories.DeleteCategoryById;
+using Core.Features.CategoryDeletion;
 using Core.Queries;
 using MediatR;
 using Resources.Strings;
@@ -70,14 +70,19 @@ public partial class CategoryListViewModel : BasePageViewModel, IRecipient<Categ
     [RelayCommand]
     private async Task DeleteCategoryAsync(CategoryListItemViewModel categoryListItemViewModel)
     {
-        if (await dialogService.ShowConfirmMessageAsync(
-                title: Translations.DeleteTitle,
-                message: Translations.DeleteCategoryConfirmationMessage,
-                positiveButtonText: Translations.YesLabel,
-                negativeButtonText: Translations.NoLabel))
+        if (await dialogService.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeleteCategoryConfirmationMessage))
         {
-            await mediator.Send(new DeleteCategoryByIdCommand(categoryListItemViewModel.Id));
-            await SearchCategoryAsync();
+            var numberOfAssignedPayments = await mediator.Send(new GetNumberOfPaymentsAssignedToCategory.Query(categoryListItemViewModel.Id));
+            if (numberOfAssignedPayments == 0
+                || await dialogService.ShowConfirmMessageAsync(
+                    title: Translations.UnassignPaymentTitle,
+                    message: string.Format(format: Translations.UnassignPaymentMessage, arg0: numberOfAssignedPayments),
+                    positiveButtonText: Translations.RemoveLabel,
+                    negativeButtonText: Translations.CancelLabel))
+            {
+                await mediator.Send(new DeleteCategoryById.Command(categoryListItemViewModel.Id));
+                await SearchCategoryAsync();
+            }
         }
     }
 }
