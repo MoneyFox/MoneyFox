@@ -14,30 +14,36 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <VerticalStackLayout IsClippedToBounds="False">
+        <Grid RowDefinitions="55,*" IsClippedToBounds="False">
             <Button
-                Margin="0,0,12,0"
+                Grid.Row="0"
+                Margin="0,0,15,0"
                 HorizontalOptions="End"
                 Text="{x:Static resources:Translations.AddAccountLabel}"
                 VerticalOptions="Center"
                 Command="{Binding GoToAddAccountCommand}" />
 
             <CollectionView
+                Grid.Row="1"
                 x:Name="AccountCollectionView"
                 IsGrouped="true"
-                ItemsSource="{Binding Accounts}">
-
+                ItemsSource="{Binding Accounts}"
+                SelectionMode="Single"
+                SelectionChangedCommand="{Binding GoToTransactionListCommand}"
+                SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference AccountCollectionView}}">
+                
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate>
-                        <Label
-                            Margin="15"
-                            FontFamily="Product"
-                            FontSize="18"
-                            Text="{Binding Key}"
-                            VerticalTextAlignment="End" />
+                        <Grid Padding="15">
+                            <Label
+                                FontFamily="Product"
+                                FontSize="18"
+                                Text="{Binding Key}"
+                                VerticalTextAlignment="End" />
+                        </Grid>
                     </DataTemplate>
                 </CollectionView.GroupHeaderTemplate>
-
+                
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="accounts:AccountViewModel">
                         <Grid Padding="15,6,15,12">
@@ -61,12 +67,7 @@
                                     <Grid
                                         BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                             Light={StaticResource CardBackgroundLight}}">
-                                        <Grid.GestureRecognizers>
-                                            <TapGestureRecognizer
-                                                Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference Name=AccountCollectionView}}"
-                                                CommandParameter="{Binding .}" />
-                                        </Grid.GestureRecognizers>
-
+        
                                         <Label
                                             Margin="10,2,0,0"
                                             HorizontalTextAlignment="Start"
@@ -121,6 +122,6 @@
                     </Grid>
                 </CollectionView.EmptyView>
             </CollectionView>
-        </VerticalStackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

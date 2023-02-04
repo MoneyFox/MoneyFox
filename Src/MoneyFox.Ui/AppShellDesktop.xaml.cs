@@ -21,7 +21,7 @@ using Views.Statistics.CategorySummary;
 using Views.Statistics.MonthlyAccountCashFlow;
 using Views.Statistics.Selector;
 
-public partial class AppShellDesktop : Shell
+public partial class AppShellDesktop
 {
     public AppShellDesktop()
     {

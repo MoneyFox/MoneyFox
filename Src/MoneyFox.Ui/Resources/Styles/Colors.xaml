@@ -90,9 +90,13 @@
 
     <Color x:Key="TextSecondaryColorDark">#878786</Color>
     <Color x:Key="TextSecondaryColorLight">#a3a2a0</Color>
-
+    
+    <!-- Card Colors -->
     <Color x:Key="CardBackgroundDark">#2d2d30</Color>
     <Color x:Key="CardBackgroundLight">#ffffff</Color>
+    
+    <Color x:Key="CardHoverBackgroundDark">#404040</Color>
+    <Color x:Key="CardHoverBackgroundLight">#E1E1E1</Color>
 
     <!-- TODO: remove if no longer needed -->
     <Color x:Key="ButtonBackgroundDark">#212121</Color>

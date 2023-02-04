@@ -67,7 +67,7 @@ public partial class App
     {
         try
         {
-            if (settingsAdapter.GetValue(key: IS_CATEGORY_CLEANUP_EXECUTED_KEY_NAME, defaultValue: false) is true)
+            if (settingsAdapter.GetValue(key: IS_CATEGORY_CLEANUP_EXECUTED_KEY_NAME, defaultValue: false))
             {
                 return;
             }

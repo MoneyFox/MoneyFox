@@ -8,7 +8,7 @@ public partial class DesktopAccountListPage
         BindingContext = App.GetViewModel<AccountListViewModel>();
     }
 
-    private AccountListViewModel ViewModel => (AccountListViewModel)BindingContext;
+    public AccountListViewModel ViewModel => (AccountListViewModel)BindingContext;
 
     protected override async void OnAppearing()
     {
