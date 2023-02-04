@@ -711,8 +711,8 @@ Pour y arriver, allez dans la liste des comptes et sélectionnez le compte respe
   <data name="TranslationLabel" xml:space="preserve">
     <value>Quelque chose n'est pas traduit correctement ou n'est pas traduit du tout ? Aidez-nous ! Rendez-vous sur Crowdin et aider à améliorer MoneyFox :</value>
   </data>
-  <data name="UnknownErrorWithTextMessage" xml:space="preserve">
-    <value>Il y a eu un problème pendant l'opération. Message d'erreur {0}</value>
+  <data name="UnknownErrorMessage" xml:space="preserve">
+    <value>There was an unknown error. If the error persists, please restart the app.</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Le téléversement de la sauvegarde a été annulé.</value>
@@ -885,17 +885,5 @@ Pour commencer, créez un nouveau compte. Les comptes sont utilisés pour organi
     </data>
   <data name="SendEmailFailedMessage" xml:space="preserve">
         <value>Impossible d'ouvrir l'application de messagerie. Essaie à nouveau plus tard ou contacte-nous via 'mobile.support@apply-solutions.ch'.</value>
-    </data>
-  <data name="UnknownErrorMessage" xml:space="preserve">
-        <value>There was an unknown error. If the error persists, please restart the app.</value>
-    </data>
-  <data name="UnassignPaymentTitle" xml:space="preserve">
-        <value>Unassign Payments</value>
-    </data>
-  <data name="UnassignPaymentMessage" xml:space="preserve">
-        <value>There are {0} payments assigned. Those will be unassigned. Do you want to proceed?</value>
-    </data>
-  <data name="RemoveLabel" xml:space="preserve">
-        <value>Remove</value>
     </data>
 </root>
