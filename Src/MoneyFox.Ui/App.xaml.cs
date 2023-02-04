@@ -49,6 +49,7 @@ public partial class App
         }
 
         FixCorruptPayments(settingsAdapter);
+        MigrateBudgetData(settingsAdapter);
     }
 
     public static Dictionary<string, ResourceDictionary> ResourceDictionary { get; } = new();
@@ -104,11 +105,6 @@ public partial class App
     {
         try
         {
-            if (settingsAdapter.GetValue(key: IS_BUDGET_MIGRATION_DONE_KEY_NAME, defaultValue: false) is true)
-            {
-                return;
-            }
-
             if (ServiceProvider?.GetService<IAppDbContext>() == null)
             {
                 return;
@@ -116,6 +112,11 @@ public partial class App
 
             var dbContext = ServiceProvider.GetService<IAppDbContext>();
             var budgets = dbContext!.Budgets.ToList();
+            if (budgets.All(b => b.Interval != 0))
+            {
+                return;
+            }
+
             foreach (var budget in budgets)
             {
                 switch (budget.BudgetTimeRange)

@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Domain.Tests.Aggregates.BudgetAggregate;
 
 using Domain.Aggregates.BudgetAggregate;
-using Exceptions;
 using FluentAssertions;
 
 public sealed class BudgetIntervalTests
@@ -17,17 +16,5 @@ public sealed class BudgetIntervalTests
 
         // Assert
         budgetInterval.NumberOfMonths.Should().Be(numberOfMonths);
-    }
-
-    [Theory]
-    [InlineData(-1)]
-    [InlineData(0)]
-    public void ThrowWhenInvalidNumberOfMonthsPassed(int numberOfMonths)
-    {
-        // Act
-        Action act = () => _ = new BudgetInterval(numberOfMonths);
-
-        // Assert
-        act.Should().Throw<InvalidArgumentException>();
     }
 }
