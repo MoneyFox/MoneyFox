@@ -1991,6 +1991,24 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are {0} payments assigned to this category.The assignment for those will be removed. Do you want to proceed?.
+        /// </summary>
+        public static string RemoveCategoryAssignmentOnPaymentMessage {
+            get {
+                return ResourceManager.GetString("RemoveCategoryAssignmentOnPaymentMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Category Assignment.
+        /// </summary>
+        public static string RemoveCategoryAssignmentTitle {
+            get {
+                return ResourceManager.GetString("RemoveCategoryAssignmentTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
         public static string RemoveLabel {
@@ -2280,24 +2298,6 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are {0} payments assigned. Those will be unassigned. Do you want to proceed?.
-        /// </summary>
-        public static string UnassignPaymentMessage {
-            get {
-                return ResourceManager.GetString("UnassignPaymentMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unassign Payments.
-        /// </summary>
-        public static string UnassignPaymentTitle {
-            get {
-                return ResourceManager.GetString("UnassignPaymentTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to There was an unknown error. If the error persists, please restart the app..
         /// </summary>
         public static string UnknownErrorMessage {
@@ -2307,7 +2307,7 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There was an issue during the operation. Error Message {0}.
+        ///   Looks up a localized string similar to There was an issue during the operation..
         /// </summary>
         public static string UnknownErrorWithTextMessage {
             get {
