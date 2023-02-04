@@ -33,7 +33,7 @@
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate>
                         <Label
-                            Margin="6"
+                            Margin="15"
                             FontFamily="Product"
                             FontSize="18"
                             Text="{Binding Key}" />
