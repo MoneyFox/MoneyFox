@@ -7,6 +7,4 @@ public partial class AddAccountPage
         InitializeComponent();
         BindingContext = App.GetViewModel<AddAccountViewModel>();
     }
-
-    private AddAccountViewModel ViewModel => (AddAccountViewModel)BindingContext;
 }
