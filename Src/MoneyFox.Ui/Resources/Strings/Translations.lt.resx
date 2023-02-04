@@ -714,8 +714,8 @@ Ar norite eiti į parduotuvę ir įvertinti?</value>
   <data name="TranslationLabel" xml:space="preserve">
     <value>Ar kas nors išversta netinkamai, ar visai neišversta? Padėkite mums! Eikite į crowdin ir padėkite tobulinti "MoneyFox":</value>
   </data>
-  <data name="UnknownErrorWithTextMessage" xml:space="preserve">
-    <value>Operacijos metu iškilo problema. Klaidos pranešimas {0}</value>
+  <data name="UnknownErrorMessage" xml:space="preserve">
+    <value>There was an unknown error. If the error persists, please restart the app.</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Atsarginės kopijos įkėlimas buvo atšauktas.</value>
@@ -888,17 +888,5 @@ Norėdami pradėti, sukurkite naują paskyrą. Sąskaitos naudojamos mokėjimams
     </data>
   <data name="SendEmailFailedMessage" xml:space="preserve">
         <value>Nepavyko atidaryti el. pašto programos. Prašome pabandyti vėliau arba susisiekti su mumis per "mobile.support@apply-solutions.ch".</value>
-    </data>
-  <data name="UnknownErrorMessage" xml:space="preserve">
-        <value>There was an unknown error. If the error persists, please restart the app.</value>
-    </data>
-  <data name="UnassignPaymentTitle" xml:space="preserve">
-        <value>Unassign Payments</value>
-    </data>
-  <data name="UnassignPaymentMessage" xml:space="preserve">
-        <value>There are {0} payments assigned. Those will be unassigned. Do you want to proceed?</value>
-    </data>
-  <data name="RemoveLabel" xml:space="preserve">
-        <value>Remove</value>
     </data>
 </root>
