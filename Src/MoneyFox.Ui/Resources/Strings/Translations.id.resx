@@ -712,8 +712,8 @@ Apakah Anda ingin pergi k toko untuk menilai?</value>
   <data name="TranslationLabel" xml:space="preserve">
     <value>Apakah ada sesuatu yang tidak diterjemahkan atau tidak diterjemahkan sama sekali? Bantu kami! Pergilah ke Crowdin dan bantu meningkatkan MoneyFox:</value>
   </data>
-  <data name="UnknownErrorWithTextMessage" xml:space="preserve">
-    <value>Ada masalah selama operasi. Pesan Kesalahan {0}</value>
+  <data name="UnknownErrorMessage" xml:space="preserve">
+    <value>There was an unknown error. If the error persists, please restart the app.</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Unggah cadangan dibatalkan.</value>
@@ -886,17 +886,5 @@ Untuk memulai, buat akun baru. Akun digunakan untuk mengatur pembayaran dan uang
     </data>
   <data name="SendEmailFailedMessage" xml:space="preserve">
         <value>Gagal membuka aplikasi email. Silakan coba lagi nanti atau hubungi kami melalui 'mobile.support@apply-solutions.ch'.</value>
-    </data>
-  <data name="UnknownErrorMessage" xml:space="preserve">
-        <value>There was an unknown error. If the error persists, please restart the app.</value>
-    </data>
-  <data name="UnassignPaymentTitle" xml:space="preserve">
-        <value>Unassign Payments</value>
-    </data>
-  <data name="UnassignPaymentMessage" xml:space="preserve">
-        <value>There are {0} payments assigned. Those will be unassigned. Do you want to proceed?</value>
-    </data>
-  <data name="RemoveLabel" xml:space="preserve">
-        <value>Remove</value>
     </data>
 </root>
