@@ -15,7 +15,7 @@ public static class InfrastructureConfig
     public static void Register(IServiceCollection serviceCollection)
     {
         _ = serviceCollection.AddTransient<DbContextOptions>(
-            sp => new DbContextOptionsBuilder<AppDbContext>().UseSqlite($"Data Source={sp.GetService<IDbPathProvider>().GetDbPath()}").Options);
+            sp => new DbContextOptionsBuilder<AppDbContext>().UseSqlite($"Data Source={sp.GetService<IDbPathProvider>()!.GetDbPath()}").Options);
 
         _ = serviceCollection.AddTransient<IAppDbContext, AppDbContext>();
         RegisterBackupServices(serviceCollection);
