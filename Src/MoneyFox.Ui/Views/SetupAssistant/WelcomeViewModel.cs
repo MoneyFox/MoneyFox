@@ -17,19 +17,11 @@ internal sealed class WelcomeViewModel : BasePageViewModel
 
     public AsyncRelayCommand NextStepCommand => new(async () => await Shell.Current.GoToAsync(Routes.CategoryIntroductionRoute));
 
-    public AsyncRelayCommand SkipCommand => new(SkipSetup);
-
     public async Task InitAsync()
     {
         if (settingsFacade.IsSetupCompleted)
         {
             await Shell.Current.GoToAsync(Routes.DashboardRoute);
         }
-    }
-
-    private async Task SkipSetup()
-    {
-        settingsFacade.IsSetupCompleted = true;
-        await Shell.Current.GoToAsync(Routes.DashboardRoute);
     }
 }
