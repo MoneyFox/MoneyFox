@@ -713,7 +713,7 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Es gab ein Problem während der Operation. Fehlermeldung {0}</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an unknown error. If the error persists, please restart the app.</value>
+    <value>Es gab einen unbekannten Fehler. Wenn der Fehler weiterhin besteht, starte bitte die App neu.</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Upload der Sicherung wurde abgebrochen.</value>
@@ -887,31 +887,22 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
   <data name="SendEmailFailedMessage" xml:space="preserve">
     <value>Die E-Mail-Anwendung konnte nicht geöffnet werden. Bitte versuche es später noch einmal oder kontaktiere uns über 'mobile.support@apply-solutions.ch'.</value>
   </data>
-  <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an unknown error. If the error persists, please restart the app.</value>
+  <data name="RemoveCategoryAssignmentTitle" xml:space="preserve">
+    <value>Remove Category Assignment</value>
   </data>
-  <data name="UnassignPaymentTitle" xml:space="preserve">
-    <value>Unassign Payments</value>
-  </data>
-  <data name="UnassignPaymentMessage" xml:space="preserve">
-    <value>There are {0} payments assigned. Those will be unassigned. Do you want to proceed?</value>
+  <data name="RemoveCategoryAssignmentOnPaymentMessage" xml:space="preserve">
+    <value>There are {0} payments assigned to this category.The assignment for those will be removed. Do you want to proceed?</value>
   </data>
   <data name="RemoveLabel" xml:space="preserve">
-    <value>Remove</value>
+    <value>Entfernen</value>
   </data>
   <data name="IntervalLabel" xml:space="preserve">
-    <value>Interval</value>
+    <value>Intervall</value>
   </data>
   <data name="MonthLabel" xml:space="preserve">
-    <value>Month</value>
+    <value>Monat</value>
   </data>
   <data name="IncludedCategoriesLabel" xml:space="preserve">
-    <value>Included Categories</value>
-  </data>
-  <data name="GainsLabel" xml:space="preserve">
-      <value>Gains</value>
-  </data>
-  <data name="SendEmailFailedMessage" xml:space="preserve">
-      <value>Failed to open the email application. Please try again later or contact us via 'mobile.support@apply-solutions.ch'.</value>
+    <value>Enthaltene Kategorien</value>
   </data>
 </root>
