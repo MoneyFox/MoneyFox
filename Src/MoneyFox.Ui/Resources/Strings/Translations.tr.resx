@@ -888,14 +888,11 @@ Başlamak için yeni bir hesap oluşturun. Hesaplar, ödemeleri ve tahsilatlarda
   <data name="SendEmailFailedMessage" xml:space="preserve">
     <value>E-posta uygulaması açılamadı. Lütfen daha sonra tekrar deneyin veya 'mobile.support@apply-solutions.ch' adresinden bizimle iletişime geçin.</value>
   </data>
-  <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an unknown error. If the error persists, please restart the app.</value>
+  <data name="RemoveCategoryAssignmentTitle" xml:space="preserve">
+    <value>Remove Category Assignment</value>
   </data>
-  <data name="UnassignPaymentTitle" xml:space="preserve">
-    <value>Unassign Payments</value>
-  </data>
-  <data name="UnassignPaymentMessage" xml:space="preserve">
-    <value>There are {0} payments assigned. Those will be unassigned. Do you want to proceed?</value>
+  <data name="RemoveCategoryAssignmentOnPaymentMessage" xml:space="preserve">
+    <value>There are {0} payments assigned to this category.The assignment for those will be removed. Do you want to proceed?</value>
   </data>
   <data name="RemoveLabel" xml:space="preserve">
     <value>Remove</value>
@@ -908,11 +905,5 @@ Başlamak için yeni bir hesap oluşturun. Hesaplar, ödemeleri ve tahsilatlarda
   </data>
   <data name="IncludedCategoriesLabel" xml:space="preserve">
     <value>Included Categories</value>
-  </data>
-  <data name="GainsLabel" xml:space="preserve">
-      <value>Gains</value>
-  </data>
-  <data name="SendEmailFailedMessage" xml:space="preserve">
-      <value>Failed to open the email application. Please try again later or contact us via 'mobile.support@apply-solutions.ch'.</value>
   </data>
 </root>
