@@ -23,6 +23,7 @@
                 Command="{Binding GoToAddAccountCommand}" />
 
             <CollectionView
+                x:Name="AccountCollectionView"
                 IsGrouped="true"
                 ItemsSource="{Binding Accounts}">
 
