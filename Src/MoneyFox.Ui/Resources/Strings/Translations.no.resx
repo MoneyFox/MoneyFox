@@ -714,8 +714,8 @@ ADVARSEL: Lokale endringer du har gjort betyr når du går tapt!</value>
   <data name="TranslationLabel" xml:space="preserve">
     <value>Er noe ikke riktig oversatt eller ikke oversatt til alle? Hjelp oss å gå til Crowdin og hjelp oss med å forbedre MoneyFox:</value>
   </data>
-  <data name="UnknownErrorWithTextMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+  <data name="UnknownErrorMessage" xml:space="preserve">
+    <value>Det oppstod et problem under operasjonen. Feilmelding {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Opplasting sikkerhetskopi ble avbrutt.</value>
@@ -888,17 +888,5 @@ For å starte å opprette en ny konto. Kontoer benyttes til å organisere betali
     </data>
   <data name="SendEmailFailedMessage" xml:space="preserve">
         <value>Kunne ikke åpne e-postprogrammet. Prøv igjen senere, eller kontakt oss via "mobil.support@apply-solutions.ch".</value>
-    </data>
-  <data name="UnknownErrorMessage" xml:space="preserve">
-        <value>Det oppstod et problem under operasjonen. Feilmelding {0}</value>
-    </data>
-  <data name="UnassignPaymentTitle" xml:space="preserve">
-        <value>Unassign Payments</value>
-    </data>
-  <data name="UnassignPaymentMessage" xml:space="preserve">
-        <value>There are {0} payments assigned. Those will be unassigned. Do you want to proceed?</value>
-    </data>
-  <data name="RemoveLabel" xml:space="preserve">
-        <value>Remove</value>
     </data>
 </root>
