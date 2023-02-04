@@ -717,8 +717,8 @@ Categorie opslaan ...</value>
   <data name="TranslationLabel" xml:space="preserve">
     <value>Is iets niet goed vertaald of helemaal niet vertaald? Help ons! Ga naar crowdin en help de MoneyFox te verbeteren!</value>
   </data>
-  <data name="UnknownErrorWithTextMessage" xml:space="preserve">
-    <value>Er is een probleem opgetreden tijdens de operatie. Foutbericht {0}</value>
+  <data name="UnknownErrorMessage" xml:space="preserve">
+    <value>There was an unknown error. If the error persists, please restart the app.</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>opgeladen back-up is geannuleerd</value>
@@ -891,17 +891,5 @@ Maak een nieuw account aan om hier dan uw budgetten op een gemakkelijke manier b
     </data>
   <data name="SendEmailFailedMessage" xml:space="preserve">
         <value>Het is niet gelukt de e-mailapplicatie te openen. Probeer het later nog eens of neem contact op via 'mobile.support@apply-solutions.ch'.</value>
-    </data>
-  <data name="UnknownErrorMessage" xml:space="preserve">
-        <value>There was an unknown error. If the error persists, please restart the app.</value>
-    </data>
-  <data name="UnassignPaymentTitle" xml:space="preserve">
-        <value>Unassign Payments</value>
-    </data>
-  <data name="UnassignPaymentMessage" xml:space="preserve">
-        <value>There are {0} payments assigned. Those will be unassigned. Do you want to proceed?</value>
-    </data>
-  <data name="RemoveLabel" xml:space="preserve">
-        <value>Remove</value>
     </data>
 </root>
