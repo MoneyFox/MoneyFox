@@ -5,6 +5,7 @@ using Core.Common.Mediatr;
 using Core.Notifications.DatabaseChanged;
 using Domain.Aggregates.AccountAggregate;
 using FluentAssertions;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using NSubstitute;
 using Persistence;
@@ -24,8 +25,11 @@ public sealed class AppDbContextTests
     public async Task SetCreatedAndLastModifiedDate_OnEntity_WhenNewEntityIsAdded()
     {
         // Arrange
-        var options = new DbContextOptionsBuilder<AppDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
+        var connection = new SqliteConnection("Filename=:memory:");
+        connection.Open();
+        var options = new DbContextOptionsBuilder<AppDbContext>().UseSqlite(connection).Options;
         var context = new AppDbContext(options: options, publisher: publisher, settingsFacade: settingsFacade);
+        await context.Database.EnsureCreatedAsync();
         var account = new Account("Test");
 
         // Act
@@ -49,8 +53,11 @@ public sealed class AppDbContextTests
     public async Task SetModifiedDate_OnEntity_WhenExistingEntityIsUpdated()
     {
         // Arrange
-        var options = new DbContextOptionsBuilder<AppDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
+        var connection = new SqliteConnection("Filename=:memory:");
+        connection.Open();
+        var options = new DbContextOptionsBuilder<AppDbContext>().UseSqlite(connection).Options;
         var context = new AppDbContext(options: options, publisher: publisher, settingsFacade: settingsFacade);
+        await context.Database.EnsureCreatedAsync();
         var account = new Account("Test");
         context.Add(account);
         await context.SaveChangesAsync();
