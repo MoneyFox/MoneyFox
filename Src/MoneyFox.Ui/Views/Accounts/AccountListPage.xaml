@@ -26,7 +26,19 @@
             <CollectionView
                 IsGrouped="true"
                 ItemsSource="{Binding Accounts}">
-                
+
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <Label
+                            Margin="15"
+                            Padding="15,0,0,0"
+                            FontFamily="Product"
+                            FontSize="18"
+                            Text="{Binding Key}"
+                            VerticalTextAlignment="End" />
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="accounts:AccountViewModel">
                         <Grid Padding="15,6,15,12">
