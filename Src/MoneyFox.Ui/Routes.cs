@@ -13,6 +13,7 @@ using Views.Dashboard;
 using Views.Payments;
 using Views.Payments.PaymentModification;
 using Views.Settings;
+
 using Views.SetupAssistant;
 using Views.Statistics.CashFlow;
 using Views.Statistics.CategoryProgression;
@@ -46,6 +47,7 @@ public static class Routes
     public static string StatisticSelectorRoute => nameof(StatisticSelectorPage);
     public static string PaymentForCategoryListRoute => nameof(PaymentForCategoryListPage);
     public static string WelcomeViewRoute => nameof(WelcomePage);
+    public static string CurrencyIntroductionRoute => nameof(CurrencyIntroductionPage);
     public static string CategoryIntroductionRoute => nameof(CategoryIntroductionPage);
     public static string SetupCompletionRoute => nameof(SetupCompletionPage);
     public static string AddBudgetRoute => nameof(AddBudgetPage);

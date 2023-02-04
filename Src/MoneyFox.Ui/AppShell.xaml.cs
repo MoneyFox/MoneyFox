@@ -32,6 +32,7 @@ public partial class AppShell
     private static void RegisterRoutes()
     {
         Routing.RegisterRoute(route: Routes.WelcomeViewRoute, type: typeof(WelcomePage));
+        Routing.RegisterRoute(route: Routes.CurrencyIntroductionRoute, type: typeof(CurrencyIntroductionPage));
         Routing.RegisterRoute(route: Routes.CategoryIntroductionRoute, type: typeof(CategoryIntroductionPage));
         Routing.RegisterRoute(route: Routes.SetupCompletionRoute, type: typeof(SetupCompletionPage));
         Routing.RegisterRoute(route: Routes.DashboardRoute, type: typeof(DashboardPage));
