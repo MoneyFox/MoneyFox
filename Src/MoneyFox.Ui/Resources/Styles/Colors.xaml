@@ -51,7 +51,9 @@
     <Color x:Key="Blue100Accent">#3E8EED</Color>
     <Color x:Key="Blue200Accent">#72ACF1</Color>
     <Color x:Key="Blue300Accent">#A7CBF6</Color>
+    
     <Color x:Key="ProgressBarBackground">#314A9B</Color>
+    <Color x:Key="ProgressBarProgress">#FF8671</Color>
 
     <!-- Colors -->
     <Color x:Key="ThemeLighterAlt">#fff7f5</Color>
@@ -88,9 +90,13 @@
 
     <Color x:Key="TextSecondaryColorDark">#878786</Color>
     <Color x:Key="TextSecondaryColorLight">#a3a2a0</Color>
-
+    
+    <!-- Card Colors -->
     <Color x:Key="CardBackgroundDark">#2d2d30</Color>
     <Color x:Key="CardBackgroundLight">#ffffff</Color>
+    
+    <Color x:Key="CardHoverBackgroundDark">#404040</Color>
+    <Color x:Key="CardHoverBackgroundLight">#E1E1E1</Color>
 
     <!-- TODO: remove if no longer needed -->
     <Color x:Key="ButtonBackgroundDark">#212121</Color>

@@ -12,11 +12,11 @@ public class Budget : EntityBase
         SpendingLimit = default!;
     }
 
-    public Budget(string name, SpendingLimit spendingLimit, BudgetTimeRange timeRange, IReadOnlyList<int> includedCategories)
+    public Budget(string name, SpendingLimit spendingLimit, BudgetInterval interval, IReadOnlyList<int> includedCategories)
     {
         Name = name;
         SpendingLimit = spendingLimit;
-        BudgetTimeRange = timeRange;
+        Interval = interval;
         IncludedCategories = includedCategories;
     }
 
@@ -44,6 +44,14 @@ public class Budget : EntityBase
         private set;
     }
 
+    public BudgetInterval Interval
+    {
+        get;
+
+        [UsedImplicitly]
+        private set;
+    }
+
     public BudgetTimeRange BudgetTimeRange
     {
         get;
@@ -60,11 +68,16 @@ public class Budget : EntityBase
         private set;
     } = new List<int>();
 
-    public void Change(string budgetName, SpendingLimit spendingLimit, IReadOnlyList<int> includedCategories, BudgetTimeRange timeRange)
+    public void Change(string budgetName, SpendingLimit spendingLimit, IReadOnlyList<int> includedCategories, BudgetInterval budgetInterval)
     {
         Name = budgetName;
         SpendingLimit = spendingLimit;
-        BudgetTimeRange = timeRange;
+        Interval = budgetInterval;
         IncludedCategories = includedCategories;
+    }
+
+    public void SetInterval(int numberOfMonths)
+    {
+        Interval = new BudgetInterval(numberOfMonths);
     }
 }

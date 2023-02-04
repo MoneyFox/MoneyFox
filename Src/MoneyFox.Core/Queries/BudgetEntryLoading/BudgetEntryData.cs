@@ -9,14 +9,14 @@ public sealed class BudgetEntryData
         BudgetId id,
         string name,
         decimal spendingLimit,
-        BudgetTimeRange timeRange,
+        int numberOfMonths,
         IReadOnlyList<BudgetCategory> categories)
     {
         Id = id;
         Name = name;
         SpendingLimit = spendingLimit;
         Categories = categories;
-        TimeRange = timeRange;
+        NumberOfMonths = numberOfMonths;
     }
 
     public BudgetId Id { get; }
@@ -24,8 +24,7 @@ public sealed class BudgetEntryData
     public string Name { get; }
 
     public decimal SpendingLimit { get; }
-
-    public BudgetTimeRange TimeRange { get; }
+    public int NumberOfMonths { get; }
 
     public IReadOnlyList<BudgetCategory> Categories { get; }
 

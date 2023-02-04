@@ -65,6 +65,7 @@ public class AddBudgetViewModelTests
         TestData.DefaultBudget testBudget = new();
         viewModel.Name = testBudget.Name;
         viewModel.SpendingLimit = testBudget.SpendingLimit;
+        viewModel.NumberOfMonths = 2;
 
         // Act
         viewModel.SelectedCategories.AddRange(testBudget.Categories.Select<int, BudgetCategoryViewModel>(selector: c => new(categoryId: c, name: "Category")));
@@ -132,6 +133,7 @@ public class AddBudgetViewModelTests
             // Act
             viewModel.Name = budgetName;
             viewModel.SpendingLimit = 10;
+            viewModel.NumberOfMonths = 2;
 
             // Assert
             _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeTrue();

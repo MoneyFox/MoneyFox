@@ -12,7 +12,7 @@ internal static class BudgetAssertion
         {
             actual.Name.Should().Be(expected.Name);
             actual.SpendingLimit.Value.Should().Be(expected.SpendingLimit);
-            actual.BudgetTimeRange.Should().Be(expected.BudgetTimeRange);
+            actual.Interval.Should().Be(expected.Interval);
             actual.IncludedCategories.Should().BeEquivalentTo(expected.Categories);
         }
     }

@@ -10,6 +10,7 @@ using Core.Features._Legacy_.Payments.ClearPayments;
 using Core.Features._Legacy_.Payments.CreateRecurringPayments;
 using Core.Features.DbBackup;
 using Core.Interfaces;
+using Domain.Aggregates.BudgetAggregate;
 using Infrastructure.Adapters;
 using InversionOfControl;
 using MediatR;
@@ -23,6 +24,7 @@ using Views;
 public partial class App
 {
     private const string IS_CATEGORY_CLEANUP_EXECUTED_KEY_NAME = "IsCategoryCleanupExecuted";
+    private const string IS_BUDGET_MIGRATION_DONE_KEY_NAME = "IsBudgetMigrationDone";
     private bool isRunning;
 
     public App()
@@ -47,6 +49,7 @@ public partial class App
         }
 
         FixCorruptPayments(settingsAdapter);
+        MigrateBudgetData(settingsAdapter);
     }
 
     public static Dictionary<string, ResourceDictionary> ResourceDictionary { get; } = new();
@@ -64,7 +67,7 @@ public partial class App
     {
         try
         {
-            if (settingsAdapter.GetValue(key: IS_CATEGORY_CLEANUP_EXECUTED_KEY_NAME, defaultValue: false) is true)
+            if (settingsAdapter.GetValue(key: IS_CATEGORY_CLEANUP_EXECUTED_KEY_NAME, defaultValue: false))
             {
                 return;
             }
@@ -85,6 +88,62 @@ public partial class App
 
             dbContext.SaveChangesAsync().GetAwaiter().GetResult();
             settingsAdapter.AddOrUpdate(key: IS_CATEGORY_CLEANUP_EXECUTED_KEY_NAME, value: true);
+        }
+        catch (Exception ex)
+        {
+            Log.Error(exception: ex, messageTemplate: "Error while fixing payment with non existing category");
+            Crashes.TrackError(ex);
+        }
+    }
+
+    /// <summary>
+    ///     This removes the link from payments to categories that no longer exists.
+    ///     https://github.com/MoneyFox/MoneyFox/issues/2717
+    ///     This can be removed in a future release.
+    /// </summary>
+    private static void MigrateBudgetData(ISettingsAdapter settingsAdapter)
+    {
+        try
+        {
+            if (ServiceProvider?.GetService<IAppDbContext>() == null)
+            {
+                return;
+            }
+
+            var dbContext = ServiceProvider.GetService<IAppDbContext>();
+            var budgets = dbContext!.Budgets.ToList();
+            if (budgets.All(b => b.Interval != 0))
+            {
+                return;
+            }
+
+            foreach (var budget in budgets)
+            {
+                switch (budget.BudgetTimeRange)
+                {
+                    case BudgetTimeRange.YearToDate:
+                        budget.SetInterval(1);
+                        break;
+                    case BudgetTimeRange.Last1Year:
+                        budget.SetInterval(12);
+                        break;
+                    case BudgetTimeRange.Last2Years:
+                        budget.SetInterval(24);
+                        break;
+                    case BudgetTimeRange.Last3Years:
+                        budget.SetInterval(36);
+                        break;
+                    case BudgetTimeRange.Last5Years:
+                        budget.SetInterval(60);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+
+
+            dbContext.SaveChangesAsync().GetAwaiter().GetResult();
+            settingsAdapter.AddOrUpdate(key: IS_BUDGET_MIGRATION_DONE_KEY_NAME, value: true);
         }
         catch (Exception ex)
         {

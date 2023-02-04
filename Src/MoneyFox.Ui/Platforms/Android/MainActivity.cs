@@ -1,3 +1,4 @@
+// ReSharper disable once CheckNamespace
 namespace MoneyFox.Ui;
 
 using Android.App;
@@ -35,14 +36,15 @@ public class MainActivity : MauiAppCompatActivity
         if (Microsoft.Maui.Controls.Application.Current?.RequestedTheme == AppTheme.Light)
         {
             backgroundColor = new(239, 242, 245);
-            if (Build.VERSION.SdkInt >= BuildVersionCodes.R)
+
+            if (OperatingSystem.IsAndroidVersionAtLeast(30))
             {
                 Window?.InsetsController?.SetSystemBarsAppearance(
                     (int)WindowInsetsControllerAppearance.LightStatusBars,
                     (int)WindowInsetsControllerAppearance.LightStatusBars);
             }
 
-            if (Build.VERSION.SdkInt is >= BuildVersionCodes.M and < BuildVersionCodes.R && Window is not null)
+            if (!OperatingSystem.IsAndroidVersionAtLeast(30) && OperatingSystem.IsAndroidVersionAtLeast(23) && Window is not null)
             {
                 Window.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.LightStatusBar;
             }

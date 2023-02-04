@@ -16,20 +16,20 @@ public static class UpdateBudget
             BudgetId budgetId,
             string name,
             decimal spendingLimit,
-            BudgetTimeRange budgetTimeRange,
+            int numberOfMonths,
             IReadOnlyList<int> categories)
         {
             BudgetId = budgetId;
             Name = name;
             SpendingLimit = spendingLimit;
             Categories = categories;
-            BudgetTimeRange = budgetTimeRange;
+            NumberOfMonths = numberOfMonths;
         }
 
         public BudgetId BudgetId { get; }
         public string Name { get; }
         public decimal SpendingLimit { get; }
-        public BudgetTimeRange BudgetTimeRange { get; }
+        public int NumberOfMonths { get; }
         public IReadOnlyList<int> Categories { get; }
     }
 
@@ -50,7 +50,7 @@ public static class UpdateBudget
                 budgetName: command.Name,
                 spendingLimit: spendingLimit,
                 includedCategories: command.Categories,
-                timeRange: command.BudgetTimeRange);
+                new(command.NumberOfMonths));
 
             await appDbContext.SaveChangesAsync(cancellationToken);
 

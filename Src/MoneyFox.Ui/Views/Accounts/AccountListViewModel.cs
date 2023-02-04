@@ -11,7 +11,7 @@ using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-internal sealed class AccountListViewModel : BasePageViewModel, IRecipient<AccountsChangedMessage>
+public sealed class AccountListViewModel : BasePageViewModel, IRecipient<AccountsChangedMessage>
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;

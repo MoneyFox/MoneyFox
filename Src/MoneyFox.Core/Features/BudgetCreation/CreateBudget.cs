@@ -9,21 +9,7 @@ using MediatR;
 
 public static class CreateBudget
 {
-    public class Command : IRequest
-    {
-        public Command(string name, decimal spendingLimit, BudgetTimeRange budgetTimeRange, IReadOnlyList<int> categories)
-        {
-            Name = name;
-            SpendingLimit = spendingLimit;
-            Categories = categories;
-            BudgetTimeRange = budgetTimeRange;
-        }
-
-        public string Name { get; }
-        public decimal SpendingLimit { get; }
-        public BudgetTimeRange BudgetTimeRange { get; }
-        public IReadOnlyList<int> Categories { get; }
-    }
+    public record Command(string Name, SpendingLimit SpendingLimit, BudgetInterval BudgetInterval, IReadOnlyList<int> Categories) : IRequest;
 
     public class Handler : IRequestHandler<Command>
     {
@@ -34,10 +20,10 @@ public static class CreateBudget
             this.appDbContext = appDbContext;
         }
 
-        public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(Command command, CancellationToken cancellationToken)
         {
-            SpendingLimit spendingLimit = new(request.SpendingLimit);
-            Budget budget = new(name: request.Name, spendingLimit: spendingLimit, timeRange: request.BudgetTimeRange, includedCategories: request.Categories);
+            SpendingLimit spendingLimit = new(command.SpendingLimit);
+            Budget budget = new(name: command.Name, spendingLimit: spendingLimit, command.BudgetInterval, includedCategories: command.Categories);
             await appDbContext.AddAsync(entity: budget, cancellationToken: cancellationToken);
             await appDbContext.SaveChangesAsync(cancellationToken);
 
