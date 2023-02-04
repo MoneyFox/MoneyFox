@@ -4,6 +4,8 @@ using JetBrains.Annotations;
 
 public record struct BudgetId(int Value);
 
+public record struct BudgetInterval(int NumberOfMonths);
+
 public class Budget : EntityBase
 {
     [UsedImplicitly]
@@ -12,11 +14,11 @@ public class Budget : EntityBase
         SpendingLimit = default!;
     }
 
-    public Budget(string name, SpendingLimit spendingLimit, BudgetTimeRange timeRange, IReadOnlyList<int> includedCategories)
+    public Budget(string name, SpendingLimit spendingLimit, BudgetInterval budgetInterval, IReadOnlyList<int> includedCategories)
     {
         Name = name;
         SpendingLimit = spendingLimit;
-        BudgetTimeRange = timeRange;
+        BudgetInterval = budgetInterval;
         IncludedCategories = includedCategories;
     }
 
@@ -44,6 +46,14 @@ public class Budget : EntityBase
         private set;
     }
 
+    public BudgetInterval BudgetInterval
+    {
+        get;
+
+        [UsedImplicitly]
+        private set;
+    }
+
     public BudgetTimeRange BudgetTimeRange
     {
         get;
@@ -60,11 +70,11 @@ public class Budget : EntityBase
         private set;
     } = new List<int>();
 
-    public void Change(string budgetName, SpendingLimit spendingLimit, IReadOnlyList<int> includedCategories, BudgetTimeRange timeRange)
+    public void Change(string budgetName, SpendingLimit spendingLimit, IReadOnlyList<int> includedCategories, BudgetInterval budgetInterval)
     {
         Name = budgetName;
         SpendingLimit = spendingLimit;
-        BudgetTimeRange = timeRange;
+        BudgetInterval = budgetInterval;
         IncludedCategories = includedCategories;
     }
 }

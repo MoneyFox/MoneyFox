@@ -9,8 +9,9 @@ internal static partial class TestData
     {
         public int Id { get; set; } = 10;
         public string Name { get; set; } = "Beverages";
-        public decimal SpendingLimit { get; set; } = 100.50m;
+        public SpendingLimit SpendingLimit { get; set; } = new(100.50m);
         public decimal CurrentSpending { get; set; } = 60.20m;
+        public BudgetInterval Interval { get; set; } = new BudgetInterval(1);
         public BudgetTimeRange BudgetTimeRange { get; set; } = BudgetTimeRange.Last2Years;
         public IReadOnlyList<int> Categories { get; set; } = ImmutableList.Create(11);
     }
@@ -19,8 +20,9 @@ internal static partial class TestData
     {
         int Id { get; set; }
         string Name { get; }
-        decimal SpendingLimit { get; }
+        SpendingLimit SpendingLimit { get; }
         decimal CurrentSpending { get; }
+        BudgetInterval Interval { get; }
         BudgetTimeRange BudgetTimeRange { get; }
         IReadOnlyList<int> Categories { get; }
     }

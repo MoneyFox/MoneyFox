@@ -903,4 +903,10 @@ To start create a new account. Accounts are used to organize payments and money 
     <data name="RemoveLabel" xml:space="preserve">
         <value>Remove</value>
     </data>
+    <data name="IntervalLabel" xml:space="preserve">
+        <value>Interval</value>
+    </data>
+    <data name="MonthLabel" xml:space="preserve">
+        <value>Month</value>
+    </data>
 </root>

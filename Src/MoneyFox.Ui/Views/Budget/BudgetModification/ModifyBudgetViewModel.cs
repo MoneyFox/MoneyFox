@@ -13,7 +13,7 @@ internal abstract class ModifyBudgetViewModel : BasePageViewModel, IRecipient<Ca
     private readonly INavigationService navigationService;
     private string name = null!;
     private decimal spendingLimit;
-    private BudgetTimeRange timeRange;
+    private int numberOfMonths;
 
     protected ModifyBudgetViewModel(INavigationService navigationService)
     {
@@ -31,12 +31,6 @@ internal abstract class ModifyBudgetViewModel : BasePageViewModel, IRecipient<Ca
         }
     }
 
-    public BudgetTimeRange TimeRange
-    {
-        get => timeRange;
-        set => SetProperty(field: ref timeRange, newValue: value);
-    }
-
     public decimal SpendingLimit
     {
         get => spendingLimit;
@@ -48,7 +42,18 @@ internal abstract class ModifyBudgetViewModel : BasePageViewModel, IRecipient<Ca
         }
     }
 
-    public bool IsValid => string.IsNullOrEmpty(Name) is false && SpendingLimit > 0;
+    public int NumberOfMonths
+    {
+        get => numberOfMonths;
+
+        set
+        {
+            SetProperty(field: ref numberOfMonths, newValue: value);
+            OnPropertyChanged(nameof(IsValid));
+        }
+    }
+
+    public bool IsValid => string.IsNullOrEmpty(Name) is false && SpendingLimit > 0 && NumberOfMonths > 0;
 
     public static List<BudgetTimeRange> TimeRangeCollection
         => new()

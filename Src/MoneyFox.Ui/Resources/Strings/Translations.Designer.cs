@@ -1303,6 +1303,15 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Interval.
+        /// </summary>
+        public static string IntervalLabel {
+            get {
+                return ResourceManager.GetString("IntervalLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The enddate of a recurring Payment has to be in the future. Please check your input..
         /// </summary>
         public static string InvalidEnddateMessage {
@@ -1614,6 +1623,15 @@ namespace MoneyFox.Ui.Resources.Strings {
         public static string ModifyRecurrenceTitle {
             get {
                 return ResourceManager.GetString("ModifyRecurrenceTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Month.
+        /// </summary>
+        public static string MonthLabel {
+            get {
+                return ResourceManager.GetString("MonthLabel", resourceCulture);
             }
         }
         

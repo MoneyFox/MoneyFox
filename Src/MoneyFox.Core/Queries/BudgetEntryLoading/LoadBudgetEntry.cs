@@ -38,8 +38,8 @@ public static class LoadBudgetEntry
                     {
                         b.Id,
                         b.Name,
-                        b.BudgetTimeRange,
                         b.SpendingLimit,
+                        Interval = b.BudgetInterval,
                         b.IncludedCategories
                     })
                 .AsNoTracking()
@@ -54,7 +54,7 @@ public static class LoadBudgetEntry
                 id: budgetData.Id,
                 name: budgetData.Name,
                 spendingLimit: budgetData.SpendingLimit,
-                timeRange: budgetData.BudgetTimeRange,
+                budgetData.Interval.NumberOfMonths,
                 categories: budgetEntryCategories);
         }
     }

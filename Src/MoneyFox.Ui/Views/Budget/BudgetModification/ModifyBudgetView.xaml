@@ -13,7 +13,6 @@
     <ContentView.Resources>
         <ResourceDictionary>
             <converter:DecimalConverter x:Key="DecimalConverter" />
-            <budgetModification:BudgetTimeRangeStringConverter x:Key="BudgetTimeRangeStringConverter" />
         </ResourceDictionary>
     </ContentView.Resources>
 
@@ -30,15 +29,15 @@
 
         <Label Margin="3,0,0,0"
                Style="{StaticResource TextBodySecondary}"
-               Text="{x:Static resources:Translations.EvaluationTimeRangeLabel}" />
+               Text="{x:Static resources:Translations.IntervalLabel}" />
 
-        <Picker Title="{x:Static resources:Translations.EvaluationTimeRangeLabel}"
-                ItemsSource="{x:Static budgetModification:ModifyBudgetViewModel.TimeRangeCollection}"
-                SelectedItem="{Binding TimeRange}"
-                ItemDisplayBinding="{Binding ., Converter={StaticResource BudgetTimeRangeStringConverter}}" />
-
-        <Label Text="{x:Static resources:Translations.EvaluationTimeRangeMessage}"
-               Style="{StaticResource TextBodySecondary}" />
+        <VerticalStackLayout>
+            <Stepper Value="{Binding NumberOfMonths}"
+                     Minimum="0"
+                     Increment="1" />
+            
+            <Label Text="{x:Static resources:Translations.MonthLabel}"></Label>
+        </VerticalStackLayout>
 
         <Button Text="{x:Static resources:Translations.SelectCategoryLabel}"
                 Command="{Binding OpenCategorySelectionCommand}" />

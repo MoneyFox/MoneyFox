@@ -135,7 +135,7 @@ public class EditBudgetViewModelTests
                         id: new(testBudget.Id),
                         name: testBudget.Name,
                         spendingLimit: testBudget.SpendingLimit,
-                        timeRange: testBudget.BudgetTimeRange,
+                        testBudget.Interval.NumberOfMonths,
                         categories: categories));
 
             // Arrange
@@ -149,7 +149,7 @@ public class EditBudgetViewModelTests
             _ = viewModel.Id.Value.Should().Be(testBudget.Id);
             _ = viewModel.Name.Should().Be(testBudget.Name);
             _ = viewModel.SpendingLimit.Should().Be(testBudget.SpendingLimit);
-            _ = viewModel.TimeRange.Should().Be(testBudget.BudgetTimeRange);
+            _ = viewModel.NumberOfMonths.Should().Be(testBudget.Interval.NumberOfMonths);
             _ = viewModel.SelectedCategories[0].CategoryId.Should().Be(categories[0].Id);
             _ = viewModel.SelectedCategories[0].Name.Should().Be(categories[0].Name);
         }
@@ -175,7 +175,7 @@ public class EditBudgetViewModelTests
                         id: new(testBudget.Id),
                         name: testBudget.Name,
                         spendingLimit: testBudget.SpendingLimit,
-                        timeRange: testBudget.BudgetTimeRange,
+                        testBudget.Interval.NumberOfMonths,
                         categories: new List<BudgetEntryData.BudgetCategory>()));
 
             await viewModel.InitializeCommand.ExecuteAsync(testBudget.Id);

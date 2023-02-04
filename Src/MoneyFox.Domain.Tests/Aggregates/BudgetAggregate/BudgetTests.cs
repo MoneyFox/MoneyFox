@@ -15,11 +15,7 @@ public sealed class BudgetTests
 
         // Act
         var spendingLimit = new SpendingLimit(testBudget.SpendingLimit);
-        var budget = new Budget(
-            name: testBudget.Name,
-            spendingLimit: spendingLimit,
-            timeRange: testBudget.BudgetTimeRange,
-            includedCategories: testBudget.Categories);
+        var budget = new Budget(name: testBudget.Name, spendingLimit: spendingLimit, budgetInterval: testBudget.Interval, includedCategories: testBudget.Categories);
 
         // Assert
         AssertBudget(actual: budget, expected: testBudget);
@@ -30,15 +26,11 @@ public sealed class BudgetTests
     {
         // Arrange
         var testBudget = new TestData.DefaultBudget();
-        var budget = new Budget(name: "Empty", spendingLimit: new(10), timeRange: BudgetTimeRange.YearToDate, includedCategories: ImmutableList.Create(1));
+        var budget = new Budget(name: "Empty", spendingLimit: new(10), budgetInterval: new(2), includedCategories: ImmutableList.Create(1));
 
         // Act
         var spendingLimit = new SpendingLimit(testBudget.SpendingLimit);
-        budget.Change(
-            budgetName: testBudget.Name,
-            spendingLimit: spendingLimit,
-            includedCategories: testBudget.Categories,
-            timeRange: testBudget.BudgetTimeRange);
+        budget.Change(budgetName: testBudget.Name, spendingLimit: spendingLimit, includedCategories: testBudget.Categories, budgetInterval: testBudget.Interval);
 
         // Assert
         AssertBudget(actual: budget, expected: testBudget);
