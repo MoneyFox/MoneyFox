@@ -54,13 +54,7 @@
                                     <Label Style="{StaticResource TextHead}"
                                            Text="{Binding Name}" />
 
-                                    <aloha:ProgressBar
-                                        IsVertical="False"
-                                        RoundCorners="True"
-                                        HeightRequest="5"
-                                        Background="{StaticResource ProgressBarBackground}"
-                                        ProgressBrush="#FF8671"
-                                        Progress="{Binding SpendingPercentage}" />
+                                    <ProgressBar Progress="{Binding SpendingPercentage}" />
 
                                     <Grid>
                                         <Label
