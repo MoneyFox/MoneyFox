@@ -27,7 +27,6 @@ public static class Currencies
     public static readonly Currency INR = new(AlphaIsoCode: "INR", NumericIsoCode: 356, Precision: 2);
     public static readonly Currency BTN = new(AlphaIsoCode: "BTN", NumericIsoCode: 064, Precision: 2);
     public static readonly Currency BOB = new(AlphaIsoCode: "BOB", NumericIsoCode: 068, Precision: 2);
-    public static readonly Currency BOV = new(AlphaIsoCode: "BOV", NumericIsoCode: 984, Precision: 2);
     public static readonly Currency BAM = new(AlphaIsoCode: "BAM", NumericIsoCode: 977, Precision: 2);
     public static readonly Currency BWP = new(AlphaIsoCode: "BWP", NumericIsoCode: 072, Precision: 2);
     public static readonly Currency NOK = new(AlphaIsoCode: "NOK", NumericIsoCode: 578, Precision: 2);
@@ -43,21 +42,18 @@ public static class Currencies
     public static readonly Currency CLP = new(AlphaIsoCode: "CLP", NumericIsoCode: 152, Precision: 0);
     public static readonly Currency CNY = new(AlphaIsoCode: "CNY", NumericIsoCode: 156, Precision: 2);
     public static readonly Currency COP = new(AlphaIsoCode: "COP", NumericIsoCode: 170, Precision: 2);
-    public static readonly Currency COU = new(AlphaIsoCode: "COU", NumericIsoCode: 970, Precision: 2);
     public static readonly Currency KMF = new(AlphaIsoCode: "KMF", NumericIsoCode: 174, Precision: 0);
     public static readonly Currency CDF = new(AlphaIsoCode: "CDF", NumericIsoCode: 976, Precision: 2);
     public static readonly Currency NZD = new(AlphaIsoCode: "NZD", NumericIsoCode: 554, Precision: 2);
     public static readonly Currency CRC = new(AlphaIsoCode: "CRC", NumericIsoCode: 188, Precision: 2);
     public static readonly Currency HRK = new(AlphaIsoCode: "HRK", NumericIsoCode: 191, Precision: 2);
     public static readonly Currency CUP = new(AlphaIsoCode: "CUP", NumericIsoCode: 192, Precision: 2);
-    public static readonly Currency CUC = new(AlphaIsoCode: "CUC", NumericIsoCode: 931, Precision: 2);
     public static readonly Currency ANG = new(AlphaIsoCode: "ANG", NumericIsoCode: 532, Precision: 2);
     public static readonly Currency CZK = new(AlphaIsoCode: "CZK", NumericIsoCode: 203, Precision: 2);
     public static readonly Currency DKK = new(AlphaIsoCode: "DKK", NumericIsoCode: 208, Precision: 2);
     public static readonly Currency DJF = new(AlphaIsoCode: "DJF", NumericIsoCode: 262, Precision: 0);
     public static readonly Currency DOP = new(AlphaIsoCode: "DOP", NumericIsoCode: 214, Precision: 2);
     public static readonly Currency EGP = new(AlphaIsoCode: "EGP", NumericIsoCode: 818, Precision: 2);
-    public static readonly Currency SVC = new(AlphaIsoCode: "SVC", NumericIsoCode: 222, Precision: 2);
     public static readonly Currency ERN = new(AlphaIsoCode: "ERN", NumericIsoCode: 232, Precision: 2);
     public static readonly Currency ETB = new(AlphaIsoCode: "ETB", NumericIsoCode: 230, Precision: 2);
     public static readonly Currency FKP = new(AlphaIsoCode: "FKP", NumericIsoCode: 238, Precision: 2);
@@ -88,10 +84,9 @@ public static class Currencies
     public static readonly Currency KGS = new(AlphaIsoCode: "KGS", NumericIsoCode: 417, Precision: 2);
     public static readonly Currency LAK = new(AlphaIsoCode: "LAK", NumericIsoCode: 418, Precision: 2);
     public static readonly Currency LBP = new(AlphaIsoCode: "LBP", NumericIsoCode: 422, Precision: 2);
-    public static readonly Currency LSL = new(AlphaIsoCode: "LSL", NumericIsoCode: 426, Precision: 2);
     public static readonly Currency ZAR = new(AlphaIsoCode: "ZAR", NumericIsoCode: 710, Precision: 2);
     public static readonly Currency LRD = new(AlphaIsoCode: "LRD", NumericIsoCode: 430, Precision: 2);
-    public static readonly Currency CHF = new(AlphaIsoCode: "CHF", NumericIsoCode: 756, Precision: 2);
+    public static readonly Currency CHE = new(AlphaIsoCode: "CHF", NumericIsoCode: 756, Precision: 2);
     public static readonly Currency MOP = new(AlphaIsoCode: "MOP", NumericIsoCode: 446, Precision: 2);
     public static readonly Currency MKD = new(AlphaIsoCode: "MKD", NumericIsoCode: 807, Precision: 2);
     public static readonly Currency MGA = new(AlphaIsoCode: "MGA", NumericIsoCode: 969, Precision: 2);
@@ -101,7 +96,6 @@ public static class Currencies
     public static readonly Currency MRU = new(AlphaIsoCode: "MRU", NumericIsoCode: 929, Precision: 2);
     public static readonly Currency MUR = new(AlphaIsoCode: "MUR", NumericIsoCode: 480, Precision: 2);
     public static readonly Currency MXN = new(AlphaIsoCode: "MXN", NumericIsoCode: 484, Precision: 2);
-    public static readonly Currency MXV = new(AlphaIsoCode: "MXV", NumericIsoCode: 979, Precision: 2);
     public static readonly Currency MDL = new(AlphaIsoCode: "MDL", NumericIsoCode: 498, Precision: 2);
     public static readonly Currency MNT = new(AlphaIsoCode: "MNT", NumericIsoCode: 496, Precision: 2);
     public static readonly Currency MAD = new(AlphaIsoCode: "MAD", NumericIsoCode: 504, Precision: 2);
@@ -138,8 +132,6 @@ public static class Currencies
     public static readonly Currency SRD = new(AlphaIsoCode: "SRD", NumericIsoCode: 968, Precision: 2);
     public static readonly Currency SZL = new(AlphaIsoCode: "SZL", NumericIsoCode: 748, Precision: 2);
     public static readonly Currency SEK = new(AlphaIsoCode: "SEK", NumericIsoCode: 752, Precision: 2);
-    public static readonly Currency CHE = new(AlphaIsoCode: "CHE", NumericIsoCode: 947, Precision: 2);
-    public static readonly Currency CHW = new(AlphaIsoCode: "CHW", NumericIsoCode: 948, Precision: 2);
     public static readonly Currency SYP = new(AlphaIsoCode: "SYP", NumericIsoCode: 760, Precision: 2);
     public static readonly Currency TWD = new(AlphaIsoCode: "TWD", NumericIsoCode: 901, Precision: 2);
     public static readonly Currency TJS = new(AlphaIsoCode: "TJS", NumericIsoCode: 972, Precision: 2);
@@ -152,33 +144,20 @@ public static class Currencies
     public static readonly Currency UGX = new(AlphaIsoCode: "UGX", NumericIsoCode: 800, Precision: 0);
     public static readonly Currency UAH = new(AlphaIsoCode: "UAH", NumericIsoCode: 980, Precision: 2);
     public static readonly Currency AED = new(AlphaIsoCode: "AED", NumericIsoCode: 784, Precision: 2);
-    public static readonly Currency USN = new(AlphaIsoCode: "USN", NumericIsoCode: 997, Precision: 2);
     public static readonly Currency UYU = new(AlphaIsoCode: "UYU", NumericIsoCode: 858, Precision: 2);
-    public static readonly Currency UYI = new(AlphaIsoCode: "UYI", NumericIsoCode: 940, Precision: 0);
     public static readonly Currency UZS = new(AlphaIsoCode: "UZS", NumericIsoCode: 860, Precision: 2);
     public static readonly Currency VUV = new(AlphaIsoCode: "VUV", NumericIsoCode: 548, Precision: 0);
     public static readonly Currency VES = new(AlphaIsoCode: "VES", NumericIsoCode: 928, Precision: 2);
     public static readonly Currency VND = new(AlphaIsoCode: "VND", NumericIsoCode: 704, Precision: 0);
     public static readonly Currency YER = new(AlphaIsoCode: "YER", NumericIsoCode: 886, Precision: 2);
     public static readonly Currency ZMW = new(AlphaIsoCode: "ZMW", NumericIsoCode: 967, Precision: 2);
-    public static readonly Currency ZWL = new(AlphaIsoCode: "ZWL", NumericIsoCode: 932, Precision: 2);
     public static readonly Currency BHD = new(AlphaIsoCode: "BHD", NumericIsoCode: 48, Precision: 3);
-    public static readonly Currency BYR = new(AlphaIsoCode: "BYR", NumericIsoCode: 112, Precision: 2);
-    public static readonly Currency CLF = new(AlphaIsoCode: "CLF", NumericIsoCode: 990, Precision: 2);
     public static readonly Currency IQD = new(AlphaIsoCode: "IQD", NumericIsoCode: 368, Precision: 3);
     public static readonly Currency JOD = new(AlphaIsoCode: "JOD", NumericIsoCode: 400, Precision: 1);
     public static readonly Currency KWD = new(AlphaIsoCode: "KWD", NumericIsoCode: 414, Precision: 3);
-    public static readonly Currency LVL = new(AlphaIsoCode: "LVL", NumericIsoCode: 428, Precision: 2);
     public static readonly Currency LYD = new(AlphaIsoCode: "LYD", NumericIsoCode: 434, Precision: 3);
-    public static readonly Currency LTL = new(AlphaIsoCode: "LTL", NumericIsoCode: 440, Precision: 2);
-    public static readonly Currency MRO = new(AlphaIsoCode: "MRO", NumericIsoCode: 478, Precision: 2);
     public static readonly Currency OMR = new(AlphaIsoCode: "OMR", NumericIsoCode: 512, Precision: 3);
     public static readonly Currency TND = new(AlphaIsoCode: "TND", NumericIsoCode: 788, Precision: 3);
-    public static readonly Currency VEF = new(AlphaIsoCode: "VEF", NumericIsoCode: 862, Precision: 2);
-    public static readonly Currency ZMK = new(AlphaIsoCode: "ZMK", NumericIsoCode: 894, Precision: 2);
-    public static readonly Currency EEK = new(AlphaIsoCode: "EEK", NumericIsoCode: 233, Precision: 2);
-
-    public static readonly Currency AFA = new(AlphaIsoCode: "AFA", NumericIsoCode: 4, Precision: 2);
 
     // ReSharper enable InconsistentNaming
 
