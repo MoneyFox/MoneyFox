@@ -714,8 +714,8 @@
   <data name="TranslationLabel" xml:space="preserve">
     <value>何かが適切に翻訳されていないか、翻訳されていないのですか？私たちを助けてください！crowdinに向かってMoneyFoxの改善を手伝ってください：</value>
   </data>
-  <data name="UnknownErrorWithTextMessage" xml:space="preserve">
-    <value>操作中に問題が発生しました。エラー メッセージ {0}</value>
+  <data name="UnknownErrorMessage" xml:space="preserve">
+    <value>There was an unknown error. If the error persists, please restart the app.</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>アップロードのバックアップがキャンセルされました。</value>
@@ -888,17 +888,5 @@
     </data>
   <data name="SendEmailFailedMessage" xml:space="preserve">
         <value>メールアプリケーションを開くのに失敗しました。後でもう一度試してみるか、'mobile.support@apply-solutions.ch'からご連絡ください。</value>
-    </data>
-  <data name="UnknownErrorMessage" xml:space="preserve">
-        <value>There was an unknown error. If the error persists, please restart the app.</value>
-    </data>
-  <data name="UnassignPaymentTitle" xml:space="preserve">
-        <value>Unassign Payments</value>
-    </data>
-  <data name="UnassignPaymentMessage" xml:space="preserve">
-        <value>There are {0} payments assigned. Those will be unassigned. Do you want to proceed?</value>
-    </data>
-  <data name="RemoveLabel" xml:space="preserve">
-        <value>Remove</value>
     </data>
 </root>
