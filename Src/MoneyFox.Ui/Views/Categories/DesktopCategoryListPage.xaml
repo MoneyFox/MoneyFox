@@ -34,8 +34,7 @@
                     <DataTemplate>
                         <Label FontFamily="Product"
                                FontSize="18"
-                               Margin="15"
-                               Padding="15,0,0,0"
+                               Margin="6,15"
                                Text="{Binding Key}"
                                VerticalTextAlignment="End" />
                     </DataTemplate>
@@ -53,9 +52,7 @@
                                         CommandParameter="{Binding .}" />
                                 </controls:Card.GestureRecognizers>
 
-                                <Grid
-                                    BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                            Light={StaticResource CardBackgroundLight}}">
+                                <Grid>
                                     <Label Style="{StaticResource TextHead}"
                                            Margin="10,0,10,0"
                                            VerticalTextAlignment="Center"
