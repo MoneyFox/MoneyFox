@@ -745,6 +745,24 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select the currency you would like to use in the app. This will be your default for accounts, payments and budgets..
+        /// </summary>
+        public static string CurrencyIntroductionText {
+            get {
+                return ResourceManager.GetString("CurrencyIntroductionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currency.
+        /// </summary>
+        public static string CurrencyIntroductionTitle {
+            get {
+                return ResourceManager.GetString("CurrencyIntroductionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Balance.
         /// </summary>
         public static string CurrentBalanceLabel {

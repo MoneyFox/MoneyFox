@@ -906,4 +906,10 @@ To start create a new account. Accounts are used to organize payments and money 
   <data name="IncludedCategoriesLabel" xml:space="preserve">
     <value>Included Categories</value>
   </data>
+  <data name="CurrencyIntroductionText" xml:space="preserve">
+    <value>Select the currency you would like to use in the app. This will be your default for accounts, payments and budgets.</value>
+  </data>
+  <data name="CurrencyIntroductionTitle" xml:space="preserve">
+    <value>Currency</value>
+  </data>
 </root>

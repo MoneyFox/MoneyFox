@@ -1,8 +1,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:setupAssistant="clr-namespace:MoneyFox.Ui.Views.SetupAssistant"
+             xmlns:currencyIntroduction="clr-namespace:MoneyFox.Ui.Views.SetupAssistant.CurrencyIntroduction"
              xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
-             x:DataType="setupAssistant:CurrencyIntroductionViewModel"
+             x:DataType="currencyIntroduction:CurrencyIntroductionViewModel"
              x:Class="MoneyFox.Ui.Views.SetupAssistant.CurrencyIntroductionPage" >
 
     <Grid Padding="15"
@@ -10,10 +10,10 @@
           RowDefinitions="35, 40, Auto, 40, Auto, *, 40">
 
          <Label Grid.Row="0" Style="{StaticResource TextSubHeadline}" 
-                Text="{x:Static resources:Translations.CategoriesTitle}" /> 
+                Text="{x:Static resources:Translations.CurrencyIntroductionTitle}" /> 
          
          <Label Grid.Row="2" 
-                Text="{x:Static resources:Translations.CategorieIntroductionText}" /> 
+                Text="{x:Static resources:Translations.CurrencyIntroductionText}" /> 
 
 
         <Picker Grid.Row="4"
