@@ -69,6 +69,7 @@ public sealed class MoneyFoxConfig
             .AddTransient<CategoryIntroductionViewModel>()
             .AddTransient<SetupCompletionViewModel>()
             .AddTransient<WelcomeViewModel>()
+            .AddTransient<CurrencyIntroductionViewModel>()
             .AddTransient<PaymentForCategoryListViewModel>()
             .AddTransient<StatisticAccountMonthlyCashFlowViewModel>()
             .AddTransient<StatisticCashFlowViewModel>()
