@@ -10,11 +10,8 @@ public class CurrencyIntroductionViewModel : BasePageViewModel
 {
     public CurrencyIntroductionViewModel()
     {
-        CurrencyViewModels = Currencies.GetAll()
-                                       .Select(c => new CurrencyViewModel { IsoNumericCode = c.NumericIsoCode, Country = new CultureInfo(c.NumericIsoCode).DisplayName, Currency = c.AlphaIsoCode })
-                                       .ToImmutableList();
-
-        SelectedCurrency = CurrencyViewModels.FirstOrDefault(c => c.IsoNumericCode == CultureInfo.CurrentCulture.LCID) ?? CurrencyViewModels.First();
+        CurrencyViewModels = Currencies.GetAll().Select(c => new CurrencyViewModel { Currency = c.AlphaIsoCode }).ToImmutableList();
+        SelectedCurrency = CurrencyViewModels.FirstOrDefault(c => c.Currency == RegionInfo.CurrentRegion.ISOCurrencySymbol) ?? CurrencyViewModels.First();
     }
 
     public IReadOnlyList<CurrencyViewModel> CurrencyViewModels { get; }
@@ -28,12 +25,10 @@ public class CurrencyIntroductionViewModel : BasePageViewModel
 
 public sealed class CurrencyViewModel
 {
-    public required int IsoNumericCode { get; init; }
-    public required string Country { get; init; }
     public required string Currency { get; init; }
 
     public override string ToString()
     {
-        return $"{Country} ({Currency})";
+        return $"{Currency}";
     }
 }

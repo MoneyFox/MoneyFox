@@ -24,8 +24,7 @@
                     Style="{StaticResource TextTitle}"
                     Text="{x:Static resources:Translations.WelcomePageSubtitle}" />
 
-                <Label
-                    Text="{x:Static resources:Translations.WelcomePageText}" />
+                <Label Text="{x:Static resources:Translations.WelcomePageText}" />
 
                 <Button
                     VerticalOptions="Center"

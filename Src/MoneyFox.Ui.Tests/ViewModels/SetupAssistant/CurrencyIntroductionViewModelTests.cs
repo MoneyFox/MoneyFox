@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Tests.ViewModels.SetupAssistant;
+namespace MoneyFox.Ui.Tests.ViewModels.SetupAssistant;
 
 using System.Globalization;
 using Domain;
@@ -17,6 +17,6 @@ public class CurrencyIntroductionViewModelTests
         // Assert
         vm.CurrencyViewModels.Should().HaveCount(Currencies.GetAll().Count);
         vm.SelectedCurrency.Should().NotBeNull();
-        vm.SelectedCurrency.Country.Should().Be(CultureInfo.CurrentCulture.DisplayName);
+        vm.SelectedCurrency.Currency.Should().Be(RegionInfo.CurrentRegion.ISOCurrencySymbol);
     }
 }
