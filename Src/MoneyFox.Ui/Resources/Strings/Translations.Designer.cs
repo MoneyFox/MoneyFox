@@ -2289,7 +2289,7 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are {0} payments assigned. Those will be unassigned. Do you want to proceed?.
+        ///   Looks up a localized string similar to There are {0} payments assigned to this category.The assignment for those will be removed. Do you want to proceed?.
         /// </summary>
         public static string UnassignPaymentMessage {
             get {
