@@ -118,7 +118,6 @@
         <Setter Property="BackgroundColor"
                 Value="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}" />
         <Setter Property="StrokeShape" Value="RoundRectangle 10" />
-        <Setter Property="HeightRequest" Value="80" />
         <Setter Property="StrokeThickness" Value="0" />
         <Setter Property="HorizontalOptions" Value="FillAndExpand" />
         <Setter Property="VisualStateManager.VisualStateGroups">
