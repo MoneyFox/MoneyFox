@@ -711,6 +711,9 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the MoneyFox:</value>
   </data>
   <data name="UnknownErrorWithTextMessage" xml:space="preserve">
+    <value>There was an issue during the operation.</value>
+  </data>
+  <data name="UnknownErrorMessage" xml:space="preserve">
     <value>There was an issue during the operation. Error Message {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
@@ -905,5 +908,11 @@ To start create a new account. Accounts are used to organize payments and money 
   </data>
   <data name="IncludedCategoriesLabel" xml:space="preserve">
     <value>Included Categories</value>
+  </data>
+  <data name="GainsLabel" xml:space="preserve">
+      <value>Gains</value>
+  </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+      <value>Failed to open the email application. Please try again later or contact us via 'mobile.support@apply-solutions.ch'.</value>
   </data>
 </root>
