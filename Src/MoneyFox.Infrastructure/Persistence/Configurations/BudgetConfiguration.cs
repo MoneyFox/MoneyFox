@@ -18,6 +18,7 @@ internal class BudgetConfiguration : IEntityTypeConfiguration<Budget>
             .HasConversion(convertToProviderExpression: v => v.Value, convertFromProviderExpression: v => new(v));
 
         _ = builder.OwnsOne(b => b.SpendingLimit).Property(sl => sl.Value).HasColumnName("SpendingLimit");
+        _ = builder.OwnsOne(b => b.Interval).Property(sl => sl.NumberOfMonths).HasColumnName("IntervalNumberOfMonths");
         _ = builder.Property(nameof(Budget.IncludedCategories)).HasConversion(GetSplitStringConverter());
     }
 

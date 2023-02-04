@@ -8,7 +8,6 @@
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:budget="clr-namespace:MoneyFox.Ui.Views.Budget"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
-    xmlns:aloha="clr-namespace:AlohaKit.Controls;assembly=AlohaKit"
     Visual="Material"
     x:Name="BudgetList"
     x:DataType="budget:BudgetListViewModel"
@@ -54,13 +53,7 @@
                                     <Label Style="{StaticResource TextHead}"
                                            Text="{Binding Name}" />
 
-                                    <aloha:ProgressBar
-                                        IsVertical="False"
-                                        RoundCorners="True"
-                                        HeightRequest="5"
-                                        Background="{StaticResource ProgressBarBackground}"
-                                        ProgressBrush="#FF8671"
-                                        Progress="{Binding SpendingPercentage}" />
+                                    <ProgressBar Progress="{Binding SpendingPercentage}" />
 
                                     <Grid>
                                         <Label

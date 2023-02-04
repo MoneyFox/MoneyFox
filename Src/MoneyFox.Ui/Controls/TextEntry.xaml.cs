@@ -22,7 +22,13 @@ public partial class TextEntry
         defaultValue: string.Empty);
 
     public static readonly BindableProperty IsRequiredProperty = BindableProperty.Create(
-        propertyName: nameof(EntryPlaceholder),
+        propertyName: nameof(IsRequired),
+        returnType: typeof(bool),
+        declaringType: typeof(TextEntry),
+        defaultValue: false);
+
+    public static readonly BindableProperty IsReadOnlyProperty = BindableProperty.Create(
+        propertyName: nameof(IsReadOnly),
         returnType: typeof(bool),
         declaringType: typeof(TextEntry),
         defaultValue: false);
@@ -54,5 +60,11 @@ public partial class TextEntry
     {
         get => (bool)GetValue(IsRequiredProperty);
         set => SetValue(property: IsRequiredProperty, value: value);
+    }
+
+    public bool IsReadOnly
+    {
+        get => (bool)GetValue(IsReadOnlyProperty);
+        set => SetValue(property: IsReadOnlyProperty, value: value);
     }
 }

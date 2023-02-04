@@ -19,10 +19,10 @@ internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
     protected override async Task SaveBudgetAsync()
     {
         CreateBudget.Command query = new(
-            name: Name,
-            spendingLimit: SpendingLimit,
-            budgetTimeRange: TimeRange,
-            categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
+            Name: Name,
+            SpendingLimit: new(SpendingLimit),
+            BudgetInterval: new(NumberOfMonths),
+            Categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
 
         _ = await sender.Send(query);
         _ = Messenger.Send(new BudgetsChangedMessage());
