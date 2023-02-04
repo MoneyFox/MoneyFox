@@ -9,15 +9,13 @@ using Core.Queries;
 using MediatR;
 using Messages;
 
-internal class DashboardViewModel : BasePageViewModel, IRecipient<BackupRestoredMessage>
+public class DashboardViewModel : BasePageViewModel, IRecipient<BackupRestoredMessage>
 {
     private readonly IMapper mapper;
 
     private readonly IMediator mediator;
     private ObservableCollection<AccountViewModel> accounts = new();
     private decimal assets;
-
-    private ObservableCollection<DashboardBudgetEntryViewModel> budgetEntries = new();
 
     private decimal endOfMonthBalance;
 
@@ -75,22 +73,6 @@ internal class DashboardViewModel : BasePageViewModel, IRecipient<BackupRestored
         }
     }
 
-    public ObservableCollection<DashboardBudgetEntryViewModel> BudgetEntries
-    {
-        get => budgetEntries;
-
-        private set
-        {
-            if (budgetEntries == value)
-            {
-                return;
-            }
-
-            budgetEntries = value;
-            OnPropertyChanged();
-        }
-    }
-
     public ObservableCollection<AccountViewModel> Accounts
     {
         get => accounts;
@@ -110,8 +92,6 @@ internal class DashboardViewModel : BasePageViewModel, IRecipient<BackupRestored
     public AsyncRelayCommand GoToAddPaymentCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddPaymentRoute));
 
     public AsyncRelayCommand GoToAccountsCommand => new(async () => await Shell.Current.GoToAsync(Routes.AccountListRoute));
-
-    public AsyncRelayCommand GoToBudgetsCommand => new(async () => await Shell.Current.GoToAsync(Routes.BudgetListRoute));
 
     public AsyncRelayCommand<AccountViewModel> GoToTransactionListCommand
         => new(async accountViewModel => await Shell.Current.GoToAsync($"{Routes.PaymentListRoute}?accountId={accountViewModel!.Id}"));

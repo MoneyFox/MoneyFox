@@ -1,9 +1,9 @@
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
+// ReSharper disable once CheckNamespace
 namespace MoneyFox.Ui.WinUI;
 
-using Core.Common.Interfaces;
 using Core.Interfaces;
 using Microsoft.Identity.Client;
 using Platforms.Windows.Src;
@@ -11,7 +11,7 @@ using Platforms.Windows.Src;
 /// <summary>
 ///     Provides application-specific behavior to supplement the default Application class.
 /// </summary>
-public partial class App : MauiWinUIApplication
+public partial class App
 {
     private const string MSAL_APPLICATION_ID = "00a3e4cd-b4b0-4730-be62-5fcf90a94a1d";
 
