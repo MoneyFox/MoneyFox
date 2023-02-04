@@ -218,6 +218,20 @@ public class EditBudgetViewModelTests
         {
             // Act
             viewModel.Name = string.Empty;
+            viewModel.SpendingLimit = 10;
+            viewModel.NumberOfMonths = 1;
+
+            // Assert
+            _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
+        }
+
+        [Fact]
+        public void WhenNumberOfMonthsIsZero()
+        {
+            // Act
+            viewModel.SpendingLimit = 10;
+            viewModel.SpendingLimit = 0;
+            viewModel.NumberOfMonths = 1;
 
             // Assert
             _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
@@ -234,6 +248,7 @@ public class EditBudgetViewModelTests
             // Act
             viewModel.Name = budgetName;
             viewModel.SpendingLimit = 10;
+            viewModel.NumberOfMonths = 1;
 
             // Assert
             _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeTrue();
