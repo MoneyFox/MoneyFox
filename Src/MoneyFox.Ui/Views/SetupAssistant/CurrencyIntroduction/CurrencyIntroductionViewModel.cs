@@ -1,16 +1,18 @@
-namespace MoneyFox.Ui.Views.SetupAssistant;
+namespace MoneyFox.Ui.Views.SetupAssistant.CurrencyIntroduction;
 
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Globalization;
 using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Domain;
+using MoneyFox.Ui;
+using MoneyFox.Ui.Views;
 
 public class CurrencyIntroductionViewModel : BasePageViewModel
 {
     public CurrencyIntroductionViewModel()
     {
-        CurrencyViewModels = Currencies.GetAll().Select(c => new CurrencyViewModel { Currency = c.AlphaIsoCode }).ToImmutableList();
+        CurrencyViewModels = Currencies.GetAll().Select(c => new CurrencyViewModel(c.AlphaIsoCode)).ToImmutableList();
         SelectedCurrency = CurrencyViewModels.FirstOrDefault(c => c.Currency == RegionInfo.CurrentRegion.ISOCurrencySymbol) ?? CurrencyViewModels.First();
     }
 
@@ -21,14 +23,4 @@ public class CurrencyIntroductionViewModel : BasePageViewModel
     public AsyncRelayCommand NextStepCommand => new(async () => await Shell.Current.GoToAsync(Routes.CategoryIntroductionRoute));
 
     public AsyncRelayCommand BackCommand => new(Shell.Current.Navigation.PopAsync);
-}
-
-public sealed class CurrencyViewModel
-{
-    public required string Currency { get; init; }
-
-    public override string ToString()
-    {
-        return $"{Currency}";
-    }
 }

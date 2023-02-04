@@ -7,6 +7,7 @@ using Core.InversionOfControl;
 using Infrastructure.Adapters;
 using Mapping;
 using MoneyFox.Infrastructure.InversionOfControl;
+using MoneyFox.Ui.Views.SetupAssistant.CurrencyIntroduction;
 using Views.About;
 using Views.Accounts;
 using Views.Accounts.AccountModification;

@@ -175,7 +175,7 @@
         <MauiXaml Update="Views\Categories\CategorySelection\DesktopSelectedCategoryPage.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
-        <MauiXaml Update="Views\SetupAssistant\CurrencyIntroductionPage.xaml">
+        <MauiXaml Update="Views\SetupAssistant\CurrencyIntroduction\CurrencyIntroductionPage.xaml">
           <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Views\Statistics\CashFlow\StatisticCashFlowPage.xaml">
