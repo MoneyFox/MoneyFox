@@ -44,6 +44,7 @@
                      Increment="1" />
         </HorizontalStackLayout>
 
+        <Label Text="{x:Static resources:Translations.IncludedCategoriesLabel}" Style="{StaticResource TextBodySecondary}" />
         <Button Text="{x:Static resources:Translations.SelectCategoryLabel}"
                 Command="{Binding OpenCategorySelectionCommand}" />
 
