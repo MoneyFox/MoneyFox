@@ -14,15 +14,17 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <VerticalStackLayout IsClippedToBounds="False">
+        <Grid RowDefinitions="55,*" IsClippedToBounds="False">
             <Button
-                Margin="0,0,12,0"
+                Grid.Row="0"
+                Margin="0,0,15,0"
                 HorizontalOptions="End"
                 Text="{x:Static resources:Translations.AddAccountLabel}"
                 VerticalOptions="Center"
                 Command="{Binding GoToAddAccountCommand}" />
 
             <CollectionView
+                Grid.Row="1"
                 x:Name="AccountCollectionView"
                 IsGrouped="true"
                 ItemsSource="{Binding Accounts}"
@@ -32,11 +34,13 @@
                 
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate>
-                        <Label
-                            Margin="15"
-                            FontFamily="Product"
-                            FontSize="18"
-                            Text="{Binding Key}" />
+                        <Grid Padding="15">
+                            <Label
+                                FontFamily="Product"
+                                FontSize="18"
+                                Text="{Binding Key}"
+                                VerticalTextAlignment="End" />
+                        </Grid>
                     </DataTemplate>
                 </CollectionView.GroupHeaderTemplate>
                 
@@ -118,6 +122,6 @@
                     </Grid>
                 </CollectionView.EmptyView>
             </CollectionView>
-        </VerticalStackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
