@@ -714,8 +714,8 @@ VAROVÁNÍ: Místní změny, které jste mezitím provedli, budou ztraceny!</val
   <data name="TranslationLabel" xml:space="preserve">
     <value>Není něco správně přeloženo nebo vůbec není přeloženo? Pomozte nám! Přejděte na crowdin a pomozte MoneyFox:</value>
   </data>
-  <data name="UnknownErrorWithTextMessage" xml:space="preserve">
-    <value>Během operace došlo k chybě. Zpráva {0}</value>
+  <data name="UnknownErrorMessage" xml:space="preserve">
+    <value>There was an unknown error. If the error persists, please restart the app.</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Nahrávání zálohy bylo zrušeno.</value>
@@ -888,17 +888,5 @@ Chcete-li začít zakládat nový účet. Účty slouží k organizaci plateb a 
     </data>
   <data name="SendEmailFailedMessage" xml:space="preserve">
         <value>Nepodařilo se otevřít e-mailovou aplikaci. Zkuste to prosím později nebo se s námi spojte prostřednictvím "mobile.support@apply-solutions.ch".</value>
-    </data>
-  <data name="UnknownErrorMessage" xml:space="preserve">
-        <value>There was an unknown error. If the error persists, please restart the app.</value>
-    </data>
-  <data name="UnassignPaymentTitle" xml:space="preserve">
-        <value>Unassign Payments</value>
-    </data>
-  <data name="UnassignPaymentMessage" xml:space="preserve">
-        <value>There are {0} payments assigned. Those will be unassigned. Do you want to proceed?</value>
-    </data>
-  <data name="RemoveLabel" xml:space="preserve">
-        <value>Remove</value>
     </data>
 </root>
