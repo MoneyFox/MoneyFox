@@ -2000,20 +2000,20 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove Category Assignment.
+        /// </summary>
+        public static string RemoveCategoryAssignmentTitle {
+            get {
+                return ResourceManager.GetString("RemoveCategoryAssignmentTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
         public static string RemoveLabel {
             get {
                 return ResourceManager.GetString("RemoveLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove Assignment.
-        /// </summary>
-        public static string RemovePaymentTitle {
-            get {
-                return ResourceManager.GetString("RemovePaymentTitle", resourceCulture);
             }
         }
         
