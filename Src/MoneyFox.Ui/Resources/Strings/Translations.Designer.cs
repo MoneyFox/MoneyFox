@@ -2000,6 +2000,15 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove Assignment.
+        /// </summary>
+        public static string RemovePaymentTitle {
+            get {
+                return ResourceManager.GetString("RemovePaymentTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Note required.
         /// </summary>
         public static string RequireNoteCheckbox {
@@ -2289,15 +2298,6 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unassign Payments.
-        /// </summary>
-        public static string UnassignPaymentTitle {
-            get {
-                return ResourceManager.GetString("UnassignPaymentTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to There was an unknown error. If the error persists, please restart the app..
         /// </summary>
         public static string UnknownErrorMessage {
@@ -2307,7 +2307,7 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There was an issue during the operation. Error Message {0}.
+        ///   Looks up a localized string similar to There was an issue during the operation..
         /// </summary>
         public static string UnknownErrorWithTextMessage {
             get {
