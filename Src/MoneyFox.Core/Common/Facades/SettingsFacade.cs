@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Common.Facades;
+namespace MoneyFox.Core.Common.Facades;
 
 using System;
 using System.Globalization;
@@ -16,6 +16,8 @@ public interface ISettingsFacade
 
     bool IsSetupCompleted { get; set; }
 
+    string DefaultCurrency { get; set; }
+
     DateTime LastExecutionTimeStampSyncBackup { get; set; }
 }
 
@@ -29,6 +31,7 @@ public class SettingsFacade : ISettingsFacade
     private const string LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME = "LastExecutionTimeStampSyncBackup";
     private const string DATABASE_LAST_UPDATE_KEY_NAME = "DatabaseLastUpdate";
     private const string IS_SETUP_COMPLETED_KEY_NAME = "IsSetupCompleted";
+    private const string DEFAULT_CURRENCY_KEY_NAME = "DefaultCurrency";
 
     private readonly ISettingsAdapter settingsAdapter;
 
@@ -85,5 +88,11 @@ public class SettingsFacade : ISettingsFacade
     {
         get => settingsAdapter.GetValue(key: IS_SETUP_COMPLETED_KEY_NAME, defaultValue: false);
         set => settingsAdapter.AddOrUpdate(key: IS_SETUP_COMPLETED_KEY_NAME, value: value);
+    }
+
+    public string DefaultCurrency
+    {
+        get => settingsAdapter.GetValue(key: DEFAULT_CURRENCY_KEY_NAME, defaultValue: string.Empty);
+        set => settingsAdapter.AddOrUpdate(key: DEFAULT_CURRENCY_KEY_NAME, value: value);
     }
 }
