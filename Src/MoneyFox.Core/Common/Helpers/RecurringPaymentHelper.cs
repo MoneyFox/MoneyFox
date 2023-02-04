@@ -6,7 +6,6 @@ public static class RecurringPaymentHelper
 {
     public static bool AllowLastDayOfMonth(PaymentRecurrence passedEnum)
     {
-        // TODO: Change to a switch expression using 'or' for the multiple condition matches when the project is upgraded to C# 9.
         return passedEnum switch
         {
             PaymentRecurrence.Monthly
