@@ -39,7 +39,7 @@ public static class LoadBudgetEntry
                         b.Id,
                         b.Name,
                         b.SpendingLimit,
-                        Interval = b.BudgetInterval,
+                        Interval = b.Interval,
                         b.IncludedCategories
                     })
                 .AsNoTracking()
