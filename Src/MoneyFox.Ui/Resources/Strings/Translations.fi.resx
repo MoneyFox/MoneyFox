@@ -712,8 +712,8 @@ VAROITUS: Paikalliset muutokset jotka teit varmuuskopion jälkeen häviävät!</
   <data name="TranslationLabel" xml:space="preserve">
     <value>Onko jokin käännetty virheellisesti, tai jäänyt kokonaan kääntämättä? Voit auttaa meitä! Mene crowdingiin ja auta meitä kehittämään MoneyFox:</value>
   </data>
-  <data name="UnknownErrorWithTextMessage" xml:space="preserve">
-    <value>Toiminnan aikana tapahtui virhe. Virheviesti {0}</value>
+  <data name="UnknownErrorMessage" xml:space="preserve">
+    <value>There was an unknown error. If the error persists, please restart the app.</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Tallennus varmuuskopio peruutettiin.</value>
@@ -886,17 +886,5 @@ Aloittaaksesi luoda uuden tilin. Tilejä käytetään järjestämään maksuja j
     </data>
   <data name="SendEmailFailedMessage" xml:space="preserve">
         <value>Sähköpostisovellusta ei onnistuttu avaamaan. Yritä myöhemmin uudelleen tai ota meihin yhteyttä osoitteessa 'mobile.support@apply-solutions.ch'.</value>
-    </data>
-  <data name="UnknownErrorMessage" xml:space="preserve">
-        <value>There was an unknown error. If the error persists, please restart the app.</value>
-    </data>
-  <data name="UnassignPaymentTitle" xml:space="preserve">
-        <value>Unassign Payments</value>
-    </data>
-  <data name="UnassignPaymentMessage" xml:space="preserve">
-        <value>There are {0} payments assigned. Those will be unassigned. Do you want to proceed?</value>
-    </data>
-  <data name="RemoveLabel" xml:space="preserve">
-        <value>Remove</value>
     </data>
 </root>
