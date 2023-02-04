@@ -1991,6 +1991,15 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are {0} payments assigned to this category.The assignment for those will be removed. Do you want to proceed?.
+        /// </summary>
+        public static string RemoveCategoryAssignmentOnPaymentMessage {
+            get {
+                return ResourceManager.GetString("RemoveCategoryAssignmentOnPaymentMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
         public static string RemoveLabel {
@@ -2285,15 +2294,6 @@ namespace MoneyFox.Ui.Resources.Strings {
         public static string TranslationLabel {
             get {
                 return ResourceManager.GetString("TranslationLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to There are {0} payments assigned to this category.The assignment for those will be removed. Do you want to proceed?.
-        /// </summary>
-        public static string UnassignPaymentMessage {
-            get {
-                return ResourceManager.GetString("UnassignPaymentMessage", resourceCulture);
             }
         }
         

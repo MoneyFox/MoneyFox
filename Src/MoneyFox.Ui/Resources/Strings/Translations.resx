@@ -891,7 +891,7 @@ To start create a new account. Accounts are used to organize payments and money 
   <data name="RemovePaymentTitle" xml:space="preserve">
     <value>Remove Assignment</value>
   </data>
-  <data name="UnassignPaymentMessage" xml:space="preserve">
+  <data name="RemoveCategoryAssignmentOnPaymentMessage" xml:space="preserve">
     <value>There are {0} payments assigned to this category.The assignment for those will be removed. Do you want to proceed?</value>
   </data>
   <data name="RemoveLabel" xml:space="preserve">
