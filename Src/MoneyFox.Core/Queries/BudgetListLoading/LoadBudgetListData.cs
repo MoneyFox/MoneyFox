@@ -33,7 +33,7 @@ public static class LoadBudgetListData
             List<BudgetListData> budgetListDataList = new();
             foreach (var budget in budgets)
             {
-                var thresholdDate = GetThresholdDateFor(budget.BudgetTimeRange);
+                var thresholdDate = systemDateHelper.Today.AddMonths(-budget.Interval.NumberOfMonths);
                 var payments = await appDbContext.Payments.Where(p => p.Type != PaymentType.Transfer)
                     .Where(p => p.CategoryId != null)
                     .Where(p => p.Date >= thresholdDate)

@@ -13,7 +13,6 @@
     <ContentView.Resources>
         <ResourceDictionary>
             <converter:DecimalConverter x:Key="DecimalConverter" />
-            <budgetModification:BudgetTimeRangeStringConverter x:Key="BudgetTimeRangeStringConverter" />
         </ResourceDictionary>
     </ContentView.Resources>
 
@@ -28,18 +27,24 @@
                               EntryPlaceholder="{x:Static resources:Translations.MonthlySpendingLimitLabel}"
                               Amount="{Binding SpendingLimit, Converter={StaticResource DecimalConverter}}" />
 
-        <Label Margin="3,0,0,0"
-               Style="{StaticResource TextBodySecondary}"
-               Text="{x:Static resources:Translations.EvaluationTimeRangeLabel}" />
 
-        <Picker Title="{x:Static resources:Translations.EvaluationTimeRangeLabel}"
-                ItemsSource="{x:Static budgetModification:ModifyBudgetViewModel.TimeRangeCollection}"
-                SelectedItem="{Binding TimeRange}"
-                ItemDisplayBinding="{Binding ., Converter={StaticResource BudgetTimeRangeStringConverter}}" />
+        <HorizontalStackLayout Spacing="6" >
+            <controls:TextEntry TextFieldTitle="{x:Static resources:Translations.IntervalLabel}"
+                                EntryText="{Binding NumberOfMonths}"
+                                IsReadOnly="true"/>
 
-        <Label Text="{x:Static resources:Translations.EvaluationTimeRangeMessage}"
-               Style="{StaticResource TextBodySecondary}" />
+            <Label VerticalOptions="End"
+                   Text="{x:Static resources:Translations.MonthLabel}"
+                   Style="{StaticResource TextBodySecondary}"/>
+            
+            <Stepper Value="{Binding NumberOfMonths}"
+                     VerticalOptions="End" 
+                     Margin="15,0,0,2"
+                     Minimum="1"
+                     Increment="1" />
+        </HorizontalStackLayout>
 
+        <Label Text="{x:Static resources:Translations.IncludedCategoriesLabel}" Style="{StaticResource TextBodySecondary}" />
         <Button Text="{x:Static resources:Translations.SelectCategoryLabel}"
                 Command="{Binding OpenCategorySelectionCommand}" />
 

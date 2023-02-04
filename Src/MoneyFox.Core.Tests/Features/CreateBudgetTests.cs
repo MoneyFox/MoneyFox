@@ -21,12 +21,12 @@ public sealed class CreateBudgetTests : InMemoryTestBase
 
         // Act
         var query = new CreateBudget.Command(
-            name: testData.Name,
-            spendingLimit: testData.SpendingLimit,
-            budgetTimeRange: testData.BudgetTimeRange,
-            categories: testData.Categories);
+            Name: testData.Name,
+            SpendingLimit: testData.SpendingLimit,
+            BudgetInterval: testData.Interval,
+            Categories: testData.Categories);
 
-        await handler.Handle(request: query, cancellationToken: CancellationToken.None);
+        await handler.Handle(command: query, cancellationToken: CancellationToken.None);
 
         // Assert
         var loadedBudget = Context.Budgets.First();
