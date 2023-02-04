@@ -8,7 +8,6 @@
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:budget="clr-namespace:MoneyFox.Ui.Views.Budget"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
-    xmlns:aloha="clr-namespace:AlohaKit.Controls;assembly=AlohaKit"
     Visual="Material"
     x:Name="BudgetList"
     x:DataType="budget:BudgetListViewModel"
