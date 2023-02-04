@@ -31,7 +31,6 @@
                     <DataTemplate>
                         <Label
                             Margin="15"
-                            Padding="15,0,0,0"
                             FontFamily="Product"
                             FontSize="18"
                             Text="{Binding Key}"
