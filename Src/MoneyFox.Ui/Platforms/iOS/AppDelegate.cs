@@ -1,3 +1,4 @@
+// ReSharper disable once CheckNamespace
 namespace MoneyFox.Ui;
 
 using Core.Interfaces;
@@ -52,7 +53,7 @@ public class AppDelegate : MauiUIApplicationDelegate
     {
         UNUserNotificationCenter.Current.RequestAuthorization(
             options: UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound,
-            completionHandler: (granted, error) =>
+            completionHandler: (_, _) =>
             {
                 // Do something if needed
             });
