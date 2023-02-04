@@ -30,7 +30,7 @@
 
         <HorizontalStackLayout Spacing="6" >
             <controls:TextEntry TextFieldTitle="{x:Static resources:Translations.IntervalLabel}"
-                                EntryText="{Binding NumberOfMonths, Mode=OneWay}"
+                                EntryText="{Binding NumberOfMonths}"
                                 IsReadOnly="true"/>
 
             <Label VerticalOptions="End"
@@ -40,7 +40,7 @@
             <Stepper Value="{Binding NumberOfMonths}"
                      VerticalOptions="End" 
                      Margin="15,0,0,2"
-                     Minimum="0"
+                     Minimum="1"
                      Increment="1" />
         </HorizontalStackLayout>
 

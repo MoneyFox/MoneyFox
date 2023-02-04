@@ -13,7 +13,7 @@ internal abstract class ModifyBudgetViewModel : BasePageViewModel, IRecipient<Ca
     private readonly INavigationService navigationService;
     private string name = null!;
     private decimal spendingLimit;
-    private int numberOfMonths;
+    private int numberOfMonths = 1;
 
     protected ModifyBudgetViewModel(INavigationService navigationService)
     {
