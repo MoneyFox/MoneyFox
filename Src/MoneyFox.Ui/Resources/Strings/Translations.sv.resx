@@ -714,8 +714,8 @@ VARNING: Lokala ändringar du gjort under tiden kommer att gå förlorade!</valu
   <data name="TranslationLabel" xml:space="preserve">
     <value>Är något inte korrekt översatt eller inte översatt alls? Hjälp oss! Gå över till Crowdin och bidra till att förbättra MoneyFox :</value>
   </data>
-  <data name="UnknownErrorWithTextMessage" xml:space="preserve">
-    <value>Ett problem uppstod under åtgärden. Felmeddelande {0}</value>
+  <data name="UnknownErrorMessage" xml:space="preserve">
+    <value>There was an unknown error. If the error persists, please restart the app.</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Uppladdningskopia avbröts.</value>
@@ -888,17 +888,5 @@ För att börja skapa ett nytt konto. Konton används för att organisera betaln
     </data>
   <data name="SendEmailFailedMessage" xml:space="preserve">
         <value>Det gick inte att öppna e-postprogrammet. Försök igen senare eller kontakta oss via "mobile.support@apply-solutions.ch".</value>
-    </data>
-  <data name="UnknownErrorMessage" xml:space="preserve">
-        <value>There was an unknown error. If the error persists, please restart the app.</value>
-    </data>
-  <data name="UnassignPaymentTitle" xml:space="preserve">
-        <value>Unassign Payments</value>
-    </data>
-  <data name="UnassignPaymentMessage" xml:space="preserve">
-        <value>There are {0} payments assigned. Those will be unassigned. Do you want to proceed?</value>
-    </data>
-  <data name="RemoveLabel" xml:space="preserve">
-        <value>Remove</value>
     </data>
 </root>
