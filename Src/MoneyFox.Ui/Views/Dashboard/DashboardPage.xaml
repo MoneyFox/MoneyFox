@@ -10,6 +10,7 @@
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
     xmlns:accounts="clr-namespace:MoneyFox.Ui.Views.Accounts"
     xmlns:dashboard="clr-namespace:MoneyFox.Ui.Views.Dashboard"
+    x:Name="This"
     x:DataType="dashboard:DashboardViewModel">
 
     <ContentPage.Resources>
@@ -89,17 +90,22 @@
 
                     <CollectionView
                         x:Name="AccountCollectionView"
-                        SelectionMode="Single"
+                        SelectionMode="None"
                         ItemsLayout="HorizontalList"
                         ItemsSource="{Binding Accounts}"
-                        EmptyView="{x:Static resources:Translations.NoAccountsMessage}"
-                        SelectionChangedCommand="{Binding GoToTransactionListCommand}"
-                        SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference AccountCollectionView}}">
+                        EmptyView="{x:Static resources:Translations.NoAccountsMessage}">
 
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="accounts:AccountViewModel">
                                 <Grid Padding="10,15,10,15" WidthRequest="180">
                                     <controls:Card >
+
+                                        <controls:Card.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                            Command="{Binding ViewModel.GoToTransactionListCommand, Source={x:Reference This}}"
+                                            CommandParameter="{Binding .}" />
+                                        </controls:Card.GestureRecognizers>
+
                                         <Grid>
                                             <Label
                                                 Margin="10,2,0,0"

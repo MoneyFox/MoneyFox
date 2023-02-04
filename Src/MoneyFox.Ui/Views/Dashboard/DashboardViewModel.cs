@@ -9,7 +9,7 @@ using Core.Queries;
 using MediatR;
 using Messages;
 
-internal class DashboardViewModel : BasePageViewModel, IRecipient<BackupRestoredMessage>
+public class DashboardViewModel : BasePageViewModel, IRecipient<BackupRestoredMessage>
 {
     private readonly IMapper mapper;
 

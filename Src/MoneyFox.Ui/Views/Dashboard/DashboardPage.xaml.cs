@@ -8,7 +8,7 @@ public partial class DashboardPage
         BindingContext = App.GetViewModel<DashboardViewModel>();
     }
 
-    private DashboardViewModel ViewModel => (DashboardViewModel)BindingContext;
+    public DashboardViewModel ViewModel => (DashboardViewModel)BindingContext;
 
     protected override async void OnAppearing()
     {
