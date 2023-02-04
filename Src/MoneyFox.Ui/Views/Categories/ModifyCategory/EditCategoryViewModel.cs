@@ -63,8 +63,8 @@ public class EditCategoryViewModel : ModifyCategoryViewModel
             var numberOfAssignedPayments = await mediator.Send(new GetNumberOfPaymentsAssignedToCategory.Query(SelectedCategory.Id));
             if (numberOfAssignedPayments == 0
                 || await dialogService.ShowConfirmMessageAsync(
-                    title: Translations.UnassignPaymentTitle,
-                    message: string.Format(format: Translations.UnassignPaymentMessage, arg0: numberOfAssignedPayments),
+                    title: Translations.RemoveCategoryAssignmentTitle,
+                    message: string.Format(format: Translations.RemoveCategoryAssignmentOnPaymentMessage, arg0: numberOfAssignedPayments),
                     positiveButtonText: Translations.RemoveLabel,
                     negativeButtonText: Translations.CancelLabel))
             {
