@@ -888,9 +888,6 @@
   <data name="SendEmailFailedMessage" xml:space="preserve">
     <value>فشل في فتح تطبيق البريد الإلكتروني. الرجاء المحاولة مرة أخرى لاحقاً أو الاتصال بنا عبر 'mobile.support@apply-solutions.ch'.</value>
   </data>
-  <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an unknown error. If the error persists, please restart the app.</value>
-  </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
     <value>Unassign Payments</value>
   </data>
