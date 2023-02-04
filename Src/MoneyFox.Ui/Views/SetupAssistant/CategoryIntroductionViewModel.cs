@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Views.SetupAssistant;
+namespace MoneyFox.Ui.Views.SetupAssistant;
 
 using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
@@ -9,5 +9,5 @@ internal sealed class CategoryIntroductionViewModel : BasePageViewModel
 
     public AsyncRelayCommand NextStepCommand => new(async () => await Shell.Current.GoToAsync(Routes.SetupCompletionRoute));
 
-    public AsyncRelayCommand BackCommand => new(async () => await Shell.Current.Navigation.PopAsync());
+    public AsyncRelayCommand BackCommand => new(Shell.Current.Navigation.PopAsync);
 }
