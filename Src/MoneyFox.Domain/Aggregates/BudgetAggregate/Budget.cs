@@ -75,4 +75,9 @@ public class Budget : EntityBase
         Interval = budgetInterval;
         IncludedCategories = includedCategories;
     }
+
+    public void SetInterval(int numberOfMonths)
+    {
+        Interval = new BudgetInterval(numberOfMonths);
+    }
 }
