@@ -15,7 +15,7 @@ internal sealed class WelcomeViewModel : BasePageViewModel
 
     public AsyncRelayCommand GoToAddAccountCommand => new(async () => await Shell.Current.GoToModalAsync(Routes.AddAccountRoute));
 
-    public AsyncRelayCommand NextStepCommand => new(async () => await Shell.Current.GoToAsync(Routes.CategoryIntroductionRoute));
+    public AsyncRelayCommand NextStepCommand => new(async () => await Shell.Current.GoToAsync(Routes.CurrencyIntroductionRoute));
 
     public async Task InitAsync()
     {
