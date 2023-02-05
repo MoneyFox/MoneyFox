@@ -1,8 +1,10 @@
 namespace MoneyFox.Ui.Converter;
 
 using System.Globalization;
-using Core.Common.Helpers;
+using Core.Common.Extensions;
+using Core.Common.Settings;
 using Domain.Aggregates.AccountAggregate;
+using Infrastructure.Adapters;
 using Views.Payments;
 
 public class PaymentAmountConverter : IValueConverter
@@ -19,9 +21,11 @@ public class PaymentAmountConverter : IValueConverter
 
     private static string GetAmountSign(PaymentViewModel paymentViewModel)
     {
+        var settingsAdapter = new SettingsAdapter();
+        var currency = settingsAdapter.GetValue(key: SettingConstants.DEFAULT_CURRENCY_KEY_NAME, defaultValue: RegionInfo.CurrentRegion.ISOCurrencySymbol);
         var sign = paymentViewModel.Type == PaymentType.Transfer ? GetSignForTransfer(paymentViewModel) : GetSignForNonTransfer(paymentViewModel);
 
-        return $"{sign} {paymentViewModel.Amount.ToString(format: "C2", provider: CultureHelper.CurrentCulture)}";
+        return $"{sign} {paymentViewModel.Amount.FormatCurrency(currency)}";
     }
 
     private static string GetSignForTransfer(PaymentViewModel payment)
