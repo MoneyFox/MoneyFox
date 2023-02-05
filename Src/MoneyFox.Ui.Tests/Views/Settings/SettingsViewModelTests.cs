@@ -32,7 +32,7 @@ public class SettingsViewModelTests
         var viewModel = new SettingsViewModel(settingsFacade: settingsFacade);
 
         // Act
-        var newCurrency = new CurrencyViewModel(Currencies.CHF.AlphaIsoCode, "Schweiz");
+        var newCurrency = new CurrencyViewModel(Currencies.CHF.AlphaIsoCode);
         viewModel.SelectedCurrency = newCurrency;
 
         // Assert
