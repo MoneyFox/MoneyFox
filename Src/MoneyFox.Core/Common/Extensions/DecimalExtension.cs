@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Common.Extensions;
+namespace MoneyFox.Core.Common.Extensions;
 
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 public static class DecimalExtension
 {
     private static readonly Dictionary<string, CultureInfo> isoCurrenciesToACultureMap = CultureInfo.GetCultures(CultureTypes.SpecificCultures)
-        .Select(c => new { c, new RegionInfo(c.LCID).ISOCurrencySymbol })
+        .Select(c => new { c, new RegionInfo(c.Name).ISOCurrencySymbol })
         .GroupBy(x => x.ISOCurrencySymbol)
         .ToDictionary(keySelector: g => g.Key, elementSelector: g => g.First().c, comparer: StringComparer.OrdinalIgnoreCase);
 
