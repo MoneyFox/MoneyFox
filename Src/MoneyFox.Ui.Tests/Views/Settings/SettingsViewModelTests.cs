@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Tests.Views.Settings;
 
 using System.Globalization;
+using Domain;
 using FluentAssertions;
 using MoneyFox.Core.Common.Interfaces;
 using MoneyFox.Core.Common.Settings;
@@ -15,10 +16,9 @@ public class SettingsViewModelTests
     {
         // Arrange
         var settingsFacade = Substitute.For<ISettingsFacade>();
-        var dialogService = Substitute.For<IDialogService>();
 
         // Act
-        var viewModel = new SettingsViewModel(settingsFacade: settingsFacade, dialogService: dialogService);
+        var viewModel = new SettingsViewModel(settingsFacade: settingsFacade);
 
         // Assert
         viewModel.AvailableCurrencies.Should().NotBeNull();
@@ -29,14 +29,13 @@ public class SettingsViewModelTests
     {
         // Arrange
         var settingsFacade = Substitute.For<ISettingsFacade>();
-        var dialogService = Substitute.For<IDialogService>();
-        var viewModel = new SettingsViewModel(settingsFacade: settingsFacade, dialogService: dialogService);
+        var viewModel = new SettingsViewModel(settingsFacade: settingsFacade);
 
         // Act
-        CultureInfo newCulture = new("de-CH");
-        viewModel.SelectedCurrency = newCulture;
+        var newCurrency = new CurrencyViewModel(Currencies.CHF.AlphaIsoCode, "Schweiz");
+        viewModel.SelectedCurrency = newCurrency;
 
         // Assert
-        settingsFacade.Received(1).DefaultCulture = newCulture.Name;
+        settingsFacade.Received(2).DefaultCurrency = newCurrency.AlphaIsoCode;
     }
 }

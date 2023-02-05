@@ -86,7 +86,7 @@ public static class Currencies
     public static readonly Currency LBP = new(AlphaIsoCode: "LBP", NumericIsoCode: 422, Precision: 2);
     public static readonly Currency ZAR = new(AlphaIsoCode: "ZAR", NumericIsoCode: 710, Precision: 2);
     public static readonly Currency LRD = new(AlphaIsoCode: "LRD", NumericIsoCode: 430, Precision: 2);
-    public static readonly Currency CHE = new(AlphaIsoCode: "CHF", NumericIsoCode: 756, Precision: 2);
+    public static readonly Currency CHF = new(AlphaIsoCode: "CHF", NumericIsoCode: 756, Precision: 2);
     public static readonly Currency MOP = new(AlphaIsoCode: "MOP", NumericIsoCode: 446, Precision: 2);
     public static readonly Currency MKD = new(AlphaIsoCode: "MKD", NumericIsoCode: 807, Precision: 2);
     public static readonly Currency MGA = new(AlphaIsoCode: "MGA", NumericIsoCode: 969, Precision: 2);
