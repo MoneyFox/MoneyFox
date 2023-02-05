@@ -1,8 +1,8 @@
 namespace MoneyFox.Ui.Common.Extensions;
 
+using System.Globalization;
 using System.Reflection;
 using System.Resources;
-using Core.Common.Helpers;
 using Resources.Strings;
 
 [ContentProperty("Text")]
@@ -20,6 +20,6 @@ public class TranslateExtension : IMarkupExtension
             return string.Empty;
         }
 
-        return ResMgr.Value.GetString(name: Text, culture: CultureHelper.CurrentCulture) ?? Text;
+        return ResMgr.Value.GetString(name: Text, culture: CultureInfo.CurrentUICulture) ?? Text;
     }
 }
