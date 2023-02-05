@@ -908,28 +908,28 @@ Maak een nieuw account aan om hier dan uw budgetten op een gemakkelijke manier b
     <value>Inbegrepen categorieën</value>
   </data>
   <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>Select the currency you would like to use in the app. This will be used as the default currency for example for accounts, payments and budgets.
-You can change this late in the settings.</value>
+      <value>Selecteer de valuta die je in de app wilt gebruiken. Deze zal als standaardvaluta worden gebruikt voor bijvoorbeeld rekeningen, betalingen en budgetten.
+Je kunt dit laat wijzigen in de instellingen.</value>
   </data>
   <data name="CurrencyIntroductionTitle" xml:space="preserve">
-    <value>Currency</value>
+    <value>Valuta</value>
   </data>
   <data name="SetupAccountsSubtitle" xml:space="preserve">
-    <value>Add your first account</value>
+    <value>Je eerste account toevoegen</value>
   </data>
   <data name="SetupAccountsText" xml:space="preserve">
-    <value>You can use accounts to group together transactions. They can either mirror your bank account or be a virtual account just in the app.</value>
+    <value>Je kunt rekeningen gebruiken om transacties te groeperen. Ze kunnen je bankrekening spiegelen of een virtuele rekening zijn alleen in de app.</value>
   </data>
   <data name="SetupAccountsTitle" xml:space="preserve">
-    <value>Accounts</value>
+    <value>Rekeningen</value>
   </data>
   <data name="RemoveCategoryAssignmentTitle" xml:space="preserve">
-    <value>Remove Category Assignment</value>
+    <value>Categorietoewijzing verwijderen</value>
   </data>
   <data name="RemoveCategoryAssignmentOnPaymentMessage" xml:space="preserve">
-    <value>There are {0} payments assigned to this category.The assignment for those will be removed. Do you want to proceed?</value>
+    <value>Er zijn {0} betalingen toegewezen aan deze categorie.De toewijzing daarvan wordt verwijderd. Wil je doorgaan?</value>
   </data>
   <data name="CurrencySettingText" xml:space="preserve">
-      <value>Select the currency you would like to use in the app. This will be used as the default currency for example for accounts, payments and budgets.</value>
+      <value>Selecteer de valuta die je in de app wilt gebruiken. Deze zal als standaardvaluta worden gebruikt voor bijvoorbeeld rekeningen, betalingen en budgetten.</value>
   </data>
 </root>
