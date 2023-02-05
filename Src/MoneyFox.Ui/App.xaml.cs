@@ -30,7 +30,7 @@ public partial class App
     {
         var settingsAdapter = new SettingsAdapter();
         var settingsFacade = new SettingsFacade(settingsAdapter);
-        
+
         InitializeComponent();
         SetupServices();
         FillResourceDictionary();
