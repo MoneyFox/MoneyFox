@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.Views.Setup.CurrencyIntroduction;
+namespace MoneyFox.Ui.Views.Setup.SelectCurrency;
 
 using System.Collections.Generic;
 using System.Collections.Immutable;

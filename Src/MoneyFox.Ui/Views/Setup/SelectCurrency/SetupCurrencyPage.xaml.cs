@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.Views.Setup.CurrencyIntroduction;
+namespace MoneyFox.Ui.Views.Setup.SelectCurrency;
 
 public partial class CurrencyIntroductionPage
 {

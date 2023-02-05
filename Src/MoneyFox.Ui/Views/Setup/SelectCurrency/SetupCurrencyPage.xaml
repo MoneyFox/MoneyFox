@@ -1,9 +1,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
-             xmlns:currencyIntroduction="clr-namespace:MoneyFox.Ui.Views.Setup.CurrencyIntroduction"
-             x:DataType="currencyIntroduction:SetupCurrencyViewModel"
-             x:Class="MoneyFox.Ui.Views.Setup.CurrencyIntroduction.CurrencyIntroductionPage" >
+             xmlns:selectCurrency="clr-namespace:MoneyFox.Ui.Views.Setup.SelectCurrency"
+             x:DataType="selectCurrency:SetupCurrencyViewModel"
+             x:Class="MoneyFox.Ui.Views.Setup.SelectCurrency.CurrencyIntroductionPage" >
 
     <Grid Padding="15"
           IsClippedToBounds="False"
