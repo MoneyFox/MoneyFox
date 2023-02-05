@@ -10,7 +10,7 @@ using Xunit;
 public class SettingsViewModelTests
 {
     [Fact]
-    public void CollectionNotNullAfterCtor()
+    public void CollectionNotNullAfterCreation()
     {
         // Arrange
         var settingsFacade = Substitute.For<ISettingsFacade>();
