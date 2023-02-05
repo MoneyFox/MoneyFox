@@ -13,6 +13,7 @@ public record Money
     }
 
     public decimal Amount { get; }
+
     public Currency Currency { get; }
 
     public static Money Zero(string currencyAlphaIsoCode)
@@ -28,5 +29,10 @@ public record Money
     public static Money Zero(Currency currency)
     {
         return new(amount: 0, currency: currency);
+    }
+
+    public static implicit operator decimal(Money money)
+    {
+        return money.Amount;
     }
 }

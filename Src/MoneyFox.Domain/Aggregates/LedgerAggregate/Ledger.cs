@@ -61,7 +61,7 @@ public class Ledger : EntityBase
         private set;
     }
 
-    public IReadOnlyCollection<Transaction> Transactions
+    public ImmutableList<Transaction> Transactions
     {
         get;
 
@@ -77,5 +77,23 @@ public class Ledger : EntityBase
         }
 
         return new(name: name, currentBalance: currentBalance, note: note, excludeFromEndOfMonthSummary: isExcluded);
+    }
+
+    public void AddTransaction(
+        TransactionType type,
+        Money amount,
+        DateOnly bookingDate,
+        int? categoryId,
+        string? note)
+    {
+        var transaction = Transaction.Create(
+            type: type,
+            amount: amount,
+            bookingDate: bookingDate,
+            categoryId: categoryId,
+            note: note);
+
+        CurrentBalance = new(amount: CurrentBalance + transaction.Amount, currency: CurrentBalance.Currency);
+        Transactions = Transactions.Add(transaction);
     }
 }

@@ -87,20 +87,16 @@ public class Transaction : EntityBase
         int? categoryId = null,
         string? note = null)
     {
-        if (type == TransactionType.Income && amount.Amount < 0)
+        return type switch
         {
-            throw new InvalidTransactionAmountException("Income has to have a a positive amount.");
-        }
-        if (type == TransactionType.Expense && amount.Amount > 0)
-        {
-            throw new InvalidTransactionAmountException("Expense has to have a a negative amount.");
-        }
-
-        return new(
-            type: type,
-            amount: amount,
-            bookingDate: bookingDate,
-            categoryId: categoryId,
-            note: note);
+            TransactionType.Income when amount.Amount < 0 => throw new InvalidTransactionAmountException("Income has to have a a positive amount."),
+            TransactionType.Expense when amount.Amount > 0 => throw new InvalidTransactionAmountException("Expense has to have a a negative amount."),
+            _ => new(
+                type: type,
+                amount: amount,
+                bookingDate: bookingDate,
+                categoryId: categoryId,
+                note: note)
+        };
     }
 }
