@@ -1,17 +1,20 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Statistics;
 
+using Core.Common.Settings;
 using Core.Queries.Statistics;
 using Domain.Aggregates.AccountAggregate;
 using FluentAssertions;
+using NSubstitute;
 
-[Collection("CultureCollection")]
 public class GetAccountProgressionHandlerTests : InMemoryTestBase
 {
     private readonly GetAccountProgressionHandler getAccountProgressionHandler;
 
     public GetAccountProgressionHandlerTests()
     {
-        getAccountProgressionHandler = new(Context);
+        var settingsFacade = Substitute.For<ISettingsFacade>();
+        settingsFacade.DefaultCurrency.Returns("CHF");
+        getAccountProgressionHandler = new(appDbContext: Context, settingsFacade: settingsFacade);
     }
 
     [Fact]

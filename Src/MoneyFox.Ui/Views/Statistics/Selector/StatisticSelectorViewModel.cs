@@ -5,7 +5,7 @@ using Resources.Strings;
 
 internal sealed class StatisticSelectorViewModel : BasePageViewModel
 {
-    public List<StatisticSelectorTypeViewModel> StatisticItems
+    public static List<StatisticSelectorTypeViewModel> StatisticItems
         => new()
         {
             new()
@@ -45,11 +45,11 @@ internal sealed class StatisticSelectorViewModel : BasePageViewModel
             }
         };
 
-    public AsyncRelayCommand<StatisticSelectorTypeViewModel> GoToStatisticCommand => new(async s => await GoToStatisticAsync(s));
+    public AsyncRelayCommand<StatisticSelectorTypeViewModel> GoToStatisticCommand => new(async s => await GoToStatisticAsync(s!.Type));
 
-    private static async Task GoToStatisticAsync(StatisticSelectorTypeViewModel item)
+    private static async Task GoToStatisticAsync(StatisticType type)
     {
-        switch (item.Type)
+        switch (type)
         {
             case StatisticType.Cashflow:
                 await Shell.Current.GoToAsync(Routes.StatisticCashFlowRoute);
@@ -74,7 +74,7 @@ internal sealed class StatisticSelectorViewModel : BasePageViewModel
             case StatisticType.CashflowHistory:
                 break;
             default:
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException(nameof(type));
         }
     }
 }

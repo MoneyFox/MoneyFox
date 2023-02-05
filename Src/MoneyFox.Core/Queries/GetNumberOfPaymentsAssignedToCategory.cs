@@ -3,9 +3,9 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Common.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core.Common.Interfaces;
 
 public class GetNumberOfPaymentsAssignedToCategory
 {
@@ -22,10 +22,7 @@ public class GetNumberOfPaymentsAssignedToCategory
 
         public async Task<int> Handle(Query request, CancellationToken cancellationToken)
         {
-            return await dbContext.Payments
-                .Where(p => p.Category != null)
-                .Where(p => p.Category!.Id == request.CategoryId)
-                .CountAsync(cancellationToken);
+            return await dbContext.Payments.Where(p => p.Category != null).Where(p => p.Category!.Id == request.CategoryId).CountAsync(cancellationToken);
         }
     }
 }

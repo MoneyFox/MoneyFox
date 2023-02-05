@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui.Views.Categories.ModifyCategory;
 
-using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Interfaces;
 using Core.Features._Legacy_.Categories.UpdateCategory;
@@ -13,16 +12,14 @@ using Resources.Strings;
 public class EditCategoryViewModel : ModifyCategoryViewModel
 {
     private readonly IDialogService dialogService;
-    private readonly IMapper mapper;
     private readonly IMediator mediator;
     private readonly INavigationService navigationService;
 
-    public EditCategoryViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, INavigationService navigationService) : base(
+    public EditCategoryViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService) : base(
         mediator: mediator,
         dialogService: dialogService)
     {
         this.mediator = mediator;
-        this.mapper = mapper;
         this.dialogService = dialogService;
         this.navigationService = navigationService;
     }

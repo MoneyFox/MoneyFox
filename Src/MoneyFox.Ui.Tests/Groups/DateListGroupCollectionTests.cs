@@ -3,7 +3,7 @@ namespace MoneyFox.Ui.Tests.Groups;
 using System.Globalization;
 using Common.Groups;
 using FluentAssertions;
-using Views.Payments;
+using Ui.Views.Payments;
 using Xunit;
 
 public class DateListGroupCollectionTests

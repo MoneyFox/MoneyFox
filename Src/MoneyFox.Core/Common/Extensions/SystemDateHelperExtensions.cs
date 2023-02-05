@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Core.Common.Extensions;
 
 using System;
-using Helpers;
 
 public static class SystemDateHelperExtensions
 {

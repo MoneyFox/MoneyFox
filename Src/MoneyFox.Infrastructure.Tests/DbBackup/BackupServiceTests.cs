@@ -1,7 +1,7 @@
 namespace MoneyFox.Infrastructure.Tests.DbBackup;
 
-using Core.Common.Facades;
 using Core.Common.Interfaces;
+using Core.Common.Settings;
 using Core.Interfaces;
 using Domain.Exceptions;
 using FluentAssertions;

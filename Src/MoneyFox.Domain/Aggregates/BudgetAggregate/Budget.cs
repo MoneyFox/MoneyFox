@@ -10,6 +10,7 @@ public class Budget : EntityBase
     private Budget()
     {
         SpendingLimit = default!;
+        Interval = default!;
     }
 
     public Budget(string name, SpendingLimit spendingLimit, BudgetInterval interval, IReadOnlyList<int> includedCategories)
@@ -78,6 +79,6 @@ public class Budget : EntityBase
 
     public void SetInterval(int numberOfMonths)
     {
-        Interval = new BudgetInterval(numberOfMonths);
+        Interval = new(numberOfMonths);
     }
 }

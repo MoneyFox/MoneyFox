@@ -1,32 +1,21 @@
 namespace MoneyFox.Ui.Converter;
 
 using System.Globalization;
-using Core.Common.Helpers;
+using Core.Common.Extensions;
+using Core.Common.Settings;
+using Infrastructure.Adapters;
 
-/// <summary>
-///     Displays the amount as currency of the current culture.
-/// </summary>
 public class AmountFormatConverter : IValueConverter
 {
-    /// <summary>
-    ///     Converts the passed value to a currency string.
-    /// </summary>
-    /// <param name="value">value to convert</param>
-    /// <param name="targetType">Is not used.</param>
-    /// <param name="parameter">Is not used.</param>
-    /// <param name="culture">Culture to use to convert.</param>
-    /// <returns>Converted currency string.</returns>
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
+        var settingsAdapter = new SettingsAdapter();
+        var currency = settingsAdapter.GetValue(key: SettingConstants.DEFAULT_CURRENCY_KEY_NAME, defaultValue: new RegionInfo(culture.Name).ISOCurrencySymbol);
         var currencyValue = (decimal)value;
 
-        return currencyValue.ToString(format: "C", provider: CultureHelper.CurrentCulture);
+        return currencyValue.FormatCurrency(currency);
     }
 
-    /// <summary>
-    ///     Returns the value.
-    /// </summary>
-    /// <returns>Passed value.</returns>
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
         return value;

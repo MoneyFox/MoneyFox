@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Ui.Converter;
 
 using System.Globalization;
-using Core.Common.Helpers;
 
 public class DecimalToZeroFiveConverter : IValueConverter
 {
@@ -12,12 +11,7 @@ public class DecimalToZeroFiveConverter : IValueConverter
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        if (decimal.TryParse(s: value as string, style: NumberStyles.Currency, provider: CultureHelper.CurrentCulture, result: out var dec))
-        {
-            return dec;
-        }
-
-        return value;
+        return decimal.TryParse(s: value as string, style: NumberStyles.Currency, provider: culture, result: out var dec) ? dec : value;
     }
 
     private static decimal RoundDecimalToFive(decimal decimalValue)

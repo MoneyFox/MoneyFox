@@ -1,9 +1,9 @@
 ﻿namespace MoneyFox.Core.Tests.Features;
 
+using Core.Features.CategoryDeletion;
+using Domain.Tests.TestFramework;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core.Features.CategoryDeletion;
-using MoneyFox.Domain.Tests.TestFramework;
 
 public class DeleteCategoryByIdCommandTests : InMemoryTestBase
 {
@@ -19,7 +19,7 @@ public class DeleteCategoryByIdCommandTests : InMemoryTestBase
     {
         // Arrange
         var testCategory = new TestData.DefaultCategory();
-        Context.RegisterCategory(testCategory:testCategory);
+        Context.RegisterCategory(testCategory: testCategory);
 
         // Act
         await handler.Handle(command: new(testCategory.Id), cancellationToken: default);
@@ -33,7 +33,7 @@ public class DeleteCategoryByIdCommandTests : InMemoryTestBase
     {
         // Arrange
         var testCategory = new TestData.DefaultCategory();
-        Context.RegisterCategory(testCategory:testCategory);
+        Context.RegisterCategory(testCategory: testCategory);
 
         // Act
         await handler.Handle(command: new(99), cancellationToken: default);
@@ -47,9 +47,9 @@ public class DeleteCategoryByIdCommandTests : InMemoryTestBase
     {
         // Arrange
         var expense = new TestData.DefaultExpense();
-        var dbExpense = Context.RegisterPayment(testCategory:expense);
+        var dbExpense = Context.RegisterPayment(testCategory: expense);
         var income = new TestData.DefaultIncome();
-        var dbIncome = Context.RegisterPayment(testCategory:income);
+        var dbIncome = Context.RegisterPayment(testCategory: income);
 
         // Act
         await handler.Handle(command: new(dbExpense.Category!.Id), cancellationToken: default);
@@ -57,7 +57,6 @@ public class DeleteCategoryByIdCommandTests : InMemoryTestBase
         // Assert
         var unassignedPayment = await Context.Payments.SingleAsync(x => x.Id == dbExpense.Id);
         unassignedPayment.Category.Should().BeNull();
-
         var unmodifiedPayment = await Context.Payments.SingleAsync(x => x.Id == dbIncome.Id);
         unmodifiedPayment.Category.Should().NotBeNull();
     }

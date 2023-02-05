@@ -39,7 +39,7 @@ public static class LoadBudgetEntry
                         b.Id,
                         b.Name,
                         b.SpendingLimit,
-                        Interval = b.Interval,
+                        b.Interval,
                         b.IncludedCategories
                     })
                 .AsNoTracking()
@@ -54,7 +54,7 @@ public static class LoadBudgetEntry
                 id: budgetData.Id,
                 name: budgetData.Name,
                 spendingLimit: budgetData.SpendingLimit,
-                budgetData.Interval.NumberOfMonths,
+                numberOfMonths: budgetData.Interval.NumberOfMonths,
                 categories: budgetEntryCategories);
         }
     }

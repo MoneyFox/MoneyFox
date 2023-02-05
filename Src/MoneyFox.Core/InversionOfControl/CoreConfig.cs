@@ -1,8 +1,8 @@
 namespace MoneyFox.Core.InversionOfControl;
 
-using Common.Facades;
-using Common.Helpers;
+using Common;
 using Common.Mediatr;
+using Common.Settings;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -29,6 +29,5 @@ public sealed class CoreConfig
     private static void RegisterFacades(IServiceCollection serviceCollection)
     {
         _ = serviceCollection.AddTransient<ISettingsFacade, SettingsFacade>();
-        _ = serviceCollection.AddTransient<IConnectivityFacade, ConnectivityFacade>();
     }
 }

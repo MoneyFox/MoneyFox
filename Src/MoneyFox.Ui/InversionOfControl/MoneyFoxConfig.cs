@@ -8,7 +8,7 @@ using Infrastructure.Adapters;
 using Mapping;
 using MoneyFox.Infrastructure.InversionOfControl;
 using Views.About;
-using Views.Accounts;
+using Views.Accounts.AccountList;
 using Views.Accounts.AccountModification;
 using Views.Backup;
 using Views.Budget;
@@ -22,7 +22,8 @@ using Views.Payments;
 using Views.Payments.PaymentModification;
 using Views.Popups;
 using Views.Settings;
-using Views.SetupAssistant;
+using Views.Setup;
+using Views.Setup.SelectCurrency;
 using Views.Statistics.CashFlow;
 using Views.Statistics.CategoryProgression;
 using Views.Statistics.CategorySpreading;
@@ -35,6 +36,7 @@ public sealed class MoneyFoxConfig
     public void Register(IServiceCollection serviceCollection)
     {
         RegisterServices(serviceCollection);
+        RegisterSetupViewModels(serviceCollection);
         RegisterViewModels(serviceCollection);
         RegisterAdapters(serviceCollection);
         _ = serviceCollection.AddSingleton(_ => AutoMapperFactory.Create());
@@ -49,9 +51,18 @@ public sealed class MoneyFoxConfig
             .AddTransient<IToastService, ToastService>();
     }
 
-    private static void RegisterViewModels(IServiceCollection serviceCollection)
+    private static void RegisterSetupViewModels(IServiceCollection services)
     {
-        _ = serviceCollection.AddTransient<AboutViewModel>()
+        _ = services.AddTransient<WelcomeViewModel>()
+            .AddTransient<SetupCurrencyViewModel>()
+            .AddTransient<SetupAccountsViewModel>()
+            .AddTransient<SetupCategoryViewModel>()
+            .AddTransient<SetupCompletionViewModel>();
+    }
+
+    private static void RegisterViewModels(IServiceCollection services)
+    {
+        _ = services.AddTransient<AboutViewModel>()
             .AddTransient<AccountListViewModel>()
             .AddTransient<AddAccountViewModel>()
             .AddTransient<EditAccountViewModel>()
@@ -66,9 +77,6 @@ public sealed class MoneyFoxConfig
             .AddTransient<EditPaymentViewModel>()
             .AddTransient<PaymentListViewModel>()
             .AddTransient<SettingsViewModel>()
-            .AddTransient<CategoryIntroductionViewModel>()
-            .AddTransient<SetupCompletionViewModel>()
-            .AddTransient<WelcomeViewModel>()
             .AddTransient<PaymentForCategoryListViewModel>()
             .AddTransient<StatisticAccountMonthlyCashFlowViewModel>()
             .AddTransient<StatisticCashFlowViewModel>()

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
+             xmlns:setup="clr-namespace:MoneyFox.Ui.Views.Setup"
+             x:Class="MoneyFox.Ui.Views.Setup.WelcomePage"
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False"
+             x:DataType="setup:WelcomeViewModel">
+
+    <ContentPage.Content>
+        <Grid Padding="15"
+              IsClippedToBounds="False"
+              RowDefinitions="*, Auto"
+              VerticalOptions="FillAndExpand">
+
+            <VerticalStackLayout Spacing="6">
+                <Label Style="{StaticResource TextHeadline}"
+                       Text="{x:Static resources:Translations.WelcomeLabel}" />
+
+                <Label
+                    Style="{StaticResource TextTitle}"
+                    Text="{x:Static resources:Translations.WelcomePageSubtitle}" />
+
+                <Label Text="{x:Static resources:Translations.WelcomePageText}" />
+
+            </VerticalStackLayout>
+
+            <Grid Grid.Row="1" ColumnDefinitions="0.5*">
+                <Button Grid.Column="2"
+                        VerticalOptions="Center"
+                        Text="{x:Static resources:Translations.NextLabel}"
+                        Command="{Binding NextStepCommand}" />
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

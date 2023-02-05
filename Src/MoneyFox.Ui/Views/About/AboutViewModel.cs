@@ -69,7 +69,6 @@ public class AboutViewModel : BasePageViewModel
         await browserAdapter.OpenWebsiteAsync(projectUri);
     }
 
-
     private async Task GoToTranslationProjectAsync()
     {
         await browserAdapter.OpenWebsiteAsync(translationUri);
