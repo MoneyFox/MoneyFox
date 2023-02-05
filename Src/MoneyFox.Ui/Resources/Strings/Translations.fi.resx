@@ -887,7 +887,7 @@ Aloittaaksesi luoda uuden tilin. Tilejä käytetään järjestämään maksuja j
     <value>Sähköpostisovellusta ei onnistuttu avaamaan. Yritä myöhemmin uudelleen tai ota meihin yhteyttä osoitteessa 'mobile.support@apply-solutions.ch'.</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>Toiminnan aikana tapahtui virhe. Virheviesti {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
     <value>Määrittämättömät Maksut</value>
