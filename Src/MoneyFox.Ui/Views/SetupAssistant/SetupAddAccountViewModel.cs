@@ -7,6 +7,5 @@ public sealed class SetupAddAccountViewModel : BasePageViewModel
 {
     public AsyncRelayCommand GoToAddAccountCommand => new(async () => await Shell.Current.GoToModalAsync(Routes.AddAccountRoute));
 
-    public AsyncRelayCommand NextStepCommand => new(async () => await Shell.Current.GoToAsync(Routes.CurrencyIntroductionRoute));
-
+    public AsyncRelayCommand NextStepCommand => new(async () => await Shell.Current.GoToAsync(Routes.CategoryIntroductionRoute));
 }

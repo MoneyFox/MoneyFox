@@ -36,6 +36,7 @@ public sealed class MoneyFoxConfig
     public void Register(IServiceCollection serviceCollection)
     {
         RegisterServices(serviceCollection);
+        RegisterSetupViewModels(serviceCollection);
         RegisterViewModels(serviceCollection);
         RegisterAdapters(serviceCollection);
         _ = serviceCollection.AddSingleton(_ => AutoMapperFactory.Create());
@@ -49,10 +50,18 @@ public sealed class MoneyFoxConfig
             .AddTransient<INavigationService, NavigationService>()
             .AddTransient<IToastService, ToastService>();
     }
-
-    private static void RegisterViewModels(IServiceCollection serviceCollection)
+    private static void RegisterSetupViewModels(IServiceCollection services)
     {
-        _ = serviceCollection.AddTransient<AboutViewModel>()
+        _ = services.AddTransient<WelcomeViewModel>()
+            .AddTransient<CurrencyIntroductionViewModel>()
+            .AddTransient<SetupAddAccountViewModel>()
+            .AddTransient<CategoryIntroductionViewModel>()
+            .AddTransient<SetupCompletionViewModel>();
+    }
+
+    private static void RegisterViewModels(IServiceCollection services)
+    {
+        _ = services.AddTransient<AboutViewModel>()
             .AddTransient<AccountListViewModel>()
             .AddTransient<AddAccountViewModel>()
             .AddTransient<EditAccountViewModel>()
@@ -67,10 +76,6 @@ public sealed class MoneyFoxConfig
             .AddTransient<EditPaymentViewModel>()
             .AddTransient<PaymentListViewModel>()
             .AddTransient<SettingsViewModel>()
-            .AddTransient<CategoryIntroductionViewModel>()
-            .AddTransient<SetupCompletionViewModel>()
-            .AddTransient<WelcomeViewModel>()
-            .AddTransient<CurrencyIntroductionViewModel>()
             .AddTransient<PaymentForCategoryListViewModel>()
             .AddTransient<StatisticAccountMonthlyCashFlowViewModel>()
             .AddTransient<StatisticCashFlowViewModel>()

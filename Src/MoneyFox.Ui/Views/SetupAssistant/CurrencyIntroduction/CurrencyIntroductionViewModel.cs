@@ -31,6 +31,6 @@ public class CurrencyIntroductionViewModel : BasePageViewModel
     private async Task NextStep()
     {
         settingsFacade.DefaultCurrency = SelectedCurrency.AlphaIsoCode;
-        await Shell.Current.GoToAsync(Routes.CategoryIntroductionRoute);
+        await Shell.Current.GoToAsync(Routes.SetupAccountsRoute);
     }
 }
