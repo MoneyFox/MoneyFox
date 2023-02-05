@@ -24,7 +24,8 @@ public class Transaction : EntityBase
         Money amount,
         DateOnly bookingDate,
         int? categoryId,
-        string? note)
+        string? note,
+        bool isTransfer)
     {
         Reference = reference;
         Type = type;
@@ -32,6 +33,7 @@ public class Transaction : EntityBase
         BookingDate = bookingDate;
         CategoryId = categoryId;
         Note = note;
+        IsTransfer = isTransfer;
     }
 
     public TransactionId Id
@@ -90,13 +92,22 @@ public class Transaction : EntityBase
         private set;
     }
 
+    public bool IsTransfer
+    {
+        get;
+
+        [UsedImplicitly]
+        private set;
+    }
+
     public static Transaction Create(
         Guid reference,
         TransactionType type,
         Money amount,
         DateOnly bookingDate,
         int? categoryId = null,
-        string? note = null)
+        string? note = null,
+        bool isTransfer = false)
     {
         return type switch
         {
@@ -108,7 +119,8 @@ public class Transaction : EntityBase
                 amount: amount,
                 bookingDate: bookingDate,
                 categoryId: categoryId,
-                note: note)
+                note: note,
+                isTransfer: isTransfer)
         };
     }
 }

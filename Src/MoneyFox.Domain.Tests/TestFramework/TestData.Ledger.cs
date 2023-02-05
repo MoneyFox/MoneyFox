@@ -25,6 +25,7 @@ internal static partial class TestData
             public DateOnly BookingDate { get; } = new(year: 2022, month: 11, day: 13);
             public int? CategoryId { get; } = 1;
             public string? Note { get; } = "Beverages";
+            public bool IsTransfer { get; } = false;
         }
 
         public sealed record SalaryTransaction : ILedger.ITransaction
@@ -36,6 +37,7 @@ internal static partial class TestData
             public DateOnly BookingDate { get; } = new(year: 2022, month: 11, day: 25);
             public int? CategoryId { get; } = 2;
             public string? Note { get; } = "Salary";
+            public bool IsTransfer { get; } = false;
         }
     }
 
@@ -57,6 +59,7 @@ internal static partial class TestData
             DateOnly BookingDate { get; }
             int? CategoryId { get; }
             string? Note { get; }
+            bool IsTransfer { get; }
         }
     }
 }
