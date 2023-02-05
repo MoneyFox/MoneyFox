@@ -882,7 +882,7 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
     <value>Die E-Mail-Anwendung konnte nicht geöffnet werden. Bitte versuche es später noch einmal oder kontaktiere uns über 'mobile.support@apply-solutions.ch'.</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>Es gab ein Problem während der Operation. Fehlermeldung {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
     <value>Zahlungen aufheben</value>

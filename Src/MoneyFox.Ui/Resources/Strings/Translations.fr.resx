@@ -880,7 +880,7 @@ Pour commencer, créez un nouveau compte. Les comptes sont utilisés pour organi
     <value>Impossible d'ouvrir l'application de messagerie. Essaie à nouveau plus tard ou contacte-nous via 'mobile.support@apply-solutions.ch'.</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>Il y a eu un problème pendant l'opération. Message d'erreur {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
     <value>Retirer les paiements</value>

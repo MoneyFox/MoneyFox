@@ -883,7 +883,7 @@ Başlamak için yeni bir hesap oluşturun. Hesaplar, ödemeleri ve tahsilatlarda
     <value>E-posta uygulaması açılamadı. Lütfen daha sonra tekrar deneyin veya 'mobile.support@apply-solutions.ch' adresinden bizimle iletişime geçin.</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>İşlem sırasında bir sorun oluştu. Hata Mesajı {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
     <value>Ödemelerin Atamasını Kaldır</value>

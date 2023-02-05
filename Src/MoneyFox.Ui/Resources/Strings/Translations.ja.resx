@@ -883,7 +883,7 @@
     <value>メールアプリケーションを開くのに失敗しました。後でもう一度試してみるか、'mobile.support@apply-solutions.ch'からご連絡ください。</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>操作中に問題が発生しました。エラー メッセージ {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
     <value>支払いのアサインを解除</value>
