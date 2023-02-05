@@ -711,7 +711,7 @@ Pour y arriver, allez dans la liste des comptes et sélectionnez le compte respe
     <value>Il y a eu un problème pendant l'opération. Message d'erreur {0}</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an unknown error. If the error persists, please restart the app.</value>
+    <value>There was an issue during the operation. Error Message {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Le téléversement de la sauvegarde a été annulé.</value>
@@ -885,22 +885,31 @@ Pour commencer, créez un nouveau compte. Les comptes sont utilisés pour organi
   <data name="SendEmailFailedMessage" xml:space="preserve">
     <value>Impossible d'ouvrir l'application de messagerie. Essaie à nouveau plus tard ou contacte-nous via 'mobile.support@apply-solutions.ch'.</value>
   </data>
-  <data name="RemoveCategoryAssignmentTitle" xml:space="preserve">
-    <value>Remove Category Assignment</value>
+  <data name="UnknownErrorMessage" xml:space="preserve">
+    <value>Une erreur inconnue s'est produite. Si l'erreur persiste, redémarre l'application.</value>
   </data>
-  <data name="RemoveCategoryAssignmentOnPaymentMessage" xml:space="preserve">
-    <value>There are {0} payments assigned to this category.The assignment for those will be removed. Do you want to proceed?</value>
+  <data name="UnassignPaymentTitle" xml:space="preserve">
+    <value>Unassign Payments</value>
+  </data>
+  <data name="UnassignPaymentMessage" xml:space="preserve">
+    <value>There are {0} payments assigned. Those will be unassigned. Do you want to proceed?</value>
   </data>
   <data name="RemoveLabel" xml:space="preserve">
-    <value>Remove</value>
+    <value>Retirer</value>
   </data>
   <data name="IntervalLabel" xml:space="preserve">
-    <value>Interval</value>
+    <value>Intervalle</value>
   </data>
   <data name="MonthLabel" xml:space="preserve">
-    <value>Month</value>
+    <value>Mois</value>
   </data>
   <data name="IncludedCategoriesLabel" xml:space="preserve">
-    <value>Included Categories</value>
+    <value>Catégories incluses</value>
+  </data>
+  <data name="GainsLabel" xml:space="preserve">
+      <value>Gains</value>
+  </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+      <value>Impossible d'ouvrir l'application de messagerie. Essaie à nouveau plus tard ou contacte-nous via 'mobile.support@apply-solutions.ch'.</value>
   </data>
 </root>
