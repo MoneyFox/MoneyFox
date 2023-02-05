@@ -178,6 +178,9 @@
         <MauiXaml Update="Views\SetupAssistant\CurrencyIntroduction\CurrencyIntroductionPage.xaml">
           <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
+        <MauiXaml Update="Views\SetupAssistant\SetupAddAccountPage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
         <MauiXaml Update="Views\Statistics\CashFlow\StatisticCashFlowPage.xaml">
             <SubType>Designer</SubType>
         </MauiXaml>

@@ -7,8 +7,7 @@
              x:Class="MoneyFox.Ui.Views.SetupAssistant.WelcomePage"
              Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="False"
-             x:DataType="setupAssistant:WelcomeViewModel"
-             BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}">
+             x:DataType="setupAssistant:WelcomeViewModel">
 
     <ContentPage.Content>
         <Grid Padding="15"
@@ -26,10 +25,6 @@
 
                 <Label Text="{x:Static resources:Translations.WelcomePageText}" />
 
-                <Button
-                    VerticalOptions="Center"
-                    Text="{x:Static resources:Translations.CreateAccountNowLabel}"
-                    Command="{Binding GoToAddAccountCommand}" />
             </VerticalStackLayout>
 
             <Grid Grid.Row="1" ColumnDefinitions="0.5*">

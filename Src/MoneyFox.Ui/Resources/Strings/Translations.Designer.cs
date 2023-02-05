@@ -745,7 +745,7 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select the currency you would like to use in the app. This will be your default for accounts, payments and budgets..
+        ///   Looks up a localized string similar to Select the currency you would like to use in the app. This will be used as the default currency for example for accounts, payments and budgets..
         /// </summary>
         public static string CurrencyIntroductionText {
             get {
@@ -2009,24 +2009,6 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are {0} payments assigned to this category.The assignment for those will be removed. Do you want to proceed?.
-        /// </summary>
-        public static string RemoveCategoryAssignmentOnPaymentMessage {
-            get {
-                return ResourceManager.GetString("RemoveCategoryAssignmentOnPaymentMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove Category Assignment.
-        /// </summary>
-        public static string RemoveCategoryAssignmentTitle {
-            get {
-                return ResourceManager.GetString("RemoveCategoryAssignmentTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
         public static string RemoveLabel {
@@ -2217,6 +2199,33 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add your first account.
+        /// </summary>
+        public static string SetupAccountsSubtitle {
+            get {
+                return ResourceManager.GetString("SetupAccountsSubtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can use accounts to group together transactions. They can either mirror your bank account or be a virtual account just in the app..
+        /// </summary>
+        public static string SetupAccountsText {
+            get {
+                return ResourceManager.GetString("SetupAccountsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accounts.
+        /// </summary>
+        public static string SetupAccountsTitle {
+            get {
+                return ResourceManager.GetString("SetupAccountsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Skip.
         /// </summary>
         public static string SkipLabel {
@@ -2316,6 +2325,24 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are {0} payments assigned. Those will be unassigned. Do you want to proceed?.
+        /// </summary>
+        public static string UnassignPaymentMessage {
+            get {
+                return ResourceManager.GetString("UnassignPaymentMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unassign Payments.
+        /// </summary>
+        public static string UnassignPaymentTitle {
+            get {
+                return ResourceManager.GetString("UnassignPaymentTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There was an unknown error. If the error persists, please restart the app..
         /// </summary>
         public static string UnknownErrorMessage {
@@ -2389,7 +2416,7 @@ namespace MoneyFox.Ui.Resources.Strings {
         
         /// <summary>
         ///   Looks up a localized string similar to The MoneyFox helps you to track your expenses and incomes in an easy way.
-        ///To start create a new account. Accounts are used to organize payments and money in collections..
+        ///We will lead you through the first steps and help you get started..
         /// </summary>
         public static string WelcomePageText {
             get {
