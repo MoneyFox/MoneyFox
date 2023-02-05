@@ -321,12 +321,6 @@
   <data name="DateRangeHeader" xml:space="preserve">
     <value>Date Range</value>
   </data>
-  <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Προεπιλεγμένη Περιοχή</value>
-  </data>
-  <data name="DefaultRegionText" xml:space="preserve">
-    <value>Αυτή η περιοχή θα χρησιμοποιηθεί ως προεπιλογή για την εφαρμογή σας.</value>
-  </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
     <value>Θέλετε πραγματικά να διαγράψετε αυτόν τον λογαριασμό?</value>
   </data>

@@ -321,12 +321,6 @@
   <data name="DateRangeHeader" xml:space="preserve">
     <value>Rango de fecha</value>
   </data>
-  <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Región por defecto</value>
-  </data>
-  <data name="DefaultRegionText" xml:space="preserve">
-    <value>Esta región se utilizará por defecto para su aplicación.</value>
-  </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
     <value>¿Realmente desea eliminar esta cuenta?</value>
   </data>

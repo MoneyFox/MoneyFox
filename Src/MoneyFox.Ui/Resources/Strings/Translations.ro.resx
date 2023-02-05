@@ -321,12 +321,6 @@
   <data name="DateRangeHeader" xml:space="preserve">
     <value>Date Range</value>
   </data>
-  <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Regiunea implicită</value>
-  </data>
-  <data name="DefaultRegionText" xml:space="preserve">
-    <value>Această regiune va fi folosită în mod implicit pentru aplicația dvs.</value>
-  </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
     <value>Sigur doriți să ștergeți acest cont?</value>
   </data>

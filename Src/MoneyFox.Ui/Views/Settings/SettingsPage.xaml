@@ -3,21 +3,22 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
+             xmlns:settings="using:MoneyFox.Ui.Views.Settings"
              Title="{x:Static resources:Translations.SettingsTitle}"
+             x:DataType="settings:SettingsViewModel"
              x:Class="MoneyFox.Ui.Views.Settings.SettingsPage">
 
     <ContentPage.Content>
         <ScrollView Padding="15">
             <StackLayout>
                 <Label Style="{StaticResource TextSubHead}"
-                       Text="{x:Static resources:Translations.DefaultRegionText}" />
+                       Text="{x:Static resources:Translations.CurrencyIntroductionTitle}" />
 
                 <Label HorizontalOptions="StartAndExpand"
-                       Text="{x:Static resources:Translations.DefaultRegionHeader}" />
+                       Text="{x:Static resources:Translations.CurrencySettingText}" />
 
-                <Picker ItemsSource="{Binding AvailableCultures}"
-                        SelectedItem="{Binding SelectedCulture, Mode=TwoWay}"
-                        ItemDisplayBinding="{Binding EnglishName}" />
+                <Picker ItemsSource="{Binding AvailableCurrencies}"
+                        SelectedItem="{Binding SelectedCurrency, Mode=TwoWay}" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

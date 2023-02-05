@@ -321,12 +321,6 @@
   <data name="DateRangeHeader" xml:space="preserve">
     <value>Kuupäeva vahemik</value>
   </data>
-  <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Vaikimisi piirkond</value>
-  </data>
-  <data name="DefaultRegionText" xml:space="preserve">
-    <value>Seda piirkonda kasutatakse teie rakenduses vaikimisi.</value>
-  </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
     <value>Kas te tõesti soovite selle konto kustutada?</value>
   </data>

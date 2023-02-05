@@ -321,12 +321,6 @@
   <data name="DateRangeHeader" xml:space="preserve">
     <value>Datų intervalas</value>
   </data>
-  <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Numatytasis regionas</value>
-  </data>
-  <data name="DefaultRegionText" xml:space="preserve">
-    <value>Šis regionas bus naudojamas kaip numatytasis jūsų programai.</value>
-  </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
     <value>Ar tikrai norite ištrinti šią paskyrą?</value>
   </data>

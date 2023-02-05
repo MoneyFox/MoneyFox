@@ -321,12 +321,6 @@
   <data name="DateRangeHeader" xml:space="preserve">
     <value>Date Range</value>
   </data>
-  <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>المنطقة الافتراضية</value>
-  </data>
-  <data name="DefaultRegionText" xml:space="preserve">
-    <value>المنطقة المدخلة ستكون المنطقة الافتراضية للتطبيق</value>
-  </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
     <value>هل تريد حقاً حذف هذا الحساب؟</value>
   </data>

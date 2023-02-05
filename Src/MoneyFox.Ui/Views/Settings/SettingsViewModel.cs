@@ -1,66 +1,48 @@
 ﻿namespace MoneyFox.Ui.Views.Settings;
 
-using System.Collections.ObjectModel;
 using System.Globalization;
 using Core.Common.Helpers;
-using Core.Common.Interfaces;
 using Core.Common.Settings;
-using Serilog;
+using Domain;
 
 internal sealed class SettingsViewModel : BasePageViewModel
 {
-    private readonly IDialogService dialogService;
     private readonly ISettingsFacade settingsFacade;
 
-    private CultureInfo selectedCulture = CultureHelper.CurrentCulture;
+    private CurrencyViewModel selectedCurrency = null!;
 
-    public SettingsViewModel(ISettingsFacade settingsFacade, IDialogService dialogService)
+    public SettingsViewModel(ISettingsFacade settingsFacade)
     {
         this.settingsFacade = settingsFacade;
-        this.dialogService = dialogService;
-        AvailableCultures = new();
+        AvailableCurrencies = GetCurrencyViewModels();
+        SelectedCurrency = AvailableCurrencies.FirstOrDefault(c => c.AlphaIsoCode == RegionInfo.CurrentRegion.ISOCurrencySymbol) ?? AvailableCurrencies.First();
     }
 
-    public CultureInfo SelectedCulture
+    public CurrencyViewModel SelectedCurrency
     {
-        get => selectedCulture;
+        get => selectedCurrency;
 
         set
         {
-            if (value == null)
-            {
-                return;
-            }
-
-            selectedCulture = value;
-            settingsFacade.DefaultCulture = selectedCulture.Name;
-            CultureHelper.CurrentCulture = selectedCulture;
+            SetProperty(field: ref selectedCurrency, newValue: value);
+            settingsFacade.DefaultCurrency = selectedCurrency.AlphaIsoCode;
             OnPropertyChanged();
         }
     }
 
-    public ObservableCollection<CultureInfo> AvailableCultures { get; }
+    public IReadOnlyList<CurrencyViewModel> AvailableCurrencies { get; }
 
-    public async Task InitializeAsync()
+    private static List<CurrencyViewModel> GetCurrencyViewModels()
     {
-        await LoadAvailableCulturesAsync();
-    }
+        var currencyVmList = new List<CurrencyViewModel>();
+        foreach (var currencyIsoCode in Currencies.GetAll().Select(c => c.AlphaIsoCode))
+        {
+            if (CurrencyHelper.IsoCurrenciesToACultureMap.TryGetValue(key: currencyIsoCode, value: out var culture))
+            {
+                currencyVmList.Add(new(AlphaIsoCode: currencyIsoCode, RegionDisplayName: new RegionInfo(culture.Name).DisplayName));
+            }
+        }
 
-    private async Task LoadAvailableCulturesAsync()
-    {
-        try
-        {
-            await dialogService.ShowLoadingDialogAsync();
-            CultureInfo.GetCultures(CultureTypes.AllCultures).OrderBy(x => x.Name).ToList().ForEach(AvailableCultures.Add);
-            SelectedCulture = AvailableCultures.First(x => x.Name == settingsFacade.DefaultCulture);
-        }
-        catch (Exception ex)
-        {
-            Log.Error(exception: ex, messageTemplate: "Failed to load Available Cultures");
-        }
-        finally
-        {
-            await dialogService.HideLoadingDialogAsync();
-        }
+        return currencyVmList;
     }
 }

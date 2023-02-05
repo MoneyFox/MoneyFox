@@ -21,7 +21,7 @@ public class SettingsViewModelTests
         var viewModel = new SettingsViewModel(settingsFacade: settingsFacade, dialogService: dialogService);
 
         // Assert
-        viewModel.AvailableCultures.Should().NotBeNull();
+        viewModel.AvailableCurrencies.Should().NotBeNull();
     }
 
     [Fact]
@@ -34,7 +34,7 @@ public class SettingsViewModelTests
 
         // Act
         CultureInfo newCulture = new("de-CH");
-        viewModel.SelectedCulture = newCulture;
+        viewModel.SelectedCurrency = newCulture;
 
         // Assert
         settingsFacade.Received(1).DefaultCulture = newCulture.Name;

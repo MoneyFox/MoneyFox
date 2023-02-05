@@ -321,12 +321,6 @@
   <data name="DateRangeHeader" xml:space="preserve">
     <value>Обхват на датата</value>
   </data>
-  <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Регион по подразбиране</value>
-  </data>
-  <data name="DefaultRegionText" xml:space="preserve">
-    <value>Този регион ще се използва по подразбиране за вашето приложение.</value>
-  </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
     <value>Наистина ли искате да изтриете този акаунт?</value>
   </data>

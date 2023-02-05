@@ -321,12 +321,6 @@
   <data name="DateRangeHeader" xml:space="preserve">
     <value>Date Range</value>
   </data>
-  <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Förvald region</value>
-  </data>
-  <data name="DefaultRegionText" xml:space="preserve">
-    <value>Denna region kommer att användas som standard för din ansökan.</value>
-  </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
     <value>Vill du verkligen ta bort detta konto?</value>
   </data>

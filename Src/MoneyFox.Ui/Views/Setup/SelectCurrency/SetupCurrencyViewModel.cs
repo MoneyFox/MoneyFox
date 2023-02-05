@@ -1,7 +1,9 @@
 namespace MoneyFox.Ui.Views.Setup.SelectCurrency;
 
 using System.Globalization;
+using Common;
 using CommunityToolkit.Mvvm.Input;
+using Core.Common.Helpers;
 using Core.Common.Settings;
 using Domain;
 
@@ -32,17 +34,12 @@ public class SetupCurrencyViewModel : BasePageViewModel
 
     private static List<CurrencyViewModel> GetCurrencyViewModels()
     {
-        var isoCurrenciesToACultureMap = CultureInfo.GetCultures(CultureTypes.SpecificCultures)
-                .Select(c => new { c, new RegionInfo(c.Name).ISOCurrencySymbol })
-                .GroupBy(x => x.ISOCurrencySymbol)
-                .ToDictionary(keySelector: g => g.Key, elementSelector: g => g.First().c, comparer: StringComparer.OrdinalIgnoreCase);
-
         var currencyVmList = new List<CurrencyViewModel>();
         foreach (var currencyIsoCode in Currencies.GetAll().Select(c => c.AlphaIsoCode))
         {
-            if (isoCurrenciesToACultureMap.TryGetValue(key: currencyIsoCode, value: out var culture))
+            if (CurrencyHelper.IsoCurrenciesToACultureMap.TryGetValue(key: currencyIsoCode, value: out var culture))
             {
-                currencyVmList.Add(new CurrencyViewModel(currencyIsoCode, new RegionInfo(culture.Name).DisplayName));
+                currencyVmList.Add(new(AlphaIsoCode: currencyIsoCode, RegionDisplayName: new RegionInfo(culture.Name).DisplayName));
             }
         }
 

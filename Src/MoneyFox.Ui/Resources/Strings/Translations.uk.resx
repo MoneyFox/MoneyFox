@@ -321,12 +321,6 @@
   <data name="DateRangeHeader" xml:space="preserve">
     <value>Date Range</value>
   </data>
-  <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Регіон за замовчуванням</value>
-  </data>
-  <data name="DefaultRegionText" xml:space="preserve">
-    <value>Цей регіон буде використовуватися за замовчуванням для вашої програми.</value>
-  </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
     <value>Ви дійсно бажаєте видалити цей рахунок?</value>
   </data>

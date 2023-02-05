@@ -321,12 +321,6 @@
   <data name="DateRangeHeader" xml:space="preserve">
     <value>Tarih Aralığı</value>
   </data>
-  <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Varsayılan Bölge</value>
-  </data>
-  <data name="DefaultRegionText" xml:space="preserve">
-    <value>Bu bölge uygulamanız için varsayılan olarak kullanılacaktır.</value>
-  </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
     <value>Bu hesabı silmek gerçekten silmek istiyor musunuz?</value>
   </data>

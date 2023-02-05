@@ -321,12 +321,6 @@
   <data name="DateRangeHeader" xml:space="preserve">
     <value>Rozsah dátumov</value>
   </data>
-  <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Predvolená oblasť</value>
-  </data>
-  <data name="DefaultRegionText" xml:space="preserve">
-    <value>Táto oblasť sa použije ako predvolená pre vašu aplikáciu.</value>
-  </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
     <value>Naozaj chcete odstrániť tento účet?</value>
   </data>

@@ -321,12 +321,6 @@
   <data name="DateRangeHeader" xml:space="preserve">
     <value>Период</value>
   </data>
-  <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Регион по умолчанию</value>
-  </data>
-  <data name="DefaultRegionText" xml:space="preserve">
-    <value>Этот регион будет использоваться по умолчанию для вашего приложения.</value>
-  </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
     <value>Вы действительно хотите удалить этот счёт?</value>
   </data>

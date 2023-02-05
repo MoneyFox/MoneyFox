@@ -744,7 +744,8 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select the currency you would like to use in the app. This will be used as the default currency for example for accounts, payments and budgets..
+        ///   Looks up a localized string similar to Select the currency you would like to use in the app. This will be used as the default currency for example for accounts, payments and budgets.
+        ///You can change this late in the settings..
         /// </summary>
         public static string CurrencyIntroductionText {
             get {
@@ -758,6 +759,15 @@ namespace MoneyFox.Ui.Resources.Strings {
         public static string CurrencyIntroductionTitle {
             get {
                 return ResourceManager.GetString("CurrencyIntroductionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the currency you would like to use in the app. This will be used as the default currency for example for accounts, payments and budgets..
+        /// </summary>
+        public static string CurrencySettingText {
+            get {
+                return ResourceManager.GetString("CurrencySettingText", resourceCulture);
             }
         }
         
@@ -821,24 +831,6 @@ namespace MoneyFox.Ui.Resources.Strings {
         public static string DateRangeHeader {
             get {
                 return ResourceManager.GetString("DateRangeHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Default Region.
-        /// </summary>
-        public static string DefaultRegionHeader {
-            get {
-                return ResourceManager.GetString("DefaultRegionHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This region will be used as a default for your application..
-        /// </summary>
-        public static string DefaultRegionText {
-            get {
-                return ResourceManager.GetString("DefaultRegionText", resourceCulture);
             }
         }
         

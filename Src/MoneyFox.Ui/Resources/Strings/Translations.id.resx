@@ -321,12 +321,6 @@
   <data name="DateRangeHeader" xml:space="preserve">
     <value>Rentang Tanggal</value>
   </data>
-  <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Wilayah Default</value>
-  </data>
-  <data name="DefaultRegionText" xml:space="preserve">
-    <value>Wilayah ini akan digunakan sebagai default untuk aplikasi Anda.</value>
-  </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
     <value>Apakah benar Anda ingin menghapus Akun ini?</value>
   </data>

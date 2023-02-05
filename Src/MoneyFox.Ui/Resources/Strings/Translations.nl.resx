@@ -322,12 +322,6 @@
   <data name="DateRangeHeader" xml:space="preserve">
     <value>Datumbereik</value>
   </data>
-  <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Standaard regio</value>
-  </data>
-  <data name="DefaultRegionText" xml:space="preserve">
-    <value>Deze regio wordt gebruikt als standaard in uw app.</value>
-  </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
     <value>Weet u zeker dat u deze account wilt verwijderen?</value>
   </data>

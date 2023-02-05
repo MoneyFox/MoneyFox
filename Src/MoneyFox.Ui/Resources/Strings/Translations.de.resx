@@ -321,12 +321,6 @@
   <data name="DateRangeHeader" xml:space="preserve">
     <value>Zeitraum</value>
   </data>
-  <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Standard Region</value>
-  </data>
-  <data name="DefaultRegionText" xml:space="preserve">
-    <value>Diese Region wird als Standard für Ihre Anwendung verwendet.</value>
-  </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
     <value>Möchtest du dieses Konto wirklich löschen?</value>
   </data>
