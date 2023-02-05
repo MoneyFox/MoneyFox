@@ -11,7 +11,7 @@
     <ContentPage.Content>
         <VerticalStackLayout>
             <CollectionView x:Name="OverflowMenuCollectionView"
-                            ItemsSource="{Binding OverflowEntries}">
+                            ItemsSource="{x:Static overflowMenu:OverflowMenuViewModel.OverflowEntries}">
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="overflowMenu:OverflowItemViewModel">
