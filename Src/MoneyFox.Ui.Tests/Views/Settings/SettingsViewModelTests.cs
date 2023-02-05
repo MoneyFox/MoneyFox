@@ -34,6 +34,6 @@ public class SettingsViewModelTests
         viewModel.SelectedCurrency = newCurrency;
 
         // Assert
-        settingsFacade.Received(2).DefaultCurrency = newCurrency.AlphaIsoCode;
+        settingsFacade.DefaultCurrency.Should().Be(newCurrency.AlphaIsoCode);
     }
 }
