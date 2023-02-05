@@ -15,13 +15,13 @@
 
             <VerticalStackLayout Spacing="12">
                 <Label Style="{StaticResource TextSubHeadline}"
-                   Text="{x:Static resources:Translations.CategoriesTitle}" />
+                       Text="{x:Static resources:Translations.CategoriesTitle}" />
 
                 <Label Text="{x:Static resources:Translations.CategorieIntroductionText}" />
 
                 <Button VerticalOptions="Center"
-                    Text="{x:Static resources:Translations.CreateCategoryNowLabel}"
-                    Command="{Binding GoToAddCategoryCommand}" />
+                        Text="{x:Static resources:Translations.CreateCategoryNowLabel}"
+                        Command="{Binding GoToAddCategoryCommand}" />
 
                 <Label Text="{x:Static resources:Translations.PaymentIntroductionText}" />
             </VerticalStackLayout>

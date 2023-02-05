@@ -149,7 +149,7 @@
             </VisualStateGroupList>
         </Setter>
     </Style>
-    
+
 
     <Style TargetType="Button">
         <Setter Property="TextColor" Value="{StaticResource Gray100}" />

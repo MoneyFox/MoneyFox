@@ -29,7 +29,7 @@
                 Grid.Row="1"
                 IsGrouped="true"
                 SelectionMode="Single"
-                ItemsSource="{Binding Accounts}" 
+                ItemsSource="{Binding Accounts}"
                 SelectionChangedCommand="{Binding GoToTransactionListCommand}"
                 SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference AccountCollectionView}}">
 

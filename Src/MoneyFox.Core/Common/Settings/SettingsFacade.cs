@@ -2,7 +2,7 @@ namespace MoneyFox.Core.Common.Settings;
 
 using System;
 using System.Globalization;
-using MoneyFox.Core.Interfaces;
+using Core.Interfaces;
 
 public interface ISettingsFacade
 {
@@ -42,7 +42,9 @@ public class SettingsFacade : ISettingsFacade
     {
         get
         {
-            var dateString = settingsAdapter.GetValue(key: SettingConstants.DATABASE_LAST_UPDATE_KEY_NAME, defaultValue: DateTime.MinValue.ToString(CultureInfo.InvariantCulture));
+            var dateString = settingsAdapter.GetValue(
+                key: SettingConstants.DATABASE_LAST_UPDATE_KEY_NAME,
+                defaultValue: DateTime.MinValue.ToString(CultureInfo.InvariantCulture));
 
             return Convert.ToDateTime(value: dateString, provider: CultureInfo.InvariantCulture);
         }
@@ -67,7 +69,10 @@ public class SettingsFacade : ISettingsFacade
                 ? outValue
                 : DateTime.MinValue;
 
-        set => settingsAdapter.AddOrUpdate(key: SettingConstants.LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME, value: value.ToString(CultureInfo.InvariantCulture));
+        set
+            => settingsAdapter.AddOrUpdate(
+                key: SettingConstants.LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME,
+                value: value.ToString(CultureInfo.InvariantCulture));
     }
 
     public string DefaultCulture

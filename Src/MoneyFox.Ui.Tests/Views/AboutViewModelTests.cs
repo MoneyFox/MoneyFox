@@ -1,7 +1,7 @@
 namespace MoneyFox.Ui.Tests.Views;
 
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Interfaces;
+using Core.Common.Interfaces;
+using Core.Interfaces;
 using NSubstitute;
 using Ui.Views.About;
 using Xunit;

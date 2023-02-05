@@ -12,8 +12,8 @@ internal abstract class ModifyBudgetViewModel : BasePageViewModel, IRecipient<Ca
 {
     private readonly INavigationService navigationService;
     private string name = null!;
-    private decimal spendingLimit;
     private int numberOfMonths = 1;
+    private decimal spendingLimit;
 
     protected ModifyBudgetViewModel(INavigationService navigationService)
     {

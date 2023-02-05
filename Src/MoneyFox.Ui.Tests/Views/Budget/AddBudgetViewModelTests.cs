@@ -1,13 +1,13 @@
 namespace MoneyFox.Ui.Tests.Views.Budget;
 
 using Core.Common.Extensions;
+using Core.Common.Interfaces;
+using Core.Features.BudgetCreation;
+using Core.Interfaces;
+using Domain.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Features.BudgetCreation;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Domain.Tests.TestFramework;
-using MoneyFox.Ui.Messages;
+using Messages;
 using NSubstitute;
 using Ui.Views.Budget.BudgetModification;
 using Ui.Views.Categories.CategorySelection;

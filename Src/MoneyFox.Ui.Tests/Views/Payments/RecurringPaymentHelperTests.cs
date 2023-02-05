@@ -1,8 +1,8 @@
 ﻿namespace MoneyFox.Ui.Tests.Views.Payments;
 
+using Domain.Aggregates.AccountAggregate;
 using FluentAssertions;
-using MoneyFox.Domain.Aggregates.AccountAggregate;
-using MoneyFox.Ui.Views.Payments;
+using Ui.Views.Payments;
 using Xunit;
 
 public class RecurringPaymentHelperTests

@@ -23,7 +23,7 @@ public static class CreateBudget
         public async Task<Unit> Handle(Command command, CancellationToken cancellationToken)
         {
             SpendingLimit spendingLimit = new(command.SpendingLimit);
-            Budget budget = new(name: command.Name, spendingLimit: spendingLimit, command.BudgetInterval, includedCategories: command.Categories);
+            Budget budget = new(name: command.Name, spendingLimit: spendingLimit, interval: command.BudgetInterval, includedCategories: command.Categories);
             await appDbContext.AddAsync(entity: budget, cancellationToken: cancellationToken);
             await appDbContext.SaveChangesAsync(cancellationToken);
 

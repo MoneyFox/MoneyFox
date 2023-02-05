@@ -1,5 +1,3 @@
-using System.Linq;
-
 namespace MoneyFox.Ui.Views.Settings;
 
 using System.Globalization;

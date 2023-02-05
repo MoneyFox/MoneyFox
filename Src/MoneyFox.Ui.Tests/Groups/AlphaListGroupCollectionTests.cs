@@ -4,7 +4,6 @@ using System.Globalization;
 using Common.Groups;
 using FluentAssertions;
 using Ui.Views.Accounts;
-using Views.Accounts;
 using Xunit;
 
 public class AlphaListGroupCollectionTests

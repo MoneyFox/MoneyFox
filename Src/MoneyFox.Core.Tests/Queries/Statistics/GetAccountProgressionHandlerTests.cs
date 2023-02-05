@@ -14,8 +14,7 @@ public class GetAccountProgressionHandlerTests : InMemoryTestBase
     {
         var settingsFacade = Substitute.For<ISettingsFacade>();
         settingsFacade.DefaultCurrency.Returns("CHF");
-
-        getAccountProgressionHandler = new(Context, settingsFacade);
+        getAccountProgressionHandler = new(appDbContext: Context, settingsFacade: settingsFacade);
     }
 
     [Fact]

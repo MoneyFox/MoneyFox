@@ -8,7 +8,6 @@ using Infrastructure.Adapters;
 using Mapping;
 using MoneyFox.Infrastructure.InversionOfControl;
 using Views.About;
-using Views.Accounts;
 using Views.Accounts.AccountList;
 using Views.Accounts.AccountModification;
 using Views.Backup;
@@ -51,6 +50,7 @@ public sealed class MoneyFoxConfig
             .AddTransient<INavigationService, NavigationService>()
             .AddTransient<IToastService, ToastService>();
     }
+
     private static void RegisterSetupViewModels(IServiceCollection services)
     {
         _ = services.AddTransient<WelcomeViewModel>()

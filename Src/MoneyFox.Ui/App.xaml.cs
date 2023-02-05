@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui;
 
-using System.Globalization;
 using Common.Exceptions;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
@@ -31,7 +30,6 @@ public partial class App
     {
         var settingsAdapter = new SettingsAdapter();
         var settingsFacade = new SettingsFacade(settingsAdapter);
-
         InitializeComponent();
         SetupServices();
         FillResourceDictionary();
@@ -42,7 +40,6 @@ public partial class App
             : new AppShell();
 
         ResetSetup(settingsAdapter);
-
         if (settingsFacade.IsSetupCompleted is false)
         {
             Shell.Current.GoToAsync(Routes.WelcomeViewRoute).Wait();
@@ -148,24 +145,28 @@ public partial class App
                 {
                     case BudgetTimeRange.YearToDate:
                         budget.SetInterval(1);
+
                         break;
                     case BudgetTimeRange.Last1Year:
                         budget.SetInterval(12);
+
                         break;
                     case BudgetTimeRange.Last2Years:
                         budget.SetInterval(24);
+
                         break;
                     case BudgetTimeRange.Last3Years:
                         budget.SetInterval(36);
+
                         break;
                     case BudgetTimeRange.Last5Years:
                         budget.SetInterval(60);
+
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
             }
-
 
             dbContext.SaveChangesAsync().GetAwaiter().GetResult();
             settingsAdapter.AddOrUpdate(key: IS_BUDGET_MIGRATION_DONE_KEY_NAME, value: true);

@@ -2,14 +2,14 @@ namespace MoneyFox.Ui.Views.Accounts.AccountList;
 
 using System.Collections.ObjectModel;
 using AutoMapper;
+using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Core.Common.Interfaces;
+using Core.Features._Legacy_.Accounts.DeleteAccountById;
+using Core.Queries;
 using MediatR;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Features._Legacy_.Accounts.DeleteAccountById;
-using MoneyFox.Core.Queries;
-using MoneyFox.Ui.Common.Groups;
-using MoneyFox.Ui.Resources.Strings;
+using Resources.Strings;
 
 public sealed class AccountListViewModel : BasePageViewModel, IRecipient<AccountsChangedMessage>
 {

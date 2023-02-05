@@ -1,10 +1,8 @@
 namespace MoneyFox.Ui.Tests.Views.Settings;
 
-using System.Globalization;
+using Core.Common.Settings;
 using Domain;
 using FluentAssertions;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Common.Settings;
 using NSubstitute;
 using Ui.Views.Settings;
 using Xunit;

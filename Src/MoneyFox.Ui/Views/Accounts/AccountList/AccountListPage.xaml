@@ -32,7 +32,7 @@
                 SelectionMode="Single"
                 SelectionChangedCommand="{Binding GoToTransactionListCommand}"
                 SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference AccountCollectionView}}">
-                
+
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate>
                         <Grid Padding="15">
@@ -44,7 +44,7 @@
                         </Grid>
                     </DataTemplate>
                 </CollectionView.GroupHeaderTemplate>
-                
+
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="accounts:AccountViewModel">
                         <Grid Padding="15,6,15,12">
@@ -68,7 +68,7 @@
                                     <Grid
                                         BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                             Light={StaticResource CardBackgroundLight}}">
-        
+
                                         <Label
                                             Margin="10,2,0,0"
                                             HorizontalTextAlignment="Start"

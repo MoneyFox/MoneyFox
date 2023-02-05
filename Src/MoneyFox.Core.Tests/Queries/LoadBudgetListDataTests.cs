@@ -4,7 +4,6 @@ using System.Collections.Immutable;
 using Core.Common;
 using Core.Queries.BudgetListLoading;
 using Domain.Aggregates.AccountAggregate;
-using Domain.Aggregates.BudgetAggregate;
 using Domain.Tests.TestFramework;
 using FluentAssertions;
 using NSubstitute;

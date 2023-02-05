@@ -10,9 +10,9 @@ public class AmountFormatConverter : IValueConverter
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         var settingsAdapter = new SettingsAdapter();
-        var currency = settingsAdapter.GetValue(SettingConstants.DEFAULT_CURRENCY_KEY_NAME, new RegionInfo(culture.Name).ISOCurrencySymbol);
-
+        var currency = settingsAdapter.GetValue(key: SettingConstants.DEFAULT_CURRENCY_KEY_NAME, defaultValue: new RegionInfo(culture.Name).ISOCurrencySymbol);
         var currencyValue = (decimal)value;
+
         return currencyValue.FormatCurrency(currency);
     }
 

@@ -99,12 +99,12 @@
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="accounts:AccountViewModel">
                                 <Grid Padding="10,15,10,15" WidthRequest="180">
-                                    <controls:Card >
+                                    <controls:Card>
 
                                         <controls:Card.GestureRecognizers>
                                             <TapGestureRecognizer
-                                            Command="{Binding ViewModel.GoToTransactionListCommand, Source={x:Reference This}}"
-                                            CommandParameter="{Binding .}" />
+                                                Command="{Binding ViewModel.GoToTransactionListCommand, Source={x:Reference This}}"
+                                                CommandParameter="{Binding .}" />
                                         </controls:Card.GestureRecognizers>
 
                                         <Grid>
@@ -167,7 +167,7 @@
 
                     <Grid ColumnDefinitions="*, 10, *">
 
-                        <controls:Card Grid.Column="0" 
+                        <controls:Card Grid.Column="0"
                                        Style="{StaticResource UnclickclickableCard}"
                                        HeightRequest="80">
 

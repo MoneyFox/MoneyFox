@@ -1,8 +1,8 @@
 namespace MoneyFox.Ui.Tests.Views.Payments;
 
 using AutoMapper;
+using Core.Common.Interfaces;
 using MediatR;
-using MoneyFox.Core.Common.Interfaces;
 using NSubstitute;
 using Ui.Views.Payments.PaymentModification;
 using Xunit;

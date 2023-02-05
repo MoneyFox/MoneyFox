@@ -79,6 +79,6 @@ public class Budget : EntityBase
 
     public void SetInterval(int numberOfMonths)
     {
-        Interval = new BudgetInterval(numberOfMonths);
+        Interval = new(numberOfMonths);
     }
 }

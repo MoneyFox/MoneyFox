@@ -36,7 +36,6 @@ public class MainActivity : MauiAppCompatActivity
         if (Microsoft.Maui.Controls.Application.Current?.RequestedTheme == AppTheme.Light)
         {
             backgroundColor = new(239, 242, 245);
-
             if (OperatingSystem.IsAndroidVersionAtLeast(30))
             {
                 Window?.InsetsController?.SetSystemBarsAppearance(

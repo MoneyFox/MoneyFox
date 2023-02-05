@@ -2,15 +2,15 @@ namespace MoneyFox.Ui.Tests.Views.Budget;
 
 using System.Collections.Immutable;
 using Core.Common.Extensions;
+using Core.Common.Interfaces;
+using Core.Features.BudgetDeletion;
+using Core.Features.BudgetUpdate;
+using Core.Interfaces;
+using Core.Queries.BudgetEntryLoading;
+using Domain.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Features.BudgetDeletion;
-using MoneyFox.Core.Features.BudgetUpdate;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Core.Queries.BudgetEntryLoading;
-using MoneyFox.Domain.Tests.TestFramework;
-using MoneyFox.Ui.Messages;
+using Messages;
 using NSubstitute;
 using Ui.Views.Budget.BudgetModification;
 using Ui.Views.Categories.CategorySelection;
@@ -135,7 +135,7 @@ public class EditBudgetViewModelTests
                         id: new(testBudget.Id),
                         name: testBudget.Name,
                         spendingLimit: testBudget.SpendingLimit,
-                        testBudget.Interval.NumberOfMonths,
+                        numberOfMonths: testBudget.Interval.NumberOfMonths,
                         categories: categories));
 
             // Arrange
@@ -175,7 +175,7 @@ public class EditBudgetViewModelTests
                         id: new(testBudget.Id),
                         name: testBudget.Name,
                         spendingLimit: testBudget.SpendingLimit,
-                        testBudget.Interval.NumberOfMonths,
+                        numberOfMonths: testBudget.Interval.NumberOfMonths,
                         categories: new List<BudgetEntryData.BudgetCategory>()));
 
             await viewModel.InitializeCommand.ExecuteAsync(testBudget.Id);

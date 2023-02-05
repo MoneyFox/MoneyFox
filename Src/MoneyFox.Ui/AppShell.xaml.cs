@@ -1,7 +1,6 @@
 namespace MoneyFox.Ui;
 
 using Views.About;
-using Views.Accounts;
 using Views.Accounts.AccountList;
 using Views.Accounts.AccountModification;
 using Views.Backup;
