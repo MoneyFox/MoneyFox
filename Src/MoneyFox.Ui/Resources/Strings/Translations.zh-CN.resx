@@ -904,28 +904,28 @@
     <value>包括的类别</value>
   </data>
   <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>Select the currency you would like to use in the app. This will be used as the default currency for example for accounts, payments and budgets.
-You can change this late in the settings.</value>
+      <value>选择你想在应用程序中使用的货币。这将被用作默认货币，例如用于账户、付款和预算。
+你可以在设置中改变这一迟来的货币。</value>
   </data>
   <data name="CurrencyIntroductionTitle" xml:space="preserve">
-    <value>Currency</value>
+    <value>货币</value>
   </data>
   <data name="SetupAccountsSubtitle" xml:space="preserve">
-    <value>Add your first account</value>
+    <value>添加你的第一个账户</value>
   </data>
   <data name="SetupAccountsText" xml:space="preserve">
-    <value>You can use accounts to group together transactions. They can either mirror your bank account or be a virtual account just in the app.</value>
+    <value>你可以使用账户来组合交易。它们既可以反映你的银行账户，也可以是一个虚拟账户，只是在应用程序中。</value>
   </data>
   <data name="SetupAccountsTitle" xml:space="preserve">
-    <value>Accounts</value>
+    <value>帐户</value>
   </data>
   <data name="RemoveCategoryAssignmentTitle" xml:space="preserve">
-    <value>Remove Category Assignment</value>
+    <value>移除类别分配</value>
   </data>
   <data name="RemoveCategoryAssignmentOnPaymentMessage" xml:space="preserve">
-    <value>There are {0} payments assigned to this category.The assignment for those will be removed. Do you want to proceed?</value>
+    <value>有 {0} 付款分配到这个类别。这些分配将被删除。你想继续吗？</value>
   </data>
   <data name="CurrencySettingText" xml:space="preserve">
-      <value>Select the currency you would like to use in the app. This will be used as the default currency for example for accounts, payments and budgets.</value>
+      <value>选择你想在应用程序中使用的货币。这将被用作默认货币，例如用于账户、支付和预算。</value>
   </data>
 </root>
