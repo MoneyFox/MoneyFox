@@ -903,28 +903,28 @@ Aloittaaksesi luoda uuden tilin. Tilejä käytetään järjestämään maksuja j
     <value>Mukana olevat luokat</value>
   </data>
   <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>Select the currency you would like to use in the app. This will be used as the default currency for example for accounts, payments and budgets.
-You can change this late in the settings.</value>
+      <value>Valitse valuutta, jota haluat käyttää sovelluksessa. Tätä käytetään oletusvaluuttana esimerkiksi tileissä, maksuissa ja budjeteissa.
+Voit muuttaa tätä myöhässä asetuksissa.</value>
   </data>
   <data name="CurrencyIntroductionTitle" xml:space="preserve">
-    <value>Currency</value>
+    <value>Valuutta</value>
   </data>
   <data name="SetupAccountsSubtitle" xml:space="preserve">
-    <value>Add your first account</value>
+    <value>Lisää ensimmäinen tilisi</value>
   </data>
   <data name="SetupAccountsText" xml:space="preserve">
-    <value>You can use accounts to group together transactions. They can either mirror your bank account or be a virtual account just in the app.</value>
+    <value>Voit ryhmitellä tapahtumia tilien avulla. Ne voivat joko peilata pankkitiliäsi tai olla virtuaalinen tili vain sovelluksessa.</value>
   </data>
   <data name="SetupAccountsTitle" xml:space="preserve">
-    <value>Accounts</value>
+    <value>Tilit</value>
   </data>
   <data name="RemoveCategoryAssignmentTitle" xml:space="preserve">
-    <value>Remove Category Assignment</value>
+    <value>Poista luokkien määritys</value>
   </data>
   <data name="RemoveCategoryAssignmentOnPaymentMessage" xml:space="preserve">
-    <value>There are {0} payments assigned to this category.The assignment for those will be removed. Do you want to proceed?</value>
+    <value>Tähän luokkaan on kohdistettu {0} maksuja, joiden kohdentaminen poistetaan. Haluatko jatkaa?</value>
   </data>
   <data name="CurrencySettingText" xml:space="preserve">
-      <value>Select the currency you would like to use in the app. This will be used as the default currency for example for accounts, payments and budgets.</value>
+      <value>Valitse valuutta, jota haluat käyttää sovelluksessa. Tätä käytetään oletusvaluuttana esimerkiksi tileissä, maksuissa ja budjeteissa.</value>
   </data>
 </root>
