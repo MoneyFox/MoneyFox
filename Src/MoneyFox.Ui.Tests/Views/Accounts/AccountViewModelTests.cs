@@ -1,7 +1,7 @@
-namespace MoneyFox.Ui.Tests.ViewModels.Accounts;
+namespace MoneyFox.Ui.Tests.Views.Accounts;
 
 using FluentAssertions;
-using Views.Accounts;
+using Ui.Views.Accounts;
 using Xunit;
 
 public class AccountViewModelTests

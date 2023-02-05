@@ -3,6 +3,7 @@ namespace MoneyFox.Ui.Tests.Groups;
 using System.Globalization;
 using Common.Groups;
 using FluentAssertions;
+using Ui.Views.Payments;
 using Views.Payments;
 using Xunit;
 

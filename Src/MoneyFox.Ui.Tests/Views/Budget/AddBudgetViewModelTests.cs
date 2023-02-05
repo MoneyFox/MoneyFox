@@ -1,16 +1,16 @@
-namespace MoneyFox.Ui.Tests.ViewModels.Budget;
+namespace MoneyFox.Ui.Tests.Views.Budget;
 
 using Core.Common.Extensions;
-using Core.Common.Interfaces;
-using Core.Features.BudgetCreation;
-using Core.Interfaces;
-using Domain.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
-using Messages;
+using MoneyFox.Core.Common.Interfaces;
+using MoneyFox.Core.Features.BudgetCreation;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Domain.Tests.TestFramework;
+using MoneyFox.Ui.Messages;
 using NSubstitute;
-using Views.Budget.BudgetModification;
-using Views.Categories.CategorySelection;
+using Ui.Views.Budget.BudgetModification;
+using Ui.Views.Categories.CategorySelection;
 using Xunit;
 
 public class AddBudgetViewModelTests

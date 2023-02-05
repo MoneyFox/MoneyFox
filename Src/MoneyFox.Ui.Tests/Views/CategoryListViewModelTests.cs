@@ -1,13 +1,13 @@
-namespace MoneyFox.Ui.Tests.ViewModels;
+namespace MoneyFox.Ui.Tests.Views;
 
 using AutoMapper;
-using Core.Common.Interfaces;
-using Core.Queries;
-using Domain.Aggregates.CategoryAggregate;
 using FluentAssertions;
 using MediatR;
+using MoneyFox.Core.Common.Interfaces;
+using MoneyFox.Core.Queries;
+using MoneyFox.Domain.Aggregates.CategoryAggregate;
 using NSubstitute;
-using Views.Categories;
+using Ui.Views.Categories;
 using Xunit;
 
 public class CategoryListViewModelTests

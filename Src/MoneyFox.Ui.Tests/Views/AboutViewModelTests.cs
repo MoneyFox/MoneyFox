@@ -1,9 +1,9 @@
-namespace MoneyFox.Ui.Tests.ViewModels;
+namespace MoneyFox.Ui.Tests.Views;
 
-using Core.Common.Interfaces;
-using Core.Interfaces;
+using MoneyFox.Core.Common.Interfaces;
+using MoneyFox.Core.Interfaces;
 using NSubstitute;
-using Views.About;
+using Ui.Views.About;
 using Xunit;
 
 public class AboutViewModelTests

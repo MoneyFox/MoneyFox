@@ -1,6 +1,6 @@
-namespace MoneyFox.Core.Common.Helpers;
+namespace MoneyFox.Ui.Views.Payments;
 
-using Domain.Aggregates.AccountAggregate;
+using MoneyFox.Domain.Aggregates.AccountAggregate;
 
 public static class RecurringPaymentHelper
 {

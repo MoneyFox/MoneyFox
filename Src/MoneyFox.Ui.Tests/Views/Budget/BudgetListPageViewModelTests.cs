@@ -1,12 +1,12 @@
-namespace MoneyFox.Ui.Tests.ViewModels.Budget;
+namespace MoneyFox.Ui.Tests.Views.Budget;
 
 using System.Collections.Immutable;
-using Core.Queries.BudgetListLoading;
-using Domain.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
+using MoneyFox.Core.Queries.BudgetListLoading;
+using MoneyFox.Domain.Tests.TestFramework;
 using NSubstitute;
-using Views.Budget;
+using Ui.Views.Budget;
 using Xunit;
 
 public abstract class BudgetListPageViewModelTests

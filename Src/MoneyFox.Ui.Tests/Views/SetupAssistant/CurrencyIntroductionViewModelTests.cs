@@ -1,11 +1,11 @@
-namespace MoneyFox.Ui.Tests.ViewModels.SetupAssistant;
+namespace MoneyFox.Ui.Tests.Views.SetupAssistant;
 
 using System.Globalization;
-using Core.Common.Settings;
-using Domain;
 using FluentAssertions;
+using MoneyFox.Core.Common.Settings;
+using MoneyFox.Domain;
 using NSubstitute;
-using Views.Setup.SelectCurrency;
+using Ui.Views.Setup.SelectCurrency;
 using Xunit;
 
 public class CurrencyIntroductionViewModelTests

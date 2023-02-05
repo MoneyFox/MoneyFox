@@ -1,13 +1,13 @@
-namespace MoneyFox.Ui.Tests.ViewModels;
+namespace MoneyFox.Ui.Tests.Views;
 
-using Core.Common.Interfaces;
-using Core.Common.Settings;
-using Core.Features.DbBackup;
-using Core.Interfaces;
 using FluentAssertions;
 using MediatR;
+using MoneyFox.Core.Common.Interfaces;
+using MoneyFox.Core.Common.Settings;
+using MoneyFox.Core.Features.DbBackup;
+using MoneyFox.Core.Interfaces;
 using NSubstitute;
-using Views.Backup;
+using Ui.Views.Backup;
 using Xunit;
 
 public class BackupViewModelTests

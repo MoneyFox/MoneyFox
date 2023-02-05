@@ -1,11 +1,11 @@
-namespace MoneyFox.Ui.Tests.ViewModels.Settings;
+namespace MoneyFox.Ui.Tests.Views.Settings;
 
 using System.Globalization;
-using Core.Common.Interfaces;
-using Core.Common.Settings;
 using FluentAssertions;
+using MoneyFox.Core.Common.Interfaces;
+using MoneyFox.Core.Common.Settings;
 using NSubstitute;
-using Views.Settings;
+using Ui.Views.Settings;
 using Xunit;
 
 public class SettingsViewModelTests

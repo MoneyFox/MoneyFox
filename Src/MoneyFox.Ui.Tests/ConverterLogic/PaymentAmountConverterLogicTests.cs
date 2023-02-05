@@ -3,6 +3,7 @@ namespace MoneyFox.Ui.Tests.ConverterLogic;
 using Common.ConverterLogic;
 using Domain.Aggregates.AccountAggregate;
 using FluentAssertions;
+using Ui.Views.Payments;
 using Views.Payments;
 using Xunit;
 
