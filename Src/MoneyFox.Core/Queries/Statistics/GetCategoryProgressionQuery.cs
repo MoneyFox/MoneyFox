@@ -74,7 +74,7 @@ public class GetCategoryProgressionHandler : IRequestHandler<GetCategoryProgress
         return FillReturnList(request: request, statisticEntries: statisticList);
     }
 
-    private static IImmutableList<StatisticEntry> FillReturnList(GetCategoryProgressionQuery request, ICollection<StatisticEntry> statisticEntries)
+    private IImmutableList<StatisticEntry> FillReturnList(GetCategoryProgressionQuery request, ICollection<StatisticEntry> statisticEntries)
     {
         List<StatisticEntry> returnList = new();
         var startDate = request.StartDate;
@@ -86,7 +86,7 @@ public class GetCategoryProgressionHandler : IRequestHandler<GetCategoryProgress
             if (!items.Any())
             {
                 StatisticEntry placeholderItem = new(value: 0, label: $"{startDate.Month:d2} {startDate.Year:d4}");
-                placeholderItem.ValueLabel = placeholderItem.Value.ToString(format: "c", provider: CultureHelper.CurrentCulture);
+                placeholderItem.ValueLabel = placeholderItem.Value.FormatCurrency(settingsFacade.DefaultCurrency);
                 placeholderItem.Color = placeholderItem.Value >= 0 ? BLUE_HEX_CODE : RED_HEX_CODE;
                 returnList.Add(placeholderItem);
             }
