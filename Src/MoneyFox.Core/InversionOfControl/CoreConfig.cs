@@ -29,6 +29,5 @@ public sealed class CoreConfig
     private static void RegisterFacades(IServiceCollection serviceCollection)
     {
         _ = serviceCollection.AddTransient<ISettingsFacade, SettingsFacade>();
-        _ = serviceCollection.AddTransient<IConnectivityFacade, ConnectivityFacade>();
     }
 }
