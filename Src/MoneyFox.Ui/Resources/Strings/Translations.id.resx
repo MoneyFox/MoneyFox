@@ -903,28 +903,28 @@ Untuk memulai, buat akun baru. Akun digunakan untuk mengatur pembayaran dan uang
     <value>Kategori yang disertakan</value>
   </data>
   <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>Select the currency you would like to use in the app. This will be used as the default currency for example for accounts, payments and budgets.
-You can change this late in the settings.</value>
+      <value>Pilih mata uang yang ingin Anda gunakan dalam aplikasi. Mata uang ini akan digunakan sebagai mata uang default, misalnya untuk akun, pembayaran, dan anggaran.
+Anda dapat mengubahnya di bagian akhir pengaturan.</value>
   </data>
   <data name="CurrencyIntroductionTitle" xml:space="preserve">
-    <value>Currency</value>
+    <value>Mata uang</value>
   </data>
   <data name="SetupAccountsSubtitle" xml:space="preserve">
-    <value>Add your first account</value>
+    <value>Tambahkan akun pertama Anda</value>
   </data>
   <data name="SetupAccountsText" xml:space="preserve">
-    <value>You can use accounts to group together transactions. They can either mirror your bank account or be a virtual account just in the app.</value>
+    <value>Anda bisa menggunakan akun untuk mengelompokkan transaksi. Rekening tersebut dapat berupa rekening bank Anda atau rekening virtual yang hanya ada di aplikasi.</value>
   </data>
   <data name="SetupAccountsTitle" xml:space="preserve">
-    <value>Accounts</value>
+    <value>Akun</value>
   </data>
   <data name="RemoveCategoryAssignmentTitle" xml:space="preserve">
-    <value>Remove Category Assignment</value>
+    <value>Menghapus Penetapan Kategori</value>
   </data>
   <data name="RemoveCategoryAssignmentOnPaymentMessage" xml:space="preserve">
-    <value>There are {0} payments assigned to this category.The assignment for those will be removed. Do you want to proceed?</value>
+    <value>Ada {0} pembayaran yang ditugaskan untuk kategori ini, penugasan untuk kategori tersebut akan dihapus. Apakah Anda ingin melanjutkan?</value>
   </data>
   <data name="CurrencySettingText" xml:space="preserve">
-      <value>Select the currency you would like to use in the app. This will be used as the default currency for example for accounts, payments and budgets.</value>
+      <value>Pilih mata uang yang ingin Anda gunakan dalam aplikasi. Mata uang ini akan digunakan sebagai mata uang default, misalnya untuk akun, pembayaran, dan anggaran.</value>
   </data>
 </root>
