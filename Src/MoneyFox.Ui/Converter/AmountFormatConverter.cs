@@ -2,15 +2,18 @@ namespace MoneyFox.Ui.Converter;
 
 using System.Globalization;
 using Core.Common.Extensions;
-using Core.Common.Helpers;
+using Core.Common.Facades;
+using Infrastructure.Adapters;
 
 public class AmountFormatConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        var currencyValue = (decimal)value;
+        var settingsAdapter = new SettingsAdapter();
+        var currency = settingsAdapter.GetValue(SettingConstants.DEFAULT_CURRENCY_KEY_NAME, new RegionInfo(culture.Name).ISOCurrencySymbol);
 
-        return currencyValue.ToString(format: "C", provider: culture);
+        var currencyValue = (decimal)value;
+        return currencyValue.FormatCurrency(currency);
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
