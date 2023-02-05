@@ -5,5 +5,6 @@ public partial class SetupAddAccountPage : ContentPage
     public SetupAddAccountPage()
     {
         InitializeComponent();
+        BindingContext = App.GetViewModel<SetupAccountsViewModel>();
     }
 }
