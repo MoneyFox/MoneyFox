@@ -19,6 +19,7 @@ internal static partial class TestData
         public sealed record BeverageTransaction : ILedger.ITransaction
         {
             public TransactionId Id { get; } = new(210);
+            public Guid Reference { get; } = Guid.NewGuid();
             public TransactionType Type { get; } = TransactionType.Expense;
             public Money Amount { get; init; } = new(amount: -42, currency: Currencies.CHF);
             public DateOnly BookingDate { get; } = new(year: 2022, month: 11, day: 13);
@@ -29,6 +30,7 @@ internal static partial class TestData
         public sealed record SalaryTransaction : ILedger.ITransaction
         {
             public TransactionId Id { get; } = new(211);
+            public Guid Reference { get; } = Guid.NewGuid();
             public TransactionType Type { get; } = TransactionType.Income;
             public Money Amount { get; init;  } = new(amount: 5432, currency: Currencies.CHF);
             public DateOnly BookingDate { get; } = new(year: 2022, month: 11, day: 25);
@@ -49,6 +51,7 @@ internal static partial class TestData
         public interface ITransaction
         {
             TransactionId Id { get; }
+            Guid Reference { get; }
             TransactionType Type { get; }
             Money Amount { get; }
             DateOnly BookingDate { get; }

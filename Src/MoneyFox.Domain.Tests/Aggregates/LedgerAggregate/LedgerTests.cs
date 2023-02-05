@@ -50,6 +50,7 @@ public class LedgerTests
 
         // Act
         ledgerAggregate.AddTransaction(
+            expense.Reference,
             expense.Type,
             expense.Amount,
             expense.BookingDate,
@@ -71,6 +72,7 @@ public class LedgerTests
 
         // Act
         ledgerAggregate.AddTransaction(
+            income.Reference,
             income.Type,
             income.Amount,
             income.BookingDate,

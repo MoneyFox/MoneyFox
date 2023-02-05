@@ -12,6 +12,7 @@ internal static class TestLedgerDbFactory
     internal static Transaction CreateDbTransaction(this TestData.ILedger.ITransaction transaction)
     {
         return Transaction.Create(
+            reference: transaction.Reference,
             type: transaction.Type,
             amount: transaction.Amount,
             bookingDate: transaction.BookingDate,

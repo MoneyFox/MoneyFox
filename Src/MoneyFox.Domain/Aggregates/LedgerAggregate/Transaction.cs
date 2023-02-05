@@ -19,12 +19,14 @@ public class Transaction : EntityBase
     }
 
     private Transaction(
+        Guid reference,
         TransactionType type,
         Money amount,
         DateOnly bookingDate,
         int? categoryId,
         string? note)
     {
+        Reference = reference;
         Type = type;
         Amount = amount;
         BookingDate = bookingDate;
@@ -33,6 +35,14 @@ public class Transaction : EntityBase
     }
 
     public TransactionId Id
+    {
+        get;
+
+        [UsedImplicitly]
+        private set;
+    }
+
+    public Guid Reference
     {
         get;
 
@@ -81,6 +91,7 @@ public class Transaction : EntityBase
     }
 
     public static Transaction Create(
+        Guid reference,
         TransactionType type,
         Money amount,
         DateOnly bookingDate,
@@ -92,6 +103,7 @@ public class Transaction : EntityBase
             TransactionType.Income when amount.Amount < 0 => throw new InvalidTransactionAmountException("Income has to have a a positive amount."),
             TransactionType.Expense when amount.Amount > 0 => throw new InvalidTransactionAmountException("Expense has to have a a negative amount."),
             _ => new(
+                reference: reference,
                 type: type,
                 amount: amount,
                 bookingDate: bookingDate,

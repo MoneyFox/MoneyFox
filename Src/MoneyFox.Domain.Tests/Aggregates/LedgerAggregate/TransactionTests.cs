@@ -15,11 +15,12 @@ public class TransactionTests
 
         // Act
         var act = () => Transaction.Create(
-            TransactionType.Income,
-            new Money(-13, Currencies.EUR),
-            testTransaction.BookingDate,
-            testTransaction.CategoryId,
-            testTransaction.Note);
+            reference: testTransaction.Reference,
+            type: TransactionType.Income,
+            amount: new(amount: -13, currency: Currencies.EUR),
+            bookingDate: testTransaction.BookingDate,
+            categoryId: testTransaction.CategoryId,
+            note: testTransaction.Note);
 
         // Assert
         act.Should().Throw<InvalidTransactionAmountException>();
@@ -33,11 +34,12 @@ public class TransactionTests
 
         // Act
         var act = () => Transaction.Create(
-            TransactionType.Expense,
-            new Money(13, Currencies.EUR),
-            testTransaction.BookingDate,
-            testTransaction.CategoryId,
-            testTransaction.Note);
+            reference: testTransaction.Reference,
+            type: TransactionType.Expense,
+            amount: new(amount: 13, currency: Currencies.EUR),
+            bookingDate: testTransaction.BookingDate,
+            categoryId: testTransaction.CategoryId,
+            note: testTransaction.Note);
 
         // Assert
         act.Should().Throw<InvalidTransactionAmountException>();
@@ -51,16 +53,18 @@ public class TransactionTests
 
         // Act
         var transaction = Transaction.Create(
-            testTransaction.Type,
-            testTransaction.Amount,
-            testTransaction.BookingDate,
-            testTransaction.CategoryId,
-            testTransaction.Note);
+            reference: testTransaction.Reference,
+            type: testTransaction.Type,
+            amount: testTransaction.Amount,
+            bookingDate: testTransaction.BookingDate,
+            categoryId: testTransaction.CategoryId,
+            note: testTransaction.Note);
 
         // Assert
         using (new AssertionScope())
         {
             transaction.Id.Should().Be(new TransactionId());
+            transaction.Reference.Should().Be(testTransaction.Reference);
             transaction.Type.Should().Be(testTransaction.Type);
             transaction.Amount.Should().Be(testTransaction.Amount);
             transaction.BookingDate.Should().Be(testTransaction.BookingDate);

@@ -80,6 +80,7 @@ public class Ledger : EntityBase
     }
 
     public void AddTransaction(
+        Guid reference,
         TransactionType type,
         Money amount,
         DateOnly bookingDate,
@@ -87,6 +88,7 @@ public class Ledger : EntityBase
         string? note)
     {
         var transaction = Transaction.Create(
+            reference: reference,
             type: type,
             amount: amount,
             bookingDate: bookingDate,
