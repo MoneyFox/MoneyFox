@@ -1,7 +1,6 @@
 namespace MoneyFox.Ui.Converter;
 
 using System.Globalization;
-using Common.ConverterLogic;
 using Core.Common.Helpers;
 using Domain.Aggregates.AccountAggregate;
 using Views.Payments;
@@ -13,10 +12,14 @@ public class PaymentAmountConverter : IValueConverter
         return value is PaymentViewModel model ? GetAmountSign(model) : string.Empty;
     }
 
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotSupportedException();
+    }
+
     private static string GetAmountSign(PaymentViewModel paymentViewModel)
     {
-        string sign;
-        sign = paymentViewModel.Type == PaymentType.Transfer ? GetSignForTransfer(paymentViewModel) : GetSignForNonTransfer(paymentViewModel);
+        var sign = paymentViewModel.Type == PaymentType.Transfer ? GetSignForTransfer(paymentViewModel) : GetSignForNonTransfer(paymentViewModel);
 
         return $"{sign} {paymentViewModel.Amount.ToString(format: "C2", provider: CultureHelper.CurrentCulture)}";
     }
@@ -29,10 +32,5 @@ public class PaymentAmountConverter : IValueConverter
     private static string GetSignForNonTransfer(PaymentViewModel payment)
     {
         return payment.Type == (int)PaymentType.Expense ? "-" : "+";
-    }
-
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        throw new NotSupportedException();
     }
 }

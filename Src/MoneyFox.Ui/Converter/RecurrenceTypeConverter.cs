@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Ui.Converter;
 
 using System.Globalization;
-using Common.ConverterLogic;
 using Domain.Aggregates.AccountAggregate;
 using Resources.Strings;
 
