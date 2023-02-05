@@ -23,6 +23,7 @@ using Views;
 public partial class App
 {
     private const string IS_CATEGORY_CLEANUP_EXECUTED_KEY_NAME = "IsCategoryCleanupExecuted";
+    private const string IS_SETUP_RESET_KEY_NAME = "IsSetipReset_8.1.14591";
     private const string IS_BUDGET_MIGRATION_DONE_KEY_NAME = "IsBudgetMigrationDone";
     private bool isRunning;
 
@@ -40,6 +41,8 @@ public partial class App
             ? new AppShellDesktop()
             : new AppShell();
 
+        ResetSetup(settingsAdapter);
+
         if (settingsFacade.IsSetupCompleted is false)
         {
             Shell.Current.GoToAsync(Routes.WelcomeViewRoute).Wait();
@@ -54,6 +57,31 @@ public partial class App
     public static Action<IServiceCollection>? AddPlatformServicesAction { get; set; }
 
     private static IServiceProvider? ServiceProvider { get; set; }
+
+    private static void ResetSetup(ISettingsAdapter settingsAdapter)
+    {
+        try
+        {
+            if (settingsAdapter.GetValue(key: IS_SETUP_RESET_KEY_NAME, defaultValue: false))
+            {
+                return;
+            }
+
+            if (ServiceProvider?.GetService<ISettingsFacade>() == null)
+            {
+                return;
+            }
+
+            var settingsFacade = ServiceProvider.GetService<ISettingsFacade>();
+            settingsFacade!.IsSetupCompleted = false;
+            settingsAdapter.AddOrUpdate(key: IS_SETUP_RESET_KEY_NAME, value: true);
+        }
+        catch (Exception ex)
+        {
+            Log.Error(exception: ex, messageTemplate: "Error while reseting setup");
+            Crashes.TrackError(ex);
+        }
+    }
 
     /// <summary>
     ///     This removes the link from payments to categories that no longer exists.
@@ -144,7 +172,7 @@ public partial class App
         }
         catch (Exception ex)
         {
-            Log.Error(exception: ex, messageTemplate: "Error while fixing payment with non existing category");
+            Log.Error(exception: ex, messageTemplate: "Error while migrating budget to interval");
             Crashes.TrackError(ex);
         }
     }
