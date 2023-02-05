@@ -5,6 +5,7 @@ using Core.Common.Facades;
 using Domain;
 using FluentAssertions;
 using NSubstitute;
+using Views.Setup.SelectCurrency;
 using Xunit;
 
 public class CurrencyIntroductionViewModelTests
