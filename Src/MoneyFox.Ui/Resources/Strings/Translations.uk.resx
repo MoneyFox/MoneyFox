@@ -889,7 +889,7 @@
     <value>Не вдалося відкрити поштову програму. Будь ласка, спробуйте пізніше або зв'яжіться з нами через 'mobile.support@apply-solutions.ch'.</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>Виникла невідома помилка. Якщо помилка не зникне, перезапустіть програму.</value>
+    <value>There was an issue during the operation. Error Message {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
     <value>Unassign Payments</value>

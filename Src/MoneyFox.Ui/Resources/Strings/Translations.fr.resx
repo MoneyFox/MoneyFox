@@ -886,7 +886,7 @@ Pour commencer, créez un nouveau compte. Les comptes sont utilisés pour organi
     <value>Impossible d'ouvrir l'application de messagerie. Essaie à nouveau plus tard ou contacte-nous via 'mobile.support@apply-solutions.ch'.</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>Une erreur inconnue s'est produite. Si l'erreur persiste, redémarre l'application.</value>
+    <value>There was an issue during the operation. Error Message {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
     <value>Unassign Payments</value>

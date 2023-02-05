@@ -888,7 +888,7 @@ Para começar a criar uma nova conta. Contas são usadas para organizar pagament
     <value>Falha na abertura da aplicação de correio electrónico. Por favor tente novamente mais tarde ou contacte-nos através de 'mobile.support@apply-solutions.ch'.</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>Havia um erro desconhecido. Se o erro persistir, por favor reinicie a aplicação.</value>
+    <value>There was an issue during the operation. Error Message {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
     <value>Unassign Payments</value>
