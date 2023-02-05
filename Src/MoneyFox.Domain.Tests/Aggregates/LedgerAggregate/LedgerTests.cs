@@ -4,7 +4,6 @@ using System.Collections.Immutable;
 using Domain.Aggregates.LedgerAggregate;
 using FluentAssertions;
 using FluentAssertions.Execution;
-using TestFramework;
 
 public class LedgerTests
 {
@@ -27,7 +26,7 @@ public class LedgerTests
         var testLedger = new TestData.SavingsLedger();
 
         // Act
-        var ledger = Ledger.Create(testLedger.Name, testLedger.CurrentBalance, testLedger.Note, testLedger.IsExcluded);
+        var ledger = Ledger.Create(testLedger.Name, testLedger.CurrentBalance, testLedger.Note, testLedger.IsExcludeFromEndOfMonthSummary);
 
         // Assert
         using (new AssertionScope())
@@ -36,7 +35,7 @@ public class LedgerTests
             ledger.Name.Should().Be(testLedger.Name);
             ledger.CurrentBalance.Should().Be(testLedger.CurrentBalance);
             ledger.Note.Should().Be(testLedger.Note);
-            ledger.ExcludeFromEndOfMonthSummary.Should().Be(testLedger.IsExcluded);
+            ledger.IsExcludeFromEndOfMonthSummary.Should().Be(testLedger.IsExcludeFromEndOfMonthSummary);
         }
     }
 

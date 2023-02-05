@@ -12,6 +12,7 @@ using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.BudgetAggregate;
 using Domain.Aggregates.CategoryAggregate;
+using Domain.Aggregates.LedgerAggregate;
 using JetBrains.Annotations;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.Data.Sqlite;
@@ -32,6 +33,8 @@ public class AppDbContext : DbContext, IAppDbContext
     public DbSet<Budget> Budgets { get; set; } = null!;
 
     public DbSet<Account> Accounts { get; set; } = null!;
+
+    public DbSet<Ledger> Ledgers { get; set; } = null!;
 
     public DbSet<Payment> Payments { get; set; } = null!;
 

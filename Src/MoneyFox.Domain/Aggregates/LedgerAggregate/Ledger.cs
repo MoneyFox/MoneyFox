@@ -13,12 +13,12 @@ public class Ledger : EntityBase
         CurrentBalance = default!;
     }
 
-    private Ledger(string name, Money currentBalance, string? note, bool excludeFromEndOfMonthSummary)
+    private Ledger(string name, Money currentBalance, string? note, bool isExcludeFromEndOfMonthSummary)
     {
         Name = name;
         CurrentBalance = currentBalance;
         Note = note;
-        ExcludeFromEndOfMonthSummary = excludeFromEndOfMonthSummary;
+        IsExcludeFromEndOfMonthSummary = isExcludeFromEndOfMonthSummary;
     }
 
     public LedgerId Id
@@ -53,7 +53,7 @@ public class Ledger : EntityBase
         private set;
     }
 
-    public bool ExcludeFromEndOfMonthSummary
+    public bool IsExcludeFromEndOfMonthSummary
     {
         get;
 
@@ -76,7 +76,7 @@ public class Ledger : EntityBase
             throw new ArgumentNullException(nameof(name));
         }
 
-        return new(name: name, currentBalance: currentBalance, note: note, excludeFromEndOfMonthSummary: isExcluded);
+        return new(name: name, currentBalance: currentBalance, note: note, isExcludeFromEndOfMonthSummary: isExcluded);
     }
 
     public void AddTransaction(

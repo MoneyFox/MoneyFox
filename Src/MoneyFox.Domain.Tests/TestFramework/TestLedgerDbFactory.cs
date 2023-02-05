@@ -6,7 +6,7 @@ internal static class TestLedgerDbFactory
 {
     internal static Ledger CreateDbLedger(this TestData.ILedger ledger)
     {
-        return Ledger.Create(name: ledger.Name, currentBalance: ledger.CurrentBalance, note: ledger.Note, isExcluded: ledger.IsExcluded);
+        return Ledger.Create(name: ledger.Name, currentBalance: ledger.CurrentBalance, note: ledger.Note, isExcluded: ledger.IsExcludeFromEndOfMonthSummary);
     }
 
     internal static Transaction CreateDbTransaction(this TestData.ILedger.ITransaction transaction)

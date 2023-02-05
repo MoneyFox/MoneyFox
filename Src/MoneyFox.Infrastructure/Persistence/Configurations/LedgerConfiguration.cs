@@ -17,7 +17,7 @@ public class LedgerConfiguration : IEntityTypeConfiguration<Ledger>
         _ = builder.HasIndex(b => b.Name);
         _ = builder.Property(b => b.Name).IsRequired();
         _ = builder.Property(b => b.Note);
-        _ = builder.Property(b => b.ExcludeFromEndOfMonthSummary);
+        _ = builder.Property(b => b.IsExcludeFromEndOfMonthSummary);
 
         _ = builder.OwnsOne<Money>(
             navigationExpression: l => l.CurrentBalance,

@@ -11,7 +11,7 @@ internal static partial class TestData
         public string Name { get; } = "Spendings";
         public Money CurrentBalance { get; init; } = new(amount: 1200, currency: Currencies.CHF);
         public string? Note { get; } = "Ledger for all the daily spending.";
-        public bool IsExcluded { get; } = true;
+        public bool IsExcludeFromEndOfMonthSummary { get; } = true;
 
         public IReadOnlyCollection<ILedger.ITransaction> Transactions { get; init; }
             = ImmutableList.Create<ILedger.ITransaction>(new BeverageTransaction(), new SalaryTransaction());
@@ -47,7 +47,7 @@ internal static partial class TestData
         string Name { get; }
         Money CurrentBalance { get; }
         string? Note { get; }
-        bool IsExcluded { get; }
+        bool IsExcludeFromEndOfMonthSummary { get; }
         IReadOnlyCollection<ITransaction> Transactions { get; }
 
         public interface ITransaction

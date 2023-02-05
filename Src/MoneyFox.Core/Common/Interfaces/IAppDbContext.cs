@@ -7,12 +7,15 @@ using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.BudgetAggregate;
 using Domain.Aggregates.CategoryAggregate;
+using Domain.Aggregates.LedgerAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 public interface IAppDbContext : IDisposable
 {
     DbSet<Account> Accounts { get; }
+
+    DbSet<Ledger> Ledgers { get; }
 
     DbSet<Payment> Payments { get; }
 
