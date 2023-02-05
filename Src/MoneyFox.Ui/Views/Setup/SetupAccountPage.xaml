@@ -12,7 +12,7 @@
           RowDefinitions="*, Auto"
           VerticalOptions="FillAndExpand">
 
-        <VerticalStackLayout Spacing="6">
+        <VerticalStackLayout Spacing="12">
             <Label Style="{StaticResource TextHeadline}"
                    Text="{x:Static resources:Translations.SetupAccountsTitle}" />
 
@@ -27,11 +27,16 @@
 
         </VerticalStackLayout>
 
-        <Grid Grid.Row="1" ColumnDefinitions="0.5*">
+        <Grid Grid.Row="6" ColumnDefinitions="*, 6, 2*">
+            <Button Grid.Column="0"
+                        VerticalOptions="Center"
+                        Text="{x:Static resources:Translations.BackLabel}"
+                        Command="{Binding BackCommand}" />
+
             <Button Grid.Column="2"
-                    VerticalOptions="Center"
-                    Text="{x:Static resources:Translations.NextLabel}"
-                    Command="{Binding NextStepCommand}" />
+                        VerticalOptions="Center"
+                        Text="{x:Static resources:Translations.NextLabel}"
+                        Command="{Binding NextStepCommand}" />
         </Grid>
     </Grid>
 </ContentPage>

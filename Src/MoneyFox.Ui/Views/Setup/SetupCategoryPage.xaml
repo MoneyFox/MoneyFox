@@ -11,23 +11,21 @@
         <Grid
             Padding="15"
             IsClippedToBounds="False"
-            RowDefinitions="35, 40, Auto, 40, Auto, *, 40">
+            RowDefinitions="*, 40">
 
-            <Label Style="{StaticResource TextSubHeadline}"
+            <VerticalStackLayout Spacing="12">
+                <Label Style="{StaticResource TextSubHeadline}"
                    Text="{x:Static resources:Translations.CategoriesTitle}" />
 
-            <Label Grid.Row="2"
-                   Text="{x:Static resources:Translations.CategorieIntroductionText}" />
+                <Label Text="{x:Static resources:Translations.CategorieIntroductionText}" />
 
-            <Button Grid.Row="3"
-                    VerticalOptions="Center"
+                <Button VerticalOptions="Center"
                     Text="{x:Static resources:Translations.CreateCategoryNowLabel}"
                     Command="{Binding GoToAddCategoryCommand}" />
 
-            <Label Grid.Row="4"
-                   Text="{x:Static resources:Translations.PaymentIntroductionText}" />
-
-            <Grid Grid.Row="6" ColumnDefinitions="*, 6, 2*">
+                <Label Text="{x:Static resources:Translations.PaymentIntroductionText}" />
+            </VerticalStackLayout>
+            <Grid Grid.Row="1" ColumnDefinitions="*, 6, 2*">
                 <Button Grid.Column="0"
                         VerticalOptions="Center"
                         Text="{x:Static resources:Translations.BackLabel}"
