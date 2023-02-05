@@ -11,7 +11,7 @@
     <ContentPage.Content>
         <ScrollView Padding="15">
             <VerticalStackLayout Spacing="12">
-                <Label Style="{StaticResource TextSubHead}"
+                <Label Style="{StaticResource PageTitle}"
                        Text="{x:Static resources:Translations.CurrencyIntroductionTitle}" />
 
                 <Label HorizontalOptions="StartAndExpand"
