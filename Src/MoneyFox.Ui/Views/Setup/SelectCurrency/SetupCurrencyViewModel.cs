@@ -1,9 +1,7 @@
 namespace MoneyFox.Ui.Views.Setup.SelectCurrency;
 
 using System.Globalization;
-using Common;
 using CommunityToolkit.Mvvm.Input;
-using Core.Common.Helpers;
 using Core.Common.Settings;
 using Domain;
 
@@ -13,7 +11,7 @@ public class SetupCurrencyViewModel : BasePageViewModel
 
     public SetupCurrencyViewModel(ISettingsFacade settingsFacade)
     {
-        CurrencyViewModels = GetCurrencyViewModels();
+        CurrencyViewModels = Currencies.GetAll().Select(c => new CurrencyViewModel(c.AlphaIsoCode)).ToList();
         SelectedCurrency = CurrencyViewModels.FirstOrDefault(c => c.AlphaIsoCode == RegionInfo.CurrentRegion.ISOCurrencySymbol) ?? CurrencyViewModels.First();
         this.settingsFacade = settingsFacade;
     }
@@ -30,19 +28,5 @@ public class SetupCurrencyViewModel : BasePageViewModel
     {
         settingsFacade.DefaultCurrency = SelectedCurrency.AlphaIsoCode;
         await Shell.Current.GoToAsync(Routes.SetupAccountsRoute);
-    }
-
-    private static List<CurrencyViewModel> GetCurrencyViewModels()
-    {
-        var currencyVmList = new List<CurrencyViewModel>();
-        foreach (var currencyIsoCode in Currencies.GetAll().Select(c => c.AlphaIsoCode))
-        {
-            if (CurrencyHelper.IsoCurrenciesToACultureMap.TryGetValue(key: currencyIsoCode, value: out var culture))
-            {
-                currencyVmList.Add(new(AlphaIsoCode: currencyIsoCode, RegionDisplayName: new RegionInfo(culture.Name).DisplayName));
-            }
-        }
-
-        return currencyVmList;
     }
 }
