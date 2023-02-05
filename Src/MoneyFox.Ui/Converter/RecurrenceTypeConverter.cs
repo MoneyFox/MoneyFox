@@ -3,6 +3,7 @@
 using System.Globalization;
 using Common.ConverterLogic;
 using Domain.Aggregates.AccountAggregate;
+using Resources.Strings;
 
 /// <summary>
 ///     Converts the RecurrenceType to a string.
@@ -19,7 +20,21 @@ public class RecurrenceTypeConverter : IValueConverter
     /// <returns>String for the RecurrenceType.</returns>
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        return RecurrenceTypeConverterLogic.GetStringForPaymentRecurrence((PaymentRecurrence)value);
+        var passedEnum = (PaymentRecurrence)value;
+
+        return passedEnum switch
+        {
+            PaymentRecurrence.Daily => Translations.DailyLabel,
+            PaymentRecurrence.DailyWithoutWeekend => Translations.DailyWithoutWeekendLabel,
+            PaymentRecurrence.Weekly => Translations.WeeklyLabel,
+            PaymentRecurrence.Biweekly => Translations.BiweeklyLabel,
+            PaymentRecurrence.Monthly => Translations.MonthlyLabel,
+            PaymentRecurrence.Bimonthly => Translations.BimonthlyLabel,
+            PaymentRecurrence.Quarterly => Translations.QuarterlyLabel,
+            PaymentRecurrence.Biannually => Translations.BiannuallyLabel,
+            PaymentRecurrence.Yearly => Translations.YearlyLabel,
+            _ => string.Empty
+        };
     }
 
     /// <summary>
