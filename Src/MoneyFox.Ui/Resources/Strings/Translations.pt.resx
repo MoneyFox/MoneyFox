@@ -904,28 +904,28 @@ Para começar a criar uma nova conta. Contas são usadas para organizar pagament
     <value>Categorias Incluídas</value>
   </data>
   <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>Select the currency you would like to use in the app. This will be used as the default currency for example for accounts, payments and budgets.
-You can change this late in the settings.</value>
+      <value>Seleccione a moeda que gostaria de utilizar na aplicação. Esta será utilizada como moeda padrão, por exemplo, para contas, pagamentos e orçamentos.
+Pode alterar esta moeda tardiamente nas definições.</value>
   </data>
   <data name="CurrencyIntroductionTitle" xml:space="preserve">
-    <value>Currency</value>
+    <value>Moeda</value>
   </data>
   <data name="SetupAccountsSubtitle" xml:space="preserve">
-    <value>Add your first account</value>
+    <value>Adicione a sua primeira conta</value>
   </data>
   <data name="SetupAccountsText" xml:space="preserve">
-    <value>You can use accounts to group together transactions. They can either mirror your bank account or be a virtual account just in the app.</value>
+    <value>Pode utilizar contas para agrupar transacções. Podem espelhar a sua conta bancária ou ser uma conta virtual apenas na aplicação.</value>
   </data>
   <data name="SetupAccountsTitle" xml:space="preserve">
-    <value>Accounts</value>
+    <value>Contas</value>
   </data>
   <data name="RemoveCategoryAssignmentTitle" xml:space="preserve">
-    <value>Remove Category Assignment</value>
+    <value>Remover Atribuição de Categoria</value>
   </data>
   <data name="RemoveCategoryAssignmentOnPaymentMessage" xml:space="preserve">
-    <value>There are {0} payments assigned to this category.The assignment for those will be removed. Do you want to proceed?</value>
+    <value>Há {0} pagamentos atribuídos a esta categoria. A atribuição para esses pagamentos será removida. Deseja prosseguir?</value>
   </data>
   <data name="CurrencySettingText" xml:space="preserve">
-      <value>Select the currency you would like to use in the app. This will be used as the default currency for example for accounts, payments and budgets.</value>
+      <value>Seleccione a moeda que gostaria de utilizar na aplicação. Esta será utilizada como moeda padrão, por exemplo, para contas, pagamentos e orçamentos.</value>
   </data>
 </root>
