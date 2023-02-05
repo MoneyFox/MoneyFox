@@ -5,7 +5,7 @@ using Resources.Strings;
 
 internal sealed class StatisticSelectorViewModel : BasePageViewModel
 {
-    public List<StatisticSelectorTypeViewModel> StatisticItems
+    public static List<StatisticSelectorTypeViewModel> StatisticItems
         => new()
         {
             new()
