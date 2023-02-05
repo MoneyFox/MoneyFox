@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui.Tests.ViewModels.Categories;
 
-using AutoMapper;
 using Core.Common.Interfaces;
 using Core.Features.CategoryDeletion;
 using Core.Interfaces;
@@ -21,10 +20,9 @@ public class EditCategoryViewModelTests
     public EditCategoryViewModelTests()
     {
         mediator = Substitute.For<IMediator>();
-        var mapper = Substitute.For<IMapper>();
         dialogService = Substitute.For<IDialogService>();
         navigationService = Substitute.For<INavigationService>();
-        vm = new(mediator: mediator, mapper: mapper, dialogService: dialogService, navigationService: navigationService);
+        vm = new(mediator: mediator, dialogService: dialogService, navigationService: navigationService);
     }
 
     [Fact]
