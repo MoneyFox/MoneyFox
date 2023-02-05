@@ -69,7 +69,7 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
             budgetId: Id,
             name: Name,
             spendingLimit: SpendingLimit,
-            NumberOfMonths,
+            numberOfMonths: NumberOfMonths,
             categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
 
         _ = await sender.Send(command);

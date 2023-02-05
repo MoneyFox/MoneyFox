@@ -30,7 +30,11 @@ public sealed class BudgetTests
 
         // Act
         var spendingLimit = new SpendingLimit(testBudget.SpendingLimit);
-        budget.Change(budgetName: testBudget.Name, spendingLimit: spendingLimit, includedCategories: testBudget.Categories, budgetInterval: testBudget.Interval);
+        budget.Change(
+            budgetName: testBudget.Name,
+            spendingLimit: spendingLimit,
+            includedCategories: testBudget.Categories,
+            budgetInterval: testBudget.Interval);
 
         // Assert
         AssertBudget(actual: budget, expected: testBudget);

@@ -1,11 +1,9 @@
 namespace MoneyFox.Ui.Tests.Converter;
 
-using Core.Common.Helpers;
 using FluentAssertions;
 using Ui.Converter;
 using Xunit;
 
-[Collection("Conversion")]
 public class DecimalConverterTests
 {
     [Theory]
@@ -16,8 +14,6 @@ public class DecimalConverterTests
     public void ConvertCorrectly(string culture, decimal value, string expectedResult)
     {
         // Arrange
-        CultureHelper.CurrentCulture = new(culture);
-        Thread.CurrentThread.CurrentUICulture = CultureHelper.CurrentCulture;
         var converter = new DecimalConverter();
 
         // Act
@@ -35,12 +31,10 @@ public class DecimalConverterTests
     public void ConvertCorrectlyBack(string culture, string value, decimal expectedResult)
     {
         // Arrange
-        CultureHelper.CurrentCulture = new(culture);
-        Thread.CurrentThread.CurrentUICulture = CultureHelper.CurrentCulture;
         var converter = new DecimalConverter();
 
         // Act
-        var result = (decimal)converter.ConvertBack(value: value, targetType: null!, parameter: null!, culture: Thread.CurrentThread.CurrentUICulture);
+        var result = (decimal)converter.ConvertBack(value: value, targetType: null!, parameter: null!, culture: new(culture));
 
         // Assert
         _ = result.Should().Be(expectedResult);

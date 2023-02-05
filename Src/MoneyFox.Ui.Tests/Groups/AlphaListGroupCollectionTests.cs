@@ -3,7 +3,7 @@ namespace MoneyFox.Ui.Tests.Groups;
 using System.Globalization;
 using Common.Groups;
 using FluentAssertions;
-using Views.Accounts;
+using Ui.Views.Accounts;
 using Xunit;
 
 public class AlphaListGroupCollectionTests

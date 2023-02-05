@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Core.Tests.Notification.DatabaseChanged;
 
-using Core.Common.Facades;
+using Core.Common.Settings;
 using Core.Features.BackupUpload;
 using FluentAssertions;
 using MediatR;

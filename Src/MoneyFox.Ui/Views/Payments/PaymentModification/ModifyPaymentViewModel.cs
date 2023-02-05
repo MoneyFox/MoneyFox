@@ -93,6 +93,8 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
 
     protected bool IsFirstLoad { get; set; } = true;
 
+    public AsyncRelayCommand SaveCommand => new(SaveAsync);
+
     public async void Receive(CategorySelectedMessage message)
     {
         var category = await mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId));
@@ -108,8 +110,6 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
     }
 
     protected abstract Task SavePaymentAsync();
-
-    public AsyncRelayCommand SaveCommand => new(SaveAsync);
 
     private async Task SaveAsync()
     {

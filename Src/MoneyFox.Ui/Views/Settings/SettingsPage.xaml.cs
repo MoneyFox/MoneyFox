@@ -7,11 +7,4 @@ public partial class SettingsPage
         InitializeComponent();
         BindingContext = App.GetViewModel<SettingsViewModel>();
     }
-
-    private SettingsViewModel ViewModel => (SettingsViewModel)BindingContext;
-
-    protected override async void OnNavigatedTo(NavigatedToEventArgs args)
-    {
-        await ViewModel.InitializeAsync();
-    }
 }

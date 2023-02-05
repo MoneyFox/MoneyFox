@@ -26,7 +26,7 @@ public sealed class UpdateBudgetTests : InMemoryTestBase
         var updatedBudget = new TestData.DefaultBudget
         {
             Name = "Drinks",
-            SpendingLimit = new (testBudget.SpendingLimit + 11),
+            SpendingLimit = new(testBudget.SpendingLimit + 11),
             CurrentSpending = testBudget.CurrentSpending + 22,
             Categories = ImmutableList.Create(12, 26)
         };
@@ -36,7 +36,7 @@ public sealed class UpdateBudgetTests : InMemoryTestBase
             budgetId: new(testBudget.Id),
             name: updatedBudget.Name,
             spendingLimit: updatedBudget.SpendingLimit,
-            updatedBudget.Interval.NumberOfMonths,
+            numberOfMonths: updatedBudget.Interval.NumberOfMonths,
             categories: updatedBudget.Categories);
 
         await handler.Handle(command: command, cancellationToken: CancellationToken.None);

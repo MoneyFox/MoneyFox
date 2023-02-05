@@ -1,7 +1,7 @@
 namespace MoneyFox.Ui;
 
 using Views.About;
-using Views.Accounts;
+using Views.Accounts.AccountList;
 using Views.Accounts.AccountModification;
 using Views.Backup;
 using Views.Budget;
@@ -13,7 +13,8 @@ using Views.Dashboard;
 using Views.Payments;
 using Views.Payments.PaymentModification;
 using Views.Settings;
-using Views.SetupAssistant;
+using Views.Setup;
+using Views.Setup.SelectCurrency;
 using Views.Statistics.CashFlow;
 using Views.Statistics.CategoryProgression;
 using Views.Statistics.CategorySpreading;
@@ -31,9 +32,6 @@ public partial class AppShellDesktop
 
     private static void RegisterRoutes()
     {
-        Routing.RegisterRoute(route: Routes.WelcomeViewRoute, type: typeof(WelcomePage));
-        Routing.RegisterRoute(route: Routes.CategoryIntroductionRoute, type: typeof(CategoryIntroductionPage));
-        Routing.RegisterRoute(route: Routes.SetupCompletionRoute, type: typeof(SetupCompletionPage));
         Routing.RegisterRoute(route: Routes.DashboardRoute, type: typeof(DashboardPage));
         Routing.RegisterRoute(route: Routes.AddAccountRoute, type: typeof(AddAccountPage));
         Routing.RegisterRoute(route: Routes.EditAccountRoute, type: typeof(EditAccountPage));
@@ -59,5 +57,12 @@ public partial class AppShellDesktop
         Routing.RegisterRoute(route: Routes.CategoryListRoute, type: typeof(DesktopCategoryListPage));
         Routing.RegisterRoute(route: Routes.AccountListRoute, type: typeof(DesktopAccountListPage));
         Routing.RegisterRoute(route: Routes.SelectCategoryRoute, type: typeof(DesktopSelectedCategoryPage));
+
+        // Setup
+        Routing.RegisterRoute(route: Routes.WelcomeViewRoute, type: typeof(WelcomePage));
+        Routing.RegisterRoute(route: Routes.CurrencyIntroductionRoute, type: typeof(SetupCurrencyPage));
+        Routing.RegisterRoute(route: Routes.SetupAccountsRoute, type: typeof(SetupAccountPage));
+        Routing.RegisterRoute(route: Routes.CategoryIntroductionRoute, type: typeof(SetupCategoryPage));
+        Routing.RegisterRoute(route: Routes.SetupCompletionRoute, type: typeof(SetupCompletionPage));
     }
 }

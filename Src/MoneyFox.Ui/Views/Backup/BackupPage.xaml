@@ -14,7 +14,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:InverseBoolConverter x:Key="Inverter" />
-            <converter:DateVisibilityConverter x:Key="DateVisibilityConverter" />
+            <backup:DateVisibilityConverter x:Key="DateVisibilityConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 

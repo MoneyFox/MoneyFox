@@ -1,16 +1,19 @@
 namespace MoneyFox.Ui.Converter;
 
 using System.Globalization;
-using Core.Common.Helpers;
+using Core.Common.Extensions;
+using Core.Common.Settings;
+using Infrastructure.Adapters;
 using Views.Accounts;
 
 public class AccountNameConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        return value is not AccountViewModel account
-            ? string.Empty
-            : $"{account.Name} ({account.CurrentBalance.ToString(format: "C", provider: CultureHelper.CurrentCulture)})";
+        var settingsAdapter = new SettingsAdapter();
+        var currency = settingsAdapter.GetValue(key: SettingConstants.DEFAULT_CURRENCY_KEY_NAME, defaultValue: new RegionInfo(culture.Name).ISOCurrencySymbol);
+
+        return value is not AccountViewModel account ? string.Empty : $"{account.Name} ({account.CurrentBalance.FormatCurrency(currency)})";
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
