@@ -714,7 +714,7 @@ UYARI: Lokal değişiklik yaptığınız sırada verileriniz kaybolabilir!</valu
     <value>İşlem sırasında bir sorun oluştu. Hata Mesajı {0}</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an unknown error. If the error persists, please restart the app.</value>
+    <value>There was an issue during the operation. Error Message {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Yükleme yedeklemesi iptal edildi.</value>
@@ -888,22 +888,31 @@ Başlamak için yeni bir hesap oluşturun. Hesaplar, ödemeleri ve tahsilatlarda
   <data name="SendEmailFailedMessage" xml:space="preserve">
     <value>E-posta uygulaması açılamadı. Lütfen daha sonra tekrar deneyin veya 'mobile.support@apply-solutions.ch' adresinden bizimle iletişime geçin.</value>
   </data>
-  <data name="RemoveCategoryAssignmentTitle" xml:space="preserve">
-    <value>Remove Category Assignment</value>
+  <data name="UnknownErrorMessage" xml:space="preserve">
+    <value>Bilinmeyen bir hata oluştu. Hata devam ederse, lütfen uygulamayı yeniden başlatın.</value>
   </data>
-  <data name="RemoveCategoryAssignmentOnPaymentMessage" xml:space="preserve">
-    <value>There are {0} payments assigned to this category.The assignment for those will be removed. Do you want to proceed?</value>
+  <data name="UnassignPaymentTitle" xml:space="preserve">
+    <value>Unassign Payments</value>
+  </data>
+  <data name="UnassignPaymentMessage" xml:space="preserve">
+    <value>There are {0} payments assigned. Those will be unassigned. Do you want to proceed?</value>
   </data>
   <data name="RemoveLabel" xml:space="preserve">
-    <value>Remove</value>
+    <value>Kaldırmak</value>
   </data>
   <data name="IntervalLabel" xml:space="preserve">
-    <value>Interval</value>
+    <value>Aralık</value>
   </data>
   <data name="MonthLabel" xml:space="preserve">
-    <value>Month</value>
+    <value>Ay</value>
   </data>
   <data name="IncludedCategoriesLabel" xml:space="preserve">
-    <value>Included Categories</value>
+    <value>Dahil Edilen Kategoriler</value>
+  </data>
+  <data name="GainsLabel" xml:space="preserve">
+      <value>Kazançlar</value>
+  </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+      <value>E-posta uygulaması açılamadı. Lütfen daha sonra tekrar deneyin veya 'mobile.support@apply-solutions.ch' adresinden bizimle iletişime geçin.</value>
   </data>
 </root>

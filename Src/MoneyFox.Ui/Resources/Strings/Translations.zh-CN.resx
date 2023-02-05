@@ -713,7 +713,7 @@
     <value>There was an issue during the operation. Error Message {0}</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>操作过程中出现了一个问题。错误消息 {0}</value>
+    <value>There was an issue during the operation. Error Message {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>上传备份已取消。</value>
@@ -887,22 +887,31 @@
   <data name="SendEmailFailedMessage" xml:space="preserve">
     <value>打开电子邮件应用程序失败。请稍后再试或通过'mobile.support@apply-solutions.ch'联系我们。</value>
   </data>
-  <data name="RemoveCategoryAssignmentTitle" xml:space="preserve">
-    <value>Remove Category Assignment</value>
+  <data name="UnknownErrorMessage" xml:space="preserve">
+    <value>操作过程中出现了一个问题。错误消息 {0}</value>
   </data>
-  <data name="RemoveCategoryAssignmentOnPaymentMessage" xml:space="preserve">
-    <value>There are {0} payments assigned to this category.The assignment for those will be removed. Do you want to proceed?</value>
+  <data name="UnassignPaymentTitle" xml:space="preserve">
+    <value>Unassign Payments</value>
+  </data>
+  <data name="UnassignPaymentMessage" xml:space="preserve">
+    <value>There are {0} payments assigned. Those will be unassigned. Do you want to proceed?</value>
   </data>
   <data name="RemoveLabel" xml:space="preserve">
-    <value>Remove</value>
+    <value>移除</value>
   </data>
   <data name="IntervalLabel" xml:space="preserve">
-    <value>Interval</value>
+    <value>间隔</value>
   </data>
   <data name="MonthLabel" xml:space="preserve">
-    <value>Month</value>
+    <value>月份</value>
   </data>
   <data name="IncludedCategoriesLabel" xml:space="preserve">
-    <value>Included Categories</value>
+    <value>包括的类别</value>
+  </data>
+  <data name="GainsLabel" xml:space="preserve">
+      <value>收益</value>
+  </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+      <value>打开电子邮件应用程序失败。请稍后再试或通过'mobile.support@apply-solutions.ch'联系我们。</value>
   </data>
 </root>
