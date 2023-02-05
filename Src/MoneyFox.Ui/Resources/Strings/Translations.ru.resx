@@ -714,7 +714,7 @@
     <value>Во время операции возникла проблема. Сообщение об ошибке {0}</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>Во время операции возникла проблема. Сообщение об ошибке {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Загрузка резервной копии отменена.</value>
@@ -889,13 +889,13 @@
     <value>Не удалось открыть почтовое приложение. Пожалуйста, повтори попытку позже или свяжись с нами через 'mobile.support@apply-solutions.ch'.</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>Произошла неизвестная ошибка. Если ошибка сохраняется, пожалуйста, перезапусти приложение.</value>
+    <value>Во время операции возникла проблема. Сообщение об ошибке {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
-    <value>Unassign Payments</value>
+    <value>Отменить платежи</value>
   </data>
   <data name="UnassignPaymentMessage" xml:space="preserve">
-    <value>There are {0} payments assigned. Those will be unassigned. Do you want to proceed?</value>
+    <value>Назначены {0} платежей. Они будут отменены. Вы хотите продолжить?</value>
   </data>
   <data name="RemoveLabel" xml:space="preserve">
     <value>Удалить</value>

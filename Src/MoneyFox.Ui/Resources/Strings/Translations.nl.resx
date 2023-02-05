@@ -717,7 +717,7 @@ Categorie opslaan ...</value>
     <value>Er is een probleem opgetreden tijdens de operatie. Foutbericht {0}</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>Er was een probleem tijdens de bewerking. Foutbericht {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>opgeladen back-up is geannuleerd</value>
@@ -892,13 +892,13 @@ Maak een nieuw account aan om hier dan uw budgetten op een gemakkelijke manier b
     <value>Het is niet gelukt de e-mailapplicatie te openen. Probeer het later nog eens of neem contact op via 'mobile.support@apply-solutions.ch'.</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>Er is een onbekende fout opgetreden. Als de fout aanhoudt, start de app dan opnieuw op.</value>
+    <value>Er was een probleem tijdens de bewerking. Foutbericht {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
-    <value>Unassign Payments</value>
+    <value>Ontkoppel betalingen</value>
   </data>
   <data name="UnassignPaymentMessage" xml:space="preserve">
-    <value>There are {0} payments assigned. Those will be unassigned. Do you want to proceed?</value>
+    <value>Er zijn {0} betalingen toegewezen. Deze zullen niet toegewezen worden. Wilt u doorgaan?</value>
   </data>
   <data name="RemoveLabel" xml:space="preserve">
     <value>Verwijder</value>

@@ -714,7 +714,7 @@
     <value>Υπήρξε ένα πρόβλημα κατά τη διάρκεια της λειτουργίας. Μήνυμα σφάλματος {0}</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>Υπήρξε ένα πρόβλημα κατά τη διάρκεια της λειτουργίας. Μήνυμα σφάλματος {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Η μεταφόρτωση αντιγράφου ασφαλείας ακυρώθηκε.</value>
@@ -889,13 +889,13 @@
     <value>Απέτυχε να ανοίξει η εφαρμογή ηλεκτρονικού ταχυδρομείου. Προσπαθήστε ξανά αργότερα ή επικοινωνήστε μαζί μας μέσω του 'mobile.support@apply-solutions.ch'.</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>Υπήρξε ένα άγνωστο σφάλμα. Εάν το σφάλμα παραμένει, επανεκκινήστε την εφαρμογή.</value>
+    <value>Υπήρξε ένα πρόβλημα κατά τη διάρκεια της λειτουργίας. Μήνυμα σφάλματος {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
-    <value>Unassign Payments</value>
+    <value>Κατάργηση Ανάθεσης Πληρωμών</value>
   </data>
   <data name="UnassignPaymentMessage" xml:space="preserve">
-    <value>There are {0} payments assigned. Those will be unassigned. Do you want to proceed?</value>
+    <value>Υπάρχουν {0} πληρωμές που έχουν ανατεθεί. Αυτές θα εκχωρηθούν. Θέλετε να συνεχίσετε?</value>
   </data>
   <data name="RemoveLabel" xml:space="preserve">
     <value>Αφαιρέστε το</value>

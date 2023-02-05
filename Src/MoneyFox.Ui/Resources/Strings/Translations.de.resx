@@ -713,7 +713,7 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Es gab ein Problem während der Operation. Fehlermeldung {0}</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>Es gab ein Problem während der Operation. Fehlermeldung {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Upload der Sicherung wurde abgebrochen.</value>
@@ -888,13 +888,13 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
     <value>Die E-Mail-Anwendung konnte nicht geöffnet werden. Bitte versuche es später noch einmal oder kontaktiere uns über 'mobile.support@apply-solutions.ch'.</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>Es gab einen unbekannten Fehler. Wenn der Fehler weiterhin besteht, starte bitte die App neu.</value>
+    <value>Es gab ein Problem während der Operation. Fehlermeldung {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
-    <value>Unassign Payments</value>
+    <value>Zahlungen aufheben</value>
   </data>
   <data name="UnassignPaymentMessage" xml:space="preserve">
-    <value>There are {0} payments assigned. Those will be unassigned. Do you want to proceed?</value>
+    <value>Es sind {0} Zahlungen zugewiesen. Diese werden nicht zugewiesen. Möchten Sie fortfahren?</value>
   </data>
   <data name="RemoveLabel" xml:space="preserve">
     <value>Entfernen</value>

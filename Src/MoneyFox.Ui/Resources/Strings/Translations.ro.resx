@@ -714,7 +714,7 @@ ATENȚIE: Modificările locale pe care le-ai făcut între timp vor fi pierdute!
     <value>A apărut o problemă în timpul operațiunii. Mesaj de eroare {0}</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>A apărut o problemă în timpul operațiunii. Mesaj de eroare {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Copia de rezervă a fost anulată.</value>
@@ -889,13 +889,13 @@ Pentru a începe crearea unui nou cont. Conturile sunt utilizate pentru a organi
     <value>Nu a reușit să deschidă aplicația de e-mail. Vă rugăm să încercați din nou mai târziu sau să ne contactați prin "mobile.support@apply-solutions.ch".</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>A existat o eroare necunoscută. Dacă eroarea persistă, vă rugăm să reporniți aplicația.</value>
+    <value>A apărut o problemă în timpul operațiunii. Mesaj de eroare {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
-    <value>Unassign Payments</value>
+    <value>Designează plăți</value>
   </data>
   <data name="UnassignPaymentMessage" xml:space="preserve">
-    <value>There are {0} payments assigned. Those will be unassigned. Do you want to proceed?</value>
+    <value>Există {0} plăți alocate. Acestea vor fi nealocate. Doriți să continuați?</value>
   </data>
   <data name="RemoveLabel" xml:space="preserve">
     <value>Eliminați</value>

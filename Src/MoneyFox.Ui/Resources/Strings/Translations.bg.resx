@@ -713,7 +713,7 @@
     <value>По време на операцията възникна проблем. Съобщение за грешка {0}</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>По време на операцията възникна проблем. Съобщение за грешка {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Изпращането на резервно копие е отменено.</value>
@@ -888,13 +888,13 @@
     <value>Не успя да отвори приложението за електронна поща. Моля, опитайте отново по-късно или се свържете с нас чрез "mobile.support@apply-solutions.ch".</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>Възникнала е неизвестна грешка. Ако грешката продължава, моля, рестартирайте приложението.</value>
+    <value>По време на операцията възникна проблем. Съобщение за грешка {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
-    <value>Unassign Payments</value>
+    <value>Отписване на плащания</value>
   </data>
   <data name="UnassignPaymentMessage" xml:space="preserve">
-    <value>There are {0} payments assigned. Those will be unassigned. Do you want to proceed?</value>
+    <value>Има назначени плащания на {0} . Те ще бъдат отменени. Искате ли да продължите?</value>
   </data>
   <data name="RemoveLabel" xml:space="preserve">
     <value>Премахване на</value>

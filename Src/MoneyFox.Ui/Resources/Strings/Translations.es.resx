@@ -712,7 +712,7 @@ ATENCIÓN: ¡Los datos que creaste desde la copia de respaldo se perderán!</val
     <value>Hubo un problema durante la operación. Mensaje de error {0}</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>Hubo un problema durante la operación. Mensaje de error {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Se ha cancelado la copia de seguridad.</value>
@@ -887,13 +887,13 @@ Para empezar crea una nueva cuenta. Las cuentas se utilizan para organizar en gr
     <value>No se ha podido abrir la aplicación de correo electrónico. Inténtalo de nuevo más tarde o ponte en contacto con nosotros a través de 'mobile.support@apply-solutions.ch'.</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>Se ha producido un error desconocido. Si el error persiste, reinicia la aplicación.</value>
+    <value>Hubo un problema durante la operación. Mensaje de error {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
-    <value>Unassign Payments</value>
+    <value>Desasignar pagos</value>
   </data>
   <data name="UnassignPaymentMessage" xml:space="preserve">
-    <value>There are {0} payments assigned. Those will be unassigned. Do you want to proceed?</value>
+    <value>Hay {0} pagos asignados. Estos serán desasignados. ¿Quieres continuar?</value>
   </data>
   <data name="RemoveLabel" xml:space="preserve">
     <value>Elimina</value>

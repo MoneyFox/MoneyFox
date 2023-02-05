@@ -712,7 +712,7 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>Wystąpił problem podczas operacji. Komunikat o błędzie {0}</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>Wystąpił problem podczas operacji. Komunikat o błędzie {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Wgrywanie kopii zapasowej zostało anulowane.</value>
@@ -887,13 +887,13 @@ Aby rozpocząć tworzenie nowego konta. Konta są używane do organizowania pła
     <value>Nie udało się otworzyć aplikacji poczty elektronicznej. Spróbuj ponownie później lub skontaktuj się z nami przez stronę mobile.support@apply-solutions.ch.</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>Wystąpił nieznany błąd. Jeśli błąd nadal występuje, uruchom ponownie aplikację.</value>
+    <value>Wystąpił problem podczas operacji. Komunikat o błędzie {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
-    <value>Unassign Payments</value>
+    <value>Odrzuć płatności</value>
   </data>
   <data name="UnassignPaymentMessage" xml:space="preserve">
-    <value>There are {0} payments assigned. Those will be unassigned. Do you want to proceed?</value>
+    <value>Przypisano {0} płatności. Zostaną one nieprzypisane. Czy chcesz kontynuować?</value>
   </data>
   <data name="RemoveLabel" xml:space="preserve">
     <value>Usuń</value>

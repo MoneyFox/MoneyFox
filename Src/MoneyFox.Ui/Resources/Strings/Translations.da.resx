@@ -714,7 +714,7 @@ ADVARSEL: Lokale ændringer, du lavede i mellemtiden, vil gå tabt!</value>
     <value>Der opstod et problem under handlingen. Fejlmeddelelse {0}</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>Der opstod et problem under operationen. Fejlmeddelelse {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Upload af backup blev annulleret.</value>
@@ -889,13 +889,13 @@ For at starte skal du oprette en ny konto. Konti bruges til at organisere betali
     <value>Det lykkedes ikke at åbne e-mail-programmet. Prøv igen senere, eller kontakt os via "mobile.support@apply-solutions.ch".</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>Der var en ukendt fejl. Hvis fejlen fortsætter, skal du genstarte appen.</value>
+    <value>Der opstod et problem under operationen. Fejlmeddelelse {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
-    <value>Unassign Payments</value>
+    <value>Fjern Betalinger</value>
   </data>
   <data name="UnassignPaymentMessage" xml:space="preserve">
-    <value>There are {0} payments assigned. Those will be unassigned. Do you want to proceed?</value>
+    <value>Der er {0} betalinger tildelt. Disse vil blive utildelt. Vil du fortsætte?</value>
   </data>
   <data name="RemoveLabel" xml:space="preserve">
     <value>Fjern</value>
