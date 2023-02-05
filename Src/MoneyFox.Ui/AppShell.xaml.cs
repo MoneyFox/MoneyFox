@@ -33,10 +33,6 @@ public partial class AppShell
 
     private static void RegisterRoutes()
     {
-        Routing.RegisterRoute(route: Routes.WelcomeViewRoute, type: typeof(WelcomePage));
-        Routing.RegisterRoute(route: Routes.CurrencyIntroductionRoute, type: typeof(CurrencyIntroductionPage));
-        Routing.RegisterRoute(route: Routes.CategoryIntroductionRoute, type: typeof(CategoryIntroductionPage));
-        Routing.RegisterRoute(route: Routes.SetupCompletionRoute, type: typeof(SetupCompletionPage));
         Routing.RegisterRoute(route: Routes.DashboardRoute, type: typeof(DashboardPage));
         Routing.RegisterRoute(route: Routes.AddAccountRoute, type: typeof(AddAccountPage));
         Routing.RegisterRoute(route: Routes.AccountListRoute, type: typeof(AccountListPage));
@@ -62,5 +58,12 @@ public partial class AppShell
         Routing.RegisterRoute(route: Routes.BudgetListRoute, type: typeof(BudgetListPage));
         Routing.RegisterRoute(route: Routes.AddBudgetRoute, type: typeof(AddBudgetPage));
         Routing.RegisterRoute(route: Routes.EditBudgetRoute, type: typeof(EditBudgetPage));
+
+        // Setup
+        Routing.RegisterRoute(route: Routes.WelcomeViewRoute, type: typeof(WelcomePage));
+        Routing.RegisterRoute(route: Routes.CurrencyIntroductionRoute, type: typeof(CurrencyIntroductionPage));
+        Routing.RegisterRoute(route: Routes.SetupAccountsRoute, type: typeof(SetupAddAccountPage));
+        Routing.RegisterRoute(route: Routes.CategoryIntroductionRoute, type: typeof(CategoryIntroductionPage));
+        Routing.RegisterRoute(route: Routes.SetupCompletionRoute, type: typeof(SetupCompletionPage));
     }
 }
