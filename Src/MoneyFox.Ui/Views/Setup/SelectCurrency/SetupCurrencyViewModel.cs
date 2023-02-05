@@ -1,13 +1,10 @@
 namespace MoneyFox.Ui.Views.Setup.SelectCurrency;
 
-using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Globalization;
 using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Core.Common.Facades;
-using MoneyFox.Domain;
-using MoneyFox.Ui;
-using MoneyFox.Ui.Views;
+using Core.Common.Facades;
+using Domain;
 
 public class SetupCurrencyViewModel : BasePageViewModel
 {

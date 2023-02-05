@@ -1,7 +1,7 @@
 namespace MoneyFox.Ui.Views.Setup;
 
+using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Ui.Common.Extensions;
 
 internal sealed class SetupCategoryViewModel : BasePageViewModel
 {

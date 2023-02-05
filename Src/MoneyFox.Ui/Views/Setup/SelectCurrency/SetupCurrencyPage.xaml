@@ -3,17 +3,17 @@
              xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
              xmlns:selectCurrency="clr-namespace:MoneyFox.Ui.Views.Setup.SelectCurrency"
              x:DataType="selectCurrency:SetupCurrencyViewModel"
-             x:Class="MoneyFox.Ui.Views.Setup.SelectCurrency.CurrencyIntroductionPage" >
+             x:Class="MoneyFox.Ui.Views.Setup.SelectCurrency.CurrencyIntroductionPage">
 
     <Grid Padding="15"
           IsClippedToBounds="False"
           RowDefinitions="35, 40, Auto, 40, Auto, *, 40">
 
-         <Label Grid.Row="0" Style="{StaticResource TextSubHeadline}" 
-                Text="{x:Static resources:Translations.CurrencyIntroductionTitle}" /> 
-         
-         <Label Grid.Row="2" 
-                Text="{x:Static resources:Translations.CurrencyIntroductionText}" /> 
+        <Label Grid.Row="0" Style="{StaticResource TextSubHeadline}"
+               Text="{x:Static resources:Translations.CurrencyIntroductionTitle}" />
+
+        <Label Grid.Row="2"
+               Text="{x:Static resources:Translations.CurrencyIntroductionText}" />
 
 
         <Picker Grid.Row="4"
