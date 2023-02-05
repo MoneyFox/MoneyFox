@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui.Views.Setup.SelectCurrency;
 
-using System.Collections.Immutable;
 using System.Globalization;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Facades;
@@ -12,7 +11,7 @@ public class SetupCurrencyViewModel : BasePageViewModel
 
     public SetupCurrencyViewModel(ISettingsFacade settingsFacade)
     {
-        CurrencyViewModels = Currencies.GetAll().Select(c => new CurrencyViewModel(c.AlphaIsoCode)).ToImmutableList();
+        CurrencyViewModels = GetCurrencyViewModels();
         SelectedCurrency = CurrencyViewModels.FirstOrDefault(c => c.AlphaIsoCode == RegionInfo.CurrentRegion.ISOCurrencySymbol) ?? CurrencyViewModels.First();
         this.settingsFacade = settingsFacade;
     }
@@ -29,5 +28,24 @@ public class SetupCurrencyViewModel : BasePageViewModel
     {
         settingsFacade.DefaultCurrency = SelectedCurrency.AlphaIsoCode;
         await Shell.Current.GoToAsync(Routes.SetupAccountsRoute);
+    }
+
+    private static List<CurrencyViewModel> GetCurrencyViewModels()
+    {
+        var isoCurrenciesToACultureMap = CultureInfo.GetCultures(CultureTypes.SpecificCultures)
+                .Select(c => new { c, new RegionInfo(c.Name).ISOCurrencySymbol })
+                .GroupBy(x => x.ISOCurrencySymbol)
+                .ToDictionary(keySelector: g => g.Key, elementSelector: g => g.First().c, comparer: StringComparer.OrdinalIgnoreCase);
+
+        var currencyVmList = new List<CurrencyViewModel>();
+        foreach (var CurrencyIsoCode in Currencies.GetAll().Select(c => c.AlphaIsoCode))
+        {
+            if (isoCurrenciesToACultureMap.TryGetValue(key: CurrencyIsoCode, value: out var culture))
+            {
+                currencyVmList.Add(new CurrencyViewModel(CurrencyIsoCode, culture.DisplayName));
+            }
+        }
+
+        return currencyVmList;
     }
 }
