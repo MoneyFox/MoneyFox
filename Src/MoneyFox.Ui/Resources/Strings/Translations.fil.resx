@@ -886,7 +886,7 @@ To start create a new account. Accounts are used to organize payments and money 
     <value>Failed to open the email application. Please try again later or contact us via 'mobile.support@apply-solutions.ch'.</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an unknown error. If the error persists, please restart the app.</value>
+    <value>There was an issue during the operation. Error Message {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
     <value>Unassign Payments</value>
