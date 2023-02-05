@@ -712,7 +712,7 @@ VAROITUS: Paikalliset muutokset jotka teit varmuuskopion jälkeen häviävät!</
     <value>Toiminnan aikana tapahtui virhe. Virheviesti {0}</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an unknown error. If the error persists, please restart the app.</value>
+    <value>There was an issue during the operation. Error Message {0}</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Tallennus varmuuskopio peruutettiin.</value>
@@ -886,22 +886,31 @@ Aloittaaksesi luoda uuden tilin. Tilejä käytetään järjestämään maksuja j
   <data name="SendEmailFailedMessage" xml:space="preserve">
     <value>Sähköpostisovellusta ei onnistuttu avaamaan. Yritä myöhemmin uudelleen tai ota meihin yhteyttä osoitteessa 'mobile.support@apply-solutions.ch'.</value>
   </data>
-  <data name="RemoveCategoryAssignmentTitle" xml:space="preserve">
-    <value>Remove Category Assignment</value>
+  <data name="UnknownErrorMessage" xml:space="preserve">
+    <value>Tuntematon virhe. Jos virhe jatkuu, käynnistä sovellus uudelleen.</value>
   </data>
-  <data name="RemoveCategoryAssignmentOnPaymentMessage" xml:space="preserve">
-    <value>There are {0} payments assigned to this category.The assignment for those will be removed. Do you want to proceed?</value>
+  <data name="UnassignPaymentTitle" xml:space="preserve">
+    <value>Unassign Payments</value>
+  </data>
+  <data name="UnassignPaymentMessage" xml:space="preserve">
+    <value>There are {0} payments assigned. Those will be unassigned. Do you want to proceed?</value>
   </data>
   <data name="RemoveLabel" xml:space="preserve">
-    <value>Remove</value>
+    <value>Poista</value>
   </data>
   <data name="IntervalLabel" xml:space="preserve">
-    <value>Interval</value>
+    <value>Intervalli</value>
   </data>
   <data name="MonthLabel" xml:space="preserve">
-    <value>Month</value>
+    <value>Kuukausi</value>
   </data>
   <data name="IncludedCategoriesLabel" xml:space="preserve">
-    <value>Included Categories</value>
+    <value>Mukana olevat luokat</value>
+  </data>
+  <data name="GainsLabel" xml:space="preserve">
+      <value>Saannit</value>
+  </data>
+  <data name="SendEmailFailedMessage" xml:space="preserve">
+      <value>Sähköpostisovellusta ei onnistuttu avaamaan. Yritä myöhemmin uudelleen tai ota meihin yhteyttä osoitteessa 'mobile.support@apply-solutions.ch'.</value>
   </data>
 </root>
