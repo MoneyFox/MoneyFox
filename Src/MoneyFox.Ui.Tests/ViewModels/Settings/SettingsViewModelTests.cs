@@ -1,8 +1,8 @@
 namespace MoneyFox.Ui.Tests.ViewModels.Settings;
 
 using System.Globalization;
-using Core.Common.Facades;
 using Core.Common.Interfaces;
+using Core.Common.Settings;
 using FluentAssertions;
 using NSubstitute;
 using Views.Settings;

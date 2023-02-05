@@ -1,7 +1,7 @@
 namespace MoneyFox.Ui.Views.Setup;
 
 using CommunityToolkit.Mvvm.Input;
-using Core.Common.Facades;
+using Core.Common.Settings;
 
 internal sealed class WelcomeViewModel : BasePageViewModel
 {

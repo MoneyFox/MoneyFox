@@ -1,7 +1,7 @@
 namespace MoneyFox.Ui.Tests.ViewModels;
 
-using Core.Common.Facades;
 using Core.Common.Interfaces;
+using Core.Common.Settings;
 using Core.Features.DbBackup;
 using Core.Interfaces;
 using FluentAssertions;

@@ -2,7 +2,7 @@ namespace MoneyFox.Ui.Converter;
 
 using System.Globalization;
 using Core.Common.Extensions;
-using Core.Common.Facades;
+using Core.Common.Settings;
 using Infrastructure.Adapters;
 
 public class AmountFormatConverter : IValueConverter

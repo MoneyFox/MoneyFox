@@ -2,9 +2,9 @@
 
 using System.Collections.ObjectModel;
 using System.Globalization;
-using Core.Common.Facades;
 using Core.Common.Helpers;
 using Core.Common.Interfaces;
+using Core.Common.Settings;
 using Serilog;
 
 internal sealed class SettingsViewModel : BasePageViewModel

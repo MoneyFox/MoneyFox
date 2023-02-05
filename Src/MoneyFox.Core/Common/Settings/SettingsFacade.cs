@@ -1,8 +1,8 @@
-namespace MoneyFox.Core.Common.Facades;
+namespace MoneyFox.Core.Common.Settings;
 
 using System;
 using System.Globalization;
-using Core.Interfaces;
+using MoneyFox.Core.Interfaces;
 
 public interface ISettingsFacade
 {

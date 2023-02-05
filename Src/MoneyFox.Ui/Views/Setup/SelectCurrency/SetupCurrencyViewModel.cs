@@ -2,7 +2,7 @@ namespace MoneyFox.Ui.Views.Setup.SelectCurrency;
 
 using System.Globalization;
 using CommunityToolkit.Mvvm.Input;
-using Core.Common.Facades;
+using Core.Common.Settings;
 using Domain;
 
 public class SetupCurrencyViewModel : BasePageViewModel

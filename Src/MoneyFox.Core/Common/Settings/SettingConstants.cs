@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Common.Facades;
+﻿namespace MoneyFox.Core.Common.Settings;
 
 public static class SettingConstants
 {

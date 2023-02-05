@@ -1,7 +1,7 @@
 namespace MoneyFox.Ui.Tests.ViewModels.SetupAssistant;
 
 using System.Globalization;
-using Core.Common.Facades;
+using Core.Common.Settings;
 using Domain;
 using FluentAssertions;
 using NSubstitute;

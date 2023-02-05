@@ -1,8 +1,8 @@
 namespace MoneyFox.Core.InversionOfControl;
 
-using Common.Facades;
 using Common.Helpers;
 using Common.Mediatr;
+using Common.Settings;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
