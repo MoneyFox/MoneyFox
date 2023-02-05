@@ -889,7 +889,7 @@
     <value>メールアプリケーションを開くのに失敗しました。後でもう一度試してみるか、'mobile.support@apply-solutions.ch'からご連絡ください。</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>不明なエラーが発生しました。エラーが続く場合は、アプリを再起動してください。</value>
+    <value>There was an issue during the operation. Error Message {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
     <value>Unassign Payments</value>
