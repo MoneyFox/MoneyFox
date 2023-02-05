@@ -883,7 +883,7 @@ Ak chcete začať, vytvorte si nový účet. Účty slúžia na organizáciu pla
     <value>Nepodarilo sa otvoriť e-mailovú aplikáciu. Skúste to prosím neskôr alebo nás kontaktujte prostredníctvom 'mobile.support@apply-solutions.ch'.</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>Počas operácie sa vyskytol problém. Chybová správa {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
     <value>Zrušenie priradenia platieb</value>

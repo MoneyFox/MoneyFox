@@ -883,7 +883,7 @@ For at starte skal du oprette en ny konto. Konti bruges til at organisere betali
     <value>Det lykkedes ikke at åbne e-mail-programmet. Prøv igen senere, eller kontakt os via "mobile.support@apply-solutions.ch".</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>Der opstod et problem under operationen. Fejlmeddelelse {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
     <value>Fjern Betalinger</value>

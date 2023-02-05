@@ -881,7 +881,7 @@ Untuk memulai, buat akun baru. Akun digunakan untuk mengatur pembayaran dan uang
     <value>Gagal membuka aplikasi email. Silakan coba lagi nanti atau hubungi kami melalui 'mobile.support@apply-solutions.ch'.</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>Ada masalah selama operasi berlangsung. Pesan Kesalahan {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
     <value>Membatalkan Pembayaran</value>

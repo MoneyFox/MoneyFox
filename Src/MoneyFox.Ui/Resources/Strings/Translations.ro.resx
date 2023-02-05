@@ -883,7 +883,7 @@ Pentru a începe crearea unui nou cont. Conturile sunt utilizate pentru a organi
     <value>Nu a reușit să deschidă aplicația de e-mail. Vă rugăm să încercați din nou mai târziu sau să ne contactați prin "mobile.support@apply-solutions.ch".</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>A apărut o problemă în timpul operațiunii. Mesaj de eroare {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
     <value>Designează plăți</value>
