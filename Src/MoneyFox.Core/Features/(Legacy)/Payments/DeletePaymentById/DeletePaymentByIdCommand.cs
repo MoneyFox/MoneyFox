@@ -57,7 +57,13 @@ public class DeletePaymentByIdCommand : IRequest
         {
             var payments = await appDbContext.Payments.Where(x => x.IsRecurring).Where(x => x.RecurringPayment!.Id == recurringPaymentId).ToListAsync();
             payments.ForEach(x => x.RemoveRecurringPayment());
-            _ = appDbContext.RecurringPayments.Remove(await appDbContext.RecurringPayments.FindAsync(recurringPaymentId));
+            var recurringPayment = await appDbContext.RecurringPayments.FindAsync(recurringPaymentId);
+            if (recurringPayment is null)
+            {
+                return;
+            }
+
+            _ = appDbContext.RecurringPayments.Remove(recurringPayment);
         }
     }
 }
