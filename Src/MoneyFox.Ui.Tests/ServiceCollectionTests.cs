@@ -1,5 +1,6 @@
 namespace MoneyFox.Ui.Tests;
 
+using Core.Common.Settings;
 using Core.Interfaces;
 using InversionOfControl;
 using Microsoft.Identity.Client;
@@ -14,6 +15,7 @@ public sealed class ServiceCollectionTests
         // Arrange
         var serviceCollection = new ServiceCollection().AddSingleton(Substitute.For<IDbPathProvider>())
             .AddSingleton(Substitute.For<IFileStore>())
+            .AddSingleton(Substitute.For<ISettingsFacade>())
             .AddSingleton(Substitute.For<IPublicClientApplication>());
 
         // Act

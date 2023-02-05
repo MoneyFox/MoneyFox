@@ -10,7 +10,7 @@
 
     <ContentPage.Content>
         <ScrollView Padding="15">
-            <StackLayout>
+            <VerticalStackLayout Spacing="12">
                 <Label Style="{StaticResource TextSubHead}"
                        Text="{x:Static resources:Translations.CurrencyIntroductionTitle}" />
 
@@ -19,7 +19,7 @@
 
                 <Picker ItemsSource="{Binding AvailableCurrencies}"
                         SelectedItem="{Binding SelectedCurrency, Mode=TwoWay}" />
-            </StackLayout>
+            </VerticalStackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
