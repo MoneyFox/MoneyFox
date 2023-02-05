@@ -889,7 +889,7 @@
     <value>Απέτυχε να ανοίξει η εφαρμογή ηλεκτρονικού ταχυδρομείου. Προσπαθήστε ξανά αργότερα ή επικοινωνήστε μαζί μας μέσω του 'mobile.support@apply-solutions.ch'.</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>Υπήρξε ένα πρόβλημα κατά τη διάρκεια της λειτουργίας. Μήνυμα σφάλματος {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
     <value>Κατάργηση Ανάθεσης Πληρωμών</value>
