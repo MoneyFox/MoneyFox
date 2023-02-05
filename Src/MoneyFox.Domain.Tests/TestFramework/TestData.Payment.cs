@@ -17,7 +17,7 @@ internal static partial class TestData
         public bool IsCleared => true;
         public PaymentType Type { get; init; } = PaymentType.Expense;
         public bool IsRecurring => false;
-        public string? Note => "6 Bottles";
+        public string Note => "6 Bottles";
 
         internal sealed record ExpenseCategory : ICategory
         {
@@ -33,12 +33,12 @@ internal static partial class TestData
         public int Id { get; set; } = 10;
         public IAccount ChargedAccount => new DefaultAccount();
         public IAccount? TargetAccount => null;
-        public ICategory Category { get; init; } = new IncomeCategory();
+        public ICategory? Category { get; init; } = new IncomeCategory();
         public DateTime Date { get; } = defaultDate;
         public decimal Amount => 105.50m;
         public bool IsCleared => true;
         public PaymentType Type { get; set; } = PaymentType.Income;
-        public string? Note => null;
+        public string Note => string.Empty;
         public bool IsRecurring => false;
 
         internal sealed record IncomeCategory : ICategory
@@ -55,7 +55,7 @@ internal static partial class TestData
         public int Id { get; } = 10;
         public string Name { get; } = "Spending";
         public decimal CurrentBalance { get; } = 890.60m;
-        public string? Note => null;
+        public string Note => string.Empty;
         public bool IsExcluded => false;
         public bool IsDeactivated => false;
     }
@@ -78,7 +78,7 @@ internal static partial class TestData
 
         PaymentType Type { get; }
 
-        string? Note { get; }
+        string Note { get; }
 
         bool IsRecurring { get; }
     }
@@ -91,7 +91,7 @@ internal static partial class TestData
 
         decimal CurrentBalance { get; }
 
-        string? Note { get; }
+        string Note { get; }
 
         bool IsExcluded { get; }
 

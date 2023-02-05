@@ -29,7 +29,7 @@ public class GetIfAccountWithNameExistsQuery : IRequest<bool>
 
         public async Task<bool> Handle(GetIfAccountWithNameExistsQuery request, CancellationToken cancellationToken)
         {
-            return await appDbContext.Accounts.AnyWithNameAsync(name: request.AccountName, Id: request.AccountId);
+            return await appDbContext.Accounts.AnyWithNameAsync(name: request.AccountName, id: request.AccountId);
         }
     }
 }
