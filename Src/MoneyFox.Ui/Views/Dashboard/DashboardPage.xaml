@@ -10,12 +10,13 @@
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
     xmlns:accounts="clr-namespace:MoneyFox.Ui.Views.Accounts"
     xmlns:dashboard="clr-namespace:MoneyFox.Ui.Views.Dashboard"
+    xmlns:accountList="clr-namespace:MoneyFox.Ui.Views.Accounts.AccountList"
     x:Name="This"
     x:DataType="dashboard:DashboardViewModel">
 
     <ContentPage.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
-        <converter:BalanceColorConverter x:Key="BalanceColorConverter" />
+        <accountList:BalanceColorConverter x:Key="BalanceColorConverter" />
     </ContentPage.Resources>
 
     <ContentPage.Content>

@@ -169,6 +169,14 @@
             <DependentUpon>ModifyAccountContentView.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Compile Update="Views\Accounts\AccountList\AccountListPage.xaml.cs">
+          <DependentUpon>AccountListPage.xaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Accounts\AccountList\DesktopAccountListPage.xaml.cs">
+          <DependentUpon>DesktopAccountListPage.xaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -219,6 +227,12 @@
         </MauiXaml>
         <MauiXaml Update="Views\Accounts\AccountModification\ModifyAccountContentView.xaml">
             <SubType>Designer</SubType>
+        </MauiXaml>
+        <MauiXaml Update="Views\Accounts\AccountList\AccountListPage.xaml">
+          <SubType>Designer</SubType>
+        </MauiXaml>
+        <MauiXaml Update="Views\Accounts\AccountList\DesktopAccountListPage.xaml">
+          <SubType>Designer</SubType>
         </MauiXaml>
     </ItemGroup>
 

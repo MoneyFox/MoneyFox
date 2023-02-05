@@ -1,14 +1,14 @@
-namespace MoneyFox.Ui.Views.Accounts;
+namespace MoneyFox.Ui.Views.Accounts.AccountList;
 
-public partial class DesktopAccountListPage
+public partial class AccountListPage
 {
-    public DesktopAccountListPage()
+    public AccountListPage()
     {
         InitializeComponent();
         BindingContext = App.GetViewModel<AccountListViewModel>();
     }
 
-    public AccountListViewModel ViewModel => (AccountListViewModel)BindingContext;
+    private AccountListViewModel ViewModel => (AccountListViewModel)BindingContext;
 
     protected override async void OnAppearing()
     {
