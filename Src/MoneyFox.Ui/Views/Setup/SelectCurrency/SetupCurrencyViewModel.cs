@@ -11,7 +11,7 @@ public class SetupCurrencyViewModel : BasePageViewModel
 
     public SetupCurrencyViewModel(ISettingsFacade settingsFacade)
     {
-        CurrencyViewModels = Currencies.GetAll().Select(c => new CurrencyViewModel(c.AlphaIsoCode)).ToList();
+        CurrencyViewModels = Currencies.GetAll().Select(c => new CurrencyViewModel(c.AlphaIsoCode)).OrderBy(c => c.AlphaIsoCode).ToList();
         SelectedCurrency = CurrencyViewModels.FirstOrDefault(c => c.AlphaIsoCode == RegionInfo.CurrentRegion.ISOCurrencySymbol) ?? CurrencyViewModels.First();
         this.settingsFacade = settingsFacade;
     }

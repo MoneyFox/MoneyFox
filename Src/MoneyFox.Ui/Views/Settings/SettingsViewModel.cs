@@ -15,7 +15,7 @@ internal sealed class SettingsViewModel : BasePageViewModel
     public SettingsViewModel(ISettingsFacade settingsFacade)
     {
         this.settingsFacade = settingsFacade;
-        AvailableCurrencies = Currencies.GetAll().Select(c => new CurrencyViewModel(c.AlphaIsoCode)).ToList();
+        AvailableCurrencies = Currencies.GetAll().Select(c => new CurrencyViewModel(c.AlphaIsoCode)).OrderBy(c => c.AlphaIsoCode).ToList();
         SelectedCurrency = AvailableCurrencies.FirstOrDefault(c => c.AlphaIsoCode == RegionInfo.CurrentRegion.ISOCurrencySymbol) ?? AvailableCurrencies.First();
     }
 
