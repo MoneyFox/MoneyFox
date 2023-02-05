@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Common.Extensions;
 using Common.Extensions.QueryObjects;
 using Common.Helpers;
 using Common.Interfaces;
+using Common.Settings;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Exceptions;
 using MediatR;
@@ -39,10 +41,12 @@ public class GetAccountProgressionHandler : IRequestHandler<GetAccountProgressio
     private const string BLUE_HEX_CODE = "#87cefa";
 
     private readonly IAppDbContext appDbContext;
+    private readonly ISettingsFacade settingsFacade;
 
-    public GetAccountProgressionHandler(IAppDbContext appDbContext)
+    public GetAccountProgressionHandler(IAppDbContext appDbContext, ISettingsFacade settingsFacade)
     {
         this.appDbContext = appDbContext;
+        this.settingsFacade = settingsFacade;
     }
 
     public async Task<List<StatisticEntry>> Handle(GetAccountProgressionQuery request, CancellationToken cancellationToken)
@@ -61,7 +65,7 @@ public class GetAccountProgressionHandler : IRequestHandler<GetAccountProgressio
                 value: group.Sum(x => GetPaymentAmountForSum(payment: x, request: request)),
                 label: $"{group.Key.Month:d2} {group.Key.Year:d4}");
 
-            statisticEntry.ValueLabel = statisticEntry.Value.ToString(format: "c", provider: CultureHelper.CurrentCulture);
+            statisticEntry.ValueLabel = statisticEntry.Value.FormatCurrency(settingsFacade.DefaultCurrency);
             statisticEntry.Color = statisticEntry.Value >= 0 ? BLUE_HEX_CODE : RED_HEX_CODE;
             returnList.Add(statisticEntry);
         }
