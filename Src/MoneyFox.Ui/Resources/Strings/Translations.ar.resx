@@ -889,7 +889,7 @@
     <value>فشل في فتح تطبيق البريد الإلكتروني. الرجاء المحاولة مرة أخرى لاحقاً أو الاتصال بنا عبر 'mobile.support@apply-solutions.ch'.</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>حدثت مشكلة أثناء العملية. رسالة الخطأ {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
     <value>إلغاء تعيين المدفوعات</value>
