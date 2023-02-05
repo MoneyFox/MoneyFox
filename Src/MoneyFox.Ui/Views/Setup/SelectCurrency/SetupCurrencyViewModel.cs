@@ -42,7 +42,7 @@ public class SetupCurrencyViewModel : BasePageViewModel
         {
             if (isoCurrenciesToACultureMap.TryGetValue(key: CurrencyIsoCode, value: out var culture))
             {
-                currencyVmList.Add(new CurrencyViewModel(CurrencyIsoCode, culture.DisplayName));
+                currencyVmList.Add(new CurrencyViewModel(CurrencyIsoCode, new RegionInfo(culture.Name).DisplayName));
             }
         }
 
