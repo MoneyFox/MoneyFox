@@ -1,10 +1,10 @@
-namespace MoneyFox.Ui.Tests.ConverterLogic;
+namespace MoneyFox.Ui.Tests.Converter;
 
-using Common.ConverterLogic;
-using Domain.Aggregates.AccountAggregate;
+using System.Globalization;
 using FluentAssertions;
-using Ui.Views.Payments;
-using Views.Payments;
+using MoneyFox.Domain.Aggregates.AccountAggregate;
+using MoneyFox.Ui.Converter;
+using MoneyFox.Ui.Views.Payments;
 using Xunit;
 
 public class PaymentAmountConverterLogicTests
@@ -20,9 +20,9 @@ public class PaymentAmountConverterLogicTests
         var payment = new PaymentViewModel { Type = type, ChargedAccountId = chargedAccountId, CurrentAccountId = currentAccountId };
 
         // Act
-        var result = PaymentAmountConverterLogic.GetAmountSign(payment);
+        var result = new PaymentAmountConverter().Convert(value: payment, targetType: null!, parameter: null!, culture: CultureInfo.CurrentCulture);
 
         // Assert
-        _ = result.Should().StartWith(expectedResult);
+        _ = (result as string).Should().StartWith(expectedResult);
     }
 }
