@@ -1,12 +1,10 @@
 namespace MoneyFox.Ui.Tests.Converter;
 
 using System.Globalization;
-using Core.Common.Helpers;
 using FluentAssertions;
 using Ui.Converter;
 using Xunit;
 
-[Collection("Conversion")]
 public class DecimalToZeroFiveConverterTests
 {
     [Theory]
