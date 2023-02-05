@@ -7,7 +7,6 @@ using Core.InversionOfControl;
 using Infrastructure.Adapters;
 using Mapping;
 using MoneyFox.Infrastructure.InversionOfControl;
-using MoneyFox.Ui.Views.SetupAssistant.CurrencyIntroduction;
 using Views.About;
 using Views.Accounts;
 using Views.Accounts.AccountModification;
@@ -23,7 +22,8 @@ using Views.Payments;
 using Views.Payments.PaymentModification;
 using Views.Popups;
 using Views.Settings;
-using Views.SetupAssistant;
+using Views.Setup;
+using Views.Setup.CurrencyIntroduction;
 using Views.Statistics.CashFlow;
 using Views.Statistics.CategoryProgression;
 using Views.Statistics.CategorySpreading;
@@ -53,9 +53,9 @@ public sealed class MoneyFoxConfig
     private static void RegisterSetupViewModels(IServiceCollection services)
     {
         _ = services.AddTransient<WelcomeViewModel>()
-            .AddTransient<CurrencyIntroductionViewModel>()
-            .AddTransient<SetupAddAccountViewModel>()
-            .AddTransient<CategoryIntroductionViewModel>()
+            .AddTransient<SetupCurrencyViewModel>()
+            .AddTransient<SetupAccountsViewModel>()
+            .AddTransient<SetupCategoryViewModel>()
             .AddTransient<SetupCompletionViewModel>();
     }
 

@@ -1,9 +1,9 @@
-namespace MoneyFox.Ui.Views.SetupAssistant;
+namespace MoneyFox.Ui.Views.Setup;
 
-using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
+using MoneyFox.Ui.Common.Extensions;
 
-internal sealed class CategoryIntroductionViewModel : BasePageViewModel
+internal sealed class SetupCategoryViewModel : BasePageViewModel
 {
     public AsyncRelayCommand GoToAddCategoryCommand => new(async () => await Shell.Current.GoToModalAsync(Routes.AddCategoryRoute));
 

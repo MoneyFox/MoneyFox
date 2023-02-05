@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Views.SetupAssistant;
+﻿namespace MoneyFox.Ui.Views.Setup;
 
 [XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class WelcomePage : ContentPage

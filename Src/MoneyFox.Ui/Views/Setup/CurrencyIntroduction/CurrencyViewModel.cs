@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.Views.SetupAssistant.CurrencyIntroduction;
+namespace MoneyFox.Ui.Views.Setup.CurrencyIntroduction;
 
 public sealed record CurrencyViewModel(string AlphaIsoCode)
 {

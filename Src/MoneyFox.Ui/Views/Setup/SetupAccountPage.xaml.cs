@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.Views.SetupAssistant;
+namespace MoneyFox.Ui.Views.Setup;
 
 public partial class SetupAddAccountPage : ContentPage
 {

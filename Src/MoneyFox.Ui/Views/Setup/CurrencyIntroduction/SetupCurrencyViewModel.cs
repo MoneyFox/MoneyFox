@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.Views.SetupAssistant.CurrencyIntroduction;
+namespace MoneyFox.Ui.Views.Setup.CurrencyIntroduction;
 
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -9,11 +9,11 @@ using MoneyFox.Domain;
 using MoneyFox.Ui;
 using MoneyFox.Ui.Views;
 
-public class CurrencyIntroductionViewModel : BasePageViewModel
+public class SetupCurrencyViewModel : BasePageViewModel
 {
     private readonly ISettingsFacade settingsFacade;
 
-    public CurrencyIntroductionViewModel(ISettingsFacade settingsFacade)
+    public SetupCurrencyViewModel(ISettingsFacade settingsFacade)
     {
         CurrencyViewModels = Currencies.GetAll().Select(c => new CurrencyViewModel(c.AlphaIsoCode)).ToImmutableList();
         SelectedCurrency = CurrencyViewModels.FirstOrDefault(c => c.AlphaIsoCode == RegionInfo.CurrentRegion.ISOCurrencySymbol) ?? CurrencyViewModels.First();

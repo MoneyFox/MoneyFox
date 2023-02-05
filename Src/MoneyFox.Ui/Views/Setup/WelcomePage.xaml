@@ -3,11 +3,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
-             xmlns:setupAssistant="clr-namespace:MoneyFox.Ui.Views.SetupAssistant"
-             x:Class="MoneyFox.Ui.Views.SetupAssistant.WelcomePage"
+             xmlns:setup="clr-namespace:MoneyFox.Ui.Views.Setup"
+             x:Class="MoneyFox.Ui.Views.Setup.WelcomePage"
              Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="False"
-             x:DataType="setupAssistant:WelcomeViewModel">
+             x:DataType="setup:WelcomeViewModel">
 
     <ContentPage.Content>
         <Grid Padding="15"

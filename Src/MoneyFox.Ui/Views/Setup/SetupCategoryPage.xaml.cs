@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Views.SetupAssistant;
+﻿namespace MoneyFox.Ui.Views.Setup;
 
 [XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class CategoryIntroductionPage : ContentPage
@@ -6,6 +6,6 @@ public partial class CategoryIntroductionPage : ContentPage
     public CategoryIntroductionPage()
     {
         InitializeComponent();
-        BindingContext = App.GetViewModel<CategoryIntroductionViewModel>();
+        BindingContext = App.GetViewModel<SetupCategoryViewModel>();
     }
 }

@@ -1,11 +1,11 @@
 namespace MoneyFox.Ui.Tests.ViewModels.SetupAssistant;
 
 using System.Globalization;
+using Core.Common.Facades;
 using Domain;
 using FluentAssertions;
-using MoneyFox.Core.Common.Facades;
-using MoneyFox.Ui.Views.SetupAssistant.CurrencyIntroduction;
 using NSubstitute;
+using Views.Setup.CurrencyIntroduction;
 using Xunit;
 
 public class CurrencyIntroductionViewModelTests
@@ -17,7 +17,7 @@ public class CurrencyIntroductionViewModelTests
         var settingsFacade = Substitute.For<ISettingsFacade>();
 
         // Act
-        var vm = new CurrencyIntroductionViewModel(settingsFacade);
+        var vm = new SetupCurrencyViewModel(settingsFacade);
 
         // Assert
         _ = vm.CurrencyViewModels.Should().HaveCount(Currencies.GetAll().Count);

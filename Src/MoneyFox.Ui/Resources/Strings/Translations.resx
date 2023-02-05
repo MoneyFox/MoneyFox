@@ -921,4 +921,10 @@ We will lead you through the first steps and help you get started.</value>
   <data name="SetupAccountsTitle" xml:space="preserve">
     <value>Accounts</value>
   </data>
+    <data name="RemoveCategoryAssignmentTitle" xml:space="preserve">
+    <value>Remove Category Assignment</value>
+  </data>
+    <data name="RemoveCategoryAssignmentOnPaymentMessage" xml:space="preserve">
+    <value>There are {0} payments assigned to this category.The assignment for those will be removed. Do you want to proceed?</value>
+  </data>
 </root>
