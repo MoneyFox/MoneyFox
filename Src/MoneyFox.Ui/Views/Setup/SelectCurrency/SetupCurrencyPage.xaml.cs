@@ -1,8 +1,8 @@
 namespace MoneyFox.Ui.Views.Setup.SelectCurrency;
 
-public partial class CurrencyIntroductionPage
+public partial class SetupCurrencyPage
 {
-    public CurrencyIntroductionPage()
+    public SetupCurrencyPage()
     {
         InitializeComponent();
         BindingContext = App.GetViewModel<SetupCurrencyViewModel>();

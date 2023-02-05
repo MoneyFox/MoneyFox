@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Ui.Views.Setup;
 
-[XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class WelcomePage : ContentPage
+public partial class WelcomePage
 {
     public WelcomePage()
     {

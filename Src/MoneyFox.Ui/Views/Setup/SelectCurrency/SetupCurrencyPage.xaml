@@ -3,7 +3,7 @@
              xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
              xmlns:selectCurrency="clr-namespace:MoneyFox.Ui.Views.Setup.SelectCurrency"
              x:DataType="selectCurrency:SetupCurrencyViewModel"
-             x:Class="MoneyFox.Ui.Views.Setup.SelectCurrency.CurrencyIntroductionPage">
+             x:Class="MoneyFox.Ui.Views.Setup.SelectCurrency.SetupCurrencyPage">
 
     <Grid Padding="15"
           IsClippedToBounds="False"

@@ -52,8 +52,8 @@ public static class Routes
 
     // Setup
     public static string WelcomeViewRoute => nameof(WelcomePage);
-    public static string CurrencyIntroductionRoute => nameof(CurrencyIntroductionPage);
-    public static string SetupAccountsRoute => nameof(SetupAddAccountPage);
-    public static string CategoryIntroductionRoute => nameof(CategoryIntroductionPage);
+    public static string CurrencyIntroductionRoute => nameof(SetupCurrencyPage);
+    public static string SetupAccountsRoute => nameof(SetupAccountPage);
+    public static string CategoryIntroductionRoute => nameof(SetupCategoryPage);
     public static string SetupCompletionRoute => nameof(SetupCompletionPage);
 }

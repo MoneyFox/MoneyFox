@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Ui.Views.Setup;
 
-[XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class SetupCompletionPage : ContentPage
+public partial class SetupCompletionPage
 {
     public SetupCompletionPage()
     {

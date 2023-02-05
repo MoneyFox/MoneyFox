@@ -1,8 +1,8 @@
 namespace MoneyFox.Ui.Views.Setup;
 
-public partial class SetupAddAccountPage : ContentPage
+public partial class SetupAccountPage
 {
-    public SetupAddAccountPage()
+    public SetupAccountPage()
     {
         InitializeComponent();
         BindingContext = App.GetViewModel<SetupAccountsViewModel>();

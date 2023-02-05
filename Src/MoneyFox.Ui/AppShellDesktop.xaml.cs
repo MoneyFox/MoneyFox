@@ -61,9 +61,9 @@ public partial class AppShellDesktop
 
         // Setup
         Routing.RegisterRoute(route: Routes.WelcomeViewRoute, type: typeof(WelcomePage));
-        Routing.RegisterRoute(route: Routes.CurrencyIntroductionRoute, type: typeof(CurrencyIntroductionPage));
-        Routing.RegisterRoute(route: Routes.SetupAccountsRoute, type: typeof(SetupAddAccountPage));
-        Routing.RegisterRoute(route: Routes.CategoryIntroductionRoute, type: typeof(CategoryIntroductionPage));
+        Routing.RegisterRoute(route: Routes.CurrencyIntroductionRoute, type: typeof(SetupCurrencyPage));
+        Routing.RegisterRoute(route: Routes.SetupAccountsRoute, type: typeof(SetupAccountPage));
+        Routing.RegisterRoute(route: Routes.CategoryIntroductionRoute, type: typeof(SetupCategoryPage));
         Routing.RegisterRoute(route: Routes.SetupCompletionRoute, type: typeof(SetupCompletionPage));
     }
 }
