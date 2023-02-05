@@ -38,11 +38,11 @@ public class SetupCurrencyViewModel : BasePageViewModel
                 .ToDictionary(keySelector: g => g.Key, elementSelector: g => g.First().c, comparer: StringComparer.OrdinalIgnoreCase);
 
         var currencyVmList = new List<CurrencyViewModel>();
-        foreach (var CurrencyIsoCode in Currencies.GetAll().Select(c => c.AlphaIsoCode))
+        foreach (var currencyIsoCode in Currencies.GetAll().Select(c => c.AlphaIsoCode))
         {
-            if (isoCurrenciesToACultureMap.TryGetValue(key: CurrencyIsoCode, value: out var culture))
+            if (isoCurrenciesToACultureMap.TryGetValue(key: currencyIsoCode, value: out var culture))
             {
-                currencyVmList.Add(new CurrencyViewModel(CurrencyIsoCode, new RegionInfo(culture.Name).DisplayName));
+                currencyVmList.Add(new CurrencyViewModel(currencyIsoCode, new RegionInfo(culture.Name).DisplayName));
             }
         }
 
