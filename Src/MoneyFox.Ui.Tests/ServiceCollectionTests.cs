@@ -16,6 +16,7 @@ public sealed class ServiceCollectionTests
         var serviceCollection = new ServiceCollection()
             .AddSingleton(Substitute.For<IDbPathProvider>())
             .AddSingleton(Substitute.For<IFileStore>())
+            .AddSingleton(Substitute.For<ISettingsFacade>())
             .AddSingleton(Substitute.For<IPublicClientApplication>());
 
         // Act
