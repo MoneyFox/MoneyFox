@@ -905,28 +905,28 @@ Başlamak için yeni bir hesap oluşturun. Hesaplar, ödemeleri ve tahsilatlarda
     <value>Dahil Edilen Kategoriler</value>
   </data>
   <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>Select the currency you would like to use in the app. This will be used as the default currency for example for accounts, payments and budgets.
-You can change this late in the settings.</value>
+      <value>Uygulamada kullanmak istediğiniz para birimini seçin. Bu, örneğin hesaplar, ödemeler ve bütçeler için varsayılan para birimi olarak kullanılacaktır.
+Bunu ayarlardan geç değiştirebilirsiniz.</value>
   </data>
   <data name="CurrencyIntroductionTitle" xml:space="preserve">
-    <value>Currency</value>
+    <value>Para Birimi</value>
   </data>
   <data name="SetupAccountsSubtitle" xml:space="preserve">
-    <value>Add your first account</value>
+    <value>İlk hesabınızı ekleyin</value>
   </data>
   <data name="SetupAccountsText" xml:space="preserve">
-    <value>You can use accounts to group together transactions. They can either mirror your bank account or be a virtual account just in the app.</value>
+    <value>İşlemleri bir arada gruplamak için hesapları kullanabilirsiniz. Bunlar banka hesabınızı yansıtabilir veya sadece uygulamada sanal bir hesap olabilir.</value>
   </data>
   <data name="SetupAccountsTitle" xml:space="preserve">
-    <value>Accounts</value>
+    <value>Hesaplar</value>
   </data>
   <data name="RemoveCategoryAssignmentTitle" xml:space="preserve">
-    <value>Remove Category Assignment</value>
+    <value>Kategori Atamasını Kaldır</value>
   </data>
   <data name="RemoveCategoryAssignmentOnPaymentMessage" xml:space="preserve">
-    <value>There are {0} payments assigned to this category.The assignment for those will be removed. Do you want to proceed?</value>
+    <value>Bu kategoriye atanmış {0} ödemeleri vardır, bunlar için atama kaldırılacaktır. Devam etmek istiyor musunuz?</value>
   </data>
   <data name="CurrencySettingText" xml:space="preserve">
-      <value>Select the currency you would like to use in the app. This will be used as the default currency for example for accounts, payments and budgets.</value>
+      <value>Uygulamada kullanmak istediğiniz para birimini seçin. Bu, örneğin hesaplar, ödemeler ve bütçeler için varsayılan para birimi olarak kullanılacaktır.</value>
   </data>
 </root>
