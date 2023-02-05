@@ -7,7 +7,8 @@ using AutoMapper;
 using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.Common.Helpers;
+using Core.Common.Extensions;
+using Core.Common.Settings;
 using Core.Queries;
 using Core.Queries.GetPaymentsForAccountIdQuery;
 using Domain.Aggregates.AccountAggregate;
@@ -18,8 +19,8 @@ using Resources.Strings;
 internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<ReloadMessage>, IRecipient<PaymentListFilterChangedMessage>
 {
     private readonly IMapper mapper;
-
     private readonly IMediator mediator;
+    private readonly ISettingsFacade settingsFacade;
 
     private bool isRunning;
 
@@ -27,10 +28,11 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Reloa
 
     private AccountViewModel selectedAccount = new();
 
-    public PaymentListViewModel(IMediator mediator, IMapper mapper)
+    public PaymentListViewModel(IMediator mediator, IMapper mapper, ISettingsFacade settingsFacade)
     {
         this.mediator = mediator;
         this.mapper = mapper;
+        this.settingsFacade = settingsFacade;
     }
 
     public AccountViewModel SelectedAccount
@@ -132,10 +134,10 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Reloa
             format: Translations.ExpenseAndIncomeTemplate,
             arg0: group.Where(x => x.Type != PaymentType.Income && x.ChargedAccount.Id == SelectedAccount.Id)
                 .Sum(x => x.Amount)
-                .ToString(format: "C", provider: CultureHelper.CurrentCulture),
+                .FormatCurrency(settingsFacade.DefaultCurrency),
             arg1: group.Where(
-                    x => x.Type == PaymentType.Income || x.Type == PaymentType.Transfer && x.TargetAccount != null && x.TargetAccount.Id == SelectedAccount.Id)
+                    x => x.Type == PaymentType.Income || x is { Type: PaymentType.Transfer, TargetAccount: { } } && x.TargetAccount.Id == SelectedAccount.Id)
                 .Sum(x => x.Amount)
-                .ToString(format: "C", provider: CultureHelper.CurrentCulture));
+                .FormatCurrency(settingsFacade.DefaultCurrency));
     }
 }

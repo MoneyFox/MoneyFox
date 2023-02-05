@@ -50,7 +50,7 @@ public static class UpdateBudget
                 budgetName: command.Name,
                 spendingLimit: spendingLimit,
                 includedCategories: command.Categories,
-                new(command.NumberOfMonths));
+                budgetInterval: new(command.NumberOfMonths));
 
             await appDbContext.SaveChangesAsync(cancellationToken);
 

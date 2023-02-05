@@ -1,7 +1,7 @@
 namespace MoneyFox.Infrastructure.Tests;
 
-using Core.Common.Facades;
 using Core.Common.Mediatr;
+using Core.Common.Settings;
 using Core.Notifications.DatabaseChanged;
 using Domain.Aggregates.AccountAggregate;
 using FluentAssertions;

@@ -1,5 +1,6 @@
 namespace MoneyFox.Ui.Tests;
 
+using Core.Common.Settings;
 using Core.Interfaces;
 using InversionOfControl;
 using Microsoft.Identity.Client;
@@ -18,6 +19,9 @@ public sealed class ServiceCollectionTests
 
         // Act
         new MoneyFoxConfig().Register(serviceCollection);
+
+        // Add a substitute here, since default is not supported in test
+        serviceCollection.AddSingleton(Substitute.For<ISettingsFacade>());
 
         // Assert
         List<InvalidOperationException> exceptions = new();

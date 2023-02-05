@@ -75,7 +75,7 @@ public class CategoryListViewModel : BasePageViewModel, IRecipient<CategoriesCha
         {
             return;
         }
-        
+
         if (await dialogService.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeleteCategoryConfirmationMessage))
         {
             var numberOfAssignedPayments = await mediator.Send(new GetNumberOfPaymentsAssignedToCategory.Query(categoryListItemViewModel.Id));

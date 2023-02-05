@@ -1,11 +1,9 @@
 namespace MoneyFox.Ui;
 
-using System.Globalization;
 using Common.Exceptions;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.Common.Facades;
-using Core.Common.Helpers;
 using Core.Common.Interfaces;
+using Core.Common.Settings;
 using Core.Features._Legacy_.Payments.ClearPayments;
 using Core.Features._Legacy_.Payments.CreateRecurringPayments;
 using Core.Features.DbBackup;
@@ -24,6 +22,7 @@ using Views;
 public partial class App
 {
     private const string IS_CATEGORY_CLEANUP_EXECUTED_KEY_NAME = "IsCategoryCleanupExecuted";
+    private const string IS_SETUP_RESET_KEY_NAME = "IsSetipReset_8.1.14591";
     private const string IS_BUDGET_MIGRATION_DONE_KEY_NAME = "IsBudgetMigrationDone";
     private bool isRunning;
 
@@ -31,9 +30,6 @@ public partial class App
     {
         var settingsAdapter = new SettingsAdapter();
         var settingsFacade = new SettingsFacade(settingsAdapter);
-
-        // TODO: use setting?
-        CultureHelper.CurrentCulture = new(CultureInfo.CurrentCulture.Name);
         InitializeComponent();
         SetupServices();
         FillResourceDictionary();
@@ -43,6 +39,7 @@ public partial class App
             ? new AppShellDesktop()
             : new AppShell();
 
+        ResetSetup(settingsAdapter);
         if (settingsFacade.IsSetupCompleted is false)
         {
             Shell.Current.GoToAsync(Routes.WelcomeViewRoute).Wait();
@@ -57,6 +54,31 @@ public partial class App
     public static Action<IServiceCollection>? AddPlatformServicesAction { get; set; }
 
     private static IServiceProvider? ServiceProvider { get; set; }
+
+    private static void ResetSetup(ISettingsAdapter settingsAdapter)
+    {
+        try
+        {
+            if (settingsAdapter.GetValue(key: IS_SETUP_RESET_KEY_NAME, defaultValue: false))
+            {
+                return;
+            }
+
+            if (ServiceProvider?.GetService<ISettingsFacade>() == null)
+            {
+                return;
+            }
+
+            var settingsFacade = ServiceProvider.GetService<ISettingsFacade>();
+            settingsFacade!.IsSetupCompleted = false;
+            settingsAdapter.AddOrUpdate(key: IS_SETUP_RESET_KEY_NAME, value: true);
+        }
+        catch (Exception ex)
+        {
+            Log.Error(exception: ex, messageTemplate: "Error while reseting setup");
+            Crashes.TrackError(ex);
+        }
+    }
 
     /// <summary>
     ///     This removes the link from payments to categories that no longer exists.
@@ -123,31 +145,35 @@ public partial class App
                 {
                     case BudgetTimeRange.YearToDate:
                         budget.SetInterval(1);
+
                         break;
                     case BudgetTimeRange.Last1Year:
                         budget.SetInterval(12);
+
                         break;
                     case BudgetTimeRange.Last2Years:
                         budget.SetInterval(24);
+
                         break;
                     case BudgetTimeRange.Last3Years:
                         budget.SetInterval(36);
+
                         break;
                     case BudgetTimeRange.Last5Years:
                         budget.SetInterval(60);
+
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
             }
 
-
             dbContext.SaveChangesAsync().GetAwaiter().GetResult();
             settingsAdapter.AddOrUpdate(key: IS_BUDGET_MIGRATION_DONE_KEY_NAME, value: true);
         }
         catch (Exception ex)
         {
-            Log.Error(exception: ex, messageTemplate: "Error while fixing payment with non existing category");
+            Log.Error(exception: ex, messageTemplate: "Error while migrating budget to interval");
             Crashes.TrackError(ex);
         }
     }

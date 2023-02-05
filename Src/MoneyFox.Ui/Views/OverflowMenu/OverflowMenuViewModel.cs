@@ -1,5 +1,6 @@
 namespace MoneyFox.Ui.Views.OverflowMenu;
 
+using System.Collections.Immutable;
 using About;
 using Backup;
 using Budget;
@@ -24,15 +25,13 @@ internal sealed class OverflowMenuViewModel : BasePageViewModel
 
     public AsyncRelayCommand<OverflowItemViewModel> GoToSelectedItemCommand => new(async s => await GoToSelectedItem(s.Type));
 
-    public List<OverflowItemViewModel> OverflowEntries
-        => new()
-        {
+    public static IReadOnlyList<OverflowItemViewModel> OverflowEntries
+        => ImmutableList.Create<OverflowItemViewModel>(
             new(IconGlyph: IconFont.PiggyBankOutline, Name: Translations.BudgetsTitle, Type: OverflowMenuItemType.Budgets),
             new(IconGlyph: IconFont.TagOutline, Name: Translations.CategoriesTitle, Type: OverflowMenuItemType.Categories),
             new(IconGlyph: IconFont.CloudUploadOutline, Name: Translations.BackupTitle, Type: OverflowMenuItemType.Backup),
             new(IconGlyph: IconFont.CogOutline, Name: Translations.SettingsTitle, Type: OverflowMenuItemType.Settings),
-            new(IconGlyph: IconFont.InformationOutline, Name: Translations.AboutTitle, Type: OverflowMenuItemType.About)
-        };
+            new(IconGlyph: IconFont.InformationOutline, Name: Translations.AboutTitle, Type: OverflowMenuItemType.About));
 
     private async Task GoToSelectedItem(OverflowMenuItemType menuType)
     {

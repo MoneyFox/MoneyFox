@@ -4,7 +4,6 @@
        xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:dashboard="clr-namespace:MoneyFox.Ui.Views.Dashboard"
-       xmlns:setupAssistant="clr-namespace:MoneyFox.Ui.Views.SetupAssistant"
        xmlns:views="clr-namespace:MoneyFox.Ui.Views"
        xmlns:selector="clr-namespace:MoneyFox.Ui.Views.Statistics.Selector"
        xmlns:budget="clr-namespace:MoneyFox.Ui.Views.Budget"
@@ -13,6 +12,7 @@
        xmlns:settings="clr-namespace:MoneyFox.Ui.Views.Settings"
        xmlns:about="clr-namespace:MoneyFox.Ui.Views.About"
        xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
+       xmlns:setup="clr-namespace:MoneyFox.Ui.Views.Setup"
        FlyoutBehavior="Locked"
        FlyoutWidth="250"
        Title="MoneyFox">
@@ -105,6 +105,6 @@
     <ShellContent Route="WelcomePage"
                   IsVisible="False"
                   Shell.FlyoutBehavior="Disabled"
-                  ContentTemplate="{DataTemplate setupAssistant:WelcomePage}" />
+                  ContentTemplate="{DataTemplate setup:WelcomePage}" />
 
 </Shell>

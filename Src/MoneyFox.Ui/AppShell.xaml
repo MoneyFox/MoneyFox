@@ -6,9 +6,9 @@
        xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
        xmlns:dashboard="clr-namespace:MoneyFox.Ui.Views.Dashboard"
        xmlns:overflowMenu="clr-namespace:MoneyFox.Ui.Views.OverflowMenu"
-       xmlns:setupAssistant="clr-namespace:MoneyFox.Ui.Views.SetupAssistant"
        xmlns:views="clr-namespace:MoneyFox.Ui.Views"
        xmlns:selector="clr-namespace:MoneyFox.Ui.Views.Statistics.Selector"
+       xmlns:setup="clr-namespace:MoneyFox.Ui.Views.Setup"
        Title="MoneyFox">
 
     <TabBar>
@@ -52,6 +52,6 @@
     <ShellContent Route="WelcomePage"
                   IsVisible="False"
                   Shell.FlyoutBehavior="Disabled"
-                  ContentTemplate="{DataTemplate setupAssistant:WelcomePage}" />
+                  ContentTemplate="{DataTemplate setup:WelcomePage}" />
 
 </Shell>

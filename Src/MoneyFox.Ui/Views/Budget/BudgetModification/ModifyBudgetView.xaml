@@ -28,23 +28,24 @@
                               Amount="{Binding SpendingLimit, Converter={StaticResource DecimalConverter}}" />
 
 
-        <HorizontalStackLayout Spacing="6" >
+        <HorizontalStackLayout Spacing="6">
             <controls:TextEntry TextFieldTitle="{x:Static resources:Translations.IntervalLabel}"
                                 EntryText="{Binding NumberOfMonths}"
-                                IsReadOnly="true"/>
+                                IsReadOnly="true" />
 
             <Label VerticalOptions="End"
                    Text="{x:Static resources:Translations.MonthLabel}"
-                   Style="{StaticResource TextBodySecondary}"/>
-            
+                   Style="{StaticResource TextBodySecondary}" />
+
             <Stepper Value="{Binding NumberOfMonths}"
-                     VerticalOptions="End" 
+                     VerticalOptions="End"
                      Margin="15,0,0,2"
                      Minimum="1"
                      Increment="1" />
         </HorizontalStackLayout>
 
-        <Label Text="{x:Static resources:Translations.IncludedCategoriesLabel}" Style="{StaticResource TextBodySecondary}" />
+        <Label Text="{x:Static resources:Translations.IncludedCategoriesLabel}"
+               Style="{StaticResource TextBodySecondary}" />
         <Button Text="{x:Static resources:Translations.SelectCategoryLabel}"
                 Command="{Binding OpenCategorySelectionCommand}" />
 

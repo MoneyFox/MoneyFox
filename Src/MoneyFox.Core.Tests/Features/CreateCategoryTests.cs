@@ -1,8 +1,8 @@
 ﻿namespace MoneyFox.Core.Tests.Features;
 
+using Core.Features.CategoryCreation;
+using Domain.Tests.TestFramework;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core.Features.CategoryCreation;
-using MoneyFox.Domain.Tests.TestFramework;
 using static Domain.Tests.TestFramework.CategoryAssertion;
 
 public class CreateCategoryTests : InMemoryTestBase

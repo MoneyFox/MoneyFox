@@ -6,14 +6,14 @@
     xmlns:statistics="clr-namespace:MoneyFox.Ui.Views.Statistics.Selector"
     x:Class="MoneyFox.Ui.Views.Statistics.Selector.StatisticSelectorPage"
     Title="{x:Static resources:Translations.SelectStatisticTitle}"
-    x:Name="root">
+    x:Name="This">
 
     <ContentPage.Content>
 
         <VerticalStackLayout>
             <CollectionView x:Name="StatisticCollectionView"
                             BackgroundColor="Transparent"
-                            ItemsSource="{Binding StatisticItems}">
+                            ItemsSource="{x:Static statistics:StatisticSelectorViewModel.StatisticItems}">
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
