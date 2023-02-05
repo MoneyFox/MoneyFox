@@ -889,7 +889,7 @@ Norėdami pradėti, sukurkite naują paskyrą. Sąskaitos naudojamos mokėjimams
     <value>Nepavyko atidaryti el. pašto programos. Prašome pabandyti vėliau arba susisiekti su mumis per "mobile.support@apply-solutions.ch".</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>Įvyko nežinoma klaida. Jei klaida išlieka, paleiskite programą iš naujo.</value>
+    <value>There was an issue during the operation. Error Message {0}</value>
   </data>
   <data name="UnassignPaymentTitle" xml:space="preserve">
     <value>Unassign Payments</value>
