@@ -7,7 +7,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Common.Extensions;
 using Common.Extensions.QueryObjects;
-using Common.Helpers;
 using Common.Interfaces;
 using Common.Settings;
 using Domain.Aggregates.AccountAggregate;

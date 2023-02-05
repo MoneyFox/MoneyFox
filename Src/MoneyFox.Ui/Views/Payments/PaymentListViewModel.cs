@@ -8,7 +8,6 @@ using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;
-using Core.Common.Helpers;
 using Core.Common.Settings;
 using Core.Queries;
 using Core.Queries.GetPaymentsForAccountIdQuery;

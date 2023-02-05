@@ -1,7 +1,7 @@
 namespace MoneyFox.Core.Tests.Queries;
 
 using System.Collections.Immutable;
-using Core.Common.Helpers;
+using Core.Common;
 using Core.Queries.BudgetListLoading;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.BudgetAggregate;

@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Payments.GetMonthlyIncome;
 
-using Core.Common.Helpers;
+using Core.Common;
 using Core.Queries;
 using Domain.Aggregates.AccountAggregate;
 using FluentAssertions;

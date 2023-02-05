@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Ui.Converter;
 
 using System.Globalization;
-using Core.Common.Helpers;
 
 public class DateFormatConverter : IValueConverter
 {

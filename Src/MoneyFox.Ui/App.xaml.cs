@@ -3,7 +3,6 @@ namespace MoneyFox.Ui;
 using System.Globalization;
 using Common.Exceptions;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.Common.Helpers;
 using Core.Common.Interfaces;
 using Core.Common.Settings;
 using Core.Features._Legacy_.Payments.ClearPayments;
@@ -31,9 +30,7 @@ public partial class App
     {
         var settingsAdapter = new SettingsAdapter();
         var settingsFacade = new SettingsFacade(settingsAdapter);
-
-        // TODO: use setting?
-        CultureHelper.CurrentCulture = new(CultureInfo.CurrentCulture.Name);
+        
         InitializeComponent();
         SetupServices();
         FillResourceDictionary();

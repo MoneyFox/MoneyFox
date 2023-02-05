@@ -1,6 +1,6 @@
 namespace MoneyFox.Core.InversionOfControl;
 
-using Common.Helpers;
+using Common;
 using Common.Mediatr;
 using Common.Settings;
 using MediatR;

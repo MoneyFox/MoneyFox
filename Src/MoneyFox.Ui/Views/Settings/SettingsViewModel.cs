@@ -3,7 +3,6 @@ using System.Linq;
 namespace MoneyFox.Ui.Views.Settings;
 
 using System.Globalization;
-using Core.Common.Helpers;
 using Core.Common.Settings;
 using Domain;
 
