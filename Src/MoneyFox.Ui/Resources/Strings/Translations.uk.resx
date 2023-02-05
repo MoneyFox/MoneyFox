@@ -905,28 +905,28 @@
     <value>Включені категорії</value>
   </data>
   <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>Select the currency you would like to use in the app. This will be used as the default currency for example for accounts, payments and budgets.
-You can change this late in the settings.</value>
+      <value>Виберіть валюту, яку ви хочете використовувати в додатку. Вона буде використовуватися як валюта за замовчуванням, наприклад, для рахунків, платежів і бюджетів.
+Ви можете змінити її пізніше в налаштуваннях.</value>
   </data>
   <data name="CurrencyIntroductionTitle" xml:space="preserve">
-    <value>Currency</value>
+    <value>Валюта</value>
   </data>
   <data name="SetupAccountsSubtitle" xml:space="preserve">
-    <value>Add your first account</value>
+    <value>Додайте свій перший обліковий запис</value>
   </data>
   <data name="SetupAccountsText" xml:space="preserve">
-    <value>You can use accounts to group together transactions. They can either mirror your bank account or be a virtual account just in the app.</value>
+    <value>Ви можете використовувати акаунти для групування транзакцій. Вони можуть бути дзеркальним відображенням вашого банківського рахунку або бути віртуальним рахунком лише в додатку.</value>
   </data>
   <data name="SetupAccountsTitle" xml:space="preserve">
-    <value>Accounts</value>
+    <value>Рахунки</value>
   </data>
   <data name="RemoveCategoryAssignmentTitle" xml:space="preserve">
-    <value>Remove Category Assignment</value>
+    <value>Видалити призначення категорії</value>
   </data>
   <data name="RemoveCategoryAssignmentOnPaymentMessage" xml:space="preserve">
-    <value>There are {0} payments assigned to this category.The assignment for those will be removed. Do you want to proceed?</value>
+    <value>До цієї категорії належать платежі {0} . Призначення для них буде видалено. Ви хочете продовжити?</value>
   </data>
   <data name="CurrencySettingText" xml:space="preserve">
-      <value>Select the currency you would like to use in the app. This will be used as the default currency for example for accounts, payments and budgets.</value>
+      <value>Виберіть валюту, яку ви хочете використовувати в додатку. Вона буде використовуватися як валюта за замовчуванням, наприклад, для рахунків, платежів і бюджетів.</value>
   </data>
 </root>
