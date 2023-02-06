@@ -563,6 +563,9 @@ Klepnutím navštivte repozitář:</value>
   <data name="NoCategoryLabel" xml:space="preserve">
     <value>[Žádná kategorie]</value>
   </data>
+  <data name="NoCategoryTitle" xml:space="preserve">
+    <value>No Category</value>
+  </data>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
     <value>Nebyla vybrána žádná položka. Vyberte položku v seznamu pro zobrazení plateb.</value>
   </data>

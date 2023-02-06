@@ -563,6 +563,9 @@ Koputage, et külastada repositooriumi:</value>
   <data name="NoCategoryLabel" xml:space="preserve">
     <value>[Kategooria puudub]</value>
   </data>
+  <data name="NoCategoryTitle" xml:space="preserve">
+    <value>No Category</value>
+  </data>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
     <value>Ühtegi kirjet ei ole valitud. Valige nimekirjast kanne, et näha selle makseid.</value>
   </data>

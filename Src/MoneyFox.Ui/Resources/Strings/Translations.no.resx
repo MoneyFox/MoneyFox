@@ -563,6 +563,9 @@ Trykk for å besøke Repository:</value>
   <data name="NoCategoryLabel" xml:space="preserve">
     <value>[Ingen kategori]</value>
   </data>
+  <data name="NoCategoryTitle" xml:space="preserve">
+    <value>No Category</value>
+  </data>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
     <value>Ingen oppføring valgt. Velg en oppføring i listen for å se betalingene til den.</value>
   </data>

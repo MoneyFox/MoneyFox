@@ -563,6 +563,9 @@
   <data name="NoCategoryLabel" xml:space="preserve">
     <value>[Bez kategórie]</value>
   </data>
+  <data name="NoCategoryTitle" xml:space="preserve">
+    <value>No Category</value>
+  </data>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
     <value>Nie je vybraná žiadna položka. Ak chcete zobraziť platby, vyberte položku v zozname.</value>
   </data>

@@ -563,6 +563,9 @@
   <data name="NoCategoryLabel" xml:space="preserve">
     <value>[لا فئة]</value>
   </data>
+  <data name="NoCategoryTitle" xml:space="preserve">
+    <value>No Category</value>
+  </data>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
     <value>لم يتم تحديد إدخال. اختر إدخال في القائمة لمشاهدة الدفعات لها.</value>
   </data>

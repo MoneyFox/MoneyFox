@@ -563,6 +563,9 @@ Atinge pentru a vizita Repozitorul:</value>
   <data name="NoCategoryLabel" xml:space="preserve">
     <value>[Nicio categorie]</value>
   </data>
+  <data name="NoCategoryTitle" xml:space="preserve">
+    <value>No Category</value>
+  </data>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
     <value>Nici o intrare selectată. Alegeți o intrare în listă pentru a vedea plățile pentru ea.</value>
   </data>

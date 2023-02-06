@@ -563,6 +563,9 @@ Tryck för att besöka Repository:</value>
   <data name="NoCategoryLabel" xml:space="preserve">
     <value>[Ingen kategori]</value>
   </data>
+  <data name="NoCategoryTitle" xml:space="preserve">
+    <value>No Category</value>
+  </data>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
     <value>Ingen post vald. Välj en post i listan för att se betalningarna för den.</value>
   </data>
