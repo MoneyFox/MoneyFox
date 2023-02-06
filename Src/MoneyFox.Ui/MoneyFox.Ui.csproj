@@ -181,6 +181,14 @@
           <DependentUpon>DateSelectionPopup.xaml</DependentUpon>
           <SubType>Code</SubType>
         </Compile>
+        <Compile Update="Views\Payments\PaymentList\FilterPopup.xaml.cs">
+          <DependentUpon>FilterPopup.xaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Payments\PaymentList\PaymentListPage.xaml.cs">
+          <DependentUpon>PaymentListPage.xaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -239,6 +247,12 @@
             <SubType>Designer</SubType>
         </MauiXaml>
         <MauiXaml Update="Views\Statistics\DateSelectionPopup.xaml">
+          <SubType>Designer</SubType>
+        </MauiXaml>
+        <MauiXaml Update="Views\Payments\PaymentList\FilterPopup.xaml">
+          <SubType>Designer</SubType>
+        </MauiXaml>
+        <MauiXaml Update="Views\Payments\PaymentList\PaymentListPage.xaml">
           <SubType>Designer</SubType>
         </MauiXaml>
     </ItemGroup>

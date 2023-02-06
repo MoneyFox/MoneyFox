@@ -8,7 +8,7 @@
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:views="clr-namespace:MoneyFox.Ui.Views"
     xmlns:payments="clr-namespace:MoneyFox.Ui.Views.Payments"
-    x:Class="MoneyFox.Ui.Views.Payments.PaymentListPage"
+    x:Class="MoneyFox.Ui.Views.Payments.PaymentList.PaymentListPage"
     Title="{Binding SelectedAccount.Name}">
 
     <ContentPage.Resources>

@@ -8,7 +8,7 @@
     CanBeDismissedByTappingOutsideOfPopup="false"
     Size="330, 500"
     Color="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
-    x:Class="MoneyFox.Ui.Views.Popups.FilterPopup"
+    x:Class="MoneyFox.Ui.Views.Payments.PaymentList.FilterPopup"
     x:DataType="popup:SelectFilterDialogViewModel">
 
     <Grid RowDefinitions="*, 40">

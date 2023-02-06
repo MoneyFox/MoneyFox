@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Domain.Aggregates.AccountAggregate;
 using Payments;
+using Payments.PaymentList;
 
 public interface ISelectFilterDialogViewModel
 {
