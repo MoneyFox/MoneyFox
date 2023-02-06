@@ -1,6 +1,4 @@
-namespace MoneyFox.Ui.Views.Popups;
-
-using Messages;
+namespace MoneyFox.Ui.Views.Statistics;
 
 public partial class DateSelectionPopup
 {
