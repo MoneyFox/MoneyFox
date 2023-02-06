@@ -563,6 +563,9 @@
   <data name="NoCategoryLabel" xml:space="preserve">
     <value>[无类别]</value>
   </data>
+  <data name="NoCategoryTitle" xml:space="preserve">
+    <value>No Category</value>
+  </data>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
     <value>没有选择任何条目。在列表中选择一个条目来查看付款情况。</value>
   </data>
