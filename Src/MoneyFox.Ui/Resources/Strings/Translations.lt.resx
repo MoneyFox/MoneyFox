@@ -563,6 +563,9 @@ Bakstelėkite , jei norite aplankyti saugyklą:</value>
   <data name="NoCategoryLabel" xml:space="preserve">
     <value>[Nėra kategorijos]</value>
   </data>
+  <data name="NoCategoryTitle" xml:space="preserve">
+    <value>No Category</value>
+  </data>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
     <value>Įrašas nepasirinktas. Pasirinkite įrašą sąraše, kad pamatytumėte jo mokėjimus.</value>
   </data>
