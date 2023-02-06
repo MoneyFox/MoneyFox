@@ -563,6 +563,9 @@ Depoyu ziyaret etmek için dokunun:</value>
   <data name="NoCategoryLabel" xml:space="preserve">
     <value>[Kategori Yok]</value>
   </data>
+  <data name="NoCategoryTitle" xml:space="preserve">
+    <value>No Category</value>
+  </data>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
     <value>Seçili giriş yok. Ödemeleri görmek için listeden bir giriş seçin.</value>
   </data>
