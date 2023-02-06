@@ -562,6 +562,9 @@
   <data name="NoCategoryLabel" xml:space="preserve">
     <value>[Tidak ada kategori]</value>
   </data>
+  <data name="NoCategoryTitle" xml:space="preserve">
+    <value>No Category</value>
+  </data>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
     <value>Tidak ada entri yang dipilih. Pilih entri dalam daftar untuk melihat pembayarannya.</value>
   </data>
