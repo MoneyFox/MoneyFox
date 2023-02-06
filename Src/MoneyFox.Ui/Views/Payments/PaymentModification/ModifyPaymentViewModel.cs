@@ -147,7 +147,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
         try
         {
             await SavePaymentAsync();
-            Messenger.Send(new ReloadMessage());
+            Messenger.Send(new PaymentsChangedMessage());
             await Shell.Current.Navigation.PopModalAsync();
         }
         catch (Exception ex)

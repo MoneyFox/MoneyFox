@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Messages;
+﻿namespace MoneyFox.Ui.Views.Statistics;
 
 public class DateSelectedMessage
 {

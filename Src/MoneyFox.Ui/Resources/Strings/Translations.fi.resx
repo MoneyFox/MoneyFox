@@ -562,6 +562,9 @@
   <data name="NoCategoryLabel" xml:space="preserve">
     <value>[Ei kategoriaa]</value>
   </data>
+  <data name="NoCategoryTitle" xml:space="preserve">
+    <value>No Category</value>
+  </data>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
     <value>Ei merkintää valittuna. Valitse merkintä luettelosta nähdäksesi sille suoritettavat maksut.</value>
   </data>

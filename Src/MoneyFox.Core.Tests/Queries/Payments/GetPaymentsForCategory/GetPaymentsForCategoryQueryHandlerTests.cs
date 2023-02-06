@@ -42,7 +42,7 @@ public class GetPaymentsForCategoryQueryHandlerTests : InMemoryTestBase
 
         // Act
         var result = await handler.Handle(
-            request: new(categoryId: category.Id, dateRangeFrom: DateTime.Now.AddDays(-1), dateRangeTo: DateTime.Now.AddDays(1)),
+            request: new(CategoryId: category.Id, DateRangeFrom: DateTime.Now.AddDays(-1), DateRangeTo: DateTime.Now.AddDays(1)),
             cancellationToken: default);
 
         // Assert
@@ -77,7 +77,7 @@ public class GetPaymentsForCategoryQueryHandlerTests : InMemoryTestBase
 
         // Act
         var result = await handler.Handle(
-            request: new(categoryId: 0, dateRangeFrom: DateTime.Now.AddDays(-1), dateRangeTo: DateTime.Now.AddDays(1)),
+            request: new(CategoryId: null, DateRangeFrom: DateTime.Now.AddDays(-1), DateRangeTo: DateTime.Now.AddDays(1)),
             cancellationToken: default);
 
         // Assert
@@ -118,7 +118,7 @@ public class GetPaymentsForCategoryQueryHandlerTests : InMemoryTestBase
 
         // Act
         var result = await handler.Handle(
-            request: new(categoryId: category.Id, dateRangeFrom: DateTime.Now.AddDays(-1), dateRangeTo: DateTime.Now.AddDays(1)),
+            request: new(CategoryId: category.Id, DateRangeFrom: DateTime.Now.AddDays(-1), DateRangeTo: DateTime.Now.AddDays(1)),
             cancellationToken: default);
 
         // Assert

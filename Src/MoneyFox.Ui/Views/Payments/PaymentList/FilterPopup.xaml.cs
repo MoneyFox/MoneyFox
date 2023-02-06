@@ -1,6 +1,4 @@
-namespace MoneyFox.Ui.Views.Popups;
-
-using Payments;
+namespace MoneyFox.Ui.Views.Payments.PaymentList;
 
 public partial class FilterPopup
 {

@@ -1,9 +1,9 @@
-namespace MoneyFox.Ui.Views.Popups;
+namespace MoneyFox.Ui.Views.Payments;
 
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Domain.Aggregates.AccountAggregate;
-using Payments;
+using MoneyFox.Domain.Aggregates.AccountAggregate;
+using MoneyFox.Ui.Views.Payments.PaymentList;
 
 public interface ISelectFilterDialogViewModel
 {

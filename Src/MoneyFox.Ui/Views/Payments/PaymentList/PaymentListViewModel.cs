@@ -1,22 +1,21 @@
-namespace MoneyFox.Ui.Views.Payments;
+namespace MoneyFox.Ui.Views.Payments.PaymentList;
 
 using System.Collections.ObjectModel;
 using System.Globalization;
-using Accounts;
 using AutoMapper;
-using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.Common.Extensions;
-using Core.Common.Settings;
-using Core.Queries;
-using Core.Queries.GetPaymentsForAccountIdQuery;
-using Domain.Aggregates.AccountAggregate;
 using MediatR;
-using Messages;
-using Resources.Strings;
+using MoneyFox.Core.Common.Extensions;
+using MoneyFox.Core.Common.Settings;
+using MoneyFox.Core.Queries;
+using MoneyFox.Core.Queries.GetPaymentsForAccountIdQuery;
+using MoneyFox.Domain.Aggregates.AccountAggregate;
+using MoneyFox.Ui.Common.Groups;
+using MoneyFox.Ui.Resources.Strings;
+using MoneyFox.Ui.Views.Accounts;
 
-internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<ReloadMessage>, IRecipient<PaymentListFilterChangedMessage>
+internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<PaymentsChangedMessage>, IRecipient<PaymentListFilterChangedMessage>
 {
     private readonly IMapper mapper;
     private readonly IMediator mediator;
@@ -82,7 +81,7 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Reloa
         await LoadPaymentsByMessageAsync(message);
     }
 
-    public async void Receive(ReloadMessage message)
+    public async void Receive(PaymentsChangedMessage message)
     {
         await InitializeAsync(SelectedAccount.Id);
     }

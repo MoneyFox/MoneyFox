@@ -4,12 +4,12 @@
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
     xmlns:views="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
-    xmlns:popup="clr-namespace:MoneyFox.Ui.Views.Popups"
+    xmlns:payments="clr-namespace:MoneyFox.Ui.Views.Payments"
     CanBeDismissedByTappingOutsideOfPopup="false"
     Size="330, 500"
     Color="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
-    x:Class="MoneyFox.Ui.Views.Popups.FilterPopup"
-    x:DataType="popup:SelectFilterDialogViewModel">
+    x:Class="MoneyFox.Ui.Views.Payments.PaymentList.FilterPopup"
+    x:DataType="payments:SelectFilterDialogViewModel">
 
     <Grid RowDefinitions="*, 40">
         <StackLayout Padding="15" Spacing="6">

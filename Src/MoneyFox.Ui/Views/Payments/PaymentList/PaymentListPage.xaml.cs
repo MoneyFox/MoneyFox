@@ -1,7 +1,6 @@
-namespace MoneyFox.Ui.Views.Payments;
+namespace MoneyFox.Ui.Views.Payments.PaymentList;
 
 using CommunityToolkit.Maui.Views;
-using Popups;
 
 [QueryProperty(name: "AccountId", queryId: "accountId")]
 public partial class PaymentListPage : ContentPage

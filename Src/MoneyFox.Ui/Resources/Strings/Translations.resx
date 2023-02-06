@@ -564,6 +564,9 @@ Tap to visit the Repository:</value>
     <data name="NoCategoryLabel" xml:space="preserve">
     <value>[No Category]</value>
   </data>
+    <data name="NoCategoryTitle" xml:space="preserve">
+    <value>No Category</value>
+  </data>
     <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
     <value>No entry selected. Choose a entry in the list to see the payments for it.</value>
   </data>

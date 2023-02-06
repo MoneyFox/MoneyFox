@@ -564,6 +564,9 @@ Tik hier om jou bijdrage te leveren.</value>
   <data name="NoCategoryLabel" xml:space="preserve">
     <value>Geen categorie</value>
   </data>
+  <data name="NoCategoryTitle" xml:space="preserve">
+    <value>No Category</value>
+  </data>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
     <value>Geen invoer geselecteerd. Kies een item in de lijst, om de betalingen te bekijken.</value>
   </data>
