@@ -562,6 +562,9 @@
   <data name="NoCategoryLabel" xml:space="preserve">
     <value>[Sem Categoria]</value>
   </data>
+  <data name="NoCategoryTitle" xml:space="preserve">
+    <value>No Category</value>
+  </data>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
     <value>Nenhum item selecionado. Escolha um registro na lista para ver os pagamentos para ele.</value>
   </data>
