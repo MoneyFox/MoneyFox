@@ -563,6 +563,9 @@
   <data name="NoCategoryLabel" xml:space="preserve">
     <value>format@@0</value>
   </data>
+  <data name="NoCategoryTitle" xml:space="preserve">
+    <value>No Category</value>
+  </data>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
     <value>エントリが選択されていません。支払いを確認するには、リストのエントリを選択してください。</value>
   </data>
