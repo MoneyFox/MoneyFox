@@ -3,6 +3,7 @@ namespace MoneyFox.Core.Tests.Commands.Payments.CreatePayment;
 using Core.Features._Legacy_.Payments.CreatePayment;
 using Domain.Aggregates.AccountAggregate;
 using FluentAssertions;
+using Microsoft.EntityFrameworkCore;
 
 public class CreatePaymentCommandTests : InMemoryTestBase
 {
@@ -45,7 +46,7 @@ public class CreatePaymentCommandTests : InMemoryTestBase
         await handler.Handle(request: new(payment), cancellationToken: default);
 
         // Assert
-        var loadedAccount = await Context.Accounts.FindAsync(account.Id);
+        var loadedAccount = await Context.Accounts.SingleAsync(a => a.Id == account.Id);
         loadedAccount.Should().NotBeNull();
         loadedAccount.CurrentBalance.Should().Be(newCurrentBalance);
     }
@@ -67,6 +68,6 @@ public class CreatePaymentCommandTests : InMemoryTestBase
         Assert.Single(Context.Payments);
         Assert.Single(Context.RecurringPayments);
         (await Context.Payments.FindAsync(payment.Id)).Should().NotBeNull();
-        (await Context.RecurringPayments.FindAsync(payment.RecurringPayment.Id)).Should().NotBeNull();
+        (await Context.RecurringPayments.SingleAsync(p => p.Id == payment.RecurringPayment!.Id)).Should().NotBeNull();
     }
 }
