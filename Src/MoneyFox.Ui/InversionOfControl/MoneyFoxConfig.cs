@@ -25,6 +25,7 @@ using Views.Popups;
 using Views.Settings;
 using Views.Setup;
 using Views.Setup.SelectCurrency;
+using Views.Statistics;
 using Views.Statistics.CashFlow;
 using Views.Statistics.CategoryProgression;
 using Views.Statistics.CategorySpreading;

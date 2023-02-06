@@ -1,10 +1,8 @@
-﻿namespace MoneyFox.Ui.Views.Popups;
+﻿namespace MoneyFox.Ui.Views.Statistics;
 
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.Common.Extensions;
-using Messages;
-using Statistics;
+using MoneyFox.Core.Common.Extensions;
 
 internal sealed class SelectDateRangeDialogViewModel : BasePageViewModel
 {
