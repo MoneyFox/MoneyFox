@@ -563,6 +563,9 @@
   <data name="NoCategoryLabel" xml:space="preserve">
     <value>[Χωρίς Κατηγορία]</value>
   </data>
+  <data name="NoCategoryTitle" xml:space="preserve">
+    <value>No Category</value>
+  </data>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
     <value>Δεν επιλέχθηκε καταχώρηση. Επιλέξτε μια καταχώρηση στη λίστα για να δείτε τις πληρωμές για αυτό.</value>
   </data>
