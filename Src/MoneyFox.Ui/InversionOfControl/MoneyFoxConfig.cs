@@ -21,7 +21,6 @@ using Views.OverflowMenu;
 using Views.Payments;
 using Views.Payments.PaymentList;
 using Views.Payments.PaymentModification;
-using Views.Popups;
 using Views.Settings;
 using Views.Setup;
 using Views.Setup.SelectCurrency;

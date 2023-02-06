@@ -189,6 +189,10 @@
           <DependentUpon>PaymentListPage.xaml</DependentUpon>
           <SubType>Code</SubType>
         </Compile>
+        <Compile Update="Common\Services\LoadingIndicatorPopup.xaml.cs">
+          <DependentUpon>LoadingIndicatorPopup.xaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -253,6 +257,9 @@
           <SubType>Designer</SubType>
         </MauiXaml>
         <MauiXaml Update="Views\Payments\PaymentList\PaymentListPage.xaml">
+          <SubType>Designer</SubType>
+        </MauiXaml>
+        <MauiXaml Update="Common\Services\LoadingIndicatorPopup.xaml">
           <SubType>Designer</SubType>
         </MauiXaml>
     </ItemGroup>

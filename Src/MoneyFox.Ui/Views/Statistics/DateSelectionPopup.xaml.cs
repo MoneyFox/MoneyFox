@@ -1,7 +1,5 @@
 namespace MoneyFox.Ui.Views.Statistics;
 
-using Popups;
-
 public partial class DateSelectionPopup
 {
     public DateSelectionPopup(DateTime dateFrom, DateTime dateTo)

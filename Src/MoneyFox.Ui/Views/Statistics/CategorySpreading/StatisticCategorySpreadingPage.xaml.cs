@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Ui.Views.Statistics.CategorySpreading;
 
 using CommunityToolkit.Maui.Views;
-using Popups;
 
 public partial class StatisticCategorySpreadingPage
 {

@@ -5,7 +5,7 @@
              CanBeDismissedByTappingOutsideOfPopup="false"
              Size="200, 80"
              Color="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
-             x:Class="MoneyFox.Ui.Views.Popups.LoadingIndicatorPopup">
+             x:Class="MoneyFox.Ui.Common.Services.LoadingIndicatorPopup">
 
     <Grid ColumnDefinitions="40, 10, *" Padding="20">
         <ActivityIndicator IsRunning="True" Grid.Column="0" />

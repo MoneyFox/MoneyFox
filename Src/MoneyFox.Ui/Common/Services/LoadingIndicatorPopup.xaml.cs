@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Views.Popups;
+﻿namespace MoneyFox.Ui.Common.Services;
 
 public partial class LoadingIndicatorPopup
 {
