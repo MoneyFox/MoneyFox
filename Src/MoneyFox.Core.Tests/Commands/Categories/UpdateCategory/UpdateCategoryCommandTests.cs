@@ -3,6 +3,7 @@ namespace MoneyFox.Core.Tests.Commands.Categories.UpdateCategory;
 using Core.Features._Legacy_.Categories.UpdateCategory;
 using Domain.Aggregates.CategoryAggregate;
 using FluentAssertions;
+using Microsoft.EntityFrameworkCore;
 
 public class UpdateCategoryCommandTests : InMemoryTestBase
 {
@@ -27,9 +28,8 @@ public class UpdateCategoryCommandTests : InMemoryTestBase
             command: new(Id: category.Id, Name: category.Name, Note: category.Note, RequireNote: category.RequireNote),
             cancellationToken: default);
 
-        var loadedCategory = await Context.Categories.FindAsync(category.Id);
-
         // Assert
+        var loadedCategory = await Context.Categories.SingleAsync(c => c.Id == category.Id);
         loadedCategory.Name.Should().Be("foo");
     }
 
@@ -47,9 +47,8 @@ public class UpdateCategoryCommandTests : InMemoryTestBase
             command: new(Id: category.Id, Name: category.Name, Note: category.Note, RequireNote: category.RequireNote),
             cancellationToken: default);
 
-        var loadedCategory = await Context.Categories.FindAsync(category.Id);
-
         // Assert
+        var loadedCategory = await Context.Categories.SingleAsync(c => c.Id == category.Id);
         loadedCategory.RequireNote.Should().BeTrue();
     }
 }
