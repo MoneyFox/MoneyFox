@@ -563,6 +563,9 @@ Tryk for at besøge projektets hjemmeside:</value>
   <data name="NoCategoryLabel" xml:space="preserve">
     <value>[Ingen kategori]</value>
   </data>
+  <data name="NoCategoryTitle" xml:space="preserve">
+    <value>No Category</value>
+  </data>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
     <value>Intet emne valgt. Vælg et emne fra listen for at se betalingerne.</value>
   </data>
