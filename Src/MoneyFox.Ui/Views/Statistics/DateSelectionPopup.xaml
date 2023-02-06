@@ -7,7 +7,7 @@
     CanBeDismissedByTappingOutsideOfPopup="false"
     Size="330, 400"
     Color="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
-    x:Class="MoneyFox.Ui.Views.Popups.DateSelectionPopup">
+    x:Class="MoneyFox.Ui.Views.Statistics.DateSelectionPopup">
 
     <Grid RowDefinitions="*, 40">
 

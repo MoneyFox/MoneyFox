@@ -177,6 +177,10 @@
             <DependentUpon>DesktopAccountListPage.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Compile Update="Views\Statistics\DateSelectionPopup.xaml.cs">
+          <DependentUpon>DateSelectionPopup.xaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -233,6 +237,9 @@
         </MauiXaml>
         <MauiXaml Update="Views\Accounts\AccountList\DesktopAccountListPage.xaml">
             <SubType>Designer</SubType>
+        </MauiXaml>
+        <MauiXaml Update="Views\Statistics\DateSelectionPopup.xaml">
+          <SubType>Designer</SubType>
         </MauiXaml>
     </ItemGroup>
 
