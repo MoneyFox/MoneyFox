@@ -16,7 +16,7 @@ using MediatR;
 using Messages;
 using Resources.Strings;
 
-internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<ReloadMessage>, IRecipient<PaymentListFilterChangedMessage>
+internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<PaymentsChangedMessage>, IRecipient<PaymentListFilterChangedMessage>
 {
     private readonly IMapper mapper;
     private readonly IMediator mediator;
@@ -82,7 +82,7 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Reloa
         await LoadPaymentsByMessageAsync(message);
     }
 
-    public async void Receive(ReloadMessage message)
+    public async void Receive(PaymentsChangedMessage message)
     {
         await InitializeAsync(SelectedAccount.Id);
     }
