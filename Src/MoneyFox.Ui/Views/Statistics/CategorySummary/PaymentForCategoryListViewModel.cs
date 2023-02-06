@@ -60,7 +60,7 @@ internal sealed class PaymentForCategoryListViewModel : BasePageViewModel, IReci
 
         var loadedPayments = mapper.Map<List<PaymentViewModel>>(
             await mediator.Send(
-                new GetPaymentsForCategorySummary.Query(categoryId: message.CategoryId, dateRangeFrom: message.StartDate, dateRangeTo: message.EndDate)));
+                new GetPaymentsForCategorySummary.Query(CategoryId: message.CategoryId, DateRangeFrom: message.StartDate, DateRangeTo: message.EndDate)));
 
         var dailyItems = DateListGroupCollection<PaymentViewModel>.CreateGroups(
             items: loadedPayments,

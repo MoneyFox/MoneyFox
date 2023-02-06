@@ -14,7 +14,7 @@ public class GetPaymentsForCategoryQueryTests
         var dateRangeTo = DateTime.Now.AddDays(2);
 
         // Act
-        var query = new GetPaymentsForCategorySummary.Query(categoryId: catId, dateRangeFrom: dateRangeFrom, dateRangeTo: dateRangeTo);
+        var query = new GetPaymentsForCategorySummary.Query(CategoryId: catId, DateRangeFrom: dateRangeFrom, DateRangeTo: dateRangeTo);
 
         // Assert
         query.CategoryId.Should().Be(catId);

@@ -13,19 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 public static class GetPaymentsForCategorySummary
 {
-    public class Query : IRequest<List<Payment>>
-    {
-        public Query(int? categoryId, DateTime dateRangeFrom, DateTime dateRangeTo)
-        {
-            CategoryId = categoryId;
-            DateRangeFrom = dateRangeFrom;
-            DateRangeTo = dateRangeTo;
-        }
-
-        public int? CategoryId { get; set; }
-        public DateTime DateRangeFrom { get; set; }
-        public DateTime DateRangeTo { get; set; }
-    }
+    public record Query(int? CategoryId, DateTime DateRangeFrom, DateTime DateRangeTo) : IRequest<List<Payment>>;
 
     public class Handler : IRequestHandler<Query, List<Payment>>
     {
