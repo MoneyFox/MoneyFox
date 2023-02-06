@@ -107,7 +107,7 @@ public class AccountTests
 
         // Act
         // AddPaymentAmount executed in the clear method
-        new Payment(date: DateTime.Today, amount: 50, type: paymentType, chargedAccount: account);
+        _ = new Payment(date: DateTime.Today, amount: 50, type: paymentType, chargedAccount: account);
 
         // Assert
         account.CurrentBalance.Should().Be(expectedBalance);
@@ -136,13 +136,13 @@ public class AccountTests
         var chargedAccount = new Account(name: "Test", initialBalance: 100);
         var targetAccount = new Account(name: "Test", initialBalance: 100);
         var chargedAccountId = typeof(Account).GetField(name: "<Id>k__BackingField", bindingAttr: BindingFlags.Instance | BindingFlags.NonPublic);
-        chargedAccountId.SetValue(obj: chargedAccount, value: 3);
+        chargedAccountId!.SetValue(obj: chargedAccount, value: 3);
         var targetAccountId = typeof(Account).GetField(name: "<Id>k__BackingField", bindingAttr: BindingFlags.Instance | BindingFlags.NonPublic);
-        targetAccountId.SetValue(obj: targetAccount, value: 4);
+        targetAccountId!.SetValue(obj: targetAccount, value: 4);
 
         // Act
         // AddPaymentAmount executed in the clear method
-        new Payment(
+        _ = new Payment(
             date: DateTime.Today,
             amount: 50,
             type: PaymentType.Transfer,
@@ -177,9 +177,9 @@ public class AccountTests
         var chargedAccount = new Account(name: "Test", initialBalance: 100);
         var targetAccount = new Account(name: "Test", initialBalance: 100);
         var chargedAccountId = typeof(Account).GetField(name: "<Id>k__BackingField", bindingAttr: BindingFlags.Instance | BindingFlags.NonPublic);
-        chargedAccountId.SetValue(obj: chargedAccount, value: 3);
+        chargedAccountId!.SetValue(obj: chargedAccount, value: 3);
         var targetAccountId = typeof(Account).GetField(name: "<Id>k__BackingField", bindingAttr: BindingFlags.Instance | BindingFlags.NonPublic);
-        targetAccountId.SetValue(obj: targetAccount, value: 4);
+        targetAccountId!.SetValue(obj: targetAccount, value: 4);
         var payment = new Payment(
             date: DateTime.Today,
             amount: 50,
@@ -205,9 +205,9 @@ public class AccountTests
         var chargedAccount = new Account(name: "Test", initialBalance: 100);
         var targetAccount = new Account(name: "Test", initialBalance: 100);
         var chargedAccountId = typeof(Account).GetField(name: "<Id>k__BackingField", bindingAttr: BindingFlags.Instance | BindingFlags.NonPublic);
-        chargedAccountId.SetValue(obj: chargedAccount, value: 3);
+        chargedAccountId!.SetValue(obj: chargedAccount, value: 3);
         var targetAccountId = typeof(Account).GetField(name: "<Id>k__BackingField", bindingAttr: BindingFlags.Instance | BindingFlags.NonPublic);
-        targetAccountId.SetValue(obj: targetAccount, value: 4);
+        targetAccountId!.SetValue(obj: targetAccount, value: 4);
         var payment = new Payment(
             date: DateTime.Today,
             amount: 50,

@@ -16,7 +16,7 @@ public class PaymentTests
                 date: DateTime.Now,
                 amount: 123,
                 type: PaymentType.Expense,
-                chargedAccount: null,
+                chargedAccount: null!,
                 note: "note"));
     }
 
@@ -59,7 +59,7 @@ public class PaymentTests
 
         // Act / Assert
         Assert.Throws<AccountNullException>(
-            () => testPayment.UpdatePayment(date: DateTime.Today, amount: 123, type: PaymentType.Expense, chargedAccount: null));
+            () => testPayment.UpdatePayment(date: DateTime.Today, amount: 123, type: PaymentType.Expense, chargedAccount: null!));
     }
 
     [Theory]

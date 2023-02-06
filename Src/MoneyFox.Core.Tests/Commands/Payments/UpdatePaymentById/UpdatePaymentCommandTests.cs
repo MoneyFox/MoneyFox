@@ -5,6 +5,7 @@ using Core.Features._Legacy_.Payments.UpdatePayment;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.CategoryAggregate;
 using FluentAssertions;
+using Microsoft.EntityFrameworkCore;
 
 public class UpdatePaymentCommandTests : InMemoryTestBase
 {
@@ -32,11 +33,11 @@ public class UpdatePaymentCommandTests : InMemoryTestBase
                 Amount: payment1.Amount,
                 IsCleared: payment1.IsCleared,
                 Type: payment1.Type,
-                Note: payment1.Note,
+                Note: payment1.Note!,
                 IsRecurring: payment1.IsRecurring,
-                CategoryId: payment1.Category != null ? payment1.Category.Id : 0,
-                ChargedAccountId: payment1.ChargedAccount != null ? payment1.ChargedAccount.Id : 0,
-                TargetAccountId: payment1.TargetAccount != null ? payment1.TargetAccount.Id : 0,
+                CategoryId: payment1.Category?.Id ?? 0,
+                ChargedAccountId: payment1.ChargedAccount.Id,
+                TargetAccountId: payment1.TargetAccount?.Id ?? 0,
                 UpdateRecurringPayment: false,
                 Recurrence: null,
                 IsEndless: null,
@@ -45,7 +46,7 @@ public class UpdatePaymentCommandTests : InMemoryTestBase
             cancellationToken: default);
 
         // Assert
-        (await Context.Payments.FindAsync(payment1.Id)).Amount.Should().Be(payment1.Amount);
+        (await Context.Payments.SingleAsync(p => p.Id == payment1.Id)).Amount.Should().Be(payment1.Amount);
     }
 
     [Fact]
@@ -74,9 +75,9 @@ public class UpdatePaymentCommandTests : InMemoryTestBase
                 Amount: payment1.Amount,
                 IsCleared: payment1.IsCleared,
                 Type: payment1.Type,
-                Note: payment1.Note,
+                Note: payment1.Note!,
                 IsRecurring: payment1.IsRecurring,
-                CategoryId: payment1.Category.Id,
+                CategoryId: payment1.Category!.Id,
                 ChargedAccountId: payment1.ChargedAccount.Id,
                 TargetAccountId: payment1.TargetAccount?.Id ?? 0,
                 UpdateRecurringPayment: true,
@@ -87,7 +88,7 @@ public class UpdatePaymentCommandTests : InMemoryTestBase
             cancellationToken: default);
 
         // Assert
-        (await Context.RecurringPayments.FindAsync(payment1.RecurringPayment.Id)).Category.Id.Should().Be(payment1.Category.Id);
+        (await Context.RecurringPayments.SingleAsync(rp => rp.Id == payment1.RecurringPayment!.Id)).Category!.Id.Should().Be(payment1.Category.Id);
     }
 
     [Fact]
@@ -116,11 +117,11 @@ public class UpdatePaymentCommandTests : InMemoryTestBase
                 Amount: payment1.Amount,
                 IsCleared: payment1.IsCleared,
                 Type: payment1.Type,
-                Note: payment1.Note,
+                Note: payment1.Note!,
                 IsRecurring: payment1.IsRecurring,
-                CategoryId: payment1.Category.Id,
-                ChargedAccountId: payment1.ChargedAccount != null ? payment1.ChargedAccount.Id : 0,
-                TargetAccountId: payment1.TargetAccount != null ? payment1.TargetAccount.Id : 0,
+                CategoryId: payment1.Category!.Id,
+                ChargedAccountId: payment1.ChargedAccount.Id,
+                TargetAccountId: payment1.TargetAccount?.Id ?? 0,
                 UpdateRecurringPayment: true,
                 Recurrence: PaymentRecurrence.Daily,
                 IsEndless: null,
@@ -129,7 +130,7 @@ public class UpdatePaymentCommandTests : InMemoryTestBase
             cancellationToken: default);
 
         // Assert
-        (await Context.RecurringPayments.FindAsync(payment1.RecurringPayment.Id)).Recurrence.Should().Be(PaymentRecurrence.Daily);
+        (await Context.RecurringPayments.SingleAsync(rp => rp.Id == payment1.RecurringPayment!.Id)).Recurrence.Should().Be(PaymentRecurrence.Daily);
     }
 
     [Fact]
@@ -157,11 +158,11 @@ public class UpdatePaymentCommandTests : InMemoryTestBase
                 Amount: payment1.Amount,
                 IsCleared: payment1.IsCleared,
                 Type: payment1.Type,
-                Note: payment1.Note,
+                Note: payment1.Note!,
                 IsRecurring: false,
                 CategoryId: 0,
-                ChargedAccountId: payment1.ChargedAccount != null ? payment1.ChargedAccount.Id : 0,
-                TargetAccountId: payment1.TargetAccount != null ? payment1.TargetAccount.Id : 0,
+                ChargedAccountId: payment1.ChargedAccount.Id,
+                TargetAccountId: payment1.TargetAccount?.Id ?? 0,
                 UpdateRecurringPayment: true,
                 Recurrence: PaymentRecurrence.Daily,
                 IsEndless: null,

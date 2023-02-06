@@ -69,8 +69,8 @@ public static class AccountQueriesExtensions
     /// <summary>
     ///     Checks if there is an active account with the passed name.
     /// </summary>
-    public static async Task<bool> AnyWithNameAsync(this IQueryable<Account> query, string name, int Id = 0)
+    public static async Task<bool> AnyWithNameAsync(this IQueryable<Account> query, string name, int id = 0)
     {
-        return await query.AnyAsync(x => x.Name.ToUpper() == name.ToUpper() && !x.IsDeactivated && x.Id != Id);
+        return await query.AnyAsync(x => x.Name.ToUpper() == name.ToUpper() && !x.IsDeactivated && x.Id != id);
     }
 }
