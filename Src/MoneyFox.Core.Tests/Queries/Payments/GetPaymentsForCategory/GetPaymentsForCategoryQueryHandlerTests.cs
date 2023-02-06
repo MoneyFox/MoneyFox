@@ -77,7 +77,7 @@ public class GetPaymentsForCategoryQueryHandlerTests : InMemoryTestBase
 
         // Act
         var result = await handler.Handle(
-            request: new(categoryId: 0, dateRangeFrom: DateTime.Now.AddDays(-1), dateRangeTo: DateTime.Now.AddDays(1)),
+            request: new(categoryId: null, dateRangeFrom: DateTime.Now.AddDays(-1), dateRangeTo: DateTime.Now.AddDays(1)),
             cancellationToken: default);
 
         // Assert

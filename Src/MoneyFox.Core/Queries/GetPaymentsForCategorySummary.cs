@@ -15,14 +15,14 @@ public static class GetPaymentsForCategorySummary
 {
     public class Query : IRequest<List<Payment>>
     {
-        public Query(int categoryId, DateTime dateRangeFrom, DateTime dateRangeTo)
+        public Query(int? categoryId, DateTime dateRangeFrom, DateTime dateRangeTo)
         {
             CategoryId = categoryId;
             DateRangeFrom = dateRangeFrom;
             DateRangeTo = dateRangeTo;
         }
 
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         public DateTime DateRangeFrom { get; set; }
         public DateTime DateRangeTo { get; set; }
     }
@@ -39,7 +39,9 @@ public static class GetPaymentsForCategorySummary
         public async Task<List<Payment>> Handle(Query request, CancellationToken cancellationToken)
         {
             IQueryable<Payment> query = appDbContext.Payments.Include(x => x.Category);
-            query = request.CategoryId == 0 ? query.Where(x => x.Category == null) : query.Where(x => x.Category!.Id == request.CategoryId);
+            query = request.CategoryId.HasValue
+                ? query.Where(x => x.Category!.Id == request.CategoryId)
+                : query.Where(x => x.Category == null);
 
             return await query.Where(x => x.Date >= request.DateRangeFrom)
                 .Where(x => x.Date <= request.DateRangeTo)
