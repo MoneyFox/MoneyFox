@@ -11,6 +11,7 @@ using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.BudgetAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using MoneyFox.Core.Common.Extensions;
 
 public static class LoadBudgetListData
 {
@@ -33,7 +34,7 @@ public static class LoadBudgetListData
             List<BudgetListData> budgetListDataList = new();
             foreach (var budget in budgets)
             {
-                var thresholdDate = systemDateHelper.Today.AddMonths(-budget.Interval.NumberOfMonths);
+                var thresholdDate = systemDateHelper.Today.GetFirstDayOfMonth().AddMonths(-(budget.Interval.NumberOfMonths-1));
                 var payments = await appDbContext.Payments.Where(p => p.Type != PaymentType.Transfer)
                     .Where(p => p.CategoryId != null)
                     .Where(p => p.Date >= thresholdDate)
