@@ -156,6 +156,48 @@ public sealed class LoadBudgetListDataTests : InMemoryTestBase
     }
 
     [Fact]
+    public async Task ReturnBudgets_WithCurrentSpendingSetToZero_WhenItWouldBeNegative()
+    {
+        // Arrange
+        var now = new DateTime(
+            year: DateTime.Today.Year,
+            month: 10,
+            day: 12,
+            hour: 11,
+            minute: 52,
+            second: 0);
+
+        systemDateHelper.Now.Returns(now);
+        systemDateHelper.Today.Returns(now.Date);
+        var testExpense1 = new TestData.DefaultExpense
+        {
+            Id = 10,
+            Amount = 100m,
+            Type = PaymentType.Income,
+            Date = now.Date
+        };
+
+        var dbPayment1 = Context.RegisterPayment(testExpense1);
+        var testBudget = new TestData.DefaultBudget
+        {
+            Interval = new(1),
+            Categories = ImmutableList.Create(dbPayment1.CategoryId!.Value)
+        };
+
+        Context.RegisterBudget(testBudget);
+
+        // Act
+        var query = new LoadBudgetListData.Query();
+        var result = await handler.Handle(request: query, cancellationToken: CancellationToken.None);
+
+        // Assert
+        result.Should().HaveCount(1);
+        var budgetListData = result.Single();
+        var expectedCurrentSpending = 0;
+        AssertBudgetListData(actualBudgetListData: budgetListData, expectedBudgetTestData: testBudget, expectedCurrentSpending: expectedCurrentSpending);
+    }
+
+    [Fact]
     public async Task ReturnAllBudgets_EvenWhenOneBudgetDoesHaveNoPayment()
     {
         // Arrange
