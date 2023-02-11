@@ -84,7 +84,7 @@ jobs:
           dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
 
       - name: Build MAUI Android
-        run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-android -c Release
+        run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-android -c Release /p:EnableLLVM=false
   
   
   buildiOS:
