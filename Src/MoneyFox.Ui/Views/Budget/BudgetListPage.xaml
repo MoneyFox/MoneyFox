@@ -14,7 +14,7 @@
     Title="{x:Static resources:Translations.BudgetsTitle}">
 
     <ContentPage.Resources>
-        <converter:DecimalToZeroFiveConverter x:Key="DecimalToZeroFiveConverter" />
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
         <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
     </ContentPage.Resources>
 
@@ -25,7 +25,7 @@
                 <Label Style="{StaticResource TextBodySecondary}"
                        Text="{x:Static resources:Translations.MonthlyBudgetLabel}" />
                 <Label Style="{StaticResource TextBodySecondary}"
-                       Text="{Binding BudgetedAmount, Converter={StaticResource DecimalToZeroFiveConverter}}" />
+                       Text="{Binding BudgetedAmount, Converter={StaticResource AmountFormatConverter}}" />
             </HorizontalStackLayout>
 
             <Button
@@ -57,12 +57,12 @@
 
                                     <Grid>
                                         <Label
-                                            Text="{Binding CurrentSpending, Converter={StaticResource DecimalToZeroFiveConverter}}"
+                                            Text="{Binding CurrentSpending, Converter={StaticResource AmountFormatConverter}}"
                                             HorizontalOptions="Start"
                                             Style="{StaticResource TextBodySecondary}" />
 
                                         <Label
-                                            Text="{Binding SpendingLimit, Converter={StaticResource DecimalToZeroFiveConverter}}"
+                                            Text="{Binding SpendingLimit, Converter={StaticResource AmountFormatConverter}}"
                                             HorizontalOptions="End"
                                             Style="{StaticResource TextBodySecondary}" />
                                     </Grid>
