@@ -27,19 +27,20 @@ jobs:
         with:
           dotnet-version: ${{env.DOTNETVERSION}}
 
+      - uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          # Look to see if there is a cache hit for the corresponding requirements file
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget
+            
       - name: Install MAUI Workload
         run: dotnet workload install maui --ignore-failed-sources
 
       - name: Restore Dependencies
         run: dotnet restore ${{env.UI_PROJECT_PATH}}
-        
-      - uses: actions/cache@v3
-        with:
-          path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }} #hash of project files
-          restore-keys: |
-            ${{ runner.os }}-nuget-
-          
+
       - name: Test
         run: |
           dotnet test ${{env.UI_TEST_PROJECT_PATH}}
@@ -62,18 +63,19 @@ jobs:
         with:
           dotnet-version: ${{env.DOTNETVERSION}}
 
+      - uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          # Look to see if there is a cache hit for the corresponding requirements file
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget
+
       - name: Install MAUI Workload
         run: dotnet workload install maui --ignore-failed-sources
 
       - name: Restore Dependencies
-        run: dotnet restore ${{env.UI_PROJECT_PATH}}      
-        
-      - uses: actions/cache@v3
-        with:
-          path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }} #hash of project files
-          restore-keys: |
-            ${{ runner.os }}-nuget-
+        run: dotnet restore ${{env.UI_PROJECT_PATH}}
 
       - name: Test
         run: |
@@ -97,18 +99,19 @@ jobs:
         with:
           dotnet-version: ${{env.DOTNETVERSION}}
 
+      - uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          # Look to see if there is a cache hit for the corresponding requirements file
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget
+            
       - name: Install MAUI Workloads
         run: dotnet workload install maui --ignore-failed-sources
 
       - name: Restore Dependencies
         run: dotnet restore ${{env.UI_PROJECT_PATH}}
-                
-      - uses: actions/cache@v3
-        with:
-          path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }} #hash of project files
-          restore-keys: |
-            ${{ runner.os }}-nuget-
 
       - name: Test
         run: |
