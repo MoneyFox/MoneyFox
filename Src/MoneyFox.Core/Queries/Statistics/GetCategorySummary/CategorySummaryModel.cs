@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Queries.Statistics.GetCategorySummary;
+namespace MoneyFox.Core.Queries.Statistics.GetCategorySummary;
 
 using System.Collections.Generic;
 
@@ -11,7 +11,7 @@ public class CategorySummaryModel
         CategoryOverviewItems = categoryOverviewItems;
     }
 
-    public int CategoryId { get; set; }
+    public int? CategoryId { get; set; }
 
     public decimal TotalEarned { get; set; }
 
