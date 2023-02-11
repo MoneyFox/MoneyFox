@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Queries.Statistics.GetCategorySummary;
+namespace MoneyFox.Core.Queries.Statistics.GetCategorySummary;
 
 using System;
 using System.Collections.Generic;
@@ -88,6 +88,7 @@ public class GetCategorySummaryQueryHandler : IRequestHandler<GetCategorySummary
             new()
             {
                 Label = "-",
+                CategoryId = null,
                 Value = payments.Where(x => x.Category == null)
                     .Where(x => x.Type != PaymentType.Transfer)
                     .Sum(x => x.Type == PaymentType.Expense ? -x.Amount : x.Amount),
