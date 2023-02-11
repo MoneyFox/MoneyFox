@@ -52,7 +52,7 @@ jobs:
   
   buildAndroid:
 
-    runs-on: windows-latest
+    runs-on: ubunutu-latest
 
     steps:
       - uses: actions/checkout@v3
