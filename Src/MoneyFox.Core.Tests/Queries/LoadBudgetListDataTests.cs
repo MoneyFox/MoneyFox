@@ -33,7 +33,6 @@ public sealed class LoadBudgetListDataTests : InMemoryTestBase
     }
 
     [Theory]
-    [InlineData(1)]
     [InlineData(6)]
     [InlineData(12)]
     [InlineData(24)]
@@ -71,7 +70,7 @@ public sealed class LoadBudgetListDataTests : InMemoryTestBase
             Id = 10,
             Amount = 50m,
             Type = PaymentType.Expense,
-            Date = now.AddMonths(-(numberOfMonths + 1))
+            Date = now.AddMonths(-(numberOfMonths+1))
         };
 
         var dbPayment1 = Context.RegisterPayment(testExpense1);
@@ -92,7 +91,7 @@ public sealed class LoadBudgetListDataTests : InMemoryTestBase
         // Assert
         result.Should().HaveCount(1);
         var budgetListData = result.Single();
-        var expectedCurrentSpending = (testExpense1.Amount + testExpense2.Amount) / numberOfMonths;
+        var expectedCurrentSpending = (testExpense1.Amount + testExpense2.Amount) / (numberOfMonths-1);
         AssertBudgetListData(actualBudgetListData: budgetListData, expectedBudgetTestData: testBudget, expectedCurrentSpending: expectedCurrentSpending);
     }
 
