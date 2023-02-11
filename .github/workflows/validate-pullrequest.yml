@@ -119,6 +119,6 @@ jobs:
           dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
           dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
         
-        #    - name: Build MAUI iOS
-        #      run: dotnet build ${{env.UI_PROJECT_PATH}} -f net7.0-ios -c Debug /p:buildForSimulator=True /p:packageApp=True /p:ArchiveOnBuild=False
+      - name: Build MAUI iOS
+        run: dotnet build ${{env.UI_PROJECT_PATH}} -f net7.0-ios -c Release /p:buildForSimulator=True /p:packageApp=True /p:ArchiveOnBuild=False
       
