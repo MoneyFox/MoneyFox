@@ -31,7 +31,14 @@ jobs:
 
       - name: Restore Dependencies
         run: dotnet restore ${{env.UI_PROJECT_PATH}}
-
+        
+      - uses: actions/cache@v1
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }} #hash of project files
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+          
       - name: Test
         run: |
           dotnet test ${{env.UI_TEST_PROJECT_PATH}}
@@ -58,7 +65,14 @@ jobs:
         run: dotnet workload install maui --ignore-failed-sources
 
       - name: Restore Dependencies
-        run: dotnet restore ${{env.UI_PROJECT_PATH}}
+        run: dotnet restore ${{env.UI_PROJECT_PATH}}      
+        
+      - uses: actions/cache@v1
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }} #hash of project files
+          restore-keys: |
+            ${{ runner.os }}-nuget-
 
       - name: Test
         run: |
@@ -87,6 +101,13 @@ jobs:
 
       - name: Restore Dependencies
         run: dotnet restore ${{env.UI_PROJECT_PATH}}
+                
+      - uses: actions/cache@v1
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }} #hash of project files
+          restore-keys: |
+            ${{ runner.os }}-nuget-
 
       - name: Test
         run: |
