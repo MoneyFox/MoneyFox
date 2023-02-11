@@ -16,6 +16,7 @@ public class Transaction : EntityBase
     private Transaction()
     {
         Amount = default!;
+        LedgerBalance = default!;
     }
 
     private Transaction(
