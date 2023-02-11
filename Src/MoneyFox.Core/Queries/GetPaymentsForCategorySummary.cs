@@ -27,9 +27,7 @@ public static class GetPaymentsForCategorySummary
         public async Task<List<Payment>> Handle(Query request, CancellationToken cancellationToken)
         {
             IQueryable<Payment> query = appDbContext.Payments.Include(x => x.Category);
-            query = request.CategoryId.HasValue
-                ? query.Where(x => x.Category!.Id == request.CategoryId)
-                : query.Where(x => x.Category == null);
+            query = request.CategoryId.HasValue ? query.Where(x => x.Category!.Id == request.CategoryId) : query.Where(x => x.Category == null);
 
             return await query.Where(x => x.Date >= request.DateRangeFrom)
                 .Where(x => x.Date <= request.DateRangeTo)
