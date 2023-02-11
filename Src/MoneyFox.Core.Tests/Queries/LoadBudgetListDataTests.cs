@@ -70,7 +70,7 @@ public sealed class LoadBudgetListDataTests : InMemoryTestBase
             Id = 10,
             Amount = 50m,
             Type = PaymentType.Expense,
-            Date = now.AddMonths(-(numberOfMonths+1))
+            Date = now.AddMonths(-(numberOfMonths + 1))
         };
 
         var dbPayment1 = Context.RegisterPayment(testExpense1);
@@ -91,7 +91,7 @@ public sealed class LoadBudgetListDataTests : InMemoryTestBase
         // Assert
         result.Should().HaveCount(1);
         var budgetListData = result.Single();
-        var expectedCurrentSpending = (testExpense1.Amount + testExpense2.Amount) / (numberOfMonths-1);
+        var expectedCurrentSpending = (testExpense1.Amount + testExpense2.Amount) / (numberOfMonths - 1);
         AssertBudgetListData(actualBudgetListData: budgetListData, expectedBudgetTestData: testBudget, expectedCurrentSpending: expectedCurrentSpending);
     }
 
@@ -138,8 +138,7 @@ public sealed class LoadBudgetListDataTests : InMemoryTestBase
         var dbPayment3 = Context.RegisterPayment(testExpense3);
         var testBudget = new TestData.DefaultBudget
         {
-            Interval = new(1),
-            Categories = ImmutableList.Create(dbPayment1.CategoryId!.Value, dbPayment2.CategoryId!.Value, dbPayment3.CategoryId!.Value)
+            Interval = new(1), Categories = ImmutableList.Create(dbPayment1.CategoryId!.Value, dbPayment2.CategoryId!.Value, dbPayment3.CategoryId!.Value)
         };
 
         Context.RegisterBudget(testBudget);
@@ -151,7 +150,7 @@ public sealed class LoadBudgetListDataTests : InMemoryTestBase
         // Assert
         result.Should().HaveCount(1);
         var budgetListData = result.Single();
-        var expectedCurrentSpending = (testExpense1.Amount + testExpense2.Amount);
+        var expectedCurrentSpending = testExpense1.Amount + testExpense2.Amount;
         AssertBudgetListData(actualBudgetListData: budgetListData, expectedBudgetTestData: testBudget, expectedCurrentSpending: expectedCurrentSpending);
     }
 
@@ -178,12 +177,7 @@ public sealed class LoadBudgetListDataTests : InMemoryTestBase
         };
 
         var dbPayment1 = Context.RegisterPayment(testExpense1);
-        var testBudget = new TestData.DefaultBudget
-        {
-            Interval = new(1),
-            Categories = ImmutableList.Create(dbPayment1.CategoryId!.Value)
-        };
-
+        var testBudget = new TestData.DefaultBudget { Interval = new(1), Categories = ImmutableList.Create(dbPayment1.CategoryId!.Value) };
         Context.RegisterBudget(testBudget);
 
         // Act

@@ -6,12 +6,12 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Common;
+using Common.Extensions;
 using Common.Interfaces;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.BudgetAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core.Common.Extensions;
 
 public static class LoadBudgetListData
 {
@@ -34,7 +34,7 @@ public static class LoadBudgetListData
             List<BudgetListData> budgetListDataList = new();
             foreach (var budget in budgets)
             {
-                var thresholdDate = systemDateHelper.Today.GetFirstDayOfMonth().AddMonths(-(budget.Interval.NumberOfMonths-1));
+                var thresholdDate = systemDateHelper.Today.GetFirstDayOfMonth().AddMonths(-(budget.Interval.NumberOfMonths - 1));
                 var payments = await appDbContext.Payments.Where(p => p.Type != PaymentType.Transfer)
                     .Where(p => p.CategoryId != null)
                     .Where(p => p.Date >= thresholdDate)
@@ -58,7 +58,7 @@ public static class LoadBudgetListData
 
                 // Since sum is not supported for decimal in Ef Core with SQLite we have to do this in two steps
                 var currentSpending = payments.Sum(selector: p => p.Type == PaymentType.Expense ? p.Amount : -p.Amount);
-                if(currentSpending < 0)
+                if (currentSpending < 0)
                 {
                     currentSpending = 0;
                 }

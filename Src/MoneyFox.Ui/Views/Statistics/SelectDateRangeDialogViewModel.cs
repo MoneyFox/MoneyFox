@@ -2,7 +2,7 @@
 
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using MoneyFox.Core.Common.Extensions;
+using Core.Common.Extensions;
 
 internal sealed class SelectDateRangeDialogViewModel : BasePageViewModel
 {
