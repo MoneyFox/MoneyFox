@@ -33,7 +33,7 @@ jobs:
       - name: Restore Dependencies
         run: dotnet restore ${{env.UI_PROJECT_PATH}}
         
-      - uses: actions/cache@v1
+      - uses: actions/cache@v3
         with:
           path: ~/.nuget/packages
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }} #hash of project files
@@ -68,7 +68,7 @@ jobs:
       - name: Restore Dependencies
         run: dotnet restore ${{env.UI_PROJECT_PATH}}      
         
-      - uses: actions/cache@v1
+      - uses: actions/cache@v3
         with:
           path: ~/.nuget/packages
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }} #hash of project files
@@ -103,7 +103,7 @@ jobs:
       - name: Restore Dependencies
         run: dotnet restore ${{env.UI_PROJECT_PATH}}
                 
-      - uses: actions/cache@v1
+      - uses: actions/cache@v3
         with:
           path: ~/.nuget/packages
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }} #hash of project files
