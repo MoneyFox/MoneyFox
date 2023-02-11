@@ -1,5 +1,8 @@
 namespace MoneyFox.Ui.Controls;
 
+using MoneyFox.Core.Common.Settings;
+using MoneyFox.Ui.Infrastructure.Adapters;
+
 public partial class AmountEntry
 {
     public static readonly BindableProperty AmountFieldTitleProperty = BindableProperty.Create(
@@ -29,8 +32,12 @@ public partial class AmountEntry
 
     public AmountEntry()
     {
+        // The property has to be set before the InitializeComponent, so that the UI is current
+        Currency = new SettingsFacade(new SettingsAdapter()).DefaultCurrency;
         InitializeComponent();
     }
+
+    public string Currency { get; }
 
     public string AmountFieldTitle
     {

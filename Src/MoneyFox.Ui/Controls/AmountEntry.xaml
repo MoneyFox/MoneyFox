@@ -18,14 +18,18 @@
             Style="{StaticResource TextBodySecondary}"
             Text="{Binding AmountFieldTitle}" />
 
-        <Entry
-            x:Name="AmountField"
-            HeightRequest="36"
-            Text="{Binding Amount,Converter={StaticResource DecimalConverter}}"
-            IsEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBoolConverter}}"
-            Placeholder="{Binding EntryPlaceholder}"
-            Keyboard="Numeric"
-            HorizontalTextAlignment="End"
-            Focused="AmountFieldGotFocus" />
+        <Grid ColumnDefinitions="*, 12, 30">
+            <Entry
+                x:Name="AmountField"
+                HeightRequest="36"
+                Text="{Binding Amount,Converter={StaticResource DecimalConverter}}"
+                IsEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBoolConverter}}"
+                Placeholder="{Binding EntryPlaceholder}"
+                Keyboard="Numeric"
+                HorizontalTextAlignment="End"
+                Focused="AmountFieldGotFocus" />
+
+            <Label Grid.Column="2" Style="{StaticResource TextBodySecondary}" VerticalOptions="End" Text="{Binding Currency}" />
+        </Grid>
     </VerticalStackLayout>
 </ContentView>
