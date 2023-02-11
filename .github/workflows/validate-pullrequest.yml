@@ -28,7 +28,9 @@ jobs:
           dotnet-version: ${{env.DOTNETVERSION}}
 
       - name: Install MAUI Workload
-        run: dotnet workload install maui-windows
+        run: |
+          dotnet workload install maui-windows
+          dotnet workload install maui-mobile
         
       - uses: actions/cache@v3
         with:
@@ -60,7 +62,7 @@ jobs:
           dotnet-version: ${{env.DOTNETVERSION}}
 
       - name: Install MAUI Workload
-        run: dotnet workload install maui-android
+        run: dotnet workload install maui-mobile
         
       - uses: actions/cache@v3
         with:
@@ -92,7 +94,7 @@ jobs:
           dotnet-version: ${{env.DOTNETVERSION}}
 
       - name: Install MAUI Workloads
-        run: dotnet workload install maui-ios 
+        run: dotnet workload install maui-mobile
 
       - uses: actions/cache@v3
         with:
