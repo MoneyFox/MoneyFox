@@ -22,6 +22,7 @@ public class Transaction : EntityBase
         Guid reference,
         TransactionType type,
         Money amount,
+        Money ledgerBalance,
         DateOnly bookingDate,
         int? categoryId,
         string? note,
@@ -30,6 +31,7 @@ public class Transaction : EntityBase
         Reference = reference;
         Type = type;
         Amount = amount;
+        LedgerBalance = ledgerBalance;
         BookingDate = bookingDate;
         CategoryId = categoryId;
         Note = note;
@@ -61,6 +63,14 @@ public class Transaction : EntityBase
     }
 
     public Money Amount
+    {
+        get;
+
+        [UsedImplicitly]
+        private set;
+    }
+
+    public Money LedgerBalance
     {
         get;
 
@@ -104,6 +114,7 @@ public class Transaction : EntityBase
         Guid reference,
         TransactionType type,
         Money amount,
+        Money ledgerBalance,
         DateOnly bookingDate,
         int? categoryId = null,
         string? note = null,
@@ -117,6 +128,7 @@ public class Transaction : EntityBase
                 reference: reference,
                 type: type,
                 amount: amount,
+                ledgerBalance: ledgerBalance,
                 bookingDate: bookingDate,
                 categoryId: categoryId,
                 note: note,

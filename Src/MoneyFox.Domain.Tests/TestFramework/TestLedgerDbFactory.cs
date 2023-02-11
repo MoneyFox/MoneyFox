@@ -15,6 +15,7 @@ internal static class TestLedgerDbFactory
             reference: transaction.Reference,
             type: transaction.Type,
             amount: transaction.Amount,
+            ledgerBalance: transaction.LedgerBalance,
             bookingDate: transaction.BookingDate,
             categoryId: transaction.CategoryId,
             note: transaction.Note);

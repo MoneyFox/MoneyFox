@@ -87,15 +87,16 @@ public class Ledger : EntityBase
         int? categoryId,
         string? note)
     {
+        CurrentBalance = new(amount: CurrentBalance + amount, currency: CurrentBalance.Currency);
         var transaction = Transaction.Create(
             reference: reference,
             type: type,
             amount: amount,
+            ledgerBalance: CurrentBalance,
             bookingDate: bookingDate,
             categoryId: categoryId,
             note: note);
 
-        CurrentBalance = new(amount: CurrentBalance + transaction.Amount, currency: CurrentBalance.Currency);
         Transactions = Transactions.Add(transaction);
     }
 }

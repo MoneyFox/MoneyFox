@@ -47,6 +47,14 @@ public class LedgerConfiguration : IEntityTypeConfiguration<Ledger>
                         m.Property(p => p.Currency).HasColumnName("Currency");
                     });
 
+                _ = t.OwnsOne<Money>(
+                    navigationExpression: l => l.LedgerBalance,
+                    buildAction: m =>
+                    {
+                        m.Property(p => p.Amount).HasColumnName("LedgerBalance");
+                        m.Property(p => p.Currency).HasColumnName("LedgerCurrency");
+                    });
+
                 _ = t.Property(p => p.BookingDate).IsRequired();
 
                 _ = builder.Property(b => b.Created);
