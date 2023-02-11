@@ -10,7 +10,6 @@ using Core.Interfaces;
 using Core.Queries.BudgetEntryLoading;
 using Domain.Aggregates.BudgetAggregate;
 using MediatR;
-using Messages;
 using Resources.Strings;
 
 internal sealed class EditBudgetViewModel : ModifyBudgetViewModel

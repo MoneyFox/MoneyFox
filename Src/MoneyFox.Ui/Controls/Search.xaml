@@ -4,12 +4,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
              xmlns:views="clr-namespace:MoneyFox.Ui.Views"
+             xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
              x:Name="This"
              x:Class="MoneyFox.Ui.Controls.Search">
 
     <VerticalStackLayout Spacing="6"
-                         BindingContext="{x:Reference This}">
-        <Label Text="{OnPlatform WinUI={Binding SearchPlaceholder}}" />
+                         BindingContext="{x:Reference This}"
+                         Margin="0,12,0,0">
+        <Label Text="{x:Static resources:Translations.SearchLabel}" IsVisible="{OnPlatform WinUI=true,Default=false}" />
 
         <Border Padding="20,0"
                 StrokeThickness="{OnIdiom Desktop=0, Default=1}"

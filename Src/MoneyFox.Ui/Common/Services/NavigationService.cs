@@ -24,7 +24,7 @@ internal sealed class NavigationService : INavigationService
 
     public async Task GoBackFromModalAsync()
     {
-        Analytics.TrackEvent($"Navigate back from Modal");
+        Analytics.TrackEvent("Navigate back from Modal");
         await Shell.Current.Navigation.PopModalAsync();
     }
 }
