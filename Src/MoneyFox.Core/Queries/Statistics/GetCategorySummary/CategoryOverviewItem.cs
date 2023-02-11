@@ -1,8 +1,8 @@
-﻿namespace MoneyFox.Core.Queries.Statistics.GetCategorySummary;
+namespace MoneyFox.Core.Queries.Statistics.GetCategorySummary;
 
 public class CategoryOverviewItem
 {
-    public int CategoryId { get; set; }
+    public int? CategoryId { get; set; }
 
     public string Label { get; set; } = "";
 

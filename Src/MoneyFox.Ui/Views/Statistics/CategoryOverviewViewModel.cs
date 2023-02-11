@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Views.Statistics;
+namespace MoneyFox.Ui.Views.Statistics;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 
@@ -7,7 +7,7 @@ public class CategoryOverviewViewModel : ObservableObject
     private const decimal DECIMAL_DELTA = 0.01m;
     private decimal average;
 
-    private int categoryId;
+    private int? categoryId;
     private string label = "";
     private decimal percentage;
     private decimal value;
@@ -15,7 +15,7 @@ public class CategoryOverviewViewModel : ObservableObject
     /// <summary>
     ///     Value of this item
     /// </summary>
-    public int CategoryId
+    public int? CategoryId
     {
         get => categoryId;
 

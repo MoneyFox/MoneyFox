@@ -6,7 +6,6 @@ using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;
 using LiveChartsCore.SkiaSharpView.Painting;
 using MediatR;
-using Messages;
 using Resources.Strings;
 using SkiaSharp;
 
