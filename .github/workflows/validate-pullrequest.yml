@@ -28,10 +28,7 @@ jobs:
           dotnet-version: ${{env.DOTNETVERSION}}
 
       - name: Install MAUI Workload
-        run: dotnet workload install maui-windows --ignore-failed-sources
-
-      - name: Restore Dependencies
-        run: dotnet restore ${{env.UI_PROJECT_PATH}}
+        run: dotnet workload install maui-windows
         
       - uses: actions/cache@v3
         with:
@@ -63,10 +60,7 @@ jobs:
           dotnet-version: ${{env.DOTNETVERSION}}
 
       - name: Install MAUI Workload
-        run: dotnet workload install maui-android --ignore-failed-sources
-
-      - name: Restore Dependencies
-        run: dotnet restore ${{env.UI_PROJECT_PATH}}      
+        run: dotnet workload install maui-android
         
       - uses: actions/cache@v3
         with:
@@ -98,11 +92,8 @@ jobs:
           dotnet-version: ${{env.DOTNETVERSION}}
 
       - name: Install MAUI Workloads
-        run: dotnet workload install maui-ios --ignore-failed-sources
+        run: dotnet workload install maui-ios 
 
-      - name: Restore Dependencies
-        run: dotnet restore ${{env.UI_PROJECT_PATH}}
-                
       - uses: actions/cache@v3
         with:
           path: ~/.nuget/packages
