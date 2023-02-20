@@ -25,7 +25,7 @@ internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
             Categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
 
         _ = await sender.Send(query);
-        _ = Messenger.Send(new BudgetsChangedMessage());
         await navigationService.GoBackFromModalAsync();
+        _ = Messenger.Send(new BudgetsChangedMessage());
     }
 }

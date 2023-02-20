@@ -57,8 +57,8 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
         {
             var command = new DeleteBudget.Command(budgetId: Id);
             _ = await sender.Send(command);
-            _ = Messenger.Send(new BudgetsChangedMessage());
             await navigationService.GoBackFromModalAsync();
+            _ = Messenger.Send(new BudgetsChangedMessage());
         }
     }
 
@@ -72,7 +72,7 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
             categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
 
         _ = await sender.Send(command);
-        _ = Messenger.Send(new BudgetsChangedMessage());
         await navigationService.GoBackFromModalAsync();
+        _ = Messenger.Send(new BudgetsChangedMessage());
     }
 }
