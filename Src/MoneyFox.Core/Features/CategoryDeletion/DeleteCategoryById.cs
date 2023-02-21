@@ -20,7 +20,7 @@ public static class DeleteCategoryById
             this.dbContext = dbContext;
         }
 
-        public async Task<Unit> Handle(Command command, CancellationToken cancellationToken)
+        public async Task Handle(Command command, CancellationToken cancellationToken)
         {
             var paymentsWithCategory = await dbContext.Payments.Include(p => p.Category)
                 .Where(p => p.Category != null)
@@ -31,13 +31,11 @@ public static class DeleteCategoryById
             var entityToDelete = await dbContext.Categories.FindAsync(command.CategoryId);
             if (entityToDelete is null)
             {
-                return Unit.Value;
+                return;
             }
 
             dbContext.Categories.Remove(entityToDelete);
             await dbContext.SaveChangesAsync(cancellationToken);
-
-            return Unit.Value;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Features.BudgetUpdate;
+namespace MoneyFox.Core.Features.BudgetUpdate;
 
 using System.Collections.Generic;
 using System.Threading;
@@ -42,7 +42,7 @@ public static class UpdateBudget
             this.appDbContext = appDbContext;
         }
 
-        public async Task<Unit> Handle(Command command, CancellationToken cancellationToken)
+        public async Task Handle(Command command, CancellationToken cancellationToken)
         {
             var loadedBudget = await appDbContext.Budgets.SingleAsync(predicate: b => b.Id == command.BudgetId, cancellationToken: cancellationToken);
             SpendingLimit spendingLimit = new(command.SpendingLimit);
@@ -53,8 +53,6 @@ public static class UpdateBudget
                 budgetInterval: new(command.NumberOfMonths));
 
             await appDbContext.SaveChangesAsync(cancellationToken);
-
-            return Unit.Value;
         }
     }
 }

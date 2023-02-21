@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Features._Legacy_.Payments.DeletePaymentById;
+namespace MoneyFox.Core.Features._Legacy_.Payments.DeletePaymentById;
 
 using System.Linq;
 using System.Threading;
@@ -28,7 +28,7 @@ public class DeletePaymentByIdCommand : IRequest
             this.appDbContext = appDbContext;
         }
 
-        public async Task<Unit> Handle(DeletePaymentByIdCommand request, CancellationToken cancellationToken)
+        public async Task Handle(DeletePaymentByIdCommand request, CancellationToken cancellationToken)
         {
             var entityToDelete = await appDbContext.Payments.Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
@@ -37,7 +37,7 @@ public class DeletePaymentByIdCommand : IRequest
 
             if (entityToDelete == null)
             {
-                return Unit.Value;
+                return;
             }
 
             entityToDelete.ChargedAccount.RemovePaymentAmount(entityToDelete);
@@ -49,8 +49,6 @@ public class DeletePaymentByIdCommand : IRequest
 
             _ = appDbContext.Payments.Remove(entityToDelete);
             _ = await appDbContext.SaveChangesAsync(cancellationToken);
-
-            return Unit.Value;
         }
 
         private async Task DeleteRecurringPaymentAsync(int recurringPaymentId)

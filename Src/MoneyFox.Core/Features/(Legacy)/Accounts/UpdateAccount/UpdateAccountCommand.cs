@@ -19,13 +19,11 @@ public static class UpdateAccount
             this.appDbContext = appDbContext;
         }
 
-        public async Task<Unit> Handle(Command command, CancellationToken cancellationToken)
+        public async Task Handle(Command command, CancellationToken cancellationToken)
         {
             var existingAccount = await appDbContext.Accounts.SingleAsync(predicate: b => b.Id == command.Id, cancellationToken: cancellationToken);
             existingAccount.Change(name: command.Name, note: command.Note ?? "", isExcluded: command.IsExcluded);
             await appDbContext.SaveChangesAsync(cancellationToken);
-
-            return Unit.Value;
         }
     }
 }

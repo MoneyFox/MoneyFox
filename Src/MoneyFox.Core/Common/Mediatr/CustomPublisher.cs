@@ -11,14 +11,14 @@ public class CustomPublisher : ICustomPublisher
 {
     private readonly IDictionary<PublishStrategy, IMediator> publishStrategies = new Dictionary<PublishStrategy, IMediator>();
 
-    public CustomPublisher(ServiceFactory serviceFactory)
+    public CustomPublisher(IServiceProvider serviceProvider)
     {
-        publishStrategies[PublishStrategy.Async] = new CustomMediator(serviceFactory: serviceFactory, publish: AsyncContinueOnException);
-        publishStrategies[PublishStrategy.ParallelNoWait] = new CustomMediator(serviceFactory: serviceFactory, publish: ParallelNoWait);
-        publishStrategies[PublishStrategy.ParallelWhenAll] = new CustomMediator(serviceFactory: serviceFactory, publish: ParallelWhenAll);
-        publishStrategies[PublishStrategy.ParallelWhenAny] = new CustomMediator(serviceFactory: serviceFactory, publish: ParallelWhenAny);
-        publishStrategies[PublishStrategy.SyncContinueOnException] = new CustomMediator(serviceFactory: serviceFactory, publish: SyncContinueOnException);
-        publishStrategies[PublishStrategy.SyncStopOnException] = new CustomMediator(serviceFactory: serviceFactory, publish: SyncStopOnException);
+        publishStrategies[PublishStrategy.Async] = new CustomMediator(serviceProvider, publish: AsyncContinueOnException);
+        publishStrategies[PublishStrategy.ParallelNoWait] = new CustomMediator(serviceProvider, publish: ParallelNoWait);
+        publishStrategies[PublishStrategy.ParallelWhenAll] = new CustomMediator(serviceProvider, publish: ParallelWhenAll);
+        publishStrategies[PublishStrategy.ParallelWhenAny] = new CustomMediator(serviceProvider, publish: ParallelWhenAny);
+        publishStrategies[PublishStrategy.SyncContinueOnException] = new CustomMediator(serviceProvider, publish: SyncContinueOnException);
+        publishStrategies[PublishStrategy.SyncStopOnException] = new CustomMediator(serviceProvider, publish: SyncStopOnException);
     }
 
     private PublishStrategy DefaultStrategy { get; } = PublishStrategy.SyncContinueOnException;

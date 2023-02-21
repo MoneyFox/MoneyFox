@@ -45,7 +45,7 @@ public class EditCategoryViewModelTests
         await vm.DeleteCommand.ExecuteAsync(null);
 
         // Assert
-        _ = await mediator.Received(1).Send(request: Arg.Any<DeleteCategoryById.Command>(), cancellationToken: Arg.Any<CancellationToken>());
+        await mediator.Received(1).Send(request: Arg.Any<DeleteCategoryById.Command>(), cancellationToken: Arg.Any<CancellationToken>());
         await navigationService.Received(1).GoBackFromModalAsync();
     }
 
@@ -59,7 +59,7 @@ public class EditCategoryViewModelTests
         await vm.DeleteCommand.ExecuteAsync(null);
 
         // Assert
-        _ = await mediator.Received(0).Send(request: Arg.Any<DeleteCategoryById.Command>(), cancellationToken: Arg.Any<CancellationToken>());
+        await mediator.Received(0).Send(request: Arg.Any<DeleteCategoryById.Command>(), cancellationToken: Arg.Any<CancellationToken>());
         await navigationService.Received(0).GoBackFromModalAsync();
     }
 }

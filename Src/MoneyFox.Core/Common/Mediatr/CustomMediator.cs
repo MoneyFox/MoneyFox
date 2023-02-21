@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Common.Mediatr;
+namespace MoneyFox.Core.Common.Mediatr;
 
 using System;
 using System.Collections.Generic;
@@ -11,8 +11,8 @@ public class CustomMediator : Mediator
     private readonly Func<IEnumerable<Func<INotification, CancellationToken, Task>>, INotification, CancellationToken, Task> publish;
 
     public CustomMediator(
-        ServiceFactory serviceFactory,
-        Func<IEnumerable<Func<INotification, CancellationToken, Task>>, INotification, CancellationToken, Task> publish) : base(serviceFactory)
+        IServiceProvider serviceProvider,
+        Func<IEnumerable<Func<INotification, CancellationToken, Task>>, INotification, CancellationToken, Task> publish) : base(serviceProvider)
     {
         this.publish = publish;
     }

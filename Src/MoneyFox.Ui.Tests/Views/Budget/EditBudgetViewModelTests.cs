@@ -98,7 +98,7 @@ public class EditBudgetViewModelTests
         {
             // Capture
             UpdateBudget.Command? capturedCommand = null;
-            _ = await sender.Send(Arg.Do<UpdateBudget.Command>(q => capturedCommand = q));
+            await sender.Send(Arg.Do<UpdateBudget.Command>(q => capturedCommand = q));
 
             // Arrange
             TestData.DefaultBudget testBudget = new();
@@ -162,7 +162,7 @@ public class EditBudgetViewModelTests
         {
             // Capture
             DeleteBudget.Command? capturedCommand = null;
-            _ = await sender.Send(Arg.Do<DeleteBudget.Command>(q => capturedCommand = q));
+            await sender.Send(Arg.Do<DeleteBudget.Command>(q => capturedCommand = q));
 
             // Arrange
             _ = dialogService.ShowConfirmMessageAsync(title: Arg.Any<string>(), message: Arg.Any<string>(), positiveButtonText: Arg.Any<string>())
@@ -199,7 +199,7 @@ public class EditBudgetViewModelTests
             await viewModel.DeleteBudgetCommand.ExecuteAsync(null);
 
             // Assert
-            _ = await sender.Received(0).Send(Arg.Any<DeleteBudget.Command>());
+            await sender.Received(0).Send(Arg.Any<DeleteBudget.Command>());
             await navigationService.Received(0).GoBackFromModalAsync();
         }
     }

@@ -21,7 +21,7 @@ public class CreateRecurringPaymentsCommand : IRequest
             this.appDbContext = appDbContext;
         }
 
-        public async Task<Unit> Handle(CreateRecurringPaymentsCommand request, CancellationToken cancellationToken)
+        public async Task Handle(CreateRecurringPaymentsCommand request, CancellationToken cancellationToken)
         {
             var recurringPayments = await appDbContext.RecurringPayments.Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
@@ -49,8 +49,6 @@ public class CreateRecurringPaymentsCommand : IRequest
             Log.Information(messageTemplate: "Create {Count} recurring payments", propertyValue: recPaymentsToCreate.Count);
             appDbContext.Payments.AddRange(recPaymentsToCreate);
             _ = await appDbContext.SaveChangesAsync(cancellationToken);
-
-            return Unit.Value;
         }
     }
 }
