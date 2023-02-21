@@ -88,6 +88,7 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
 
     public async Task InitializeAsync(int accountId)
     {
+        IsActive = true;
         SelectedAccount = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
         await LoadPaymentsByMessageAsync(new());
     }

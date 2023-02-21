@@ -59,6 +59,7 @@ public sealed class AccountListViewModel : BasePageViewModel, IRecipient<Account
     {
         try
         {
+            IsActive = true;
             if (isRunning)
             {
                 return;
