@@ -1,9 +1,9 @@
 namespace MoneyFox.Core.InversionOfControl;
 
 using Common;
-using Common.Mediatr;
 using Common.Settings;
 using MediatR;
+using MediatR.NotificationPublishers;
 using Microsoft.Extensions.DependencyInjection;
 
 public sealed class CoreConfig
@@ -22,8 +22,11 @@ public sealed class CoreConfig
 
     private static void RegisterMediatr(IServiceCollection serviceCollection)
     {
-        _ = serviceCollection.AddMediatR(typeof(CustomMediator));
-        _ = serviceCollection.AddTransient<ICustomPublisher, CustomPublisher>();
+        _ = serviceCollection.AddMediatR(cfg =>
+        {
+            cfg.NotificationPublisher = new TaskWhenAllPublisher();
+            cfg.NotificationPublisherType = typeof(TaskWhenAllPublisher);
+        });
     }
 
     private static void RegisterFacades(IServiceCollection serviceCollection)
