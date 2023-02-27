@@ -103,6 +103,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
 
     protected async Task InitializeAsync()
     {
+        IsActive = true;
         var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
         ChargedAccounts = new(accounts);
         TargetAccounts = new(accounts);
