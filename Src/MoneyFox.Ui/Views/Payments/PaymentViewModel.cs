@@ -39,17 +39,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public int Id
     {
         get => id;
-
-        set
-        {
-            if (id == value)
-            {
-                return;
-            }
-
-            id = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref id, value);
     }
 
     /// <summary>
@@ -60,17 +50,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public int ChargedAccountId
     {
         get => chargedAccountId;
-
-        set
-        {
-            if (chargedAccountId == value)
-            {
-                return;
-            }
-
-            chargedAccountId = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref id, value);
     }
 
     /// <summary>
@@ -79,17 +59,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public int? TargetAccountId
     {
         get => targetAccountId;
-
-        set
-        {
-            if (targetAccountId == value)
-            {
-                return;
-            }
-
-            targetAccountId = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref targetAccountId, value);
     }
 
     /// <summary>
@@ -98,17 +68,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public DateTime Date
     {
         get => date;
-
-        set
-        {
-            if (date == value)
-            {
-                return;
-            }
-
-            date = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref date, value);
     }
 
     /// <summary>
@@ -117,17 +77,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public decimal Amount
     {
         get => amount;
-
-        set
-        {
-            if (Math.Abs(amount - value) < DECIMAL_DELTA)
-            {
-                return;
-            }
-
-            amount = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref amount, value);
     }
 
     /// <summary>
@@ -137,17 +87,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public bool IsCleared
     {
         get => isCleared;
-
-        set
-        {
-            if (isCleared == value)
-            {
-                return;
-            }
-
-            isCleared = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref isCleared, value);
     }
 
     /// <summary>
@@ -156,18 +96,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public PaymentType Type
     {
         get => type;
-
-        set
-        {
-            if (type == value)
-            {
-                return;
-            }
-
-            type = value;
-            OnPropertyChanged();
-            OnPropertyChanged(nameof(IsTransfer));
-        }
+        set => SetProperty(ref type, value);
     }
 
     /// <summary>
@@ -176,17 +105,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public string Note
     {
         get => note;
-
-        set
-        {
-            if (note == value)
-            {
-                return;
-            }
-
-            note = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref note, value);
     }
 
     /// <summary>
@@ -195,50 +114,23 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public bool IsRecurring
     {
         get => isRecurring;
-
         set
         {
-            if (isRecurring == value)
-            {
-                return;
-            }
-
-            isRecurring = value;
+            SetProperty(ref isRecurring, value);
             RecurringPayment = isRecurring ? new RecurringPaymentViewModel() : null;
-            OnPropertyChanged();
         }
     }
 
     public DateTime Created
     {
         get => created;
-
-        set
-        {
-            if (created == value)
-            {
-                return;
-            }
-
-            created = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref created, value);
     }
 
     public DateTime LastModified
     {
         get => lastModified;
-
-        set
-        {
-            if (lastModified == value)
-            {
-                return;
-            }
-
-            lastModified = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref lastModified, value);
     }
 
     /// <summary>
@@ -248,17 +140,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public AccountViewModel ChargedAccount
     {
         get => chargedAccount;
-
-        set
-        {
-            if (chargedAccount == value)
-            {
-                return;
-            }
-
-            chargedAccount = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref chargedAccount, value);
     }
 
     /// <summary>
@@ -268,17 +150,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public AccountViewModel? TargetAccount
     {
         get => targetAccount;
-
-        set
-        {
-            if (targetAccount == value)
-            {
-                return;
-            }
-
-            targetAccount = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref targetAccount, value);
     }
 
     /// <summary>
@@ -287,17 +159,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public SelectedCategoryViewModel? Category
     {
         get => categoryViewModel;
-
-        set
-        {
-            if (categoryViewModel == value)
-            {
-                return;
-            }
-
-            categoryViewModel = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref categoryViewModel, value);
     }
 
     /// <summary>
@@ -306,17 +168,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public RecurringPaymentViewModel? RecurringPayment
     {
         get => recurringPaymentViewModel;
-
-        set
-        {
-            if (recurringPaymentViewModel == value)
-            {
-                return;
-            }
-
-            recurringPaymentViewModel = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref recurringPaymentViewModel, value);
     }
 
     /// <summary>
@@ -330,17 +182,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public int CurrentAccountId
     {
         get => currentAccountId;
-
-        set
-        {
-            if (currentAccountId == value)
-            {
-                return;
-            }
-
-            currentAccountId = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref currentAccountId, value);
     }
 
     public void CreateMappings(Profile configuration)
