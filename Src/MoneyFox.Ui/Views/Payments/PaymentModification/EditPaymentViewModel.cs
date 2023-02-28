@@ -7,6 +7,7 @@ using Core.Features._Legacy_.Payments.DeletePaymentById;
 using Core.Features._Legacy_.Payments.UpdatePayment;
 using Core.Queries;
 using MediatR;
+using MoneyFox.Ui.Views.Payments.PaymentList;
 using Resources.Strings;
 
 internal class EditPaymentViewModel : ModifyPaymentViewModel
@@ -63,7 +64,7 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel
             Type: SelectedPayment.Type,
             Note: SelectedPayment.Note,
             IsRecurring: SelectedPayment.IsRecurring,
-            CategoryId: SelectedPayment.Category?.Id ?? 0,
+            CategoryId: SelectedCategory?.Id ?? 0,
             ChargedAccountId: SelectedPayment.ChargedAccount?.Id ?? 0,
             TargetAccountId: SelectedPayment.TargetAccount?.Id ?? 0,
             UpdateRecurringPayment: updateRecurring,

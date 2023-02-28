@@ -12,6 +12,7 @@ using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Messages;
 using Microsoft.AppCenter.Crashes;
+using MoneyFox.Ui.Views.Payments.PaymentList;
 using Resources.Strings;
 using Serilog;
 
@@ -24,6 +25,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
     private ObservableCollection<AccountViewModel> chargedAccounts = new();
 
     private PaymentViewModel selectedPayment = new();
+    private SelectedCategoryViewModel? selectedCategory;
     private ObservableCollection<AccountViewModel> targetAccounts = new();
 
     protected ModifyPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, IToastService toastService)
@@ -41,6 +43,17 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
         set
         {
             selectedPayment = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public SelectedCategoryViewModel? SelectedCategory
+    {
+        get => selectedCategory;
+
+        set
+        {
+            selectedCategory = value;
             OnPropertyChanged();
         }
     }
@@ -89,7 +102,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
 
     public AsyncRelayCommand GoToSelectCategoryDialogCommand => new(async () => await Shell.Current.GoToModalAsync(Routes.SelectCategoryRoute));
 
-    public RelayCommand ResetCategoryCommand => new(() => SelectedPayment.Category = null);
+    public RelayCommand ResetCategoryCommand => new(() => SelectedCategory = null);
 
     protected bool IsFirstLoad { get; set; } = true;
 
@@ -99,7 +112,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
     {
         IsActive = true;
         var category = await mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId));
-        SelectedPayment.Category = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
+        SelectedCategory = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
     }
 
     protected async Task InitializeAsync()
@@ -128,7 +141,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
             return;
         }
 
-        if (SelectedPayment.Category?.RequireNote is true && string.IsNullOrEmpty(SelectedPayment.Note))
+        if (SelectedCategory?.RequireNote is true && string.IsNullOrEmpty(SelectedPayment.Note))
         {
             await dialogService.ShowMessageAsync(title: Translations.MandatoryFieldEmptyTitle, message: Translations.ANoteForPaymentIsRequired);
 

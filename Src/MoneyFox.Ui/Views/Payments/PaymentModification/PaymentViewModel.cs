@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.Views.Payments;
+namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
 using Accounts;
 using AutoMapper;
@@ -11,7 +11,6 @@ using PaymentModification;
 public class PaymentViewModel : ObservableObject, IHaveCustomMapping
 {
     private decimal amount;
-    private SelectedCategoryViewModel? categoryViewModel;
 
     private AccountViewModel chargedAccount = null!;
     private int chargedAccountId;
@@ -157,15 +156,6 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     {
         get => targetAccount;
         set => SetProperty( ref targetAccount,   value);
-    }
-
-    /// <summary>
-    ///     The <see cref="Category" /> for this payment
-    /// </summary>
-    public SelectedCategoryViewModel? Category
-    {
-        get => categoryViewModel;
-        set => SetProperty( ref categoryViewModel,   value);
     }
 
     /// <summary>

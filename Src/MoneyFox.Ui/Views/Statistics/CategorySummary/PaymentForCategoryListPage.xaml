@@ -7,10 +7,11 @@
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:views="clr-namespace:MoneyFox.Ui.Views"
     xmlns:payments="clr-namespace:MoneyFox.Ui.Views.Payments"
+    xmlns:paymentsList="clr-namespace:MoneyFox.Ui.Views.Payments.PaymentList"
     Title="{Binding Title}">
 
     <ContentPage.Resources>
-        <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
+        <paymentsList:PaymentAmountConverter x:Key="PaymentAmountConverter" />
         <converter:DateFormatConverter x:Key="DateFormatConverter" />
     </ContentPage.Resources>
 
@@ -38,7 +39,7 @@
                             <controls:Card Grid.Row="2">
                                 <StackLayout BindableLayout.ItemsSource="{Binding .}">
                                     <BindableLayout.ItemTemplate>
-                                        <DataTemplate x:DataType="payments:PaymentViewModel">
+                                        <DataTemplate x:DataType="paymentsList:PaymentListItemViewModel">
                                             <StackLayout Padding="9,6,9,3">
 
                                                 <StackLayout.GestureRecognizers>
