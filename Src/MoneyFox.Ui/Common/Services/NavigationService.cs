@@ -15,6 +15,12 @@ internal sealed class NavigationService : INavigationService
         await Shell.Current.GoToAsync(pageName);
     }
 
+    public async Task NavigateBackAsync()
+    {
+        Analytics.TrackEvent($"Navigate back");
+        await Shell.Current.GoToAsync("..");
+    }
+
     public async Task OpenModalAsync<T>()
     {
         var pageName = typeof(T).Name;
