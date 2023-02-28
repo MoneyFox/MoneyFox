@@ -2,7 +2,7 @@ namespace MoneyFox.Core.InversionOfControl;
 
 using Common;
 using Common.Settings;
-using MediatR;
+using Features._Legacy_.Payments.CreatePayment;
 using MediatR.NotificationPublishers;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -24,6 +24,7 @@ public sealed class CoreConfig
     {
         _ = serviceCollection.AddMediatR(cfg =>
         {
+            cfg.RegisterServicesFromAssembly(typeof(CreatePaymentCommand).Assembly);
             cfg.NotificationPublisher = new TaskWhenAllPublisher();
             cfg.NotificationPublisherType = typeof(TaskWhenAllPublisher);
         });
