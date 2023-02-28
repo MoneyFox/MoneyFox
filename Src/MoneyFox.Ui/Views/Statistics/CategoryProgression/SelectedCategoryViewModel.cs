@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Views.Statistics.CategoryProgression;
+namespace MoneyFox.Ui.Views.Statistics.CategoryProgression;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 
@@ -10,12 +10,30 @@ public class SelectedCategoryViewModel : ObservableObject
     public required int Id
     {
         get => id;
-        set => SetProperty(field: ref id, newValue: value);
+        set
+        {
+            if (id == value)
+            {
+                return;
+            }
+
+            id = value;
+            OnPropertyChanged();
+        }
     }
 
     public required string Name
     {
         get => name;
-        set => SetProperty(field: ref name, newValue: value);
+        set
+        {
+            if (name == value)
+            {
+                return;
+            }
+
+            name = value;
+            OnPropertyChanged();
+        }
     }
 }

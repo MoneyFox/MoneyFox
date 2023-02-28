@@ -11,18 +11,45 @@ public class SelectedCategoryViewModel : ObservableObject
     public required int Id
     {
         get => id;
-        set => SetProperty(field: ref id, newValue: value);
+        set
+        {
+            if (id == value)
+            {
+                return;
+            }
+
+            id = value;
+            OnPropertyChanged();
+        }
     }
 
     public required string Name
     {
         get => name;
-        set => SetProperty(field: ref name, newValue: value);
+        set
+        {
+            if (name == value)
+            {
+                return;
+            }
+
+            name = value;
+            OnPropertyChanged();
+        }
     }
 
     public required bool RequireNote
     {
         get => requireNote;
-        set => SetProperty(field: ref requireNote, newValue: value);
+        set
+        {
+            if (requireNote == value)
+            {
+                return;
+            }
+
+            requireNote = value;
+            OnPropertyChanged();
+        }
     }
 }

@@ -29,7 +29,16 @@ internal sealed class PaymentForCategoryListViewModel : BasePageViewModel, IReci
     public string Title
     {
         get => title;
-        set => SetProperty(field: ref title, newValue: value);
+        set
+        {
+            if (title == value)
+            {
+                return;
+            }
+
+            title = value;
+            OnPropertyChanged();
+        }
     }
 
     public ObservableCollection<DateListGroupCollection<PaymentViewModel>> PaymentList

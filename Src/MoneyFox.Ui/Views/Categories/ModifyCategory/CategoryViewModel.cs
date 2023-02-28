@@ -14,36 +14,90 @@ public class CategoryViewModel : ObservableObject
     public required int Id
     {
         get => id;
-        set => SetProperty(field: ref id, newValue: value);
+        set
+        {
+            if (id == value)
+            {
+                return;
+            }
+
+            id = value;
+            OnPropertyChanged();
+        }
     }
 
     public required string Name
     {
         get => name;
-        set => SetProperty(field: ref name, newValue: value);
+        set
+        {
+            if (name == value)
+            {
+                return;
+            }
+
+            name = value;
+            OnPropertyChanged();
+        }
     }
 
     public required string? Note
     {
         get => note;
-        set => SetProperty(field: ref note, newValue: value);
+        set
+        {
+            if (note == value)
+            {
+                return;
+            }
+
+            note = value;
+            OnPropertyChanged();
+        }
     }
 
     public required bool RequireNote
     {
         get => requireNote;
-        set => SetProperty(field: ref requireNote, newValue: value);
+        set
+        {
+            if (requireNote == value)
+            {
+                return;
+            }
+
+            requireNote = value;
+            OnPropertyChanged();
+        }
     }
 
     public required DateTime Created
     {
         get => created;
-        set => SetProperty(field: ref created, newValue: value);
+        set
+        {
+            if (created == value)
+            {
+                return;
+            }
+
+            created = value;
+            OnPropertyChanged();
+        }
     }
 
     public required DateTime? LastModified
     {
         get => lastModified;
-        set => SetProperty(field: ref lastModified, newValue: value);
+        set
+        {
+            if (lastModified == value)
+            {
+                return;
+            }
+
+            lastModified = value;
+            OnPropertyChanged();
+        }
     }
 }
