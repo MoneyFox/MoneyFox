@@ -12,7 +12,6 @@ using Resources.Strings;
 internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
 {
     private readonly IDialogService dialogService;
-    private readonly IMapper mapper;
     private readonly IMediator mediator;
 
     public AddPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, IToastService toastService) : base(
@@ -22,7 +21,6 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
         toastService: toastService)
     {
         this.mediator = mediator;
-        this.mapper = mapper;
         this.dialogService = dialogService;
     }
 
