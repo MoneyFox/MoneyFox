@@ -108,10 +108,9 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
 
     public AsyncRelayCommand SaveCommand => new(SaveAsync);
 
-    public async void Receive(CategorySelectedMessage message)
+    public void Receive(CategorySelectedMessage message)
     {
-        IsActive = true;
-        var category = await mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId));
+        var category = mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId)).GetAwaiter().GetResult();
         SelectedCategory = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
     }
 
