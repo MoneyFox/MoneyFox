@@ -39,6 +39,11 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel
         await InitializeAsync();
         var payment = await mediator.Send(new GetPaymentByIdQuery(paymentId));
         SelectedPayment = mapper.Map<PaymentViewModel>(payment);
+
+        if (payment.Category != null)
+        {
+            SelectedCategory = new SelectedCategoryViewModel { Id = payment.Category.Id, Name = payment.Category.Name, RequireNote = payment.Category.RequireNote };
+        }
         IsFirstLoad = false;
     }
 

@@ -46,11 +46,11 @@ internal sealed class PaymentForCategoryListViewModel : BasePageViewModel, IReci
     public AsyncRelayCommand<PaymentListItemViewModel> GoToEditPaymentCommand
         => new(async pvm => await Shell.Current.GoToAsync($"{Routes.EditPaymentRoute}?paymentId={pvm!.Id}"));
 
-    public async void Receive(PaymentsForCategoryMessage message)
+    public void Receive(PaymentsForCategoryMessage message)
     {
         if (message.CategoryId.HasValue)
         {
-            var category = await mediator.Send(new GetCategoryByIdQuery(message.CategoryId.Value));
+            var category = mediator.Send(new GetCategoryByIdQuery(message.CategoryId.Value)).GetAwaiter().GetResult();
             Title = string.Format(format: Translations.PaymentsForCategoryTitle, arg0: category.Name);
         }
         else
@@ -59,8 +59,7 @@ internal sealed class PaymentForCategoryListViewModel : BasePageViewModel, IReci
         }
 
         var loadedPayments = mapper.Map<List<PaymentListItemViewModel>>(
-            await mediator.Send(
-                new GetPaymentsForCategorySummary.Query(CategoryId: message.CategoryId, DateRangeFrom: message.StartDate, DateRangeTo: message.EndDate)));
+            mediator.Send(new GetPaymentsForCategorySummary.Query(CategoryId: message.CategoryId, DateRangeFrom: message.StartDate, DateRangeTo: message.EndDate)).GetAwaiter().GetResult());
 
         var dailyItems = DateListGroupCollection<PaymentListItemViewModel>.CreateGroups(
             items: loadedPayments,

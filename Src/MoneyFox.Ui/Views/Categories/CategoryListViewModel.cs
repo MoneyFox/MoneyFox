@@ -48,9 +48,9 @@ public class CategoryListViewModel : BasePageViewModel, IRecipient<CategoriesCha
 
     public AsyncRelayCommand<CategoryListItemViewModel> DeleteCategoryCommand => new(async vm => await DeleteCategoryAsync(vm));
 
-    public async void Receive(CategoriesChangedMessage message)
+    public void Receive(CategoriesChangedMessage message)
     {
-        await SearchCategoryAsync();
+        SearchCategoryAsync().GetAwaiter().GetResult();
     }
 
     public async Task InitializeAsync()
