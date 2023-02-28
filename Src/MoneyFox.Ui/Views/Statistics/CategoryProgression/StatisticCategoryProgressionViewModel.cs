@@ -27,16 +27,7 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
     public SelectedCategoryViewModel? SelectedCategory
     {
         get => selectedCategory;
-        private set
-        {
-            if (selectedCategory == value)
-            {
-                return;
-            }
-
-            selectedCategory = value;
-            OnPropertyChanged();
-        }
+        private set => SetProperty(field: ref selectedCategory, newValue: value);
     }
 
     public ObservableCollection<ISeries> Series { get; } = new();

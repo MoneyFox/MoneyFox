@@ -13,16 +13,7 @@ public sealed class BudgetListItemViewModel : ObservableObject
     public string Name
     {
         get => name;
-        set
-        {
-            if (name == value)
-            {
-                return;
-            }
-
-            name = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(field: ref name, newValue: value);
     }
 
     public double SpendingPercentage => (double)CurrentSpending / (double)SpendingLimit;
@@ -30,29 +21,12 @@ public sealed class BudgetListItemViewModel : ObservableObject
     public decimal CurrentSpending
     {
         get => currentSpending;
-        set
-        {
-            if (currentSpending == value)
-            {
-                return;
-            }
-
-            currentSpending = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(field: ref currentSpending, newValue: value);
     }
 
     public decimal SpendingLimit
     {
         get => spendingLimit;
-        set
-        {
-            if (spendingLimit == value)
-            {
-                return;
-            }
-            spendingLimit = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(field: ref spendingLimit, newValue: value);
     }
 }

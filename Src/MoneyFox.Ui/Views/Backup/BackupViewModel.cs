@@ -65,16 +65,7 @@ internal sealed class BackupViewModel : BasePageViewModel
     public ImageSource? ProfilePicture
     {
         get => profilePicture;
-        set
-        {
-            if (profilePicture == value)
-            {
-                return;
-            }
-
-            profilePicture = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(field: ref profilePicture, newValue: value);
     }
 
     public AsyncRelayCommand InitializeCommand => new(async () => await InitializeAsync());
@@ -90,6 +81,7 @@ internal sealed class BackupViewModel : BasePageViewModel
     public DateTime BackupLastModified
     {
         get => backupLastModified;
+
         private set
         {
             if (backupLastModified == value)
