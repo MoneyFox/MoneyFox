@@ -38,7 +38,7 @@ public static class UpdatePayment
             this.appDbContext = appDbContext;
         }
 
-        public async Task<Unit> Handle(Command command, CancellationToken cancellationToken)
+        public async Task Handle(Command command, CancellationToken cancellationToken)
         {
             var existingPayment = await appDbContext.Payments.Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
@@ -75,8 +75,6 @@ public static class UpdatePayment
             }
 
             _ = await appDbContext.SaveChangesAsync(cancellationToken);
-
-            return Unit.Value;
         }
 
         private static void HandleRecurringPayment(Command request, Payment existingPayment)

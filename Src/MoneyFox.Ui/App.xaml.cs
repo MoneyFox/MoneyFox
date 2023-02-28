@@ -236,8 +236,8 @@ public partial class App
                 WeakReferenceMessenger.Default.Send(new BackupRestoredMessage());
             }
 
-            _ = await mediator.Send(new ClearPaymentsCommand());
-            _ = await mediator.Send(new CreateRecurringPaymentsCommand());
+            await mediator.Send(new ClearPaymentsCommand());
+            await mediator.Send(new CreateRecurringPaymentsCommand());
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
         }
         catch (Exception ex)

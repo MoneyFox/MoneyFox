@@ -59,7 +59,7 @@ public class AddBudgetViewModelTests
     {
         // Capture
         CreateBudget.Command? passedQuery = null;
-        _ = await sender.Send(Arg.Do<CreateBudget.Command>(q => passedQuery = q));
+        await sender.Send(Arg.Do<CreateBudget.Command>(q => passedQuery = q));
 
         // Arrange
         TestData.DefaultBudget testBudget = new();

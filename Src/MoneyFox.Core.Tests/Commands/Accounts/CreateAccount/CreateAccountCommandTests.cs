@@ -16,7 +16,7 @@ public class CreateAccountCommandTests : InMemoryTestBase
     {
         // Arrange
         // Act
-        _ = await handler.Handle(request: new(name: "test", currentBalance: 80), cancellationToken: default);
+        await handler.Handle(request: new(name: "test", currentBalance: 80), cancellationToken: default);
 
         // Assert
         _ = Assert.Single(Context.Accounts);

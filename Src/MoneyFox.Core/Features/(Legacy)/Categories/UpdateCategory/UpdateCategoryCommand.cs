@@ -19,13 +19,11 @@ public static class UpdateCategory
             this.appDbContext = appDbContext;
         }
 
-        public async Task<Unit> Handle(Command command, CancellationToken cancellationToken)
+        public async Task Handle(Command command, CancellationToken cancellationToken)
         {
             var existingCategory = await appDbContext.Categories.SingleAsync(predicate: b => b.Id == command.Id, cancellationToken: cancellationToken);
             existingCategory.UpdateData(name: command.Name, note: command.Note ?? "", requireNote: command.RequireNote);
             await appDbContext.SaveChangesAsync(cancellationToken);
-
-            return Unit.Value;
         }
     }
 }

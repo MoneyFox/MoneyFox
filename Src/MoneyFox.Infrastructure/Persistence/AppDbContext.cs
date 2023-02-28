@@ -4,23 +4,23 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Core.Common.Interfaces;
-using Core.Common.Mediatr;
 using Core.Common.Settings;
 using Core.Notifications.DatabaseChanged;
 using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.BudgetAggregate;
 using Domain.Aggregates.CategoryAggregate;
+using MediatR;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
 public class AppDbContext : DbContext, IAppDbContext
 {
-    private readonly ICustomPublisher? publisher;
+    private readonly IPublisher? publisher;
     private readonly ISettingsFacade? settingsFacade;
 
-    public AppDbContext(DbContextOptions options, ICustomPublisher? publisher, ISettingsFacade? settingsFacade) : base(options)
+    public AppDbContext(DbContextOptions options, IPublisher? publisher, ISettingsFacade? settingsFacade) : base(options)
     {
         this.publisher = publisher;
         this.settingsFacade = settingsFacade;
@@ -67,7 +67,6 @@ public class AppDbContext : DbContext, IAppDbContext
         {
             await publisher.Publish(
                 notification: new DataBaseChanged.Notification(),
-                strategy: PublishStrategy.ParallelNoWait,
                 cancellationToken: cancellationToken);
         }
 

@@ -1,10 +1,10 @@
 namespace MoneyFox.Infrastructure.Tests;
 
-using Core.Common.Mediatr;
 using Core.Common.Settings;
 using Core.Notifications.DatabaseChanged;
 using Domain.Aggregates.AccountAggregate;
 using FluentAssertions;
+using MediatR;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using NSubstitute;
@@ -12,12 +12,12 @@ using Persistence;
 
 public sealed class AppDbContextTests
 {
-    private readonly ICustomPublisher publisher;
+    private readonly IPublisher publisher;
     private readonly ISettingsFacade settingsFacade;
 
     public AppDbContextTests()
     {
-        publisher = Substitute.For<ICustomPublisher>();
+        publisher = Substitute.For<IPublisher>();
         settingsFacade = Substitute.For<ISettingsFacade>();
     }
 
@@ -45,7 +45,6 @@ public sealed class AppDbContextTests
         await publisher.Received()
             .Publish(
                 notification: Arg.Any<DataBaseChanged.Notification>(),
-                strategy: PublishStrategy.ParallelNoWait,
                 cancellationToken: Arg.Any<CancellationToken>());
     }
 
@@ -73,7 +72,6 @@ public sealed class AppDbContextTests
         await publisher.Received()
             .Publish(
                 notification: Arg.Any<DataBaseChanged.Notification>(),
-                strategy: PublishStrategy.ParallelNoWait,
                 cancellationToken: Arg.Any<CancellationToken>());
     }
 }

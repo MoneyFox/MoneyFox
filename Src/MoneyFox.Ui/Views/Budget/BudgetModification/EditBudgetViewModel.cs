@@ -56,7 +56,7 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
         if (await dialogService.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeleteBudgetConfirmationMessage))
         {
             var command = new DeleteBudget.Command(budgetId: Id);
-            _ = await sender.Send(command);
+            await sender.Send(command);
             await navigationService.GoBackFromModalAsync();
             _ = Messenger.Send(new BudgetsChangedMessage());
         }
@@ -71,7 +71,7 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
             numberOfMonths: NumberOfMonths,
             categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
 
-        _ = await sender.Send(command);
+        await sender.Send(command);
         await navigationService.GoBackFromModalAsync();
         _ = Messenger.Send(new BudgetsChangedMessage());
     }

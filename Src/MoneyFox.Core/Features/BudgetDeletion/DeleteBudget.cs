@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Features.BudgetDeletion;
+namespace MoneyFox.Core.Features.BudgetDeletion;
 
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,7 +19,7 @@ public static class DeleteBudget
         public BudgetId BudgetId { get; }
     }
 
-    public class Handler : IRequestHandler<Command, Unit>
+    public class Handler : IRequestHandler<Command>
     {
         private readonly IAppDbContext appDbContext;
 
@@ -28,18 +28,16 @@ public static class DeleteBudget
             this.appDbContext = appDbContext;
         }
 
-        public async Task<Unit> Handle(Command command, CancellationToken cancellationToken)
+        public async Task Handle(Command command, CancellationToken cancellationToken)
         {
             var budgetToRemove = await appDbContext.Budgets.FirstOrDefaultAsync(predicate: b => b.Id == command.BudgetId, cancellationToken: cancellationToken);
             if (budgetToRemove is null)
             {
-                return Unit.Value;
+                return;
             }
 
             appDbContext.Budgets.Remove(budgetToRemove);
             await appDbContext.SaveChangesAsync(cancellationToken);
-
-            return Unit.Value;
         }
     }
 }

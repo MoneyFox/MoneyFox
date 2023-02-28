@@ -24,7 +24,7 @@ internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
             BudgetInterval: new(NumberOfMonths),
             Categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
 
-        _ = await sender.Send(query);
+        await sender.Send(query);
         await navigationService.GoBackFromModalAsync();
         _ = Messenger.Send(new BudgetsChangedMessage());
     }

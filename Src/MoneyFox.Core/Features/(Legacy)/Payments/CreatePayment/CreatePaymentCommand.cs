@@ -28,7 +28,7 @@ public class CreatePaymentCommand : IRequest
         }
 
         /// <inheritdoc />
-        public async Task<Unit> Handle(CreatePaymentCommand request, CancellationToken cancellationToken)
+        public async Task Handle(CreatePaymentCommand request, CancellationToken cancellationToken)
         {
             appDbContext.Entry(request.PaymentToSave).State = EntityState.Added;
             appDbContext.Entry(request.PaymentToSave.ChargedAccount).State = EntityState.Modified;
@@ -53,8 +53,6 @@ public class CreatePaymentCommand : IRequest
             }
 
             _ = await appDbContext.SaveChangesAsync(cancellationToken);
-
-            return Unit.Value;
         }
     }
 }
