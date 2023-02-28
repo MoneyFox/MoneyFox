@@ -8,7 +8,7 @@ using Core.Common.Interfaces.Mapping;
 using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
 
-public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
+public class RecurringPaymentViewModel : ObservableViewModelBase, IHaveCustomMapping
 {
     private const decimal DECIMAL_DELTA = 0.01m;
     private decimal amount;
@@ -36,65 +36,26 @@ public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
     public int Id
     {
         get => id;
-
-        set
-        {
-            if (id == value)
-            {
-                return;
-            }
-
-            id = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty( ref id,   value);
     }
 
     public DateTime StartDate
     {
         get => startDate;
 
-        set
-        {
-            if (startDate == value)
-            {
-                return;
-            }
-
-            startDate = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty( ref startDate,   value);
     }
 
     public bool IsLastDayOfMonth
     {
         get => isLastDayOfMonth;
-
-        set
-        {
-            if (isLastDayOfMonth == value)
-            {
-                return;
-            }
-
-            isLastDayOfMonth = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty( ref isLastDayOfMonth,   value);
     }
 
     public DateTime? EndDate
     {
         get => endDate;
-
-        set
-        {
-            if (endDate == value)
-            {
-                return;
-            }
-
-            endDate = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty( ref endDate,   value);
     }
 
     public bool IsEndless
@@ -103,14 +64,9 @@ public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
 
         set
         {
-            if (isEndless == value)
-            {
-                return;
-            }
-
-            isEndless = value;
+            SetProperty(ref isEndless, value);
             EndDate = isEndless is false ? DateTime.Today : null;
-            OnPropertyChanged();
+            RaisePropertyChanged(nameof(isEndless));
         }
     }
 
@@ -120,17 +76,7 @@ public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
     public decimal Amount
     {
         get => amount;
-
-        set
-        {
-            if (Math.Abs(amount - value) < DECIMAL_DELTA)
-            {
-                return;
-            }
-
-            amount = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty( ref amount,   value);
     }
 
     /// <summary>
@@ -139,17 +85,7 @@ public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
     public PaymentType Type
     {
         get => type;
-
-        set
-        {
-            if (type == value)
-            {
-                return;
-            }
-
-            type = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty( ref type,   value);
     }
 
     public PaymentRecurrence Recurrence
@@ -158,12 +94,7 @@ public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
 
         set
         {
-            if (recurrence == value)
-            {
-                return;
-            }
-
-            recurrence = value;
+            SetProperty(ref recurrence, value);
 
             // If recurrence is changed to a type that doesn't allow the Last Day of Month flag, force the flag to false if it's true
             if (IsLastDayOfMonth && !AllowLastDayOfMonth)
@@ -171,10 +102,7 @@ public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
                 IsLastDayOfMonth = false;
             }
 
-            OnPropertyChanged();
-
-            // Notify that the calculated AllowLastDayOfMonth property has changed so the control visibility is refreshed.
-            OnPropertyChanged("AllowLastDayOfMonth");
+            RaisePropertyChanged(nameof(AllowLastDayOfMonth));
         }
     }
 
@@ -189,17 +117,7 @@ public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
     public string Note
     {
         get => note;
-
-        set
-        {
-            if (note == value)
-            {
-                return;
-            }
-
-            note = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty( ref note,   value);
     }
 
     /// <summary>
@@ -209,17 +127,7 @@ public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
     public AccountViewModel ChargedAccount
     {
         get => chargedAccount;
-
-        set
-        {
-            if (chargedAccount == value)
-            {
-                return;
-            }
-
-            chargedAccount = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty( ref chargedAccount,   value);
     }
 
     /// <summary>
@@ -228,17 +136,7 @@ public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
     public CategoryListItemViewModel? Category
     {
         get => categoryViewModel;
-
-        set
-        {
-            if (categoryViewModel == value)
-            {
-                return;
-            }
-
-            categoryViewModel = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty( ref categoryViewModel,   value);
     }
 
     public void CreateMappings(Profile configuration)

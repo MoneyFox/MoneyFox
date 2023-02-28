@@ -97,13 +97,13 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
 
     public async void Receive(CategorySelectedMessage message)
     {
+        IsActive = true;
         var category = await mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId));
         SelectedPayment.Category = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
     }
 
     protected async Task InitializeAsync()
     {
-        IsActive = true;
         var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
         ChargedAccounts = new(accounts);
         TargetAccounts = new(accounts);

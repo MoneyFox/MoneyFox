@@ -23,7 +23,7 @@ internal sealed class SettingsViewModel : BasePageViewModel
 
         set
         {
-            SetProperty(field: ref selectedCurrency, newValue: value);
+            SetProperty( ref selectedCurrency,   value);
             settingsFacade.DefaultCurrency = selectedCurrency.AlphaIsoCode;
             OnPropertyChanged();
         }

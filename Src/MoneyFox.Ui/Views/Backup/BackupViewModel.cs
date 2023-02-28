@@ -65,7 +65,7 @@ internal sealed class BackupViewModel : BasePageViewModel
     public ImageSource? ProfilePicture
     {
         get => profilePicture;
-        set => SetProperty(field: ref profilePicture, newValue: value);
+        set => SetProperty( ref profilePicture,   value);
     }
 
     public AsyncRelayCommand InitializeCommand => new(async () => await InitializeAsync());

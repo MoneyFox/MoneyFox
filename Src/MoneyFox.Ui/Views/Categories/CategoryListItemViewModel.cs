@@ -5,7 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Core.Common.Interfaces.Mapping;
 using Domain.Aggregates.CategoryAggregate;
 
-public class CategoryListItemViewModel : ObservableObject, IHaveCustomMapping
+public class CategoryListItemViewModel : ObservableViewModelBase, IHaveCustomMapping
 {
     private DateTime created;
     private int id;
@@ -17,97 +17,37 @@ public class CategoryListItemViewModel : ObservableObject, IHaveCustomMapping
     public int Id
     {
         get => id;
-
-        set
-        {
-            if (id == value)
-            {
-                return;
-            }
-
-            id = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty( ref id,   value);
     }
 
     public string Name
     {
         get => name;
-
-        set
-        {
-            if (name == value)
-            {
-                return;
-            }
-
-            name = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty( ref name,   value);
     }
 
     public bool RequireNote
     {
         get => requireNote;
-
-        set
-        {
-            if (requireNote == value)
-            {
-                return;
-            }
-
-            requireNote = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty( ref requireNote,   value);
     }
 
     public DateTime Created
     {
         get => created;
-
-        set
-        {
-            if (created == value)
-            {
-                return;
-            }
-
-            created = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty( ref created,   value);
     }
 
     public DateTime? LastModified
     {
         get => lastModified;
-
-        set
-        {
-            if (lastModified == value)
-            {
-                return;
-            }
-
-            lastModified = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty( ref lastModified,   value);
     }
 
     public string? Note
     {
         get => note;
-
-        set
-        {
-            if (note == value)
-            {
-                return;
-            }
-
-            note = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty( ref note,   value);
     }
 
     public void CreateMappings(Profile configuration)

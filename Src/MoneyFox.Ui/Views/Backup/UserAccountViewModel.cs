@@ -2,7 +2,7 @@ namespace MoneyFox.Ui.Views.Backup;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 
-internal class UserAccountViewModel : ObservableObject
+internal class UserAccountViewModel : ObservableViewModelBase
 {
     private string email = string.Empty;
     private string name = string.Empty;
@@ -10,12 +10,12 @@ internal class UserAccountViewModel : ObservableObject
     public string Name
     {
         get => name;
-        set => SetProperty(field: ref name, newValue: value);
+        set => SetProperty( ref name,   value);
     }
 
     public string Email
     {
         get => email;
-        set => SetProperty(field: ref email, newValue: value);
+        set => SetProperty( ref email,   value);
     }
 }
