@@ -1,8 +1,6 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
-using CommunityToolkit.Mvvm.ComponentModel;
-
-public class SelectedCategoryViewModel : ObservableObject
+public class SelectedCategoryViewModel : ObservableViewModelBase
 {
     private int id;
     private string name = "";
@@ -11,18 +9,18 @@ public class SelectedCategoryViewModel : ObservableObject
     public required int Id
     {
         get => id;
-        set => SetProperty(field: ref id, newValue: value);
+        set => SetProperty(property: ref id, value: value);
     }
 
     public required string Name
     {
         get => name;
-        set => SetProperty(field: ref name, newValue: value);
+        set => SetProperty(property: ref name, value: value);
     }
 
     public required bool RequireNote
     {
         get => requireNote;
-        set => SetProperty(field: ref requireNote, newValue: value);
+        set => SetProperty(property: ref requireNote, value: value);
     }
 }

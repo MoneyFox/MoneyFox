@@ -50,9 +50,9 @@ public sealed class AccountListViewModel : BasePageViewModel, IRecipient<Account
 
     public AsyncRelayCommand<AccountViewModel> DeleteAccountCommand => new(async avm => await DeleteAccountAsync(avm));
 
-    public async void Receive(AccountsChangedMessage message)
+    public void Receive(AccountsChangedMessage message)
     {
-        await InitializeAsync();
+        InitializeAsync().GetAwaiter().GetResult();
     }
 
     public async Task InitializeAsync()

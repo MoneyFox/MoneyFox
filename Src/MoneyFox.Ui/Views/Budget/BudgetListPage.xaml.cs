@@ -10,8 +10,8 @@ public partial class BudgetListPage
 
     public BudgetListViewModel ViewModel => (BudgetListViewModel)BindingContext;
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
-        await ViewModel.InitializeCommand.ExecuteAsync(null);
+        ViewModel.InitializeCommand.ExecuteAsync(null).GetAwaiter().GetResult();
     }
 }

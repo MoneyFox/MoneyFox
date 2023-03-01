@@ -11,9 +11,9 @@ public partial class EditCategoryPage
 
     private EditCategoryViewModel ViewModel => (EditCategoryViewModel)BindingContext;
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
-        await ViewModel.InitializeAsync(categoryId);
+        ViewModel.InitializeAsync(categoryId).GetAwaiter().GetResult();
     }
 
 #pragma warning disable S2376 // Write-only properties should not be used

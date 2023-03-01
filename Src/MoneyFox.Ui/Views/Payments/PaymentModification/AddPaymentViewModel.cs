@@ -12,7 +12,6 @@ using Resources.Strings;
 internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
 {
     private readonly IDialogService dialogService;
-    private readonly IMapper mapper;
     private readonly IMediator mediator;
 
     public AddPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, IToastService toastService) : base(
@@ -22,7 +21,6 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
         toastService: toastService)
     {
         this.mediator = mediator;
-        this.mapper = mapper;
         this.dialogService = dialogService;
     }
 
@@ -51,9 +49,9 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
         var chargedAccount = await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id));
         var targetAccount = SelectedPayment.TargetAccount != null ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id)) : null;
         Category? category = null;
-        if (SelectedPayment.Category is not null)
+        if (SelectedCategory is not null)
         {
-            category = await mediator.Send(new GetCategoryByIdQuery(SelectedPayment.Category.Id));
+            category = await mediator.Send(new GetCategoryByIdQuery(SelectedCategory.Id));
         }
 
         var payment = new Payment(

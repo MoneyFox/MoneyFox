@@ -22,6 +22,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
     private readonly IMediator mediator;
     private readonly IToastService toastService;
     private ObservableCollection<AccountViewModel> chargedAccounts = new();
+    private SelectedCategoryViewModel? selectedCategory;
 
     private PaymentViewModel selectedPayment = new();
     private ObservableCollection<AccountViewModel> targetAccounts = new();
@@ -41,6 +42,17 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
         set
         {
             selectedPayment = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public SelectedCategoryViewModel? SelectedCategory
+    {
+        get => selectedCategory;
+
+        set
+        {
+            selectedCategory = value;
             OnPropertyChanged();
         }
     }
@@ -89,21 +101,20 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
 
     public AsyncRelayCommand GoToSelectCategoryDialogCommand => new(async () => await Shell.Current.GoToModalAsync(Routes.SelectCategoryRoute));
 
-    public RelayCommand ResetCategoryCommand => new(() => SelectedPayment.Category = null);
+    public RelayCommand ResetCategoryCommand => new(() => SelectedCategory = null);
 
     protected bool IsFirstLoad { get; set; } = true;
 
     public AsyncRelayCommand SaveCommand => new(SaveAsync);
 
-    public async void Receive(CategorySelectedMessage message)
+    public void Receive(CategorySelectedMessage message)
     {
-        var category = await mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId));
-        SelectedPayment.Category = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
+        var category = mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId)).GetAwaiter().GetResult();
+        SelectedCategory = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
     }
 
     protected async Task InitializeAsync()
     {
-        IsActive = true;
         var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
         ChargedAccounts = new(accounts);
         TargetAccounts = new(accounts);
@@ -128,7 +139,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
             return;
         }
 
-        if (SelectedPayment.Category?.RequireNote is true && string.IsNullOrEmpty(SelectedPayment.Note))
+        if (SelectedCategory?.RequireNote is true && string.IsNullOrEmpty(SelectedPayment.Note))
         {
             await dialogService.ShowMessageAsync(title: Translations.MandatoryFieldEmptyTitle, message: Translations.ANoteForPaymentIsRequired);
 

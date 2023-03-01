@@ -65,9 +65,7 @@ public class AppDbContext : DbContext, IAppDbContext
         // dispatch events only if save was successful
         if (changeCount > 0)
         {
-            await publisher.Publish(
-                notification: new DataBaseChanged.Notification(),
-                cancellationToken: cancellationToken);
+            await publisher.Publish(notification: new DataBaseChanged.Notification(), cancellationToken: cancellationToken);
         }
 
         return changeCount;

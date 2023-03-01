@@ -11,9 +11,9 @@ public partial class EditPaymentPage
 
     private EditPaymentViewModel ViewModel => (EditPaymentViewModel)BindingContext;
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
-        await ViewModel.InitializeAsync(paymentId);
+        ViewModel.InitializeAsync(paymentId).GetAwaiter().GetResult();
     }
 
 #pragma warning disable S2376 // Write-only properties should not be used

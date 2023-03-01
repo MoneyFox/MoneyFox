@@ -19,7 +19,7 @@ public class GetCategoryByIdTests : InMemoryTestBase
         // Arrange
 
         // Act
-        Func<Task<CategoryData>> act = () => handler.Handle(request: new(999), cancellationToken: default);
+        var act = () => handler.Handle(request: new(999), cancellationToken: default);
 
         // Assert
         _ = await act.Should().ThrowAsync<InvalidOperationException>();

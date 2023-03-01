@@ -10,8 +10,8 @@ public partial class DesktopSelectedCategoryPage : ContentPage
 
     private CategorySelectionViewModel SelectionViewModel => (CategorySelectionViewModel)BindingContext;
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
-        await SelectionViewModel.InitializeAsync();
+        SelectionViewModel.InitializeAsync().GetAwaiter().GetResult();
     }
 }

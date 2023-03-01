@@ -54,11 +54,11 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
 
     public AsyncRelayCommand GoToSelectCategoryDialogCommand => new(async () => await Shell.Current.GoToModalAsync(Routes.SelectCategoryRoute));
 
-    public async void Receive(CategorySelectedMessage message)
+    public void Receive(CategorySelectedMessage message)
     {
-        var category = await Mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId));
+        var category = Mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId)).GetAwaiter().GetResult();
         SelectedCategory = new() { Id = category.Id, Name = category.Name };
-        await LoadAsync();
+        LoadAsync().GetAwaiter().GetResult();
     }
 
     protected override async Task LoadAsync()

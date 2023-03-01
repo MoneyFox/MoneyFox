@@ -9,7 +9,6 @@ using MoneyFox.Ui.Platforms.iOS.Utils;
 
 public class FixedScrollView : ScrollView
 {
-
     public FixedScrollView()
     {
 #if __IOS__

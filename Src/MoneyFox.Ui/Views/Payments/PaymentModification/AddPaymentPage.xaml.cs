@@ -11,9 +11,9 @@ public partial class AddPaymentPage
 
     private AddPaymentViewModel ViewModel => (AddPaymentViewModel)BindingContext;
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
-        await ViewModel.InitializeAsync(defaultChargedAccountId);
+        ViewModel.InitializeAsync(defaultChargedAccountId).GetAwaiter().GetResult();
     }
 
 #pragma warning disable S2376 // Write-only properties should not be used

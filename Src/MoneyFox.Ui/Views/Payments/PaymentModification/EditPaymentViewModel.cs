@@ -38,6 +38,11 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel
         await InitializeAsync();
         var payment = await mediator.Send(new GetPaymentByIdQuery(paymentId));
         SelectedPayment = mapper.Map<PaymentViewModel>(payment);
+        if (payment.Category != null)
+        {
+            SelectedCategory = new() { Id = payment.Category.Id, Name = payment.Category.Name, RequireNote = payment.Category.RequireNote };
+        }
+
         IsFirstLoad = false;
     }
 
@@ -63,7 +68,7 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel
             Type: SelectedPayment.Type,
             Note: SelectedPayment.Note,
             IsRecurring: SelectedPayment.IsRecurring,
-            CategoryId: SelectedPayment.Category?.Id ?? 0,
+            CategoryId: SelectedCategory?.Id ?? 0,
             ChargedAccountId: SelectedPayment.ChargedAccount?.Id ?? 0,
             TargetAccountId: SelectedPayment.TargetAccount?.Id ?? 0,
             UpdateRecurringPayment: updateRecurring,

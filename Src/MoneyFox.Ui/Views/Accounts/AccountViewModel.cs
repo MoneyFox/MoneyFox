@@ -1,13 +1,11 @@
 namespace MoneyFox.Ui.Views.Accounts;
 
 using AutoMapper;
-using CommunityToolkit.Mvvm.ComponentModel;
 using Core.Common.Interfaces.Mapping;
 using Domain.Aggregates.AccountAggregate;
 
-public sealed class AccountViewModel : ObservableObject, IHaveCustomMapping, IEquatable<AccountViewModel>
+public sealed class AccountViewModel : ObservableViewModelBase, IHaveCustomMapping, IEquatable<AccountViewModel>
 {
-    private const decimal DECIMAL_DELTA = 0.01m;
     private DateTime created;
     private decimal currentBalance;
     private decimal endOfMonthBalance;
@@ -23,154 +21,55 @@ public sealed class AccountViewModel : ObservableObject, IHaveCustomMapping, IEq
     {
         get => id;
 
-        set
-        {
-            if (id == value)
-            {
-                return;
-            }
-
-            id = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(property: ref id, value: value);
     }
 
     public string Name
     {
         get => name;
-
-        set
-        {
-            if (name == value)
-            {
-                return;
-            }
-
-            name = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(property: ref name, value: value);
     }
 
-    /// <summary>
-    ///     Current Balance
-    /// </summary>
     public decimal CurrentBalance
     {
         get => currentBalance;
-
-        set
-        {
-            if (Math.Abs(currentBalance - value) < DECIMAL_DELTA)
-            {
-                return;
-            }
-
-            currentBalance = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(property: ref currentBalance, value: value);
     }
 
-    /// <summary>
-    ///     Balance End of Month
-    /// </summary>
     public decimal EndOfMonthBalance
     {
         get => endOfMonthBalance;
-
-        set
-        {
-            endOfMonthBalance = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(property: ref endOfMonthBalance, value: value);
     }
 
-    /// <summary>
-    ///     Note
-    /// </summary>
     public string Note
     {
         get => note;
-
-        set
-        {
-            if (note == value)
-            {
-                return;
-            }
-
-            note = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(property: ref note, value: value);
     }
 
-    /// <summary>
-    ///     Indicator if the account currently is overdrawn.
-    /// </summary>
     public bool IsOverdrawn
     {
         get => isOverdrawn;
-
-        set
-        {
-            if (isOverdrawn == value)
-            {
-                return;
-            }
-
-            isOverdrawn = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(property: ref isOverdrawn, value: value);
     }
 
-    /// <summary>
-    ///     Indicator if the account is excluded from the balance calculation.
-    /// </summary>
     public bool IsExcluded
     {
         get => isExcluded;
-
-        set
-        {
-            if (isExcluded == value)
-            {
-                return;
-            }
-
-            isExcluded = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(property: ref isExcluded, value: value);
     }
 
     public DateTime Created
     {
         get => created;
-
-        set
-        {
-            if (created == value)
-            {
-                return;
-            }
-
-            created = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(property: ref created, value: value);
     }
 
     public DateTime LastModified
     {
         get => lastModified;
-
-        set
-        {
-            if (lastModified == value)
-            {
-                return;
-            }
-
-            lastModified = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(property: ref lastModified, value: value);
     }
 
     public bool Equals(AccountViewModel? other)
