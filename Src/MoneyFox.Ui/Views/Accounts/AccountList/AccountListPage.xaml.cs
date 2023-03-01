@@ -10,8 +10,8 @@ public partial class AccountListPage
 
     private AccountListViewModel ViewModel => (AccountListViewModel)BindingContext;
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
-        await ViewModel.InitializeAsync();
+        ViewModel.InitializeAsync().GetAwaiter().GetResult();
     }
 }

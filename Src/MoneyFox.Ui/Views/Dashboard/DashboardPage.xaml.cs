@@ -10,8 +10,8 @@ public partial class DashboardPage
 
     public DashboardViewModel ViewModel => (DashboardViewModel)BindingContext;
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
-        await ViewModel.InitializeAsync();
+        ViewModel.InitializeAsync().GetAwaiter().GetResult();
     }
 }

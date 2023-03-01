@@ -11,9 +11,9 @@ public partial class EditBudgetPage
 
     private EditBudgetViewModel ViewModel => (EditBudgetViewModel)BindingContext;
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
-        await ViewModel.InitializeCommand.ExecuteAsync(budgetId);
+        ViewModel.InitializeCommand.ExecuteAsync(budgetId).GetAwaiter().GetResult();
     }
 
 #pragma warning disable S2376 // Write-only properties should not be used
