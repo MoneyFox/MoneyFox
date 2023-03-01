@@ -46,6 +46,7 @@ public class DialogService : IDialogService
     public async Task<bool> ShowConfirmMessageAsync(string title, string message, string? positiveButtonText = null, string? negativeButtonText = null)
     {
         await HideLoadingDialogAsync();
+
         return await Shell.Current.DisplayAlert(
             title: title,
             message: message,

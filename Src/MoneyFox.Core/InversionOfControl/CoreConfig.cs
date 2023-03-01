@@ -22,12 +22,13 @@ public sealed class CoreConfig
 
     private static void RegisterMediatr(IServiceCollection serviceCollection)
     {
-        _ = serviceCollection.AddMediatR(cfg =>
-        {
-            cfg.RegisterServicesFromAssembly(typeof(CreatePaymentCommand).Assembly);
-            cfg.NotificationPublisher = new TaskWhenAllPublisher();
-            cfg.NotificationPublisherType = typeof(TaskWhenAllPublisher);
-        });
+        _ = serviceCollection.AddMediatR(
+            cfg =>
+            {
+                cfg.RegisterServicesFromAssembly(typeof(CreatePaymentCommand).Assembly);
+                cfg.NotificationPublisher = new TaskWhenAllPublisher();
+                cfg.NotificationPublisherType = typeof(TaskWhenAllPublisher);
+            });
     }
 
     private static void RegisterFacades(IServiceCollection serviceCollection)

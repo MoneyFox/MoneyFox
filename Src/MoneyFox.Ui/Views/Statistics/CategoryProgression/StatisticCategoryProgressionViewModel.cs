@@ -27,7 +27,7 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
     public SelectedCategoryViewModel? SelectedCategory
     {
         get => selectedCategory;
-        private set => SetProperty( ref selectedCategory,   value);
+        private set => SetProperty(field: ref selectedCategory, newValue: value);
     }
 
     public ObservableCollection<ISeries> Series { get; } = new();

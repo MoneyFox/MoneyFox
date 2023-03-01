@@ -6,7 +6,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Core.Common.Interfaces.Mapping;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.CategoryAggregate;
-using PaymentModification;
 
 public class PaymentViewModel : ObservableObject, IHaveCustomMapping
 {
@@ -37,7 +36,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public int Id
     {
         get => id;
-        set => SetProperty( ref id,   value);
+        set => SetProperty(field: ref id, newValue: value);
     }
 
     /// <summary>
@@ -48,7 +47,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public int ChargedAccountId
     {
         get => chargedAccountId;
-        set => SetProperty( ref chargedAccountId,   value);
+        set => SetProperty(field: ref chargedAccountId, newValue: value);
     }
 
     /// <summary>
@@ -57,7 +56,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public int? TargetAccountId
     {
         get => targetAccountId;
-        set => SetProperty( ref targetAccountId,   value);
+        set => SetProperty(field: ref targetAccountId, newValue: value);
     }
 
     /// <summary>
@@ -66,7 +65,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public DateTime Date
     {
         get => date;
-        set => SetProperty( ref date,   value);
+        set => SetProperty(field: ref date, newValue: value);
     }
 
     /// <summary>
@@ -75,7 +74,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public decimal Amount
     {
         get => amount;
-        set => SetProperty( ref amount,   value);
+        set => SetProperty(field: ref amount, newValue: value);
     }
 
     /// <summary>
@@ -85,7 +84,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public bool IsCleared
     {
         get => isCleared;
-        set => SetProperty( ref isCleared,   value);
+        set => SetProperty(field: ref isCleared, newValue: value);
     }
 
     /// <summary>
@@ -97,7 +96,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
 
         set
         {
-            SetProperty(ref type, value);
+            SetProperty(field: ref type, newValue: value);
             OnPropertyChanged(nameof(IsTransfer));
         }
     }
@@ -108,7 +107,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public string Note
     {
         get => note;
-        set => SetProperty( ref note,   value);
+        set => SetProperty(field: ref note, newValue: value);
     }
 
     /// <summary>
@@ -120,7 +119,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
 
         set
         {
-            SetProperty(ref isRecurring, value);
+            SetProperty(field: ref isRecurring, newValue: value);
             RecurringPayment = isRecurring ? new RecurringPaymentViewModel() : null;
             OnPropertyChanged(nameof(RecurringPayment));
         }
@@ -129,13 +128,13 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public DateTime Created
     {
         get => created;
-        set => SetProperty( ref created,   value);
+        set => SetProperty(field: ref created, newValue: value);
     }
 
     public DateTime LastModified
     {
         get => lastModified;
-        set => SetProperty( ref lastModified,   value);
+        set => SetProperty(field: ref lastModified, newValue: value);
     }
 
     /// <summary>
@@ -145,7 +144,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public AccountViewModel ChargedAccount
     {
         get => chargedAccount;
-        set => SetProperty( ref chargedAccount,   value);
+        set => SetProperty(field: ref chargedAccount, newValue: value);
     }
 
     /// <summary>
@@ -155,7 +154,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public AccountViewModel? TargetAccount
     {
         get => targetAccount;
-        set => SetProperty( ref targetAccount,   value);
+        set => SetProperty(field: ref targetAccount, newValue: value);
     }
 
     /// <summary>
@@ -164,7 +163,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public RecurringPaymentViewModel? RecurringPayment
     {
         get => recurringPaymentViewModel;
-        set => SetProperty( ref recurringPaymentViewModel,   value);
+        set => SetProperty(field: ref recurringPaymentViewModel, newValue: value);
     }
 
     /// <summary>
@@ -178,7 +177,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public int CurrentAccountId
     {
         get => currentAccountId;
-        set => SetProperty( ref currentAccountId,   value);
+        set => SetProperty(field: ref currentAccountId, newValue: value);
     }
 
     public void CreateMappings(Profile configuration)

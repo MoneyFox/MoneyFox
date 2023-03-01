@@ -34,12 +34,12 @@ jobs:
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
           restore-keys: |
             ${{ runner.os }}-nuget
-            
+
       - name: Install MAUI Workload
         run: |
           dotnet workload install maui-windows
           dotnet workload install maui-mobile
-        
+
       - name: Restore Dependencies
         run: dotnet restore ${{env.UI_PROJECT_PATH}}
 
@@ -64,7 +64,7 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{env.DOTNETVERSION}}
-        
+
       - uses: actions/cache@v3
         with:
           path: ~/.nuget/packages
@@ -111,7 +111,7 @@ jobs:
 
       - name: Install MAUI Workloads
         run: dotnet workload install maui-mobile
-        
+
       - name: Restore Dependencies
         run: dotnet restore ${{env.UI_PROJECT_PATH}}
 

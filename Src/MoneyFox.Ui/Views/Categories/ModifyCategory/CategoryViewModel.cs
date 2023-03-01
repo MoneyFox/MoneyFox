@@ -12,36 +12,36 @@ public class CategoryViewModel : ObservableViewModelBase
     public required int Id
     {
         get => id;
-        set => SetProperty( ref id,   value);
+        set => SetProperty(property: ref id, value: value);
     }
 
     public required string Name
     {
         get => name;
-        set => SetProperty( ref name,   value);
+        set => SetProperty(property: ref name, value: value);
     }
 
     public required string? Note
     {
         get => note;
-        set => SetProperty( ref note,   value);
+        set => SetProperty(property: ref note, value: value);
     }
 
     public required bool RequireNote
     {
         get => requireNote;
-        set => SetProperty( ref requireNote,   value);
+        set => SetProperty(property: ref requireNote, value: value);
     }
 
     public required DateTime Created
     {
         get => created;
-        set => SetProperty( ref created,   value);
+        set => SetProperty(property: ref created, value: value);
     }
 
     public required DateTime? LastModified
     {
         get => lastModified;
-        set => SetProperty( ref lastModified,   value);
+        set => SetProperty(property: ref lastModified, value: value);
     }
 }

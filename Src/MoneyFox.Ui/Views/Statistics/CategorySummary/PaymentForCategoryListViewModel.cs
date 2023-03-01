@@ -8,7 +8,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Queries;
 using MediatR;
-using MoneyFox.Ui.Views.Payments.PaymentList;
+using Payments.PaymentList;
 using Resources.Strings;
 
 internal sealed class PaymentForCategoryListViewModel : BasePageViewModel, IRecipient<PaymentsForCategoryMessage>
@@ -29,7 +29,7 @@ internal sealed class PaymentForCategoryListViewModel : BasePageViewModel, IReci
     public string Title
     {
         get => title;
-        set => SetProperty( ref title,   value);
+        set => SetProperty(field: ref title, newValue: value);
     }
 
     public ObservableCollection<DateListGroupCollection<PaymentListItemViewModel>> PaymentList
@@ -59,7 +59,10 @@ internal sealed class PaymentForCategoryListViewModel : BasePageViewModel, IReci
         }
 
         var loadedPayments = mapper.Map<List<PaymentListItemViewModel>>(
-            mediator.Send(new GetPaymentsForCategorySummary.Query(CategoryId: message.CategoryId, DateRangeFrom: message.StartDate, DateRangeTo: message.EndDate)).GetAwaiter().GetResult());
+            mediator.Send(
+                    new GetPaymentsForCategorySummary.Query(CategoryId: message.CategoryId, DateRangeFrom: message.StartDate, DateRangeTo: message.EndDate))
+                .GetAwaiter()
+                .GetResult());
 
         var dailyItems = DateListGroupCollection<PaymentListItemViewModel>.CreateGroups(
             items: loadedPayments,

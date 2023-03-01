@@ -11,13 +11,13 @@ using UIKit;
 public static class UIViewExtensions
 {
     /// <summary>
-    /// Find the first responder in the <paramref name="view"/>'s subview hierarchy
+    ///     Find the first responder in the <paramref name="view" />'s subview hierarchy
     /// </summary>
     /// <param name="view">
-    /// A <see cref="UIView"/>
+    ///     A <see cref="UIView" />
     /// </param>
     /// <returns>
-    /// A <see cref="UIView"/> that is the first responder or null if there is no first responder
+    ///     A <see cref="UIView" /> that is the first responder or null if there is no first responder
     /// </returns>
     public static UIView FindFirstResponder(this UIView view)
     {
@@ -25,17 +25,19 @@ public static class UIViewExtensions
         {
             return view;
         }
+
         foreach (UIView subView in view.Subviews)
         {
             var firstResponder = subView.FindFirstResponder();
-            if (firstResponder != null)
-                return firstResponder;
+
+            if (firstResponder != null) return firstResponder;
         }
+
         return null;
     }
 
     /// <summary>
-    /// Returns the view Bottom (Y + Height) coordinates relative to the rootView
+    ///     Returns the view Bottom (Y + Height) coordinates relative to the rootView
     /// </summary>
     /// <returns>The view relative bottom.</returns>
     /// <param name="view">View.</param>
@@ -54,11 +56,12 @@ public static class UIViewExtensions
         var safeAreaBottom = rootView.Window.SafeAreaInsets.Bottom;
         var pageHeight = rootView.Frame.Height;
         var keyboardHeight = keyboardFrame.Height;
+
         return relativeBottom - (pageHeight + safeAreaBottom - keyboardHeight);
     }
 
     /// <summary>
-    /// Returns the distance between the bottom of the View and the top of the keyboard
+    ///     Returns the distance between the bottom of the View and the top of the keyboard
     /// </summary>
     /// <param name="activeView">View.</param>
     /// <param name="rootView">Root view.</param>
@@ -67,6 +70,7 @@ public static class UIViewExtensions
     public static double GetOverlapDistance(this UIView activeView, UIView rootView, CGRect keyboardFrame)
     {
         double bottom = activeView.GetViewRelativeBottom(rootView);
+
         return GetOverlapDistance(bottom, rootView, keyboardFrame);
     }
 }

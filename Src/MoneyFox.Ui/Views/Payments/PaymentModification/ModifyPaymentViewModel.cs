@@ -12,7 +12,6 @@ using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Messages;
 using Microsoft.AppCenter.Crashes;
-using MoneyFox.Ui.Views.Payments.PaymentList;
 using Resources.Strings;
 using Serilog;
 
@@ -23,9 +22,9 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
     private readonly IMediator mediator;
     private readonly IToastService toastService;
     private ObservableCollection<AccountViewModel> chargedAccounts = new();
+    private SelectedCategoryViewModel? selectedCategory;
 
     private PaymentViewModel selectedPayment = new();
-    private SelectedCategoryViewModel? selectedCategory;
     private ObservableCollection<AccountViewModel> targetAccounts = new();
 
     protected ModifyPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, IToastService toastService)

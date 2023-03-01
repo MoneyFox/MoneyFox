@@ -1,7 +1,5 @@
 namespace MoneyFox.Ui.Views.Budget;
 
-using CommunityToolkit.Mvvm.ComponentModel;
-
 public sealed class BudgetListItemViewModel : ObservableViewModelBase
 {
     private decimal currentSpending;
@@ -13,7 +11,7 @@ public sealed class BudgetListItemViewModel : ObservableViewModelBase
     public string Name
     {
         get => name;
-        set => SetProperty( ref name,   value);
+        set => SetProperty(property: ref name, value: value);
     }
 
     public double SpendingPercentage => (double)CurrentSpending / (double)SpendingLimit;
@@ -21,12 +19,12 @@ public sealed class BudgetListItemViewModel : ObservableViewModelBase
     public decimal CurrentSpending
     {
         get => currentSpending;
-        set => SetProperty( ref currentSpending,   value);
+        set => SetProperty(property: ref currentSpending, value: value);
     }
 
     public decimal SpendingLimit
     {
         get => spendingLimit;
-        set => SetProperty( ref spendingLimit,   value);
+        set => SetProperty(property: ref spendingLimit, value: value);
     }
 }

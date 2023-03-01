@@ -5,7 +5,6 @@ using Core.Common.Extensions;
 using Core.Common.Settings;
 using Domain.Aggregates.AccountAggregate;
 using Infrastructure.Adapters;
-using Views.Payments;
 
 public class PaymentAmountConverter : IValueConverter
 {

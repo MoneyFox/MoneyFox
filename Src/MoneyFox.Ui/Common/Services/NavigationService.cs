@@ -17,13 +17,13 @@ internal sealed class NavigationService : INavigationService
 
     public async Task NavigateBackAsync()
     {
-        Analytics.TrackEvent($"Navigate back");
+        Analytics.TrackEvent("Navigate back");
         await Shell.Current.GoToAsync("..");
     }
 
     public async Task NavigateBackAsync(string parameterName, string queryParameter)
     {
-        Analytics.TrackEvent($"Navigate back");
+        Analytics.TrackEvent("Navigate back");
         await Shell.Current.GoToAsync($"..?{parameterName}={queryParameter}");
     }
 

@@ -7,7 +7,6 @@ using Core.Features._Legacy_.Payments.DeletePaymentById;
 using Core.Features._Legacy_.Payments.UpdatePayment;
 using Core.Queries;
 using MediatR;
-using MoneyFox.Ui.Views.Payments.PaymentList;
 using Resources.Strings;
 
 internal class EditPaymentViewModel : ModifyPaymentViewModel
@@ -39,11 +38,11 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel
         await InitializeAsync();
         var payment = await mediator.Send(new GetPaymentByIdQuery(paymentId));
         SelectedPayment = mapper.Map<PaymentViewModel>(payment);
-
         if (payment.Category != null)
         {
-            SelectedCategory = new SelectedCategoryViewModel { Id = payment.Category.Id, Name = payment.Category.Name, RequireNote = payment.Category.RequireNote };
+            SelectedCategory = new() { Id = payment.Category.Id, Name = payment.Category.Name, RequireNote = payment.Category.RequireNote };
         }
+
         IsFirstLoad = false;
     }
 

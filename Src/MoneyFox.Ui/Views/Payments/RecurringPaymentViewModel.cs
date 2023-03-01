@@ -3,7 +3,6 @@ namespace MoneyFox.Ui.Views.Payments;
 using Accounts;
 using AutoMapper;
 using Categories;
-using CommunityToolkit.Mvvm.ComponentModel;
 using Core.Common.Interfaces.Mapping;
 using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
@@ -36,26 +35,26 @@ public class RecurringPaymentViewModel : ObservableViewModelBase, IHaveCustomMap
     public int Id
     {
         get => id;
-        set => SetProperty( ref id,   value);
+        set => SetProperty(property: ref id, value: value);
     }
 
     public DateTime StartDate
     {
         get => startDate;
 
-        set => SetProperty( ref startDate,   value);
+        set => SetProperty(property: ref startDate, value: value);
     }
 
     public bool IsLastDayOfMonth
     {
         get => isLastDayOfMonth;
-        set => SetProperty( ref isLastDayOfMonth,   value);
+        set => SetProperty(property: ref isLastDayOfMonth, value: value);
     }
 
     public DateTime? EndDate
     {
         get => endDate;
-        set => SetProperty( ref endDate,   value);
+        set => SetProperty(property: ref endDate, value: value);
     }
 
     public bool IsEndless
@@ -64,7 +63,7 @@ public class RecurringPaymentViewModel : ObservableViewModelBase, IHaveCustomMap
 
         set
         {
-            SetProperty(ref isEndless, value);
+            SetProperty(property: ref isEndless, value: value);
             EndDate = isEndless is false ? DateTime.Today : null;
             RaisePropertyChanged(nameof(isEndless));
         }
@@ -76,7 +75,7 @@ public class RecurringPaymentViewModel : ObservableViewModelBase, IHaveCustomMap
     public decimal Amount
     {
         get => amount;
-        set => SetProperty( ref amount,   value);
+        set => SetProperty(property: ref amount, value: value);
     }
 
     /// <summary>
@@ -85,7 +84,7 @@ public class RecurringPaymentViewModel : ObservableViewModelBase, IHaveCustomMap
     public PaymentType Type
     {
         get => type;
-        set => SetProperty( ref type,   value);
+        set => SetProperty(property: ref type, value: value);
     }
 
     public PaymentRecurrence Recurrence
@@ -94,7 +93,7 @@ public class RecurringPaymentViewModel : ObservableViewModelBase, IHaveCustomMap
 
         set
         {
-            SetProperty(ref recurrence, value);
+            SetProperty(property: ref recurrence, value: value);
 
             // If recurrence is changed to a type that doesn't allow the Last Day of Month flag, force the flag to false if it's true
             if (IsLastDayOfMonth && !AllowLastDayOfMonth)
@@ -117,7 +116,7 @@ public class RecurringPaymentViewModel : ObservableViewModelBase, IHaveCustomMap
     public string Note
     {
         get => note;
-        set => SetProperty( ref note,   value);
+        set => SetProperty(property: ref note, value: value);
     }
 
     /// <summary>
@@ -127,7 +126,7 @@ public class RecurringPaymentViewModel : ObservableViewModelBase, IHaveCustomMap
     public AccountViewModel ChargedAccount
     {
         get => chargedAccount;
-        set => SetProperty( ref chargedAccount,   value);
+        set => SetProperty(property: ref chargedAccount, value: value);
     }
 
     /// <summary>
@@ -136,7 +135,7 @@ public class RecurringPaymentViewModel : ObservableViewModelBase, IHaveCustomMap
     public CategoryListItemViewModel? Category
     {
         get => categoryViewModel;
-        set => SetProperty( ref categoryViewModel,   value);
+        set => SetProperty(property: ref categoryViewModel, value: value);
     }
 
     public void CreateMappings(Profile configuration)

@@ -65,7 +65,7 @@ internal sealed class BackupViewModel : BasePageViewModel
     public ImageSource? ProfilePicture
     {
         get => profilePicture;
-        set => SetProperty( ref profilePicture,   value);
+        set => SetProperty(field: ref profilePicture, newValue: value);
     }
 
     public AsyncRelayCommand InitializeCommand => new(async () => await InitializeAsync());
@@ -320,7 +320,6 @@ internal sealed class BackupViewModel : BasePageViewModel
 
         await dialogService.ShowLoadingDialogAsync();
         var backupDate = await backupService.GetBackupDateAsync();
-
         if (settingsFacade.LastDatabaseUpdate <= backupDate || await ShowForceOverrideConfirmationAsync())
         {
             await dialogService.ShowLoadingDialogAsync();

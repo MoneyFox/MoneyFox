@@ -42,10 +42,7 @@ public sealed class AppDbContextTests
         loadedAccount.LastModified.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
         account.Created.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
         account.LastModified.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
-        await publisher.Received()
-            .Publish(
-                notification: Arg.Any<DataBaseChanged.Notification>(),
-                cancellationToken: Arg.Any<CancellationToken>());
+        await publisher.Received().Publish(notification: Arg.Any<DataBaseChanged.Notification>(), cancellationToken: Arg.Any<CancellationToken>());
     }
 
     [Fact]
@@ -69,9 +66,6 @@ public sealed class AppDbContextTests
         var loadedAccount = context.Accounts.First();
         loadedAccount.LastModified.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
         account.LastModified.Should().BeCloseTo(nearbyTime: DateTime.Now, precision: TimeSpan.FromSeconds(5));
-        await publisher.Received()
-            .Publish(
-                notification: Arg.Any<DataBaseChanged.Notification>(),
-                cancellationToken: Arg.Any<CancellationToken>());
+        await publisher.Received().Publish(notification: Arg.Any<DataBaseChanged.Notification>(), cancellationToken: Arg.Any<CancellationToken>());
     }
 }

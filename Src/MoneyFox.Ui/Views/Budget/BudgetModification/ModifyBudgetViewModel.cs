@@ -26,7 +26,7 @@ internal abstract class ModifyBudgetViewModel : BasePageViewModel, IRecipient<Ca
 
         set
         {
-            SetProperty( ref name,   value);
+            SetProperty(field: ref name, newValue: value);
             OnPropertyChanged(nameof(IsValid));
         }
     }
@@ -37,7 +37,7 @@ internal abstract class ModifyBudgetViewModel : BasePageViewModel, IRecipient<Ca
 
         set
         {
-            SetProperty( ref spendingLimit,   value);
+            SetProperty(field: ref spendingLimit, newValue: value);
             OnPropertyChanged(nameof(IsValid));
         }
     }
@@ -48,7 +48,7 @@ internal abstract class ModifyBudgetViewModel : BasePageViewModel, IRecipient<Ca
 
         set
         {
-            SetProperty( ref numberOfMonths,   value);
+            SetProperty(field: ref numberOfMonths, newValue: value);
             OnPropertyChanged(nameof(IsValid));
         }
     }
