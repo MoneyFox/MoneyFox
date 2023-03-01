@@ -320,6 +320,7 @@ internal sealed class BackupViewModel : BasePageViewModel
 
         await dialogService.ShowLoadingDialogAsync();
         var backupDate = await backupService.GetBackupDateAsync();
+
         if (settingsFacade.LastDatabaseUpdate <= backupDate || await ShowForceOverrideConfirmationAsync())
         {
             await dialogService.ShowLoadingDialogAsync();
@@ -337,13 +338,15 @@ internal sealed class BackupViewModel : BasePageViewModel
                 Log.Error(exception: ex, messageTemplate: "Restore Backup failed");
                 await toastService.ShowToastAsync(Translations.BackupFailedTitle);
             }
+            finally
+            {
+                await dialogService.HideLoadingDialogAsync();
+            }
         }
         else
         {
             Log.Information("Restore Backup canceled by the user due to newer local data");
         }
-
-        await dialogService.HideLoadingDialogAsync();
     }
 
     private async Task<bool> ShowOverwriteBackupInfoAsync()
