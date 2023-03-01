@@ -26,7 +26,9 @@ public class AboutViewModel : BasePageViewModel
         this.toastService = toastService;
     }
 
-    public static string Version => AppInfo.VersionString;
+    public static string Version => DeviceInfo.Current.Platform == DevicePlatform.iOS
+        ? AppInfo.BuildString
+        : AppInfo.VersionString;
 
     public AsyncRelayCommand GoToWebsiteCommand => new(GoToWebsiteAsync);
     public AsyncRelayCommand SendMailCommand => new(SendMailAsync);
