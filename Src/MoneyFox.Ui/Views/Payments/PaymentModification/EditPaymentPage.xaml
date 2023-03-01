@@ -11,7 +11,7 @@
     Title="{x:Static resources:Translations.EditPaymentTitle}"
     x:Class="MoneyFox.Ui.Views.Payments.PaymentModification.EditPaymentPage">
 
-    <controls:NonOverlappingScrollView>
+    <controls:FixedScrollView>
         <VerticalStackLayout Padding="15,12,15,12" Spacing="12">
             <paymentModification:ModifyPaymentContentView />
 
@@ -28,5 +28,5 @@
                     CommandParameter="{Binding SelectedPayment}"
                     Text="{x:Static resources:Translations.DeleteLabel}" />
         </VerticalStackLayout>
-    </controls:NonOverlappingScrollView>
+    </controls:FixedScrollView>
 </ContentPage>
