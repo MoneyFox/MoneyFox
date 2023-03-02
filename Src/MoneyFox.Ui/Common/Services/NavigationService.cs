@@ -27,7 +27,7 @@ internal sealed class NavigationService : INavigationService
         await Shell.Current.GoToAsync($"..?{parameterName}={queryParameter}");
     }
 
-    public async Task OpenModalAsync<T>()
+    public async Task OpenModalAsync<T>() where T : ContentPage
     {
         var pageName = typeof(T).Name;
         Analytics.TrackEvent($"Navigate to {pageName}");
