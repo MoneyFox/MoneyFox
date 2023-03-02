@@ -20,6 +20,14 @@ internal class CategorySelectionViewModel : ObservableRecipient, IRecipient<Cate
         this.navigationService = navigationService;
     }
 
+    protected override void OnActivated()
+    {
+        Messenger.Register<CategorySelectionViewModel, SelectedCategoryRequestMessage>(this, (r, m)
+            => m.Reply(SelectedCategory != null
+            ? new SelectedCategory(SelectedCategory.Id, SelectedCategory.Name)
+            : null));
+    }
+
     private SelectedCategoryViewModel? selectedCategory;
 
     public SelectedCategoryViewModel? SelectedCategory
