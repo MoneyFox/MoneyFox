@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Messages;
+namespace MoneyFox.Ui.Controls.CategorySelection;
 
 using CommunityToolkit.Mvvm.Messaging.Messages;
 

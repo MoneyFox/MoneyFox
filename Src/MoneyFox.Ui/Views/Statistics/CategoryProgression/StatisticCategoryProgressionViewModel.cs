@@ -12,6 +12,7 @@ using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using MediatR;
 using Messages;
+using MoneyFox.Ui.Controls.CategorySelection;
 using SkiaSharp;
 
 internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel, IRecipient<CategorySelectedMessage>

@@ -8,6 +8,7 @@ using Core.Interfaces;
 using Domain.Aggregates.BudgetAggregate;
 using Messages;
 using MoneyFox.Ui;
+using MoneyFox.Ui.Controls.CategorySelection;
 
 internal abstract class ModifyBudgetViewModel : BasePageViewModel, IRecipient<CategorySelectedMessage>
 {

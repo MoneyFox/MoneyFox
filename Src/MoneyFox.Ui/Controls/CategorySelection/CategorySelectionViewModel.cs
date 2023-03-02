@@ -6,7 +6,6 @@ using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using MoneyFox.Core.Queries;
 using MoneyFox.Ui;
-using MoneyFox.Ui.Messages;
 using MoneyFox.Ui.Views.Categories.CategorySelection;
 
 internal class CategorySelectionViewModel : ObservableRecipient, IRecipient<CategorySelectedMessage>

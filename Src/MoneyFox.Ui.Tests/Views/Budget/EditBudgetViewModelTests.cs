@@ -12,6 +12,7 @@ using FluentAssertions;
 using MediatR;
 using Messages;
 using MoneyFox.Ui;
+using MoneyFox.Ui.Controls.CategorySelection;
 using NSubstitute;
 using Ui.Views.Budget.BudgetModification;
 using Ui.Views.Categories.CategorySelection;
