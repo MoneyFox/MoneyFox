@@ -42,7 +42,7 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel
         SelectedPayment = mapper.Map<PaymentViewModel>(payment);
         if (payment.Category != null)
         {
-            WeakReferenceMessenger.Default.Send(new CategorySelectedMessage(new CategorySelectedDataSet(payment.Category.Id, payment.Category.Name)));
+            Messenger.Send(new CategorySelectedMessage(new(payment.Category.Id, payment.Category.Name)));
             SelectedCategory = new() { Id = payment.Category.Id, Name = payment.Category.Name, RequireNote = payment.Category.RequireNote };
         }
 
@@ -64,7 +64,7 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel
         // Due to a bug in .net maui, the loading dialog can only be called after any other dialog
         await dialogService.ShowLoadingDialogAsync(Translations.SavingPaymentMessage);
 
-        int? selectedCategoryId = Messenger.Send<SelectedCategoryRequestMessage>();
+        int? selectedCategoryId = WeakReferenceMessenger.Default.Send<SelectedCategoryRequestMessage>();
         var command = new UpdatePayment.Command(
             Id: SelectedPayment.Id,
             Date: SelectedPayment.Date,
