@@ -2,7 +2,7 @@ namespace MoneyFox.Ui.Views;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 
-public class BasePageViewModel : ObservableRecipient
+public abstract class BasePageViewModel : ObservableRecipient
 {
     protected BasePageViewModel()
     {
