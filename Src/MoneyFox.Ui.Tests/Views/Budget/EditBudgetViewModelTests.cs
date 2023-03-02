@@ -5,12 +5,10 @@ using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Features.BudgetDeletion;
 using Core.Features.BudgetUpdate;
-using Core.Interfaces;
 using Core.Queries.BudgetEntryLoading;
 using Domain.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
-using Messages;
 using MoneyFox.Ui;
 using MoneyFox.Ui.Controls.CategorySelection;
 using NSubstitute;
@@ -41,7 +39,7 @@ public class EditBudgetViewModelTests
         public void AddsSelectedCategoryToList()
         {
             // Act
-            CategorySelectedMessage categorySelectedMessage = new(new(categoryId: CATEGORY_ID, name: "Beer"));
+            CategorySelectedMessage categorySelectedMessage = new(new(CategoryId: CATEGORY_ID, Name: "Beer"));
             viewModel.Receive(categorySelectedMessage);
 
             // Assert
@@ -53,7 +51,7 @@ public class EditBudgetViewModelTests
         public void IgnoresSelectedCategory_WhenEntryWithSameIdAlreadyInList()
         {
             // Act
-            CategorySelectedMessage categorySelectedMessage = new(new(categoryId: CATEGORY_ID, name: "Beer"));
+            CategorySelectedMessage categorySelectedMessage = new(new(CategoryId: CATEGORY_ID, Name: "Beer"));
             viewModel.Receive(categorySelectedMessage);
             viewModel.Receive(categorySelectedMessage);
 

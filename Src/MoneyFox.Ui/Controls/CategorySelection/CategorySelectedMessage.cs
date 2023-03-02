@@ -7,15 +7,4 @@ public class CategorySelectedMessage : ValueChangedMessage<CategorySelectedDataS
     public CategorySelectedMessage(CategorySelectedDataSet dataSet) : base(dataSet) { }
 }
 
-public class CategorySelectedDataSet
-{
-    public CategorySelectedDataSet(int categoryId, string name)
-    {
-        CategoryId = categoryId;
-        Name = name;
-    }
-
-    public int CategoryId { get; }
-
-    public string Name { get; }
-}
+public record CategorySelectedDataSet(int CategoryId, string Name);

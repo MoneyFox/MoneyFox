@@ -5,7 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
 using MediatR;
-using Messages;
+using MoneyFox.Ui.Controls.CategorySelection;
 
 internal sealed class CategorySelectionViewModel : CategoryListViewModel
 {
@@ -18,7 +18,7 @@ internal sealed class CategorySelectionViewModel : CategoryListViewModel
         => new(
             async c =>
             {
-                var dataSet = new CategorySelectedDataSet(categoryId: c.Id, name: c.Name);
+                var dataSet = new CategorySelectedDataSet(CategoryId: c.Id, Name: c.Name);
                 Messenger.Send(new CategorySelectedMessage(dataSet));
                 await Shell.Current.Navigation.PopModalAsync();
             });
