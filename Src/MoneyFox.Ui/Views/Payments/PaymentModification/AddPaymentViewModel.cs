@@ -51,12 +51,12 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
         var chargedAccount = await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id));
         var targetAccount = SelectedPayment.TargetAccount != null ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id)) : null;
 
-        SelectedCategory? selectedCategory = WeakReferenceMessenger.Default.Send<SelectedCategoryRequestMessage>();
+        int? selectedCategoryId = WeakReferenceMessenger.Default.Send<SelectedCategoryRequestMessage>();
 
         Category? category = null;
-        if (selectedCategory is not null)
+        if (selectedCategoryId is not null)
         {
-            category = await mediator.Send(new GetCategoryByIdQuery(selectedCategory.Id));
+            category = await mediator.Send(new GetCategoryByIdQuery(selectedCategoryId.Value));
         }
 
         var payment = new Payment(

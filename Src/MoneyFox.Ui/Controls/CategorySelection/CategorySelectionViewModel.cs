@@ -1,34 +1,24 @@
 namespace MoneyFox.Ui.Controls.CategorySelection;
 
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Core.Queries;
 using MediatR;
-using MoneyFox.Core.Queries;
-using MoneyFox.Ui;
-using MoneyFox.Ui.Views.Categories.CategorySelection;
+using Views;
+using Views.Categories.CategorySelection;
 
-internal class CategorySelectionViewModel : ObservableRecipient, IRecipient<CategorySelectedMessage>
+public class CategorySelectionViewModel : BasePageViewModel, IRecipient<CategorySelectedMessage>
 {
-
     private readonly IMediator mediator;
     private readonly INavigationService navigationService;
+
+    private SelectedCategoryViewModel? selectedCategory;
 
     public CategorySelectionViewModel(IMediator mediator, INavigationService navigationService)
     {
         this.mediator = mediator;
         this.navigationService = navigationService;
     }
-
-    protected override void OnActivated()
-    {
-        Messenger.Register<CategorySelectionViewModel, SelectedCategoryRequestMessage>(this, (r, m)
-            => m.Reply(SelectedCategory != null
-            ? new SelectedCategory(SelectedCategory.Id, SelectedCategory.Name)
-            : null));
-    }
-
-    private SelectedCategoryViewModel? selectedCategory;
 
     public SelectedCategoryViewModel? SelectedCategory
     {
@@ -40,6 +30,7 @@ internal class CategorySelectionViewModel : ObservableRecipient, IRecipient<Cate
             OnPropertyChanged();
         }
     }
+
     public AsyncRelayCommand GoToSelectCategoryDialogCommand => new(async () => await navigationService.NavigateToAsync<SelectCategoryPage>());
 
     public RelayCommand ResetCategoryCommand => new(() => SelectedCategory = null);
@@ -48,5 +39,10 @@ internal class CategorySelectionViewModel : ObservableRecipient, IRecipient<Cate
     {
         var category = mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId)).GetAwaiter().GetResult();
         SelectedCategory = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
+    }
+
+    protected override void OnActivated()
+    {
+        Messenger.Register<CategorySelectionViewModel, SelectedCategoryRequestMessage>(recipient: this, handler: (r, m) => m.Reply(SelectedCategory?.Id));
     }
 }
