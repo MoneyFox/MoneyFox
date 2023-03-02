@@ -10,6 +10,7 @@ using Core.Interfaces;
 using Core.Queries.BudgetEntryLoading;
 using Domain.Aggregates.BudgetAggregate;
 using MediatR;
+using MoneyFox.Ui;
 using Resources.Strings;
 
 internal sealed class EditBudgetViewModel : ModifyBudgetViewModel

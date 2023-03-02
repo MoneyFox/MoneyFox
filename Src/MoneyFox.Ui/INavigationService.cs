@@ -1,4 +1,4 @@
-namespace MoneyFox.Core.Interfaces;
+namespace MoneyFox.Ui;
 
 using System.Threading.Tasks;
 

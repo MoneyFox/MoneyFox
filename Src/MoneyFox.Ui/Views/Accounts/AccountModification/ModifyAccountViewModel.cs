@@ -6,6 +6,7 @@ using Core.Common.Interfaces;
 using Core.Interfaces;
 using Core.Queries;
 using MediatR;
+using MoneyFox.Ui;
 using Resources.Strings;
 
 public abstract class ModifyAccountViewModel : BasePageViewModel

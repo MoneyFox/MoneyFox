@@ -8,6 +8,7 @@ using Domain.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
 using Messages;
+using MoneyFox.Ui;
 using NSubstitute;
 using Ui.Views.Budget.BudgetModification;
 using Ui.Views.Categories.CategorySelection;

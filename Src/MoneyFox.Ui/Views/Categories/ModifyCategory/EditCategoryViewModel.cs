@@ -7,6 +7,7 @@ using Core.Features.CategoryDeletion;
 using Core.Interfaces;
 using Core.Queries;
 using MediatR;
+using MoneyFox.Ui;
 using Resources.Strings;
 
 public class EditCategoryViewModel : ModifyCategoryViewModel
