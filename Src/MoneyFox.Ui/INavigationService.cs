@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 public interface INavigationService
 {
-    Task NavigateToAsync<T>();
+    Task NavigateToAsync<T>() where T : ContentPage;
 
     Task NavigateBackAsync();
 

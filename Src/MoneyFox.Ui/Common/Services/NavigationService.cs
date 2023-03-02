@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui.Common.Services;
 
-using Core.Interfaces;
 using Extensions;
 using JetBrains.Annotations;
 using Microsoft.AppCenter.Analytics;
@@ -9,7 +8,7 @@ using MoneyFox.Ui;
 [UsedImplicitly]
 internal sealed class NavigationService : INavigationService
 {
-    public async Task NavigateToAsync<T>()
+    public async Task NavigateToAsync<T>() where T : ContentPage
     {
         var pageName = typeof(T).Name;
         Analytics.TrackEvent($"Navigate to {pageName}");
