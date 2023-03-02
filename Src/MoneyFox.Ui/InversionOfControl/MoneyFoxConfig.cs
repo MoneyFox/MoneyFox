@@ -89,7 +89,8 @@ public sealed class MoneyFoxConfig
             .AddTransient<SelectFilterDialogViewModel>()
             .AddTransient<AddBudgetViewModel>()
             .AddTransient<EditBudgetViewModel>()
-            .AddTransient<BudgetListViewModel>();
+            .AddTransient<BudgetListViewModel>()
+            .AddTransient<CategorySelectionViewModel>();
     }
 
     private static void RegisterAdapters(IServiceCollection serviceCollection)

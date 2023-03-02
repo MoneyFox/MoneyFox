@@ -3,7 +3,6 @@ namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 using System.Collections.ObjectModel;
 using Accounts;
 using AutoMapper;
-using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
@@ -12,6 +11,7 @@ using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Messages;
 using Microsoft.AppCenter.Crashes;
+using MoneyFox.Ui.Controls.CategorySelection;
 using Resources.Strings;
 using Serilog;
 
@@ -98,10 +98,6 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
         };
 
     public string AccountHeader => SelectedPayment?.Type == PaymentType.Income ? Translations.TargetAccountLabel : Translations.ChargedAccountLabel;
-
-    public AsyncRelayCommand GoToSelectCategoryDialogCommand => new(async () => await Shell.Current.GoToModalAsync(Routes.SelectCategoryRoute));
-
-    public RelayCommand ResetCategoryCommand => new(() => SelectedCategory = null);
 
     protected bool IsFirstLoad { get; set; } = true;
 

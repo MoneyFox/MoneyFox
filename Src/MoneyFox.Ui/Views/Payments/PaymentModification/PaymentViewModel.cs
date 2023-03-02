@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Core.Common.Interfaces.Mapping;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.CategoryAggregate;
+using MoneyFox.Ui.Controls.CategorySelection;
 
 public class PaymentViewModel : ObservableObject, IHaveCustomMapping
 {
