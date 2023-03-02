@@ -7,7 +7,7 @@ using MediatR;
 using Views;
 using Views.Categories.CategorySelection;
 
-public class CategorySelectionViewModel : BasePageViewModel, IRecipient<CategorySelectedMessage>
+public class CategorySelectionViewModel : BasePageViewModel
 {
     private readonly IMediator mediator;
     private readonly INavigationService navigationService;
@@ -35,14 +35,15 @@ public class CategorySelectionViewModel : BasePageViewModel, IRecipient<Category
 
     public RelayCommand ResetCategoryCommand => new(() => SelectedCategory = null);
 
+    protected override void OnActivated()
+    {
+        Messenger.Register<CategorySelectionViewModel, SelectedCategoryRequestMessage>(recipient: this, handler: (r, m) => m.Reply(SelectedCategory?.Id));
+        Messenger.Register<CategorySelectionViewModel, CategorySelectedMessage>(recipient: this, handler: (r, m) => Receive(m));
+    }
+
     public void Receive(CategorySelectedMessage message)
     {
         var category = mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId)).GetAwaiter().GetResult();
         SelectedCategory = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
-    }
-
-    protected override void OnActivated()
-    {
-        Messenger.Register<CategorySelectionViewModel, SelectedCategoryRequestMessage>(recipient: this, handler: (r, m) => m.Reply(SelectedCategory?.Id));
     }
 }
