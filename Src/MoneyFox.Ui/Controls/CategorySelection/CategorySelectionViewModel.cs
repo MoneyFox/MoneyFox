@@ -31,7 +31,7 @@ public class CategorySelectionViewModel : BasePageViewModel
         }
     }
 
-    public AsyncRelayCommand GoToSelectCategoryDialogCommand => new(async () => await navigationService.NavigateToAsync<SelectCategoryPage>());
+    public AsyncRelayCommand GoToSelectCategoryDialogCommand => new(async () => await navigationService.OpenModalAsync<SelectCategoryPage>());
 
     public RelayCommand ResetCategoryCommand => new(() => SelectedCategory = null);
 
@@ -39,6 +39,11 @@ public class CategorySelectionViewModel : BasePageViewModel
     {
         Messenger.Register<CategorySelectionViewModel, SelectedCategoryRequestMessage>(recipient: this, handler: (r, m) => m.Reply(SelectedCategory?.Id));
         Messenger.Register<CategorySelectionViewModel, CategorySelectedMessage>(recipient: this, handler: (r, m) => Receive(m));
+    }
+
+    protected override void OnDeactivated()
+    {
+        Messenger.UnregisterAll(this);
     }
 
     public void Receive(CategorySelectedMessage message)
