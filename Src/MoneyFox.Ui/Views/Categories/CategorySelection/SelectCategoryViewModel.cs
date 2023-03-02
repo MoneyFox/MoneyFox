@@ -7,9 +7,9 @@ using Core.Common.Interfaces;
 using MediatR;
 using MoneyFox.Ui.Controls.CategorySelection;
 
-internal sealed class CategorySelectionViewModel : CategoryListViewModel
+internal sealed class SelectCategoryViewModel : CategoryListViewModel
 {
-    public CategorySelectionViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService) : base(
+    public SelectCategoryViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService) : base(
         mediator: mediator,
         mapper: mapper,
         dialogService: dialogService) { }
