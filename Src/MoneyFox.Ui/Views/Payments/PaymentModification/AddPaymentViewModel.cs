@@ -11,7 +11,7 @@ using MediatR;
 using MoneyFox.Ui.Controls.CategorySelection;
 using Resources.Strings;
 
-internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
+internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
 {
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
