@@ -4,22 +4,23 @@ using System.Collections.ObjectModel;
 using Categories.CategorySelection;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.Interfaces;
+using Controls.CategorySelection;
+using Core.Queries;
 using Domain.Aggregates.BudgetAggregate;
-using Messages;
-using MoneyFox.Ui;
-using MoneyFox.Ui.Controls.CategorySelection;
+using MediatR;
 
 internal abstract class ModifyBudgetViewModel : BasePageViewModel, IRecipient<CategorySelectedMessage>
 {
     private readonly INavigationService navigationService;
+    private readonly ISender sender;
     private string name = null!;
     private int numberOfMonths = 1;
     private decimal spendingLimit;
 
-    protected ModifyBudgetViewModel(INavigationService navigationService)
+    protected ModifyBudgetViewModel(INavigationService navigationService, ISender sender)
     {
         this.navigationService = navigationService;
+        this.sender = sender;
     }
 
     public string Name
@@ -77,10 +78,11 @@ internal abstract class ModifyBudgetViewModel : BasePageViewModel, IRecipient<Ca
 
     public void Receive(CategorySelectedMessage message)
     {
-        var categorySelectedDataSet = message.Value;
-        if (SelectedCategories.Any(c => c.CategoryId == message.Value.CategoryId) is false)
+        var selectedCategoryId = message.Value;
+        if (SelectedCategories.Any(c => c.CategoryId == message.Value) is false)
         {
-            SelectedCategories.Add(new(categoryId: categorySelectedDataSet.CategoryId, name: categorySelectedDataSet.Name));
+            var category = sender.Send(new GetCategoryByIdQuery(message.Value)).GetAwaiter().GetResult();
+            SelectedCategories.Add(new(categoryId: selectedCategoryId, name: category.Name));
         }
     }
 

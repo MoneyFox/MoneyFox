@@ -105,7 +105,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
 
     public void Receive(CategorySelectedMessage message)
     {
-        var category = mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId)).GetAwaiter().GetResult();
+        var category = mediator.Send(new GetCategoryByIdQuery(message.Value)).GetAwaiter().GetResult();
         SelectedCategory = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
     }
 
@@ -176,7 +176,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
         {
             var selectedCategoryId = Convert.ToInt32(selectedCategoryIdParam);
 
-            Messenger.Send(new CategorySelectedMessage(new(selectedCategoryId, "")));
+            Messenger.Send(new CategorySelectedMessage(selectedCategoryId));
         }
     }
 }

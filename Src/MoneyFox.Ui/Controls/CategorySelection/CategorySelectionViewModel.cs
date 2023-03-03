@@ -48,7 +48,7 @@ public class CategorySelectionViewModel : BasePageViewModel
 
     private void Receive(CategorySelectedMessage message)
     {
-        var category = mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId)).GetAwaiter().GetResult();
+        var category = mediator.Send(new GetCategoryByIdQuery(message.Value)).GetAwaiter().GetResult();
         SelectedCategory = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
     }
 }

@@ -2,10 +2,7 @@ namespace MoneyFox.Ui.Controls.CategorySelection;
 
 using CommunityToolkit.Mvvm.Messaging.Messages;
 
-public class CategorySelectedMessage : ValueChangedMessage<CategorySelectedDataSet>
+public class CategorySelectedMessage : ValueChangedMessage<int>
 {
-    public CategorySelectedMessage(CategorySelectedDataSet dataSet) : base(dataSet) { }
+    public CategorySelectedMessage(int selectedCategoryId) : base(selectedCategoryId) { }
 }
-
-public record CategorySelectedDataSet(int CategoryId, string Name);
-

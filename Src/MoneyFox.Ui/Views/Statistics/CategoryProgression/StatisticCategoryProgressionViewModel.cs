@@ -57,7 +57,7 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
 
     public void Receive(CategorySelectedMessage message)
     {
-        var category = Mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId)).GetAwaiter().GetResult();
+        var category = Mediator.Send(new GetCategoryByIdQuery(message.Value)).GetAwaiter().GetResult();
         SelectedCategory = new() { Id = category.Id, Name = category.Name };
         LoadAsync().GetAwaiter().GetResult();
     }

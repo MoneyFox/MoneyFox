@@ -6,11 +6,9 @@ using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Features.BudgetDeletion;
 using Core.Features.BudgetUpdate;
-using Core.Interfaces;
 using Core.Queries.BudgetEntryLoading;
 using Domain.Aggregates.BudgetAggregate;
 using MediatR;
-using MoneyFox.Ui;
 using Resources.Strings;
 
 internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
@@ -21,7 +19,9 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
 
     private bool isFirstLoad = true;
 
-    public EditBudgetViewModel(ISender sender, INavigationService navigationService, IDialogService dialogService) : base(navigationService: navigationService)
+    public EditBudgetViewModel(ISender sender, INavigationService navigationService, IDialogService dialogService) : base(
+        navigationService: navigationService,
+        sender: sender)
     {
         this.sender = sender;
         this.navigationService = navigationService;

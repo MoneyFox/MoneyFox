@@ -99,9 +99,8 @@ internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<Ca
         => new(
             async c =>
             {
-                var dataSet = new CategorySelectedDataSet(CategoryId: c.Id, Name: c.Name);
                 await navigationService.NavigateBackAsync(SELECTED_CATEGORY_ID_PARAM, c.Id.ToString());
                 // TODO: Remove this
-                Messenger.Send(new CategorySelectedMessage(dataSet));
+                Messenger.Send(new CategorySelectedMessage(c.Id));
             });
 }

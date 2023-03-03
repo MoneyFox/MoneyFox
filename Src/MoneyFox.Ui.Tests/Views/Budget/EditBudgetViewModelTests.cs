@@ -39,7 +39,7 @@ public class EditBudgetViewModelTests
         public void AddsSelectedCategoryToList()
         {
             // Act
-            CategorySelectedMessage categorySelectedMessage = new(new(CategoryId: CATEGORY_ID, Name: "Beer"));
+            CategorySelectedMessage categorySelectedMessage = new(CATEGORY_ID);
             viewModel.Receive(categorySelectedMessage);
 
             // Assert
@@ -51,7 +51,7 @@ public class EditBudgetViewModelTests
         public void IgnoresSelectedCategory_WhenEntryWithSameIdAlreadyInList()
         {
             // Act
-            CategorySelectedMessage categorySelectedMessage = new(new(CategoryId: CATEGORY_ID, Name: "Beer"));
+            CategorySelectedMessage categorySelectedMessage = new(CATEGORY_ID);
             viewModel.Receive(categorySelectedMessage);
             viewModel.Receive(categorySelectedMessage);
 

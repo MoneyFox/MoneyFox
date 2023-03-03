@@ -42,7 +42,7 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel
         SelectedPayment = mapper.Map<PaymentViewModel>(payment);
         if (payment.Category != null)
         {
-            Messenger.Send(new CategorySelectedMessage(new(payment.Category.Id, payment.Category.Name)));
+            Messenger.Send(new CategorySelectedMessage(payment.Category.Id));
             SelectedCategory = new() { Id = payment.Category.Id, Name = payment.Category.Name, RequireNote = payment.Category.RequireNote };
         }
 
