@@ -46,7 +46,7 @@ public class CategorySelectionViewModel : BasePageViewModel
         Messenger.UnregisterAll(this);
     }
 
-    public void Receive(CategorySelectedMessage message)
+    private void Receive(CategorySelectedMessage message)
     {
         var category = mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId)).GetAwaiter().GetResult();
         SelectedCategory = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };

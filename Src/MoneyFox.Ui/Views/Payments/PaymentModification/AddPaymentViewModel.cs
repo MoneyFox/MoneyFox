@@ -11,7 +11,7 @@ using MediatR;
 using MoneyFox.Ui.Controls.CategorySelection;
 using Resources.Strings;
 
-internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
+internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
@@ -26,9 +26,9 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
         this.dialogService = dialogService;
     }
 
-    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    public new void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        int accountId = 0;
+        var accountId = 0;
         if (query.TryGetValue("defaultChargedAccountId", out var defaultChargedAccountId))
         {
             accountId = Convert.ToInt32(defaultChargedAccountId);
@@ -41,6 +41,8 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
                 ? ChargedAccounts.First(n => n.Id == accountId)
                 : ChargedAccounts.First();
         }
+
+        base.ApplyQueryAttributes(query);
     }
 
     protected override async Task SavePaymentAsync()

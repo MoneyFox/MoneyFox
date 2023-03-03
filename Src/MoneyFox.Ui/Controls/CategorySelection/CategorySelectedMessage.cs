@@ -8,3 +8,4 @@ public class CategorySelectedMessage : ValueChangedMessage<CategorySelectedDataS
 }
 
 public record CategorySelectedDataSet(int CategoryId, string Name);
+

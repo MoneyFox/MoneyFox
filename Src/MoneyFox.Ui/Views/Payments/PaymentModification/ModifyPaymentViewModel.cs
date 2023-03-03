@@ -3,19 +3,19 @@ namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 using System.Collections.ObjectModel;
 using Accounts;
 using AutoMapper;
+using Categories.CategorySelection;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
 using Core.Queries;
 using Domain.Aggregates.AccountAggregate;
 using MediatR;
-using Messages;
 using Microsoft.AppCenter.Crashes;
-using MoneyFox.Ui.Controls.CategorySelection;
+using Controls.CategorySelection;
 using Resources.Strings;
 using Serilog;
 
-public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<CategorySelectedMessage>
+public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<CategorySelectedMessage>, IQueryAttributable
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
@@ -167,6 +167,16 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
         finally
         {
             await dialogService.HideLoadingDialogAsync();
+        }
+    }
+
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+        if (query.TryGetValue(SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, out var selectedCategoryIdParam))
+        {
+            var selectedCategoryId = Convert.ToInt32(selectedCategoryIdParam);
+
+            Messenger.Send(new CategorySelectedMessage(new(selectedCategoryId, "")));
         }
     }
 }

@@ -18,12 +18,14 @@ internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<Ca
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
     private readonly IMediator mediator;
+    private readonly INavigationService navigationService;
 
-    public SelectCategoryViewModel(IDialogService dialogService, IMapper mapper, IMediator mediator)
+    public SelectCategoryViewModel(IDialogService dialogService, IMapper mapper, IMediator mediator, INavigationService navigationService)
     {
         this.dialogService = dialogService;
         this.mapper = mapper;
         this.mediator = mediator;
+        this.navigationService = navigationService;
     }
 
     private ObservableCollection<AlphaGroupListGroupCollection<CategoryListItemViewModel>> categories = new();
@@ -91,12 +93,15 @@ internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<Ca
             }
         }
     }
+
+    public const string SELECTED_CATEGORY_ID_PARAM = "selectedCategoryId";
     public AsyncRelayCommand<CategoryListItemViewModel> SelectCategoryCommand
         => new(
             async c =>
             {
                 var dataSet = new CategorySelectedDataSet(CategoryId: c.Id, Name: c.Name);
+                await navigationService.NavigateBackAsync(SELECTED_CATEGORY_ID_PARAM, c.Id.ToString());
+                // TODO: Remove this
                 Messenger.Send(new CategorySelectedMessage(dataSet));
-                await Shell.Current.Navigation.PopModalAsync();
             });
 }
