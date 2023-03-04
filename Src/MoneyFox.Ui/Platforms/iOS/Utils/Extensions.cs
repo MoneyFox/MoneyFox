@@ -69,6 +69,11 @@ public static class UIViewExtensions
     /// <returns>The distance, positive if the keyboard overlaps with the View, negative otherwise</returns>
     public static double GetOverlapDistance(this UIView activeView, UIView rootView, CGRect keyboardFrame)
     {
+        if (activeView == null)
+        {
+            return 0;
+        }
+
         double bottom = activeView.GetViewRelativeBottom(rootView);
 
         return GetOverlapDistance(bottom, rootView, keyboardFrame);
