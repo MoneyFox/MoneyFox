@@ -8,7 +8,6 @@ using Core.InversionOfControl;
 using Infrastructure.Adapters;
 using Mapping;
 using MoneyFox.Infrastructure.InversionOfControl;
-using MoneyFox.Ui;
 using Views.About;
 using Views.Accounts.AccountList;
 using Views.Accounts.AccountModification;

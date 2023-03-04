@@ -38,7 +38,7 @@
                     </ImageButton.Source>
                 </ImageButton>
             </Grid>
-            
+
             <categorySelection:CategorySelectionControl Grid.Row="1"
                                                         BindingContext="{Binding CategorySelectionViewModel}" />
 

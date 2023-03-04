@@ -22,6 +22,7 @@ public partial class StatisticCategorySummaryPage
     {
         ViewModel.IsActive = false;
     }
+
     private void OpenFilterDialog(object sender, EventArgs e)
     {
         var popup = new DateSelectionPopup(dateFrom: ViewModel.StartDate, dateTo: ViewModel.EndDate);

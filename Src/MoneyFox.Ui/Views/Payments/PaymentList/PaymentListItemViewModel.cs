@@ -3,11 +3,10 @@ namespace MoneyFox.Ui.Views.Payments.PaymentList;
 using Accounts;
 using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Controls.CategorySelection;
 using Core.Common.Interfaces.Mapping;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.CategoryAggregate;
-using MoneyFox.Ui.Controls.CategorySelection;
-using PaymentModification;
 
 public class PaymentListItemViewModel : ObservableObject, IHaveCustomMapping
 {

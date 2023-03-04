@@ -27,8 +27,8 @@
                 Text="{x:Static resources:Translations.AddBudgetLabel}"
                 VerticalOptions="Center"
                 Command="{Binding GoToAddBudgetCommand}" />
-            
-            <HorizontalStackLayout Margin="18,6,12,6" 
+
+            <HorizontalStackLayout Margin="18,6,12,6"
                                    Spacing="6"
                                    Grid.Row="1">
                 <Label Style="{StaticResource TextBodySecondary}"

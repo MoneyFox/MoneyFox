@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui.Tests.Views.Budget;
 
-using Controls.CategorySelection;
 using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Features.BudgetCreation;
@@ -35,10 +34,7 @@ public class AddBudgetViewModelTests
     public void AddsSelectedCategoryToList()
     {
         // Act
-        viewModel.ApplyQueryAttributes(new Dictionary<string, object>
-        {
-            { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID}
-        });
+        viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
 
         // Assert
         _ = viewModel.SelectedCategories.Should().HaveCount(1);
@@ -49,14 +45,8 @@ public class AddBudgetViewModelTests
     public void IgnoresSelectedCategory_WhenEntryWithSameIdAlreadyInList()
     {
         // Act
-        viewModel.ApplyQueryAttributes(new Dictionary<string, object>
-        {
-            { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID}
-        });
-        viewModel.ApplyQueryAttributes(new Dictionary<string, object>
-        {
-            { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID}
-        });
+        viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
+        viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
 
         // Assert
         _ = viewModel.SelectedCategories.Should().HaveCount(1);
