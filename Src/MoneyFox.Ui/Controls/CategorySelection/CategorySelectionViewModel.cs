@@ -18,6 +18,7 @@ public class CategorySelectionViewModel : BasePageViewModel
     {
         this.mediator = mediator;
         this.navigationService = navigationService;
+
         IsActive = true;
     }
 

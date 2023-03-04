@@ -3,25 +3,22 @@ namespace MoneyFox.Ui.Views.Categories.CategorySelection;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using AutoMapper;
-using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Controls.CategorySelection;
 using Core.Common.Interfaces;
-using Core.Features.CategoryDeletion;
-using Core.Queries;
 using MediatR;
-using Resources.Strings;
+using MoneyFox.Core.Features.CategoryDeletion;
+using MoneyFox.Core.Queries;
+using MoneyFox.Ui.Common.Groups;
+using MoneyFox.Ui.Controls.CategorySelection;
+using MoneyFox.Ui.Resources.Strings;
 
 internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<CategoriesChangedMessage>
 {
-    public const string SELECTED_CATEGORY_ID_PARAM = "selectedCategoryId";
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
     private readonly IMediator mediator;
     private readonly INavigationService navigationService;
-
-    private ObservableCollection<AlphaGroupListGroupCollection<CategoryListItemViewModel>> categories = new();
 
     public SelectCategoryViewModel(IDialogService dialogService, IMapper mapper, IMediator mediator, INavigationService navigationService)
     {
@@ -30,6 +27,8 @@ internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<Ca
         this.mediator = mediator;
         this.navigationService = navigationService;
     }
+
+    private ObservableCollection<AlphaGroupListGroupCollection<CategoryListItemViewModel>> categories = new();
 
     public ObservableCollection<AlphaGroupListGroupCollection<CategoryListItemViewModel>> Categories
     {
@@ -50,16 +49,6 @@ internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<Ca
     public AsyncRelayCommand<string> SearchCategoryCommand => new(async s => await SearchCategoryAsync(s ?? string.Empty));
 
     public AsyncRelayCommand<CategoryListItemViewModel> DeleteCategoryCommand => new(async vm => await DeleteCategoryAsync(vm));
-
-    public AsyncRelayCommand<CategoryListItemViewModel> SelectCategoryCommand
-        => new(
-            async c =>
-            {
-                await navigationService.NavigateBackAsync(parameterName: SELECTED_CATEGORY_ID_PARAM, queryParameter: c.Id.ToString());
-
-                // TODO: Remove this
-                Messenger.Send(new CategorySelectedMessage(c.Id));
-            });
 
     public void Receive(CategoriesChangedMessage message)
     {
@@ -104,4 +93,14 @@ internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<Ca
             }
         }
     }
+
+    public const string SELECTED_CATEGORY_ID_PARAM = "selectedCategoryId";
+    public AsyncRelayCommand<CategoryListItemViewModel> SelectCategoryCommand
+        => new(
+            async c =>
+            {
+                await navigationService.NavigateBackAsync(SELECTED_CATEGORY_ID_PARAM, c.Id.ToString());
+                // TODO: Remove this
+                Messenger.Send(new CategorySelectedMessage(c.Id));
+            });
 }

@@ -2,8 +2,10 @@ namespace MoneyFox.Ui.Tests.Views.Categories;
 
 using Core.Common.Interfaces;
 using Core.Features.CategoryDeletion;
+using Core.Interfaces;
 using Core.Queries;
 using MediatR;
+using MoneyFox.Ui;
 using NSubstitute;
 using Ui.Views.Categories.ModifyCategory;
 using Xunit;

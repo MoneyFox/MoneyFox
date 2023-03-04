@@ -3,6 +3,7 @@ namespace MoneyFox.Ui.Common.Services;
 using Extensions;
 using JetBrains.Annotations;
 using Microsoft.AppCenter.Analytics;
+using MoneyFox.Ui;
 
 [UsedImplicitly]
 internal sealed class NavigationService : INavigationService

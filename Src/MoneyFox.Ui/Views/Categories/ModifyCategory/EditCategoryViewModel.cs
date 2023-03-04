@@ -4,8 +4,10 @@ using CommunityToolkit.Mvvm.Input;
 using Core.Common.Interfaces;
 using Core.Features._Legacy_.Categories.UpdateCategory;
 using Core.Features.CategoryDeletion;
+using Core.Interfaces;
 using Core.Queries;
 using MediatR;
+using MoneyFox.Ui;
 using Resources.Strings;
 
 public class EditCategoryViewModel : ModifyCategoryViewModel

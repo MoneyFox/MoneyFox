@@ -1,6 +1,6 @@
-namespace MoneyFox.Ui.Controls.CategorySelection;
+using MoneyFox.Ui.Views;
 
-using Views;
+namespace MoneyFox.Ui.Controls.CategorySelection;
 
 public class SelectedCategoryViewModel : ObservableViewModelBase
 {

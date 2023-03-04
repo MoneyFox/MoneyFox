@@ -2,14 +2,16 @@ namespace MoneyFox.Ui.Views.Budget.BudgetModification;
 
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Features.BudgetCreation;
+using Core.Interfaces;
 using MediatR;
+using MoneyFox.Ui;
 
 internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
 {
     private readonly INavigationService navigationService;
     private readonly ISender sender;
 
-    public AddBudgetViewModel(ISender sender, INavigationService navigationService) : base(navigationService: navigationService, sender: sender)
+    public AddBudgetViewModel(ISender sender, INavigationService navigationService) : base(navigationService: navigationService, sender)
     {
         this.sender = sender;
         this.navigationService = navigationService;

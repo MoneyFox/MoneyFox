@@ -1,7 +1,6 @@
 namespace MoneyFox.Ui;
 
 using System.Reflection;
-using Android.Graphics;
 using CommunityToolkit.Maui;
 using Controls;
 using Core.Common;
@@ -15,7 +14,6 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Exceptions;
 using SkiaSharp.Views.Maui.Controls.Hosting;
-using Path = System.IO.Path;
 
 public static class MauiProgram
 {
@@ -48,7 +46,7 @@ public static class MauiProgram
                 {
 #if ANDROID
                     handler.PlatformView.Background = null;
-                    handler.PlatformView.SetBackgroundColor(Color.Transparent);
+                    handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
 #elif IOS
                     handler.PlatformView.Layer.BorderWidth = 0;
                     handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;

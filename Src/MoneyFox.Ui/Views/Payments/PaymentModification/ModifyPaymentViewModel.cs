@@ -6,12 +6,12 @@ using AutoMapper;
 using Categories.CategorySelection;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Controls.CategorySelection;
 using Core.Common.Interfaces;
 using Core.Queries;
 using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Microsoft.AppCenter.Crashes;
+using Controls.CategorySelection;
 using Resources.Strings;
 using Serilog;
 
@@ -27,17 +27,13 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
     private PaymentViewModel selectedPayment = new();
     private ObservableCollection<AccountViewModel> targetAccounts = new();
 
-    protected ModifyPaymentViewModel(
-        IMediator mediator,
-        IMapper mapper,
-        IDialogService dialogService,
-        IToastService toastService,
-        CategorySelectionViewModel categorySelectionViewModel)
+    protected ModifyPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, IToastService toastService, CategorySelectionViewModel categorySelectionViewModel)
     {
         this.mediator = mediator;
         this.mapper = mapper;
         this.dialogService = dialogService;
         this.toastService = toastService;
+
         CategorySelectionViewModel = categorySelectionViewModel;
     }
 
@@ -111,15 +107,6 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
 
     public AsyncRelayCommand SaveCommand => new(SaveAsync);
 
-    public void ApplyQueryAttributes(IDictionary<string, object> query)
-    {
-        if (query.TryGetValue(key: SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, value: out var selectedCategoryIdParam))
-        {
-            var selectedCategoryId = Convert.ToInt32(selectedCategoryIdParam);
-            Messenger.Send(new CategorySelectedMessage(selectedCategoryId));
-        }
-    }
-
     protected async Task InitializeAsync()
     {
         var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
@@ -178,6 +165,16 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
         finally
         {
             await dialogService.HideLoadingDialogAsync();
+        }
+    }
+
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+        if (query.TryGetValue(SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, out var selectedCategoryIdParam))
+        {
+            var selectedCategoryId = Convert.ToInt32(selectedCategoryIdParam);
+
+            Messenger.Send(new CategorySelectedMessage(selectedCategoryId));
         }
     }
 }

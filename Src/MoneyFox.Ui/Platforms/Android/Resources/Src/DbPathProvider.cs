@@ -1,13 +1,18 @@
-﻿namespace MoneyFox.Ui.Platforms.Android.Resources.Src;
-
-using Core.Common;
-using Core.Interfaces;
-
-// TODO Is this still needed?
-public class DbPathProvider : IDbPathProvider
+﻿namespace MoneyFox.Ui.Platforms.Android.Resources.Src
 {
-    public string GetDbPath()
+
+    using System;
+    using System.IO;
+    using Core.Common;
+    using Core.Interfaces;
+
+    // TODO Is this still needed?
+    public class DbPathProvider : IDbPathProvider
     {
-        return Path.Combine(path1: Environment.GetFolderPath(Environment.SpecialFolder.Personal), path2: DatabaseConfiguration.DatabaseName);
+        public string GetDbPath()
+        {
+            return Path.Combine(path1: Environment.GetFolderPath(Environment.SpecialFolder.Personal), path2: DatabaseConfiguration.DatabaseName);
+        }
     }
+
 }

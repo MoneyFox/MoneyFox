@@ -2,13 +2,13 @@ namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.Messaging;
-using Controls.CategorySelection;
 using Core.Common.Interfaces;
 using Core.Features._Legacy_.Payments.CreatePayment;
 using Core.Queries;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.CategoryAggregate;
 using MediatR;
+using MoneyFox.Ui.Controls.CategorySelection;
 using Resources.Strings;
 
 internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
@@ -16,17 +16,12 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
 
-    public AddPaymentViewModel(
-        IMediator mediator,
-        IMapper mapper,
-        IDialogService dialogService,
-        IToastService toastService,
-        CategorySelectionViewModel categorySelectionViewModel) : base(
+    public AddPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, IToastService toastService, CategorySelectionViewModel categorySelectionViewModel) : base(
         mediator: mediator,
         mapper: mapper,
         dialogService: dialogService,
         toastService: toastService,
-        categorySelectionViewModel: categorySelectionViewModel)
+        categorySelectionViewModel)
     {
         this.mediator = mediator;
         this.dialogService = dialogService;
@@ -35,7 +30,7 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
     public new void ApplyQueryAttributes(IDictionary<string, object> query)
     {
         var accountId = 0;
-        if (query.TryGetValue(key: "defaultChargedAccountId", value: out var defaultChargedAccountId))
+        if (query.TryGetValue("defaultChargedAccountId", out var defaultChargedAccountId))
         {
             accountId = Convert.ToInt32(defaultChargedAccountId);
         }
@@ -43,7 +38,9 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
         InitializeAsync().GetAwaiter().GetResult();
         if (ChargedAccounts.Any())
         {
-            SelectedPayment.ChargedAccount = accountId != 0 ? ChargedAccounts.First(n => n.Id == accountId) : ChargedAccounts.First();
+            SelectedPayment.ChargedAccount = accountId != 0
+                ? ChargedAccounts.First(n => n.Id == accountId)
+                : ChargedAccounts.First();
         }
 
         base.ApplyQueryAttributes(query);
@@ -55,7 +52,9 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
         await dialogService.ShowLoadingDialogAsync(Translations.SavingPaymentMessage);
         var chargedAccount = await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id));
         var targetAccount = SelectedPayment.TargetAccount != null ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id)) : null;
+
         int? selectedCategoryId = Messenger.Send<SelectedCategoryRequestMessage>();
+
         Category? category = null;
         if (selectedCategoryId is not null)
         {

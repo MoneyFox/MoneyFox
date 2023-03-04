@@ -4,10 +4,11 @@ namespace MoneyFox.Ui;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
-using Android.Graphics;
 using Android.OS;
 using Android.Views;
 using Microsoft.Identity.Client;
+using Microsoft.Maui;
+using Microsoft.Maui.ApplicationModel;
 using MoneyFox.Infrastructure.DbBackup.Legacy;
 
 [Activity(
@@ -31,15 +32,15 @@ public class MainActivity : MauiAppCompatActivity
 
     private void SetStatusBarColor()
     {
-        Color backgroundColor;
+        Android.Graphics.Color backgroundColor;
         if (Microsoft.Maui.Controls.Application.Current?.RequestedTheme == AppTheme.Light)
         {
-            backgroundColor = new(r: 239, g: 242, b: 245);
+            backgroundColor = new(239, 242, 245);
             if (OperatingSystem.IsAndroidVersionAtLeast(30))
             {
                 Window?.InsetsController?.SetSystemBarsAppearance(
-                    appearance: (int)WindowInsetsControllerAppearance.LightStatusBars,
-                    mask: (int)WindowInsetsControllerAppearance.LightStatusBars);
+                    (int)WindowInsetsControllerAppearance.LightStatusBars,
+                    (int)WindowInsetsControllerAppearance.LightStatusBars);
             }
 
             if (!OperatingSystem.IsAndroidVersionAtLeast(30) && OperatingSystem.IsAndroidVersionAtLeast(23) && Window is not null)
@@ -49,7 +50,7 @@ public class MainActivity : MauiAppCompatActivity
         }
         else
         {
-            backgroundColor = new(r: 18, g: 18, b: 18);
+            backgroundColor = new(18, 18, 18);
         }
 
         Window?.SetStatusBarColor(backgroundColor);
