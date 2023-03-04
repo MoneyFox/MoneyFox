@@ -14,7 +14,7 @@ public partial class AddCategoryPage
     {
         ViewModel.IsActive = true;
     }
-    
+
     protected override void OnDisappearing()
     {
         ViewModel.IsActive = false;

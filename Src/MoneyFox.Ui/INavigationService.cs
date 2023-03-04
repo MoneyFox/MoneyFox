@@ -1,7 +1,5 @@
 namespace MoneyFox.Ui;
 
-using System.Threading.Tasks;
-
 public interface INavigationService
 {
     Task NavigateToAsync<T>() where T : ContentPage;

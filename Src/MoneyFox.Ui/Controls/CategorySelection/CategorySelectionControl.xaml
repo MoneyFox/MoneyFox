@@ -1,27 +1,28 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
+
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:categorySelection="clr-namespace:MoneyFox.Ui.Controls.CategorySelection"
              xmlns:views="clr-namespace:MoneyFox.Ui.Views"
              x:Class="MoneyFox.Ui.Controls.CategorySelection.CategorySelectionControl"
-             x:DataType="categorySelection:CategorySelectionViewModel" >
+             x:DataType="categorySelection:CategorySelectionViewModel">
 
     <ContentView.Resources>
         <categorySelection:NoCategorySelectedConverter x:Key="NoCategorySelectedConverter" />
     </ContentView.Resources>
-    
+
     <Grid ColumnDefinitions="70*, 6, 40">
         <Button Grid.Column="0"
-                    Text="{Binding SelectedCategory, Converter={StaticResource NoCategorySelectedConverter}}"
-                    Command="{Binding GoToSelectCategoryDialogCommand}" />
+                Text="{Binding SelectedCategory, Converter={StaticResource NoCategorySelectedConverter}}"
+                Command="{Binding GoToSelectCategoryDialogCommand}" />
 
         <ImageButton Grid.Column="2"
-                         Command="{Binding ResetCategoryCommand}">
+                     Command="{Binding ResetCategoryCommand}">
             <ImageButton.Source>
                 <FontImageSource FontFamily="MaterialIcons"
-                                     Size="24"
-                                     Glyph="{x:Static views:IconFont.Close}"
-                                     Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray900}}" />
+                                 Size="24"
+                                 Glyph="{x:Static views:IconFont.Close}"
+                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray900}}" />
             </ImageButton.Source>
         </ImageButton>
     </Grid>

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Controls.CategorySelection;
 using Core.Queries;
 using Core.Queries.Statistics;
 using LiveChartsCore;
@@ -11,8 +12,6 @@ using LiveChartsCore.Kernel.Sketches;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using MediatR;
-using Messages;
-using MoneyFox.Ui.Controls.CategorySelection;
 using SkiaSharp;
 
 internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel, IRecipient<CategorySelectedMessage>

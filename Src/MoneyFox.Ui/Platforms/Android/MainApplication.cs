@@ -3,15 +3,12 @@ namespace MoneyFox.Ui;
 
 using Android.App;
 using Android.Runtime;
-using JetBrains.Annotations;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Maui;
-using Microsoft.Maui.Hosting;
-using Core.Interfaces;
 using Common;
-using MoneyFox.Ui.Platforms.Android.Resources.Src;
-using Serilog;
+using Core.Interfaces;
+using JetBrains.Annotations;
 using Microsoft.Identity.Client;
+using Platforms.Android.Resources.Src;
+using Serilog;
 
 [Application]
 [UsedImplicitly]
@@ -20,7 +17,7 @@ public class MainApplication : MauiApplication
     private const string MSAL_APPLICATION_ID = "00a3e4cd-b4b0-4730-be62-5fcf90a94a1d";
     private const string MSAL_URI = $"msal{MSAL_APPLICATION_ID}://auth";
 
-    public MainApplication(nint handle, JniHandleOwnership ownership) : base(handle, ownership) { }
+    public MainApplication(nint handle, JniHandleOwnership ownership) : base(handle: handle, ownership: ownership) { }
 
     protected override MauiApp CreateMauiApp()
     {

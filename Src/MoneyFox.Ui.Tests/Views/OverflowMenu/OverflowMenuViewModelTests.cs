@@ -1,7 +1,5 @@
 namespace MoneyFox.Ui.Tests.Views.OverflowMenu;
 
-using Core.Interfaces;
-using MoneyFox.Ui;
 using NSubstitute;
 using Ui.Views.About;
 using Ui.Views.Backup;
