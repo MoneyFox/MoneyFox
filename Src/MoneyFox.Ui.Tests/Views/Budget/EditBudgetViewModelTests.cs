@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Tests.Views.Budget;
 
 using System.Collections.Immutable;
+using Controls.CategorySelection;
 using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Features.BudgetDeletion;
@@ -11,8 +12,6 @@ using Domain.Aggregates.CategoryAggregate;
 using Domain.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
-using MoneyFox.Ui;
-using MoneyFox.Ui.Controls.CategorySelection;
 using NSubstitute;
 using Ui.Views.Budget.BudgetModification;
 using Ui.Views.Categories.CategorySelection;
