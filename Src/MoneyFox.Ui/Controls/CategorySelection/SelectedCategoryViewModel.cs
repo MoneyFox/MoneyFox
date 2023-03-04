@@ -1,4 +1,6 @@
-namespace MoneyFox.Ui.Views.Payments.PaymentModification;
+namespace MoneyFox.Ui.Controls.CategorySelection;
+
+using Views;
 
 public class SelectedCategoryViewModel : ObservableViewModelBase
 {

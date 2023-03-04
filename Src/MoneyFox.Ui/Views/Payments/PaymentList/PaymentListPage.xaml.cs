@@ -15,7 +15,13 @@ public partial class PaymentListPage : ContentPage
 
     protected override void OnAppearing()
     {
+        ViewModel.IsActive = true;
         ViewModel.InitializeAsync(accountId).GetAwaiter().GetResult();
+    }
+
+    protected override void OnDisappearing()
+    {
+        ViewModel.IsActive = false;
     }
 
     private void ShowFilterPopup(object sender, EventArgs e)

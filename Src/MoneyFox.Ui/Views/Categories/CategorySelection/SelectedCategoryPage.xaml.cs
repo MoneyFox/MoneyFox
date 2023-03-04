@@ -1,17 +1,21 @@
 namespace MoneyFox.Ui.Views.Categories.CategorySelection;
 
+using Microsoft.Maui.Controls.PlatformConfiguration;
+using Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;
+
 public partial class SelectCategoryPage : ContentPage
 {
     public SelectCategoryPage()
     {
         InitializeComponent();
-        BindingContext = App.GetViewModel<CategorySelectionViewModel>();
+        BindingContext = App.GetViewModel<SelectCategoryViewModel>();
+        On<iOS>().SetModalPresentationStyle(UIModalPresentationStyle.FormSheet);
     }
 
-    private CategorySelectionViewModel SelectionViewModel => (CategorySelectionViewModel)BindingContext;
+    private SelectCategoryViewModel ViewModel => (SelectCategoryViewModel)BindingContext;
 
     protected override void OnAppearing()
     {
-        SelectionViewModel.InitializeAsync().GetAwaiter().GetResult();
+        ViewModel.InitializeAsync().GetAwaiter().GetResult();
     }
 }

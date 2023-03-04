@@ -13,7 +13,14 @@ public partial class EditPaymentPage
 
     protected override void OnAppearing()
     {
+        ViewModel.IsActive = true;
         ViewModel.InitializeAsync(paymentId).GetAwaiter().GetResult();
+    }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        ViewModel.IsActive = false;
     }
 
 #pragma warning disable S2376 // Write-only properties should not be used

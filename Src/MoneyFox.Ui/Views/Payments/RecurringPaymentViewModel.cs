@@ -9,7 +9,6 @@ using Domain.Aggregates.AccountAggregate;
 
 public class RecurringPaymentViewModel : ObservableViewModelBase, IHaveCustomMapping
 {
-    private const decimal DECIMAL_DELTA = 0.01m;
     private decimal amount;
     private CategoryListItemViewModel? categoryViewModel;
 

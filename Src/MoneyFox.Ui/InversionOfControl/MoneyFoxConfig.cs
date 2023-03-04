@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.InversionOfControl;
 
 using Common.Services;
+using Controls.CategorySelection;
 using Core.Common.Interfaces;
 using Core.Interfaces;
 using Core.InversionOfControl;
@@ -70,7 +71,7 @@ public sealed class MoneyFoxConfig
             .AddTransient<AddCategoryViewModel>()
             .AddTransient<CategoryListViewModel>()
             .AddTransient<EditCategoryViewModel>()
-            .AddTransient<CategorySelectionViewModel>()
+            .AddTransient<SelectCategoryViewModel>()
             .AddTransient<DashboardViewModel>()
             .AddTransient<BackupViewModel>()
             .AddTransient<OverflowMenuViewModel>()
@@ -89,7 +90,8 @@ public sealed class MoneyFoxConfig
             .AddTransient<SelectFilterDialogViewModel>()
             .AddTransient<AddBudgetViewModel>()
             .AddTransient<EditBudgetViewModel>()
-            .AddTransient<BudgetListViewModel>();
+            .AddTransient<BudgetListViewModel>()
+            .AddTransient<CategorySelectionViewModel>();
     }
 
     private static void RegisterAdapters(IServiceCollection serviceCollection)

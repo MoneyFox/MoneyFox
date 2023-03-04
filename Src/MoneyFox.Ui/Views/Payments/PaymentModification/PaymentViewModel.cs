@@ -3,6 +3,7 @@ namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 using Accounts;
 using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Controls.CategorySelection;
 using Core.Common.Interfaces.Mapping;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.CategoryAggregate;

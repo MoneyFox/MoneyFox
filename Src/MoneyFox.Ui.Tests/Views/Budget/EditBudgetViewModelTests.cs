@@ -5,12 +5,12 @@ using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Features.BudgetDeletion;
 using Core.Features.BudgetUpdate;
-using Core.Interfaces;
+using Core.Queries;
 using Core.Queries.BudgetEntryLoading;
+using Domain.Aggregates.CategoryAggregate;
 using Domain.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
-using Messages;
 using NSubstitute;
 using Ui.Views.Budget.BudgetModification;
 using Ui.Views.Categories.CategorySelection;
@@ -35,12 +35,16 @@ public class EditBudgetViewModelTests
 
     public class OnReceiveMessage : EditBudgetViewModelTests
     {
+        public OnReceiveMessage()
+        {
+            sender.Send(Arg.Any<GetCategoryByIdQuery>()).Returns(new Category("Beer"));
+        }
+
         [Fact]
         public void AddsSelectedCategoryToList()
         {
             // Act
-            CategorySelectedMessage categorySelectedMessage = new(new(categoryId: CATEGORY_ID, name: "Beer"));
-            viewModel.Receive(categorySelectedMessage);
+            viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
 
             // Assert
             _ = viewModel.SelectedCategories.Should().HaveCount(1);
@@ -51,9 +55,8 @@ public class EditBudgetViewModelTests
         public void IgnoresSelectedCategory_WhenEntryWithSameIdAlreadyInList()
         {
             // Act
-            CategorySelectedMessage categorySelectedMessage = new(new(categoryId: CATEGORY_ID, name: "Beer"));
-            viewModel.Receive(categorySelectedMessage);
-            viewModel.Receive(categorySelectedMessage);
+            viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
+            viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
 
             // Assert
             _ = viewModel.SelectedCategories.Should().HaveCount(1);

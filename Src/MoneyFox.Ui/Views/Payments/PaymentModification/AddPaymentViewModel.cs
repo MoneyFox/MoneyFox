@@ -1,6 +1,8 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
 using AutoMapper;
+using CommunityToolkit.Mvvm.Messaging;
+using Controls.CategorySelection;
 using Core.Common.Interfaces;
 using Core.Features._Legacy_.Payments.CreatePayment;
 using Core.Queries;
@@ -9,37 +11,42 @@ using Domain.Aggregates.CategoryAggregate;
 using MediatR;
 using Resources.Strings;
 
-internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
+internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
 {
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
 
-    public AddPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, IToastService toastService) : base(
+    public AddPaymentViewModel(
+        IMediator mediator,
+        IMapper mapper,
+        IDialogService dialogService,
+        IToastService toastService,
+        CategorySelectionViewModel categorySelectionViewModel) : base(
         mediator: mediator,
         mapper: mapper,
         dialogService: dialogService,
-        toastService: toastService)
+        toastService: toastService,
+        categorySelectionViewModel: categorySelectionViewModel)
     {
         this.mediator = mediator;
         this.dialogService = dialogService;
     }
 
-    public async Task InitializeAsync(int? defaultChargedAccountId = null)
+    public new void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        if (IsFirstLoad is false)
+        var accountId = 0;
+        if (query.TryGetValue(key: "defaultChargedAccountId", value: out var defaultChargedAccountId))
         {
-            return;
+            accountId = Convert.ToInt32(defaultChargedAccountId);
         }
 
-        await base.InitializeAsync();
+        InitializeAsync().GetAwaiter().GetResult();
         if (ChargedAccounts.Any())
         {
-            SelectedPayment.ChargedAccount = defaultChargedAccountId.HasValue
-                ? ChargedAccounts.First(n => n.Id == defaultChargedAccountId.Value)
-                : ChargedAccounts.First();
+            SelectedPayment.ChargedAccount = accountId != 0 ? ChargedAccounts.First(n => n.Id == accountId) : ChargedAccounts.First();
         }
 
-        IsFirstLoad = false;
+        base.ApplyQueryAttributes(query);
     }
 
     protected override async Task SavePaymentAsync()
@@ -48,10 +55,11 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
         await dialogService.ShowLoadingDialogAsync(Translations.SavingPaymentMessage);
         var chargedAccount = await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id));
         var targetAccount = SelectedPayment.TargetAccount != null ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id)) : null;
+        int? selectedCategoryId = Messenger.Send<SelectedCategoryRequestMessage>();
         Category? category = null;
-        if (SelectedCategory is not null)
+        if (selectedCategoryId is not null)
         {
-            category = await mediator.Send(new GetCategoryByIdQuery(SelectedCategory.Id));
+            category = await mediator.Send(new GetCategoryByIdQuery(selectedCategoryId.Value));
         }
 
         var payment = new Payment(

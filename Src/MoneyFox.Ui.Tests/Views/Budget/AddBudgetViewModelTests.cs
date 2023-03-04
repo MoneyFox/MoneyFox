@@ -3,11 +3,11 @@ namespace MoneyFox.Ui.Tests.Views.Budget;
 using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Features.BudgetCreation;
-using Core.Interfaces;
+using Core.Queries;
+using Domain.Aggregates.CategoryAggregate;
 using Domain.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
-using Messages;
 using NSubstitute;
 using Ui.Views.Budget.BudgetModification;
 using Ui.Views.Categories.CategorySelection;
@@ -24,6 +24,7 @@ public class AddBudgetViewModelTests
     public AddBudgetViewModelTests()
     {
         sender = Substitute.For<ISender>();
+        sender.Send(Arg.Any<GetCategoryByIdQuery>()).Returns(new Category("Beer"));
         navigationService = Substitute.For<INavigationService>();
         Substitute.For<IDialogService>();
         viewModel = new(sender: sender, navigationService: navigationService);
@@ -33,8 +34,7 @@ public class AddBudgetViewModelTests
     public void AddsSelectedCategoryToList()
     {
         // Act
-        CategorySelectedMessage categorySelectedMessage = new(new(categoryId: CATEGORY_ID, name: "Beer"));
-        viewModel.Receive(categorySelectedMessage);
+        viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
 
         // Assert
         _ = viewModel.SelectedCategories.Should().HaveCount(1);
@@ -45,9 +45,8 @@ public class AddBudgetViewModelTests
     public void IgnoresSelectedCategory_WhenEntryWithSameIdAlreadyInList()
     {
         // Act
-        CategorySelectedMessage categorySelectedMessage = new(new(categoryId: CATEGORY_ID, name: "Beer"));
-        viewModel.Receive(categorySelectedMessage);
-        viewModel.Receive(categorySelectedMessage);
+        viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
+        viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
 
         // Assert
         _ = viewModel.SelectedCategories.Should().HaveCount(1);

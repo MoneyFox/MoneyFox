@@ -196,6 +196,9 @@
     </ItemGroup>
 
     <ItemGroup>
+        <MauiXaml Update="Controls\CategorySelection\CategorySelectionControl.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
         <MauiXaml Update="Views\Categories\CategorySelection\DesktopSelectedCategoryPage.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>

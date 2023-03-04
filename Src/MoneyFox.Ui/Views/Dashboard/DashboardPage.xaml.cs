@@ -12,6 +12,12 @@ public partial class DashboardPage
 
     protected override void OnAppearing()
     {
+        ViewModel.IsActive = true;
         ViewModel.InitializeAsync().GetAwaiter().GetResult();
+    }
+
+    protected override void OnDisappearing()
+    {
+        ViewModel.IsActive = false;
     }
 }

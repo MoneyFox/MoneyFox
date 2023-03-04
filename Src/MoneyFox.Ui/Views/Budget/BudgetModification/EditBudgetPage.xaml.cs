@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui.Views.Budget.BudgetModification;
 
-[QueryProperty(name: "BudgetId", queryId: "budgetId")]
 public partial class EditBudgetPage
 {
     public EditBudgetPage()
@@ -13,14 +12,11 @@ public partial class EditBudgetPage
 
     protected override void OnAppearing()
     {
-        ViewModel.InitializeCommand.ExecuteAsync(budgetId).GetAwaiter().GetResult();
+        ViewModel.IsActive = true;
     }
 
-#pragma warning disable S2376 // Write-only properties should not be used
-    private int budgetId;
-    public string BudgetId
+    protected override void OnDisappearing()
     {
-        set => budgetId = Convert.ToInt32(Uri.UnescapeDataString(value));
+        ViewModel.IsActive = false;
     }
-#pragma warning restore S2376 // Write-only properties should not be used
 }

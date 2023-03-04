@@ -3,19 +3,19 @@ namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 using System.Collections.ObjectModel;
 using Accounts;
 using AutoMapper;
-using Common.Extensions;
+using Categories.CategorySelection;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Controls.CategorySelection;
 using Core.Common.Interfaces;
 using Core.Queries;
 using Domain.Aggregates.AccountAggregate;
 using MediatR;
-using Messages;
 using Microsoft.AppCenter.Crashes;
 using Resources.Strings;
 using Serilog;
 
-public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<CategorySelectedMessage>
+public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttributable
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
@@ -27,12 +27,18 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
     private PaymentViewModel selectedPayment = new();
     private ObservableCollection<AccountViewModel> targetAccounts = new();
 
-    protected ModifyPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, IToastService toastService)
+    protected ModifyPaymentViewModel(
+        IMediator mediator,
+        IMapper mapper,
+        IDialogService dialogService,
+        IToastService toastService,
+        CategorySelectionViewModel categorySelectionViewModel)
     {
         this.mediator = mediator;
         this.mapper = mapper;
         this.dialogService = dialogService;
         this.toastService = toastService;
+        CategorySelectionViewModel = categorySelectionViewModel;
     }
 
     public PaymentViewModel SelectedPayment
@@ -45,6 +51,8 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
             OnPropertyChanged();
         }
     }
+
+    public CategorySelectionViewModel CategorySelectionViewModel { get; }
 
     public SelectedCategoryViewModel? SelectedCategory
     {
@@ -99,18 +107,17 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
 
     public string AccountHeader => SelectedPayment?.Type == PaymentType.Income ? Translations.TargetAccountLabel : Translations.ChargedAccountLabel;
 
-    public AsyncRelayCommand GoToSelectCategoryDialogCommand => new(async () => await Shell.Current.GoToModalAsync(Routes.SelectCategoryRoute));
-
-    public RelayCommand ResetCategoryCommand => new(() => SelectedCategory = null);
-
     protected bool IsFirstLoad { get; set; } = true;
 
     public AsyncRelayCommand SaveCommand => new(SaveAsync);
 
-    public void Receive(CategorySelectedMessage message)
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        var category = mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId)).GetAwaiter().GetResult();
-        SelectedCategory = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
+        if (query.TryGetValue(key: SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, value: out var selectedCategoryIdParam))
+        {
+            var selectedCategoryId = Convert.ToInt32(selectedCategoryIdParam);
+            Messenger.Send(new CategorySelectedMessage(selectedCategoryId));
+        }
     }
 
     protected async Task InitializeAsync()
