@@ -9,7 +9,7 @@ using Core.Queries;
 using Domain.Aggregates.BudgetAggregate;
 using MediatR;
 
-internal abstract class ModifyBudgetViewModel : BasePageViewModel, IRecipient<CategorySelectedMessage>
+internal abstract class ModifyBudgetViewModel : BasePageViewModel, IQueryAttributable
 {
     private readonly INavigationService navigationService;
     private readonly ISender sender;
@@ -76,16 +76,6 @@ internal abstract class ModifyBudgetViewModel : BasePageViewModel, IRecipient<Ca
 
     public AsyncRelayCommand SaveBudgetCommand => new(execute: SaveBudgetAsync, canExecute: () => IsValid);
 
-    public void Receive(CategorySelectedMessage message)
-    {
-        var selectedCategoryId = message.Value;
-        if (SelectedCategories.Any(c => c.CategoryId == message.Value) is false)
-        {
-            var category = sender.Send(new GetCategoryByIdQuery(message.Value)).GetAwaiter().GetResult();
-            SelectedCategories.Add(new(categoryId: selectedCategoryId, name: category.Name));
-        }
-    }
-
     private async Task OpenCategorySelection()
     {
         await navigationService.OpenModalAsync<SelectCategoryPage>();
@@ -102,4 +92,14 @@ internal abstract class ModifyBudgetViewModel : BasePageViewModel, IRecipient<Ca
     }
 
     protected abstract Task SaveBudgetAsync();
+
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+        if (query.TryGetValue(key: SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, value: out var selectedCategoryIdParam))
+        {
+            var selectedCategoryId = Convert.ToInt32(selectedCategoryIdParam);
+            var category = sender.Send(new GetCategoryByIdQuery(selectedCategoryId)).GetAwaiter().GetResult();
+            SelectedCategories.Add(new(categoryId: selectedCategoryId, name: category.Name));
+        }
+    }
 }
