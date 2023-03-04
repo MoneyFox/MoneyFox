@@ -12,7 +12,6 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <categoryProgression:NoCategorySelectedConverter x:Key="NoCategorySelectedConverter" />
             <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
