@@ -17,11 +17,12 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel
     private readonly IMapper mapper;
     private readonly IMediator mediator;
 
-    public EditPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, IToastService toastService) : base(
+    public EditPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, IToastService toastService, CategorySelectionViewModel categorySelectionViewModel) : base(
         mediator: mediator,
         mapper: mapper,
         dialogService: dialogService,
-        toastService: toastService)
+        toastService: toastService,
+        categorySelectionViewModel)
     {
         this.mediator = mediator;
         this.mapper = mapper;

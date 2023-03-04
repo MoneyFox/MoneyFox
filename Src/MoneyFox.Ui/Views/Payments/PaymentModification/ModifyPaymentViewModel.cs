@@ -15,7 +15,7 @@ using Controls.CategorySelection;
 using Resources.Strings;
 using Serilog;
 
-public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<CategorySelectedMessage>, IQueryAttributable
+public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttributable
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
@@ -27,12 +27,14 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
     private PaymentViewModel selectedPayment = new();
     private ObservableCollection<AccountViewModel> targetAccounts = new();
 
-    protected ModifyPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, IToastService toastService)
+    protected ModifyPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, IToastService toastService, CategorySelectionViewModel categorySelectionViewModel)
     {
         this.mediator = mediator;
         this.mapper = mapper;
         this.dialogService = dialogService;
         this.toastService = toastService;
+
+        CategorySelectionViewModel = categorySelectionViewModel;
     }
 
     public PaymentViewModel SelectedPayment
@@ -45,6 +47,8 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
             OnPropertyChanged();
         }
     }
+
+    public CategorySelectionViewModel CategorySelectionViewModel { get; set; }
 
     public SelectedCategoryViewModel? SelectedCategory
     {
@@ -102,12 +106,6 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
     protected bool IsFirstLoad { get; set; } = true;
 
     public AsyncRelayCommand SaveCommand => new(SaveAsync);
-
-    public void Receive(CategorySelectedMessage message)
-    {
-        var category = mediator.Send(new GetCategoryByIdQuery(message.Value)).GetAwaiter().GetResult();
-        SelectedCategory = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
-    }
 
     protected async Task InitializeAsync()
     {

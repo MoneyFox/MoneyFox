@@ -41,7 +41,7 @@
         <Label Text="{x:Static resources:Translations.CategoryLabel}"
                Style="{StaticResource TextBodySecondary}" />
 
-        <categorySelection:CategorySelectionControl />
+        <categorySelection:CategorySelectionControl BindingContext="{Binding CategorySelectionViewModel}" />
 
         <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Translations.DateLabel}"
                                    DateField="{Binding SelectedPayment.Date}" />

@@ -16,11 +16,12 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
 
-    public AddPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, IToastService toastService) : base(
+    public AddPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, IToastService toastService, CategorySelectionViewModel categorySelectionViewModel) : base(
         mediator: mediator,
         mapper: mapper,
         dialogService: dialogService,
-        toastService: toastService)
+        toastService: toastService,
+        categorySelectionViewModel)
     {
         this.mediator = mediator;
         this.dialogService = dialogService;
@@ -52,7 +53,7 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
         var chargedAccount = await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id));
         var targetAccount = SelectedPayment.TargetAccount != null ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id)) : null;
 
-        int? selectedCategoryId = WeakReferenceMessenger.Default.Send<SelectedCategoryRequestMessage>();
+        int? selectedCategoryId = Messenger.Send<SelectedCategoryRequestMessage>();
 
         Category? category = null;
         if (selectedCategoryId is not null)

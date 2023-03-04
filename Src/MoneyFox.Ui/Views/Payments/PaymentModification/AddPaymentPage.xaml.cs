@@ -14,11 +14,13 @@ public partial class AddPaymentPage
     {
         base.OnAppearing();
         ViewModel.IsActive = true;
+        ViewModel.CategorySelectionViewModel.IsActive = true;
     }
 
     protected override void OnDisappearing()
     {
         base.OnDisappearing();
         ViewModel.IsActive = false;
+        ViewModel.CategorySelectionViewModel.IsActive = false;
     }
 }

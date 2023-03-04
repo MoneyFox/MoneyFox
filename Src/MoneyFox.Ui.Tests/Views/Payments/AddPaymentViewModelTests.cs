@@ -15,11 +15,16 @@ public sealed class AddPaymentViewModelTests
         // Arrange
         var dialogService = Substitute.For<IDialogService>();
         var toastService = Substitute.For<IToastService>();
+        var mediator = Substitute.For<IMediator>();
         var vm = new AddPaymentViewModel(
-            mediator: Substitute.For<IMediator>(),
+            mediator: mediator,
             mapper: Substitute.For<IMapper>(),
             dialogService: dialogService,
-            toastService: toastService) { SelectedPayment = new() { ChargedAccount = new() } };
+            toastService: toastService,
+            categorySelectionViewModel: new(mediator: mediator, navigationService: Substitute.For<INavigationService>()))
+        {
+            SelectedPayment = new() { ChargedAccount = new() }
+        };
 
         dialogService.ShowConfirmMessageAsync(title: Arg.Any<string>(), message: Arg.Any<string>()).Returns(true);
 
