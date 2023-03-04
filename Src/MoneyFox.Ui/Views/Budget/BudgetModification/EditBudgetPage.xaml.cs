@@ -13,7 +13,13 @@ public partial class EditBudgetPage
 
     protected override void OnAppearing()
     {
+        ViewModel.IsActive = true;
         ViewModel.InitializeCommand.ExecuteAsync(budgetId).GetAwaiter().GetResult();
+    }
+
+    protected override void OnDisappearing()
+    {
+        ViewModel.IsActive = false;
     }
 
 #pragma warning disable S2376 // Write-only properties should not be used
