@@ -10,18 +10,19 @@
         <categorySelection:NoCategorySelectedConverter x:Key="NoCategorySelectedConverter" />
     </ContentView.Resources>
     
-    <Grid ColumnDefinitions="70*, 6, 40">
+    <Grid ColumnDefinitions="70*, 12, 40">
         <Button Grid.Column="0"
-                    Text="{Binding SelectedCategory, Converter={StaticResource NoCategorySelectedConverter}}"
-                    Command="{Binding GoToSelectCategoryDialogCommand}" />
+                Text="{Binding SelectedCategory, Converter={StaticResource NoCategorySelectedConverter}}"
+                Command="{Binding GoToSelectCategoryDialogCommand}" />
 
         <ImageButton Grid.Column="2"
-                         Command="{Binding ResetCategoryCommand}">
+                     HeightRequest="44"
+                     Command="{Binding ResetCategoryCommand}">
             <ImageButton.Source>
                 <FontImageSource FontFamily="MaterialIcons"
-                                     Size="24"
-                                     Glyph="{x:Static views:IconFont.Close}"
-                                     Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray900}}" />
+                                 Size="24"
+                                 Glyph="{x:Static views:IconFont.Close}"
+                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray900}}" />
             </ImageButton.Source>
         </ImageButton>
     </Grid>

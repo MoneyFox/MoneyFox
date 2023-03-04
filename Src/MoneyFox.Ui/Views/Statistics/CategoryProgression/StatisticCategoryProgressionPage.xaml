@@ -17,7 +17,7 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <Grid RowDefinitions="auto, auto, 6, *" Padding="15,0,15,15">
+        <Grid RowDefinitions="auto, 60, 6, *" Padding="15,0,15,15">
 
             <Grid ColumnDefinitions="*, Auto">
 
