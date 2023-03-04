@@ -5,7 +5,9 @@ using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Features.BudgetDeletion;
 using Core.Features.BudgetUpdate;
+using Core.Queries;
 using Core.Queries.BudgetEntryLoading;
+using Domain.Aggregates.CategoryAggregate;
 using Domain.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
@@ -35,6 +37,11 @@ public class EditBudgetViewModelTests
 
     public class OnReceiveMessage : EditBudgetViewModelTests
     {
+        public OnReceiveMessage()
+        {
+            sender.Send(Arg.Any<GetCategoryByIdQuery>()).Returns(new Category("Beer"));
+        }
+
         [Fact]
         public void AddsSelectedCategoryToList()
         {

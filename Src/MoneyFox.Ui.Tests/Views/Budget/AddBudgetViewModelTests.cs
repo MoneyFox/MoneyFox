@@ -4,6 +4,8 @@ using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Features.BudgetCreation;
 using Core.Interfaces;
+using Core.Queries;
+using Domain.Aggregates.CategoryAggregate;
 using Domain.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
@@ -26,8 +28,11 @@ public class AddBudgetViewModelTests
     public AddBudgetViewModelTests()
     {
         sender = Substitute.For<ISender>();
+        sender.Send(Arg.Any<GetCategoryByIdQuery>()).Returns(new Category("Beer"));
+
         navigationService = Substitute.For<INavigationService>();
         Substitute.For<IDialogService>();
+
         viewModel = new(sender: sender, navigationService: navigationService);
     }
 
