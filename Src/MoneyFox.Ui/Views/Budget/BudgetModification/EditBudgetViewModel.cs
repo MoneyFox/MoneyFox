@@ -11,8 +11,9 @@ using Domain.Aggregates.BudgetAggregate;
 using MediatR;
 using Resources.Strings;
 
-internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
+internal sealed class EditBudgetViewModel : ModifyBudgetViewModel, IQueryAttributable
 {
+    private const string BUDGET_ID = "budgetId";
     private readonly IDialogService dialogService;
     private readonly INavigationService navigationService;
     private readonly ISender sender;
@@ -33,6 +34,15 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
     public AsyncRelayCommand<int> InitializeCommand => new(InitializeAsync);
 
     public AsyncRelayCommand DeleteBudgetCommand => new(DeleteBudgetAsync);
+
+    public new void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+        if (query.TryGetValue(key: BUDGET_ID, value: out var selectedBudgetIdParam))
+        {
+            var selectedBudgetId = Convert.ToInt32(selectedBudgetIdParam);
+            InitializeAsync(selectedBudgetId).GetAwaiter().GetResult();
+        }
+    }
 
     private async Task InitializeAsync(int budgetId)
     {
