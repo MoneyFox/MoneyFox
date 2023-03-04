@@ -6,6 +6,7 @@
              xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
              xmlns:views="clr-namespace:MoneyFox.Ui.Views"
              xmlns:categoryProgression="clr-namespace:MoneyFox.Ui.Views.Statistics.CategoryProgression"
+             xmlns:categorySelection="clr-namespace:MoneyFox.Ui.Controls.CategorySelection"
              x:DataType="categoryProgression:StatisticCategoryProgressionViewModel"
              Title="{x:Static resources:Translations.CategoryProgressionTitle}">
 
@@ -38,10 +39,9 @@
                     </ImageButton.Source>
                 </ImageButton>
             </Grid>
-
-            <Button Grid.Row="1"
-                    Text="{Binding SelectedCategory, Converter={StaticResource NoCategorySelectedConverter}}"
-                    Command="{Binding GoToSelectCategoryDialogCommand}" />
+            
+            <categorySelection:CategorySelectionControl Grid.Row="1"
+                                                        BindingContext="{Binding CategorySelectionViewModel}" />
 
             <forms:CartesianChart Grid.Row="3"
                                   Series="{Binding Series, Mode=OneWay}"

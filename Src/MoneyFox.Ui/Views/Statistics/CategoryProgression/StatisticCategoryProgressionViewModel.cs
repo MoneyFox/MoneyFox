@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Views.Statistics.CategoryProgression;
 
 using System.Collections.ObjectModel;
+using Categories.CategorySelection;
 using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -15,15 +16,18 @@ using Messages;
 using MoneyFox.Ui.Controls.CategorySelection;
 using SkiaSharp;
 
-internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel, IRecipient<CategorySelectedMessage>
+internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel, IQueryAttributable
 {
     private bool hasNoData = true;
     private SelectedCategoryViewModel? selectedCategory;
 
-    public StatisticCategoryProgressionViewModel(IMediator mediator) : base(mediator)
+    public StatisticCategoryProgressionViewModel(IMediator mediator, CategorySelectionViewModel categorySelectionViewModel) : base(mediator)
     {
+        CategorySelectionViewModel = categorySelectionViewModel;
         StartDate = DateTime.Now.AddYears(-1);
     }
+
+    public CategorySelectionViewModel CategorySelectionViewModel { get; }
 
     public SelectedCategoryViewModel? SelectedCategory
     {
@@ -55,13 +59,6 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
 
     public AsyncRelayCommand GoToSelectCategoryDialogCommand => new(async () => await Shell.Current.GoToModalAsync(Routes.SelectCategoryRoute));
 
-    public void Receive(CategorySelectedMessage message)
-    {
-        var category = Mediator.Send(new GetCategoryByIdQuery(message.Value)).GetAwaiter().GetResult();
-        SelectedCategory = new() { Id = category.Id, Name = category.Name };
-        LoadAsync().GetAwaiter().GetResult();
-    }
-
     protected override async Task LoadAsync()
     {
         if (SelectedCategory == null)
@@ -85,5 +82,18 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
 
         Series.Clear();
         Series.Add(columnSeries);
+    }
+
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+        if (query.TryGetValue(SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, out var selectedCategoryIdParam))
+        {
+            var selectedCategoryId = Convert.ToInt32(selectedCategoryIdParam);
+            Messenger.Send(new CategorySelectedMessage(selectedCategoryId));
+
+            var category = Mediator.Send(new GetCategoryByIdQuery(selectedCategoryId)).GetAwaiter().GetResult();
+            SelectedCategory = new() { Id = category.Id, Name = category.Name };
+            LoadAsync().GetAwaiter().GetResult();
+        }
     }
 }

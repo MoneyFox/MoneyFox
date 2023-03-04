@@ -48,7 +48,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
         }
     }
 
-    public CategorySelectionViewModel CategorySelectionViewModel { get; set; }
+    public CategorySelectionViewModel CategorySelectionViewModel { get; }
 
     public SelectedCategoryViewModel? SelectedCategory
     {
