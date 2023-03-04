@@ -42,6 +42,8 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel, IQueryAttribu
             var selectedBudgetId = Convert.ToInt32(selectedBudgetIdParam);
             InitializeAsync(selectedBudgetId).GetAwaiter().GetResult();
         }
+
+        base.ApplyQueryAttributes(query);
     }
 
     private async Task InitializeAsync(int budgetId)

@@ -80,7 +80,11 @@ internal abstract class ModifyBudgetViewModel : BasePageViewModel, IQueryAttribu
         {
             var selectedCategoryId = Convert.ToInt32(selectedCategoryIdParam);
             var category = sender.Send(new GetCategoryByIdQuery(selectedCategoryId)).GetAwaiter().GetResult();
-            SelectedCategories.Add(new(categoryId: selectedCategoryId, name: category.Name));
+
+            if (SelectedCategories.Any(c => c.CategoryId == selectedCategoryId) is false)
+            {
+                SelectedCategories.Add(new(categoryId: selectedCategoryId, name: category.Name));
+            }
         }
     }
 

@@ -35,8 +35,10 @@ public class AddBudgetViewModelTests
     public void AddsSelectedCategoryToList()
     {
         // Act
-        CategorySelectedMessage categorySelectedMessage = new(CATEGORY_ID);
-        viewModel.Receive(categorySelectedMessage);
+        viewModel.ApplyQueryAttributes(new Dictionary<string, object>
+        {
+            { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID}
+        });
 
         // Assert
         _ = viewModel.SelectedCategories.Should().HaveCount(1);
@@ -47,9 +49,14 @@ public class AddBudgetViewModelTests
     public void IgnoresSelectedCategory_WhenEntryWithSameIdAlreadyInList()
     {
         // Act
-        CategorySelectedMessage categorySelectedMessage = new(CATEGORY_ID);
-        viewModel.Receive(categorySelectedMessage);
-        viewModel.Receive(categorySelectedMessage);
+        viewModel.ApplyQueryAttributes(new Dictionary<string, object>
+        {
+            { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID}
+        });
+        viewModel.ApplyQueryAttributes(new Dictionary<string, object>
+        {
+            { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID}
+        });
 
         // Assert
         _ = viewModel.SelectedCategories.Should().HaveCount(1);
