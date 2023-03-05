@@ -1,7 +1,6 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
 using AutoMapper;
-using CommunityToolkit.Mvvm.Messaging;
 using Controls.CategorySelection;
 using Core.Common.Interfaces;
 using Core.Features._Legacy_.Payments.CreatePayment;
@@ -35,7 +34,7 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
     public new void ApplyQueryAttributes(IDictionary<string, object> query)
     {
         var accountId = 0;
-        if (query.TryGetValue(key: "defaultChargedAccountId", value: out var defaultChargedAccountId))
+        if (query.TryGetValue(key: "defaultChargedAccountId", out var defaultChargedAccountId))
         {
             accountId = Convert.ToInt32(defaultChargedAccountId);
         }
@@ -55,11 +54,10 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
         await dialogService.ShowLoadingDialogAsync(Translations.SavingPaymentMessage);
         var chargedAccount = await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id));
         var targetAccount = SelectedPayment.TargetAccount != null ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id)) : null;
-        int? selectedCategoryId = Messenger.Send<SelectedCategoryRequestMessage>();
         Category? category = null;
-        if (selectedCategoryId is not null)
+        if (CategorySelectionViewModel.SelectedCategory is not null)
         {
-            category = await mediator.Send(new GetCategoryByIdQuery(selectedCategoryId.Value));
+            category = await mediator.Send(new GetCategoryByIdQuery(CategorySelectionViewModel.SelectedCategory.Id));
         }
 
         var payment = new Payment(

@@ -41,30 +41,30 @@ public partial class TextEntry
     public string TextFieldTitle
     {
         get => (string)GetValue(TextFieldTitleProperty);
-        set => SetValue(property: TextFieldTitleProperty, value: value);
+        set => SetValue(TextFieldTitleProperty, value);
     }
 
     public string EntryText
     {
         get => (string)GetValue(EntryTextProperty);
-        set => SetValue(property: EntryTextProperty, value: value);
+        set => SetValue(EntryTextProperty, value);
     }
 
     public string EntryPlaceholder
     {
         get => (string)GetValue(EntryPlaceholderProperty);
-        set => SetValue(property: EntryPlaceholderProperty, value: value);
+        set => SetValue(EntryPlaceholderProperty, value);
     }
 
     public bool IsRequired
     {
         get => (bool)GetValue(IsRequiredProperty);
-        set => SetValue(property: IsRequiredProperty, value: value);
+        set => SetValue(IsRequiredProperty, value);
     }
 
     public bool IsReadOnly
     {
         get => (bool)GetValue(IsReadOnlyProperty);
-        set => SetValue(property: IsReadOnlyProperty, value: value);
+        set => SetValue(IsReadOnlyProperty, value);
     }
 }
