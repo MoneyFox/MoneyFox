@@ -13,7 +13,6 @@ using OneDriveModels;
 
 internal class OneDriveService : IOneDriveBackupService
 {
-    private const int BACKUP_ARCHIVE_COUNT = 15;
     private const string ERROR_CODE_CANCELED = "authentication_canceled";
     private readonly Uri graphDriveUri = new("https://graph.microsoft.com/v1.0/me/drive");
 

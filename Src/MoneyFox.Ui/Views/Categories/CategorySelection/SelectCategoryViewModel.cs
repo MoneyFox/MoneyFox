@@ -56,9 +56,6 @@ internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<Ca
             async c =>
             {
                 await navigationService.NavigateBackAsync(parameterName: SELECTED_CATEGORY_ID_PARAM, queryParameter: c.Id.ToString());
-
-                // TODO: Remove this
-                Messenger.Send(new CategorySelectedMessage(c.Id));
             });
 
     public void Receive(CategoriesChangedMessage message)
