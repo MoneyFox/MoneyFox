@@ -6,15 +6,14 @@
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
-    xmlns:views="clr-namespace:MoneyFox.Ui.Views"
     xmlns:paymentModification="clr-namespace:MoneyFox.Ui.Views.Payments.PaymentModification"
+    xmlns:categorySelection="clr-namespace:MoneyFox.Ui.Controls.CategorySelection"
     x:Class="MoneyFox.Ui.Views.Payments.PaymentModification.ModifyPaymentContentView"
     x:DataType="paymentModification:ModifyPaymentViewModel">
 
     <ContentView.Resources>
         <ResourceDictionary>
             <converter:InverseBoolConverter x:Key="Inverter" />
-            <paymentModification:NoCategorySelectedConverter x:Key="NoCategorySelectedConverter" />
         </ResourceDictionary>
     </ContentView.Resources>
 
@@ -41,21 +40,7 @@
         <Label Text="{x:Static resources:Translations.CategoryLabel}"
                Style="{StaticResource TextBodySecondary}" />
 
-        <Grid ColumnDefinitions="70*, 6, 40">
-            <Button Grid.Column="0"
-                    Text="{Binding SelectedPayment.Category, Converter={StaticResource NoCategorySelectedConverter}}"
-                    Command="{Binding GoToSelectCategoryDialogCommand}" />
-
-            <ImageButton Grid.Column="2"
-                         Command="{Binding ResetCategoryCommand}">
-                <ImageButton.Source>
-                    <FontImageSource FontFamily="MaterialIcons"
-                                     Size="24"
-                                     Glyph="{x:Static views:IconFont.Close}"
-                                     Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray900}}" />
-                </ImageButton.Source>
-            </ImageButton>
-        </Grid>
+        <categorySelection:CategorySelectionControl BindingContext="{Binding CategorySelectionViewModel}" />
 
         <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Translations.DateLabel}"
                                    DateField="{Binding SelectedPayment.Date}" />

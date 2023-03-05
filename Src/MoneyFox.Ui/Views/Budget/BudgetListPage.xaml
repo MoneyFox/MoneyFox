@@ -14,26 +14,28 @@
     Title="{x:Static resources:Translations.BudgetsTitle}">
 
     <ContentPage.Resources>
-        <converter:DecimalToZeroFiveConverter x:Key="DecimalToZeroFiveConverter" />
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
         <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
     </ContentPage.Resources>
 
     <ContentPage.Content>
         <Grid IsClippedToBounds="False" RowDefinitions="40, Auto, *">
-
-            <HorizontalStackLayout Margin="18,0,12,0" Spacing="6">
-                <Label Style="{StaticResource TextBodySecondary}"
-                       Text="{x:Static resources:Translations.MonthlyBudgetLabel}" />
-                <Label Style="{StaticResource TextBodySecondary}"
-                       Text="{Binding BudgetedAmount, Converter={StaticResource DecimalToZeroFiveConverter}}" />
-            </HorizontalStackLayout>
-
             <Button
+                Grid.Row="0"
                 Margin="0,0,16,0"
                 HorizontalOptions="End"
                 Text="{x:Static resources:Translations.AddBudgetLabel}"
                 VerticalOptions="Center"
                 Command="{Binding GoToAddBudgetCommand}" />
+
+            <HorizontalStackLayout Margin="18,6,12,6"
+                                   Spacing="6"
+                                   Grid.Row="1">
+                <Label Style="{StaticResource TextBodySecondary}"
+                       Text="{x:Static resources:Translations.MonthlyBudgetLabel}" />
+                <Label Style="{StaticResource TextBodySecondary}"
+                       Text="{Binding BudgetedAmount, Converter={StaticResource AmountFormatConverter}}" />
+            </HorizontalStackLayout>
 
             <CollectionView Grid.Row="2"
                             BackgroundColor="Transparent"
@@ -57,12 +59,12 @@
 
                                     <Grid>
                                         <Label
-                                            Text="{Binding CurrentSpending, Converter={StaticResource DecimalToZeroFiveConverter}}"
+                                            Text="{Binding CurrentSpending, Converter={StaticResource AmountFormatConverter}}"
                                             HorizontalOptions="Start"
                                             Style="{StaticResource TextBodySecondary}" />
 
                                         <Label
-                                            Text="{Binding SpendingLimit, Converter={StaticResource DecimalToZeroFiveConverter}}"
+                                            Text="{Binding SpendingLimit, Converter={StaticResource AmountFormatConverter}}"
                                             HorizontalOptions="End"
                                             Style="{StaticResource TextBodySecondary}" />
                                     </Grid>

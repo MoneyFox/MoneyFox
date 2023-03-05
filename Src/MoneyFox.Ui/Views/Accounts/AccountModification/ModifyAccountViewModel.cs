@@ -3,7 +3,6 @@ namespace MoneyFox.Ui.Views.Accounts.AccountModification;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
-using Core.Interfaces;
 using Core.Queries;
 using MediatR;
 using Resources.Strings;
@@ -63,8 +62,8 @@ public abstract class ModifyAccountViewModel : BasePageViewModel
 
         await dialogService.ShowLoadingDialogAsync(Translations.SavingAccountMessage);
         await SaveAccountAsync();
-        Messenger.Send(new AccountsChangedMessage());
         await dialogService.HideLoadingDialogAsync();
         await navigationService.GoBackFromModalAsync();
+        Messenger.Send(new AccountsChangedMessage());
     }
 }

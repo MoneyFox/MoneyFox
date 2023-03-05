@@ -5,13 +5,19 @@ public partial class DesktopSelectedCategoryPage : ContentPage
     public DesktopSelectedCategoryPage()
     {
         InitializeComponent();
-        BindingContext = App.GetViewModel<CategorySelectionViewModel>();
+        BindingContext = App.GetViewModel<SelectCategoryViewModel>();
     }
 
-    private CategorySelectionViewModel SelectionViewModel => (CategorySelectionViewModel)BindingContext;
+    private SelectCategoryViewModel ViewModel => (SelectCategoryViewModel)BindingContext;
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
-        await SelectionViewModel.InitializeAsync();
+        ViewModel.IsActive = true;
+        ViewModel.InitializeAsync().GetAwaiter().GetResult();
+    }
+
+    protected override void OnDisappearing()
+    {
+        ViewModel.IsActive = false;
     }
 }

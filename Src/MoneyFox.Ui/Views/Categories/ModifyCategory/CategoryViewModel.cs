@@ -1,8 +1,6 @@
 namespace MoneyFox.Ui.Views.Categories.ModifyCategory;
 
-using CommunityToolkit.Mvvm.ComponentModel;
-
-public class CategoryViewModel : ObservableObject
+public class CategoryViewModel : ObservableViewModelBase
 {
     private DateTime created;
     private int id;
@@ -14,36 +12,36 @@ public class CategoryViewModel : ObservableObject
     public required int Id
     {
         get => id;
-        set => SetProperty(field: ref id, newValue: value);
+        set => SetProperty(property: ref id, value: value);
     }
 
     public required string Name
     {
         get => name;
-        set => SetProperty(field: ref name, newValue: value);
+        set => SetProperty(property: ref name, value: value);
     }
 
     public required string? Note
     {
         get => note;
-        set => SetProperty(field: ref note, newValue: value);
+        set => SetProperty(property: ref note, value: value);
     }
 
     public required bool RequireNote
     {
         get => requireNote;
-        set => SetProperty(field: ref requireNote, newValue: value);
+        set => SetProperty(property: ref requireNote, value: value);
     }
 
     public required DateTime Created
     {
         get => created;
-        set => SetProperty(field: ref created, newValue: value);
+        set => SetProperty(property: ref created, value: value);
     }
 
     public required DateTime? LastModified
     {
         get => lastModified;
-        set => SetProperty(field: ref lastModified, newValue: value);
+        set => SetProperty(property: ref lastModified, value: value);
     }
 }

@@ -3,21 +3,22 @@ namespace MoneyFox.Ui.Views.Budget.BudgetModification;
 using System.Collections.ObjectModel;
 using Categories.CategorySelection;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
-using Core.Interfaces;
+using Core.Queries;
 using Domain.Aggregates.BudgetAggregate;
-using Messages;
+using MediatR;
 
-internal abstract class ModifyBudgetViewModel : BasePageViewModel, IRecipient<CategorySelectedMessage>
+internal abstract class ModifyBudgetViewModel : BasePageViewModel, IQueryAttributable
 {
     private readonly INavigationService navigationService;
+    private readonly ISender sender;
     private string name = null!;
     private int numberOfMonths = 1;
     private decimal spendingLimit;
 
-    protected ModifyBudgetViewModel(INavigationService navigationService)
+    protected ModifyBudgetViewModel(INavigationService navigationService, ISender sender)
     {
         this.navigationService = navigationService;
+        this.sender = sender;
     }
 
     public string Name
@@ -73,12 +74,16 @@ internal abstract class ModifyBudgetViewModel : BasePageViewModel, IRecipient<Ca
 
     public AsyncRelayCommand SaveBudgetCommand => new(execute: SaveBudgetAsync, canExecute: () => IsValid);
 
-    public void Receive(CategorySelectedMessage message)
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        var categorySelectedDataSet = message.Value;
-        if (SelectedCategories.Any(c => c.CategoryId == message.Value.CategoryId) is false)
+        if (query.TryGetValue(key: SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, value: out var selectedCategoryIdParam))
         {
-            SelectedCategories.Add(new(categoryId: categorySelectedDataSet.CategoryId, name: categorySelectedDataSet.Name));
+            var selectedCategoryId = Convert.ToInt32(selectedCategoryIdParam);
+            var category = sender.Send(new GetCategoryByIdQuery(selectedCategoryId)).GetAwaiter().GetResult();
+            if (SelectedCategories.Any(c => c.CategoryId == selectedCategoryId) is false)
+            {
+                SelectedCategories.Add(new(categoryId: selectedCategoryId, name: category.Name));
+            }
         }
     }
 

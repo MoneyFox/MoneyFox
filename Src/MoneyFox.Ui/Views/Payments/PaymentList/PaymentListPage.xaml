@@ -7,12 +7,12 @@
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:views="clr-namespace:MoneyFox.Ui.Views"
-    xmlns:payments="clr-namespace:MoneyFox.Ui.Views.Payments"
+    xmlns:paymentList="clr-namespace:MoneyFox.Ui.Views.Payments.PaymentList"
     x:Class="MoneyFox.Ui.Views.Payments.PaymentList.PaymentListPage"
     Title="{Binding SelectedAccount.Name}">
 
     <ContentPage.Resources>
-        <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
+        <paymentList:PaymentAmountConverter x:Key="PaymentAmountConverter" />
         <converter:DateFormatConverter x:Key="DateFormatConverter" />
         <converter:DateGroupCardOpacityConverter x:Key="DateGroupCardOpacityConverter" />
     </ContentPage.Resources>
@@ -77,7 +77,7 @@
 
                                 <StackLayout BindableLayout.ItemsSource="{Binding .}">
                                     <BindableLayout.ItemTemplate>
-                                        <DataTemplate x:DataType="payments:PaymentViewModel">
+                                        <DataTemplate x:DataType="paymentList:PaymentListItemViewModel">
                                             <StackLayout Padding="9,6,9,3">
 
                                                 <StackLayout.GestureRecognizers>

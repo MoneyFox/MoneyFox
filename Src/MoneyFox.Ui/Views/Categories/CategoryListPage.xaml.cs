@@ -10,8 +10,14 @@ public partial class CategoryListPage : ContentPage
 
     private CategoryListViewModel ViewModel => (CategoryListViewModel)BindingContext;
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
-        await ViewModel.InitializeAsync();
+        ViewModel.IsActive = true;
+        ViewModel.InitializeAsync().GetAwaiter().GetResult();
+    }
+
+    protected override void OnDisappearing()
+    {
+        ViewModel.IsActive = false;
     }
 }

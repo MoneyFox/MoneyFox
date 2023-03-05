@@ -23,7 +23,7 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
 
     private bool isRunning;
 
-    private ObservableCollection<DateListGroupCollection<PaymentViewModel>> payments = new();
+    private ObservableCollection<DateListGroupCollection<PaymentListItemViewModel>> payments = new();
 
     private AccountViewModel selectedAccount = new();
 
@@ -45,7 +45,7 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
         }
     }
 
-    public ObservableCollection<DateListGroupCollection<PaymentViewModel>> Payments
+    public ObservableCollection<DateListGroupCollection<PaymentListItemViewModel>> Payments
     {
         get => payments;
 
@@ -73,21 +73,22 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
     public AsyncRelayCommand GoToAddPaymentCommand
         => new(async () => await Shell.Current.GoToAsync($"{Routes.AddPaymentRoute}?defaultChargedAccountId={SelectedAccount.Id}"));
 
-    public AsyncRelayCommand<PaymentViewModel> GoToEditPaymentCommand
+    public AsyncRelayCommand<PaymentListItemViewModel> GoToEditPaymentCommand
         => new(async pvm => await Shell.Current.GoToAsync($"{Routes.EditPaymentRoute}?paymentId={pvm.Id}"));
 
-    public async void Receive(PaymentListFilterChangedMessage message)
+    public void Receive(PaymentListFilterChangedMessage message)
     {
-        await LoadPaymentsByMessageAsync(message);
+        LoadPaymentsByMessageAsync(message).GetAwaiter().GetResult();
     }
 
-    public async void Receive(PaymentsChangedMessage message)
+    public void Receive(PaymentsChangedMessage message)
     {
-        await InitializeAsync(SelectedAccount.Id);
+        InitializeAsync(SelectedAccount.Id).GetAwaiter().GetResult();
     }
 
     public async Task InitializeAsync(int accountId)
     {
+        IsActive = true;
         SelectedAccount = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
         await LoadPaymentsByMessageAsync(new());
     }
@@ -102,7 +103,7 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
             }
 
             isRunning = true;
-            var paymentVms = mapper.Map<List<PaymentViewModel>>(
+            var paymentVms = mapper.Map<List<PaymentListItemViewModel>>(
                 await mediator.Send(
                     new GetPaymentsForAccountIdQuery(
                         accountId: SelectedAccount.Id,
@@ -113,7 +114,7 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
                         filteredPaymentType: message.FilteredPaymentType)));
 
             paymentVms.ForEach(x => x.CurrentAccountId = SelectedAccount.Id);
-            var dailyItems = DateListGroupCollection<PaymentViewModel>.CreateGroups(
+            var dailyItems = DateListGroupCollection<PaymentListItemViewModel>.CreateGroups(
                 items: paymentVms,
                 getKey: s => s.Date.ToString(format: "D", provider: CultureInfo.CurrentCulture),
                 getSortKey: s => s.Date);
@@ -127,7 +128,7 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
         }
     }
 
-    private void CalculateSubBalances(DateListGroupCollection<PaymentViewModel> group)
+    private void CalculateSubBalances(DateListGroupCollection<PaymentListItemViewModel> group)
     {
         group.Subtitle = string.Format(
             format: Translations.ExpenseAndIncomeTemplate,

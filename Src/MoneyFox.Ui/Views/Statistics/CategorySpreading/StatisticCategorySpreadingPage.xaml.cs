@@ -8,10 +8,20 @@ public partial class StatisticCategorySpreadingPage
     {
         InitializeComponent();
         BindingContext = App.GetViewModel<StatisticCategorySpreadingViewModel>();
-        ViewModel.LoadedCommand.Execute(null);
     }
 
     private StatisticCategorySpreadingViewModel ViewModel => (StatisticCategorySpreadingViewModel)BindingContext;
+
+    protected override void OnAppearing()
+    {
+        ViewModel.IsActive = true;
+        ViewModel.LoadedCommand.Execute(null);
+    }
+
+    protected override void OnDisappearing()
+    {
+        ViewModel.IsActive = false;
+    }
 
     private void OpenFilterDialog(object sender, EventArgs e)
     {

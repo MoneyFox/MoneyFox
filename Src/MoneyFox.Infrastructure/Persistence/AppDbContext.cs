@@ -4,7 +4,6 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Core.Common.Interfaces;
-using Core.Common.Mediatr;
 using Core.Common.Settings;
 using Core.Notifications.DatabaseChanged;
 using Domain;
@@ -14,6 +13,7 @@ using Domain.Aggregates.BudgetAggregate;
 using Domain.Aggregates.CategoryAggregate;
 using Domain.Aggregates.LedgerAggregate;
 using JetBrains.Annotations;
+using MediatR;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
@@ -21,10 +21,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 public class AppDbContext : DbContext, IAppDbContext
 {
-    private readonly ICustomPublisher? publisher;
+    private readonly IPublisher? publisher;
     private readonly ISettingsFacade? settingsFacade;
 
-    public AppDbContext(DbContextOptions options, ICustomPublisher? publisher, ISettingsFacade? settingsFacade) : base(options)
+    public AppDbContext(DbContextOptions options, IPublisher? publisher, ISettingsFacade? settingsFacade) : base(options)
     {
         this.publisher = publisher;
         this.settingsFacade = settingsFacade;
@@ -71,10 +71,7 @@ public class AppDbContext : DbContext, IAppDbContext
         // dispatch events only if save was successful
         if (changeCount > 0)
         {
-            await publisher.Publish(
-                notification: new DataBaseChanged.Notification(),
-                strategy: PublishStrategy.ParallelNoWait,
-                cancellationToken: cancellationToken);
+            await publisher.Publish(notification: new DataBaseChanged.Notification(), cancellationToken: cancellationToken);
         }
 
         return changeCount;
@@ -102,15 +99,14 @@ public class AppDbContext : DbContext, IAppDbContext
         configurationBuilder.Properties<Currency>().HaveConversion<CurrencyConverter>();
     }
 
+    public override int SaveChanges()
+    {
+        return SaveChangesAsync().GetAwaiter().GetResult();
+    }
+
     [UsedImplicitly]
     private sealed class CurrencyConverter : ValueConverter<Currency, string>
     {
         public CurrencyConverter() : base(convertToProviderExpression: v => v.AlphaIsoCode, convertFromProviderExpression: v => Currencies.Get(v)) { }
-    }
-
-
-    public override int SaveChanges()
-    {
-        return SaveChangesAsync().GetAwaiter().GetResult();
     }
 }

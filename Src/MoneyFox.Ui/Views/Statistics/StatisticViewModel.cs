@@ -91,11 +91,11 @@ internal abstract class StatisticViewModel : BasePageViewModel, IRecipient<DateS
     public string Title
         => $"{Translations.StatisticsTimeRangeTitle} {StartDate.ToString(format: "d", provider: CultureInfo.InvariantCulture)} - {EndDate.ToString(format: "d", provider: CultureInfo.InvariantCulture)}";
 
-    public async void Receive(DateSelectedMessage message)
+    public void Receive(DateSelectedMessage message)
     {
         StartDate = message.StartDate;
         EndDate = message.EndDate;
-        await LoadAsync();
+        LoadAsync().GetAwaiter().GetResult();
     }
 
     protected abstract Task LoadAsync();

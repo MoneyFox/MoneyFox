@@ -13,9 +13,15 @@ public partial class PaymentListPage : ContentPage
 
     private PaymentListViewModel ViewModel => (PaymentListViewModel)BindingContext;
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
-        await ViewModel.InitializeAsync(accountId);
+        ViewModel.IsActive = true;
+        ViewModel.InitializeAsync(accountId).GetAwaiter().GetResult();
+    }
+
+    protected override void OnDisappearing()
+    {
+        ViewModel.IsActive = false;
     }
 
     private void ShowFilterPopup(object sender, EventArgs e)

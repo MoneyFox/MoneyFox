@@ -11,9 +11,15 @@ public partial class EditAccountPage
 
     private EditAccountViewModel ViewModel => (EditAccountViewModel)BindingContext;
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
-        await ViewModel.InitializeAsync(accountId);
+        ViewModel.IsActive = true;
+        ViewModel.InitializeAsync(accountId).GetAwaiter().GetResult();
+    }
+
+    protected override void OnDisappearing()
+    {
+        ViewModel.IsActive = false;
     }
 
 #pragma warning disable S2376 // Write-only properties should not be used

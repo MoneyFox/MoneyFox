@@ -6,7 +6,6 @@ using Backup;
 using Budget;
 using Categories;
 using CommunityToolkit.Mvvm.Input;
-using Core.Interfaces;
 using JetBrains.Annotations;
 using Resources.Strings;
 using Settings;

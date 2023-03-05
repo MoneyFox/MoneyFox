@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Features._Legacy_.Payments.ClearPayments;
+namespace MoneyFox.Core.Features._Legacy_.Payments.ClearPayments;
 
 using System.Linq;
 using System.Threading;
@@ -19,7 +19,7 @@ public class ClearPaymentsCommand : IRequest
             this.appDbContext = appDbContext;
         }
 
-        public async Task<Unit> Handle(ClearPaymentsCommand request, CancellationToken cancellationToken)
+        public async Task Handle(ClearPaymentsCommand request, CancellationToken cancellationToken)
         {
             var unclearedPayments = await appDbContext.Payments.Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
@@ -33,8 +33,6 @@ public class ClearPaymentsCommand : IRequest
             }
 
             _ = await appDbContext.SaveChangesAsync(cancellationToken);
-
-            return Unit.Value;
         }
     }
 }

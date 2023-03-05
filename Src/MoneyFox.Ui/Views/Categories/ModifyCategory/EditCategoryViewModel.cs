@@ -4,7 +4,6 @@ using CommunityToolkit.Mvvm.Input;
 using Core.Common.Interfaces;
 using Core.Features._Legacy_.Categories.UpdateCategory;
 using Core.Features.CategoryDeletion;
-using Core.Interfaces;
 using Core.Queries;
 using MediatR;
 using Resources.Strings;

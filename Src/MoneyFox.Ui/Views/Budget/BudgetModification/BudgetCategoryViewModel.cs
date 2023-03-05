@@ -1,8 +1,6 @@
 namespace MoneyFox.Ui.Views.Budget.BudgetModification;
 
-using CommunityToolkit.Mvvm.ComponentModel;
-
-public sealed class BudgetCategoryViewModel : ObservableObject
+public sealed class BudgetCategoryViewModel : ObservableViewModelBase
 {
     private string name = string.Empty;
 
@@ -17,6 +15,6 @@ public sealed class BudgetCategoryViewModel : ObservableObject
     public string Name
     {
         get => name;
-        set => SetProperty(field: ref name, newValue: value);
+        set => SetProperty(property: ref name, value: value);
     }
 }

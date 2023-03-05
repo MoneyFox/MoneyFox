@@ -5,12 +5,12 @@ using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Features.BudgetDeletion;
 using Core.Features.BudgetUpdate;
-using Core.Interfaces;
+using Core.Queries;
 using Core.Queries.BudgetEntryLoading;
+using Domain.Aggregates.CategoryAggregate;
 using Domain.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
-using Messages;
 using NSubstitute;
 using Ui.Views.Budget.BudgetModification;
 using Ui.Views.Categories.CategorySelection;
@@ -35,12 +35,16 @@ public class EditBudgetViewModelTests
 
     public class OnReceiveMessage : EditBudgetViewModelTests
     {
+        public OnReceiveMessage()
+        {
+            sender.Send(Arg.Any<GetCategoryByIdQuery>()).Returns(new Category("Beer"));
+        }
+
         [Fact]
         public void AddsSelectedCategoryToList()
         {
             // Act
-            CategorySelectedMessage categorySelectedMessage = new(new(categoryId: CATEGORY_ID, name: "Beer"));
-            viewModel.Receive(categorySelectedMessage);
+            viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
 
             // Assert
             _ = viewModel.SelectedCategories.Should().HaveCount(1);
@@ -51,9 +55,8 @@ public class EditBudgetViewModelTests
         public void IgnoresSelectedCategory_WhenEntryWithSameIdAlreadyInList()
         {
             // Act
-            CategorySelectedMessage categorySelectedMessage = new(new(categoryId: CATEGORY_ID, name: "Beer"));
-            viewModel.Receive(categorySelectedMessage);
-            viewModel.Receive(categorySelectedMessage);
+            viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
+            viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
 
             // Assert
             _ = viewModel.SelectedCategories.Should().HaveCount(1);
@@ -98,7 +101,7 @@ public class EditBudgetViewModelTests
         {
             // Capture
             UpdateBudget.Command? capturedCommand = null;
-            _ = await sender.Send(Arg.Do<UpdateBudget.Command>(q => capturedCommand = q));
+            await sender.Send(Arg.Do<UpdateBudget.Command>(q => capturedCommand = q));
 
             // Arrange
             TestData.DefaultBudget testBudget = new();
@@ -162,7 +165,7 @@ public class EditBudgetViewModelTests
         {
             // Capture
             DeleteBudget.Command? capturedCommand = null;
-            _ = await sender.Send(Arg.Do<DeleteBudget.Command>(q => capturedCommand = q));
+            await sender.Send(Arg.Do<DeleteBudget.Command>(q => capturedCommand = q));
 
             // Arrange
             _ = dialogService.ShowConfirmMessageAsync(title: Arg.Any<string>(), message: Arg.Any<string>(), positiveButtonText: Arg.Any<string>())
@@ -199,7 +202,7 @@ public class EditBudgetViewModelTests
             await viewModel.DeleteBudgetCommand.ExecuteAsync(null);
 
             // Assert
-            _ = await sender.Received(0).Send(Arg.Any<DeleteBudget.Command>());
+            await sender.Received(0).Send(Arg.Any<DeleteBudget.Command>());
             await navigationService.Received(0).GoBackFromModalAsync();
         }
     }

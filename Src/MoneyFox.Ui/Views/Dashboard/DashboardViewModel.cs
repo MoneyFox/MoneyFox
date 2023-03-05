@@ -96,9 +96,9 @@ public class DashboardViewModel : BasePageViewModel, IRecipient<BackupRestoredMe
     public AsyncRelayCommand<AccountViewModel> GoToTransactionListCommand
         => new(async accountViewModel => await Shell.Current.GoToAsync($"{Routes.PaymentListRoute}?accountId={accountViewModel!.Id}"));
 
-    public async void Receive(BackupRestoredMessage message)
+    public void Receive(BackupRestoredMessage message)
     {
-        await InitializeAsync();
+        InitializeAsync().GetAwaiter().GetResult();
     }
 
     public async Task InitializeAsync()

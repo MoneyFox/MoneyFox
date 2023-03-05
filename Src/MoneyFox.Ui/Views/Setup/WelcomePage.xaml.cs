@@ -10,8 +10,8 @@ public partial class WelcomePage
 
     private WelcomeViewModel ViewModel => (WelcomeViewModel)BindingContext;
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
-        await ViewModel.InitAsync();
+        ViewModel.InitAsync().GetAwaiter().GetResult();
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Features._Legacy_.Accounts.DeleteAccountById;
+namespace MoneyFox.Core.Features._Legacy_.Accounts.DeleteAccountById;
 
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,13 +24,11 @@ public class DeactivateAccountByIdCommand : IRequest
             this.appDbContext = appDbContext;
         }
 
-        public async Task<Unit> Handle(DeactivateAccountByIdCommand request, CancellationToken cancellationToken)
+        public async Task Handle(DeactivateAccountByIdCommand request, CancellationToken cancellationToken)
         {
             var entityToDeactivate = await appDbContext.Accounts.SingleAsync(predicate: a => a.Id == request.AccountId, cancellationToken: cancellationToken);
             entityToDeactivate.Deactivate();
             _ = await appDbContext.SaveChangesAsync(cancellationToken);
-
-            return Unit.Value;
         }
     }
 }

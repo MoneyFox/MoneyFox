@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Features.CategoryCreation;
+namespace MoneyFox.Core.Features.CategoryCreation;
 
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,13 +19,11 @@ public static class CreateCategory
             this.dbContext = dbContext;
         }
 
-        public async Task<Unit> Handle(Command command, CancellationToken cancellationToken)
+        public async Task Handle(Command command, CancellationToken cancellationToken)
         {
             Category category = new(name: command.Name, note: command.Note, requireNote: command.RequireNote);
             await dbContext.AddAsync(entity: category, cancellationToken: cancellationToken);
             await dbContext.SaveChangesAsync(cancellationToken);
-
-            return Unit.Value;
         }
     }
 }

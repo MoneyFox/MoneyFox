@@ -3,35 +3,42 @@ namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 using System.Collections.ObjectModel;
 using Accounts;
 using AutoMapper;
-using Common.Extensions;
+using Categories.CategorySelection;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Controls.CategorySelection;
 using Core.Common.Interfaces;
 using Core.Queries;
 using Domain.Aggregates.AccountAggregate;
 using MediatR;
-using Messages;
 using Microsoft.AppCenter.Crashes;
 using Resources.Strings;
 using Serilog;
 
-public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<CategorySelectedMessage>
+public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttributable
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
     private readonly IMediator mediator;
     private readonly IToastService toastService;
     private ObservableCollection<AccountViewModel> chargedAccounts = new();
+    private SelectedCategoryViewModel? selectedCategory;
 
     private PaymentViewModel selectedPayment = new();
     private ObservableCollection<AccountViewModel> targetAccounts = new();
 
-    protected ModifyPaymentViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, IToastService toastService)
+    protected ModifyPaymentViewModel(
+        IMediator mediator,
+        IMapper mapper,
+        IDialogService dialogService,
+        IToastService toastService,
+        CategorySelectionViewModel categorySelectionViewModel)
     {
         this.mediator = mediator;
         this.mapper = mapper;
         this.dialogService = dialogService;
         this.toastService = toastService;
+        CategorySelectionViewModel = categorySelectionViewModel;
     }
 
     public PaymentViewModel SelectedPayment
@@ -41,6 +48,19 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
         set
         {
             selectedPayment = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public CategorySelectionViewModel CategorySelectionViewModel { get; }
+
+    public SelectedCategoryViewModel? SelectedCategory
+    {
+        get => selectedCategory;
+
+        set
+        {
+            selectedCategory = value;
             OnPropertyChanged();
         }
     }
@@ -87,18 +107,17 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
 
     public string AccountHeader => SelectedPayment?.Type == PaymentType.Income ? Translations.TargetAccountLabel : Translations.ChargedAccountLabel;
 
-    public AsyncRelayCommand GoToSelectCategoryDialogCommand => new(async () => await Shell.Current.GoToModalAsync(Routes.SelectCategoryRoute));
-
-    public RelayCommand ResetCategoryCommand => new(() => SelectedPayment.Category = null);
-
     protected bool IsFirstLoad { get; set; } = true;
 
     public AsyncRelayCommand SaveCommand => new(SaveAsync);
 
-    public async void Receive(CategorySelectedMessage message)
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        var category = await mediator.Send(new GetCategoryByIdQuery(message.Value.CategoryId));
-        SelectedPayment.Category = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
+        if (query.TryGetValue(key: SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, value: out var selectedCategoryIdParam))
+        {
+            var selectedCategoryId = Convert.ToInt32(selectedCategoryIdParam);
+            Messenger.Send(new CategorySelectedMessage(selectedCategoryId));
+        }
     }
 
     protected async Task InitializeAsync()
@@ -127,7 +146,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
             return;
         }
 
-        if (SelectedPayment.Category?.RequireNote is true && string.IsNullOrEmpty(SelectedPayment.Note))
+        if (SelectedCategory?.RequireNote is true && string.IsNullOrEmpty(SelectedPayment.Note))
         {
             await dialogService.ShowMessageAsync(title: Translations.MandatoryFieldEmptyTitle, message: Translations.ANoteForPaymentIsRequired);
 
@@ -147,8 +166,8 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IRecipient<Cat
         try
         {
             await SavePaymentAsync();
-            Messenger.Send(new PaymentsChangedMessage());
             await Shell.Current.Navigation.PopModalAsync();
+            Messenger.Send(new PaymentsChangedMessage());
         }
         catch (Exception ex)
         {

@@ -28,9 +28,9 @@ public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<BudgetsC
 
     public AsyncRelayCommand<BudgetListItemViewModel> EditBudgetCommand => new(EditBudgetAsync);
 
-    public async void Receive(BudgetsChangedMessage message)
+    public void Receive(BudgetsChangedMessage message)
     {
-        await Initialize();
+        Initialize().GetAwaiter().GetResult();
     }
 
     private async Task Initialize()

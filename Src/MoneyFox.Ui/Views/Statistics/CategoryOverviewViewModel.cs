@@ -1,10 +1,7 @@
 namespace MoneyFox.Ui.Views.Statistics;
 
-using CommunityToolkit.Mvvm.ComponentModel;
-
-public class CategoryOverviewViewModel : ObservableObject
+public class CategoryOverviewViewModel : ObservableViewModelBase
 {
-    private const decimal DECIMAL_DELTA = 0.01m;
     private decimal average;
 
     private int? categoryId;
@@ -18,17 +15,7 @@ public class CategoryOverviewViewModel : ObservableObject
     public int? CategoryId
     {
         get => categoryId;
-
-        set
-        {
-            if (categoryId == value)
-            {
-                return;
-            }
-
-            categoryId = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(property: ref categoryId, value: value);
     }
 
     /// <summary>
@@ -37,17 +24,7 @@ public class CategoryOverviewViewModel : ObservableObject
     public decimal Value
     {
         get => value;
-
-        set
-        {
-            if (Math.Abs(this.value - value) < DECIMAL_DELTA)
-            {
-                return;
-            }
-
-            this.value = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(property: ref this.value, value: value);
     }
 
     /// <summary>
@@ -56,17 +33,7 @@ public class CategoryOverviewViewModel : ObservableObject
     public decimal Average
     {
         get => average;
-
-        set
-        {
-            if (Math.Abs(average - value) < DECIMAL_DELTA)
-            {
-                return;
-            }
-
-            average = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(property: ref average, value: value);
     }
 
     /// <summary>
@@ -75,17 +42,7 @@ public class CategoryOverviewViewModel : ObservableObject
     public decimal Percentage
     {
         get => percentage;
-
-        set
-        {
-            if (Math.Abs(this.value - value) < DECIMAL_DELTA)
-            {
-                return;
-            }
-
-            percentage = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(property: ref percentage, value: value);
     }
 
     /// <summary>
@@ -94,16 +51,6 @@ public class CategoryOverviewViewModel : ObservableObject
     public string Label
     {
         get => label;
-
-        set
-        {
-            if (label == value)
-            {
-                return;
-            }
-
-            label = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(property: ref label, value: value);
     }
 }

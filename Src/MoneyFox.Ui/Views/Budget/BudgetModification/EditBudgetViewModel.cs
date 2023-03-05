@@ -6,21 +6,23 @@ using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Features.BudgetDeletion;
 using Core.Features.BudgetUpdate;
-using Core.Interfaces;
 using Core.Queries.BudgetEntryLoading;
 using Domain.Aggregates.BudgetAggregate;
 using MediatR;
 using Resources.Strings;
 
-internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
+internal sealed class EditBudgetViewModel : ModifyBudgetViewModel, IQueryAttributable
 {
+    private const string BUDGET_ID = "budgetId";
     private readonly IDialogService dialogService;
     private readonly INavigationService navigationService;
     private readonly ISender sender;
 
     private bool isFirstLoad = true;
 
-    public EditBudgetViewModel(ISender sender, INavigationService navigationService, IDialogService dialogService) : base(navigationService: navigationService)
+    public EditBudgetViewModel(ISender sender, INavigationService navigationService, IDialogService dialogService) : base(
+        navigationService: navigationService,
+        sender: sender)
     {
         this.sender = sender;
         this.navigationService = navigationService;
@@ -32,6 +34,17 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
     public AsyncRelayCommand<int> InitializeCommand => new(InitializeAsync);
 
     public AsyncRelayCommand DeleteBudgetCommand => new(DeleteBudgetAsync);
+
+    public new void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+        if (query.TryGetValue(key: BUDGET_ID, value: out var selectedBudgetIdParam))
+        {
+            var selectedBudgetId = Convert.ToInt32(selectedBudgetIdParam);
+            InitializeAsync(selectedBudgetId).GetAwaiter().GetResult();
+        }
+
+        base.ApplyQueryAttributes(query);
+    }
 
     private async Task InitializeAsync(int budgetId)
     {
@@ -56,9 +69,9 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
         if (await dialogService.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeleteBudgetConfirmationMessage))
         {
             var command = new DeleteBudget.Command(budgetId: Id);
-            _ = await sender.Send(command);
-            _ = Messenger.Send(new BudgetsChangedMessage());
+            await sender.Send(command);
             await navigationService.GoBackFromModalAsync();
+            _ = Messenger.Send(new BudgetsChangedMessage());
         }
     }
 
@@ -71,8 +84,8 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
             numberOfMonths: NumberOfMonths,
             categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
 
-        _ = await sender.Send(command);
-        _ = Messenger.Send(new BudgetsChangedMessage());
+        await sender.Send(command);
         await navigationService.GoBackFromModalAsync();
+        _ = Messenger.Send(new BudgetsChangedMessage());
     }
 }

@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.Views.Statistics.CategoryProgression;
+namespace MoneyFox.Ui.Controls.CategorySelection;
 
 using System.Globalization;
 using Resources.Strings;
