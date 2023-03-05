@@ -63,9 +63,8 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
         if (query.TryGetValue(key: SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, value: out var selectedCategoryIdParam))
         {
             var selectedCategoryId = Convert.ToInt32(selectedCategoryIdParam);
-            Messenger.Send(new CategorySelectedMessage(selectedCategoryId));
             var category = Mediator.Send(new GetCategoryByIdQuery(selectedCategoryId)).GetAwaiter().GetResult();
-            SelectedCategory = new() { Id = category.Id, Name = category.Name };
+            CategorySelectionViewModel.SelectedCategory = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote};
             LoadAsync().GetAwaiter().GetResult();
         }
     }

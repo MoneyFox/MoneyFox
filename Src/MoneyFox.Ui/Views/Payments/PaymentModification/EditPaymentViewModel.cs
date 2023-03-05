@@ -11,7 +11,7 @@ using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-internal class EditPaymentViewModel : ModifyPaymentViewModel
+internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
@@ -36,6 +36,17 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel
 
     public AsyncRelayCommand<PaymentViewModel> DeleteCommand => new(async p => await DeletePaymentAsync(p));
 
+    public new void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+        if (query.TryGetValue(key: "paymentId", value: out var paymentIdParam))
+        {
+            var paymentId = Convert.ToInt32(paymentIdParam);
+            InitializeAsync(paymentId).GetAwaiter().GetResult();
+        }
+
+        base.ApplyQueryAttributes(query);
+    }
+
     public async Task InitializeAsync(int paymentId)
     {
         if (IsFirstLoad is false)
@@ -48,8 +59,8 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel
         SelectedPayment = mapper.Map<PaymentViewModel>(payment);
         if (payment.Category != null)
         {
-            Messenger.Send(new CategorySelectedMessage(payment.Category.Id));
-            SelectedCategory = new() { Id = payment.Category.Id, Name = payment.Category.Name, RequireNote = payment.Category.RequireNote };
+            CategorySelectionViewModel.SelectedCategory
+                = new() { Id = payment.Category.Id, Name = payment.Category.Name, RequireNote = payment.Category.RequireNote };
         }
 
         IsFirstLoad = false;
@@ -69,7 +80,6 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel
 
         // Due to a bug in .net maui, the loading dialog can only be called after any other dialog
         await dialogService.ShowLoadingDialogAsync(Translations.SavingPaymentMessage);
-        int? selectedCategoryId = WeakReferenceMessenger.Default.Send<SelectedCategoryRequestMessage>();
         var command = new UpdatePayment.Command(
             Id: SelectedPayment.Id,
             Date: SelectedPayment.Date,
@@ -78,7 +88,7 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel
             Type: SelectedPayment.Type,
             Note: SelectedPayment.Note,
             IsRecurring: SelectedPayment.IsRecurring,
-            CategoryId: selectedCategoryId ?? 0,
+            CategoryId: CategorySelectionViewModel.SelectedCategory?.Id ?? 0,
             ChargedAccountId: SelectedPayment.ChargedAccount?.Id ?? 0,
             TargetAccountId: SelectedPayment.TargetAccount?.Id ?? 0,
             UpdateRecurringPayment: updateRecurring,

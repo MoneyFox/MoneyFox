@@ -55,11 +55,11 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
         await dialogService.ShowLoadingDialogAsync(Translations.SavingPaymentMessage);
         var chargedAccount = await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id));
         var targetAccount = SelectedPayment.TargetAccount != null ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id)) : null;
-        int? selectedCategoryId = Messenger.Send<SelectedCategoryRequestMessage>();
+
         Category? category = null;
-        if (selectedCategoryId is not null)
+        if (CategorySelectionViewModel.SelectedCategory is not null)
         {
-            category = await mediator.Send(new GetCategoryByIdQuery(selectedCategoryId.Value));
+            category = await mediator.Send(new GetCategoryByIdQuery(CategorySelectionViewModel.SelectedCategory.Id));
         }
 
         var payment = new Payment(

@@ -21,7 +21,7 @@ public sealed class EditPaymentViewModelTests
             mapper: Substitute.For<IMapper>(),
             dialogService: dialogService,
             toastService: toastService,
-            categorySelectionViewModel: new(mediator: mediator, navigationService: Substitute.For<INavigationService>()))
+            categorySelectionViewModel: new(navigationService: Substitute.For<INavigationService>()))
         {
             SelectedPayment = new() { ChargedAccount = new() }
         };
