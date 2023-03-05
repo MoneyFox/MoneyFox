@@ -17,7 +17,6 @@ using SkiaSharp;
 internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel, IQueryAttributable
 {
     private bool hasNoData = true;
-    private SelectedCategoryViewModel? selectedCategory;
 
     public StatisticCategoryProgressionViewModel(IMediator mediator, CategorySelectionViewModel categorySelectionViewModel) : base(mediator)
     {
@@ -26,12 +25,6 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
     }
 
     public CategorySelectionViewModel CategorySelectionViewModel { get; }
-
-    public SelectedCategoryViewModel? SelectedCategory
-    {
-        get => selectedCategory;
-        private set => SetProperty(field: ref selectedCategory, newValue: value);
-    }
 
     public ObservableCollection<ISeries> Series { get; } = new();
 
@@ -70,18 +63,18 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
 
     protected override async Task LoadAsync()
     {
-        if (SelectedCategory == null)
+        if (CategorySelectionViewModel.SelectedCategory == null)
         {
             HasNoData = true;
 
             return;
         }
 
-        var statisticItems = await Mediator.Send(new GetCategoryProgressionQuery(categoryId: SelectedCategory.Id, startDate: StartDate, endDate: EndDate));
+        var statisticItems = await Mediator.Send(new GetCategoryProgressionQuery(categoryId: CategorySelectionViewModel.SelectedCategory.Id, startDate: StartDate, endDate: EndDate));
         HasNoData = !statisticItems.Any();
         var columnSeries = new ColumnSeries<decimal>
         {
-            Name = SelectedCategory.Name,
+            Name = CategorySelectionViewModel.SelectedCategory.Name,
             TooltipLabelFormatter = point => $"{point.PrimaryValue:C}",
             DataLabelsFormatter = point => $"{point.PrimaryValue:C}",
             DataLabelsPaint = new SolidColorPaint(SKColor.Parse("b4b2b0")),
