@@ -9,7 +9,6 @@ using Common;
 using Common.Extensions;
 using Common.Interfaces;
 using Domain.Aggregates.AccountAggregate;
-using Domain.Aggregates.BudgetAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -68,19 +67,6 @@ public static class LoadBudgetListData
             }
 
             return budgetListDataList;
-        }
-
-        private DateTime GetThresholdDateFor(BudgetTimeRange timeRange)
-        {
-            return timeRange switch
-            {
-                BudgetTimeRange.YearToDate => new(year: systemDateHelper.Today.Year, month: 1, day: 1),
-                BudgetTimeRange.Last1Year => systemDateHelper.Today.AddYears(-1),
-                BudgetTimeRange.Last2Years => systemDateHelper.Today.AddYears(-2),
-                BudgetTimeRange.Last3Years => systemDateHelper.Today.AddYears(-3),
-                BudgetTimeRange.Last5Years => systemDateHelper.Today.AddYears(-5),
-                _ => throw new ArgumentOutOfRangeException(paramName: nameof(timeRange), actualValue: timeRange, message: null)
-            };
         }
     }
 }
