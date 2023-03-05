@@ -38,8 +38,8 @@ public class CategorySelectionViewModel : BasePageViewModel
 
     protected override void OnActivated()
     {
-        Messenger.Register<CategorySelectionViewModel, SelectedCategoryRequestMessage>(recipient: this, handler: (r, m) => m.Reply(SelectedCategory?.Id));
-        Messenger.Register<CategorySelectionViewModel, CategorySelectedMessage>(recipient: this, handler: (r, m) => Receive(m));
+        Messenger.Register<CategorySelectionViewModel, SelectedCategoryRequestMessage>(recipient: this, handler: (_, m) => m.Reply(SelectedCategory?.Id));
+        Messenger.Register<CategorySelectionViewModel, CategorySelectedMessage>(recipient: this, handler: (_, m) => Receive(m));
     }
 
     protected override void OnDeactivated()

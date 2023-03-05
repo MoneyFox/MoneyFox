@@ -18,10 +18,10 @@ public class UnhandledExceptionBehaviour<TRequest, TResponse> : IPipelineBehavio
         }
         catch (Exception ex)
         {
-            var requestName = typeof(TRequest).Name;
+            var requestName = typeof(TRequest).FullName;
             Log.Error(
                 exception: ex,
-                messageTemplate: "MoneyFox Request: Unhandled Exception for Request {Name} {@Request}",
+                messageTemplate: "MoneyFox Request: Unhandled Exception for Request {name} {@request}",
                 propertyValue0: requestName,
                 propertyValue1: request);
 

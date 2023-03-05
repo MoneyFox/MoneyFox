@@ -4,7 +4,7 @@ namespace MoneyFox.Ui.Controls;
 using Microsoft.Maui.Platform;
 using UIKit;
 using CoreGraphics;
-using MoneyFox.Ui.Platforms.iOS.Utils;
+using Platforms.iOS.Utils;
 #endif
 
 public class FixedScrollView : ScrollView

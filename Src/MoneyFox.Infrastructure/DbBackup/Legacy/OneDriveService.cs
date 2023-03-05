@@ -13,8 +13,6 @@ using OneDriveModels;
 
 internal class OneDriveService : IOneDriveBackupService
 {
-    private const string BACKUP_NAME_TEMPLATE = "backupmoneyfox3_{0}.db";
-    private const int BACKUP_ARCHIVE_COUNT = 15;
     private const string ERROR_CODE_CANCELED = "authentication_canceled";
     private readonly Uri graphDriveUri = new("https://graph.microsoft.com/v1.0/me/drive");
 
@@ -99,22 +97,5 @@ internal class OneDriveService : IOneDriveBackupService
         {
             throw new BackupAuthenticationFailedException(ex);
         }
-    }
-
-    private async Task CleanupOldBackupsAsync()
-    {
-        var authentication = await oneDriveAuthenticationService.AcquireAuthentication();
-        var appRoot = await graphDriveUri.AppendPathSegments("special", "approot", "children")
-            .WithOAuthBearerToken(authentication.AccessToken)
-            .GetJsonAsync<FileSearchDto>();
-
-        var existingBackups = appRoot.Files;
-        if (existingBackups.Count < BACKUP_ARCHIVE_COUNT)
-        {
-            return;
-        }
-
-        var oldestBackup = existingBackups.OrderByDescending(x => x.CreatedDate).Last();
-        _ = await graphDriveUri.AppendPathSegments("items", $"{oldestBackup.Id}").WithOAuthBearerToken(authentication.AccessToken).DeleteAsync();
     }
 }
