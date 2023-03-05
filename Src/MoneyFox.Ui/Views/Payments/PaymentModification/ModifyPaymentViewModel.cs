@@ -22,7 +22,6 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
     private readonly IMediator mediator;
     private readonly IToastService toastService;
     private ObservableCollection<AccountViewModel> chargedAccounts = new();
-    private SelectedCategoryViewModel? selectedCategory;
 
     private PaymentViewModel selectedPayment = new();
     private ObservableCollection<AccountViewModel> targetAccounts = new();
@@ -53,17 +52,6 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
     }
 
     public CategorySelectionViewModel CategorySelectionViewModel { get; }
-
-    public SelectedCategoryViewModel? SelectedCategory
-    {
-        get => selectedCategory;
-
-        set
-        {
-            selectedCategory = value;
-            OnPropertyChanged();
-        }
-    }
 
     public ObservableCollection<AccountViewModel> ChargedAccounts
     {
@@ -117,7 +105,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
         {
             var selectedCategoryId = Convert.ToInt32(selectedCategoryIdParam);
             var category = mediator.Send(new GetCategoryByIdQuery(selectedCategoryId)).GetAwaiter().GetResult();
-            SelectedCategory = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
+            CategorySelectionViewModel.SelectedCategory = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
         }
     }
 
@@ -147,7 +135,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
             return;
         }
 
-        if (SelectedCategory?.RequireNote is true && string.IsNullOrEmpty(SelectedPayment.Note))
+        if (CategorySelectionViewModel.SelectedCategory?.RequireNote is true && string.IsNullOrEmpty(SelectedPayment.Note))
         {
             await dialogService.ShowMessageAsync(title: Translations.MandatoryFieldEmptyTitle, message: Translations.ANoteForPaymentIsRequired);
 
