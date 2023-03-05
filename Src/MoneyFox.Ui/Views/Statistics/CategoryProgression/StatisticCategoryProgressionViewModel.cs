@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using Categories.CategorySelection;
 using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
 using Controls.CategorySelection;
 using Core.Queries;
 using Core.Queries.Statistics;
@@ -64,7 +63,7 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
         {
             var selectedCategoryId = Convert.ToInt32(selectedCategoryIdParam);
             var category = Mediator.Send(new GetCategoryByIdQuery(selectedCategoryId)).GetAwaiter().GetResult();
-            CategorySelectionViewModel.SelectedCategory = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote};
+            CategorySelectionViewModel.SelectedCategory = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
             LoadAsync().GetAwaiter().GetResult();
         }
     }

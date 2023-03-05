@@ -2,7 +2,6 @@ namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
 using Controls.CategorySelection;
 using Core.Common.Interfaces;
 using Core.Features._Legacy_.Payments.DeletePaymentById;

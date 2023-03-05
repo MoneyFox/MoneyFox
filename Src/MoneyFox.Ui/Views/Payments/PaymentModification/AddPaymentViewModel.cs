@@ -1,7 +1,6 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
 using AutoMapper;
-using CommunityToolkit.Mvvm.Messaging;
 using Controls.CategorySelection;
 using Core.Common.Interfaces;
 using Core.Features._Legacy_.Payments.CreatePayment;
@@ -55,7 +54,6 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
         await dialogService.ShowLoadingDialogAsync(Translations.SavingPaymentMessage);
         var chargedAccount = await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id));
         var targetAccount = SelectedPayment.TargetAccount != null ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id)) : null;
-
         Category? category = null;
         if (CategorySelectionViewModel.SelectedCategory is not null)
         {
