@@ -23,13 +23,13 @@ public partial class Search
     public string SearchPlaceholder
     {
         get => (string)GetValue(SearchPlaceholderProperty);
-        set => SetValue(property: SearchPlaceholderProperty, value: value);
+        set => SetValue(SearchPlaceholderProperty, value);
     }
 
     public ICommand SearchCommand
     {
         get => (ICommand)GetValue(SearchCommandProperty);
-        set => SetValue(property: SearchCommandProperty, value: value);
+        set => SetValue(SearchCommandProperty, value);
     }
 
     private void SearchEntry_OnTextChanged(object? sender, TextChangedEventArgs e)

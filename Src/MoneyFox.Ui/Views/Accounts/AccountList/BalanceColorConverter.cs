@@ -8,7 +8,7 @@ public class BalanceColorConverter : IValueConverter
     {
         var styleKey = value is decimal d && d < 0 ? "BalanceLabelNegative" : "BalanceLabelPositive";
 
-        return Application.Current!.Resources.TryGetValue(key: styleKey, value: out var styleValue)
+        return Application.Current!.Resources.TryGetValue(key: styleKey, out var styleValue)
             ? styleValue
             : throw new InvalidOperationException($"Failed to find the style '{styleKey}' in the resource dictionary.");
     }

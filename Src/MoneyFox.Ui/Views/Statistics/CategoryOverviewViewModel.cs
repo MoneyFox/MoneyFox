@@ -1,6 +1,8 @@
 namespace MoneyFox.Ui.Views.Statistics;
 
-public class CategoryOverviewViewModel : ObservableViewModelBase
+using CommunityToolkit.Mvvm.ComponentModel;
+
+public class CategoryOverviewViewModel : ObservableObject
 {
     private decimal average;
 
@@ -15,7 +17,7 @@ public class CategoryOverviewViewModel : ObservableViewModelBase
     public int? CategoryId
     {
         get => categoryId;
-        set => SetProperty(property: ref categoryId, value: value);
+        set => SetProperty(ref categoryId, value);
     }
 
     /// <summary>
@@ -24,7 +26,7 @@ public class CategoryOverviewViewModel : ObservableViewModelBase
     public decimal Value
     {
         get => value;
-        set => SetProperty(property: ref this.value, value: value);
+        set => SetProperty(ref this.value, value);
     }
 
     /// <summary>
@@ -33,7 +35,7 @@ public class CategoryOverviewViewModel : ObservableViewModelBase
     public decimal Average
     {
         get => average;
-        set => SetProperty(property: ref average, value: value);
+        set => SetProperty(ref average, value);
     }
 
     /// <summary>
@@ -42,7 +44,7 @@ public class CategoryOverviewViewModel : ObservableViewModelBase
     public decimal Percentage
     {
         get => percentage;
-        set => SetProperty(property: ref percentage, value: value);
+        set => SetProperty(ref percentage, value);
     }
 
     /// <summary>
@@ -51,6 +53,6 @@ public class CategoryOverviewViewModel : ObservableViewModelBase
     public string Label
     {
         get => label;
-        set => SetProperty(property: ref label, value: value);
+        set => SetProperty(ref label, value);
     }
 }
