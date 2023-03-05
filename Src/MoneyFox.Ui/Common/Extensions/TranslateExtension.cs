@@ -8,7 +8,7 @@ using Resources.Strings;
 [ContentProperty("Text")]
 public class TranslateExtension : IMarkupExtension
 {
-    private static readonly Lazy<ResourceManager> ResMgr = new(
+    private static readonly Lazy<ResourceManager> resMgr = new(
         () => new(baseName: typeof(Translations).FullName, assembly: typeof(Translations).GetTypeInfo().Assembly));
 
     public string? Text { get; set; }
@@ -20,6 +20,6 @@ public class TranslateExtension : IMarkupExtension
             return string.Empty;
         }
 
-        return ResMgr.Value.GetString(name: Text, culture: CultureInfo.CurrentUICulture) ?? Text;
+        return resMgr.Value.GetString(name: Text, culture: CultureInfo.CurrentUICulture) ?? Text;
     }
 }

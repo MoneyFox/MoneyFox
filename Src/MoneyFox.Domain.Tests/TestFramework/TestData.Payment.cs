@@ -8,10 +8,10 @@ internal static partial class TestData
 
     internal sealed record DefaultExpense : IPayment
     {
-        public int Id { get; set; } = 10;
+        public int Id { get; init; } = 10;
         public IAccount ChargedAccount => new DefaultAccount();
         public IAccount? TargetAccount => null;
-        public ICategory Category { get; init; } = new ExpenseCategory();
+        public ICategory? Category { get; init; } = new ExpenseCategory();
         public DateTime Date { get; init; } = defaultDate;
         public decimal Amount { get; init; } = 105.50m;
         public bool IsCleared => true;

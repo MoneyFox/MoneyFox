@@ -105,7 +105,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
             PaymentRecurrence.Yearly
         };
 
-    public string AccountHeader => SelectedPayment?.Type == PaymentType.Income ? Translations.TargetAccountLabel : Translations.ChargedAccountLabel;
+    public string AccountHeader => SelectedPayment.Type == PaymentType.Income ? Translations.TargetAccountLabel : Translations.ChargedAccountLabel;
 
     protected bool IsFirstLoad { get; set; } = true;
 

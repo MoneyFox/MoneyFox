@@ -26,6 +26,7 @@ internal class BudgetConfiguration : IEntityTypeConfiguration<Budget>
     {
         return new(
             convertToProviderExpression: i => string.Join(";", i),
-            convertFromProviderExpression: s => string.IsNullOrWhiteSpace(s) ? Array.Empty<int>() : s.Split(new[] { ';' }).Select(int.Parse).ToArray());
+            convertFromProviderExpression: s
+                => string.IsNullOrWhiteSpace(s) ? Array.Empty<int>() : s.Split(';', StringSplitOptions.None).Select(int.Parse).ToArray());
     }
 }
