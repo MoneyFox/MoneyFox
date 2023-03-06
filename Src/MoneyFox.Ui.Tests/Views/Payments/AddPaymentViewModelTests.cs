@@ -21,10 +21,7 @@ public sealed class AddPaymentViewModelTests
             mapper: Substitute.For<IMapper>(),
             dialogService: dialogService,
             toastService: toastService,
-            categorySelectionViewModel: new(mediator: mediator, navigationService: Substitute.For<INavigationService>()))
-        {
-            SelectedPayment = new() { ChargedAccount = new() }
-        };
+            categorySelectionViewModel: new(navigationService: Substitute.For<INavigationService>())) { SelectedPayment = new() { ChargedAccount = new() } };
 
         dialogService.ShowConfirmMessageAsync(title: Arg.Any<string>(), message: Arg.Any<string>()).Returns(true);
 

@@ -1,10 +1,11 @@
 namespace MoneyFox.Ui.Views.Categories;
 
 using AutoMapper;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Core.Common.Interfaces.Mapping;
 using Domain.Aggregates.CategoryAggregate;
 
-public class CategoryListItemViewModel : ObservableViewModelBase, IHaveCustomMapping
+public class CategoryListItemViewModel : ObservableObject, IHaveCustomMapping
 {
     private DateTime created;
     private int id;
@@ -16,37 +17,37 @@ public class CategoryListItemViewModel : ObservableViewModelBase, IHaveCustomMap
     public int Id
     {
         get => id;
-        set => SetProperty(property: ref id, value: value);
+        set => SetProperty(ref id, value);
     }
 
     public string Name
     {
         get => name;
-        set => SetProperty(property: ref name, value: value);
+        set => SetProperty(ref name, value);
     }
 
     public bool RequireNote
     {
         get => requireNote;
-        set => SetProperty(property: ref requireNote, value: value);
+        set => SetProperty(ref requireNote, value);
     }
 
     public DateTime Created
     {
         get => created;
-        set => SetProperty(property: ref created, value: value);
+        set => SetProperty(ref created, value);
     }
 
     public DateTime? LastModified
     {
         get => lastModified;
-        set => SetProperty(property: ref lastModified, value: value);
+        set => SetProperty(ref lastModified, value);
     }
 
     public string? Note
     {
         get => note;
-        set => SetProperty(property: ref note, value: value);
+        set => SetProperty(ref note, value);
     }
 
     public void CreateMappings(Profile configuration)

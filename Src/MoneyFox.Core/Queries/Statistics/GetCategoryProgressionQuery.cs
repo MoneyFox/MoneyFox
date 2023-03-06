@@ -62,7 +62,7 @@ public class GetCategoryProgressionHandler : IRequestHandler<GetCategoryProgress
         foreach (var group in payments.GroupBy(x => new { x.Date.Month, x.Date.Year }))
         {
             StatisticEntry statisticEntry = new(
-                value: group.Sum(x => GetPaymentAmountForSum(payment: x, request: request)),
+                group.Sum(x => GetPaymentAmountForSum(payment: x, request: request)),
                 label: $"{group.Key.Month:d2} {group.Key.Year:d4}");
 
             statisticEntry.ValueLabel = statisticEntry.Value.FormatCurrency(settingsFacade.DefaultCurrency);
@@ -84,7 +84,7 @@ public class GetCategoryProgressionHandler : IRequestHandler<GetCategoryProgress
             returnList.AddRange(items);
             if (!items.Any())
             {
-                StatisticEntry placeholderItem = new(value: 0, label: $"{startDate.Month:d2} {startDate.Year:d4}");
+                StatisticEntry placeholderItem = new(0, label: $"{startDate.Month:d2} {startDate.Year:d4}");
                 placeholderItem.ValueLabel = placeholderItem.Value.FormatCurrency(settingsFacade.DefaultCurrency);
                 placeholderItem.Color = placeholderItem.Value >= 0 ? BLUE_HEX_CODE : RED_HEX_CODE;
                 returnList.Add(placeholderItem);

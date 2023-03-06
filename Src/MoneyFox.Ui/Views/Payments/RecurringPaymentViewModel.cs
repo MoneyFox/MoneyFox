@@ -3,11 +3,12 @@ namespace MoneyFox.Ui.Views.Payments;
 using Accounts;
 using AutoMapper;
 using Categories;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Core.Common.Interfaces.Mapping;
 using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
 
-public class RecurringPaymentViewModel : ObservableViewModelBase, IHaveCustomMapping
+public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
 {
     private decimal amount;
     private CategoryListItemViewModel? categoryViewModel;
@@ -34,26 +35,26 @@ public class RecurringPaymentViewModel : ObservableViewModelBase, IHaveCustomMap
     public int Id
     {
         get => id;
-        set => SetProperty(property: ref id, value: value);
+        set => SetProperty(ref id, value);
     }
 
     public DateTime StartDate
     {
         get => startDate;
 
-        set => SetProperty(property: ref startDate, value: value);
+        set => SetProperty(ref startDate, value);
     }
 
     public bool IsLastDayOfMonth
     {
         get => isLastDayOfMonth;
-        set => SetProperty(property: ref isLastDayOfMonth, value: value);
+        set => SetProperty(ref isLastDayOfMonth, value);
     }
 
     public DateTime? EndDate
     {
         get => endDate;
-        set => SetProperty(property: ref endDate, value: value);
+        set => SetProperty(ref endDate, value);
     }
 
     public bool IsEndless
@@ -62,9 +63,9 @@ public class RecurringPaymentViewModel : ObservableViewModelBase, IHaveCustomMap
 
         set
         {
-            SetProperty(property: ref isEndless, value: value);
+            SetProperty(ref isEndless, value);
             EndDate = isEndless is false ? DateTime.Today : null;
-            RaisePropertyChanged(nameof(isEndless));
+            OnPropertyChanged(nameof(isEndless));
         }
     }
 
@@ -74,7 +75,7 @@ public class RecurringPaymentViewModel : ObservableViewModelBase, IHaveCustomMap
     public decimal Amount
     {
         get => amount;
-        set => SetProperty(property: ref amount, value: value);
+        set => SetProperty(ref amount, value);
     }
 
     /// <summary>
@@ -83,7 +84,7 @@ public class RecurringPaymentViewModel : ObservableViewModelBase, IHaveCustomMap
     public PaymentType Type
     {
         get => type;
-        set => SetProperty(property: ref type, value: value);
+        set => SetProperty(ref type, value);
     }
 
     public PaymentRecurrence Recurrence
@@ -92,7 +93,7 @@ public class RecurringPaymentViewModel : ObservableViewModelBase, IHaveCustomMap
 
         set
         {
-            SetProperty(property: ref recurrence, value: value);
+            SetProperty(ref recurrence, value);
 
             // If recurrence is changed to a type that doesn't allow the Last Day of Month flag, force the flag to false if it's true
             if (IsLastDayOfMonth && !AllowLastDayOfMonth)
@@ -100,7 +101,7 @@ public class RecurringPaymentViewModel : ObservableViewModelBase, IHaveCustomMap
                 IsLastDayOfMonth = false;
             }
 
-            RaisePropertyChanged(nameof(AllowLastDayOfMonth));
+            OnPropertyChanged(nameof(AllowLastDayOfMonth));
         }
     }
 
@@ -115,7 +116,7 @@ public class RecurringPaymentViewModel : ObservableViewModelBase, IHaveCustomMap
     public string Note
     {
         get => note;
-        set => SetProperty(property: ref note, value: value);
+        set => SetProperty(ref note, value);
     }
 
     /// <summary>
@@ -125,7 +126,7 @@ public class RecurringPaymentViewModel : ObservableViewModelBase, IHaveCustomMap
     public AccountViewModel ChargedAccount
     {
         get => chargedAccount;
-        set => SetProperty(property: ref chargedAccount, value: value);
+        set => SetProperty(ref chargedAccount, value);
     }
 
     /// <summary>
@@ -134,7 +135,7 @@ public class RecurringPaymentViewModel : ObservableViewModelBase, IHaveCustomMap
     public CategoryListItemViewModel? Category
     {
         get => categoryViewModel;
-        set => SetProperty(property: ref categoryViewModel, value: value);
+        set => SetProperty(ref categoryViewModel, value);
     }
 
     public void CreateMappings(Profile configuration)

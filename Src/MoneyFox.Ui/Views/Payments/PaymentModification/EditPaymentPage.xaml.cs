@@ -14,7 +14,6 @@ public partial class EditPaymentPage
     protected override void OnAppearing()
     {
         ViewModel.IsActive = true;
-        ViewModel.InitializeAsync(paymentId).GetAwaiter().GetResult();
     }
 
     protected override void OnDisappearing()
@@ -22,12 +21,4 @@ public partial class EditPaymentPage
         base.OnDisappearing();
         ViewModel.IsActive = false;
     }
-
-#pragma warning disable S2376 // Write-only properties should not be used
-    private int paymentId;
-    public string PaymentId
-    {
-        set => paymentId = Convert.ToInt32(Uri.UnescapeDataString(value));
-    }
-#pragma warning restore S2376 // Write-only properties should not be used
 }

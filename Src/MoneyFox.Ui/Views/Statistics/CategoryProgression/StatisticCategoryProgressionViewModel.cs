@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using Categories.CategorySelection;
 using Common.Extensions;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
 using Controls.CategorySelection;
 using Core.Queries;
 using Core.Queries.Statistics;
@@ -18,7 +17,6 @@ using SkiaSharp;
 internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel, IQueryAttributable
 {
     private bool hasNoData = true;
-    private SelectedCategoryViewModel? selectedCategory;
 
     public StatisticCategoryProgressionViewModel(IMediator mediator, CategorySelectionViewModel categorySelectionViewModel) : base(mediator)
     {
@@ -27,12 +25,6 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
     }
 
     public CategorySelectionViewModel CategorySelectionViewModel { get; }
-
-    public SelectedCategoryViewModel? SelectedCategory
-    {
-        get => selectedCategory;
-        private set => SetProperty(field: ref selectedCategory, newValue: value);
-    }
 
     public ObservableCollection<ISeries> Series { get; } = new();
 
@@ -60,30 +52,29 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
 
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        if (query.TryGetValue(key: SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, value: out var selectedCategoryIdParam))
+        if (query.TryGetValue(key: SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, out var selectedCategoryIdParam))
         {
             var selectedCategoryId = Convert.ToInt32(selectedCategoryIdParam);
-            Messenger.Send(new CategorySelectedMessage(selectedCategoryId));
             var category = Mediator.Send(new GetCategoryByIdQuery(selectedCategoryId)).GetAwaiter().GetResult();
-            SelectedCategory = new() { Id = category.Id, Name = category.Name };
+            CategorySelectionViewModel.SelectedCategory = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
             LoadAsync().GetAwaiter().GetResult();
         }
     }
 
     protected override async Task LoadAsync()
     {
-        if (SelectedCategory == null)
+        if (CategorySelectionViewModel.SelectedCategory == null)
         {
             HasNoData = true;
 
             return;
         }
 
-        var statisticItems = await Mediator.Send(new GetCategoryProgressionQuery(categoryId: SelectedCategory.Id, startDate: StartDate, endDate: EndDate));
+        var statisticItems = await Mediator.Send(new GetCategoryProgressionQuery(categoryId: CategorySelectionViewModel.SelectedCategory.Id, startDate: StartDate, endDate: EndDate));
         HasNoData = !statisticItems.Any();
         var columnSeries = new ColumnSeries<decimal>
         {
-            Name = SelectedCategory.Name,
+            Name = CategorySelectionViewModel.SelectedCategory.Name,
             TooltipLabelFormatter = point => $"{point.PrimaryValue:C}",
             DataLabelsFormatter = point => $"{point.PrimaryValue:C}",
             DataLabelsPaint = new SolidColorPaint(SKColor.Parse("b4b2b0")),
