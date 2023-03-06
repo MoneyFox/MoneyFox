@@ -1,8 +1,9 @@
 namespace MoneyFox.Ui.Controls.CategorySelection;
 
+using CommunityToolkit.Mvvm.ComponentModel;
 using Views;
 
-public class SelectedCategoryViewModel : ObservableViewModelBase
+public class SelectedCategoryViewModel : ObservableObject
 {
     private int id;
     private string name = "";
@@ -11,18 +12,18 @@ public class SelectedCategoryViewModel : ObservableViewModelBase
     public required int Id
     {
         get => id;
-        set => SetProperty(property: ref id, value: value);
+        set => SetProperty(ref id, value);
     }
 
     public required string Name
     {
         get => name;
-        set => SetProperty(property: ref name, value: value);
+        set => SetProperty(ref name, value);
     }
 
     public required bool RequireNote
     {
         get => requireNote;
-        set => SetProperty(property: ref requireNote, value: value);
+        set => SetProperty(ref requireNote, value);
     }
 }

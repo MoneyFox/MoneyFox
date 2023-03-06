@@ -14,7 +14,7 @@ public class SettingsAdapter : ISettingsAdapter
         catch (InvalidCastException)
         {
             Log.Error(messageTemplate: "Value {key} couldn't be parsed to bool", propertyValue: key);
-            Preferences.Set(key: key, value: defaultValue);
+            Preferences.Set(key: key, defaultValue);
 
             return defaultValue;
         }
@@ -29,7 +29,7 @@ public class SettingsAdapter : ISettingsAdapter
         catch (InvalidCastException)
         {
             Log.Error(messageTemplate: "Value {key} couldn't be parsed to string", propertyValue: key);
-            Preferences.Set(key: key, value: defaultValue);
+            Preferences.Set(key: key, defaultValue);
 
             return defaultValue;
         }
@@ -44,7 +44,7 @@ public class SettingsAdapter : ISettingsAdapter
         catch (InvalidCastException)
         {
             Log.Error(messageTemplate: "Value {Key} couldn't be parsed to int", propertyValue: key);
-            Preferences.Set(key: key, value: defaultValue);
+            Preferences.Set(key: key, defaultValue);
 
             return defaultValue;
         }
@@ -52,17 +52,17 @@ public class SettingsAdapter : ISettingsAdapter
 
     public void AddOrUpdate(string key, bool value)
     {
-        Preferences.Set(key: key, value: value);
+        Preferences.Set(key: key, value);
     }
 
     public void AddOrUpdate(string key, string value)
     {
-        Preferences.Set(key: key, value: value);
+        Preferences.Set(key: key, value);
     }
 
     public void AddOrUpdate(string key, int value)
     {
-        Preferences.Set(key: key, value: value);
+        Preferences.Set(key: key, value);
     }
 
     public void Remove(string key)

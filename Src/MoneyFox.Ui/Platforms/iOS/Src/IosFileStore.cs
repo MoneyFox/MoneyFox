@@ -10,7 +10,7 @@ public class IosFileStore : FileStoreIoBase
 
     protected override string AppendPath(string path)
     {
-        if (path.StartsWith(value: RES_SCHEME, comparisonType: StringComparison.OrdinalIgnoreCase))
+        if (path.StartsWith(RES_SCHEME, comparisonType: StringComparison.OrdinalIgnoreCase))
         {
             return path.Substring(startIndex: RES_SCHEME.Length, length: path.Length - RES_SCHEME.Length);
         }

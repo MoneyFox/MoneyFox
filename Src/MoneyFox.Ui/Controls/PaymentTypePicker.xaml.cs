@@ -30,18 +30,18 @@ public partial class PaymentTypePicker
     public string PickerTitle
     {
         get => (string)GetValue(PickerTitleProperty);
-        set => SetValue(property: PickerTitleProperty, value: value);
+        set => SetValue(PickerTitleProperty, value);
     }
 
     public IList PaymentTypeSource
     {
         get => (IList)GetValue(PaymentTypeSourceProperty);
-        set => SetValue(property: PaymentTypeSourceProperty, value: value);
+        set => SetValue(PaymentTypeSourceProperty, value);
     }
 
     public object SelectedType
     {
         get => GetValue(SelectedTypeProperty);
-        set => SetValue(property: SelectedTypeProperty, value: value);
+        set => SetValue(SelectedTypeProperty, value);
     }
 }

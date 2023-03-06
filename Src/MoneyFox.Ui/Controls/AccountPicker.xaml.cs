@@ -30,18 +30,18 @@ public partial class AccountPicker
     public string PickerTitle
     {
         get => (string)GetValue(PickerTitleProperty);
-        set => SetValue(property: PickerTitleProperty, value: value);
+        set => SetValue(PickerTitleProperty, value);
     }
 
     public IList AccountsSource
     {
         get => (IList)GetValue(AccountsSourceProperty);
-        set => SetValue(property: AccountsSourceProperty, value: value);
+        set => SetValue(AccountsSourceProperty, value);
     }
 
     public object SelectedAccount
     {
         get => GetValue(SelectedAccountProperty);
-        set => SetValue(property: SelectedAccountProperty, value: value);
+        set => SetValue(SelectedAccountProperty, value);
     }
 }

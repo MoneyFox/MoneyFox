@@ -71,7 +71,7 @@ public partial class App
 
             var settingsFacade = ServiceProvider.GetService<ISettingsFacade>();
             settingsFacade!.IsSetupCompleted = false;
-            settingsAdapter.AddOrUpdate(key: IS_SETUP_RESET_KEY_NAME, value: true);
+            settingsAdapter.AddOrUpdate(key: IS_SETUP_RESET_KEY_NAME, true);
         }
         catch (Exception ex)
         {
@@ -109,7 +109,7 @@ public partial class App
             }
 
             dbContext.SaveChangesAsync().GetAwaiter().GetResult();
-            settingsAdapter.AddOrUpdate(key: IS_CATEGORY_CLEANUP_EXECUTED_KEY_NAME, value: true);
+            settingsAdapter.AddOrUpdate(key: IS_CATEGORY_CLEANUP_EXECUTED_KEY_NAME, true);
         }
         catch (Exception ex)
         {
@@ -169,7 +169,7 @@ public partial class App
             }
 
             dbContext.SaveChangesAsync().GetAwaiter().GetResult();
-            settingsAdapter.AddOrUpdate(key: IS_BUDGET_MIGRATION_DONE_KEY_NAME, value: true);
+            settingsAdapter.AddOrUpdate(key: IS_BUDGET_MIGRATION_DONE_KEY_NAME, true);
         }
         catch (Exception ex)
         {
@@ -183,7 +183,7 @@ public partial class App
         foreach (var dictionary in Resources.MergedDictionaries)
         {
             var key = dictionary.Source.OriginalString.Split(';').First().Split('/').Last().Split('.').First();
-            ResourceDictionary.Add(key: key, value: dictionary);
+            ResourceDictionary.Add(key: key, dictionary);
         }
     }
 

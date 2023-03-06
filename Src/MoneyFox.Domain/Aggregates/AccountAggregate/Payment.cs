@@ -84,7 +84,7 @@ public class Payment : EntityBase
     {
         if (ChargedAccount == null)
         {
-            throw new InvalidOperationException("Uninitialized property: " + nameof(ChargedAccount));
+            throw new InvalidOperationException("Uninitialized " + nameof(ChargedAccount));
         }
 
         ChargedAccount.RemovePaymentAmount(this);
@@ -148,7 +148,7 @@ public class Payment : EntityBase
         IsCleared = Date.Date <= DateTime.Today.Date;
         if (ChargedAccount == null)
         {
-            throw new InvalidOperationException("Uninitialized property: " + nameof(ChargedAccount));
+            throw new InvalidOperationException("Uninitialized " + nameof(ChargedAccount));
         }
 
         ChargedAccount.AddPaymentAmount(this);

@@ -1,10 +1,11 @@
 namespace MoneyFox.Ui.Views.Accounts;
 
 using AutoMapper;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Core.Common.Interfaces.Mapping;
 using Domain.Aggregates.AccountAggregate;
 
-public sealed class AccountViewModel : ObservableViewModelBase, IHaveCustomMapping, IEquatable<AccountViewModel>
+public sealed class AccountViewModel : ObservableObject, IHaveCustomMapping, IEquatable<AccountViewModel>
 {
     private DateTime created;
     private decimal currentBalance;
@@ -21,55 +22,55 @@ public sealed class AccountViewModel : ObservableViewModelBase, IHaveCustomMappi
     {
         get => id;
 
-        set => SetProperty(property: ref id, value: value);
+        set => SetProperty(ref id, value);
     }
 
     public string Name
     {
         get => name;
-        set => SetProperty(property: ref name, value: value);
+        set => SetProperty(ref name, value);
     }
 
     public decimal CurrentBalance
     {
         get => currentBalance;
-        set => SetProperty(property: ref currentBalance, value: value);
+        set => SetProperty(ref currentBalance, value);
     }
 
     public decimal EndOfMonthBalance
     {
         get => endOfMonthBalance;
-        set => SetProperty(property: ref endOfMonthBalance, value: value);
+        set => SetProperty(ref endOfMonthBalance, value);
     }
 
     public string Note
     {
         get => note;
-        set => SetProperty(property: ref note, value: value);
+        set => SetProperty(ref note, value);
     }
 
     public bool IsOverdrawn
     {
         get => isOverdrawn;
-        set => SetProperty(property: ref isOverdrawn, value: value);
+        set => SetProperty(ref isOverdrawn, value);
     }
 
     public bool IsExcluded
     {
         get => isExcluded;
-        set => SetProperty(property: ref isExcluded, value: value);
+        set => SetProperty(ref isExcluded, value);
     }
 
     public DateTime Created
     {
         get => created;
-        set => SetProperty(property: ref created, value: value);
+        set => SetProperty(ref created, value);
     }
 
     public DateTime LastModified
     {
         get => lastModified;
-        set => SetProperty(property: ref lastModified, value: value);
+        set => SetProperty(ref lastModified, value);
     }
 
     public bool Equals(AccountViewModel? other)
