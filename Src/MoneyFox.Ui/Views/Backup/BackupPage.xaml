@@ -24,21 +24,25 @@
                 <VerticalStackLayout IsVisible="{Binding IsLoggedIn}"
                                      Spacing="6"
                                      Margin="0,0,0,10">
-                    <Frame CornerRadius="40"
-                           WidthRequest="80"
-                           HeightRequest="80"
-                           HorizontalOptions="Center"
-                           Padding="0"
-                           IsClippedToBounds="True">
-                        <Image Source="{Binding ProfilePicture}" />
-                    </Frame>
+                    
+                    <!-- Height and Width are set on an extra StackLayout, since width was not set correctly on Android when set directly on the Frame -->
+                    <VerticalStackLayout WidthRequest="80"
+                                         HeightRequest="80">
+                        <Frame CornerRadius="40"
+                               Padding="0"
+                               IsClippedToBounds="True">
+                            <Image Source="{Binding ProfilePicture}" />
+                        </Frame>
+                    </VerticalStackLayout>
 
                     <Label Style="{StaticResource TextTitle}"
                            Text="{Binding UserAccount.Name}"
                            FontAttributes="Bold"
+                           HorizontalOptions="Center"
                            HorizontalTextAlignment="Center" />
 
                     <Label Text="{Binding UserAccount.Email}"
+                           HorizontalOptions="Center"
                            HorizontalTextAlignment="Center" />
                 </VerticalStackLayout>
 
