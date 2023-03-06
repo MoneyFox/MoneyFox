@@ -33,16 +33,21 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
 
     public new void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        var accountId = 0;
-        if (query.TryGetValue(key: "defaultChargedAccountId", out var defaultChargedAccountId))
+        if (IsFirstLoad)
         {
-            accountId = Convert.ToInt32(defaultChargedAccountId);
-        }
+            var accountId = 0;
+            if (query.TryGetValue(key: "defaultChargedAccountId", out var defaultChargedAccountId))
+            {
+                accountId = Convert.ToInt32(defaultChargedAccountId);
+            }
 
-        InitializeAsync().GetAwaiter().GetResult();
-        if (ChargedAccounts.Any())
-        {
-            SelectedPayment.ChargedAccount = accountId != 0 ? ChargedAccounts.First(n => n.Id == accountId) : ChargedAccounts.First();
+            InitializeAsync().GetAwaiter().GetResult();
+            if (ChargedAccounts.Any())
+            {
+                SelectedPayment.ChargedAccount = accountId != 0
+                    ? ChargedAccounts.First(n => n.Id == accountId)
+                    : ChargedAccounts.First();
+            }
         }
 
         base.ApplyQueryAttributes(query);
