@@ -19,7 +19,7 @@ steps:
   - task: UseDotNet@2
     displayName: 'Install .net sdk'
     inputs:
-      version: 7.x
+      version: 7.0.201
 
   - task: PowerShell@2
     displayName: "Set App Version"
