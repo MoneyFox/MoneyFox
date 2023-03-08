@@ -18,6 +18,7 @@ using Microsoft.AppCenter.Crashes;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Views;
+using Views.Setup;
 
 public partial class App
 {
@@ -33,20 +34,28 @@ public partial class App
         InitializeComponent();
         SetupServices();
         FillResourceDictionary();
-        MainPage = DeviceInfo.Current.Idiom == DeviceIdiom.Desktop
-                   || DeviceInfo.Current.Idiom == DeviceIdiom.Tablet
-                   || DeviceInfo.Current.Idiom == DeviceIdiom.TV
-            ? new AppShellDesktop()
-            : new AppShell();
 
         ResetSetup(settingsAdapter);
         if (settingsFacade.IsSetupCompleted is false)
         {
-            Shell.Current.GoToAsync(Routes.WelcomeViewRoute).Wait();
+            MainPage = new SetupShell2();
+        }
+        else
+        {
+            MainPage = GetAppShellPage();
         }
 
         FixCorruptPayments(settingsAdapter);
         MigrateBudgetData(settingsAdapter);
+    }
+
+    public static Page GetAppShellPage()
+    {
+        return DeviceInfo.Current.Idiom == DeviceIdiom.Desktop
+               || DeviceInfo.Current.Idiom == DeviceIdiom.Tablet
+               || DeviceInfo.Current.Idiom == DeviceIdiom.TV
+            ? new AppShellDesktop()
+            : new AppShell();
     }
 
     public static Dictionary<string, ResourceDictionary> ResourceDictionary { get; } = new();
