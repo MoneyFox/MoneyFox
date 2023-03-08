@@ -94,7 +94,7 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
         var startDate = StartDate;
         while (startDate < EndDate)
         {
-            labels.Add(startDate.ToString("MMMM"));
+            labels.Add(startDate.ToString("MMM"));
             startDate = startDate.AddMonths(1);
         }
         XAxis.Clear();
