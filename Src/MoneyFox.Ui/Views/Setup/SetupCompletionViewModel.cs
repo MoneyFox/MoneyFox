@@ -19,6 +19,7 @@ internal sealed class SetupCompletionViewModel : BasePageViewModel
     private async Task CompleteSetup()
     {
         settingsFacade.IsSetupCompleted = true;
+        Application.Current!.MainPage = App.GetAppShellPage();
         await Shell.Current.GoToAsync(Routes.DashboardRoute);
     }
 }

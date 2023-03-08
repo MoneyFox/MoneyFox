@@ -49,9 +49,4 @@
         </Tab>
     </TabBar>
 
-    <ShellContent Route="WelcomePage"
-                  IsVisible="False"
-                  Shell.FlyoutBehavior="Disabled"
-                  ContentTemplate="{DataTemplate setup:WelcomePage}" />
-
 </Shell>
