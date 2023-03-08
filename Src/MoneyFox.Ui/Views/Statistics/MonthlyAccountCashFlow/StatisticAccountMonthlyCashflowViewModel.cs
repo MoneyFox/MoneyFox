@@ -65,6 +65,7 @@ internal sealed class StatisticAccountMonthlyCashFlowViewModel : StatisticViewMo
 
     protected override async Task LoadAsync()
     {
+        SetXAxis();
         var statisticItems = await Mediator.Send(new GetAccountProgressionQuery(accountId: SelectedAccount?.Id ?? 0, startDate: StartDate, endDate: EndDate));
         var columnSeries = new ColumnSeries<decimal>
         {
@@ -76,5 +77,26 @@ internal sealed class StatisticAccountMonthlyCashFlowViewModel : StatisticViewMo
 
         Series.Clear();
         Series.Add(columnSeries);
+    }
+
+    private void SetXAxis()
+    {
+        var labels = new List<string>();
+        var startDate = StartDate;
+        while (startDate < EndDate)
+        {
+            labels.Add(startDate.ToString("MMMM"));
+            startDate = startDate.AddMonths(1);
+        }
+        XAxis.Clear();
+        XAxis.Add(new Axis
+        {
+            Labels = labels,
+            LabelsRotation = 0,
+            SeparatorsPaint = new SolidColorPaint(new SKColor(200, 200, 200)),
+            SeparatorsAtCenter = false,
+            TicksPaint = new SolidColorPaint(new SKColor(35, 35, 35)),
+            TicksAtCenter = true
+        });
     }
 }
