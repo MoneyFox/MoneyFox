@@ -38,7 +38,7 @@ public partial class App
         ResetSetup(settingsAdapter);
         if (settingsFacade.IsSetupCompleted is false)
         {
-            MainPage = new SetupShell2();
+            MainPage = new SetupShell();
         }
         else
         {
