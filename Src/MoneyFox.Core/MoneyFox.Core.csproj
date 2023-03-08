@@ -19,9 +19,9 @@
         <PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.1"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.3"/>
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0"/>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.2"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
         <PackageReference Include="Serilog" Version="2.12.0"/>
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.53.0.62665">
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.54.0.64047">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
