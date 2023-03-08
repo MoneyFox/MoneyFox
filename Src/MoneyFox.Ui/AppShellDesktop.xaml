@@ -21,7 +21,7 @@
         <Tab.Icon>
             <FontImageSource FontFamily="MaterialIcons"
                              Glyph="{x:Static views:IconFont.HomeOutline}"
-                             Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
+                             Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}"
                              Size="24" />
         </Tab.Icon>
         <ShellContent>
@@ -33,7 +33,7 @@
         <Tab.Icon>
             <FontImageSource FontFamily="MaterialIcons"
                              Glyph="{x:Static views:IconFont.ChartArc}"
-                             Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
+                             Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}"
                              Size="24" />
         </Tab.Icon>
         <ShellContent Title="{x:Static resources:Translations.StatisticsTitle}">
@@ -45,7 +45,7 @@
         <Tab.Icon>
             <FontImageSource FontFamily="MaterialIcons"
                              Glyph="{x:Static views:IconFont.PiggyBankOutline}"
-                             Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
+                             Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}"
                              Size="24" />
         </Tab.Icon>
         <ShellContent>
@@ -57,7 +57,7 @@
         <Tab.Icon>
             <FontImageSource FontFamily="MaterialIcons"
                              Glyph="{x:Static views:IconFont.CloudUploadOutline}"
-                             Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
+                             Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}"
                              Size="24" />
         </Tab.Icon>
         <ShellContent>
@@ -69,7 +69,7 @@
         <Tab.Icon>
             <FontImageSource FontFamily="MaterialIcons"
                              Glyph="{x:Static views:IconFont.TagOutline}"
-                             Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
+                             Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}"
                              Size="24" />
         </Tab.Icon>
         <ShellContent>
@@ -81,7 +81,7 @@
         <Tab.Icon>
             <FontImageSource FontFamily="MaterialIcons"
                              Glyph="{x:Static views:IconFont.CogOutline}"
-                             Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
+                             Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}"
                              Size="24" />
         </Tab.Icon>
         <ShellContent>
@@ -93,7 +93,7 @@
         <Tab.Icon>
             <FontImageSource FontFamily="MaterialIcons"
                              Glyph="{x:Static views:IconFont.InformationOutline}"
-                             Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
+                             Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}"
                              Size="24" />
         </Tab.Icon>
         <ShellContent>
