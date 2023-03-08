@@ -45,8 +45,9 @@
             <maui:PieChart Series="{Binding Series, Mode=OneWay}"
                            Grid.Row="2"
                            LegendPosition="Right"
-                           LegendBackgroundPaint="{Binding LegendBackgroundPaint, Mode=OneWay}"
-                           LegendTextPaint="{Binding LegendTextPaint, Mode=OneWay}" />
+                           LegendBackgroundPaint="{Binding LegendBackgroundPaint, Mode=OneTime}"
+                           LegendTextPaint="{Binding LegendTextPaint, Mode=OneTime}"
+                           LegendTextSize="{Binding LegendFontSize, Mode=OneTime}"  />
         </Grid>
     </ContentPage.Content>
 </ContentPage>
