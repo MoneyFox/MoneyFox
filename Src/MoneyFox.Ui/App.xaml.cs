@@ -9,6 +9,7 @@ using Core.Features._Legacy_.Payments.CreateRecurringPayments;
 using Core.Features.DbBackup;
 using Core.Interfaces;
 using Domain.Aggregates.BudgetAggregate;
+using Domain.Exceptions;
 using Infrastructure.Adapters;
 using InversionOfControl;
 using MediatR;
@@ -227,6 +228,7 @@ public partial class App
         isRunning = true;
         var settingsFacade = ServiceProvider.GetService<ISettingsFacade>() ?? throw new ResolveDependencyException<ISettingsFacade>();
         var mediator = ServiceProvider.GetService<IMediator>() ?? throw new ResolveDependencyException<IMediator>();
+
         try
         {
             if (settingsFacade.IsBackupAutoUploadEnabled && settingsFacade.IsLoggedInToBackupService)
@@ -235,14 +237,25 @@ public partial class App
                 await backupService.RestoreBackupAsync();
                 WeakReferenceMessenger.Default.Send(new BackupRestoredMessage());
             }
+        }
+        catch (NetworkConnectionException)
+        {
+            Log.Information("Backup wasn't able to restore on startup - app is offline");
+        }
+        catch (Exception ex)
+        {
+            Log.Error(exception: ex, messageTemplate: "Failed to restore backup on startup");
+        }
 
+        try
+        {
             await mediator.Send(new ClearPaymentsCommand());
             await mediator.Send(new CreateRecurringPaymentsCommand());
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
         }
         catch (Exception ex)
         {
-            Log.Fatal(exception: ex, messageTemplate: "Error during startup");
+            Log.Error(exception: ex, messageTemplate: "Startup tasks failed");
         }
         finally
         {
