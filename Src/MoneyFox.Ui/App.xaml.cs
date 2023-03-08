@@ -36,14 +36,7 @@ public partial class App
         FillResourceDictionary();
 
         ResetSetup(settingsAdapter);
-        if (settingsFacade.IsSetupCompleted is false)
-        {
-            MainPage = new SetupShell();
-        }
-        else
-        {
-            MainPage = GetAppShellPage();
-        }
+        MainPage = settingsFacade.IsSetupCompleted ? GetAppShellPage() : new SetupShell();
 
         FixCorruptPayments(settingsAdapter);
         MigrateBudgetData(settingsAdapter);
