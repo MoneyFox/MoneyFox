@@ -34,9 +34,10 @@
             <maui:CartesianChart Grid.Row="1"
                                  Series="{Binding Series, Mode=OneWay}"
                                  XAxes="{Binding XAxis, Mode=OneWay}"
-                                 LegendPosition="Bottom"
-                                 LegendBackgroundPaint="{Binding LegendBackgroundPaint, Mode=OneWay}"
-                                 LegendTextPaint="{Binding LegendTextPaint, Mode=OneWay}" />
+                                 LegendPosition="Right"
+                                 LegendBackgroundPaint="{Binding LegendBackgroundPaint, Mode=OneTime}"
+                                 LegendTextPaint="{Binding LegendTextPaint, Mode=OneTime}"
+                                 LegendTextSize="{Binding LegendFontSize, Mode=OneTime}" />
 
         </Grid>
     </ContentPage.Content>
