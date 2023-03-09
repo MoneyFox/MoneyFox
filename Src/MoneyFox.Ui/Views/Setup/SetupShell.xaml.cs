@@ -1,6 +1,6 @@
 namespace MoneyFox.Ui.Views.Setup;
 
-using MoneyFox.Ui.Views.Setup.SelectCurrency;
+using SelectCurrency;
 
 public partial class SetupShell
 {

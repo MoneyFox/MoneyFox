@@ -24,7 +24,7 @@
                 <VerticalStackLayout IsVisible="{Binding IsLoggedIn}"
                                      Spacing="6"
                                      Margin="0,0,0,10">
-                    
+
                     <!-- Height and Width are set on an extra StackLayout, since width was not set correctly on Android when set directly on the Frame -->
                     <VerticalStackLayout WidthRequest="80"
                                          HeightRequest="80">

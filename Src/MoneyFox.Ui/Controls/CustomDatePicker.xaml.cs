@@ -23,12 +23,12 @@ public partial class CustomDatePicker
     public string DatePickerTitle
     {
         get => (string)GetValue(DatePickerTitleProperty);
-        set => SetValue(DatePickerTitleProperty, value);
+        set => SetValue(property: DatePickerTitleProperty, value: value);
     }
 
     public DateTime DateField
     {
         get => (DateTime)GetValue(DateFieldProperty);
-        set => SetValue(DateFieldProperty, value);
+        set => SetValue(property: DateFieldProperty, value: value);
     }
 }

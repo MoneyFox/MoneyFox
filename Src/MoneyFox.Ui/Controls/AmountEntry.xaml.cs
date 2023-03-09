@@ -35,25 +35,25 @@ public partial class AmountEntry
     public string AmountFieldTitle
     {
         get => (string)GetValue(AmountFieldTitleProperty);
-        set => SetValue(AmountFieldTitleProperty, value);
+        set => SetValue(property: AmountFieldTitleProperty, value: value);
     }
 
     public decimal Amount
     {
         get => (decimal)GetValue(AmountProperty);
-        set => SetValue(AmountProperty, value);
+        set => SetValue(property: AmountProperty, value: value);
     }
 
     public string EntryPlaceholder
     {
         get => (string)GetValue(EntryPlaceholderProperty);
-        set => SetValue(EntryPlaceholderProperty, value);
+        set => SetValue(property: EntryPlaceholderProperty, value: value);
     }
 
     public bool IsReadOnly
     {
         get => (bool)GetValue(IsReadOnlyProperty);
-        set => SetValue(IsReadOnlyProperty, value);
+        set => SetValue(property: IsReadOnlyProperty, value: value);
     }
 
     private void AmountFieldGotFocus(object sender, FocusEventArgs e)

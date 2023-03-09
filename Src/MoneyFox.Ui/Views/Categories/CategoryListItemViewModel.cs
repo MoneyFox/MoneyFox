@@ -17,37 +17,37 @@ public class CategoryListItemViewModel : ObservableObject, IHaveCustomMapping
     public int Id
     {
         get => id;
-        set => SetProperty(ref id, value);
+        set => SetProperty(field: ref id, newValue: value);
     }
 
     public string Name
     {
         get => name;
-        set => SetProperty(ref name, value);
+        set => SetProperty(field: ref name, newValue: value);
     }
 
     public bool RequireNote
     {
         get => requireNote;
-        set => SetProperty(ref requireNote, value);
+        set => SetProperty(field: ref requireNote, newValue: value);
     }
 
     public DateTime Created
     {
         get => created;
-        set => SetProperty(ref created, value);
+        set => SetProperty(field: ref created, newValue: value);
     }
 
     public DateTime? LastModified
     {
         get => lastModified;
-        set => SetProperty(ref lastModified, value);
+        set => SetProperty(field: ref lastModified, newValue: value);
     }
 
     public string? Note
     {
         get => note;
-        set => SetProperty(ref note, value);
+        set => SetProperty(field: ref note, newValue: value);
     }
 
     public void CreateMappings(Profile configuration)

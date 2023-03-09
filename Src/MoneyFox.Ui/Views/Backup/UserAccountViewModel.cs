@@ -10,12 +10,12 @@ internal class UserAccountViewModel : ObservableObject
     public string Name
     {
         get => name;
-        set => SetProperty(ref name, value);
+        set => SetProperty(field: ref name, newValue: value);
     }
 
     public string Email
     {
         get => email;
-        set => SetProperty(ref email, value);
+        set => SetProperty(field: ref email, newValue: value);
     }
 }

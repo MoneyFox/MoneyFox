@@ -35,21 +35,10 @@ public partial class App
         InitializeComponent();
         SetupServices();
         FillResourceDictionary();
-
         ResetSetup(settingsAdapter);
         MainPage = settingsFacade.IsSetupCompleted ? GetAppShellPage() : new SetupShell();
-
         FixCorruptPayments(settingsAdapter);
         MigrateBudgetData(settingsAdapter);
-    }
-
-    public static Page GetAppShellPage()
-    {
-        return DeviceInfo.Current.Idiom == DeviceIdiom.Desktop
-               || DeviceInfo.Current.Idiom == DeviceIdiom.Tablet
-               || DeviceInfo.Current.Idiom == DeviceIdiom.TV
-            ? new AppShellDesktop()
-            : new AppShell();
     }
 
     public static Dictionary<string, ResourceDictionary> ResourceDictionary { get; } = new();
@@ -57,6 +46,13 @@ public partial class App
     public static Action<IServiceCollection>? AddPlatformServicesAction { get; set; }
 
     private static IServiceProvider? ServiceProvider { get; set; }
+
+    public static Page GetAppShellPage()
+    {
+        return DeviceInfo.Current.Idiom == DeviceIdiom.Desktop || DeviceInfo.Current.Idiom == DeviceIdiom.Tablet || DeviceInfo.Current.Idiom == DeviceIdiom.TV
+            ? new AppShellDesktop()
+            : new AppShell();
+    }
 
     private static void ResetSetup(ISettingsAdapter settingsAdapter)
     {
@@ -74,7 +70,7 @@ public partial class App
 
             var settingsFacade = ServiceProvider.GetService<ISettingsFacade>();
             settingsFacade!.IsSetupCompleted = false;
-            settingsAdapter.AddOrUpdate(key: IS_SETUP_RESET_KEY_NAME, true);
+            settingsAdapter.AddOrUpdate(key: IS_SETUP_RESET_KEY_NAME, value: true);
         }
         catch (Exception ex)
         {
@@ -112,7 +108,7 @@ public partial class App
             }
 
             dbContext.SaveChangesAsync().GetAwaiter().GetResult();
-            settingsAdapter.AddOrUpdate(key: IS_CATEGORY_CLEANUP_EXECUTED_KEY_NAME, true);
+            settingsAdapter.AddOrUpdate(key: IS_CATEGORY_CLEANUP_EXECUTED_KEY_NAME, value: true);
         }
         catch (Exception ex)
         {
@@ -172,7 +168,7 @@ public partial class App
             }
 
             dbContext.SaveChangesAsync().GetAwaiter().GetResult();
-            settingsAdapter.AddOrUpdate(key: IS_BUDGET_MIGRATION_DONE_KEY_NAME, true);
+            settingsAdapter.AddOrUpdate(key: IS_BUDGET_MIGRATION_DONE_KEY_NAME, value: true);
         }
         catch (Exception ex)
         {
@@ -186,7 +182,7 @@ public partial class App
         foreach (var dictionary in Resources.MergedDictionaries)
         {
             var key = dictionary.Source.OriginalString.Split(';').First().Split('/').Last().Split('.').First();
-            ResourceDictionary.Add(key: key, dictionary);
+            ResourceDictionary.Add(key: key, value: dictionary);
         }
     }
 
@@ -230,7 +226,6 @@ public partial class App
         isRunning = true;
         var settingsFacade = ServiceProvider.GetService<ISettingsFacade>() ?? throw new ResolveDependencyException<ISettingsFacade>();
         var mediator = ServiceProvider.GetService<IMediator>() ?? throw new ResolveDependencyException<IMediator>();
-
         try
         {
             if (settingsFacade.IsBackupAutoUploadEnabled && settingsFacade.IsLoggedInToBackupService)

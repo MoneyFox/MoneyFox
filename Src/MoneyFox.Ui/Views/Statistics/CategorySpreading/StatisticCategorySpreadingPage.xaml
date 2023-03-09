@@ -47,7 +47,7 @@
                            LegendPosition="Right"
                            LegendBackgroundPaint="{Binding LegendBackgroundPaint, Mode=OneTime}"
                            LegendTextPaint="{Binding LegendTextPaint, Mode=OneTime}"
-                           LegendTextSize="{Binding LegendFontSize, Mode=OneTime}"  />
+                           LegendTextSize="{Binding LegendFontSize, Mode=OneTime}" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>
