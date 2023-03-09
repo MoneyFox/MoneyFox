@@ -29,26 +29,14 @@ internal abstract class StatisticViewModel : BasePageViewModel, IRecipient<DateS
         // If Application.Current is null, application is running in the context of a unit test
         if (Application.Current is not null)
         {
-            Color? textColor;
-            if (Application.Current.RequestedTheme == AppTheme.Dark)
-            {
-                textColor = (Color)App.ResourceDictionary["Colors"]["TextPrimaryColorDark"];
-            }
-            else
-            {
-                textColor = (Color)App.ResourceDictionary["Colors"]["TextPrimaryColorLight"];
-            }
+            var textColor = Application.Current.RequestedTheme == AppTheme.Dark
+                ? (Color)App.ResourceDictionary["Colors"]["TextPrimaryColorDark"]
+                : (Color)App.ResourceDictionary["Colors"]["TextPrimaryColorLight"];
 
             LegendTextPaint = new() { Color = new(textColor.ToUint()), SKTypeface = SKTypeface.FromFamilyName("Courier New") };
-            Color? legendBackgroundColor;
-            if (Application.Current.RequestedTheme == AppTheme.Dark)
-            {
-                legendBackgroundColor = (Color)App.ResourceDictionary["Colors"]["StatisticLegendDark"];
-            }
-            else
-            {
-                legendBackgroundColor = (Color)App.ResourceDictionary["Colors"]["StatisticLegendLight"];
-            }
+            var legendBackgroundColor = Application.Current.RequestedTheme == AppTheme.Dark
+                ? (Color)App.ResourceDictionary["Colors"]["StatisticLegendDark"]
+                : (Color)App.ResourceDictionary["Colors"]["StatisticLegendLight"];
 
             LegendBackgroundPaint = new() { Color = new(legendBackgroundColor.ToUint()) };
         }
@@ -58,7 +46,9 @@ internal abstract class StatisticViewModel : BasePageViewModel, IRecipient<DateS
 
     public SolidColorPaint LegendBackgroundPaint { get; } = new();
 
-    public AsyncRelayCommand LoadedCommand => new(async () => await LoadAsync());
+    public double LegendFontSize => 24;
+
+    public AsyncRelayCommand LoadedCommand => new(LoadAsync);
 
     public DateTime StartDate
     {
