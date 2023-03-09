@@ -11,7 +11,6 @@
 
     <ContentPage.Resources>
         <paymentsList:PaymentAmountConverter x:Key="PaymentAmountConverter" />
-        <converter:DateFormatConverter x:Key="DateFormatConverter" />
     </ContentPage.Resources>
 
     <ContentPage.Content>
@@ -52,7 +51,7 @@
                                                            Style="{StaticResource TextBody}"
                                                            HorizontalTextAlignment="Start"
                                                            VerticalTextAlignment="Start"
-                                                           Text="{Binding Date, Converter={StaticResource DateFormatConverter}}" />
+                                                           Text="{Binding Date, StringFormat='{0:d}'}" />
 
                                                     <Label Grid.Column="1"
                                                            Style="{StaticResource TextBody}"
