@@ -176,8 +176,8 @@ public static class Currencies
         {
             if (field.IsStatic && field.GetValue(null) is Currency currency)
             {
-                tmpCurrenciesByNumericIsoCode.Add(key: currency.NumericIsoCode, currency);
-                tmpCurrenciesByAlphaIsoCode.Add(key: currency.AlphaIsoCode, currency);
+                tmpCurrenciesByNumericIsoCode.Add(key: currency.NumericIsoCode, value: currency);
+                tmpCurrenciesByAlphaIsoCode.Add(key: currency.AlphaIsoCode, value: currency);
             }
         }
 

@@ -35,7 +35,7 @@ public class SettingsFacade : ISettingsFacade
     public bool IsBackupAutoUploadEnabled
     {
         get => settingsAdapter.GetValue(key: SettingConstants.AUTO_UPLOAD_BACKUP_KEY_NAME, defaultValue: false);
-        set => settingsAdapter.AddOrUpdate(key: SettingConstants.AUTO_UPLOAD_BACKUP_KEY_NAME, value);
+        set => settingsAdapter.AddOrUpdate(key: SettingConstants.AUTO_UPLOAD_BACKUP_KEY_NAME, value: value);
     }
 
     public DateTime LastDatabaseUpdate
@@ -46,16 +46,16 @@ public class SettingsFacade : ISettingsFacade
                 key: SettingConstants.DATABASE_LAST_UPDATE_KEY_NAME,
                 defaultValue: DateTime.MinValue.ToString(CultureInfo.InvariantCulture));
 
-            return Convert.ToDateTime(dateString, provider: CultureInfo.InvariantCulture);
+            return Convert.ToDateTime(value: dateString, provider: CultureInfo.InvariantCulture);
         }
 
-        set => settingsAdapter.AddOrUpdate(key: SettingConstants.DATABASE_LAST_UPDATE_KEY_NAME, value.ToString(CultureInfo.InvariantCulture));
+        set => settingsAdapter.AddOrUpdate(key: SettingConstants.DATABASE_LAST_UPDATE_KEY_NAME, value: value.ToString(CultureInfo.InvariantCulture));
     }
 
     public bool IsLoggedInToBackupService
     {
         get => settingsAdapter.GetValue(key: SettingConstants.BACKUP_LOGGED_IN_KEY_NAME, defaultValue: false);
-        set => settingsAdapter.AddOrUpdate(key: SettingConstants.BACKUP_LOGGED_IN_KEY_NAME, value);
+        set => settingsAdapter.AddOrUpdate(key: SettingConstants.BACKUP_LOGGED_IN_KEY_NAME, value: value);
     }
 
     public DateTime LastExecutionTimeStampSyncBackup
@@ -72,24 +72,24 @@ public class SettingsFacade : ISettingsFacade
         set
             => settingsAdapter.AddOrUpdate(
                 key: SettingConstants.LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME,
-                value.ToString(CultureInfo.InvariantCulture));
+                value: value.ToString(CultureInfo.InvariantCulture));
     }
 
     public string DefaultCulture
     {
         get => settingsAdapter.GetValue(key: SettingConstants.DEFAULT_CULTURE_KEY_NAME, defaultValue: defaultCultureKeyDefault);
-        set => settingsAdapter.AddOrUpdate(key: SettingConstants.DEFAULT_CULTURE_KEY_NAME, value);
+        set => settingsAdapter.AddOrUpdate(key: SettingConstants.DEFAULT_CULTURE_KEY_NAME, value: value);
     }
 
     public bool IsSetupCompleted
     {
         get => settingsAdapter.GetValue(key: SettingConstants.IS_SETUP_COMPLETED_KEY_NAME, defaultValue: false);
-        set => settingsAdapter.AddOrUpdate(key: SettingConstants.IS_SETUP_COMPLETED_KEY_NAME, value);
+        set => settingsAdapter.AddOrUpdate(key: SettingConstants.IS_SETUP_COMPLETED_KEY_NAME, value: value);
     }
 
     public string DefaultCurrency
     {
         get => settingsAdapter.GetValue(key: SettingConstants.DEFAULT_CURRENCY_KEY_NAME, defaultValue: string.Empty);
-        set => settingsAdapter.AddOrUpdate(key: SettingConstants.DEFAULT_CURRENCY_KEY_NAME, value);
+        set => settingsAdapter.AddOrUpdate(key: SettingConstants.DEFAULT_CURRENCY_KEY_NAME, value: value);
     }
 }

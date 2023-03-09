@@ -37,7 +37,7 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
 
     public new void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        if (query.TryGetValue(key: "paymentId", out var paymentIdParam))
+        if (query.TryGetValue(key: "paymentId", value: out var paymentIdParam))
         {
             var paymentId = Convert.ToInt32(paymentIdParam);
             InitializeAsync(paymentId).GetAwaiter().GetResult();

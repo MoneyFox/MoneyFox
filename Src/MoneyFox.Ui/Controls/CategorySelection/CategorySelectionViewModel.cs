@@ -1,9 +1,6 @@
 namespace MoneyFox.Ui.Controls.CategorySelection;
 
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
-using Core.Queries;
-using MediatR;
 using Views;
 using Views.Categories.CategorySelection;
 

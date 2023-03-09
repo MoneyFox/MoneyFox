@@ -101,7 +101,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
 
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        if (query.TryGetValue(key: SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, out var selectedCategoryIdParam))
+        if (query.TryGetValue(key: SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, value: out var selectedCategoryIdParam))
         {
             var selectedCategoryId = Convert.ToInt32(selectedCategoryIdParam);
             var category = mediator.Send(new GetCategoryByIdQuery(selectedCategoryId)).GetAwaiter().GetResult();

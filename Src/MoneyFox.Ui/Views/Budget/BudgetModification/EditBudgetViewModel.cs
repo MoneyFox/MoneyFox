@@ -37,7 +37,7 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel, IQueryAttribu
 
     public new void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        if (query.TryGetValue(key: BUDGET_ID, out var selectedBudgetIdParam))
+        if (query.TryGetValue(key: BUDGET_ID, value: out var selectedBudgetIdParam))
         {
             var selectedBudgetId = Convert.ToInt32(selectedBudgetIdParam);
             InitializeAsync(selectedBudgetId).GetAwaiter().GetResult();

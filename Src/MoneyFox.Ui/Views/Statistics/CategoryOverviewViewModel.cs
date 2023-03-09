@@ -17,7 +17,7 @@ public class CategoryOverviewViewModel : ObservableObject
     public int? CategoryId
     {
         get => categoryId;
-        set => SetProperty(ref categoryId, value);
+        set => SetProperty(field: ref categoryId, newValue: value);
     }
 
     /// <summary>
@@ -26,7 +26,7 @@ public class CategoryOverviewViewModel : ObservableObject
     public decimal Value
     {
         get => value;
-        set => SetProperty(ref this.value, value);
+        set => SetProperty(field: ref this.value, newValue: value);
     }
 
     /// <summary>
@@ -35,7 +35,7 @@ public class CategoryOverviewViewModel : ObservableObject
     public decimal Average
     {
         get => average;
-        set => SetProperty(ref average, value);
+        set => SetProperty(field: ref average, newValue: value);
     }
 
     /// <summary>
@@ -44,7 +44,7 @@ public class CategoryOverviewViewModel : ObservableObject
     public decimal Percentage
     {
         get => percentage;
-        set => SetProperty(ref percentage, value);
+        set => SetProperty(field: ref percentage, newValue: value);
     }
 
     /// <summary>
@@ -53,6 +53,6 @@ public class CategoryOverviewViewModel : ObservableObject
     public string Label
     {
         get => label;
-        set => SetProperty(ref label, value);
+        set => SetProperty(field: ref label, newValue: value);
     }
 }
