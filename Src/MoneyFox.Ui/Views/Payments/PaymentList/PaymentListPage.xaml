@@ -61,18 +61,13 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid RowDefinitions="20, 18, Auto" IsClippedToBounds="False" Padding="15"
+                        <Grid ColumnDefinitions="60, 12, *"
+                              Padding="15"
                               Opacity="{Binding Date, Converter={StaticResource DateGroupCardOpacityConverter}}">
 
-                            <Label FontAttributes="Bold"
-                                   Style="{StaticResource TextSubheadSecondary}"
-                                   Text="{Binding Key}" />
+                            <Label Text="31. Mar" />
 
-                            <Label Grid.Row="1"
-                                   Style="{StaticResource TextBodySecondary}"
-                                   Text="{Binding Subtitle}" />
-
-                            <controls:Card Grid.Row="2"
+                            <controls:Card Grid.Column="2"
                                            Margin="0,12,0,0">
 
                                 <StackLayout BindableLayout.ItemsSource="{Binding .}">
