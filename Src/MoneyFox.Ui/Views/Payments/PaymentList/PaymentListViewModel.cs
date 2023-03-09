@@ -15,6 +15,7 @@ using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Resources.Strings;
 
+[QueryProperty(name: nameof(AccountId), queryId: nameof(accountId))]
 internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<PaymentsChangedMessage>, IRecipient<PaymentListFilterChangedMessage>
 {
     private readonly IMapper mapper;
@@ -32,6 +33,13 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
         this.mediator = mediator;
         this.mapper = mapper;
         this.settingsFacade = settingsFacade;
+    }
+
+    private int accountId;
+    public int AccountId
+    {
+        get => accountId;
+        set => SetProperty(ref accountId, value);
     }
 
     public AccountViewModel SelectedAccount
@@ -83,13 +91,13 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
 
     public void Receive(PaymentsChangedMessage message)
     {
-        InitializeAsync(SelectedAccount.Id).GetAwaiter().GetResult();
+        InitializeAsync().GetAwaiter().GetResult();
     }
 
-    public async Task InitializeAsync(int accountId)
+    public async Task InitializeAsync()
     {
         IsActive = true;
-        SelectedAccount = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
+        SelectedAccount = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(AccountId)));
         await LoadPaymentsByMessageAsync(new());
     }
 
