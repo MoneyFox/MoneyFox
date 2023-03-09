@@ -18,9 +18,6 @@ using Views.Setup;
 
 public partial class App
 {
-    private const string IS_CATEGORY_CLEANUP_EXECUTED_KEY_NAME = "IsCategoryCleanupExecuted";
-    private const string IS_SETUP_RESET_KEY_NAME = "IsSetipReset_8.1.14591";
-    private const string IS_BUDGET_MIGRATION_DONE_KEY_NAME = "IsBudgetMigrationDone";
     private bool isRunning;
 
     public App()
