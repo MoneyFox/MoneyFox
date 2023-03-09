@@ -2,6 +2,7 @@ namespace MoneyFox.Ui.Views.Payments.PaymentList;
 
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
 using Accounts;
 using AutoMapper;
 using Common.Groups;
@@ -64,6 +65,13 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
         }
     }
 
+    private ReadOnlyObservableCollection<PaymentDayGroup> paymentDayGroup;
+    public ReadOnlyObservableCollection<PaymentDayGroup> PaymentDayGroup
+    {
+        get => paymentDayGroup;
+        private set => SetProperty(ref paymentDayGroup, value);
+    }
+
     public static List<PaymentRecurrence> RecurrenceList
         => new()
         {
@@ -120,8 +128,13 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
                         isClearedFilterActive: message.IsClearedFilterActive,
                         isRecurringFilterActive: message.IsRecurringFilterActive,
                         filteredPaymentType: message.FilteredPaymentType)));
-
             paymentVms.ForEach(x => x.CurrentAccountId = SelectedAccount.Id);
+
+            var dailyGroupedPayments = paymentVms.GroupBy(p => p.Date.Date)
+                .Select(g => new PaymentDayGroup(DateOnly.FromDateTime(g.Key), g))
+                .ToList();
+            paymentDayGroup = new ReadOnlyObservableCollection<PaymentDayGroup>(dailyGroupedPayments);
+
             var dailyItems = DateListGroupCollection<PaymentListItemViewModel>.CreateGroups(
                 items: paymentVms,
                 getKey: s => s.Date.ToString(format: "D", provider: CultureInfo.CurrentCulture),
