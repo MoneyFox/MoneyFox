@@ -56,16 +56,16 @@
             </Grid>
 
             <CollectionView Grid.Row="1"
-                            ItemsSource="{Binding Payments}"
+                            ItemsSource="{Binding PaymentDayGroups}"
                             x:Name="PaymentCollectionView">
 
                 <CollectionView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="paymentList:PaymentDayGroup">
                         <Grid ColumnDefinitions="60, 12, *"
                               Padding="15"
                               Opacity="{Binding Date, Converter={StaticResource DateGroupCardOpacityConverter}}">
 
-                            <Label Text="31. Mar" />
+                            <Label Text="{Binding Date,StringFormat='{0:dd MMM}'}" Style="{StaticResource TextCaptionSecondary}" />
 
                             <controls:Card Grid.Column="2"
                                            Margin="0,12,0,0">
@@ -84,7 +84,7 @@
                                                 <Grid ColumnDefinitions="*,*">
                                                     <Label Grid.Column="0"
                                                            Style="{StaticResource TextBody}"
-                                                           Text="{Binding Date, Converter={StaticResource DateFormatConverter}}" />
+                                                           Text="{Binding Category.Name}" />
 
                                                     <Label Grid.Column="1"
                                                            Style="{StaticResource TextBody}"
@@ -95,11 +95,11 @@
                                                 </Grid>
 
                                                 <Grid>
-                                                    <Label LineBreakMode="TailTruncation"
-                                                           Style="{StaticResource TextBodySecondary}"
-                                                           Text="{Binding Category.Name}" />
-
-                                                    <StackLayout HorizontalOptions="End" Orientation="Horizontal">
+                                                    <Label Style="{StaticResource TextBodySecondary}"
+                                                       LineBreakMode="TailTruncation"
+                                                       Text="{Binding Note}" />
+                                                    
+                                                    <HorizontalStackLayout HorizontalOptions="End">
                                                         <Image HeightRequest="15"
                                                                IsVisible="{Binding IsTransfer}"
                                                                WidthRequest="15">
@@ -129,12 +129,8 @@
                                                                     Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                                                             </Image.Source>
                                                         </Image>
-                                                    </StackLayout>
+                                                    </HorizontalStackLayout>
                                                 </Grid>
-
-                                                <Label Style="{StaticResource TextBodySecondary}"
-                                                       LineBreakMode="TailTruncation"
-                                                       Text="{Binding Note}" />
                                             </StackLayout>
                                         </DataTemplate>
                                     </BindableLayout.ItemTemplate>

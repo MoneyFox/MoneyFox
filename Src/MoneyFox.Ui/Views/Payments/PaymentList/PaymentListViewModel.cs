@@ -65,11 +65,11 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
         }
     }
 
-    private ReadOnlyObservableCollection<PaymentDayGroup> paymentDayGroup;
-    public ReadOnlyObservableCollection<PaymentDayGroup> PaymentDayGroup
+    private ReadOnlyObservableCollection<PaymentDayGroup> paymentDayGroups;
+    public ReadOnlyObservableCollection<PaymentDayGroup> PaymentDayGroups
     {
-        get => paymentDayGroup;
-        private set => SetProperty(ref paymentDayGroup, value);
+        get => paymentDayGroups;
+        private set => SetProperty(ref paymentDayGroups, value);
     }
 
     public static List<PaymentRecurrence> RecurrenceList
@@ -131,9 +131,9 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
             paymentVms.ForEach(x => x.CurrentAccountId = SelectedAccount.Id);
 
             var dailyGroupedPayments = paymentVms.GroupBy(p => p.Date.Date)
-                .Select(g => new PaymentDayGroup(DateOnly.FromDateTime(g.Key), g))
+                .Select(g => new PaymentDayGroup(DateOnly.FromDateTime(g.Key), g.ToList()))
                 .ToList();
-            paymentDayGroup = new ReadOnlyObservableCollection<PaymentDayGroup>(dailyGroupedPayments);
+            PaymentDayGroups = new ReadOnlyObservableCollection<PaymentDayGroup>(new ObservableCollection<PaymentDayGroup>(dailyGroupedPayments));
 
             var dailyItems = DateListGroupCollection<PaymentListItemViewModel>.CreateGroups(
                 items: paymentVms,
