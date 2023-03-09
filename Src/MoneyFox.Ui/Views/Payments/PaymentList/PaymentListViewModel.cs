@@ -17,17 +17,15 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
 {
     private readonly IMapper mapper;
     private readonly IMediator mediator;
-    private readonly ISettingsFacade settingsFacade;
 
     private bool isRunning;
 
     private AccountViewModel selectedAccount = new();
 
-    public PaymentListViewModel(IMediator mediator, IMapper mapper, ISettingsFacade settingsFacade)
+    public PaymentListViewModel(IMediator mediator, IMapper mapper)
     {
         this.mediator = mediator;
         this.mapper = mapper;
-        this.settingsFacade = settingsFacade;
     }
 
     private int accountId;
