@@ -4,10 +4,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
-    xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:views="clr-namespace:MoneyFox.Ui.Views"
-    xmlns:extensions="clr-namespace:MoneyFox.Ui.Common.Extensions"
     xmlns:paymentList="clr-namespace:MoneyFox.Ui.Views.Payments.PaymentList"
     x:DataType="paymentList:PaymentListViewModel"
     x:Class="MoneyFox.Ui.Views.Payments.PaymentList.PaymentListPage"
@@ -63,69 +61,70 @@
 
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate x:DataType="paymentList:PaymentDayGroup">
-                        <Label Margin="0,45,0,-65" 
+                        <Label Margin="0,45,0,-65"
                                Text="{Binding Date, StringFormat='{0:dd. MMM}'}"
-                               Style="{StaticResource TextSubheadSecondary}"/>
+                               Style="{StaticResource TextSubheadSecondary}" />
                     </DataTemplate>
                 </CollectionView.GroupHeaderTemplate>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="paymentList:PaymentListItemViewModel">
                         <Grid ColumnDefinitions="80, *" Margin="0,6,24,0">
-                            <controls:Card Grid.Column="1" Padding="12" >
+                            <controls:Card Grid.Column="1" Padding="12">
 
                                 <controls:Card.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding BindingContext.GoToEditPaymentCommand, Source={x:Reference This}}" 
-                                                          CommandParameter="{Binding .}"/>
+                                    <TapGestureRecognizer
+                                        Command="{Binding BindingContext.GoToEditPaymentCommand, Source={x:Reference This}}"
+                                        CommandParameter="{Binding .}" />
                                 </controls:Card.GestureRecognizers>
 
                                 <VerticalStackLayout>
                                     <Grid ColumnDefinitions="*,*">
                                         <Label Grid.Column="0"
-                                           Style="{StaticResource TextBody}"
-                                           Text="{Binding Category.Name}" />
+                                               Style="{StaticResource TextBody}"
+                                               Text="{Binding Category.Name}" />
 
                                         <Label Grid.Column="1"
-                                           Style="{StaticResource TextBody}"
-                                           LineBreakMode="TailTruncation"
-                                           Text="{Binding ., Converter={StaticResource PaymentAmountConverter}}"
-                                           HorizontalTextAlignment="End"
-                                           HorizontalOptions="End" />
+                                               Style="{StaticResource TextBody}"
+                                               LineBreakMode="TailTruncation"
+                                               Text="{Binding ., Converter={StaticResource PaymentAmountConverter}}"
+                                               HorizontalTextAlignment="End"
+                                               HorizontalOptions="End" />
                                     </Grid>
 
                                     <Grid>
                                         <Label Style="{StaticResource TextBodySecondary}"
-                                           LineBreakMode="TailTruncation"
-                                           Text="{Binding Note}" />
+                                               LineBreakMode="TailTruncation"
+                                               Text="{Binding Note}" />
 
                                         <HorizontalStackLayout HorizontalOptions="End">
                                             <Image HeightRequest="15"
-                                               IsVisible="{Binding IsTransfer}"
-                                               WidthRequest="15">
+                                                   IsVisible="{Binding IsTransfer}"
+                                                   WidthRequest="15">
                                                 <Image.Source>
                                                     <FontImageSource FontFamily="MaterialIcons"
-                                                                 Glyph="{x:Static views:IconFont.SwapHorizontal}"
-                                                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                                                                     Glyph="{x:Static views:IconFont.SwapHorizontal}"
+                                                                     Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                                                 </Image.Source>
                                             </Image>
 
                                             <Image HeightRequest="15"
-                                               IsVisible="{Binding IsRecurring}"
-                                               WidthRequest="15">
+                                                   IsVisible="{Binding IsRecurring}"
+                                                   WidthRequest="15">
                                                 <Image.Source>
                                                     <FontImageSource FontFamily="MaterialIcons"
-                                                                 Glyph="{x:Static views:IconFont.RepeatVariant}"
-                                                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                                                                     Glyph="{x:Static views:IconFont.RepeatVariant}"
+                                                                     Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                                                 </Image.Source>
                                             </Image>
 
                                             <Image HeightRequest="15"
-                                               IsVisible="{Binding IsCleared}"
-                                               WidthRequest="15">
+                                                   IsVisible="{Binding IsCleared}"
+                                                   WidthRequest="15">
                                                 <Image.Source>
                                                     <FontImageSource FontFamily="MaterialIcons"
-                                                                 Glyph="{x:Static views:IconFont.Check}"
-                                                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                                                                     Glyph="{x:Static views:IconFont.Check}"
+                                                                     Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                                                 </Image.Source>
                                             </Image>
                                         </HorizontalStackLayout>

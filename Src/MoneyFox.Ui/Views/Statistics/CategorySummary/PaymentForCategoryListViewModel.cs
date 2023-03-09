@@ -13,6 +13,8 @@ internal sealed class PaymentForCategoryListViewModel : BasePageViewModel, IReci
     private readonly IMapper mapper;
     private readonly IMediator mediator;
 
+    private ReadOnlyObservableCollection<PaymentDayGroup> paymentDayGroups = null!;
+
     private string title = string.Empty;
 
     public PaymentForCategoryListViewModel(IMediator mediator, IMapper mapper)
@@ -27,11 +29,10 @@ internal sealed class PaymentForCategoryListViewModel : BasePageViewModel, IReci
         set => SetProperty(field: ref title, newValue: value);
     }
 
-    private ReadOnlyObservableCollection<PaymentDayGroup> paymentDayGroups = null!;
     public ReadOnlyObservableCollection<PaymentDayGroup> PaymentDayGroups
     {
         get => paymentDayGroups;
-        private set => SetProperty(ref paymentDayGroups, value);
+        private set => SetProperty(field: ref paymentDayGroups, newValue: value);
     }
 
     public AsyncRelayCommand<PaymentListItemViewModel> GoToEditPaymentCommand
@@ -56,8 +57,9 @@ internal sealed class PaymentForCategoryListViewModel : BasePageViewModel, IReci
                 .GetResult());
 
         var dailyGroupedPayments = paymentVms.GroupBy(p => p.Date.Date)
-            .Select(g => new PaymentDayGroup(DateOnly.FromDateTime(g.Key), g.ToList()))
+            .Select(g => new PaymentDayGroup(date: DateOnly.FromDateTime(g.Key), payments: g.ToList()))
             .ToList();
-        PaymentDayGroups = new ReadOnlyObservableCollection<PaymentDayGroup>(new ObservableCollection<PaymentDayGroup>(dailyGroupedPayments));
+
+        PaymentDayGroups = new(new(dailyGroupedPayments));
     }
 }

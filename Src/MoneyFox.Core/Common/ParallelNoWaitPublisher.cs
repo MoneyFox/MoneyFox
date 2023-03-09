@@ -11,7 +11,9 @@ public class ParallelNoWaitPublisher : INotificationPublisher
     {
         foreach (var handler in handlerExecutors)
         {
-            Task.Run(() => handler.HandlerCallback(notification, cancellationToken).ConfigureAwait(false), cancellationToken);
+            Task.Run(
+                function: () => handler.HandlerCallback(arg1: notification, arg2: cancellationToken).ConfigureAwait(false),
+                cancellationToken: cancellationToken);
         }
 
         return Task.CompletedTask;

@@ -30,7 +30,7 @@
                                         WidthRequest="80"
                                         CornerRadius="40"
                                         Text=""
-                                        ImageSource="{Binding ProfilePicture}"/>
+                                        ImageSource="{Binding ProfilePicture}" />
 
                     <Label Style="{StaticResource TextTitle}"
                            Text="{Binding UserAccount.Name}"

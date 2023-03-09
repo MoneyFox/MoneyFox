@@ -3,7 +3,6 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
-    xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:views="clr-namespace:MoneyFox.Ui.Views"
     xmlns:categorySummary="clr-namespace:MoneyFox.Ui.Views.Statistics.CategorySummary"
@@ -17,26 +16,27 @@
     <ContentPage.Content>
 
         <CollectionView Grid.Row="1"
-                            x:Name="PaymentCollectionView"
-                            ItemsSource="{Binding PaymentDayGroups}"
-                            IsGrouped="True">
+                        x:Name="PaymentCollectionView"
+                        ItemsSource="{Binding PaymentDayGroups}"
+                        IsGrouped="True">
 
             <CollectionView.GroupHeaderTemplate>
                 <DataTemplate x:DataType="categorySummary:PaymentDayGroup">
-                    <Label Margin="0,45,0,-65" 
-                               Text="{Binding Date, StringFormat='{0:dd. MMM}'}"
-                               Style="{StaticResource TextSubheadSecondary}"/>
+                    <Label Margin="0,45,0,-65"
+                           Text="{Binding Date, StringFormat='{0:dd. MMM}'}"
+                           Style="{StaticResource TextSubheadSecondary}" />
                 </DataTemplate>
             </CollectionView.GroupHeaderTemplate>
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="categorySummary:PaymentListItemViewModel">
                     <Grid ColumnDefinitions="80, *" Margin="0,6,24,0">
-                        <controls:Card Grid.Column="1" Padding="12" >
+                        <controls:Card Grid.Column="1" Padding="12">
 
                             <controls:Card.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding BindingContext.GoToEditPaymentCommand, Source={x:Reference This}}" 
-                                                          CommandParameter="{Binding .}"/>
+                                <TapGestureRecognizer
+                                    Command="{Binding BindingContext.GoToEditPaymentCommand, Source={x:Reference This}}"
+                                    CommandParameter="{Binding .}" />
                             </controls:Card.GestureRecognizers>
 
                             <VerticalStackLayout>
@@ -99,10 +99,10 @@
             <CollectionView.EmptyView>
                 <Grid>
                     <Label Style="{StaticResource TextSubheadSecondary}"
-                               Margin="10,0,10,0"
-                               VerticalTextAlignment="Center"
-                               HorizontalTextAlignment="Center"
-                               Text="{x:Static resources:Translations.NoPaymentsMessage}" />
+                           Margin="10,0,10,0"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           Text="{x:Static resources:Translations.NoPaymentsMessage}" />
                 </Grid>
             </CollectionView.EmptyView>
         </CollectionView>

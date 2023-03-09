@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui.Platforms.iOS.Utils;
 
-using System;
 using CoreGraphics;
 using UIKit;
 
@@ -26,11 +25,13 @@ public static class UIViewExtensions
             return view;
         }
 
-        foreach (UIView subView in view.Subviews)
+        foreach (var subView in view.Subviews)
         {
             var firstResponder = subView.FindFirstResponder();
-
-            if (firstResponder != null) return firstResponder;
+            if (firstResponder != null)
+            {
+                return firstResponder;
+            }
         }
 
         return null;
@@ -45,8 +46,8 @@ public static class UIViewExtensions
     private static double GetViewRelativeBottom(this UIView view, UIView rootView)
     {
         // https://developer.apple.com/documentation/uikit/uiview/1622424-convertpoint
-        var viewRelativeCoordinates = rootView.ConvertPointFromView(new CGPoint(0, 0), view);
-        var activeViewRoundedY = Math.Round(viewRelativeCoordinates.Y, 2);
+        var viewRelativeCoordinates = rootView.ConvertPointFromView(point: new(x: 0, y: 0), fromView: view);
+        var activeViewRoundedY = Math.Round(value: viewRelativeCoordinates.Y, digits: 2);
 
         return activeViewRoundedY + view.Frame.Height;
     }
@@ -74,8 +75,8 @@ public static class UIViewExtensions
             return 0;
         }
 
-        double bottom = activeView.GetViewRelativeBottom(rootView);
+        var bottom = activeView.GetViewRelativeBottom(rootView);
 
-        return GetOverlapDistance(bottom, rootView, keyboardFrame);
+        return GetOverlapDistance(relativeBottom: bottom, rootView: rootView, keyboardFrame: keyboardFrame);
     }
 }

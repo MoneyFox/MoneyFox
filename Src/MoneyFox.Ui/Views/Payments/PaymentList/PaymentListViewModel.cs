@@ -1,12 +1,10 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentList;
 
 using System.Collections.ObjectModel;
-using System.Linq;
 using Accounts;
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.Common.Settings;
 using Core.Queries;
 using Core.Queries.GetPaymentsForAccountIdQuery;
 using Domain.Aggregates.AccountAggregate;
@@ -18,7 +16,11 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
     private readonly IMapper mapper;
     private readonly IMediator mediator;
 
+    private int accountId;
+
     private bool isRunning;
+
+    private ReadOnlyObservableCollection<PaymentDayGroup> paymentDayGroups = null!;
 
     private AccountViewModel selectedAccount = new();
 
@@ -28,11 +30,10 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
         this.mapper = mapper;
     }
 
-    private int accountId;
     public int AccountId
     {
         get => accountId;
-        set => SetProperty(ref accountId, value);
+        set => SetProperty(field: ref accountId, newValue: value);
     }
 
     public AccountViewModel SelectedAccount
@@ -46,11 +47,10 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
         }
     }
 
-    private ReadOnlyObservableCollection<PaymentDayGroup> paymentDayGroups = null!;
     public ReadOnlyObservableCollection<PaymentDayGroup> PaymentDayGroups
     {
         get => paymentDayGroups;
-        private set => SetProperty(ref paymentDayGroups, value);
+        private set => SetProperty(field: ref paymentDayGroups, newValue: value);
     }
 
     public static List<PaymentRecurrence> RecurrenceList
@@ -109,12 +109,13 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
                         isClearedFilterActive: message.IsClearedFilterActive,
                         isRecurringFilterActive: message.IsRecurringFilterActive,
                         filteredPaymentType: message.FilteredPaymentType)));
-            paymentVms.ForEach(x => x.CurrentAccountId = SelectedAccount.Id);
 
+            paymentVms.ForEach(x => x.CurrentAccountId = SelectedAccount.Id);
             var dailyGroupedPayments = paymentVms.GroupBy(p => p.Date.Date)
-                .Select(g => new PaymentDayGroup(DateOnly.FromDateTime(g.Key), g.ToList()))
+                .Select(g => new PaymentDayGroup(date: DateOnly.FromDateTime(g.Key), payments: g.ToList()))
                 .ToList();
-            PaymentDayGroups = new ReadOnlyObservableCollection<PaymentDayGroup>(new ObservableCollection<PaymentDayGroup>(dailyGroupedPayments));
+
+            PaymentDayGroups = new(new(dailyGroupedPayments));
         }
         finally
         {
