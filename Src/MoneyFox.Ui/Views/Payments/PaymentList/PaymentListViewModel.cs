@@ -1,20 +1,16 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentList;
 
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Linq;
 using Accounts;
 using AutoMapper;
-using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.Common.Extensions;
 using Core.Common.Settings;
 using Core.Queries;
 using Core.Queries.GetPaymentsForAccountIdQuery;
 using Domain.Aggregates.AccountAggregate;
 using MediatR;
-using Resources.Strings;
 
 [QueryProperty(name: nameof(AccountId), queryId: nameof(accountId))]
 internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<PaymentsChangedMessage>, IRecipient<PaymentListFilterChangedMessage>
@@ -52,7 +48,7 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
         }
     }
 
-    private ReadOnlyObservableCollection<PaymentDayGroup> paymentDayGroups;
+    private ReadOnlyObservableCollection<PaymentDayGroup> paymentDayGroups = null!;
     public ReadOnlyObservableCollection<PaymentDayGroup> PaymentDayGroups
     {
         get => paymentDayGroups;
