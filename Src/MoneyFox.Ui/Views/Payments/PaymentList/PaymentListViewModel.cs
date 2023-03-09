@@ -25,8 +25,6 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
 
     private bool isRunning;
 
-    private ObservableCollection<DateListGroupCollection<PaymentListItemViewModel>> payments = new();
-
     private AccountViewModel selectedAccount = new();
 
     public PaymentListViewModel(IMediator mediator, IMapper mapper, ISettingsFacade settingsFacade)
@@ -50,17 +48,6 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
         set
         {
             selectedAccount = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public ObservableCollection<DateListGroupCollection<PaymentListItemViewModel>> Payments
-    {
-        get => payments;
-
-        private set
-        {
-            payments = value;
             OnPropertyChanged();
         }
     }
@@ -134,31 +121,10 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
                 .Select(g => new PaymentDayGroup(DateOnly.FromDateTime(g.Key), g.ToList()))
                 .ToList();
             PaymentDayGroups = new ReadOnlyObservableCollection<PaymentDayGroup>(new ObservableCollection<PaymentDayGroup>(dailyGroupedPayments));
-
-            var dailyItems = DateListGroupCollection<PaymentListItemViewModel>.CreateGroups(
-                items: paymentVms,
-                getKey: s => s.Date.ToString(format: "D", provider: CultureInfo.CurrentCulture),
-                getSortKey: s => s.Date);
-
-            dailyItems.ForEach(CalculateSubBalances);
-            Payments = new(dailyItems);
         }
         finally
         {
             isRunning = false;
         }
-    }
-
-    private void CalculateSubBalances(DateListGroupCollection<PaymentListItemViewModel> group)
-    {
-        group.Subtitle = string.Format(
-            format: Translations.ExpenseAndIncomeTemplate,
-            arg0: group.Where(x => x.Type != PaymentType.Income && x.ChargedAccount.Id == SelectedAccount.Id)
-                .Sum(x => x.Amount)
-                .FormatCurrency(settingsFacade.DefaultCurrency),
-            arg1: group.Where(
-                    x => x.Type == PaymentType.Income || x is { Type: PaymentType.Transfer, TargetAccount: { } } && x.TargetAccount.Id == SelectedAccount.Id)
-                .Sum(x => x.Amount)
-                .FormatCurrency(settingsFacade.DefaultCurrency));
     }
 }
