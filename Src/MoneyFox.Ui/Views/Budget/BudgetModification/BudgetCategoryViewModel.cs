@@ -17,6 +17,6 @@ public sealed class BudgetCategoryViewModel : ObservableObject
     public string Name
     {
         get => name;
-        set => SetProperty(ref name, value);
+        set => SetProperty(field: ref name, newValue: value);
     }
 }

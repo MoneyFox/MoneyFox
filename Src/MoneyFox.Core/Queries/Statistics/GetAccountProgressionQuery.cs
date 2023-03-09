@@ -61,7 +61,7 @@ public class GetAccountProgressionHandler : IRequestHandler<GetAccountProgressio
         foreach (var group in payments.GroupBy(x => new { x.Date.Month, x.Date.Year }))
         {
             StatisticEntry statisticEntry = new(
-                group.Sum(x => GetPaymentAmountForSum(payment: x, request: request)),
+                value: group.Sum(x => GetPaymentAmountForSum(payment: x, request: request)),
                 label: $"{group.Key.Month:d2} {group.Key.Year:d4}");
 
             statisticEntry.ValueLabel = statisticEntry.Value.FormatCurrency(settingsFacade.DefaultCurrency);

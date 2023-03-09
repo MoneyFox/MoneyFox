@@ -8,7 +8,7 @@ public class PaymentTypeStringConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        var paymentType = (PaymentType)Enum.ToObject(enumType: typeof(PaymentType), value);
+        var paymentType = (PaymentType)Enum.ToObject(enumType: typeof(PaymentType), value: value);
 
         return paymentType switch
         {

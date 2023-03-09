@@ -36,7 +36,7 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
         if (IsFirstLoad)
         {
             var accountId = 0;
-            if (query.TryGetValue(key: "defaultChargedAccountId", out var defaultChargedAccountId))
+            if (query.TryGetValue(key: "defaultChargedAccountId", value: out var defaultChargedAccountId))
             {
                 accountId = Convert.ToInt32(defaultChargedAccountId);
             }
@@ -44,9 +44,7 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
             InitializeAsync().GetAwaiter().GetResult();
             if (ChargedAccounts.Any())
             {
-                SelectedPayment.ChargedAccount = accountId != 0
-                    ? ChargedAccounts.First(n => n.Id == accountId)
-                    : ChargedAccounts.First();
+                SelectedPayment.ChargedAccount = accountId != 0 ? ChargedAccounts.First(n => n.Id == accountId) : ChargedAccounts.First();
             }
         }
 

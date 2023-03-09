@@ -6,7 +6,6 @@ using AutoMapper;
 using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Controls.CategorySelection;
 using Core.Common.Interfaces;
 using Core.Features.CategoryDeletion;
 using Core.Queries;
@@ -52,11 +51,7 @@ internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<Ca
     public AsyncRelayCommand<CategoryListItemViewModel> DeleteCategoryCommand => new(async vm => await DeleteCategoryAsync(vm));
 
     public AsyncRelayCommand<CategoryListItemViewModel> SelectCategoryCommand
-        => new(
-            async c =>
-            {
-                await navigationService.NavigateBackAsync(parameterName: SELECTED_CATEGORY_ID_PARAM, queryParameter: c.Id.ToString());
-            });
+        => new(async c => { await navigationService.NavigateBackAsync(parameterName: SELECTED_CATEGORY_ID_PARAM, queryParameter: c.Id.ToString()); });
 
     public void Receive(CategoriesChangedMessage message)
     {

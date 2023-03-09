@@ -12,7 +12,6 @@
        xmlns:settings="clr-namespace:MoneyFox.Ui.Views.Settings"
        xmlns:about="clr-namespace:MoneyFox.Ui.Views.About"
        xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
-       xmlns:setup="clr-namespace:MoneyFox.Ui.Views.Setup"
        FlyoutBehavior="Locked"
        FlyoutWidth="250"
        Title="MoneyFox">

@@ -22,55 +22,55 @@ public sealed class AccountViewModel : ObservableObject, IHaveCustomMapping, IEq
     {
         get => id;
 
-        set => SetProperty(ref id, value);
+        set => SetProperty(field: ref id, newValue: value);
     }
 
     public string Name
     {
         get => name;
-        set => SetProperty(ref name, value);
+        set => SetProperty(field: ref name, newValue: value);
     }
 
     public decimal CurrentBalance
     {
         get => currentBalance;
-        set => SetProperty(ref currentBalance, value);
+        set => SetProperty(field: ref currentBalance, newValue: value);
     }
 
     public decimal EndOfMonthBalance
     {
         get => endOfMonthBalance;
-        set => SetProperty(ref endOfMonthBalance, value);
+        set => SetProperty(field: ref endOfMonthBalance, newValue: value);
     }
 
     public string Note
     {
         get => note;
-        set => SetProperty(ref note, value);
+        set => SetProperty(field: ref note, newValue: value);
     }
 
     public bool IsOverdrawn
     {
         get => isOverdrawn;
-        set => SetProperty(ref isOverdrawn, value);
+        set => SetProperty(field: ref isOverdrawn, newValue: value);
     }
 
     public bool IsExcluded
     {
         get => isExcluded;
-        set => SetProperty(ref isExcluded, value);
+        set => SetProperty(field: ref isExcluded, newValue: value);
     }
 
     public DateTime Created
     {
         get => created;
-        set => SetProperty(ref created, value);
+        set => SetProperty(field: ref created, newValue: value);
     }
 
     public DateTime LastModified
     {
         get => lastModified;
-        set => SetProperty(ref lastModified, value);
+        set => SetProperty(field: ref lastModified, newValue: value);
     }
 
     public bool Equals(AccountViewModel? other)

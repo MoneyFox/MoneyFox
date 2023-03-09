@@ -8,7 +8,6 @@
        xmlns:overflowMenu="clr-namespace:MoneyFox.Ui.Views.OverflowMenu"
        xmlns:views="clr-namespace:MoneyFox.Ui.Views"
        xmlns:selector="clr-namespace:MoneyFox.Ui.Views.Statistics.Selector"
-       xmlns:setup="clr-namespace:MoneyFox.Ui.Views.Setup"
        Title="MoneyFox">
 
     <TabBar>
