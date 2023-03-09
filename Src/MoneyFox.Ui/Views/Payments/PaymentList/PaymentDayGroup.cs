@@ -8,6 +8,4 @@ public class PaymentDayGroup : List<PaymentListItemViewModel>
     }
 
     public DateOnly Date { get; }
-
-    public decimal Sum => this.Sum(p => p.Amount);
 }

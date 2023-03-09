@@ -69,17 +69,6 @@
                     </DataTemplate>
                 </CollectionView.GroupHeaderTemplate>
 
-
-                <CollectionView.GroupFooterTemplate>
-                    <DataTemplate x:DataType="paymentList:PaymentDayGroup">
-                        <Grid Padding="12,0,24,0" >
-                            <Label Text="{Binding Sum, StringFormat={extensions:Translate SaldoTemplate}}"
-                                   Style="{StaticResource TextCaptionSecondary}"
-                                   HorizontalOptions="End"/>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.GroupFooterTemplate>
-
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="paymentList:PaymentListItemViewModel">
                         <Grid ColumnDefinitions="80, *" Margin="0,6,24,0">
