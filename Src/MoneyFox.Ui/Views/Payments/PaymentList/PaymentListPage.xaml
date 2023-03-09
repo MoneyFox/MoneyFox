@@ -7,6 +7,7 @@
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:views="clr-namespace:MoneyFox.Ui.Views"
+    xmlns:extensions="clr-namespace:MoneyFox.Ui.Common.Extensions"
     xmlns:paymentList="clr-namespace:MoneyFox.Ui.Views.Payments.PaymentList"
     x:DataType="paymentList:PaymentListViewModel"
     x:Class="MoneyFox.Ui.Views.Payments.PaymentList.PaymentListPage"
@@ -68,9 +69,20 @@
                     </DataTemplate>
                 </CollectionView.GroupHeaderTemplate>
 
+
+                <CollectionView.GroupFooterTemplate>
+                    <DataTemplate x:DataType="paymentList:PaymentDayGroup">
+                        <Grid Padding="12,0,24,0" >
+                            <Label Text="{Binding Sum, StringFormat={extensions:Translate SaldoTemplate}}"
+                                   Style="{StaticResource TextCaptionSecondary}"
+                                   HorizontalOptions="End"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.GroupFooterTemplate>
+
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="paymentList:PaymentListItemViewModel">
-                        <Grid ColumnDefinitions="80, *" Margin="0,6,12,0">
+                        <Grid ColumnDefinitions="80, *" Margin="0,6,24,0">
                             <controls:Card Grid.Column="1" Padding="12" >
 
                                 <controls:Card.GestureRecognizers>
