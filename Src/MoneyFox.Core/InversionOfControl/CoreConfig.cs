@@ -16,8 +16,8 @@ public sealed class CoreConfig
             cfg =>
             {
                 cfg.RegisterServicesFromAssembly(typeof(CreatePaymentCommand).Assembly);
-                cfg.NotificationPublisher = new TaskWhenAllPublisher();
-                cfg.NotificationPublisherType = typeof(TaskWhenAllPublisher);
+                cfg.NotificationPublisher = new ParallelNoWaitPublisher();
+                cfg.NotificationPublisherType = typeof(ParallelNoWaitPublisher);
             });
     }
 
