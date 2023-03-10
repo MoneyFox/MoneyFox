@@ -908,7 +908,7 @@ Alustamiseks looge uus konto. Kontod on mõeldud maksete ja raha kogumise korral
     <value>Lisatud kategooriad</value>
   </data>
   <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>Valige valuuta, mida soovite rakenduses kasutada. Seda kasutatakse vaikimisi valuutana näiteks kontode, maksete ja eelarvete puhul.
+    <value>Valige valuuta, mida soovite rakenduses kasutada. Seda kasutatakse vaikimisi valuutana näiteks kontode, maksete ja eelarvete puhul.
 Seda saate hilisemalt seadetes muuta.</value>
   </data>
   <data name="CurrencyIntroductionTitle" xml:space="preserve">
@@ -930,6 +930,9 @@ Seda saate hilisemalt seadetes muuta.</value>
     <value>Sellele kategooriale on määratud {0} maksed, mille jaoks määratud maksed eemaldatakse. Kas soovite jätkata?</value>
   </data>
   <data name="CurrencySettingText" xml:space="preserve">
-      <value>Valige valuuta, mida soovite rakenduses kasutada. Seda kasutatakse vaikimisi valuutana näiteks kontode, maksete ja eelarvete puhul.</value>
+    <value>Valige valuuta, mida soovite rakenduses kasutada. Seda kasutatakse vaikimisi valuutana näiteks kontode, maksete ja eelarvete puhul.</value>
+  </data>
+  <data name="SaldoTemplate" xml:space="preserve">
+    <value>Saldo: {0}</value>
   </data>
 </root>
