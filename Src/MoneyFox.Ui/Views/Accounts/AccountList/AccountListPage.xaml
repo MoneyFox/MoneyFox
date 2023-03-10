@@ -7,6 +7,8 @@
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:accounts="clr-namespace:MoneyFox.Ui.Views.Accounts"
     xmlns:accountList="clr-namespace:MoneyFox.Ui.Views.Accounts.AccountList"
+    x:DataType="accountList:AccountListViewModel"
+    x:Name="This"
     Title="{x:Static resources:Translations.AccountsTitle}">
 
     <ContentPage.Resources>
@@ -28,27 +30,25 @@
                 Grid.Row="1"
                 x:Name="AccountCollectionView"
                 IsGrouped="true"
-                ItemsSource="{Binding Accounts}"
-                SelectionMode="Single"
-                SelectionChangedCommand="{Binding GoToTransactionListCommand}"
-                SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference AccountCollectionView}}">
+                ItemsSource="{Binding AccountGroups}">
 
                 <CollectionView.GroupHeaderTemplate>
-                    <DataTemplate>
-                        <Grid Padding="15">
-                            <Label
-                                FontFamily="Product"
-                                FontSize="18"
-                                Text="{Binding Key}"
-                                VerticalTextAlignment="End" />
-                        </Grid>
+                    <DataTemplate x:DataType="accountList:AccountGroup">
+                        <Label Text="{Binding Title}" />
                     </DataTemplate>
                 </CollectionView.GroupHeaderTemplate>
 
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="accounts:AccountViewModel">
+                    <DataTemplate x:DataType="accounts:AccountListItemViewModel">
                         <Grid Padding="15,6,15,12">
                             <controls:Card HeightRequest="80">
+
+                                <controls:Card.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference This}}"
+                                        CommandParameter="{Binding .}" />
+                                </controls:Card.GestureRecognizers>
+
                                 <SwipeView>
                                     <SwipeView.RightItems>
                                         <SwipeItems>
@@ -76,13 +76,12 @@
                                             Text="{Binding Name}"
                                             VerticalTextAlignment="Start" />
 
-                                        <Label
+                                        <!--<Label
                                             Margin="0,0,6,2"
                                             FontFamily="Product"
                                             FontSize="20"
                                             HorizontalOptions="Center"
                                             VerticalOptions="Center"
-                                            Style="{Binding CurrentBalance, Converter={StaticResource BalanceColorConverter}}"
                                             Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
                                             VerticalTextAlignment="Center" />
 
@@ -102,10 +101,9 @@
                                                 FontFamily="Product"
                                                 FontSize="15"
                                                 HorizontalTextAlignment="End"
-                                                Style="{Binding EndOfMonthBalance, Converter={StaticResource BalanceColorConverter}}"
                                                 Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}"
                                                 VerticalTextAlignment="End" />
-                                        </StackLayout>
+                                        </StackLayout>-->
                                     </Grid>
                                 </SwipeView>
                             </controls:Card>
