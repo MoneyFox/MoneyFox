@@ -906,7 +906,7 @@ Aloittaaksesi luoda uuden tilin. Tilejä käytetään järjestämään maksuja j
     <value>Mukana olevat luokat</value>
   </data>
   <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>Valitse valuutta, jota haluat käyttää sovelluksessa. Tätä käytetään oletusvaluuttana esimerkiksi tileissä, maksuissa ja budjeteissa.
+    <value>Valitse valuutta, jota haluat käyttää sovelluksessa. Tätä käytetään oletusvaluuttana esimerkiksi tileissä, maksuissa ja budjeteissa.
 Voit muuttaa tätä myöhässä asetuksissa.</value>
   </data>
   <data name="CurrencyIntroductionTitle" xml:space="preserve">
@@ -928,6 +928,9 @@ Voit muuttaa tätä myöhässä asetuksissa.</value>
     <value>Tähän luokkaan on kohdistettu {0} maksuja, joiden kohdentaminen poistetaan. Haluatko jatkaa?</value>
   </data>
   <data name="CurrencySettingText" xml:space="preserve">
-      <value>Valitse valuutta, jota haluat käyttää sovelluksessa. Tätä käytetään oletusvaluuttana esimerkiksi tileissä, maksuissa ja budjeteissa.</value>
+    <value>Valitse valuutta, jota haluat käyttää sovelluksessa. Tätä käytetään oletusvaluuttana esimerkiksi tileissä, maksuissa ja budjeteissa.</value>
+  </data>
+  <data name="SaldoTemplate" xml:space="preserve">
+    <value>Saldo: {0}</value>
   </data>
 </root>
