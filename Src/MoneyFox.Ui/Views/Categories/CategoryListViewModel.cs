@@ -2,8 +2,6 @@ namespace MoneyFox.Ui.Views.Categories;
 
 using System.Collections.ObjectModel;
 using System.Globalization;
-using AutoMapper;
-using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
@@ -37,7 +35,7 @@ public class CategoryListViewModel : BasePageViewModel, IRecipient<CategoriesCha
 
     public AsyncRelayCommand<string> SearchCategoryCommand => new(async s => await SearchCategoryAsync(s ?? string.Empty));
 
-    public AsyncRelayCommand<CategoryListItemViewModel> DeleteCategoryCommand => new(async vm => await DeleteCategoryAsync(vm));
+    public AsyncRelayCommand<CategoryListItemViewModel> DeleteCategoryCommand => new(DeleteCategoryAsync);
 
     public void Receive(CategoriesChangedMessage message)
     {

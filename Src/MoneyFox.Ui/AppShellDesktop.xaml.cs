@@ -54,6 +54,6 @@ public partial class AppShellDesktop
         Routing.RegisterRoute(route: Routes.EditBudgetRoute, type: typeof(EditBudgetPage));
         Routing.RegisterRoute(route: Routes.CategoryListRoute, type: typeof(CategoryListPage));
         Routing.RegisterRoute(route: Routes.AccountListRoute, type: typeof(DesktopAccountListPage));
-        Routing.RegisterRoute(route: Routes.SelectCategoryRoute, type: typeof(DesktopSelectedCategoryPage));
+        Routing.RegisterRoute(route: Routes.SelectCategoryRoute, type: typeof(SelectCategoryPage));
     }
 }
