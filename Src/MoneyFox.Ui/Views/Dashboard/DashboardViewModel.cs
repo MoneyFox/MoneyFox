@@ -8,6 +8,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using Core.Queries;
 using MediatR;
 using Messages;
+using MoneyFox.Ui.Views.Accounts.AccountModification;
 
 public class DashboardViewModel : BasePageViewModel, IRecipient<BackupRestoredMessage>
 {

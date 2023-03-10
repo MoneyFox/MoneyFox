@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Tests.Views.Accounts;
 
 using FluentAssertions;
+using MoneyFox.Ui.Views.Accounts.AccountModification;
 using Ui.Views.Accounts;
 using Xunit;
 

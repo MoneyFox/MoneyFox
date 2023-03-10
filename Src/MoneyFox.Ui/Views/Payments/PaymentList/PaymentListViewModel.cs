@@ -9,6 +9,7 @@ using Core.Queries;
 using Core.Queries.GetPaymentsForAccountIdQuery;
 using Domain.Aggregates.AccountAggregate;
 using MediatR;
+using MoneyFox.Ui.Views.Accounts.AccountModification;
 
 [QueryProperty(name: nameof(AccountId), queryId: nameof(accountId))]
 internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<PaymentsChangedMessage>, IRecipient<PaymentListFilterChangedMessage>
@@ -21,7 +22,6 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
     private bool isRunning;
 
     private ReadOnlyObservableCollection<PaymentDayGroup> paymentDayGroups = null!;
-
     private AccountViewModel selectedAccount = new();
 
     public PaymentListViewModel(IMediator mediator, IMapper mapper)

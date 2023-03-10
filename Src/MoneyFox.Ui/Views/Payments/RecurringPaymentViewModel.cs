@@ -7,6 +7,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Core.Common.Interfaces.Mapping;
 using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
+using MoneyFox.Ui.Views.Accounts.AccountModification;
 
 public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
 {

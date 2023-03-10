@@ -11,6 +11,7 @@ using LiveChartsCore.Kernel.Sketches;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using MediatR;
+using MoneyFox.Ui.Views.Accounts.AccountModification;
 using SkiaSharp;
 
 internal sealed class StatisticAccountMonthlyCashFlowViewModel : StatisticViewModel
