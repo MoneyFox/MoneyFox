@@ -907,7 +907,7 @@ Para começar a criar uma nova conta. Contas são usadas para organizar pagament
     <value>Categorias Incluídas</value>
   </data>
   <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>Seleccione a moeda que gostaria de utilizar na aplicação. Esta será utilizada como moeda padrão, por exemplo, para contas, pagamentos e orçamentos.
+    <value>Seleccione a moeda que gostaria de utilizar na aplicação. Esta será utilizada como moeda padrão, por exemplo, para contas, pagamentos e orçamentos.
 Pode alterar esta moeda tardiamente nas definições.</value>
   </data>
   <data name="CurrencyIntroductionTitle" xml:space="preserve">
@@ -929,6 +929,9 @@ Pode alterar esta moeda tardiamente nas definições.</value>
     <value>Há {0} pagamentos atribuídos a esta categoria. A atribuição para esses pagamentos será removida. Deseja prosseguir?</value>
   </data>
   <data name="CurrencySettingText" xml:space="preserve">
-      <value>Seleccione a moeda que gostaria de utilizar na aplicação. Esta será utilizada como moeda padrão, por exemplo, para contas, pagamentos e orçamentos.</value>
+    <value>Seleccione a moeda que gostaria de utilizar na aplicação. Esta será utilizada como moeda padrão, por exemplo, para contas, pagamentos e orçamentos.</value>
+  </data>
+  <data name="SaldoTemplate" xml:space="preserve">
+    <value>Saldo: {0}</value>
   </data>
 </root>
