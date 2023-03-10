@@ -908,7 +908,7 @@ För att börja skapa ett nytt konto. Konton används för att organisera betaln
     <value>Inkluderade kategorier</value>
   </data>
   <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>Välj den valuta du vill använda i appen. Den kommer att användas som standardvaluta för t.ex. konton, betalningar och budgetar.
+    <value>Välj den valuta du vill använda i appen. Den kommer att användas som standardvaluta för t.ex. konton, betalningar och budgetar.
 Du kan ändra denna sen i inställningarna.</value>
   </data>
   <data name="CurrencyIntroductionTitle" xml:space="preserve">
@@ -930,6 +930,9 @@ Du kan ändra denna sen i inställningarna.</value>
     <value>Det finns {0} betalningar som har tilldelats denna kategori, och tilldelningen för dessa kommer att tas bort. Vill du fortsätta?</value>
   </data>
   <data name="CurrencySettingText" xml:space="preserve">
-      <value>Välj den valuta du vill använda i appen. Den kommer att användas som standardvaluta för t.ex. konton, betalningar och budgetar.</value>
+    <value>Välj den valuta du vill använda i appen. Den kommer att användas som standardvaluta för t.ex. konton, betalningar och budgetar.</value>
+  </data>
+  <data name="SaldoTemplate" xml:space="preserve">
+    <value>Saldo: {0}</value>
   </data>
 </root>
