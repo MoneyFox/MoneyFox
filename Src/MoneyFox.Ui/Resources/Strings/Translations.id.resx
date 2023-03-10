@@ -906,7 +906,7 @@ Untuk memulai, buat akun baru. Akun digunakan untuk mengatur pembayaran dan uang
     <value>Kategori yang disertakan</value>
   </data>
   <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>Pilih mata uang yang ingin Anda gunakan dalam aplikasi. Mata uang ini akan digunakan sebagai mata uang default, misalnya untuk akun, pembayaran, dan anggaran.
+    <value>Pilih mata uang yang ingin Anda gunakan dalam aplikasi. Mata uang ini akan digunakan sebagai mata uang default, misalnya untuk akun, pembayaran, dan anggaran.
 Anda dapat mengubahnya di bagian akhir pengaturan.</value>
   </data>
   <data name="CurrencyIntroductionTitle" xml:space="preserve">
@@ -928,6 +928,9 @@ Anda dapat mengubahnya di bagian akhir pengaturan.</value>
     <value>Ada {0} pembayaran yang ditugaskan untuk kategori ini, penugasan untuk kategori tersebut akan dihapus. Apakah Anda ingin melanjutkan?</value>
   </data>
   <data name="CurrencySettingText" xml:space="preserve">
-      <value>Pilih mata uang yang ingin Anda gunakan dalam aplikasi. Mata uang ini akan digunakan sebagai mata uang default, misalnya untuk akun, pembayaran, dan anggaran.</value>
+    <value>Pilih mata uang yang ingin Anda gunakan dalam aplikasi. Mata uang ini akan digunakan sebagai mata uang default, misalnya untuk akun, pembayaran, dan anggaran.</value>
+  </data>
+  <data name="SaldoTemplate" xml:space="preserve">
+    <value>Saldo: {0}</value>
   </data>
 </root>
