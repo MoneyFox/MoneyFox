@@ -911,7 +911,7 @@ Maak een nieuw account aan om hier dan uw budgetten op een gemakkelijke manier b
     <value>Inbegrepen categorieën</value>
   </data>
   <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>Selecteer de valuta die je in de app wilt gebruiken. Deze zal als standaardvaluta worden gebruikt voor bijvoorbeeld rekeningen, betalingen en budgetten.
+    <value>Selecteer de valuta die je in de app wilt gebruiken. Deze zal als standaardvaluta worden gebruikt voor bijvoorbeeld rekeningen, betalingen en budgetten.
 Je kunt dit laat wijzigen in de instellingen.</value>
   </data>
   <data name="CurrencyIntroductionTitle" xml:space="preserve">
@@ -933,6 +933,9 @@ Je kunt dit laat wijzigen in de instellingen.</value>
     <value>Er zijn {0} betalingen toegewezen aan deze categorie.De toewijzing daarvan wordt verwijderd. Wil je doorgaan?</value>
   </data>
   <data name="CurrencySettingText" xml:space="preserve">
-      <value>Selecteer de valuta die je in de app wilt gebruiken. Deze zal als standaardvaluta worden gebruikt voor bijvoorbeeld rekeningen, betalingen en budgetten.</value>
+    <value>Selecteer de valuta die je in de app wilt gebruiken. Deze zal als standaardvaluta worden gebruikt voor bijvoorbeeld rekeningen, betalingen en budgetten.</value>
+  </data>
+  <data name="SaldoTemplate" xml:space="preserve">
+    <value>Saldo: {0}</value>
   </data>
 </root>
