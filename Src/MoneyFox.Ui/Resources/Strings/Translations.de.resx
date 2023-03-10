@@ -907,7 +907,7 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
     <value>Enthaltene Kategorien</value>
   </data>
   <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>Wähle die Währung aus, die du in der App verwenden möchtest. Diese wird als Standardwährung z. B. für Konten, Zahlungen und Budgets verwendet.
+    <value>Wähle die Währung aus, die du in der App verwenden möchtest. Diese wird als Standardwährung z. B. für Konten, Zahlungen und Budgets verwendet.
 Du kannst dies später in den Einstellungen ändern.</value>
   </data>
   <data name="CurrencyIntroductionTitle" xml:space="preserve">
@@ -929,7 +929,10 @@ Du kannst dies später in den Einstellungen ändern.</value>
     <value>Es gibt {0} Zahlungen, die dieser Kategorie zugewiesen sind und deren Zuweisung entfernt wird. Willst du fortfahren?</value>
   </data>
   <data name="CurrencySettingText" xml:space="preserve">
-      <value>Wähle die Währung aus, die du in der App verwenden möchtest. Diese wird als Standardwährung z. B. für Konten, Zahlungen und Budgets verwendet.
+    <value>Wähle die Währung aus, die du in der App verwenden möchtest. Diese wird als Standardwährung z. B. für Konten, Zahlungen und Budgets verwendet.
 Du kannst das später in den Einstellungen ändern.</value>
+  </data>
+  <data name="SaldoTemplate" xml:space="preserve">
+    <value>Saldo: {0}</value>
   </data>
 </root>
