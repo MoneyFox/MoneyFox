@@ -1,14 +1,11 @@
 namespace MoneyFox.Ui.Views.Statistics.CategorySummary;
 
 using System.Collections.ObjectModel;
-using System.Globalization;
 using AutoMapper;
-using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Queries;
 using MediatR;
-using Payments.PaymentList;
 using Resources.Strings;
 
 internal sealed class PaymentForCategoryListViewModel : BasePageViewModel, IRecipient<PaymentsForCategoryMessage>
@@ -16,14 +13,14 @@ internal sealed class PaymentForCategoryListViewModel : BasePageViewModel, IReci
     private readonly IMapper mapper;
     private readonly IMediator mediator;
 
-    private ObservableCollection<DateListGroupCollection<PaymentListItemViewModel>> paymentList = new();
+    private ReadOnlyObservableCollection<PaymentDayGroup> paymentDayGroups = null!;
+
     private string title = string.Empty;
 
     public PaymentForCategoryListViewModel(IMediator mediator, IMapper mapper)
     {
         this.mediator = mediator;
         this.mapper = mapper;
-        PaymentList = new();
     }
 
     public string Title
@@ -32,15 +29,10 @@ internal sealed class PaymentForCategoryListViewModel : BasePageViewModel, IReci
         set => SetProperty(field: ref title, newValue: value);
     }
 
-    public ObservableCollection<DateListGroupCollection<PaymentListItemViewModel>> PaymentList
+    public ReadOnlyObservableCollection<PaymentDayGroup> PaymentDayGroups
     {
-        get => paymentList;
-
-        private set
-        {
-            paymentList = value;
-            OnPropertyChanged();
-        }
+        get => paymentDayGroups;
+        private set => SetProperty(field: ref paymentDayGroups, newValue: value);
     }
 
     public AsyncRelayCommand<PaymentListItemViewModel> GoToEditPaymentCommand
@@ -58,17 +50,16 @@ internal sealed class PaymentForCategoryListViewModel : BasePageViewModel, IReci
             Title = Translations.NoCategoryTitle;
         }
 
-        var loadedPayments = mapper.Map<List<PaymentListItemViewModel>>(
+        var paymentVms = mapper.Map<List<PaymentListItemViewModel>>(
             mediator.Send(
                     new GetPaymentsForCategorySummary.Query(CategoryId: message.CategoryId, DateRangeFrom: message.StartDate, DateRangeTo: message.EndDate))
                 .GetAwaiter()
                 .GetResult());
 
-        var dailyItems = DateListGroupCollection<PaymentListItemViewModel>.CreateGroups(
-            items: loadedPayments,
-            getKey: s => s.Date.ToString(format: "D", provider: CultureInfo.CurrentCulture),
-            getSortKey: s => s.Date);
+        var dailyGroupedPayments = paymentVms.GroupBy(p => p.Date.Date)
+            .Select(g => new PaymentDayGroup(date: DateOnly.FromDateTime(g.Key), payments: g.ToList()))
+            .ToList();
 
-        PaymentList = new(dailyItems);
+        PaymentDayGroups = new(new(dailyGroupedPayments));
     }
 }

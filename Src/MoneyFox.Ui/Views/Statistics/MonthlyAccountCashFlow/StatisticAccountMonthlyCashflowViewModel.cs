@@ -1,7 +1,7 @@
 namespace MoneyFox.Ui.Views.Statistics.MonthlyAccountCashFlow;
 
 using System.Collections.ObjectModel;
-using Accounts;
+using Accounts.AccountModification;
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using Core.Queries;

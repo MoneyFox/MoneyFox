@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.Views.Payments.PaymentModification;
+namespace MoneyFox.Ui.Views.Statistics.CategorySummary;
 
 using Accounts.AccountModification;
 using AutoMapper;
@@ -7,10 +7,12 @@ using Controls.CategorySelection;
 using Core.Common.Interfaces.Mapping;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.CategoryAggregate;
+using Payments;
 
-public class PaymentViewModel : ObservableObject, IHaveCustomMapping
+public class PaymentListItemViewModel : ObservableObject, IHaveCustomMapping
 {
     private decimal amount;
+    private SelectedCategoryViewModel? categoryViewModel;
 
     private AccountViewModel chargedAccount = null!;
     private int chargedAccountId;
@@ -29,7 +31,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     private int? targetAccountId;
     private PaymentType type;
 
-    public PaymentViewModel()
+    public PaymentListItemViewModel()
     {
         Date = DateTime.Today;
     }
@@ -159,6 +161,15 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     }
 
     /// <summary>
+    ///     The <see cref="Category" /> for this payment
+    /// </summary>
+    public SelectedCategoryViewModel? Category
+    {
+        get => categoryViewModel;
+        set => SetProperty(field: ref categoryViewModel, newValue: value);
+    }
+
+    /// <summary>
     ///     The <see cref="RecurringPayment" /> if it's recurring.
     /// </summary>
     public RecurringPaymentViewModel? RecurringPayment
@@ -184,7 +195,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public void CreateMappings(Profile configuration)
     {
         configuration.CreateMap<Category, SelectedCategoryViewModel>();
-        configuration.CreateMap<Payment, PaymentViewModel>()
+        configuration.CreateMap<Payment, PaymentListItemViewModel>()
             .ForMember(destinationMember: x => x.CurrentAccountId, memberOptions: opt => opt.Ignore())
             .ReverseMap();
     }

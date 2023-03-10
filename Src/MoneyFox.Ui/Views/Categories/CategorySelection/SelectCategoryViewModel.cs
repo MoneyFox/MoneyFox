@@ -3,7 +3,6 @@ namespace MoneyFox.Ui.Views.Categories.CategorySelection;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using AutoMapper;
-using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
@@ -20,7 +19,7 @@ internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<Ca
     private readonly IMediator mediator;
     private readonly INavigationService navigationService;
 
-    private ObservableCollection<AlphaGroupListGroupCollection<CategoryListItemViewModel>> categories = new();
+    private ReadOnlyObservableCollection<CategoryGroup> categoryGroups = null!;
 
     public SelectCategoryViewModel(IDialogService dialogService, IMapper mapper, IMediator mediator, INavigationService navigationService)
     {
@@ -30,15 +29,10 @@ internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<Ca
         this.navigationService = navigationService;
     }
 
-    public ObservableCollection<AlphaGroupListGroupCollection<CategoryListItemViewModel>> Categories
+    public ReadOnlyObservableCollection<CategoryGroup> CategoryGroups
     {
-        get => categories;
-
-        private set
-        {
-            categories = value;
-            OnPropertyChanged();
-        }
+        get => categoryGroups;
+        private set => SetProperty(field: ref categoryGroups, newValue: value);
     }
 
     public AsyncRelayCommand GoToAddCategoryCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddCategoryRoute));
@@ -65,13 +59,12 @@ internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<Ca
 
     private async Task SearchCategoryAsync(string searchTerm = "")
     {
-        var categoryVms = mapper.Map<List<CategoryListItemViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery(searchTerm)));
-        var groups = AlphaGroupListGroupCollection<CategoryListItemViewModel>.CreateGroups(
-            items: categoryVms,
-            ci: CultureInfo.CurrentUICulture,
-            getKey: s => string.IsNullOrEmpty(s.Name) ? "-" : s.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture));
+        var categories = await mediator.Send(new GetCategoryBySearchTermQuery(searchTerm));
+        var categoryVms = categories.Select(c => new CategoryListItemViewModel { Id = c.Id, Name = c.Name, RequireNote = c.RequireNote }).ToList();
+        var groupedCategories = categoryVms.GroupBy(c => c.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture))
+            .Select(g => new CategoryGroup(title: g.Key, categoryItems: g.ToList()));
 
-        Categories = new(groups);
+        CategoryGroups = new(new(groupedCategories));
     }
 
     private async Task DeleteCategoryAsync(CategoryListItemViewModel? categoryListItemViewModel)

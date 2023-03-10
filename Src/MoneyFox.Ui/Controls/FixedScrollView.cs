@@ -2,9 +2,8 @@ namespace MoneyFox.Ui.Controls;
 
 #if IOS
 using Microsoft.Maui.Platform;
-using UIKit;
-using CoreGraphics;
 using Platforms.iOS.Utils;
+using UIKit;
 #endif
 
 public class FixedScrollView : ScrollView
@@ -22,20 +21,20 @@ public class FixedScrollView : ScrollView
     {
         if (Shell.Current.CurrentPage is ContentPage page)
         {
-            UIView control = this.ToPlatform(Handler!.MauiContext!).FindFirstResponder();
-            UIView rootUiView = page.Content.ToPlatform(Handler.MauiContext!);
-            CGRect kbFrame = UIKeyboard.FrameEndFromNotification(args.Notification);
-            double distance = control.GetOverlapDistance(rootUiView, kbFrame);
+            var control = this.ToPlatform(Handler!.MauiContext!).FindFirstResponder();
+            var rootUiView = page.Content.ToPlatform(Handler.MauiContext!);
+            var kbFrame = UIKeyboard.FrameEndFromNotification(args.Notification);
+            var distance = control.GetOverlapDistance(rootView: rootUiView, keyboardFrame: kbFrame);
             if (distance > 0)
             {
-                Margin = new Thickness(Margin.Left, -distance, Margin.Right, distance);
+                Margin = new(left: Margin.Left, top: -distance, right: Margin.Right, bottom: distance);
             }
         }
     }
 
     private void OnKeyboardHiding(object sender, UIKeyboardEventArgs args)
     {
-        Margin = new Thickness(Margin.Left, 0, Margin.Right, 0);
+        Margin = new(left: Margin.Left, top: 0, right: Margin.Right, bottom: 0);
     }
 #endif
 }

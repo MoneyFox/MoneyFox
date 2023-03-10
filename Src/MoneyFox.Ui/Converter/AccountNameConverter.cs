@@ -4,7 +4,7 @@ using System.Globalization;
 using Core.Common.Extensions;
 using Core.Common.Settings;
 using Infrastructure.Adapters;
-using Views.Accounts;
+using Views.Accounts.AccountModification;
 
 public class AccountNameConverter : IValueConverter
 {

@@ -2082,6 +2082,15 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Saldo: {0}.
+        /// </summary>
+        public static string SaldoTemplate {
+            get {
+                return ResourceManager.GetString("SaldoTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string SaveLabel {

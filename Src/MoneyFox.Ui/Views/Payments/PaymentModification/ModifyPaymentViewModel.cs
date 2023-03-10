@@ -1,7 +1,7 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
 using System.Collections.ObjectModel;
-using Accounts;
+using Accounts.AccountModification;
 using AutoMapper;
 using Categories.CategorySelection;
 using CommunityToolkit.Mvvm.Input;
