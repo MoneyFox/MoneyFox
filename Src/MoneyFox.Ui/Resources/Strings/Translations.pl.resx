@@ -906,7 +906,7 @@ Aby rozpocząć tworzenie nowego konta. Konta są używane do organizowania pła
     <value>Kategorie uwzględnione</value>
   </data>
   <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>Wybierz walutę, której chcesz używać w aplikacji. Będzie ona używana jako waluta domyślna, np. w przypadku kont, płatności i budżetów.
+    <value>Wybierz walutę, której chcesz używać w aplikacji. Będzie ona używana jako waluta domyślna, np. w przypadku kont, płatności i budżetów.
 Możesz to zmienić w ustawieniach.</value>
   </data>
   <data name="CurrencyIntroductionTitle" xml:space="preserve">
@@ -928,6 +928,9 @@ Możesz to zmienić w ustawieniach.</value>
     <value>Do tej kategorii przypisane są płatności {0} , które zostaną usunięte. Czy chcesz kontynuować?</value>
   </data>
   <data name="CurrencySettingText" xml:space="preserve">
-      <value>Wybierz walutę, której chcesz używać w aplikacji. Będzie ona używana jako waluta domyślna, np. w przypadku kont, płatności i budżetów.</value>
+    <value>Wybierz walutę, której chcesz używać w aplikacji. Będzie ona używana jako waluta domyślna, np. w przypadku kont, płatności i budżetów.</value>
+  </data>
+  <data name="SaldoTemplate" xml:space="preserve">
+    <value>Saldo: {0}</value>
   </data>
 </root>
