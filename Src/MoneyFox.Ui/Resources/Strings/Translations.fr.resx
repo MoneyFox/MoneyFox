@@ -905,7 +905,7 @@ Pour commencer, créez un nouveau compte. Les comptes sont utilisés pour organi
     <value>Catégories incluses</value>
   </data>
   <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>Sélectionne la devise que tu souhaites utiliser dans l'application. Elle sera utilisée comme devise par défaut, par exemple pour les comptes, les paiements et les budgets.
+    <value>Sélectionne la devise que tu souhaites utiliser dans l'application. Elle sera utilisée comme devise par défaut, par exemple pour les comptes, les paiements et les budgets.
 Tu peux la modifier dans les paramètres.</value>
   </data>
   <data name="CurrencyIntroductionTitle" xml:space="preserve">
@@ -927,6 +927,9 @@ Tu peux la modifier dans les paramètres.</value>
     <value>Il y a {0} paiements affectés à cette catégorie. L'affectation de ceux-ci sera supprimée. Veux-tu continuer ?</value>
   </data>
   <data name="CurrencySettingText" xml:space="preserve">
-      <value>Sélectionne la devise que tu souhaites utiliser dans l'application. Elle sera utilisée comme devise par défaut, par exemple pour les comptes, les paiements et les budgets.</value>
+    <value>Sélectionne la devise que tu souhaites utiliser dans l'application. Elle sera utilisée comme devise par défaut, par exemple pour les comptes, les paiements et les budgets.</value>
+  </data>
+  <data name="SaldoTemplate" xml:space="preserve">
+    <value>Saldo: {0}</value>
   </data>
 </root>
