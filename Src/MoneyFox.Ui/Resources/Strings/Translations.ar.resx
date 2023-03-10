@@ -926,6 +926,6 @@
     <value>حدد العملة التي ترغب في استخدامها في التطبيق. سيتم استخدام هذا كعملة افتراضية على سبيل المثال للحسابات والمدفوعات والميزانيات.</value>
   </data>
   <data name="SaldoTemplate" xml:space="preserve">
-    <value>Saldo: {0}</value>
+    <value>سلدو: {0}</value>
   </data>
 </root>
