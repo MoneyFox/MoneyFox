@@ -907,7 +907,7 @@
     <value>包括的类别</value>
   </data>
   <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>选择你想在应用程序中使用的货币。这将被用作默认货币，例如用于账户、付款和预算。
+    <value>选择你想在应用程序中使用的货币。这将被用作默认货币，例如用于账户、付款和预算。
 你可以在设置中改变这一迟来的货币。</value>
   </data>
   <data name="CurrencyIntroductionTitle" xml:space="preserve">
@@ -929,6 +929,9 @@
     <value>有 {0} 付款分配到这个类别。这些分配将被删除。你想继续吗？</value>
   </data>
   <data name="CurrencySettingText" xml:space="preserve">
-      <value>选择你想在应用程序中使用的货币。这将被用作默认货币，例如用于账户、支付和预算。</value>
+    <value>选择你想在应用程序中使用的货币。这将被用作默认货币，例如用于账户、支付和预算。</value>
+  </data>
+  <data name="SaldoTemplate" xml:space="preserve">
+    <value>Saldo: {0}</value>
   </data>
 </root>
