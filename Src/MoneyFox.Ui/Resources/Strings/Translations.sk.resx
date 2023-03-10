@@ -908,7 +908,7 @@ Ak chcete začať, vytvorte si nový účet. Účty slúžia na organizáciu pla
     <value>Zahrnuté kategórie</value>
   </data>
   <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>Vyberte menu, ktorú chcete v aplikácii používať. Táto mena sa bude používať ako predvolená mena napríklad pre účty, platby a rozpočty.
+    <value>Vyberte menu, ktorú chcete v aplikácii používať. Táto mena sa bude používať ako predvolená mena napríklad pre účty, platby a rozpočty.
 Túto neskorú menu môžete zmeniť v nastaveniach.</value>
   </data>
   <data name="CurrencyIntroductionTitle" xml:space="preserve">
@@ -930,6 +930,9 @@ Túto neskorú menu môžete zmeniť v nastaveniach.</value>
     <value>K tejto kategórii sú priradené platby {0} . Priradenie týchto platieb bude odstránené. Chcete pokračovať?</value>
   </data>
   <data name="CurrencySettingText" xml:space="preserve">
-      <value>Vyberte menu, ktorú chcete v aplikácii používať. Táto mena sa bude používať ako predvolená mena napríklad pre účty, platby a rozpočty.</value>
+    <value>Vyberte menu, ktorú chcete v aplikácii používať. Táto mena sa bude používať ako predvolená mena napríklad pre účty, platby a rozpočty.</value>
+  </data>
+  <data name="SaldoTemplate" xml:space="preserve">
+    <value>Saldo: {0}</value>
   </data>
 </root>
