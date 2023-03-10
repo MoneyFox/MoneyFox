@@ -933,6 +933,6 @@
     <value>アプリで使用する通貨を選択します。これは、アカウント、支払い、予算などのデフォルト通貨として使用されます。</value>
   </data>
   <data name="SaldoTemplate" xml:space="preserve">
-    <value>Saldo: {0}</value>
+    <value>サルド： {0}</value>
   </data>
 </root>
