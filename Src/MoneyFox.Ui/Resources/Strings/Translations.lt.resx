@@ -908,7 +908,7 @@ Norėdami pradėti, sukurkite naują paskyrą. Sąskaitos naudojamos mokėjimams
     <value>Įtrauktos kategorijos</value>
   </data>
   <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>Pasirinkite valiutą, kurią norite naudoti programėlėje. Ši valiuta bus naudojama kaip numatytoji valiuta, pavyzdžiui, sąskaitoms, mokėjimams ir biudžetams.
+    <value>Pasirinkite valiutą, kurią norite naudoti programėlėje. Ši valiuta bus naudojama kaip numatytoji valiuta, pavyzdžiui, sąskaitoms, mokėjimams ir biudžetams.
 Šią vėlyvąją valiutą galite pakeisti nustatymuose.</value>
   </data>
   <data name="CurrencyIntroductionTitle" xml:space="preserve">
@@ -930,6 +930,9 @@ Norėdami pradėti, sukurkite naują paskyrą. Sąskaitos naudojamos mokėjimams
     <value>Šiai kategorijai yra priskirti {0} mokėjimai.Jų priskyrimas bus panaikintas. Ar norite tęsti?</value>
   </data>
   <data name="CurrencySettingText" xml:space="preserve">
-      <value>Pasirinkite valiutą, kurią norite naudoti programėlėje. Ši valiuta bus naudojama kaip numatytoji valiuta, pavyzdžiui, sąskaitoms, mokėjimams ir biudžetams.</value>
+    <value>Pasirinkite valiutą, kurią norite naudoti programėlėje. Ši valiuta bus naudojama kaip numatytoji valiuta, pavyzdžiui, sąskaitoms, mokėjimams ir biudžetams.</value>
+  </data>
+  <data name="SaldoTemplate" xml:space="preserve">
+    <value>Saldo: {0}</value>
   </data>
 </root>
