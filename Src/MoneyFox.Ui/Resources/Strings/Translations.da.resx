@@ -908,7 +908,7 @@ For at starte skal du oprette en ny konto. Konti bruges til at organisere betali
     <value>Inkluderede kategorier</value>
   </data>
   <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>Vælg den valuta, du ønsker at bruge i appen. Denne valuta vil blive brugt som standardvaluta for f.eks. konti, betalinger og budgetter.
+    <value>Vælg den valuta, du ønsker at bruge i appen. Denne valuta vil blive brugt som standardvaluta for f.eks. konti, betalinger og budgetter.
 Du kan ændre denne sent i indstillingerne.</value>
   </data>
   <data name="CurrencyIntroductionTitle" xml:space="preserve">
@@ -930,6 +930,9 @@ Du kan ændre denne sent i indstillingerne.</value>
     <value>Der er tilknyttet {0} betalinger til denne kategori, og tilknytningen til disse betalinger vil blive fjernet. Ønsker du at fortsætte?</value>
   </data>
   <data name="CurrencySettingText" xml:space="preserve">
-      <value>Vælg den valuta, du ønsker at bruge i appen. Denne valuta vil blive brugt som standardvaluta for f.eks. konti, betalinger og budgetter.</value>
+    <value>Vælg den valuta, du ønsker at bruge i appen. Denne valuta vil blive brugt som standardvaluta for f.eks. konti, betalinger og budgetter.</value>
+  </data>
+  <data name="SaldoTemplate" xml:space="preserve">
+    <value>Saldo: {0}</value>
   </data>
 </root>
