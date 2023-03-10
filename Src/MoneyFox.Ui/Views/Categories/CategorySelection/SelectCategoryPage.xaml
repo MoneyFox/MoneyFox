@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <ContentPage
-    x:Class="MoneyFox.Ui.Views.Categories.CategorySelection.DesktopSelectedCategoryPage"
+    x:Class="MoneyFox.Ui.Views.Categories.CategorySelection.SelectCategoryPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
@@ -11,10 +11,10 @@
 
     <ContentPage.Content>
         <Grid IsClippedToBounds="False"
-              RowDefinitions="40, 70, *">
+              RowDefinitions="40, 70, 12, *">
 
             <Button
-                Margin="0,0,6,0"
+                Margin="0,0,12,0"
                 HorizontalOptions="End"
                 Text="Add Category"
                 VerticalOptions="Center"
@@ -25,33 +25,40 @@
                              SearchPlaceholder="{x:Static resources:Translations.SearchLabel}"
                              SearchCommand="{Binding SearchCategoryCommand}" />
 
-            <CollectionView Grid.Row="2"
+            <CollectionView Grid.Row="3"
                             x:Name="CategoryCollectionView"
                             IsGrouped="true"
-                            EmptyView="{x:Static resources:Translations.NoCategoriesMessage}"
-                            ItemsSource="{Binding Categories}">
+                            ItemsSource="{Binding CategoryGroups}">
 
                 <CollectionView.GroupHeaderTemplate>
-                    <DataTemplate>
-                        <Label FontFamily="Product"
-                               FontSize="18"
-                               Margin="15"
-                               Padding="15,0,0,0"
-                               Text="{Binding Key}"
-                               VerticalTextAlignment="End" />
+                    <DataTemplate x:DataType="categories:CategoryGroup">
+                        <Label Margin="6,0,6,0" Text="{Binding Title}"
+                               Style="{StaticResource TextSubheadSecondary}" />
                     </DataTemplate>
                 </CollectionView.GroupHeaderTemplate>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="categories:CategoryListItemViewModel">
-                        <Grid Padding="15, 6, 15, 8">
-                            <controls:Card HeightRequest="40">
+                        <Grid Padding="12, 0, 12, 6">
+
+                            <controls:Card HeightRequest="45">
 
                                 <controls:Card.GestureRecognizers>
                                     <TapGestureRecognizer
                                         Command="{Binding BindingContext.SelectCategoryCommand, Source={x:Reference Name=CategoryCollectionView}}"
                                         CommandParameter="{Binding .}" />
                                 </controls:Card.GestureRecognizers>
+
+                                <FlyoutBase.ContextFlyout>
+                                    <MenuFlyout>
+                                        <MenuFlyoutItem Text="{x:Static resources:Translations.EditLabel}"
+                                                        Command="{Binding BindingContext.GoToEditCategoryCommand, Source={x:Reference Name=CategoryCollectionView}}"
+                                                        CommandParameter="{Binding .}" />
+                                        <MenuFlyoutItem Text="{x:Static resources:Translations.DeleteLabel}"
+                                                        Command="{Binding BindingContext.DeleteCategoryCommand, Source={x:Reference Name=CategoryCollectionView}}"
+                                                        CommandParameter="{Binding .}" />
+                                    </MenuFlyout>
+                                </FlyoutBase.ContextFlyout>
 
                                 <Grid>
                                     <Label Style="{StaticResource TextHead}"
@@ -64,6 +71,16 @@
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+                    <Grid>
+                        <Label Style="{StaticResource TextSubheadSecondary}"
+                               Margin="10,0,10,0"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               Text="{x:Static resources:Translations.NoCategoriesMessage}" />
+                    </Grid>
+                </CollectionView.EmptyView>
             </CollectionView>
         </Grid>
     </ContentPage.Content>

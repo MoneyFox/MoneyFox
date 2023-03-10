@@ -1,6 +1,6 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentList;
 
-using Accounts;
+using Accounts.AccountModification;
 using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Controls.CategorySelection;

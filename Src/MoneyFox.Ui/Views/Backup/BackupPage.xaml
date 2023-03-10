@@ -7,6 +7,7 @@
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
     xmlns:backup="clr-namespace:MoneyFox.Ui.Views.Backup"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:DataType="backup:BackupViewModel"
     BackgroundColor="{DynamicResource WindowBackgroundColor}"
     Title="{x:Static resources:Translations.BackupTitle}">
@@ -25,15 +26,11 @@
                                      Spacing="6"
                                      Margin="0,0,0,10">
 
-                    <!-- Height and Width are set on an extra StackLayout, since width was not set correctly on Android when set directly on the Frame -->
-                    <VerticalStackLayout WidthRequest="80"
-                                         HeightRequest="80">
-                        <Frame CornerRadius="40"
-                               Padding="0"
-                               IsClippedToBounds="True">
-                            <Image Source="{Binding ProfilePicture}" />
-                        </Frame>
-                    </VerticalStackLayout>
+                    <toolkit:AvatarView HeightRequest="80"
+                                        WidthRequest="80"
+                                        CornerRadius="40"
+                                        Text=""
+                                        ImageSource="{Binding ProfilePicture}" />
 
                     <Label Style="{StaticResource TextTitle}"
                            Text="{Binding UserAccount.Name}"

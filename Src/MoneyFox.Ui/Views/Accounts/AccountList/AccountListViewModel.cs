@@ -1,8 +1,6 @@
 namespace MoneyFox.Ui.Views.Accounts.AccountList;
 
 using System.Collections.ObjectModel;
-using AutoMapper;
-using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
@@ -14,41 +12,33 @@ using Resources.Strings;
 public sealed class AccountListViewModel : BasePageViewModel, IRecipient<AccountsChangedMessage>
 {
     private readonly IDialogService dialogService;
-    private readonly IMapper mapper;
-
     private readonly IMediator mediator;
 
-    private ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> accounts = new();
+    private ReadOnlyObservableCollection<AccountGroup> accountGroup = null!;
 
     private bool isRunning;
 
-    public AccountListViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService)
+    public AccountListViewModel(IMediator mediator, IDialogService dialogService)
     {
         this.mediator = mediator;
-        this.mapper = mapper;
         this.dialogService = dialogService;
     }
 
-    public ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> Accounts
+    public ReadOnlyObservableCollection<AccountGroup> AccountGroups
     {
-        get => accounts;
-
-        private set
-        {
-            accounts = value;
-            OnPropertyChanged();
-        }
+        get => accountGroup;
+        private set => SetProperty(field: ref accountGroup, newValue: value);
     }
 
     public AsyncRelayCommand GoToAddAccountCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddAccountRoute));
 
-    public AsyncRelayCommand<AccountViewModel> GoToEditAccountCommand
+    public AsyncRelayCommand<AccountListItemViewModel> GoToEditAccountCommand
         => new(async avm => await Shell.Current.GoToAsync($"{Routes.EditAccountRoute}?accountId={avm.Id}"));
 
-    public AsyncRelayCommand<AccountViewModel> GoToTransactionListCommand
+    public AsyncRelayCommand<AccountListItemViewModel> GoToTransactionListCommand
         => new(async avm => await Shell.Current.GoToAsync($"{Routes.PaymentListRoute}?accountId={avm.Id}"));
 
-    public AsyncRelayCommand<AccountViewModel> DeleteAccountCommand => new(async avm => await DeleteAccountAsync(avm));
+    public AsyncRelayCommand<AccountListItemViewModel> DeleteAccountCommand => new(DeleteAccountAsync);
 
     public void Receive(AccountsChangedMessage message)
     {
@@ -66,25 +56,20 @@ public sealed class AccountListViewModel : BasePageViewModel, IRecipient<Account
             }
 
             isRunning = true;
-            var accountVms = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
-            accountVms.ForEach(async x => x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
-            var includedAccountGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Translations.IncludedAccountsHeader);
-            var excludedAccountGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Translations.ExcludedAccountsHeader);
-            includedAccountGroup.AddRange(accountVms.Where(x => !x.IsExcluded));
-            excludedAccountGroup.AddRange(accountVms.Where(x => x.IsExcluded));
-            var newAccountCollection = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
-            if (includedAccountGroup.Any())
-            {
-                newAccountCollection.Add(includedAccountGroup);
-            }
+            var accounts = await mediator.Send(new GetAccountsQuery());
+            var accountListItems = accounts.Select(
+                    a => new AccountListItemViewModel
+                    {
+                        Id = a.Id,
+                        Name = a.Name,
+                        CurrentBalance = a.CurrentBalance,
+                        EndOfMonthBalance = mediator.Send(new GetAccountEndOfMonthBalanceQuery(a.Id)).GetAwaiter().GetResult(),
+                        IsExcluded = a.IsExcluded
+                    })
+                .ToList();
 
-            if (excludedAccountGroup.Any())
-            {
-                newAccountCollection.Add(excludedAccountGroup);
-            }
-
-            // Don't clear and add items separately since iOS doesn't handle batch updates correctly.
-            Accounts = newAccountCollection;
+            var accountGroups = accountListItems.GroupBy(a => a.IsExcluded).Select(g => new AccountGroup(isExcluded: g.Key, accountItems: g.ToList()));
+            AccountGroups = new(new(accountGroups));
         }
         finally
         {
@@ -92,7 +77,7 @@ public sealed class AccountListViewModel : BasePageViewModel, IRecipient<Account
         }
     }
 
-    private async Task DeleteAccountAsync(AccountViewModel accountViewModel)
+    private async Task DeleteAccountAsync(AccountListItemViewModel accountViewModel)
     {
         if (await dialogService.ShowConfirmMessageAsync(
                 title: Translations.DeleteTitle,

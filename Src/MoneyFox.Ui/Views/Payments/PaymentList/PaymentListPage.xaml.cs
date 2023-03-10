@@ -16,7 +16,7 @@ public partial class PaymentListPage : ContentPage
     protected override void OnAppearing()
     {
         ViewModel.IsActive = true;
-        ViewModel.InitializeAsync(accountId).GetAwaiter().GetResult();
+        ViewModel.InitializeAsync().GetAwaiter().GetResult();
     }
 
     protected override void OnDisappearing()
@@ -29,12 +29,4 @@ public partial class PaymentListPage : ContentPage
         var popup = new FilterPopup();
         Shell.Current.ShowPopup(popup);
     }
-
-#pragma warning disable S2376 // Write-only properties should not be used
-    private int accountId;
-    public string AccountId
-    {
-        set => accountId = Convert.ToInt32(Uri.UnescapeDataString(value));
-    }
-#pragma warning restore S2376 // Write-only properties should not be used
 }

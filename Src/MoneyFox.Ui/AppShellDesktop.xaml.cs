@@ -13,8 +13,6 @@ using Views.Dashboard;
 using Views.Payments.PaymentList;
 using Views.Payments.PaymentModification;
 using Views.Settings;
-using Views.Setup;
-using Views.Setup.SelectCurrency;
 using Views.Statistics.CashFlow;
 using Views.Statistics.CategoryProgression;
 using Views.Statistics.CategorySpreading;
@@ -54,15 +52,8 @@ public partial class AppShellDesktop
         Routing.RegisterRoute(route: Routes.BudgetListRoute, type: typeof(BudgetListPage));
         Routing.RegisterRoute(route: Routes.AddBudgetRoute, type: typeof(AddBudgetPage));
         Routing.RegisterRoute(route: Routes.EditBudgetRoute, type: typeof(EditBudgetPage));
-        Routing.RegisterRoute(route: Routes.CategoryListRoute, type: typeof(DesktopCategoryListPage));
+        Routing.RegisterRoute(route: Routes.CategoryListRoute, type: typeof(CategoryListPage));
         Routing.RegisterRoute(route: Routes.AccountListRoute, type: typeof(DesktopAccountListPage));
-        Routing.RegisterRoute(route: Routes.SelectCategoryRoute, type: typeof(DesktopSelectedCategoryPage));
-
-        // Setup
-        Routing.RegisterRoute(route: Routes.WelcomeViewRoute, type: typeof(WelcomePage));
-        Routing.RegisterRoute(route: Routes.CurrencyIntroductionRoute, type: typeof(SetupCurrencyPage));
-        Routing.RegisterRoute(route: Routes.SetupAccountsRoute, type: typeof(SetupAccountPage));
-        Routing.RegisterRoute(route: Routes.CategoryIntroductionRoute, type: typeof(SetupCategoryPage));
-        Routing.RegisterRoute(route: Routes.SetupCompletionRoute, type: typeof(SetupCompletionPage));
+        Routing.RegisterRoute(route: Routes.SelectCategoryRoute, type: typeof(SelectCategoryPage));
     }
 }

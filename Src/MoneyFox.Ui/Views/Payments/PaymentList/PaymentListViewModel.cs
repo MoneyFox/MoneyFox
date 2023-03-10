@@ -1,37 +1,38 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentList;
 
 using System.Collections.ObjectModel;
-using System.Globalization;
-using Accounts;
+using Accounts.AccountModification;
 using AutoMapper;
-using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Core.Common.Extensions;
-using Core.Common.Settings;
 using Core.Queries;
 using Core.Queries.GetPaymentsForAccountIdQuery;
 using Domain.Aggregates.AccountAggregate;
 using MediatR;
-using Resources.Strings;
 
+[QueryProperty(name: nameof(AccountId), queryId: nameof(accountId))]
 internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<PaymentsChangedMessage>, IRecipient<PaymentListFilterChangedMessage>
 {
     private readonly IMapper mapper;
     private readonly IMediator mediator;
-    private readonly ISettingsFacade settingsFacade;
+
+    private int accountId;
 
     private bool isRunning;
 
-    private ObservableCollection<DateListGroupCollection<PaymentListItemViewModel>> payments = new();
-
+    private ReadOnlyObservableCollection<PaymentDayGroup> paymentDayGroups = null!;
     private AccountViewModel selectedAccount = new();
 
-    public PaymentListViewModel(IMediator mediator, IMapper mapper, ISettingsFacade settingsFacade)
+    public PaymentListViewModel(IMediator mediator, IMapper mapper)
     {
         this.mediator = mediator;
         this.mapper = mapper;
-        this.settingsFacade = settingsFacade;
+    }
+
+    public int AccountId
+    {
+        get => accountId;
+        set => SetProperty(field: ref accountId, newValue: value);
     }
 
     public AccountViewModel SelectedAccount
@@ -45,15 +46,10 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
         }
     }
 
-    public ObservableCollection<DateListGroupCollection<PaymentListItemViewModel>> Payments
+    public ReadOnlyObservableCollection<PaymentDayGroup> PaymentDayGroups
     {
-        get => payments;
-
-        private set
-        {
-            payments = value;
-            OnPropertyChanged();
-        }
+        get => paymentDayGroups;
+        private set => SetProperty(field: ref paymentDayGroups, newValue: value);
     }
 
     public static List<PaymentRecurrence> RecurrenceList
@@ -83,13 +79,13 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
 
     public void Receive(PaymentsChangedMessage message)
     {
-        InitializeAsync(SelectedAccount.Id).GetAwaiter().GetResult();
+        InitializeAsync().GetAwaiter().GetResult();
     }
 
-    public async Task InitializeAsync(int accountId)
+    public async Task InitializeAsync()
     {
         IsActive = true;
-        SelectedAccount = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
+        SelectedAccount = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(AccountId)));
         await LoadPaymentsByMessageAsync(new());
     }
 
@@ -114,30 +110,15 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
                         filteredPaymentType: message.FilteredPaymentType)));
 
             paymentVms.ForEach(x => x.CurrentAccountId = SelectedAccount.Id);
-            var dailyItems = DateListGroupCollection<PaymentListItemViewModel>.CreateGroups(
-                items: paymentVms,
-                getKey: s => s.Date.ToString(format: "D", provider: CultureInfo.CurrentCulture),
-                getSortKey: s => s.Date);
+            var dailyGroupedPayments = paymentVms.GroupBy(p => p.Date.Date)
+                .Select(g => new PaymentDayGroup(date: DateOnly.FromDateTime(g.Key), payments: g.ToList()))
+                .ToList();
 
-            dailyItems.ForEach(CalculateSubBalances);
-            Payments = new(dailyItems);
+            PaymentDayGroups = new(new(dailyGroupedPayments));
         }
         finally
         {
             isRunning = false;
         }
-    }
-
-    private void CalculateSubBalances(DateListGroupCollection<PaymentListItemViewModel> group)
-    {
-        group.Subtitle = string.Format(
-            format: Translations.ExpenseAndIncomeTemplate,
-            arg0: group.Where(x => x.Type != PaymentType.Income && x.ChargedAccount.Id == SelectedAccount.Id)
-                .Sum(x => x.Amount)
-                .FormatCurrency(settingsFacade.DefaultCurrency),
-            arg1: group.Where(
-                    x => x.Type == PaymentType.Income || x is { Type: PaymentType.Transfer, TargetAccount: { } } && x.TargetAccount.Id == SelectedAccount.Id)
-                .Sum(x => x.Amount)
-                .FormatCurrency(settingsFacade.DefaultCurrency));
     }
 }

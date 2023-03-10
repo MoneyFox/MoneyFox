@@ -72,7 +72,7 @@
                              Size="24" />
         </Tab.Icon>
         <ShellContent>
-            <categories:DesktopCategoryListPage />
+            <categories:CategoryListPage />
         </ShellContent>
     </FlyoutItem>
 

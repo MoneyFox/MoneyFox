@@ -106,8 +106,8 @@
             <AutoGen>True</AutoGen>
             <DependentUpon>Translations.resx</DependentUpon>
         </Compile>
-        <Compile Update="Views\Categories\CategorySelection\DesktopSelectedCategoryPage.xaml.cs">
-            <DependentUpon>DesktopSelectedCategoryPage.xaml</DependentUpon>
+        <Compile Update="Views\Categories\CategorySelection\SelectCategoryPage.xaml.cs">
+            <DependentUpon>SelectCategoryPage.xaml</DependentUpon>
         </Compile>
         <EmbeddedResource Update="Resources\Strings\Translations.resx">
             <StronglyTypedFileName>$(IntermediateOutputPath)\Translations.Designer.cs</StronglyTypedFileName>
@@ -199,9 +199,6 @@
 
     <ItemGroup>
         <MauiXaml Update="Controls\CategorySelection\CategorySelectionControl.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </MauiXaml>
-        <MauiXaml Update="Views\Categories\CategorySelection\DesktopSelectedCategoryPage.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Views\SetupAssistant\CurrencyIntroduction\CurrencyIntroductionPage.xaml">
