@@ -5,17 +5,17 @@
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
-    xmlns:accounts="clr-namespace:MoneyFox.Ui.Views.Accounts"
     xmlns:accountList="clr-namespace:MoneyFox.Ui.Views.Accounts.AccountList"
+    x:DataType="accountList:AccountListViewModel"
+    x:Name="This"
     Title="{x:Static resources:Translations.AccountsTitle}">
 
     <ContentPage.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
-        <accountList:BalanceColorConverter x:Key="BalanceColorConverter" />
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <Grid RowDefinitions="55,*" IsClippedToBounds="False">
+        <Grid RowDefinitions="55,*">
             <Button
                 Grid.Row="0"
                 Margin="0,0,15,0"
@@ -28,27 +28,37 @@
                 Grid.Row="1"
                 x:Name="AccountCollectionView"
                 IsGrouped="true"
-                ItemsSource="{Binding Accounts}"
-                SelectionMode="Single"
-                SelectionChangedCommand="{Binding GoToTransactionListCommand}"
-                SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference AccountCollectionView}}">
+                ItemsSource="{Binding AccountGroups}">
 
                 <CollectionView.GroupHeaderTemplate>
-                    <DataTemplate>
-                        <Grid Padding="15">
-                            <Label
-                                FontFamily="Product"
-                                FontSize="18"
-                                Text="{Binding Key}"
-                                VerticalTextAlignment="End" />
-                        </Grid>
+                    <DataTemplate x:DataType="accountList:AccountGroup">
+                        <Label Margin="6,0,6,0" Text="{Binding Title}"
+                               Style="{StaticResource TextSubheadSecondary}" />
                     </DataTemplate>
                 </CollectionView.GroupHeaderTemplate>
 
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="accounts:AccountViewModel">
+                    <DataTemplate x:DataType="accountList:AccountListItemViewModel">
                         <Grid Padding="15,6,15,12">
                             <controls:Card HeightRequest="80">
+
+                                <controls:Card.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference This}}"
+                                        CommandParameter="{Binding .}" />
+                                </controls:Card.GestureRecognizers>
+
+                                <FlyoutBase.ContextFlyout>
+                                    <MenuFlyout>
+                                        <MenuFlyoutItem Text="{x:Static resources:Translations.EditLabel}"
+                                                        Command="{Binding ViewModel.GoToEditAccountCommand, Source={x:Reference This}}"
+                                                        CommandParameter="{Binding .}" />
+                                        <MenuFlyoutItem Text="{x:Static resources:Translations.DeleteLabel}"
+                                                        Command="{Binding ViewModel.DeleteAccountCommand, Source={x:Reference This}}"
+                                                        CommandParameter="{Binding .}" />
+                                    </MenuFlyout>
+                                </FlyoutBase.ContextFlyout>
+
                                 <SwipeView>
                                     <SwipeView.RightItems>
                                         <SwipeItems>
@@ -67,7 +77,7 @@
 
                                     <Grid
                                         BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                            Light={StaticResource CardBackgroundLight}}">
+                                                                      Light={StaticResource CardBackgroundLight}}">
 
                                         <Label
                                             Margin="10,2,0,0"
@@ -82,13 +92,11 @@
                                             FontSize="20"
                                             HorizontalOptions="Center"
                                             VerticalOptions="Center"
-                                            Style="{Binding CurrentBalance, Converter={StaticResource BalanceColorConverter}}"
                                             Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
                                             VerticalTextAlignment="Center" />
 
-                                        <StackLayout Orientation="Horizontal"
-                                                     VerticalOptions="End"
-                                                     HorizontalOptions="End">
+                                        <HorizontalStackLayout Spacing="6"
+                                                               HorizontalOptions="End">
                                             <Label
                                                 Margin="0,0,0,2"
                                                 FontFamily="Product"
@@ -102,10 +110,9 @@
                                                 FontFamily="Product"
                                                 FontSize="15"
                                                 HorizontalTextAlignment="End"
-                                                Style="{Binding EndOfMonthBalance, Converter={StaticResource BalanceColorConverter}}"
                                                 Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}"
                                                 VerticalTextAlignment="End" />
-                                        </StackLayout>
+                                        </HorizontalStackLayout>
                                     </Grid>
                                 </SwipeView>
                             </controls:Card>

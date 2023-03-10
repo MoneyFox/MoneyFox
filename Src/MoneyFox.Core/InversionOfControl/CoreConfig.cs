@@ -3,7 +3,6 @@ namespace MoneyFox.Core.InversionOfControl;
 using Common;
 using Common.Settings;
 using Features._Legacy_.Payments.CreatePayment;
-using MediatR.NotificationPublishers;
 using Microsoft.Extensions.DependencyInjection;
 
 public sealed class CoreConfig
