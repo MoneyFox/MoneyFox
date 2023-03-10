@@ -53,7 +53,9 @@
 
     <ItemGroup>
         <!-- App Icon -->
-        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#efeadd" />
+        <MauiIcon Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'"
+                  Include="Resources\AppIcon\appicon.svg" TintColor="#efeadd"/>
+        <MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#efeadd" />
 
         <!-- Splash Screen -->
         <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#efeadd" BaseSize="128,128" />
