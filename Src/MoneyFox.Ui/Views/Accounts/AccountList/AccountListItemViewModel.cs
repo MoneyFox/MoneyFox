@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.Views.Accounts;
+namespace MoneyFox.Ui.Views.Accounts.AccountList;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 

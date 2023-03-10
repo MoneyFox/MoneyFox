@@ -5,7 +5,6 @@
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
-    xmlns:accounts="clr-namespace:MoneyFox.Ui.Views.Accounts"
     xmlns:accountList="clr-namespace:MoneyFox.Ui.Views.Accounts.AccountList"
     x:DataType="accountList:AccountListViewModel"
     x:Name="This"
@@ -34,12 +33,13 @@
 
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate x:DataType="accountList:AccountGroup">
-                        <Label Text="{Binding Title}" />
+                        <Label Margin="6,0,6,0" Text="{Binding Title}" 
+                               Style="{StaticResource TextSubheadSecondary}" />
                     </DataTemplate>
                 </CollectionView.GroupHeaderTemplate>
 
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="accounts:AccountListItemViewModel">
+                    <DataTemplate x:DataType="accountList:AccountListItemViewModel">
                         <Grid Padding="15,6,15,12">
                             <controls:Card HeightRequest="80">
 
@@ -76,45 +76,43 @@
                                         </SwipeItems>
                                     </SwipeView.RightItems>
 
-                                    <Grid
-                                        BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                            Light={StaticResource CardBackgroundLight}}">
+                                    <Grid BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                                      Light={StaticResource CardBackgroundLight}}">
 
                                         <Label
-                                            Margin="10,2,0,0"
-                                            HorizontalTextAlignment="Start"
-                                            Style="{StaticResource TextHead}"
-                                            Text="{Binding Name}"
-                                            VerticalTextAlignment="Start" />
+                                        Margin="10,2,0,0"
+                                        HorizontalTextAlignment="Start"
+                                        Style="{StaticResource TextHead}"
+                                        Text="{Binding Name}"
+                                        VerticalTextAlignment="Start" />
 
                                         <Label
+                                        Margin="0,0,6,2"
+                                        FontFamily="Product"
+                                        FontSize="20"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
+                                        VerticalTextAlignment="Center" />
+
+                                        <HorizontalStackLayout Spacing="6" 
+                                                           HorizontalOptions="End">
+                                            <Label
+                                            Margin="0,0,0,2"
+                                            FontFamily="Product"
+                                            FontSize="15"
+                                            HorizontalTextAlignment="End"
+                                            Text="{x:Static resources:Translations.EndOfMonthLabel}"
+                                            VerticalTextAlignment="End" />
+
+                                            <Label
                                             Margin="0,0,6,2"
                                             FontFamily="Product"
-                                            FontSize="20"
-                                            HorizontalOptions="Center"
-                                            VerticalOptions="Center"
-                                            Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
-                                            VerticalTextAlignment="Center" />
-
-                                        <StackLayout Orientation="Horizontal"
-                                                     VerticalOptions="End"
-                                                     HorizontalOptions="End">
-                                            <Label
-                                                Margin="0,0,0,2"
-                                                FontFamily="Product"
-                                                FontSize="15"
-                                                HorizontalTextAlignment="End"
-                                                Text="{x:Static resources:Translations.EndOfMonthLabel}"
-                                                VerticalTextAlignment="End" />
-
-                                            <Label
-                                                Margin="0,0,6,2"
-                                                FontFamily="Product"
-                                                FontSize="15"
-                                                HorizontalTextAlignment="End"
-                                                Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}"
-                                                VerticalTextAlignment="End" />
-                                        </StackLayout>
+                                            FontSize="15"
+                                            HorizontalTextAlignment="End"
+                                            Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}"
+                                            VerticalTextAlignment="End" />
+                                        </HorizontalStackLayout>
                                     </Grid>
                                 </SwipeView>
                             </controls:Card>
