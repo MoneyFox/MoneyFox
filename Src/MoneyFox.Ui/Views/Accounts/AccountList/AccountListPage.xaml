@@ -17,7 +17,7 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <Grid RowDefinitions="55,*" IsClippedToBounds="False">
+        <Grid RowDefinitions="55,*" >
             <Button
                 Grid.Row="0"
                 Margin="0,0,15,0"
@@ -48,7 +48,18 @@
                                         Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference This}}"
                                         CommandParameter="{Binding .}" />
                                 </controls:Card.GestureRecognizers>
-
+                                
+                                <FlyoutBase.ContextFlyout>
+                                    <MenuFlyout>
+                                        <MenuFlyoutItem Text="{x:Static resources:Translations.EditLabel}"
+                                                        Command="{Binding ViewModel.GoToEditAccountCommand, Source={x:Reference This}}"
+                                                        CommandParameter="{Binding .}" />
+                                        <MenuFlyoutItem Text="{x:Static resources:Translations.DeleteLabel}"
+                                                        Command="{Binding ViewModel.DeleteAccountCommand, Source={x:Reference This}}"
+                                                        CommandParameter="{Binding .}" />
+                                    </MenuFlyout>
+                                </FlyoutBase.ContextFlyout>
+                                
                                 <SwipeView>
                                     <SwipeView.RightItems>
                                         <SwipeItems>
@@ -76,7 +87,7 @@
                                             Text="{Binding Name}"
                                             VerticalTextAlignment="Start" />
 
-                                        <!--<Label
+                                        <Label
                                             Margin="0,0,6,2"
                                             FontFamily="Product"
                                             FontSize="20"
@@ -103,7 +114,7 @@
                                                 HorizontalTextAlignment="End"
                                                 Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}"
                                                 VerticalTextAlignment="End" />
-                                        </StackLayout>-->
+                                        </StackLayout>
                                     </Grid>
                                 </SwipeView>
                             </controls:Card>

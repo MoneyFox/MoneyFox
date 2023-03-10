@@ -8,7 +8,7 @@
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:views="clr-namespace:MoneyFox.Ui.Views"
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
-    xmlns:accounts="clr-namespace:MoneyFox.Ui.Views.Accounts"
+    xmlns:accounts="clr-namespace:MoneyFox.Ui.Views.Accounts.AccountModification"
     xmlns:dashboard="clr-namespace:MoneyFox.Ui.Views.Dashboard"
     xmlns:accountList="clr-namespace:MoneyFox.Ui.Views.Accounts.AccountList"
     x:Name="This"
