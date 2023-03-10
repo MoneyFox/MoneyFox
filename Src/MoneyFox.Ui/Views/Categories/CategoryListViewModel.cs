@@ -15,28 +15,19 @@ using Resources.Strings;
 public class CategoryListViewModel : BasePageViewModel, IRecipient<CategoriesChangedMessage>
 {
     private readonly IDialogService dialogService;
-    private readonly IMapper mapper;
-
     private readonly IMediator mediator;
 
-    private ObservableCollection<AlphaGroupListGroupCollection<CategoryListItemViewModel>> categories = new();
-
-    public CategoryListViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService)
+    public CategoryListViewModel(IMediator mediator, IDialogService dialogService)
     {
         this.mediator = mediator;
-        this.mapper = mapper;
         this.dialogService = dialogService;
     }
 
-    public ObservableCollection<AlphaGroupListGroupCollection<CategoryListItemViewModel>> Categories
+    private ReadOnlyObservableCollection<CategoryGroup> categoryGroups = null!;
+    public ReadOnlyObservableCollection<CategoryGroup> CategoryGroups
     {
-        get => categories;
-
-        private set
-        {
-            categories = value;
-            OnPropertyChanged();
-        }
+        get => categoryGroups;
+        private set => SetProperty(field: ref categoryGroups, newValue: value);
     }
 
     public AsyncRelayCommand GoToAddCategoryCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddCategoryRoute));
@@ -60,13 +51,17 @@ public class CategoryListViewModel : BasePageViewModel, IRecipient<CategoriesCha
 
     private async Task SearchCategoryAsync(string searchTerm = "")
     {
-        var categoryVms = mapper.Map<List<CategoryListItemViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery(searchTerm)));
-        var groups = AlphaGroupListGroupCollection<CategoryListItemViewModel>.CreateGroups(
-            items: categoryVms,
-            ci: CultureInfo.CurrentUICulture,
-            getKey: s => string.IsNullOrEmpty(s.Name) ? "-" : s.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture));
+        var categories = await mediator.Send(new GetCategoryBySearchTermQuery(searchTerm));
+        var categoryVms = categories.Select(c => new CategoryListItemViewModel
+        {
+            Id = c.Id,
+            Name = c.Name,
+            RequireNote = c.RequireNote,
+        }).ToList();
 
-        Categories = new(groups);
+        var groupedCategories = categoryVms.GroupBy(c => c.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture))
+            .Select(g => new CategoryGroup(g.Key, g.ToList()));
+        CategoryGroups = new(new(groupedCategories));
     }
 
     private async Task DeleteCategoryAsync(CategoryListItemViewModel? categoryListItemViewModel)
