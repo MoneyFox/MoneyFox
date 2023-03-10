@@ -908,7 +908,7 @@ Per iniziare a creare un nuovo conto. I conti sono utilizzati per organizzare pa
     <value>Categorie incluse</value>
   </data>
   <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>Seleziona la valuta che desideri utilizzare nell'applicazione. Questa sarà utilizzata come valuta predefinita, ad esempio per i conti, i pagamenti e i bilanci.
+    <value>Seleziona la valuta che desideri utilizzare nell'applicazione. Questa sarà utilizzata come valuta predefinita, ad esempio per i conti, i pagamenti e i bilanci.
 Puoi cambiare questa valuta nelle impostazioni.</value>
   </data>
   <data name="CurrencyIntroductionTitle" xml:space="preserve">
@@ -930,6 +930,9 @@ Puoi cambiare questa valuta nelle impostazioni.</value>
     <value>Ci sono pagamenti {0} assegnati a questa categoria. L'assegnazione per questi sarà rimossa. Vuoi procedere?</value>
   </data>
   <data name="CurrencySettingText" xml:space="preserve">
-      <value>Seleziona la valuta che desideri utilizzare nell'applicazione. Questa sarà utilizzata come valuta predefinita, ad esempio per i conti, i pagamenti e i bilanci.</value>
+    <value>Seleziona la valuta che desideri utilizzare nell'applicazione. Questa sarà utilizzata come valuta predefinita, ad esempio per i conti, i pagamenti e i bilanci.</value>
+  </data>
+  <data name="SaldoTemplate" xml:space="preserve">
+    <value>Saldo: {0}</value>
   </data>
 </root>
