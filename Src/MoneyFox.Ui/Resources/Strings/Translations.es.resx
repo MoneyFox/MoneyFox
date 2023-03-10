@@ -906,7 +906,7 @@ Para empezar crea una nueva cuenta. Las cuentas se utilizan para organizar en gr
     <value>Categorías incluidas</value>
   </data>
   <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>Selecciona la moneda que quieres utilizar en la aplicación. Ésta se utilizará como moneda por defecto, por ejemplo, para cuentas, pagos y presupuestos.
+    <value>Selecciona la moneda que quieres utilizar en la aplicación. Ésta se utilizará como moneda por defecto, por ejemplo, para cuentas, pagos y presupuestos.
 Puedes cambiarla más tarde en los ajustes.</value>
   </data>
   <data name="CurrencyIntroductionTitle" xml:space="preserve">
@@ -928,6 +928,9 @@ Puedes cambiarla más tarde en los ajustes.</value>
     <value>Hay {0} pagos asignados a esta categoría, cuya asignación será eliminada. ¿Quieres continuar?</value>
   </data>
   <data name="CurrencySettingText" xml:space="preserve">
-      <value>Selecciona la moneda que quieres utilizar en la aplicación. Ésta se utilizará como moneda por defecto, por ejemplo, para cuentas, pagos y presupuestos.</value>
+    <value>Selecciona la moneda que quieres utilizar en la aplicación. Ésta se utilizará como moneda por defecto, por ejemplo, para cuentas, pagos y presupuestos.</value>
+  </data>
+  <data name="SaldoTemplate" xml:space="preserve">
+    <value>Saldo: {0}</value>
   </data>
 </root>
