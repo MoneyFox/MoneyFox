@@ -908,7 +908,7 @@ Başlamak için yeni bir hesap oluşturun. Hesaplar, ödemeleri ve tahsilatlarda
     <value>Dahil Edilen Kategoriler</value>
   </data>
   <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>Uygulamada kullanmak istediğiniz para birimini seçin. Bu, örneğin hesaplar, ödemeler ve bütçeler için varsayılan para birimi olarak kullanılacaktır.
+    <value>Uygulamada kullanmak istediğiniz para birimini seçin. Bu, örneğin hesaplar, ödemeler ve bütçeler için varsayılan para birimi olarak kullanılacaktır.
 Bunu ayarlardan geç değiştirebilirsiniz.</value>
   </data>
   <data name="CurrencyIntroductionTitle" xml:space="preserve">
@@ -930,6 +930,9 @@ Bunu ayarlardan geç değiştirebilirsiniz.</value>
     <value>Bu kategoriye atanmış {0} ödemeleri vardır, bunlar için atama kaldırılacaktır. Devam etmek istiyor musunuz?</value>
   </data>
   <data name="CurrencySettingText" xml:space="preserve">
-      <value>Uygulamada kullanmak istediğiniz para birimini seçin. Bu, örneğin hesaplar, ödemeler ve bütçeler için varsayılan para birimi olarak kullanılacaktır.</value>
+    <value>Uygulamada kullanmak istediğiniz para birimini seçin. Bu, örneğin hesaplar, ödemeler ve bütçeler için varsayılan para birimi olarak kullanılacaktır.</value>
+  </data>
+  <data name="SaldoTemplate" xml:space="preserve">
+    <value>Saldo: {0}</value>
   </data>
 </root>
