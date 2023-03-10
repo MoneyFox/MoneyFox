@@ -930,6 +930,6 @@ Tu peux la modifier dans les paramètres.</value>
     <value>Sélectionne la devise que tu souhaites utiliser dans l'application. Elle sera utilisée comme devise par défaut, par exemple pour les comptes, les paiements et les budgets.</value>
   </data>
   <data name="SaldoTemplate" xml:space="preserve">
-    <value>Saldo: {0}</value>
+    <value>Saldo : {0}</value>
   </data>
 </root>
