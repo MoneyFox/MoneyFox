@@ -1,13 +1,12 @@
 namespace MoneyFox.Ui.Views.Statistics.CategorySummary;
 
-using Accounts;
+using Accounts.AccountModification;
 using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Controls.CategorySelection;
 using Core.Common.Interfaces.Mapping;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.CategoryAggregate;
-using MoneyFox.Ui.Views.Accounts.AccountModification;
 using Payments;
 
 public class PaymentListItemViewModel : ObservableObject, IHaveCustomMapping

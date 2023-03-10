@@ -15,13 +15,14 @@ public class CategoryListViewModel : BasePageViewModel, IRecipient<CategoriesCha
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
 
+    private ReadOnlyObservableCollection<CategoryGroup> categoryGroups = null!;
+
     public CategoryListViewModel(IMediator mediator, IDialogService dialogService)
     {
         this.mediator = mediator;
         this.dialogService = dialogService;
     }
 
-    private ReadOnlyObservableCollection<CategoryGroup> categoryGroups = null!;
     public ReadOnlyObservableCollection<CategoryGroup> CategoryGroups
     {
         get => categoryGroups;
@@ -50,15 +51,10 @@ public class CategoryListViewModel : BasePageViewModel, IRecipient<CategoriesCha
     private async Task SearchCategoryAsync(string searchTerm = "")
     {
         var categories = await mediator.Send(new GetCategoryBySearchTermQuery(searchTerm));
-        var categoryVms = categories.Select(c => new CategoryListItemViewModel
-        {
-            Id = c.Id,
-            Name = c.Name,
-            RequireNote = c.RequireNote,
-        }).ToList();
-
+        var categoryVms = categories.Select(c => new CategoryListItemViewModel { Id = c.Id, Name = c.Name, RequireNote = c.RequireNote }).ToList();
         var groupedCategories = categoryVms.GroupBy(c => c.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture))
-            .Select(g => new CategoryGroup(g.Key, g.ToList()));
+            .Select(g => new CategoryGroup(title: g.Key, categoryItems: g.ToList()));
+
         CategoryGroups = new(new(groupedCategories));
     }
 

@@ -1,13 +1,12 @@
 namespace MoneyFox.Ui.Views.Payments;
 
-using Accounts;
+using Accounts.AccountModification;
 using AutoMapper;
 using Categories;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Core.Common.Interfaces.Mapping;
 using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
-using MoneyFox.Ui.Views.Accounts.AccountModification;
 
 public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
 {

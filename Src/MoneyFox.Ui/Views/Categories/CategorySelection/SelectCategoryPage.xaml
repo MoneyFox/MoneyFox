@@ -32,7 +32,7 @@
 
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate x:DataType="categories:CategoryGroup">
-                        <Label Margin="6,0,6,0" Text="{Binding Title}" 
+                        <Label Margin="6,0,6,0" Text="{Binding Title}"
                                Style="{StaticResource TextSubheadSecondary}" />
                     </DataTemplate>
                 </CollectionView.GroupHeaderTemplate>
@@ -45,8 +45,8 @@
 
                                 <controls:Card.GestureRecognizers>
                                     <TapGestureRecognizer
-                                    Command="{Binding BindingContext.SelectCategoryCommand, Source={x:Reference Name=CategoryCollectionView}}"
-                                    CommandParameter="{Binding .}" />
+                                        Command="{Binding BindingContext.SelectCategoryCommand, Source={x:Reference Name=CategoryCollectionView}}"
+                                        CommandParameter="{Binding .}" />
                                 </controls:Card.GestureRecognizers>
 
                                 <FlyoutBase.ContextFlyout>
@@ -62,10 +62,10 @@
 
                                 <Grid>
                                     <Label Style="{StaticResource TextHead}"
-                                            Margin="10,0,10,0"
-                                            VerticalTextAlignment="Center"
-                                            HorizontalTextAlignment="Start"
-                                            Text="{Binding Name}" />
+                                           Margin="10,0,10,0"
+                                           VerticalTextAlignment="Center"
+                                           HorizontalTextAlignment="Start"
+                                           Text="{Binding Name}" />
                                 </Grid>
                             </controls:Card>
                         </Grid>

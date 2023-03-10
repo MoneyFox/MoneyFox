@@ -4,7 +4,7 @@ using System.Globalization;
 using Core.Common.Extensions;
 using Core.Common.Settings;
 using Infrastructure.Adapters;
-using MoneyFox.Ui.Views.Accounts.AccountModification;
+using Views.Accounts.AccountModification;
 
 public class AccountNameConverter : IValueConverter
 {

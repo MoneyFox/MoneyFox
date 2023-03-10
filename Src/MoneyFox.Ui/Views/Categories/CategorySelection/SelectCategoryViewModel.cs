@@ -3,7 +3,6 @@ namespace MoneyFox.Ui.Views.Categories.CategorySelection;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using AutoMapper;
-using Common.Groups;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
@@ -20,6 +19,8 @@ internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<Ca
     private readonly IMediator mediator;
     private readonly INavigationService navigationService;
 
+    private ReadOnlyObservableCollection<CategoryGroup> categoryGroups = null!;
+
     public SelectCategoryViewModel(IDialogService dialogService, IMapper mapper, IMediator mediator, INavigationService navigationService)
     {
         this.dialogService = dialogService;
@@ -28,7 +29,6 @@ internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<Ca
         this.navigationService = navigationService;
     }
 
-    private ReadOnlyObservableCollection<CategoryGroup> categoryGroups = null!;
     public ReadOnlyObservableCollection<CategoryGroup> CategoryGroups
     {
         get => categoryGroups;
@@ -60,15 +60,10 @@ internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<Ca
     private async Task SearchCategoryAsync(string searchTerm = "")
     {
         var categories = await mediator.Send(new GetCategoryBySearchTermQuery(searchTerm));
-        var categoryVms = categories.Select(c => new CategoryListItemViewModel
-        {
-            Id = c.Id,
-            Name = c.Name,
-            RequireNote = c.RequireNote,
-        }).ToList();
-
+        var categoryVms = categories.Select(c => new CategoryListItemViewModel { Id = c.Id, Name = c.Name, RequireNote = c.RequireNote }).ToList();
         var groupedCategories = categoryVms.GroupBy(c => c.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture))
-            .Select(g => new CategoryGroup(g.Key, g.ToList()));
+            .Select(g => new CategoryGroup(title: g.Key, categoryItems: g.ToList()));
+
         CategoryGroups = new(new(groupedCategories));
     }
 

@@ -14,6 +14,8 @@ public sealed class AccountListViewModel : BasePageViewModel, IRecipient<Account
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
 
+    private ReadOnlyObservableCollection<AccountGroup> accountGroup = null!;
+
     private bool isRunning;
 
     public AccountListViewModel(IMediator mediator, IDialogService dialogService)
@@ -22,7 +24,6 @@ public sealed class AccountListViewModel : BasePageViewModel, IRecipient<Account
         this.dialogService = dialogService;
     }
 
-    private ReadOnlyObservableCollection<AccountGroup> accountGroup = null!;
     public ReadOnlyObservableCollection<AccountGroup> AccountGroups
     {
         get => accountGroup;
@@ -55,19 +56,19 @@ public sealed class AccountListViewModel : BasePageViewModel, IRecipient<Account
             }
 
             isRunning = true;
-
             var accounts = await mediator.Send(new GetAccountsQuery());
-            var accountListItems = accounts.Select(a => new AccountListItemViewModel
-            {
-                Id = a.Id,
-                Name = a.Name,
-                CurrentBalance = a.CurrentBalance,
-                EndOfMonthBalance = mediator.Send(new GetAccountEndOfMonthBalanceQuery(a.Id)).GetAwaiter().GetResult(),
-                IsExcluded = a.IsExcluded
-            }).ToList();
+            var accountListItems = accounts.Select(
+                    a => new AccountListItemViewModel
+                    {
+                        Id = a.Id,
+                        Name = a.Name,
+                        CurrentBalance = a.CurrentBalance,
+                        EndOfMonthBalance = mediator.Send(new GetAccountEndOfMonthBalanceQuery(a.Id)).GetAwaiter().GetResult(),
+                        IsExcluded = a.IsExcluded
+                    })
+                .ToList();
 
-            var accountGroups = accountListItems.GroupBy(a => a.IsExcluded)
-                .Select(g => new AccountGroup(g.Key, g.ToList()));
+            var accountGroups = accountListItems.GroupBy(a => a.IsExcluded).Select(g => new AccountGroup(isExcluded: g.Key, accountItems: g.ToList()));
             AccountGroups = new(new(accountGroups));
         }
         finally

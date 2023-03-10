@@ -1,14 +1,13 @@
 namespace MoneyFox.Ui.Views.Dashboard;
 
 using System.Collections.ObjectModel;
-using Accounts;
+using Accounts.AccountModification;
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Queries;
 using MediatR;
 using Messages;
-using MoneyFox.Ui.Views.Accounts.AccountModification;
 
 public class DashboardViewModel : BasePageViewModel, IRecipient<BackupRestoredMessage>
 {

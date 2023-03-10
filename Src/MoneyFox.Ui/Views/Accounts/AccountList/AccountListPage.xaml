@@ -12,11 +12,10 @@
 
     <ContentPage.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
-        <accountList:BalanceColorConverter x:Key="BalanceColorConverter" />
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <Grid RowDefinitions="55,*" >
+        <Grid RowDefinitions="55,*">
             <Button
                 Grid.Row="0"
                 Margin="0,0,15,0"
@@ -33,7 +32,7 @@
 
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate x:DataType="accountList:AccountGroup">
-                        <Label Margin="6,0,6,0" Text="{Binding Title}" 
+                        <Label Margin="6,0,6,0" Text="{Binding Title}"
                                Style="{StaticResource TextSubheadSecondary}" />
                     </DataTemplate>
                 </CollectionView.GroupHeaderTemplate>
@@ -48,7 +47,7 @@
                                         Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference This}}"
                                         CommandParameter="{Binding .}" />
                                 </controls:Card.GestureRecognizers>
-                                
+
                                 <FlyoutBase.ContextFlyout>
                                     <MenuFlyout>
                                         <MenuFlyoutItem Text="{x:Static resources:Translations.EditLabel}"
@@ -59,7 +58,7 @@
                                                         CommandParameter="{Binding .}" />
                                     </MenuFlyout>
                                 </FlyoutBase.ContextFlyout>
-                                
+
                                 <SwipeView>
                                     <SwipeView.RightItems>
                                         <SwipeItems>
@@ -76,42 +75,43 @@
                                         </SwipeItems>
                                     </SwipeView.RightItems>
 
-                                    <Grid BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                    <Grid
+                                        BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                       Light={StaticResource CardBackgroundLight}}">
 
                                         <Label
-                                        Margin="10,2,0,0"
-                                        HorizontalTextAlignment="Start"
-                                        Style="{StaticResource TextHead}"
-                                        Text="{Binding Name}"
-                                        VerticalTextAlignment="Start" />
+                                            Margin="10,2,0,0"
+                                            HorizontalTextAlignment="Start"
+                                            Style="{StaticResource TextHead}"
+                                            Text="{Binding Name}"
+                                            VerticalTextAlignment="Start" />
 
                                         <Label
-                                        Margin="0,0,6,2"
-                                        FontFamily="Product"
-                                        FontSize="20"
-                                        HorizontalOptions="Center"
-                                        VerticalOptions="Center"
-                                        Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
-                                        VerticalTextAlignment="Center" />
-
-                                        <HorizontalStackLayout Spacing="6" 
-                                                           HorizontalOptions="End">
-                                            <Label
-                                            Margin="0,0,0,2"
-                                            FontFamily="Product"
-                                            FontSize="15"
-                                            HorizontalTextAlignment="End"
-                                            Text="{x:Static resources:Translations.EndOfMonthLabel}"
-                                            VerticalTextAlignment="End" />
-
-                                            <Label
                                             Margin="0,0,6,2"
                                             FontFamily="Product"
-                                            FontSize="15"
-                                            HorizontalTextAlignment="End"
-                                            Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}"
-                                            VerticalTextAlignment="End" />
+                                            FontSize="20"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"
+                                            Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
+                                            VerticalTextAlignment="Center" />
+
+                                        <HorizontalStackLayout Spacing="6"
+                                                               HorizontalOptions="End">
+                                            <Label
+                                                Margin="0,0,0,2"
+                                                FontFamily="Product"
+                                                FontSize="15"
+                                                HorizontalTextAlignment="End"
+                                                Text="{x:Static resources:Translations.EndOfMonthLabel}"
+                                                VerticalTextAlignment="End" />
+
+                                            <Label
+                                                Margin="0,0,6,2"
+                                                FontFamily="Product"
+                                                FontSize="15"
+                                                HorizontalTextAlignment="End"
+                                                Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}"
+                                                VerticalTextAlignment="End" />
                                         </HorizontalStackLayout>
                                     </Grid>
                                 </SwipeView>

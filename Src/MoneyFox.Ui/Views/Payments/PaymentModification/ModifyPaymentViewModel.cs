@@ -1,7 +1,7 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
 using System.Collections.ObjectModel;
-using Accounts;
+using Accounts.AccountModification;
 using AutoMapper;
 using Categories.CategorySelection;
 using CommunityToolkit.Mvvm.Input;
@@ -12,7 +12,6 @@ using Core.Queries;
 using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Microsoft.AppCenter.Crashes;
-using MoneyFox.Ui.Views.Accounts.AccountModification;
 using Resources.Strings;
 using Serilog;
 
