@@ -908,7 +908,7 @@ Pentru a începe crearea unui nou cont. Conturile sunt utilizate pentru a organi
     <value>Categorii incluse</value>
   </data>
   <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>Selectați moneda pe care doriți să o utilizați în aplicație. Aceasta va fi utilizată ca monedă implicită, de exemplu pentru conturi, plăți și bugete.
+    <value>Selectați moneda pe care doriți să o utilizați în aplicație. Aceasta va fi utilizată ca monedă implicită, de exemplu pentru conturi, plăți și bugete.
 Puteți schimba această monedă târziu în setări.</value>
   </data>
   <data name="CurrencyIntroductionTitle" xml:space="preserve">
@@ -930,6 +930,9 @@ Puteți schimba această monedă târziu în setări.</value>
     <value>Există {0} plăți atribuite acestei categorii.Alocarea acestora va fi eliminată. Doriți să continuați?</value>
   </data>
   <data name="CurrencySettingText" xml:space="preserve">
-      <value>Selectați moneda pe care doriți să o utilizați în aplicație. Aceasta va fi utilizată ca monedă implicită, de exemplu pentru conturi, plăți și bugete.</value>
+    <value>Selectați moneda pe care doriți să o utilizați în aplicație. Aceasta va fi utilizată ca monedă implicită, de exemplu pentru conturi, plăți și bugete.</value>
+  </data>
+  <data name="SaldoTemplate" xml:space="preserve">
+    <value>Saldo: {0}</value>
   </data>
 </root>
