@@ -908,7 +908,7 @@
     <value>含まれるカテゴリー</value>
   </data>
   <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>アプリで使用する通貨を選択します。これは、アカウント、支払い、予算などのデフォルト通貨として使用されます。
+    <value>アプリで使用する通貨を選択します。これは、アカウント、支払い、予算などのデフォルト通貨として使用されます。
 この通貨は設定で変更することができます。</value>
   </data>
   <data name="CurrencyIntroductionTitle" xml:space="preserve">
@@ -930,6 +930,9 @@
     <value>このカテゴリには、 {0} の支払いが割り当てられています。これらの支払いの割り当ては削除されます。続行しますか？</value>
   </data>
   <data name="CurrencySettingText" xml:space="preserve">
-      <value>アプリで使用する通貨を選択します。これは、アカウント、支払い、予算などのデフォルト通貨として使用されます。</value>
+    <value>アプリで使用する通貨を選択します。これは、アカウント、支払い、予算などのデフォルト通貨として使用されます。</value>
+  </data>
+  <data name="SaldoTemplate" xml:space="preserve">
+    <value>Saldo: {0}</value>
   </data>
 </root>
