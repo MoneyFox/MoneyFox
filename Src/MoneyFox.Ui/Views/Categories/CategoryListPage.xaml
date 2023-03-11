@@ -16,14 +16,14 @@
         <Grid IsClippedToBounds="False" RowDefinitions="40, 70, 12, *">
 
             <Button
-                Margin="0,0,6,0"
+                Margin="0,0,18,0"
                 HorizontalOptions="End"
                 Text="{x:Static resources:Translations.AddCategoryLabel}"
                 VerticalOptions="Center"
                 Command="{Binding GoToAddCategoryCommand}" />
 
             <controls:Search Grid.Row="1"
-                             Margin="12,0,12,0"
+                             Margin="18,0,18,0"
                              SearchPlaceholder="{x:Static resources:Translations.SearchLabel}"
                              SearchCommand="{Binding SearchCategoryCommand}" />
 
@@ -34,14 +34,16 @@
 
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate x:DataType="categories:CategoryGroup">
-                        <Label Margin="6,0,6,0" Text="{Binding Title}"
-                               Style="{StaticResource TextSubheadSecondary}" />
+                        <Grid Padding="18,0,0,18">
+                            <Label Text="{Binding Title}"
+                                   Style="{StaticResource TextSubheadSecondary}" />
+                        </Grid>
                     </DataTemplate>
                 </CollectionView.GroupHeaderTemplate>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="categories:CategoryListItemViewModel">
-                        <Grid Padding="12, 0, 12, 6">
+                        <Grid Padding="18, 0, 18, 6">
 
                             <controls:Card HeightRequest="45">
 

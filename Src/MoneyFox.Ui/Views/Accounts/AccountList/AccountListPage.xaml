@@ -19,7 +19,7 @@
         <Grid RowDefinitions="55,*">
             <Button
                 Grid.Row="0"
-                Margin="0,0,15,0"
+                Margin="0,0,18,0"
                 HorizontalOptions="End"
                 Text="{x:Static resources:Translations.AddAccountLabel}"
                 VerticalOptions="Center"
@@ -52,7 +52,7 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="accountList:AccountListItemViewModel">
-                        <Grid Padding="15,0,15,12">
+                        <Grid Padding="18,0,18,12">
                             <controls:Card HeightRequest="80" Padding="6">
 
                                 <controls:Card.GestureRecognizers>
