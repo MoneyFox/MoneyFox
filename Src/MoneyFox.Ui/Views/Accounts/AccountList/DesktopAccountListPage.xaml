@@ -59,9 +59,7 @@
                                     </MenuFlyout>
                                 </FlyoutBase.ContextFlyout>
 
-                                <Grid
-                                    BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                      Light={StaticResource CardBackgroundLight}}">
+                                <Grid>
 
                                     <Label
                                         Margin="10,2,0,0"
