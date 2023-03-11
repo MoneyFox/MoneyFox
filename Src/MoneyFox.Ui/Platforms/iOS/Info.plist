@@ -63,5 +63,7 @@
         </array>
         <key>XSAppIconAssets</key>
         <string>Assets.xcassets/appicon.appiconset</string>
+        <key>UILaunchStoryboardName</key>
+        <string>MauiSplash</string>
     </dict>
 </plist>
