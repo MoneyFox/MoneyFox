@@ -922,10 +922,13 @@ You can change this late in the settings.</value>
   <data name="RemoveCategoryAssignmentOnPaymentMessage" xml:space="preserve">
     <value>There are {0} payments assigned to this category.The assignment for those will be removed. Do you want to proceed?</value>
   </data>
-    <data name="CurrencySettingText" xml:space="preserve">
+  <data name="CurrencySettingText" xml:space="preserve">
     <value>Select the currency you would like to use in the app. This will be used as the default currency for example for accounts, payments and budgets.</value>
   </data>
-    <data name="SaldoTemplate" xml:space="preserve">
+  <data name="SaldoTemplate" xml:space="preserve">
     <value>Saldo: {0}</value>
+  </data>
+  <data name="TotalBalanceTemplate" xml:space="preserve">
+    <value>Total: {0}</value>
   </data>
 </root>

@@ -2317,6 +2317,15 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total: {0}.
+        /// </summary>
+        public static string TotalBalanceTemplate {
+            get {
+                return ResourceManager.GetString("TotalBalanceTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add transfer.
         /// </summary>
         public static string TransferHeader {

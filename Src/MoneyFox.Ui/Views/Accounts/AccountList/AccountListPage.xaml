@@ -6,6 +6,7 @@
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:accountList="clr-namespace:MoneyFox.Ui.Views.Accounts.AccountList"
+    xmlns:extensions="clr-namespace:MoneyFox.Ui.Common.Extensions"
     x:DataType="accountList:AccountListViewModel"
     x:Name="This"
     Title="{x:Static resources:Translations.AccountsTitle}">
@@ -36,6 +37,16 @@
                                Style="{StaticResource TextSubheadSecondary}" />
                     </DataTemplate>
                 </CollectionView.GroupHeaderTemplate>
+
+                <CollectionView.GroupFooterTemplate>
+                    <DataTemplate x:DataType="accountList:AccountGroup">
+                        <Grid Margin="18, 0, 18, 0">
+                            <Label Text="{Binding TotalString, StringFormat={extensions:Translate TotalBalanceTemplate}}"
+                                   Style="{StaticResource TextSubheadSecondary}"
+                                   HorizontalOptions="End" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.GroupFooterTemplate>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="accountList:AccountListItemViewModel">
