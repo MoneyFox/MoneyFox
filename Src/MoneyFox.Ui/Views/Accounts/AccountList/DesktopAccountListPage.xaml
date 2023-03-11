@@ -6,6 +6,7 @@
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:accountList="clr-namespace:MoneyFox.Ui.Views.Accounts.AccountList"
+    x:DataType="accountList:AccountListViewModel"
     x:Name="This"
     Title="{x:Static resources:Translations.AccountsTitle}">
 
@@ -38,8 +39,8 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="accountList:AccountListItemViewModel">
-                        <Grid Padding="15,6,15,12">
-                            <controls:Card HeightRequest="80">
+                        <Grid Padding="15,0,15,12">
+                            <controls:Card HeightRequest="80" Padding="6">
 
                                 <controls:Card.GestureRecognizers>
                                     <TapGestureRecognizer
