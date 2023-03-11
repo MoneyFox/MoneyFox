@@ -19,7 +19,7 @@
         <Grid RowDefinitions="55,*">
             <Button
                 Grid.Row="0"
-                Margin="0,0,15,0"
+                Margin="0,0,18,0"
                 HorizontalOptions="End"
                 Text="{x:Static resources:Translations.AddAccountLabel}"
                 VerticalOptions="Center"
@@ -33,14 +33,16 @@
 
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate x:DataType="accountList:AccountGroup">
-                        <Label Margin="6,0,6,0" Text="{Binding Title}"
-                               Style="{StaticResource TextSubheadSecondary}" />
+                        <Grid Padding="18, 0, 18, 0">
+                            <Label Text="{Binding Title}"
+                                   Style="{StaticResource TextSubheadSecondary}" />
+                        </Grid>
                     </DataTemplate>
                 </CollectionView.GroupHeaderTemplate>
 
                 <CollectionView.GroupFooterTemplate>
                     <DataTemplate x:DataType="accountList:AccountGroup">
-                        <Grid Margin="18, 0, 18, 0">
+                        <Grid Padding="18, 0, 18, 0">
                             <Label Text="{Binding TotalString, StringFormat={extensions:Translate TotalBalanceTemplate}}"
                                    Style="{StaticResource TextSubheadSecondary}"
                                    HorizontalOptions="End" />
@@ -50,7 +52,7 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="accountList:AccountListItemViewModel">
-                        <Grid Padding="15,0,15,12">
+                        <Grid Padding="18,0,18,12">
                             <controls:Card HeightRequest="80" Padding="6">
 
                                 <controls:Card.GestureRecognizers>
