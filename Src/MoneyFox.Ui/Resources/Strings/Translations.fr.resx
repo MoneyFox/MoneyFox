@@ -926,6 +926,6 @@ Tu peux la modifier dans les paramètres.</value>
     <value>Saldo : {0}</value>
   </data>
   <data name="TotalBalanceTemplate" xml:space="preserve">
-    <value>Total: {0}</value>
+    <value>Total : {0}</value>
   </data>
 </root>
