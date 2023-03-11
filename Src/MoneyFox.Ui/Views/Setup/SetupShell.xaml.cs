@@ -1,5 +1,7 @@
 namespace MoneyFox.Ui.Views.Setup;
 
+using MoneyFox.Ui.Views.Accounts.AccountModification;
+using MoneyFox.Ui.Views.Categories.ModifyCategory;
 using SelectCurrency;
 
 public partial class SetupShell
@@ -16,5 +18,8 @@ public partial class SetupShell
         Routing.RegisterRoute(route: Routes.SetupAccountsRoute, type: typeof(SetupAccountPage));
         Routing.RegisterRoute(route: Routes.CategoryIntroductionRoute, type: typeof(SetupCategoryPage));
         Routing.RegisterRoute(route: Routes.SetupCompletionRoute, type: typeof(SetupCompletionPage));
+
+        Routing.RegisterRoute(route: Routes.AddAccountRoute, type: typeof(AddAccountPage));
+        Routing.RegisterRoute(route: Routes.AddCategoryRoute, type: typeof(AddCategoryPage));
     }
 }
