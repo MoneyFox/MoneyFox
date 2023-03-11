@@ -5,13 +5,13 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <Color x:Key="Primary">#FF3300</Color>
-    <Color x:Key="Secondary">#ff4b1f</Color>
-    <Color x:Key="Tertiary">#ff8566</Color>
+    <Color x:Key="Primary">#ea9972</Color>
+    <Color x:Key="Secondary">#D57E83</Color>
+    <Color x:Key="Tertiary">#2F4858</Color>
 
-    <Color x:Key="ThemePrimary">#FF3300</Color>
-    <Color x:Key="ThemeSecondary">#ff4b1f</Color>
-    <Color x:Key="ThemeTertiary">#ff8566</Color>
+    <Color x:Key="ThemePrimary">#ea9972</Color>
+    <Color x:Key="ThemeSecondary">#D57E83</Color>
+    <Color x:Key="ThemeTertiary">#2F4858</Color>
 
     <Color x:Key="ButtonBackgroundColor">#333333</Color>
 
