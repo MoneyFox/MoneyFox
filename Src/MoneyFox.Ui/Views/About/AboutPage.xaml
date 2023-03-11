@@ -44,11 +44,6 @@
                 <Button Style="{StaticResource LinkButton}"
                         Command="{Binding GoToContributionPageCommand}"
                         Text="GitHub Contribution" />
-
-                <Label Text="{x:Static resources:Translations.IconDesignerLabel}" />
-                <Button Style="{StaticResource LinkButton}"
-                        Command="{Binding GoToDesignerTwitterAccountCommand}"
-                        Text="@Toledo Vanderson" />
             </VerticalStackLayout>
         </ScrollView>
     </ContentPage.Content>

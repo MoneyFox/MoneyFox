@@ -1,934 +1,929 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-    <!-- 
-        Microsoft ResX Schema 
-        
-        Version 2.0
-        
-        The primary goals of this format is to allow a simple XML format 
-        that is mostly human readable. The generation and parsing of the 
-        various data types are done through the TypeConverter classes 
-        associated with the data types.
-        
-        Example:
-        
-        ... ado.net/XML headers & schema ...
-        <resheader name="resmimetype">text/microsoft-resx</resheader>
-        <resheader name="version">2.0</resheader>
-        <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-        <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-        <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-        <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-        <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-            <value>[base64 mime encoded serialized .NET Framework object]</value>
-        </data>
-        <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-            <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-            <comment>This is a comment</comment>
-        </data>
-                    
-        There are any number of "resheader" rows that contain simple 
-        name/value pairs.
-        
-        Each data row contains a name, and value. The row also contains a 
-        type or mimetype. Type corresponds to a .NET class that support 
-        text/value conversion through the TypeConverter architecture. 
-        Classes that don't support this are serialized and stored with the 
-        mimetype set.
-        
-        The mimetype is used for serialized objects, and tells the 
-        ResXResourceReader how to depersist the object. This is currently not 
-        extensible. For a given mimetype the value must be set accordingly:
-        
-        Note - application/x-microsoft.net.object.binary.base64 is the format 
-        that the ResXResourceWriter will generate, however the reader can 
-        read any of the formats listed below.
-        
-        mimetype: application/x-microsoft.net.object.binary.base64
-        value   : The object must be serialized with 
-                : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-                : and then encoded with base64 encoding.
-        
-        mimetype: application/x-microsoft.net.object.soap.base64
-        value   : The object must be serialized with 
-                : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-                : and then encoded with base64 encoding.
+  <!-- 
+    Microsoft ResX Schema 
     
-        mimetype: application/x-microsoft.net.object.bytearray.base64
-        value   : The object must be serialized into a byte array 
-                : using a System.ComponentModel.TypeConverter
-                : and then encoded with base64 encoding.
-        -->
-    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"
-                xmlns="" id="root">
-        <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
-        <xsd:element name="root" msdata:IsDataSet="true">
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
             <xsd:complexType>
-                <xsd:choice maxOccurs="unbounded">
-                    <xsd:element name="metadata">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
-                            </xsd:sequence>
-                            <xsd:attribute name="name" use="required" type="xsd:string"/>
-                            <xsd:attribute name="type" type="xsd:string"/>
-                            <xsd:attribute name="mimetype" type="xsd:string"/>
-                            <xsd:attribute ref="xml:space"/>
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="assembly">
-                        <xsd:complexType>
-                            <xsd:attribute name="alias" type="xsd:string"/>
-                            <xsd:attribute name="name" type="xsd:string"/>
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="data">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
-                            </xsd:sequence>
-                            <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-                            <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-                            <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-                            <xsd:attribute ref="xml:space"/>
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="resheader">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                            </xsd:sequence>
-                            <xsd:attribute name="name" type="xsd:string" use="required"/>
-                        </xsd:complexType>
-                    </xsd:element>
-                </xsd:choice>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
-        </xsd:element>
-    </xsd:schema>
-    <resheader name="resmimetype">
-        <value>text/microsoft-resx</value>
-    </resheader>
-    <resheader name="version">
-        <value>2.0</value>
-    </resheader>
-    <resheader name="reader">
-        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b77a5c561934e089
-        </value>
-    </resheader>
-    <resheader name="writer">
-        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b77a5c561934e089
-        </value>
-    </resheader>
-    <data name="AboutTitle" xml:space="preserve">
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutTitle" xml:space="preserve">
     <value>Tietoa</value>
   </data>
-    <data name="AccountNameLabel" xml:space="preserve">
+  <data name="AccountNameLabel" xml:space="preserve">
     <value>Tilin nimi</value>
   </data>
-    <data name="AccountRequiredMessage" xml:space="preserve">
+  <data name="AccountRequiredMessage" xml:space="preserve">
     <value>Valitse tili.</value>
   </data>
-    <data name="AccountsTitle" xml:space="preserve">
+  <data name="AccountsTitle" xml:space="preserve">
     <value>Tilit</value>
   </data>
-    <data name="AddAccountLabel" xml:space="preserve">
+  <data name="AddAccountLabel" xml:space="preserve">
     <value>Lisää tili</value>
   </data>
-    <data name="AddAccountTitle" xml:space="preserve">
+  <data name="AddAccountTitle" xml:space="preserve">
     <value>Lisää tili</value>
   </data>
-    <data name="AddCategoryLabel" xml:space="preserve">
+  <data name="AddCategoryLabel" xml:space="preserve">
     <value>Lisää kategoria</value>
   </data>
-    <data name="AddCategoryTitle" xml:space="preserve">
+  <data name="AddCategoryTitle" xml:space="preserve">
     <value>Lisää kategoria</value>
   </data>
-    <data name="AddExpenseTitle" xml:space="preserve">
+  <data name="AddExpenseTitle" xml:space="preserve">
     <value>Lisää kulu</value>
   </data>
-    <data name="AddIncomeTitle" xml:space="preserve">
+  <data name="AddIncomeTitle" xml:space="preserve">
     <value>Lisää Tulo</value>
   </data>
-    <data name="AddPaymentLabel" xml:space="preserve">
+  <data name="AddPaymentLabel" xml:space="preserve">
     <value>Lisää Maksu</value>
   </data>
-    <data name="AddTransferTitle" xml:space="preserve">
+  <data name="AddTransferTitle" xml:space="preserve">
     <value>Lisää tilisiirto</value>
   </data>
-    <data name="AmountLabel" xml:space="preserve">
+  <data name="AmountLabel" xml:space="preserve">
     <value>Määrä</value>
   </data>
-    <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
+  <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
     <value>Summa ei voi olla negatiivinen. Jos se vähennetään tai lisätään on detemuloi sellainen maksu, jonka luot.</value>
   </data>
-    <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
+  <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
     <value>Negatiivinen määrä</value>
   </data>
-    <data name="ANoteForPaymentIsRequired" xml:space="preserve">
+  <data name="ANoteForPaymentIsRequired" xml:space="preserve">
     <value>Maksua koskeva merkintä on pakollinen</value>
   </data>
-    <data name="ApplyFilterLabel" xml:space="preserve">
+  <data name="ApplyFilterLabel" xml:space="preserve">
     <value>Käytä Suodinta</value>
   </data>
-    <data name="AssetsLabel" xml:space="preserve">
+  <data name="AssetsLabel" xml:space="preserve">
     <value>Laitteet</value>
   </data>
-    <data name="AuthenticationFailedTitle" xml:space="preserve">
+  <data name="AuthenticationFailedTitle" xml:space="preserve">
     <value>Todennus epäonnistui</value>
   </data>
-    <data name="AutobackupInformationLabel" xml:space="preserve">
+  <data name="AutobackupInformationLabel" xml:space="preserve">
     <value>Jos otat käyttöön tämän asetuksen, me varmuuskopioimme tietosi automaattisesti OneDriveen. Me myös tarkistamme säännöllisesti, jos jotain muuttui toisessa laitteessa.</value>
   </data>
-    <data name="AutobackupLabel" xml:space="preserve">
+  <data name="AutobackupLabel" xml:space="preserve">
     <value>Automaattisesti lataa, ja tallenna varmuuskopioita</value>
   </data>
-    <data name="AutobackupTitle" xml:space="preserve">
+  <data name="AutobackupTitle" xml:space="preserve">
     <value>Automaattinen Varmuuskopiointi</value>
   </data>
-    <data name="BackLabel" xml:space="preserve">
+  <data name="BackLabel" xml:space="preserve">
     <value>Takaisin</value>
   </data>
-    <data name="BackupCreatedMessage" xml:space="preserve">
+  <data name="BackupCreatedMessage" xml:space="preserve">
     <value>Varmuuskopio luotu onnistuneesti</value>
   </data>
-    <data name="BackupFailedTitle" xml:space="preserve">
+  <data name="BackupFailedTitle" xml:space="preserve">
     <value>Varmuuskopiointi epäonnistui!</value>
   </data>
-    <data name="BackupInformationLabel" xml:space="preserve">
+  <data name="BackupInformationLabel" xml:space="preserve">
     <value>Tiedostosi tallennetaan sinun OneDrive käyttäjällesi. Löydät ne Sovellus Tiedostosi uudesta kansiosta nimeltä "MoneyFox".</value>
   </data>
-    <data name="BackupRestoredMessage" xml:space="preserve">
+  <data name="BackupRestoredMessage" xml:space="preserve">
     <value>Varmuuskopiointi palautettu onnistuneesti.</value>
   </data>
-    <data name="BackupTitle" xml:space="preserve">
+  <data name="BackupTitle" xml:space="preserve">
     <value>Varmuuskopio</value>
   </data>
-    <data name="BiannuallyLabel" xml:space="preserve">
+  <data name="BiannuallyLabel" xml:space="preserve">
     <value>Kaksi kertaa vuodessa</value>
   </data>
-    <data name="BimonthlyLabel" xml:space="preserve">
+  <data name="BimonthlyLabel" xml:space="preserve">
     <value>Kahden kuukauden välein</value>
   </data>
-    <data name="BiweeklyLabel" xml:space="preserve">
+  <data name="BiweeklyLabel" xml:space="preserve">
     <value>Joka toinen viikko</value>
   </data>
-    <data name="BudgetsLabel" xml:space="preserve">
+  <data name="BudgetsLabel" xml:space="preserve">
     <value>Budjetit</value>
   </data>
-    <data name="CanceledTitle" xml:space="preserve">
+  <data name="CanceledTitle" xml:space="preserve">
     <value>Peruttu</value>
   </data>
-    <data name="CancelLabel" xml:space="preserve">
+  <data name="CancelLabel" xml:space="preserve">
     <value>Peruuta</value>
   </data>
-    <data name="CashflowDescription" xml:space="preserve">
+  <data name="CashflowDescription" xml:space="preserve">
     <value>Tulot, kulut ja saannit valitulle aikajaksolle.</value>
   </data>
-    <data name="CashflowLabel" xml:space="preserve">
+  <data name="CashflowLabel" xml:space="preserve">
     <value>Rahavirta</value>
   </data>
-    <data name="CashFlowStatisticTitle" xml:space="preserve">
+  <data name="CashFlowStatisticTitle" xml:space="preserve">
     <value>Rahavirta</value>
   </data>
-    <data name="CategorieIntroductionText" xml:space="preserve">
+  <data name="CategorieIntroductionText" xml:space="preserve">
     <value>Luokat voivat auttaa maksujesi tilaamisessa. Myös niiden avulla on helpompi analysoida menojasi ja tulojasi tilastoissa.</value>
   </data>
-    <data name="CategorieSpreadingDescription" xml:space="preserve">
+  <data name="CategorieSpreadingDescription" xml:space="preserve">
     <value>Menojen jakaminen kategorioihin.</value>
   </data>
-    <data name="CategoriesTitle" xml:space="preserve">
+  <data name="CategoriesTitle" xml:space="preserve">
     <value>Kategoriat</value>
   </data>
-    <data name="CategoryLabel" xml:space="preserve">
+  <data name="CategoryLabel" xml:space="preserve">
     <value>Kategoria</value>
   </data>
-    <data name="CategoryNameLabel" xml:space="preserve">
+  <data name="CategoryNameLabel" xml:space="preserve">
     <value>Kategorian nimi</value>
   </data>
-    <data name="CategorySpreadingLabel" xml:space="preserve">
+  <data name="CategorySpreadingLabel" xml:space="preserve">
     <value>Kategorian Leviäminen</value>
   </data>
-    <data name="CategorySpreadingTitle" xml:space="preserve">
+  <data name="CategorySpreadingTitle" xml:space="preserve">
     <value>Kategorian Leviäminen</value>
   </data>
-    <data name="CategorySummaryDescription" xml:space="preserve">
+  <data name="CategorySummaryDescription" xml:space="preserve">
     <value>Yhteenveto Maksun sisältävistä kategorioista.</value>
   </data>
-    <data name="CategorySummaryLabel" xml:space="preserve">
+  <data name="CategorySummaryLabel" xml:space="preserve">
     <value>Kategorian Yhteenveto</value>
   </data>
-    <data name="CategorySummaryTitle" xml:space="preserve">
+  <data name="CategorySummaryTitle" xml:space="preserve">
     <value>Kategorian Yhteenveto</value>
   </data>
-    <data name="ChargedAccountLabel" xml:space="preserve">
+  <data name="ChargedAccountLabel" xml:space="preserve">
     <value>Maksullinen Tili</value>
   </data>
-    <data name="ClearedFilterLabel" xml:space="preserve">
+  <data name="ClearedFilterLabel" xml:space="preserve">
     <value>Tyhjennetty</value>
   </data>
-    <data name="CompletedText" xml:space="preserve">
+  <data name="CompletedText" xml:space="preserve">
     <value>Tuo se! Olet asetettu MoneyFoxin käyttöön.</value>
   </data>
-    <data name="CompletedTitle" xml:space="preserve">
+  <data name="CompletedTitle" xml:space="preserve">
     <value>Valmis!</value>
   </data>
-    <data name="CompleteLabel" xml:space="preserve">
+  <data name="CompleteLabel" xml:space="preserve">
     <value>Complete</value>
   </data>
-    <data name="ContactLabel" xml:space="preserve">
+  <data name="ContactLabel" xml:space="preserve">
     <value>Ota yhteyttä</value>
   </data>
-    <data name="ContributerLabel" xml:space="preserve">
+  <data name="ContributerLabel" xml:space="preserve">
     <value>Mene GitHub:iin nähdäksesi kaikki avustajat:</value>
   </data>
-    <data name="ContributionsLabel" xml:space="preserve">
+  <data name="ContributionsLabel" xml:space="preserve">
     <value>Muokkaukset</value>
   </data>
-    <data name="CreateAccountNowLabel" xml:space="preserve">
+  <data name="CreateAccountNowLabel" xml:space="preserve">
     <value>Luo Tili Nyt</value>
   </data>
-    <data name="CreateBackupLabel" xml:space="preserve">
+  <data name="CreateBackupLabel" xml:space="preserve">
     <value>Luo varmuuskopio</value>
   </data>
-    <data name="CreateCategoryNowLabel" xml:space="preserve">
+  <data name="CreateCategoryNowLabel" xml:space="preserve">
     <value>Luo kategoria nyt</value>
   </data>
-    <data name="CreationDateHeader" xml:space="preserve">
+  <data name="CreationDateHeader" xml:space="preserve">
     <value>Luonti Päivämäärä</value>
   </data>
-    <data name="CreationDateLabel" xml:space="preserve">
+  <data name="CreationDateLabel" xml:space="preserve">
     <value>Luonti Päivämäärä:</value>
   </data>
-    <data name="CreationDateTemplateLabel" xml:space="preserve">
+  <data name="CreationDateTemplateLabel" xml:space="preserve">
     <value>Luontipäivä: {0}</value>
   </data>
-    <data name="CurrentBalanceLabel" xml:space="preserve">
+  <data name="CurrentBalanceLabel" xml:space="preserve">
     <value>Nykyinen saldo</value>
   </data>
-    <data name="DailyLabel" xml:space="preserve">
+  <data name="DailyLabel" xml:space="preserve">
     <value>Päivittäin</value>
   </data>
-    <data name="DailyWithoutWeekendLabel" xml:space="preserve">
+  <data name="DailyWithoutWeekendLabel" xml:space="preserve">
     <value>Arkipäivisin</value>
   </data>
-    <data name="DarkLabel" xml:space="preserve">
+  <data name="DarkLabel" xml:space="preserve">
     <value>Tumma</value>
   </data>
-    <data name="DashboardTitle" xml:space="preserve">
+  <data name="DashboardTitle" xml:space="preserve">
     <value>Hallintapaneeli</value>
   </data>
-    <data name="DateLabel" xml:space="preserve">
+  <data name="DateLabel" xml:space="preserve">
     <value>Päivämäärä</value>
   </data>
-    <data name="DateRangeHeader" xml:space="preserve">
+  <data name="DateRangeHeader" xml:space="preserve">
     <value>Date Range</value>
   </data>
-    <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
+  <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
     <value>Haluatko todella poistaa tämän käyttäjätilin?</value>
   </data>
-    <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
+  <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
     <value>Haluatko varmasti poistaa tämän luokan?</value>
   </data>
-    <data name="DeleteLabel" xml:space="preserve">
+  <data name="DeleteLabel" xml:space="preserve">
     <value>Poista</value>
   </data>
-    <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
+  <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
     <value>Haluatko todella poistaa tämän Maksun?</value>
   </data>
-    <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
+  <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
     <value>Olen poistanut toistuvan maksut. Haluatko myös poistaa toistumisen?</value>
   </data>
-    <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
+  <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
     <value>Poista toistuminen?</value>
   </data>
-    <data name="DeleteTitle" xml:space="preserve">
+  <data name="DeleteTitle" xml:space="preserve">
     <value>Poista?</value>
   </data>
-    <data name="DoneLabel" xml:space="preserve">
+  <data name="DoneLabel" xml:space="preserve">
     <value>Valmis</value>
   </data>
-    <data name="DuplicateAccountMessage" xml:space="preserve">
+  <data name="DuplicateAccountMessage" xml:space="preserve">
     <value>Samanniminen tili on jo olemassa. Jatketaanko tallentamista?</value>
   </data>
-    <data name="DuplicateCategoryMessage" xml:space="preserve">
+  <data name="DuplicateCategoryMessage" xml:space="preserve">
     <value>Samanniminen kategoria on jo olemassa.</value>
   </data>
-    <data name="DuplicatedNameTitle" xml:space="preserve">
+  <data name="DuplicatedNameTitle" xml:space="preserve">
     <value>Nimi on jo käytössä</value>
   </data>
-    <data name="EditAccountTitle" xml:space="preserve">
+  <data name="EditAccountTitle" xml:space="preserve">
     <value>Muokkaa {0}</value>
   </data>
-    <data name="EditCategoryTitle" xml:space="preserve">
+  <data name="EditCategoryTitle" xml:space="preserve">
     <value>Muokkaa kategoriaa</value>
   </data>
-    <data name="EditIncomeTitle" xml:space="preserve">
+  <data name="EditIncomeTitle" xml:space="preserve">
     <value>Muokkaa Tuloa</value>
   </data>
-    <data name="EditLabel" xml:space="preserve">
+  <data name="EditLabel" xml:space="preserve">
     <value>Muokkaa</value>
   </data>
-    <data name="EditSpendingTitle" xml:space="preserve">
+  <data name="EditSpendingTitle" xml:space="preserve">
     <value>Muokkaa Menoja</value>
   </data>
-    <data name="EditTransferTitle" xml:space="preserve">
+  <data name="EditTransferTitle" xml:space="preserve">
     <value>Muokkaa tilisiirtoa</value>
   </data>
-    <data name="EmailLabel" xml:space="preserve">
+  <data name="EmailLabel" xml:space="preserve">
     <value>Sähköposti</value>
   </data>
-    <data name="EnddateLabel" xml:space="preserve">
+  <data name="EnddateLabel" xml:space="preserve">
     <value>Loppu Päivämäärä</value>
   </data>
-    <data name="EndlessLabel" xml:space="preserve">
+  <data name="EndlessLabel" xml:space="preserve">
     <value>On loputon</value>
   </data>
-    <data name="EndOfMonthBalanceLabel" xml:space="preserve">
+  <data name="EndOfMonthBalanceLabel" xml:space="preserve">
     <value>Kuukauden loppu</value>
   </data>
-    <data name="EndOfMonthLabel" xml:space="preserve">
+  <data name="EndOfMonthLabel" xml:space="preserve">
     <value>Kuukauden Päättyminen:</value>
   </data>
-    <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
+  <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
     <value>Todennuksen aikana tapahtui virhe. Yritä myöhemmin uudelleen.</value>
   </data>
-    <data name="ExcludedAccountsHeader" xml:space="preserve">
+  <data name="ExcludedAccountsHeader" xml:space="preserve">
     <value>Poisjätetyt tilit</value>
   </data>
-    <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
+  <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
     <value>Expense: {0} / Tulot: {1}</value>
   </data>
-    <data name="ExpenseHeader" xml:space="preserve">
+  <data name="ExpenseHeader" xml:space="preserve">
     <value>Lisää kulu</value>
   </data>
-    <data name="ExpenseLabel" xml:space="preserve">
+  <data name="ExpenseLabel" xml:space="preserve">
     <value>Menot</value>
   </data>
-    <data name="FeedbackSubject" xml:space="preserve">
+  <data name="FeedbackSubject" xml:space="preserve">
     <value>Palautetta MoneyFox</value>
   </data>
-    <data name="FilterLabel" xml:space="preserve">
+  <data name="FilterLabel" xml:space="preserve">
     <value>Suodatin</value>
   </data>
-    <data name="ForceOverrideBackupMessage" xml:space="preserve">
+  <data name="ForceOverrideBackupMessage" xml:space="preserve">
     <value>Paikallisessa tietokannassa on uudempi muokkauspäivämäärä kuin OneDriven tietokannassa. Haluatko korvata paikalliset tiedostosi?</value>
   </data>
-    <data name="ForceOverrideBackupTitle" xml:space="preserve">
+  <data name="ForceOverrideBackupTitle" xml:space="preserve">
     <value>Korvaa Paikalliset Tiedostot</value>
   </data>
-    <data name="GeneralErrorTitle" xml:space="preserve">
+  <data name="GeneralErrorTitle" xml:space="preserve">
     <value>Tapahtui virhe</value>
   </data>
-    <data name="GoToAccountsLabel" xml:space="preserve">
+  <data name="GoToAccountsLabel" xml:space="preserve">
     <value>Siirry tileihin</value>
   </data>
-    <data name="GoToBudgetsLabel" xml:space="preserve">
+  <data name="GoToBudgetsLabel" xml:space="preserve">
     <value>Siirry budjettiin</value>
   </data>
-    <data name="IconDesignerLabel" xml:space="preserve">
-    <value>Sovelluksen kuvakkeen loi:</value>
-  </data>
-    <data name="IncludedAccountsHeader" xml:space="preserve">
+  <data name="IncludedAccountsHeader" xml:space="preserve">
     <value>Mukaan otetut tilit</value>
   </data>
-    <data name="IncomeAndExpensesLabel" xml:space="preserve">
+  <data name="IncomeAndExpensesLabel" xml:space="preserve">
     <value>Tulot ja menot</value>
   </data>
-    <data name="IncomeHeader" xml:space="preserve">
+  <data name="IncomeHeader" xml:space="preserve">
     <value>Lisää Tulo</value>
   </data>
-    <data name="IncomeLabel" xml:space="preserve">
+  <data name="IncomeLabel" xml:space="preserve">
     <value>Tulo</value>
   </data>
-    <data name="IncomeSpendingLabel" xml:space="preserve">
+  <data name="IncomeSpendingLabel" xml:space="preserve">
     <value>Tulot / Menot:</value>
   </data>
-    <data name="IncreaseLabel" xml:space="preserve">
+  <data name="IncreaseLabel" xml:space="preserve">
     <value>Saannit</value>
   </data>
-    <data name="InfoLabel" xml:space="preserve">
+  <data name="InfoLabel" xml:space="preserve">
     <value>Tietoa</value>
   </data>
-    <data name="InfoOpenSource" xml:space="preserve">
+  <data name="InfoOpenSource" xml:space="preserve">
     <value>Tämä projekti perustuu avoimeen lähdekoodiin - ja sinäkin voit auttaa! Napauta vieraillaksesi projektin arkistossa:</value>
   </data>
-    <data name="InvalidEnddateMessage" xml:space="preserve">
+  <data name="InvalidEnddateMessage" xml:space="preserve">
     <value>Toistuvan maksun loppupäivän päivämäärän täytyy olla tulevaisuudessa. Ole hyvä, ja varmista päivämäärä.</value>
   </data>
-    <data name="InvalidEnddateTitle" xml:space="preserve">
+  <data name="InvalidEnddateTitle" xml:space="preserve">
     <value>Virheellinen "Loppuen"-päivä</value>
   </data>
-    <data name="InvalidNumberCurrentBalanceMessage" xml:space="preserve">
+  <data name="InvalidNumberCurrentBalanceMessage" xml:space="preserve">
     <value>Nykyinen saldosi näyttää olevan virheellinen numero. Tarkista, että et ole antanut mitään erikoismerkkejä ja käyttänyt oikeaa erotinta.</value>
   </data>
-    <data name="InvalidNumberTitle" xml:space="preserve">
+  <data name="InvalidNumberTitle" xml:space="preserve">
     <value>Virheellinen Numero</value>
   </data>
-    <data name="IsClearedLabel" xml:space="preserve">
+  <data name="IsClearedLabel" xml:space="preserve">
     <value>Tyhjennetty</value>
   </data>
-    <data name="IsExcludedLabel" xml:space="preserve">
+  <data name="IsExcludedLabel" xml:space="preserve">
     <value>Jättää tilin saldo</value>
   </data>
-    <data name="IsGroupedLabel" xml:space="preserve">
+  <data name="IsGroupedLabel" xml:space="preserve">
     <value>Ryhmäluettelo</value>
   </data>
-    <data name="IsRecurringFilterLabel" xml:space="preserve">
+  <data name="IsRecurringFilterLabel" xml:space="preserve">
     <value>Toistuva</value>
   </data>
-    <data name="IsRecurringLabel" xml:space="preserve">
+  <data name="IsRecurringLabel" xml:space="preserve">
     <value>Toistuva</value>
   </data>
-    <data name="LastBackupDateLabel" xml:space="preserve">
+  <data name="LastBackupDateLabel" xml:space="preserve">
     <value>Viimeisen varmuuskopio luotu:</value>
   </data>
-    <data name="LightLabel" xml:space="preserve">
+  <data name="LightLabel" xml:space="preserve">
     <value>Kirkas</value>
   </data>
-    <data name="LoadingLabel" xml:space="preserve">
+  <data name="LoadingLabel" xml:space="preserve">
     <value>Ladataan...</value>
   </data>
-    <data name="LoggedInMessage" xml:space="preserve">
+  <data name="LoggedInMessage" xml:space="preserve">
     <value>Kirjautuminen onnistui.</value>
   </data>
-    <data name="LoggedOutMessage" xml:space="preserve">
+  <data name="LoggedOutMessage" xml:space="preserve">
     <value>Kirjauduttu ulos onnistuneesti.</value>
   </data>
-    <data name="LoggedOutTitle" xml:space="preserve">
+  <data name="LoggedOutTitle" xml:space="preserve">
     <value>Kirjautunut ulos</value>
   </data>
-    <data name="LoginCanceledMessage" xml:space="preserve">
+  <data name="LoginCanceledMessage" xml:space="preserve">
     <value>Kirjautuminen peruutettiin.</value>
   </data>
-    <data name="LoginFailedTitle" xml:space="preserve">
+  <data name="LoginFailedTitle" xml:space="preserve">
     <value>Kirjautuminen epäonnistui!</value>
   </data>
-    <data name="LoginLabel" xml:space="preserve">
+  <data name="LoginLabel" xml:space="preserve">
     <value>Kirjaudu sisään</value>
   </data>
-    <data name="LogoutCanceledMessage" xml:space="preserve">
+  <data name="LogoutCanceledMessage" xml:space="preserve">
     <value>Uloskirjautuminen peruutettiin.</value>
   </data>
-    <data name="LogoutLabel" xml:space="preserve">
+  <data name="LogoutLabel" xml:space="preserve">
     <value>Kirjaudu ulos</value>
   </data>
-    <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
+  <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
     <value>Pakollinen kenttä</value>
   </data>
-    <data name="ModificationDateHeader" xml:space="preserve">
+  <data name="ModificationDateHeader" xml:space="preserve">
     <value>Muutoksen Päivämäärä</value>
   </data>
-    <data name="ModificationDateLabel" xml:space="preserve">
+  <data name="ModificationDateLabel" xml:space="preserve">
     <value>Muutoksen Päivämäärä:</value>
   </data>
-    <data name="ModificationDateTemplateLabel" xml:space="preserve">
+  <data name="ModificationDateTemplateLabel" xml:space="preserve">
     <value>Muutos: {0}</value>
   </data>
-    <data name="ModifyRecurrenceMessage" xml:space="preserve">
+  <data name="ModifyRecurrenceMessage" xml:space="preserve">
     <value>Olet muokannut toistuvaa maksua. Haluatko myös päivittää toistumisen?</value>
   </data>
-    <data name="ModifyRecurrenceTitle" xml:space="preserve">
+  <data name="ModifyRecurrenceTitle" xml:space="preserve">
     <value>Muokkaa Toistumista</value>
   </data>
-    <data name="MonthlyAverageLabel" xml:space="preserve">
+  <data name="MonthlyAverageLabel" xml:space="preserve">
     <value>Viime vuoden kuukausittainen keskiarvo: </value>
   </data>
-    <data name="MonthlyCashflowDescription" xml:space="preserve">
+  <data name="MonthlyCashflowDescription" xml:space="preserve">
     <value>Näyttää kuukausittaisen kassavirran valitulle tilille.</value>
   </data>
-    <data name="MonthlyCashflowLabel" xml:space="preserve">
+  <data name="MonthlyCashflowLabel" xml:space="preserve">
     <value>Kuukausittainen Rahavirta</value>
   </data>
-    <data name="MonthlyCashflowTitle" xml:space="preserve">
+  <data name="MonthlyCashflowTitle" xml:space="preserve">
     <value>Kuukausittainen Rahavirta</value>
   </data>
-    <data name="MonthlyLabel" xml:space="preserve">
+  <data name="MonthlyLabel" xml:space="preserve">
     <value>Kuukausittain</value>
   </data>
-    <data name="NameRequiredMessage" xml:space="preserve">
+  <data name="NameRequiredMessage" xml:space="preserve">
     <value>Syötä nimi.</value>
   </data>
-    <data name="NextLabel" xml:space="preserve">
+  <data name="NextLabel" xml:space="preserve">
     <value>Seuraava</value>
   </data>
-    <data name="NoAccountsMessage" xml:space="preserve">
+  <data name="NoAccountsMessage" xml:space="preserve">
     <value>Ei ole näytettäviä tilejä.</value>
   </data>
-    <data name="NoCategoriesMessage" xml:space="preserve">
+  <data name="NoCategoriesMessage" xml:space="preserve">
     <value>Näytettäviä kategorioita ei ole. </value>
   </data>
-    <data name="NoCategoryLabel" xml:space="preserve">
+  <data name="NoCategoryLabel" xml:space="preserve">
     <value>[Ei kategoriaa]</value>
   </data>
-    <data name="NoCategoryTitle" xml:space="preserve">
+  <data name="NoCategoryTitle" xml:space="preserve">
     <value>Ei Kategoriaa</value>
   </data>
-    <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
+  <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
     <value>Ei merkintää valittuna. Valitse merkintä luettelosta nähdäksesi sille suoritettavat maksut.</value>
   </data>
-    <data name="NoLabel" xml:space="preserve">
+  <data name="NoLabel" xml:space="preserve">
     <value>Ei</value>
   </data>
-    <data name="NoNetworkMessage" xml:space="preserve">
+  <data name="NoNetworkMessage" xml:space="preserve">
     <value>Et ole yhteydessä internetiin. Yhdistä laitteesi verkkoon ja yritä uudelleen.</value>
   </data>
-    <data name="NoNetworkTitle" xml:space="preserve">
+  <data name="NoNetworkTitle" xml:space="preserve">
     <value>Ei Internet-yhteyttä</value>
   </data>
-    <data name="NoPaymentsMessage" xml:space="preserve">
+  <data name="NoPaymentsMessage" xml:space="preserve">
     <value>Ei ole maksuja. Lisää yksi napauttamalla plus-painiketta.</value>
   </data>
-    <data name="NoteLabel" xml:space="preserve">
+  <data name="NoteLabel" xml:space="preserve">
     <value>Huomautus</value>
   </data>
-    <data name="NotNowLabel" xml:space="preserve">
+  <data name="NotNowLabel" xml:space="preserve">
     <value>Ei Nyt</value>
   </data>
-    <data name="OkLabel" xml:space="preserve">
+  <data name="OkLabel" xml:space="preserve">
     <value>Ok</value>
   </data>
-    <data name="OthersLabel" xml:space="preserve">
+  <data name="OthersLabel" xml:space="preserve">
     <value>Muut</value>
   </data>
-    <data name="OverwriteBackupMessage" xml:space="preserve">
+  <data name="OverwriteBackupMessage" xml:space="preserve">
     <value>Olemassa olevat varmuuskopiot tullaan korvaamaan. Haluatko jatkaa?</value>
   </data>
-    <data name="OverwriteDataMessage" xml:space="preserve">
+  <data name="OverwriteDataMessage" xml:space="preserve">
     <value>Sinun tiedot tullaan poistamaan. Haluatko varmasti jatkaa?</value>
   </data>
-    <data name="OverwriteTitle" xml:space="preserve">
+  <data name="OverwriteTitle" xml:space="preserve">
     <value>Korvaa?</value>
   </data>
-    <data name="PaymentIntroductionText" xml:space="preserve">
+  <data name="PaymentIntroductionText" xml:space="preserve">
     <value>Kun luot maksun, voit valita kategorian kyseiselle maksulle yhdessä tilin kanssa ja jos se on kulu, tulot tai siirto.
 Luomasi maksut näkyvät valitsemasi tilin alla.
 Jos haluat päästä sinne, mene tilille ja valitse vastaava tili.</value>
   </data>
-    <data name="PaymentsForCategoryTitle" xml:space="preserve">
+  <data name="PaymentsForCategoryTitle" xml:space="preserve">
     <value>Tiedot kohteelle {0}</value>
   </data>
-    <data name="PaymentTypeLabel" xml:space="preserve">
+  <data name="PaymentTypeLabel" xml:space="preserve">
     <value>Maksun tyyppi</value>
   </data>
-    <data name="PersonalizationTitle" xml:space="preserve">
+  <data name="PersonalizationTitle" xml:space="preserve">
     <value>Mukauttaminen</value>
   </data>
-    <data name="QuarterlyLabel" xml:space="preserve">
+  <data name="QuarterlyLabel" xml:space="preserve">
     <value>Neljännesvuosittain</value>
   </data>
-    <data name="RateLabel" xml:space="preserve">
+  <data name="RateLabel" xml:space="preserve">
     <value>Arvostele sovellus!</value>
   </data>
-    <data name="RateReminderText" xml:space="preserve">
+  <data name="RateReminderText" xml:space="preserve">
     <value>Toivomme että pidätte applikaatiostamme. Tue meitä antamalla arvostelun kaupassa. Haluatko päästä kauppaan antamaan arvostelun?</value>
   </data>
-    <data name="RateReminderTitle" xml:space="preserve">
+  <data name="RateReminderTitle" xml:space="preserve">
     <value>Arvostele sovellus</value>
   </data>
-    <data name="RecurrenceLabel" xml:space="preserve">
+  <data name="RecurrenceLabel" xml:space="preserve">
     <value>Toistuminen</value>
   </data>
-    <data name="RecurringLabel" xml:space="preserve">
+  <data name="RecurringLabel" xml:space="preserve">
     <value>Toistuva</value>
   </data>
-    <data name="RequireNoteCheckbox" xml:space="preserve">
+  <data name="RequireNoteCheckbox" xml:space="preserve">
     <value>Huomautus vaaditaan</value>
   </data>
-    <data name="RestoreBackupCanceledMessage" xml:space="preserve">
+  <data name="RestoreBackupCanceledMessage" xml:space="preserve">
     <value>Varmuuskopioinnin palauttaminen peruutettiin.</value>
   </data>
-    <data name="RestoreBackupInformationLabel" xml:space="preserve">
+  <data name="RestoreBackupInformationLabel" xml:space="preserve">
     <value>Lataa viimeisin pilveen ladattu varmuuskopio, ja korvaa tämän hetkiset tietosi sillä.
 VAROITUS: Paikalliset muutokset jotka teit varmuuskopion jälkeen häviävät!</value>
   </data>
-    <data name="RestoreBackupLabel" xml:space="preserve">
+  <data name="RestoreBackupLabel" xml:space="preserve">
     <value>Palauta varmuuskopio</value>
   </data>
-    <data name="RevenueLabel" xml:space="preserve">
+  <data name="RevenueLabel" xml:space="preserve">
     <value>Tulot</value>
   </data>
-    <data name="SaveLabel" xml:space="preserve">
+  <data name="SaveLabel" xml:space="preserve">
     <value>Tallenna</value>
   </data>
-    <data name="SavingAccountMessage" xml:space="preserve">
+  <data name="SavingAccountMessage" xml:space="preserve">
     <value>Tallennetaan Tiliä...</value>
   </data>
-    <data name="SavingCategoryMessage" xml:space="preserve">
+  <data name="SavingCategoryMessage" xml:space="preserve">
     <value>Tallennetaan Kategoriaa...</value>
   </data>
-    <data name="SavingPaymentMessage" xml:space="preserve">
+  <data name="SavingPaymentMessage" xml:space="preserve">
     <value>Tallennetaan Maksua...</value>
   </data>
-    <data name="SearchLabel" xml:space="preserve">
+  <data name="SearchLabel" xml:space="preserve">
     <value>Hae</value>
   </data>
-    <data name="SelectCategoryTitle" xml:space="preserve">
+  <data name="SelectCategoryTitle" xml:space="preserve">
     <value>Valitse kategoria</value>
   </data>
-    <data name="SelectDateLabel" xml:space="preserve">
+  <data name="SelectDateLabel" xml:space="preserve">
     <value>Valitse päivämäärä</value>
   </data>
-    <data name="SelectedAccountHeader" xml:space="preserve">
+  <data name="SelectedAccountHeader" xml:space="preserve">
     <value>Valittu Tili</value>
   </data>
-    <data name="SelectFilterTitle" xml:space="preserve">
+  <data name="SelectFilterTitle" xml:space="preserve">
     <value>Valitse Suodatin</value>
   </data>
-    <data name="SelectStatisticTitle" xml:space="preserve">
+  <data name="SelectStatisticTitle" xml:space="preserve">
     <value>Valitse tilasto</value>
   </data>
-    <data name="SettingsTitle" xml:space="preserve">
+  <data name="SettingsTitle" xml:space="preserve">
     <value>Asetukset</value>
   </data>
-    <data name="SkipLabel" xml:space="preserve">
+  <data name="SkipLabel" xml:space="preserve">
     <value>Ohita</value>
   </data>
-    <data name="StatisticsTimeRangeTitle" xml:space="preserve">
+  <data name="StatisticsTimeRangeTitle" xml:space="preserve">
     <value>Aikaväli:</value>
   </data>
-    <data name="StatisticsTitle" xml:space="preserve">
+  <data name="StatisticsTitle" xml:space="preserve">
     <value>Tilastot</value>
   </data>
-    <data name="TargetAccountLabel" xml:space="preserve">
+  <data name="TargetAccountLabel" xml:space="preserve">
     <value>Kohde Tili</value>
   </data>
-    <data name="TimeRangeEndLabel" xml:space="preserve">
+  <data name="TimeRangeEndLabel" xml:space="preserve">
     <value>Aikavälin Loppu</value>
   </data>
-    <data name="TimeRangeStartLabel" xml:space="preserve">
+  <data name="TimeRangeStartLabel" xml:space="preserve">
     <value>Aikavälin Alku</value>
   </data>
-    <data name="TransferHeader" xml:space="preserve">
+  <data name="TransferHeader" xml:space="preserve">
     <value>Lisää tilisiirto</value>
   </data>
-    <data name="TransferLabel" xml:space="preserve">
+  <data name="TransferLabel" xml:space="preserve">
     <value>Siirto</value>
   </data>
-    <data name="TranslationLabel" xml:space="preserve">
+  <data name="TranslationLabel" xml:space="preserve">
     <value>Onko jokin käännetty virheellisesti, tai jäänyt kokonaan kääntämättä? Voit auttaa meitä! Mene crowdingiin ja auta meitä kehittämään MoneyFox:</value>
   </data>
-    <data name="UnknownErrorWithTextMessage" xml:space="preserve">
+  <data name="UnknownErrorWithTextMessage" xml:space="preserve">
     <value>Toiminnan aikana tapahtui virhe. Virheviesti {0}</value>
   </data>
-    <data name="UnknownErrorMessage" xml:space="preserve">
+  <data name="UnknownErrorMessage" xml:space="preserve">
     <value>Toiminnan aikana tapahtui virhe. Virheviesti {0}</value>
   </data>
-    <data name="UploadBackupCanceledMessage" xml:space="preserve">
+  <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Tallennus varmuuskopio peruutettiin.</value>
   </data>
-    <data name="VersionLabel" xml:space="preserve">
+  <data name="VersionLabel" xml:space="preserve">
     <value>Versio</value>
   </data>
-    <data name="WebsiteLabel" xml:space="preserve">
+  <data name="WebsiteLabel" xml:space="preserve">
     <value>Nettisivu</value>
   </data>
-    <data name="WeeklyLabel" xml:space="preserve">
+  <data name="WeeklyLabel" xml:space="preserve">
     <value>Viikoittain</value>
   </data>
-    <data name="WelcomeLabel" xml:space="preserve">
+  <data name="WelcomeLabel" xml:space="preserve">
     <value>Tervetuloa!</value>
   </data>
-    <data name="WelcomePageSubtitle" xml:space="preserve">
+  <data name="WelcomePageSubtitle" xml:space="preserve">
     <value>Iloinen saadaksesi sinut!</value>
   </data>
-    <data name="WelcomePageText" xml:space="preserve">
+  <data name="WelcomePageText" xml:space="preserve">
     <value>MoneyFox auttaa sinua seuraamaan kulujasi ja tulojasi helposti.
 Aloittaaksesi luoda uuden tilin. Tilejä käytetään järjestämään maksuja ja rahaa kokoelmissa.</value>
   </data>
-    <data name="WindowsDefaultLabel" xml:space="preserve">
+  <data name="WindowsDefaultLabel" xml:space="preserve">
     <value>Windowsin oletusarvo</value>
   </data>
-    <data name="YearlyLabel" xml:space="preserve">
+  <data name="YearlyLabel" xml:space="preserve">
     <value>Vuosittain</value>
   </data>
-    <data name="YesLabel" xml:space="preserve">
+  <data name="YesLabel" xml:space="preserve">
     <value>Kyllä</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
+  <data name="AccountsToolTip" xml:space="preserve">
     <value>Hallinnoi tilejäsi</value>
   </data>
-    <data name="AddPaymentTitle" xml:space="preserve">
+  <data name="AddPaymentTitle" xml:space="preserve">
     <value>Lisää Maksu</value>
   </data>
-    <data name="AddPaymentToolTip" xml:space="preserve">
+  <data name="AddPaymentToolTip" xml:space="preserve">
     <value>Lisää maksu, jossa on tietoja</value>
   </data>
-    <data name="BackupToolTip" xml:space="preserve">
+  <data name="BackupToolTip" xml:space="preserve">
     <value>Varmuuskopioi tietosi</value>
   </data>
-    <data name="CategoriesToolTip" xml:space="preserve">
+  <data name="CategoriesToolTip" xml:space="preserve">
     <value>Hallitse luokkia</value>
   </data>
-    <data name="StatisticsToolTip" xml:space="preserve">
+  <data name="StatisticsToolTip" xml:space="preserve">
     <value>Näytä tilastosi</value>
   </data>
-    <data name="FailedToLoginToBackupMessage" xml:space="preserve">
+  <data name="FailedToLoginToBackupMessage" xml:space="preserve">
     <value>Varmuuskopion palveluun kirjautuminen epäonnistui. Automaattinen varmuuskopiointi ei ole käytössä. Kirjaudu sisään ja ota se käyttöön uudelleen.</value>
   </data>
-    <data name="FailedToLoginToBackupTitle" xml:space="preserve">
+  <data name="FailedToLoginToBackupTitle" xml:space="preserve">
     <value>Kirjautuminen epäonnistui!</value>
   </data>
-    <data name="LoggedInTitle" xml:space="preserve">
+  <data name="LoggedInTitle" xml:space="preserve">
     <value>Kirjauduttu sisään!</value>
   </data>
-    <data name="SelectedPaymentTypeHeader" xml:space="preserve">
+  <data name="SelectedPaymentTypeHeader" xml:space="preserve">
     <value>Valittu Maksutapa</value>
   </data>
-    <data name="CategoryProgressionDescription" xml:space="preserve">
+  <data name="CategoryProgressionDescription" xml:space="preserve">
     <value>Näyttää kategorian etenemisen kuukausittain.</value>
   </data>
-    <data name="CategoryProgressionLabel" xml:space="preserve">
+  <data name="CategoryProgressionLabel" xml:space="preserve">
     <value>Kategorian Eteneminen</value>
   </data>
-    <data name="SelectCategoryLabel" xml:space="preserve">
+  <data name="SelectCategoryLabel" xml:space="preserve">
     <value>Valitse luokka..</value>
   </data>
-    <data name="CategoryProgressionTitle" xml:space="preserve">
+  <data name="CategoryProgressionTitle" xml:space="preserve">
     <value>Kategorian Eteneminen</value>
   </data>
-    <data name="EditPaymentTitle" xml:space="preserve">
+  <data name="EditPaymentTitle" xml:space="preserve">
     <value>Muokkaa Maksua</value>
   </data>
-    <data name="InitialBalanceLabel" xml:space="preserve">
+  <data name="InitialBalanceLabel" xml:space="preserve">
     <value>Alkuperäinen Saldo</value>
   </data>
-    <data name="AllLabel" xml:space="preserve">
+  <data name="AllLabel" xml:space="preserve">
     <value>Kaikki</value>
   </data>
-    <data name="HomeTitle" xml:space="preserve">
+  <data name="HomeTitle" xml:space="preserve">
     <value>Koti</value>
   </data>
-    <data name="MenuTitle" xml:space="preserve">
+  <data name="MenuTitle" xml:space="preserve">
     <value>Valikko</value>
   </data>
-    <data name="LastDayOfMonthLabel" xml:space="preserve">
+  <data name="LastDayOfMonthLabel" xml:space="preserve">
     <value>Kuukauden viimeinen päivä</value>
   </data>
-    <data name="OpenLogLabel" xml:space="preserve">
+  <data name="OpenLogLabel" xml:space="preserve">
     <value>Avaa Loki</value>
   </data>
-    <data name="BudgetsTitle" xml:space="preserve">
+  <data name="BudgetsTitle" xml:space="preserve">
     <value>Budjetit</value>
   </data>
-    <data name="NoBudgetsMessage" xml:space="preserve">
+  <data name="NoBudgetsMessage" xml:space="preserve">
     <value>Budjetteja ei ole vielä. Mene eteenpäin ja luo yksi!</value>
   </data>
-    <data name="AddBudgetLabel" xml:space="preserve">
+  <data name="AddBudgetLabel" xml:space="preserve">
     <value>Lisää Budjetti</value>
   </data>
-    <data name="AddBudgetTitle" xml:space="preserve">
+  <data name="AddBudgetTitle" xml:space="preserve">
     <value>Lisää Budjetti</value>
   </data>
-    <data name="BudgetNameLabel" xml:space="preserve">
+  <data name="BudgetNameLabel" xml:space="preserve">
     <value>Budjetin Nimi</value>
   </data>
-    <data name="MoreTitle" xml:space="preserve">
+  <data name="MoreTitle" xml:space="preserve">
     <value>Lisää</value>
   </data>
-    <data name="SelectedCategoriesLabel" xml:space="preserve">
+  <data name="SelectedCategoriesLabel" xml:space="preserve">
     <value>Valitut Kategoriat</value>
   </data>
-    <data name="BackupUploadSkippedMessage" xml:space="preserve">
+  <data name="BackupUploadSkippedMessage" xml:space="preserve">
     <value>Varmuuskopion lataus ohitettu, koska etäversio oli jo ajan tasalla.</value>
   </data>
-    <data name="EditBudgetTitle" xml:space="preserve">
+  <data name="EditBudgetTitle" xml:space="preserve">
     <value>Muokkaa Budjettiä</value>
   </data>
-    <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
+  <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
     <value>Haluatko todella poistaa tämän budjetin?</value>
   </data>
-    <data name="MonthlyBudgetLabel" xml:space="preserve">
+  <data name="MonthlyBudgetLabel" xml:space="preserve">
     <value>Kuukausittainen Budjetti:</value>
   </data>
-    <data name="TimeRangeLabel" xml:space="preserve">
+  <data name="TimeRangeLabel" xml:space="preserve">
     <value>Aikaväli</value>
   </data>
-    <data name="LastFiveYearsLabel" xml:space="preserve">
+  <data name="LastFiveYearsLabel" xml:space="preserve">
     <value>Viimeiset Viisi Vuotta</value>
   </data>
-    <data name="LastThreeYearsLabel" xml:space="preserve">
+  <data name="LastThreeYearsLabel" xml:space="preserve">
     <value>Viimeiset Kolme Vuotta</value>
   </data>
-    <data name="LastTwoYearsLabel" xml:space="preserve">
+  <data name="LastTwoYearsLabel" xml:space="preserve">
     <value>Viimeiset Kaksi Vuotta</value>
   </data>
-    <data name="LastYearLabel" xml:space="preserve">
+  <data name="LastYearLabel" xml:space="preserve">
     <value>Viime Vuosi</value>
   </data>
-    <data name="YearToDateLabel" xml:space="preserve">
+  <data name="YearToDateLabel" xml:space="preserve">
     <value>Vuosi tähän päivään</value>
   </data>
-    <data name="MonthlySpendingLimitLabel" xml:space="preserve">
+  <data name="MonthlySpendingLimitLabel" xml:space="preserve">
     <value>Kuukausittainen Kulutusraja</value>
   </data>
-    <data name="EvaluationTimeRangeLabel" xml:space="preserve">
+  <data name="EvaluationTimeRangeLabel" xml:space="preserve">
     <value>Arvioinnin Aikaväli</value>
   </data>
-    <data name="EvaluationTimeRangeMessage" xml:space="preserve">
+  <data name="EvaluationTimeRangeMessage" xml:space="preserve">
     <value>Tämä määrittelee ajanjakson, johon maksut on sisällytetty laskea kuukausittainen keskiarvo verrata oman menojen raja.</value>
   </data>
-    <data name="CategorySummaryPlaceholder" xml:space="preserve">
+  <data name="CategorySummaryPlaceholder" xml:space="preserve">
     <value>Valitulla aikavälillä ei löytynyt maksuja.</value>
   </data>
-    <data name="InvalidSpendingLimitMessage" xml:space="preserve">
+  <data name="InvalidSpendingLimitMessage" xml:space="preserve">
     <value>Menorajan on oltava suurempi kuin nolla.</value>
   </data>
-    <data name="InvalidSpendingLimitTitle" xml:space="preserve">
+  <data name="InvalidSpendingLimitTitle" xml:space="preserve">
     <value>Virheellinen Kulutusraja</value>
   </data>
-    <data name="NotePlaceholderLabel" xml:space="preserve">
+  <data name="NotePlaceholderLabel" xml:space="preserve">
     <value>Syötä huomautus tähän maksuun..</value>
   </data>
-    <data name="GainsLabel" xml:space="preserve">
+  <data name="GainsLabel" xml:space="preserve">
     <value>Saannit</value>
   </data>
-    <data name="SendEmailFailedMessage" xml:space="preserve">
+  <data name="SendEmailFailedMessage" xml:space="preserve">
     <value>Sähköpostisovellusta ei onnistuttu avaamaan. Yritä myöhemmin uudelleen tai ota meihin yhteyttä osoitteessa 'mobile.support@apply-solutions.ch'.</value>
   </data>
-    <data name="UnassignPaymentTitle" xml:space="preserve">
+  <data name="UnassignPaymentTitle" xml:space="preserve">
     <value>Määrittämättömät Maksut</value>
   </data>
-    <data name="UnassignPaymentMessage" xml:space="preserve">
+  <data name="UnassignPaymentMessage" xml:space="preserve">
     <value>Maksua on {0} annettu. Maksut perutaan. Ne perutaan. Haluatko jatkaa?</value>
   </data>
-    <data name="RemoveLabel" xml:space="preserve">
+  <data name="RemoveLabel" xml:space="preserve">
     <value>Poista</value>
   </data>
-    <data name="IntervalLabel" xml:space="preserve">
+  <data name="IntervalLabel" xml:space="preserve">
     <value>Intervalli</value>
   </data>
-    <data name="MonthLabel" xml:space="preserve">
+  <data name="MonthLabel" xml:space="preserve">
     <value>Kuukausi</value>
   </data>
-    <data name="IncludedCategoriesLabel" xml:space="preserve">
+  <data name="IncludedCategoriesLabel" xml:space="preserve">
     <value>Mukana olevat luokat</value>
   </data>
-    <data name="CurrencyIntroductionText" xml:space="preserve">
-      <value>Valitse valuutta, jota haluat käyttää sovelluksessa. Tätä käytetään oletusvaluuttana esimerkiksi tileissä, maksuissa ja budjeteissa.
+  <data name="CurrencyIntroductionText" xml:space="preserve">
+    <value>Valitse valuutta, jota haluat käyttää sovelluksessa. Tätä käytetään oletusvaluuttana esimerkiksi tileissä, maksuissa ja budjeteissa.
 Voit muuttaa tätä myöhässä asetuksissa.</value>
   </data>
-    <data name="CurrencyIntroductionTitle" xml:space="preserve">
+  <data name="CurrencyIntroductionTitle" xml:space="preserve">
     <value>Valuutta</value>
   </data>
-    <data name="SetupAccountsSubtitle" xml:space="preserve">
+  <data name="SetupAccountsSubtitle" xml:space="preserve">
     <value>Lisää ensimmäinen tilisi</value>
   </data>
-    <data name="SetupAccountsText" xml:space="preserve">
+  <data name="SetupAccountsText" xml:space="preserve">
     <value>Voit ryhmitellä tapahtumia tilien avulla. Ne voivat joko peilata pankkitiliäsi tai olla virtuaalinen tili vain sovelluksessa.</value>
   </data>
-    <data name="SetupAccountsTitle" xml:space="preserve">
+  <data name="SetupAccountsTitle" xml:space="preserve">
     <value>Tilit</value>
   </data>
-    <data name="RemoveCategoryAssignmentTitle" xml:space="preserve">
+  <data name="RemoveCategoryAssignmentTitle" xml:space="preserve">
     <value>Poista luokkien määritys</value>
   </data>
-    <data name="RemoveCategoryAssignmentOnPaymentMessage" xml:space="preserve">
+  <data name="RemoveCategoryAssignmentOnPaymentMessage" xml:space="preserve">
     <value>Tähän luokkaan on kohdistettu {0} maksuja, joiden kohdentaminen poistetaan. Haluatko jatkaa?</value>
   </data>
-    <data name="CurrencySettingText" xml:space="preserve">
-      <value>Valitse valuutta, jota haluat käyttää sovelluksessa. Tätä käytetään oletusvaluuttana esimerkiksi tileissä, maksuissa ja budjeteissa.</value>
+  <data name="CurrencySettingText" xml:space="preserve">
+    <value>Valitse valuutta, jota haluat käyttää sovelluksessa. Tätä käytetään oletusvaluuttana esimerkiksi tileissä, maksuissa ja budjeteissa.</value>
+  </data>
+  <data name="SaldoTemplate" xml:space="preserve">
+    <value>Saldo: {0}</value>
   </data>
 </root>

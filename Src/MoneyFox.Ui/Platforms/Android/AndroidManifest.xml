@@ -1,8 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0"
-          package="com.applysolutions.moneyfox" android:installLocation="auto">
-    <application android:label="MoneyFox" android:icon="@drawable/ic_launcher">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          android:versionCode="1" android:versionName="1.0"
+          package="com.applysolutions.moneyfox" >
+    <application android:label="MoneyFox" 
+                 android:icon="@mipmap/appicon"
+                 android:roundIcon="@mipmap/appicon_round" 
+                 android:allowBackup="true">
         <activity android:name="microsoft.identity.client.BrowserTabActivity" android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
