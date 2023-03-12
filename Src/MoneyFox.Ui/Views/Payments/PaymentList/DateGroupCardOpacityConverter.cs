@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.Converter;
+namespace MoneyFox.Ui.Views.Payments.PaymentList;
 
 using System.Globalization;
 
