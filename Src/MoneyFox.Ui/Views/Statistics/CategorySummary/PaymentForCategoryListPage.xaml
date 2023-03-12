@@ -22,9 +22,8 @@
 
             <CollectionView.GroupHeaderTemplate>
                 <DataTemplate x:DataType="categorySummary:PaymentDayGroup">
-                    <Label Margin="0,45,0,-65"
-                           Text="{Binding Date, StringFormat='{0:dd. MMM}'}"
-                           Style="{StaticResource TextSubheadSecondary}" />
+                    <Label Text="{Binding Date, StringFormat='{0:dd. MMM}'}"
+                            Style="{StaticResource TextSubheadSecondary}" />
                 </DataTemplate>
             </CollectionView.GroupHeaderTemplate>
 
