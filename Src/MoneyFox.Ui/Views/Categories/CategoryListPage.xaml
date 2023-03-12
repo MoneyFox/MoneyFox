@@ -34,7 +34,7 @@
 
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate x:DataType="categories:CategoryGroup">
-                        <Grid Padding="18,0,0,18">
+                        <Grid Padding="18,0,18,0">
                             <Label Text="{Binding Title}"
                                    Style="{StaticResource TextSubheadSecondary}" />
                         </Grid>
