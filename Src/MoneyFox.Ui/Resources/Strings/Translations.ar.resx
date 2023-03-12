@@ -928,4 +928,7 @@
   <data name="SaldoTemplate" xml:space="preserve">
     <value>سلدو: {0}</value>
   </data>
+  <data name="TotalBalanceTemplate" xml:space="preserve">
+    <value>Total: {0}</value>
+  </data>
 </root>
