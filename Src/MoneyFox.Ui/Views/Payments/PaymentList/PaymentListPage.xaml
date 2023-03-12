@@ -76,6 +76,7 @@
                                            Margin="0,6,0,0"
                                            HeightRequest="55"
                                            Opacity="{Binding Date, Converter={StaticResource DateGroupCardOpacityConverter}}">
+
                                 <controls:Card.GestureRecognizers>
                                     <TapGestureRecognizer
                                         Command="{Binding BindingContext.GoToEditPaymentCommand, Source={x:Reference PaymentCollectionView}}"

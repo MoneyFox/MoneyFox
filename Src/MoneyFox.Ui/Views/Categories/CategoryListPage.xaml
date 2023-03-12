@@ -45,7 +45,7 @@
                     <DataTemplate x:DataType="categories:CategoryListItemViewModel">
                         <Grid Padding="18, 0, 18, 6">
 
-                            <controls:Card HeightRequest="45">
+                            <controls:Card HeightRequest="50">
 
                                 <controls:Card.GestureRecognizers>
                                     <TapGestureRecognizer
