@@ -928,4 +928,7 @@ Du kan ændre denne sent i indstillingerne.</value>
   <data name="SaldoTemplate" xml:space="preserve">
     <value>Saldo: {0}</value>
   </data>
+  <data name="TotalBalanceTemplate" xml:space="preserve">
+    <value>I alt: {0}</value>
+  </data>
 </root>

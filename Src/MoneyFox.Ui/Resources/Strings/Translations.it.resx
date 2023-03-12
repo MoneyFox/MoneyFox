@@ -928,4 +928,7 @@ Puoi cambiare questa valuta nelle impostazioni.</value>
   <data name="SaldoTemplate" xml:space="preserve">
     <value>Saldo: {0}</value>
   </data>
+  <data name="TotalBalanceTemplate" xml:space="preserve">
+    <value>Totale: {0}</value>
+  </data>
 </root>

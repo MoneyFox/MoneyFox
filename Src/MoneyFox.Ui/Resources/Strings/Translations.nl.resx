@@ -931,4 +931,7 @@ Je kunt dit laat wijzigen in de instellingen.</value>
   <data name="SaldoTemplate" xml:space="preserve">
     <value>Saldo: {0}</value>
   </data>
+  <data name="TotalBalanceTemplate" xml:space="preserve">
+    <value>Totaal: {0}</value>
+  </data>
 </root>

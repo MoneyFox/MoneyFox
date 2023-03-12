@@ -14,6 +14,7 @@
 
     <ContentPage.Resources>
         <paymentList:PaymentAmountConverter x:Key="PaymentAmountConverter" />
+        <paymentList:DateGroupCardOpacityConverter x:Key="DateGroupCardOpacityConverter" />
     </ContentPage.Resources>
 
     <ContentPage.Content>
@@ -68,8 +69,10 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="paymentList:PaymentListItemViewModel">
-                        <Grid ColumnDefinitions="80, *" Margin="0,6,24,0">
-                            <controls:Card Grid.Column="1" Padding="12">
+                        <Grid ColumnDefinitions="80, *" 
+                              Margin="0,6,24,0" >
+                            <controls:Card Grid.Column="1" Padding="12"
+                                           Opacity="{Binding Date, Converter={StaticResource DateGroupCardOpacityConverter}}">
                                 <controls:Card.GestureRecognizers>
                                     <TapGestureRecognizer
                                         Command="{Binding BindingContext.GoToEditPaymentCommand, Source={x:Reference This}}"
