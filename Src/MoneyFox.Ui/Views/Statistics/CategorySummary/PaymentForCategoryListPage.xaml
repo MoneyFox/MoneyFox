@@ -22,19 +22,24 @@
 
             <CollectionView.GroupHeaderTemplate>
                 <DataTemplate x:DataType="categorySummary:PaymentDayGroup">
-                    <Label Text="{Binding Date, StringFormat='{0:dd. MMM}'}"
-                            Style="{StaticResource TextSubheadSecondary}" />
+                    <Grid Padding="18, 0, 18, 0">
+                        <Label Text="{Binding Date, StringFormat='{0:dd. MMM}'}"
+                                Style="{StaticResource TextSubheadSecondary}" />
+                    </Grid>
                 </DataTemplate>
             </CollectionView.GroupHeaderTemplate>
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="categorySummary:PaymentListItemViewModel">
-                    <Grid ColumnDefinitions="80, *" Margin="0,6,24,0">
-                        <controls:Card Grid.Column="1" Padding="12">
+                    <Grid ColumnDefinitions="80, *, 18">
+                        <controls:Card Grid.Column="1" 
+                                           Padding="12"
+                                           Margin="0,6,0,0"
+                                           HeightRequest="55">
 
                             <controls:Card.GestureRecognizers>
                                 <TapGestureRecognizer
-                                    Command="{Binding BindingContext.GoToEditPaymentCommand, Source={x:Reference This}}"
+                                    Command="{Binding BindingContext.GoToEditPaymentCommand, Source={x:Reference PaymentCollectionView}}"
                                     CommandParameter="{Binding .}" />
                             </controls:Card.GestureRecognizers>
 
