@@ -54,11 +54,14 @@
     <ItemGroup>
         <!-- App Icon -->
         <MauiIcon Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'" Include="Resources\AppIcon\appicon.svg" />
-        <MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#ffffff" ForegroundScale="0.65" />
+        <MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#ffffff" ForegroundScale="0.65"  />
 
         <!-- Splash Screen -->
         <MauiSplashScreen Include="Resources\Splash\splashscreen.svg" Color="#ea9972" BaseSize="128,128" />
 
+        <!-- Images -->
+        <MauiImage Include="Resources\Images\appicon.svg" BaseSize="512, 512" ForegroundScale="0.65" />
+        
         <!-- Custom Fonts -->
         <MauiFont Include="Resources\Fonts\*" />
 
@@ -99,6 +102,7 @@
 
     <ItemGroup>
         <None Remove="appsettings.json" />
+        <None Remove="Resources\Images\appicon.svg" />
         <EmbeddedResource Include="appsettings.json" />
         <Compile Update="Resources\Strings\Translations.Designer.cs">
             <DesignTime>True</DesignTime>

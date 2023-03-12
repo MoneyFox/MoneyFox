@@ -16,6 +16,13 @@
        FlyoutWidth="250"
        Title="MoneyFox">
 
+    <Shell.FlyoutHeader>
+        <HorizontalStackLayout Spacing="12" Padding="12" Margin="0,12,0,12">
+            <Image Aspect="Fill" Source="appicon.png" HeightRequest="30" WidthRequest="30" />
+            <Label Text="MoneyFox" VerticalOptions="Center" Style="{StaticResource TextTitle}"/>
+        </HorizontalStackLayout>
+    </Shell.FlyoutHeader>
+
     <FlyoutItem Title="{x:Static resources:Translations.HomeTitle}">
         <Tab.Icon>
             <FontImageSource FontFamily="MaterialIcons"
