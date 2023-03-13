@@ -86,7 +86,8 @@
                                 <VerticalStackLayout>
                                     <Grid ColumnDefinitions="*,*">
                                         <Label Grid.Column="0"
-                                               Style="{StaticResource TextBody}"
+                                               Style="{StaticResource TextBody}"                                               
+                                               LineBreakMode="TailTruncation"
                                                Text="{Binding Category.Name}" />
 
                                         <Label Grid.Column="1"

@@ -35,7 +35,7 @@
                         <controls:Card Grid.Column="1" 
                                            Padding="12"
                                            Margin="0,6,0,0"
-                                           HeightRequest="50">
+                                           HeightRequest="55">
 
                             <controls:Card.GestureRecognizers>
                                 <TapGestureRecognizer
@@ -47,6 +47,7 @@
                                 <Grid ColumnDefinitions="*,*">
                                     <Label Grid.Column="0"
                                            Style="{StaticResource TextBody}"
+                                           LineBreakMode="TailTruncation"
                                            Text="{Binding Category.Name}" />
 
                                     <Label Grid.Column="1"
