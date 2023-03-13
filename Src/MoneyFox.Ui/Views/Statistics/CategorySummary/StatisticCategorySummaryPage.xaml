@@ -46,15 +46,16 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="statistics:CategoryOverviewViewModel">
-                        <Grid Padding="15, 6, 15, 8">
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer
-                                    Command="{Binding BindingContext.ShowCategoryPaymentsCommand, Source={x:Reference Name=CategorySummaryList}}"
-                                    CommandParameter="{Binding .}" />
-                            </Grid.GestureRecognizers>
-
+                        <Grid Padding="15, 6, 15, 0">
 
                             <controls:Card Padding="12">
+
+                                <controls:Card.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding BindingContext.ShowCategoryPaymentsCommand, Source={x:Reference Name=CategorySummaryList}}"
+                                        CommandParameter="{Binding .}" />
+                                </controls:Card.GestureRecognizers>
+
                                 <StackLayout HorizontalOptions="FillAndExpand">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
