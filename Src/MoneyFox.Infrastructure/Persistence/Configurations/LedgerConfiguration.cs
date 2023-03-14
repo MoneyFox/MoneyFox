@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Infrastructure.Persistence.Configurations;
+namespace MoneyFox.Infrastructure.Persistence.Configurations;
 
 using Domain;
 using Domain.Aggregates.LedgerAggregate;
@@ -19,7 +19,7 @@ public class LedgerConfiguration : IEntityTypeConfiguration<Ledger>
         _ = builder.Property(b => b.Note);
         _ = builder.Property(b => b.IsExcludeFromEndOfMonthSummary);
 
-        _ = builder.OwnsOne<Money>(
+        _ = builder.OwnsOne(
             navigationExpression: l => l.CurrentBalance,
             buildAction: m =>
             {
@@ -39,7 +39,7 @@ public class LedgerConfiguration : IEntityTypeConfiguration<Ledger>
                     .HasConversion(convertToProviderExpression: v => v.Value, convertFromProviderExpression: v => new(v));
 
                 _ = t.Property(p => p.Type).IsRequired();
-                _ = t.OwnsOne<Money>(
+                _ = t.OwnsOne(
                     navigationExpression: l => l.Amount,
                     buildAction: m =>
                     {
@@ -47,7 +47,7 @@ public class LedgerConfiguration : IEntityTypeConfiguration<Ledger>
                         m.Property(p => p.Currency).HasColumnName("Currency");
                     });
 
-                _ = t.OwnsOne<Money>(
+                _ = t.OwnsOne(
                     navigationExpression: l => l.LedgerBalance,
                     buildAction: m =>
                     {
