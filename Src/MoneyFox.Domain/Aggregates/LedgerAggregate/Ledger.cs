@@ -71,11 +71,8 @@ public class Ledger : EntityBase
 
     public static Ledger Create(string name, Money currentBalance, string? note = null, bool isExcluded = false)
     {
-        if (string.IsNullOrWhiteSpace(name))
-        {
-            throw new ArgumentNullException(nameof(name));
-        }
-
-        return new(name: name, currentBalance: currentBalance, note: note, isExcludeFromEndOfMonthSummary: isExcluded);
+        return string.IsNullOrWhiteSpace(name)
+            ? throw new ArgumentNullException(nameof(name))
+            : new(name: name, currentBalance: currentBalance, note: note, isExcludeFromEndOfMonthSummary: isExcluded);
     }
 }
