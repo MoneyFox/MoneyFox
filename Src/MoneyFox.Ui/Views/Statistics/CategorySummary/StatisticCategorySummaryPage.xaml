@@ -56,7 +56,7 @@
                                         CommandParameter="{Binding .}" />
                                 </controls:Card.GestureRecognizers>
 
-                                <StackLayout HorizontalOptions="FillAndExpand">
+                                <VerticalStackLayout>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
@@ -90,7 +90,7 @@
                                                Style="{StaticResource TextBodySecondary}"
                                                Text="{Binding Average, Converter={StaticResource AmountFormatConverter}}" />
                                     </Grid>
-                                </StackLayout>
+                                </VerticalStackLayout>
                             </controls:Card>
                         </Grid>
                     </DataTemplate>
