@@ -1,6 +1,5 @@
 namespace MoneyFox.Infrastructure.Persistence.Configurations;
 
-using Domain;
 using Domain.Aggregates.LedgerAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -9,17 +8,17 @@ public class LedgerConfiguration : IEntityTypeConfiguration<Ledger>
 {
     public void Configure(EntityTypeBuilder<Ledger> builder)
     {
-        _ = builder.HasKey(b => b.Id);
-        _ = builder.Property(i => i.Id)
+        builder.HasKey(b => b.Id);
+        builder.Property(i => i.Id)
             .ValueGeneratedOnAdd()
             .HasConversion(convertToProviderExpression: v => v.Value, convertFromProviderExpression: v => new(v));
 
-        _ = builder.HasIndex(b => b.Name);
-        _ = builder.Property(b => b.Name).IsRequired();
-        _ = builder.Property(b => b.Note);
-        _ = builder.Property(b => b.IsExcludeFromEndOfMonthSummary);
+        builder.HasIndex(b => b.Name);
+        builder.Property(b => b.Name).IsRequired();
+        builder.Property(b => b.Note);
+        builder.Property(b => b.IsExcludeFromEndOfMonthSummary);
 
-        _ = builder.OwnsOne(
+        builder.OwnsOne(
             navigationExpression: l => l.CurrentBalance,
             buildAction: m =>
             {
@@ -27,19 +26,19 @@ public class LedgerConfiguration : IEntityTypeConfiguration<Ledger>
                 m.Property(p => p.Currency).HasColumnName("Currency");
             });
 
-        _ = builder.Property(b => b.Created);
-        _ = builder.Property(b => b.LastModified);
+        builder.Property(b => b.Created);
+        builder.Property(b => b.LastModified);
 
-        _ = builder.OwnsMany(
+        builder.OwnsMany(
             navigationExpression: ledger => ledger.Transactions,
             buildAction: t =>
             {
-                _ = t.Property(i => i.Id)
+                t.Property(i => i.Id)
                     .ValueGeneratedOnAdd()
                     .HasConversion(convertToProviderExpression: v => v.Value, convertFromProviderExpression: v => new(v));
 
-                _ = t.Property(p => p.Type).IsRequired();
-                _ = t.OwnsOne(
+                t.Property(p => p.Type).IsRequired();
+                t.OwnsOne(
                     navigationExpression: l => l.Amount,
                     buildAction: m =>
                     {
@@ -47,7 +46,7 @@ public class LedgerConfiguration : IEntityTypeConfiguration<Ledger>
                         m.Property(p => p.Currency).HasColumnName("Currency");
                     });
 
-                _ = t.OwnsOne(
+                t.OwnsOne(
                     navigationExpression: l => l.LedgerBalance,
                     buildAction: m =>
                     {
@@ -55,10 +54,10 @@ public class LedgerConfiguration : IEntityTypeConfiguration<Ledger>
                         m.Property(p => p.Currency).HasColumnName("LedgerCurrency");
                     });
 
-                _ = t.Property(p => p.BookingDate).IsRequired();
+                t.Property(p => p.BookingDate).IsRequired();
 
-                _ = builder.Property(b => b.Created);
-                _ = builder.Property(b => b.LastModified);
+                builder.Property(b => b.Created);
+                builder.Property(b => b.LastModified);
             });
     }
 }
