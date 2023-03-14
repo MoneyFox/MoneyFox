@@ -81,12 +81,15 @@
                                         </StackLayout>
                                     </Grid>
 
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Style="{StaticResource TextBodySecondary}"
+                                    <Grid ColumnDefinitions="*, Auto">
+                                        <Label Grid.Column="0"
+                                               LineBreakMode="TailTruncation"
+                                               Style="{StaticResource TextBodySecondary}"
                                                Text="{x:Static resources:Translations.MonthlyAverageLabel}" />
-                                        <Label Style="{StaticResource TextBodySecondary}"
+                                        <Label Grid.Column="1"
+                                               Style="{StaticResource TextBodySecondary}"
                                                Text="{Binding Average, Converter={StaticResource AmountFormatConverter}}" />
-                                    </StackLayout>
+                                    </Grid>
                                 </StackLayout>
                             </controls:Card>
                         </Grid>
