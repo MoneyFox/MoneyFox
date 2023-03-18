@@ -36,7 +36,8 @@ public static class MauiProgram
                 })
             .AddCustomAppShellHandler()
             .UseSkiaSharp(true)
-            .UseMauiCommunityToolkit();
+            .UseMauiCommunityToolkit()
+            .ConfigureKeyboardAutoScroll;
 
         EntryHandler.Mapper.AppendToMapping(
             key: "Borderless",
