@@ -140,6 +140,6 @@ public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
 
     public void CreateMappings(Profile configuration)
     {
-        configuration.CreateMap<RecurringPayment, RecurringPaymentViewModel>();
+        configuration.CreateMap<RecurringPayment, RecurringPaymentViewModel>().ReverseMap();
     }
 }

@@ -56,7 +56,7 @@
                                         CommandParameter="{Binding .}" />
                                 </controls:Card.GestureRecognizers>
 
-                                <StackLayout HorizontalOptions="FillAndExpand">
+                                <VerticalStackLayout>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
@@ -81,13 +81,16 @@
                                         </StackLayout>
                                     </Grid>
 
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Style="{StaticResource TextBodySecondary}"
+                                    <Grid ColumnDefinitions="*, Auto">
+                                        <Label Grid.Column="0"
+                                               LineBreakMode="TailTruncation"
+                                               Style="{StaticResource TextBodySecondary}"
                                                Text="{x:Static resources:Translations.MonthlyAverageLabel}" />
-                                        <Label Style="{StaticResource TextBodySecondary}"
+                                        <Label Grid.Column="1"
+                                               Style="{StaticResource TextBodySecondary}"
                                                Text="{Binding Average, Converter={StaticResource AmountFormatConverter}}" />
-                                    </StackLayout>
-                                </StackLayout>
+                                    </Grid>
+                                </VerticalStackLayout>
                             </controls:Card>
                         </Grid>
                     </DataTemplate>
