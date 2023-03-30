@@ -70,7 +70,7 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="paymentList:PaymentListItemViewModel">
-                        <Grid ColumnDefinitions="80, *, 18" >
+                        <Grid ColumnDefinitions="80, *, 18">
                             <controls:Card Grid.Column="1"
                                            Padding="12"
                                            Margin="0,6,0,0"
@@ -86,7 +86,7 @@
                                 <VerticalStackLayout>
                                     <Grid ColumnDefinitions="*,*">
                                         <Label Grid.Column="0"
-                                               Style="{StaticResource TextBody}"                                               
+                                               Style="{StaticResource TextBody}"
                                                LineBreakMode="TailTruncation"
                                                Text="{Binding Category.Name}" />
 

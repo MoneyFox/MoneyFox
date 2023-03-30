@@ -57,7 +57,6 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
         var payment = await mediator.Send(new GetPaymentByIdQuery(paymentId));
         SelectedPayment = mapper.Map<PaymentViewModel>(payment);
         SelectedPayment.RecurringPayment = mapper.Map<RecurringPaymentViewModel>(payment.RecurringPayment);
-
         if (payment.Category != null)
         {
             CategorySelectionViewModel.SelectedCategory

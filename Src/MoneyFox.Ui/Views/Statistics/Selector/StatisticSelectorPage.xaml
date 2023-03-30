@@ -19,7 +19,7 @@
                     <DataTemplate>
                         <Grid Padding="15,6,15,0">
 
-                            <controls:Card Padding="12" >
+                            <controls:Card Padding="12">
 
                                 <controls:Card.GestureRecognizers>
                                     <TapGestureRecognizer
