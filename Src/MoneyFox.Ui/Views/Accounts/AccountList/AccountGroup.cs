@@ -1,18 +1,17 @@
 namespace MoneyFox.Ui.Views.Accounts.AccountList;
 
-using MoneyFox.Core.Common.Settings;
-using MoneyFox.Ui.Infrastructure.Adapters;
+using Core.Common.Settings;
+using Infrastructure.Adapters;
 using Resources.Strings;
 
 public class AccountGroup : List<AccountListItemViewModel>
 {
-    private ISettingsFacade settingsFacade;
     private readonly bool isExcluded;
+    private readonly ISettingsFacade settingsFacade;
 
     public AccountGroup(bool isExcluded, List<AccountListItemViewModel> accountItems) : base(accountItems)
     {
         this.isExcluded = isExcluded;
-
         settingsFacade = new SettingsFacade(new SettingsAdapter());
     }
 

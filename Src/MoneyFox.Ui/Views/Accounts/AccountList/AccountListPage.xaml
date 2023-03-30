@@ -43,9 +43,10 @@
                 <CollectionView.GroupFooterTemplate>
                     <DataTemplate x:DataType="accountList:AccountGroup">
                         <Grid Padding="18, 0, 18, 0">
-                            <Label Text="{Binding TotalString, StringFormat={extensions:Translate TotalBalanceTemplate}}"
-                                   Style="{StaticResource TextSubheadSecondary}"
-                                   HorizontalOptions="End" />
+                            <Label
+                                Text="{Binding TotalString, StringFormat={extensions:Translate TotalBalanceTemplate}}"
+                                Style="{StaticResource TextSubheadSecondary}"
+                                HorizontalOptions="End" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.GroupFooterTemplate>

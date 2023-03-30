@@ -18,10 +18,10 @@
                         <Trigger TargetType="Tab" Property="IsChecked" Value="True">
                             <Setter Property="Icon">
                                 <Setter.Value>
-                                    <FontImageSource Size="20" 
+                                    <FontImageSource Size="20"
                                                      Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}"
-                                                     Glyph="{x:Static views:IconFont.HomeOutline}" 
-                                                     FontFamily="MaterialIcons"/>
+                                                     Glyph="{x:Static views:IconFont.HomeOutline}"
+                                                     FontFamily="MaterialIcons" />
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
@@ -29,10 +29,10 @@
                         <Trigger TargetType="Tab" Property="IsChecked" Value="False">
                             <Setter Property="Icon">
                                 <Setter.Value>
-                                    <FontImageSource Size="20" 
+                                    <FontImageSource Size="20"
                                                      Color="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray100}}"
-                                                     Glyph="{x:Static views:IconFont.HomeOutline}" 
-                                                     FontFamily="MaterialIcons"/>
+                                                     Glyph="{x:Static views:IconFont.HomeOutline}"
+                                                     FontFamily="MaterialIcons" />
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
@@ -51,10 +51,10 @@
                         <Trigger TargetType="Tab" Property="IsChecked" Value="True">
                             <Setter Property="Icon">
                                 <Setter.Value>
-                                    <FontImageSource Size="20" 
+                                    <FontImageSource Size="20"
                                                      Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}"
-                                                     Glyph="{x:Static views:IconFont.ChartArc}" 
-                                                     FontFamily="MaterialIcons"/>
+                                                     Glyph="{x:Static views:IconFont.ChartArc}"
+                                                     FontFamily="MaterialIcons" />
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
@@ -62,10 +62,10 @@
                         <Trigger TargetType="Tab" Property="IsChecked" Value="False">
                             <Setter Property="Icon">
                                 <Setter.Value>
-                                    <FontImageSource Size="20" 
+                                    <FontImageSource Size="20"
                                                      Color="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray100}}"
-                                                     Glyph="{x:Static views:IconFont.ChartArc}" 
-                                                     FontFamily="MaterialIcons"/>
+                                                     Glyph="{x:Static views:IconFont.ChartArc}"
+                                                     FontFamily="MaterialIcons" />
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
@@ -84,10 +84,10 @@
                         <Trigger TargetType="Tab" Property="IsChecked" Value="True">
                             <Setter Property="Icon">
                                 <Setter.Value>
-                                    <FontImageSource Size="20" 
+                                    <FontImageSource Size="20"
                                                      Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}"
-                                                     Glyph="{x:Static views:IconFont.DotsHorizontal}" 
-                                                     FontFamily="MaterialIcons"/>
+                                                     Glyph="{x:Static views:IconFont.DotsHorizontal}"
+                                                     FontFamily="MaterialIcons" />
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
@@ -95,10 +95,10 @@
                         <Trigger TargetType="Tab" Property="IsChecked" Value="False">
                             <Setter Property="Icon">
                                 <Setter.Value>
-                                    <FontImageSource Size="20" 
+                                    <FontImageSource Size="20"
                                                      Color="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray100}}"
-                                                     Glyph="{x:Static views:IconFont.DotsHorizontal}" 
-                                                     FontFamily="MaterialIcons"/>
+                                                     Glyph="{x:Static views:IconFont.DotsHorizontal}"
+                                                     FontFamily="MaterialIcons" />
                                 </Setter.Value>
                             </Setter>
                         </Trigger>

@@ -19,7 +19,7 @@
 
 
                             <controls:Card HeightRequest="50">
-                                
+
                                 <controls:Card.GestureRecognizers>
                                     <TapGestureRecognizer
                                         Command="{Binding BindingContext.GoToSelectedItemCommand, Source={x:Reference Name=OverflowMenuCollectionView}}"
