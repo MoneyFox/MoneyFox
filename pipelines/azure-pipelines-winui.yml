@@ -24,7 +24,7 @@ jobs:
       - task: UseDotNet@2
         displayName: 'Install .net sdk'
         inputs:
-          version: 7.0.201
+          version: 7.0.202
 
       - task: DownloadSecureFile@1
         displayName: 'download certificate'
