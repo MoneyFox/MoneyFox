@@ -10,149 +10,150 @@
        xmlns:selector="clr-namespace:MoneyFox.Ui.Views.Statistics.Selector"
        Title="MoneyFox">
 
+    <ShellContent>
+        <OnPlatform>
+            <On Platform="iOS">
+                <TabBar>
+                    <Tab Title="{x:Static resources:Translations.HomeTitle}">
+                        <Tab.Style>
+                            <Style TargetType="Tab">
+                                <Style.Triggers>
+                                    <Trigger TargetType="Tab" Property="IsChecked" Value="True">
+                                        <Setter Property="Icon">
+                                            <Setter.Value>
+                                                <FontImageSource Size="20"
+                                                                 Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}"
+                                                                 Glyph="{x:Static views:IconFont.HomeOutline}"
+                                                                 FontFamily="MaterialIcons" />
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
 
-    <OnPlatform>
-        <On Platform="iOS">
-            <TabBar>
-                <Tab Title="{x:Static resources:Translations.HomeTitle}">
-                    <Tab.Style>
-                        <Style TargetType="Tab">
-                            <Style.Triggers>
-                                <Trigger TargetType="Tab" Property="IsChecked" Value="True">
-                                    <Setter Property="Icon">
-                                        <Setter.Value>
-                                            <FontImageSource Size="20"
-                                                             Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}"
-                                                             Glyph="{x:Static views:IconFont.HomeOutline}"
-                                                             FontFamily="MaterialIcons" />
-                                        </Setter.Value>
-                                    </Setter>
-                                </Trigger>
+                                    <Trigger TargetType="Tab" Property="IsChecked" Value="False">
+                                        <Setter Property="Icon">
+                                            <Setter.Value>
+                                                <FontImageSource Size="20"
+                                                                 Color="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray100}}"
+                                                                 Glyph="{x:Static views:IconFont.HomeOutline}"
+                                                                 FontFamily="MaterialIcons" />
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Tab.Style>
+                        <ShellContent>
+                            <dashboard:DashboardPage />
+                        </ShellContent>
+                    </Tab>
 
-                                <Trigger TargetType="Tab" Property="IsChecked" Value="False">
-                                    <Setter Property="Icon">
-                                        <Setter.Value>
-                                            <FontImageSource Size="20"
-                                                             Color="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray100}}"
-                                                             Glyph="{x:Static views:IconFont.HomeOutline}"
-                                                             FontFamily="MaterialIcons" />
-                                        </Setter.Value>
-                                    </Setter>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Tab.Style>
-                    <ShellContent>
-                        <dashboard:DashboardPage />
-                    </ShellContent>
-                </Tab>
+                    <Tab Title="{x:Static resources:Translations.StatisticsTitle}">
+                        <Tab.Style>
+                            <Style TargetType="Tab">
+                                <Style.Triggers>
+                                    <Trigger TargetType="Tab" Property="IsChecked" Value="True">
+                                        <Setter Property="Icon">
+                                            <Setter.Value>
+                                                <FontImageSource Size="20"
+                                                                 Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}"
+                                                                 Glyph="{x:Static views:IconFont.ChartArc}"
+                                                                 FontFamily="MaterialIcons" />
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
 
-                <Tab Title="{x:Static resources:Translations.StatisticsTitle}">
-                    <Tab.Style>
-                        <Style TargetType="Tab">
-                            <Style.Triggers>
-                                <Trigger TargetType="Tab" Property="IsChecked" Value="True">
-                                    <Setter Property="Icon">
-                                        <Setter.Value>
-                                            <FontImageSource Size="20"
-                                                             Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}"
-                                                             Glyph="{x:Static views:IconFont.ChartArc}"
-                                                             FontFamily="MaterialIcons" />
-                                        </Setter.Value>
-                                    </Setter>
-                                </Trigger>
+                                    <Trigger TargetType="Tab" Property="IsChecked" Value="False">
+                                        <Setter Property="Icon">
+                                            <Setter.Value>
+                                                <FontImageSource Size="20"
+                                                                 Color="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray100}}"
+                                                                 Glyph="{x:Static views:IconFont.ChartArc}"
+                                                                 FontFamily="MaterialIcons" />
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Tab.Style>
+                        <ShellContent Title="{x:Static resources:Translations.StatisticsTitle}">
+                            <selector:StatisticSelectorPage />
+                        </ShellContent>
+                    </Tab>
 
-                                <Trigger TargetType="Tab" Property="IsChecked" Value="False">
-                                    <Setter Property="Icon">
-                                        <Setter.Value>
-                                            <FontImageSource Size="20"
-                                                             Color="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray100}}"
-                                                             Glyph="{x:Static views:IconFont.ChartArc}"
-                                                             FontFamily="MaterialIcons" />
-                                        </Setter.Value>
-                                    </Setter>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Tab.Style>
-                    <ShellContent Title="{x:Static resources:Translations.StatisticsTitle}">
-                        <selector:StatisticSelectorPage />
-                    </ShellContent>
-                </Tab>
+                    <Tab Title="{x:Static resources:Translations.MoreTitle}">
+                        <Tab.Style>
+                            <Style TargetType="Tab">
+                                <Style.Triggers>
+                                    <Trigger TargetType="Tab" Property="IsChecked" Value="True">
+                                        <Setter Property="Icon">
+                                            <Setter.Value>
+                                                <FontImageSource Size="20"
+                                                                 Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}"
+                                                                 Glyph="{x:Static views:IconFont.DotsHorizontal}"
+                                                                 FontFamily="MaterialIcons" />
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
 
-                <Tab Title="{x:Static resources:Translations.MoreTitle}">
-                    <Tab.Style>
-                        <Style TargetType="Tab">
-                            <Style.Triggers>
-                                <Trigger TargetType="Tab" Property="IsChecked" Value="True">
-                                    <Setter Property="Icon">
-                                        <Setter.Value>
-                                            <FontImageSource Size="20"
-                                                             Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}"
-                                                             Glyph="{x:Static views:IconFont.DotsHorizontal}"
-                                                             FontFamily="MaterialIcons" />
-                                        </Setter.Value>
-                                    </Setter>
-                                </Trigger>
+                                    <Trigger TargetType="Tab" Property="IsChecked" Value="False">
+                                        <Setter Property="Icon">
+                                            <Setter.Value>
+                                                <FontImageSource Size="20"
+                                                                 Color="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray100}}"
+                                                                 Glyph="{x:Static views:IconFont.DotsHorizontal}"
+                                                                 FontFamily="MaterialIcons" />
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Tab.Style>
+                        <ShellContent>
+                            <overflowMenu:OverflowMenuPage />
+                        </ShellContent>
+                    </Tab>
+                </TabBar>
+            </On>
 
-                                <Trigger TargetType="Tab" Property="IsChecked" Value="False">
-                                    <Setter Property="Icon">
-                                        <Setter.Value>
-                                            <FontImageSource Size="20"
-                                                             Color="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray100}}"
-                                                             Glyph="{x:Static views:IconFont.DotsHorizontal}"
-                                                             FontFamily="MaterialIcons" />
-                                        </Setter.Value>
-                                    </Setter>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Tab.Style>
-                    <ShellContent>
-                        <overflowMenu:OverflowMenuPage />
-                    </ShellContent>
-                </Tab>
-            </TabBar>
-        </On>
+            <On Platform="Android">
+                <TabBar>
+                    <Tab Title="{x:Static resources:Translations.HomeTitle}">
+                        <Tab.Icon>
+                            <FontImageSource FontFamily="MaterialIcons"
+                                             Glyph="{x:Static views:IconFont.HomeOutline}"
+                                             Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
+                                             Size="24" />
+                        </Tab.Icon>
+                        <ShellContent>
+                            <dashboard:DashboardPage />
+                        </ShellContent>
+                    </Tab>
 
-        <On Platform="Android">
-            <TabBar>
-                <Tab Title="{x:Static resources:Translations.HomeTitle}">
-                    <Tab.Icon>
-                        <FontImageSource FontFamily="MaterialIcons"
-                                         Glyph="{x:Static views:IconFont.HomeOutline}"
-                                         Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
-                                         Size="24" />
-                    </Tab.Icon>
-                    <ShellContent>
-                        <dashboard:DashboardPage />
-                    </ShellContent>
-                </Tab>
+                    <Tab Title="{x:Static resources:Translations.StatisticsTitle}">
+                        <Tab.Icon>
+                            <FontImageSource FontFamily="MaterialIcons"
+                                             Glyph="{x:Static views:IconFont.ChartArc}"
+                                             Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
+                                             Size="24" />
+                        </Tab.Icon>
+                        <ShellContent Title="{x:Static resources:Translations.StatisticsTitle}">
+                            <selector:StatisticSelectorPage />
+                        </ShellContent>
+                    </Tab>
 
-                <Tab Title="{x:Static resources:Translations.StatisticsTitle}">
-                    <Tab.Icon>
-                        <FontImageSource FontFamily="MaterialIcons"
-                                         Glyph="{x:Static views:IconFont.ChartArc}"
-                                         Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
-                                         Size="24" />
-                    </Tab.Icon>
-                    <ShellContent Title="{x:Static resources:Translations.StatisticsTitle}">
-                        <selector:StatisticSelectorPage />
-                    </ShellContent>
-                </Tab>
-
-                <Tab Title="{x:Static resources:Translations.MoreTitle}">
-                    <Tab.Icon>
-                        <FontImageSource FontFamily="MaterialIcons"
-                                         Glyph="{x:Static views:IconFont.DotsHorizontal}"
-                                         Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
-                                         Size="24" />
-                    </Tab.Icon>
-                    <ShellContent>
-                        <overflowMenu:OverflowMenuPage />
-                    </ShellContent>
-                </Tab>
-            </TabBar>
-        </On>
-    </OnPlatform>
+                    <Tab Title="{x:Static resources:Translations.MoreTitle}">
+                        <Tab.Icon>
+                            <FontImageSource FontFamily="MaterialIcons"
+                                             Glyph="{x:Static views:IconFont.DotsHorizontal}"
+                                             Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
+                                             Size="24" />
+                        </Tab.Icon>
+                        <ShellContent>
+                            <overflowMenu:OverflowMenuPage />
+                        </ShellContent>
+                    </Tab>
+                </TabBar>
+            </On>
+        </OnPlatform>
+    </ShellContent>
 </Shell>
