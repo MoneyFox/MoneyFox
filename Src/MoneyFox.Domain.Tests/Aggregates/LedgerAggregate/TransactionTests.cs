@@ -18,7 +18,6 @@ public class TransactionTests
             reference: testTransaction.Reference,
             type: TransactionType.Income,
             amount: new(amount: -13, currency: Currencies.EUR),
-            ledgerBalance: new (50, Currencies.EUR),
             bookingDate: testTransaction.BookingDate,
             categoryId: testTransaction.CategoryId,
             note: testTransaction.Note);
@@ -38,7 +37,6 @@ public class TransactionTests
             reference: testTransaction.Reference,
             type: TransactionType.Expense,
             amount: new(amount: 13, currency: Currencies.EUR),
-            ledgerBalance: new (50, Currencies.EUR),
             bookingDate: testTransaction.BookingDate,
             categoryId: testTransaction.CategoryId,
             note: testTransaction.Note);
@@ -58,7 +56,6 @@ public class TransactionTests
             reference: testTransaction.Reference,
             type: testTransaction.Type,
             amount: testTransaction.Amount,
-            ledgerBalance: testTransaction.LedgerBalance,
             bookingDate: testTransaction.BookingDate,
             categoryId: testTransaction.CategoryId,
             note: testTransaction.Note);
@@ -70,8 +67,6 @@ public class TransactionTests
             transaction.Reference.Should().Be(testTransaction.Reference);
             transaction.Type.Should().Be(testTransaction.Type);
             transaction.Amount.Should().Be(testTransaction.Amount);
-            transaction.LedgerBalance.Should().Be(testTransaction.LedgerBalance);
-            transaction.LedgerBalance.Currency.Should().Be(testTransaction.Amount.Currency);
             transaction.BookingDate.Should().Be(testTransaction.BookingDate);
             transaction.CategoryId.Should().Be(testTransaction.CategoryId);
             transaction.Note.Should().Be(testTransaction.Note);
