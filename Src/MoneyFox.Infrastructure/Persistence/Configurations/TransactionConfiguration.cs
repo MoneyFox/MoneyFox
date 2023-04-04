@@ -21,14 +21,6 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 m.Property(p => p.Currency).HasColumnName("Currency");
             });
 
-        builder.OwnsOne(
-            navigationExpression: l => l.LedgerBalance,
-            buildAction: m =>
-            {
-                m.Property(p => p.Amount).HasColumnName("LedgerBalance");
-                m.Property(p => p.Currency).HasColumnName("LedgerCurrency");
-            });
-
         builder.Property(p => p.BookingDate).IsRequired();
 
         builder.Property(b => b.Created);
