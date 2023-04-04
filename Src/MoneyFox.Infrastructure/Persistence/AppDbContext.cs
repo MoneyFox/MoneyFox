@@ -30,17 +30,18 @@ public class AppDbContext : DbContext, IAppDbContext
         this.settingsFacade = settingsFacade;
     }
 
+    public DbSet<Transaction> Transactions { get; set; } = null!;
+
     public DbSet<Budget> Budgets { get; set; } = null!;
 
     public DbSet<Account> Accounts { get; set; } = null!;
-
-    public DbSet<Ledger> Ledgers { get; set; } = null!;
 
     public DbSet<Payment> Payments { get; set; } = null!;
 
     public DbSet<RecurringPayment> RecurringPayments { get; set; } = null!;
 
     public DbSet<Category> Categories { get; set; } = null!;
+    public DbSet<Ledger> Ledgers { get; set; } = null!;
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
