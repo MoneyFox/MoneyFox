@@ -4,11 +4,11 @@ using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Core.Features.LedgerCreation;
 
-public sealed class CreateLedgerTests : InMemoryTestBase
+public sealed class CreateLedgerHandlerTests : InMemoryTestBase
 {
     private readonly CreateLedger.Handler handler;
 
-    public CreateLedgerTests()
+    public CreateLedgerHandlerTests()
     {
         handler = new(Context);
     }

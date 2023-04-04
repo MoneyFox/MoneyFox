@@ -38,9 +38,4 @@
         </AssemblyAttribute>
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Features\BackupUpload\" />
-      <Folder Include="Features\DbBackup\" />
-    </ItemGroup>
-
 </Project>
