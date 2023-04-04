@@ -30,6 +30,5 @@ public sealed class CreateLedgerHandlerTests : InMemoryTestBase
         dbLedger.CurrentBalance.Should().Be(testLedger.CurrentBalance);
         dbLedger.Note.Should().Be(testLedger.Note);
         dbLedger.IsExcludeFromEndOfMonthSummary.Should().Be(testLedger.IsExcludeFromEndOfMonthSummary);
-        dbLedger.Transactions.Should().BeEmpty().And.NotBeNull();
     }
 }

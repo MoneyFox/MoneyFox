@@ -61,14 +61,6 @@ public class Ledger : EntityBase
         private set;
     }
 
-    public ImmutableList<Transaction> Transactions
-    {
-        get;
-
-        [UsedImplicitly]
-        private set;
-    } = ImmutableList<Transaction>.Empty;
-
     public static Ledger Create(string name, Money currentBalance, string? note = null, bool isExcluded = false)
     {
         return string.IsNullOrWhiteSpace(name)

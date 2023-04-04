@@ -28,36 +28,5 @@ public class LedgerConfiguration : IEntityTypeConfiguration<Ledger>
 
         builder.Property(b => b.Created);
         builder.Property(b => b.LastModified);
-
-        builder.OwnsMany(
-            navigationExpression: ledger => ledger.Transactions,
-            buildAction: t =>
-            {
-                t.Property(i => i.Id)
-                    .ValueGeneratedOnAdd()
-                    .HasConversion(convertToProviderExpression: v => v.Value, convertFromProviderExpression: v => new(v));
-
-                t.Property(p => p.Type).IsRequired();
-                t.OwnsOne(
-                    navigationExpression: l => l.Amount,
-                    buildAction: m =>
-                    {
-                        m.Property(p => p.Amount).HasColumnName("Amount");
-                        m.Property(p => p.Currency).HasColumnName("Currency");
-                    });
-
-                t.OwnsOne(
-                    navigationExpression: l => l.LedgerBalance,
-                    buildAction: m =>
-                    {
-                        m.Property(p => p.Amount).HasColumnName("LedgerBalance");
-                        m.Property(p => p.Currency).HasColumnName("LedgerCurrency");
-                    });
-
-                t.Property(p => p.BookingDate).IsRequired();
-
-                builder.Property(b => b.Created);
-                builder.Property(b => b.LastModified);
-            });
     }
 }
