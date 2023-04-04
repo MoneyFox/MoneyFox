@@ -1,9 +1,9 @@
-namespace MoneyFox.Core.Tests.Features;
+namespace MoneyFox.Core.Tests.Features.BudgetUpdate;
 
 using System.Collections.Immutable;
-using Core.Features.BudgetUpdate;
-using Domain.Tests.TestFramework;
 using Microsoft.EntityFrameworkCore;
+using MoneyFox.Core.Features.BudgetUpdate;
+using MoneyFox.Domain.Tests.TestFramework;
 using static Domain.Tests.TestFramework.BudgetAssertion;
 
 public sealed class UpdateBudgetTests : InMemoryTestBase

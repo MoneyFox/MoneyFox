@@ -1,7 +1,7 @@
-namespace MoneyFox.Core.Tests.Features;
+namespace MoneyFox.Core.Tests.Features.BudgetCreation;
 
-using Core.Features.BudgetCreation;
-using Domain.Tests.TestFramework;
+using MoneyFox.Core.Features.BudgetCreation;
+using MoneyFox.Domain.Tests.TestFramework;
 using static Domain.Tests.TestFramework.BudgetAssertion;
 
 public sealed class CreateBudgetTests : InMemoryTestBase

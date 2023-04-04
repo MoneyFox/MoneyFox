@@ -1,8 +1,8 @@
-﻿namespace MoneyFox.Core.Tests.Features;
+﻿namespace MoneyFox.Core.Tests.Features.LedgerCreation;
 
-using Core.Features.LedgerCreation;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
+using MoneyFox.Core.Features.LedgerCreation;
 
 public sealed class CreateLedgerTests : InMemoryTestBase
 {

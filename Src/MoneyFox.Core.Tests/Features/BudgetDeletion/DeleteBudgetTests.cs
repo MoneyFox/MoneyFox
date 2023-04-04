@@ -1,8 +1,8 @@
-namespace MoneyFox.Core.Tests.Features;
+namespace MoneyFox.Core.Tests.Features.BudgetDeletion;
 
-using Core.Features.BudgetDeletion;
-using Domain.Tests.TestFramework;
 using FluentAssertions;
+using MoneyFox.Core.Features.BudgetDeletion;
+using MoneyFox.Domain.Tests.TestFramework;
 
 public sealed class DeleteBudgetTests : InMemoryTestBase
 {
