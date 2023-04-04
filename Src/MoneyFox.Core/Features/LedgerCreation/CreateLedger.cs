@@ -10,7 +10,26 @@ using MediatR;
 
 internal static class CreateLedger
 {
-    public sealed record Command(string Name, Money CurrentBalance, string? Note, bool IsExcludeFromEndOfMonthSummary) : IRequest<Unit>;
+    public sealed record Command : IRequest<Unit>
+    {
+        public Command(string name, Money currentBalance, string? note, bool isExcludeFromEndOfMonthSummary)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentException(nameof(name));
+            }
+
+            Name = name;
+            CurrentBalance = currentBalance;
+            Note = note;
+            IsExcludeFromEndOfMonthSummary = isExcludeFromEndOfMonthSummary;
+        }
+
+        public string Name { get; }
+        public Money CurrentBalance { get; }
+        public string? Note { get; }
+        public bool IsExcludeFromEndOfMonthSummary { get; }
+    }
 
     public sealed class Handler : IRequestHandler<Command, Unit>
     {
@@ -23,7 +42,12 @@ internal static class CreateLedger
 
         public async Task<Unit> Handle(Command command, CancellationToken cancellationToken)
         {
-            var ledger = Ledger.Create(command.Name, command.CurrentBalance, command.Note, command.IsExcludeFromEndOfMonthSummary);
+            var ledger = Ledger.Create(
+                name: command.Name,
+                currentBalance: command.CurrentBalance,
+                note: command.Note,
+                isExcluded: command.IsExcludeFromEndOfMonthSummary);
+
             dbContext.Add(ledger);
             await dbContext.SaveChangesAsync(cancellationToken);
 
