@@ -14,7 +14,7 @@ public sealed class CreateLedgerHandlerTests : InMemoryTestBase
     }
 
     [Fact]
-    public async Task LedgerCreatedCorrectly()
+    public async Task CreatesLedgerCorrectly()
     {
         // Arrange
         var testLedger = new TestData.SavingsLedger();
