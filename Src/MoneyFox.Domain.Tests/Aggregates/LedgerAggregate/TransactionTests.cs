@@ -11,7 +11,7 @@ public class TransactionTests
     public void ValidateThatIncomeHasPositiveAmount()
     {
         // Arrange
-        var testTransaction = new TestData.SavingsLedger.SalaryTransaction();
+        var testTransaction = new TestData.SalaryTransaction();
 
         // Act
         var act = () => Transaction.Create(
@@ -30,7 +30,7 @@ public class TransactionTests
     public void ValidateThatExpanseHasNegativeAmount()
     {
         // Arrange
-        var testTransaction = new TestData.SavingsLedger.SalaryTransaction();
+        var testTransaction = new TestData.SalaryTransaction();
 
         // Act
         var act = () => Transaction.Create(
@@ -49,7 +49,7 @@ public class TransactionTests
     public void TransactionCorrectlyCreated()
     {
         // Arrange
-        var testTransaction = new TestData.SavingsLedger.SalaryTransaction();
+        var testTransaction = new TestData.SalaryTransaction();
 
         // Act
         var transaction = Transaction.Create(

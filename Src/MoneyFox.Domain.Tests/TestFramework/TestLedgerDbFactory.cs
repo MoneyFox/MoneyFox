@@ -8,15 +8,4 @@ internal static class TestLedgerDbFactory
     {
         return Ledger.Create(name: ledger.Name, currentBalance: ledger.CurrentBalance, note: ledger.Note, isExcluded: ledger.IsExcludeFromEndOfMonthSummary);
     }
-
-    internal static Transaction CreateDbTransaction(this TestData.ILedger.ITransaction transaction)
-    {
-        return Transaction.Create(
-            reference: transaction.Reference,
-            type: transaction.Type,
-            amount: transaction.Amount,
-            bookingDate: transaction.BookingDate,
-            categoryId: transaction.CategoryId,
-            note: transaction.Note);
-    }
 }
