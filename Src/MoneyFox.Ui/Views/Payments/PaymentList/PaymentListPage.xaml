@@ -74,7 +74,7 @@
                             <controls:Card Grid.Column="1"
                                            Padding="12"
                                            Margin="0,6,0,0"
-                                           HeightRequest="55"
+                                           HeightRequest="60"
                                            Opacity="{Binding Date, Converter={StaticResource DateGroupCardOpacityConverter}}">
 
                                 <controls:Card.GestureRecognizers>
@@ -100,7 +100,7 @@
 
                                     <Grid ColumnDefinitions="*, Auto">
                                         <Label Grid.Column="0" 
-                                               Style="{StaticResource TextBodySecondary}"
+                                               Style="{StaticResource TextCaptionSecondary}"
                                                LineBreakMode="TailTruncation"
                                                Text="{Binding Note}" />
 
