@@ -98,7 +98,7 @@
                                                HorizontalOptions="End" />
                                     </Grid>
 
-                                    <Grid ColumnDefinitions="*, Auto">
+                                    <Grid ColumnDefinitions="1*, Auto">
                                         <Label Grid.Column="0" 
                                                Style="{StaticResource TextCaptionSecondary}"
                                                LineBreakMode="TailTruncation"
