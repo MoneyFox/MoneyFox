@@ -81,7 +81,7 @@
         <PackageReference Include="Serilog.Sinks.File" Version="5.0.0"/>
         <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4"/>
         <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0"/>
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.56.0.67649">
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="9.0.0.68202">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
