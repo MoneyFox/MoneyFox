@@ -74,7 +74,7 @@
                             <controls:Card Grid.Column="1"
                                            Padding="12"
                                            Margin="0,6,0,0"
-                                           HeightRequest="55"
+                                           HeightRequest="60"
                                            Opacity="{Binding Date, Converter={StaticResource DateGroupCardOpacityConverter}}">
 
                                 <controls:Card.GestureRecognizers>
@@ -98,12 +98,14 @@
                                                HorizontalOptions="End" />
                                     </Grid>
 
-                                    <Grid>
-                                        <Label Style="{StaticResource TextBodySecondary}"
+                                    <Grid ColumnDefinitions="1*, Auto">
+                                        <Label Grid.Column="0" 
+                                               Style="{StaticResource TextCaptionSecondary}"
                                                LineBreakMode="TailTruncation"
                                                Text="{Binding Note}" />
 
-                                        <HorizontalStackLayout HorizontalOptions="End">
+                                        <HorizontalStackLayout HorizontalOptions="End"
+                                                               Grid.Column="1" >
                                             <Image HeightRequest="15"
                                                    IsVisible="{Binding IsTransfer}"
                                                    WidthRequest="15">

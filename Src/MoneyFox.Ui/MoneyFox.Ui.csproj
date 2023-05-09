@@ -70,9 +70,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="CommunityToolkit.Maui" Version="5.0.0"/>
+        <PackageReference Include="CommunityToolkit.Maui" Version="5.1.0"/>
         <PackageReference Include="JetBrains.Annotations" Version="2022.3.1"/>
-        <PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-beta.701"/>
+        <PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-beta.710"/>
         <PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.1"/>
         <PackageReference Include="Microsoft.AppCenter.Crashes" Version="5.0.1"/>
         <PackageReference Include="Plugin.StoreReview" Version="5.0.1"/>
@@ -81,7 +81,7 @@
         <PackageReference Include="Serilog.Sinks.File" Version="5.0.0"/>
         <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4"/>
         <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0"/>
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.55.0.65544">
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="9.0.0.68202">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
