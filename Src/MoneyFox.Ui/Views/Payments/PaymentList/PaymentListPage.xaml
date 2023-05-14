@@ -99,13 +99,13 @@
                                     </Grid>
 
                                     <Grid ColumnDefinitions="1*, Auto">
-                                        <Label Grid.Column="0" 
+                                        <Label Grid.Column="0"
                                                Style="{StaticResource TextCaptionSecondary}"
                                                LineBreakMode="TailTruncation"
                                                Text="{Binding Note}" />
 
                                         <HorizontalStackLayout HorizontalOptions="End"
-                                                               Grid.Column="1" >
+                                                               Grid.Column="1">
                                             <Image HeightRequest="15"
                                                    IsVisible="{Binding IsTransfer}"
                                                    WidthRequest="15">
