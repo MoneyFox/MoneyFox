@@ -2,7 +2,7 @@ namespace MoneyFox.Core.Tests.Queries;
 
 using System.Collections.Immutable;
 using Core.Common;
-using Core.Queries.BudgetListLoading;
+using Core.Queries.BudgetList;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Tests.TestFramework;
 using FluentAssertions;
@@ -91,7 +91,7 @@ public sealed class LoadBudgetListDataTests : InMemoryTestBase
         // Assert
         result.Should().HaveCount(1);
         var budgetListData = result.Single();
-        var expectedCurrentSpending = (testExpense1.Amount + testExpense2.Amount) / (numberOfMonths - 1);
+        var expectedCurrentSpending = testExpense1.Amount + testExpense2.Amount;
         AssertBudgetListData(actualBudgetListData: budgetListData, expectedBudgetTestData: testBudget, expectedCurrentSpending: expectedCurrentSpending);
     }
 

@@ -1,4 +1,4 @@
-namespace MoneyFox.Core.Queries.BudgetListLoading;
+namespace MoneyFox.Core.Queries.BudgetList;
 
 public class BudgetListData
 {

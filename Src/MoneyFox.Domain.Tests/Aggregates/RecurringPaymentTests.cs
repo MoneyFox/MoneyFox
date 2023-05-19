@@ -18,7 +18,7 @@ public class RecurringPaymentTests
                 amount: 123,
                 type: PaymentType.Expense,
                 recurrence: PaymentRecurrence.Daily,
-                chargedAccount: null,
+                chargedAccount: null!,
                 isLastDayOfMonth: false,
                 note: "note"));
     }

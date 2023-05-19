@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;
-using Core.Queries.BudgetListLoading;
+using Core.Queries.BudgetList;
 using MediatR;
 
 public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<BudgetsChangedMessage>
