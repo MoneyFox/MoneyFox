@@ -1,6 +1,5 @@
 namespace MoneyFox.Core.Queries.BudgetListLoading;
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -30,7 +29,7 @@ public static class LoadBudgetListData
         public async Task<IReadOnlyCollection<BudgetListData>> Handle(Query request, CancellationToken cancellationToken)
         {
             var budgets = await appDbContext.Budgets.ToListAsync(cancellationToken);
-            List<BudgetListData> budgetListDataList = new();
+            var budgetListDataList = new List<BudgetListData>();
             foreach (var budget in budgets)
             {
                 var thresholdDate = systemDateHelper.Today.GetFirstDayOfMonth().AddMonths(-(budget.Interval.NumberOfMonths - 1));
@@ -48,13 +47,6 @@ public static class LoadBudgetListData
                     continue;
                 }
 
-                var timeDeltaFirstPaymentAndNow = systemDateHelper.Now.Date - thresholdDate.Date;
-                var numberOfMonthsInRange = (int)Math.Floor(timeDeltaFirstPaymentAndNow.TotalDays / 30);
-                if (numberOfMonthsInRange == 0)
-                {
-                    numberOfMonthsInRange = 1;
-                }
-
                 // Since sum is not supported for decimal in Ef Core with SQLite we have to do this in two steps
                 var currentSpending = payments.Sum(selector: p => p.Type == PaymentType.Expense ? p.Amount : -p.Amount);
                 if (currentSpending < 0)
@@ -62,8 +54,7 @@ public static class LoadBudgetListData
                     currentSpending = 0;
                 }
 
-                var monthlyAverage = currentSpending / numberOfMonthsInRange;
-                budgetListDataList.Add(new(id: budget.Id.Value, name: budget.Name, spendingLimit: budget.SpendingLimit, currentSpending: monthlyAverage));
+                budgetListDataList.Add(new(id: budget.Id.Value, name: budget.Name, spendingLimit: budget.SpendingLimit, currentSpending: currentSpending));
             }
 
             return budgetListDataList;
