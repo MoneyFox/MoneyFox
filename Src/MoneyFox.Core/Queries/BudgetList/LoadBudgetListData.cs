@@ -1,15 +1,15 @@
-namespace MoneyFox.Core.Queries.BudgetListLoading;
+namespace MoneyFox.Core.Queries.BudgetList;
 
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Common;
-using Common.Extensions;
-using Common.Interfaces;
-using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using MoneyFox.Core.Common;
+using MoneyFox.Core.Common.Extensions;
+using MoneyFox.Core.Common.Interfaces;
+using MoneyFox.Domain.Aggregates.AccountAggregate;
 
 public static class LoadBudgetListData
 {
