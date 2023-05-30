@@ -32,6 +32,7 @@ public static class LoadBudgetDataForList
             var budgetListDataList = new List<BudgetData>();
             foreach (var budget in budgets)
             {
+                var monthlyBudget = budget.SpendingLimit / budget.Interval;
                 var thresholdDate = systemDateHelper.Today.GetFirstDayOfMonth().AddMonths(-(budget.Interval.NumberOfMonths - 1));
                 var payments = await appDbContext.Payments.Where(p => p.Type != PaymentType.Transfer)
                     .Where(p => p.CategoryId != null)
@@ -42,7 +43,13 @@ public static class LoadBudgetDataForList
 
                 if (payments.Any() is false)
                 {
-                    budgetListDataList.Add(new(id: budget.Id.Value, name: budget.Name, spendingLimit: budget.SpendingLimit, currentSpending: 0));
+                    budgetListDataList.Add(
+                        new(
+                            id: budget.Id.Value,
+                            name: budget.Name,
+                            spendingLimit: budget.SpendingLimit,
+                            currentSpending: 0,
+                            monthlyBudget: monthlyBudget));
 
                     continue;
                 }
@@ -54,7 +61,13 @@ public static class LoadBudgetDataForList
                     currentSpending = 0;
                 }
 
-                budgetListDataList.Add(new(id: budget.Id.Value, name: budget.Name, spendingLimit: budget.SpendingLimit, currentSpending: currentSpending));
+                budgetListDataList.Add(
+                    new(
+                        id: budget.Id.Value,
+                        name: budget.Name,
+                        spendingLimit: budget.SpendingLimit,
+                        currentSpending: currentSpending,
+                        monthlyBudget: monthlyBudget));
             }
 
             return budgetListDataList;

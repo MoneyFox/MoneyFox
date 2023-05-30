@@ -8,12 +8,12 @@ using Domain.Tests.TestFramework;
 using FluentAssertions;
 using NSubstitute;
 
-public sealed class LoadBudgetListDataTests : InMemoryTestBase
+public sealed class LoadBudgetDataForListTests : InMemoryTestBase
 {
     private readonly LoadBudgetDataForList.Handler handler;
     private readonly ISystemDateHelper systemDateHelper;
 
-    public LoadBudgetListDataTests()
+    public LoadBudgetDataForListTests()
     {
         systemDateHelper = Substitute.For<ISystemDateHelper>();
         systemDateHelper.Today.Returns(DateTime.Today);
@@ -222,5 +222,6 @@ public sealed class LoadBudgetListDataTests : InMemoryTestBase
         actualBudgetData.Name.Should().Be(expectedBudgetTestData.Name);
         actualBudgetData.SpendingLimit.Should().BeApproximately(expectedValue: expectedBudgetTestData.SpendingLimit, precision: 0.01m);
         actualBudgetData.CurrentSpending.Should().BeApproximately(expectedValue: expectedCurrentSpending, precision: 0.01m);
+        actualBudgetData.MonthlyBudget.Should().BeApproximately(expectedValue: expectedCurrentSpending / expectedBudgetTestData.Interval, precision: 0.01m);
     }
 }

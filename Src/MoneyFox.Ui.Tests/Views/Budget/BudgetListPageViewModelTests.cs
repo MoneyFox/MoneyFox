@@ -98,7 +98,8 @@ public abstract class BudgetListPageViewModelTests
                             id: budgetTestData1.Id,
                             name: "Beverages",
                             spendingLimit: budgetTestData1.SpendingLimit,
-                            currentSpending: budgetTestData1.CurrentSpending),
+                            currentSpending: budgetTestData1.CurrentSpending,
+                            ),
                         new BudgetData(
                             id: budgetTestData1.Id,
                             name: "Apples",
