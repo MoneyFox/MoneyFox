@@ -1,8 +1,8 @@
 namespace MoneyFox.Core.Queries.BudgetList;
 
-public class BudgetListData
+public class BudgetData
 {
-    public BudgetListData(int id, string name, decimal spendingLimit, decimal currentSpending)
+    public BudgetData(int id, string name, decimal spendingLimit, decimal currentSpending)
     {
         Id = id;
         Name = name;

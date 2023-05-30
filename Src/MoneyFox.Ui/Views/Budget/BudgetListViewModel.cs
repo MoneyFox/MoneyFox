@@ -35,7 +35,7 @@ public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<BudgetsC
 
     private async Task Initialize()
     {
-        var budgetsListData = await sender.Send(new LoadBudgetListData.Query());
+        var budgetsListData = await sender.Send(new LoadBudgetDataForList.Query());
         Budgets.Clear();
         Budgets.AddRange(
             budgetsListData.OrderBy(bld => bld.Name)

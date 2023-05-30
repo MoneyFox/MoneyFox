@@ -11,11 +11,11 @@ using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-public static class LoadBudgetListData
+public static class LoadBudgetDataForList
 {
-    public class Query : IRequest<IReadOnlyCollection<BudgetListData>> { }
+    public class Query : IRequest<IReadOnlyCollection<BudgetData>> { }
 
-    public class Handler : IRequestHandler<Query, IReadOnlyCollection<BudgetListData>>
+    public class Handler : IRequestHandler<Query, IReadOnlyCollection<BudgetData>>
     {
         private readonly IAppDbContext appDbContext;
         private readonly ISystemDateHelper systemDateHelper;
@@ -26,10 +26,10 @@ public static class LoadBudgetListData
             this.systemDateHelper = systemDateHelper;
         }
 
-        public async Task<IReadOnlyCollection<BudgetListData>> Handle(Query request, CancellationToken cancellationToken)
+        public async Task<IReadOnlyCollection<BudgetData>> Handle(Query request, CancellationToken cancellationToken)
         {
             var budgets = await appDbContext.Budgets.ToListAsync(cancellationToken);
-            var budgetListDataList = new List<BudgetListData>();
+            var budgetListDataList = new List<BudgetData>();
             foreach (var budget in budgets)
             {
                 var thresholdDate = systemDateHelper.Today.GetFirstDayOfMonth().AddMonths(-(budget.Interval.NumberOfMonths - 1));

@@ -49,10 +49,10 @@ public abstract class BudgetListPageViewModelTests
         public WithBudgetAvailable()
         {
             budgetTestData = new();
-            sender.Send(Arg.Any<LoadBudgetListData.Query>())
+            sender.Send(Arg.Any<LoadBudgetDataForList.Query>())
                 .Returns(
                     ImmutableList.Create(
-                        new BudgetListData(
+                        new BudgetData(
                             id: budgetTestData.Id,
                             name: budgetTestData.Name,
                             spendingLimit: budgetTestData.SpendingLimit,
@@ -91,15 +91,15 @@ public abstract class BudgetListPageViewModelTests
         public WithMultipleBudgetAvailable()
         {
             TestData.DefaultBudget budgetTestData1 = new();
-            _ = sender.Send(Arg.Any<LoadBudgetListData.Query>())
+            _ = sender.Send(Arg.Any<LoadBudgetDataForList.Query>())
                 .Returns(
                     ImmutableList.Create(
-                        new BudgetListData(
+                        new BudgetData(
                             id: budgetTestData1.Id,
                             name: "Beverages",
                             spendingLimit: budgetTestData1.SpendingLimit,
                             currentSpending: budgetTestData1.CurrentSpending),
-                        new BudgetListData(
+                        new BudgetData(
                             id: budgetTestData1.Id,
                             name: "Apples",
                             spendingLimit: budgetTestData1.SpendingLimit,
