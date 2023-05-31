@@ -56,7 +56,8 @@ public abstract class BudgetListPageViewModelTests
                             id: budgetTestData.Id,
                             name: budgetTestData.Name,
                             spendingLimit: budgetTestData.SpendingLimit,
-                            currentSpending: budgetTestData.CurrentSpending)));
+                            currentSpending: budgetTestData.CurrentSpending,
+                            budgetTestData.MonthlyBudget)));
         }
 
         [Fact]
@@ -99,12 +100,13 @@ public abstract class BudgetListPageViewModelTests
                             name: "Beverages",
                             spendingLimit: budgetTestData1.SpendingLimit,
                             currentSpending: budgetTestData1.CurrentSpending,
-                            ),
+                            monthlyBudget: budgetTestData1.MonthlyBudget),
                         new BudgetData(
                             id: budgetTestData1.Id,
                             name: "Apples",
                             spendingLimit: budgetTestData1.SpendingLimit,
-                            currentSpending: budgetTestData1.CurrentSpending)));
+                            currentSpending: budgetTestData1.CurrentSpending,
+                            monthlyBudget: budgetTestData1.MonthlyBudget)));
         }
 
         [Fact]
