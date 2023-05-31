@@ -18,7 +18,7 @@
         <PackageReference Include="Serilog" Version="2.12.0"/>
         <PackageReference Include="Flurl.Http" Version="3.2.4"/>
         <PackageReference Include="Microsoft.Identity.Client" Version="4.54.1"/>
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="9.1.0.70676">
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="9.2.0.71021">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
