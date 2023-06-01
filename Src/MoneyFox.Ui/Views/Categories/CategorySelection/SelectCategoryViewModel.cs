@@ -15,7 +15,6 @@ internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<Ca
 {
     public const string SELECTED_CATEGORY_ID_PARAM = "selectedCategoryId";
     private readonly IDialogService dialogService;
-    private readonly IMapper mapper;
     private readonly IMediator mediator;
     private readonly INavigationService navigationService;
 
@@ -24,7 +23,6 @@ internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<Ca
     public SelectCategoryViewModel(IDialogService dialogService, IMapper mapper, IMediator mediator, INavigationService navigationService)
     {
         this.dialogService = dialogService;
-        this.mapper = mapper;
         this.mediator = mediator;
         this.navigationService = navigationService;
     }
