@@ -7,7 +7,7 @@ using UIKit;
 // when the keyboard shows to avoid hiding input fields.
 // Inspired by Keyboard Overlap Xamarin Forms plugin:
 // https://github.com/lelebs/Xamarin.Forms.Plugins/blob/master/KeyboardOverlap/KeyboardOverlap/KeyboardOverlap.Forms.Plugin.iOSUnified/KeyboardOverlapRenderer.cs
-public static class UIViewExtensions
+public static class UiViewExtensions
 {
     /// <summary>
     ///     Find the first responder in the <paramref name="view" />'s subview hierarchy
