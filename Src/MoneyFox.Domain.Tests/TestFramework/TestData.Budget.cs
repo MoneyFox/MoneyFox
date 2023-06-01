@@ -11,6 +11,7 @@ internal static partial class TestData
         public string Name { get; set; } = "Beverages";
         public SpendingLimit SpendingLimit { get; set; } = new(100.50m);
         public decimal CurrentSpending { get; set; } = 60.20m;
+        public decimal MonthlyBudget => SpendingLimit / Interval;
         public BudgetInterval Interval { get; set; } = new(1);
         public BudgetTimeRange BudgetTimeRange { get; set; } = BudgetTimeRange.Last2Years;
         public IReadOnlyList<int> Categories { get; set; } = ImmutableList.Create(11);
@@ -22,6 +23,7 @@ internal static partial class TestData
         string Name { get; }
         SpendingLimit SpendingLimit { get; }
         decimal CurrentSpending { get; }
+        decimal MonthlyBudget { get; }
         BudgetInterval Interval { get; }
         BudgetTimeRange BudgetTimeRange { get; }
         IReadOnlyList<int> Categories { get; }
