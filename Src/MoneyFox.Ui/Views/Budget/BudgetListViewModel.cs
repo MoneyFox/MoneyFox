@@ -45,7 +45,8 @@ public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<BudgetsC
                         Id = bld.Id,
                         Name = bld.Name,
                         SpendingLimit = bld.SpendingLimit,
-                        CurrentSpending = bld.CurrentSpending
+                        CurrentSpending = bld.CurrentSpending,
+                        MonthlyBudget = bld.MonthlyBudget
                     }));
 
         OnPropertyChanged(nameof(BudgetedAmount));

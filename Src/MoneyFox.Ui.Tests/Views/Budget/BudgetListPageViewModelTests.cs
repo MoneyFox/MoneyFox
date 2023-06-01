@@ -25,6 +25,8 @@ public abstract class BudgetListPageViewModelTests
         actualBudgetVm.Name.Should().Be(expectedBudgetData.Name);
         actualBudgetVm.SpendingLimit.Should().Be(expectedBudgetData.SpendingLimit);
         actualBudgetVm.CurrentSpending.Should().Be(expectedBudgetData.CurrentSpending);
+        actualBudgetVm.CurrentSpending.Should().Be(expectedBudgetData.CurrentSpending);
+        actualBudgetVm.MonthlyBudget.Should().Be(expectedBudgetData.MonthlyBudget);
     }
 
     [Collection(nameof(BudgetListPageViewModelTests))]
