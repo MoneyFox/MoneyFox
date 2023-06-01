@@ -98,7 +98,7 @@
 
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="accounts:AccountViewModel">
-                                <Grid Padding="10,15,10,15" WidthRequest="180">
+                                <Grid Padding="0,12,7,12" Margin="3" WidthRequest="180">
                                     <controls:Card HeightRequest="80">
 
                                         <controls:Card.GestureRecognizers>
