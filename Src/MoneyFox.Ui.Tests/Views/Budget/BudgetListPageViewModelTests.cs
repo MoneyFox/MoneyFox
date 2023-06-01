@@ -108,7 +108,7 @@ public abstract class BudgetListPageViewModelTests
                             name: "Apples",
                             spendingLimit: budgetTestData1.SpendingLimit,
                             currentSpending: budgetTestData1.CurrentSpending,
-                            monthlyBudget: budgetTestData1.MonthlyBudget)));
+                            monthlyBudget: budgetTestData1.MonthlyBudget * 2)));
         }
 
         [Fact]
@@ -130,7 +130,7 @@ public abstract class BudgetListPageViewModelTests
             await viewModel.InitializeCommand.ExecuteAsync(null);
 
             // Assert
-            var expectedAmount = viewModel.Budgets.ToList().Sum(b => b.SpendingLimit);
+            var expectedAmount = viewModel.Budgets.ToList().Sum(b => b.MonthlyBudget);
             _ = viewModel.BudgetedAmount.Should().Be(expectedAmount);
         }
     }

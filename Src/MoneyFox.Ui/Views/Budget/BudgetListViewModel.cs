@@ -20,7 +20,7 @@ public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<BudgetsC
 
     public ObservableCollection<BudgetListItemViewModel> Budgets { get; } = new();
 
-    public decimal BudgetedAmount => Budgets.Sum(b => b.SpendingLimit);
+    public decimal BudgetedAmount => Budgets.Sum(b => b.MonthlyBudget);
 
     public AsyncRelayCommand InitializeCommand => new(Initialize);
 
