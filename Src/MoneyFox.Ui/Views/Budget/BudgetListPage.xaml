@@ -44,7 +44,7 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="budget:BudgetListItemViewModel">
                         <Grid Padding="12,6,12,8">
-                            <controls:Card HeightRequest="80" Padding="12">
+                            <controls:Card HeightRequest="85" Padding="12">
                                 <Border.GestureRecognizers>
                                     <TapGestureRecognizer
                                         Command="{Binding ViewModel.EditBudgetCommand, Source={x:Reference BudgetList}}"
@@ -55,8 +55,9 @@
                                     <Label Style="{StaticResource TextHead}"
                                            Text="{Binding Name}" />
 
-                                    <ProgressBar Progress="{Binding SpendingPercentage}" />
-
+                                    <Border StrokeShape="RoundRectangle 40" StrokeThickness="0" >
+                                        <ProgressBar Progress="{Binding SpendingPercentage}" HeightRequest="4" />
+                                    </Border>
                                     <Grid>
                                         <Label
                                             Text="{Binding CurrentSpending, Converter={StaticResource AmountFormatConverter}}"
