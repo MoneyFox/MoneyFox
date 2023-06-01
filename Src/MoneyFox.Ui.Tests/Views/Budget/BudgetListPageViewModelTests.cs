@@ -25,6 +25,8 @@ public abstract class BudgetListPageViewModelTests
         actualBudgetVm.Name.Should().Be(expectedBudgetData.Name);
         actualBudgetVm.SpendingLimit.Should().Be(expectedBudgetData.SpendingLimit);
         actualBudgetVm.CurrentSpending.Should().Be(expectedBudgetData.CurrentSpending);
+        actualBudgetVm.CurrentSpending.Should().Be(expectedBudgetData.CurrentSpending);
+        actualBudgetVm.MonthlyBudget.Should().Be(expectedBudgetData.MonthlyBudget);
     }
 
     [Collection(nameof(BudgetListPageViewModelTests))]
@@ -49,14 +51,15 @@ public abstract class BudgetListPageViewModelTests
         public WithBudgetAvailable()
         {
             budgetTestData = new();
-            sender.Send(Arg.Any<LoadBudgetListData.Query>())
+            sender.Send(Arg.Any<LoadBudgetDataForList.Query>())
                 .Returns(
                     ImmutableList.Create(
-                        new BudgetListData(
+                        new BudgetData(
                             id: budgetTestData.Id,
                             name: budgetTestData.Name,
                             spendingLimit: budgetTestData.SpendingLimit,
-                            currentSpending: budgetTestData.CurrentSpending)));
+                            currentSpending: budgetTestData.CurrentSpending,
+                            budgetTestData.MonthlyBudget)));
         }
 
         [Fact]
@@ -91,19 +94,21 @@ public abstract class BudgetListPageViewModelTests
         public WithMultipleBudgetAvailable()
         {
             TestData.DefaultBudget budgetTestData1 = new();
-            _ = sender.Send(Arg.Any<LoadBudgetListData.Query>())
+            _ = sender.Send(Arg.Any<LoadBudgetDataForList.Query>())
                 .Returns(
                     ImmutableList.Create(
-                        new BudgetListData(
+                        new BudgetData(
                             id: budgetTestData1.Id,
                             name: "Beverages",
                             spendingLimit: budgetTestData1.SpendingLimit,
-                            currentSpending: budgetTestData1.CurrentSpending),
-                        new BudgetListData(
+                            currentSpending: budgetTestData1.CurrentSpending,
+                            monthlyBudget: budgetTestData1.MonthlyBudget),
+                        new BudgetData(
                             id: budgetTestData1.Id,
                             name: "Apples",
                             spendingLimit: budgetTestData1.SpendingLimit,
-                            currentSpending: budgetTestData1.CurrentSpending)));
+                            currentSpending: budgetTestData1.CurrentSpending,
+                            monthlyBudget: budgetTestData1.MonthlyBudget * 2)));
         }
 
         [Fact]
@@ -125,7 +130,7 @@ public abstract class BudgetListPageViewModelTests
             await viewModel.InitializeCommand.ExecuteAsync(null);
 
             // Assert
-            var expectedAmount = viewModel.Budgets.ToList().Sum(b => b.SpendingLimit);
+            var expectedAmount = viewModel.Budgets.ToList().Sum(b => b.MonthlyBudget);
             _ = viewModel.BudgetedAmount.Should().Be(expectedAmount);
         }
     }
