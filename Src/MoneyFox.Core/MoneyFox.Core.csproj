@@ -21,7 +21,7 @@
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0"/>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
         <PackageReference Include="Serilog" Version="2.12.0"/>
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="9.1.0.70676">
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="9.2.0.71021">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
@@ -34,11 +34,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\MoneyFox.Domain\MoneyFox.Domain.csproj"/>
+        <ProjectReference Include="..\MoneyFox.Domain\MoneyFox.Domain.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Features\(Legacy)"/>
+        <Folder Include="Features\(Legacy)" />
     </ItemGroup>
 
 </Project>

@@ -8,25 +8,50 @@
              x:Name="This"
              x:Class="MoneyFox.Ui.Controls.Search">
 
-    <VerticalStackLayout Spacing="6"
+    <Grid>
+        <VerticalStackLayout Spacing="6"
+                         IsVisible="{OnPlatform WinUI=false,Default=true}"
                          BindingContext="{x:Reference This}"
                          Margin="0,12,0,0">
-        <Label Text="{x:Static resources:Translations.SearchLabel}" IsVisible="{OnPlatform WinUI=true,Default=false}" />
 
-        <Border Padding="20,0"
+            <Border Padding="20,0"
                 StrokeThickness="{OnIdiom Desktop=0, Default=1}"
                 BackgroundColor="{AppThemeBinding Dark={StaticResource ControlBackgroundColorDark}, Light={StaticResource ControlBackgroundColorLight}}"
                 BindingContext="{x:Reference This}">
 
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="10" />
-            </Border.StrokeShape>
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
 
-            <Grid ColumnDefinitions="*, Auto">
-                <controls:BorderlessEntry HeightRequest="40"
+                <Grid ColumnDefinitions="*, Auto">
+                    <controls:BorderlessEntry HeightRequest="40"
                                           BackgroundColor="Transparent"
                                           TextChanged="SearchEntry_OnTextChanged"
                                           Placeholder="{OnPlatform WinUI={x:Null}, Default={Binding SearchPlaceholder}}" />
+
+                    <Image Grid.Column="1" HeightRequest="20" WidthRequest="20">
+                        <Image.Source>
+                            <FontImageSource FontFamily="MaterialIcons"
+                                         Glyph="{x:Static views:IconFont.Magnify}"
+                                         Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                        </Image.Source>
+                    </Image>
+                </Grid>
+            </Border>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Spacing="6"
+                         IsVisible="{OnPlatform WinUI=true,Default=false}"
+                         BindingContext="{x:Reference This}"
+                         Margin="0,12,0,0">
+            <Label Text="{x:Static resources:Translations.SearchLabel}" />
+
+            <Grid ColumnDefinitions="*, 40">
+                <Entry Grid.ColumnSpan="2" 
+                       HeightRequest="40"
+                       BackgroundColor="Transparent"
+                       TextChanged="SearchEntry_OnTextChanged"
+                       Placeholder="{OnPlatform WinUI={x:Null}, Default={Binding SearchPlaceholder}}" />
 
                 <Image Grid.Column="1" HeightRequest="20" WidthRequest="20">
                     <Image.Source>
@@ -36,6 +61,6 @@
                     </Image.Source>
                 </Image>
             </Grid>
-        </Border>
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+    </Grid>
 </ContentView>
