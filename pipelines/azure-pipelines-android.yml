@@ -19,7 +19,8 @@ steps:
   - task: UseDotNet@2
     displayName: 'Install .net sdk'
     inputs:
-      version: 7.0.302
+      version: 8.0.x
+      allowPrerelease: true
 
   - task: PowerShell@2
     displayName: "Set App Version"

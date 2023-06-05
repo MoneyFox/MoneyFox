@@ -24,7 +24,8 @@ jobs:
       - task: UseDotNet@2
         displayName: 'Install .net sdk'
         inputs:
-          version: 7.0.302
+          version: 8.0.x
+          allowPrerelease: true
 
       - task: DownloadSecureFile@1
         displayName: 'download certificate'
