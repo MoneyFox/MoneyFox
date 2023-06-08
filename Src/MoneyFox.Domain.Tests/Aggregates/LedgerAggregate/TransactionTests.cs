@@ -16,6 +16,7 @@ public class TransactionTests
         // Act
         var act = () => Transaction.Create(
             reference: testTransaction.Reference,
+            testTransaction.LedgerId,
             type: TransactionType.Income,
             amount: new(amount: -13, currency: Currencies.EUR),
             bookingDate: testTransaction.BookingDate,
@@ -35,6 +36,7 @@ public class TransactionTests
         // Act
         var act = () => Transaction.Create(
             reference: testTransaction.Reference,
+            testTransaction.LedgerId,
             type: TransactionType.Expense,
             amount: new(amount: 13, currency: Currencies.EUR),
             bookingDate: testTransaction.BookingDate,
@@ -54,6 +56,7 @@ public class TransactionTests
         // Act
         var transaction = Transaction.Create(
             reference: testTransaction.Reference,
+            testTransaction.LedgerId,
             type: testTransaction.Type,
             amount: testTransaction.Amount,
             bookingDate: testTransaction.BookingDate,

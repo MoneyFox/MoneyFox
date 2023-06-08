@@ -8,10 +8,8 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
 {
     public void Configure(EntityTypeBuilder<Transaction> builder)
     {
-        builder.Property(i => i.Id)
-            .ValueGeneratedOnAdd()
-            .HasConversion(convertToProviderExpression: v => v.Value, convertFromProviderExpression: v => new(v));
-
+        builder.Property(i => i.Id).ValueGeneratedOnAdd().HasConversion(convertToProviderExpression: v => v.Value, convertFromProviderExpression: v => new(v));
+        builder.Property(p => p.LedgerId).IsRequired().HasConversion(convertToProviderExpression: v => v.Value, convertFromProviderExpression: v => new(v));
         builder.Property(p => p.Type).IsRequired();
         builder.OwnsOne(
             navigationExpression: l => l.Amount,
@@ -22,7 +20,6 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
             });
 
         builder.Property(p => p.BookingDate).IsRequired();
-
         builder.Property(b => b.Created);
         builder.Property(b => b.LastModified);
     }

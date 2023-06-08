@@ -14,7 +14,7 @@ internal static partial class TestData
         public ICategory? Category { get; init; } = new ExpenseCategory();
         public DateTime Date { get; init; } = defaultDate;
         public decimal Amount { get; init; } = 105.50m;
-        public bool IsCleared => true;
+        public bool IsCleared => false;
         public PaymentType Type { get; init; } = PaymentType.Expense;
         public bool IsRecurring => false;
         public string Note => "6 Bottles";

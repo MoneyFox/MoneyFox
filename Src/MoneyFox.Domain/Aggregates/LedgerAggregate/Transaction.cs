@@ -20,6 +20,7 @@ public class Transaction : EntityBase
 
     private Transaction(
         Guid reference,
+        LedgerId ledgerId,
         TransactionType type,
         Money amount,
         DateOnly bookingDate,
@@ -28,6 +29,7 @@ public class Transaction : EntityBase
         bool isTransfer)
     {
         Reference = reference;
+        LedgerId = ledgerId;
         Type = type;
         Amount = amount;
         BookingDate = bookingDate;
@@ -37,6 +39,14 @@ public class Transaction : EntityBase
     }
 
     public TransactionId Id
+    {
+        get;
+
+        [UsedImplicitly]
+        private set;
+    }
+
+    public LedgerId LedgerId
     {
         get;
 
@@ -102,6 +112,7 @@ public class Transaction : EntityBase
 
     public static Transaction Create(
         Guid reference,
+        LedgerId ledgerId,
         TransactionType type,
         Money amount,
         DateOnly bookingDate,
@@ -115,6 +126,7 @@ public class Transaction : EntityBase
             TransactionType.Expense when amount.Amount > 0 => throw new InvalidTransactionAmountException("Expense has to have a a negative amount."),
             _ => new(
                 reference: reference,
+                ledgerId,
                 type: type,
                 amount: amount,
                 bookingDate: bookingDate,

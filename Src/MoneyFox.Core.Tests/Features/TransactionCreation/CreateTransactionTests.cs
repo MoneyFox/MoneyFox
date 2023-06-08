@@ -25,6 +25,7 @@ public class CreateTransactionTests : InMemoryTestBase
         // Act
         var command = new CreateTransaction.Command(
             Reference: testTransaction.Reference,
+            testTransaction.LedgerId,
             Type: testTransaction.Type,
             Amount: testTransaction.Amount,
             BookingDate: testTransaction.BookingDate,
@@ -51,6 +52,7 @@ internal static class CreateTransaction
 {
     public record Command(
         Guid Reference,
+        LedgerId LedgerId,
         TransactionType Type,
         Money Amount,
         DateOnly BookingDate,
@@ -71,6 +73,7 @@ internal static class CreateTransaction
         {
             var transaction = Transaction.Create(
                 reference: command.Reference,
+                ledgerId: command.LedgerId,
                 type: command.Type,
                 amount: command.Amount,
                 bookingDate: command.BookingDate,

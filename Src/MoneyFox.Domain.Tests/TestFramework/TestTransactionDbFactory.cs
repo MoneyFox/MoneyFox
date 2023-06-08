@@ -8,6 +8,7 @@ internal static class TestTransactionDbFactory
     {
         return Transaction.Create(
             reference: transaction.Reference,
+            transaction.LedgerId,
             type: transaction.Type,
             amount: transaction.Amount,
             bookingDate: transaction.BookingDate,
