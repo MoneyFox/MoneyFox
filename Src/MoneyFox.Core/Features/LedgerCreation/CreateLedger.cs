@@ -16,7 +16,7 @@ internal static class CreateLedger
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                throw new ArgumentException(nameof(name));
+                throw new ArgumentException("Name is required", nameof(name));
             }
 
             Name = name;
