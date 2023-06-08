@@ -55,7 +55,9 @@
                                     <Label Style="{StaticResource TextHead}"
                                            Text="{Binding Name}" />
 
-                                    <ProgressBar Progress="{Binding SpendingPercentage}" />
+                                    <Border StrokeThickness="0" StrokeShape="RoundRectangle 10">
+                                        <ProgressBar Progress="{Binding SpendingPercentage}" BackgroundColor="Transparent" HeightRequest="4"/>
+                                    </Border>
 
                                     <Grid>
                                         <Label
