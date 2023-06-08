@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;
-using Core.Queries.BudgetListLoading;
+using Core.Queries.BudgetList;
 using MediatR;
 
 public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<BudgetsChangedMessage>
@@ -20,7 +20,7 @@ public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<BudgetsC
 
     public ObservableCollection<BudgetListItemViewModel> Budgets { get; } = new();
 
-    public decimal BudgetedAmount => Budgets.Sum(b => b.SpendingLimit);
+    public decimal BudgetedAmount => Budgets.Sum(b => b.MonthlyBudget);
 
     public AsyncRelayCommand InitializeCommand => new(Initialize);
 
@@ -35,7 +35,7 @@ public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<BudgetsC
 
     private async Task Initialize()
     {
-        var budgetsListData = await sender.Send(new LoadBudgetListData.Query());
+        var budgetsListData = await sender.Send(new LoadBudgetDataForList.Query());
         Budgets.Clear();
         Budgets.AddRange(
             budgetsListData.OrderBy(bld => bld.Name)
@@ -45,7 +45,8 @@ public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<BudgetsC
                         Id = bld.Id,
                         Name = bld.Name,
                         SpendingLimit = bld.SpendingLimit,
-                        CurrentSpending = bld.CurrentSpending
+                        CurrentSpending = bld.CurrentSpending,
+                        MonthlyBudget = bld.MonthlyBudget
                     }));
 
         OnPropertyChanged(nameof(BudgetedAmount));

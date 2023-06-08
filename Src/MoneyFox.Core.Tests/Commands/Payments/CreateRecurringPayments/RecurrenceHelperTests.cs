@@ -10,7 +10,7 @@ public class RecurrenceHelperTests
     public static IEnumerable<object[]> CheckIfRepeatableTestData()
     {
         // True - General conditions
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {
@@ -21,7 +21,7 @@ public class RecurrenceHelperTests
             }
         };
 
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {
@@ -32,7 +32,7 @@ public class RecurrenceHelperTests
             }
         };
 
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {
@@ -43,7 +43,7 @@ public class RecurrenceHelperTests
             }
         };
 
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {
@@ -54,7 +54,7 @@ public class RecurrenceHelperTests
             }
         };
 
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {
@@ -65,7 +65,7 @@ public class RecurrenceHelperTests
             }
         };
 
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {
@@ -76,7 +76,7 @@ public class RecurrenceHelperTests
             }
         };
 
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {
@@ -87,7 +87,7 @@ public class RecurrenceHelperTests
             }
         };
 
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {
@@ -99,7 +99,7 @@ public class RecurrenceHelperTests
         };
 
         // True - Boundary conditions
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {
@@ -110,7 +110,7 @@ public class RecurrenceHelperTests
             }
         };
 
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {
@@ -121,7 +121,7 @@ public class RecurrenceHelperTests
             }
         };
 
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {
@@ -132,7 +132,7 @@ public class RecurrenceHelperTests
             }
         };
 
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {
@@ -143,7 +143,7 @@ public class RecurrenceHelperTests
             }
         };
 
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {
@@ -155,7 +155,7 @@ public class RecurrenceHelperTests
         };
 
         // False - Boundary conditions
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {
@@ -166,7 +166,7 @@ public class RecurrenceHelperTests
             }
         };
 
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {
@@ -177,7 +177,7 @@ public class RecurrenceHelperTests
             }
         };
 
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {
@@ -188,7 +188,7 @@ public class RecurrenceHelperTests
             }
         };
 
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {
@@ -199,7 +199,7 @@ public class RecurrenceHelperTests
             }
         };
 
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {
@@ -210,7 +210,7 @@ public class RecurrenceHelperTests
             }
         };
 
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {
@@ -221,7 +221,7 @@ public class RecurrenceHelperTests
             }
         };
 
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {
@@ -232,7 +232,7 @@ public class RecurrenceHelperTests
             }
         };
 
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {
@@ -244,7 +244,7 @@ public class RecurrenceHelperTests
         };
 
         // True - Last day of month conditions
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {
@@ -256,7 +256,7 @@ public class RecurrenceHelperTests
             }
         };
 
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {
@@ -268,7 +268,7 @@ public class RecurrenceHelperTests
             }
         };
 
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {
@@ -280,7 +280,7 @@ public class RecurrenceHelperTests
             }
         };
 
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {
@@ -292,7 +292,7 @@ public class RecurrenceHelperTests
             }
         };
 
-        yield return new[]
+        yield return new object[]
         {
             new RecurringPaymentTestData
             {

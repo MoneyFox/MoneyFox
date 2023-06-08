@@ -2,18 +2,18 @@ namespace MoneyFox.Core.Tests.Queries;
 
 using System.Collections.Immutable;
 using Core.Common;
-using Core.Queries.BudgetListLoading;
+using Core.Queries.BudgetList;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Tests.TestFramework;
 using FluentAssertions;
 using NSubstitute;
 
-public sealed class LoadBudgetListDataTests : InMemoryTestBase
+public sealed class LoadBudgetDataForListTests : InMemoryTestBase
 {
-    private readonly LoadBudgetListData.Handler handler;
+    private readonly LoadBudgetDataForList.Handler handler;
     private readonly ISystemDateHelper systemDateHelper;
 
-    public LoadBudgetListDataTests()
+    public LoadBudgetDataForListTests()
     {
         systemDateHelper = Substitute.For<ISystemDateHelper>();
         systemDateHelper.Today.Returns(DateTime.Today);
@@ -25,7 +25,7 @@ public sealed class LoadBudgetListDataTests : InMemoryTestBase
     public async Task ReturnEmpty_WhenNoBudgetsCreated()
     {
         // Act
-        var query = new LoadBudgetListData.Query();
+        var query = new LoadBudgetDataForList.Query();
         var result = await handler.Handle(request: query, cancellationToken: CancellationToken.None);
 
         // Assert
@@ -85,14 +85,14 @@ public sealed class LoadBudgetListDataTests : InMemoryTestBase
         Context.RegisterBudget(testBudget);
 
         // Act
-        var query = new LoadBudgetListData.Query();
+        var query = new LoadBudgetDataForList.Query();
         var result = await handler.Handle(request: query, cancellationToken: CancellationToken.None);
 
         // Assert
         result.Should().HaveCount(1);
         var budgetListData = result.Single();
-        var expectedCurrentSpending = (testExpense1.Amount + testExpense2.Amount) / (numberOfMonths - 1);
-        AssertBudgetListData(actualBudgetListData: budgetListData, expectedBudgetTestData: testBudget, expectedCurrentSpending: expectedCurrentSpending);
+        var expectedCurrentSpending = testExpense1.Amount + testExpense2.Amount;
+        AssertBudgetListData(actualBudgetData: budgetListData, expectedBudgetTestData: testBudget, expectedCurrentSpending: expectedCurrentSpending);
     }
 
     [Fact]
@@ -144,14 +144,14 @@ public sealed class LoadBudgetListDataTests : InMemoryTestBase
         Context.RegisterBudget(testBudget);
 
         // Act
-        var query = new LoadBudgetListData.Query();
+        var query = new LoadBudgetDataForList.Query();
         var result = await handler.Handle(request: query, cancellationToken: CancellationToken.None);
 
         // Assert
         result.Should().HaveCount(1);
         var budgetListData = result.Single();
         var expectedCurrentSpending = testExpense1.Amount + testExpense2.Amount;
-        AssertBudgetListData(actualBudgetListData: budgetListData, expectedBudgetTestData: testBudget, expectedCurrentSpending: expectedCurrentSpending);
+        AssertBudgetListData(actualBudgetData: budgetListData, expectedBudgetTestData: testBudget, expectedCurrentSpending: expectedCurrentSpending);
     }
 
     [Fact]
@@ -181,14 +181,14 @@ public sealed class LoadBudgetListDataTests : InMemoryTestBase
         Context.RegisterBudget(testBudget);
 
         // Act
-        var query = new LoadBudgetListData.Query();
+        var query = new LoadBudgetDataForList.Query();
         var result = await handler.Handle(request: query, cancellationToken: CancellationToken.None);
 
         // Assert
         result.Should().HaveCount(1);
         var budgetListData = result.Single();
         var expectedCurrentSpending = 0;
-        AssertBudgetListData(actualBudgetListData: budgetListData, expectedBudgetTestData: testBudget, expectedCurrentSpending: expectedCurrentSpending);
+        AssertBudgetListData(actualBudgetData: budgetListData, expectedBudgetTestData: testBudget, expectedCurrentSpending: expectedCurrentSpending);
     }
 
     [Fact]
@@ -209,18 +209,19 @@ public sealed class LoadBudgetListDataTests : InMemoryTestBase
         Context.RegisterBudgets(testBudget1, testBudget2);
 
         // Act
-        var query = new LoadBudgetListData.Query();
+        var query = new LoadBudgetDataForList.Query();
         var result = await handler.Handle(request: query, cancellationToken: CancellationToken.None);
 
         // Assert
         result.Should().HaveCount(2);
     }
 
-    private static void AssertBudgetListData(BudgetListData actualBudgetListData, TestData.IBudget expectedBudgetTestData, decimal expectedCurrentSpending)
+    private static void AssertBudgetListData(BudgetData actualBudgetData, TestData.IBudget expectedBudgetTestData, decimal expectedCurrentSpending)
     {
-        actualBudgetListData.Id.Should().BeGreaterThan(0);
-        actualBudgetListData.Name.Should().Be(expectedBudgetTestData.Name);
-        actualBudgetListData.SpendingLimit.Should().BeApproximately(expectedValue: expectedBudgetTestData.SpendingLimit, precision: 0.01m);
-        actualBudgetListData.CurrentSpending.Should().BeApproximately(expectedValue: expectedCurrentSpending, precision: 0.01m);
+        actualBudgetData.Id.Should().BeGreaterThan(0);
+        actualBudgetData.Name.Should().Be(expectedBudgetTestData.Name);
+        actualBudgetData.SpendingLimit.Should().BeApproximately(expectedValue: expectedBudgetTestData.SpendingLimit, precision: 0.01m);
+        actualBudgetData.CurrentSpending.Should().BeApproximately(expectedValue: expectedCurrentSpending, precision: 0.01m);
+        actualBudgetData.MonthlyBudget.Should().BeApproximately(expectedValue: expectedBudgetTestData.MonthlyBudget, precision: 0.01m);
     }
 }

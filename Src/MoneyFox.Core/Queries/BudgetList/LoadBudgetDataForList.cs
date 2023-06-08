@@ -1,6 +1,5 @@
-namespace MoneyFox.Core.Queries.BudgetListLoading;
+namespace MoneyFox.Core.Queries.BudgetList;
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -12,11 +11,11 @@ using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-public static class LoadBudgetListData
+public static class LoadBudgetDataForList
 {
-    public class Query : IRequest<IReadOnlyCollection<BudgetListData>> { }
+    public class Query : IRequest<IReadOnlyCollection<BudgetData>> { }
 
-    public class Handler : IRequestHandler<Query, IReadOnlyCollection<BudgetListData>>
+    public class Handler : IRequestHandler<Query, IReadOnlyCollection<BudgetData>>
     {
         private readonly IAppDbContext appDbContext;
         private readonly ISystemDateHelper systemDateHelper;
@@ -27,12 +26,13 @@ public static class LoadBudgetListData
             this.systemDateHelper = systemDateHelper;
         }
 
-        public async Task<IReadOnlyCollection<BudgetListData>> Handle(Query request, CancellationToken cancellationToken)
+        public async Task<IReadOnlyCollection<BudgetData>> Handle(Query request, CancellationToken cancellationToken)
         {
             var budgets = await appDbContext.Budgets.ToListAsync(cancellationToken);
-            List<BudgetListData> budgetListDataList = new();
+            var budgetListDataList = new List<BudgetData>();
             foreach (var budget in budgets)
             {
+                var monthlyBudget = budget.SpendingLimit / budget.Interval;
                 var thresholdDate = systemDateHelper.Today.GetFirstDayOfMonth().AddMonths(-(budget.Interval.NumberOfMonths - 1));
                 var payments = await appDbContext.Payments.Where(p => p.Type != PaymentType.Transfer)
                     .Where(p => p.CategoryId != null)
@@ -43,16 +43,15 @@ public static class LoadBudgetListData
 
                 if (payments.Any() is false)
                 {
-                    budgetListDataList.Add(new(id: budget.Id.Value, name: budget.Name, spendingLimit: budget.SpendingLimit, currentSpending: 0));
+                    budgetListDataList.Add(
+                        new(
+                            id: budget.Id.Value,
+                            name: budget.Name,
+                            spendingLimit: budget.SpendingLimit,
+                            currentSpending: 0,
+                            monthlyBudget: monthlyBudget));
 
                     continue;
-                }
-
-                var timeDeltaFirstPaymentAndNow = systemDateHelper.Now.Date - thresholdDate.Date;
-                var numberOfMonthsInRange = (int)Math.Floor(timeDeltaFirstPaymentAndNow.TotalDays / 30);
-                if (numberOfMonthsInRange == 0)
-                {
-                    numberOfMonthsInRange = 1;
                 }
 
                 // Since sum is not supported for decimal in Ef Core with SQLite we have to do this in two steps
@@ -62,8 +61,13 @@ public static class LoadBudgetListData
                     currentSpending = 0;
                 }
 
-                var monthlyAverage = currentSpending / numberOfMonthsInRange;
-                budgetListDataList.Add(new(id: budget.Id.Value, name: budget.Name, spendingLimit: budget.SpendingLimit, currentSpending: monthlyAverage));
+                budgetListDataList.Add(
+                    new(
+                        id: budget.Id.Value,
+                        name: budget.Name,
+                        spendingLimit: budget.SpendingLimit,
+                        currentSpending: currentSpending,
+                        monthlyBudget: monthlyBudget));
             }
 
             return budgetListDataList;

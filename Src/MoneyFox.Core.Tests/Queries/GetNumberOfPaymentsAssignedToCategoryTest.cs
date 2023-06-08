@@ -44,7 +44,7 @@ public class GetNumberOfPaymentsAssignedToCategoryTest : InMemoryTestBase
     {
         // Arrange
         var expense = new TestData.DefaultExpense { Category = new TestData.DefaultExpense.ExpenseCategory() };
-        var dbExpense = Context.RegisterPayment(expense);
+        Context.RegisterPayment(expense);
         var payment = new TestData.DefaultIncome { Category = new TestData.DefaultIncome.IncomeCategory() };
         var dbPayment = Context.RegisterPayment(payment);
 

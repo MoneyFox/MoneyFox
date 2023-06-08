@@ -19,6 +19,6 @@ public class CreateCategoryTests : InMemoryTestBase
 
         // Assert
         var loadedCategory = await Context.Categories.FirstAsync();
-        AssertCategory(actual: loadedCategory!, expected: testCategory);
+        AssertCategory(actual: loadedCategory, expected: testCategory);
     }
 }
