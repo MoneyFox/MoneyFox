@@ -3,6 +3,7 @@
 using Core.Common.Interfaces;
 using Domain;
 using Domain.Aggregates.LedgerAggregate;
+using FluentAssertions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,51 +24,39 @@ public class CreateTransactionTests : InMemoryTestBase
 
         // Act
         var command = new CreateTransaction.Command(
-            reference: testTransaction.Reference,
-            type: testTransaction.Type,
-            amount: testTransaction.Amount,
-            bookingDate: testTransaction.BookingDate,
-            categoryId: testTransaction.CategoryId,
-            note: testTransaction.Note,
-            isTransfer: testTransaction.IsTransfer);
+            Reference: testTransaction.Reference,
+            Type: testTransaction.Type,
+            Amount: testTransaction.Amount,
+            BookingDate: testTransaction.BookingDate,
+            CategoryId: testTransaction.CategoryId,
+            Note: testTransaction.Note,
+            IsTransfer: testTransaction.IsTransfer);
 
         await handler.Handle(command: command, cancellationToken: CancellationToken.None);
 
         // Assert
         var dbTransaction = await Context.Transactions.SingleAsync();
+        dbTransaction.Id!.Value.Should().BeGreaterThan(0);
+        dbTransaction.Reference.Should().Be(testTransaction.Reference);
+        dbTransaction.Type.Should().Be(testTransaction.Type);
+        dbTransaction.Amount.Should().Be(testTransaction.Amount);
+        dbTransaction.BookingDate.Should().Be(testTransaction.BookingDate);
+        dbTransaction.CategoryId.Should().Be(testTransaction.CategoryId);
+        dbTransaction.Note.Should().Be(testTransaction.Note);
+        dbTransaction.IsTransfer.Should().Be(testTransaction.IsTransfer);
     }
 }
 
 internal static class CreateTransaction
 {
-    public record Command : IRequest
-    {
-        public Command(
-            Guid reference,
-            TransactionType type,
-            Money amount,
-            DateOnly bookingDate,
-            int? categoryId,
-            string? note,
-            bool isTransfer)
-        {
-            Reference = reference;
-            Type = type;
-            Amount = amount;
-            BookingDate = bookingDate;
-            CategoryId = categoryId;
-            Note = note;
-            IsTransfer = isTransfer;
-        }
-
-        public Guid Reference { get; }
-        public TransactionType Type { get; }
-        public Money Amount { get; }
-        public DateOnly BookingDate { get; }
-        public int? CategoryId { get; }
-        public string? Note { get; }
-        public bool IsTransfer { get; }
-    }
+    public record Command(
+        Guid Reference,
+        TransactionType Type,
+        Money Amount,
+        DateOnly BookingDate,
+        int? CategoryId,
+        string? Note,
+        bool IsTransfer) : IRequest;
 
     public class Handler : IRequestHandler<Command>
     {
