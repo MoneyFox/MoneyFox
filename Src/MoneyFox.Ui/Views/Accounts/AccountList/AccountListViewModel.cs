@@ -77,8 +77,13 @@ public sealed class AccountListViewModel : BasePageViewModel, IRecipient<Account
         }
     }
 
-    private async Task DeleteAccountAsync(AccountListItemViewModel accountViewModel)
+    private async Task DeleteAccountAsync(AccountListItemViewModel? accountViewModel)
     {
+        if (accountViewModel is null)
+        {
+            return;
+        }
+
         if (await dialogService.ShowConfirmMessageAsync(
                 title: Translations.DeleteTitle,
                 message: Translations.DeleteAccountConfirmationMessage,
