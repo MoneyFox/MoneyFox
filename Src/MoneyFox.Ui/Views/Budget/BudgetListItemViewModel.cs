@@ -4,29 +4,36 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 public sealed class BudgetListItemViewModel : ObservableObject
 {
-    private decimal currentSpending;
     private string name = null!;
-
+    private decimal currentSpending;
     private decimal spendingLimit;
-    public int Id { get; set; }
+    private readonly decimal monthlyBudget;
 
-    public string Name
+    public int Id { get; init; }
+
+    public required string Name
     {
         get => name;
         set => SetProperty(field: ref name, newValue: value);
     }
 
-    public double SpendingPercentage => (double)CurrentSpending / (double)SpendingLimit;
-
-    public decimal CurrentSpending
+    public required decimal CurrentSpending
     {
         get => currentSpending;
         set => SetProperty(field: ref currentSpending, newValue: value);
     }
 
-    public decimal SpendingLimit
+    public required decimal SpendingLimit
     {
         get => spendingLimit;
         set => SetProperty(field: ref spendingLimit, newValue: value);
+    }
+
+    public double SpendingPercentage => (double)CurrentSpending / (double)SpendingLimit;
+
+    public required decimal MonthlyBudget
+    {
+        get => monthlyBudget;
+        init => SetProperty(field: ref monthlyBudget, newValue: value);
     }
 }
