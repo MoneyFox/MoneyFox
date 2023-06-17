@@ -24,7 +24,7 @@ jobs:
       - task: UseDotNet@2
         displayName: 'Install .net sdk'
         inputs:
-          version: 8.0.x
+          version: 8.x
           allowPrerelease: true
 
       - task: DownloadSecureFile@1
