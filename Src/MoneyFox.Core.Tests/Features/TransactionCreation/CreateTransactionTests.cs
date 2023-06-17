@@ -3,6 +3,7 @@
 using Core.Common.Interfaces;
 using Domain;
 using Domain.Aggregates.LedgerAggregate;
+using Domain.Aggregates.TransactionAggregate;
 using FluentAssertions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

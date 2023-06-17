@@ -1,6 +1,7 @@
 ﻿namespace MoneyFox.Infrastructure.Persistence.Configurations;
 
 using Domain.Aggregates.LedgerAggregate;
+using Domain.Aggregates.TransactionAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

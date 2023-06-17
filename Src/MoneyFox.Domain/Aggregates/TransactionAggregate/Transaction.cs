@@ -1,6 +1,7 @@
-﻿namespace MoneyFox.Domain.Aggregates.LedgerAggregate;
+﻿namespace MoneyFox.Domain.Aggregates.TransactionAggregate;
 
 using JetBrains.Annotations;
+using LedgerAggregate;
 
 public record struct TransactionId(int Value);
 public enum TransactionType { Expense, Income }

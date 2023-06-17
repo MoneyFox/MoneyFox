@@ -1,9 +1,9 @@
-﻿namespace MoneyFox.Domain.Tests.Aggregates.LedgerAggregate;
+﻿namespace MoneyFox.Domain.Tests.Aggregates.TransactionAggregate;
 
-using Domain.Aggregates.LedgerAggregate;
 using FluentAssertions;
 using FluentAssertions.Execution;
-using TestFramework;
+using MoneyFox.Domain.Aggregates.TransactionAggregate;
+using MoneyFox.Domain.Tests.TestFramework;
 
 public class TransactionTests
 {

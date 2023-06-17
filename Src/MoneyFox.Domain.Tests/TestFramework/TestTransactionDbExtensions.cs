@@ -1,6 +1,7 @@
 ﻿namespace MoneyFox.Domain.Tests.TestFramework;
 
 using Domain.Aggregates.LedgerAggregate;
+using Domain.Aggregates.TransactionAggregate;
 using Infrastructure.Persistence;
 
 internal static class TestTransactionDbExtensions

@@ -1,6 +1,7 @@
 ﻿namespace MoneyFox.Domain.Tests.TestFramework;
 
 using Domain.Aggregates.LedgerAggregate;
+using Domain.Aggregates.TransactionAggregate;
 
 internal static partial class TestData
 {
