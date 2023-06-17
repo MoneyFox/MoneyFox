@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  DOTNETVERSION: "7.x"
+  DOTNET_VERSION: "7.x"
   UI_PROJECT_PATH: "src/MoneyFox.Ui/MoneyFox.Ui.csproj"
   CORE_TEST_PROJECT_PATH: "src/MoneyFox.Core.Tests/MoneyFox.Core.Tests.csproj"
   UI_TEST_PROJECT_PATH: "src/MoneyFox.Ui.Tests/MoneyFox.Ui.Tests.csproj"
@@ -25,7 +25,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: ${{env.DOTNETVERSION}}
+          dotnet-version: ${{env.DOTNET_VERSION}}
 
       - uses: actions/cache@v3
         with:
@@ -63,7 +63,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: ${{env.DOTNETVERSION}}
+          dotnet-version: ${{env.DOTNET_VERSION}}
 
       - uses: actions/cache@v3
         with:
@@ -99,7 +99,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: ${{env.DOTNETVERSION}}
+          dotnet-version: ${{env.DOTNET_VERSION}}
 
       - uses: actions/cache@v3
         with:
