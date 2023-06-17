@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  DOTNETVERSION: "7.0.302"
+  DOTNETVERSION: "7.x"
   UI_PROJECT_PATH: "src/MoneyFox.Ui/MoneyFox.Ui.csproj"
   CORE_TEST_PROJECT_PATH: "src/MoneyFox.Core.Tests/MoneyFox.Core.Tests.csproj"
   UI_TEST_PROJECT_PATH: "src/MoneyFox.Ui.Tests/MoneyFox.Ui.Tests.csproj"
