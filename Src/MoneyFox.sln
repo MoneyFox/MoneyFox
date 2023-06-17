@@ -10,6 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\pipelines\azure-pipelines-android.yml = ..\pipelines\azure-pipelines-android.yml
 		..\pipelines\azure-pipelines-iOS.yml = ..\pipelines\azure-pipelines-iOS.yml
 		..\pipelines\azure-pipelines-winui.yml = ..\pipelines\azure-pipelines-winui.yml
+		..\global.json = ..\global.json
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyFox.Infrastructure", "MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj", "{0429508E-AFD9-4F1C-900A-EA1997FC8567}"
