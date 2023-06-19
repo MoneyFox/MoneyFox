@@ -9,7 +9,7 @@
     xmlns:ledgerList="clr-namespace:MoneyFox.Ui.Views.Ledgers.LedgerList"
     x:DataType="ledgerList:LedgerListViewModel"
     x:Name="This"
-    Title="{x:Static resources:Translations.AccountsTitle}">
+    Title="{x:Static resources:Translations.LedgersTitle}">
 
     <ContentPage.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
@@ -21,7 +21,7 @@
                 Grid.Row="0"
                 Margin="0,0,18,0"
                 HorizontalOptions="End"
-                Text="{x:Static resources:Translations.AddAccountLabel}"
+                Text="{x:Static resources:Translations.AddLedgerLabel}"
                 VerticalOptions="Center"
                 Command="{Binding GoToAddLedgerCommand}" />
 
@@ -64,43 +64,24 @@
 
                                 <FlyoutBase.ContextFlyout>
                                     <MenuFlyout>
-                                        <MenuFlyoutItem Text="{x:Static resources:Translations.EditLabel}"
-                                                        Command="{Binding ViewModel.GoToEditAccountCommand, Source={x:Reference This}}"
-                                                        CommandParameter="{Binding .}" />
                                         <MenuFlyoutItem Text="{x:Static resources:Translations.DeleteLabel}"
                                                         Command="{Binding ViewModel.DeleteAccountCommand, Source={x:Reference This}}"
                                                         CommandParameter="{Binding .}" />
                                     </MenuFlyout>
                                 </FlyoutBase.ContextFlyout>
 
-                                <SwipeView>
-                                    <SwipeView.RightItems>
-                                        <SwipeItems>
-                                            <SwipeItem
-                                                BackgroundColor="{AppThemeBinding Dark={StaticResource Gray900}, Light={StaticResource Gray100}}"
-                                                Command="{Binding Source={x:Reference AccountCollectionView}, Path=BindingContext.GoToEditAccountCommand}"
-                                                CommandParameter="{Binding .}"
-                                                Text="{x:Static resources:Translations.EditLabel}" />
-                                            <SwipeItem
-                                                BackgroundColor="{AppThemeBinding Dark={StaticResource Gray900}, Light={StaticResource Gray100}}"
-                                                Command="{Binding Source={x:Reference AccountCollectionView}, Path=BindingContext.DeleteAccountCommand}"
-                                                CommandParameter="{Binding .}"
-                                                Text="{x:Static resources:Translations.DeleteLabel}" />
-                                        </SwipeItems>
-                                    </SwipeView.RightItems>
-
-                                    <Grid
+                                <Grid
                                         BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                       Light={StaticResource CardBackgroundLight}}">
 
-                                        <Label
+                                    <Label
                                             Margin="10,2,0,0"
                                             HorizontalTextAlignment="Start"
                                             Style="{StaticResource TextHead}"
                                             Text="{Binding Name}"
                                             VerticalTextAlignment="Start" />
 
-                                        <Label
+                                    <Label
                                             Margin="0,0,6,2"
                                             FontFamily="Product"
                                             FontSize="20"
@@ -109,9 +90,9 @@
                                             Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
                                             VerticalTextAlignment="Center" />
 
-                                        <HorizontalStackLayout Spacing="6"
+                                    <HorizontalStackLayout Spacing="6"
                                                                HorizontalOptions="End">
-                                            <Label
+                                        <Label
                                                 Margin="0,0,0,2"
                                                 FontFamily="Product"
                                                 FontSize="15"
@@ -119,16 +100,15 @@
                                                 Text="{x:Static resources:Translations.EndOfMonthLabel}"
                                                 VerticalTextAlignment="End" />
 
-                                            <Label
+                                        <Label
                                                 Margin="0,0,6,2"
                                                 FontFamily="Product"
                                                 FontSize="15"
                                                 HorizontalTextAlignment="End"
                                                 Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}"
                                                 VerticalTextAlignment="End" />
-                                        </HorizontalStackLayout>
-                                    </Grid>
-                                </SwipeView>
+                                    </HorizontalStackLayout>
+                                </Grid>
                             </controls:Card>
                         </Grid>
                     </DataTemplate>
@@ -140,7 +120,7 @@
                                Margin="10,0,10,0"
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Center"
-                               Text="{x:Static resources:Translations.NoAccountsMessage}" />
+                               Text="{x:Static resources:Translations.NoLedgerMessage}" />
                     </Grid>
                 </CollectionView.EmptyView>
             </CollectionView>

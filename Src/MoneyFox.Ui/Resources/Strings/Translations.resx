@@ -943,4 +943,13 @@ You can change this late in the settings.</value>
   <data name="CreateLedgerTitle" xml:space="preserve">
     <value>Create Ledger</value>
   </data>
+  <data name="AddLedgerLabel" xml:space="preserve">
+    <value>Add Ledger</value>
+  </data>
+  <data name="NoLedgerMessage" xml:space="preserve">
+    <value>No Ledgers to display.</value>
+  </data>
+  <data name="LedgersTitle" xml:space="preserve">
+    <value>Ledgers</value>
+  </data>
 </root>

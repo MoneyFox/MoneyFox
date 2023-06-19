@@ -178,6 +178,15 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Ledger.
+        /// </summary>
+        public static string AddLedgerLabel {
+            get {
+                return ResourceManager.GetString("AddLedgerLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Payment.
         /// </summary>
         public static string AddPaymentLabel {
@@ -1512,6 +1521,15 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ledgers.
+        /// </summary>
+        public static string LedgersTitle {
+            get {
+                return ResourceManager.GetString("LedgersTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Light.
         /// </summary>
         public static string LightLabel {
@@ -1832,6 +1850,15 @@ namespace MoneyFox.Ui.Resources.Strings {
         public static string NoLabel {
             get {
                 return ResourceManager.GetString("NoLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Ledgers to display..
+        /// </summary>
+        public static string NoLedgerMessage {
+            get {
+                return ResourceManager.GetString("NoLedgerMessage", resourceCulture);
             }
         }
         
