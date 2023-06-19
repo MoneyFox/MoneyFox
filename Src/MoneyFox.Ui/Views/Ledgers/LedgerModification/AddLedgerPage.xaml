@@ -6,7 +6,7 @@
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
     xmlns:ledgerModification="clr-namespace:MoneyFox.Ui.Views.Ledgers.LedgerModification"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
-    Title="{x:Static resources:Translations.AddAccountLabel}"
+    Title="{x:Static resources:Translations.CreateLedgerTitle}"
     x:DataType="ledgerModification:AddLedgerViewModel"
     x:Class="MoneyFox.Ui.Views.Ledgers.LedgerModification.AddLedgerPage">
 
@@ -15,13 +15,13 @@
             <VerticalStackLayout Spacing="12">
 
                 <controls:TextEntry
-                    TextFieldTitle="{x:Static resources:Translations.AccountNameLabel}"
-                    EntryPlaceholder="{x:Static resources:Translations.AccountNameLabel}"
+                    TextFieldTitle="{x:Static resources:Translations.LedgerNameLabel}"
+                    EntryPlaceholder="{x:Static resources:Translations.LedgerNameLabel}"
                     EntryText="{Binding Name}" />
 
                 <controls:AmountEntry
-                    AmountFieldTitle="{x:Static resources:Translations.CurrentBalanceLabel}"
-                    EntryPlaceholder="{x:Static resources:Translations.CurrentBalanceLabel}"
+                    AmountFieldTitle="{x:Static resources:Translations.InitialBalanceLabel}"
+                    EntryPlaceholder="{x:Static resources:Translations.InitialBalanceLabel}"
                     Amount="{Binding CurrentBalance}" />
 
                 <controls:TextEntry
@@ -38,7 +38,7 @@
 
                     <Label Grid.Column="0"
                            Style="{StaticResource TextBodySecondary}"
-                           Text="{x:Static resources:Translations.IsExcludedLabel}"
+                           Text="{x:Static resources:Translations.ExcludeFromBalanceLabel}"
                            VerticalOptions="Center" />
                     <Switch
                         Grid.Column="1"
@@ -46,7 +46,7 @@
                         VerticalOptions="Center"
                         IsToggled="{Binding IsExcluded}" />
                 </Grid>
-                <Button Command="{Binding SaveCommand}" Text="{x:Static resources:Translations.SaveLabel}" />
+                <Button Command="{Binding SaveCommand}" Text="{x:Static resources:Translations.CreateLedgerLabel}" />
             </VerticalStackLayout>
         </ScrollView>
     </ContentPage.Content>
