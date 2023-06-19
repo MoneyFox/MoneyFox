@@ -91,7 +91,7 @@ public class DashboardViewModel : BasePageViewModel, IRecipient<BackupRestoredMe
 
     public AsyncRelayCommand GoToAddPaymentCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddPaymentRoute));
 
-    public AsyncRelayCommand GoToAccountsCommand => new(async () => await Shell.Current.GoToAsync(Routes.AccountListRoute));
+    public AsyncRelayCommand GoToAccountsCommand => new(async () => await Shell.Current.GoToAsync(Routes.LedgerListRoute));
 
     public AsyncRelayCommand<AccountViewModel> GoToTransactionListCommand
         => new(async accountViewModel => await Shell.Current.GoToAsync($"{Routes.PaymentListRoute}?accountId={accountViewModel!.Id}"));
