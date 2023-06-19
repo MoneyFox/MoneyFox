@@ -32,7 +32,7 @@ public sealed class LedgerListViewModel : BasePageViewModel
         private set => SetProperty(field: ref ledgerGroups, newValue: value);
     }
 
-    public AsyncRelayCommand GoToAddLedgerCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddAccountRoute));
+    public AsyncRelayCommand GoToAddLedgerCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddLedgerRoute));
     
     public AsyncRelayCommand<LedgerListItemViewModel> GoToTransactionListCommand
         => new(async avm => await navigationService.NavigateToAsync<PaymentListPage>(parameterName: "accountId", queryParameter: avm?.Id.ToString() ?? ""));
