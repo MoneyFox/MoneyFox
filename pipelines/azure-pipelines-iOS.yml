@@ -107,7 +107,7 @@ steps:
       publishWebProjects: false
       zipAfterPublish: false
       projects: '**/MoneyFox.Ui.csproj'
-      arguments: '-c Release -f net7.0-ios -o $(build.artifactstagingdirectory) /p:BuildIpa=true /p:Codesignkey="$(APPLE_CERTIFICATE_SIGNING_IDENTITY)" /p:CodesignProvision="$(APPLE_PROV_PROFILE_UUID)"'
+      arguments: '-c Release -f net8.0-ios -o $(build.artifactstagingdirectory) /p:BuildIpa=true /p:Codesignkey="$(APPLE_CERTIFICATE_SIGNING_IDENTITY)" /p:CodesignProvision="$(APPLE_PROV_PROFILE_UUID)"'
 
   - task: PowerShell@2
     inputs:
