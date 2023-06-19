@@ -5,9 +5,9 @@
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
-    xmlns:accountList="clr-namespace:MoneyFox.Ui.Views.Accounts.AccountList"
     xmlns:extensions="clr-namespace:MoneyFox.Ui.Common.Extensions"
-    x:DataType="accountList:AccountListViewModel"
+    xmlns:ledgerList="clr-namespace:MoneyFox.Ui.Views.Ledgers.LedgerList"
+    x:DataType="ledgerList:LedgerListViewModel"
     x:Name="This"
     Title="{x:Static resources:Translations.AccountsTitle}">
 
@@ -23,16 +23,16 @@
                 HorizontalOptions="End"
                 Text="{x:Static resources:Translations.AddAccountLabel}"
                 VerticalOptions="Center"
-                Command="{Binding GoToAddAccountCommand}" />
+                Command="{Binding GoToAddLedgerCommand}" />
 
             <CollectionView
                 Grid.Row="1"
-                x:Name="AccountCollectionView"
+                x:Name="LedgerCollectionView"
                 IsGrouped="true"
-                ItemsSource="{Binding AccountGroups}">
+                ItemsSource="{Binding LedgerGroups}">
 
                 <CollectionView.GroupHeaderTemplate>
-                    <DataTemplate x:DataType="accountList:AccountGroup">
+                    <DataTemplate x:DataType="ledgerList:LedgerGroup">
                         <Grid Padding="18, 0, 18, 0">
                             <Label Text="{Binding Title}"
                                    Style="{StaticResource TextSubheadSecondary}" />
@@ -41,7 +41,7 @@
                 </CollectionView.GroupHeaderTemplate>
 
                 <CollectionView.GroupFooterTemplate>
-                    <DataTemplate x:DataType="accountList:AccountGroup">
+                    <DataTemplate x:DataType="ledgerList:LedgerGroup">
                         <Grid Padding="18, 0, 18, 0">
                             <Label
                                 Text="{Binding TotalString, StringFormat={extensions:Translate TotalBalanceTemplate}}"
@@ -52,13 +52,13 @@
                 </CollectionView.GroupFooterTemplate>
 
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="accountList:AccountListItemViewModel">
+                    <DataTemplate x:DataType="ledgerList:LedgerListItemViewModel">
                         <Grid Padding="18,0,18,12">
                             <controls:Card HeightRequest="80" Padding="6">
 
                                 <controls:Card.GestureRecognizers>
                                     <TapGestureRecognizer
-                                        Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference This}}"
+                                        Command="{Binding ViewModel.GoToTransactionListCommand, Source={x:Reference This}}"
                                         CommandParameter="{Binding .}" />
                                 </controls:Card.GestureRecognizers>
 

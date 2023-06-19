@@ -15,7 +15,7 @@ public sealed class LedgerListViewModel : BasePageViewModel
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
 
-    private ReadOnlyObservableCollection<LedgerGroup> ledgerGroup = null!;
+    private ReadOnlyObservableCollection<LedgerGroup> ledgerGroups = null!;
 
     private bool isRunning;
 
@@ -25,10 +25,10 @@ public sealed class LedgerListViewModel : BasePageViewModel
         this.dialogService = dialogService;
     }
 
-    public ReadOnlyObservableCollection<LedgerGroup> LedgerGroup
+    public ReadOnlyObservableCollection<LedgerGroup> LedgerGroups
     {
-        get => ledgerGroup;
-        private set => SetProperty(field: ref ledgerGroup, newValue: value);
+        get => ledgerGroups;
+        private set => SetProperty(field: ref ledgerGroups, newValue: value);
     }
 
     public AsyncRelayCommand GoToAddLedgerCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddAccountRoute));
@@ -65,7 +65,7 @@ public sealed class LedgerListViewModel : BasePageViewModel
                 .ToList();
 
             var accountGroups = accountListItems.GroupBy(a => a.IsExcluded).Select(g => new LedgerGroup(isExcluded: g.Key, accountItems: g.ToList()));
-            LedgerGroup = new(new(accountGroups));
+            LedgerGroups = new(new(accountGroups));
         }
         finally
         {

@@ -8,7 +8,7 @@ using Domain;
 using Domain.Aggregates.LedgerAggregate;
 using MediatR;
 
-internal static class CreateLedger
+public static class CreateLedger
 {
     public sealed record Command : IRequest<Unit>
     {

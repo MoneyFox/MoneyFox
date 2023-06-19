@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
+    xmlns:ledgerModification="clr-namespace:MoneyFox.Ui.Views.Ledgers.LedgerModification"
+    xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
+    Title="{x:Static resources:Translations.AddAccountLabel}"
+    x:DataType="ledgerModification:AddLedgerViewModel"
+    x:Class="MoneyFox.Ui.Views.Ledgers.LedgerModification.AddLedgerPage">
+
+    <ContentPage.Content>
+        <ScrollView Padding="15,0,15,0">
+            <VerticalStackLayout Spacing="12">
+
+                <controls:TextEntry
+                    TextFieldTitle="{x:Static resources:Translations.AccountNameLabel}"
+                    EntryPlaceholder="{x:Static resources:Translations.AccountNameLabel}"
+                    EntryText="{Binding Name}" />
+
+                <controls:AmountEntry
+                    AmountFieldTitle="{x:Static resources:Translations.CurrentBalanceLabel}"
+                    EntryPlaceholder="{x:Static resources:Translations.CurrentBalanceLabel}"
+                    Amount="{Binding CurrentBalance}" />
+
+                <controls:TextEntry
+                    TextFieldTitle="{x:Static resources:Translations.NoteLabel}"
+                    EntryPlaceholder="{x:Static resources:Translations.NoteLabel}"
+                    EntryText="{Binding Note}" />
+
+                <Grid Margin="0,5,0,0" HorizontalOptions="FillAndExpand">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0"
+                           Style="{StaticResource TextBodySecondary}"
+                           Text="{x:Static resources:Translations.IsExcludedLabel}"
+                           VerticalOptions="Center" />
+                    <Switch
+                        Grid.Column="1"
+                        HorizontalOptions="End"
+                        VerticalOptions="Center"
+                        IsToggled="{Binding IsExcluded}" />
+                </Grid>
+                <Button Command="{Binding SaveCommand}" Text="{x:Static resources:Translations.SaveLabel}" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

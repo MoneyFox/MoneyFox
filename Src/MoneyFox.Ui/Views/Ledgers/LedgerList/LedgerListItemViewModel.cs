@@ -7,7 +7,7 @@ public sealed class LedgerListItemViewModel : ObservableObject
     private decimal currentBalance;
     private decimal endOfMonthBalance;
 
-    private int id;
+    private readonly int id;
     private bool isExcluded;
     private string name = "";
 
