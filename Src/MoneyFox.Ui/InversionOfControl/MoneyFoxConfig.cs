@@ -18,6 +18,7 @@ using Views.Categories;
 using Views.Categories.CategorySelection;
 using Views.Categories.ModifyCategory;
 using Views.Dashboard;
+using Views.Ledgers.LedgerList;
 using Views.OverflowMenu;
 using Views.Payments;
 using Views.Payments.PaymentList;
@@ -91,7 +92,8 @@ public sealed class MoneyFoxConfig
             .AddTransient<AddBudgetViewModel>()
             .AddTransient<EditBudgetViewModel>()
             .AddTransient<BudgetListViewModel>()
-            .AddTransient<CategorySelectionViewModel>();
+            .AddTransient<CategorySelectionViewModel>()
+            .AddTransient<LedgerListViewModel>();
     }
 
     private static void RegisterAdapters(IServiceCollection serviceCollection)
