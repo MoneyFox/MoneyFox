@@ -88,7 +88,7 @@ jobs:
           dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
 
       - name: Build MAUI Android
-        run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net8.0-android -c Release /p:EnableLLVM=false
+        run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net8.0-android -c Release /p:EnableLLVM=false -r android-arm64
   
   
   buildiOS:
