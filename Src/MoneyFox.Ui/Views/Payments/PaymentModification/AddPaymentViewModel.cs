@@ -3,6 +3,7 @@ namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 using AutoMapper;
 using Controls.CategorySelection;
 using Core.Common.Interfaces;
+using Core.Common.Settings;
 using Core.Features._Legacy_.Payments.CreatePayment;
 using Core.Queries;
 using Domain.Aggregates.AccountAggregate;
@@ -20,12 +21,14 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
         IMapper mapper,
         IDialogService dialogService,
         IToastService toastService,
+        ISettingsFacade settingsFacade,
         CategorySelectionViewModel categorySelectionViewModel) : base(
         mediator: mediator,
         mapper: mapper,
         dialogService: dialogService,
         toastService: toastService,
-        categorySelectionViewModel: categorySelectionViewModel)
+        categorySelectionViewModel: categorySelectionViewModel,
+        settingsFacade: settingsFacade)
     {
         this.mediator = mediator;
         this.dialogService = dialogService;

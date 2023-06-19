@@ -3,6 +3,7 @@ namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 using Accounts.AccountModification;
 using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Controls.AccountPicker;
 using Controls.CategorySelection;
 using Core.Common.Interfaces.Mapping;
 using Domain.Aggregates.AccountAggregate;
@@ -12,7 +13,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
 {
     private decimal amount;
 
-    private AccountViewModel chargedAccount = null!;
+    private AccountPickerViewModel chargedAccount = null!;
     private int chargedAccountId;
     private DateTime created;
 
@@ -25,7 +26,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     private DateTime lastModified;
     private string note = "";
     private RecurringPaymentViewModel? recurringPaymentViewModel;
-    private AccountViewModel? targetAccount;
+    private AccountPickerViewModel? targetAccount;
     private int? targetAccountId;
     private PaymentType type;
 
@@ -142,7 +143,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     ///     In case it's a expense or transfer the account who will be charged.     In case it's an income the account
     ///     who will be credited.
     /// </summary>
-    public AccountViewModel ChargedAccount
+    public AccountPickerViewModel ChargedAccount
     {
         get => chargedAccount;
         set => SetProperty(field: ref chargedAccount, newValue: value);
@@ -152,7 +153,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     ///     The <see cref="AccountViewModel" /> who will be credited by a transfer.     Not used for the other payment
     ///     types.
     /// </summary>
-    public AccountViewModel? TargetAccount
+    public AccountPickerViewModel? TargetAccount
     {
         get => targetAccount;
         set => SetProperty(field: ref targetAccount, newValue: value);
@@ -184,6 +185,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public void CreateMappings(Profile configuration)
     {
         configuration.CreateMap<Category, SelectedCategoryViewModel>();
+        configuration.CreateMap<Account, AccountPickerViewModel>();
         configuration.CreateMap<Payment, PaymentViewModel>()
             .ForMember(destinationMember: x => x.CurrentAccountId, memberOptions: opt => opt.Ignore())
             .ReverseMap();

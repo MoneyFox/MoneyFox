@@ -1,7 +1,10 @@
 namespace MoneyFox.Ui.Tests.Views.Payments;
 
 using AutoMapper;
+using Controls.AccountPicker;
 using Core.Common.Interfaces;
+using Core.Common.Settings;
+using Domain;
 using MediatR;
 using NSubstitute;
 using Ui.Views.Payments.PaymentModification;
@@ -21,7 +24,11 @@ public sealed class AddPaymentViewModelTests
             mapper: Substitute.For<IMapper>(),
             dialogService: dialogService,
             toastService: toastService,
-            categorySelectionViewModel: new(navigationService: Substitute.For<INavigationService>())) { SelectedPayment = new() { ChargedAccount = new() } };
+            settingsFacade: Substitute.For<ISettingsFacade>(),
+            categorySelectionViewModel: new(navigationService: Substitute.For<INavigationService>()))
+        {
+            SelectedPayment = new() { ChargedAccount = new() { Id = 1, Name = "", CurrentBalance = Money.Zero("CHF") } }
+        };
 
         dialogService.ShowConfirmMessageAsync(title: Arg.Any<string>(), message: Arg.Any<string>()).Returns(true);
 

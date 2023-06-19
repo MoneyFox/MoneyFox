@@ -4,6 +4,7 @@ using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using Controls.CategorySelection;
 using Core.Common.Interfaces;
+using Core.Common.Settings;
 using Core.Features._Legacy_.Payments.DeletePaymentById;
 using Core.Features._Legacy_.Payments.UpdatePayment;
 using Core.Queries;
@@ -21,12 +22,14 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
         IMapper mapper,
         IDialogService dialogService,
         IToastService toastService,
+        ISettingsFacade settingsFacade,
         CategorySelectionViewModel categorySelectionViewModel) : base(
         mediator: mediator,
         mapper: mapper,
         dialogService: dialogService,
         toastService: toastService,
-        categorySelectionViewModel: categorySelectionViewModel)
+        categorySelectionViewModel: categorySelectionViewModel,
+        settingsFacade: settingsFacade)
     {
         this.mediator = mediator;
         this.mapper = mapper;
