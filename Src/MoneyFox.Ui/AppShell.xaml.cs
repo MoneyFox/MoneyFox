@@ -10,6 +10,8 @@ using Views.Categories;
 using Views.Categories.CategorySelection;
 using Views.Categories.ModifyCategory;
 using Views.Dashboard;
+using Views.Ledgers.LedgerList;
+using Views.Ledgers.LedgerModification;
 using Views.Payments.PaymentList;
 using Views.Payments.PaymentModification;
 using Views.Settings;
@@ -55,5 +57,7 @@ public partial class AppShell
         Routing.RegisterRoute(route: Routes.BudgetListRoute, type: typeof(BudgetListPage));
         Routing.RegisterRoute(route: Routes.AddBudgetRoute, type: typeof(AddBudgetPage));
         Routing.RegisterRoute(route: Routes.EditBudgetRoute, type: typeof(EditBudgetPage));
+        Routing.RegisterRoute(route: Routes.LedgerListRoute, type: typeof(LedgerListPage));
+        Routing.RegisterRoute(route: Routes.AddLedgerRoute, type: typeof(AddLedgerPage));
     }
 }

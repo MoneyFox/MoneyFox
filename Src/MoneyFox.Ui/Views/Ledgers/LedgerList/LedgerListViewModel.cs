@@ -1,28 +1,29 @@
 namespace MoneyFox.Ui.Views.Ledgers.LedgerList;
 
 using System.Collections.ObjectModel;
-using Accounts;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
+using Core.Common.Interfaces;
+using Core.Features._Legacy_.Accounts.DeleteAccountById;
+using Core.Queries;
 using MediatR;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Features._Legacy_.Accounts.DeleteAccountById;
-using MoneyFox.Core.Queries;
-using MoneyFox.Ui.Resources.Strings;
+using Payments.PaymentList;
+using Resources.Strings;
 
 public sealed class LedgerListViewModel : BasePageViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
-
-    private ReadOnlyObservableCollection<LedgerGroup> ledgerGroups = null!;
+    private readonly INavigationService navigationService;
 
     private bool isRunning;
 
-    public LedgerListViewModel(IMediator mediator, IDialogService dialogService)
+    private ReadOnlyObservableCollection<LedgerGroup> ledgerGroups = null!;
+
+    public LedgerListViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService)
     {
         this.mediator = mediator;
         this.dialogService = dialogService;
+        this.navigationService = navigationService;
     }
 
     public ReadOnlyObservableCollection<LedgerGroup> LedgerGroups
@@ -32,12 +33,9 @@ public sealed class LedgerListViewModel : BasePageViewModel
     }
 
     public AsyncRelayCommand GoToAddLedgerCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddAccountRoute));
-
-    public AsyncRelayCommand<LedgerListItemViewModel> GoToEditAccountCommand
-        => new(async avm => await Shell.Current.GoToAsync($"{Routes.EditAccountRoute}?accountId={avm.Id}"));
-
+    
     public AsyncRelayCommand<LedgerListItemViewModel> GoToTransactionListCommand
-        => new(async avm => await Shell.Current.GoToAsync($"{Routes.PaymentListRoute}?accountId={avm.Id}"));
+        => new(async avm => await navigationService.NavigateToAsync<PaymentListPage>(parameterName: "accountId", queryParameter: avm?.Id.ToString() ?? ""));
 
     public AsyncRelayCommand<LedgerListItemViewModel> DeleteAccountCommand => new(DeleteAccountAsync);
 

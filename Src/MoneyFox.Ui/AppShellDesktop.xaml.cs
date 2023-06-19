@@ -10,6 +10,8 @@ using Views.Categories;
 using Views.Categories.CategorySelection;
 using Views.Categories.ModifyCategory;
 using Views.Dashboard;
+using Views.Ledgers.LedgerList;
+using Views.Ledgers.LedgerModification;
 using Views.Payments.PaymentList;
 using Views.Payments.PaymentModification;
 using Views.Settings;
@@ -55,5 +57,7 @@ public partial class AppShellDesktop
         Routing.RegisterRoute(route: Routes.CategoryListRoute, type: typeof(CategoryListPage));
         Routing.RegisterRoute(route: Routes.AccountListRoute, type: typeof(DesktopAccountListPage));
         Routing.RegisterRoute(route: Routes.SelectCategoryRoute, type: typeof(SelectCategoryPage));
+        Routing.RegisterRoute(route: Routes.LedgerListRoute, type: typeof(LedgerListPage));
+        Routing.RegisterRoute(route: Routes.AddLedgerRoute, type: typeof(AddLedgerPage));
     }
 }

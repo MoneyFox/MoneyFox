@@ -10,6 +10,8 @@ using Views.Categories;
 using Views.Categories.CategorySelection;
 using Views.Categories.ModifyCategory;
 using Views.Dashboard;
+using Views.Ledgers.LedgerList;
+using Views.Ledgers.LedgerModification;
 using Views.Payments.PaymentList;
 using Views.Payments.PaymentModification;
 using Views.Settings;
@@ -48,6 +50,8 @@ public static class Routes
     public static string PaymentForCategoryListRoute => nameof(PaymentForCategoryListPage);
     public static string AddBudgetRoute => nameof(AddBudgetPage);
     public static string EditBudgetRoute => nameof(EditBudgetPage);
+    public static string LedgerListRoute => nameof(LedgerListPage);
+    public static string AddLedgerRoute => nameof(AddLedgerPage);
 
     // Setup
     public static string WelcomeViewRoute => nameof(WelcomePage);

@@ -14,6 +14,13 @@ internal sealed class NavigationService : INavigationService
         await Shell.Current.GoToAsync(pageName);
     }
 
+    public async Task NavigateToAsync<T>(string parameterName, string queryParameter) where T : ContentPage
+    {
+        var pageName = typeof(T).Name;
+        Analytics.TrackEvent($"Navigate to {pageName}");
+        await Shell.Current.GoToAsync($"{pageName}?{parameterName}={queryParameter}");
+    }
+
     public async Task NavigateBackAsync()
     {
         Analytics.TrackEvent("Navigate back");

@@ -22,4 +22,9 @@
         <ProjectReference Include="..\MoneyFox.Ui\MoneyFox.Ui.csproj"/>
     </ItemGroup>
 
+
+    <ItemGroup>
+      <Folder Include="Views\Ledgers\" />
+    </ItemGroup>
+
 </Project>
