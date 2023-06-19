@@ -25,7 +25,7 @@ jobs:
         displayName: 'Install .net sdk'
         inputs:
           version: 8.x
-          allowPrerelease: true
+          includePreviewVersions: true
 
       - task: DownloadSecureFile@1
         displayName: 'download certificate'
