@@ -50,7 +50,7 @@ internal sealed class AddLedgerViewModel : BasePageViewModel
         set => SetProperty(field: ref isExcluded, newValue: value);
     }
 
-    public AsyncRelayCommand SaveCommand => new AsyncRelayCommand(SaveAccountAsync);
+    public AsyncRelayCommand SaveCommand => new(SaveAccountAsync);
 
     private async Task SaveAccountAsync()
     {
