@@ -40,27 +40,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
         get => id;
         set => SetProperty(field: ref id, newValue: value);
     }
-
-    /// <summary>
-    ///     In case it's a expense or transfer the foreign key to the <see cref="AccountViewModel" /> who will be
-    ///     charged.     In case it's an income the  foreign key to the <see cref="AccountViewModel" /> who will be
-    ///     credited.
-    /// </summary>
-    public int ChargedAccountId
-    {
-        get => chargedAccountId;
-        set => SetProperty(field: ref chargedAccountId, newValue: value);
-    }
-
-    /// <summary>
-    ///     Foreign key to the account who will be credited by a transfer.     Not used for the other payment types.
-    /// </summary>
-    public int? TargetAccountId
-    {
-        get => targetAccountId;
-        set => SetProperty(field: ref targetAccountId, newValue: value);
-    }
-
+    
     /// <summary>
     ///     Date when this payment will be executed.
     /// </summary>
