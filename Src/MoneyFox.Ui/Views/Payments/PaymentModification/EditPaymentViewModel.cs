@@ -25,7 +25,6 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
         ISettingsFacade settingsFacade,
         CategorySelectionViewModel categorySelectionViewModel) : base(
         mediator: mediator,
-        mapper: mapper,
         dialogService: dialogService,
         toastService: toastService,
         categorySelectionViewModel: categorySelectionViewModel,

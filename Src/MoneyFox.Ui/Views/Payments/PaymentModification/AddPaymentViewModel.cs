@@ -24,7 +24,6 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
         ISettingsFacade settingsFacade,
         CategorySelectionViewModel categorySelectionViewModel) : base(
         mediator: mediator,
-        mapper: mapper,
         dialogService: dialogService,
         toastService: toastService,
         categorySelectionViewModel: categorySelectionViewModel,

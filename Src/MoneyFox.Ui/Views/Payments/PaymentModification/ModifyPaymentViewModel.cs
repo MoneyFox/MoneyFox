@@ -2,7 +2,6 @@ namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
 using System.Collections.Immutable;
 using System.Collections.ObjectModel;
-using AutoMapper;
 using Categories.CategorySelection;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -20,7 +19,6 @@ using Serilog;
 public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttributable
 {
     private readonly IDialogService dialogService;
-    private readonly IMapper mapper;
     private readonly IMediator mediator;
     private readonly ISettingsFacade settingsFacade;
     private readonly IToastService toastService;
@@ -31,14 +29,12 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
 
     protected ModifyPaymentViewModel(
         IMediator mediator,
-        IMapper mapper,
         IDialogService dialogService,
         IToastService toastService,
         CategorySelectionViewModel categorySelectionViewModel,
         ISettingsFacade settingsFacade)
     {
         this.mediator = mediator;
-        this.mapper = mapper;
         this.dialogService = dialogService;
         this.toastService = toastService;
         CategorySelectionViewModel = categorySelectionViewModel;
