@@ -27,7 +27,7 @@ public sealed class AddPaymentViewModelTests
             settingsFacade: Substitute.For<ISettingsFacade>(),
             categorySelectionViewModel: new(navigationService: Substitute.For<INavigationService>()))
         {
-            SelectedPayment = new() { ChargedAccount = new() { Id = 1, Name = "", CurrentBalance = Money.Zero("CHF") } }
+            SelectedPayment = new() { ChargedAccount = new(Id: 1, Name: "", CurrentBalance: Money.Zero("CHF")) }
         };
 
         dialogService.ShowConfirmMessageAsync(title: Arg.Any<string>(), message: Arg.Any<string>()).Returns(true);

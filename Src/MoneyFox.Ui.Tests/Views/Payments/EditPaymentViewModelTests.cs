@@ -23,14 +23,12 @@ public sealed class EditPaymentViewModelTests
         var dialogService = Substitute.For<IDialogService>();
         var toastService = Substitute.For<IToastService>();
         var mediator = Substitute.For<IMediator>();
-
         var settingsFacade = Substitute.For<ISettingsFacade>();
         settingsFacade.DefaultCurrency.Returns("CHF");
-
         var dbPayment = new TestData.DefaultExpense().CreateDbPayment();
         var dbAccount = new TestData.DefaultAccount().CreateDbAccount();
-        mediator.Send(Arg.Any<GetAccountsQuery>(), Arg.Any<CancellationToken>()).Returns(new List<Account> { dbAccount });
-        mediator.Send(Arg.Any<GetPaymentByIdQuery>(), Arg.Any<CancellationToken>()).Returns(dbPayment);
+        mediator.Send(request: Arg.Any<GetAccountsQuery>(), cancellationToken: Arg.Any<CancellationToken>()).Returns(new List<Account> { dbAccount });
+        mediator.Send(request: Arg.Any<GetPaymentByIdQuery>(), cancellationToken: Arg.Any<CancellationToken>()).Returns(dbPayment);
         var vm = new EditPaymentViewModel(
             mediator: mediator,
             mapper: AutoMapperFactory.Create(),
@@ -63,7 +61,7 @@ public sealed class EditPaymentViewModelTests
             settingsFacade: Substitute.For<ISettingsFacade>(),
             categorySelectionViewModel: new(navigationService: Substitute.For<INavigationService>()))
         {
-            SelectedPayment = new() { ChargedAccount = new() { Id = 1, Name = "", CurrentBalance = Money.Zero("CHF") } }
+            SelectedPayment = new() { ChargedAccount = new(Id: 1, Name: "", CurrentBalance: Money.Zero("CHF")) }
         };
 
         dialogService.ShowConfirmMessageAsync(title: Arg.Any<string>(), message: Arg.Any<string>()).Returns(true);

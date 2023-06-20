@@ -114,10 +114,10 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
     {
         var accounts = await mediator.Send(new GetAccountsQuery());
         var pickerVms = accounts.Select(
-                a => new AccountPickerViewModel
-                {
-                    Id = a.Id, Name = a.Name, CurrentBalance = new(amount: a.CurrentBalance, currencyAlphaIsoCode: settingsFacade.DefaultCurrency)
-                })
+                a => new AccountPickerViewModel(
+                    Id: a.Id,
+                    Name: a.Name,
+                    CurrentBalance: new(amount: a.CurrentBalance, currencyAlphaIsoCode: settingsFacade.DefaultCurrency)))
             .ToImmutableList();
 
         ChargedAccounts = new(pickerVms);

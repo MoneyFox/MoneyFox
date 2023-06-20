@@ -9,7 +9,6 @@ using Core.Common.Settings;
 using Core.Features._Legacy_.Payments.DeletePaymentById;
 using Core.Features._Legacy_.Payments.UpdatePayment;
 using Core.Queries;
-using Domain;
 using MediatR;
 using Resources.Strings;
 
@@ -62,24 +61,21 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
         await InitializeAsync();
         var payment = await mediator.Send(new GetPaymentByIdQuery(paymentId));
         var recurringPaymentViewModel = mapper.Map<RecurringPaymentViewModel>(payment.RecurringPayment);
-        SelectedPayment = new PaymentViewModel
+        SelectedPayment = new()
         {
             Id = payment.Id,
             Amount = payment.Amount,
-            ChargedAccount = new AccountPickerViewModel
-            {
-                Id = payment.ChargedAccount.Id,
-                Name = payment.ChargedAccount.Name,
-                CurrentBalance = new Money(payment.ChargedAccount.CurrentBalance, settingsFacade.DefaultCurrency)
-            },
+            ChargedAccount
+                = new(
+                    Id: payment.ChargedAccount.Id,
+                    Name: payment.ChargedAccount.Name,
+                    CurrentBalance: new(amount: payment.ChargedAccount.CurrentBalance, currencyAlphaIsoCode: settingsFacade.DefaultCurrency)),
             TargetAccount = payment.TargetAccount == null
                 ? null
-                : new AccountPickerViewModel
-                {
-                    Id = payment.TargetAccount.Id,
-                    Name = payment.TargetAccount.Name,
-                    CurrentBalance = new Money(payment.TargetAccount.CurrentBalance, settingsFacade.DefaultCurrency)
-                },
+                : new AccountPickerViewModel(
+                    Id: payment.TargetAccount.Id,
+                    Name: payment.TargetAccount.Name,
+                    CurrentBalance: new(amount: payment.TargetAccount.CurrentBalance, currencyAlphaIsoCode: settingsFacade.DefaultCurrency)),
             Date = payment.Date,
             IsCleared = payment.IsCleared,
             Type = payment.Type,
@@ -87,9 +83,9 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
             RecurringPayment = recurringPaymentViewModel,
             Note = payment.Note,
             Created = payment.Created,
-            LastModified = payment.LastModified,
-
+            LastModified = payment.LastModified
         };
+
         if (payment.Category != null)
         {
             CategorySelectionViewModel.SelectedCategory
