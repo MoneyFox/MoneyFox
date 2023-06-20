@@ -2,12 +2,14 @@ namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
+using Controls.AccountPicker;
 using Controls.CategorySelection;
 using Core.Common.Interfaces;
 using Core.Common.Settings;
 using Core.Features._Legacy_.Payments.DeletePaymentById;
 using Core.Features._Legacy_.Payments.UpdatePayment;
 using Core.Queries;
+using Domain;
 using MediatR;
 using Resources.Strings;
 
@@ -16,6 +18,7 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
     private readonly IMediator mediator;
+    private readonly ISettingsFacade settingsFacade;
 
     public EditPaymentViewModel(
         IMediator mediator,
@@ -33,6 +36,7 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
         this.mediator = mediator;
         this.mapper = mapper;
         this.dialogService = dialogService;
+        this.settingsFacade = settingsFacade;
     }
 
     public AsyncRelayCommand<PaymentViewModel> DeleteCommand => new(async p => await DeletePaymentAsync(p));
@@ -57,8 +61,35 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
 
         await InitializeAsync();
         var payment = await mediator.Send(new GetPaymentByIdQuery(paymentId));
-        SelectedPayment = mapper.Map<PaymentViewModel>(payment);
-        SelectedPayment.RecurringPayment = mapper.Map<RecurringPaymentViewModel>(payment.RecurringPayment);
+        var recurringPaymentViewModel = mapper.Map<RecurringPaymentViewModel>(payment.RecurringPayment);
+        SelectedPayment = new PaymentViewModel
+        {
+            Id = payment.Id,
+            Amount = payment.Amount,
+            ChargedAccount = new AccountPickerViewModel
+            {
+                Id = payment.ChargedAccount.Id,
+                Name = payment.ChargedAccount.Name,
+                CurrentBalance = new Money(payment.ChargedAccount.CurrentBalance, settingsFacade.DefaultCurrency)
+            },
+            TargetAccount = payment.TargetAccount == null
+                ? null
+                : new AccountPickerViewModel
+                {
+                    Id = payment.TargetAccount.Id,
+                    Name = payment.TargetAccount.Name,
+                    CurrentBalance = new Money(payment.TargetAccount.CurrentBalance, settingsFacade.DefaultCurrency)
+                },
+            Date = payment.Date,
+            IsCleared = payment.IsCleared,
+            Type = payment.Type,
+            IsRecurring = payment.IsRecurring,
+            RecurringPayment = recurringPaymentViewModel,
+            Note = payment.Note,
+            Created = payment.Created,
+            LastModified = payment.LastModified,
+
+        };
         if (payment.Category != null)
         {
             CategorySelectionViewModel.SelectedCategory

@@ -14,7 +14,6 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     private decimal amount;
 
     private AccountPickerViewModel chargedAccount = null!;
-    private int chargedAccountId;
     private DateTime created;
 
     private int currentAccountId;
@@ -23,11 +22,10 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     private int id;
     private bool isCleared;
     private bool isRecurring;
-    private DateTime lastModified;
+    private DateTime? lastModified;
     private string note = "";
     private RecurringPaymentViewModel? recurringPaymentViewModel;
     private AccountPickerViewModel? targetAccount;
-    private int? targetAccountId;
     private PaymentType type;
 
     public PaymentViewModel()
@@ -40,7 +38,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
         get => id;
         set => SetProperty(field: ref id, newValue: value);
     }
-    
+
     /// <summary>
     ///     Date when this payment will be executed.
     /// </summary>
@@ -86,7 +84,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     /// <summary>
     ///     Additional notes to the payment.
     /// </summary>
-    public string Note
+    public string? Note
     {
         get => note;
         set => SetProperty(field: ref note, newValue: value);
@@ -113,7 +111,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
         set => SetProperty(field: ref created, newValue: value);
     }
 
-    public DateTime LastModified
+    public DateTime? LastModified
     {
         get => lastModified;
         set => SetProperty(field: ref lastModified, newValue: value);
