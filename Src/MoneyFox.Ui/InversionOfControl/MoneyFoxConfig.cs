@@ -8,6 +8,8 @@ using Core.InversionOfControl;
 using Infrastructure.Adapters;
 using Mapping;
 using MoneyFox.Infrastructure.InversionOfControl;
+using Navigation;
+using Navigation.Impl;
 using Views.About;
 using Views.Accounts.AccountList;
 using Views.Accounts.AccountModification;
@@ -32,6 +34,7 @@ using Views.Statistics.CategorySpreading;
 using Views.Statistics.CategorySummary;
 using Views.Statistics.MonthlyAccountCashFlow;
 using Views.Statistics.Selector;
+using INavigationService = Ui.INavigationService;
 
 public sealed class MoneyFoxConfig
 {
@@ -49,6 +52,7 @@ public sealed class MoneyFoxConfig
     private static void RegisterServices(IServiceCollection serviceCollection)
     {
         _ = serviceCollection.AddSingleton<IDialogService, DialogService>()
+            .AddTransient<IViewLocator, ViewLocator>()
             .AddTransient<INavigationService, NavigationService>()
             .AddTransient<IToastService, ToastService>();
     }
