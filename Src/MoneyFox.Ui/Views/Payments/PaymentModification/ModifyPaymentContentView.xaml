@@ -8,6 +8,7 @@
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:paymentModification="clr-namespace:MoneyFox.Ui.Views.Payments.PaymentModification"
     xmlns:categorySelection="clr-namespace:MoneyFox.Ui.Controls.CategorySelection"
+    xmlns:accountPicker="clr-namespace:MoneyFox.Ui.Controls.AccountPicker"
     x:Class="MoneyFox.Ui.Views.Payments.PaymentModification.ModifyPaymentContentView"
     x:DataType="paymentModification:ModifyPaymentViewModel">
 
@@ -23,11 +24,11 @@
                                     PaymentTypeSource="{x:Static paymentModification:ModifyPaymentViewModel.PaymentTypeList}"
                                     SelectedType="{Binding SelectedPayment.Type}" />
 
-        <controls:AccountPicker PickerTitle="{Binding AccountHeader, Mode=OneWay}"
+        <accountPicker:AccountPicker PickerTitle="{Binding AccountHeader, Mode=OneWay}"
                                 AccountsSource="{Binding ChargedAccounts}"
                                 SelectedAccount="{Binding SelectedPayment.ChargedAccount}" />
 
-        <controls:AccountPicker PickerTitle="{x:Static resources:Translations.TargetAccountLabel}"
+        <accountPicker:AccountPicker PickerTitle="{x:Static resources:Translations.TargetAccountLabel}"
                                 AccountsSource="{Binding TargetAccounts}"
                                 SelectedAccount="{Binding SelectedPayment.TargetAccount}"
                                 IsVisible="{Binding SelectedPayment.IsTransfer}" />
