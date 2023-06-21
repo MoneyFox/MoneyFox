@@ -62,7 +62,7 @@ public partial class AmountEntry
             () =>
             {
                 AmountField.CursorPosition = 0;
-                AmountField.SelectionLength = AmountField.Text != null ? AmountField.Text.Length : 0;
+                AmountField.SelectionLength = AmountField.Text?.Length ?? 0;
             });
     }
 }
