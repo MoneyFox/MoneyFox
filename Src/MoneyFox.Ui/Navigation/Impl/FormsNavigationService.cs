@@ -45,7 +45,7 @@ public class FormsNavigationService : INavigationService
 
             // Then we want to go back to root page and clear the stack
             await NavigationPage.PopToRootAsync(animated);
-            ((BasePageViewModel)rootPage.BindingContext).OnNavigated(parameter);
+            await ((BasePageViewModel)rootPage.BindingContext).OnNavigatedAsync(parameter);
 
             return;
         }
@@ -60,7 +60,7 @@ public class FormsNavigationService : INavigationService
             await NavigationPage.PushAsync(page: (Page)view, animated: animated);
         }
 
-        ((BasePageViewModel)view.BindingContext).OnNavigated(parameter);
+        await ((BasePageViewModel)view.BindingContext).OnNavigatedAsync(parameter);
     }
 
     public async Task NavigateToViewAsync<TView>(object? parameter = null, bool modalNavigation = false, bool clearStack = false, bool animated = true)
@@ -81,7 +81,7 @@ public class FormsNavigationService : INavigationService
 
             // Then we want to go back to root page and clear the stack
             await NavigationPage.PopToRootAsync(animated);
-            ((BasePageViewModel)rootPage.BindingContext).OnNavigated(parameter);
+            await ((BasePageViewModel)rootPage.BindingContext).OnNavigatedAsync(parameter);
 
             return;
         }
@@ -96,14 +96,14 @@ public class FormsNavigationService : INavigationService
             await NavigationPage.PushAsync(page: (Page)view, animated: animated);
         }
 
-        ((BasePageViewModel)view.BindingContext).OnNavigated(parameter);
+        await ((BasePageViewModel)view.BindingContext).OnNavigatedAsync(parameter);
     }
 
     public async Task NavigateFromMenuToAsync<TViewModel>() where TViewModel : BasePageViewModel
     {
         var view = viewLocator.GetViewFor<TViewModel>();
         await NavigationPage.PushAsync((Page)view);
-        ((BasePageViewModel)view.BindingContext).OnNavigated(null);
+        await ((BasePageViewModel)view.BindingContext).OnNavigatedAsync(null);
         foreach (var page in FormsNavigation.NavigationStack.Take(FormsNavigation.NavigationStack.Count - 1).Skip(1))
         {
             FormsNavigation.RemovePage(page);
@@ -113,7 +113,7 @@ public class FormsNavigationService : INavigationService
     public async Task<IBindablePage> NavigateBackAsync(object? parameter = null)
     {
         var page = (IBindablePage)await NavigationPage.PopAsync();
-
+        await ((BasePageViewModel)page.BindingContext).OnNavigatedBackAsync(parameter);
         return page;
     }
 }
