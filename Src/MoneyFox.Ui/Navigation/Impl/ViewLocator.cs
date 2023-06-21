@@ -69,8 +69,7 @@ public class ViewLocator : IViewLocator
     public IBindablePage GetViewFor<TViewModel>() where TViewModel : BasePageViewModel
     {
         var viewModel = App.GetViewModel<TViewModel>();
-        var view = serviceProvider.GetService(FindViewByViewModel(typeof(TViewModel))) as IBindablePage
-            ?? throw new ResolveViewException(typeof(TViewModel));
+        var view = serviceProvider.GetService(FindViewByViewModel(typeof(TViewModel))) as IBindablePage ?? throw new ResolveViewException(typeof(TViewModel));
         view.BindingContext = viewModel;
 
         return view;
@@ -79,8 +78,7 @@ public class ViewLocator : IViewLocator
     public IBindablePage GetView<TView>() where TView : class, IBindablePage
     {
         var view = (IBindablePage)serviceProvider.GetService(typeof(TView))!;
-        var viewModel = serviceProvider.GetService(FindViewModelByView(typeof(TView)))
-                        ?? throw new ResolveViewException(typeof(TView));
+        var viewModel = serviceProvider.GetService(FindViewModelByView(typeof(TView))) ?? throw new ResolveViewException(typeof(TView));
         view.BindingContext = viewModel;
 
         return view;
