@@ -81,7 +81,7 @@
         <PackageReference Include="Serilog.Sinks.File" Version="5.0.0"/>
         <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4"/>
         <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0"/>
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="9.3.0.71466">
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="9.4.0.72892">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
@@ -199,6 +199,10 @@
             <DependentUpon>LoadingIndicatorPopup.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Compile Update="Controls\AccountPicker\AccountPicker.xaml.cs">
+          <DependentUpon>AccountPicker.xaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -268,6 +272,10 @@
         <MauiXaml Update="Common\Services\LoadingIndicatorPopup.xaml">
             <SubType>Designer</SubType>
         </MauiXaml>
+        <MauiXaml Update="Controls\AccountPicker\AccountPicker.xaml">
+          <SubType>Designer</SubType>
+        </MauiXaml>
     </ItemGroup>
+
 
 </Project>

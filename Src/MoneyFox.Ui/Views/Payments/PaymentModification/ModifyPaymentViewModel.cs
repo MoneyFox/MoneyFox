@@ -1,13 +1,14 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
+using System.Collections.Immutable;
 using System.Collections.ObjectModel;
-using Accounts.AccountModification;
-using AutoMapper;
 using Categories.CategorySelection;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Controls.AccountPicker;
 using Controls.CategorySelection;
 using Core.Common.Interfaces;
+using Core.Common.Settings;
 using Core.Queries;
 using Domain.Aggregates.AccountAggregate;
 using MediatR;
@@ -18,26 +19,26 @@ using Serilog;
 public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttributable
 {
     private readonly IDialogService dialogService;
-    private readonly IMapper mapper;
     private readonly IMediator mediator;
+    private readonly ISettingsFacade settingsFacade;
     private readonly IToastService toastService;
-    private ObservableCollection<AccountViewModel> chargedAccounts = new();
+    private ObservableCollection<AccountPickerViewModel> chargedAccounts = new();
 
     private PaymentViewModel selectedPayment = new();
-    private ObservableCollection<AccountViewModel> targetAccounts = new();
+    private ObservableCollection<AccountPickerViewModel> targetAccounts = new();
 
     protected ModifyPaymentViewModel(
         IMediator mediator,
-        IMapper mapper,
         IDialogService dialogService,
         IToastService toastService,
-        CategorySelectionViewModel categorySelectionViewModel)
+        CategorySelectionViewModel categorySelectionViewModel,
+        ISettingsFacade settingsFacade)
     {
         this.mediator = mediator;
-        this.mapper = mapper;
         this.dialogService = dialogService;
         this.toastService = toastService;
         CategorySelectionViewModel = categorySelectionViewModel;
+        this.settingsFacade = settingsFacade;
     }
 
     public PaymentViewModel SelectedPayment
@@ -53,7 +54,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
 
     public CategorySelectionViewModel CategorySelectionViewModel { get; }
 
-    public ObservableCollection<AccountViewModel> ChargedAccounts
+    public ObservableCollection<AccountPickerViewModel> ChargedAccounts
     {
         get => chargedAccounts;
 
@@ -64,7 +65,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
         }
     }
 
-    public ObservableCollection<AccountViewModel> TargetAccounts
+    public ObservableCollection<AccountPickerViewModel> TargetAccounts
     {
         get => targetAccounts;
 
@@ -111,9 +112,16 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
 
     protected async Task InitializeAsync()
     {
-        var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
-        ChargedAccounts = new(accounts);
-        TargetAccounts = new(accounts);
+        var accounts = await mediator.Send(new GetAccountsQuery());
+        var pickerVms = accounts.Select(
+                a => new AccountPickerViewModel(
+                    Id: a.Id,
+                    Name: a.Name,
+                    CurrentBalance: new(amount: a.CurrentBalance, currencyAlphaIsoCode: settingsFacade.DefaultCurrency)))
+            .ToImmutableList();
+
+        ChargedAccounts = new(pickerVms);
+        TargetAccounts = new(pickerVms);
         IsFirstLoad = false;
     }
 
