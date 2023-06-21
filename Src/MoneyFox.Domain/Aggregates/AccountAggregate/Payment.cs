@@ -17,7 +17,7 @@ public class Payment : EntityBase
         Account chargedAccount,
         Account? targetAccount = null,
         Category? category = null,
-        string note = "",
+        string? note = "",
         RecurringPayment? recurringPayment = null)
     {
         AssignValues(
@@ -80,7 +80,7 @@ public class Payment : EntityBase
         Account chargedAccount,
         Account? targetAccount = null,
         Category? category = null,
-        string note = "")
+        string? note = "")
     {
         if (ChargedAccount == null)
         {
@@ -108,7 +108,7 @@ public class Payment : EntityBase
         Account chargedAccount,
         Account? targetAccount,
         Category? category,
-        string note)
+        string? note)
     {
         Date = date;
         Amount = amount;

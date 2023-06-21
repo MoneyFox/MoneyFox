@@ -18,7 +18,7 @@ public static class UpdatePayment
         decimal Amount,
         bool IsCleared,
         PaymentType Type,
-        string Note,
+        string? Note,
         bool IsRecurring,
         int CategoryId,
         int ChargedAccountId,

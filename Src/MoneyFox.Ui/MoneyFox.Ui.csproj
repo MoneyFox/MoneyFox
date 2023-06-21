@@ -198,6 +198,10 @@
             <DependentUpon>LoadingIndicatorPopup.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Compile Update="Controls\AccountPicker\AccountPicker.xaml.cs">
+          <DependentUpon>AccountPicker.xaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -267,6 +271,10 @@
         <MauiXaml Update="Common\Services\LoadingIndicatorPopup.xaml">
             <SubType>Designer</SubType>
         </MauiXaml>
+        <MauiXaml Update="Controls\AccountPicker\AccountPicker.xaml">
+          <SubType>Designer</SubType>
+        </MauiXaml>
     </ItemGroup>
+
 
 </Project>

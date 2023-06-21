@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.Controls;
+namespace MoneyFox.Ui.Controls.AccountPicker;
 
 using System.Collections;
 
