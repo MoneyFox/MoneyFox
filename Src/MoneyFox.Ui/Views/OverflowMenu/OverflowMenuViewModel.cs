@@ -7,6 +7,7 @@ using Budget;
 using Categories;
 using CommunityToolkit.Mvvm.Input;
 using JetBrains.Annotations;
+using Navigation;
 using Resources.Strings;
 using Settings;
 
@@ -37,23 +38,23 @@ internal sealed class OverflowMenuViewModel : BasePageViewModel
         switch (menuType)
         {
             case OverflowMenuItemType.Budgets:
-                await navigationService.NavigateToAsync<BudgetListPage>();
+                await navigationService.NavigateToViewModelAsync<BudgetListViewModel>();
 
                 break;
             case OverflowMenuItemType.Categories:
-                await navigationService.NavigateToAsync<CategoryListPage>();
+                await navigationService.NavigateToViewModelAsync<CategoryListViewModel>();
 
                 break;
             case OverflowMenuItemType.Backup:
-                await navigationService.NavigateToAsync<BackupPage>();
+                await navigationService.NavigateToViewModelAsync<BackupViewModel>();
 
                 break;
             case OverflowMenuItemType.Settings:
-                await navigationService.NavigateToAsync<SettingsPage>();
+                await navigationService.NavigateToViewModelAsync<SettingsViewModel>();
 
                 break;
             case OverflowMenuItemType.About:
-                await navigationService.NavigateToAsync<AboutPage>();
+                await navigationService.NavigateToViewModelAsync<AboutViewModel>();
 
                 break;
         }

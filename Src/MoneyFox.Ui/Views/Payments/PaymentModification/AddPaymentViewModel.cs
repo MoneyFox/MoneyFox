@@ -11,7 +11,7 @@ using Domain.Aggregates.CategoryAggregate;
 using MediatR;
 using Resources.Strings;
 
-internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
+internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
@@ -33,24 +33,15 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
         this.dialogService = dialogService;
     }
 
-    public new void ApplyQueryAttributes(IDictionary<string, object> query)
+    public override async Task OnNavigatedAsync(object? parameter)
     {
-        if (IsFirstLoad)
+        var accountId = Convert.ToInt32(parameter);
+
+        await InitializeAsync();
+        if (ChargedAccounts.Any())
         {
-            var accountId = 0;
-            if (query.TryGetValue(key: "defaultChargedAccountId", value: out var defaultChargedAccountId))
-            {
-                accountId = Convert.ToInt32(defaultChargedAccountId);
-            }
-
-            InitializeAsync().GetAwaiter().GetResult();
-            if (ChargedAccounts.Any())
-            {
-                SelectedPayment.ChargedAccount = accountId != 0 ? ChargedAccounts.First(n => n.Id == accountId) : ChargedAccounts[0];
-            }
+            SelectedPayment.ChargedAccount = accountId != 0 ? ChargedAccounts.First(n => n.Id == accountId) : ChargedAccounts[0];
         }
-
-        base.ApplyQueryAttributes(query);
     }
 
     protected override async Task SavePaymentAsync()

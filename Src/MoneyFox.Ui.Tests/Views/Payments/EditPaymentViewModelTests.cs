@@ -10,6 +10,7 @@ using Domain.Tests.TestFramework;
 using FluentAssertions;
 using Mapping;
 using MediatR;
+using Navigation;
 using NSubstitute;
 using Ui.Views.Payments.PaymentModification;
 using Xunit;

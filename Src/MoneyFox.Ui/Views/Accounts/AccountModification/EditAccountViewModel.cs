@@ -7,6 +7,7 @@ using Core.Features._Legacy_.Accounts.DeleteAccountById;
 using Core.Features._Legacy_.Accounts.UpdateAccount;
 using Core.Queries;
 using MediatR;
+using Navigation;
 using Resources.Strings;
 
 public class EditAccountViewModel : ModifyAccountViewModel
@@ -55,7 +56,7 @@ public class EditAccountViewModel : ModifyAccountViewModel
         if (await dialogService.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeleteAccountConfirmationMessage))
         {
             await mediator.Send(new DeactivateAccountByIdCommand(SelectedAccountVm.Id));
-            await navigationService.GoBackFromModalAsync();
+            await navigationService.NavigateBackAsync();
         }
     }
 }

@@ -9,11 +9,11 @@ using Core.Common.Interfaces;
 using Core.Features.CategoryDeletion;
 using Core.Queries;
 using MediatR;
+using Navigation;
 using Resources.Strings;
 
 internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<CategoriesChangedMessage>
 {
-    public const string SELECTED_CATEGORY_ID_PARAM = "selectedCategoryId";
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
     private readonly INavigationService navigationService;
@@ -43,7 +43,7 @@ internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<Ca
     public AsyncRelayCommand<CategoryListItemViewModel> DeleteCategoryCommand => new(async vm => await DeleteCategoryAsync(vm));
 
     public AsyncRelayCommand<CategoryListItemViewModel> SelectCategoryCommand
-        => new(async c => { await navigationService.NavigateBackAsync(parameterName: SELECTED_CATEGORY_ID_PARAM, queryParameter: c.Id.ToString()); });
+        => new(async c => { await navigationService.NavigateBackAsync(c?.Id); });
 
     public void Receive(CategoriesChangedMessage message)
     {

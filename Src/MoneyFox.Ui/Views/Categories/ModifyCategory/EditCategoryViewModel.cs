@@ -6,6 +6,7 @@ using Core.Features._Legacy_.Categories.UpdateCategory;
 using Core.Features.CategoryDeletion;
 using Core.Queries;
 using MediatR;
+using Navigation;
 using Resources.Strings;
 
 public class EditCategoryViewModel : ModifyCategoryViewModel
@@ -65,7 +66,7 @@ public class EditCategoryViewModel : ModifyCategoryViewModel
                     negativeButtonText: Translations.CancelLabel))
             {
                 await mediator.Send(new DeleteCategoryById.Command(SelectedCategory.Id));
-                await navigationService.GoBackFromModalAsync();
+                await navigationService.NavigateBackAsync();
             }
         }
     }

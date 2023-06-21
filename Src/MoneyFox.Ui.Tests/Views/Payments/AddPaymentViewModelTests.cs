@@ -6,6 +6,7 @@ using Core.Common.Interfaces;
 using Core.Common.Settings;
 using Domain;
 using MediatR;
+using Navigation;
 using NSubstitute;
 using Ui.Views.Payments.PaymentModification;
 using Xunit;

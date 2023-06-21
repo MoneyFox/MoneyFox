@@ -34,12 +34,12 @@ using Views.Statistics.CategorySpreading;
 using Views.Statistics.CategorySummary;
 using Views.Statistics.MonthlyAccountCashFlow;
 using Views.Statistics.Selector;
-using INavigationService = Ui.INavigationService;
 
 public sealed class MoneyFoxConfig
 {
     public void Register(IServiceCollection serviceCollection)
     {
+        serviceCollection.AddSingleton(() => new Lazy<NavigationPage>(() => (NavigationPage)Application.Current!.MainPage!));
         RegisterServices(serviceCollection);
         RegisterSetupViewModels(serviceCollection);
         RegisterViewModels(serviceCollection);
@@ -53,7 +53,7 @@ public sealed class MoneyFoxConfig
     {
         _ = serviceCollection.AddSingleton<IDialogService, DialogService>()
             .AddTransient<IViewLocator, ViewLocator>()
-            .AddTransient<INavigationService, NavigationService>()
+            .AddTransient<INavigationService, FormsNavigationService>()
             .AddTransient<IToastService, ToastService>();
     }
 

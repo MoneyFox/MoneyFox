@@ -9,11 +9,11 @@ using Core.Features.BudgetUpdate;
 using Core.Queries.BudgetEntryLoading;
 using Domain.Aggregates.BudgetAggregate;
 using MediatR;
+using Navigation;
 using Resources.Strings;
 
-internal sealed class EditBudgetViewModel : ModifyBudgetViewModel, IQueryAttributable
+internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
 {
-    private const string BUDGET_ID = "budgetId";
     private readonly IDialogService dialogService;
     private readonly INavigationService navigationService;
     private readonly ISender sender;
@@ -35,15 +35,11 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel, IQueryAttribu
 
     public AsyncRelayCommand DeleteBudgetCommand => new(DeleteBudgetAsync);
 
-    public new void ApplyQueryAttributes(IDictionary<string, object> query)
+    public override async Task OnNavigatedAsync(object? parameter)
     {
-        if (query.TryGetValue(key: BUDGET_ID, value: out var selectedBudgetIdParam))
-        {
-            var selectedBudgetId = Convert.ToInt32(selectedBudgetIdParam);
-            InitializeAsync(selectedBudgetId).GetAwaiter().GetResult();
-        }
 
-        base.ApplyQueryAttributes(query);
+        var selectedBudgetId = Convert.ToInt32(parameter);
+        await InitializeAsync(selectedBudgetId);
     }
 
     private async Task InitializeAsync(int budgetId)
@@ -70,7 +66,7 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel, IQueryAttribu
         {
             var command = new DeleteBudget.Command(budgetId: Id);
             await sender.Send(command);
-            await navigationService.GoBackFromModalAsync();
+            await navigationService.NavigateBackAsync();
             _ = Messenger.Send(new BudgetsChangedMessage());
         }
     }
@@ -85,7 +81,7 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel, IQueryAttribu
             categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
 
         await sender.Send(command);
-        await navigationService.GoBackFromModalAsync();
+        await navigationService.NavigateBackAsync();
         _ = Messenger.Send(new BudgetsChangedMessage());
     }
 }

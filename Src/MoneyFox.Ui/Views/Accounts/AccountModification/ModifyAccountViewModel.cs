@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
 using Core.Queries;
 using MediatR;
+using Navigation;
 using Resources.Strings;
 
 public abstract class ModifyAccountViewModel : BasePageViewModel
@@ -63,7 +64,7 @@ public abstract class ModifyAccountViewModel : BasePageViewModel
         await dialogService.ShowLoadingDialogAsync(Translations.SavingAccountMessage);
         await SaveAccountAsync();
         await dialogService.HideLoadingDialogAsync();
-        await navigationService.GoBackFromModalAsync();
+        await navigationService.NavigateBackAsync();
         Messenger.Send(new AccountsChangedMessage());
     }
 }

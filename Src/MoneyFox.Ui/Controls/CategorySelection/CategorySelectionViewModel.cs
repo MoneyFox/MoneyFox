@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Controls.CategorySelection;
 
 using CommunityToolkit.Mvvm.Input;
+using Navigation;
 using Views;
 using Views.Categories.CategorySelection;
 
@@ -26,7 +27,8 @@ public class CategorySelectionViewModel : BasePageViewModel
         }
     }
 
-    public AsyncRelayCommand GoToSelectCategoryDialogCommand => new(async () => await navigationService.OpenModalAsync<SelectCategoryPage>());
+    public AsyncRelayCommand GoToSelectCategoryDialogCommand
+        => new(async () => await navigationService.NavigateToViewModelAsync<SelectCategoryViewModel>(modalNavigation: true));
 
     public RelayCommand ResetCategoryCommand => new(() => SelectedCategory = null);
 

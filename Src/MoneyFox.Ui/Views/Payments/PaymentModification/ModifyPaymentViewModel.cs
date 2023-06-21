@@ -16,7 +16,7 @@ using Microsoft.AppCenter.Crashes;
 using Resources.Strings;
 using Serilog;
 
-public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttributable
+public abstract class ModifyPaymentViewModel : BasePageViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
@@ -100,14 +100,11 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
 
     public AsyncRelayCommand SaveCommand => new(SaveAsync);
 
-    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    public override async Task OnNavigatedBackAsync(object? parameter)
     {
-        if (query.TryGetValue(key: SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, value: out var selectedCategoryIdParam))
-        {
-            var selectedCategoryId = Convert.ToInt32(selectedCategoryIdParam);
-            var category = mediator.Send(new GetCategoryByIdQuery(selectedCategoryId)).GetAwaiter().GetResult();
-            CategorySelectionViewModel.SelectedCategory = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
-        }
+        var selectedCategoryId = Convert.ToInt32(parameter);
+        var category = await mediator.Send(new GetCategoryByIdQuery(selectedCategoryId));
+        CategorySelectionViewModel.SelectedCategory = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
     }
 
     protected async Task InitializeAsync()

@@ -11,6 +11,7 @@ using Domain.Aggregates.CategoryAggregate;
 using Domain.Tests.TestFramework;
 using FluentAssertions;
 using MediatR;
+using Navigation;
 using NSubstitute;
 using Ui.Views.Budget.BudgetModification;
 using Ui.Views.Categories.CategorySelection;
@@ -41,10 +42,10 @@ public class EditBudgetViewModelTests
         }
 
         [Fact]
-        public void AddsSelectedCategoryToList()
+        public async Task AddsSelectedCategoryToList()
         {
             // Act
-            viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
+            await viewModel.OnNavigatedBackAsync(CATEGORY_ID);
 
             // Assert
             _ = viewModel.SelectedCategories.Should().HaveCount(1);
@@ -52,11 +53,11 @@ public class EditBudgetViewModelTests
         }
 
         [Fact]
-        public void IgnoresSelectedCategory_WhenEntryWithSameIdAlreadyInList()
+        public async Task IgnoresSelectedCategory_WhenEntryWithSameIdAlreadyInList()
         {
             // Act
-            viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
-            viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
+            await viewModel.OnNavigatedBackAsync(CATEGORY_ID);
+            await viewModel.OnNavigatedBackAsync(CATEGORY_ID);
 
             // Assert
             _ = viewModel.SelectedCategories.Should().HaveCount(1);
@@ -90,7 +91,7 @@ public class EditBudgetViewModelTests
             await viewModel.OpenCategorySelectionCommand.ExecuteAsync(null);
 
             // Assert
-            await navigationService.Received(1).OpenModalAsync<SelectCategoryPage>();
+            await navigationService.Received(1).NavigateToViewModelAsync<SelectCategoryViewModel>(modalNavigation:true);
         }
     }
 
@@ -119,7 +120,7 @@ public class EditBudgetViewModelTests
             _ = capturedCommand!.Name.Should().Be(testBudget.Name);
             _ = capturedCommand.SpendingLimit.Should().Be(testBudget.SpendingLimit);
             _ = capturedCommand.Categories.Should().BeEquivalentTo(testBudget.Categories);
-            await navigationService.Received(1).GoBackFromModalAsync();
+            await navigationService.Received(1).NavigateBackAsync();
         }
     }
 
@@ -189,7 +190,7 @@ public class EditBudgetViewModelTests
             // Assert
             _ = capturedCommand.Should().NotBeNull();
             _ = capturedCommand!.BudgetId.Value.Should().Be(testBudget.Id);
-            await navigationService.Received(1).GoBackFromModalAsync();
+            await navigationService.Received(1).NavigateBackAsync();
         }
 
         [Fact]
@@ -203,7 +204,7 @@ public class EditBudgetViewModelTests
 
             // Assert
             await sender.Received(0).Send(Arg.Any<DeleteBudget.Command>());
-            await navigationService.Received(0).GoBackFromModalAsync();
+            await navigationService.Received(0).NavigateBackAsync();
         }
     }
 

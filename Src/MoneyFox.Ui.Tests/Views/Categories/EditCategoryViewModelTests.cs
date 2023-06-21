@@ -4,6 +4,7 @@ using Core.Common.Interfaces;
 using Core.Features.CategoryDeletion;
 using Core.Queries;
 using MediatR;
+using Navigation;
 using NSubstitute;
 using Ui.Views.Categories.ModifyCategory;
 using Xunit;
@@ -45,7 +46,7 @@ public class EditCategoryViewModelTests
 
         // Assert
         await mediator.Received(1).Send(request: Arg.Any<DeleteCategoryById.Command>(), cancellationToken: Arg.Any<CancellationToken>());
-        await navigationService.Received(1).GoBackFromModalAsync();
+        await navigationService.Received(1).NavigateBackAsync();
     }
 
     [Fact]
@@ -59,6 +60,6 @@ public class EditCategoryViewModelTests
 
         // Assert
         await mediator.Received(0).Send(request: Arg.Any<DeleteCategoryById.Command>(), cancellationToken: Arg.Any<CancellationToken>());
-        await navigationService.Received(0).GoBackFromModalAsync();
+        await navigationService.Received(0).NavigateBackAsync();
     }
 }

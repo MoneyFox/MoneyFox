@@ -4,7 +4,13 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 public abstract class BasePageViewModel : ObservableRecipient
 {
-    public virtual void OnNavigated(object? parameter)
+    public virtual Task OnNavigatedAsync(object? parameter)
     {
+        return Task.CompletedTask;
+    }
+
+    public virtual Task OnNavigatedBackAsync(object? parameter)
+    {
+        return Task.CompletedTask;
     }
 }

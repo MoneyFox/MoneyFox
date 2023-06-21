@@ -13,7 +13,9 @@ public sealed class ServiceCollectionTests
     public void AllDependenciesPresentAndAccountedFor()
     {
         // Arrange
-        var serviceCollection = new ServiceCollection().AddSingleton(Substitute.For<IDbPathProvider>())
+        var serviceCollection = new ServiceCollection()
+            .AddSingleton(new Lazy<NavigationPage>())
+            .AddSingleton(Substitute.For<IDbPathProvider>())
             .AddSingleton(Substitute.For<IFileStore>())
             .AddSingleton(Substitute.For<IPublicClientApplication>());
 

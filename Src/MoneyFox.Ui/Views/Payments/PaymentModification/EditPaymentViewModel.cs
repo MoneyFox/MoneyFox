@@ -12,7 +12,7 @@ using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
+internal class EditPaymentViewModel : ModifyPaymentViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
@@ -40,15 +40,43 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
 
     public AsyncRelayCommand<PaymentViewModel> DeleteCommand => new(async p => await DeletePaymentAsync(p));
 
-    public new void ApplyQueryAttributes(IDictionary<string, object> query)
+    public override async Task OnNavigatedBackAsync(object? parameter)
     {
-        if (query.TryGetValue(key: "paymentId", value: out var paymentIdParam))
-        {
-            var paymentId = Convert.ToInt32(paymentIdParam);
-            InitializeAsync(paymentId).GetAwaiter().GetResult();
-        }
+        var paymentId = Convert.ToInt32(parameter);
 
-        base.ApplyQueryAttributes(query);
+        await InitializeAsync();
+        var payment = await mediator.Send(new GetPaymentByIdQuery(paymentId));
+        var recurringPaymentViewModel = mapper.Map<RecurringPaymentViewModel>(payment.RecurringPayment);
+        SelectedPayment = new()
+        {
+            Id = payment.Id,
+            Amount = payment.Amount,
+            ChargedAccount
+                = new(
+                    Id: payment.ChargedAccount.Id,
+                    Name: payment.ChargedAccount.Name,
+                    CurrentBalance: new(amount: payment.ChargedAccount.CurrentBalance, currencyAlphaIsoCode: settingsFacade.DefaultCurrency)),
+            TargetAccount = payment.TargetAccount == null
+                ? null
+                : new AccountPickerViewModel(
+                    Id: payment.TargetAccount.Id,
+                    Name: payment.TargetAccount.Name,
+                    CurrentBalance: new(amount: payment.TargetAccount.CurrentBalance, currencyAlphaIsoCode: settingsFacade.DefaultCurrency)),
+            Date = payment.Date,
+            IsCleared = payment.IsCleared,
+            Type = payment.Type,
+            IsRecurring = payment.IsRecurring,
+            RecurringPayment = recurringPaymentViewModel,
+            Note = payment.Note,
+            Created = payment.Created,
+            LastModified = payment.LastModified
+        };
+
+        if (payment.Category != null)
+        {
+            CategorySelectionViewModel.SelectedCategory
+                = new() { Id = payment.Category.Id, Name = payment.Category.Name, RequireNote = payment.Category.RequireNote };
+        }
     }
 
     public async Task InitializeAsync(int paymentId)
