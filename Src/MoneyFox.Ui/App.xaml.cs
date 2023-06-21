@@ -57,16 +57,6 @@ public partial class App
         return ServiceProvider!.GetService<TViewModel>() ?? throw new ResolveViewModelException<TViewModel>();
     }
 
-    internal static TView GetView<TView>() where TView : IBindablePage
-    {
-        return ServiceProvider!.GetService<TView>() ?? throw new ResolveViewException<TView>();
-    }
-
-    internal static object GetViewModel(Type type)
-    {
-        return ServiceProvider!.GetService(type) ?? throw new ResolveViewException(type);
-    }
-
     protected override void OnStart()
     {
         StartupTasksAsync().ConfigureAwait(false);
