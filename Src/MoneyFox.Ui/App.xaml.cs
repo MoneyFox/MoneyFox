@@ -27,7 +27,7 @@ public partial class App
         InitializeComponent();
         SetupServices();
         FillResourceDictionary();
-        MainPage = settingsFacade.IsSetupCompleted ? GetAppShellPage() : new SetupShell();
+        MainPage = new NavigationPage(settingsFacade.IsSetupCompleted ? GetAppShellPage() : new SetupShell());
     }
 
     public static Dictionary<string, ResourceDictionary> ResourceDictionary { get; } = new();
