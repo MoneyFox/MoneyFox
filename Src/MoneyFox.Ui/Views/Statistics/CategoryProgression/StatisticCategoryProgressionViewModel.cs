@@ -78,7 +78,6 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
         var columnSeries = new ColumnSeries<decimal>
         {
             Name = CategorySelectionViewModel.SelectedCategory.Name,
-            TooltipLabelFormatter = point => $"{point.PrimaryValue:C}",
             DataLabelsFormatter = point => $"{point.PrimaryValue:C}",
             DataLabelsPaint = new SolidColorPaint(SKColor.Parse("b4b2b0")),
             Values = statisticItems.Select(x => x.Value),
