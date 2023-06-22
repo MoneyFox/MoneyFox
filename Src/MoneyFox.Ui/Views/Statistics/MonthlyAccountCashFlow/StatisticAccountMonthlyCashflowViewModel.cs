@@ -69,7 +69,6 @@ internal sealed class StatisticAccountMonthlyCashFlowViewModel : StatisticViewMo
         var statisticItems = await Mediator.Send(new GetAccountProgressionQuery(accountId: SelectedAccount?.Id ?? 0, startDate: StartDate, endDate: EndDate));
         var columnSeries = new ColumnSeries<decimal>
         {
-            TooltipLabelFormatter = point => $"{point.PrimaryValue:C}",
             DataLabelsFormatter = point => $"{point.PrimaryValue:C}",
             DataLabelsPaint = new SolidColorPaint(SKColor.Parse("b4b2b0")),
             Values = statisticItems.Select(x => x.Value)
