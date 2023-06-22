@@ -58,7 +58,11 @@ public partial class AmountEntry
 
     private void AmountFieldGotFocus(object sender, FocusEventArgs e)
     {
-        AmountField.CursorPosition = 0;
-        AmountField.SelectionLength = AmountField.Text != null ? AmountField.Text.Length : 0;
+        Dispatcher.Dispatch(
+            () =>
+            {
+                AmountField.CursorPosition = 0;
+                AmountField.SelectionLength = AmountField.Text?.Length ?? 0;
+            });
     }
 }
