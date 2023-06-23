@@ -4,10 +4,10 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 public sealed class BudgetListItemViewModel : ObservableObject
 {
-    private string name = null!;
-    private decimal currentSpending;
-    private decimal spendingLimit;
     private readonly decimal monthlyBudget;
+    private decimal currentSpending;
+    private string name = null!;
+    private decimal spendingLimit;
 
     public int Id { get; init; }
 

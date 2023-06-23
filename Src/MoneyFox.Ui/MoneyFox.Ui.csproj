@@ -199,8 +199,8 @@
             <SubType>Code</SubType>
         </Compile>
         <Compile Update="Controls\AccountPicker\AccountPicker.xaml.cs">
-          <DependentUpon>AccountPicker.xaml</DependentUpon>
-          <SubType>Code</SubType>
+            <DependentUpon>AccountPicker.xaml</DependentUpon>
+            <SubType>Code</SubType>
         </Compile>
     </ItemGroup>
 
@@ -272,7 +272,7 @@
             <SubType>Designer</SubType>
         </MauiXaml>
         <MauiXaml Update="Controls\AccountPicker\AccountPicker.xaml">
-          <SubType>Designer</SubType>
+            <SubType>Designer</SubType>
         </MauiXaml>
     </ItemGroup>
 
