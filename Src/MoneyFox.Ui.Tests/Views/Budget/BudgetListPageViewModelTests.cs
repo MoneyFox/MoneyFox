@@ -59,7 +59,7 @@ public abstract class BudgetListPageViewModelTests
                             name: budgetTestData.Name,
                             spendingLimit: budgetTestData.SpendingLimit,
                             currentSpending: budgetTestData.CurrentSpending,
-                            budgetTestData.MonthlyBudget)));
+                            monthlyBudget: budgetTestData.MonthlyBudget)));
         }
 
         [Fact]
