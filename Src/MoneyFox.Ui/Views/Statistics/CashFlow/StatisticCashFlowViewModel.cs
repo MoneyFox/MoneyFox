@@ -24,7 +24,6 @@ internal sealed class StatisticCashFlowViewModel : StatisticViewModel
             new ColumnSeries<decimal>
             {
                 Name = Translations.IncomeLabel,
-                TooltipLabelFormatter = point => $"{point.Context.Series.Name}: {point.PrimaryValue:C}",
                 DataLabelsFormatter = point => $"{point.Context.Series.Name}: {point.PrimaryValue:C}",
                 Values = new List<decimal> { cashFlowData.Income }
             });
@@ -33,7 +32,6 @@ internal sealed class StatisticCashFlowViewModel : StatisticViewModel
             new ColumnSeries<decimal>
             {
                 Name = Translations.ExpenseLabel,
-                TooltipLabelFormatter = point => $"{point.Context.Series.Name}: {point.PrimaryValue:C}",
                 DataLabelsFormatter = point => $"{point.Context.Series.Name}: {point.PrimaryValue:C}",
                 Values = new List<decimal> { cashFlowData.Expense }
             });
@@ -42,7 +40,6 @@ internal sealed class StatisticCashFlowViewModel : StatisticViewModel
             new ColumnSeries<decimal>
             {
                 Name = Translations.GainsLabel,
-                TooltipLabelFormatter = point => $"{point.Context.Series.Name}: {point.PrimaryValue:C}",
                 DataLabelsFormatter = point => $"{point.Context.Series.Name}: {point.PrimaryValue:C}",
                 Values = new List<decimal> { cashFlowData.Gain }
             });

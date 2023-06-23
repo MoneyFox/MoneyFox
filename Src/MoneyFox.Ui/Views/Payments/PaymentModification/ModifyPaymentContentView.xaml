@@ -25,13 +25,13 @@
                                     SelectedType="{Binding SelectedPayment.Type}" />
 
         <accountPicker:AccountPicker PickerTitle="{Binding AccountHeader, Mode=OneWay}"
-                                AccountsSource="{Binding ChargedAccounts}"
-                                SelectedAccount="{Binding SelectedPayment.ChargedAccount}" />
+                                     AccountsSource="{Binding ChargedAccounts}"
+                                     SelectedAccount="{Binding SelectedPayment.ChargedAccount}" />
 
         <accountPicker:AccountPicker PickerTitle="{x:Static resources:Translations.TargetAccountLabel}"
-                                AccountsSource="{Binding TargetAccounts}"
-                                SelectedAccount="{Binding SelectedPayment.TargetAccount}"
-                                IsVisible="{Binding SelectedPayment.IsTransfer}" />
+                                     AccountsSource="{Binding TargetAccounts}"
+                                     SelectedAccount="{Binding SelectedPayment.TargetAccount}"
+                                     IsVisible="{Binding SelectedPayment.IsTransfer}" />
 
         <controls:AmountEntry
             AmountFieldTitle="{x:Static resources:Translations.AmountLabel}"
