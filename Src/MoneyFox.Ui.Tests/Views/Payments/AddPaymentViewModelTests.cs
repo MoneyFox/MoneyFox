@@ -1,7 +1,6 @@
 namespace MoneyFox.Ui.Tests.Views.Payments;
 
 using AutoMapper;
-using Controls.AccountPicker;
 using Core.Common.Interfaces;
 using Core.Common.Settings;
 using Domain;
