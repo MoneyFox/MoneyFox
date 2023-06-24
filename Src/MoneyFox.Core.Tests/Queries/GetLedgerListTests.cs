@@ -26,7 +26,7 @@ public sealed class GetLedgerListTests : InMemoryTestBase
         var ledgerData = result.Single();
         ledgerData.LedgerId.Should().Be(dbLedger.Id);
         ledgerData.Name.Should().Be(ledger.Name);
-        ledgerData.CurrentBalance.Should().Be(ledger.CurrentBalance);
+        ledgerData.CurrentBalance.Should().Be(ledger.OpeningBalance);
         ledgerData.IsExcludeFromEndOfMonthSummary.Should().Be(ledger.IsExcludeFromEndOfMonthSummary);
     }
 }
