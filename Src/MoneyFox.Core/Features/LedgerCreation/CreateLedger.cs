@@ -44,7 +44,7 @@ public static class CreateLedger
         {
             var ledger = Ledger.Create(
                 name: command.Name,
-                currentBalance: command.CurrentBalance,
+                openingBalance: command.CurrentBalance,
                 note: command.Note,
                 isExcluded: command.IsExcludeFromEndOfMonthSummary);
 
