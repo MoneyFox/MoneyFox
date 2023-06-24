@@ -27,7 +27,7 @@ public sealed class CreateLedgerHandlerTests : InMemoryTestBase
         var dbLedger = await Context.Ledgers.SingleAsync();
         dbLedger.Id.Value.Should().BeGreaterThan(0);
         dbLedger.Name.Should().Be(testLedger.Name);
-        dbLedger.CurrentBalance.Should().Be(testLedger.CurrentBalance);
+        dbLedger.OpeningBalance.Should().Be(testLedger.CurrentBalance);
         dbLedger.Note.Should().Be(testLedger.Note);
         dbLedger.IsExcludeFromEndOfMonthSummary.Should().Be(testLedger.IsExcludeFromEndOfMonthSummary);
     }

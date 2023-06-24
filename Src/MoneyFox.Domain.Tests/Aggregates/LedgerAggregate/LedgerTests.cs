@@ -33,7 +33,7 @@ public class LedgerTests
         {
             ledger.Id.Should().Be(new LedgerId());
             ledger.Name.Should().Be(testLedger.Name);
-            ledger.CurrentBalance.Should().Be(testLedger.CurrentBalance);
+            ledger.OpeningBalance.Should().Be(testLedger.CurrentBalance);
             ledger.Note.Should().Be(testLedger.Note);
             ledger.IsExcludeFromEndOfMonthSummary.Should().Be(testLedger.IsExcludeFromEndOfMonthSummary);
         }

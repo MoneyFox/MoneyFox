@@ -10,13 +10,13 @@ public class Ledger : EntityBase
     [UsedImplicitly]
     private Ledger()
     {
-        CurrentBalance = default!;
+        OpeningBalance = default!;
     }
 
-    private Ledger(string name, Money currentBalance, string? note, bool isExcludeFromEndOfMonthSummary)
+    private Ledger(string name, Money openingBalance, string? note, bool isExcludeFromEndOfMonthSummary)
     {
         Name = name;
-        CurrentBalance = currentBalance;
+        OpeningBalance = openingBalance;
         Note = note;
         IsExcludeFromEndOfMonthSummary = isExcludeFromEndOfMonthSummary;
     }
@@ -37,7 +37,7 @@ public class Ledger : EntityBase
         private set;
     } = null!;
 
-    public Money CurrentBalance
+    public Money OpeningBalance
     {
         get;
 
@@ -65,6 +65,6 @@ public class Ledger : EntityBase
     {
         return string.IsNullOrWhiteSpace(name)
             ? throw new ArgumentNullException(nameof(name))
-            : new(name: name, currentBalance: currentBalance, note: note, isExcludeFromEndOfMonthSummary: isExcluded);
+            : new(name: name, openingBalance: currentBalance, note: note, isExcludeFromEndOfMonthSummary: isExcluded);
     }
 }

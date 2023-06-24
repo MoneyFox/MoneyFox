@@ -19,7 +19,7 @@ public class LedgerConfiguration : IEntityTypeConfiguration<Ledger>
         builder.Property(b => b.IsExcludeFromEndOfMonthSummary);
 
         builder.OwnsOne(
-            navigationExpression: l => l.CurrentBalance,
+            navigationExpression: l => l.OpeningBalance,
             buildAction: m =>
             {
                 m.Property(p => p.Amount).HasColumnName("CurrentBalance");
