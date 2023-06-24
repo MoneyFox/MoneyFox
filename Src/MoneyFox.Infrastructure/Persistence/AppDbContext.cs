@@ -12,7 +12,6 @@ using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.BudgetAggregate;
 using Domain.Aggregates.CategoryAggregate;
 using Domain.Aggregates.LedgerAggregate;
-using Domain.Aggregates.TransactionAggregate;
 using JetBrains.Annotations;
 using MediatR;
 using Microsoft.AppCenter.Analytics;
@@ -30,8 +29,6 @@ public class AppDbContext : DbContext, IAppDbContext
         this.publisher = publisher;
         this.settingsFacade = settingsFacade;
     }
-
-    public DbSet<Transaction> Transactions { get; set; } = null!;
 
     public DbSet<Budget> Budgets { get; set; } = null!;
 
