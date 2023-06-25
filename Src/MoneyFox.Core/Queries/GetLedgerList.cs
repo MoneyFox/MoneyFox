@@ -28,7 +28,7 @@ internal static class GetLedgerList
         public async Task<IReadOnlyCollection<LedgerData>> Handle(Query request, CancellationToken cancellationToken)
         {
             return await context.Ledgers.OrderBy(l => l.Name)
-                .Select(l => new LedgerData(l.Id, l.Name, new(l.OpeningBalance, l.Currency), l.IsExcludeFromEndOfMonthSummary))
+                .Select(l => new LedgerData(l.Id, l.Name, new(l.CurrentBalance, l.Currency), l.IsExcludeFromEndOfMonthSummary))
                 .AsNoTracking()
                 .ToListAsync(cancellationToken);
         }
