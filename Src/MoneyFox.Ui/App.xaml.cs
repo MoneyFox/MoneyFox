@@ -113,7 +113,6 @@ public partial class App
 
         var context = ServiceProvider.GetService<IAppDbContext>();
         await MigrateAccountsToLedgers(context);
-
         try
         {
             await mediator.Send(new ClearPaymentsCommand());
@@ -133,9 +132,11 @@ public partial class App
     private async Task MigrateAccountsToLedgers(IAppDbContext context)
     {
         var accounts = await context.Accounts.ToListAsync();
-
         foreach (var account in accounts)
         {
+            var payments = context.Payments
+                .Where(p => p.ChargedAccount.Id == account.Id || p.TargetAccount != null && p.TargetAccount.Id == account.Id)
+                .ToListAsync();
         }
     }
 }
