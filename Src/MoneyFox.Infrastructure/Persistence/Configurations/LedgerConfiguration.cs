@@ -17,15 +17,9 @@ public class LedgerConfiguration : IEntityTypeConfiguration<Ledger>
         builder.Property(b => b.Name).IsRequired();
         builder.Property(b => b.Note);
         builder.Property(b => b.IsExcludeFromEndOfMonthSummary);
-
-        builder.OwnsOne(
-            navigationExpression: l => l.OpeningBalance,
-            buildAction: m =>
-            {
-                m.Property(p => p.Amount).HasColumnName("CurrentBalance");
-                m.Property(p => p.Currency).HasColumnName("Currency");
-            });
-
+        builder.Property(b => b.Currency);
+        builder.Property(b => b.OpeningBalance);
+        builder.Property(b => b.CurrentBalance);
         builder.Property(b => b.Created);
         builder.Property(b => b.LastModified);
     }

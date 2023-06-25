@@ -7,9 +7,9 @@ public record struct LedgerId(int Value);
 public class Ledger : EntityBase
 {
     [UsedImplicitly]
-    private Ledger(Money currentBalance)
+    private Ledger()
     {
-        CurrentBalance = currentBalance;
+        CurrentBalance = default!;
         OpeningBalance = default!;
     }
 
@@ -43,7 +43,7 @@ public class Ledger : EntityBase
         private set;
     } = null!;
 
-    public Money OpeningBalance
+    public Currency Currency
     {
         get;
 
@@ -51,7 +51,15 @@ public class Ledger : EntityBase
         private set;
     }
 
-    public Money CurrentBalance
+    public decimal OpeningBalance
+    {
+        get;
+
+        [UsedImplicitly]
+        private set;
+    }
+
+    public decimal CurrentBalance
     {
         get;
 
@@ -85,5 +93,15 @@ public class Ledger : EntityBase
                 currentBalance: openingBalance,
                 note: note,
                 isExcludeFromEndOfMonthSummary: isExcluded);
+    }
+
+    public void Deposit(Money amount)
+    {
+        CurrentBalance -= amount;
+    }
+
+    public void Withdraw(Money amount)
+    {
+        CurrentBalance += amount;
     }
 }

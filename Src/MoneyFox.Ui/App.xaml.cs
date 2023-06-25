@@ -12,6 +12,7 @@ using Infrastructure.Adapters;
 using InversionOfControl;
 using MediatR;
 using Messages;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Views;
 using Views.Setup;
@@ -110,6 +111,9 @@ public partial class App
             Log.Error(exception: ex, messageTemplate: "Failed to restore backup on startup");
         }
 
+        var context = ServiceProvider.GetService<IAppDbContext>();
+        await MigrateAccountsToLedgers(context);
+
         try
         {
             await mediator.Send(new ClearPaymentsCommand());
@@ -123,6 +127,15 @@ public partial class App
         finally
         {
             isRunning = false;
+        }
+    }
+
+    private async Task MigrateAccountsToLedgers(IAppDbContext context)
+    {
+        var accounts = await context.Accounts.ToListAsync();
+
+        foreach (var account in accounts)
+        {
         }
     }
 }
