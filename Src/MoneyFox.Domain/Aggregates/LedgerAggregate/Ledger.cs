@@ -16,16 +16,18 @@ public class Ledger : EntityBase
 
     private Ledger(
         string name,
-        Money openingBalance,
-        Money currentBalance,
+        Currency currency,
+        decimal openingBalance,
+        decimal currentBalance,
         string? note,
         bool isExcludeFromEndOfMonthSummary)
     {
         Name = name;
+        Currency = currency;
         OpeningBalance = openingBalance;
+        CurrentBalance = currentBalance;
         Note = note;
         IsExcludeFromEndOfMonthSummary = isExcludeFromEndOfMonthSummary;
-        CurrentBalance = currentBalance;
     }
 
     public LedgerId Id
@@ -90,6 +92,7 @@ public class Ledger : EntityBase
             ? throw new ArgumentNullException(nameof(name))
             : new(
                 name: name,
+                currency: openingBalance.Currency,
                 openingBalance: openingBalance,
                 currentBalance: openingBalance,
                 note: note,
@@ -102,7 +105,7 @@ public class Ledger : EntityBase
         {
             throw new CurrencyException();
         }
-        CurrentBalance -= amount;
+        CurrentBalance += amount;
     }
 
     public void Withdraw(Money amount)
@@ -111,6 +114,6 @@ public class Ledger : EntityBase
         {
             throw new CurrencyException();
         }
-        CurrentBalance += amount;
+        CurrentBalance -= amount;
     }
 }
