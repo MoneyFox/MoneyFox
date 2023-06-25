@@ -1,8 +1,10 @@
 namespace MoneyFox.Domain.Tests.Aggregates.LedgerAggregate;
 
 using Domain.Aggregates.LedgerAggregate;
+using Exceptions;
 using FluentAssertions;
 using FluentAssertions.Execution;
+using Ui.Common.Exceptions;
 
 public class LedgerTests
 {
@@ -76,14 +78,10 @@ public class LedgerTests
             var amount = new Money(amount: 100, currency: Currencies.USD);
 
             // Act
-            dbLedger.Deposit(amount);
+            var act = () => dbLedger.Deposit(amount);
 
             // Assert
-            using (new AssertionScope())
-            {
-                dbLedger.OpeningBalance.Should().Be(testLedger.OpeningBalance);
-                dbLedger.CurrentBalance.Should().Be(dbLedger.OpeningBalance - amount);
-            }
+            act.Should().Throw<CurrencyException>();
         }
     }
 
@@ -117,14 +115,10 @@ public class LedgerTests
             var amount = new Money(amount: 100, currency: Currencies.USD);
 
             // Act
-            dbLedger.Deposit(amount);
+            var act = () => dbLedger.Deposit(amount);
 
             // Assert
-            using (new AssertionScope())
-            {
-                dbLedger.OpeningBalance.Should().Be(testLedger.OpeningBalance);
-                dbLedger.CurrentBalance.Should().Be(dbLedger.OpeningBalance - amount);
-            }
+            act.Should().Throw<CurrencyException>();
         }
     }
 }

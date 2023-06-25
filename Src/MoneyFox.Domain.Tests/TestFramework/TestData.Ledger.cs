@@ -10,6 +10,7 @@ internal static partial class TestData
         public LedgerId Id { get; } = new(2);
         public string Name { get; } = "Spendings";
         public Money OpeningBalance { get; init; } = new(amount: 1200, currency: Currencies.CHF);
+        public Money CurrentBalance { get; init; } = new(amount: 2500, currency: Currencies.CHF);
         public string? Note { get; } = "Ledger for all the daily spending.";
         public bool IsExcludeFromEndOfMonthSummary { get; } = true;
     }
@@ -19,6 +20,7 @@ internal static partial class TestData
         LedgerId Id { get; }
         string Name { get; }
         Money OpeningBalance { get; }
+        Money CurrentBalance { get; }
         string? Note { get; }
         bool IsExcludeFromEndOfMonthSummary { get; }
     }

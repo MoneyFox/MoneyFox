@@ -1,5 +1,6 @@
 namespace MoneyFox.Domain.Aggregates.LedgerAggregate;
 
+using Exceptions;
 using JetBrains.Annotations;
 
 public record struct LedgerId(int Value);
@@ -97,11 +98,19 @@ public class Ledger : EntityBase
 
     public void Deposit(Money amount)
     {
+        if (amount.Currency != Currency)
+        {
+            throw new CurrencyException();
+        }
         CurrentBalance -= amount;
     }
 
     public void Withdraw(Money amount)
     {
+        if (amount.Currency != Currency)
+        {
+            throw new CurrencyException();
+        }
         CurrentBalance += amount;
     }
 }

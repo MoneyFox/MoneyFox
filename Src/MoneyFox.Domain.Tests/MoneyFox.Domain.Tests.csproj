@@ -24,6 +24,7 @@
     <ItemGroup>
         <ProjectReference Include="..\MoneyFox.Domain\MoneyFox.Domain.csproj" />
         <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj" />
+        <ProjectReference Include="..\MoneyFox.Ui\MoneyFox.Ui.csproj" />
     </ItemGroup>
 
     <ItemGroup>
