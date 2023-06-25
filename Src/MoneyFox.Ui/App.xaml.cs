@@ -7,6 +7,7 @@ using Core.Common.Settings;
 using Core.Features._Legacy_.Payments.ClearPayments;
 using Core.Features._Legacy_.Payments.CreateRecurringPayments;
 using Core.Features.DbBackup;
+using Domain.Aggregates.AccountAggregate;
 using Domain.Exceptions;
 using Infrastructure.Adapters;
 using InversionOfControl;
@@ -134,9 +135,25 @@ public partial class App
         var accounts = await context.Accounts.ToListAsync();
         foreach (var account in accounts)
         {
-            var payments = context.Payments
-                .Where(p => p.ChargedAccount.Id == account.Id || p.TargetAccount != null && p.TargetAccount.Id == account.Id)
+            var payments = await context.Payments.Where(p => p.ChargedAccount.Id == account.Id || p.TargetAccount != null && p.TargetAccount.Id == account.Id)
                 .ToListAsync();
+
+            var startingBalance = account.CurrentBalance;
+            foreach (var payment in payments)
+            {
+                if (payment.Type == PaymentType.Expense || payment.Type == PaymentType.Transfer && payment.ChargedAccount.Id == account.Id)
+                {
+                    startingBalance += payment.Amount;
+                }
+
+                if (payment.Type == PaymentType.Income
+                    || payment is { Type: PaymentType.Transfer, TargetAccount: not null } && payment.TargetAccount.Id == account.Id)
+                {
+                    startingBalance -= payment.Amount;
+                }
+            }
+
+
         }
     }
 }
