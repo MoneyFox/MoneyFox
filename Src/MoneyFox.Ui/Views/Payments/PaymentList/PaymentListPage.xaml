@@ -7,11 +7,14 @@
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:views="clr-namespace:MoneyFox.Ui.Views"
     xmlns:paymentList="clr-namespace:MoneyFox.Ui.Views.Payments.PaymentList"
+    xmlns:extensions="clr-namespace:MoneyFox.Ui.Common.Extensions"
+    xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     x:DataType="paymentList:PaymentListViewModel"
     x:Class="MoneyFox.Ui.Views.Payments.PaymentList.PaymentListPage"
     Title="{Binding SelectedAccount.Name}">
 
     <ContentPage.Resources>
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
         <paymentList:PaymentAmountConverter x:Key="PaymentAmountConverter" />
         <paymentList:DateGroupCardOpacityConverter x:Key="DateGroupCardOpacityConverter" />
     </ContentPage.Resources>
@@ -58,6 +61,11 @@
                             x:Name="PaymentCollectionView"
                             ItemsSource="{Binding PaymentDayGroups}"
                             IsGrouped="True">
+
+                <CollectionView.Header>
+                    <Label Style="{StaticResource TextBodySecondary}"
+                           Text="{Binding SelectedAccount.CurrentBalance, StringFormat={extensions:Translate CurrentBalanceTemplate}, Converter={StaticResource AmountFormatConverter}}}" />
+                </CollectionView.Header>
 
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate x:DataType="paymentList:PaymentDayGroup">
