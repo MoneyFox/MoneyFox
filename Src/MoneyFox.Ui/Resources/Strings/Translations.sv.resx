@@ -839,9 +839,6 @@ För att börja skapa ett nytt konto. Konton används för att organisera betaln
     <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
     <value>Vill du verkligen ta bort denna budget?</value>
   </data>
-    <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Månadens budget:</value>
-  </data>
     <data name="TimeRangeLabel" xml:space="preserve">
     <value>Tidsintervall</value>
   </data>

@@ -839,9 +839,6 @@ Pentru a începe crearea unui nou cont. Conturile sunt utilizate pentru a organi
     <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
     <value>Sunteţi sigur că doriţi să ştergeţi acest buget?</value>
   </data>
-    <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Buget lunar:</value>
-  </data>
     <data name="TimeRangeLabel" xml:space="preserve">
     <value>Interval de timp</value>
   </data>

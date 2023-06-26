@@ -836,9 +836,6 @@ Pour commencer, créez un nouveau compte. Les comptes sont utilisés pour organi
     <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
     <value>Voulez-vous vraiment supprimer ce budget ?</value>
   </data>
-    <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Budget Mensuel</value>
-  </data>
     <data name="TimeRangeLabel" xml:space="preserve">
     <value>Période</value>
   </data>

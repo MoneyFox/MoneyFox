@@ -838,9 +838,6 @@ Para começar a criar uma nova conta. Contas são usadas para organizar pagament
     <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
     <value>Você realmente quer excluir este orçamento?</value>
   </data>
-    <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Orçamento mensal:</value>
-  </data>
     <data name="TimeRangeLabel" xml:space="preserve">
     <value>Intervalo de tempo</value>
   </data>

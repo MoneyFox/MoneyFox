@@ -837,9 +837,6 @@ Para empezar crea una nueva cuenta. Las cuentas se utilizan para organizar en gr
     <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
     <value>¿Realmente quiere eliminar este presupuesto?</value>
   </data>
-    <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Presupuesto mensual</value>
-  </data>
     <data name="TimeRangeLabel" xml:space="preserve">
     <value>Rango de tiempo</value>
   </data>

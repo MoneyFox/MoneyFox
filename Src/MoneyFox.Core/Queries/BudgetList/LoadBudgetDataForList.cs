@@ -45,11 +45,12 @@ public static class LoadBudgetDataForList
                 {
                     budgetListDataList.Add(
                         new(
-                            id: budget.Id.Value,
-                            name: budget.Name,
-                            spendingLimit: budget.SpendingLimit,
-                            currentSpending: 0,
-                            monthlyBudget: monthlyBudget));
+                            Id: budget.Id.Value,
+                            Name: budget.Name,
+                            SpendingLimit: budget.SpendingLimit,
+                            CurrentSpending: 0,
+                            MonthlyBudget: monthlyBudget,
+                            MonthlySpending: 0));
 
                     continue;
                 }
@@ -61,13 +62,15 @@ public static class LoadBudgetDataForList
                     currentSpending = 0;
                 }
 
+                var monthlySpending = currentSpending / budget.Interval;
                 budgetListDataList.Add(
                     new(
-                        id: budget.Id.Value,
-                        name: budget.Name,
-                        spendingLimit: budget.SpendingLimit,
-                        currentSpending: currentSpending,
-                        monthlyBudget: monthlyBudget));
+                        Id: budget.Id.Value,
+                        Name: budget.Name,
+                        SpendingLimit: budget.SpendingLimit,
+                        CurrentSpending: currentSpending,
+                        MonthlyBudget: monthlyBudget,
+                        MonthlySpending: monthlySpending));
             }
 
             return budgetListDataList;
