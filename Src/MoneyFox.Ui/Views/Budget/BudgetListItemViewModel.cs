@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 public sealed class BudgetListItemViewModel : ObservableObject
 {
     private readonly decimal monthlyBudget;
+    private readonly decimal monthlySpending;
     private decimal currentSpending;
     private string name = null!;
     private decimal spendingLimit;
@@ -35,5 +36,11 @@ public sealed class BudgetListItemViewModel : ObservableObject
     {
         get => monthlyBudget;
         init => SetProperty(field: ref monthlyBudget, newValue: value);
+    }
+
+    public required decimal MonthlySpending
+    {
+        get => monthlySpending;
+        init => SetProperty(field: ref monthlySpending, newValue: value);
     }
 }

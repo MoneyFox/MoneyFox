@@ -25,8 +25,8 @@ public abstract class BudgetListPageViewModelTests
         actualBudgetVm.Name.Should().Be(expectedBudgetData.Name);
         actualBudgetVm.SpendingLimit.Should().Be(expectedBudgetData.SpendingLimit);
         actualBudgetVm.CurrentSpending.Should().Be(expectedBudgetData.CurrentSpending);
-        actualBudgetVm.CurrentSpending.Should().Be(expectedBudgetData.CurrentSpending);
         actualBudgetVm.MonthlyBudget.Should().Be(expectedBudgetData.MonthlyBudget);
+        actualBudgetVm.MonthlySpending.Should().Be(expectedBudgetData.CurrentSpending / expectedBudgetData.Interval);
     }
 
     [Collection(nameof(BudgetListPageViewModelTests))]
@@ -55,11 +55,12 @@ public abstract class BudgetListPageViewModelTests
                 .Returns(
                     ImmutableList.Create(
                         new BudgetData(
-                            id: budgetTestData.Id,
-                            name: budgetTestData.Name,
-                            spendingLimit: budgetTestData.SpendingLimit,
-                            currentSpending: budgetTestData.CurrentSpending,
-                            monthlyBudget: budgetTestData.MonthlyBudget)));
+                            Id: budgetTestData.Id,
+                            Name: budgetTestData.Name,
+                            SpendingLimit: budgetTestData.SpendingLimit,
+                            CurrentSpending: budgetTestData.CurrentSpending,
+                            MonthlyBudget: budgetTestData.MonthlyBudget,
+                            MonthlySpending: budgetTestData.CurrentSpending / budgetTestData.Interval)));
         }
 
         [Fact]
@@ -98,17 +99,19 @@ public abstract class BudgetListPageViewModelTests
                 .Returns(
                     ImmutableList.Create(
                         new BudgetData(
-                            id: budgetTestData1.Id,
-                            name: "Beverages",
-                            spendingLimit: budgetTestData1.SpendingLimit,
-                            currentSpending: budgetTestData1.CurrentSpending,
-                            monthlyBudget: budgetTestData1.MonthlyBudget),
+                            Id: budgetTestData1.Id,
+                            Name: "Beverages",
+                            SpendingLimit: budgetTestData1.SpendingLimit,
+                            CurrentSpending: budgetTestData1.CurrentSpending,
+                            MonthlyBudget: budgetTestData1.MonthlyBudget,
+                            MonthlySpending: budgetTestData1.CurrentSpending / budgetTestData1.Interval),
                         new BudgetData(
-                            id: budgetTestData1.Id,
-                            name: "Apples",
-                            spendingLimit: budgetTestData1.SpendingLimit,
-                            currentSpending: budgetTestData1.CurrentSpending,
-                            monthlyBudget: budgetTestData1.MonthlyBudget * 2)));
+                            Id: budgetTestData1.Id,
+                            Name: "Apples",
+                            SpendingLimit: budgetTestData1.SpendingLimit,
+                            CurrentSpending: budgetTestData1.CurrentSpending,
+                            MonthlyBudget: budgetTestData1.MonthlyBudget * 2,
+                            MonthlySpending: budgetTestData1.CurrentSpending / budgetTestData1.Interval)));
         }
 
         [Fact]
