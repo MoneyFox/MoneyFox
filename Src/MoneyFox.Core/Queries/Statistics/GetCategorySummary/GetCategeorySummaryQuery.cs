@@ -12,12 +12,7 @@ using Domain.Aggregates.CategoryAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-public class GetCategorySummaryQuery : IRequest<CategorySummaryModel>
-{
-    public DateTime StartDate { get; set; }
-
-    public DateTime EndDate { get; set; }
-}
+public record GetCategorySummaryQuery(DateTime StartDate, DateTime EndDate) : IRequest<CategorySummaryModel>;
 
 public class GetCategorySummaryQueryHandler : IRequestHandler<GetCategorySummaryQuery, CategorySummaryModel>
 {
