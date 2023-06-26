@@ -7,7 +7,7 @@ using FluentAssertions;
 
 public class GetCategorySummaryQueryTests : InMemoryTestBase
 {
-    private readonly GetCategorySummaryQueryHandler handler;
+    private readonly GetCategorySummary.Handler handler;
 
     public GetCategorySummaryQueryTests()
     {
@@ -15,10 +15,10 @@ public class GetCategorySummaryQueryTests : InMemoryTestBase
     }
 
     [Fact]
-    public async Task GetValues_CorrectSums()
+    public async Task ReturnsCorrectSums()
     {
         // Arrange
-        var testCat1 = new Category("Ausgehen");
+        var testCat1 = new Category("Going Out");
         var testCat2 = new Category("Rent");
         var testCat3 = new Category("Food");
         var testCat4 = new Category("Income");
@@ -61,9 +61,7 @@ public class GetCategorySummaryQueryTests : InMemoryTestBase
         await Context.SaveChangesAsync();
 
         // Act
-        var result = await handler.Handle(
-            request: new() { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
-            cancellationToken: default);
+        var result = await handler.Handle(request: new(StartDate: DateTime.Today.AddDays(-3), EndDate: DateTime.Today.AddDays(3)), cancellationToken: default);
 
         // Assert
         result.CategoryOverviewItems.Count.Should().Be(4);
@@ -74,10 +72,10 @@ public class GetCategorySummaryQueryTests : InMemoryTestBase
     }
 
     [Fact]
-    public async Task GetValues_CorrectLabels()
+    public async Task ReturnsCorrectLabels()
     {
         // Arrange
-        var testCat1 = new Category("Ausgehen");
+        var testCat1 = new Category("Going Out");
         var testCat2 = new Category("Rent");
         var testCat3 = new Category("Food");
         var testCat4 = new Category("Income");
@@ -114,9 +112,7 @@ public class GetCategorySummaryQueryTests : InMemoryTestBase
         await Context.SaveChangesAsync();
 
         // Act
-        var result = await handler.Handle(
-            request: new() { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
-            cancellationToken: default);
+        var result = await handler.Handle(request: new(StartDate: DateTime.Today.AddDays(-3), EndDate: DateTime.Today.AddDays(3)), cancellationToken: default);
 
         // Assert
         result.CategoryOverviewItems[0].Label.Should().Be(testCat1.Name);
@@ -126,11 +122,11 @@ public class GetCategorySummaryQueryTests : InMemoryTestBase
     }
 
     [Fact]
-    public async Task GetValues_CorrectPercentage()
+    public async Task ReturnsCorrectPercentage()
     {
         // Arrange
-        var testCat1 = new Category("Ausgehen");
-        var testCat2 = new Category("Ausgehen");
+        var testCat1 = new Category("Going Out");
+        var testCat2 = new Category("Food");
         var testCat3 = new Category("Income");
         var account = new Account("test");
         var paymentList = new List<Payment>
@@ -159,9 +155,7 @@ public class GetCategorySummaryQueryTests : InMemoryTestBase
         await Context.SaveChangesAsync();
 
         // Act
-        var result = await handler.Handle(
-            request: new() { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
-            cancellationToken: default);
+        var result = await handler.Handle(request: new(StartDate: DateTime.Today.AddDays(-3), EndDate: DateTime.Today.AddDays(3)), cancellationToken: default);
 
         // Assert
         result.CategoryOverviewItems[0].Percentage.Should().Be(60);
@@ -179,9 +173,7 @@ public class GetCategorySummaryQueryTests : InMemoryTestBase
         await Context.SaveChangesAsync();
 
         // Act
-        var result = await handler.Handle(
-            request: new() { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
-            cancellationToken: default);
+        var result = await handler.Handle(request: new(StartDate: DateTime.Today.AddDays(-3), EndDate: DateTime.Today.AddDays(3)), cancellationToken: default);
 
         // Assert
         result.CategoryOverviewItems[0].Value.Should().Be(-60);
@@ -197,9 +189,7 @@ public class GetCategorySummaryQueryTests : InMemoryTestBase
         await Context.SaveChangesAsync();
 
         // Act
-        var result = await handler.Handle(
-            request: new() { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
-            cancellationToken: default);
+        var result = await handler.Handle(request: new(StartDate: DateTime.Today.AddDays(-3), EndDate: DateTime.Today.AddDays(3)), cancellationToken: default);
 
         // Assert
         result.CategoryOverviewItems[0].Label.Should().Be("-");
