@@ -66,9 +66,13 @@ public class GetCategorySummaryQueryTests : InMemoryTestBase
         // Assert
         result.CategoryOverviewItems.Count.Should().Be(4);
         result.CategoryOverviewItems[0].Value.Should().Be(-90);
+        result.CategoryOverviewItems[0].Average.Should().Be(-7.5m);
         result.CategoryOverviewItems[1].Value.Should().Be(-30);
+        result.CategoryOverviewItems[1].Average.Should().Be(-2.5m);
         result.CategoryOverviewItems[2].Value.Should().Be(-10);
+        result.CategoryOverviewItems[2].Average.Should().Be(-0.83m);
         result.CategoryOverviewItems[3].Value.Should().Be(100);
+        result.CategoryOverviewItems[3].Average.Should().Be(8.33m);
     }
 
     [Fact]

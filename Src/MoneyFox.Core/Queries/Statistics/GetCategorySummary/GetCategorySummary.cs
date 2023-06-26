@@ -122,9 +122,10 @@ public static class GetCategorySummary
             return payments.Count == 0 ? 0 : AverageSumFor(payments);
         }
 
-        private static decimal AverageSumFor(IEnumerable<Payment> payments)
+        private static decimal AverageSumFor(ICollection<Payment> payments)
         {
-            var totalSumForPayments = payments.Sum(x => x.Amount);
+            // we have to consider the PaymentType to determine if we add or subtract the amount
+            var totalSumForPayments = payments.Sum(payment => payment.Type == PaymentType.Expense ? -payment.Amount : payment.Amount);
             var timeDiff = DateTime.Today - DateTime.Today.AddYears(-1);
 
             return timeDiff.Days < DAY_DIVIDER ? totalSumForPayments : CalculateAverageByMonth(totalSumForPayments: totalSumForPayments, timeDiff: timeDiff);
