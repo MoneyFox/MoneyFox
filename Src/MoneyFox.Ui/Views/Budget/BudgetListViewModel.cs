@@ -21,7 +21,7 @@ public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<BudgetsC
     public ObservableCollection<BudgetListItemViewModel> Budgets { get; } = new();
 
     public decimal BudgetedAmount => Budgets.Sum(b => b.MonthlyBudget);
-    public decimal SpentAmount => Budgets.Sum(b => b.CurrentSpending);
+    public decimal SpentAmount => Budgets.Sum(b => b.MonthlySpending);
 
     public AsyncRelayCommand InitializeCommand => new(Initialize);
 
