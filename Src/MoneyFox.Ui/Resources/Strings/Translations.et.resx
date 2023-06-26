@@ -839,9 +839,6 @@ Alustamiseks looge uus konto. Kontod on mõeldud maksete ja raha kogumise korral
     <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
     <value>Kas te tõesti soovite selle eelarve kustutada?</value>
   </data>
-    <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Igakuine eelarve:</value>
-  </data>
     <data name="TimeRangeLabel" xml:space="preserve">
     <value>Ajavahemik</value>
   </data>

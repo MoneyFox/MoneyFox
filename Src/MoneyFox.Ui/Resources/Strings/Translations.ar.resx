@@ -839,9 +839,6 @@
     <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
     <value>هل تريد حقاً حذف هذه الميزانية؟</value>
   </data>
-    <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>الميزانية الشهرية:</value>
-  </data>
     <data name="TimeRangeLabel" xml:space="preserve">
     <value>النطاق الزمني</value>
   </data>

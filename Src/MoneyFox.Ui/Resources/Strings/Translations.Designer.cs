@@ -1655,15 +1655,6 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Monthly Budget:.
-        /// </summary>
-        public static string MonthlyBudgetLabel {
-            get {
-                return ResourceManager.GetString("MonthlyBudgetLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Monthly Budget: {0}.
         /// </summary>
         public static string MonthlyBudgetTemplate {

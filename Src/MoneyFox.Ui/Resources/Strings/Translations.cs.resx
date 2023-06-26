@@ -839,9 +839,6 @@ Chcete-li začít zakládat nový účet. Účty slouží k organizaci plateb a 
     <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
     <value>Opravdu chcete odstranit tento rozpočet?</value>
   </data>
-    <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Měsíční rozpočet:</value>
-  </data>
     <data name="TimeRangeLabel" xml:space="preserve">
     <value>Časový rozsah</value>
   </data>
