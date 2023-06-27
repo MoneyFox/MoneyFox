@@ -71,14 +71,14 @@ steps:
   - task: InstallAppleCertificate@2
     displayName: 'Install an Apple certificate'
     inputs:
-      certSecureFile: 'MoneyFox_Distribution_2022.p12'
+      certSecureFile: 'MoneyFox_Distribution_2023.p12'
       certPwd: '$(P12password)'
       keychain: temp
 
   - task: InstallAppleProvisioningProfile@1
     displayName: 'Install an Apple provisioning profile'
     inputs:
-      provProfileSecureFile: 'MoneyFox_Distribution_2022.mobileprovision'
+      provProfileSecureFile: 'MoneyFox_Distribution_2023.mobileprovision'
 
   - task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
     displayName: 'Settings'
