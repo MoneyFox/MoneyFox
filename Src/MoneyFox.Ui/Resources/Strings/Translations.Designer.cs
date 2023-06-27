@@ -781,6 +781,15 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current Balance: {0}.
+        /// </summary>
+        public static string CurrentBalanceTemplate {
+            get {
+                return ResourceManager.GetString("CurrentBalanceTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Daily.
         /// </summary>
         public static string DailyLabel {

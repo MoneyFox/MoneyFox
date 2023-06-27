@@ -934,6 +934,9 @@ You can change this late in the settings.</value>
     <data name="TotalBalanceTemplate" xml:space="preserve">
     <value>Total: {0}</value>
   </data>
+    <data name="CurrentBalanceTemplate" xml:space="preserve">
+        <value>Current Balance: {0}</value>
+    </data>
     <data name="MonthlyBudgetTemplate" xml:space="preserve">
         <value>Monthly Budget: {0}</value>
     </data>

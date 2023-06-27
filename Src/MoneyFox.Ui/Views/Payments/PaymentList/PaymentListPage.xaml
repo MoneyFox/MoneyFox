@@ -7,11 +7,14 @@
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:views="clr-namespace:MoneyFox.Ui.Views"
     xmlns:paymentList="clr-namespace:MoneyFox.Ui.Views.Payments.PaymentList"
+    xmlns:extensions="clr-namespace:MoneyFox.Ui.Common.Extensions"
+    xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     x:DataType="paymentList:PaymentListViewModel"
     x:Class="MoneyFox.Ui.Views.Payments.PaymentList.PaymentListPage"
     Title="{Binding SelectedAccount.Name}">
 
     <ContentPage.Resources>
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
         <paymentList:PaymentAmountConverter x:Key="PaymentAmountConverter" />
         <paymentList:DateGroupCardOpacityConverter x:Key="DateGroupCardOpacityConverter" />
     </ContentPage.Resources>
@@ -59,6 +62,13 @@
                             ItemsSource="{Binding PaymentDayGroups}"
                             IsGrouped="True">
 
+                <CollectionView.Header>
+                    <VerticalStackLayout Margin="18,0,18,12">
+                        <Label Style="{StaticResource TextBodySecondary}"
+                               Text="{Binding SelectedAccount.CurrentBalance, StringFormat={extensions:Translate CurrentBalanceTemplate}, Converter={StaticResource AmountFormatConverter}}}" />
+                    </VerticalStackLayout>
+                </CollectionView.Header>
+
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate x:DataType="paymentList:PaymentDayGroup">
                         <Grid Padding="18, 0, 18, 0">
@@ -74,7 +84,7 @@
                             <controls:Card Grid.Column="1"
                                            Padding="12"
                                            Margin="0,6,0,0"
-                                           HeightRequest="60"
+                                           MinimumHeightRequest="60"
                                            Opacity="{Binding Date, Converter={StaticResource DateGroupCardOpacityConverter}}">
 
                                 <controls:Card.GestureRecognizers>
