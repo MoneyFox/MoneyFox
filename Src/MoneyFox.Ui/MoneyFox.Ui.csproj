@@ -5,6 +5,7 @@
         <OutputType>Exe</OutputType>
         <RootNamespace>MoneyFox.Ui</RootNamespace>
         <UseMaui>true</UseMaui>
+        <MauiVersion>7.0.58</MauiVersion>
         <SingleProject>true</SingleProject>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
@@ -43,7 +44,7 @@
         <RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
         <ArchiveOnBuild>true</ArchiveOnBuild>
         <CodesignKey>Apple Distribution: Apply Solutions GmbH (HTWW78XH49)</CodesignKey>
-        <CodesignProvision>MoneyFox Distribution 2022</CodesignProvision>
+        <CodesignProvision>MoneyFox Distribution 2023</CodesignProvision>
     </PropertyGroup>
 
     <PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
