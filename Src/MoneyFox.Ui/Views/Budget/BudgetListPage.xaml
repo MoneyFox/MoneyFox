@@ -44,7 +44,7 @@
                 </CollectionView.Header>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="budget:BudgetListItemViewModel">
-                        <Grid Padding="12,6,12,8">
+                        <Grid Padding="12,6,12,0">
                             <controls:Card HeightRequest="85" Padding="12">
                                 <Border.GestureRecognizers>
                                     <TapGestureRecognizer
