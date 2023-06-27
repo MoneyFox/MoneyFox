@@ -1664,11 +1664,11 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Monthly Budget:.
+        ///   Looks up a localized string similar to Monthly Budget: {0}.
         /// </summary>
-        public static string MonthlyBudgetLabel {
+        public static string MonthlyBudgetTemplate {
             get {
-                return ResourceManager.GetString("MonthlyBudgetLabel", resourceCulture);
+                return ResourceManager.GetString("MonthlyBudgetTemplate", resourceCulture);
             }
         }
         
@@ -1714,6 +1714,15 @@ namespace MoneyFox.Ui.Resources.Strings {
         public static string MonthlySpendingLimitLabel {
             get {
                 return ResourceManager.GetString("MonthlySpendingLimitLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monthly Spending on budgets: {0}.
+        /// </summary>
+        public static string MonthlySpendingOnBudgetsTemplate {
+            get {
+                return ResourceManager.GetString("MonthlySpendingOnBudgetsTemplate", resourceCulture);
             }
         }
         

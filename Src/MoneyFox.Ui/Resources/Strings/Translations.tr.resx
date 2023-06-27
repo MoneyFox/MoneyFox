@@ -839,9 +839,6 @@ Başlamak için yeni bir hesap oluşturun. Hesaplar, ödemeleri ve tahsilatlarda
     <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
     <value>Bu bütçeyi gerçekten silmek istiyor musunuz?</value>
   </data>
-    <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Aylık Bütçe:</value>
-  </data>
     <data name="TimeRangeLabel" xml:space="preserve">
     <value>Zaman Aralığı</value>
   </data>

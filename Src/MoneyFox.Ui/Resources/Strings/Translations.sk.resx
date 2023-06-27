@@ -839,9 +839,6 @@ Ak chcete začať, vytvorte si nový účet. Účty slúžia na organizáciu pla
     <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
     <value>Naozaj chcete tento rozpočet vymazať?</value>
   </data>
-    <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Mesačný rozpočet:</value>
-  </data>
     <data name="TimeRangeLabel" xml:space="preserve">
     <value>Časový rozsah</value>
   </data>

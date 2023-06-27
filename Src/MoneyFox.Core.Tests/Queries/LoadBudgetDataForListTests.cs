@@ -223,5 +223,6 @@ public sealed class LoadBudgetDataForListTests : InMemoryTestBase
         actualBudgetData.SpendingLimit.Should().BeApproximately(expectedValue: expectedBudgetTestData.SpendingLimit, precision: 0.01m);
         actualBudgetData.CurrentSpending.Should().BeApproximately(expectedValue: expectedCurrentSpending, precision: 0.01m);
         actualBudgetData.MonthlyBudget.Should().BeApproximately(expectedValue: expectedBudgetTestData.MonthlyBudget, precision: 0.01m);
+        actualBudgetData.MonthlySpending.Should().BeApproximately(expectedValue: expectedCurrentSpending / expectedBudgetTestData.Interval, precision: 0.01m);
     }
 }

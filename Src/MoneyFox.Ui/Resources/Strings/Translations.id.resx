@@ -837,9 +837,6 @@ Untuk memulai, buat akun baru. Akun digunakan untuk mengatur pembayaran dan uang
     <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
     <value>Apakah Anda benar-benar ingin menghapus anggaran ini?</value>
   </data>
-    <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Anggaran Bulanan:</value>
-  </data>
     <data name="TimeRangeLabel" xml:space="preserve">
     <value>Rentang Waktu</value>
   </data>

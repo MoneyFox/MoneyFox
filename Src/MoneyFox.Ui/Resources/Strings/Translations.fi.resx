@@ -837,9 +837,6 @@ Aloittaaksesi luoda uuden tilin. Tilejä käytetään järjestämään maksuja j
     <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
     <value>Haluatko todella poistaa tämän budjetin?</value>
   </data>
-    <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Kuukausittainen Budjetti:</value>
-  </data>
     <data name="TimeRangeLabel" xml:space="preserve">
     <value>Aikaväli</value>
   </data>

@@ -839,9 +839,6 @@
     <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
     <value>Θέλετε πραγματικά να διαγράψετε αυτόν τον προϋπολογισμό?</value>
   </data>
-    <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Μηνιαίος Προϋπολογισμός:</value>
-  </data>
     <data name="TimeRangeLabel" xml:space="preserve">
     <value>Χρονικό Εύρος</value>
   </data>

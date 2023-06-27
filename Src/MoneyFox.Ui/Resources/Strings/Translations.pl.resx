@@ -837,9 +837,6 @@ Aby rozpocząć tworzenie nowego konta. Konta są używane do organizowania pła
     <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
     <value>Czy naprawdę chcesz usunąć ten budżet?</value>
   </data>
-    <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Budżet miesięczny:</value>
-  </data>
     <data name="TimeRangeLabel" xml:space="preserve">
     <value>Zakres czasu</value>
   </data>

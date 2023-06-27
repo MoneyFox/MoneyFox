@@ -8,6 +8,7 @@
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:budget="clr-namespace:MoneyFox.Ui.Views.Budget"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
+    xmlns:extensions="clr-namespace:MoneyFox.Ui.Common.Extensions"
     Visual="Material"
     x:Name="BudgetList"
     x:DataType="budget:BudgetListViewModel"
@@ -28,20 +29,19 @@
                 VerticalOptions="Center"
                 Command="{Binding GoToAddBudgetCommand}" />
 
-            <HorizontalStackLayout Margin="18,6,12,6"
-                                   Spacing="6"
-                                   Grid.Row="1">
-                <Label Style="{StaticResource TextBodySecondary}"
-                       Text="{x:Static resources:Translations.MonthlyBudgetLabel}" />
-                <Label Style="{StaticResource TextBodySecondary}"
-                       Text="{Binding BudgetedAmount, Converter={StaticResource AmountFormatConverter}}" />
-            </HorizontalStackLayout>
-
             <CollectionView Grid.Row="2"
                             BackgroundColor="Transparent"
                             ItemsSource="{Binding Budgets}"
                             ItemSizingStrategy="MeasureFirstItem"
                             SelectionMode="None">
+                <CollectionView.Header>
+                    <VerticalStackLayout Spacing="6" Margin="18,0, 12,0">
+                        <Label Style="{StaticResource TextBodySecondary}"
+                               Text="{Binding BudgetedAmount, StringFormat={extensions:Translate MonthlyBudgetTemplate}, Converter={StaticResource AmountFormatConverter}}" />
+                        <Label Style="{StaticResource TextBodySecondary}"
+                               Text="{Binding SpentAmount, StringFormat={extensions:Translate MonthlySpendingOnBudgetsTemplate}, Converter={StaticResource AmountFormatConverter}}" />
+                    </VerticalStackLayout>
+                </CollectionView.Header>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="budget:BudgetListItemViewModel">
                         <Grid Padding="12,6,12,8">

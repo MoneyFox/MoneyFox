@@ -839,9 +839,6 @@
     <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
     <value>Вы действительно хотите удалить этот бюджет?</value>
   </data>
-    <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Ежемесячный бюджет:</value>
-  </data>
     <data name="TimeRangeLabel" xml:space="preserve">
     <value>Диапазон времени</value>
   </data>

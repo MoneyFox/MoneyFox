@@ -842,9 +842,6 @@ Maak een nieuw account aan om hier dan uw budgetten op een gemakkelijke manier b
     <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
     <value>Wil je deze gebruiker echt verwijderen?</value>
   </data>
-    <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Maandelijks budget</value>
-  </data>
     <data name="TimeRangeLabel" xml:space="preserve">
     <value>Tijdsbereik</value>
   </data>
