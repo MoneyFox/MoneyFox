@@ -15,7 +15,7 @@
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
         <PackageReference Include="FluentAssertions" Version="6.11.0"/>
-        <PackageReference Include="FluentAssertions.Analyzers" Version="0.20.0"/>
+        <PackageReference Include="FluentAssertions.Analyzers" Version="0.21.0"/>
         <PackageReference Include="NSubstitute" Version="5.0.0"/>
         <PackageReference Include="NSubstitute.Analyzers.CSharp" Version="1.0.16"/>
     </ItemGroup>
