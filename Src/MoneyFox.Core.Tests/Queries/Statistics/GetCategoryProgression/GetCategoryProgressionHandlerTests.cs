@@ -59,7 +59,10 @@ public class GetCategoryProgressionHandlerTests : InMemoryTestBase
 
         // Act
         var result = await handler.Handle(
-            request: new(categoryId: category.Id, startDate: DateOnly.FromDateTime(DateTime.Today).AddYears(-1), endDate: DateOnly.FromDateTime(DateTime.Today).AddDays(3)),
+            request: new(
+                categoryId: category.Id,
+                startDate: DateOnly.FromDateTime(DateTime.Today).AddYears(-1),
+                endDate: DateOnly.FromDateTime(DateTime.Today).AddDays(3)),
             cancellationToken: default);
 
         // Assert

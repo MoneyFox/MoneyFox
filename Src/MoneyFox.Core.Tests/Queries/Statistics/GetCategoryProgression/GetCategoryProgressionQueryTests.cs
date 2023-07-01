@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Statistics.GetCategoryProgression;
 
+using Core.Queries.Statistics;
 using FluentAssertions;
-using MoneyFox.Core.Queries.Statistics;
 
 public class GetCategoryProgressionQueryTests
 {
@@ -9,7 +9,10 @@ public class GetCategoryProgressionQueryTests
     public void ThrowsException_WhenStartDateIsAfterEndDate()
     {
         // Act
-        var act = () => new GetCategoryProgression.Query(3, startDate: DateOnly.FromDateTime(DateTime.Today).AddDays(1), endDate: DateOnly.FromDateTime(DateTime.Today));
+        var act = () => new GetCategoryProgression.Query(
+            categoryId: 3,
+            startDate: DateOnly.FromDateTime(DateTime.Today).AddDays(1),
+            endDate: DateOnly.FromDateTime(DateTime.Today));
 
         // Assert
         act.Should().Throw<InvalidDateRangeException>();
@@ -22,7 +25,10 @@ public class GetCategoryProgressionQueryTests
         var categoryId = 3;
 
         // Act
-        var query = new GetCategoryProgression.Query(categoryId, startDate: DateOnly.FromDateTime(DateTime.Today), endDate: DateOnly.FromDateTime(DateTime.Today));
+        var query = new GetCategoryProgression.Query(
+            categoryId: categoryId,
+            startDate: DateOnly.FromDateTime(DateTime.Today),
+            endDate: DateOnly.FromDateTime(DateTime.Today));
 
         // Assert
         query.CategoryId.Should().Be(categoryId);
