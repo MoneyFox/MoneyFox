@@ -18,13 +18,14 @@ public class GetAccountProgressionQuery : IRequest<List<StatisticEntry>>
 {
     public GetAccountProgressionQuery(int accountId, DateTime startDate, DateTime endDate)
     {
-        AccountId = accountId;
-        StartDate = startDate;
-        EndDate = endDate;
         if (startDate > EndDate)
         {
             throw new StartAfterEnddateException();
         }
+
+        AccountId = accountId;
+        StartDate = startDate;
+        EndDate = endDate;
     }
 
     public int AccountId { get; }
