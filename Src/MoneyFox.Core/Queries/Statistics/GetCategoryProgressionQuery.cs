@@ -11,7 +11,6 @@ using Common.Extensions.QueryObjects;
 using Common.Interfaces;
 using Common.Settings;
 using Domain.Aggregates.AccountAggregate;
-using Domain.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,13 +18,14 @@ public class GetCategoryProgressionQuery : IRequest<IImmutableList<StatisticEntr
 {
     public GetCategoryProgressionQuery(int categoryId, DateTime startDate, DateTime endDate)
     {
+        if (startDate > EndDate)
+        {
+            throw new InvalidDateRangeException();
+        }
+
         CategoryId = categoryId;
         StartDate = startDate;
         EndDate = endDate;
-        if (startDate > EndDate)
-        {
-            throw new StartAfterEndDateException();
-        }
     }
 
     public int CategoryId { get; }
