@@ -1,7 +1,7 @@
-﻿namespace MoneyFox.Core.Tests.Queries.Statistics.GetCashFlowQueryHandler;
+﻿namespace MoneyFox.Core.Tests.Queries.Statistics.GetCashFlow;
 
+using Core.Queries.Statistics;
 using FluentAssertions;
-using MoneyFox.Core.Queries.Statistics;
 
 public class GetCashFlowQueryTests
 {
@@ -9,9 +9,7 @@ public class GetCashFlowQueryTests
     public void ThrowsException_WhenStartDateIsAfterEndDate()
     {
         // Act
-        var act = () => new GetCashFlow.Query(
-            startDate: DateOnly.FromDateTime(DateTime.Today).AddDays(1),
-            endDate: DateOnly.FromDateTime(DateTime.Today));
+        var act = () => new GetCashFlow.Query(startDate: DateOnly.FromDateTime(DateTime.Today).AddDays(1), endDate: DateOnly.FromDateTime(DateTime.Today));
 
         // Assert
         act.Should().Throw<InvalidDateRangeException>();
