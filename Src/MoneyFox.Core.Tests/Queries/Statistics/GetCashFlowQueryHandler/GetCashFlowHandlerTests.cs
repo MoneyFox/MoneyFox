@@ -4,11 +4,11 @@ using Core.Queries.Statistics;
 using Domain.Aggregates.AccountAggregate;
 using FluentAssertions;
 
-public class GetCashFlowTests : InMemoryTestBase
+public class GetCashFlowHandlerTests : InMemoryTestBase
 {
     private readonly GetCashFlow.Handler getCashFlowQueryHandler;
 
-    public GetCashFlowTests()
+    public GetCashFlowHandlerTests()
     {
         getCashFlowQueryHandler = new(Context);
     }
@@ -30,7 +30,7 @@ public class GetCashFlowTests : InMemoryTestBase
 
         // Act
         var result = await getCashFlowQueryHandler.Handle(
-            request: new() { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
+            request: new(StartDate: DateOnly.FromDateTime(DateTime.Today).AddDays(-3), EndDate: DateOnly.FromDateTime(DateTime.Today).AddDays(3)),
             cancellationToken: default);
 
         // Assert

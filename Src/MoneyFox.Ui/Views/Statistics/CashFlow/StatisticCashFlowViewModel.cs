@@ -18,7 +18,7 @@ internal sealed class StatisticCashFlowViewModel : StatisticViewModel
 
     protected override async Task LoadAsync()
     {
-        var cashFlowData = await Mediator.Send(new GetCashFlow.Query { EndDate = EndDate, StartDate = StartDate });
+        var cashFlowData = await Mediator.Send(new GetCashFlow.Query(StartDate: DateOnly.FromDateTime(EndDate), EndDate: DateOnly.FromDateTime(StartDate)));
         Series.Clear();
         Series.Add(
             new ColumnSeries<decimal>

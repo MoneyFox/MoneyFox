@@ -14,12 +14,7 @@ public static class GetCashFlow
 {
     public record Data(decimal Income, decimal Expense, decimal Gain);
 
-    public class Query : IRequest<Data>
-    {
-        public DateTime StartDate { get; set; }
-
-        public DateTime EndDate { get; set; }
-    }
+    public record Query(DateOnly StartDate, DateOnly EndDate) : IRequest<Data>;
 
     public class Handler : IRequestHandler<Query, Data>
     {
@@ -34,8 +29,8 @@ public static class GetCashFlow
         {
             var payments = await appDbContext.Payments.Include(x => x.Category)
                 .WithoutTransfers()
-                .HasDateLargerEqualsThan(request.StartDate.Date)
-                .HasDateSmallerEqualsThan(request.EndDate.Date)
+                .Where(payment => payment.Date.Date >= request.StartDate.ToDateTime(TimeOnly.MinValue))
+                .Where(payment => payment.Date.Date <= request.EndDate.ToDateTime(TimeOnly.MinValue))
                 .ToListAsync(cancellationToken);
 
             var incomeAmount = payments.Where(x => x.Type == PaymentType.Income).Sum(x => x.Amount);
