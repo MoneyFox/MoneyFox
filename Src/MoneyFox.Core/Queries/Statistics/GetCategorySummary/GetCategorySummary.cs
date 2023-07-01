@@ -16,15 +16,15 @@ public static class GetCategorySummary
 {
     public record Query : IRequest<CategorySummaryModel>
     {
-        public Query(DateOnly StartDate, DateOnly EndDate)
+        public Query(DateOnly startDate, DateOnly endDate)
         {
-            if (StartDate > EndDate)
+            if (startDate > endDate)
             {
                 throw new InvalidDateRangeException();
             }
 
-            this.StartDate = StartDate;
-            this.EndDate = EndDate;
+            StartDate = startDate;
+            EndDate = endDate;
         }
 
         public DateOnly StartDate { get; }

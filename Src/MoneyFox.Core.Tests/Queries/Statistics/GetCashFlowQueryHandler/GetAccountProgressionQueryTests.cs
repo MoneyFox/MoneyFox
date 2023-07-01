@@ -10,8 +10,8 @@ public class GetCashFlowQueryTests
     {
         // Act
         var act = () => new GetCashFlow.Query(
-            StartDate: DateOnly.FromDateTime(DateTime.Today).AddDays(1),
-            EndDate: DateOnly.FromDateTime(DateTime.Today));
+            startDate: DateOnly.FromDateTime(DateTime.Today).AddDays(1),
+            endDate: DateOnly.FromDateTime(DateTime.Today));
 
         // Assert
         act.Should().Throw<InvalidDateRangeException>();
@@ -21,7 +21,7 @@ public class GetCashFlowQueryTests
     public void CreateQueryAndAssignValues()
     {
         // Act
-        var query = new GetCashFlow.Query(StartDate: DateOnly.FromDateTime(DateTime.Today), EndDate: DateOnly.FromDateTime(DateTime.Today));
+        var query = new GetCashFlow.Query(startDate: DateOnly.FromDateTime(DateTime.Today), endDate: DateOnly.FromDateTime(DateTime.Today));
 
         // Assert
         query.StartDate.Should().Be(DateOnly.FromDateTime(DateTime.Today));

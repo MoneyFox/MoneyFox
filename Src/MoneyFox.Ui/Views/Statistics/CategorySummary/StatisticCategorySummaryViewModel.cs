@@ -42,7 +42,7 @@ internal sealed class StatisticCategorySummaryViewModel : StatisticViewModel
         try
         {
             var categorySummaryModel = await Mediator.Send(
-                new GetCategorySummary.Query(StartDate: DateOnly.FromDateTime(StartDate), EndDate: DateOnly.FromDateTime(EndDate)));
+                new GetCategorySummary.Query(startDate: DateOnly.FromDateTime(StartDate), endDate: DateOnly.FromDateTime(EndDate)));
 
             CategorySummary = new(
                 categorySummaryModel.CategoryOverviewItems.Select(

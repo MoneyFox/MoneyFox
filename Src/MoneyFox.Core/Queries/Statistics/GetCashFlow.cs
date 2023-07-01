@@ -14,7 +14,28 @@ public static class GetCashFlow
 {
     public record Data(decimal Income, decimal Expense, decimal Gain);
 
-    public record Query(DateOnly StartDate, DateOnly EndDate) : IRequest<Data>;
+    public record Query : IRequest<Data>
+    {
+        public Query(DateOnly startDate, DateOnly endDate)
+        {
+            if (startDate > endDate)
+            {
+                throw new InvalidDateRangeException();
+            }
+
+            StartDate = startDate;
+            EndDate = endDate;
+        }
+
+        public DateOnly StartDate { get; init; }
+        public DateOnly EndDate { get; init; }
+
+        public void Deconstruct(out DateOnly StartDate, out DateOnly EndDate)
+        {
+            StartDate = this.StartDate;
+            EndDate = this.EndDate;
+        }
+    }
 
     public class Handler : IRequestHandler<Query, Data>
     {

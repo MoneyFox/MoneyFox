@@ -19,7 +19,7 @@ public static class GetAccountProgression
     {
         public Query(int accountId, DateTime startDate, DateTime endDate)
         {
-            if (startDate > EndDate)
+            if (startDate > endDate)
             {
                 throw new InvalidDateRangeException();
             }

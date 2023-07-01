@@ -18,7 +18,7 @@ public class GetCategoryProgressionQuery : IRequest<IImmutableList<StatisticEntr
 {
     public GetCategoryProgressionQuery(int categoryId, DateTime startDate, DateTime endDate)
     {
-        if (startDate > EndDate)
+        if (startDate > endDate)
         {
             throw new InvalidDateRangeException();
         }

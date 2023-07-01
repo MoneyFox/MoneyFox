@@ -62,7 +62,7 @@ public class GetCategorySummaryHandlerTests : InMemoryTestBase
 
         // Act
         var result = await handler.Handle(
-            request: new(StartDate: DateOnly.FromDateTime(DateTime.Today).AddDays(-3), EndDate: DateOnly.FromDateTime(DateTime.Today).AddDays(3)),
+            request: new(startDate: DateOnly.FromDateTime(DateTime.Today).AddDays(-3), endDate: DateOnly.FromDateTime(DateTime.Today).AddDays(3)),
             cancellationToken: default);
 
         // Assert
@@ -116,7 +116,7 @@ public class GetCategorySummaryHandlerTests : InMemoryTestBase
 
         // Act
         var result = await handler.Handle(
-            request: new(StartDate: DateOnly.FromDateTime(DateTime.Today).AddDays(-3), EndDate: DateOnly.FromDateTime(DateTime.Today).AddDays(3)),
+            request: new(startDate: DateOnly.FromDateTime(DateTime.Today).AddDays(-3), endDate: DateOnly.FromDateTime(DateTime.Today).AddDays(3)),
             cancellationToken: default);
 
         // Assert
@@ -136,7 +136,7 @@ public class GetCategorySummaryHandlerTests : InMemoryTestBase
 
         // Act
         var result = await handler.Handle(
-            request: new(StartDate: DateOnly.FromDateTime(DateTime.Today.AddDays(-3)), EndDate: DateOnly.FromDateTime(DateTime.Today.AddDays(3))),
+            request: new(startDate: DateOnly.FromDateTime(DateTime.Today.AddDays(-3)), endDate: DateOnly.FromDateTime(DateTime.Today.AddDays(3))),
             cancellationToken: default);
 
         // Assert
@@ -154,7 +154,7 @@ public class GetCategorySummaryHandlerTests : InMemoryTestBase
 
         // Act
         var result = await handler.Handle(
-            request: new(StartDate: DateOnly.FromDateTime(DateTime.Today).AddDays(-3), EndDate: DateOnly.FromDateTime(DateTime.Today).AddDays(3)),
+            request: new(startDate: DateOnly.FromDateTime(DateTime.Today).AddDays(-3), endDate: DateOnly.FromDateTime(DateTime.Today).AddDays(3)),
             cancellationToken: default);
 
         // Assert
