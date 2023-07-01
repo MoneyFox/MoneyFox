@@ -5,7 +5,6 @@ using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.CategoryAggregate;
 using FluentAssertions;
 
-[Collection("CultureCollection")]
 public class GetCategorySpreadingQueryTests : InMemoryTestBase
 {
     private readonly GetCategorySpreadingQueryHandler handler;

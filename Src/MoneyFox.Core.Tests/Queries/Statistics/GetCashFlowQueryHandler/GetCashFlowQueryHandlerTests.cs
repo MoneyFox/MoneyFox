@@ -4,7 +4,6 @@ using Core.Queries.Statistics;
 using Domain.Aggregates.AccountAggregate;
 using FluentAssertions;
 
-[Collection("CultureCollection")]
 public class GetCashFlowQueryHandlerTests : InMemoryTestBase
 {
     private readonly GetCashFlowQueryHandler getCashFlowQueryHandler;
