@@ -22,12 +22,4 @@ public static class DateTimeExtension
     {
         return new(year: self.Year, month: self.Month, day: DateTime.DaysInMonth(year: self.Year, month: self.Month));
     }
-
-    /// <summary>
-    ///     Returns number of days between Today and the specified date. The return value is positive for future dates and negative for past dates.
-    /// </summary>
-    public static int GetDaysFromToday(this DateTime self)
-    {
-        return (self - DateTime.Today).Days;
-    }
 }
