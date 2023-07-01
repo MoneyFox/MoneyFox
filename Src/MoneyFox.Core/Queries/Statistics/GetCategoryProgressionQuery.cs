@@ -24,7 +24,7 @@ public class GetCategoryProgressionQuery : IRequest<IImmutableList<StatisticEntr
         EndDate = endDate;
         if (startDate > EndDate)
         {
-            throw new StartAfterEnddateException();
+            throw new StartAfterEndDateException();
         }
     }
 

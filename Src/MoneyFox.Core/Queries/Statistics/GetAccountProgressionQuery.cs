@@ -20,7 +20,7 @@ public class GetAccountProgressionQuery : IRequest<List<StatisticEntry>>
     {
         if (startDate > EndDate)
         {
-            throw new StartAfterEnddateException();
+            throw new StartAfterEndDateException();
         }
 
         AccountId = accountId;
