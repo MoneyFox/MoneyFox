@@ -14,7 +14,22 @@ using Microsoft.EntityFrameworkCore;
 
 public static class GetCategorySummary
 {
-    public record Query(DateTime StartDate, DateTime EndDate) : IRequest<CategorySummaryModel>;
+    public record Query : IRequest<CategorySummaryModel>
+    {
+        public Query(DateTime StartDate, DateTime EndDate)
+        {
+            if (StartDate > EndDate)
+            {
+                throw new InvalidDateRangeException();
+            }
+
+            this.StartDate = StartDate;
+            this.EndDate = EndDate;
+        }
+
+        public DateTime StartDate { get; }
+        public DateTime EndDate { get; }
+    }
 
     public class Handler : IRequestHandler<Query, CategorySummaryModel>
     {

@@ -1,15 +1,15 @@
-﻿namespace MoneyFox.Core.Tests.Queries.Statistics;
+﻿namespace MoneyFox.Core.Tests.Queries.Statistics.GetCategorySummary;
 
 using Core.Queries.Statistics.GetCategorySummary;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.CategoryAggregate;
 using FluentAssertions;
 
-public class GetCategorySummaryQueryTests : InMemoryTestBase
+public class GetCategorySummaryHandlerTests : InMemoryTestBase
 {
     private readonly GetCategorySummary.Handler handler;
 
-    public GetCategorySummaryQueryTests()
+    public GetCategorySummaryHandlerTests()
     {
         handler = new(Context);
     }
