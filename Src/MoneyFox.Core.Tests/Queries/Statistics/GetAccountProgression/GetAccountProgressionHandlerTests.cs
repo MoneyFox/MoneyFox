@@ -8,7 +8,7 @@ using NSubstitute;
 
 public class GetAccountProgressionHandlerTests : InMemoryTestBase
 {
-    private readonly GetAccountProgressionHandler getAccountProgressionHandler;
+    private readonly GetAccountProgression.Handler getAccountProgressionHandler;
 
     public GetAccountProgressionHandlerTests()
     {

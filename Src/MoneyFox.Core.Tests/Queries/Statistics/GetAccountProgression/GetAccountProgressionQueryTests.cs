@@ -11,7 +11,7 @@ public class GetAccountProgressionQueryTests
         // Act / Assert
         // Arrange
         Assert.Throws<InvalidDateRangeException>(
-            () => new GetAccountProgressionQuery(accountId: 0, startDate: DateTime.Today.AddYears(3), endDate: DateTime.Today));
+            () => new GetAccountProgression.Query(accountId: 0, startDate: DateTime.Today.AddYears(3), endDate: DateTime.Today));
     }
 
     [Fact]
@@ -21,7 +21,7 @@ public class GetAccountProgressionQueryTests
         var date = DateTime.Now;
 
         // Act
-        var query = new GetAccountProgressionQuery(accountId: 0, startDate: date, endDate: date);
+        var query = new GetAccountProgression.Query(accountId: 0, startDate: date, endDate: date);
 
         // Assert
         query.Should().NotBeNull();
