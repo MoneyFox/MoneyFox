@@ -20,20 +20,25 @@ public static class GetCategorySpreading
         private const int NUMBER_OF_STATISTIC_ITEMS = 10;
 
         public Query(
-            DateTime startDate,
-            DateTime endDate,
+            DateOnly startDate,
+            DateOnly endDate,
             PaymentType paymentType = PaymentType.Expense,
             int numberOfCategoriesToShow = NUMBER_OF_STATISTIC_ITEMS)
         {
+            if (startDate > endDate)
+            {
+                throw new InvalidDateRangeException();
+            }
+
             StartDate = startDate;
             EndDate = endDate;
             PaymentType = paymentType;
             NumberOfCategoriesToShow = numberOfCategoriesToShow;
         }
 
-        public DateTime StartDate { get; }
+        public DateOnly StartDate { get; }
 
-        public DateTime EndDate { get; }
+        public DateOnly EndDate { get; }
 
         public PaymentType PaymentType { get; }
 
@@ -44,8 +49,6 @@ public static class GetCategorySpreading
     {
         private readonly IAppDbContext appDbContext;
 
-        private Query currentRequest = null!;
-
         public Handler(IAppDbContext appDbContext)
         {
             this.appDbContext = appDbContext;
@@ -53,39 +56,36 @@ public static class GetCategorySpreading
 
         public async Task<IEnumerable<DataSet>> Handle(Query request, CancellationToken cancellationToken)
         {
-            currentRequest = request;
+            var paymentsWithoutTransferAsync = await GetPaymentsWithoutTransferAsync(request: request, cancellationToken: cancellationToken);
 
             return AggregateData(
-                statisticData: SelectRelevantDataFromList(await GetPaymentsWithoutTransferAsync(cancellationToken)),
+                statisticData: SelectRelevantDataFromList(request: request, payments: paymentsWithoutTransferAsync),
                 amountOfCategoriesToShow: request.NumberOfCategoriesToShow);
         }
 
-        private async Task<IEnumerable<Payment>> GetPaymentsWithoutTransferAsync(CancellationToken cancellationToken)
+        private async Task<IEnumerable<Payment>> GetPaymentsWithoutTransferAsync(Query request, CancellationToken cancellationToken)
         {
             return await appDbContext.Payments.Include(x => x.Category)
                 .WithoutTransfers()
-                .HasDateLargerEqualsThan(currentRequest.StartDate.Date)
-                .HasDateSmallerEqualsThan(currentRequest.EndDate.Date)
+                .Where(payment => payment.Date.Date >= request.StartDate.ToDateTime(TimeOnly.MinValue))
+                .Where(payment => payment.Date.Date <= request.EndDate.ToDateTime(TimeOnly.MinValue))
                 .ToListAsync(cancellationToken);
         }
 
-        private List<(decimal Value, string Label)> SelectRelevantDataFromList(IEnumerable<Payment> payments)
+        private List<(decimal Value, string Label)> SelectRelevantDataFromList(Query request, IEnumerable<Payment> payments)
         {
             var query = from payment in payments
                 group payment by new { category = payment.Category != null ? payment.Category.Name : string.Empty } into temp
                 select (temp.Sum(x => x.Type == PaymentType.Income ? -x.Amount : x.Amount), temp.Key.category);
 
-            query = currentRequest.PaymentType == PaymentType.Expense ? query.Where(x => x.Item1 > 0) : query.Where(x => x.Item1 < 0);
+            query = request.PaymentType == PaymentType.Expense ? query.Where(x => x.Item1 > 0) : query.Where(x => x.Item1 < 0);
 
             return query.Select(x => (Math.Abs(x.Item1), x.category)).OrderByDescending(x => x.Item1).ToList();
         }
 
         private IEnumerable<DataSet> AggregateData(List<(decimal Value, string Label)> statisticData, int amountOfCategoriesToShow)
         {
-            var statisticList = statisticData.Take(amountOfCategoriesToShow)
-                .Select(x => new DataSet(CategoryName: x.Label, Value: x.Value))
-                .ToList();
-
+            var statisticList = statisticData.Take(amountOfCategoriesToShow).Select(x => new DataSet(CategoryName: x.Label, Value: x.Value)).ToList();
             AddOtherItem(statisticData: statisticData, statisticList: statisticList, amountOfCategoriesToShow: amountOfCategoriesToShow);
 
             return statisticList;
