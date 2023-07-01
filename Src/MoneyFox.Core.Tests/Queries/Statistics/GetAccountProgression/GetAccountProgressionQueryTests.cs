@@ -1,7 +1,6 @@
-﻿namespace MoneyFox.Core.Tests.Queries.Statistics;
+﻿namespace MoneyFox.Core.Tests.Queries.Statistics.GetAccountProgression;
 
 using Core.Queries.Statistics;
-using Domain.Exceptions;
 using FluentAssertions;
 
 public class GetAccountProgressionQueryTests
