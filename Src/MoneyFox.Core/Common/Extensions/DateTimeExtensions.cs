@@ -5,7 +5,7 @@ using System;
 /// <summary>
 ///     Extension method for DateTime.
 /// </summary>
-public static class DateTimeExtension
+public static class DateTimeExtensions
 {
     /// <summary>
     ///     Returns the first day of the current month.
