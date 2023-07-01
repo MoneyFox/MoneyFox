@@ -4,11 +4,11 @@ using Core.Queries.Statistics;
 using Domain.Aggregates.AccountAggregate;
 using FluentAssertions;
 
-public class GetCashFlowQueryHandlerTests : InMemoryTestBase
+public class GetCashFlowTests : InMemoryTestBase
 {
-    private readonly GetCashFlowQueryHandler getCashFlowQueryHandler;
+    private readonly GetCashFlow.Handler getCashFlowQueryHandler;
 
-    public GetCashFlowQueryHandlerTests()
+    public GetCashFlowTests()
     {
         getCashFlowQueryHandler = new(Context);
     }

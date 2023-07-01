@@ -10,36 +10,39 @@ using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-public record CashFlowData(decimal Income, decimal Expense, decimal Gain);
-
-public class GetCashFlowQuery : IRequest<CashFlowData>
+public static class GetCashFlow
 {
-    public DateTime StartDate { get; set; }
+    public record Data(decimal Income, decimal Expense, decimal Gain);
 
-    public DateTime EndDate { get; set; }
-}
-
-public class GetCashFlowQueryHandler : IRequestHandler<GetCashFlowQuery, CashFlowData>
-{
-    private readonly IAppDbContext appDbContext;
-
-    public GetCashFlowQueryHandler(IAppDbContext appDbContext)
+    public class Query : IRequest<Data>
     {
-        this.appDbContext = appDbContext;
+        public DateTime StartDate { get; set; }
+
+        public DateTime EndDate { get; set; }
     }
 
-    public async Task<CashFlowData> Handle(GetCashFlowQuery request, CancellationToken cancellationToken)
+    public class Handler : IRequestHandler<Query, Data>
     {
-        var payments = await appDbContext.Payments.Include(x => x.Category)
-            .WithoutTransfers()
-            .HasDateLargerEqualsThan(request.StartDate.Date)
-            .HasDateSmallerEqualsThan(request.EndDate.Date)
-            .ToListAsync(cancellationToken);
+        private readonly IAppDbContext appDbContext;
 
-        var incomeAmount = payments.Where(x => x.Type == PaymentType.Income).Sum(x => x.Amount);
-        var expenseAmount = payments.Where(x => x.Type == PaymentType.Expense).Sum(x => x.Amount);
-        var valueIncreased = incomeAmount - expenseAmount;
+        public Handler(IAppDbContext appDbContext)
+        {
+            this.appDbContext = appDbContext;
+        }
 
-        return new(Income: incomeAmount, Expense: expenseAmount, Gain: valueIncreased);
+        public async Task<Data> Handle(Query request, CancellationToken cancellationToken)
+        {
+            var payments = await appDbContext.Payments.Include(x => x.Category)
+                .WithoutTransfers()
+                .HasDateLargerEqualsThan(request.StartDate.Date)
+                .HasDateSmallerEqualsThan(request.EndDate.Date)
+                .ToListAsync(cancellationToken);
+
+            var incomeAmount = payments.Where(x => x.Type == PaymentType.Income).Sum(x => x.Amount);
+            var expenseAmount = payments.Where(x => x.Type == PaymentType.Expense).Sum(x => x.Amount);
+            var valueIncreased = incomeAmount - expenseAmount;
+
+            return new(Income: incomeAmount, Expense: expenseAmount, Gain: valueIncreased);
+        }
     }
 }
