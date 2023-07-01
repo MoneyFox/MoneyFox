@@ -1,4 +1,4 @@
-namespace MoneyFox.Core.Tests.Queries.Statistics;
+namespace MoneyFox.Core.Tests.Queries.Statistics.GetCashFlowQueryHandler;
 
 using Core.Queries.Statistics;
 using Domain.Aggregates.AccountAggregate;
