@@ -10,7 +10,9 @@ public sealed class GetCategorySummaryQueryTests
     public void ThrowsException_WhenStartDateIsAfterEndDate()
     {
         // Act
-        var act = () => new GetCategorySummary.Query(StartDate: DateTime.Today.AddDays(1), EndDate: DateTime.Today);
+        var act = () => new GetCategorySummary.Query(
+            StartDate: DateOnly.FromDateTime(DateTime.Today).AddDays(1),
+            EndDate: DateOnly.FromDateTime(DateTime.Today));
 
         // Assert
         act.Should().Throw<InvalidDateRangeException>();
@@ -20,10 +22,10 @@ public sealed class GetCategorySummaryQueryTests
     public void CreateQueryAndAssignValues()
     {
         // Act
-        var query = new GetCategorySummary.Query(StartDate: DateTime.Today, EndDate: DateTime.Today);
+        var query = new GetCategorySummary.Query(StartDate: DateOnly.FromDateTime(DateTime.Today), EndDate: DateOnly.FromDateTime(DateTime.Today));
 
         // Assert
-        query.StartDate.Should().Be(DateTime.Today);
-        query.EndDate.Should().Be(DateTime.Today);
+        query.StartDate.Should().Be(DateOnly.FromDateTime(DateTime.Today));
+        query.EndDate.Should().Be(DateOnly.FromDateTime(DateTime.Today));
     }
 }

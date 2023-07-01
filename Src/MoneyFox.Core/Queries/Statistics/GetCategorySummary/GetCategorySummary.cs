@@ -16,7 +16,7 @@ public static class GetCategorySummary
 {
     public record Query : IRequest<CategorySummaryModel>
     {
-        public Query(DateTime StartDate, DateTime EndDate)
+        public Query(DateOnly StartDate, DateOnly EndDate)
         {
             if (StartDate > EndDate)
             {
@@ -27,8 +27,8 @@ public static class GetCategorySummary
             this.EndDate = EndDate;
         }
 
-        public DateTime StartDate { get; }
-        public DateTime EndDate { get; }
+        public DateOnly StartDate { get; }
+        public DateOnly EndDate { get; }
     }
 
     public class Handler : IRequestHandler<Query, CategorySummaryModel>
@@ -58,8 +58,8 @@ public static class GetCategorySummary
                 .ToListAsync(cancellationToken);
 
             var paymentsInTimeRange = await appDbContext.Payments.Include(x => x.Category)
-                .HasDateLargerEqualsThan(request.StartDate.Date)
-                .HasDateSmallerEqualsThan(request.EndDate.Date)
+                .Where(payment => payment.Date.Date >= request.StartDate.ToDateTime(TimeOnly.MinValue))
+                .Where(payment => payment.Date.Date <= request.EndDate.ToDateTime(TimeOnly.MinValue))
                 .Where(x => x.Type != PaymentType.Transfer)
                 .ToListAsync(cancellationToken);
 

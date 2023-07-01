@@ -61,7 +61,9 @@ public class GetCategorySummaryHandlerTests : InMemoryTestBase
         await Context.SaveChangesAsync();
 
         // Act
-        var result = await handler.Handle(request: new(StartDate: DateTime.Today.AddDays(-3), EndDate: DateTime.Today.AddDays(3)), cancellationToken: default);
+        var result = await handler.Handle(
+            request: new(StartDate: DateOnly.FromDateTime(DateTime.Today).AddDays(-3), EndDate: DateOnly.FromDateTime(DateTime.Today).AddDays(3)),
+            cancellationToken: default);
 
         // Assert
         result.CategoryOverviewItems.Count.Should().Be(4);
@@ -113,7 +115,9 @@ public class GetCategorySummaryHandlerTests : InMemoryTestBase
         await Context.SaveChangesAsync();
 
         // Act
-        var result = await handler.Handle(request: new(StartDate: DateTime.Today.AddDays(-3), EndDate: DateTime.Today.AddDays(3)), cancellationToken: default);
+        var result = await handler.Handle(
+            request: new(StartDate: DateOnly.FromDateTime(DateTime.Today).AddDays(-3), EndDate: DateOnly.FromDateTime(DateTime.Today).AddDays(3)),
+            cancellationToken: default);
 
         // Assert
         result.CategoryOverviewItems[0].Percentage.Should().Be(60);
@@ -131,7 +135,9 @@ public class GetCategorySummaryHandlerTests : InMemoryTestBase
         await Context.SaveChangesAsync();
 
         // Act
-        var result = await handler.Handle(request: new(StartDate: DateTime.Today.AddDays(-3), EndDate: DateTime.Today.AddDays(3)), cancellationToken: default);
+        var result = await handler.Handle(
+            request: new(StartDate: DateOnly.FromDateTime(DateTime.Today.AddDays(-3)), EndDate: DateOnly.FromDateTime(DateTime.Today.AddDays(3))),
+            cancellationToken: default);
 
         // Assert
         result.CategoryOverviewItems[0].Value.Should().Be(-60);
@@ -147,7 +153,9 @@ public class GetCategorySummaryHandlerTests : InMemoryTestBase
         await Context.SaveChangesAsync();
 
         // Act
-        var result = await handler.Handle(request: new(StartDate: DateTime.Today.AddDays(-3), EndDate: DateTime.Today.AddDays(3)), cancellationToken: default);
+        var result = await handler.Handle(
+            request: new(StartDate: DateOnly.FromDateTime(DateTime.Today).AddDays(-3), EndDate: DateOnly.FromDateTime(DateTime.Today).AddDays(3)),
+            cancellationToken: default);
 
         // Assert
         result.CategoryOverviewItems[0].Label.Should().Be("-");
