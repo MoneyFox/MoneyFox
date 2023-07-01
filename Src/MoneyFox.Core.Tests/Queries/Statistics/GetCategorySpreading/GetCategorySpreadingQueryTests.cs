@@ -7,7 +7,7 @@ using FluentAssertions;
 
 public class GetCategorySpreadingQueryTests : InMemoryTestBase
 {
-    private readonly GetCategorySpreadingQueryHandler handler;
+    private readonly GetCategorySpreading.Handler handler;
 
     public GetCategorySpreadingQueryTests()
     {
