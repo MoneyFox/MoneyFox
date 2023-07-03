@@ -41,7 +41,7 @@ internal sealed class StatisticCategorySummaryViewModel : StatisticViewModel
     {
         try
         {
-            var categorySummaryModel = await Mediator.Send(new GetCategorySummaryQuery { EndDate = EndDate, StartDate = StartDate });
+            var categorySummaryModel = await Mediator.Send(new GetCategorySummary.Query(StartDate: StartDate, EndDate: EndDate));
             CategorySummary = new(
                 categorySummaryModel.CategoryOverviewItems.Select(
                     x => new CategoryOverviewViewModel

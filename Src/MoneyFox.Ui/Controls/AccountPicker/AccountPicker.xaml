@@ -3,12 +3,12 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:MoneyFox.Ui.Views"
-             xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
+             xmlns:accountPicker="clr-namespace:MoneyFox.Ui.Controls.AccountPicker"
              x:Name="This"
-             x:Class="MoneyFox.Ui.Controls.AccountPicker">
+             x:Class="MoneyFox.Ui.Controls.AccountPicker.AccountPicker">
 
     <ContentView.Resources>
-        <converter:AccountNameConverter x:Key="AccountNameConverter" />
+        <accountPicker:AccountNameConverter x:Key="AccountNameConverter" />
     </ContentView.Resources>
 
     <VerticalStackLayout Spacing="6"

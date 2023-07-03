@@ -2,8 +2,10 @@ namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
+using Controls.AccountPicker;
 using Controls.CategorySelection;
 using Core.Common.Interfaces;
+using Core.Common.Settings;
 using Core.Features._Legacy_.Payments.DeletePaymentById;
 using Core.Features._Legacy_.Payments.UpdatePayment;
 using Core.Queries;
@@ -15,22 +17,25 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
     private readonly IDialogService dialogService;
     private readonly IMapper mapper;
     private readonly IMediator mediator;
+    private readonly ISettingsFacade settingsFacade;
 
     public EditPaymentViewModel(
         IMediator mediator,
         IMapper mapper,
         IDialogService dialogService,
         IToastService toastService,
+        ISettingsFacade settingsFacade,
         CategorySelectionViewModel categorySelectionViewModel) : base(
         mediator: mediator,
-        mapper: mapper,
         dialogService: dialogService,
         toastService: toastService,
-        categorySelectionViewModel: categorySelectionViewModel)
+        categorySelectionViewModel: categorySelectionViewModel,
+        settingsFacade: settingsFacade)
     {
         this.mediator = mediator;
         this.mapper = mapper;
         this.dialogService = dialogService;
+        this.settingsFacade = settingsFacade;
     }
 
     public AsyncRelayCommand<PaymentViewModel> DeleteCommand => new(async p => await DeletePaymentAsync(p));
@@ -55,8 +60,32 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
 
         await InitializeAsync();
         var payment = await mediator.Send(new GetPaymentByIdQuery(paymentId));
-        SelectedPayment = mapper.Map<PaymentViewModel>(payment);
-        SelectedPayment.RecurringPayment = mapper.Map<RecurringPaymentViewModel>(payment.RecurringPayment);
+        var recurringPaymentViewModel = mapper.Map<RecurringPaymentViewModel>(payment.RecurringPayment);
+        SelectedPayment = new()
+        {
+            Id = payment.Id,
+            Amount = payment.Amount,
+            ChargedAccount
+                = new(
+                    Id: payment.ChargedAccount.Id,
+                    Name: payment.ChargedAccount.Name,
+                    CurrentBalance: new(amount: payment.ChargedAccount.CurrentBalance, currencyAlphaIsoCode: settingsFacade.DefaultCurrency)),
+            TargetAccount = payment.TargetAccount == null
+                ? null
+                : new AccountPickerViewModel(
+                    Id: payment.TargetAccount.Id,
+                    Name: payment.TargetAccount.Name,
+                    CurrentBalance: new(amount: payment.TargetAccount.CurrentBalance, currencyAlphaIsoCode: settingsFacade.DefaultCurrency)),
+            Date = payment.Date,
+            IsCleared = payment.IsCleared,
+            Type = payment.Type,
+            IsRecurring = payment.IsRecurring,
+            RecurringPayment = recurringPaymentViewModel,
+            Note = payment.Note,
+            Created = payment.Created,
+            LastModified = payment.LastModified
+        };
+
         if (payment.Category != null)
         {
             CategorySelectionViewModel.SelectedCategory

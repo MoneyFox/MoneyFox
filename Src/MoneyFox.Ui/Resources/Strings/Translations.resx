@@ -840,9 +840,6 @@ We will lead you through the first steps and help you get started.</value>
     <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
     <value>Do you really want to delete this budget?</value>
   </data>
-    <data name="MonthlyBudgetLabel" xml:space="preserve">
-    <value>Monthly Budget:</value>
-  </data>
     <data name="TimeRangeLabel" xml:space="preserve">
     <value>Time Range</value>
   </data>
@@ -937,4 +934,13 @@ You can change this late in the settings.</value>
     <data name="TotalBalanceTemplate" xml:space="preserve">
     <value>Total: {0}</value>
   </data>
+    <data name="CurrentBalanceTemplate" xml:space="preserve">
+        <value>Current Balance: {0}</value>
+    </data>
+    <data name="MonthlyBudgetTemplate" xml:space="preserve">
+        <value>Monthly Budget: {0}</value>
+    </data>
+    <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
+        <value>Monthly Spending on budgets: {0}</value>
+    </data>
 </root>

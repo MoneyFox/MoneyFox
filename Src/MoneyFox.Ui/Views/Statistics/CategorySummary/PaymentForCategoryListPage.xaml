@@ -35,7 +35,7 @@
                         <controls:Card Grid.Column="1"
                                        Padding="12"
                                        Margin="0,6,0,0"
-                                       HeightRequest="55">
+                                       MinimumHeightRequest="55">
 
                             <controls:Card.GestureRecognizers>
                                 <TapGestureRecognizer
