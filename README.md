@@ -7,8 +7,6 @@ A basic idea to make budgeting easy - for the community, made even better by the
 | Android | [![Build Status](https://dev.azure.com/applysolutions/MoneyFox/_apis/build/status/Releases/Android%20Release?branchName=master)](https://dev.azure.com/applysolutions/MoneyFox/_build/latest?definitionId=38&branchName=master)|
 | IOS | [![Build Status](https://dev.azure.com/applysolutions/MoneyFox/_apis/build/status/Releases/iOS%20Release?branchName=master)](https://dev.azure.com/applysolutions/MoneyFox/_build/latest?definitionId=39&branchName=master)|
 
-[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2FMoneyFox%2FMoneyFox%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/MoneyFox/MoneyFox/master)
-
 ### Try it
 
 | Platform        | Production         |Beta |Dev|
