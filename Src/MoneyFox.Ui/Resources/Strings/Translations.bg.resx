@@ -932,12 +932,12 @@
     <value>Общо: {0}</value>
   </data>
   <data name="CurrentBalanceTemplate" xml:space="preserve">
-        <value>Current Balance: {0}</value>
+        <value>Текущ баланс: {0}</value>
     </data>
   <data name="MonthlyBudgetTemplate" xml:space="preserve">
-        <value>Monthly Budget: {0}</value>
+        <value>Месечен бюджет: {0}</value>
     </data>
   <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
-        <value>Monthly Spending on budgets: {0}</value>
+        <value>Месечни разходи за бюджети: {0}</value>
     </data>
 </root>

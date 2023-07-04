@@ -933,12 +933,12 @@ Seda saate hilisemalt seadetes muuta.</value>
     <value>Kokku: {0}</value>
   </data>
   <data name="CurrentBalanceTemplate" xml:space="preserve">
-        <value>Current Balance: {0}</value>
+        <value>Praegune saldo: {0}</value>
     </data>
   <data name="MonthlyBudgetTemplate" xml:space="preserve">
-        <value>Monthly Budget: {0}</value>
+        <value>Igakuine eelarve: {0}</value>
     </data>
   <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
-        <value>Monthly Spending on budgets: {0}</value>
+        <value>Igakuised kulutused eelarvele: {0}</value>
     </data>
 </root>

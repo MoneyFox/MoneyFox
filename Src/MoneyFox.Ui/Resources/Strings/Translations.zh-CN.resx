@@ -932,12 +932,12 @@
     <value>共计： {0}</value>
   </data>
   <data name="CurrentBalanceTemplate" xml:space="preserve">
-        <value>Current Balance: {0}</value>
+        <value>当前余额: {0}</value>
     </data>
   <data name="MonthlyBudgetTemplate" xml:space="preserve">
-        <value>Monthly Budget: {0}</value>
+        <value>每月预算： {0}</value>
     </data>
   <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
-        <value>Monthly Spending on budgets: {0}</value>
+        <value>每月的预算支出: {0}</value>
     </data>
 </root>
