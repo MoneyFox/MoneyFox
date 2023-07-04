@@ -933,12 +933,12 @@ Du kan endre dette for sent i innstillingene.</value>
     <value>Totalt: {0}</value>
   </data>
   <data name="CurrentBalanceTemplate" xml:space="preserve">
-        <value>Current Balance: {0}</value>
+        <value>Gjeldende saldo: {0}</value>
     </data>
   <data name="MonthlyBudgetTemplate" xml:space="preserve">
-        <value>Monthly Budget: {0}</value>
+        <value>Månedlig budsjett: {0}</value>
     </data>
   <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
-        <value>Monthly Spending on budgets: {0}</value>
+        <value>Månedlig forbruk på budsjett: {0}</value>
     </data>
 </root>
