@@ -933,12 +933,12 @@ Tuto měnu můžete změnit pozdě v nastavení.</value>
     <value>Celkem: {0}</value>
   </data>
   <data name="CurrentBalanceTemplate" xml:space="preserve">
-        <value>Current Balance: {0}</value>
+        <value>Aktuální zůstatek: {0}</value>
     </data>
   <data name="MonthlyBudgetTemplate" xml:space="preserve">
-        <value>Monthly Budget: {0}</value>
+        <value>Měsíční rozpočet: {0}</value>
     </data>
   <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
-        <value>Monthly Spending on budgets: {0}</value>
+        <value>Měsíční výdaje na rozpočty: {0}</value>
     </data>
 </root>
