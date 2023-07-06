@@ -931,12 +931,12 @@ Możesz to zmienić w ustawieniach.</value>
     <value>Całość: {0}</value>
   </data>
   <data name="CurrentBalanceTemplate" xml:space="preserve">
-        <value>Current Balance: {0}</value>
+        <value>Aktualne saldo: {0}</value>
     </data>
   <data name="MonthlyBudgetTemplate" xml:space="preserve">
-        <value>Monthly Budget: {0}</value>
+        <value>Budżet miesięczny: {0}</value>
     </data>
   <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
-        <value>Monthly Spending on budgets: {0}</value>
+        <value>Miesięczne wydatki na budżet: {0}</value>
     </data>
 </root>
