@@ -942,6 +942,6 @@
         <value>Щомісячні витрати за бюджетами: {0}</value>
     </data>
   <data name="DateRangeInvalidMessage" xml:space="preserve">
-        <value>Start date has to be before end date.</value>
+        <value>Дата початку повинна передувати даті закінчення.</value>
     </data>
 </root>
