@@ -82,11 +82,11 @@
         <PackageReference Include="Serilog.Sinks.File" Version="5.0.0"/>
         <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4"/>
         <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0"/>
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="9.4.0.72892">
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="9.5.0.73987">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="MediatR" Version="12.0.1"/>
+        <PackageReference Include="MediatR" Version="12.1.0"/>
         <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.5"/>
     </ItemGroup>
 
