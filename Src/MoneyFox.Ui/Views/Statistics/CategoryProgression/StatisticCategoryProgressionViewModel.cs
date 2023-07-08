@@ -72,7 +72,10 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
 
         SetXAxis();
         var statisticItems = await Mediator.Send(
-            new GetCategoryProgression.Query(categoryId: CategorySelectionViewModel.SelectedCategory.Id, DateOnly.FromDateTime(StartDate), endDate: DateOnly.FromDateTime(EndDate)));
+            new GetCategoryProgression.Query(
+                categoryId: CategorySelectionViewModel.SelectedCategory.Id,
+                startDate: DateOnly.FromDateTime(StartDate),
+                endDate: DateOnly.FromDateTime(EndDate)));
 
         HasNoData = !statisticItems.Any();
         var columnSeries = new ColumnSeries<decimal>

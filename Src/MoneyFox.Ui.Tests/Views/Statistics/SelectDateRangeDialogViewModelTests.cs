@@ -1,7 +1,7 @@
 namespace MoneyFox.Ui.Tests.Views.Statistics;
 
 using FluentAssertions;
-using MoneyFox.Ui.Views.Statistics;
+using Ui.Views.Statistics;
 using Xunit;
 
 public sealed class SelectDateRangeDialogViewModelTests

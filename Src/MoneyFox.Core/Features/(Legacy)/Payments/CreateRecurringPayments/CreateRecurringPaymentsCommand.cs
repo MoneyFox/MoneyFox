@@ -4,9 +4,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Common.Extensions.QueryObjects;
 using Common.Interfaces;
-using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +27,8 @@ public class CreateRecurringPaymentsCommand : IRequest
                 .Include(x => x.TargetAccount)
                 .Include(x => x.Category)
                 .Include(x => x.RelatedPayments)
-                .AsQueryable().Where(x1 => x1.IsEndless || x1.EndDate >= DateTime.Today)
+                .AsQueryable()
+                .Where(x1 => x1.IsEndless || x1.EndDate >= DateTime.Today)
                 .ToListAsync(cancellationToken);
 
             var recPaymentsToCreate = recurringPayments.Where(x => x.RelatedPayments.Any())
