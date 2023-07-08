@@ -941,6 +941,6 @@
         <value>每月的预算支出: {0}</value>
     </data>
   <data name="DateRangeInvalidMessage" xml:space="preserve">
-        <value>Start date has to be before end date.</value>
+        <value>开始日期必须是在结束日期之前。</value>
     </data>
 </root>
