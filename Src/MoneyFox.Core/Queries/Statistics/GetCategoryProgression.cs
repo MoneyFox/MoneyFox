@@ -7,7 +7,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Common.Extensions;
-using Common.Extensions.QueryObjects;
 using Common.Interfaces;
 using Common.Settings;
 using Domain.Aggregates.AccountAggregate;
@@ -54,7 +53,8 @@ public static class GetCategoryProgression
         public async Task<IImmutableList<StatisticEntry>> Handle(Query request, CancellationToken cancellationToken)
         {
             var payments = await appDbContext.Payments.Include(x => x.Category)
-                .Include(x => x.ChargedAccount).Where(payment => payment.Category!.Id == request.CategoryId)
+                .Include(x => x.ChargedAccount)
+                .Where(payment => payment.Category!.Id == request.CategoryId)
                 .Where(payment => payment.Date.Date >= request.StartDate.ToDateTime(TimeOnly.MinValue))
                 .Where(payment => payment.Date.Date <= request.EndDate.ToDateTime(TimeOnly.MinValue))
                 .ToListAsync(cancellationToken);
@@ -110,4 +110,3 @@ public static class GetCategoryProgression
         }
     }
 }
-

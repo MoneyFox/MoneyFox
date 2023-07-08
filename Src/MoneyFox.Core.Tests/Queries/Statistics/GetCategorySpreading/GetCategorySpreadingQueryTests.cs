@@ -12,8 +12,7 @@ public class GetCategorySpreadingQueryTests
         // Act
         var act = () => new GetCategorySpreading.Query(
             startDate: DateOnly.FromDateTime(DateTime.Today).AddDays(1),
-            endDate: DateOnly.FromDateTime(DateTime.Today),
-            PaymentType.Expense);
+            endDate: DateOnly.FromDateTime(DateTime.Today));
 
         // Assert
         act.Should().Throw<InvalidDateRangeException>();
@@ -29,8 +28,8 @@ public class GetCategorySpreadingQueryTests
         var query = new GetCategorySpreading.Query(
             startDate: DateOnly.FromDateTime(DateTime.Today),
             endDate: DateOnly.FromDateTime(DateTime.Today),
-            PaymentType.Income,
-            15);
+            paymentType: PaymentType.Income,
+            numberOfCategoriesToShow: 15);
 
         // Assert
         query.StartDate.Should().Be(DateOnly.FromDateTime(DateTime.Today));
