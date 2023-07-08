@@ -5,26 +5,13 @@ using CommunityToolkit.Mvvm.Messaging;
 using Domain.Aggregates.AccountAggregate;
 using PaymentList;
 
-public interface ISelectFilterDialogViewModel
-{
-    bool IsClearedFilterActive { get; set; }
-
-    bool IsRecurringFilterActive { get; set; }
-
-    PaymentTypeFilter FilteredPaymentType { get; set; }
-
-    DateTime TimeRangeStart { get; set; }
-
-    DateTime TimeRangeEnd { get; set; }
-}
-
-internal sealed class SelectFilterDialogViewModel : BasePageViewModel, ISelectFilterDialogViewModel
+internal sealed class SelectFilterDialogViewModel : BasePageViewModel
 {
     private PaymentTypeFilter filteredPaymentType = PaymentTypeFilter.All;
     private bool isClearedFilterActive;
     private bool isRecurringFilterActive;
-    private DateTime timeRangeEnd = DateTime.Now.AddMonths(6);
-    private DateTime timeRangeStart = DateTime.Now.AddMonths(-2);
+    private DateTime timeRangeEnd = DateTime.Today.AddMonths(6);
+    private DateTime timeRangeStart = DateTime.Today.AddMonths(-2);
 
     public List<PaymentTypeFilter> PaymentTypeFilterList
         => new()
@@ -141,6 +128,8 @@ internal sealed class SelectFilterDialogViewModel : BasePageViewModel, ISelectFi
             OnPropertyChanged();
         }
     }
+
+    public bool IsDateRangeValid => TimeRangeStart <= TimeRangeEnd;
 
     /// <summary>
     ///     Initalize the viewmodel with a previous sent message.
