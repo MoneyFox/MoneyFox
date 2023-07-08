@@ -940,6 +940,6 @@ Voit muuttaa tätä myöhässä asetuksissa.</value>
         <value>Kuukausittaiset budjettimenot: {0}</value>
     </data>
   <data name="DateRangeInvalidMessage" xml:space="preserve">
-        <value>Start date has to be before end date.</value>
+        <value>Alkamispäivän on oltava ennen päättymispäivää.</value>
     </data>
 </root>
