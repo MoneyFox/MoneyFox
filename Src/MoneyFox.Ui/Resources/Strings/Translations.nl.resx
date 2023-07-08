@@ -944,4 +944,7 @@ Je kunt dit laat wijzigen in de instellingen.</value>
   <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
         <value>Maandelijkse uitgaven aan budgetten: {0}</value>
     </data>
+  <data name="DateRangeInvalidMessage" xml:space="preserve">
+        <value>Start date has to be before end date.</value>
+    </data>
 </root>
