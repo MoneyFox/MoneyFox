@@ -107,6 +107,7 @@ internal sealed class SelectFilterDialogViewModel : BasePageViewModel
 
             timeRangeStart = value;
             OnPropertyChanged();
+            OnPropertyChanged(nameof(IsDateRangeValid));
         }
     }
 
@@ -126,6 +127,7 @@ internal sealed class SelectFilterDialogViewModel : BasePageViewModel
 
             timeRangeEnd = value;
             OnPropertyChanged();
+            OnPropertyChanged(nameof(IsDateRangeValid));
         }
     }
 
