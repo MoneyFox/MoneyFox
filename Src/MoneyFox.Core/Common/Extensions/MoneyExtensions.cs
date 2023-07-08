@@ -6,7 +6,7 @@ using System.Globalization;
 using System.Linq;
 using Domain;
 
-public static class MoneyExtension
+public static class MoneyExtensions
 {
     private static IReadOnlyDictionary<string, CultureInfo> IsoCurrenciesToACultureMap
         => CultureInfo.GetCultures(CultureTypes.SpecificCultures)

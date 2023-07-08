@@ -1,15 +1,15 @@
-﻿namespace MoneyFox.Core.Tests.Queries.Statistics;
+﻿namespace MoneyFox.Core.Tests.Queries.Statistics.GetCategorySummary;
 
 using Core.Queries.Statistics.GetCategorySummary;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.CategoryAggregate;
 using FluentAssertions;
 
-public class GetCategorySummaryQueryTests : InMemoryTestBase
+public class GetCategorySummaryHandlerTests : InMemoryTestBase
 {
     private readonly GetCategorySummary.Handler handler;
 
-    public GetCategorySummaryQueryTests()
+    public GetCategorySummaryHandlerTests()
     {
         handler = new(Context);
     }
@@ -61,7 +61,9 @@ public class GetCategorySummaryQueryTests : InMemoryTestBase
         await Context.SaveChangesAsync();
 
         // Act
-        var result = await handler.Handle(request: new(StartDate: DateTime.Today.AddDays(-3), EndDate: DateTime.Today.AddDays(3)), cancellationToken: default);
+        var result = await handler.Handle(
+            request: new(startDate: DateOnly.FromDateTime(DateTime.Today).AddDays(-3), endDate: DateOnly.FromDateTime(DateTime.Today).AddDays(3)),
+            cancellationToken: default);
 
         // Assert
         result.CategoryOverviewItems.Count.Should().Be(4);
@@ -113,7 +115,9 @@ public class GetCategorySummaryQueryTests : InMemoryTestBase
         await Context.SaveChangesAsync();
 
         // Act
-        var result = await handler.Handle(request: new(StartDate: DateTime.Today.AddDays(-3), EndDate: DateTime.Today.AddDays(3)), cancellationToken: default);
+        var result = await handler.Handle(
+            request: new(startDate: DateOnly.FromDateTime(DateTime.Today).AddDays(-3), endDate: DateOnly.FromDateTime(DateTime.Today).AddDays(3)),
+            cancellationToken: default);
 
         // Assert
         result.CategoryOverviewItems[0].Percentage.Should().Be(60);
@@ -131,7 +135,9 @@ public class GetCategorySummaryQueryTests : InMemoryTestBase
         await Context.SaveChangesAsync();
 
         // Act
-        var result = await handler.Handle(request: new(StartDate: DateTime.Today.AddDays(-3), EndDate: DateTime.Today.AddDays(3)), cancellationToken: default);
+        var result = await handler.Handle(
+            request: new(startDate: DateOnly.FromDateTime(DateTime.Today.AddDays(-3)), endDate: DateOnly.FromDateTime(DateTime.Today.AddDays(3))),
+            cancellationToken: default);
 
         // Assert
         result.CategoryOverviewItems[0].Value.Should().Be(-60);
@@ -147,7 +153,9 @@ public class GetCategorySummaryQueryTests : InMemoryTestBase
         await Context.SaveChangesAsync();
 
         // Act
-        var result = await handler.Handle(request: new(StartDate: DateTime.Today.AddDays(-3), EndDate: DateTime.Today.AddDays(3)), cancellationToken: default);
+        var result = await handler.Handle(
+            request: new(startDate: DateOnly.FromDateTime(DateTime.Today).AddDays(-3), endDate: DateOnly.FromDateTime(DateTime.Today).AddDays(3)),
+            cancellationToken: default);
 
         // Assert
         result.CategoryOverviewItems[0].Label.Should().Be("-");

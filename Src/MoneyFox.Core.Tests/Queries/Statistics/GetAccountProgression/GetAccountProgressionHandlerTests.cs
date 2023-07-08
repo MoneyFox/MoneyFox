@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Tests.Queries.Statistics;
+﻿namespace MoneyFox.Core.Tests.Queries.Statistics.GetAccountProgression;
 
 using Core.Common.Settings;
 using Core.Queries.Statistics;
@@ -8,7 +8,7 @@ using NSubstitute;
 
 public class GetAccountProgressionHandlerTests : InMemoryTestBase
 {
-    private readonly GetAccountProgressionHandler getAccountProgressionHandler;
+    private readonly GetAccountProgression.Handler getAccountProgressionHandler;
 
     public GetAccountProgressionHandlerTests()
     {

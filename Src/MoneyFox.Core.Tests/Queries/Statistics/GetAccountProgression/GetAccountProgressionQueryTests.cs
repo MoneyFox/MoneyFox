@@ -1,7 +1,6 @@
-﻿namespace MoneyFox.Core.Tests.Queries.Statistics;
+﻿namespace MoneyFox.Core.Tests.Queries.Statistics.GetAccountProgression;
 
 using Core.Queries.Statistics;
-using Domain.Exceptions;
 using FluentAssertions;
 
 public class GetAccountProgressionQueryTests
@@ -11,8 +10,8 @@ public class GetAccountProgressionQueryTests
     {
         // Act / Assert
         // Arrange
-        Assert.Throws<StartAfterEnddateException>(
-            () => new GetAccountProgressionQuery(accountId: 0, startDate: DateTime.Today.AddYears(3), endDate: DateTime.Today));
+        Assert.Throws<InvalidDateRangeException>(
+            () => new GetAccountProgression.Query(accountId: 0, startDate: DateTime.Today.AddYears(3), endDate: DateTime.Today));
     }
 
     [Fact]
@@ -22,7 +21,7 @@ public class GetAccountProgressionQueryTests
         var date = DateTime.Now;
 
         // Act
-        var query = new GetAccountProgressionQuery(accountId: 0, startDate: date, endDate: date);
+        var query = new GetAccountProgression.Query(accountId: 0, startDate: date, endDate: date);
 
         // Assert
         query.Should().NotBeNull();

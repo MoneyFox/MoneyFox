@@ -1,15 +1,14 @@
-namespace MoneyFox.Core.Tests.Queries.Statistics;
+namespace MoneyFox.Core.Tests.Queries.Statistics.GetCashFlow;
 
 using Core.Queries.Statistics;
 using Domain.Aggregates.AccountAggregate;
 using FluentAssertions;
 
-[Collection("CultureCollection")]
-public class GetCashFlowQueryHandlerTests : InMemoryTestBase
+public class GetCashFlowHandlerTests : InMemoryTestBase
 {
-    private readonly GetCashFlowQueryHandler getCashFlowQueryHandler;
+    private readonly GetCashFlow.Handler getCashFlowQueryHandler;
 
-    public GetCashFlowQueryHandlerTests()
+    public GetCashFlowHandlerTests()
     {
         getCashFlowQueryHandler = new(Context);
     }
@@ -31,7 +30,7 @@ public class GetCashFlowQueryHandlerTests : InMemoryTestBase
 
         // Act
         var result = await getCashFlowQueryHandler.Handle(
-            request: new() { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
+            request: new(startDate: DateOnly.FromDateTime(DateTime.Today).AddDays(-3), endDate: DateOnly.FromDateTime(DateTime.Today).AddDays(3)),
             cancellationToken: default);
 
         // Assert

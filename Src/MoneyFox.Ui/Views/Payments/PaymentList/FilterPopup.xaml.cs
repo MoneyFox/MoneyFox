@@ -19,7 +19,10 @@ public partial class FilterPopup
 
     private void Button_OnClicked(object sender, EventArgs e)
     {
-        ViewModel.FilterSelectedCommand.Execute(null);
-        Close();
+        if (ViewModel.IsDateRangeValid)
+        {
+            ViewModel.FilterSelectedCommand.Execute(null);
+            Close();
+        }
     }
 }

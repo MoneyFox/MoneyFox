@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Tests.Queries.Statistics;
+﻿namespace MoneyFox.Core.Tests.Queries.Statistics.GetCategoryProgression;
 
 using Core.Common.Settings;
 using Core.Queries.Statistics;
@@ -9,7 +9,7 @@ using NSubstitute;
 
 public class GetCategoryProgressionHandlerTests : InMemoryTestBase
 {
-    private readonly GetCategoryProgressionHandler handler;
+    private readonly GetCategoryProgression.Handler handler;
 
     public GetCategoryProgressionHandlerTests()
     {
@@ -59,7 +59,10 @@ public class GetCategoryProgressionHandlerTests : InMemoryTestBase
 
         // Act
         var result = await handler.Handle(
-            request: new(categoryId: category.Id, startDate: DateTime.Today.AddYears(-1), endDate: DateTime.Today.AddDays(3)),
+            request: new(
+                categoryId: category.Id,
+                startDate: DateOnly.FromDateTime(DateTime.Today).AddYears(-1),
+                endDate: DateOnly.FromDateTime(DateTime.Today).AddDays(3)),
             cancellationToken: default);
 
         // Assert

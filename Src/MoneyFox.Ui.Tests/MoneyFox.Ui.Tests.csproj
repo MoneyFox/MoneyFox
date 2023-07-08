@@ -22,4 +22,5 @@
         <ProjectReference Include="..\MoneyFox.Ui\MoneyFox.Ui.csproj"/>
     </ItemGroup>
 
+
 </Project>

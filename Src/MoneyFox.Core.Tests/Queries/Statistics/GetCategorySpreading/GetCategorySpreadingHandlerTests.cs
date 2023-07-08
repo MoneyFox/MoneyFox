@@ -1,16 +1,15 @@
-namespace MoneyFox.Core.Tests.Queries.Statistics;
+namespace MoneyFox.Core.Tests.Queries.Statistics.GetCategorySpreading;
 
 using Core.Queries.Statistics;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.CategoryAggregate;
 using FluentAssertions;
 
-[Collection("CultureCollection")]
-public class GetCategorySpreadingQueryTests : InMemoryTestBase
+public class GetCategorySpreadingHandlerTests : InMemoryTestBase
 {
-    private readonly GetCategorySpreadingQueryHandler handler;
+    private readonly GetCategorySpreading.Handler handler;
 
-    public GetCategorySpreadingQueryTests()
+    public GetCategorySpreadingHandlerTests()
     {
         handler = new(Context);
     }
@@ -52,11 +51,12 @@ public class GetCategorySpreadingQueryTests : InMemoryTestBase
         };
 
         Context.Payments.AddRange(paymentList);
-        Context.SaveChanges();
+        await Context.SaveChangesAsync();
 
         // Act
-        var result = (await handler.Handle(request: new(startDate: DateTime.Today.AddDays(-3), endDate: DateTime.Today.AddDays(3)), cancellationToken: default))
-            .ToList();
+        var result = (await handler.Handle(
+            request: new(startDate: DateOnly.FromDateTime(DateTime.Today).AddDays(-3), endDate: DateOnly.FromDateTime(DateTime.Today).AddDays(3)),
+            cancellationToken: default)).ToList();
 
         // Assert
         result.Should().HaveCount(3);
@@ -96,11 +96,12 @@ public class GetCategorySpreadingQueryTests : InMemoryTestBase
         };
 
         Context.Payments.AddRange(paymentList);
-        Context.SaveChanges();
+        await Context.SaveChangesAsync();
 
         // Act
-        var result = (await handler.Handle(request: new(startDate: DateTime.Today.AddDays(-3), endDate: DateTime.Today.AddDays(3)), cancellationToken: default))
-            .ToList();
+        var result = (await handler.Handle(
+            request: new(startDate: DateOnly.FromDateTime(DateTime.Today).AddDays(-3), endDate: DateOnly.FromDateTime(DateTime.Today).AddDays(3)),
+            cancellationToken: default)).ToList();
 
         // Assert
         result.Should().HaveCount(2);
@@ -130,11 +131,12 @@ public class GetCategorySpreadingQueryTests : InMemoryTestBase
         };
 
         Context.Payments.AddRange(paymentList);
-        Context.SaveChanges();
+        await Context.SaveChangesAsync();
 
         // Act
-        var result = (await handler.Handle(request: new(startDate: DateTime.Today.AddDays(-3), endDate: DateTime.Today.AddDays(3)), cancellationToken: default))
-            .ToList();
+        var result = (await handler.Handle(
+            request: new(startDate: DateOnly.FromDateTime(DateTime.Today).AddDays(-3), endDate: DateOnly.FromDateTime(DateTime.Today).AddDays(3)),
+            cancellationToken: default)).ToList();
 
         // Assert
         result[0].CategoryName.Should().Be(testCat1.Name);
@@ -177,11 +179,14 @@ public class GetCategorySpreadingQueryTests : InMemoryTestBase
         };
 
         Context.Payments.AddRange(paymentList);
-        Context.SaveChanges();
+        await Context.SaveChangesAsync();
 
         // Act
         var result = (await handler.Handle(
-            request: new(startDate: DateTime.Today.AddDays(-3), endDate: DateTime.Today.AddDays(3), paymentType: PaymentType.Income),
+            request: new(
+                startDate: DateOnly.FromDateTime(DateTime.Today).AddDays(-3),
+                endDate: DateOnly.FromDateTime(DateTime.Today).AddDays(3),
+                paymentType: PaymentType.Income),
             cancellationToken: default)).ToList();
 
         // Assert

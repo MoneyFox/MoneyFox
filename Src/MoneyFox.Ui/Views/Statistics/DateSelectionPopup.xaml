@@ -4,14 +4,19 @@
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
     xmlns:views="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
+    xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     CanBeDismissedByTappingOutsideOfPopup="false"
     Size="330, 400"
     Color="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
     x:Class="MoneyFox.Ui.Views.Statistics.DateSelectionPopup">
 
     <Grid RowDefinitions="*, 40">
+        <Grid.Resources>
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
+        </Grid.Resources>
 
-        <StackLayout Padding="15" Spacing="6">
+        <VerticalStackLayout Padding="15" Spacing="6">
+
             <Label Text="{x:Static resources:Translations.SelectDateLabel}"
                    Style="{DynamicResource TextTitle}" />
 
@@ -20,11 +25,14 @@
 
             <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Translations.TimeRangeEndLabel}"
                                        DateField="{Binding EndDate}" />
-        </StackLayout>
 
+            <Label IsVisible="{Binding IsDateRangeValid, Mode=OneWay, Converter={StaticResource InverseBoolConverter}}"
+                   Text="{x:Static resources:Translations.DateRangeInvalidMessage}" TextColor="OrangeRed" />
+        </VerticalStackLayout>
 
         <Button Grid.Row="1"
                 Text="{x:Static resources:Translations.DoneLabel}"
+                IsEnabled="{Binding IsDateRangeValid, Mode=OneWay}"
                 Clicked="Button_OnClicked" />
     </Grid>
 </views:Popup>

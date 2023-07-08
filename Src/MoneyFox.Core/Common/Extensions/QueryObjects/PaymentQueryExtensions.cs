@@ -60,16 +60,6 @@ public static class PaymentQueryExtensions
     }
 
     /// <summary>
-    ///     Adds a filter to a query for recurring payments
-    /// </summary>
-    /// <param name="query">Existing query.</param>
-    /// <returns>Query filtered for recurring payments.</returns>
-    public static IQueryable<Payment> AreRecurring(this IQueryable<Payment> query)
-    {
-        return query.Where(payment => payment.IsRecurring);
-    }
-
-    /// <summary>
     ///     Adds a filter to a query for payments who has a date larger or equals to the passed date.
     /// </summary>
     /// <param name="query">Existing query.</param>
@@ -110,26 +100,5 @@ public static class PaymentQueryExtensions
     public static IQueryable<Payment> HasAccountId(this IQueryable<Payment> query, int accountId)
     {
         return query.Where(payment => payment.ChargedAccount!.Id == accountId || payment.TargetAccount != null && payment.TargetAccount.Id == accountId);
-    }
-
-    /// <summary>
-    ///     Adds a filter to a query for payments who has a certain category assosciated.
-    /// </summary>
-    /// <param name="query">Existing query.</param>
-    /// <param name="categoryId">CategoryId to filter for</param>
-    /// <returns>Query filtered for the category id.</returns>
-    public static IQueryable<Payment> HasCategoryId(this IQueryable<Payment> query, int categoryId)
-    {
-        return query.Where(payment => payment.Category!.Id == categoryId);
-    }
-
-    /// <summary>
-    ///     Orders a query descending by the date.
-    /// </summary>
-    /// <param name="query">Existing query.</param>
-    /// <returns>Ordered Query.</returns>
-    public static IQueryable<Payment> OrderDescendingByDate(this IQueryable<Payment> query)
-    {
-        return query.OrderByDescending(x => x.Date);
     }
 }
