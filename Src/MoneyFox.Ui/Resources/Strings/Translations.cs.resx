@@ -941,4 +941,7 @@ Tuto měnu můžete změnit pozdě v nastavení.</value>
   <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
         <value>Měsíční výdaje na rozpočty: {0}</value>
     </data>
+  <data name="DateRangeInvalidMessage" xml:space="preserve">
+        <value>Datum zahájení musí být před datem ukončení.</value>
+    </data>
 </root>

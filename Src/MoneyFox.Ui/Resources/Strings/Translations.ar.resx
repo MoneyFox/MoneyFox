@@ -941,4 +941,7 @@
   <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
         <value>الإنفاق الشهري على الميزانيات: {0}</value>
     </data>
+  <data name="DateRangeInvalidMessage" xml:space="preserve">
+        <value>يجب أن يكون تاريخ البدء قبل تاريخ الانتهاء.</value>
+    </data>
 </root>

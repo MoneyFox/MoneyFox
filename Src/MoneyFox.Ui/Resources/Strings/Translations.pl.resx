@@ -939,4 +939,7 @@ Możesz to zmienić w ustawieniach.</value>
   <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
         <value>Miesięczne wydatki na budżet: {0}</value>
     </data>
+  <data name="DateRangeInvalidMessage" xml:space="preserve">
+        <value>Data rozpoczęcia musi być wcześniejsza niż data zakończenia.</value>
+    </data>
 </root>

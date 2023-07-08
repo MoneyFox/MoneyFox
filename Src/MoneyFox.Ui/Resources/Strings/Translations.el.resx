@@ -941,4 +941,7 @@
   <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
         <value>Μηνιαίες δαπάνες για προϋπολογισμούς: {0}</value>
     </data>
+  <data name="DateRangeInvalidMessage" xml:space="preserve">
+        <value>Η ημερομηνία έναρξης πρέπει να είναι πριν από την ημερομηνία λήξης.</value>
+    </data>
 </root>

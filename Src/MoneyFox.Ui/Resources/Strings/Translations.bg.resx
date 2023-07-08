@@ -940,4 +940,7 @@
   <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
         <value>Месечни разходи за бюджети: {0}</value>
     </data>
+  <data name="DateRangeInvalidMessage" xml:space="preserve">
+        <value>Началната дата трябва да е преди крайната дата.</value>
+    </data>
 </root>

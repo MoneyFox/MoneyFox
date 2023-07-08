@@ -940,4 +940,7 @@ Pode alterar esta moeda tardiamente nas definições.</value>
   <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
         <value>Despesas mensais com orçamentos: {0}</value>
     </data>
+  <data name="DateRangeInvalidMessage" xml:space="preserve">
+        <value>A data de início tem de ser anterior à data de fim.</value>
+    </data>
 </root>

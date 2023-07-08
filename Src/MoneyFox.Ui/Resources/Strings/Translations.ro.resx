@@ -941,4 +941,7 @@ Puteți schimba această monedă târziu în setări.</value>
   <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
         <value>Cheltuieli lunare pentru bugete: {0}</value>
     </data>
+  <data name="DateRangeInvalidMessage" xml:space="preserve">
+        <value>Data de începere trebuie să fie anterioară datei de încheiere.</value>
+    </data>
 </root>

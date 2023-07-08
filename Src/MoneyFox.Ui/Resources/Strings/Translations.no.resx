@@ -941,4 +941,7 @@ Du kan endre dette for sent i innstillingene.</value>
   <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
         <value>Månedlig forbruk på budsjett: {0}</value>
     </data>
+  <data name="DateRangeInvalidMessage" xml:space="preserve">
+        <value>Startdato må være før sluttdato.</value>
+    </data>
 </root>

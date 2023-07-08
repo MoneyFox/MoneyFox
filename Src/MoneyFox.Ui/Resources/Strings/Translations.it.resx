@@ -941,4 +941,7 @@ Puoi cambiare questa valuta nelle impostazioni.</value>
   <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
         <value>Spesa mensile per il budget: {0}</value>
     </data>
+  <data name="DateRangeInvalidMessage" xml:space="preserve">
+        <value>La data di inizio deve essere precedente alla data di fine.</value>
+    </data>
 </root>

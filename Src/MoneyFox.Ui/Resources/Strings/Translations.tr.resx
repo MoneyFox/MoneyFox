@@ -941,4 +941,7 @@ Bunu ayarlardan geç değiştirebilirsiniz.</value>
   <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
         <value>Bütçeler için Aylık Harcama: {0}</value>
     </data>
+  <data name="DateRangeInvalidMessage" xml:space="preserve">
+        <value>Başlangıç tarihi bitiş tarihinden önce olmalıdır.</value>
+    </data>
 </root>

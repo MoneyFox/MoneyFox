@@ -941,4 +941,7 @@ Seda saate hilisemalt seadetes muuta.</value>
   <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
         <value>Igakuised kulutused eelarvele: {0}</value>
     </data>
+  <data name="DateRangeInvalidMessage" xml:space="preserve">
+        <value>Alguskuupäev peab olema enne lõppkuupäeva.</value>
+    </data>
 </root>
