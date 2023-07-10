@@ -1,9 +1,9 @@
 {
-    "stryker-config": {
-        "reporters": [
-            "html",
-            "progress"
-        ],
-        "project": "MoneyFox.Core.csproj"
-    }
+  "stryker-config": {
+    "reporters": [
+      "html",
+      "progress"
+    ],
+    "project": "MoneyFox.Core.csproj"
+  }
 }

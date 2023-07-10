@@ -53,14 +53,6 @@ public class Budget : EntityBase
         private set;
     }
 
-    public BudgetTimeRange BudgetTimeRange
-    {
-        get;
-
-        [UsedImplicitly]
-        private set;
-    }
-
     public IReadOnlyList<int> IncludedCategories
     {
         get;

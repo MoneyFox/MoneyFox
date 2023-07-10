@@ -67,7 +67,7 @@ internal sealed class StatisticAccountMonthlyCashFlowViewModel : StatisticViewMo
     protected override async Task LoadAsync()
     {
         SetXAxis();
-        var statisticItems = await Mediator.Send(new GetAccountProgressionQuery(accountId: SelectedAccount.Id, startDate: StartDate, endDate: EndDate));
+        var statisticItems = await Mediator.Send(new GetAccountProgression.Query(accountId: SelectedAccount.Id, startDate: StartDate, endDate: EndDate));
         var columnSeries = new ColumnSeries<decimal>
         {
             Name = string.Empty,

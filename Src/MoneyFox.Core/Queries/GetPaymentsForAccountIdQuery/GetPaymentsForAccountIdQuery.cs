@@ -65,7 +65,7 @@ public class GetPaymentsForAccountIdQuery : IRequest<List<Payment>>
 
             if (request.IsRecurringFilterActive)
             {
-                paymentQuery = paymentQuery.AreRecurring();
+                paymentQuery = paymentQuery.Where(payment => payment.IsRecurring);
             }
 
             if (request.FilteredPaymentType != PaymentTypeFilter.All)
@@ -76,7 +76,7 @@ public class GetPaymentsForAccountIdQuery : IRequest<List<Payment>>
             paymentQuery = paymentQuery.Where(x => x.Date >= request.TimeRangeStart);
             paymentQuery = paymentQuery.Where(x => x.Date <= request.TimeRangeEnd);
 
-            return await paymentQuery.OrderDescendingByDate().ToListAsync(cancellationToken);
+            return await paymentQuery.OrderByDescending(x => x.Date).ToListAsync(cancellationToken);
         }
     }
 }

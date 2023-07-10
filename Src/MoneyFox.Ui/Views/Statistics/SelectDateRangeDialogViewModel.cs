@@ -26,6 +26,7 @@ internal sealed class SelectDateRangeDialogViewModel : BasePageViewModel
         {
             startDate = value;
             OnPropertyChanged();
+            OnPropertyChanged(nameof(IsDateRangeValid));
         }
     }
 
@@ -40,17 +41,14 @@ internal sealed class SelectDateRangeDialogViewModel : BasePageViewModel
         {
             endDate = value;
             OnPropertyChanged();
+            OnPropertyChanged(nameof(IsDateRangeValid));
         }
     }
 
-    /// <summary>
-    ///     Selects the dates and notifies observer via the MessageHub
-    /// </summary>
+    public bool IsDateRangeValid => StartDate <= EndDate;
+
     public RelayCommand DoneCommand => new(Done);
 
-    /// <summary>
-    ///     Initalize the viewmodel with a previous sent message.
-    /// </summary>
     public void Initialize(DateSelectedMessage message)
     {
         StartDate = message.StartDate;
