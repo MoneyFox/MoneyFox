@@ -933,12 +933,15 @@ Puteți schimba această monedă târziu în setări.</value>
     <value>Total: {0}</value>
   </data>
   <data name="CurrentBalanceTemplate" xml:space="preserve">
-        <value>Current Balance: {0}</value>
+        <value>Soldul curent: {0}</value>
     </data>
   <data name="MonthlyBudgetTemplate" xml:space="preserve">
-        <value>Monthly Budget: {0}</value>
+        <value>Buget lunar: {0}</value>
     </data>
   <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
-        <value>Monthly Spending on budgets: {0}</value>
+        <value>Cheltuieli lunare pentru bugete: {0}</value>
+    </data>
+  <data name="DateRangeInvalidMessage" xml:space="preserve">
+        <value>Data de începere trebuie să fie anterioară datei de încheiere.</value>
     </data>
 </root>

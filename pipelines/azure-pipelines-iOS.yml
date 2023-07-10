@@ -115,6 +115,9 @@ steps:
       script: |
         $sourceRoot = '$(system.defaultworkingdirectory)/assets/metadata'
         Copy-Item -Path $sourceRoot  -Destination $(build.artifactstagingdirectory) -Recurse
+        
+        $sourceRoot = '$(system.defaultworkingdirectory)/assets/screenshots/iOS'
+        Copy-Item -Path $sourceRoot  -Destination '$(build.artifactstagingdirectory)/screenshots' -Recurse
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: drop'

@@ -936,12 +936,15 @@ Je kunt dit laat wijzigen in de instellingen.</value>
     <value>Totaal: {0}</value>
   </data>
   <data name="CurrentBalanceTemplate" xml:space="preserve">
-        <value>Current Balance: {0}</value>
+        <value>Huidig saldo: {0}</value>
     </data>
   <data name="MonthlyBudgetTemplate" xml:space="preserve">
-        <value>Monthly Budget: {0}</value>
+        <value>Maandelijks budget: {0}</value>
     </data>
   <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
-        <value>Monthly Spending on budgets: {0}</value>
+        <value>Maandelijkse uitgaven aan budgetten: {0}</value>
+    </data>
+  <data name="DateRangeInvalidMessage" xml:space="preserve">
+        <value>De begindatum moet voor de einddatum liggen.</value>
     </data>
 </root>

@@ -933,12 +933,15 @@
     <value>المجموع: {0}</value>
   </data>
   <data name="CurrentBalanceTemplate" xml:space="preserve">
-        <value>Current Balance: {0}</value>
+        <value>الرصيد الحالي: {0}</value>
     </data>
   <data name="MonthlyBudgetTemplate" xml:space="preserve">
-        <value>Monthly Budget: {0}</value>
+        <value>الميزانية الشهرية: {0}</value>
     </data>
   <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
-        <value>Monthly Spending on budgets: {0}</value>
+        <value>الإنفاق الشهري على الميزانيات: {0}</value>
+    </data>
+  <data name="DateRangeInvalidMessage" xml:space="preserve">
+        <value>يجب أن يكون تاريخ البدء قبل تاريخ الانتهاء.</value>
     </data>
 </root>

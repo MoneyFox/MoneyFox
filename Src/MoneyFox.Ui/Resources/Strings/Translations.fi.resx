@@ -931,12 +931,15 @@ Voit muuttaa tätä myöhässä asetuksissa.</value>
     <value>Yhteensä: {0}</value>
   </data>
   <data name="CurrentBalanceTemplate" xml:space="preserve">
-        <value>Current Balance: {0}</value>
+        <value>Nykyinen saldo: {0}</value>
     </data>
   <data name="MonthlyBudgetTemplate" xml:space="preserve">
-        <value>Monthly Budget: {0}</value>
+        <value>Kuukausittainen budjetti: {0}</value>
     </data>
   <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
-        <value>Monthly Spending on budgets: {0}</value>
+        <value>Kuukausittaiset budjettimenot: {0}</value>
+    </data>
+  <data name="DateRangeInvalidMessage" xml:space="preserve">
+        <value>Alkamispäivän on oltava ennen päättymispäivää.</value>
     </data>
 </root>

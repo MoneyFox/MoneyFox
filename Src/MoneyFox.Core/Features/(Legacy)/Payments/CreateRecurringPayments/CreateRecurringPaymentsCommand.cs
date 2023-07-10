@@ -1,9 +1,9 @@
 namespace MoneyFox.Core.Features._Legacy_.Payments.CreateRecurringPayments;
 
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Common.Extensions.QueryObjects;
 using Common.Interfaces;
 using Domain.Aggregates.AccountAggregate;
 using MediatR;
@@ -28,7 +28,7 @@ public class CreateRecurringPaymentsCommand : IRequest
                 .Include(x => x.Category)
                 .Include(x => x.RelatedPayments)
                 .AsQueryable()
-                .IsNotExpired()
+                .Where(x1 => x1.IsEndless || x1.EndDate >= DateTime.Today)
                 .ToListAsync(cancellationToken);
 
             var recPaymentsToCreate = recurringPayments.Where(x => x.RelatedPayments.Any())

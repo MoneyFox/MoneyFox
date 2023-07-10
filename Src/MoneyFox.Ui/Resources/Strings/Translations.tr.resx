@@ -933,12 +933,15 @@ Bunu ayarlardan geç değiştirebilirsiniz.</value>
     <value>Toplam: {0}</value>
   </data>
   <data name="CurrentBalanceTemplate" xml:space="preserve">
-        <value>Current Balance: {0}</value>
+        <value>Mevcut Bakiye: {0}</value>
     </data>
   <data name="MonthlyBudgetTemplate" xml:space="preserve">
-        <value>Monthly Budget: {0}</value>
+        <value>Aylık Bütçe: {0}</value>
     </data>
   <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
-        <value>Monthly Spending on budgets: {0}</value>
+        <value>Bütçeler için Aylık Harcama: {0}</value>
+    </data>
+  <data name="DateRangeInvalidMessage" xml:space="preserve">
+        <value>Başlangıç tarihi bitiş tarihinden önce olmalıdır.</value>
     </data>
 </root>

@@ -933,12 +933,15 @@ Túto neskorú menu môžete zmeniť v nastaveniach.</value>
     <value>Spolu: {0}</value>
   </data>
   <data name="CurrentBalanceTemplate" xml:space="preserve">
-        <value>Current Balance: {0}</value>
+        <value>Aktuálny zostatok: {0}</value>
     </data>
   <data name="MonthlyBudgetTemplate" xml:space="preserve">
-        <value>Monthly Budget: {0}</value>
+        <value>Mesačný rozpočet: {0}</value>
     </data>
   <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
-        <value>Monthly Spending on budgets: {0}</value>
+        <value>Mesačné výdavky na rozpočty: {0}</value>
+    </data>
+  <data name="DateRangeInvalidMessage" xml:space="preserve">
+        <value>Dátum začiatku musí byť pred dátumom ukončenia.</value>
     </data>
 </root>

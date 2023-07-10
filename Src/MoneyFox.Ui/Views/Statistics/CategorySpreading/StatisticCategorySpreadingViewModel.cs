@@ -40,7 +40,12 @@ internal sealed class StatisticCategorySpreadingViewModel : StatisticViewModel
 
     protected override async Task LoadAsync()
     {
-        var statisticEntries = await Mediator.Send(new GetCategorySpreadingQuery(startDate: StartDate, endDate: EndDate, paymentType: SelectedPaymentType));
+        var statisticEntries = await Mediator.Send(
+            new GetCategorySpreading.Query(
+                startDate: DateOnly.FromDateTime(StartDate),
+                endDate: DateOnly.FromDateTime(EndDate),
+                paymentType: SelectedPaymentType));
+
         var pieSeries = statisticEntries.Select(
             x => new PieSeries<decimal>
             {

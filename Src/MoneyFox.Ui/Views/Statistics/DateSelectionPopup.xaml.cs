@@ -21,7 +21,10 @@ public partial class DateSelectionPopup
 
     private void Button_OnClicked(object sender, EventArgs e)
     {
-        ViewModel.DoneCommand.Execute(null);
-        Close();
+        if (ViewModel.IsDateRangeValid)
+        {
+            ViewModel.DoneCommand.Execute(null);
+            Close();
+        }
     }
 }

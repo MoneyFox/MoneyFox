@@ -933,12 +933,15 @@
     <value>Σύνολο: {0}</value>
   </data>
   <data name="CurrentBalanceTemplate" xml:space="preserve">
-        <value>Current Balance: {0}</value>
+        <value>Τρέχον υπόλοιπο: {0}</value>
     </data>
   <data name="MonthlyBudgetTemplate" xml:space="preserve">
-        <value>Monthly Budget: {0}</value>
+        <value>Μηνιαίος προϋπολογισμός: {0}</value>
     </data>
   <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
-        <value>Monthly Spending on budgets: {0}</value>
+        <value>Μηνιαίες δαπάνες για προϋπολογισμούς: {0}</value>
+    </data>
+  <data name="DateRangeInvalidMessage" xml:space="preserve">
+        <value>Η ημερομηνία έναρξης πρέπει να είναι πριν από την ημερομηνία λήξης.</value>
     </data>
 </root>
