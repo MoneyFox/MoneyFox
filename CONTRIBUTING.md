@@ -34,7 +34,7 @@ Please make pull requests against the `master` branch.
 Also, please ensure you have unit tests written for your changes where possible and that all existing tests are still running.
 
 ## Getting Started
-To start developing you have to have Visual Studio 2019 or JetBrains Rider installed with the modules for the Universal Windows Platform and Xamarin.
+To start developing you have to have Visual Studio 2022 or JetBrains Rider installed with the .net maui workload installed.
 In order to build the Windows Project, you'll have to create a new test certificate. The easiest way is via the Package.appxmanifest - Packaging - Choose Certificate - "Create...". The values you can choose freely.
 
 ### OneDrive Backup

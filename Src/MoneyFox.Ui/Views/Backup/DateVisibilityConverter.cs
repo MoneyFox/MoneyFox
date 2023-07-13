@@ -9,11 +9,11 @@ public class DateVisibilityConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        return (DateTime)value != new DateTime();
+        return (DateTime)value != DateTime.MinValue;
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        return (DateTime)value != new DateTime();
+        throw new NotImplementedException();
     }
 }

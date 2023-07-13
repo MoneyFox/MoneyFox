@@ -71,7 +71,7 @@ internal sealed class StatisticAccountMonthlyCashFlowViewModel : StatisticViewMo
         var columnSeries = new ColumnSeries<decimal>
         {
             Name = string.Empty,
-            DataLabelsFormatter = point => $"{point.PrimaryValue}",
+            DataLabelsFormatter = point => $"{point.Coordinate.PrimaryValue}",
             DataLabelsPaint = new SolidColorPaint(SKColor.Parse("b4b2b0")),
             Values = statisticItems.Select(x => x.Value)
         };
