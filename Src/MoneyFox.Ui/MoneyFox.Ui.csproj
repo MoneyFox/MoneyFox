@@ -5,7 +5,7 @@
         <OutputType>Exe</OutputType>
         <RootNamespace>MoneyFox.Ui</RootNamespace>
         <UseMaui>true</UseMaui>
-        <MauiVersion>7.0.58</MauiVersion>
+        <MauiVersion>7.0.92</MauiVersion>
         <SingleProject>true</SingleProject>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
@@ -58,7 +58,7 @@
         <MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#ffffff" ForegroundScale="0.65" />
 
         <!-- Splash Screen -->
-        <MauiSplashScreen Include="Resources\Splash\splashscreen.svg" Color="#ea9972" BaseSize="128,128" />
+        <MauiSplashScreen Include="Resources\Images\splashscreen.svg" Color="#ea9972" BaseSize="128,128"/>
 
         <!-- Images -->
         <MauiImage Include="Resources\Images\appicon.svg" BaseSize="512, 512" ForegroundScale="0.65" />
@@ -86,7 +86,7 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="MediatR" Version="12.1.0"/>
+        <PackageReference Include="MediatR" Version="12.1.1"/>
         <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.5"/>
     </ItemGroup>
 
