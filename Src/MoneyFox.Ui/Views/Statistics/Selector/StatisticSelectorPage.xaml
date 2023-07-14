@@ -16,9 +16,9 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="15,6,15,0">
+                        <Grid Padding="0,6, 0,0" >
 
-                            <controls:Card Padding="12">
+                            <controls:Card Padding="12" Margin="15,0,15,0" >
 
                                 <controls:Card.GestureRecognizers>
                                     <TapGestureRecognizer
