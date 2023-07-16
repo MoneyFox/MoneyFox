@@ -945,9 +945,9 @@ Du kan ændre denne sent i indstillingerne.</value>
         <value>Startdatoen skal være før slutdatoen.</value>
     </data>
   <data name="TotalRevenueTemplate" xml:space="preserve">
-        <value>Total Revenue: {0}</value>
+        <value>Indtægter i alt: {0}</value>
     </data>
   <data name="TotalExpenseTemplate" xml:space="preserve">
-        <value>Total Expense: {0}</value>
+        <value>Udgifter i alt: {0}</value>
     </data>
 </root>
