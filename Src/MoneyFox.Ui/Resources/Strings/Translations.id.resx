@@ -943,9 +943,9 @@ Anda dapat mengubahnya di bagian akhir pengaturan.</value>
         <value>Tanggal mulai harus sebelum tanggal akhir.</value>
     </data>
   <data name="TotalRevenueTemplate" xml:space="preserve">
-        <value>Total Revenue: {0}</value>
+        <value>Total Pendapatan: {0}</value>
     </data>
   <data name="TotalExpenseTemplate" xml:space="preserve">
-        <value>Total Expense: {0}</value>
+        <value>Total Biaya: {0}</value>
     </data>
 </root>
