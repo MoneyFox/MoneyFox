@@ -942,4 +942,10 @@ Anda dapat mengubahnya di bagian akhir pengaturan.</value>
   <data name="DateRangeInvalidMessage" xml:space="preserve">
         <value>Tanggal mulai harus sebelum tanggal akhir.</value>
     </data>
+  <data name="TotalRevenueTemplate" xml:space="preserve">
+        <value>Total Revenue: {0}</value>
+    </data>
+  <data name="TotalExpenseTemplate" xml:space="preserve">
+        <value>Total Expense: {0}</value>
+    </data>
 </root>
