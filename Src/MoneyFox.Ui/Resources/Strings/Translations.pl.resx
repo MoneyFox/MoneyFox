@@ -943,9 +943,9 @@ Możesz to zmienić w ustawieniach.</value>
         <value>Data rozpoczęcia musi być wcześniejsza niż data zakończenia.</value>
     </data>
   <data name="TotalRevenueTemplate" xml:space="preserve">
-        <value>Total Revenue: {0}</value>
+        <value>Całkowity przychód: {0}</value>
     </data>
   <data name="TotalExpenseTemplate" xml:space="preserve">
-        <value>Total Expense: {0}</value>
+        <value>Całkowite wydatki: {0}</value>
     </data>
 </root>
