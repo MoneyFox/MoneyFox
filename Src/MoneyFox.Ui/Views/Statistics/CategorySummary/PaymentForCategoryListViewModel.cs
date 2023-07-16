@@ -26,7 +26,7 @@ internal sealed class PaymentForCategoryListViewModel : BasePageViewModel, IReci
     public string Title
     {
         get => title;
-        set => SetProperty(field: ref title, newValue: value);
+        private set => SetProperty(field: ref title, newValue: value);
     }
 
     public ReadOnlyObservableCollection<PaymentDayGroup> PaymentDayGroups
@@ -57,6 +57,7 @@ internal sealed class PaymentForCategoryListViewModel : BasePageViewModel, IReci
                 .GetResult());
 
         var dailyGroupedPayments = paymentVms.GroupBy(p => p.Date.Date)
+            .OrderByDescending(p => p.Key)
             .Select(g => new PaymentDayGroup(date: DateOnly.FromDateTime(g.Key), payments: g.ToList()))
             .ToList();
 
