@@ -945,9 +945,9 @@
         <value>開始日は終了日より前でなければならない。</value>
     </data>
   <data name="TotalRevenueTemplate" xml:space="preserve">
-        <value>Total Revenue: {0}</value>
+        <value>総収入： {0}</value>
     </data>
   <data name="TotalExpenseTemplate" xml:space="preserve">
-        <value>Total Expense: {0}</value>
+        <value>総支出： {0}</value>
     </data>
 </root>
