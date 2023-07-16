@@ -1,5 +1,6 @@
-﻿namespace MoneyFox.Ui;
-using Foundation;
+﻿using Foundation;
+
+namespace MoneyFox.Ui;
 
 [Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate
