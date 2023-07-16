@@ -6,11 +6,14 @@
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:views="clr-namespace:MoneyFox.Ui.Views"
     xmlns:categorySummary="clr-namespace:MoneyFox.Ui.Views.Statistics.CategorySummary"
+    xmlns:extensions="clr-namespace:MoneyFox.Ui.Common.Extensions"
+    xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     x:DataType="categorySummary:PaymentForCategoryListViewModel"
     Title="{Binding Title}">
 
     <ContentPage.Resources>
         <categorySummary:PaymentAmountConverter x:Key="PaymentAmountConverter" />
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
     </ContentPage.Resources>
 
     <ContentPage.Content>
@@ -20,9 +23,18 @@
                         ItemsSource="{Binding PaymentDayGroups}"
                         IsGrouped="True">
 
+            <CollectionView.Header>
+                <VerticalStackLayout Margin="18,0,18,12">
+                    <Label Style="{StaticResource TextBodySecondary}"
+                           Text="{Binding TotalExpenses, StringFormat={extensions:Translate TotalExpenseTemplate}, Converter={StaticResource AmountFormatConverter}}" />
+                    <Label Style="{StaticResource TextBodySecondary}"
+                           Text="{Binding TotalRevenue, StringFormat={extensions:Translate TotalRevenueTemplate}, Converter={StaticResource AmountFormatConverter}}" />
+                </VerticalStackLayout>
+            </CollectionView.Header>
+            
             <CollectionView.GroupHeaderTemplate>
                 <DataTemplate x:DataType="categorySummary:PaymentDayGroup">
-                    <Grid Padding="18, 0, 18, 0">
+                    <Grid Padding="18, 0, 18, 12">
                         <Label Text="{Binding Date, StringFormat='{0:dd. MMM}'}"
                                Style="{StaticResource TextSubheadSecondary}" />
                     </Grid>
