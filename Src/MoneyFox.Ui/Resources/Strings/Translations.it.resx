@@ -945,9 +945,9 @@ Puoi cambiare questa valuta nelle impostazioni.</value>
         <value>La data di inizio deve essere precedente alla data di fine.</value>
     </data>
   <data name="TotalRevenueTemplate" xml:space="preserve">
-        <value>Total Revenue: {0}</value>
+        <value>Entrate totali: {0}</value>
     </data>
   <data name="TotalExpenseTemplate" xml:space="preserve">
-        <value>Total Expense: {0}</value>
+        <value>Spese totali: {0}</value>
     </data>
 </root>
