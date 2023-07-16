@@ -5,7 +5,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <UseMaui>true</UseMaui>
         <Nullable>enable</Nullable>
-        <IsPackable>false</IsPackable>
+        <IsPackable>false</IsPackable> 
+        <SkipValidateMauiImplicitPackageReferences>true</SkipValidateMauiImplicitPackageReferences>
     </PropertyGroup>
 
     <ItemGroup>

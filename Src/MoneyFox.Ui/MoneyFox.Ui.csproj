@@ -10,6 +10,7 @@
         <Nullable>enable</Nullable>
         <DefaultLanguage>en</DefaultLanguage>
         <GenerateSatelliteAssembliesForCore>true</GenerateSatelliteAssembliesForCore>
+        <SkipValidateMauiImplicitPackageReferences>true</SkipValidateMauiImplicitPackageReferences>
 
         <!-- Display name -->
         <ApplicationTitle>MoneyFox</ApplicationTitle>
