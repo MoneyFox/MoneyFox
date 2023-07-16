@@ -5,7 +5,7 @@
         <OutputType>Exe</OutputType>
         <RootNamespace>MoneyFox.Ui</RootNamespace>
         <UseMaui>true</UseMaui>
-        <MauiVersion>7.0.92</MauiVersion>
+        <MauiVersion>7.0.58</MauiVersion>
         <SingleProject>true</SingleProject>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
