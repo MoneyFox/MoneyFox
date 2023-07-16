@@ -10,13 +10,13 @@ public class FixedScrollView : ScrollView
 {
     public FixedScrollView()
     {
-#if __IOS__
+#if IOS
         UIKeyboard.Notifications.ObserveWillShow(OnKeyboardShowing!);
         UIKeyboard.Notifications.ObserveWillHide(OnKeyboardHiding!);
 #endif
     }
 
-#if __IOS__
+#if IOS
     private void OnKeyboardShowing(object sender, UIKeyboardEventArgs args)
     {
         if (Shell.Current.CurrentPage is ContentPage page)
