@@ -945,9 +945,9 @@
         <value>Η ημερομηνία έναρξης πρέπει να είναι πριν από την ημερομηνία λήξης.</value>
     </data>
   <data name="TotalRevenueTemplate" xml:space="preserve">
-        <value>Total Revenue: {0}</value>
+        <value>Συνολικά έσοδα: {0}</value>
     </data>
   <data name="TotalExpenseTemplate" xml:space="preserve">
-        <value>Total Expense: {0}</value>
+        <value>Συνολικά έξοδα: {0}</value>
     </data>
 </root>
