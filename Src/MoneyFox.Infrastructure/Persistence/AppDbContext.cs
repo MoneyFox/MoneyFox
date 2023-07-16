@@ -3,6 +3,7 @@ namespace MoneyFox.Infrastructure.Persistence;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Converter;
 using Core.Common.Interfaces;
 using Core.Common.Settings;
 using Core.Notifications.DatabaseChanged;
@@ -80,6 +81,13 @@ public class AppDbContext : DbContext, IAppDbContext
     {
         SqliteConnection.ClearAllPools();
         Analytics.TrackEvent(nameof(ReleaseLock));
+    }
+
+    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+    {
+        base.ConfigureConventions(configurationBuilder);
+        configurationBuilder.Properties<DateOnly>().HaveConversion<DateOnlyConverter>().HaveColumnType("date");
+        configurationBuilder.Properties<DateOnly?>().HaveConversion<NullableDateOnlyConverter>().HaveColumnType("date");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
