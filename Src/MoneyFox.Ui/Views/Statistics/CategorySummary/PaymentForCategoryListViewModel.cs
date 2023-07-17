@@ -5,6 +5,7 @@ using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Queries;
+using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Resources.Strings;
 
@@ -13,7 +14,7 @@ internal sealed class PaymentForCategoryListViewModel : BasePageViewModel, IReci
     private readonly IMapper mapper;
     private readonly IMediator mediator;
 
-    private ReadOnlyObservableCollection<PaymentDayGroup> paymentDayGroups = null!;
+    private ReadOnlyObservableCollection<PaymentDayGroup> paymentDayGroups = new ReadOnlyObservableCollection<PaymentDayGroup>(new());
 
     private string title = string.Empty;
 
@@ -34,6 +35,10 @@ internal sealed class PaymentForCategoryListViewModel : BasePageViewModel, IReci
         get => paymentDayGroups;
         private set => SetProperty(field: ref paymentDayGroups, newValue: value);
     }
+
+    public decimal TotalRevenue => PaymentDayGroups.Sum(pdg => pdg.TotalRevenue);
+
+    public decimal TotalExpenses => PaymentDayGroups.Sum(pdg => pdg.TotalExpense);
 
     public AsyncRelayCommand<PaymentListItemViewModel> GoToEditPaymentCommand
         => new(async pvm => await Shell.Current.GoToAsync($"{Routes.EditPaymentRoute}?paymentId={pvm!.Id}"));
