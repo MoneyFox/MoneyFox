@@ -10,7 +10,7 @@ using UserNotifications;
 [Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate
 {
-    private const string MSAL_APPLICATION_ID = "20e90083-34d6-4eab-8ba1-6b96fbc448c3";
+    private const string MSAL_APPLICATION_ID = "00a3e4cd-b4b0-4730-be62-5fcf90a94a1d";
     private const string MSAL_URI = $"msal{MSAL_APPLICATION_ID}://auth";
 
     protected override MauiApp CreateMauiApp()
