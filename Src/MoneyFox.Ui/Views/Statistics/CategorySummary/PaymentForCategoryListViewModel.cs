@@ -32,7 +32,12 @@ internal sealed class PaymentForCategoryListViewModel : BasePageViewModel, IReci
     public ReadOnlyObservableCollection<PaymentDayGroup> PaymentDayGroups
     {
         get => paymentDayGroups;
-        private set => SetProperty(field: ref paymentDayGroups, newValue: value);
+        private set
+        {
+            SetProperty(field: ref paymentDayGroups, newValue: value);
+            OnPropertyChanged(nameof(TotalRevenue));
+            OnPropertyChanged(nameof(TotalExpenses));
+        }
     }
 
     public decimal TotalRevenue => PaymentDayGroups.Sum(pdg => pdg.TotalRevenue);
