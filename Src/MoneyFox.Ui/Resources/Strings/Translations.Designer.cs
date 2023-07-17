@@ -1676,17 +1676,5 @@ namespace MoneyFox.Ui.Resources.Strings {
                 return ResourceManager.GetString("DateRangeInvalidMessage", resourceCulture);
             }
         }
-        
-        public static string TotalRevenueTemplate {
-            get {
-                return ResourceManager.GetString("TotalRevenueTemplate", resourceCulture);
-            }
-        }
-        
-        public static string TotalExpenseTemplate {
-            get {
-                return ResourceManager.GetString("TotalExpenseTemplate", resourceCulture);
-            }
-        }
     }
 }
