@@ -17,8 +17,8 @@ internal sealed class StatisticCategorySummaryViewModel : StatisticViewModel
     private readonly ISettingsFacade settingsFacade;
 
     private ObservableCollection<CategoryOverviewViewModel> categorySummary = new();
-    private Observable<string> totalExpenseString = new();
-    private Observable<string> totalIncomeString = new();
+    private string totalExpenseString = string.Empty;
+    private string totalIncomeString = string.Empty;
 
     public StatisticCategorySummaryViewModel(IMediator mediator, IDialogService dialogService) : base(mediator)
     {
@@ -39,22 +39,21 @@ internal sealed class StatisticCategorySummaryViewModel : StatisticViewModel
         }
     }
 
-    public Observable<string> TotalExpenseString
+    public string TotalExpenseString
     {
         get => totalExpenseString;
 
         private set
         {
-            if(TotalExpenseString != value)
+            if (totalExpenseString != value)
             {
                 totalExpenseString = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(HasData));
+                OnPropertyChanged(nameof(TotalExpenseString));
             }
         }
     }
 
-    public Observable<string> TotalIncomeString
+    public string TotalIncomeString
     {
         get => totalIncomeString;
 
@@ -63,8 +62,7 @@ internal sealed class StatisticCategorySummaryViewModel : StatisticViewModel
             if (totalIncomeString != value)
             {
                 totalIncomeString = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(HasData));
+                OnPropertyChanged(nameof(TotalIncomeString));
             }
         }
     }
@@ -91,10 +89,10 @@ internal sealed class StatisticCategorySummaryViewModel : StatisticViewModel
                         Percentage = x.Percentage
                     }));
 
-            totalExpenseString.Content = $"Total Spending: {Math.Abs(categorySummary.Where(x => x.Value < 0).Sum(x => x.Value))} {settingsFacade.DefaultCurrency}";
+            TotalExpenseString = $"Total Spending: {Math.Abs(categorySummary.Where(x => x.Value < 0).Sum(x => x.Value))} {settingsFacade.DefaultCurrency}";
 
-            totalIncomeString.Content = $"Total Income: {categorySummary.Where(x => x.Value > 0).Sum(x => x.Value)} {settingsFacade.DefaultCurrency}";
-         }
+            TotalIncomeString = $"Total Income: {categorySummary.Where(x => x.Value > 0).Sum(x => x.Value)} {settingsFacade.DefaultCurrency}";
+        }
         catch (Exception ex)
         {
             Log.Warning(exception: ex, messageTemplate: "Error during loading");
