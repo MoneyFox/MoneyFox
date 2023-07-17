@@ -2,15 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
     <dict>
-        <!-- The Mac App Store requires you specify if the app uses encryption. -->
-        <!-- Please consult https://developer.apple.com/documentation/bundleresources/information_property_list/itsappusesnonexemptencryption -->
-        <!-- <key>ITSAppUsesNonExemptEncryption</key> -->
-        <!-- Please indicate <true/> or <false/> here. -->
-
-        <!-- Specify the category for your app here. -->
-        <!-- Please consult https://developer.apple.com/documentation/bundleresources/information_property_list/lsapplicationcategorytype -->
-        <!-- <key>LSApplicationCategoryType</key> -->
-        <!-- <string>public.app-category.YOUR-CATEGORY-HERE</string> -->
+        <key>ITSAppUsesNonExemptEncryption</key>
+        <false/>
+        <key>LSApplicationCategoryType</key>
+        <string>public.app-category.finance</string> 
         <key>UIDeviceFamily</key>
         <array>
             <integer>2</integer>
@@ -34,5 +29,44 @@
         </array>
         <key>XSAppIconAssets</key>
         <string>Assets.xcassets/appicon.appiconset</string>
+        <key>CFBundleDisplayName</key>
+        <string>MoneyFox</string>
+        <key>CFBundleIdentifier</key>
+        <string>com.applysolutions.moneyfox</string>
+        <key>UILaunchStoryboardName</key>
+        <string>LaunchScreen</string>
+        <key>CFBundleName</key>
+        <string>MoneyFox</string>
+        <key>CFBundleShortVersionString</key>
+        <string>2018304.001</string>
+        <key>CFBundleVersion</key>
+        <string>20183034.001</string>
+        <key>NSContactsUsageDescription</key>
+        <string>This app does not require contact access.</string>
+        <key>NSCalendarsUsageDescription</key>
+        <string>This app does not require calendar access.</string>
+        <key>NSMicrophoneUsageDescription</key>
+        <string>This app does not require microphone access.</string>
+        <key>NSAppleMusicUsageDescription</key>
+        <string>This app does not require Music Access.</string>
+        <key>NSSiriUsageDescription</key>
+        <string>This app does not require Siri Access.</string>
+        <key>UILaunchStoryboardName</key>
+        <string>MauiSplash</string>
+        <key>CFBundleURLTypes</key>
+        <array>
+            <dict>
+                <key>CFBundleURLName</key>
+                <string>com.applysolutions.moneyfox</string>
+                <key>CFBundleURLSchemes</key>
+                <array>
+                    <string>msala00a3e4cd-b4b0-4730-be62-5fcf90a94a1d</string>
+                </array>
+            </dict>
+        </array>
+        <key>LSApplicationQueriesSchemes</key>
+        <array>
+            <string>mailto</string>
+        </array>
     </dict>
 </plist>
