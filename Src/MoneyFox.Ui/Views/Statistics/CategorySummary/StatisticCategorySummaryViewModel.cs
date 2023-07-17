@@ -9,13 +9,11 @@ using Core.Queries.Statistics.GetCategorySummary;
 using MediatR;
 using Serilog;
 
-internal sealed class StatisticCategorySummaryViewModel : StatisticViewModel
+internal class StatisticCategorySummaryViewModel : StatisticViewModel
 {
     private readonly IDialogService dialogService;
 
     private ObservableCollection<CategoryOverviewViewModel> categorySummary = new();
-    private decimal totalExpense;
-    private decimal totalIncome;
 
     public StatisticCategorySummaryViewModel(IMediator mediator, IDialogService dialogService) : base(mediator)
     {
@@ -27,43 +25,19 @@ internal sealed class StatisticCategorySummaryViewModel : StatisticViewModel
     {
         get => categorySummary;
 
-        set
+        private set
         {
             categorySummary = value;
-            TotalExpense = Math.Abs(categorySummary.Where(x => x.Value < 0).Sum(x => x.Value));
-            TotalIncome = categorySummary.Where(x => x.Value > 0).Sum(x => x.Value);
             OnPropertyChanged();
             OnPropertyChanged(nameof(HasData));
+            OnPropertyChanged(nameof(TotalExpense));
+            OnPropertyChanged(nameof(TotalRevenue));
         }
     }
 
-    public decimal TotalExpense
-    {
-        get => totalExpense;
+    public decimal TotalExpense => Math.Abs(CategorySummary.Where(x => x.Value < 0).Sum(x => x.Value));
 
-        private set
-        {
-            if (totalExpense != value)
-            {
-                totalExpense = value;
-                OnPropertyChanged(nameof(TotalExpense));
-            }
-        }
-    }
-
-    public decimal TotalIncome
-    {
-        get => totalIncome;
-
-        private set
-        {
-            if (totalIncome != value)
-            {
-                totalIncome = value;
-                OnPropertyChanged(nameof(TotalIncome));
-            }
-        }
-    }
+    public decimal TotalRevenue => CategorySummary.Where(x => x.Value > 0).Sum(x => x.Value);
 
     public bool HasData => CategorySummary.Any();
 

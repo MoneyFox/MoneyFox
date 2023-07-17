@@ -1,10 +1,10 @@
 namespace MoneyFox.Ui.Tests.Views.Statistics;
 
-using System.Collections.ObjectModel;
+using System.Reflection;
 using FluentAssertions;
 using MediatR;
 using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Ui.Views.Statistics;
+using MoneyFox.Core.Queries.Statistics.GetCategorySummary;
 using MoneyFox.Ui.Views.Statistics.CategorySummary;
 using NSubstitute;
 using Xunit;
@@ -15,37 +15,43 @@ public class StatisticCategorySummaryViewModelTest
     public void StatisticCategorySummary_With_Correct_TotalExpense_TotalIncome()
     {
         // Arrange
-        var dialogService = Substitute.For<IDialogService>();
         var mediator = Substitute.For<IMediator>();
+        var dialogService = Substitute.For<IDialogService>();
         var vm = new StatisticCategorySummaryViewModel(mediator, dialogService);
+        var categorySummaries = new List<CategoryOverviewItem>
+            {
+                new CategoryOverviewItem { Value = -200 },
+                new CategoryOverviewItem { Value = -500 },
+                new CategoryOverviewItem { Value = 1000 },
+                new CategoryOverviewItem { Value = 1500 }
+            };
+        var categorySummaryModel = new CategorySummaryModel(default, default, categorySummaries);
+        mediator.Send(Arg.Any<GetCategorySummary.Query>(), Arg.Any<CancellationToken>()).Returns(x => Task.FromResult(categorySummaryModel));
 
         // Act
-        vm.CategorySummary = new ObservableCollection<CategoryOverviewViewModel>
-        {
-            new CategoryOverviewViewModel
-            {
-                CategoryId = 1,
-                Value = -200
-            },
-            new CategoryOverviewViewModel
-            {
-                CategoryId = 2,
-                Value = -500
-            },
-            new CategoryOverviewViewModel
-            {
-                CategoryId = 3,
-                Value = 1000
-            },
-            new CategoryOverviewViewModel
-            {
-                CategoryId = 4,
-                Value = 1500
-            }
-        };
+        vm.GetType().GetMethod("LoadAsync", BindingFlags.NonPublic | BindingFlags.Instance)?.Invoke(vm, null);
 
         // Assert
         vm.TotalExpense.Should().Be(700);
-        vm.TotalIncome.Should().Be(2500);
+        vm.TotalRevenue.Should().Be(2500);
+    }
+
+    [Fact]
+    public void StatisticCategorySummary_With_No_Data()
+    {
+        // Arrange
+        var mediator = Substitute.For<IMediator>();
+        var dialogService = Substitute.For<IDialogService>();
+        var vm = new StatisticCategorySummaryViewModel(mediator, dialogService);
+        var categorySummaries = new List<CategoryOverviewItem>();
+        var categorySummaryModel = new CategorySummaryModel(default, default, categorySummaries);
+        mediator.Send(Arg.Any<GetCategorySummary.Query>(), Arg.Any<CancellationToken>()).Returns(x => Task.FromResult(categorySummaryModel));
+
+        // Act
+        vm.GetType().GetMethod("LoadAsync", BindingFlags.NonPublic | BindingFlags.Instance)?.Invoke(vm, null);
+
+        // Assert
+        vm.TotalExpense.Should().Be(0);
+        vm.TotalRevenue.Should().Be(0);
     }
 }
