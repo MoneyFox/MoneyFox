@@ -31,7 +31,7 @@
                            Text="{Binding TotalRevenue, StringFormat={extensions:Translate TotalRevenueTemplate}, Converter={StaticResource AmountFormatConverter}}" />
                 </VerticalStackLayout>
             </CollectionView.Header>
-            
+
             <CollectionView.GroupHeaderTemplate>
                 <DataTemplate x:DataType="categorySummary:PaymentDayGroup">
                     <Grid Padding="18, 0, 18, 12">

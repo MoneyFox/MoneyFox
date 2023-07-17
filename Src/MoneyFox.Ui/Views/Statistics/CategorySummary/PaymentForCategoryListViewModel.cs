@@ -13,7 +13,7 @@ internal sealed class PaymentForCategoryListViewModel : BasePageViewModel, IReci
     private readonly IMapper mapper;
     private readonly IMediator mediator;
 
-    private ReadOnlyObservableCollection<PaymentDayGroup> paymentDayGroups = new ReadOnlyObservableCollection<PaymentDayGroup>(new());
+    private ReadOnlyObservableCollection<PaymentDayGroup> paymentDayGroups = new(new());
 
     private string title = string.Empty;
 
