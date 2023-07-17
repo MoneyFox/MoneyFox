@@ -5,7 +5,6 @@ using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Queries;
-using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Resources.Strings;
 
