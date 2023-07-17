@@ -132,7 +132,7 @@ public static class MauiProgram
         var appCenter = configuration.GetRequiredSection("AppCenter").Get<AppCenterOption>()!;
         AppCenter.Start(
             appSecret: $"android={appCenter.AndroidSecret};"
-                       + $"windowsdesktop={appCenter.WindowsSecret};"
+                       + $"uwp={appCenter.WindowsSecret};"
                        + $"ios={appCenter.IosSecret};"
                        + $"macos={appCenter.MacOsSecret};",
             typeof(Analytics),
