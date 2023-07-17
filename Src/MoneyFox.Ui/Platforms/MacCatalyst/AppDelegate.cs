@@ -1,9 +1,12 @@
-﻿using Foundation;
+﻿namespace MoneyFox.Ui;
 
-namespace MoneyFox.Ui;
+using Foundation;
 
 [Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate
 {
-    protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
+    protected override MauiApp CreateMauiApp()
+    {
+        return MauiProgram.CreateMauiApp();
+    }
 }
