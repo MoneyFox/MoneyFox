@@ -7,62 +7,60 @@ using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
 using Core.Queries.Statistics.GetCategorySummary;
 using MediatR;
-using MoneyFox.Core.Common.Settings;
-using MoneyFox.Ui.Infrastructure.Adapters;
 using Serilog;
 
 internal sealed class StatisticCategorySummaryViewModel : StatisticViewModel
 {
     private readonly IDialogService dialogService;
-    private readonly ISettingsFacade settingsFacade;
 
     private ObservableCollection<CategoryOverviewViewModel> categorySummary = new();
-    private string totalExpenseString = string.Empty;
-    private string totalIncomeString = string.Empty;
+    private decimal totalExpense;
+    private decimal totalIncome;
 
     public StatisticCategorySummaryViewModel(IMediator mediator, IDialogService dialogService) : base(mediator)
     {
         this.dialogService = dialogService;
         CategorySummary = new();
-        settingsFacade = new SettingsFacade(new SettingsAdapter());
     }
 
     public ObservableCollection<CategoryOverviewViewModel> CategorySummary
     {
         get => categorySummary;
 
-        private set
+        set
         {
             categorySummary = value;
+            TotalExpense = Math.Abs(categorySummary.Where(x => x.Value < 0).Sum(x => x.Value));
+            TotalIncome = categorySummary.Where(x => x.Value > 0).Sum(x => x.Value);
             OnPropertyChanged();
             OnPropertyChanged(nameof(HasData));
         }
     }
 
-    public string TotalExpenseString
+    public decimal TotalExpense
     {
-        get => totalExpenseString;
+        get => totalExpense;
 
         private set
         {
-            if (totalExpenseString != value)
+            if (totalExpense != value)
             {
-                totalExpenseString = value;
-                OnPropertyChanged(nameof(TotalExpenseString));
+                totalExpense = value;
+                OnPropertyChanged(nameof(TotalExpense));
             }
         }
     }
 
-    public string TotalIncomeString
+    public decimal TotalIncome
     {
-        get => totalIncomeString;
+        get => totalIncome;
 
         private set
         {
-            if (totalIncomeString != value)
+            if (totalIncome != value)
             {
-                totalIncomeString = value;
-                OnPropertyChanged(nameof(TotalIncomeString));
+                totalIncome = value;
+                OnPropertyChanged(nameof(TotalIncome));
             }
         }
     }
@@ -88,10 +86,6 @@ internal sealed class StatisticCategorySummaryViewModel : StatisticViewModel
                         Label = x.Label,
                         Percentage = x.Percentage
                     }));
-
-            TotalExpenseString = $"Total Spending: {Math.Abs(categorySummary.Where(x => x.Value < 0).Sum(x => x.Value))} {settingsFacade.DefaultCurrency}";
-
-            TotalIncomeString = $"Total Income: {categorySummary.Where(x => x.Value > 0).Sum(x => x.Value)} {settingsFacade.DefaultCurrency}";
         }
         catch (Exception ex)
         {
