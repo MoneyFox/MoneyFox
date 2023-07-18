@@ -945,9 +945,9 @@ Puteți schimba această monedă târziu în setări.</value>
         <value>Data de începere trebuie să fie anterioară datei de încheiere.</value>
     </data>
   <data name="TotalRevenueTemplate" xml:space="preserve">
-        <value>Total Revenue: {0}</value>
+        <value>Venituri totale: {0}</value>
     </data>
   <data name="TotalExpenseTemplate" xml:space="preserve">
-        <value>Total Expense: {0}</value>
+        <value>Cheltuieli totale: {0}</value>
     </data>
 </root>
