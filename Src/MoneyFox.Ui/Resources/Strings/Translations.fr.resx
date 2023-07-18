@@ -941,4 +941,10 @@ Tu peux la modifier dans les paramètres.</value>
   <data name="DateRangeInvalidMessage" xml:space="preserve">
         <value>La date de début doit être antérieure à la date de fin.</value>
     </data>
+  <data name="TotalRevenueTemplate" xml:space="preserve">
+        <value>Total Revenue: {0}</value>
+    </data>
+  <data name="TotalExpenseTemplate" xml:space="preserve">
+        <value>Total Expense: {0}</value>
+    </data>
 </root>
