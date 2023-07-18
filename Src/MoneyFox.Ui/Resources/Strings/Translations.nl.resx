@@ -948,9 +948,9 @@ Je kunt dit laat wijzigen in de instellingen.</value>
         <value>De begindatum moet voor de einddatum liggen.</value>
     </data>
   <data name="TotalRevenueTemplate" xml:space="preserve">
-        <value>Total Revenue: {0}</value>
+        <value>Totale inkomsten: {0}</value>
     </data>
   <data name="TotalExpenseTemplate" xml:space="preserve">
-        <value>Total Expense: {0}</value>
+        <value>Totale kosten: {0}</value>
     </data>
 </root>
