@@ -945,9 +945,9 @@ Túto neskorú menu môžete zmeniť v nastaveniach.</value>
         <value>Dátum začiatku musí byť pred dátumom ukončenia.</value>
     </data>
   <data name="TotalRevenueTemplate" xml:space="preserve">
-        <value>Total Revenue: {0}</value>
+        <value>Celkové príjmy: {0}</value>
     </data>
   <data name="TotalExpenseTemplate" xml:space="preserve">
-        <value>Total Expense: {0}</value>
+        <value>Celkové výdavky: {0}</value>
     </data>
 </root>
