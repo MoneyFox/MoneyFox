@@ -24,12 +24,14 @@
                         IsGrouped="True">
 
             <CollectionView.Header>
-                <VerticalStackLayout Margin="18,0,18,12">
-                    <Label Style="{StaticResource TextBodySecondary}"
-                           Text="{Binding TotalExpenses, StringFormat={extensions:Translate TotalExpenseTemplate}, Converter={StaticResource AmountFormatConverter}}" />
-                    <Label Style="{StaticResource TextBodySecondary}"
-                           Text="{Binding TotalRevenue, StringFormat={extensions:Translate TotalRevenueTemplate}, Converter={StaticResource AmountFormatConverter}}" />
-                </VerticalStackLayout>
+                <ContentView>
+                    <VerticalStackLayout Margin="18,0,18,12">
+                        <Label Style="{StaticResource TextBodySecondary}"
+                               Text="{Binding TotalExpenses, StringFormat={extensions:Translate TotalExpenseTemplate}, Converter={StaticResource AmountFormatConverter}}" />
+                        <Label Style="{StaticResource TextBodySecondary}"
+                               Text="{Binding TotalRevenue, StringFormat={extensions:Translate TotalRevenueTemplate}, Converter={StaticResource AmountFormatConverter}}" />
+                    </VerticalStackLayout>
+                </ContentView>
             </CollectionView.Header>
 
             <CollectionView.GroupHeaderTemplate>
