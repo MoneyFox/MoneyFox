@@ -942,4 +942,10 @@ Voit muuttaa tätä myöhässä asetuksissa.</value>
   <data name="DateRangeInvalidMessage" xml:space="preserve">
         <value>Alkamispäivän on oltava ennen päättymispäivää.</value>
     </data>
+  <data name="TotalRevenueTemplate" xml:space="preserve">
+        <value>Total Revenue: {0}</value>
+    </data>
+  <data name="TotalExpenseTemplate" xml:space="preserve">
+        <value>Total Expense: {0}</value>
+    </data>
 </root>
