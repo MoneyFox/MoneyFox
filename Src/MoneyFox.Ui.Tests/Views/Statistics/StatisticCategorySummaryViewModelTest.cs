@@ -19,17 +19,17 @@ public class StatisticCategorySummaryViewModelTest
         var dialogService = Substitute.For<IDialogService>();
         var vm = new StatisticCategorySummaryViewModel(mediator, dialogService);
         var categorySummaries = new List<CategoryOverviewItem>
-            {
-                new CategoryOverviewItem { Value = -200 },
-                new CategoryOverviewItem { Value = -500 },
-                new CategoryOverviewItem { Value = 1000 },
-                new CategoryOverviewItem { Value = 1500 }
-            };
+        {
+            new CategoryOverviewItem { Value = -200 },
+            new CategoryOverviewItem { Value = -500 },
+            new CategoryOverviewItem { Value = 1000 },
+            new CategoryOverviewItem { Value = 1500 }
+        };
         var categorySummaryModel = new CategorySummaryModel(default, default, categorySummaries);
         mediator.Send(Arg.Any<GetCategorySummary.Query>(), Arg.Any<CancellationToken>()).Returns(x => Task.FromResult(categorySummaryModel));
 
         // Act
-        vm.GetType().GetMethod("LoadAsync", BindingFlags.NonPublic | BindingFlags.Instance)?.Invoke(vm, null);
+        vm.LoadedCommand.ExecuteAsync(null);
 
         // Assert
         vm.TotalExpense.Should().Be(700);
@@ -48,7 +48,7 @@ public class StatisticCategorySummaryViewModelTest
         mediator.Send(Arg.Any<GetCategorySummary.Query>(), Arg.Any<CancellationToken>()).Returns(x => Task.FromResult(categorySummaryModel));
 
         // Act
-        vm.GetType().GetMethod("LoadAsync", BindingFlags.NonPublic | BindingFlags.Instance)?.Invoke(vm, null);
+        vm.LoadedCommand.ExecuteAsync(null);
 
         // Assert
         vm.TotalExpense.Should().Be(0);
