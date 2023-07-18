@@ -944,4 +944,10 @@ Du kan ändra denna sen i inställningarna.</value>
   <data name="DateRangeInvalidMessage" xml:space="preserve">
         <value>Startdatum måste vara före slutdatum.</value>
     </data>
+  <data name="TotalRevenueTemplate" xml:space="preserve">
+        <value>Totala intäkter: {0}</value>
+    </data>
+  <data name="TotalExpenseTemplate" xml:space="preserve">
+        <value>Totala kostnader: {0}</value>
+    </data>
 </root>

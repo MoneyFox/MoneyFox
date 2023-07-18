@@ -943,4 +943,10 @@ Pode alterar esta moeda tardiamente nas definições.</value>
   <data name="DateRangeInvalidMessage" xml:space="preserve">
         <value>A data de início tem de ser anterior à data de fim.</value>
     </data>
+  <data name="TotalRevenueTemplate" xml:space="preserve">
+        <value>Receitas totais: {0}</value>
+    </data>
+  <data name="TotalExpenseTemplate" xml:space="preserve">
+        <value>Total de despesas: {0}</value>
+    </data>
 </root>
