@@ -943,4 +943,10 @@
   <data name="DateRangeInvalidMessage" xml:space="preserve">
         <value>Началната дата трябва да е преди крайната дата.</value>
     </data>
+  <data name="TotalRevenueTemplate" xml:space="preserve">
+        <value>Total Revenue: {0}</value>
+    </data>
+  <data name="TotalExpenseTemplate" xml:space="preserve">
+        <value>Total Expense: {0}</value>
+    </data>
 </root>
