@@ -9,6 +9,7 @@
     xmlns:views="clr-namespace:MoneyFox.Ui.Views"
     xmlns:categorySummary="clr-namespace:MoneyFox.Ui.Views.Statistics.CategorySummary"
     xmlns:statistics="clr-namespace:MoneyFox.Ui.Views.Statistics"
+    xmlns:extensions="clr-namespace:MoneyFox.Ui.Common.Extensions"
     Title="{x:Static resources:Translations.CategorySummaryTitle}">
 
     <ContentPage.Resources>
@@ -95,6 +96,12 @@
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+                <CollectionView.Footer>
+                    <StackLayout VerticalOptions="Center" HorizontalOptions="End" Margin="0,10, 10, 0" Padding="12">
+                        <Label Text="{Binding TotalExpense, StringFormat={extensions:Translate TotalExpenseTemplate}, Converter={StaticResource AmountFormatConverter}}" Style="{StaticResource TextSubheadSecondary}" />
+                        <Label Text="{Binding TotalRevenue, StringFormat={extensions:Translate TotalRevenueTemplate}, Converter={StaticResource AmountFormatConverter}}}" Style="{StaticResource TextSubheadSecondary}" Margin="0,5,0,0" />
+                    </StackLayout>
+                </CollectionView.Footer>
             </CollectionView>
         </Grid>
     </ContentPage.Content>
