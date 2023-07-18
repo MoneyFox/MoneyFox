@@ -945,9 +945,9 @@ Du kan ändra denna sen i inställningarna.</value>
         <value>Startdatum måste vara före slutdatum.</value>
     </data>
   <data name="TotalRevenueTemplate" xml:space="preserve">
-        <value>Total Revenue: {0}</value>
+        <value>Totala intäkter: {0}</value>
     </data>
   <data name="TotalExpenseTemplate" xml:space="preserve">
-        <value>Total Expense: {0}</value>
+        <value>Totala kostnader: {0}</value>
     </data>
 </root>
