@@ -945,9 +945,9 @@
         <value>يجب أن يكون تاريخ البدء قبل تاريخ الانتهاء.</value>
     </data>
   <data name="TotalRevenueTemplate" xml:space="preserve">
-        <value>Total Revenue: {0}</value>
+        <value>إجمالي الإيرادات: {0}</value>
     </data>
   <data name="TotalExpenseTemplate" xml:space="preserve">
-        <value>Total Expense: {0}</value>
+        <value>إجمالي المصروفات: {0}</value>
     </data>
 </root>
