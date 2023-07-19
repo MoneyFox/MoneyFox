@@ -60,7 +60,6 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
 
         await InitializeAsync();
         var payment = await mediator.Send(new GetPaymentByIdQuery(paymentId));
-        var recurringPaymentViewModel = mapper.Map<RecurringPaymentViewModel>(payment.RecurringPayment);
         SelectedPayment = new()
         {
             Id = payment.Id,
@@ -70,21 +69,37 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
                     Id: payment.ChargedAccount.Id,
                     Name: payment.ChargedAccount.Name,
                     CurrentBalance: new(amount: payment.ChargedAccount.CurrentBalance, currencyAlphaIsoCode: settingsFacade.DefaultCurrency)),
-            TargetAccount = payment.TargetAccount == null
-                ? null
-                : new AccountPickerViewModel(
-                    Id: payment.TargetAccount.Id,
-                    Name: payment.TargetAccount.Name,
-                    CurrentBalance: new(amount: payment.TargetAccount.CurrentBalance, currencyAlphaIsoCode: settingsFacade.DefaultCurrency)),
+            TargetAccount
+                = payment.TargetAccount == null
+                    ? null
+                    : new AccountPickerViewModel(
+                        Id: payment.TargetAccount.Id,
+                        Name: payment.TargetAccount.Name,
+                        CurrentBalance: new(amount: payment.TargetAccount.CurrentBalance, currencyAlphaIsoCode: settingsFacade.DefaultCurrency)),
             Date = payment.Date,
             IsCleared = payment.IsCleared,
             Type = payment.Type,
             IsRecurring = payment.IsRecurring,
-            RecurringPayment = recurringPaymentViewModel,
             Note = payment.Note,
             Created = payment.Created,
             LastModified = payment.LastModified
         };
+
+        SelectedPayment.RecurringPayment = payment.RecurringPayment == null
+            ? null
+            : new RecurringPaymentViewModel
+            {
+                Id = payment.RecurringPayment.Id,
+                StartDate = payment.RecurringPayment.StartDate,
+                IsLastDayOfMonth = payment.RecurringPayment.IsLastDayOfMonth,
+                EndDate = payment.RecurringPayment.EndDate,
+                IsEndless = payment.RecurringPayment.IsEndless,
+                Amount = payment.RecurringPayment.Amount,
+                Type = payment.RecurringPayment.Type,
+                Recurrence = payment.RecurringPayment.Recurrence,
+                Note = payment.RecurringPayment.Note ?? string.Empty,
+                ChargedAccountId = payment.RecurringPayment.ChargedAccount.Id
+            };
 
         if (payment.Category != null)
         {
