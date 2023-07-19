@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
-using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using Controls.AccountPicker;
 using Controls.CategorySelection;
@@ -15,13 +14,11 @@ using Resources.Strings;
 internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
 {
     private readonly IDialogService dialogService;
-    private readonly IMapper mapper;
     private readonly IMediator mediator;
     private readonly ISettingsFacade settingsFacade;
 
     public EditPaymentViewModel(
         IMediator mediator,
-        IMapper mapper,
         IDialogService dialogService,
         IToastService toastService,
         ISettingsFacade settingsFacade,
@@ -33,7 +30,6 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
         settingsFacade: settingsFacade)
     {
         this.mediator = mediator;
-        this.mapper = mapper;
         this.dialogService = dialogService;
         this.settingsFacade = settingsFacade;
     }
