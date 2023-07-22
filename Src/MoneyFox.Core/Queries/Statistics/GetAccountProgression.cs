@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Queries.Statistics;
+namespace MoneyFox.Core.Queries.Statistics;
 
 using System;
 using System.Collections.Generic;
@@ -52,12 +52,18 @@ public static class GetAccountProgression
 
         public async Task<List<StatisticEntry>> Handle(Query request, CancellationToken cancellationToken)
         {
-            var payments = await appDbContext.Payments.Include(x => x.Category)
+            var baseQuery = appDbContext.Payments
+                .Include(x => x.Category)
                 .Include(x => x.ChargedAccount)
-                .HasAccountId(accountId: request.AccountId)
                 .HasDateLargerEqualsThan(request.StartDate.Date)
-                .HasDateSmallerEqualsThan(request.EndDate.Date)
-                .ToListAsync(cancellationToken);
+                .HasDateSmallerEqualsThan(request.EndDate.Date);
+
+            if (request.AccountId > 0)
+            {
+                baseQuery = baseQuery.HasAccountId(accountId: request.AccountId);
+            }
+
+            var payments = await baseQuery.ToListAsync(cancellationToken);
 
             List<StatisticEntry> returnList = new();
             foreach (var group in payments.GroupBy(x => new { x.Date.Month, x.Date.Year }))
