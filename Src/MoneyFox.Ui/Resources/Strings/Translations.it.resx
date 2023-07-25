@@ -950,4 +950,7 @@ Puoi cambiare questa valuta nelle impostazioni.</value>
   <data name="TotalExpenseTemplate" xml:space="preserve">
         <value>Spese totali: {0}</value>
     </data>
+  <data name="AllAccounts" xml:space="preserve">
+        <value>All Accounts</value>
+    </data>
 </root>
