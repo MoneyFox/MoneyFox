@@ -944,4 +944,10 @@ Du kan ændre denne sent i indstillingerne.</value>
   <data name="DateRangeInvalidMessage" xml:space="preserve">
         <value>Startdatoen skal være før slutdatoen.</value>
     </data>
+  <data name="TotalRevenueTemplate" xml:space="preserve">
+        <value>Indtægter i alt: {0}</value>
+    </data>
+  <data name="TotalExpenseTemplate" xml:space="preserve">
+        <value>Udgifter i alt: {0}</value>
+    </data>
 </root>
