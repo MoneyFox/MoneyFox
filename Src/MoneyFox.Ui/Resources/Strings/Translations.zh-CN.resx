@@ -949,4 +949,7 @@
   <data name="TotalExpenseTemplate" xml:space="preserve">
         <value>总支出: {0}</value>
     </data>
+  <data name="AllAccounts" xml:space="preserve">
+        <value>All Accounts</value>
+    </data>
 </root>
