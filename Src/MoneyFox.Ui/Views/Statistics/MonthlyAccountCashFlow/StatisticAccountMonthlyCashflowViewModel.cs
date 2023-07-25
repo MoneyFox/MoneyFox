@@ -56,8 +56,7 @@ internal sealed class StatisticAccountMonthlyCashFlowViewModel : StatisticViewMo
     {
         Accounts.Clear();
         var accounts = mapper.Map<List<AccountViewModel>>(await Mediator.Send(new GetAccountsQuery()));
-        var combinedCashFlow = accounts.Sum(x => x.CurrentBalance);
-        Accounts.Add(new AccountViewModel { Name = "All Accounts", CurrentBalance = combinedCashFlow });
+        Accounts.Add(new AccountViewModel { Name = "All Accounts" });
         accounts.ForEach(Accounts.Add);
         SelectedAccount = Accounts.First();
         await LoadAsync();

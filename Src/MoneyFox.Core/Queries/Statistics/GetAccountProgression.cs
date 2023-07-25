@@ -82,13 +82,31 @@ public static class GetAccountProgression
 
         private static decimal GetPaymentAmountForSum(Payment payment, Query request)
         {
-            return payment.Type switch
+            decimal amount = 0;
+
+            switch (payment.Type)
             {
-                PaymentType.Expense => -payment.Amount,
-                PaymentType.Income => payment.Amount,
-                PaymentType.Transfer => payment.ChargedAccount.Id == request.AccountId ? -payment.Amount : payment.Amount,
-                _ => 0
-            };
+                case PaymentType.Expense:
+                    amount = -payment.Amount;
+                    break;
+
+                case PaymentType.Income:
+                    amount = payment.Amount;
+                    break;
+
+                case PaymentType.Transfer:
+                    if (payment.ChargedAccount.Id == request.AccountId)
+                    {
+                        amount = -payment.Amount;
+                    }
+                    else if (payment.TargetAccount?.Id == request.AccountId)
+                    {
+                        amount = payment.Amount;
+                    }
+                    break;
+            }
+
+            return amount;
         }
     }
 }

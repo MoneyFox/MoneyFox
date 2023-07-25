@@ -111,4 +111,28 @@ public class GetAccountProgressionHandlerTests : InMemoryTestBase
         result[1].Value.Should().Be(-100);
         result[2].Value.Should().Be(-80);
     }
+
+    [Fact]
+    public async Task CalculateCorrectSums_TransferPayments()
+    {
+        // Arrange
+        var account1 = new Account("Foo1", 100);
+        var account2 = new Account("Foo2", 100);
+        Context.Add(account1);
+        Context.Add(account2);
+        Context.AddRange(
+            new List<Payment>
+            {
+                new(date: DateTime.Today, amount: 100, type: PaymentType.Transfer, chargedAccount: account1, targetAccount: account2),
+            });
+        await Context.SaveChangesAsync();
+
+        // Act
+        var result = await getAccountProgressionHandler.Handle(
+            request: new(accountId: 0, startDate: DateTime.Today, endDate: DateTime.Today.AddDays(3)),
+            cancellationToken: default);
+
+        // Assert
+        result[0].Value.Should().Be(0);
+    }
 }
