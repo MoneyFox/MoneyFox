@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui.Tests.Views.Payments;
 
-using AutoMapper;
 using Core.Common.Interfaces;
 using Core.Common.Settings;
 using Core.Queries;
@@ -8,7 +7,6 @@ using Domain;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Tests.TestFramework;
 using FluentAssertions;
-using Mapping;
 using MediatR;
 using NSubstitute;
 using Ui.Views.Payments.PaymentModification;
@@ -31,7 +29,6 @@ public sealed class EditPaymentViewModelTests
         mediator.Send(request: Arg.Any<GetPaymentByIdQuery>(), cancellationToken: Arg.Any<CancellationToken>()).Returns(dbPayment);
         var vm = new EditPaymentViewModel(
             mediator: mediator,
-            mapper: AutoMapperFactory.Create(),
             dialogService: dialogService,
             toastService: toastService,
             settingsFacade: settingsFacade,
@@ -55,7 +52,6 @@ public sealed class EditPaymentViewModelTests
         var mediator = Substitute.For<IMediator>();
         var vm = new EditPaymentViewModel(
             mediator: mediator,
-            mapper: Substitute.For<IMapper>(),
             dialogService: dialogService,
             toastService: toastService,
             settingsFacade: Substitute.For<ISettingsFacade>(),

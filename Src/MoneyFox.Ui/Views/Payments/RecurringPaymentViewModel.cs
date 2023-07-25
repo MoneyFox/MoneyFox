@@ -13,7 +13,6 @@ public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
     private decimal amount;
     private CategoryListItemViewModel? categoryViewModel;
 
-    private AccountViewModel chargedAccount = null!;
     private DateTime? endDate;
 
     private int id;
@@ -23,6 +22,7 @@ public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
     private PaymentRecurrence recurrence;
     private DateTime startDate;
     private PaymentType type;
+    private int chargedAccountId;
 
     public RecurringPaymentViewModel()
     {
@@ -119,14 +119,10 @@ public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
         set => SetProperty(field: ref note, newValue: value);
     }
 
-    /// <summary>
-    ///     In case it's a expense or transfer the account who will be charged.     In case it's an income the account
-    ///     who will be credited.
-    /// </summary>
-    public AccountViewModel ChargedAccount
+    public int ChargedAccountId
     {
-        get => chargedAccount;
-        set => SetProperty(field: ref chargedAccount, newValue: value);
+        get => chargedAccountId;
+        set => SetProperty(field: ref chargedAccountId, newValue: value);
     }
 
     /// <summary>
