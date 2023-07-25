@@ -12,6 +12,7 @@ using LiveChartsCore.Kernel.Sketches;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using MediatR;
+using MoneyFox.Ui.Resources.Strings;
 using SkiaSharp;
 
 internal sealed class StatisticAccountMonthlyCashFlowViewModel : StatisticViewModel
@@ -56,7 +57,7 @@ internal sealed class StatisticAccountMonthlyCashFlowViewModel : StatisticViewMo
     {
         Accounts.Clear();
         var accounts = mapper.Map<List<AccountViewModel>>(await Mediator.Send(new GetAccountsQuery()));
-        Accounts.Add(new AccountViewModel { Name = "All Accounts" });
+        Accounts.Add(new AccountViewModel { Name = Translations.AllAccounts });
         accounts.ForEach(Accounts.Add);
         SelectedAccount = Accounts.First();
         await LoadAsync();
