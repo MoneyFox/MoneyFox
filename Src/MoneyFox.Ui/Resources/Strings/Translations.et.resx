@@ -950,4 +950,7 @@ Seda saate hilisemalt seadetes muuta.</value>
   <data name="TotalExpenseTemplate" xml:space="preserve">
         <value>Kulud kokku: {0}</value>
     </data>
+  <data name="AllAccounts" xml:space="preserve">
+        <value>All Accounts</value>
+    </data>
 </root>
