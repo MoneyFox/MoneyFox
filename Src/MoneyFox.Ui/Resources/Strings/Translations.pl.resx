@@ -949,6 +949,6 @@ Możesz to zmienić w ustawieniach.</value>
         <value>Całkowite wydatki: {0}</value>
     </data>
   <data name="AllAccounts" xml:space="preserve">
-        <value>All Accounts</value>
+        <value>Wszyscy Klienci</value>
     </data>
 </root>

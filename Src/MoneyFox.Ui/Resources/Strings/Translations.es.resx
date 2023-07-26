@@ -949,6 +949,6 @@ Puedes cambiarla más tarde en los ajustes.</value>
         <value>Gasto total: {0}</value>
     </data>
   <data name="AllAccounts" xml:space="preserve">
-        <value>All Accounts</value>
+        <value>Todas las cuentas</value>
     </data>
 </root>

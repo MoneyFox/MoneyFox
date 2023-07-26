@@ -949,6 +949,6 @@ Anda dapat mengubahnya di bagian akhir pengaturan.</value>
         <value>Total Biaya: {0}</value>
     </data>
   <data name="AllAccounts" xml:space="preserve">
-        <value>All Accounts</value>
+        <value>Semua Akun</value>
     </data>
 </root>

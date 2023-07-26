@@ -951,6 +951,6 @@ Bunu ayarlardan geç değiştirebilirsiniz.</value>
         <value>Toplam Gider: {0}</value>
     </data>
   <data name="AllAccounts" xml:space="preserve">
-        <value>All Accounts</value>
+        <value>Tüm Hesaplar</value>
     </data>
 </root>

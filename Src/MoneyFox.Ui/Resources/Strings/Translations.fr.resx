@@ -948,6 +948,6 @@ Tu peux la modifier dans les paramètres.</value>
         <value>Dépenses totales : {0}</value>
     </data>
   <data name="AllAccounts" xml:space="preserve">
-        <value>All Accounts</value>
+        <value>Tous les comptes</value>
     </data>
 </root>
