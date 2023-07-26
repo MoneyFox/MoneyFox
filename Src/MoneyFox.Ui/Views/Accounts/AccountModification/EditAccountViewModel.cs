@@ -39,8 +39,6 @@ public class EditAccountViewModel : ModifyAccountViewModel
 
     protected override async Task SaveAccountAsync()
     {
-        // Due to a bug in .net maui, the loading dialog can only be called after any other dialog
-        await dialogService.ShowLoadingDialogAsync(Translations.SavingAccountMessage);
         var command = new UpdateAccount.Command(
             Id: SelectedAccountVm.Id,
             Name: SelectedAccountVm.Name,
