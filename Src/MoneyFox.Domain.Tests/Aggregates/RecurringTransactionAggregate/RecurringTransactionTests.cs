@@ -15,15 +15,15 @@ public sealed class RecurringTransactionTests
         // Act
         var recurringTransaction = RecurringTransaction.Create(
             id: testRecurringTransfer.Id,
-            startDate: testRecurringTransfer.StartDate,
-            endDate: testRecurringTransfer.EndDate,
-            amount: testRecurringTransfer.Amount,
-            type: testRecurringTransfer.Type,
-            note: testRecurringTransfer.Note,
             chargedAccount: testRecurringTransfer.ChargedAccount,
             targetAccount: testRecurringTransfer.TargetAccount,
+            amount: testRecurringTransfer.Amount,
             categoryId: testRecurringTransfer.CategoryId,
+            type: testRecurringTransfer.Type,
+            startDate: testRecurringTransfer.StartDate,
+            endDate: testRecurringTransfer.EndDate,
             recurrence: testRecurringTransfer.Recurrence,
+            note: testRecurringTransfer.Note,
             isLastDayOfMonth: testRecurringTransfer.IsLastDayOfMonth);
 
         // Assert

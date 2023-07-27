@@ -8,15 +8,15 @@ internal static class TestRecurringTransactionDbFactory
     {
         return RecurringTransaction.Create(
             id: recurringTransaction.Id,
-            startDate: recurringTransaction.StartDate,
-            endDate: recurringTransaction.EndDate,
-            amount: recurringTransaction.Amount,
-            type: recurringTransaction.Type,
-            note: recurringTransaction.Note,
             chargedAccount: recurringTransaction.ChargedAccount,
             targetAccount: recurringTransaction.TargetAccount,
+            amount: recurringTransaction.Amount,
             categoryId: recurringTransaction.CategoryId,
+            type: recurringTransaction.Type,
+            startDate: recurringTransaction.StartDate,
+            endDate: recurringTransaction.EndDate,
             recurrence: recurringTransaction.Recurrence,
+            note: recurringTransaction.Note,
             isLastDayOfMonth: recurringTransaction.IsLastDayOfMonth);
     }
 }
