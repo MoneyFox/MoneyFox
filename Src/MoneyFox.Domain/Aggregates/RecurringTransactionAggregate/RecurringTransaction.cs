@@ -8,8 +8,8 @@ public sealed class RecurringTransaction : EntityBase
 {
     private RecurringTransaction(
         RecurringTransactionId id,
-        int chargedAccount,
-        int? targetAccount,
+        int chargedAccountId,
+        int? targetAccountId,
         Money amount,
         int? categoryId,
         PaymentType type,
@@ -26,8 +26,8 @@ public sealed class RecurringTransaction : EntityBase
         Amount = amount;
         Type = type;
         Note = note;
-        ChargedAccount = chargedAccount;
-        TargetAccount = targetAccount;
+        ChargedAccountId = chargedAccountId;
+        TargetAccountId = targetAccountId;
         CategoryId = categoryId;
         Recurrence = recurrence;
         IsLastDayOfMonth = isLastDayOfMonth;
@@ -36,9 +36,9 @@ public sealed class RecurringTransaction : EntityBase
 
     public RecurringTransactionId Id { get; private set; }
 
-    public int ChargedAccount { get; private set; }
+    public int ChargedAccountId { get; private set; }
 
-    public int? TargetAccount { get; private set; }
+    public int? TargetAccountId { get; private set; }
 
     public Money Amount { get; private set; }
 
@@ -73,8 +73,8 @@ public sealed class RecurringTransaction : EntityBase
     {
         return new(
             id: id,
-            chargedAccount: chargedAccount,
-            targetAccount: targetAccount,
+            chargedAccountId: chargedAccount,
+            targetAccountId: targetAccount,
             amount: amount,
             categoryId: categoryId,
             type: type,

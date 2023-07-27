@@ -19,8 +19,8 @@ internal sealed class RecurringTransactionConfiguration : IEntityTypeConfigurati
         builder.Property(p => p.Amount);
         builder.Property(p => p.Type);
         builder.Property(p => p.Note);
-        builder.Property(p => p.ChargedAccount);
-        builder.Property(p => p.TargetAccount);
+        builder.Property(p => p.ChargedAccountId);
+        builder.Property(p => p.TargetAccountId);
         builder.Property(p => p.Recurrence);
         builder.Property(p => p.IsLastDayOfMonth);
         builder.Property(p => p.LastRecurrence);
