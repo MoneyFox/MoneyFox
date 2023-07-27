@@ -27,6 +27,6 @@ public sealed class RecurringTransactionTests
             isLastDayOfMonth: testRecurringTransfer.IsLastDayOfMonth);
 
         // Assert
-        AssertRecurringTransaction(recurringTransaction: recurringTransaction, testRecurringTransfer: testRecurringTransfer);
+        AssertRecurringTransaction(actual: recurringTransaction, expected: testRecurringTransfer);
     }
 }

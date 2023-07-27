@@ -11,6 +11,7 @@ using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.BudgetAggregate;
 using Domain.Aggregates.CategoryAggregate;
+using Domain.Aggregates.RecurringTransactionAggregate;
 using MediatR;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.Data.Sqlite;
@@ -34,6 +35,8 @@ public class AppDbContext : DbContext, IAppDbContext
     public DbSet<Payment> Payments { get; set; } = null!;
 
     public DbSet<RecurringPayment> RecurringPayments { get; set; } = null!;
+
+    public DbSet<RecurringTransaction> RecurringTransactions { get; set; } = null!;
 
     public DbSet<Category> Categories { get; set; } = null!;
 
