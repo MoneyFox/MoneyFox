@@ -8,7 +8,7 @@ internal static partial class TestData
 {
     public sealed class RecurringExpense : IRecurringTransaction
     {
-        public RecurringTransactionId Id => new(100);
+        public RecurringTransactionId Id { get; set; } = new(100);
         public DateOnly StartDate { get; } = new(year: 2023, month: 07, day: 12);
         public DateOnly? EndDate { get; } = null;
         public Money Amount { get; } = new(amount: 1042, currency: Currencies.CHF);
@@ -24,7 +24,7 @@ internal static partial class TestData
 
     public sealed class RecurringTransfer : IRecurringTransaction
     {
-        public RecurringTransactionId Id => new(100);
+        public RecurringTransactionId Id { get; set; } = new(101);
         public DateOnly StartDate { get; } = new(year: 2023, month: 07, day: 12);
         public DateOnly? EndDate { get; } = new(year: 2050, month: 07, day: 12);
         public Money Amount { get; } = new(amount: 1042, currency: Currencies.CHF);
@@ -40,7 +40,7 @@ internal static partial class TestData
 
     public interface IRecurringTransaction
     {
-        RecurringTransactionId Id { get; }
+        RecurringTransactionId Id { get; set; }
 
         DateOnly StartDate { get; }
 

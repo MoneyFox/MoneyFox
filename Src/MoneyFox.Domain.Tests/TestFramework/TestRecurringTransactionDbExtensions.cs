@@ -1,22 +1,27 @@
-﻿namespace MoneyFox.Domain.Tests.TestFramework;
+namespace MoneyFox.Domain.Tests.TestFramework;
 
 using Domain.Aggregates.RecurringTransactionAggregate;
+using Infrastructure.Persistence;
 
 internal static class TestRecurringTransactionDbExtensions
 {
-    internal static RecurringTransaction CreateDbLedger(this TestData.IRecurringTransaction recurringTransaction)
+    public static void RegisterBudgets(this AppDbContext db, params TestData.IRecurringTransaction[] recurringTransactions)
     {
-        return RecurringTransaction.Create(
-            id: recurringTransaction.Id,
-            startDate: recurringTransaction.StartDate,
-            endDate: recurringTransaction.EndDate,
-            amount: recurringTransaction.Amount,
-            type: recurringTransaction.Type,
-            note: recurringTransaction.Note,
-            chargedAccount: recurringTransaction.ChargedAccount,
-            targetAccount: recurringTransaction.TargetAccount,
-            categoryId: recurringTransaction.CategoryId,
-            recurrence: recurringTransaction.Recurrence,
-            isLastDayOfMonth: recurringTransaction.IsLastDayOfMonth);
+        foreach (var testRecurringTransaction in recurringTransactions)
+        {
+            db.Add(testRecurringTransaction.CreateDbRecurringTransaction());
+        }
+
+        db.SaveChanges();
+    }
+
+    public static RecurringTransaction RegisterBudget(this AppDbContext db, TestData.IRecurringTransaction recurringTransaction)
+    {
+        var dbRecurringTransaction = recurringTransaction.CreateDbRecurringTransaction();
+        db.Add(dbRecurringTransaction);
+        db.SaveChanges();
+        recurringTransaction.Id = dbRecurringTransaction.Id;
+
+        return dbRecurringTransaction;
     }
 }
