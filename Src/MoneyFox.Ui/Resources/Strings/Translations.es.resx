@@ -948,4 +948,7 @@ Puedes cambiarla más tarde en los ajustes.</value>
   <data name="TotalExpenseTemplate" xml:space="preserve">
         <value>Gasto total: {0}</value>
     </data>
+  <data name="AllAccounts" xml:space="preserve">
+        <value>Todas las cuentas</value>
+    </data>
 </root>

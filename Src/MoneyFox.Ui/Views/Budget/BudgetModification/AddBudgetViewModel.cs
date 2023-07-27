@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Views.Budget.BudgetModification;
 
 using CommunityToolkit.Mvvm.Messaging;
+using Core.Common.Interfaces;
 using Core.Features.BudgetCreation;
 using MediatR;
 
@@ -9,13 +10,16 @@ internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
     private readonly INavigationService navigationService;
     private readonly ISender sender;
 
-    public AddBudgetViewModel(ISender sender, INavigationService navigationService) : base(navigationService: navigationService, sender: sender)
+    public AddBudgetViewModel(ISender sender, INavigationService navigationService, IDialogService dialogService) : base(
+        navigationService: navigationService,
+        sender: sender,
+        dialogService: dialogService)
     {
         this.sender = sender;
         this.navigationService = navigationService;
     }
 
-    protected override async Task SaveBudgetAsync()
+    protected override async Task SaveAsync()
     {
         CreateBudget.Command query = new(
             Name: Name,

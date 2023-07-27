@@ -950,4 +950,7 @@ Bunu ayarlardan geç değiştirebilirsiniz.</value>
   <data name="TotalExpenseTemplate" xml:space="preserve">
         <value>Toplam Gider: {0}</value>
     </data>
+  <data name="AllAccounts" xml:space="preserve">
+        <value>Tüm Hesaplar</value>
+    </data>
 </root>

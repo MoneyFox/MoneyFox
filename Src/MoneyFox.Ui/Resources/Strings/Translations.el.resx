@@ -950,4 +950,7 @@
   <data name="TotalExpenseTemplate" xml:space="preserve">
         <value>Συνολικά έξοδα: {0}</value>
     </data>
+  <data name="AllAccounts" xml:space="preserve">
+        <value>Όλοι Οι Λογαριασμοί</value>
+    </data>
 </root>

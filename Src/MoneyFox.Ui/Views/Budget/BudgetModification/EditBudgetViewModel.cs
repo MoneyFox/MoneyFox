@@ -22,7 +22,8 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel, IQueryAttribu
 
     public EditBudgetViewModel(ISender sender, INavigationService navigationService, IDialogService dialogService) : base(
         navigationService: navigationService,
-        sender: sender)
+        sender: sender,
+        dialogService: dialogService)
     {
         this.sender = sender;
         this.navigationService = navigationService;
@@ -75,7 +76,7 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel, IQueryAttribu
         }
     }
 
-    protected override async Task SaveBudgetAsync()
+    protected override async Task SaveAsync()
     {
         var command = new UpdateBudget.Command(
             budgetId: Id,
