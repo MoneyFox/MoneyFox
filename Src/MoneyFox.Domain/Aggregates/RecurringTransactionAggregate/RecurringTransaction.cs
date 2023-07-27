@@ -9,7 +9,7 @@ public sealed class RecurringTransaction : EntityBase
     private RecurringTransaction(
         RecurringTransactionId id,
         DateOnly startDate,
-        DateOnly endDate,
+        DateOnly? endDate,
         Money amount,
         PaymentType type,
         string? note,
@@ -38,7 +38,7 @@ public sealed class RecurringTransaction : EntityBase
 
     public DateOnly StartDate { get; private set; }
 
-    public DateOnly EndDate { get; private set; }
+    public DateOnly? EndDate { get; private set; }
 
     public Money Amount { get; private set; }
 
@@ -61,7 +61,7 @@ public sealed class RecurringTransaction : EntityBase
     public static RecurringTransaction Create(
         RecurringTransactionId id,
         DateOnly startDate,
-        DateOnly endDate,
+        DateOnly? endDate,
         Money amount,
         PaymentType type,
         string? note,
