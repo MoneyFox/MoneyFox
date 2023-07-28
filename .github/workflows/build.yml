@@ -108,6 +108,22 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{env.DOTNET_VERSION}}
+          
+      - name: Get android version
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y%m').${{ GITHUB.run_number }}"
+  
+      - name: Set Android Version
+        run: |
+          $Version = ${{ steps.date.outputs.date }}
+          $DisplayVersion = "${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
+          Write-Host "DisplayVersion:" $DisplayVersion
+          Write-Host "Version:" $Version
+          [xml]$xml = Get-Content -Path $GITHUB_WORKSPACE\src\MoneyFox.Ui\MoneyFox.Ui.csproj
+          $xml.Project.PropertyGroup[3].ApplicationDisplayVersion = $DisplayVersion
+          $xml.Project.PropertyGroup[3].ApplicationVersion = $Version
+          Set-Content "$GITHUB_WORKSPACE\src\MoneyFox.Ui\MoneyFox.Ui.csproj" -Value $xml.InnerXml -Force
+          Write-Host $xml.InnerXml
 
       - uses: actions/cache@v3
         with:
@@ -154,12 +170,28 @@ jobs:
     runs-on: macos-13
 
     steps:
-      - uses: actions/checkout@v3
-      
       - name: Xcode Select
         uses: devbotsxyz/xcode-select@v1.1.0
         with:
           version: "14.3"
+          
+      - name: Checkout repository
+        uses: actions/checkout@v3
+          
+      - name: Set iOS Version
+        shell: pwsh
+        run: |
+          $DisplayVersion = "${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
+          $Version = ${{ GITHUB.run_number }}
+  
+          Write-Host "DisplayVersion:" $DisplayVersion
+          Write-Host "Version:" $Version
+  
+          [xml]$xml = Get-Content -Path ./src/MoneyFox.Ui/MoneyFox.Ui.csproj
+          $xml.Project.PropertyGroup[0].ApplicationDisplayVersion = $Version
+          $xml.Project.PropertyGroup[0].ApplicationVersion = $DisplayVersion
+          Set-Content "./src/MoneyFox.Ui/MoneyFox.Ui.csproj" -Value $xml.InnerXml -Force
+          Write-Host $xml.InnerXml
           
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
