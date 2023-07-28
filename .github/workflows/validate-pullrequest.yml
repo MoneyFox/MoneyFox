@@ -121,6 +121,11 @@ jobs:
           dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
           dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
           
+          - name: Xcode Select
+            uses: devbotsxyz/xcode-select@v1.1.0
+            with:
+              version: "14.3"
+
       - name: Install the Apple certificate and provisioning profile
         env:
           BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
