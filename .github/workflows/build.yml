@@ -128,7 +128,16 @@ jobs:
           dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
 
       - name: Build Android
-        run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-android -c Release -o ${{ github.workspace }}/moneyfox-android /p:AndroidKeyStore="True" /p:AndroidSigningKeyAlias="${{ KEYSTORE_ALIAS }}" /p:AndroidSigningKeyStore="${{ RELEASE_KEYSTORE }}" /p:AndroidSigningKeyPass="${{ RELEASE_KEYSTORE_PASSWORD }}" /p:AndroidSigningStorePass="${{ RELEASE_KEYSTORE_PASSWORD }}"
+        run: | 
+          dotnet publish ${{env.UI_PROJECT_PATH}} \
+            -f net7.0-android \
+            -c Release \
+            -o ${{ github.workspace }}/moneyfox-android \
+            /p:AndroidKeyStore="True" \
+            /p:AndroidSigningKeyAlias="${{ secrets.KEYSTORE_ALIAS }}" \
+            /p:AndroidSigningKeyStore="${{ secrets.RELEASE_KEYSTORE }}" \
+            /p:AndroidSigningKeyPass="${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" \
+            /p:AndroidSigningStorePass="${{ secrets.RELEASE_KEYSTORE_PASSWORD }}"
 
       - name: Upload Android build
         if: needs.pr-check.outputs.number != 'null'
