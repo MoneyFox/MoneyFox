@@ -21,7 +21,41 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Install signing certificate
+        env:
+          WINDOWS_CERTIFICATE_BASE64: ${{ secrets.WINDOWS_CERTIFICATE }}
+          WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
+        run: |
+          # create variables
+          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
+
+          # import certificate from secrets
+          [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($WINDOWS_CERTIFICATE_BASE64) | Out-File -Encoding "ASCII" $CERTIFICATE_PATH
+          
+          Add-Type -AssemblyName System.Security
+          $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
+          $cert.Import($CERTIFICATE_PATH, $certPassword, [System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]"PersistKeySet")
+          $store = new-object system.security.cryptography.X509Certificates.X509Store -argumentlist "MY", CurrentUser
+          $store.Open([System.Security.Cryptography.X509Certificates.OpenFlags]"ReadWrite")
+          $store.Add($cert)
+          $store.Close()     
+        
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set values in manifest
+        run: |
+          [xml]$xmlDoc = Get-Content '$GITHUB_WORKSPACE\src\MoneyFox.Ui\Platforms\Windows\Package.appxmanifest'
+          $xmlDoc.Package.Identity.Name="57598ApplySolutionsSoftwa.MoneyFox"
+          $xmlDoc.Package.Identity.Publisher="CN=071307B1-B0E3-434A-AD0E-FFF714A7245C"
+          $xmlDoc.Save('$GITHUB_WORKSPACE\src\MoneyFox.Ui\Platforms\Windows\Package.appxmanifest')  
+
+      - name: Set assosciation to store
+        run: |
+          [xml]$xmlDoc = Get-Content '$GITHUB_WORKSPACE\src\MoneyFox.Ui\Platforms\Windows\Package.StoreAssociation.xml'
+          $xmlDoc.StoreAssociation.Publisher="CN=071307B1-B0E3-434A-AD0E-FFF714A7245C"
+          $xmlDoc.StoreAssociation.ProductReservedInfo.MainPackageIdentityName="57598ApplySolutionsSoftwa.MoneyFox"
+          $xmlDoc.Save('$GITHUB_WORKSPACE\src\MoneyFox.Ui\Platforms\Windows\Package.StoreAssociation.xml')       
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
@@ -94,7 +128,7 @@ jobs:
           dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
 
       - name: Build Android
-        run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-android -c Release -o ${{ github.workspace }}/moneyfox-win /p:AndroidKeyStore="True" /p:AndroidSigningKeyAlias="$(KeyStoreAlias)" /p:AndroidSigningKeyStore="$(keystore.secureFilePath)" /p:AndroidSigningKeyPass="$(KeyStorePass)" /p:AndroidSigningStorePass="$(KeyStorePass)"'
+        run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-android -c Release -o ${{ github.workspace }}/moneyfox-android /p:AndroidKeyStore="True" /p:AndroidSigningKeyAlias="${{ KEYSTORE_ALIAS }}" /p:AndroidSigningKeyStore="${{ RELEASE_KEYSTORE }}" /p:AndroidSigningKeyPass="${{ RELEASE_KEYSTORE_PASSWORD }}" /p:AndroidSigningStorePass="${{ RELEASE_KEYSTORE_PASSWORD }}"
 
       - name: Upload Android build
         if: needs.pr-check.outputs.number != 'null'
