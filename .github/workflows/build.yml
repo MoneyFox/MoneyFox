@@ -9,7 +9,8 @@ on:
   workflow_dispatch:
 
 env:
-  DOTNET_VERSION: "7.x"
+  MAJOR_VERSION: "8"
+  MINOR_VERSION: "3"
   UI_PROJECT_PATH: "src/MoneyFox.Ui/MoneyFox.Ui.csproj"
   CORE_TEST_PROJECT_PATH: "src/MoneyFox.Core.Tests/MoneyFox.Core.Tests.csproj"
   UI_TEST_PROJECT_PATH: "src/MoneyFox.Ui.Tests/MoneyFox.Ui.Tests.csproj"
@@ -48,9 +49,10 @@ jobs:
           [xml]$xmlDoc = Get-Content '$GITHUB_WORKSPACE\src\MoneyFox.Ui\Platforms\Windows\Package.appxmanifest'
           $xmlDoc.Package.Identity.Name="57598ApplySolutionsSoftwa.MoneyFox"
           $xmlDoc.Package.Identity.Publisher="CN=071307B1-B0E3-434A-AD0E-FFF714A7245C"
+          $xmlDoc.Package.Identity.Version="${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
           $xmlDoc.Save('$GITHUB_WORKSPACE\src\MoneyFox.Ui\Platforms\Windows\Package.appxmanifest')  
 
-      - name: Set assosciation to store
+      - name: Set association to store
         run: |
           [xml]$xmlDoc = Get-Content '$GITHUB_WORKSPACE\src\MoneyFox.Ui\Platforms\Windows\Package.StoreAssociation.xml'
           $xmlDoc.StoreAssociation.Publisher="CN=071307B1-B0E3-434A-AD0E-FFF714A7245C"
