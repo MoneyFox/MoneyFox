@@ -28,7 +28,7 @@ jobs:
           WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
         run: |
           # create variables
-          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
+          $CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
 
           # import certificate from secrets
           [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($WINDOWS_CERTIFICATE_BASE64)) | Out-File -Encoding "ASCII" $CERTIFICATE_PATH
