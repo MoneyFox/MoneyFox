@@ -156,5 +156,5 @@ jobs:
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
         
       - name: Build MAUI iOS
-        run: dotnet build ${{env.UI_PROJECT_PATH}} -f net7.0-ios -c Debug /p:buildForSimulator=True /p:packageApp=True /p:ArchiveOnBuild=False
+        run: dotnet build ${{env.UI_PROJECT_PATH}} -f net7.0-ios -c Release /p:packageApp=True
       
