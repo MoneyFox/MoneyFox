@@ -944,4 +944,13 @@
   <data name="DateRangeInvalidMessage" xml:space="preserve">
         <value>Дата початку повинна передувати даті закінчення.</value>
     </data>
+  <data name="TotalRevenueTemplate" xml:space="preserve">
+        <value>Загальний дохід: {0}</value>
+    </data>
+  <data name="TotalExpenseTemplate" xml:space="preserve">
+        <value>Загальні витрати: {0}</value>
+    </data>
+  <data name="AllAccounts" xml:space="preserve">
+        <value>Всі облікові записи</value>
+    </data>
 </root>

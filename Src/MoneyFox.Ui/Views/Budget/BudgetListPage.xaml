@@ -34,14 +34,18 @@
                             ItemsSource="{Binding Budgets}"
                             ItemSizingStrategy="MeasureFirstItem"
                             SelectionMode="None">
+
                 <CollectionView.Header>
-                    <VerticalStackLayout Spacing="6" Margin="18,0, 12,0">
-                        <Label Style="{StaticResource TextBodySecondary}"
-                               Text="{Binding BudgetedAmount, StringFormat={extensions:Translate MonthlyBudgetTemplate}, Converter={StaticResource AmountFormatConverter}}" />
-                        <Label Style="{StaticResource TextBodySecondary}"
-                               Text="{Binding SpentAmount, StringFormat={extensions:Translate MonthlySpendingOnBudgetsTemplate}, Converter={StaticResource AmountFormatConverter}}" />
-                    </VerticalStackLayout>
+                    <ContentView>
+                        <VerticalStackLayout Spacing="6" Margin="18,0, 12,0">
+                            <Label Style="{StaticResource TextBodySecondary}"
+                                   Text="{Binding BudgetedAmount, StringFormat={extensions:Translate MonthlyBudgetTemplate}, Converter={StaticResource AmountFormatConverter}}" />
+                            <Label Style="{StaticResource TextBodySecondary}"
+                                   Text="{Binding SpentAmount, StringFormat={extensions:Translate MonthlySpendingOnBudgetsTemplate}, Converter={StaticResource AmountFormatConverter}}" />
+                        </VerticalStackLayout>
+                    </ContentView>
                 </CollectionView.Header>
+
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="budget:BudgetListItemViewModel">
                         <Grid Padding="12,6,12,0">

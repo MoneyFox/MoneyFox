@@ -944,4 +944,13 @@ Seda saate hilisemalt seadetes muuta.</value>
   <data name="DateRangeInvalidMessage" xml:space="preserve">
         <value>Alguskuupäev peab olema enne lõppkuupäeva.</value>
     </data>
+  <data name="TotalRevenueTemplate" xml:space="preserve">
+        <value>Kogutulu: {0}</value>
+    </data>
+  <data name="TotalExpenseTemplate" xml:space="preserve">
+        <value>Kulud kokku: {0}</value>
+    </data>
+  <data name="AllAccounts" xml:space="preserve">
+        <value>Kõik kontod</value>
+    </data>
 </root>

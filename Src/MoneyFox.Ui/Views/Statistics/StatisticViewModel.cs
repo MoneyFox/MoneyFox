@@ -46,8 +46,6 @@ internal abstract class StatisticViewModel : BasePageViewModel, IRecipient<DateS
 
     public SolidColorPaint LegendBackgroundPaint { get; } = new();
 
-    public double LegendFontSize => 24;
-
     public AsyncRelayCommand LoadedCommand => new(LoadAsync);
 
     public DateTime StartDate

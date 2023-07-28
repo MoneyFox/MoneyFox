@@ -9,7 +9,7 @@ using Core.Queries.Statistics.GetCategorySummary;
 using MediatR;
 using Serilog;
 
-internal sealed class StatisticCategorySummaryViewModel : StatisticViewModel
+internal class StatisticCategorySummaryViewModel : StatisticViewModel
 {
     private readonly IDialogService dialogService;
 
@@ -30,8 +30,14 @@ internal sealed class StatisticCategorySummaryViewModel : StatisticViewModel
             categorySummary = value;
             OnPropertyChanged();
             OnPropertyChanged(nameof(HasData));
+            OnPropertyChanged(nameof(TotalExpense));
+            OnPropertyChanged(nameof(TotalRevenue));
         }
     }
+
+    public decimal TotalExpense => Math.Abs(CategorySummary.Where(x => x.Value < 0).Sum(x => x.Value));
+
+    public decimal TotalRevenue => CategorySummary.Where(x => x.Value > 0).Sum(x => x.Value);
 
     public bool HasData => CategorySummary.Any();
 

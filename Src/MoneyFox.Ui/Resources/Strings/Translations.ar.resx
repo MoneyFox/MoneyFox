@@ -944,4 +944,13 @@
   <data name="DateRangeInvalidMessage" xml:space="preserve">
         <value>يجب أن يكون تاريخ البدء قبل تاريخ الانتهاء.</value>
     </data>
+  <data name="TotalRevenueTemplate" xml:space="preserve">
+        <value>إجمالي الإيرادات: {0}</value>
+    </data>
+  <data name="TotalExpenseTemplate" xml:space="preserve">
+        <value>إجمالي المصروفات: {0}</value>
+    </data>
+  <data name="AllAccounts" xml:space="preserve">
+        <value>جميع الحسابات</value>
+    </data>
 </root>

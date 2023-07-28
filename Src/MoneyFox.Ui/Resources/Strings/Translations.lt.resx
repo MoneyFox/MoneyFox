@@ -944,4 +944,13 @@ Norėdami pradėti, sukurkite naują paskyrą. Sąskaitos naudojamos mokėjimams
   <data name="DateRangeInvalidMessage" xml:space="preserve">
         <value>Pradžios data turi būti ankstesnė nei pabaigos data.</value>
     </data>
+  <data name="TotalRevenueTemplate" xml:space="preserve">
+        <value>Visos pajamos: {0}</value>
+    </data>
+  <data name="TotalExpenseTemplate" xml:space="preserve">
+        <value>Iš viso išlaidų: {0}</value>
+    </data>
+  <data name="AllAccounts" xml:space="preserve">
+        <value>Visos sąskaitos</value>
+    </data>
 </root>

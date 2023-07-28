@@ -942,4 +942,13 @@ Możesz to zmienić w ustawieniach.</value>
   <data name="DateRangeInvalidMessage" xml:space="preserve">
         <value>Data rozpoczęcia musi być wcześniejsza niż data zakończenia.</value>
     </data>
+  <data name="TotalRevenueTemplate" xml:space="preserve">
+        <value>Całkowity przychód: {0}</value>
+    </data>
+  <data name="TotalExpenseTemplate" xml:space="preserve">
+        <value>Całkowite wydatki: {0}</value>
+    </data>
+  <data name="AllAccounts" xml:space="preserve">
+        <value>Wszyscy Klienci</value>
+    </data>
 </root>
