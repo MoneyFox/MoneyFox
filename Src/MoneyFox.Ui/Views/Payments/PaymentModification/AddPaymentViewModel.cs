@@ -15,6 +15,7 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
 {
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
+    private readonly ISettingsFacade settingsFacade;
 
     public AddPaymentViewModel(
         IMediator mediator,
@@ -31,22 +32,17 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
     {
         this.mediator = mediator;
         this.dialogService = dialogService;
+        this.settingsFacade = settingsFacade;
     }
 
     public new void ApplyQueryAttributes(IDictionary<string, object> query)
     {
         if (IsFirstLoad)
         {
-            var accountId = 0;
-            if (query.TryGetValue(key: "defaultChargedAccountId", value: out var defaultChargedAccountId))
-            {
-                accountId = Convert.ToInt32(defaultChargedAccountId);
-            }
-
             InitializeAsync().GetAwaiter().GetResult();
             if (ChargedAccounts.Any())
             {
-                SelectedPayment.ChargedAccount = accountId != 0 ? ChargedAccounts.First(n => n.Id == accountId) : ChargedAccounts[0];
+                SelectedPayment.ChargedAccount = string.IsNullOrEmpty(settingsFacade.DefaultAccount) ? ChargedAccounts[0] : ChargedAccounts.First(n => n.Name == settingsFacade.DefaultAccount);
             }
         }
 

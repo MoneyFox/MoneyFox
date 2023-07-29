@@ -70,6 +70,15 @@ namespace MoneyFox.Ui.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account.
+        /// </summary>
+        public static string AccountIntroductionTitle {
+            get {
+                return ResourceManager.GetString("AccountIntroductionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account Name.
         /// </summary>
         public static string AccountNameLabel {
@@ -84,6 +93,15 @@ namespace MoneyFox.Ui.Resources.Strings {
         public static string AccountRequiredMessage {
             get {
                 return ResourceManager.GetString("AccountRequiredMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the account you would like to use in the app. This will be used as the default account for payments..
+        /// </summary>
+        public static string AccountSettingText {
+            get {
+                return ResourceManager.GetString("AccountSettingText", resourceCulture);
             }
         }
         

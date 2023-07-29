@@ -87,4 +87,9 @@ public sealed class AccountViewModel : ObservableObject, IHaveCustomMapping, IEq
     {
         return Id.GetHashCode();
     }
+
+    public override string ToString()
+    {
+        return $"{name}";
+    }
 }
