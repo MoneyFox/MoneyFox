@@ -1,16 +1,16 @@
-﻿namespace MoneyFox.Core.Features.PaymentCreation;
+﻿namespace MoneyFox.Core.Features.RecurringTransactionCreation;
 
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Common.Interfaces;
-using Domain;
-using Domain.Aggregates;
-using Domain.Aggregates.AccountAggregate;
-using Domain.Aggregates.RecurringTransactionAggregate;
 using MediatR;
+using MoneyFox.Core.Common.Interfaces;
+using MoneyFox.Domain;
+using MoneyFox.Domain.Aggregates;
+using MoneyFox.Domain.Aggregates.AccountAggregate;
+using MoneyFox.Domain.Aggregates.RecurringTransactionAggregate;
 
-internal static class CreatePayment
+internal static class CreateRecurringTransaction
 {
     public record Command(
         Guid RecurringTransactionId,

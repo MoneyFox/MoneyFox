@@ -1,13 +1,12 @@
 ﻿namespace MoneyFox.Core.Tests.Features;
 
-using AutoMapper.Configuration.Annotations;
-using Core.Features.PaymentCreation;
+using Core.Features.RecurringTransactionCreation;
 using Domain.Tests.TestFramework;
 using static Domain.Tests.TestFramework.RecurringTransactionAssertion;
 
 public sealed class CreatePaymentTests : InMemoryTestBase
 {
-    private readonly CreatePayment.Handler handler;
+    private readonly CreateRecurringTransaction.Handler handler;
 
     public CreatePaymentTests()
     {
@@ -21,8 +20,8 @@ public sealed class CreatePaymentTests : InMemoryTestBase
         var testData = new TestData.RecurringTransfer();
 
         // Act
-        var command = new CreatePayment.Command(
-            testData.RecurringTransactionId,
+        var command = new CreateRecurringTransaction.Command(
+            RecurringTransactionId: testData.RecurringTransactionId,
             ChargedAccount: testData.ChargedAccount,
             TargetAccount: testData.TargetAccount,
             Amount: testData.Amount,
