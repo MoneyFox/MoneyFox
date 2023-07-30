@@ -18,7 +18,6 @@ public sealed class RecurringTransaction : EntityBase
         int? targetAccountId,
         Money amount,
         int? categoryId,
-        PaymentType type,
         DateOnly startDate,
         DateOnly? endDate,
         Recurrence recurrence,
@@ -31,7 +30,6 @@ public sealed class RecurringTransaction : EntityBase
         StartDate = startDate;
         EndDate = endDate;
         Amount = amount;
-        Type = type;
         Note = note;
         ChargedAccountId = chargedAccountId;
         TargetAccountId = targetAccountId;
@@ -82,7 +80,6 @@ public sealed class RecurringTransaction : EntityBase
         int? targetAccount,
         Money amount,
         int? categoryId,
-        PaymentType type,
         DateOnly startDate,
         DateOnly? endDate,
         Recurrence recurrence,
@@ -96,7 +93,6 @@ public sealed class RecurringTransaction : EntityBase
             targetAccountId: targetAccount,
             amount: amount,
             categoryId: categoryId,
-            type: type,
             startDate: startDate,
             endDate: endDate,
             recurrence: recurrence,

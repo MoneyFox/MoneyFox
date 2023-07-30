@@ -26,7 +26,6 @@ public sealed class CreateRecurringTransactionHandlerTests : InMemoryTestBase
             TargetAccount: testData.TargetAccount,
             Amount: testData.Amount,
             CategoryId: testData.CategoryId,
-            Type: testData.Type,
             StartDate: testData.StartDate,
             EndDate: testData.EndDate,
             Recurrence: testData.Recurrence,

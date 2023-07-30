@@ -19,7 +19,6 @@ public sealed class RecurringTransactionTests
             targetAccount: testRecurringTransfer.TargetAccount,
             amount: testRecurringTransfer.Amount,
             categoryId: testRecurringTransfer.CategoryId,
-            type: testRecurringTransfer.Type,
             startDate: testRecurringTransfer.StartDate,
             endDate: testRecurringTransfer.EndDate,
             recurrence: testRecurringTransfer.Recurrence,

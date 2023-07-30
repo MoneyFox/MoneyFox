@@ -12,7 +12,6 @@ internal static class TestRecurringTransactionDbFactory
             targetAccount: recurringTransaction.TargetAccount,
             amount: recurringTransaction.Amount,
             categoryId: recurringTransaction.CategoryId,
-            type: recurringTransaction.Type,
             startDate: recurringTransaction.StartDate,
             endDate: recurringTransaction.EndDate,
             recurrence: recurringTransaction.Recurrence,
