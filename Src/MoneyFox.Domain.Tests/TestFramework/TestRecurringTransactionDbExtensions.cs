@@ -5,7 +5,7 @@ using Infrastructure.Persistence;
 
 internal static class TestRecurringTransactionDbExtensions
 {
-    public static void RegisterBudgets(this AppDbContext db, params TestData.IRecurringTransaction[] recurringTransactions)
+    public static void RegisterRecurringTransactions(this AppDbContext db, params TestData.IRecurringTransaction[] recurringTransactions)
     {
         foreach (var testRecurringTransaction in recurringTransactions)
         {
@@ -15,7 +15,7 @@ internal static class TestRecurringTransactionDbExtensions
         db.SaveChanges();
     }
 
-    public static RecurringTransaction RegisterBudget(this AppDbContext db, TestData.IRecurringTransaction recurringTransaction)
+    public static RecurringTransaction RegisterRecurringTransaction(this AppDbContext db, TestData.IRecurringTransaction recurringTransaction)
     {
         var dbRecurringTransaction = recurringTransaction.CreateDbRecurringTransaction();
         db.Add(dbRecurringTransaction);
