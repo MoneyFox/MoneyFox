@@ -3,12 +3,12 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Common.Interfaces;
+using Domain;
+using Domain.Aggregates;
+using Domain.Aggregates.AccountAggregate;
+using Domain.Aggregates.RecurringTransactionAggregate;
 using MediatR;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Domain;
-using MoneyFox.Domain.Aggregates;
-using MoneyFox.Domain.Aggregates.AccountAggregate;
-using MoneyFox.Domain.Aggregates.RecurringTransactionAggregate;
 
 internal static class CreateRecurringTransaction
 {
@@ -23,7 +23,8 @@ internal static class CreateRecurringTransaction
         DateOnly? EndDate,
         Recurrence Recurrence,
         string? Note,
-        bool IsLastDayOfMonth) : IRequest;
+        bool IsLastDayOfMonth,
+        bool IsTransfer) : IRequest;
 
     public class Handler : IRequestHandler<Command>
     {
@@ -47,7 +48,8 @@ internal static class CreateRecurringTransaction
                 endDate: command.EndDate,
                 recurrence: command.Recurrence,
                 note: command.Note,
-                isLastDayOfMonth: command.IsLastDayOfMonth);
+                isLastDayOfMonth: command.IsLastDayOfMonth,
+                isTransfer: command.IsTransfer);
 
             appDbContext.Add(recurringTransaction);
             await appDbContext.SaveChangesAsync(cancellationToken);

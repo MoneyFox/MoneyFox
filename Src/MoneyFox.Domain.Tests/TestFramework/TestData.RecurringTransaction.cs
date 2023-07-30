@@ -21,6 +21,7 @@ internal static partial class TestData
         public Recurrence Recurrence { get; } = Recurrence.Monthly;
         public bool IsLastDayOfMonth { get; } = true;
         public DateOnly LastRecurrence => StartDate;
+        public bool IsTransfer { get; }
     }
 
     public sealed class RecurringTransfer : IRecurringTransaction
@@ -38,6 +39,7 @@ internal static partial class TestData
         public Recurrence Recurrence { get; } = Recurrence.Monthly;
         public bool IsLastDayOfMonth { get; } = true;
         public DateOnly LastRecurrence => StartDate;
+        public bool IsTransfer { get; } = true;
     }
 
     public interface IRecurringTransaction
@@ -66,5 +68,7 @@ internal static partial class TestData
         bool IsLastDayOfMonth { get; }
 
         DateOnly LastRecurrence { get; }
+
+        bool IsTransfer { get; }
     }
 }

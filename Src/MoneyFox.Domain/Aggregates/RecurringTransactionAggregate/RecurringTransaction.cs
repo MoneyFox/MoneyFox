@@ -24,7 +24,8 @@ public sealed class RecurringTransaction : EntityBase
         Recurrence recurrence,
         string? note,
         bool isLastDayOfMonth,
-        DateOnly lastRecurrence)
+        DateOnly lastRecurrence,
+        bool isTransfer)
     {
         RecurringTransactionId = recurringTransactionId;
         StartDate = startDate;
@@ -38,6 +39,7 @@ public sealed class RecurringTransaction : EntityBase
         Recurrence = recurrence;
         IsLastDayOfMonth = isLastDayOfMonth;
         LastRecurrence = lastRecurrence;
+        IsTransfer = isTransfer;
     }
 
     public RecurringTransactionId Id
@@ -70,6 +72,8 @@ public sealed class RecurringTransaction : EntityBase
 
     public bool IsLastDayOfMonth { get; private set; }
 
+    public bool IsTransfer { get; private set; }
+
     public DateOnly LastRecurrence { get; private set; }
 
     public static RecurringTransaction Create(
@@ -83,7 +87,8 @@ public sealed class RecurringTransaction : EntityBase
         DateOnly? endDate,
         Recurrence recurrence,
         string? note,
-        bool isLastDayOfMonth)
+        bool isLastDayOfMonth,
+        bool isTransfer)
     {
         return new(
             recurringTransactionId: recurringTransactionId,
@@ -97,6 +102,7 @@ public sealed class RecurringTransaction : EntityBase
             recurrence: recurrence,
             note: note,
             isLastDayOfMonth: isLastDayOfMonth,
-            lastRecurrence: DateOnly.FromDateTime(DateTime.Today));
+            lastRecurrence: DateOnly.FromDateTime(DateTime.Today),
+            isTransfer: isTransfer);
     }
 }

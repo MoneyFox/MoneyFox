@@ -17,6 +17,7 @@ internal static class TestRecurringTransactionDbFactory
             endDate: recurringTransaction.EndDate,
             recurrence: recurringTransaction.Recurrence,
             note: recurringTransaction.Note,
-            isLastDayOfMonth: recurringTransaction.IsLastDayOfMonth);
+            isLastDayOfMonth: recurringTransaction.IsLastDayOfMonth,
+            isTransfer: recurringTransaction.IsTransfer);
     }
 }
