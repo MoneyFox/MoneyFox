@@ -78,24 +78,23 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
             IsRecurring = payment.IsRecurring,
             Note = payment.Note,
             Created = payment.Created,
-            LastModified = payment.LastModified
+            LastModified = payment.LastModified,
+            RecurringPayment = payment.RecurringPayment == null
+                ? null
+                : new RecurringPaymentViewModel
+                {
+                    Id = payment.RecurringPayment.Id,
+                    StartDate = payment.RecurringPayment.StartDate,
+                    IsLastDayOfMonth = payment.RecurringPayment.IsLastDayOfMonth,
+                    EndDate = payment.RecurringPayment.EndDate,
+                    IsEndless = payment.RecurringPayment.IsEndless,
+                    Amount = payment.RecurringPayment.Amount,
+                    Type = payment.RecurringPayment.Type,
+                    Recurrence = payment.RecurringPayment.Recurrence,
+                    Note = payment.RecurringPayment.Note ?? string.Empty,
+                    ChargedAccountId = payment.RecurringPayment.ChargedAccount.Id
+                }
         };
-
-        SelectedPayment.RecurringPayment = payment.RecurringPayment == null
-            ? null
-            : new RecurringPaymentViewModel
-            {
-                Id = payment.RecurringPayment.Id,
-                StartDate = payment.RecurringPayment.StartDate,
-                IsLastDayOfMonth = payment.RecurringPayment.IsLastDayOfMonth,
-                EndDate = payment.RecurringPayment.EndDate,
-                IsEndless = payment.RecurringPayment.IsEndless,
-                Amount = payment.RecurringPayment.Amount,
-                Type = payment.RecurringPayment.Type,
-                Recurrence = payment.RecurringPayment.Recurrence,
-                Note = payment.RecurringPayment.Note ?? string.Empty,
-                ChargedAccountId = payment.RecurringPayment.ChargedAccount.Id
-            };
 
         if (payment.Category != null)
         {

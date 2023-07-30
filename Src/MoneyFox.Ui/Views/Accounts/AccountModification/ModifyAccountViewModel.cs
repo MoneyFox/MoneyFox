@@ -51,19 +51,29 @@ public abstract class ModifyAccountViewModel : BasePageViewModel
             return;
         }
 
-        var nameChanged = SelectedAccountVm.Id == 0 || !SelectedAccountVm.Name.Equals(await Mediator.Send(new GetAccountNameByIdQuery(SelectedAccountVm.Id)));
-        var nameAlreadyTaken = await Mediator.Send(new GetIfAccountWithNameExistsQuery(accountName: SelectedAccountVm.Name, accountId: SelectedAccountVm.Id));
-        if (nameChanged
-            && nameAlreadyTaken
-            && await dialogService.ShowConfirmMessageAsync(title: Translations.DuplicatedNameTitle, message: Translations.DuplicateAccountMessage) is false)
+        try
         {
-            return;
-        }
+            var nameChanged = SelectedAccountVm.Id == 0
+                              || !SelectedAccountVm.Name.Equals(await Mediator.Send(new GetAccountNameByIdQuery(SelectedAccountVm.Id)));
 
-        await dialogService.ShowLoadingDialogAsync(Translations.SavingAccountMessage);
-        await SaveAccountAsync();
-        await dialogService.HideLoadingDialogAsync();
-        await navigationService.GoBackFromModalAsync();
-        Messenger.Send(new AccountsChangedMessage());
+            var nameAlreadyTaken
+                = await Mediator.Send(new GetIfAccountWithNameExistsQuery(accountName: SelectedAccountVm.Name, accountId: SelectedAccountVm.Id));
+
+            if (nameChanged
+                && nameAlreadyTaken
+                && await dialogService.ShowConfirmMessageAsync(title: Translations.DuplicatedNameTitle, message: Translations.DuplicateAccountMessage) is false)
+            {
+                return;
+            }
+
+            await dialogService.ShowLoadingDialogAsync(Translations.SavingAccountMessage);
+            await SaveAccountAsync();
+            await navigationService.GoBackFromModalAsync();
+            Messenger.Send(new AccountsChangedMessage());
+        }
+        finally
+        {
+            await dialogService.HideLoadingDialogAsync();
+        }
     }
 }

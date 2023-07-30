@@ -950,4 +950,7 @@ Puteți schimba această monedă târziu în setări.</value>
   <data name="TotalExpenseTemplate" xml:space="preserve">
         <value>Cheltuieli totale: {0}</value>
     </data>
+  <data name="AllAccounts" xml:space="preserve">
+        <value>Toate conturile</value>
+    </data>
 </root>
