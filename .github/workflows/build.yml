@@ -187,10 +187,10 @@ jobs:
           Write-Host "DisplayVersion:" $DisplayVersion
           Write-Host "Version:" $Version
   
-          [xml]$xml = Get-Content -Path ./src/MoneyFox.Ui/MoneyFox.Ui.csproj
+          [xml]$xml = Get-Content -Path $GITHUB_WORKSPACE\src\MoneyFox.Ui\MoneyFox.Ui.csproj
           $xml.Project.PropertyGroup[0].ApplicationDisplayVersion = $Version
           $xml.Project.PropertyGroup[0].ApplicationVersion = $DisplayVersion
-          Set-Content "./src/MoneyFox.Ui/MoneyFox.Ui.csproj" -Value $xml.InnerXml -Force
+          Set-Content "$GITHUB_WORKSPACE\src\MoneyFox.Ui\MoneyFox.Ui.csproj" -Value $xml.InnerXml -Force
           Write-Host $xml.InnerXml
           
       - name: Setup .NET
