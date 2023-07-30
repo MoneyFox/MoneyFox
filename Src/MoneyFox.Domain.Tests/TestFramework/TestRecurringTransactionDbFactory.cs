@@ -7,7 +7,7 @@ internal static class TestRecurringTransactionDbFactory
     internal static RecurringTransaction CreateDbRecurringTransaction(this TestData.IRecurringTransaction recurringTransaction)
     {
         return RecurringTransaction.Create(
-            id: recurringTransaction.Id,
+            recurringTransactionId: recurringTransaction.RecurringTransactionId,
             chargedAccount: recurringTransaction.ChargedAccount,
             targetAccount: recurringTransaction.TargetAccount,
             amount: recurringTransaction.Amount,

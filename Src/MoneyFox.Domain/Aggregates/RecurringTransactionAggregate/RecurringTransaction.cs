@@ -1,6 +1,7 @@
 namespace MoneyFox.Domain.Aggregates.RecurringTransactionAggregate;
 
 using AccountAggregate;
+using JetBrains.Annotations;
 
 public record struct RecurringTransactionId(int Value);
 
@@ -12,7 +13,7 @@ public sealed class RecurringTransaction : EntityBase
     }
 
     private RecurringTransaction(
-        RecurringTransactionId id,
+        Guid recurringTransactionId,
         int chargedAccountId,
         int? targetAccountId,
         Money amount,
@@ -25,7 +26,7 @@ public sealed class RecurringTransaction : EntityBase
         bool isLastDayOfMonth,
         DateOnly lastRecurrence)
     {
-        Id = id;
+        RecurringTransactionId = recurringTransactionId;
         StartDate = startDate;
         EndDate = endDate;
         Amount = amount;
@@ -39,7 +40,15 @@ public sealed class RecurringTransaction : EntityBase
         LastRecurrence = lastRecurrence;
     }
 
-    public RecurringTransactionId Id { get; private set; }
+    public RecurringTransactionId Id
+    {
+        get;
+
+        [UsedImplicitly]
+        private set;
+    }
+
+    public Guid RecurringTransactionId { get; private set; }
 
     public int ChargedAccountId { get; private set; }
 
@@ -64,7 +73,7 @@ public sealed class RecurringTransaction : EntityBase
     public DateOnly LastRecurrence { get; private set; }
 
     public static RecurringTransaction Create(
-        RecurringTransactionId id,
+        Guid recurringTransactionId,
         int chargedAccount,
         int? targetAccount,
         Money amount,
@@ -77,7 +86,7 @@ public sealed class RecurringTransaction : EntityBase
         bool isLastDayOfMonth)
     {
         return new(
-            id: id,
+            recurringTransactionId: recurringTransactionId,
             chargedAccountId: chargedAccount,
             targetAccountId: targetAccount,
             amount: amount,

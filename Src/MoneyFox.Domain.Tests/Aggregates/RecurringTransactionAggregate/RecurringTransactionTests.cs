@@ -14,7 +14,7 @@ public sealed class RecurringTransactionTests
 
         // Act
         var recurringTransaction = RecurringTransaction.Create(
-            id: testRecurringTransfer.Id,
+            recurringTransactionId: testRecurringTransfer.RecurringTransactionId,
             chargedAccount: testRecurringTransfer.ChargedAccount,
             targetAccount: testRecurringTransfer.TargetAccount,
             amount: testRecurringTransfer.Amount,
