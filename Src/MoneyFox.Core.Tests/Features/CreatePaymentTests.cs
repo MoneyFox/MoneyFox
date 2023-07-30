@@ -11,7 +11,7 @@ public sealed class CreatePaymentTests : InMemoryTestBase
 
     public CreatePaymentTests()
     {
-        handler = new();
+        handler = new(Context);
     }
 
     [Fact]
@@ -22,7 +22,7 @@ public sealed class CreatePaymentTests : InMemoryTestBase
 
         // Act
         var command = new CreatePayment.Command(
-            Id: testData.Id.Value,
+            testData.RecurringTransactionId,
             ChargedAccount: testData.ChargedAccount,
             TargetAccount: testData.TargetAccount,
             Amount: testData.Amount,
@@ -37,7 +37,7 @@ public sealed class CreatePaymentTests : InMemoryTestBase
         await handler.Handle(command: command, cancellationToken: CancellationToken.None);
 
         // Assert
-        // var dbRecurringTransaction = Context.RecurringTransactions.Single();
-        // AssertRecurringTransaction(actual: dbRecurringTransaction, expected: testData);
+        var dbRecurringTransaction = Context.RecurringTransactions.Single();
+        AssertRecurringTransaction(actual: dbRecurringTransaction, expected: testData);
     }
 }

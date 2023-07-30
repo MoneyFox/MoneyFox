@@ -11,7 +11,8 @@ internal static class RecurringTransactionAssertion
     {
         using (new AssertionScope())
         {
-            actual.Id.Should().Be(expected.Id);
+            actual.Id.Should().NotBeNull();
+            actual.RecurringTransactionId.Should().Be(expected.RecurringTransactionId);
             actual.ChargedAccountId.Should().Be(expected.ChargedAccount);
             actual.TargetAccountId.Should().Be(expected.TargetAccount);
             actual.Amount.Should().Be(expected.Amount);

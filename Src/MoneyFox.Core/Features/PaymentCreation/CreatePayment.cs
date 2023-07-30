@@ -3,15 +3,17 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Common.Interfaces;
 using Domain;
 using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
+using Domain.Aggregates.RecurringTransactionAggregate;
 using MediatR;
 
 internal static class CreatePayment
 {
     public record Command(
-        int Id,
+        Guid RecurringTransactionId,
         int ChargedAccount,
         int? TargetAccount,
         Money Amount,
@@ -25,9 +27,30 @@ internal static class CreatePayment
 
     public class Handler : IRequestHandler<Command>
     {
-        public Task Handle(Command command, CancellationToken cancellationToken)
+        private readonly IAppDbContext appDbContext;
+
+        public Handler(IAppDbContext appDbContext)
         {
-            throw new NotImplementedException();
+            this.appDbContext = appDbContext;
+        }
+
+        public async Task Handle(Command command, CancellationToken cancellationToken)
+        {
+            var recurringTransaction = RecurringTransaction.Create(
+                recurringTransactionId: command.RecurringTransactionId,
+                chargedAccount: command.ChargedAccount,
+                targetAccount: command.TargetAccount,
+                amount: command.Amount,
+                categoryId: command.CategoryId,
+                type: command.Type,
+                startDate: command.StartDate,
+                endDate: command.EndDate,
+                recurrence: command.Recurrence,
+                note: command.Note,
+                isLastDayOfMonth: command.IsLastDayOfMonth);
+
+            appDbContext.Add(recurringTransaction);
+            await appDbContext.SaveChangesAsync(cancellationToken);
         }
     }
 }
