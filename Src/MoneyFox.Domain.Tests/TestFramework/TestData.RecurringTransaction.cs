@@ -12,8 +12,7 @@ internal static partial class TestData
         public Guid RecurringTransactionId { get; } = Guid.NewGuid();
         public DateOnly StartDate { get; } = new(year: 2023, month: 07, day: 12);
         public DateOnly? EndDate { get; } = null;
-        public Money Amount { get; } = new(amount: 1042, currency: Currencies.CHF);
-        public PaymentType Type => PaymentType.Expense;
+        public Money Amount { get; } = new(amount: -1042, currency: Currencies.CHF);
         public string? Note { get; } = null;
         public int ChargedAccount { get; } = 10;
         public int? TargetAccount { get; } = null;
@@ -31,7 +30,6 @@ internal static partial class TestData
         public DateOnly StartDate { get; } = new(year: 2023, month: 07, day: 12);
         public DateOnly? EndDate { get; } = new(year: 2050, month: 07, day: 12);
         public Money Amount { get; } = new(amount: 1042, currency: Currencies.CHF);
-        public PaymentType Type => PaymentType.Transfer;
         public string? Note { get; } = null;
         public int ChargedAccount { get; } = 10;
         public int? TargetAccount { get; } = 12;
@@ -52,8 +50,6 @@ internal static partial class TestData
         DateOnly? EndDate { get; }
 
         Money Amount { get; }
-
-        PaymentType Type { get; }
 
         string? Note { get; }
 

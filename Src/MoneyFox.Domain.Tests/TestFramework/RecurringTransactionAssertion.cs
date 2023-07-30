@@ -17,7 +17,6 @@ internal static class RecurringTransactionAssertion
             actual.TargetAccountId.Should().Be(expected.TargetAccount);
             actual.Amount.Should().Be(expected.Amount);
             actual.CategoryId.Should().Be(expected.CategoryId);
-            actual.Type.Should().Be(expected.Type);
             actual.StartDate.Should().Be(expected.StartDate);
             actual.EndDate.Should().Be(expected.EndDate);
             actual.Recurrence.Should().Be(expected.Recurrence);
