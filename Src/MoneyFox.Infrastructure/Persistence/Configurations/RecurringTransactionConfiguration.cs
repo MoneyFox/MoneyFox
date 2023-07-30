@@ -1,5 +1,6 @@
 namespace MoneyFox.Infrastructure.Persistence.Configurations;
 
+using Domain;
 using Domain.Aggregates.RecurringTransactionAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -16,7 +17,15 @@ internal sealed class RecurringTransactionConfiguration : IEntityTypeConfigurati
         builder.Property(p => p.CategoryId);
         builder.Property(p => p.StartDate);
         builder.Property(p => p.EndDate);
-        builder.Property(p => p.Amount);
+
+        builder.OwnsOne<Money>(
+            navigationExpression: i => i.Amount,
+            buildAction: m =>
+            {
+                m.Property(p => p.Amount).HasColumnName("Amount");
+                m.Property(p => p.Currency).HasColumnName("Currency");
+            });
+
         builder.Property(p => p.Type);
         builder.Property(p => p.Note);
         builder.Property(p => p.ChargedAccountId);

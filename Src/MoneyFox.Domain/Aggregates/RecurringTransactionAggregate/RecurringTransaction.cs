@@ -6,6 +6,11 @@ public record struct RecurringTransactionId(int Value);
 
 public sealed class RecurringTransaction : EntityBase
 {
+    public RecurringTransaction()
+    {
+        Amount = default!;
+    }
+
     private RecurringTransaction(
         RecurringTransactionId id,
         int chargedAccountId,

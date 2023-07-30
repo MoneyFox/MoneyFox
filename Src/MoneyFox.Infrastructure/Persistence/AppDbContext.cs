@@ -7,6 +7,7 @@ using Converter;
 using Core.Common.Interfaces;
 using Core.Common.Settings;
 using Core.Notifications.DatabaseChanged;
+using Domain;
 using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.BudgetAggregate;
@@ -89,6 +90,7 @@ public class AppDbContext : DbContext, IAppDbContext
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {
         base.ConfigureConventions(configurationBuilder);
+        configurationBuilder.Properties<Currency>().HaveConversion<CurrencyConverter>();
         configurationBuilder.Properties<DateOnly>().HaveConversion<DateOnlyConverter>().HaveColumnType("date");
         configurationBuilder.Properties<DateOnly?>().HaveConversion<NullableDateOnlyConverter>().HaveColumnType("date");
     }
