@@ -1,14 +1,12 @@
 namespace MoneyFox.Ui.Tests.Views.Settings;
 
-using System.Collections.ObjectModel;
 using System.Globalization;
-using AutoMapper;
 using Core.Common.Settings;
 using Domain;
 using FluentAssertions;
 using MediatR;
+using MoneyFox.Core.Queries;
 using MoneyFox.Domain.Aggregates.AccountAggregate;
-using MoneyFox.Ui.Views.Accounts.AccountModification;
 using NSubstitute;
 using Ui.Views.Settings;
 using Xunit;
@@ -23,10 +21,9 @@ public static class SettingsViewModelTests
             // Arrange
             var settingsFacade = Substitute.For<ISettingsFacade>();
             var mediator = Substitute.For<IMediator>();
-            var mapper = Substitute.For<IMapper>();
 
             // Act
-            var viewModel = new SettingsViewModel(settingsFacade, mediator, mapper);
+            var viewModel = new SettingsViewModel(settingsFacade, mediator);
 
             // Assert
             viewModel.AvailableCurrencies.Should().NotBeNull();
@@ -38,11 +35,10 @@ public static class SettingsViewModelTests
             // Arrange
             var settingsFacade = Substitute.For<ISettingsFacade>();
             var mediator = Substitute.For<IMediator>();
-            var mapper = Substitute.For<IMapper>();
             settingsFacade.DefaultCurrency.Returns("USD");
 
             // Act
-            var viewModel = new SettingsViewModel(settingsFacade, mediator, mapper);
+            var viewModel = new SettingsViewModel(settingsFacade, mediator);
 
             // Assert
             viewModel.AvailableCurrencies.Should().NotBeNull();
@@ -55,10 +51,9 @@ public static class SettingsViewModelTests
             // Arrange
             var settingsFacade = Substitute.For<ISettingsFacade>();
             var mediator = Substitute.For<IMediator>();
-            var mapper = Substitute.For<IMapper>();
 
             // Act
-            var viewModel = new SettingsViewModel(settingsFacade, mediator, mapper);
+            var viewModel = new SettingsViewModel(settingsFacade, mediator);
 
             // Assert
             viewModel.AvailableCurrencies.Should().NotBeNull();
@@ -72,17 +67,17 @@ public static class SettingsViewModelTests
             // Arrange
             var settingsFacade = Substitute.For<ISettingsFacade>();
             var mediator = Substitute.For<IMediator>();
-            var mapper = Substitute.For<IMapper>();
             settingsFacade.DefaultAccount.Returns("Acc2");
-            var accountViewModels = new ObservableCollection<AccountViewModel>
+            var accounts = new List<Account>
             {
-                new AccountViewModel {Name = "Acc1"},
-                new AccountViewModel{ Name = "Acc2"}
+                new Account("Acc1"),
+                new Account ("Acc2")
             };
-            mapper.Map<ObservableCollection<AccountViewModel>>(Arg.Any<List<Account>>()).Returns(accountViewModels);
+            mediator.Send(Arg.Any<GetAccountsQuery>()).Returns(accounts);
 
             // Act
-            var viewModel = new SettingsViewModel(settingsFacade, mediator, mapper);
+            var viewModel = new SettingsViewModel(settingsFacade, mediator);
+            viewModel.LoadAccounts();
 
             // Assert
             viewModel.AvailableAccounts.Should().NotBeNull();
@@ -98,8 +93,7 @@ public static class SettingsViewModelTests
             // Arrange
             var settingsFacade = Substitute.For<ISettingsFacade>();
             var mediator = Substitute.For<IMediator>();
-            var mapper = Substitute.For<IMapper>();
-            var viewModel = new SettingsViewModel(settingsFacade, mediator, mapper);
+            var viewModel = new SettingsViewModel(settingsFacade, mediator);
 
             // Act
             var newCurrency = new CurrencyViewModel(Currencies.CHF.AlphaIsoCode);
@@ -118,17 +112,16 @@ public static class SettingsViewModelTests
             // Arrange
             var settingsFacade = Substitute.For<ISettingsFacade>();
             var mediator = Substitute.For<IMediator>();
-            var mapper = Substitute.For<IMapper>();
-            var viewModel = new SettingsViewModel(settingsFacade, mediator, mapper);
-            var accountViewModels = new ObservableCollection<AccountViewModel>
+            var viewModel = new SettingsViewModel(settingsFacade, mediator);
+            var accounts = new List<Account>
             {
-                new AccountViewModel {Name = "Acc1"},
-                new AccountViewModel{ Name = "Acc2"}
+                new Account("Acc1"),
+                new Account ("Acc2")
             };
-            mapper.Map<ObservableCollection<AccountViewModel>>(Arg.Any<List<Account>>()).Returns(accountViewModels);
+            mediator.Send(Arg.Any<GetAccountsQuery>()).Returns(accounts);
 
             // Act
-            var newAccount = new AccountViewModel { Name = "Acc1" };
+            var newAccount = new AccountLiteViewModel("Acc3");
             viewModel.SelectedAccount = newAccount;
 
             // Assert

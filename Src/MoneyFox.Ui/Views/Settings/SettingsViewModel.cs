@@ -1,13 +1,10 @@
 namespace MoneyFox.Ui.Views.Settings;
 
-using System.Collections.ObjectModel;
 using System.Globalization;
-using AutoMapper;
 using Core.Common.Settings;
 using Domain;
 using MediatR;
 using MoneyFox.Core.Queries;
-using MoneyFox.Ui.Views.Accounts.AccountModification;
 
 internal sealed class SettingsViewModel : BasePageViewModel
 {
@@ -15,18 +12,16 @@ internal sealed class SettingsViewModel : BasePageViewModel
 
     private readonly IMediator mediator;
 
-    private readonly IMapper mapper;
-
     private CurrencyViewModel selectedCurrency = null!;
 
-    private AccountViewModel? selectedAccount = null;
+    private AccountLiteViewModel? selectedAccount = null;
 
-    
-    public SettingsViewModel(ISettingsFacade settingsFacade, IMediator mediator, IMapper mapper)
+    private IEnumerable<AccountLiteViewModel>? availableAccounts;
+
+    public SettingsViewModel(ISettingsFacade settingsFacade, IMediator mediator)
     {
         this.settingsFacade = settingsFacade;
         this.mediator = mediator;
-        this.mapper = mapper;
         AvailableCurrencies = Currencies.GetAll().Select(c => new CurrencyViewModel(c.AlphaIsoCode)).OrderBy(c => c.AlphaIsoCode).ToList();
         var currencyToLoad = string.IsNullOrEmpty(settingsFacade.DefaultCurrency) ? RegionInfo.CurrentRegion.ISOCurrencySymbol : settingsFacade.DefaultCurrency;
         SelectedCurrency = AvailableCurrencies.FirstOrDefault(c => c.AlphaIsoCode == currencyToLoad) ?? AvailableCurrencies[0];
@@ -46,7 +41,7 @@ internal sealed class SettingsViewModel : BasePageViewModel
 
     public IReadOnlyList<CurrencyViewModel> AvailableCurrencies { get; }
 
-    public AccountViewModel? SelectedAccount
+    public AccountLiteViewModel? SelectedAccount
     {
         get => selectedAccount ??= AvailableAccounts?.FirstOrDefault(x => x.Name == (string.IsNullOrEmpty(settingsFacade.DefaultAccount) ? string.Empty : settingsFacade.DefaultAccount));
 
@@ -58,5 +53,20 @@ internal sealed class SettingsViewModel : BasePageViewModel
         }
     }
 
-    public IReadOnlyList<AccountViewModel>? AvailableAccounts => mapper.Map<ObservableCollection<AccountViewModel>>(mediator.Send(new GetAccountsQuery()).Result);
+    public void LoadAccounts()
+    {
+        availableAccounts = mediator.Send(new GetAccountsQuery()).Result.Select(a => new AccountLiteViewModel(a.Name)).ToList();
+    }
+
+    public IEnumerable<AccountLiteViewModel>? AvailableAccounts
+    {
+        get
+        {
+            if(availableAccounts == null)
+            {
+                LoadAccounts();
+            }
+            return availableAccounts;
+        }
+    }
 }
