@@ -14,9 +14,9 @@ internal sealed class SettingsViewModel : BasePageViewModel
 
     private CurrencyViewModel selectedCurrency = null!;
 
-    private AccountLiteViewModel? selectedAccount = null;
+    private string selectedAccount = string.Empty;
 
-    private IEnumerable<AccountLiteViewModel>? availableAccounts;
+    private IReadOnlyList<string>? availableAccounts = null;
 
     public SettingsViewModel(ISettingsFacade settingsFacade, IMediator mediator)
     {
@@ -25,6 +25,7 @@ internal sealed class SettingsViewModel : BasePageViewModel
         AvailableCurrencies = Currencies.GetAll().Select(c => new CurrencyViewModel(c.AlphaIsoCode)).OrderBy(c => c.AlphaIsoCode).ToList();
         var currencyToLoad = string.IsNullOrEmpty(settingsFacade.DefaultCurrency) ? RegionInfo.CurrentRegion.ISOCurrencySymbol : settingsFacade.DefaultCurrency;
         SelectedCurrency = AvailableCurrencies.FirstOrDefault(c => c.AlphaIsoCode == currencyToLoad) ?? AvailableCurrencies[0];
+        SelectedAccount = settingsFacade.DefaultAccount;
     }
 
     public CurrencyViewModel SelectedCurrency
@@ -41,24 +42,24 @@ internal sealed class SettingsViewModel : BasePageViewModel
 
     public IReadOnlyList<CurrencyViewModel> AvailableCurrencies { get; }
 
-    public AccountLiteViewModel? SelectedAccount
+    public string SelectedAccount
     {
-        get => selectedAccount ??= AvailableAccounts?.FirstOrDefault(x => x.Name == (string.IsNullOrEmpty(settingsFacade.DefaultAccount) ? string.Empty : settingsFacade.DefaultAccount));
+        get => selectedAccount;
 
         set
         {
             SetProperty(field: ref selectedAccount, newValue: value);
-            settingsFacade.DefaultAccount = selectedAccount != null ? selectedAccount.Name : string.Empty;
+            settingsFacade.DefaultAccount = selectedAccount;
             OnPropertyChanged();
         }
     }
 
     public void LoadAccounts()
     {
-        availableAccounts = mediator.Send(new GetAccountsQuery()).Result.Select(a => new AccountLiteViewModel(a.Name)).ToList();
+        availableAccounts = mediator.Send(new GetAccountsQuery()).Result.Select(a => a.Name).ToList();
     }
 
-    public IEnumerable<AccountLiteViewModel>? AvailableAccounts
+    public IReadOnlyList<string>? AvailableAccounts
     {
         get
         {

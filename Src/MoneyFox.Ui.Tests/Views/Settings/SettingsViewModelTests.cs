@@ -81,7 +81,7 @@ public static class SettingsViewModelTests
 
             // Assert
             viewModel.AvailableAccounts.Should().NotBeNull();
-            viewModel.SelectedAccount.Name.Should().Be("Acc2");
+            viewModel.SelectedAccount.Should().Be("Acc2");
         }
     }
 
@@ -121,11 +121,11 @@ public static class SettingsViewModelTests
             mediator.Send(Arg.Any<GetAccountsQuery>()).Returns(accounts);
 
             // Act
-            var newAccount = new AccountLiteViewModel("Acc3");
+            var newAccount = "Acc3";
             viewModel.SelectedAccount = newAccount;
 
             // Assert
-            settingsFacade.DefaultAccount.Should().Be(newAccount.Name);
+            settingsFacade.DefaultAccount.Should().Be(newAccount);
         }
     }
 }
