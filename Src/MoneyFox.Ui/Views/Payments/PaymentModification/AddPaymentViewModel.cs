@@ -2,10 +2,13 @@ namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
 using AutoMapper;
 using Controls.CategorySelection;
+using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Common.Settings;
 using Core.Features._Legacy_.Payments.CreatePayment;
+using Core.Features.TransactionCreation;
 using Core.Queries;
+using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.CategoryAggregate;
 using MediatR;
@@ -76,12 +79,43 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
 
         if (SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment != null)
         {
-            payment.AddRecurringPayment(
-                recurrence: SelectedPayment.RecurringPayment.Recurrence,
-                isLastDayOfMonth: SelectedPayment.RecurringPayment.IsLastDayOfMonth,
-                endDate: SelectedPayment.RecurringPayment.IsEndless ? null : SelectedPayment.RecurringPayment.EndDate);
+            await mediator.Send(
+                new CreateTransaction.Command(
+                    RecurringTransactionId: Guid.NewGuid(),
+                    ChargedAccount: SelectedPayment.ChargedAccount.Id,
+                    TargetAccount: SelectedPayment.TargetAccount?.Id,
+                    Amount: new(amount: SelectedPayment.Amount, currency: SelectedPayment.ChargedAccount.CurrentBalance.Currency),
+                    CategoryId: CategorySelectionViewModel.SelectedCategory?.Id,
+                    StartDate: SelectedPayment.RecurringPayment!.StartDate.ToDateOnly(),
+                    EndDate: SelectedPayment.RecurringPayment.EndDate?.ToDateOnly(),
+                    Recurrence: SelectedPayment.RecurringPayment.Recurrence.ToRecurrence(),
+                    Note: SelectedPayment.Note,
+                    IsLastDayOfMonth: SelectedPayment.RecurringPayment.IsLastDayOfMonth,
+                    IsTransfer: SelectedPayment.Type == PaymentType.Transfer));
         }
 
         await mediator.Send(new CreatePaymentCommand(payment));
+    }
+
+}
+
+public static class RecurringTransactionExtensions
+{
+
+    public static Recurrence ToRecurrence(this PaymentRecurrence recurrence)
+    {
+        return recurrence switch
+        {
+            PaymentRecurrence.Daily => Recurrence.Daily,
+            PaymentRecurrence.DailyWithoutWeekend => Recurrence.DailyWithoutWeekend,
+            PaymentRecurrence.Weekly => Recurrence.Weekly,
+            PaymentRecurrence.Biweekly => Recurrence.Biweekly,
+            PaymentRecurrence.Monthly => Recurrence.Monthly,
+            PaymentRecurrence.Bimonthly => Recurrence.Bimonthly,
+            PaymentRecurrence.Quarterly => Recurrence.Quarterly,
+            PaymentRecurrence.Yearly => Recurrence.Quarterly,
+            PaymentRecurrence.Biannually => Recurrence.Biannually,
+            _ => throw new ArgumentOutOfRangeException(paramName: nameof(recurrence), actualValue: recurrence, message: null)
+        };
     }
 }

@@ -9,7 +9,7 @@ using MoneyFox.Domain;
 using MoneyFox.Domain.Aggregates;
 using MoneyFox.Domain.Aggregates.RecurringTransactionAggregate;
 
-internal static class CreateTransaction
+public static class CreateTransaction
 {
     public record Command(
         Guid RecurringTransactionId,
