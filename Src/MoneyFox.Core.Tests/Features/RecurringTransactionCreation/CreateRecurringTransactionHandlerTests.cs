@@ -1,14 +1,14 @@
-﻿namespace MoneyFox.Core.Tests.Features.TransactionCreation;
+﻿namespace MoneyFox.Core.Tests.Features.RecurringTransactionCreation;
 
-using MoneyFox.Core.Features.TransactionCreation;
-using MoneyFox.Domain.Tests.TestFramework;
+using Core.Features.RecurringTransactionCreation;
+using Domain.Tests.TestFramework;
 using static Domain.Tests.TestFramework.RecurringTransactionAssertion;
 
-public sealed class CreateTransactionHandlerTests : InMemoryTestBase
+public sealed class CreateRecurringTransactionHandlerTests : InMemoryTestBase
 {
-    private readonly CreateTransaction.Handler handler;
+    private readonly CreateRecurringTransaction.Handler handler;
 
-    public CreateTransactionHandlerTests()
+    public CreateRecurringTransactionHandlerTests()
     {
         handler = new(Context);
     }
@@ -20,7 +20,7 @@ public sealed class CreateTransactionHandlerTests : InMemoryTestBase
         var testData = new TestData.RecurringTransfer();
 
         // Act
-        var command = new CreateTransaction.Command(
+        var command = new CreateRecurringTransaction.Command(
             RecurringTransactionId: testData.RecurringTransactionId,
             ChargedAccount: testData.ChargedAccount,
             TargetAccount: testData.TargetAccount,

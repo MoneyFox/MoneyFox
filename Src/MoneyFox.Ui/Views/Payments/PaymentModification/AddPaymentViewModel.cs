@@ -6,7 +6,7 @@ using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Common.Settings;
 using Core.Features._Legacy_.Payments.CreatePayment;
-using Core.Features.TransactionCreation;
+using Core.Features.RecurringTransactionCreation;
 using Core.Queries;
 using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
@@ -80,7 +80,7 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
         if (SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment != null)
         {
             await mediator.Send(
-                new CreateTransaction.Command(
+                new CreateRecurringTransaction.Command(
                     RecurringTransactionId: Guid.NewGuid(),
                     ChargedAccount: SelectedPayment.ChargedAccount.Id,
                     TargetAccount: SelectedPayment.TargetAccount?.Id,
@@ -96,12 +96,10 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
 
         await mediator.Send(new CreatePaymentCommand(payment));
     }
-
 }
 
 public static class RecurringTransactionExtensions
 {
-
     public static Recurrence ToRecurrence(this PaymentRecurrence recurrence)
     {
         return recurrence switch
