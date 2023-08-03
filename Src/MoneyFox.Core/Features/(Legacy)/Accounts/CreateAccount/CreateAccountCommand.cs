@@ -16,10 +16,10 @@ public class CreateAccountCommand : IRequest
         IsExcluded = isExcluded;
     }
 
-    public string Name { get; }
-    public decimal CurrentBalance { get; }
-    public string Note { get; }
-    public bool IsExcluded { get; }
+    private string Name { get; }
+    private decimal CurrentBalance { get; }
+    private string Note { get; }
+    private bool IsExcluded { get; }
 
     public class Handler : IRequestHandler<CreateAccountCommand>
     {
