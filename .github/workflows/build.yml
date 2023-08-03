@@ -23,12 +23,14 @@ jobs:
     steps:
       - name: Install signing certificate
         env:
-          WINDOWS_CERTIFICATE_BASE64: ${{ secrets.WINDOWS_CERTIFICATE }}
           WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
         run: |
           # create variables
-          $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.BASE64_ENCODED_PFX }}")
-          [IO.File]::WriteAllBytes(${{ env.WINDOWS_CERTIFICATE_PATH }}, $pfx_cert_byte)
+          $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.WINDOWS_CERTIFICATE }}")
+          [IO.File]::WriteAllBytes("${{ env.WINDOWS_CERTIFICATE_PATH }}", $pfx_cert_byte)
+          
+          Get-ChildItem -Path "${{ env.WINDOWS_CERTIFICATE_PATH }}" |
+            Import-PfxCertificate -CertStoreLocation Cert:\CurrentUser\My -Password "$WINDOWS_CERTIFICATE_PASSWORD"
           
         
       - name: Checkout Repository
@@ -84,7 +86,7 @@ jobs:
             -f net7.0-windows10.0.22621.0 `
             -c Release `
             -o ${{ github.workspace }}/moneyfox-win `
-            /p:PackageCertificateKeyFile=${{ env.WINDOWS_CERTIFICATE_PATH }} `
+            /p:PackageCertificateKeyFile="${{ env.WINDOWS_CERTIFICATE_PATH }}" `
             /p:ApplicationDisplayVersion=$DisplayVersion `
             /p:ApplicationVersion=$Version
           
@@ -103,8 +105,8 @@ jobs:
       - name: Download keystore
         run: |
           # create variables
-          $keystoreBytes = [System.Convert]::FromBase64String(${{ secrets.RELEASE_KEYSTORE }})
-          [IO.File]::WriteAllBytes(${{env.KEYSTORE_PATH}}, $keystoreBytes) 
+          $keystoreBytes = [System.Convert]::FromBase64String("${{ secrets.RELEASE_KEYSTORE }}")
+          [IO.File]::WriteAllBytes("${{env.KEYSTORE_PATH}}", $keystoreBytes) 
           
       - uses: actions/checkout@v3
 
