@@ -26,8 +26,9 @@ jobs:
         run: |
           # create variables
           $CERTIFICATE_PATH="$RUNNER_TEMP\build_certificate.p12"
-
-          [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($WINDOWS_CERTIFICATE_BASE64)) |
+          System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($WINDOWS_CERTIFICATE_BASE64)) | Out-File $CERTIFICATE_PATH
+          
+          Get-ChildItem -Path $CERTIFICATE_PATH |
             Import-PfxCertificate -CertStoreLocation Cert:\CurrentUser\My -Password $WINDOWS_CERTIFICATE_PASSWORD
           
         
@@ -97,30 +98,6 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{env.DOTNET_VERSION}}
-          
-      - name: Get android version
-        id: date
-        run: echo "::set-output name=date::$(date +'%Y%m')${{ GITHUB.run_number }}"
-      
-      - run: ls $GITHUB_WORKSPACE
-      
-      - run: |
-          ls $GITHUB_WORKSPACE
-          Get-Childitem –Path $GITHUB_WORKSPACE -Recurse -Include MoneyFox.Ui.csproj
-          tree /F $GITHUB_WORKSPACE
-      
-      - name: Set Android Version
-        run: |
-          
-          $Version = ${{ steps.date.outputs.date }}
-          $DisplayVersion = "${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
-          Write-Host "DisplayVersion:" $DisplayVersion
-          Write-Host "Version:" $Version
-          [xml]$xml = Get-Content -Path ${{ github.workspace }}\Src\MoneyFox.Ui\MoneyFox.Ui.csproj
-          $xml.Project.PropertyGroup[3].ApplicationDisplayVersion = $DisplayVersion
-          $xml.Project.PropertyGroup[3].ApplicationVersion = $Version
-          Set-Content "${{ github.workspace }}\Src\MoneyFox.Ui\MoneyFox.Ui.csproj" -Value $xml.InnerXml -Force
-          Write-Host $xml.InnerXml
 
       - uses: actions/cache@v3
         with:
@@ -142,8 +119,15 @@ jobs:
           dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
           dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
 
+      - name: Get android version
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y%m')${{ GITHUB.run_number }}"
+
       - name: Build Android
         run: | 
+          $Version = ${{ steps.date.outputs.date }}
+          $DisplayVersion = "${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
+          
           dotnet publish ${{env.UI_PROJECT_PATH}} \
             -f net7.0-android \
             -c Release \
@@ -152,7 +136,9 @@ jobs:
             /p:AndroidSigningKeyAlias="${{ secrets.KEYSTORE_ALIAS }}" \
             /p:AndroidSigningKeyStore="${{ secrets.RELEASE_KEYSTORE }}" \
             /p:AndroidSigningKeyPass="${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" \
-            /p:AndroidSigningStorePass="${{ secrets.RELEASE_KEYSTORE_PASSWORD }}"
+            /p:AndroidSigningStorePass="${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" \
+            /p:ApplicationDisplayVersion=$DisplayVersion \
+            /p:ApplicationVersion=$Version
 
       - name: Upload Android build
         uses: actions/upload-artifact@v3
@@ -173,23 +159,6 @@ jobs:
           
       - name: Checkout repository
         uses: actions/checkout@v3
-      
-      - name: Set iOS Version
-        shell: pwsh
-        run: |
-          $DisplayVersion = "${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
-          $Version = ${{ GITHUB.run_number }}
-  
-          Write-Host "DisplayVersion:" $DisplayVersion
-          Write-Host "Version:" $Version
-          
-          Get-Childitem –Path $GITHUB_WORKSPACE -Recurse -Include *HSG*
-  
-          [xml]$xml = Get-Content -Path ${{ github.workspace }}/Src/MoneyFox.Ui/MoneyFox.Ui.csproj
-          $xml.Project.PropertyGroup[0].ApplicationDisplayVersion = $Version
-          $xml.Project.PropertyGroup[0].ApplicationVersion = $DisplayVersion
-          Set-Content "${{ github.workspace }}/Src/MoneyFox.Ui/MoneyFox.Ui.csproj" -Value $xml.InnerXml -Force
-          Write-Host $xml.InnerXml
           
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
@@ -246,7 +215,17 @@ jobs:
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
         
       - name: Build iOS
-        run: dotnet build ${{env.UI_PROJECT_PATH}} -f net7.0-ios -c Release -o ${{ github.workspace }}/moneyfox-ios  /p:packageApp=True
+        run: |
+          $DisplayVersion = "${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
+          $Version = ${{ GITHUB.run_number }}
+          
+          dotnet build ${{env.UI_PROJECT_PATH}} \
+            -f net7.0-ios \
+            -c Release \
+            -o ${{ github.workspace }}/moneyfox-ios \
+            /p:packageApp=True \
+            /p:ApplicationDisplayVersion=$DisplayVersion \
+            /p:ApplicationVersion=$Version
 
       - name: Upload iOS build
         uses: actions/upload-artifact@v3
