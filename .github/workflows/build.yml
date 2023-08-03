@@ -29,14 +29,10 @@ jobs:
 
           # import certificate from secrets
           [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($WINDOWS_CERTIFICATE_BASE64)) | Out-File -Encoding "ASCII" $CERTIFICATE_PATH
+
+          Get-ChildItem -Path $CERTIFICATE_PATH |
+            Import-PfxCertificate -CertStoreLocation Cert:\CurrentUser\My -Password $WINDOWS_CERTIFICATE_PASSWORD
           
-          Add-Type -AssemblyName System.Security
-          $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2($CERTIFICATE_PATH, $WINDOWS_CERTIFICATE_PASSWORD)
-          $store = new-object system.security.cryptography.X509Certificates.X509Store -argumentlist "MY", CurrentUser
-          $store.Open([System.Security.Cryptography.X509Certificates.OpenFlags]"ReadWrite")
-          $store.Add($cert)
-          $store.Close() 
-        
         
       - name: Checkout Repository
         uses: actions/checkout@v3
