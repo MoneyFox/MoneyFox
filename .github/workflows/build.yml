@@ -110,6 +110,8 @@ jobs:
         run: echo "::set-output name=date::$(date +'%Y%m')${{ GITHUB.run_number }}"
   
       - run: |
+          echo $GITHUB_WORKSPACE
+          echo ....
           Get-Childitem –Path $GITHUB_WORKSPACE -Recurse -Include MoneyFox.Ui.csproj
           tree /F $GITHUB_WORKSPACE
       
