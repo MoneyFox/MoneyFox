@@ -31,7 +31,7 @@ jobs:
           [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($WINDOWS_CERTIFICATE_BASE64)) | Out-File -Encoding "ASCII" $CERTIFICATE_PATH
           
           Add-Type -AssemblyName System.Security
-          $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2($CERTIFICATE_PATH, $certPassword, [System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]"PersistKeySet")
+          $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2($CERTIFICATE_PATH, $WINDOWS_CERTIFICATE_PASSWORD)
           $store = new-object system.security.cryptography.X509Certificates.X509Store -argumentlist "MY", CurrentUser
           $store.Open([System.Security.Cryptography.X509Certificates.OpenFlags]"ReadWrite")
           $store.Add($cert)
