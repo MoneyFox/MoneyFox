@@ -29,8 +29,8 @@ jobs:
           $certificatePath = "build_certificate.pfx"
           [IO.File]::WriteAllBytes("$certificatePath", $pfx_cert_byte)
           
-          Get-ChildItem -Path $certificatePath |
-            Import-PfxCertificate -CertStoreLocation Cert:\CurrentUser\My -Password $WINDOWS_CERTIFICATE_PASSWORD
+#          Get-ChildItem -Path $certificatePath |
+#            Import-PfxCertificate -CertStoreLocation Cert:\CurrentUser\My -Password $WINDOWS_CERTIFICATE_PASSWORD
           
         
       - name: Checkout Repository
@@ -79,8 +79,13 @@ jobs:
           dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
 
       - name: Build Win
-        run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-windows10.0.22621.0 -c Release -o ${{ github.workspace }}/moneyfox-win
-        
+        run: |
+          dotnet publish ${{env.UI_PROJECT_PATH}} \
+            -f net7.0-windows10.0.22621.0 \
+            -c Release \
+            -o ${{ github.workspace }}/moneyfox-win \
+            /p:PackageCertificateKeyFile=build_certificate.pfx
+          
       - name: Upload Windows build
         uses: actions/upload-artifact@v3
         with:
