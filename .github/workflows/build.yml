@@ -25,10 +25,11 @@ jobs:
           WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
         run: |
           # create variables
-          $CERTIFICATE_PATH="$RUNNER_TEMP\build_certificate.p12"
-          System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($WINDOWS_CERTIFICATE_BASE64)) | Out-File $CERTIFICATE_PATH
+          $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.BASE64_ENCODED_PFX }}")
+          $certificatePath = "build_certificate.pfx"
+          [IO.File]::WriteAllBytes("$certificatePath", $pfx_cert_byte)
           
-          Get-ChildItem -Path $CERTIFICATE_PATH |
+          Get-ChildItem -Path $certificatePath |
             Import-PfxCertificate -CertStoreLocation Cert:\CurrentUser\My -Password $WINDOWS_CERTIFICATE_PASSWORD
           
         
