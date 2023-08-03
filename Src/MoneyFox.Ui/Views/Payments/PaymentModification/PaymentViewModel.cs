@@ -15,10 +15,7 @@ public class PaymentViewModel : ObservableObject
 
     private AccountPickerViewModel chargedAccount = null!;
     private DateTime created;
-
-    private int currentAccountId;
     private DateTime date;
-
     private int id;
     private bool isCleared;
     private bool isRecurring;
@@ -134,13 +131,4 @@ public class PaymentViewModel : ObservableObject
     ///     This is a shortcut to access if the payment is a transfer or not.
     /// </summary>
     public bool IsTransfer => Type == PaymentType.Transfer;
-
-    /// <summary>
-    ///     Id of the account who currently is used for that view.
-    /// </summary>
-    public int CurrentAccountId
-    {
-        get => currentAccountId;
-        set => SetProperty(field: ref currentAccountId, newValue: value);
-    }
 }
