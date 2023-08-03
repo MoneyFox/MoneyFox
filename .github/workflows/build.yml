@@ -104,10 +104,11 @@ jobs:
       - name: Get android version
         id: date
         run: echo "::set-output name=date::$(date +'%Y%m')${{ GITHUB.run_number }}"
-  
+      
+      - run: ls $GITHUB_WORKSPACE
+      
       - run: |
-          echo $GITHUB_WORKSPACE
-          echo ....
+          ls $GITHUB_WORKSPACE
           Get-Childitem –Path $GITHUB_WORKSPACE -Recurse -Include MoneyFox.Ui.csproj
           tree /F $GITHUB_WORKSPACE
       
