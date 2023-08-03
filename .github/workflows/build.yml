@@ -101,13 +101,10 @@ jobs:
 
     steps:
       - name: Download keystore
-        env:
-          KEYSTORE_BASE64: ${{ secrets.RELEASE_KEYSTORE }}
-          KEYSTORE_PATH: ${{env.KEYSTORE_PATH}}
         run: |
           # create variables
-          $keystoreBytes = [System.Convert]::FromBase64String("$KEYSTORE_BASE64")
-          [IO.File]::WriteAllBytes($KEYSTORE_PATH, $keystoreBytes) 
+          $keystoreBytes = [System.Convert]::FromBase64String(${{ secrets.RELEASE_KEYSTORE }})
+          [IO.File]::WriteAllBytes(${{env.KEYSTORE_PATH}}, $keystoreBytes) 
           
       - uses: actions/checkout@v3
 
@@ -141,8 +138,6 @@ jobs:
         run: echo "::set-output name=date::$(date +'%Y%m')${{ GITHUB.run_number }}"
 
       - name: Build Android
-        env:
-          KEYSTORE_PATH: ${{env.KEYSTORE_PATH}}
         run: | 
           $DisplayVersion = "${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
           $Version = ${{ steps.date.outputs.date }}
@@ -153,7 +148,7 @@ jobs:
             -o ${{ github.workspace }}/moneyfox-android `
             /p:AndroidKeyStore="True" `
             /p:AndroidSigningKeyAlias="${{ secrets.KEYSTORE_ALIAS }}" `
-            /p:AndroidSigningKeyStore="$KEYSTORE_PATH" `
+            /p:AndroidSigningKeyStore="${{env.KEYSTORE_PATH}}" `
             /p:AndroidSigningKeyPass="${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" `
             /p:AndroidSigningStorePass="${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" `
             /p:ApplicationDisplayVersion=$DisplayVersion `
