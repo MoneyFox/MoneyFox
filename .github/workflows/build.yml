@@ -38,18 +38,18 @@ jobs:
 
       - name: Set values in manifest
         run: |
-          [xml]$xmlDoc = Get-Content '${{ github.workspace }}\MoneyFox\MoneyFox\src\MoneyFox.Ui\Platforms\Windows\Package.appxmanifest'
+          [xml]$xmlDoc = Get-Content '${{ github.workspace }}\src\MoneyFox.Ui\Platforms\Windows\Package.appxmanifest'
           $xmlDoc.Package.Identity.Name="57598ApplySolutionsSoftwa.MoneyFox"
           $xmlDoc.Package.Identity.Publisher="CN=071307B1-B0E3-434A-AD0E-FFF714A7245C"
           $xmlDoc.Package.Identity.Version="${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
-          $xmlDoc.Save('${{ github.workspace }}\MoneyFox\MoneyFox\src\MoneyFox.Ui\Platforms\Windows\Package.appxmanifest')  
+          $xmlDoc.Save('${{ github.workspace }}\src\MoneyFox.Ui\Platforms\Windows\Package.appxmanifest')  
 
       - name: Set association to store
         run: |
-          [xml]$xmlDoc = Get-Content '${{ github.workspace }}\MoneyFox\MoneyFox\src\MoneyFox.Ui\Platforms\Windows\Package.StoreAssociation.xml'
+          [xml]$xmlDoc = Get-Content '${{ github.workspace }}\src\MoneyFox.Ui\Platforms\Windows\Package.StoreAssociation.xml'
           $xmlDoc.StoreAssociation.Publisher="CN=071307B1-B0E3-434A-AD0E-FFF714A7245C"
           $xmlDoc.StoreAssociation.ProductReservedInfo.MainPackageIdentityName="57598ApplySolutionsSoftwa.MoneyFox"
-          $xmlDoc.Save('${{ github.workspace }}\MoneyFox\MoneyFox\src\MoneyFox.Ui\Platforms\Windows\Package.StoreAssociation.xml')       
+          $xmlDoc.Save('${{ github.workspace }}\src\MoneyFox.Ui\Platforms\Windows\Package.StoreAssociation.xml')       
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
