@@ -119,10 +119,10 @@ jobs:
           $DisplayVersion = "${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
           Write-Host "DisplayVersion:" $DisplayVersion
           Write-Host "Version:" $Version
-          [xml]$xml = Get-Content -Path $GITHUB_WORKSPACE\Src\MoneyFox.Ui\MoneyFox.Ui.csproj
+          [xml]$xml = Get-Content -Path ${{ GITHUB_WORKSPACE }}\Src\MoneyFox.Ui\MoneyFox.Ui.csproj
           $xml.Project.PropertyGroup[3].ApplicationDisplayVersion = $DisplayVersion
           $xml.Project.PropertyGroup[3].ApplicationVersion = $Version
-          Set-Content " $GITHUB_WORKSPACE\Src\MoneyFox.Ui\MoneyFox.Ui.csproj" -Value $xml.InnerXml -Force
+          Set-Content " ${{ GITHUB_WORKSPACE }}\Src\MoneyFox.Ui\MoneyFox.Ui.csproj" -Value $xml.InnerXml -Force
           Write-Host $xml.InnerXml
 
       - uses: actions/cache@v3
@@ -188,10 +188,10 @@ jobs:
           
           Get-Childitem –Path $GITHUB_WORKSPACE -Recurse -Include *HSG*
   
-          [xml]$xml = Get-Content -Path $GITHUB_WORKSPACE/Src/MoneyFox.Ui/MoneyFox.Ui.csproj
+          [xml]$xml = Get-Content -Path ${{ GITHUB_WORKSPACE }}/Src/MoneyFox.Ui/MoneyFox.Ui.csproj
           $xml.Project.PropertyGroup[0].ApplicationDisplayVersion = $Version
           $xml.Project.PropertyGroup[0].ApplicationVersion = $DisplayVersion
-          Set-Content "$GITHUB_WORKSPACE/Src/MoneyFox.Ui/MoneyFox.Ui.csproj" -Value $xml.InnerXml -Force
+          Set-Content "${{ GITHUB_WORKSPACE }}/Src/MoneyFox.Ui/MoneyFox.Ui.csproj" -Value $xml.InnerXml -Force
           Write-Host $xml.InnerXml
           
       - name: Setup .NET
