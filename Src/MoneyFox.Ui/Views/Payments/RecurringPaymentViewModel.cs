@@ -91,38 +91,7 @@ public class RecurringPaymentViewModel : ObservableObject, IHaveCustomMapping
     {
         get => recurrence;
 
-        set
-        {
-            SetProperty(field: ref recurrence, newValue: value);
-
-            // If recurrence is changed to a type that doesn't allow the Last Day of Month flag, force the flag to false if it's true
-            if (IsLastDayOfMonth && !AllowLastDayOfMonth)
-            {
-                IsLastDayOfMonth = false;
-            }
-
-            OnPropertyChanged(nameof(AllowLastDayOfMonth));
-        }
-    }
-
-    /// <summary>
-    ///     Boolean indicating whether or not the Last Day Of Month option should be permitted
-    /// </summary>
-    public bool AllowLastDayOfMonth => RecurringPaymentHelper.AllowLastDayOfMonth(Recurrence);
-
-    /// <summary>
-    ///     Additional notes to the payment.
-    /// </summary>
-    public string Note
-    {
-        get => note;
-        set => SetProperty(field: ref note, newValue: value);
-    }
-
-    public int ChargedAccountId
-    {
-        get => chargedAccountId;
-        set => SetProperty(field: ref chargedAccountId, newValue: value);
+        set => SetProperty(field: ref recurrence, newValue: value);
     }
 
     /// <summary>
