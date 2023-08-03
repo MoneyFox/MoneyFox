@@ -110,6 +110,8 @@ jobs:
         id: date
         run: echo "::set-output name=date::$(date +'%Y%m')${{ GITHUB.run_number }}"
   
+      - run: tree /F $GITHUB_WORKSPACE
+      
       - name: Set Android Version
         run: |
           $Version = ${{ steps.date.outputs.date }}
@@ -173,7 +175,9 @@ jobs:
           
       - name: Checkout repository
         uses: actions/checkout@v3
-          
+      
+      - run: tree -d $GITHUB_WORKSPACE
+      
       - name: Set iOS Version
         shell: pwsh
         run: |
