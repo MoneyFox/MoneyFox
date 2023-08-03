@@ -27,10 +27,7 @@ jobs:
           # create variables
           $CERTIFICATE_PATH="$RUNNER_TEMP\build_certificate.p12"
 
-          # import certificate from secrets
-          [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($WINDOWS_CERTIFICATE_BASE64)) | Out-File -Encoding "ASCII" $CERTIFICATE_PATH
-
-          Get-ChildItem -Path $CERTIFICATE_PATH |
+          [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($WINDOWS_CERTIFICATE_BASE64)) |
             Import-PfxCertificate -CertStoreLocation Cert:\CurrentUser\My -Password $WINDOWS_CERTIFICATE_PASSWORD
           
         
