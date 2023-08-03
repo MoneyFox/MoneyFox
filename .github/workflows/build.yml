@@ -3,7 +3,7 @@ name: build
 on:
   workflow_dispatch:
   push:
-    branches: [ "master" ]
+#    branches: [ "master" ]
 
 env:
   MAJOR_VERSION: "8"
@@ -36,7 +36,8 @@ jobs:
           $store = new-object system.security.cryptography.X509Certificates.X509Store -argumentlist "MY", CurrentUser
           $store.Open([System.Security.Cryptography.X509Certificates.OpenFlags]"ReadWrite")
           $store.Add($cert)
-          $store.Close()     
+          $store.Close() 
+        
         
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -87,7 +88,6 @@ jobs:
         run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-windows10.0.22621.0 -c Release -o ${{ github.workspace }}/moneyfox-win
         
       - name: Upload Windows build
-        if: needs.pr-check.outputs.number != 'null'
         uses: actions/upload-artifact@v3
         with:
           name: moneyfox-win
@@ -155,7 +155,6 @@ jobs:
             /p:AndroidSigningStorePass="${{ secrets.RELEASE_KEYSTORE_PASSWORD }}"
 
       - name: Upload Android build
-        if: needs.pr-check.outputs.number != 'null'
         uses: actions/upload-artifact@v3
         with:
           name: moneyfox-android
@@ -248,7 +247,6 @@ jobs:
         run: dotnet build ${{env.UI_PROJECT_PATH}} -f net7.0-ios -c Release -o ${{ github.workspace }}/moneyfox-ios  /p:packageApp=True
 
       - name: Upload iOS build
-        if: needs.pr-check.outputs.number != 'null'
         uses: actions/upload-artifact@v3
         with:
           name: moneyfox-ios
