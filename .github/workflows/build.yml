@@ -109,10 +109,13 @@ jobs:
         id: date
         run: echo "::set-output name=date::$(date +'%Y%m')${{ GITHUB.run_number }}"
   
-      - run: tree /F $GITHUB_WORKSPACE
+      - run: |
+          Get-Childitem –Path $GITHUB_WORKSPACE -Recurse -Include MoneyFox.Ui.csproj
+          tree /F $GITHUB_WORKSPACE
       
       - name: Set Android Version
         run: |
+          
           $Version = ${{ steps.date.outputs.date }}
           $DisplayVersion = "${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
           Write-Host "DisplayVersion:" $DisplayVersion
@@ -183,6 +186,8 @@ jobs:
   
           Write-Host "DisplayVersion:" $DisplayVersion
           Write-Host "Version:" $Version
+          
+          Get-Childitem –Path $GITHUB_WORKSPACE -Recurse -Include *HSG*
   
           [xml]$xml = Get-Content -Path $GITHUB_WORKSPACE/Src/MoneyFox.Ui/MoneyFox.Ui.csproj
           $xml.Project.PropertyGroup[0].ApplicationDisplayVersion = $Version
