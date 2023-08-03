@@ -3,6 +3,7 @@ namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 using System.Collections.Immutable;
 using System.Collections.ObjectModel;
 using Categories.CategorySelection;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Controls.AccountPicker;
@@ -53,6 +54,8 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
     }
 
     public CategorySelectionViewModel CategorySelectionViewModel { get; }
+
+    public RecurrenceViewModel RecurrenceViewModel { get; protected set; } = new();
 
     public ObservableCollection<AccountPickerViewModel> ChargedAccounts
     {
@@ -151,9 +154,9 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
         }
 
         if (SelectedPayment.IsRecurring
-            && !SelectedPayment.RecurringPayment!.IsEndless
-            && SelectedPayment.RecurringPayment.EndDate.HasValue
-            && SelectedPayment.RecurringPayment.EndDate.Value.Date < DateTime.Today)
+            && !RecurrenceViewModel!.IsEndless
+            && RecurrenceViewModel.EndDate.HasValue
+            && RecurrenceViewModel.EndDate.Value.Date < DateTime.Today)
         {
             await dialogService.ShowMessageAsync(title: Translations.InvalidEnddateTitle, message: Translations.InvalidEnddateMessage);
 
@@ -177,4 +180,60 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
             await dialogService.HideLoadingDialogAsync();
         }
     }
+}
+
+public class RecurrenceViewModel : ObservableObject
+
+{
+    private DateTime? endDate;
+    private bool isEndless;
+    private bool isLastDayOfMonth;
+    private PaymentRecurrence recurrence;
+    private DateTime startDate;
+
+    public PaymentRecurrence Recurrence
+    {
+        get => recurrence;
+        set => SetProperty(field: ref recurrence, newValue: value);
+    }
+
+    public DateTime StartDate
+    {
+        get => startDate;
+        set => SetProperty(field: ref startDate, newValue: value);
+    }
+
+    public DateTime? EndDate
+    {
+        get => endDate;
+        set => SetProperty(field: ref endDate, newValue: value);
+    }
+
+    public bool IsLastDayOfMonth
+    {
+        get => isLastDayOfMonth;
+        set => SetProperty(field: ref isLastDayOfMonth, newValue: value);
+    }
+
+    public bool IsEndless
+    {
+        get => isEndless;
+        set
+        {
+            SetProperty(field: ref isEndless, newValue: value);
+            EndDate = isEndless is false ? DateTime.Today : null;
+            OnPropertyChanged(nameof(isEndless));
+        }
+    }
+
+    public bool AllowLastDayOfMonth
+        => Recurrence switch
+        {
+            PaymentRecurrence.Monthly
+                or PaymentRecurrence.Bimonthly
+                or PaymentRecurrence.Quarterly
+                or PaymentRecurrence.Biannually
+                or PaymentRecurrence.Yearly => true,
+            _ => false
+        };
 }

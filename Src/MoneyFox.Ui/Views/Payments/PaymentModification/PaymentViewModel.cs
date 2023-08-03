@@ -24,7 +24,6 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     private bool isRecurring;
     private DateTime? lastModified;
     private string note = "";
-    private RecurringPaymentViewModel? recurringPaymentViewModel;
     private AccountPickerViewModel? targetAccount;
     private PaymentType type;
 
@@ -96,13 +95,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public bool IsRecurring
     {
         get => isRecurring;
-
-        set
-        {
-            SetProperty(field: ref isRecurring, newValue: value);
-            RecurringPayment = isRecurring ? new RecurringPaymentViewModel() : null;
-            OnPropertyChanged(nameof(RecurringPayment));
-        }
+        set => SetProperty(field: ref isRecurring, newValue: value);
     }
 
     public DateTime Created
@@ -135,15 +128,6 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     {
         get => targetAccount;
         set => SetProperty(field: ref targetAccount, newValue: value);
-    }
-
-    /// <summary>
-    ///     The <see cref="RecurringPayment" /> if it's recurring.
-    /// </summary>
-    public RecurringPaymentViewModel? RecurringPayment
-    {
-        get => recurringPaymentViewModel;
-        set => SetProperty(field: ref recurringPaymentViewModel, newValue: value);
     }
 
     /// <summary>
