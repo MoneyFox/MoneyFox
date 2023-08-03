@@ -10,7 +10,14 @@ public static class SystemDateHelperExtensions
     /// <returns></returns>
     public static DateTime GetFirstDayMonth(this ISystemDateHelper systemDateHelper)
     {
-        return new(year: systemDateHelper.Today.Year, month: systemDateHelper.Today.Month, day: 1);
+        return new(
+            year: systemDateHelper.Today.Year,
+            month: systemDateHelper.Today.Month,
+            day: 1,
+            hour: 0,
+            minute: 0,
+            second: 0,
+            kind: DateTimeKind.Local);
     }
 
     /// <summary>
@@ -21,6 +28,13 @@ public static class SystemDateHelperExtensions
     {
         var today = systemDateHelper.Today;
 
-        return new(year: today.Year, month: today.Month, day: DateTime.DaysInMonth(year: today.Year, month: today.Month));
+        return new(
+            year: today.Year,
+            month: today.Month,
+            day: DateTime.DaysInMonth(year: today.Year, month: today.Month),
+            hour: 0,
+            minute: 0,
+            second: 0,
+            kind: DateTimeKind.Local);
     }
 }
