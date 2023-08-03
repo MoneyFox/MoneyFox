@@ -27,7 +27,7 @@ jobs:
           # create variables
           $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.BASE64_ENCODED_PFX }}")
           $certificatePath = "${{ github.workspace }}\build_certificate.pfx"
-          [IO.File]::WriteAllBytes("$certificatePath", $pfx_cert_byte)
+          [IO.File]::WriteAllBytes($certificatePath, $pfx_cert_byte)
           
         
       - name: Checkout Repository
