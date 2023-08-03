@@ -126,8 +126,7 @@ jobs:
 
       - name: Build Android
         run: | 
-          $Version = ${{ steps.date.outputs.date }}
-          $DisplayVersion = "${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
+          $DisplayVersion="${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
           
           dotnet publish ${{env.UI_PROJECT_PATH}} \
             -f net7.0-android \
@@ -139,7 +138,7 @@ jobs:
             /p:AndroidSigningKeyPass="${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" \
             /p:AndroidSigningStorePass="${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" \
             /p:ApplicationDisplayVersion=$DisplayVersion \
-            /p:ApplicationVersion=$Version
+            /p:ApplicationVersion=${{ steps.date.outputs.date }}
 
       - name: Upload Android build
         uses: actions/upload-artifact@v3
@@ -217,8 +216,7 @@ jobs:
         
       - name: Build iOS
         run: |
-          $DisplayVersion = "${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
-          $Version = ${{ GITHUB.run_number }}
+          DisplayVersion="${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
           
           dotnet build ${{env.UI_PROJECT_PATH}} \
             -f net7.0-ios \
@@ -226,7 +224,7 @@ jobs:
             -o ${{ github.workspace }}/moneyfox-ios \
             /p:packageApp=True \
             /p:ApplicationDisplayVersion=$DisplayVersion \
-            /p:ApplicationVersion=$Version
+            /p:ApplicationVersion=${{ GITHUB.run_number }}
 
       - name: Upload iOS build
         uses: actions/upload-artifact@v3
