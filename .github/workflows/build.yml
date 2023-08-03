@@ -80,10 +80,10 @@ jobs:
 
       - name: Build Win
         run: |
-          dotnet publish ${{env.UI_PROJECT_PATH}} \
-            -f net7.0-windows10.0.22621.0 \
-            -c Release \
-            -o ${{ github.workspace }}/moneyfox-win \
+          dotnet publish ${{env.UI_PROJECT_PATH}} `
+            -f net7.0-windows10.0.22621.0 `
+            -c Release `
+            -o ${{ github.workspace }}/moneyfox-win `
             /p:PackageCertificateKeyFile=build_certificate.pfx
           
       - name: Upload Windows build
@@ -131,19 +131,19 @@ jobs:
 
       - name: Build Android
         run: | 
-          DisplayVersion="${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
-          Version=${{ steps.date.outputs.date }}
+          $DisplayVersion = "${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
+          $Version = ${{ steps.date.outputs.date }}
           
-          dotnet publish ${{env.UI_PROJECT_PATH}} \
-            -f net7.0-android \
-            -c Release \
-            -o ${{ github.workspace }}/moneyfox-android \
-            /p:AndroidKeyStore="True" \
-            /p:AndroidSigningKeyAlias="${{ secrets.KEYSTORE_ALIAS }}" \
-            /p:AndroidSigningKeyStore="${{ secrets.RELEASE_KEYSTORE }}" \
-            /p:AndroidSigningKeyPass="${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" \
-            /p:AndroidSigningStorePass="${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" \
-            /p:ApplicationDisplayVersion=$DisplayVersion \
+          dotnet publish ${{env.UI_PROJECT_PATH}} `
+            -f net7.0-android `
+            -c Release `
+            -o ${{ github.workspace }}/moneyfox-android `
+            /p:AndroidKeyStore="True" `
+            /p:AndroidSigningKeyAlias="${{ secrets.KEYSTORE_ALIAS }}" `
+            /p:AndroidSigningKeyStore="${{ secrets.RELEASE_KEYSTORE }}" `
+            /p:AndroidSigningKeyPass="${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" `
+            /p:AndroidSigningStorePass="${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" `
+            /p:ApplicationDisplayVersion=$DisplayVersion `
             /p:ApplicationVersion=$Version
 
       - name: Upload Android build
