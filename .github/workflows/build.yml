@@ -126,7 +126,8 @@ jobs:
 
       - name: Build Android
         run: | 
-          $DisplayVersion="${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
+          DisplayVersion="${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
+          Version=${{ steps.date.outputs.date }}
           
           dotnet publish ${{env.UI_PROJECT_PATH}} \
             -f net7.0-android \
@@ -138,7 +139,7 @@ jobs:
             /p:AndroidSigningKeyPass="${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" \
             /p:AndroidSigningStorePass="${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" \
             /p:ApplicationDisplayVersion=$DisplayVersion \
-            /p:ApplicationVersion=${{ steps.date.outputs.date }}
+            /p:ApplicationVersion=$Version
 
       - name: Upload Android build
         uses: actions/upload-artifact@v3
@@ -217,6 +218,7 @@ jobs:
       - name: Build iOS
         run: |
           DisplayVersion="${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
+          Version=${{ GITHUB.run_number }}
           
           dotnet build ${{env.UI_PROJECT_PATH}} \
             -f net7.0-ios \
