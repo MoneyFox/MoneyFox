@@ -9,7 +9,7 @@ using Core.Common.Interfaces.Mapping;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.CategoryAggregate;
 
-public class PaymentViewModel : ObservableObject, IHaveCustomMapping
+public class PaymentViewModel : ObservableObject
 {
     private decimal amount;
 
@@ -142,14 +142,5 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     {
         get => currentAccountId;
         set => SetProperty(field: ref currentAccountId, newValue: value);
-    }
-
-    public void CreateMappings(Profile configuration)
-    {
-        configuration.CreateMap<Category, SelectedCategoryViewModel>();
-        configuration.CreateMap<Account, AccountPickerViewModel>();
-        configuration.CreateMap<Payment, PaymentViewModel>()
-            .ForMember(destinationMember: x => x.CurrentAccountId, memberOptions: opt => opt.Ignore())
-            .ReverseMap();
     }
 }
