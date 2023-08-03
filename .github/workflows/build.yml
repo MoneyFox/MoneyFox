@@ -30,7 +30,7 @@ jobs:
           [IO.File]::WriteAllBytes("${{ env.WINDOWS_CERTIFICATE_PATH }}", $pfx_cert_byte)
           
           Get-ChildItem -Path "${{ env.WINDOWS_CERTIFICATE_PATH }}" |
-            Import-PfxCertificate -CertStoreLocation Cert:\CurrentUser\My -Password "$WINDOWS_CERTIFICATE_PASSWORD"
+            Import-PfxCertificate -CertStoreLocation Cert:\CurrentUser\My -Password "${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}"
           
         
       - name: Checkout Repository
