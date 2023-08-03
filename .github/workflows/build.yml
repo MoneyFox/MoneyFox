@@ -12,6 +12,8 @@ env:
   CORE_TEST_PROJECT_PATH: "src/MoneyFox.Core.Tests/MoneyFox.Core.Tests.csproj"
   UI_TEST_PROJECT_PATH: "src/MoneyFox.Ui.Tests/MoneyFox.Ui.Tests.csproj"
   INFRASTRUCTURE_PROJECT_PATH: "src/MoneyFox.Infrastructure.Tests/MoneyFox.Infrastructure.Tests.csproj"
+  KEYSTORE_PATH: "moneyfox.keystore"
+  WINDOWS_CERTIFICATE_PATH: "build-certificate-win.pfx"
 
 jobs:
   buildWin:
@@ -23,11 +25,11 @@ jobs:
         env:
           WINDOWS_CERTIFICATE_BASE64: ${{ secrets.WINDOWS_CERTIFICATE }}
           WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
+          CERTIFICATE_PATH: ${{ env.WINDOWS_CERTIFICATE_PATH }}
         run: |
           # create variables
           $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.BASE64_ENCODED_PFX }}")
-          $certificatePath = "${{ github.workspace }}\build_certificate.pfx"
-          [IO.File]::WriteAllBytes($certificatePath, $pfx_cert_byte)
+          [IO.File]::WriteAllBytes($CERTIFICATE_PATH, $pfx_cert_byte)
           
         
       - name: Checkout Repository
@@ -75,6 +77,8 @@ jobs:
           dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
 
       - name: Build Win
+        env:
+          CERTIFICATE_PATH: ${{ env.WINDOWS_CERTIFICATE_PATH }}
         run: |
           $DisplayVersion="${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
           $Version=${{ GITHUB.run_number }}
@@ -83,7 +87,7 @@ jobs:
             -f net7.0-windows10.0.22621.0 `
             -c Release `
             -o ${{ github.workspace }}/moneyfox-win `
-            /p:PackageCertificateKeyFile=${{ github.workspace }}\build_certificate.pfx `
+            /p:PackageCertificateKeyFile=$CERTIFICATE_PATH `
             /p:ApplicationDisplayVersion=$DisplayVersion `
             /p:ApplicationVersion=$Version
           
@@ -99,6 +103,15 @@ jobs:
     runs-on: windows-latest
 
     steps:
+      - name: Download keystore
+        env:
+          KEYSTORE_BASE64: ${{ secrets.RELEASE_KEYSTORE }}
+          KEYSTORE_PATH: ${{env.KEYSTORE_PATH}}
+        run: |
+          # create variables
+          $keystoreBytes = [System.Convert]::FromBase64String("$KEYSTORE_BASE64")
+          [IO.File]::WriteAllBytes($KEYSTORE_PATH, $keystoreBytes) 
+          
       - uses: actions/checkout@v3
 
       - name: Setup .NET
@@ -131,6 +144,8 @@ jobs:
         run: echo "::set-output name=date::$(date +'%Y%m')${{ GITHUB.run_number }}"
 
       - name: Build Android
+        env:
+          KEYSTORE_PATH: ${{env.KEYSTORE_PATH}}
         run: | 
           $DisplayVersion = "${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
           $Version = ${{ steps.date.outputs.date }}
@@ -141,7 +156,7 @@ jobs:
             -o ${{ github.workspace }}/moneyfox-android `
             /p:AndroidKeyStore="True" `
             /p:AndroidSigningKeyAlias="${{ secrets.KEYSTORE_ALIAS }}" `
-            /p:AndroidSigningKeyStore="${{ secrets.RELEASE_KEYSTORE }}" `
+            /p:AndroidSigningKeyStore="$KEYSTORE_PATH" `
             /p:AndroidSigningKeyPass="${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" `
             /p:AndroidSigningStorePass="${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" `
             /p:ApplicationDisplayVersion=$DisplayVersion `
