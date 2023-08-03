@@ -25,11 +25,10 @@ jobs:
         env:
           WINDOWS_CERTIFICATE_BASE64: ${{ secrets.WINDOWS_CERTIFICATE }}
           WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
-          CERTIFICATE_PATH: ${{ env.WINDOWS_CERTIFICATE_PATH }}
         run: |
           # create variables
           $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.BASE64_ENCODED_PFX }}")
-          [IO.File]::WriteAllBytes($CERTIFICATE_PATH, $pfx_cert_byte)
+          [IO.File]::WriteAllBytes(${{ env.WINDOWS_CERTIFICATE_PATH }}, $pfx_cert_byte)
           
         
       - name: Checkout Repository
@@ -77,8 +76,6 @@ jobs:
           dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
 
       - name: Build Win
-        env:
-          CERTIFICATE_PATH: ${{ env.WINDOWS_CERTIFICATE_PATH }}
         run: |
           $DisplayVersion="${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
           $Version=${{ GITHUB.run_number }}
@@ -87,7 +84,7 @@ jobs:
             -f net7.0-windows10.0.22621.0 `
             -c Release `
             -o ${{ github.workspace }}/moneyfox-win `
-            /p:PackageCertificateKeyFile=$CERTIFICATE_PATH `
+            /p:PackageCertificateKeyFile=${{ env.WINDOWS_CERTIFICATE_PATH }} `
             /p:ApplicationDisplayVersion=$DisplayVersion `
             /p:ApplicationVersion=$Version
           
