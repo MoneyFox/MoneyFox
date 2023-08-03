@@ -15,7 +15,15 @@ public class RecurrenceViewModel : ObservableObject
     public PaymentRecurrence Recurrence
     {
         get => recurrence;
-        set => SetProperty(field: ref recurrence, newValue: value);
+
+        set
+        {
+            SetProperty(field: ref recurrence, newValue: value);
+            if (AllowLastDayOfMonth is false)
+            {
+                IsLastDayOfMonth = false;
+            }
+        }
     }
 
     public DateTime StartDate
