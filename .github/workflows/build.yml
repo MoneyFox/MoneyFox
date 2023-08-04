@@ -106,9 +106,8 @@ jobs:
     steps:
       - name: Download keystore
         run: |
-          # create variables
-          $keystoreBytes = [System.Convert]::FromBase64String("${{ secrets.ANDROID_KEYSTORE_FILE_BASE64 }}")
-          [IO.File]::WriteAllBytes("moneyfox.keystore", $keystoreBytes) 
+          echo "${{ secrets.ANDROID_KEYSTORE_FILE_GPG }}" > moneyfox.keystore.asc
+          gpg -d --passphrase "${{ secrets.KEYSTORE_PASSWORD_GPG }}" --batch moneyfox.keystore.asc > moneyfox.keystore
           
       - uses: actions/checkout@v3
 
