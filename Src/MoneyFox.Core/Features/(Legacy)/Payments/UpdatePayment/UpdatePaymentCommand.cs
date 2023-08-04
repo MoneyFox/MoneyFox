@@ -62,7 +62,7 @@ public static class UpdatePayment
 
             if (command is { IsRecurring: true, UpdateRecurringPayment: true, Recurrence: not null })
             {
-                HandleRecurringPayment(request: command, existingPayment: existingPayment);
+                UpdateRecurringPayment(request: command, existingPayment: existingPayment);
             }
             else if (!command.IsRecurring && existingPayment.RecurringPayment != null)
             {
@@ -77,7 +77,7 @@ public static class UpdatePayment
             _ = await appDbContext.SaveChangesAsync(cancellationToken);
         }
 
-        private static void HandleRecurringPayment(Command request, Payment existingPayment)
+        private static void UpdateRecurringPayment(Command request, Payment existingPayment)
         {
             if (existingPayment.IsRecurring)
             {
