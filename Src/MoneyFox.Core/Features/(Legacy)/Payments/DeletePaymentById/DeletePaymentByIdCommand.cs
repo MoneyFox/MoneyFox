@@ -15,7 +15,7 @@ public class DeletePaymentByIdCommand : IRequest
         DeleteRecurringPayment = deleteRecurringPayment;
     }
 
-    public int PaymentId { get; }
+    private int PaymentId { get; }
 
     public bool DeleteRecurringPayment { get; set; }
 
@@ -47,8 +47,8 @@ public class DeletePaymentByIdCommand : IRequest
                 await DeleteRecurringPaymentAsync(entityToDelete.RecurringPayment.Id);
             }
 
-            _ = appDbContext.Payments.Remove(entityToDelete);
-            _ = await appDbContext.SaveChangesAsync(cancellationToken);
+            appDbContext.Payments.Remove(entityToDelete);
+            await appDbContext.SaveChangesAsync(cancellationToken);
         }
 
         private async Task DeleteRecurringPaymentAsync(int recurringPaymentId)
@@ -61,7 +61,7 @@ public class DeletePaymentByIdCommand : IRequest
                 return;
             }
 
-            _ = appDbContext.RecurringPayments.Remove(recurringPayment);
+            appDbContext.RecurringPayments.Remove(recurringPayment);
         }
     }
 }
