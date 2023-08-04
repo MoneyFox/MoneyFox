@@ -97,7 +97,6 @@ jobs:
           name: moneyfox-win
           path: ${{ github.workspace }}/moneyfox-win
   
-  
   build-android:
     runs-on: windows-latest
 
@@ -164,7 +163,6 @@ jobs:
           name: moneyfox-android
           path: ${{ github.workspace }}/moneyfox-android
           
-  
   build-ios:
     runs-on: macos-13
 
