@@ -115,6 +115,10 @@ jobs:
     steps:
       - name: Download keystore
         run: |
+          
+          echo "${{ secrets.RELEASE_KEYSTORE }}" > moneyfox.keystore.asc
+          gpg -d --passphrase "${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" --batch moneyfox.keystore.asc > moneyfox.keystore
+          
           # create variables
           $path = "${{ github.workspace }}\${{env.KEYSTORE_PATH}}"
           $keystoreBytes = [System.Convert]::FromBase64String("${{ secrets.RELEASE_KEYSTORE }}")
@@ -156,9 +160,6 @@ jobs:
         run: | 
           $DisplayVersion = "${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
           $Version = ${{ steps.date.outputs.date }}
-          $KeyStorePath = "${{ github.workspace }}\${{env.KEYSTORE_PATH}}"
-          
-          Test-Path -Path $KeyStorePath -PathType Leaf
           
           dotnet publish ${{env.UI_PROJECT_PATH}} `
             -f net7.0-android `
@@ -166,7 +167,7 @@ jobs:
             -o ${{ github.workspace }}/moneyfox-android `
             /p:AndroidKeyStore="True" `
             /p:AndroidSigningKeyAlias="${{ secrets.KEYSTORE_ALIAS }}" `
-            /p:AndroidSigningKeyStore=$KeyStorePath `
+            /p:AndroidSigningKeyStore=moneyfox.keystore `
             /p:AndroidSigningKeyPass="${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" `
             /p:AndroidSigningStorePass="${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" `
             /p:ApplicationDisplayVersion=$DisplayVersion `
