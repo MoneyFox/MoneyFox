@@ -109,7 +109,7 @@ jobs:
           # create variables
           $path = "${{ github.workspace }}\${{env.KEYSTORE_PATH}}"
           $keystoreBytes = [System.Convert]::FromBase64String("${{ secrets.RELEASE_KEYSTORE }}")
-          [IO.File]::WriteAllBytes("", $keystoreBytes) 
+          [IO.File]::WriteAllBytes($path, $keystoreBytes) 
           
       - uses: actions/checkout@v3
 
