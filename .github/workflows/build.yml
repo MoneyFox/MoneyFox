@@ -107,7 +107,7 @@ jobs:
       - name: Download keystore
         run: |
           echo "${{ secrets.ANDROID_KEYSTORE_FILE_GPG }}" > moneyfox.keystore.asc
-          gpg -d --passphrase "${{ secrets.KEYSTORE_PASSWORD_GPG }}" --batch moneyfox.keystore.asc > moneyfox.keystore
+          gpg -d --passphrase "${{ secrets.ANDROID_KEYSTORE_GPG_PASSWORD }}" --batch moneyfox.keystore.asc > moneyfox.keystore
           
       - uses: actions/checkout@v3
 
