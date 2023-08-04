@@ -117,7 +117,6 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
             Id: SelectedPayment.Id,
             Date: SelectedPayment.Date,
             Amount: SelectedPayment.Amount,
-            IsCleared: SelectedPayment.IsCleared,
             Type: SelectedPayment.Type,
             Note: SelectedPayment.Note,
             IsRecurring: SelectedPayment.IsRecurring,

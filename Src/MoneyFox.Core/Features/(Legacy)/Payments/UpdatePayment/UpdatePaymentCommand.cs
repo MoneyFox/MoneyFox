@@ -16,7 +16,6 @@ public static class UpdatePayment
         int Id,
         DateTime Date,
         decimal Amount,
-        bool IsCleared,
         PaymentType Type,
         string? Note,
         bool IsRecurring,
