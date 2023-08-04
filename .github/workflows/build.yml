@@ -105,8 +105,8 @@ jobs:
       - name: Download keystore
         run: |
           echo "${{ secrets.ANDROID_KEYSTORE_FILE_GPG }}" > moneyfox.keystore.asc
-          gpg -d --passphrase "${{ secrets.ANDROID_KEYSTORE_GPG_PASSWORD }}" --batch moneyfox.keystore.asc > "${{ RUNNER_TEMP }}\moneyfox.keystore"
-          Test-Path -Path "${{ RUNNER_TEMP }}\moneyfox.keystore" -PathType Leaf
+          gpg -d --passphrase "${{ secrets.ANDROID_KEYSTORE_GPG_PASSWORD }}" --batch moneyfox.keystore.asc > "${{ runner.temp }}\moneyfox.keystore"
+          Test-Path -Path "${{ runner.temp }}\moneyfox.keystore" -PathType Leaf
           
       - uses: actions/checkout@v3
 
@@ -144,7 +144,7 @@ jobs:
           $DisplayVersion = "${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
           $Version = ${{ steps.date.outputs.date }}
           
-          Test-Path -Path "${{ RUNNER_TEMP }}\moneyfox.keystore" -PathType Leaf
+          Test-Path -Path "${{ runner.temp }}\moneyfox.keystore" -PathType Leaf
           
           dotnet publish ${{env.UI_PROJECT_PATH}} `
             -f net7.0-android `
