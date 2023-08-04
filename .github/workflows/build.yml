@@ -24,6 +24,7 @@ jobs:
       - name: Install signing certificate
         env:
           WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
+          WINDOWS_CERTIFICATE_BASE64: ${{ secrets.WINDOWS_CERTIFICATE }}
         run: |
           # create variables
           $path="${{ github.workspace }}\${{ env.WINDOWS_CERTIFICATE_PATH }}"
@@ -31,7 +32,7 @@ jobs:
           [IO.File]::WriteAllBytes($path, $pfx_cert_byte)
           
           Add-Type -AssemblyName System.Security
-          $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2($pfx_cert_byte, $certPassword)
+          $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2([Convert]::FromBase64String($WINDOWS_CERTIFICATE_BASE64), $certPassword)
           $store = new-object system.security.cryptography.X509Certificates.X509Store -argumentlist "MY", CurrentUser
           $store.Open([System.Security.Cryptography.X509Certificates.OpenFlags]"ReadWrite")
           $store.Add($cert)
