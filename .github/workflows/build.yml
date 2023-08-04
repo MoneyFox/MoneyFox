@@ -110,6 +110,7 @@ jobs:
           $path = "${{ github.workspace }}\${{env.KEYSTORE_PATH}}"
           $keystoreBytes = [System.Convert]::FromBase64String("${{ secrets.RELEASE_KEYSTORE }}")
           [IO.File]::WriteAllBytes($path, $keystoreBytes) 
+          Test-Path -Path $path -PathType Leaf
           
       - uses: actions/checkout@v3
 
@@ -148,13 +149,15 @@ jobs:
           $Version = ${{ steps.date.outputs.date }}
           $KeyStorePath = "${{ github.workspace }}\${{env.KEYSTORE_PATH}}"
           
+          Test-Path -Path $KeyStorePath -PathType Leaf
+          
           dotnet publish ${{env.UI_PROJECT_PATH}} `
             -f net7.0-android `
             -c Release `
             -o ${{ github.workspace }}/moneyfox-android `
             /p:AndroidKeyStore="True" `
             /p:AndroidSigningKeyAlias="${{ secrets.KEYSTORE_ALIAS }}" `
-            /p:AndroidSigningKeyStore="$KeyStorePath" `
+            /p:AndroidSigningKeyStore=$KeyStorePath `
             /p:AndroidSigningKeyPass="${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" `
             /p:AndroidSigningStorePass="${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" `
             /p:ApplicationDisplayVersion=$DisplayVersion `
