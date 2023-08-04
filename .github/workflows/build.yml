@@ -12,8 +12,6 @@ env:
   CORE_TEST_PROJECT_PATH: "src/MoneyFox.Core.Tests/MoneyFox.Core.Tests.csproj"
   UI_TEST_PROJECT_PATH: "src/MoneyFox.Ui.Tests/MoneyFox.Ui.Tests.csproj"
   INFRASTRUCTURE_PROJECT_PATH: "src/MoneyFox.Infrastructure.Tests/MoneyFox.Infrastructure.Tests.csproj"
-  KEYSTORE_PATH: "moneyfox.keystore"
-  WINDOWS_CERTIFICATE_PATH: "build-certificate-win.pfx"
 
 jobs:
   buildWin:
@@ -26,23 +24,15 @@ jobs:
           WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
           WINDOWS_CERTIFICATE_BASE64: ${{ secrets.WINDOWS_CERTIFICATE_BASE64 }}
         run: |
-          # create variables
-          $path="${{ github.workspace }}\${{ env.WINDOWS_CERTIFICATE_PATH }}"
           $pfx_cert_byte = [System.Convert]::FromBase64String($WINDOWS_CERTIFICATE_BASE64)
-          [IO.File]::WriteAllBytes($path, $pfx_cert_byte)
           
-#          Add-Type -AssemblyName System.Security
-#          $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2($pfx_cert_byte, $WINDOWS_CERTIFICATE_PASSWORD)
-#          $store = new-object system.security.cryptography.X509Certificates.X509Store -argumentlist "MY", CurrentUser
-#          $store.Open([System.Security.Cryptography.X509Certificates.OpenFlags]"ReadWrite")
-#          $store.Add($cert)
-#          $store.Close()
-#          
+          Add-Type -AssemblyName System.Security
+          $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2($pfx_cert_byte, $WINDOWS_CERTIFICATE_PASSWORD)
+          $store = new-object system.security.cryptography.X509Certificates.X509Store -argumentlist "MY", CurrentUser
+          $store.Open([System.Security.Cryptography.X509Certificates.OpenFlags]"ReadWrite")
+          $store.Add($cert)
+          $store.Close()
           
-          Get-ChildItem -Path "${{ env.WINDOWS_CERTIFICATE_PATH }}" |
-            Import-PfxCertificate -CertStoreLocation Cert:\CurrentUser\My -Password $WINDOWS_CERTIFICATE_PASSWORD
-          
-        
       - name: Checkout Repository
         uses: actions/checkout@v3
 
@@ -97,7 +87,6 @@ jobs:
             -f net7.0-windows10.0.22621.0 `
             -c Release `
             -o ${{ github.workspace }}/moneyfox-win `
-            /p:PackageCertificateKeyFile="${{ env.WINDOWS_CERTIFICATE_PATH }}" `
             /p:ApplicationDisplayVersion=$DisplayVersion `
             /p:ApplicationVersion=$Version
           
