@@ -24,7 +24,7 @@ jobs:
           WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
           WINDOWS_CERTIFICATE_BASE64: ${{ secrets.WINDOWS_CERTIFICATE_BASE64 }}
         run: |
-          $pfx_cert_byte = [System.Convert]::FromBase64String(${{ secrets.WINDOWS_CERTIFICATE_BASE64 }})
+          $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.WINDOWS_CERTIFICATE_BASE64 }}")
           
           Add-Type -AssemblyName System.Security
           $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2($pfx_cert_byte, $WINDOWS_CERTIFICATE_PASSWORD)
