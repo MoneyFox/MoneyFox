@@ -1,9 +1,11 @@
 name: build
 
 on:
-  workflow_dispatch:
   push:
 #    branches: [ "master" ]
+
+
+  workflow_dispatch:
 
 env:
   MAJOR_VERSION: "8"
