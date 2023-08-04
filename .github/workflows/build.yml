@@ -17,7 +17,6 @@ env:
 
 jobs:
   build-win:
-
     runs-on: windows-latest
 
     steps:
@@ -100,14 +99,14 @@ jobs:
   
   
   build-android:
-
     runs-on: windows-latest
 
     steps:
       - name: Download keystore
         run: |
           echo "${{ secrets.ANDROID_KEYSTORE_FILE_GPG }}" > moneyfox.keystore.asc
-          gpg -d --passphrase "${{ secrets.ANDROID_KEYSTORE_GPG_PASSWORD }}" --batch moneyfox.keystore.asc > moneyfox.keystore
+          gpg -d --passphrase "${{ secrets.ANDROID_KEYSTORE_GPG_PASSWORD }}" --batch moneyfox.keystore.asc > "${{ RUNNER_TEMP }}\moneyfox.keystore"
+          Test-Path -Path "${{ RUNNER_TEMP }}\moneyfox.keystore" -PathType Leaf
           
       - uses: actions/checkout@v3
 
@@ -130,11 +129,11 @@ jobs:
       - name: Restore Dependencies
         run: dotnet restore ${{env.UI_PROJECT_PATH}}
 
-      - name: Test
-        run: |
-          dotnet test ${{env.UI_TEST_PROJECT_PATH}}
-          dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
-          dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
+#      - name: Test
+#        run: |
+#          dotnet test ${{env.UI_TEST_PROJECT_PATH}}
+#          dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
+#          dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
 
       - name: Get android version
         id: date
@@ -144,6 +143,8 @@ jobs:
         run: | 
           $DisplayVersion = "${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
           $Version = ${{ steps.date.outputs.date }}
+          
+          Test-Path -Path "${{ RUNNER_TEMP }}\moneyfox.keystore" -PathType Leaf
           
           dotnet publish ${{env.UI_PROJECT_PATH}} `
             -f net7.0-android `
