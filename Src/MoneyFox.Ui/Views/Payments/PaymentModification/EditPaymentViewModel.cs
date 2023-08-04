@@ -121,7 +121,7 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
             Note: SelectedPayment.Note,
             IsRecurring: SelectedPayment.IsRecurring,
             CategoryId: CategorySelectionViewModel.SelectedCategory?.Id ?? 0,
-            ChargedAccountId: SelectedPayment.ChargedAccount?.Id ?? 0,
+            ChargedAccountId: SelectedPayment.ChargedAccount.Id,
             TargetAccountId: SelectedPayment.TargetAccount?.Id ?? 0,
             UpdateRecurringPayment: updateRecurring,
             Recurrence: RecurrenceViewModel.Recurrence,
