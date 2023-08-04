@@ -152,7 +152,7 @@ jobs:
             -o ${{ github.workspace }}/moneyfox-android `
             /p:AndroidKeyStore="True" `
             /p:AndroidSigningKeyAlias="${{ secrets.ANDROID_KEYSTORE_ALIAS }}" `
-            /p:AndroidSigningKeyStore=moneyfox.keystore `
+            /p:AndroidSigningKeyStore="${{ runner.temp }}\moneyfox.keystore" `
             /p:AndroidSigningKeyPass="${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" `
             /p:AndroidSigningStorePass="${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" `
             /p:ApplicationDisplayVersion=$DisplayVersion `
@@ -166,7 +166,6 @@ jobs:
           
   
   build-ios:
-
     runs-on: macos-13
 
     steps:
