@@ -26,11 +26,12 @@ jobs:
           WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
         run: |
           # create variables
+          $path="${{ github.workspace }}\${{ env.WINDOWS_CERTIFICATE_PATH }}"
           $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.WINDOWS_CERTIFICATE }}")
-          [IO.File]::WriteAllBytes("${{ env.WINDOWS_CERTIFICATE_PATH }}", $pfx_cert_byte)
+          [IO.File]::WriteAllBytes($path, $pfx_cert_byte)
           
-          Get-ChildItem -Path "${{ env.WINDOWS_CERTIFICATE_PATH }}" |
-            Import-PfxCertificate -CertStoreLocation Cert:\CurrentUser\My -Password $WINDOWS_CERTIFICATE_PASSWORD
+#          Get-ChildItem -Path "${{ env.WINDOWS_CERTIFICATE_PATH }}" |
+#            Import-PfxCertificate -CertStoreLocation Cert:\CurrentUser\My -Password $WINDOWS_CERTIFICATE_PASSWORD
           
         
       - name: Checkout Repository
@@ -81,6 +82,7 @@ jobs:
         run: |
           $DisplayVersion="${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
           $Version=${{ GITHUB.run_number }}
+          $KeyStorePath = "${{ github.workspace }}\${{ env.WINDOWS_CERTIFICATE_PATH }}"
           
           dotnet publish ${{env.UI_PROJECT_PATH}} `
             -f net7.0-windows10.0.22621.0 `
@@ -105,8 +107,9 @@ jobs:
       - name: Download keystore
         run: |
           # create variables
+          $path = "${{ github.workspace }}\${{env.KEYSTORE_PATH}}"
           $keystoreBytes = [System.Convert]::FromBase64String("${{ secrets.RELEASE_KEYSTORE }}")
-          [IO.File]::WriteAllBytes("${{env.KEYSTORE_PATH}}", $keystoreBytes) 
+          [IO.File]::WriteAllBytes("", $keystoreBytes) 
           
       - uses: actions/checkout@v3
 
@@ -143,6 +146,7 @@ jobs:
         run: | 
           $DisplayVersion = "${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
           $Version = ${{ steps.date.outputs.date }}
+          $KeyStorePath = "${{ github.workspace }}\${{env.KEYSTORE_PATH}}"
           
           dotnet publish ${{env.UI_PROJECT_PATH}} `
             -f net7.0-android `
@@ -150,7 +154,7 @@ jobs:
             -o ${{ github.workspace }}/moneyfox-android `
             /p:AndroidKeyStore="True" `
             /p:AndroidSigningKeyAlias="${{ secrets.KEYSTORE_ALIAS }}" `
-            /p:AndroidSigningKeyStore="${{env.KEYSTORE_PATH}}" `
+            /p:AndroidSigningKeyStore="$KeyStorePath" `
             /p:AndroidSigningKeyPass="${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" `
             /p:AndroidSigningStorePass="${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" `
             /p:ApplicationDisplayVersion=$DisplayVersion `
