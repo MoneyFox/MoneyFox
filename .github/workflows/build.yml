@@ -31,8 +31,10 @@ jobs:
           $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.WINDOWS_CERTIFICATE }}")
           [IO.File]::WriteAllBytes($path, $pfx_cert_byte)
           
+          Write-Output $pfx_cert_byte
+          
           Add-Type -AssemblyName System.Security
-          $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2([System.Convert]::FromBase64String(${{ secrets.WINDOWS_CERTIFICATE }}), $certPassword)
+          $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2($pfx_cert_byte, $WINDOWS_CERTIFICATE_PASSWORD)
           $store = new-object system.security.cryptography.X509Certificates.X509Store -argumentlist "MY", CurrentUser
           $store.Open([System.Security.Cryptography.X509Certificates.OpenFlags]"ReadWrite")
           $store.Add($cert)
