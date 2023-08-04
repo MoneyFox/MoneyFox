@@ -14,7 +14,7 @@ env:
   INFRASTRUCTURE_PROJECT_PATH: "src/MoneyFox.Infrastructure.Tests/MoneyFox.Infrastructure.Tests.csproj"
 
 jobs:
-  buildWin:
+  build-win:
 
     runs-on: windows-latest
 
@@ -97,7 +97,7 @@ jobs:
           path: ${{ github.workspace }}/moneyfox-win
   
   
-  buildAndroid:
+  build-android:
 
     runs-on: windows-latest
 
@@ -163,7 +163,7 @@ jobs:
           path: ${{ github.workspace }}/moneyfox-android
           
   
-  buildiOS:
+  build-ios:
 
     runs-on: macos-13
 
