@@ -24,11 +24,11 @@ jobs:
       - name: Install signing certificate
         env:
           WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
-          WINDOWS_CERTIFICATE_BASE64: ${{ secrets.WINDOWS_CERTIFICATE }}
+          WINDOWS_CERTIFICATE_BASE64: ${{ secrets.WINDOWS_CERTIFICATE_BASE64 }}
         run: |
           # create variables
           $path="${{ github.workspace }}\${{ env.WINDOWS_CERTIFICATE_PATH }}"
-          $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.WINDOWS_CERTIFICATE }}")
+          $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.WINDOWS_CERTIFICATE_BASE64 }}")
           [IO.File]::WriteAllBytes($path, $pfx_cert_byte)
           
           Write-Output $pfx_cert_byte
