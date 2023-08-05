@@ -36,7 +36,7 @@ public sealed class UpdateRecurringTransactionTests : InMemoryTestBase
             UpdatedEndDate: endDate,
             IsLastDayOfMonth: true);
 
-        await handler.Handle(request: command, cancellationToken: CancellationToken.None);
+        await handler.Handle(command: command, cancellationToken: CancellationToken.None);
 
         // Assert
         var dbRecurringTransaction = Context.RecurringTransactions.Single();

@@ -59,7 +59,7 @@ public static class UpdatePayment
                 category: await appDbContext.Categories.FindAsync(command.CategoryId),
                 note: command.Note);
 
-            if (command is { IsRecurring: true, UpdateRecurringPayment: true, Recurrence: not null })
+            if (command is { IsRecurring: true, UpdateRecurringPayment: true })
             {
                 UpdateRecurringPayment(request: command, existingPayment: existingPayment);
             }

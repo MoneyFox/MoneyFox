@@ -28,18 +28,18 @@ public static class UpdateRecurringTransaction
             this.appDbContext = appDbContext;
         }
 
-        public async Task Handle(Command request, CancellationToken cancellationToken)
+        public async Task Handle(Command command, CancellationToken cancellationToken)
         {
             var recurringTransaction = await appDbContext.RecurringTransactions.SingleAsync(
-                predicate: rt => rt.RecurringTransactionId == request.RecurringTransactionId,
+                predicate: rt => rt.RecurringTransactionId == command.RecurringTransactionId,
                 cancellationToken: cancellationToken);
 
             recurringTransaction.UpdateRecurrence(
-                updatedAmount: request.UpdatedAmount,
-                updatedCategoryId: request.UpdatedCategoryId,
-                updatedRecurrence: request.UpdatedRecurrence,
-                updatedEndDate: request.UpdatedEndDate,
-                updatedIsLastDayOfMonth: request.IsLastDayOfMonth);
+                updatedAmount: command.UpdatedAmount,
+                updatedCategoryId: command.UpdatedCategoryId,
+                updatedRecurrence: command.UpdatedRecurrence,
+                updatedEndDate: command.UpdatedEndDate,
+                updatedIsLastDayOfMonth: command.IsLastDayOfMonth);
 
             await appDbContext.SaveChangesAsync(cancellationToken);
         }
