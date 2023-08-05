@@ -43,7 +43,6 @@ public class UpdatePaymentCommandTests : InMemoryTestBase
                 TargetAccountId: payment1.TargetAccount?.Id ?? 0,
                 UpdateRecurringPayment: false,
                 Recurrence: null,
-                IsEndless: null,
                 EndDate: null,
                 IsLastDayOfMonth: false),
             cancellationToken: default);
@@ -83,7 +82,6 @@ public class UpdatePaymentCommandTests : InMemoryTestBase
                 TargetAccountId: payment1.TargetAccount?.Id ?? 0,
                 UpdateRecurringPayment: true,
                 Recurrence: PaymentRecurrence.Daily,
-                IsEndless: null,
                 EndDate: null,
                 IsLastDayOfMonth: false),
             cancellationToken: default);

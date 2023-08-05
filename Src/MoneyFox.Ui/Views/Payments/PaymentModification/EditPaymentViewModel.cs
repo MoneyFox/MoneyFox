@@ -125,7 +125,6 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
             TargetAccountId: SelectedPayment.TargetAccount?.Id ?? 0,
             UpdateRecurringPayment: updateRecurring,
             Recurrence: RecurrenceViewModel.Recurrence,
-            IsEndless: RecurrenceViewModel.IsEndless,
             EndDate: RecurrenceViewModel.EndDate,
             IsLastDayOfMonth: RecurrenceViewModel.IsLastDayOfMonth);
 

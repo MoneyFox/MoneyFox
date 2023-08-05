@@ -28,7 +28,6 @@ public static class UpdatePayment
         int TargetAccountId,
         bool UpdateRecurringPayment,
         PaymentRecurrence? Recurrence,
-        bool? IsEndless,
         DateTime? EndDate,
         bool IsLastDayOfMonth) : IRequest;
 
@@ -78,8 +77,6 @@ public static class UpdatePayment
                         UpdatedEndDate: command.EndDate.HasValue ? DateOnly.FromDateTime(command.EndDate.Value) : null,
                         IsLastDayOfMonth: command.IsLastDayOfMonth),
                     cancellationToken: cancellationToken);
-
-                UpdateRecurringPayment(request: command, existingPayment: existingPayment);
             }
             else if (!command.IsRecurring && existingPayment.RecurringPayment != null)
             {
@@ -87,39 +84,11 @@ public static class UpdatePayment
                     .Where(x => x.RecurringPayment!.Id == existingPayment.RecurringPayment!.Id)
                     .ToList();
 
-                _ = appDbContext.RecurringPayments.Remove(existingPayment.RecurringPayment!);
+                appDbContext.RecurringPayments.Remove(existingPayment.RecurringPayment!);
                 linkedPayments.ForEach(x => x.RemoveRecurringPayment());
             }
 
-            _ = await appDbContext.SaveChangesAsync(cancellationToken);
-        }
-
-        private static void UpdateRecurringPayment(Command request, Payment existingPayment)
-        {
-            if (existingPayment.IsRecurring)
-            {
-                existingPayment.RecurringPayment!.UpdateRecurringPayment(
-                    amount: request.Amount,
-                    recurrence: request.Recurrence ?? existingPayment.RecurringPayment.Recurrence,
-                    chargedAccount: existingPayment.ChargedAccount,
-                    isLastDayOfMonth: request.IsLastDayOfMonth,
-                    note: request.Note,
-                    endDate: request.IsEndless.HasValue && request.IsEndless.Value ? null : request.EndDate,
-                    targetAccount: existingPayment.TargetAccount,
-                    category: existingPayment.Category);
-            }
-            else
-            {
-                if (!request.Recurrence.HasValue)
-                {
-                    throw new RecurrenceNullException(nameof(request.Recurrence));
-                }
-
-                existingPayment.AddRecurringPayment(
-                    recurrence: request.Recurrence.Value,
-                    isLastDayOfMonth: request.IsLastDayOfMonth,
-                    endDate: request.IsEndless.HasValue && request.IsEndless.Value ? null : request.EndDate);
-            }
+            await appDbContext.SaveChangesAsync(cancellationToken);
         }
     }
 }
