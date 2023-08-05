@@ -56,6 +56,45 @@
                         HorizontalOptions="End"
                         IsToggled="{Binding SelectedPayment.IsRecurring}" />
             </Grid>
+            
+            <VerticalStackLayout IsVisible="{Binding SelectedPayment.IsRecurring}"
+                                 Spacing="6">
+                <Label Style="{StaticResource TextBodySecondary}"
+                       Text="{x:Static resources:Translations.RecurrenceLabel}" />
+                <Picker ItemsSource="{x:Static paymentModification:ModifyPaymentViewModel.RecurrenceList}"
+                        SelectedItem="{Binding RecurrenceViewModel.Recurrence}" />
+
+                <Grid HorizontalOptions="FillAndExpand"
+                      ColumnDefinitions="70*, 15*"
+                      IsVisible="{Binding RecurrenceViewModel.AllowLastDayOfMonth}">
+
+                    <Label Grid.Column="0"
+                           Style="{StaticResource TextBodySecondary}"
+                           VerticalOptions="Center"
+                           Text="{x:Static resources:Translations.LastDayOfMonthLabel}" />
+
+                    <Switch Grid.Column="1"
+                            HorizontalOptions="End"
+                            IsToggled="{Binding RecurrenceViewModel.IsLastDayOfMonth}" />
+                </Grid>
+
+                <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*, Auto">
+
+                    <Label Grid.Column="0"
+                           Style="{StaticResource TextBodySecondary}"
+                           VerticalOptions="Center"
+                           Text="{x:Static resources:Translations.EndlessLabel}" />
+
+                    <Switch Grid.Column="1"
+                            HorizontalOptions="Start"
+                            IsToggled="{Binding RecurrenceViewModel.IsEndless}" />
+                </Grid>
+
+                <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Translations.EnddateLabel}"
+                                           DateField="{Binding RecurrenceViewModel.EndDate}"
+                                           IsVisible="{Binding RecurrenceViewModel.IsEndless, Converter={StaticResource Inverter}}" />
+
+            </VerticalStackLayout>
 
             <Label Style="{StaticResource TextBodySecondary}"
                    Text="{Binding SelectedPayment.Created, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />
