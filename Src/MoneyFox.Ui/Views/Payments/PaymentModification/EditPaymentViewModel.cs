@@ -101,6 +101,16 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
 
     protected override async Task SavePaymentAsync()
     {
+        var updateRecurring = false;
+        if (SelectedPayment.IsRecurring)
+        {
+            updateRecurring = await dialogService.ShowConfirmMessageAsync(
+                title: Translations.ModifyRecurrenceTitle,
+                message: Translations.ModifyRecurrenceMessage,
+                positiveButtonText: Translations.YesLabel,
+                negativeButtonText: Translations.NoLabel);
+        }
+
         // Due to a bug in .net maui, the loading dialog can only be called after any other dialog
         await dialogService.ShowLoadingDialogAsync(Translations.SavingPaymentMessage);
         var command = new UpdatePayment.Command(
@@ -109,9 +119,15 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
             Amount: SelectedPayment.Amount,
             Type: SelectedPayment.Type,
             Note: SelectedPayment.Note,
+            IsRecurring: SelectedPayment.IsRecurring,
             CategoryId: CategorySelectionViewModel.SelectedCategory?.Id ?? 0,
             ChargedAccountId: SelectedPayment.ChargedAccount.Id,
-            TargetAccountId: SelectedPayment.TargetAccount?.Id ?? 0);
+            TargetAccountId: SelectedPayment.TargetAccount?.Id ?? 0,
+            UpdateRecurringPayment: updateRecurring,
+            Recurrence: RecurrenceViewModel.Recurrence,
+            IsEndless: RecurrenceViewModel.IsEndless,
+            EndDate: RecurrenceViewModel.EndDate,
+            IsLastDayOfMonth: RecurrenceViewModel.IsLastDayOfMonth);
 
         await mediator.Send(command);
     }
