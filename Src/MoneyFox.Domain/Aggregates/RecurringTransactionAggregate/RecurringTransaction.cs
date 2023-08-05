@@ -101,4 +101,13 @@ public sealed class RecurringTransaction : EntityBase
             lastRecurrence: DateOnly.FromDateTime(DateTime.Today),
             isTransfer: isTransfer);
     }
+
+    public void UpdateRecurrence(Money updatedAmount, int? updatedCategoryId, Recurrence updatedRecurrence, DateOnly updatedEndDate, bool updatedIsLastDayOfMonth)
+    {
+        Amount = updatedAmount;
+        CategoryId = updatedCategoryId;
+        Recurrence = updatedRecurrence;
+        EndDate = updatedEndDate;
+        IsLastDayOfMonth = updatedIsLastDayOfMonth;
+    }
 }

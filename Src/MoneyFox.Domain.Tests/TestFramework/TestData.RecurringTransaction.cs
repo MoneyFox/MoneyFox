@@ -6,7 +6,7 @@ using Domain.Aggregates.RecurringTransactionAggregate;
 
 internal static partial class TestData
 {
-    public sealed class RecurringExpense : IRecurringTransaction
+    public sealed record RecurringExpense : IRecurringTransaction
     {
         public RecurringTransactionId Id { get; set; } = new(100);
         public Guid RecurringTransactionId { get; } = Guid.NewGuid();
@@ -23,19 +23,19 @@ internal static partial class TestData
         public bool IsTransfer { get; }
     }
 
-    public sealed class RecurringTransfer : IRecurringTransaction
+    public sealed record RecurringTransfer : IRecurringTransaction
     {
         public RecurringTransactionId Id { get; set; } = new(101);
         public Guid RecurringTransactionId { get; } = Guid.NewGuid();
         public DateOnly StartDate { get; } = new(year: 2023, month: 07, day: 12);
-        public DateOnly? EndDate { get; } = new(year: 2050, month: 07, day: 12);
-        public Money Amount { get; } = new(amount: 1042, currency: Currencies.CHF);
+        public DateOnly? EndDate { get; init; } = new(year: 2050, month: 07, day: 12);
+        public Money Amount { get; init; } = new(amount: 1042, currency: Currencies.CHF);
         public string? Note { get; } = null;
         public int ChargedAccount { get; } = 10;
         public int? TargetAccount { get; } = 12;
-        public int? CategoryId { get; } = 42;
-        public Recurrence Recurrence { get; } = Recurrence.Monthly;
-        public bool IsLastDayOfMonth { get; } = true;
+        public int? CategoryId { get; init; } = 42;
+        public Recurrence Recurrence { get; init; } = Recurrence.Monthly;
+        public bool IsLastDayOfMonth { get; init; } = true;
         public DateOnly LastRecurrence => StartDate;
         public bool IsTransfer { get; } = true;
     }
