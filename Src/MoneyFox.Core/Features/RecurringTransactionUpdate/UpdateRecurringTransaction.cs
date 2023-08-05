@@ -16,7 +16,7 @@ public static class UpdateRecurringTransaction
         Money UpdatedAmount,
         int UpdatedCategoryId,
         Recurrence UpdatedRecurrence,
-        DateOnly UpdatedEndDate,
+        DateOnly? UpdatedEndDate,
         bool IsLastDayOfMonth) : IRequest;
 
     public class Handler : IRequestHandler<Command>

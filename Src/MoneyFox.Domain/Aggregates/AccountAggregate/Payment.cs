@@ -70,6 +70,7 @@ public class Payment : EntityBase
     public virtual Account? TargetAccount { get; private set; }
 
     public virtual RecurringPayment? RecurringPayment { get; private set; }
+    public Guid? RecurringTransactionId { get; private set; }
 
     public void UpdatePayment(
         DateTime date,

@@ -4,11 +4,15 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Common.Extensions;
 using Common.Interfaces;
+using Common.Settings;
+using Domain;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using RecurringTransactionUpdate;
 
 public static class UpdatePayment
 {
@@ -31,10 +35,14 @@ public static class UpdatePayment
     public class Handler : IRequestHandler<Command>
     {
         private readonly IAppDbContext appDbContext;
+        private readonly ISender sender;
+        private readonly ISettingsFacade settings;
 
-        public Handler(IAppDbContext appDbContext)
+        public Handler(IAppDbContext appDbContext, ISender sender, ISettingsFacade settings)
         {
             this.appDbContext = appDbContext;
+            this.sender = sender;
+            this.settings = settings;
         }
 
         public async Task Handle(Command command, CancellationToken cancellationToken)
@@ -61,6 +69,16 @@ public static class UpdatePayment
 
             if (command is { IsRecurring: true, UpdateRecurringPayment: true })
             {
+                await sender.Send(
+                    request: new UpdateRecurringTransaction.Command(
+                        RecurringTransactionId: existingPayment.RecurringTransactionId!.Value,
+                        UpdatedAmount: new(amount: command.Amount, currencyAlphaIsoCode: settings.DefaultCurrency),
+                        UpdatedCategoryId: command.CategoryId,
+                        UpdatedRecurrence: command.Recurrence!.Value.ToRecurrence(),
+                        UpdatedEndDate: command.EndDate.HasValue ? DateOnly.FromDateTime(command.EndDate.Value) : null,
+                        IsLastDayOfMonth: command.IsLastDayOfMonth),
+                    cancellationToken: cancellationToken);
+
                 UpdateRecurringPayment(request: command, existingPayment: existingPayment);
             }
             else if (!command.IsRecurring && existingPayment.RecurringPayment != null)

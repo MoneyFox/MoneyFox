@@ -100,7 +100,7 @@ public sealed class RecurringTransaction : EntityBase
             isTransfer: isTransfer);
     }
 
-    public void UpdateRecurrence(Money updatedAmount, int? updatedCategoryId, Recurrence updatedRecurrence, DateOnly updatedEndDate, bool updatedIsLastDayOfMonth)
+    public void UpdateRecurrence(Money updatedAmount, int? updatedCategoryId, Recurrence updatedRecurrence, DateOnly? updatedEndDate, bool updatedIsLastDayOfMonth)
     {
         Amount = updatedAmount;
         CategoryId = updatedCategoryId;

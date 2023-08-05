@@ -8,7 +8,6 @@ using Core.Common.Settings;
 using Core.Features._Legacy_.Payments.CreatePayment;
 using Core.Features.RecurringTransactionCreation;
 using Core.Queries;
-using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.CategoryAggregate;
 using MediatR;
@@ -95,25 +94,5 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
             note: SelectedPayment.Note);
 
         await mediator.Send(new CreatePaymentCommand(payment));
-    }
-}
-
-public static class RecurringTransactionExtensions
-{
-    public static Recurrence ToRecurrence(this PaymentRecurrence recurrence)
-    {
-        return recurrence switch
-        {
-            PaymentRecurrence.Daily => Recurrence.Daily,
-            PaymentRecurrence.DailyWithoutWeekend => Recurrence.DailyWithoutWeekend,
-            PaymentRecurrence.Weekly => Recurrence.Weekly,
-            PaymentRecurrence.Biweekly => Recurrence.Biweekly,
-            PaymentRecurrence.Monthly => Recurrence.Monthly,
-            PaymentRecurrence.Bimonthly => Recurrence.Bimonthly,
-            PaymentRecurrence.Quarterly => Recurrence.Quarterly,
-            PaymentRecurrence.Yearly => Recurrence.Quarterly,
-            PaymentRecurrence.Biannually => Recurrence.Biannually,
-            _ => throw new ArgumentOutOfRangeException(paramName: nameof(recurrence), actualValue: recurrence, message: null)
-        };
     }
 }
