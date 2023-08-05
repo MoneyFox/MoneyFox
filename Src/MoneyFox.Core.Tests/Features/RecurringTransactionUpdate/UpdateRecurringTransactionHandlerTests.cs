@@ -7,11 +7,11 @@ using Domain.Aggregates;
 using Domain.Tests.TestFramework;
 using static Domain.Tests.TestFramework.RecurringTransactionAssertion;
 
-public sealed class UpdateRecurringTransactionTests : InMemoryTestBase
+public sealed class UpdateRecurringTransactionHandlerTests : InMemoryTestBase
 {
     private readonly UpdateRecurringTransaction.Handler handler;
 
-    public UpdateRecurringTransactionTests()
+    public UpdateRecurringTransactionHandlerTests()
     {
         handler = new(Context);
     }
