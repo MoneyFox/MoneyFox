@@ -17,26 +17,26 @@ public sealed class CreateRecurringTransactionHandlerTests : InMemoryTestBase
     public async Task AddRecurringTransactionToDb()
     {
         // Arrange
-        var testData = new TestData.RecurringTransfer();
+        var testRecurringTransfer = new TestData.RecurringTransfer();
 
         // Act
         var command = new CreateRecurringTransaction.Command(
-            RecurringTransactionId: testData.RecurringTransactionId,
-            ChargedAccount: testData.ChargedAccount,
-            TargetAccount: testData.TargetAccount,
-            Amount: testData.Amount,
-            CategoryId: testData.CategoryId,
-            StartDate: testData.StartDate,
-            EndDate: testData.EndDate,
-            Recurrence: testData.Recurrence,
-            Note: testData.Note,
-            IsLastDayOfMonth: testData.IsLastDayOfMonth,
-            IsTransfer: testData.IsTransfer);
+            RecurringTransactionId: testRecurringTransfer.RecurringTransactionId,
+            ChargedAccount: testRecurringTransfer.ChargedAccount,
+            TargetAccount: testRecurringTransfer.TargetAccount,
+            Amount: testRecurringTransfer.Amount,
+            CategoryId: testRecurringTransfer.CategoryId,
+            StartDate: testRecurringTransfer.StartDate,
+            EndDate: testRecurringTransfer.EndDate,
+            Recurrence: testRecurringTransfer.Recurrence,
+            Note: testRecurringTransfer.Note,
+            IsLastDayOfMonth: testRecurringTransfer.IsLastDayOfMonth,
+            IsTransfer: testRecurringTransfer.IsTransfer);
 
         await handler.Handle(command: command, cancellationToken: CancellationToken.None);
 
         // Assert
         var dbRecurringTransaction = Context.RecurringTransactions.Single();
-        AssertRecurringTransaction(actual: dbRecurringTransaction, expected: testData);
+        AssertRecurringTransaction(actual: dbRecurringTransaction, expected: testRecurringTransfer);
     }
 }
