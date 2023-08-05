@@ -3,21 +3,60 @@ namespace MoneyFox.Core.Features.RecurringTransactionUpdate;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Common.Extensions;
 using Common.Interfaces;
 using Domain;
 using Domain.Aggregates;
+using Domain.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 public static class UpdateRecurringTransaction
 {
-    public record Command(
-        Guid RecurringTransactionId,
-        Money UpdatedAmount,
-        int UpdatedCategoryId,
-        Recurrence UpdatedRecurrence,
-        DateOnly? UpdatedEndDate,
-        bool IsLastDayOfMonth) : IRequest;
+    public record Command : IRequest {
+        public Command(Guid recurringTransactionId,
+            Money updatedAmount,
+            int? updatedCategoryId,
+            Recurrence updatedRecurrence,
+            DateOnly? updatedEndDate,
+            bool isLastDayOfMonth)
+        {
+            if (updatedEndDate != null && updatedEndDate < DateTime.Today.ToDateOnly())
+            {
+                throw new InvalidEndDateException();
+            }
+
+            RecurringTransactionId = recurringTransactionId;
+            UpdatedAmount = updatedAmount;
+            UpdatedCategoryId = updatedCategoryId;
+            UpdatedRecurrence = updatedRecurrence;
+            UpdatedEndDate = updatedEndDate;
+            IsLastDayOfMonth = isLastDayOfMonth;
+        }
+
+        public Guid RecurringTransactionId { get; init; }
+        public Money UpdatedAmount { get; init; }
+        public int? UpdatedCategoryId { get; init; }
+        public Recurrence UpdatedRecurrence { get; init; }
+        public DateOnly? UpdatedEndDate { get; init; }
+        public bool IsLastDayOfMonth { get; init; }
+
+        public void Deconstruct(
+            out Guid RecurringTransactionId,
+            out Money UpdatedAmount,
+            out int? UpdatedCategoryId,
+            out Recurrence UpdatedRecurrence,
+            out DateOnly? UpdatedEndDate,
+            out bool IsLastDayOfMonth)
+        {
+            RecurringTransactionId = this.RecurringTransactionId;
+            UpdatedAmount = this.UpdatedAmount;
+            UpdatedCategoryId = this.UpdatedCategoryId;
+            UpdatedRecurrence = this.UpdatedRecurrence;
+            UpdatedEndDate = this.UpdatedEndDate;
+            IsLastDayOfMonth = this.IsLastDayOfMonth;
+        }
+    }
 
     public class Handler : IRequestHandler<Command>
     {

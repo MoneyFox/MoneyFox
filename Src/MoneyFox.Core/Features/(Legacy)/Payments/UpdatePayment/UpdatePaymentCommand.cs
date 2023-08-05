@@ -70,12 +70,12 @@ public static class UpdatePayment
             {
                 await sender.Send(
                     request: new UpdateRecurringTransaction.Command(
-                        RecurringTransactionId: existingPayment.RecurringTransactionId!.Value,
-                        UpdatedAmount: new(amount: command.Amount, currencyAlphaIsoCode: settings.DefaultCurrency),
-                        UpdatedCategoryId: command.CategoryId,
-                        UpdatedRecurrence: command.Recurrence!.Value.ToRecurrence(),
-                        UpdatedEndDate: command.EndDate.HasValue ? DateOnly.FromDateTime(command.EndDate.Value) : null,
-                        IsLastDayOfMonth: command.IsLastDayOfMonth),
+                        recurringTransactionId: existingPayment.RecurringTransactionId!.Value,
+                        updatedAmount: new(amount: command.Amount, currencyAlphaIsoCode: settings.DefaultCurrency),
+                        updatedCategoryId: command.CategoryId,
+                        updatedRecurrence: command.Recurrence!.Value.ToRecurrence(),
+                        updatedEndDate: command.EndDate.HasValue ? DateOnly.FromDateTime(command.EndDate.Value) : null,
+                        isLastDayOfMonth: command.IsLastDayOfMonth),
                     cancellationToken: cancellationToken);
             }
             else if (!command.IsRecurring && existingPayment.RecurringPayment != null)

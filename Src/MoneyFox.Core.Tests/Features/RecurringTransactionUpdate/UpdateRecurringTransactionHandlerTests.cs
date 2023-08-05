@@ -29,12 +29,12 @@ public sealed class UpdateRecurringTransactionHandlerTests : InMemoryTestBase
 
         // Act
         var command = new UpdateRecurringTransaction.Command(
-            RecurringTransactionId: testRecurringTransfer.RecurringTransactionId,
-            UpdatedAmount: newAmount,
-            UpdatedCategoryId: categoryId,
-            UpdatedRecurrence: recurrence,
-            UpdatedEndDate: endDate,
-            IsLastDayOfMonth: true);
+            recurringTransactionId: testRecurringTransfer.RecurringTransactionId,
+            updatedAmount: newAmount,
+            updatedCategoryId: categoryId,
+            updatedRecurrence: recurrence,
+            updatedEndDate: endDate,
+            isLastDayOfMonth: true);
 
         await handler.Handle(command: command, cancellationToken: CancellationToken.None);
 
