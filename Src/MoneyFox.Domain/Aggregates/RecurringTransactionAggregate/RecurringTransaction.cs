@@ -58,8 +58,6 @@ public sealed class RecurringTransaction : EntityBase
 
     public int? CategoryId { get; private set; }
 
-    public PaymentType Type { get; private set; }
-
     public DateOnly StartDate { get; private set; }
 
     public DateOnly? EndDate { get; private set; }

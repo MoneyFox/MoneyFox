@@ -26,7 +26,6 @@ internal sealed class RecurringTransactionConfiguration : IEntityTypeConfigurati
                 m.Property(p => p.Currency).HasColumnName("Currency");
             });
 
-        builder.Property(p => p.Type);
         builder.Property(p => p.Note);
         builder.Property(p => p.ChargedAccountId);
         builder.Property(p => p.TargetAccountId);
