@@ -71,17 +71,17 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
         {
             await mediator.Send(
                 new CreateRecurringTransaction.Command(
-                    RecurringTransactionId: Guid.NewGuid(),
-                    ChargedAccount: SelectedPayment.ChargedAccount.Id,
-                    TargetAccount: SelectedPayment.TargetAccount?.Id,
-                    Amount: new(amount: SelectedPayment.Amount, currency: SelectedPayment.ChargedAccount.CurrentBalance.Currency),
-                    CategoryId: CategorySelectionViewModel.SelectedCategory?.Id,
-                    StartDate: RecurrenceViewModel.StartDate.ToDateOnly(),
-                    EndDate: RecurrenceViewModel.EndDate?.ToDateOnly(),
-                    Recurrence: RecurrenceViewModel.Recurrence.ToRecurrence(),
-                    Note: SelectedPayment.Note,
-                    IsLastDayOfMonth: RecurrenceViewModel.IsLastDayOfMonth,
-                    IsTransfer: SelectedPayment.Type == PaymentType.Transfer));
+                    recurringTransactionId: Guid.NewGuid(),
+                    chargedAccount: SelectedPayment.ChargedAccount.Id,
+                    targetAccount: SelectedPayment.TargetAccount?.Id,
+                    amount: new(amount: SelectedPayment.Amount, currency: SelectedPayment.ChargedAccount.CurrentBalance.Currency),
+                    categoryId: CategorySelectionViewModel.SelectedCategory?.Id,
+                    startDate: RecurrenceViewModel.StartDate.ToDateOnly(),
+                    endDate: RecurrenceViewModel.EndDate?.ToDateOnly(),
+                    recurrence: RecurrenceViewModel.Recurrence.ToRecurrence(),
+                    note: SelectedPayment.Note,
+                    isLastDayOfMonth: RecurrenceViewModel.IsLastDayOfMonth,
+                    isTransfer: SelectedPayment.Type == PaymentType.Transfer));
         }
 
         var payment = new Payment(

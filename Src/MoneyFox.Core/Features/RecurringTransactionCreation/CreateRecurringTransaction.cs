@@ -3,26 +3,60 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Common.Extensions;
 using Common.Interfaces;
 using Domain;
 using Domain.Aggregates;
 using Domain.Aggregates.RecurringTransactionAggregate;
+using Domain.Exceptions;
 using MediatR;
 
 public static class CreateRecurringTransaction
 {
-    public record Command(
-        Guid RecurringTransactionId,
-        int ChargedAccount,
-        int? TargetAccount,
-        Money Amount,
-        int? CategoryId,
-        DateOnly StartDate,
-        DateOnly? EndDate,
-        Recurrence Recurrence,
-        string? Note,
-        bool IsLastDayOfMonth,
-        bool IsTransfer) : IRequest;
+    public record Command : IRequest {
+        public Command(Guid recurringTransactionId,
+            int chargedAccount,
+            int? targetAccount,
+            Money amount,
+            int? categoryId,
+            DateOnly startDate,
+            DateOnly? endDate,
+            Recurrence recurrence,
+            string? note,
+            bool isLastDayOfMonth,
+            bool isTransfer)
+        {
+
+            if (endDate != null && endDate < DateTime.Today.ToDateOnly())
+            {
+                throw new InvalidEndDateException();
+            }
+
+            RecurringTransactionId = recurringTransactionId;
+            ChargedAccount = chargedAccount;
+            TargetAccount = targetAccount;
+            Amount = amount;
+            CategoryId = categoryId;
+            StartDate = startDate;
+            EndDate = endDate;
+            Recurrence = recurrence;
+            Note = note;
+            IsLastDayOfMonth = isLastDayOfMonth;
+            IsTransfer = isTransfer;
+        }
+
+        public Guid RecurringTransactionId { get; init; }
+        public int ChargedAccount { get; init; }
+        public int? TargetAccount { get; init; }
+        public Money Amount { get; init; }
+        public int? CategoryId { get; init; }
+        public DateOnly StartDate { get; init; }
+        public DateOnly? EndDate { get; init; }
+        public Recurrence Recurrence { get; init; }
+        public string? Note { get; init; }
+        public bool IsLastDayOfMonth { get; init; }
+        public bool IsTransfer { get; init; }
+    }
 
     public class Handler : IRequestHandler<Command>
     {

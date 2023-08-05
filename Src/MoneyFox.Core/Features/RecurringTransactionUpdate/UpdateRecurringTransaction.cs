@@ -13,8 +13,10 @@ using Microsoft.EntityFrameworkCore;
 
 public static class UpdateRecurringTransaction
 {
-    public record Command : IRequest {
-        public Command(Guid recurringTransactionId,
+    public record Command : IRequest
+    {
+        public Command(
+            Guid recurringTransactionId,
             Money updatedAmount,
             int? updatedCategoryId,
             Recurrence updatedRecurrence,
@@ -40,22 +42,6 @@ public static class UpdateRecurringTransaction
         public Recurrence UpdatedRecurrence { get; init; }
         public DateOnly? UpdatedEndDate { get; init; }
         public bool IsLastDayOfMonth { get; init; }
-
-        public void Deconstruct(
-            out Guid RecurringTransactionId,
-            out Money UpdatedAmount,
-            out int? UpdatedCategoryId,
-            out Recurrence UpdatedRecurrence,
-            out DateOnly? UpdatedEndDate,
-            out bool IsLastDayOfMonth)
-        {
-            RecurringTransactionId = this.RecurringTransactionId;
-            UpdatedAmount = this.UpdatedAmount;
-            UpdatedCategoryId = this.UpdatedCategoryId;
-            UpdatedRecurrence = this.UpdatedRecurrence;
-            UpdatedEndDate = this.UpdatedEndDate;
-            IsLastDayOfMonth = this.IsLastDayOfMonth;
-        }
     }
 
     public class Handler : IRequestHandler<Command>

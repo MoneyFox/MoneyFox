@@ -30,7 +30,7 @@ public sealed class UpdateRecurringTransactionCommandTests
         // Arrange
         var recurringTransactionId = Guid.NewGuid();
         var updatedAmount = new Money(99, Currencies.CHF);
-        var updatedEndDate = DateOnly.FromDateTime(DateTime.Today).AddDays(1);
+        var updatedEndDate = DateOnly.FromDateTime(DateTime.Today);
         var updatedCategoryId = 1;
         var updatedRecurrence = Recurrence.Monthly;
 
