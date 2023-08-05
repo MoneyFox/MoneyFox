@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
-using AutoMapper;
 using Controls.CategorySelection;
 using Core.Common.Extensions;
 using Core.Common.Interfaces;
@@ -20,7 +19,6 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
 
     public AddPaymentViewModel(
         IMediator mediator,
-        IMapper mapper,
         IDialogService dialogService,
         IToastService toastService,
         ISettingsFacade settingsFacade,
