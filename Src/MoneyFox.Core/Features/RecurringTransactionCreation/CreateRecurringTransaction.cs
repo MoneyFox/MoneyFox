@@ -13,8 +13,10 @@ using MediatR;
 
 public static class CreateRecurringTransaction
 {
-    public record Command : IRequest {
-        public Command(Guid recurringTransactionId,
+    public record Command : IRequest
+    {
+        public Command(
+            Guid recurringTransactionId,
             int chargedAccount,
             int? targetAccount,
             Money amount,
@@ -26,7 +28,6 @@ public static class CreateRecurringTransaction
             bool isLastDayOfMonth,
             bool isTransfer)
         {
-
             if (endDate != null && endDate < DateTime.Today.ToDateOnly())
             {
                 throw new InvalidEndDateException();

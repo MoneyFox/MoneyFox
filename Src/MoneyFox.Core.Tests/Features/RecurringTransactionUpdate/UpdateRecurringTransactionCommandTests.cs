@@ -29,7 +29,7 @@ public sealed class UpdateRecurringTransactionCommandTests
     {
         // Arrange
         var recurringTransactionId = Guid.NewGuid();
-        var updatedAmount = new Money(99, Currencies.CHF);
+        var updatedAmount = new Money(amount: 99, currency: Currencies.CHF);
         var updatedEndDate = DateOnly.FromDateTime(DateTime.Today);
         var updatedCategoryId = 1;
         var updatedRecurrence = Recurrence.Monthly;
