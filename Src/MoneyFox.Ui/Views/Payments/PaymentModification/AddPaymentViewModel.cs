@@ -67,9 +67,19 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
             category = await mediator.Send(new GetCategoryByIdQuery(CategorySelectionViewModel.SelectedCategory.Id));
         }
 
+        var payment = new Payment(
+            date: SelectedPayment.Date,
+            amount: SelectedPayment.Amount,
+            type: SelectedPayment.Type,
+            chargedAccount: chargedAccount,
+            targetAccount: targetAccount,
+            category: category,
+            note: SelectedPayment.Note);
+
         if (SelectedPayment.IsRecurring)
         {
             var recurringTransactionId = Guid.NewGuid();
+            payment.AddRecurringTransactionId(recurringTransactionId);
             await mediator.Send(
                 new CreateRecurringTransaction.Command(
                     recurringTransactionId: recurringTransactionId,
@@ -84,15 +94,6 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
                     isLastDayOfMonth: RecurrenceViewModel.IsLastDayOfMonth,
                     isTransfer: SelectedPayment.Type == PaymentType.Transfer));
         }
-
-        var payment = new Payment(
-            date: SelectedPayment.Date,
-            amount: SelectedPayment.Amount,
-            type: SelectedPayment.Type,
-            chargedAccount: chargedAccount,
-            targetAccount: targetAccount,
-            category: category,
-            note: SelectedPayment.Note);
 
         await mediator.Send(new CreatePaymentCommand(payment));
     }
