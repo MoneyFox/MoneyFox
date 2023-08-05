@@ -18,7 +18,7 @@ public class Payment : EntityBase
         Account? targetAccount = null,
         Category? category = null,
         string? note = "",
-        RecurringPayment? recurringPayment = null)
+        Guid? recurringTransactionId = null)
     {
         Date = date;
         Amount = amount;
@@ -27,10 +27,11 @@ public class Payment : EntityBase
         ChargedAccount = chargedAccount ?? throw new AccountNullException();
         TargetAccount = type == PaymentType.Transfer ? targetAccount : null;
         Category = category;
+        RecurringTransactionId = recurringTransactionId;
+
         ClearPayment();
-        if (recurringPayment != null)
+        if (RecurringTransactionId.HasValue)
         {
-            RecurringPayment = recurringPayment;
             IsRecurring = true;
         }
     }

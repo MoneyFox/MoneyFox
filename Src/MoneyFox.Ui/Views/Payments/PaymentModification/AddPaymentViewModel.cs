@@ -69,9 +69,10 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
 
         if (SelectedPayment.IsRecurring)
         {
+            var recurringTransactionId = Guid.NewGuid();
             await mediator.Send(
                 new CreateRecurringTransaction.Command(
-                    recurringTransactionId: Guid.NewGuid(),
+                    recurringTransactionId: recurringTransactionId,
                     chargedAccount: SelectedPayment.ChargedAccount.Id,
                     targetAccount: SelectedPayment.TargetAccount?.Id,
                     amount: new(amount: SelectedPayment.Amount, currency: SelectedPayment.ChargedAccount.CurrentBalance.Currency),

@@ -41,8 +41,7 @@ public class CreateRecurringPaymentsCommand : IRequest
                         chargedAccount: x.ChargedAccount,
                         targetAccount: x.TargetAccount,
                         category: x.Category,
-                        note: x.Note ?? "",
-                        recurringPayment: x))
+                        note: x.Note ?? ""))
                 .ToList();
 
             recPaymentsToCreate.ForEach(x => x.RecurringPayment?.SetLastRecurrenceCreatedDate());
