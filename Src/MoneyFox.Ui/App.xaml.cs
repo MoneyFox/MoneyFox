@@ -2,16 +2,21 @@ namespace MoneyFox.Ui;
 
 using Common.Exceptions;
 using CommunityToolkit.Mvvm.Messaging;
+using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Common.Settings;
 using Core.Features._Legacy_.Payments.ClearPayments;
 using Core.Features._Legacy_.Payments.CreateRecurringPayments;
 using Core.Features.DbBackup;
+using Domain;
+using Domain.Aggregates.AccountAggregate;
+using Domain.Aggregates.RecurringTransactionAggregate;
 using Domain.Exceptions;
 using Infrastructure.Adapters;
 using InversionOfControl;
 using MediatR;
 using Messages;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Views;
 using Views.Setup;
@@ -73,7 +78,41 @@ public partial class App
         AddPlatformServicesAction?.Invoke(services);
         new MoneyFoxConfig().Register(services);
         ServiceProvider = services.BuildServiceProvider();
-        ServiceProvider.GetService<IAppDbContext>()?.MigrateDb();
+        var appDbContext = ServiceProvider.GetService<IAppDbContext>();
+        appDbContext!.MigrateDb();
+
+        var settings = ServiceProvider.GetService<ISettingsFacade>();
+
+        // Migrate RecurringTransaction
+        foreach (var recurringPayment in appDbContext.RecurringPayments.Include(rp => rp.Category)
+                     .Include(rp => rp.ChargedAccount)
+                     .Include(rp => rp.TargetAccount)
+                     .Include(rp => rp.RelatedPayments))
+        {
+            var recurringTransactionId = Guid.NewGuid();
+            var amount = recurringPayment.Type == PaymentType.Expense ? -recurringPayment.Amount : recurringPayment.Amount;
+            var recurringTransaction = RecurringTransaction.Create(
+                recurringTransactionId: recurringTransactionId,
+                chargedAccount: recurringPayment.ChargedAccount.Id,
+                targetAccount: recurringPayment.TargetAccount?.Id,
+                amount: new(amount: amount, currencyAlphaIsoCode: settings!.DefaultCurrency),
+                categoryId: recurringPayment.Category?.Id,
+                startDate: recurringPayment.StartDate.ToDateOnly(),
+                endDate: recurringPayment.EndDate.HasValue ? DateOnly.FromDateTime(recurringPayment.EndDate.Value) : null,
+                recurrence: recurringPayment.Recurrence.ToRecurrence(),
+                note: recurringPayment.Note,
+                isLastDayOfMonth: recurringPayment.IsLastDayOfMonth,
+                isTransfer: recurringPayment.Type == PaymentType.Transfer);
+
+            foreach (var payment in recurringPayment.RelatedPayments)
+            {
+                payment.AddRecurringTransactionId(recurringTransactionId);
+            }
+
+            appDbContext.Add(recurringTransaction);
+        }
+
+        appDbContext.SaveChangesAsync().Wait();
     }
 
     private async Task StartupTasksAsync()
