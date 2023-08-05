@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Common.Interfaces;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 public static class UpdateRecurringTransaction
 {
@@ -19,9 +20,13 @@ public static class UpdateRecurringTransaction
             this.appDbContext = appDbContext;
         }
 
-        public Task Handle(Command request, CancellationToken cancellationToken)
+        public async Task Handle(Command request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var recurringTransaction = await appDbContext.RecurringTransactions.SingleAsync(
+                predicate: rt => rt.RecurringTransactionId == request.RecurringTransactionId,
+                cancellationToken: cancellationToken);
+
+            await appDbContext.SaveChangesAsync(cancellationToken);
         }
     }
 }
