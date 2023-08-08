@@ -26,7 +26,7 @@
                 <Label HorizontalOptions="StartAndExpand"
                        Text="{x:Static resources:Translations.AccountSettingText}" />
 
-                <Picker ItemsSource="{Binding AvailableAccounts}"
+                <Picker x:Name="AccountPicker" ItemDisplayBinding="{Binding Name}" ItemsSource="{Binding AvailableAccounts}"
                         SelectedItem="{Binding SelectedAccount, Mode=TwoWay}" />
             </VerticalStackLayout>
         </ScrollView>

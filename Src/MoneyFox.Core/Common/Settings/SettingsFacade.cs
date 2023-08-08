@@ -18,7 +18,7 @@ public interface ISettingsFacade
 
     string DefaultCurrency { get; set; }
 
-    string DefaultAccount { get; set; }
+    int DefaultAccount { get; set; }
 
     DateTime LastExecutionTimeStampSyncBackup { get; set; }
 }
@@ -95,9 +95,9 @@ public class SettingsFacade : ISettingsFacade
         set => settingsAdapter.AddOrUpdate(key: SettingConstants.DEFAULT_CURRENCY_KEY_NAME, value: value);
     }
 
-    public string DefaultAccount
+    public int DefaultAccount
     {
-        get => settingsAdapter.GetValue(key: SettingConstants.DEFAULT_ACCOUNT_KEY_NAME, defaultValue: string.Empty);
+        get => settingsAdapter.GetValue(key: SettingConstants.DEFAULT_ACCOUNT_KEY_NAME, defaultValue: default(int));
         set => settingsAdapter.AddOrUpdate(key: SettingConstants.DEFAULT_ACCOUNT_KEY_NAME, value: value);
     }
 }

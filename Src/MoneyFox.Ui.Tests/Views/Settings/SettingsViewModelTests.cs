@@ -67,21 +67,21 @@ public static class SettingsViewModelTests
             // Arrange
             var settingsFacade = Substitute.For<ISettingsFacade>();
             var mediator = Substitute.For<IMediator>();
-            settingsFacade.DefaultAccount.Returns("Acc2");
             var accounts = new List<Account>
             {
                 new Account("Acc1"),
                 new Account ("Acc2")
             };
+            settingsFacade.DefaultAccount.Returns(accounts[1].Id);
             mediator.Send(Arg.Any<GetAccountsQuery>()).Returns(accounts);
 
             // Act
             var viewModel = new SettingsViewModel(settingsFacade, mediator);
-            viewModel.LoadAccounts();
+            viewModel.LoadAccounts().Wait();
 
             // Assert
             viewModel.AvailableAccounts.Should().NotBeNull();
-            viewModel.SelectedAccount.Should().Be("Acc2");
+            viewModel.SelectedAccount.Id.Should().Be(accounts[1].Id);
         }
     }
 
@@ -112,20 +112,21 @@ public static class SettingsViewModelTests
             // Arrange
             var settingsFacade = Substitute.For<ISettingsFacade>();
             var mediator = Substitute.For<IMediator>();
-            var viewModel = new SettingsViewModel(settingsFacade, mediator);
             var accounts = new List<Account>
             {
                 new Account("Acc1"),
                 new Account ("Acc2")
             };
             mediator.Send(Arg.Any<GetAccountsQuery>()).Returns(accounts);
+            var viewModel = new SettingsViewModel(settingsFacade, mediator);
 
             // Act
-            var newAccount = "Acc3";
-            viewModel.SelectedAccount = newAccount;
+            var newAccount = new Account("Acc3");
+            var defaultAccount = new AccountLiteViewModel(newAccount.Id, newAccount.Name);
+            viewModel.SelectedAccount = defaultAccount;
 
             // Assert
-            settingsFacade.DefaultAccount.Should().Be(newAccount);
+            settingsFacade.DefaultAccount.Should().Be(defaultAccount.Id);
         }
     }
 }

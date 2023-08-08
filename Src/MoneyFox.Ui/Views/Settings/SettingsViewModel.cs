@@ -14,9 +14,7 @@ internal sealed class SettingsViewModel : BasePageViewModel
 
     private CurrencyViewModel selectedCurrency = null!;
 
-    private string selectedAccount = string.Empty;
-
-    private IReadOnlyList<string>? availableAccounts = null;
+    private AccountLiteViewModel? selectedAccount;
 
     public SettingsViewModel(ISettingsFacade settingsFacade, IMediator mediator)
     {
@@ -25,7 +23,8 @@ internal sealed class SettingsViewModel : BasePageViewModel
         AvailableCurrencies = Currencies.GetAll().Select(c => new CurrencyViewModel(c.AlphaIsoCode)).OrderBy(c => c.AlphaIsoCode).ToList();
         var currencyToLoad = string.IsNullOrEmpty(settingsFacade.DefaultCurrency) ? RegionInfo.CurrentRegion.ISOCurrencySymbol : settingsFacade.DefaultCurrency;
         SelectedCurrency = AvailableCurrencies.FirstOrDefault(c => c.AlphaIsoCode == currencyToLoad) ?? AvailableCurrencies[0];
-        SelectedAccount = settingsFacade.DefaultAccount;
+        LoadAccounts().Wait();
+        SelectedAccount = AvailableAccounts.FirstOrDefault(x => x.Id == settingsFacade.DefaultAccount);
     }
 
     public CurrencyViewModel SelectedCurrency
@@ -42,32 +41,23 @@ internal sealed class SettingsViewModel : BasePageViewModel
 
     public IReadOnlyList<CurrencyViewModel> AvailableCurrencies { get; }
 
-    public string SelectedAccount
+    public AccountLiteViewModel? SelectedAccount
     {
         get => selectedAccount;
 
         set
         {
             SetProperty(field: ref selectedAccount, newValue: value);
-            settingsFacade.DefaultAccount = selectedAccount;
+            settingsFacade.DefaultAccount = selectedAccount == null? default : selectedAccount.Id;
             OnPropertyChanged();
         }
     }
 
-    public void LoadAccounts()
+    public async Task LoadAccounts()
     {
-        availableAccounts = mediator.Send(new GetAccountsQuery()).Result.Select(a => a.Name).ToList();
+        var accounts = await mediator.Send(new GetAccountsQuery());
+        AvailableAccounts = accounts == null ? new List<AccountLiteViewModel>() : accounts.Select(a => new AccountLiteViewModel(a.Id, a.Name)).ToList();
     }
 
-    public IReadOnlyList<string>? AvailableAccounts
-    {
-        get
-        {
-            if(availableAccounts == null)
-            {
-                LoadAccounts();
-            }
-            return availableAccounts;
-        }
-    }
+    public List<AccountLiteViewModel> AvailableAccounts { get; private set; } = new();
 }
