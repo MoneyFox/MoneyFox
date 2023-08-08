@@ -32,7 +32,6 @@ public static class PaymentQueryExtensions
     /// <summary>
     ///     Adds a filter to a query for payments of a specified payment type
     /// </summary>
-    /// <param name="query">Existing query.</param>
     /// <returns>Query filtered for the specified payment type.</returns>
     public static IQueryable<Payment> IsPaymentType(this IQueryable<Payment> query, PaymentType paymentType)
     {
@@ -99,6 +98,6 @@ public static class PaymentQueryExtensions
     /// <returns>Query filtered for the account id.</returns>
     public static IQueryable<Payment> HasAccountId(this IQueryable<Payment> query, int accountId)
     {
-        return query.Where(payment => payment.ChargedAccount!.Id == accountId || payment.TargetAccount != null && payment.TargetAccount.Id == accountId);
+        return query.Where(payment => payment.ChargedAccount.Id == accountId || payment.TargetAccount != null && payment.TargetAccount.Id == accountId);
     }
 }

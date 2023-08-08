@@ -56,6 +56,21 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
 
         await InitializeAsync();
         var payment = await mediator.Send(new GetPaymentByIdQuery(paymentId));
+        if (payment is { IsRecurring: true, RecurringPayment: not null })
+        {
+            RecurrenceViewModel.Recurrence = payment.RecurringPayment.Recurrence;
+            RecurrenceViewModel.StartDate = payment.RecurringPayment.StartDate;
+            RecurrenceViewModel.EndDate = payment.RecurringPayment.EndDate;
+            RecurrenceViewModel.IsEndless = payment.RecurringPayment.IsEndless;
+        }
+
+        var targetAccountPickerViewModel = payment.TargetAccount == null
+            ? null
+            : new AccountPickerViewModel(
+                Id: payment.TargetAccount.Id,
+                Name: payment.TargetAccount.Name,
+                CurrentBalance: new(amount: payment.TargetAccount.CurrentBalance, currencyAlphaIsoCode: settingsFacade.DefaultCurrency));
+
         SelectedPayment = new()
         {
             Id = payment.Id,
@@ -65,35 +80,14 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
                     Id: payment.ChargedAccount.Id,
                     Name: payment.ChargedAccount.Name,
                     CurrentBalance: new(amount: payment.ChargedAccount.CurrentBalance, currencyAlphaIsoCode: settingsFacade.DefaultCurrency)),
-            TargetAccount
-                = payment.TargetAccount == null
-                    ? null
-                    : new AccountPickerViewModel(
-                        Id: payment.TargetAccount.Id,
-                        Name: payment.TargetAccount.Name,
-                        CurrentBalance: new(amount: payment.TargetAccount.CurrentBalance, currencyAlphaIsoCode: settingsFacade.DefaultCurrency)),
+            TargetAccount = targetAccountPickerViewModel,
             Date = payment.Date,
             IsCleared = payment.IsCleared,
             Type = payment.Type,
             IsRecurring = payment.IsRecurring,
             Note = payment.Note,
             Created = payment.Created,
-            LastModified = payment.LastModified,
-            RecurringPayment = payment.RecurringPayment == null
-                ? null
-                : new RecurringPaymentViewModel
-                {
-                    Id = payment.RecurringPayment.Id,
-                    StartDate = payment.RecurringPayment.StartDate,
-                    IsLastDayOfMonth = payment.RecurringPayment.IsLastDayOfMonth,
-                    EndDate = payment.RecurringPayment.EndDate,
-                    IsEndless = payment.RecurringPayment.IsEndless,
-                    Amount = payment.RecurringPayment.Amount,
-                    Type = payment.RecurringPayment.Type,
-                    Recurrence = payment.RecurringPayment.Recurrence,
-                    Note = payment.RecurringPayment.Note ?? string.Empty,
-                    ChargedAccountId = payment.RecurringPayment.ChargedAccount.Id
-                }
+            LastModified = payment.LastModified
         };
 
         if (payment.Category != null)
@@ -131,10 +125,10 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
             ChargedAccountId: SelectedPayment.ChargedAccount?.Id ?? 0,
             TargetAccountId: SelectedPayment.TargetAccount?.Id ?? 0,
             UpdateRecurringPayment: updateRecurring,
-            Recurrence: SelectedPayment.RecurringPayment?.Recurrence,
-            IsEndless: SelectedPayment.RecurringPayment?.IsEndless,
-            EndDate: SelectedPayment.RecurringPayment?.EndDate,
-            IsLastDayOfMonth: SelectedPayment.RecurringPayment?.IsLastDayOfMonth ?? false);
+            Recurrence: RecurrenceViewModel.Recurrence,
+            IsEndless: RecurrenceViewModel.IsEndless,
+            EndDate: RecurrenceViewModel.EndDate,
+            IsLastDayOfMonth: RecurrenceViewModel.IsLastDayOfMonth);
 
         await mediator.Send(command);
     }

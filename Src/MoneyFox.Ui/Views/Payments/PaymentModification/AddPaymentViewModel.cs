@@ -70,12 +70,12 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
             category: category,
             note: SelectedPayment.Note);
 
-        if (SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment != null)
+        if (SelectedPayment.IsRecurring)
         {
             payment.AddRecurringPayment(
-                recurrence: SelectedPayment.RecurringPayment.Recurrence,
-                isLastDayOfMonth: SelectedPayment.RecurringPayment.IsLastDayOfMonth,
-                endDate: SelectedPayment.RecurringPayment.IsEndless ? null : SelectedPayment.RecurringPayment.EndDate);
+                recurrence: RecurrenceViewModel.Recurrence,
+                isLastDayOfMonth: RecurrenceViewModel.IsLastDayOfMonth,
+                endDate: RecurrenceViewModel.IsEndless ? null : RecurrenceViewModel.EndDate);
         }
 
         await mediator.Send(new CreatePaymentCommand(payment));
