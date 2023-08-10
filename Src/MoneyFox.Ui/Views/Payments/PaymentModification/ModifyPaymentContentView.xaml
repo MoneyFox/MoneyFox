@@ -66,11 +66,11 @@
                              Spacing="6">
             <Label Style="{StaticResource TextBodySecondary}" Text="{x:Static resources:Translations.RecurrenceLabel}" />
             <Picker ItemsSource="{x:Static paymentModification:ModifyPaymentViewModel.RecurrenceList}"
-                    SelectedItem="{Binding SelectedPayment.RecurringPayment.Recurrence}" />
+                    SelectedItem="{Binding RecurrenceViewModel.Recurrence}" />
 
             <Grid HorizontalOptions="FillAndExpand"
                   ColumnDefinitions="70*, 15*"
-                  IsVisible="{Binding SelectedPayment.RecurringPayment.AllowLastDayOfMonth}">
+                  IsVisible="{Binding RecurrenceViewModel.AllowLastDayOfMonth}">
 
                 <Label Grid.Column="0"
                        Style="{StaticResource TextBodySecondary}"
@@ -79,7 +79,7 @@
 
                 <Switch Grid.Column="1"
                         HorizontalOptions="End"
-                        IsToggled="{Binding SelectedPayment.RecurringPayment.IsLastDayOfMonth}" />
+                        IsToggled="{Binding RecurrenceViewModel.IsLastDayOfMonth}" />
             </Grid>
 
             <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*, Auto">
@@ -91,12 +91,12 @@
 
                 <Switch Grid.Column="1"
                         HorizontalOptions="Start"
-                        IsToggled="{Binding SelectedPayment.RecurringPayment.IsEndless}" />
+                        IsToggled="{Binding RecurrenceViewModel.IsEndless}" />
             </Grid>
 
             <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Translations.EnddateLabel}"
-                                       DateField="{Binding SelectedPayment.RecurringPayment.EndDate}"
-                                       IsVisible="{Binding SelectedPayment.RecurringPayment.IsEndless, Converter={StaticResource Inverter}}" />
+                                       DateField="{Binding RecurrenceViewModel.EndDate}"
+                                       IsVisible="{Binding RecurrenceViewModel.IsEndless, Converter={StaticResource Inverter}}" />
 
         </VerticalStackLayout>
     </VerticalStackLayout>

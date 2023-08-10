@@ -52,20 +52,6 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
         private set => SetProperty(field: ref paymentDayGroups, newValue: value);
     }
 
-    public static List<PaymentRecurrence> RecurrenceList
-        => new()
-        {
-            PaymentRecurrence.Daily,
-            PaymentRecurrence.DailyWithoutWeekend,
-            PaymentRecurrence.Weekly,
-            PaymentRecurrence.Biweekly,
-            PaymentRecurrence.Monthly,
-            PaymentRecurrence.Bimonthly,
-            PaymentRecurrence.Quarterly,
-            PaymentRecurrence.Biannually,
-            PaymentRecurrence.Yearly
-        };
-
     public AsyncRelayCommand GoToAddPaymentCommand
         => new(async () => await Shell.Current.GoToAsync($"{Routes.AddPaymentRoute}?defaultChargedAccountId={SelectedAccount.Id}"));
 

@@ -54,6 +54,8 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
 
     public CategorySelectionViewModel CategorySelectionViewModel { get; }
 
+    public RecurrenceViewModel RecurrenceViewModel { get; protected set; } = new();
+
     public ObservableCollection<AccountPickerViewModel> ChargedAccounts
     {
         get => chargedAccounts;
@@ -151,9 +153,9 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
         }
 
         if (SelectedPayment.IsRecurring
-            && !SelectedPayment.RecurringPayment!.IsEndless
-            && SelectedPayment.RecurringPayment.EndDate.HasValue
-            && SelectedPayment.RecurringPayment.EndDate.Value.Date < DateTime.Today)
+            && !RecurrenceViewModel!.IsEndless
+            && RecurrenceViewModel.EndDate.HasValue
+            && RecurrenceViewModel.EndDate.Value.Date < DateTime.Today)
         {
             await dialogService.ShowMessageAsync(title: Translations.InvalidEnddateTitle, message: Translations.InvalidEnddateMessage);
 

@@ -1,6 +1,7 @@
-name: validate pr
+name: build
 
 on:
+  push:
   merge_group:
   pull_request:
     branches: [ "master" ]
@@ -49,8 +50,15 @@ jobs:
           dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
           dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
 
-      - name: Build MAUI Win
-        run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-windows10.0.22621.0 -c Release /p:AppxPackageSigningEnabled=false
+      - name: Build Win
+        run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-windows10.0.22621.0 -c Release -o ${{ github.workspace }}/moneyfox-win
+        
+      - name: Upload Windows build
+        if: needs.pr-check.outputs.number != 'null'
+        uses: actions/upload-artifact@v3
+        with:
+          name: moneyfox-win
+          path: ${{ github.workspace }}/moneyfox-win
   
   
   buildAndroid:
@@ -85,17 +93,55 @@ jobs:
           dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
           dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
 
-      - name: Build MAUI Android
-        run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-android -c Release /p:EnableLLVM=false
-  
+      - name: Build Android
+        run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-android -c Release -o ${{ github.workspace }}/moneyfox-win /p:AndroidKeyStore="True" /p:AndroidSigningKeyAlias="$(KeyStoreAlias)" /p:AndroidSigningKeyStore="$(keystore.secureFilePath)" /p:AndroidSigningKeyPass="$(KeyStorePass)" /p:AndroidSigningStorePass="$(KeyStorePass)"'
+
+      - name: Upload Android build
+        if: needs.pr-check.outputs.number != 'null'
+        uses: actions/upload-artifact@v3
+        with:
+          name: moneyfox-android
+          path: ${{ github.workspace }}/moneyfox-android
+          
   
   buildiOS:
 
     runs-on: macos-13
 
     steps:
+      - uses: actions/checkout@v3
+      
+      - name: Xcode Select
+        uses: devbotsxyz/xcode-select@v1.1.0
+        with:
+          version: "14.3"
+          
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{env.DOTNET_VERSION}}
+
+      - uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          # Look to see if there is a cache hit for the corresponding requirements file
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget
+
+      - name: Install MAUI Workloads
+        run: dotnet workload install maui-mobile
+
+      - name: Restore Dependencies
+        run: dotnet restore ${{env.UI_PROJECT_PATH}}
+
+      - name: Test
+        run: |
+          dotnet test ${{env.UI_TEST_PROJECT_PATH}}
+          dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
+          dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
+        
       - name: Install the Apple certificate and provisioning profile
-        if: ${{ false }}
         env:
           BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
           P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
@@ -123,40 +169,13 @@ jobs:
           # apply provisioning profile
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
-      
-      - name: Xcode Select
-        uses: devbotsxyz/xcode-select@v1.1.0
-        with:
-          version: "14.3"
-      
-      - uses: actions/checkout@v3
-      
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: ${{env.DOTNET_VERSION}}
-
-      - uses: actions/cache@v3
-        with:
-          path: ~/.nuget/packages
-          # Look to see if there is a cache hit for the corresponding requirements file
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-nuget
-
-      - name: Install MAUI Workloads
-        run: dotnet workload install maui-mobile
-
-      - name: Restore Dependencies
-        run: dotnet restore ${{env.UI_PROJECT_PATH}}
-
-      - name: Test
-        run: |
-          dotnet test ${{env.UI_TEST_PROJECT_PATH}}
-          dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
-          dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
         
-      - name: Build MAUI iOS
-        if: ${{ false }}
-        run: dotnet build ${{env.UI_PROJECT_PATH}} -f net7.0-ios -c Release /p:packageApp=True
-      
+      - name: Build iOS
+        run: dotnet build ${{env.UI_PROJECT_PATH}} -f net7.0-ios -c Release -o ${{ github.workspace }}/moneyfox-ios  /p:packageApp=True
+
+      - name: Upload iOS build
+        if: needs.pr-check.outputs.number != 'null'
+        uses: actions/upload-artifact@v3
+        with:
+          name: moneyfox-ios
+          path: ${{ github.workspace }}/moneyfox-ios
