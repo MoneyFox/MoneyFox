@@ -36,6 +36,7 @@ public class AboutViewModel : BasePageViewModel
     public AsyncRelayCommand GoToDesignerTwitterAccountCommand => new(GoToDesignerTwitterAccountAsync);
     public AsyncRelayCommand GoToContributionPageCommand => new(GoToContributionPageAsync);
     public AsyncRelayCommand OpenLogFileCommand => new(OpenLogFile);
+    public AsyncRelayCommand<string> OpenUrlCommand => new(url => browserAdapter.OpenWebsiteAsync(new(url ?? string.Empty)));
 
     private async Task GoToWebsiteAsync()
     {

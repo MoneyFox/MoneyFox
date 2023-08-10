@@ -17,7 +17,8 @@
                 </HorizontalStackLayout>
 
                 <Button
-                    Command="{Binding GoToWebsiteCommand}"
+                    Command="{Binding OpenUrlCommand}"
+                    CommandParameter="https://www.apply-solutions.ch" 
                     Text="{x:Static resources:Translations.WebsiteLabel}" />
 
                 <Button
@@ -58,6 +59,12 @@
 
                     <VerticalStackLayout Spacing="6">
                         <Label>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Command="{Binding OpenUrlCommand}"
+                                    CommandParameter="https://github.com/dotnet/maui" 
+                                />
+                            </Label.GestureRecognizers>
                             <Label.FormattedText>
                                 <FormattedString>
                                     <controls:HyperlinkSpan Text=".net MAUI "
@@ -68,6 +75,12 @@
                         </Label>
 
                         <Label>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Command="{Binding OpenUrlCommand}"
+                                    CommandParameter="https://github.com/dotnet/maui" 
+                                />
+                            </Label.GestureRecognizers>
                             <Label.FormattedText>
                                 <FormattedString>
                                     <controls:HyperlinkSpan Text="MAUI Community Toolkit "
@@ -78,6 +91,12 @@
                         </Label>
 
                         <Label>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Command="{Binding OpenUrlCommand}"
+                                    CommandParameter="https://github.com/beto-rodriguez/LiveCharts2" 
+                                />
+                            </Label.GestureRecognizers>
                             <Label.FormattedText>
                                 <FormattedString>
                                     <controls:HyperlinkSpan Text="LiveCharts2 "
@@ -88,6 +107,12 @@
                         </Label>
 
                         <Label>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Command="{Binding OpenUrlCommand}"
+                                    CommandParameter="https://github.com/jamesmontemagno/StoreReviewPlugin" 
+                                />
+                            </Label.GestureRecognizers>
                             <Label.FormattedText>
                                 <FormattedString>
                                     <controls:HyperlinkSpan Text="StoreReviewPlugin "
