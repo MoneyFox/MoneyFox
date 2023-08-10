@@ -60,70 +60,27 @@
                         </Grid>
                     </toolkit:Expander.Header>
 
-                    <VerticalStackLayout Spacing="6">
-                        <Label>
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer 
-                                    Command="{Binding OpenUrlCommand}"
-                                    CommandParameter="https://github.com/dotnet/maui" 
-                                />
-                            </Label.GestureRecognizers>
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <controls:HyperlinkSpan Text=".net MAUI "
-                                                            Url="https://github.com/dotnet/maui" />
-                                    <Span Text="MIT" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-
-                        <Label>
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer 
-                                    Command="{Binding OpenUrlCommand}"
-                                    CommandParameter="https://github.com/dotnet/maui" 
-                                />
-                            </Label.GestureRecognizers>
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <controls:HyperlinkSpan Text="MAUI Community Toolkit "
-                                                            Url="https://github.com/CommunityToolkit/Maui" />
-                                    <Span Text="MIT" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-
-                        <Label>
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer 
-                                    Command="{Binding OpenUrlCommand}"
-                                    CommandParameter="https://github.com/beto-rodriguez/LiveCharts2" 
-                                />
-                            </Label.GestureRecognizers>
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <controls:HyperlinkSpan Text="LiveCharts2 "
-                                                            Url="https://github.com/beto-rodriguez/LiveCharts2" />
-                                    <Span Text="MIT" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-
-                        <Label>
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer 
-                                    Command="{Binding OpenUrlCommand}"
-                                    CommandParameter="https://github.com/jamesmontemagno/StoreReviewPlugin" 
-                                />
-                            </Label.GestureRecognizers>
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <controls:HyperlinkSpan Text="StoreReviewPlugin "
-                                                            Url="https://github.com/jamesmontemagno/StoreReviewPlugin" />
-                                    <Span Text="MIT" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
+                    <VerticalStackLayout Spacing="6" BindableLayout.ItemsSource="{Binding Licenses}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="about:LicenseViewModel">
+                                <Label>
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                            Command="{Binding OpenUrlCommand, Source={RelativeSource AncestorType={x:Type about:AboutPage}}}"
+                                            CommandParameter="{Binding ProjectUrl}" 
+                                        />
+                                    </Label.GestureRecognizers>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <controls:HyperlinkSpan Text="{Binding Name}"
+                                                                    Url="{Binding ProjectUrl}" />
+                                            <Span Text=" " />
+                                            <Span Text="{Binding License}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
                     </VerticalStackLayout>
                 </toolkit:Expander>
             </VerticalStackLayout>

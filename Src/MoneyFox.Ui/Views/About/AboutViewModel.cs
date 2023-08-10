@@ -28,6 +28,15 @@ public class AboutViewModel : BasePageViewModel
     public AsyncRelayCommand OpenLogFileCommand => new(OpenLogFile);
     public AsyncRelayCommand<string> OpenUrlCommand => new(url => browserAdapter.OpenWebsiteAsync(new(url ?? string.Empty)));
 
+    public List<LicenseViewModel> Licenses
+        => new()
+        {
+            new(Name: ".net MAUI", ProjectUrl: "https://github.com/dotnet/maui", License: "MIT"),
+            new(Name: "MAUI Community ToolkitProjectUrl", ProjectUrl: "https://github.com/dotnet/maui", License: "MIT"),
+            new(Name: "LiveChartsCore.SkiaSharpView", ProjectUrl: "https://github.com/beto-rodriguez/LiveCharts2", License: "MIT"),
+            new(Name: "Plugin.StoreReviewProjectUrl", ProjectUrl: "https://github.com/jamesmontemagno/StoreReviewPlugin", License: "MIT")
+        };
+
     private async Task SendMailAsync()
     {
         try
@@ -59,3 +68,5 @@ public class AboutViewModel : BasePageViewModel
         }
     }
 }
+
+public record LicenseViewModel(string Name, string ProjectUrl, string License);
