@@ -106,12 +106,10 @@ jobs:
           echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" > moneyfox.base64
           base64 -d moneyfox.base64 > "${{ runner.temp }}\moneyfox.keystore"
           
-          if test -f "{{ runner.temp }}\moneyfox.keystore"; then
+          if test -f "${{ runner.temp }}\moneyfox.keystore"; then
             echo "{{ runner.temp }}\moneyfox.keystore exists."
           fi
-          
-          ls "{{ runner.temp }}"
-          echo "done"
+          ls ${{ runner.temp }}
           
       - uses: actions/checkout@v3
 
