@@ -10,7 +10,6 @@ public class HyperlinkSpan : Span
     public HyperlinkSpan()
     {
         TextDecorations = TextDecorations.Underline;
-        TextColor = Colors.Blue;
         GestureRecognizers.Add(
             new TapGestureRecognizer
             {
