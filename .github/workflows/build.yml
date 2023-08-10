@@ -103,7 +103,7 @@ jobs:
       - name: Download keystore
         shell: bash
         run: |
-          echo "${{ secrets.RELEASE_KEYSTORE }}" > moneyfox.base64
+          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" > moneyfox.base64
           base64 -d moneyfox.base64 > ${{ runner.temp }}\moneyfox.keystore
           
           # echo "${{ secrets.ANDROID_KEYSTORE_FILE_GPG }}" > moneyfox.keystore.asc
