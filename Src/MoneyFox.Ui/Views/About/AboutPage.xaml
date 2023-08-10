@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
              xmlns:about="clr-namespace:MoneyFox.Ui.Views.About"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
              x:DataType="about:AboutViewModel"
              Title="{x:Static resources:Translations.AboutTitle}">
 
@@ -44,6 +46,58 @@
                 <Button Style="{StaticResource LinkButton}"
                         Command="{Binding GoToContributionPageCommand}"
                         Text="GitHub Contribution" />
+                
+                <toolkit:Expander>
+                    <toolkit:Expander.Header>
+                        <Grid>
+                            <Label Text="{x:Static resources:Translations.LicensesHeader}"
+                                   FontAttributes="Bold"
+                                   FontSize="Medium" />
+                        </Grid>
+                    </toolkit:Expander.Header>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <controls:HyperlinkSpan Text=".net MAUI "
+                                                            Url="https://github.com/dotnet/maui" />
+                                    <Span Text="MIT" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <controls:HyperlinkSpan Text="MAUI Community Toolkit "
+                                                            Url="https://github.com/CommunityToolkit/Maui" />
+                                    <Span Text="MIT" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <controls:HyperlinkSpan Text="LiveCharts2 "
+                                                            Url="https://github.com/beto-rodriguez/LiveCharts2" />
+                                    <Span Text="MIT" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <controls:HyperlinkSpan Text="StoreReviewPlugin "
+                                                            Url="https://github.com/jamesmontemagno/StoreReviewPlugin" />
+                                    <Span Text="MIT" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </VerticalStackLayout>
+                </toolkit:Expander>
             </VerticalStackLayout>
         </ScrollView>
     </ContentPage.Content>
