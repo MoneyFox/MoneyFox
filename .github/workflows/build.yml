@@ -104,7 +104,7 @@ jobs:
         shell: bash
         run: |
           echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" > moneyfox.base64
-          base64 -d moneyfox.base64 > ${{ runner.temp }}\moneyfox.keystore
+          base64 -d moneyfox.base64 > "${{ runner.temp }}\moneyfox.keystore"
           
           if test -f "{{ runner.temp }}\moneyfox.keystore"; then
             echo "{{ runner.temp }}\moneyfox.keystore exists."
