@@ -7,9 +7,11 @@
              Color="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
              x:Class="MoneyFox.Ui.Common.Services.LoadingIndicatorPopup">
 
-    <Grid ColumnDefinitions="40, 10, *" Padding="20">
-        <ActivityIndicator IsRunning="True" Grid.Column="0" />
-        <Label Text="{x:Static resources:Translations.LoadingLabel}"
-               Grid.Column="2" VerticalOptions="Center" />
+    <Grid Padding="20">
+        <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <ActivityIndicator IsRunning="True" />
+            <Label Text="{x:Static resources:Translations.LoadingLabel}"
+                   VerticalOptions="Center" />
+        </VerticalStackLayout>
     </Grid>
 </views:Popup>
