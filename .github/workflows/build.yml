@@ -106,10 +106,6 @@ jobs:
           echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" > moneyfox.base64
           base64 -d moneyfox.base64 > ${{ runner.temp }}\moneyfox.keystore
           
-          # echo "${{ secrets.ANDROID_KEYSTORE_FILE_GPG }}" > moneyfox.keystore.asc
-          # gpg -d --passphrase "${{ secrets.ANDROID_KEYSTORE_GPG_PASSWORD }}" --batch moneyfox.keystore.asc > "${{ runner.temp }}\moneyfox.keystore"
-          # Test-Path -Path "${{ runner.temp }}\moneyfox.keystore" -PathType Leaf
-          
       - uses: actions/checkout@v3
 
       - name: Setup .NET
