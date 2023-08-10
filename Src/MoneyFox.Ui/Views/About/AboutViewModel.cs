@@ -34,7 +34,22 @@ public class AboutViewModel : BasePageViewModel
             new(Name: ".net MAUI", ProjectUrl: "https://github.com/dotnet/maui", License: "MIT"),
             new(Name: "MAUI Community ToolkitProjectUrl", ProjectUrl: "https://github.com/dotnet/maui", License: "MIT"),
             new(Name: "LiveChartsCore.SkiaSharpView", ProjectUrl: "https://github.com/beto-rodriguez/LiveCharts2", License: "MIT"),
-            new(Name: "Plugin.StoreReviewProjectUrl", ProjectUrl: "https://github.com/jamesmontemagno/StoreReviewPlugin", License: "MIT")
+            new(Name: "Plugin.StoreReviewProjectUrl", ProjectUrl: "https://github.com/jamesmontemagno/StoreReviewPlugin", License: "MIT"),
+            new(Name: "Serilog", ProjectUrl: "", License: ""),
+            new(Name: "Serilog.Exceptions", ProjectUrl: "", License: ""),
+            new(Name: "Serilog.Sinks.File", ProjectUrl: "", License: ""),
+            new(Name: "Microsoft.Extensions.Configuration.Json", ProjectUrl: "https://github.com/dotnet/runtime", License: "MIT"),
+            new(Name: "Microsoft.Extensions.Configuration.Binder", ProjectUrl: "https://github.com/dotnet/runtime", License: "MIT"),
+            new(Name: "SonarAnalyzer.CSharp", ProjectUrl: "https://github.com/SonarSource/sonar-dotnet", License: "LGPL-3.0"),
+            new(Name: "MediatR", ProjectUrl: "https://github.com/jbogard/MediatR", License: "Apache-2.0"),
+            new(Name: "SQLitePCLRaw.bundle_e_sqlite3", ProjectUrl: "https://github.com/ericsink/SQLitePCL.raw", License: "Apache-2.0"),
+            new(Name: "Microsoft.EntityFrameworkCore", ProjectUrl: "https://github.com/dotnet/efcore", License: "MIT"),
+            new(Name: "AutoMapper", ProjectUrl: "", License: ""),
+            new(Name: "JetBrains.Annotations", ProjectUrl: "", License: ""),
+            new(Name: "Newtonsoft.Json", ProjectUrl: "", License: ""),
+            new(Name: "Flurl.Http", ProjectUrl: "", License: ""),
+            new(Name: "Microsoft.Identity.Client", ProjectUrl: "", License: ""),
+            new(Name: "Microsoft.Extensions.DependencyInjection", ProjectUrl: "", License: ""),
         };
 
     private async Task SendMailAsync()
