@@ -109,7 +109,6 @@ jobs:
           if test -f "${{ runner.temp }}\moneyfox.keystore"; then
             echo "{{ runner.temp }}\moneyfox.keystore exists."
           fi
-          ls ${{ runner.temp }}
           
       - uses: actions/checkout@v3
 
