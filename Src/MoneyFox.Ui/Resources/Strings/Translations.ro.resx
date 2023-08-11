@@ -953,4 +953,7 @@ Puteți schimba această monedă târziu în setări.</value>
   <data name="AllAccounts" xml:space="preserve">
         <value>Toate conturile</value>
     </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>Licenses</value>
+    </data>
 </root>
