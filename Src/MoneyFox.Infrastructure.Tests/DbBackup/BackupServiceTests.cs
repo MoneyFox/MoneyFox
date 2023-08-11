@@ -63,8 +63,6 @@ public class BackupServiceTests
     {
         // Arrange
         connectivityAdapter.IsConnected.Returns(true);
-        //cloudBackupService.LoginAsync().Returns
-        //settingsFacade.SetupAllProperties();
         var expectedAutoBackupFlag = settingsFacade.IsBackupAutoUploadEnabled;
 
         // Act
@@ -107,7 +105,6 @@ public class BackupServiceTests
     {
         // Arrange
         connectivityAdapter.IsConnected.Returns(true);
-        // cloudBackupService.Setup(x => x.LogoutAsync()).Returns(Task.CompletedTask);
 
         // Act
         await backupService.LogoutAsync();
