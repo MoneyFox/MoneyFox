@@ -56,8 +56,7 @@ public class AboutViewModel : BasePageViewModel
             new(Name: "FluentAssertions", ProjectUrl: "https://github.com/fluentassertions/fluentassertions", License: "Apache-2.0"),
             new(Name: "FluentAssertions.Analyzers", ProjectUrl: "https://github.com/fluentassertions/fluentassertions.analyzers", License: "MIT"),
             new(Name: "NSubstitute", ProjectUrl: "https://github.com/nsubstitute/NSubstitute", License: "BSD"),
-            new(Name: "NSubstitute.Analyzers.CSharp", ProjectUrl: "https://github.com/nsubstitute/NSubstitute.Analyzers", License: "MIT"),
-            new(Name: "Moq", ProjectUrl: "https://github.com/moq/moq", License: "BSD 3-Clause"),
+            new(Name: "NSubstitute.Analyzers.CSharp", ProjectUrl: "https://github.com/nsubstitute/NSubstitute.Analyzers", License: "MIT")
         };
 
     private async Task SendMailAsync()
