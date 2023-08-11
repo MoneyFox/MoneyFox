@@ -953,4 +953,7 @@
   <data name="AllAccounts" xml:space="preserve">
         <value>すべてのアカウント</value>
     </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>ライセンス</value>
+    </data>
 </root>

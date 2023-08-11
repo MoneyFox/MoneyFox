@@ -951,4 +951,7 @@ Puedes cambiarla más tarde en los ajustes.</value>
   <data name="AllAccounts" xml:space="preserve">
         <value>Todas las cuentas</value>
     </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>Licencias</value>
+    </data>
 </root>

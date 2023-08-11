@@ -951,4 +951,7 @@ Anda dapat mengubahnya di bagian akhir pengaturan.</value>
   <data name="AllAccounts" xml:space="preserve">
         <value>Semua Akun</value>
     </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>Lisensi</value>
+    </data>
 </root>
