@@ -49,7 +49,15 @@ public class AboutViewModel : BasePageViewModel
             new(Name: "Newtonsoft.Json", ProjectUrl: "https://github.com/JamesNK/Newtonsoft.Json", License: "MIT"),
             new(Name: "Flurl.Http", ProjectUrl: "https://github.com/tmenier/Flurl", License: "MIT"),
             new(Name: "Microsoft.Identity.Client", ProjectUrl: "https://github.com/AzureAD/microsoft-authentication-library-for-dotnet", License: "MIT"),
-            new(Name: "Microsoft.Extensions.DependencyInjection", ProjectUrl: "https://github.com/dotnet/runtime", License: "MIT")
+            new(Name: "Microsoft.Extensions.DependencyInjection", ProjectUrl: "https://github.com/dotnet/runtime", License: "MIT"),
+            new(Name: "Microsoft.NET.Test.Sdk", ProjectUrl: "https://github.com/dotnet/runtime", License: "MIT"),
+            new(Name: "xunit", ProjectUrl: "https://github.com/xunit/xunit", License: "Apache-2.0"),
+            new(Name: "xunit.runner.visualstudio", ProjectUrl: "https://github.com/xunit/visualstudio.xunit", License: "Apache-2.0"),
+            new(Name: "FluentAssertions", ProjectUrl: "https://github.com/fluentassertions/fluentassertions", License: "Apache-2.0"),
+            new(Name: "FluentAssertions.Analyzers", ProjectUrl: "https://github.com/fluentassertions/fluentassertions.analyzers", License: "MIT"),
+            new(Name: "NSubstitute", ProjectUrl: "https://github.com/nsubstitute/NSubstitute", License: "BSD"),
+            new(Name: "NSubstitute.Analyzers.CSharp", ProjectUrl: "https://github.com/nsubstitute/NSubstitute.Analyzers", License: "MIT"),
+            new(Name: "Moq", ProjectUrl: "https://github.com/moq/moq", License: "BSD 3-Clause"),
         };
 
     private async Task SendMailAsync()
