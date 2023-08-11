@@ -19,6 +19,7 @@ internal static class TestPaymentDbFactory
             chargedAccount: dbChargedAccount,
             targetAccount: dbTargetAccount,
             category: dbCategory,
-            note: payment.Note);
+            note: payment.Note,
+            recurringTransactionId: payment.RecurringTransactionId);
     }
 }

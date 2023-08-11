@@ -47,9 +47,9 @@ public class DeleteCategoryByIdCommandTests : InMemoryTestBase
     {
         // Arrange
         var expense = new TestData.ClearedExpense();
-        var dbExpense = Context.RegisterPayment(testCategory: expense);
+        var dbExpense = Context.RegisterPayment(testPayment: expense);
         var income = new TestData.ClearedIncome();
-        var dbIncome = Context.RegisterPayment(testCategory: income);
+        var dbIncome = Context.RegisterPayment(testPayment: income);
 
         // Act
         await handler.Handle(command: new(dbExpense.Category!.Id), cancellationToken: default);

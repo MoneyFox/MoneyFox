@@ -8,7 +8,7 @@ internal static partial class TestData
 
     internal sealed record ClearedExpense : IPayment
     {
-        public int Id { get; init; } = 10;
+        public int Id { get; set; } = 10;
         public IAccount ChargedAccount => new IncludedAccount();
         public IAccount? TargetAccount => null;
         public ICategory? Category { get; init; } = new ExpenseCategory();
@@ -19,6 +19,8 @@ internal static partial class TestData
         public bool IsRecurring => RecurringTransactionId.HasValue;
         public Guid? RecurringTransactionId { get; } = null;
         public string Note => "6 Bottles";
+        public DateTime Created { get; } = DateTime.Now.AddDays(-2);
+        public DateTime? LastModified { get; }  = DateTime.Now.AddDays(-1);
 
         internal sealed record ExpenseCategory : ICategory
         {
@@ -42,6 +44,8 @@ internal static partial class TestData
         public string Note => string.Empty;
         public bool IsRecurring => RecurringTransactionId.HasValue;
         public Guid? RecurringTransactionId { get; } = null;
+        public DateTime Created { get; } = DateTime.Now.AddDays(-2);
+        public DateTime? LastModified { get; }  = DateTime.Now.AddDays(-1);
 
         internal sealed record IncomeCategory : ICategory
         {
@@ -54,7 +58,7 @@ internal static partial class TestData
 
     public sealed record IncludedAccount : IAccount
     {
-        public int Id { get; } = 10;
+        public int Id { get; set; } = 1;
         public string Name { get; } = "Spending";
         public decimal CurrentBalance { get; } = 890.60m;
         public string Note => string.Empty;
@@ -64,7 +68,7 @@ internal static partial class TestData
 
     internal interface IPayment
     {
-        int Id { get; }
+        int Id { get; set; }
 
         IAccount ChargedAccount { get; }
 
@@ -85,11 +89,14 @@ internal static partial class TestData
         bool IsRecurring { get; }
 
         Guid? RecurringTransactionId { get; }
+
+        DateTime Created { get; }
+        DateTime? LastModified { get; }
     }
 
     internal interface IAccount
     {
-        int Id { get; }
+        int Id { get; set; }
 
         string Name { get; }
 
