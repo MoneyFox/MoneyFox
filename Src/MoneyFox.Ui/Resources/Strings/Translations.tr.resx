@@ -953,4 +953,7 @@ Bunu ayarlardan geç değiştirebilirsiniz.</value>
   <data name="AllAccounts" xml:space="preserve">
         <value>Tüm Hesaplar</value>
     </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>Licenses</value>
+    </data>
 </root>
