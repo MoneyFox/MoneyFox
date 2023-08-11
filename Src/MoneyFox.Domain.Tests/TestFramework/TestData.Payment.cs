@@ -16,7 +16,8 @@ internal static partial class TestData
         public decimal Amount { get; init; } = 105.50m;
         public bool IsCleared => true;
         public PaymentType Type { get; init; } = PaymentType.Expense;
-        public bool IsRecurring => false;
+        public bool IsRecurring => RecurringTransactionId.HasValue;
+        public Guid? RecurringTransactionId { get; } = null;
         public string Note => "6 Bottles";
 
         internal sealed record ExpenseCategory : ICategory
@@ -39,7 +40,8 @@ internal static partial class TestData
         public bool IsCleared => true;
         public PaymentType Type { get; set; } = PaymentType.Income;
         public string Note => string.Empty;
-        public bool IsRecurring => false;
+        public bool IsRecurring => RecurringTransactionId.HasValue;
+        public Guid? RecurringTransactionId { get; } = null;
 
         internal sealed record IncomeCategory : ICategory
         {
@@ -81,6 +83,8 @@ internal static partial class TestData
         string Note { get; }
 
         bool IsRecurring { get; }
+
+        Guid? RecurringTransactionId { get; }
     }
 
     internal interface IAccount

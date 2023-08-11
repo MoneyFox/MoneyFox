@@ -20,7 +20,7 @@ internal static partial class TestData
         public Recurrence Recurrence { get; } = Recurrence.Monthly;
         public bool IsLastDayOfMonth { get; } = true;
         public DateOnly LastRecurrence => StartDate;
-        public bool IsTransfer { get; }
+        public bool IsTransfer { get; } = false;
     }
 
     public sealed record RecurringTransfer : IRecurringTransaction
