@@ -953,4 +953,7 @@ Túto neskorú menu môžete zmeniť v nastaveniach.</value>
   <data name="AllAccounts" xml:space="preserve">
         <value>Všetky účty</value>
     </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>Licencie</value>
+    </data>
 </root>

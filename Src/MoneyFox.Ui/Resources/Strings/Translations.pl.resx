@@ -951,4 +951,7 @@ Możesz to zmienić w ustawieniach.</value>
   <data name="AllAccounts" xml:space="preserve">
         <value>Wszyscy Klienci</value>
     </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>Licencje</value>
+    </data>
 </root>

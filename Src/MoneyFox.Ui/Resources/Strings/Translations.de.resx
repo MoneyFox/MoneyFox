@@ -953,4 +953,7 @@ Du kannst das später in den Einstellungen ändern.</value>
   <data name="AllAccounts" xml:space="preserve">
         <value>Alle Konten</value>
     </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>Lizenzen</value>
+    </data>
 </root>
