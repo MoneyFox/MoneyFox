@@ -2,26 +2,53 @@ name: build
 
 on:
   push:
-  merge_group:
-  pull_request:
-    branches: [ "master" ]
+#    branches: [ "master" ]
 
   workflow_dispatch:
 
 env:
-  DOTNET_VERSION: "7.x"
+  MAJOR_VERSION: "8"
+  MINOR_VERSION: "3"
   UI_PROJECT_PATH: "src/MoneyFox.Ui/MoneyFox.Ui.csproj"
   CORE_TEST_PROJECT_PATH: "src/MoneyFox.Core.Tests/MoneyFox.Core.Tests.csproj"
   UI_TEST_PROJECT_PATH: "src/MoneyFox.Ui.Tests/MoneyFox.Ui.Tests.csproj"
   INFRASTRUCTURE_PROJECT_PATH: "src/MoneyFox.Infrastructure.Tests/MoneyFox.Infrastructure.Tests.csproj"
 
 jobs:
-  buildWin:
-
+  build-win:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Install signing certificate
+        env:
+          WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
+          WINDOWS_CERTIFICATE_BASE64: ${{ secrets.WINDOWS_CERTIFICATE_BASE64 }}
+        run: |
+          $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.WINDOWS_CERTIFICATE_BASE64 }}")
+          
+          Add-Type -AssemblyName System.Security
+          $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2($pfx_cert_byte, "${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}")
+          $store = new-object system.security.cryptography.X509Certificates.X509Store -argumentlist "MY", CurrentUser
+          $store.Open([System.Security.Cryptography.X509Certificates.OpenFlags]"ReadWrite")
+          $store.Add($cert)
+          $store.Close()
+          
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set values in manifest
+        run: |
+          [xml]$xmlDoc = Get-Content '${{ github.workspace }}\src\MoneyFox.Ui\Platforms\Windows\Package.appxmanifest'
+          $xmlDoc.Package.Identity.Name="57598ApplySolutionsSoftwa.MoneyFox"
+          $xmlDoc.Package.Identity.Publisher="CN=071307B1-B0E3-434A-AD0E-FFF714A7245C"
+          $xmlDoc.Save('${{ github.workspace }}\src\MoneyFox.Ui\Platforms\Windows\Package.appxmanifest')  
+
+      - name: Set association to store
+        run: |
+          [xml]$xmlDoc = Get-Content '${{ github.workspace }}\src\MoneyFox.Ui\Platforms\Windows\Package.StoreAssociation.xml'
+          $xmlDoc.StoreAssociation.Publisher="CN=071307B1-B0E3-434A-AD0E-FFF714A7245C"
+          $xmlDoc.StoreAssociation.ProductReservedInfo.MainPackageIdentityName="57598ApplySolutionsSoftwa.MoneyFox"
+          $xmlDoc.Save('${{ github.workspace }}\src\MoneyFox.Ui\Platforms\Windows\Package.StoreAssociation.xml')       
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
@@ -51,21 +78,38 @@ jobs:
           dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
 
       - name: Build Win
-        run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-windows10.0.22621.0 -c Release -o ${{ github.workspace }}/moneyfox-win
-        
+        run: |
+          $DisplayVersion="${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
+          $Version=${{ GITHUB.run_number }}
+          $KeyStorePath = "${{ github.workspace }}\${{ env.WINDOWS_CERTIFICATE_PATH }}"
+          
+          dotnet publish ${{env.UI_PROJECT_PATH}} `
+            -f net7.0-windows10.0.22621.0 `
+            -c Release `
+            -o ${{ github.workspace }}/moneyfox-win `
+            /p:ApplicationDisplayVersion=$DisplayVersion `
+            /p:ApplicationVersion=$Version
+          
       - name: Upload Windows build
-        if: needs.pr-check.outputs.number != 'null'
         uses: actions/upload-artifact@v3
         with:
           name: moneyfox-win
           path: ${{ github.workspace }}/moneyfox-win
   
-  
-  buildAndroid:
-
+  build-android:
     runs-on: windows-latest
 
     steps:
+      - name: Download keystore
+        shell: bash
+        run: |
+          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" > moneyfox.base64
+          base64 -d moneyfox.base64 > "${{ runner.temp }}\moneyfox.keystore"
+          
+          if test -f "${{ runner.temp }}\moneyfox.keystore"; then
+            echo "{{ runner.temp }}\moneyfox.keystore exists."
+          fi
+          
       - uses: actions/checkout@v3
 
       - name: Setup .NET
@@ -87,34 +131,50 @@ jobs:
       - name: Restore Dependencies
         run: dotnet restore ${{env.UI_PROJECT_PATH}}
 
-      - name: Test
-        run: |
-          dotnet test ${{env.UI_TEST_PROJECT_PATH}}
-          dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
-          dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
+#      - name: Test
+#        run: |
+#          dotnet test ${{env.UI_TEST_PROJECT_PATH}}
+#          dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
+#          dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
+
+      - name: Get android version
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y%m')${{ GITHUB.run_number }}"
 
       - name: Build Android
-        run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-android -c Release -o ${{ github.workspace }}/moneyfox-win /p:AndroidKeyStore="True" /p:AndroidSigningKeyAlias="$(KeyStoreAlias)" /p:AndroidSigningKeyStore="$(keystore.secureFilePath)" /p:AndroidSigningKeyPass="$(KeyStorePass)" /p:AndroidSigningStorePass="$(KeyStorePass)"'
+        run: | 
+          $DisplayVersion = "${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
+          $Version = ${{ steps.date.outputs.date }}
+          
+          dotnet publish ${{env.UI_PROJECT_PATH}} `
+            -f net7.0-android `
+            -c Release `
+            -o ${{ github.workspace }}/moneyfox-android `
+            /p:AndroidKeyStore="True" `
+            /p:AndroidSigningKeyAlias="${{ secrets.ANDROID_KEYSTORE_ALIAS }}" `
+            /p:AndroidSigningKeyStore="${{ runner.temp }}\moneyfox.keystore" `
+            /p:AndroidSigningKeyPass="${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" `
+            /p:AndroidSigningStorePass="${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" `
+            /p:ApplicationDisplayVersion=$DisplayVersion `
+            /p:ApplicationVersion=$Version
 
       - name: Upload Android build
-        if: needs.pr-check.outputs.number != 'null'
         uses: actions/upload-artifact@v3
         with:
           name: moneyfox-android
           path: ${{ github.workspace }}/moneyfox-android
           
-  
-  buildiOS:
-
+  build-ios:
     runs-on: macos-13
 
     steps:
-      - uses: actions/checkout@v3
-      
       - name: Xcode Select
         uses: devbotsxyz/xcode-select@v1.1.0
         with:
           version: "14.3"
+          
+      - name: Checkout repository
+        uses: actions/checkout@v3
           
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
@@ -171,10 +231,19 @@ jobs:
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
         
       - name: Build iOS
-        run: dotnet build ${{env.UI_PROJECT_PATH}} -f net7.0-ios -c Release -o ${{ github.workspace }}/moneyfox-ios  /p:packageApp=True
+        run: |
+          DisplayVersion="${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
+          Version=${{ GITHUB.run_number }}
+          
+          dotnet build ${{env.UI_PROJECT_PATH}} \
+            -f net7.0-ios \
+            -c Release \
+            -o ${{ github.workspace }}/moneyfox-ios \
+            /p:packageApp=True \
+            /p:ApplicationDisplayVersion=$DisplayVersion \
+            /p:ApplicationVersion=${{ GITHUB.run_number }}
 
       - name: Upload iOS build
-        if: needs.pr-check.outputs.number != 'null'
         uses: actions/upload-artifact@v3
         with:
           name: moneyfox-ios
