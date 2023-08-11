@@ -9,11 +9,6 @@ using Resources.Strings;
 public class AboutViewModel : BasePageViewModel
 {
     private const string SUPPORT_MAIL = "mobile.support@apply-solutions.ch";
-    private static readonly Uri projectUri = new("https://github.com/MoneyFox/MoneyFox");
-    private static readonly Uri translationUri = new("https://crowdin.com/project/money-fox");
-    private static readonly Uri iconDesignerUrl = new("https://twitter.com/vandert9");
-    private static readonly Uri contributorUrl = new("https://github.com/MoneyFox/MoneyFox/graphs/contributors");
-    private static readonly Uri websiteUri = new(uriString: "https://www.apply-solutions.ch", uriKind: UriKind.Absolute);
 
     private readonly IBrowserAdapter browserAdapter;
     private readonly IEmailAdapter emailAdapter;
@@ -28,19 +23,42 @@ public class AboutViewModel : BasePageViewModel
 
     public static string Version => AppInfo.VersionString;
 
-    public AsyncRelayCommand GoToWebsiteCommand => new(GoToWebsiteAsync);
     public AsyncRelayCommand SendMailCommand => new(SendMailAsync);
     public AsyncRelayCommand RateAppCommand => new(RateAppAsync);
-    public AsyncRelayCommand GoToRepositoryCommand => new(GoToRepositoryAsync);
-    public AsyncRelayCommand GoToTranslationProjectCommand => new(GoToTranslationProjectAsync);
-    public AsyncRelayCommand GoToDesignerTwitterAccountCommand => new(GoToDesignerTwitterAccountAsync);
-    public AsyncRelayCommand GoToContributionPageCommand => new(GoToContributionPageAsync);
     public AsyncRelayCommand OpenLogFileCommand => new(OpenLogFile);
+    public AsyncRelayCommand<string> OpenUrlCommand => new(url => browserAdapter.OpenWebsiteAsync(new(url ?? string.Empty)));
 
-    private async Task GoToWebsiteAsync()
-    {
-        await browserAdapter.OpenWebsiteAsync(websiteUri);
-    }
+    public List<LicenseViewModel> Licenses
+        => new()
+        {
+            new(Name: ".net MAUI", ProjectUrl: "https://github.com/dotnet/maui", License: "MIT"),
+            new(Name: "MAUI Community ToolkitProjectUrl", ProjectUrl: "https://github.com/dotnet/maui", License: "MIT"),
+            new(Name: "LiveChartsCore.SkiaSharpView", ProjectUrl: "https://github.com/beto-rodriguez/LiveCharts2", License: "MIT"),
+            new(Name: "Plugin.StoreReviewProjectUrl", ProjectUrl: "https://github.com/jamesmontemagno/StoreReviewPlugin", License: "MIT"),
+            new(Name: "Serilog", ProjectUrl: "https://github.com/serilog/serilog", License: "Apache-2.0"),
+            new(Name: "Serilog.Exceptions", ProjectUrl: "https://github.com/RehanSaeed/Serilog.Exceptions", License: "MIT"),
+            new(Name: "Serilog.Sinks.File", ProjectUrl: "https://github.com/serilog/serilog-sinks-file", License: "Apache-2.0"),
+            new(Name: "Microsoft.Extensions.Configuration.Json", ProjectUrl: "https://github.com/dotnet/runtime", License: "MIT"),
+            new(Name: "Microsoft.Extensions.Configuration.Binder", ProjectUrl: "https://github.com/dotnet/runtime", License: "MIT"),
+            new(Name: "SonarAnalyzer.CSharp", ProjectUrl: "https://github.com/SonarSource/sonar-dotnet", License: "LGPL-3.0"),
+            new(Name: "MediatR", ProjectUrl: "https://github.com/jbogard/MediatR", License: "Apache-2.0"),
+            new(Name: "SQLitePCLRaw.bundle_e_sqlite3", ProjectUrl: "https://github.com/ericsink/SQLitePCL.raw", License: "Apache-2.0"),
+            new(Name: "Microsoft.EntityFrameworkCore", ProjectUrl: "https://github.com/dotnet/efcore", License: "MIT"),
+            new(Name: "AutoMapper", ProjectUrl: "https://github.com/AutoMapper/AutoMapper", License: "MIT"),
+            new(Name: "JetBrains.Annotations", ProjectUrl: "https://github.com/JetBrains/JetBrains.Annotations", License: "MIT"),
+            new(Name: "Newtonsoft.Json", ProjectUrl: "https://github.com/JamesNK/Newtonsoft.Json", License: "MIT"),
+            new(Name: "Flurl.Http", ProjectUrl: "https://github.com/tmenier/Flurl", License: "MIT"),
+            new(Name: "Microsoft.Identity.Client", ProjectUrl: "https://github.com/AzureAD/microsoft-authentication-library-for-dotnet", License: "MIT"),
+            new(Name: "Microsoft.Extensions.DependencyInjection", ProjectUrl: "https://github.com/dotnet/runtime", License: "MIT"),
+            new(Name: "Microsoft.NET.Test.Sdk", ProjectUrl: "https://github.com/dotnet/runtime", License: "MIT"),
+            new(Name: "xunit", ProjectUrl: "https://github.com/xunit/xunit", License: "Apache-2.0"),
+            new(Name: "xunit.runner.visualstudio", ProjectUrl: "https://github.com/xunit/visualstudio.xunit", License: "Apache-2.0"),
+            new(Name: "FluentAssertions", ProjectUrl: "https://github.com/fluentassertions/fluentassertions", License: "Apache-2.0"),
+            new(Name: "FluentAssertions.Analyzers", ProjectUrl: "https://github.com/fluentassertions/fluentassertions.analyzers", License: "MIT"),
+            new(Name: "NSubstitute", ProjectUrl: "https://github.com/nsubstitute/NSubstitute", License: "BSD"),
+            new(Name: "NSubstitute.Analyzers.CSharp", ProjectUrl: "https://github.com/nsubstitute/NSubstitute.Analyzers", License: "MIT"),
+            new(Name: "Moq", ProjectUrl: "https://github.com/moq/moq", License: "BSD 3-Clause"),
+        };
 
     private async Task SendMailAsync()
     {
@@ -64,26 +82,6 @@ public class AboutViewModel : BasePageViewModel
         await CrossStoreReview.Current.RequestReview(false);
     }
 
-    private async Task GoToRepositoryAsync()
-    {
-        await browserAdapter.OpenWebsiteAsync(projectUri);
-    }
-
-    private async Task GoToTranslationProjectAsync()
-    {
-        await browserAdapter.OpenWebsiteAsync(translationUri);
-    }
-
-    private async Task GoToDesignerTwitterAccountAsync()
-    {
-        await browserAdapter.OpenWebsiteAsync(iconDesignerUrl);
-    }
-
-    private async Task GoToContributionPageAsync()
-    {
-        await browserAdapter.OpenWebsiteAsync(contributorUrl);
-    }
-
     private async Task OpenLogFile()
     {
         var latestLogFile = LogFileService.GetLatestLogFileInfo();
@@ -93,3 +91,5 @@ public class AboutViewModel : BasePageViewModel
         }
     }
 }
+
+public record LicenseViewModel(string Name, string ProjectUrl, string License);
