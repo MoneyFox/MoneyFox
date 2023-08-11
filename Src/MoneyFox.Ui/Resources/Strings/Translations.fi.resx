@@ -951,4 +951,7 @@ Voit muuttaa tätä myöhässä asetuksissa.</value>
   <data name="AllAccounts" xml:space="preserve">
         <value>Kaikki Tilit</value>
     </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>Licenses</value>
+    </data>
 </root>
