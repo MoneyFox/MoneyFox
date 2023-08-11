@@ -953,4 +953,7 @@ Du kan ændre denne sent i indstillingerne.</value>
   <data name="AllAccounts" xml:space="preserve">
         <value>Alle Konti</value>
     </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>Licenses</value>
+    </data>
 </root>
