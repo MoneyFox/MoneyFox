@@ -956,4 +956,7 @@ Je kunt dit laat wijzigen in de instellingen.</value>
   <data name="AllAccounts" xml:space="preserve">
         <value>Alle accounts</value>
     </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>Licenses</value>
+    </data>
 </root>
