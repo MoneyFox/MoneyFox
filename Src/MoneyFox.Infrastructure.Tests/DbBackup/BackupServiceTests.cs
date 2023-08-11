@@ -6,29 +6,29 @@ using Core.Interfaces;
 using Domain.Exceptions;
 using FluentAssertions;
 using Infrastructure.DbBackup.Legacy;
-using Moq;
 using NSubstitute;
+using NSubstitute.ExceptionExtensions;
 
 public class BackupServiceTests
 {
     private readonly BackupService backupService;
-    private readonly Mock<IOneDriveBackupService> cloudBackupServiceMock;
-    private readonly Mock<IConnectivityAdapter> connectivityAdapterMock;
-    private readonly Mock<ISettingsFacade> settingsFacadeMock;
+    private readonly IOneDriveBackupService cloudBackupService;
+    private readonly IConnectivityAdapter connectivityAdapter;
+    private readonly ISettingsFacade settingsFacade;
 
     public BackupServiceTests()
     {
-        cloudBackupServiceMock = new();
-        settingsFacadeMock = new();
-        connectivityAdapterMock = new();
+        cloudBackupService = Substitute.For<IOneDriveBackupService>();
+        settingsFacade = Substitute.For<ISettingsFacade>();
+        connectivityAdapter = Substitute.For<IConnectivityAdapter>();
         var appDbMock = Substitute.For<IAppDbContext>();
         var dbPathProvider = Substitute.For<IDbPathProvider>();
         dbPathProvider.GetDbPath().Returns(Path.GetTempFileName());
         backupService = new(
-            oneDriveBackupService: cloudBackupServiceMock.Object,
-            fileStore: new Mock<IFileStore>().Object,
-            settingsFacade: settingsFacadeMock.Object,
-            connectivity: connectivityAdapterMock.Object,
+            oneDriveBackupService: cloudBackupService,
+            fileStore: Substitute.For<IFileStore>(),
+            settingsFacade: settingsFacade,
+            connectivity: connectivityAdapter,
             dbPathProvider: dbPathProvider,
             appDbContext: appDbMock);
     }
@@ -37,7 +37,7 @@ public class BackupServiceTests
     public async Task Login_NotConnected_ExceptionThrown()
     {
         // Arrange
-        connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(false);
+        connectivityAdapter.IsConnected.Returns(false);
 
         // Act / Assert
         await Assert.ThrowsAsync<NetworkConnectionException>(async () => await backupService.LoginAsync());
@@ -47,40 +47,39 @@ public class BackupServiceTests
     public async Task Login_loginFailed_SettingsNotUpdated()
     {
         // Arrange
-        connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
-        cloudBackupServiceMock.Setup(x => x.LoginAsync()).Callback(() => throw new BackupException());
-        settingsFacadeMock.SetupAllProperties();
+        connectivityAdapter.IsConnected.Returns(true);
+        cloudBackupService.LoginAsync().ThrowsAsync<BackupException>();
 
         // Act
         await Assert.ThrowsAsync<BackupException>(async () => await backupService.LoginAsync());
 
         // Assert
-        settingsFacadeMock.Object.IsBackupAutoUploadEnabled.Should().BeFalse();
-        settingsFacadeMock.Object.IsLoggedInToBackupService.Should().BeFalse();
+        settingsFacade.IsBackupAutoUploadEnabled.Should().BeFalse();
+        settingsFacade.IsLoggedInToBackupService.Should().BeFalse();
     }
 
     [Fact]
     public async Task Login_loginSuccess_SettingsUpdated()
     {
         // Arrange
-        connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
-        cloudBackupServiceMock.Setup(x => x.LoginAsync()).Returns(Task.CompletedTask);
-        settingsFacadeMock.SetupAllProperties();
-        var expectedAutoBackupFlag = settingsFacadeMock.Object.IsBackupAutoUploadEnabled;
+        connectivityAdapter.IsConnected.Returns(true);
+        //cloudBackupService.LoginAsync().Returns
+        //settingsFacade.SetupAllProperties();
+        var expectedAutoBackupFlag = settingsFacade.IsBackupAutoUploadEnabled;
 
         // Act
         await backupService.LoginAsync();
 
         // Assert
-        settingsFacadeMock.Object.IsBackupAutoUploadEnabled.Should().Be(expectedAutoBackupFlag);
-        settingsFacadeMock.Object.IsLoggedInToBackupService.Should().BeTrue();
+        settingsFacade.IsBackupAutoUploadEnabled.Should().Be(expectedAutoBackupFlag);
+        settingsFacade.IsLoggedInToBackupService.Should().BeTrue();
     }
 
     [Fact]
     public async Task Logout_NotConnected_ExceptionThrown()
     {
         // Arrange
-        connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(false);
+        connectivityAdapter.IsConnected.Returns(false);
 
         // Act / Assert
         await Assert.ThrowsAsync<NetworkConnectionException>(async () => await backupService.LogoutAsync());
@@ -90,41 +89,39 @@ public class BackupServiceTests
     public async Task Logout_loginFailed_SettingsNotUpdated()
     {
         // Arrange
-        connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
-        cloudBackupServiceMock.Setup(x => x.LogoutAsync()).Callback(() => throw new BackupException());
-        settingsFacadeMock.SetupAllProperties();
-        settingsFacadeMock.Object.IsBackupAutoUploadEnabled = true;
-        settingsFacadeMock.Object.IsLoggedInToBackupService = true;
+        connectivityAdapter.IsConnected.Returns(true);
+        cloudBackupService.LogoutAsync().ThrowsAsync<BackupException>();
+        settingsFacade.IsBackupAutoUploadEnabled = true;
+        settingsFacade.IsLoggedInToBackupService = true;
 
         // Act
         await Assert.ThrowsAsync<BackupException>(async () => await backupService.LogoutAsync());
 
         // Assert
-        settingsFacadeMock.Object.IsBackupAutoUploadEnabled.Should().BeTrue();
-        settingsFacadeMock.Object.IsLoggedInToBackupService.Should().BeTrue();
+        settingsFacade.IsBackupAutoUploadEnabled.Should().BeTrue();
+        settingsFacade.IsLoggedInToBackupService.Should().BeTrue();
     }
 
     [Fact]
     public async Task Logout_loginSuccess_SettingsUpdated()
     {
         // Arrange
-        connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
-        cloudBackupServiceMock.Setup(x => x.LogoutAsync()).Returns(Task.CompletedTask);
-        settingsFacadeMock.SetupAllProperties();
+        connectivityAdapter.IsConnected.Returns(true);
+        // cloudBackupService.Setup(x => x.LogoutAsync()).Returns(Task.CompletedTask);
 
         // Act
         await backupService.LogoutAsync();
 
         // Assert
-        settingsFacadeMock.Object.IsBackupAutoUploadEnabled.Should().BeFalse();
-        settingsFacadeMock.Object.IsLoggedInToBackupService.Should().BeFalse();
+        settingsFacade.IsBackupAutoUploadEnabled.Should().BeFalse();
+        settingsFacade.IsLoggedInToBackupService.Should().BeFalse();
     }
 
     [Fact]
     public async Task IsBackupExisting_NotConnected_ExceptionThrown()
     {
         // Arrange
-        connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(false);
+        connectivityAdapter.IsConnected.Returns(false);
 
         // Act
         var result = await backupService.IsBackupExistingAsync();
@@ -137,8 +134,8 @@ public class BackupServiceTests
     public async Task IsBackupExisting_NoNamesFound()
     {
         // Arrange
-        connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
-        cloudBackupServiceMock.Setup(x => x.GetFileNamesAsync()).ReturnsAsync(new List<string>());
+        connectivityAdapter.IsConnected.Returns(true);
+        cloudBackupService.GetFileNamesAsync().Returns(new List<string>());
 
         // Act
         var result = await backupService.IsBackupExistingAsync();
@@ -151,8 +148,8 @@ public class BackupServiceTests
     public async Task IsBackupExisting_NamesFound()
     {
         // Arrange
-        connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
-        cloudBackupServiceMock.Setup(x => x.GetFileNamesAsync()).ReturnsAsync(new List<string> { "asd" });
+        connectivityAdapter.IsConnected.Returns(true);
+        cloudBackupService.GetFileNamesAsync().Returns(new List<string> { "asd" });
 
         // Act
         var result = await backupService.IsBackupExistingAsync();
@@ -165,7 +162,7 @@ public class BackupServiceTests
     public async Task GetBackupDate_NotConnected_ExceptionThrown()
     {
         // Arrange
-        connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(false);
+        connectivityAdapter.IsConnected.Returns(true);
 
         // Act
         var result = await backupService.GetBackupDateAsync();
@@ -178,10 +175,10 @@ public class BackupServiceTests
     public async Task GetBackupDate_CorrectCall()
     {
         // Arrange
-        settingsFacadeMock.SetupGet(x => x.IsBackupAutoUploadEnabled).Returns(true);
-        settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(true);
-        connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
-        cloudBackupServiceMock.Setup(x => x.GetBackupDateAsync()).ReturnsAsync(DateTime.Today);
+        connectivityAdapter.IsConnected.Returns(true);
+        settingsFacade.IsBackupAutoUploadEnabled.Returns(true);
+        settingsFacade.IsLoggedInToBackupService.Returns(true);
+        cloudBackupService.GetBackupDateAsync().Returns(DateTime.Today);
 
         // Act
         var result = await backupService.GetBackupDateAsync();
@@ -194,9 +191,9 @@ public class BackupServiceTests
     public async Task RestoreBackupAsync_NotConnected_ExceptionThrown()
     {
         // Arrange
-        connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(false);
-        settingsFacadeMock.SetupGet(x => x.IsBackupAutoUploadEnabled).Returns(true);
-        settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(true);
+        connectivityAdapter.IsConnected.Returns(false);
+        settingsFacade.IsBackupAutoUploadEnabled.Returns(true);
+        settingsFacade.IsLoggedInToBackupService.Returns(true);
 
         // Act / Assert
         await Assert.ThrowsAsync<NetworkConnectionException>(async () => await backupService.RestoreBackupAsync());
@@ -206,39 +203,37 @@ public class BackupServiceTests
     public async Task RestoreBackup_Success_LastBackupTimestampNotUpdated()
     {
         // Arrange
-        connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
+        connectivityAdapter.IsConnected.Returns(true);
         var expectedPassedDate = DateTime.Now.AddDays(-3);
-        settingsFacadeMock.SetupAllProperties();
-        settingsFacadeMock.Object.LastDatabaseUpdate = expectedPassedDate;
-        settingsFacadeMock.SetupGet(x => x.IsBackupAutoUploadEnabled).Returns(true);
-        settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(true);
-        cloudBackupServiceMock.Setup(x => x.RestoreAsync()).ReturnsAsync(new Mock<Stream>().Object);
-        cloudBackupServiceMock.Setup(x => x.GetFileNamesAsync()).ReturnsAsync(new List<string> { "asd" });
+        settingsFacade.LastDatabaseUpdate = expectedPassedDate;
+        settingsFacade.IsBackupAutoUploadEnabled.Returns(true);
+        settingsFacade.IsLoggedInToBackupService.Returns(true);
+        cloudBackupService.RestoreAsync().Returns(Substitute.For<Stream>());
+        cloudBackupService.GetFileNamesAsync().Returns(new List<string> { "asd" });
 
         // Act
         await backupService.RestoreBackupAsync();
 
         // Assert
-        settingsFacadeMock.Object.LastDatabaseUpdate.Should().BeBefore(DateTime.Now.AddSeconds(-1));
+        settingsFacade.LastDatabaseUpdate.Should().BeBefore(DateTime.Now.AddSeconds(-1));
     }
 
     [Fact]
     public async Task RestoreBackup_Failed_LastBackupTimestampNotUpdated()
     {
         // Arrange
-        connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
+        connectivityAdapter.IsConnected.Returns(true);
         var expectedPassedDate = DateTime.Now.AddDays(-3);
-        settingsFacadeMock.SetupAllProperties();
-        settingsFacadeMock.Object.LastDatabaseUpdate = expectedPassedDate;
-        settingsFacadeMock.SetupGet(x => x.IsBackupAutoUploadEnabled).Returns(true);
-        settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(true);
-        cloudBackupServiceMock.Setup(x => x.RestoreAsync()).Callback(() => throw new BackupException());
-        cloudBackupServiceMock.Setup(x => x.GetBackupDateAsync()).ReturnsAsync(DateTime.Now);
+        settingsFacade.LastDatabaseUpdate = expectedPassedDate;
+        settingsFacade.IsBackupAutoUploadEnabled.Returns(true);
+        settingsFacade.IsLoggedInToBackupService.Returns(true);
+        cloudBackupService.GetBackupDateAsync().Returns(DateTime.Today);
+        cloudBackupService.RestoreAsync().ThrowsAsync<BackupException>();
 
         // Act
         await Assert.ThrowsAsync<BackupException>(async () => await backupService.RestoreBackupAsync());
 
         // Assert
-        settingsFacadeMock.Object.LastDatabaseUpdate.Should().Be(expectedPassedDate);
+        settingsFacade.LastDatabaseUpdate.Should().Be(expectedPassedDate);
     }
 }
