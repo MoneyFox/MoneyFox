@@ -6,10 +6,10 @@ internal static partial class TestData
 {
     private static readonly DateTime defaultDate = new(year: 2022, month: 04, day: 06);
 
-    internal sealed record DefaultExpense : IPayment
+    internal sealed record ClearedExpense : IPayment
     {
         public int Id { get; init; } = 10;
-        public IAccount ChargedAccount => new DefaultAccount();
+        public IAccount ChargedAccount => new IncludedAccount();
         public IAccount? TargetAccount => null;
         public ICategory? Category { get; init; } = new ExpenseCategory();
         public DateTime Date { get; init; } = defaultDate;
@@ -28,10 +28,10 @@ internal static partial class TestData
         }
     }
 
-    internal sealed record DefaultIncome : IPayment
+    internal sealed record ClearedIncome : IPayment
     {
         public int Id { get; set; } = 10;
-        public IAccount ChargedAccount => new DefaultAccount();
+        public IAccount ChargedAccount => new IncludedAccount();
         public IAccount? TargetAccount => null;
         public ICategory? Category { get; init; } = new IncomeCategory();
         public DateTime Date { get; } = defaultDate;
@@ -50,7 +50,7 @@ internal static partial class TestData
         }
     }
 
-    public sealed record DefaultAccount : IAccount
+    public sealed record IncludedAccount : IAccount
     {
         public int Id { get; } = 10;
         public string Name { get; } = "Spending";

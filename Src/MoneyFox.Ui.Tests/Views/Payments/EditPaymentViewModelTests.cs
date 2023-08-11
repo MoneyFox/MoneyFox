@@ -23,8 +23,8 @@ public sealed class EditPaymentViewModelTests
         var mediator = Substitute.For<IMediator>();
         var settingsFacade = Substitute.For<ISettingsFacade>();
         settingsFacade.DefaultCurrency.Returns("CHF");
-        var dbPayment = new TestData.DefaultExpense().CreateDbPayment();
-        var dbAccount = new TestData.DefaultAccount().CreateDbAccount();
+        var dbPayment = new TestData.ClearedExpense().CreateDbPayment();
+        var dbAccount = new TestData.IncludedAccount().CreateDbAccount();
         mediator.Send(request: Arg.Any<GetAccountsQuery>(), cancellationToken: Arg.Any<CancellationToken>()).Returns(new List<Account> { dbAccount });
         mediator.Send(request: Arg.Any<GetPaymentByIdQuery>(), cancellationToken: Arg.Any<CancellationToken>()).Returns(dbPayment);
         var vm = new EditPaymentViewModel(

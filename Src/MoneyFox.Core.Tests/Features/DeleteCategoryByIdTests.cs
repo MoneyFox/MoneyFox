@@ -46,9 +46,9 @@ public class DeleteCategoryByIdCommandTests : InMemoryTestBase
     public async Task RemoveCategoryFromPaymentOnDelete()
     {
         // Arrange
-        var expense = new TestData.DefaultExpense();
+        var expense = new TestData.ClearedExpense();
         var dbExpense = Context.RegisterPayment(testCategory: expense);
-        var income = new TestData.DefaultIncome();
+        var income = new TestData.ClearedIncome();
         var dbIncome = Context.RegisterPayment(testCategory: income);
 
         // Act

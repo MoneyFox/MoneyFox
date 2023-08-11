@@ -43,9 +43,9 @@ public class GetNumberOfPaymentsAssignedToCategoryTest : InMemoryTestBase
     public async Task ReturnsCorrectNumberOfPayments_WhenMultiplePaymentsAvailable()
     {
         // Arrange
-        var expense = new TestData.DefaultExpense { Category = new TestData.DefaultExpense.ExpenseCategory() };
+        var expense = new TestData.ClearedExpense { Category = new TestData.ClearedExpense.ExpenseCategory() };
         Context.RegisterPayment(expense);
-        var payment = new TestData.DefaultIncome { Category = new TestData.DefaultIncome.IncomeCategory() };
+        var payment = new TestData.ClearedIncome { Category = new TestData.ClearedIncome.IncomeCategory() };
         var dbPayment = Context.RegisterPayment(payment);
 
         // Act

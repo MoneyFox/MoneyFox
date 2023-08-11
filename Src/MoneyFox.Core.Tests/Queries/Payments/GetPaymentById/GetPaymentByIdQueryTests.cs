@@ -15,15 +15,14 @@ public class GetPaymentByIdQueryTests : InMemoryTestBase
     }
 
     [Fact]
-    public async Task GetCategory_CategoryNotFound()
+    public async Task GetPayment_PaymentNotFound()
     {
         // Act / Assert
-        // Arrange
         await Assert.ThrowsAsync<PaymentNotFoundException>(async () => await handler.Handle(request: new(999), cancellationToken: default));
     }
 
     [Fact]
-    public async Task GetCategory_CategoryFound()
+    public async Task GetPayment_PaymentFound()
     {
         // Arrange
         var payment1 = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: new(name: "test", initialBalance: 80));
