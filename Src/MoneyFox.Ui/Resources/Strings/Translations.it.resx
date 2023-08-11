@@ -953,4 +953,7 @@ Puoi cambiare questa valuta nelle impostazioni.</value>
   <data name="AllAccounts" xml:space="preserve">
         <value>Tutti Gli Account</value>
     </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>Licenses</value>
+    </data>
 </root>
