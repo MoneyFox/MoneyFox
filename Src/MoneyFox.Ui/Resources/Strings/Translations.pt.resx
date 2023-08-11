@@ -952,4 +952,7 @@ Pode alterar esta moeda tardiamente nas definições.</value>
   <data name="AllAccounts" xml:space="preserve">
         <value>Todas as Contas</value>
     </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>Licenses</value>
+    </data>
 </root>
