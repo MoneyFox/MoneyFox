@@ -953,4 +953,7 @@ Tuto měnu můžete změnit pozdě v nastavení.</value>
   <data name="AllAccounts" xml:space="preserve">
         <value>Všechny účty</value>
     </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>Licenses</value>
+    </data>
 </root>
