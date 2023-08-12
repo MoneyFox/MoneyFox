@@ -71,6 +71,7 @@ public class Payment : EntityBase
     public virtual Account? TargetAccount { get; private set; }
 
     public virtual RecurringPayment? RecurringPayment { get; private set; }
+    
     public Guid? RecurringTransactionId { get; private set; }
 
     public void UpdatePayment(
@@ -136,9 +137,5 @@ public class Payment : EntityBase
     public void RemoveCategory()
     {
         Category = null;
-    }
-
-    public void AddRecurringPayment(PaymentRecurrence recurrence, bool isLastDayOfMonth, DateTime endDate)
-    {
     }
 }
