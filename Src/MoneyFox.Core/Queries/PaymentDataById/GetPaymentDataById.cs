@@ -39,8 +39,8 @@ public static class GetPaymentDataById
                     p => new PaymentData(
                         p.Id,
                         p.Amount,
-                        p.ChargedAccount.Id,
-                        p.TargetAccount != null ? p.TargetAccount.Id : null,
+                        new(p.ChargedAccount.Id, p.ChargedAccount.Name, p.ChargedAccount.CurrentBalance),
+                        p.TargetAccount != null ? new(p.TargetAccount.Id, p.TargetAccount.Name, p.TargetAccount.CurrentBalance) : null,
                         p.Category != null ? new(p.Category.Id, p.Category.Name, p.Category.RequireNote) : null,
                         p.Date,
                         p.IsCleared,

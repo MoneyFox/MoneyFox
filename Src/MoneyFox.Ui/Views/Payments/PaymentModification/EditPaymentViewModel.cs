@@ -3,11 +3,12 @@ namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 using CommunityToolkit.Mvvm.Input;
 using Controls.AccountPicker;
 using Controls.CategorySelection;
+using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Common.Settings;
 using Core.Features._Legacy_.Payments.DeletePaymentById;
 using Core.Features._Legacy_.Payments.UpdatePayment;
-using Core.Queries;
+using Core.Queries.PaymentDataById;
 using MediatR;
 using Resources.Strings;
 
@@ -34,7 +35,7 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
         this.settingsFacade = settingsFacade;
     }
 
-    public AsyncRelayCommand<PaymentViewModel> DeleteCommand => new(async p => await DeletePaymentAsync(p));
+    public AsyncRelayCommand<PaymentViewModel> DeleteCommand => new(async p => await DeletePaymentAsync(p!));
 
     public new void ApplyQueryAttributes(IDictionary<string, object> query)
     {
@@ -55,45 +56,47 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
         }
 
         await InitializeAsync();
-        var payment = await mediator.Send(new GetPaymentByIdQuery(paymentId));
-        if (payment is { IsRecurring: true, RecurringPayment: not null })
+        var paymentData = await mediator.Send(new GetPaymentDataById.Query(paymentId));
+        if (paymentData is { IsRecurring: true, RecurrenceData: not null })
         {
-            RecurrenceViewModel.Recurrence = payment.RecurringPayment.Recurrence;
-            RecurrenceViewModel.StartDate = payment.RecurringPayment.StartDate;
-            RecurrenceViewModel.EndDate = payment.RecurringPayment.EndDate;
-            RecurrenceViewModel.IsEndless = payment.RecurringPayment.IsEndless;
+            RecurrenceViewModel.Recurrence = paymentData.RecurrenceData.Recurrence.ToPaymentRecurrence();
+            RecurrenceViewModel.StartDate = paymentData.RecurrenceData.StartDate.ToDateTime(TimeOnly.MinValue);
+            RecurrenceViewModel.EndDate = paymentData.RecurrenceData.EndDate?.ToDateTime(TimeOnly.MinValue);
+            RecurrenceViewModel.IsEndless = paymentData.RecurrenceData.IsEndless;
         }
 
-        var targetAccountPickerViewModel = payment.TargetAccount == null
+        var targetAccountPickerViewModel = paymentData.TargetAccount == null
             ? null
             : new AccountPickerViewModel(
-                Id: payment.TargetAccount.Id,
-                Name: payment.TargetAccount.Name,
-                CurrentBalance: new(amount: payment.TargetAccount.CurrentBalance, currencyAlphaIsoCode: settingsFacade.DefaultCurrency));
+                Id: paymentData.TargetAccount.Id,
+                Name: paymentData.TargetAccount.Name,
+                CurrentBalance: new(amount: paymentData.TargetAccount.CurrentBalance, currencyAlphaIsoCode: settingsFacade.DefaultCurrency));
 
         SelectedPayment = new()
         {
-            Id = payment.Id,
-            Amount = payment.Amount,
+            Id = paymentData.PaymentId,
+            Amount = paymentData.Amount,
             ChargedAccount
                 = new(
-                    Id: payment.ChargedAccount.Id,
-                    Name: payment.ChargedAccount.Name,
-                    CurrentBalance: new(amount: payment.ChargedAccount.CurrentBalance, currencyAlphaIsoCode: settingsFacade.DefaultCurrency)),
+                    Id: paymentData.ChargedAccount.Id,
+                    Name: paymentData.ChargedAccount.Name,
+                    CurrentBalance: new(amount: paymentData.ChargedAccount.CurrentBalance, currencyAlphaIsoCode: settingsFacade.DefaultCurrency)),
             TargetAccount = targetAccountPickerViewModel,
-            Date = payment.Date,
-            IsCleared = payment.IsCleared,
-            Type = payment.Type,
-            IsRecurring = payment.IsRecurring,
-            Note = payment.Note,
-            Created = payment.Created,
-            LastModified = payment.LastModified
+            Date = paymentData.Date,
+            IsCleared = paymentData.IsCleared,
+            Type = paymentData.Type,
+            IsRecurring = paymentData.IsRecurring,
+            Note = paymentData.Note,
+            Created = paymentData.Created,
+            LastModified = paymentData.LastModified
         };
 
-        if (payment.Category != null)
+        if (paymentData.Category != null)
         {
-            CategorySelectionViewModel.SelectedCategory
-                = new() { Id = payment.Category.Id, Name = payment.Category.Name, RequireNote = payment.Category.RequireNote };
+            CategorySelectionViewModel.SelectedCategory = new()
+            {
+                Id = paymentData.Category.Id, Name = paymentData.Category.Name, RequireNote = paymentData.Category.RequireNote
+            };
         }
 
         IsFirstLoad = false;

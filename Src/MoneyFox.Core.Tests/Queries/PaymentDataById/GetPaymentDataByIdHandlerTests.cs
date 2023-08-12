@@ -17,8 +17,8 @@ public class GetPaymentDataByIdHandlerTests : InMemoryTestBase
     {
         actual.PaymentId.Should().Be(expectedPayment.Id);
         actual.Amount.Should().Be(expectedPayment.Amount);
-        actual.ChargedAccountId.Should().Be(expectedPayment.ChargedAccount.Id);
-        actual.TargetAccountId.Should().Be(expectedPayment.TargetAccount?.Id);
+        actual.ChargedAccount.Should().Be(expectedPayment.ChargedAccount.Id);
+        actual.TargetAccount.Should().Be(expectedPayment.TargetAccount?.Id);
         actual.Date.Should().Be(expectedPayment.Date);
         actual.IsCleared.Should().Be(expectedPayment.IsCleared);
         actual.Type.Should().Be(expectedPayment.Type);

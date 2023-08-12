@@ -1,14 +1,14 @@
 namespace MoneyFox.Core.Queries.PaymentDataById;
 
 using System;
-using MoneyFox.Domain.Aggregates;
-using MoneyFox.Domain.Aggregates.AccountAggregate;
+using Domain.Aggregates;
+using Domain.Aggregates.AccountAggregate;
 
 public record PaymentData(
     int PaymentId,
     decimal Amount,
-    int ChargedAccountId,
-    int? TargetAccountId,
+    AccountData ChargedAccount,
+    AccountData? TargetAccount,
     CategoryData? Category,
     DateTime Date,
     bool IsCleared,
@@ -21,7 +21,8 @@ public record PaymentData(
     public bool IsRecurring => RecurrenceData is not null;
 }
 
-public record AccountData(int Id, string Name);
+public record AccountData(int Id, string Name, decimal CurrentBalance);
+
 public record CategoryData(int Id, string Name, bool RequireNote);
 
 public record RecurrenceData(Recurrence Recurrence, DateOnly StartDate, DateOnly? EndDate)
