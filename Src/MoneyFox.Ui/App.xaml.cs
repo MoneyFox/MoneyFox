@@ -6,10 +6,8 @@ using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Common.Settings;
 using Core.Features._Legacy_.Payments.ClearPayments;
-using Core.Features._Legacy_.Payments.CreateRecurringPayments;
 using Core.Features.DbBackup;
 using Core.Features.TransactionRecurrence;
-using Domain;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.RecurringTransactionAggregate;
 using Domain.Exceptions;
@@ -81,7 +79,6 @@ public partial class App
         ServiceProvider = services.BuildServiceProvider();
         var appDbContext = ServiceProvider.GetService<IAppDbContext>();
         appDbContext!.MigrateDb();
-
         var settings = ServiceProvider.GetService<ISettingsFacade>();
 
         // Migrate RecurringTransaction
