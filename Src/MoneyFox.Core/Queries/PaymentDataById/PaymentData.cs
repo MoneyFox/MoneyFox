@@ -3,6 +3,7 @@ namespace MoneyFox.Core.Queries.PaymentDataById;
 using System;
 using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
+using Domain.Aggregates.RecurringTransactionAggregate;
 
 public record PaymentData(
     int PaymentId,

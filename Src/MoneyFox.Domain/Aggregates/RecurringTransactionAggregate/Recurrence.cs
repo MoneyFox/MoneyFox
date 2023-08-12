@@ -1,4 +1,4 @@
-namespace MoneyFox.Domain.Aggregates;
+namespace MoneyFox.Domain.Aggregates.RecurringTransactionAggregate;
 
 public enum Recurrence
 {
