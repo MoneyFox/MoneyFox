@@ -76,7 +76,7 @@ public class GetPaymentDataByIdHandlerTests : InMemoryTestBase
         public async Task ReturnsCorrectData()
         {
             // Arrange
-            var category = new TestData.DefaultCategory();
+            var category = new TestData.CategoryBeverages();
             Context.RegisterCategory(category);
             var payment = new TestData.UnclearedExpense();
             Context.RegisterPayment(payment);
@@ -96,11 +96,11 @@ public class GetPaymentDataByIdHandlerTests : InMemoryTestBase
         public async Task ReturnsCorrectData()
         {
             // Arrange
-            var category = new TestData.DefaultCategory();
+            var category = new TestData.CategoryBeverages();
             Context.RegisterCategory(category);
             var recurringTransaction = new TestData.RecurringExpense();
             Context.RegisterRecurringTransaction(recurringTransaction);
-            var payment = new TestData.UnclearedExpense() { RecurringTransactionId = recurringTransaction.RecurringTransactionId };
+            var payment = new TestData.UnclearedExpense { RecurringTransactionId = recurringTransaction.RecurringTransactionId };
             Context.RegisterPayment(payment);
 
             // Act

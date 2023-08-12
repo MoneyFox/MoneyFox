@@ -2,7 +2,7 @@
 
 internal static partial class TestData
 {
-    public sealed class DefaultCategory : ICategory
+    public sealed class CategoryBeverages : ICategory
     {
         public int Id { get; set; }
         public string Name => "Beverages";

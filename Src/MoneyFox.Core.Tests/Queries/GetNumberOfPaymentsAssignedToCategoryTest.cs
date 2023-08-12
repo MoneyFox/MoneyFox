@@ -17,7 +17,7 @@ public class GetNumberOfPaymentsAssignedToCategoryTest : InMemoryTestBase
     public async Task ReturnsZeroWhenNoPaymentsFoundForPassedId()
     {
         // Arrange
-        var testCategory = new TestData.DefaultCategory();
+        var testCategory = new TestData.CategoryBeverages();
         Context.RegisterCategory(testCategory);
 
         // Act
