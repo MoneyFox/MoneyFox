@@ -61,27 +61,63 @@ public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
         await sender.Received(2).Send(Arg.Any<CreateRecurringTransaction.Command>());
     }
 
-    // [Theory]
-    // [InlineData(PaymentRecurrence.Daily, 0)]
-    // [InlineData(PaymentRecurrence.Weekly, 5)]
-    // [InlineData(PaymentRecurrence.Biweekly, 10)]
-    // [InlineData(PaymentRecurrence.Monthly, 28)]
-    // [InlineData(PaymentRecurrence.Bimonthly, 55)]
-    // [InlineData(PaymentRecurrence.Quarterly, 88)]
-    // [InlineData(PaymentRecurrence.Biannually, 180)]
-    // [InlineData(PaymentRecurrence.Yearly, 340)]
-    // public async Task Foo(PaymentRecurrence recurrence, int days)
-    // {
-    //     // Arrange
-    //     var recurringTransaction = new TestData.RecurringExpense();
-    //     Context.RegisterRecurringTransaction(recurringTransaction);
-    //
-    //     // Act
-    //     await new CheckTransactionRecurrence.Handler().Handle(command: new(), cancellationToken: default);
-    //
-    //     // Assert
-    //     Context.Payments.Should().ContainSingle();
-    // }
+    [Theory]
+    [InlineData(Recurrence.Daily, 1)]
+    [InlineData(Recurrence.Weekly, 7)]
+    [InlineData(Recurrence.Biweekly, 14)]
+    [InlineData(Recurrence.Monthly, 31)]
+    [InlineData(Recurrence.Bimonthly, 62)]
+    [InlineData(Recurrence.Quarterly, 93)]
+    [InlineData(Recurrence.Biannually, 190)]
+    [InlineData(Recurrence.Yearly, 360)]
+    public async Task CreatePaymentsForDifferentRecurrences(Recurrence recurrence, int days)
+    {
+        // Arrange
+        systemDateHelper.Today.Returns(DateTime.Today.AddDays(days));
+        var recurringTransaction = new TestData.RecurringExpense { Recurrence = recurrence };
+        Context.RegisterRecurringTransaction(recurringTransaction);
+
+        // Act
+        await handler.Handle(command: new(), cancellationToken: default);
+
+        // Assert
+        await sender.Received(1).Send(Arg.Any<CreateRecurringTransaction.Command>());
+    }
+
+    [Fact]
+    public async Task CreateAllRecurrences()
+    {
+        // Arrange
+        systemDateHelper.Today.Returns(DateTime.Today.AddDays(1));
+        var recurringTransaction1 = new TestData.RecurringExpense { Recurrence = Recurrence.Daily };
+        var recurringTransaction2 = new TestData.RecurringExpense { Recurrence = Recurrence.Daily };
+        Context.RegisterRecurringTransactions(recurringTransaction1, recurringTransaction2);
+
+        // Act
+        await handler.Handle(command: new(), cancellationToken: default);
+
+        // Assert
+        await sender.Received(2).Send(Arg.Any<CreateRecurringTransaction.Command>());
+    }
+
+    [Fact]
+    public async Task SkipRecurringTransactionsWithEndDateInPast()
+    {
+        // Arrange
+        systemDateHelper.Today.Returns(DateTime.Today.AddDays(1));
+        systemDateHelper.TodayDateOnly.Returns(DateOnly.FromDateTime(DateTime.Today.AddDays(1)));
+        var recurringTransaction1 = new TestData.RecurringExpense { Recurrence = Recurrence.Daily };
+        var recurringTransaction2 = new TestData.RecurringExpense { Recurrence = Recurrence.Daily };
+        var recurringTransaction3
+            = new TestData.RecurringExpense { Recurrence = Recurrence.Daily, EndDate = DateOnly.FromDateTime(DateTime.Today) };
+        Context.RegisterRecurringTransactions(recurringTransaction1, recurringTransaction2, recurringTransaction3);
+
+        // Act
+        await handler.Handle(command: new(), cancellationToken: default);
+
+        // Assert
+        await sender.Received(2).Send(Arg.Any<CreateRecurringTransaction.Command>());
+    }
 }
 
 internal static class CheckTransactionRecurrence
@@ -103,24 +139,29 @@ internal static class CheckTransactionRecurrence
 
         public async Task Handle(Command command, CancellationToken cancellationToken)
         {
-            var recurringTransaction = await dbContext.RecurringTransactions.SingleAsync(cancellationToken);
-            var createRecurringTransactionCommand = new CreateRecurringTransaction.Command(
-                recurringTransactionId: recurringTransaction.RecurringTransactionId,
-                chargedAccount: recurringTransaction.ChargedAccountId,
-                targetAccount: recurringTransaction.TargetAccountId,
-                amount: recurringTransaction.Amount,
-                categoryId: recurringTransaction.CategoryId,
-                startDate: recurringTransaction.StartDate,
-                endDate: recurringTransaction.EndDate,
-                recurrence: recurringTransaction.Recurrence,
-                note: recurringTransaction.Note,
-                isLastDayOfMonth: recurringTransaction.IsLastDayOfMonth,
-                isTransfer: recurringTransaction.IsTransfer);
-
-            var dateDiff = systemDateHelper.Today - recurringTransaction.LastRecurrence.ToDateTime(TimeOnly.MinValue);
-            for (var i = 0; i < dateDiff.TotalDays; i++)
+            var recurringTransactions = await dbContext.RecurringTransactions
+                .Where(rt => !rt.EndDate.HasValue || rt.EndDate > systemDateHelper.TodayDateOnly)
+                .ToListAsync(cancellationToken);
+            foreach (var recurringTransaction in recurringTransactions)
             {
-                await sender.Send(request: createRecurringTransactionCommand, cancellationToken: cancellationToken);
+                var createRecurringTransactionCommand = new CreateRecurringTransaction.Command(
+                    recurringTransactionId: recurringTransaction.RecurringTransactionId,
+                    chargedAccount: recurringTransaction.ChargedAccountId,
+                    targetAccount: recurringTransaction.TargetAccountId,
+                    amount: recurringTransaction.Amount,
+                    categoryId: recurringTransaction.CategoryId,
+                    startDate: recurringTransaction.StartDate,
+                    endDate: recurringTransaction.EndDate,
+                    recurrence: recurringTransaction.Recurrence,
+                    note: recurringTransaction.Note,
+                    isLastDayOfMonth: recurringTransaction.IsLastDayOfMonth,
+                    isTransfer: recurringTransaction.IsTransfer);
+
+                var dateDiff = systemDateHelper.Today - recurringTransaction.LastRecurrence.ToDateTime(TimeOnly.MinValue);
+                for (var i = 0; i < dateDiff.TotalDays; i++)
+                {
+                    await sender.Send(request: createRecurringTransactionCommand, cancellationToken: cancellationToken);
+                }
             }
         }
     }
