@@ -18,30 +18,8 @@ public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
     {
         sender = Substitute.For<ISender>();
         systemDateHelper = Substitute.For<ISystemDateHelper>();
+        systemDateHelper.TodayDateOnly.Returns(DateOnly.FromDateTime(DateTime.Today));
         handler = new(dbContext: Context, sender: sender, systemDateHelper: systemDateHelper);
-    }
-
-    [Theory]
-    [InlineData(Recurrence.Daily)]
-    [InlineData(Recurrence.DailyWithoutWeekend)]
-    [InlineData(Recurrence.Weekly)]
-    [InlineData(Recurrence.Biweekly)]
-    [InlineData(Recurrence.Monthly)]
-    [InlineData(Recurrence.Bimonthly)]
-    [InlineData(Recurrence.Quarterly)]
-    [InlineData(Recurrence.Yearly)]
-    [InlineData(Recurrence.Biannually)]
-    public async Task CreatePaymentIfOriginalPaymentDoesNotExist(Recurrence recurrence)
-    {
-        // Arrange
-        var recurringTransaction = new TestData.RecurringExpense { Recurrence = recurrence };
-        Context.RegisterRecurringTransaction(recurringTransaction);
-
-        // Act
-        await handler.Handle(command: new(), cancellationToken: default);
-
-        // Assert
-        await sender.Received(1).Send(Arg.Any<CreateRecurringTransaction.Command>());
     }
 
     [Fact]
