@@ -84,35 +84,39 @@ public partial class App
         var settings = ServiceProvider.GetService<ISettingsFacade>();
 
         // Migrate RecurringTransaction
-        foreach (var recurringPayment in appDbContext.RecurringPayments.Include(rp => rp.Category)
-                     .Include(rp => rp.ChargedAccount)
-                     .Include(rp => rp.TargetAccount)
-                     .Include(rp => rp.RelatedPayments))
+        if (settings!.RecurringTransactionMigrated)
         {
-            var recurringTransactionId = Guid.NewGuid();
-            var amount = recurringPayment.Type == PaymentType.Expense ? -recurringPayment.Amount : recurringPayment.Amount;
-            var recurringTransaction = RecurringTransaction.Create(
-                recurringTransactionId: recurringTransactionId,
-                chargedAccount: recurringPayment.ChargedAccount.Id,
-                targetAccount: recurringPayment.TargetAccount?.Id,
-                amount: new(amount: amount, currencyAlphaIsoCode: settings!.DefaultCurrency),
-                categoryId: recurringPayment.Category?.Id,
-                startDate: recurringPayment.StartDate.ToDateOnly(),
-                endDate: recurringPayment.EndDate.HasValue ? DateOnly.FromDateTime(recurringPayment.EndDate.Value) : null,
-                recurrence: recurringPayment.Recurrence.ToRecurrence(),
-                note: recurringPayment.Note,
-                isLastDayOfMonth: recurringPayment.IsLastDayOfMonth,
-                isTransfer: recurringPayment.Type == PaymentType.Transfer);
-
-            foreach (var payment in recurringPayment.RelatedPayments)
+            foreach (var recurringPayment in appDbContext.RecurringPayments.Include(rp => rp.Category)
+                         .Include(rp => rp.ChargedAccount)
+                         .Include(rp => rp.TargetAccount)
+                         .Include(rp => rp.RelatedPayments))
             {
-                payment.AddRecurringTransactionId(recurringTransactionId);
+                var recurringTransactionId = Guid.NewGuid();
+                var amount = recurringPayment.Type == PaymentType.Expense ? -recurringPayment.Amount : recurringPayment.Amount;
+                var recurringTransaction = RecurringTransaction.Create(
+                    recurringTransactionId: recurringTransactionId,
+                    chargedAccount: recurringPayment.ChargedAccount.Id,
+                    targetAccount: recurringPayment.TargetAccount?.Id,
+                    amount: new(amount: amount, currencyAlphaIsoCode: settings!.DefaultCurrency),
+                    categoryId: recurringPayment.Category?.Id,
+                    startDate: recurringPayment.StartDate.ToDateOnly(),
+                    endDate: recurringPayment.EndDate.HasValue ? DateOnly.FromDateTime(recurringPayment.EndDate.Value) : null,
+                    recurrence: recurringPayment.Recurrence.ToRecurrence(),
+                    note: recurringPayment.Note,
+                    isLastDayOfMonth: recurringPayment.IsLastDayOfMonth,
+                    isTransfer: recurringPayment.Type == PaymentType.Transfer);
+
+                foreach (var payment in recurringPayment.RelatedPayments)
+                {
+                    payment.AddRecurringTransactionId(recurringTransactionId);
+                }
+
+                appDbContext.Add(recurringTransaction);
             }
 
-            appDbContext.Add(recurringTransaction);
+            appDbContext.SaveChangesAsync().Wait();
+            settings.RecurringTransactionMigrated = true;
         }
-
-        appDbContext.SaveChangesAsync().Wait();
     }
 
     private async Task StartupTasksAsync()
