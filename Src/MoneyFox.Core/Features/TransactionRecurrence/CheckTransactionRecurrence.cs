@@ -6,7 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Common;
 using Common.Interfaces;
-using Domain.Aggregates;
 using Domain.Aggregates.RecurringTransactionAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

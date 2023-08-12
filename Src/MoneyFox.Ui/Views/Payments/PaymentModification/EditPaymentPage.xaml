@@ -56,7 +56,7 @@
                         HorizontalOptions="End"
                         IsToggled="{Binding SelectedPayment.IsRecurring}" />
             </Grid>
-            
+
             <VerticalStackLayout IsVisible="{Binding SelectedPayment.IsRecurring}"
                                  Spacing="6">
                 <Label Style="{StaticResource TextBodySecondary}"

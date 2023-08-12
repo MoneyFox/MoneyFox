@@ -93,18 +93,20 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
                     IsRecurringFilterActive: message.IsClearedFilterActive,
                     IsClearedFilterActive: message.IsRecurringFilterActive));
 
-            var paymentVms = paymentData.Select(p => new PaymentListItemViewModel
-            {
-                Id = p.Id,
-                Amount = p.Amount,
-                ChargedAccountId = p.ChargedAccountId,
-                CurrentAccountId = SelectedAccount.Id,
-                Date = p.Date.ToDateTime(TimeOnly.MinValue),
-                IsCleared = p.IsCleared,
-                IsRecurring = p.IsRecurring,
-                Note = p.Note,
-                Type = p.Type,
-            });
+            var paymentVms = paymentData.Select(
+                p => new PaymentListItemViewModel
+                {
+                    Id = p.Id,
+                    Amount = p.Amount,
+                    ChargedAccountId = p.ChargedAccountId,
+                    CurrentAccountId = SelectedAccount.Id,
+                    Date = p.Date.ToDateTime(TimeOnly.MinValue),
+                    IsCleared = p.IsCleared,
+                    IsRecurring = p.IsRecurring,
+                    Note = p.Note,
+                    Type = p.Type
+                });
+
             var dailyGroupedPayments = paymentVms.GroupBy(p => p.Date.Date)
                 .Select(g => new PaymentDayGroup(date: DateOnly.FromDateTime(g.Key), payments: g.ToList()))
                 .ToList();

@@ -1,11 +1,11 @@
 namespace MoneyFox.Core.Tests.Features._Legacy_.Payments.UpdatePaymentById;
 
+using Core.Common.Settings;
+using Core.Features._Legacy_.Payments.UpdatePayment;
+using Domain.Aggregates.AccountAggregate;
 using FluentAssertions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core.Common.Settings;
-using MoneyFox.Core.Features._Legacy_.Payments.UpdatePayment;
-using MoneyFox.Domain.Aggregates.AccountAggregate;
 using NSubstitute;
 
 public class UpdatePaymentCommandTests : InMemoryTestBase

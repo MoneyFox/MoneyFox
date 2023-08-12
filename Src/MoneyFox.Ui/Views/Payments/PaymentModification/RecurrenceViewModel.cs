@@ -47,6 +47,7 @@ public class RecurrenceViewModel : ObservableObject
     public bool IsEndless
     {
         get => isEndless;
+
         set
         {
             SetProperty(field: ref isEndless, newValue: value);

@@ -1,7 +1,6 @@
 namespace MoneyFox.Core.Queries.PaymentDataById;
 
 using System;
-using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.RecurringTransactionAggregate;
 
@@ -23,7 +22,6 @@ public record PaymentData(
 }
 
 public record AccountData(int Id, string Name, decimal CurrentBalance);
-
 public record CategoryData(int Id, string Name, bool RequireNote);
 
 public record RecurrenceData(Recurrence Recurrence, DateOnly StartDate, DateOnly? EndDate)

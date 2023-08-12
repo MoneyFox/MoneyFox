@@ -28,7 +28,6 @@ public class Payment : EntityBase
         TargetAccount = type == PaymentType.Transfer ? targetAccount : null;
         Category = category;
         RecurringTransactionId = recurringTransactionId;
-
         ClearPayment();
         if (RecurringTransactionId.HasValue)
         {
@@ -70,7 +69,7 @@ public class Payment : EntityBase
 
     public virtual Account? TargetAccount { get; private set; }
 
-    public virtual RecurringPayment? RecurringPayment { get; private set; }
+    public virtual RecurringPayment? RecurringPayment { get; }
 
     public Guid? RecurringTransactionId { get; private set; }
 

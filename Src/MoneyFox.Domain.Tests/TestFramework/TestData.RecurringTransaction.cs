@@ -1,6 +1,5 @@
 ﻿namespace MoneyFox.Domain.Tests.TestFramework;
 
-using Domain.Aggregates;
 using Domain.Aggregates.RecurringTransactionAggregate;
 
 internal static partial class TestData
@@ -9,7 +8,7 @@ internal static partial class TestData
     {
         public RecurringTransactionId Id { get; set; } = new(100);
         public Guid RecurringTransactionId { get; } = Guid.NewGuid();
-        public DateOnly StartDate { get; set;  } = new(year: 2023, month: 07, day: 12);
+        public DateOnly StartDate { get; set; } = new(year: 2023, month: 07, day: 12);
         public DateOnly? EndDate { get; set; } = null;
         public Money Amount { get; } = new(amount: -1042, currency: Currencies.CHF);
         public string? Note { get; } = null;

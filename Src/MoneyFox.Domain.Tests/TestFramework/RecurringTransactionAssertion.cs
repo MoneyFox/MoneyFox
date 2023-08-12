@@ -6,8 +6,7 @@ using FluentAssertions.Execution;
 
 internal static class RecurringTransactionAssertion
 {
-    public static void AssertRecurringTransaction(RecurringTransaction actual,
-        TestData.RecurringTransfer expected)
+    public static void AssertRecurringTransaction(RecurringTransaction actual, TestData.RecurringTransfer expected)
     {
         using (new AssertionScope())
         {

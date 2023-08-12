@@ -8,6 +8,8 @@ internal static partial class TestData
 
     internal sealed record UnclearedExpense : IPayment
     {
+        public DateTime Created { get; } = DateTime.Now.AddDays(-2);
+        public DateTime? LastModified { get; } = DateTime.Now.AddDays(-1);
         public int Id { get; set; } = 10;
         public IAccount ChargedAccount => new IncludedAccount();
         public IAccount? TargetAccount => null;
@@ -19,8 +21,6 @@ internal static partial class TestData
         public bool IsRecurring => RecurringTransactionId.HasValue;
         public Guid? RecurringTransactionId { get; init; } = null;
         public string Note => "6 Bottles";
-        public DateTime Created { get; } = DateTime.Now.AddDays(-2);
-        public DateTime? LastModified { get; }  = DateTime.Now.AddDays(-1);
 
         internal sealed record ExpenseCategory : ICategory
         {
@@ -30,8 +30,11 @@ internal static partial class TestData
             public bool RequireNote { get; } = false;
         }
     }
+
     internal sealed record ClearedExpense : IPayment
     {
+        public DateTime Created { get; } = DateTime.Now.AddDays(-2);
+        public DateTime? LastModified { get; } = DateTime.Now.AddDays(-1);
         public int Id { get; set; } = 10;
         public IAccount ChargedAccount => new IncludedAccount();
         public IAccount? TargetAccount => null;
@@ -43,8 +46,6 @@ internal static partial class TestData
         public bool IsRecurring => RecurringTransactionId.HasValue;
         public Guid? RecurringTransactionId { get; init; } = null;
         public string Note => "6 Bottles";
-        public DateTime Created { get; } = DateTime.Now.AddDays(-2);
-        public DateTime? LastModified { get; }  = DateTime.Now.AddDays(-1);
 
         internal sealed record ExpenseCategory : ICategory
         {

@@ -1,6 +1,6 @@
 namespace MoneyFox.Core.Tests.Features._Legacy_.Accounts.CreateAccount;
 
-using MoneyFox.Core.Features._Legacy_.Accounts.CreateAccount;
+using Core.Features._Legacy_.Accounts.CreateAccount;
 
 public class CreateAccountCommandTests : InMemoryTestBase
 {

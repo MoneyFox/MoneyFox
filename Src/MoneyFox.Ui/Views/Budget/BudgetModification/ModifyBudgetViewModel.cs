@@ -10,9 +10,9 @@ using MediatR;
 
 internal abstract class ModifyBudgetViewModel : BasePageViewModel, IQueryAttributable
 {
+    private readonly IDialogService dialogService;
     private readonly INavigationService navigationService;
     private readonly ISender sender;
-    private readonly IDialogService dialogService;
     private string name = null!;
     private int numberOfMonths = 1;
     private decimal spendingLimit;

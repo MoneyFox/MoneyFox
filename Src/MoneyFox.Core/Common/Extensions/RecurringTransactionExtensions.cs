@@ -1,7 +1,6 @@
 namespace MoneyFox.Core.Common.Extensions;
 
 using System;
-using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.RecurringTransactionAggregate;
 

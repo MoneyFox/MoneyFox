@@ -2,12 +2,7 @@ namespace MoneyFox.Ui.Tests.Views.Payments;
 
 using Core.Common.Interfaces;
 using Core.Common.Settings;
-using Core.Queries;
-using Core.Queries.PaymentDataById;
 using Domain;
-using Domain.Aggregates.AccountAggregate;
-using Domain.Tests.TestFramework;
-using FluentAssertions;
 using MediatR;
 using NSubstitute;
 using Ui.Views.Payments.PaymentModification;

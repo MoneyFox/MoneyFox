@@ -3,7 +3,6 @@ namespace MoneyFox.Core.Tests.Features.TransactionRecurrence;
 using Core.Common;
 using Core.Features.RecurringTransactionCreation;
 using Core.Features.TransactionRecurrence;
-using Domain.Aggregates;
 using Domain.Aggregates.RecurringTransactionAggregate;
 using Domain.Tests.TestFramework;
 using MediatR;

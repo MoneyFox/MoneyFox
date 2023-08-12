@@ -1,9 +1,9 @@
 ﻿namespace MoneyFox.Core.Tests.Features._Legacy_.Accounts.DeleteAccountById;
 
+using Core.Features._Legacy_.Accounts.DeleteAccountById;
+using Domain.Aggregates.AccountAggregate;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core.Features._Legacy_.Accounts.DeleteAccountById;
-using MoneyFox.Domain.Aggregates.AccountAggregate;
 
 public class DeactivateAccountByIdCommandTests : InMemoryTestBase
 {
