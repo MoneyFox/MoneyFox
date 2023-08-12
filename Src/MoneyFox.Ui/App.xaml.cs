@@ -156,7 +156,7 @@ public partial class App
         try
         {
             await mediator.Send(new ClearPaymentsCommand());
-            await mediator.Send(new CreateRecurringPaymentsCommand());
+            await mediator.Send(new ());
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
         }
         catch (Exception ex)
