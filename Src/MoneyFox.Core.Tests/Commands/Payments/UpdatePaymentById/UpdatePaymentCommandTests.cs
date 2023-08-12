@@ -50,45 +50,4 @@ public class UpdatePaymentCommandTests : InMemoryTestBase
         // Assert
         (await Context.Payments.SingleAsync(p => p.Id == payment1.Id)).Amount.Should().Be(payment1.Amount);
     }
-
-    [Fact]
-    public async Task ChangeRecurringToNonRecurringPayment()
-    {
-        // Arrange
-        var payment1 = new Payment(
-            date: DateTime.Now.AddDays(-1),
-            amount: 20,
-            type: PaymentType.Expense,
-            chargedAccount: new(name: "test", initialBalance: 80));
-
-        payment1.AddRecurringPayment(recurrence: PaymentRecurrence.Daily);
-        await Context.AddAsync(payment1);
-        await Context.SaveChangesAsync();
-
-        // Trigger creation of recurring payment transactions
-        await new CreateRecurringPaymentsCommand.Handler(Context).Handle(request: new(), cancellationToken: default);
-
-        // Disable recurrence on the payment
-        await handler.Handle(
-            command: new(
-                Id: payment1.Id,
-                Date: payment1.Date,
-                Amount: payment1.Amount,
-                Type: payment1.Type,
-                Note: payment1.Note!,
-                IsRecurring: false,
-                CategoryId: 0,
-                ChargedAccountId: payment1.ChargedAccount.Id,
-                TargetAccountId: payment1.TargetAccount?.Id ?? 0,
-                UpdateRecurringPayment: true,
-                Recurrence: PaymentRecurrence.Daily,
-                EndDate: null,
-                IsLastDayOfMonth: false),
-            cancellationToken: default);
-
-        // Assert
-        var loadedPayments = Context.Payments.ToList();
-        loadedPayments.Should().HaveCount(2);
-        loadedPayments.ForEach(x => x.IsRecurring.Should().BeFalse());
-    }
 }

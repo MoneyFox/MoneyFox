@@ -105,24 +105,6 @@ public class Payment : EntityBase
         IsRecurring = true;
     }
 
-    public void AddRecurringPayment(PaymentRecurrence recurrence, bool isLastDayOfMonth = false, DateTime? endDate = null)
-    {
-        RecurringPayment = new(
-            startDate: Date,
-            amount: Amount,
-            type: Type,
-            recurrence: recurrence,
-            chargedAccount: ChargedAccount,
-            isLastDayOfMonth: isLastDayOfMonth,
-            note: Note ?? "",
-            endDate: endDate,
-            targetAccount: TargetAccount,
-            category: Category,
-            lastRecurrenceCreated: Date);
-
-        IsRecurring = true;
-    }
-
     public void RemoveRecurringTransaction()
     {
         RecurringTransactionId = null;
