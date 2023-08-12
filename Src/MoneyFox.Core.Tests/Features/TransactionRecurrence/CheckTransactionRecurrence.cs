@@ -50,7 +50,7 @@ public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
     public async Task CreateAllMissedRecurrences()
     {
         // Arrange
-        systemDateHelper.Today.Returns(DateTime.Today.AddDays(2));
+        systemDateHelper.TodayDateOnly.Returns(DateOnly.FromDateTime(DateTime.Today.AddDays(2)));
         var recurringTransaction = new TestData.RecurringExpense { Recurrence = Recurrence.Daily };
         Context.RegisterRecurringTransaction(recurringTransaction);
 
@@ -69,11 +69,11 @@ public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
     [InlineData(Recurrence.Bimonthly, 62)]
     [InlineData(Recurrence.Quarterly, 93)]
     [InlineData(Recurrence.Biannually, 190)]
-    [InlineData(Recurrence.Yearly, 360)]
+    [InlineData(Recurrence.Yearly, 370)]
     public async Task CreatePaymentsForDifferentRecurrences(Recurrence recurrence, int days)
     {
         // Arrange
-        systemDateHelper.Today.Returns(DateTime.Today.AddDays(days));
+        systemDateHelper.TodayDateOnly.Returns(DateOnly.FromDateTime(DateTime.Today.AddDays(days)));
         var recurringTransaction = new TestData.RecurringExpense { Recurrence = recurrence };
         Context.RegisterRecurringTransaction(recurringTransaction);
 
@@ -88,7 +88,6 @@ public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
     public async Task SkipRecurringTransactionsWithEndDateInPast()
     {
         // Arrange
-        systemDateHelper.Today.Returns(DateTime.Today.AddDays(1));
         systemDateHelper.TodayDateOnly.Returns(DateOnly.FromDateTime(DateTime.Today.AddDays(1)));
         var recurringTransaction1 = new TestData.RecurringExpense { Recurrence = Recurrence.Daily };
         var recurringTransaction2 = new TestData.RecurringExpense { Recurrence = Recurrence.Daily };
@@ -141,12 +140,11 @@ internal static class CheckTransactionRecurrence
                     isLastDayOfMonth: recurringTransaction.IsLastDayOfMonth,
                     isTransfer: recurringTransaction.IsTransfer);
 
-                var numberOfDaysForRecurrence = 1;
                 var dateAfterRecurrence = recurringTransaction.LastRecurrence;
 
                 while (true)
                 {
-                    dateAfterRecurrence = dateAfterRecurrence.AddDays(numberOfDaysForRecurrence);
+                    dateAfterRecurrence = DateAfterRecurrence(dateAfterRecurrence: dateAfterRecurrence, recurrence: recurringTransaction.Recurrence);
                     if (dateAfterRecurrence <= systemDateHelper.TodayDateOnly)
                     {
                         await sender.Send(request: createRecurringTransactionCommand, cancellationToken: cancellationToken);
@@ -155,6 +153,23 @@ internal static class CheckTransactionRecurrence
                     break;
                 }
             }
+        }
+
+        private DateOnly DateAfterRecurrence(DateOnly dateAfterRecurrence, Recurrence recurrence)
+        {
+            return recurrence switch
+            {
+                Recurrence.Daily => dateAfterRecurrence.AddDays(1),
+                Recurrence.DailyWithoutWeekend => dateAfterRecurrence.AddDays(1),
+                Recurrence.Weekly => dateAfterRecurrence.AddDays(7),
+                Recurrence.Biweekly => dateAfterRecurrence.AddDays(14),
+                Recurrence.Monthly => dateAfterRecurrence.AddMonths(1),
+                Recurrence.Bimonthly => dateAfterRecurrence.AddMonths(2),
+                Recurrence.Quarterly => dateAfterRecurrence.AddMonths(3),
+                Recurrence.Biannually => dateAfterRecurrence.AddMonths(6),
+                Recurrence.Yearly => dateAfterRecurrence.AddYears(1),
+                _ => throw new ArgumentOutOfRangeException(nameof(recurrence), recurrence, null)
+            };
         }
     }
 }

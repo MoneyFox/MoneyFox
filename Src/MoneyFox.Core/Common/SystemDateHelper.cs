@@ -11,7 +11,7 @@ public interface ISystemDateHelper
 
 public class SystemDateHelper : ISystemDateHelper
 {
-    public DateOnly TodayDateOnly => DateOnly.FromDateTime(DateTime.Today);
+    public DateOnly TodayDateOnly => DateOnly.FromDateTime(Today);
     public DateTime Today => DateTime.Today;
     public DateTime Now => DateTime.Now;
 }
