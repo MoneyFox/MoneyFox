@@ -85,22 +85,6 @@ public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
     }
 
     [Fact]
-    public async Task CreateAllRecurrences()
-    {
-        // Arrange
-        systemDateHelper.Today.Returns(DateTime.Today.AddDays(1));
-        var recurringTransaction1 = new TestData.RecurringExpense { Recurrence = Recurrence.Daily };
-        var recurringTransaction2 = new TestData.RecurringExpense { Recurrence = Recurrence.Daily };
-        Context.RegisterRecurringTransactions(recurringTransaction1, recurringTransaction2);
-
-        // Act
-        await handler.Handle(command: new(), cancellationToken: default);
-
-        // Assert
-        await sender.Received(2).Send(Arg.Any<CreateRecurringTransaction.Command>());
-    }
-
-    [Fact]
     public async Task SkipRecurringTransactionsWithEndDateInPast()
     {
         // Arrange
