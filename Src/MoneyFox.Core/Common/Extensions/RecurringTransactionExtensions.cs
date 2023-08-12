@@ -22,4 +22,21 @@ public static class RecurringTransactionExtensions
             _ => throw new ArgumentOutOfRangeException(paramName: nameof(recurrence), actualValue: recurrence, message: null)
         };
     }
+
+    public static PaymentRecurrence ToPaymentRecurrence(this Recurrence recurrence)
+    {
+        return recurrence switch
+        {
+            Recurrence.Daily => PaymentRecurrence.Daily,
+            Recurrence.DailyWithoutWeekend => PaymentRecurrence.DailyWithoutWeekend,
+            Recurrence.Weekly => PaymentRecurrence.Weekly,
+            Recurrence.Biweekly => PaymentRecurrence.Biweekly,
+            Recurrence.Monthly => PaymentRecurrence.Monthly,
+            Recurrence.Bimonthly => PaymentRecurrence.Bimonthly,
+            Recurrence.Quarterly => PaymentRecurrence.Quarterly,
+            Recurrence.Yearly => PaymentRecurrence.Quarterly,
+            Recurrence.Biannually => PaymentRecurrence.Biannually,
+            _ => throw new ArgumentOutOfRangeException(paramName: nameof(recurrence), actualValue: recurrence, message: null)
+        };
+    }
 }

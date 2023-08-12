@@ -41,6 +41,7 @@ public static class GetPaymentDataById
                         p.Amount,
                         p.ChargedAccount.Id,
                         p.TargetAccount != null ? p.TargetAccount.Id : null,
+                        p.Category != null ? new(p.Category.Id, p.Category.Name, p.Category.RequireNote) : null,
                         p.Date,
                         p.IsCleared,
                         p.Type,

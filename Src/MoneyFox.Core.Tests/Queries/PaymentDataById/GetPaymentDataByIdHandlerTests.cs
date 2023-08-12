@@ -25,15 +25,25 @@ public class GetPaymentDataByIdHandlerTests : InMemoryTestBase
         actual.Note.Should().Be(expectedPayment.Note);
         actual.Created.Should().BeAfter(DateTime.Today);
         actual.LastModified.Should().BeAfter(DateTime.Today);
-        if (recurringTransaction == null)
+        if (actual.Category is not null)
         {
-            actual.RecurrenceData.Should().BeNull();
+            actual.Category.Id.Should().Be(expectedPayment.Category!.Id);
+            actual.Category.Name.Should().Be(expectedPayment.Category.Name);
         }
         else
+        {
+            actual.Category.Should().BeNull();
+        }
+
+        if (recurringTransaction is not null)
         {
             actual.RecurrenceData!.Recurrence.Should().Be(recurringTransaction.Recurrence);
             actual.RecurrenceData!.StartDate.Should().Be(recurringTransaction.StartDate);
             actual.RecurrenceData!.EndDate.Should().Be(recurringTransaction.EndDate);
+        }
+        else
+        {
+            actual.RecurrenceData.Should().BeNull();
         }
     }
 
