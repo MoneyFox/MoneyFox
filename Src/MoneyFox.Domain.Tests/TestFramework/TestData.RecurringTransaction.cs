@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Domain.Tests.TestFramework;
 
 using Domain.Aggregates;
-using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.RecurringTransactionAggregate;
 
 internal static partial class TestData
