@@ -112,4 +112,9 @@ public sealed class RecurringTransaction : EntityBase
         EndDate = updatedEndDate;
         IsLastDayOfMonth = updatedIsLastDayOfMonth;
     }
+
+    public void EndRecurrence()
+    {
+        EndDate = DateOnly.FromDateTime(DateTime.Today);
+    }
 }

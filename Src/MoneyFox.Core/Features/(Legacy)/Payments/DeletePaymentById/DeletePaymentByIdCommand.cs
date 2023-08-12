@@ -1,6 +1,5 @@
 namespace MoneyFox.Core.Features._Legacy_.Payments.DeletePaymentById;
 
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Common.Interfaces;
@@ -44,24 +43,15 @@ public class DeletePaymentByIdCommand : IRequest
             entityToDelete.TargetAccount?.RemovePaymentAmount(entityToDelete);
             if (request.DeleteRecurringPayment && entityToDelete.RecurringPayment != null)
             {
-                await DeleteRecurringPaymentAsync(entityToDelete.RecurringPayment.Id);
+                var recurringTransaction = await appDbContext.RecurringTransactions.SingleAsync(
+                    predicate: rt => rt.RecurringTransactionId == entityToDelete.RecurringTransactionId,
+                    cancellationToken: cancellationToken);
+
+                appDbContext.RecurringTransactions.Remove(recurringTransaction);
             }
 
             appDbContext.Payments.Remove(entityToDelete);
             await appDbContext.SaveChangesAsync(cancellationToken);
-        }
-
-        private async Task DeleteRecurringPaymentAsync(int recurringPaymentId)
-        {
-            var payments = await appDbContext.Payments.Where(x => x.IsRecurring).Where(x => x.RecurringPayment!.Id == recurringPaymentId).ToListAsync();
-            payments.ForEach(x => x.RemoveRecurringTransaction());
-            var recurringPayment = await appDbContext.RecurringPayments.FindAsync(recurringPaymentId);
-            if (recurringPayment is null)
-            {
-                return;
-            }
-
-            appDbContext.RecurringPayments.Remove(recurringPayment);
         }
     }
 }

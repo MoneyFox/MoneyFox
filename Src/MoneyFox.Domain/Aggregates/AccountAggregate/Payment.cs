@@ -71,7 +71,7 @@ public class Payment : EntityBase
     public virtual Account? TargetAccount { get; private set; }
 
     public virtual RecurringPayment? RecurringPayment { get; private set; }
-    
+
     public Guid? RecurringTransactionId { get; private set; }
 
     public void UpdatePayment(
@@ -104,12 +104,6 @@ public class Payment : EntityBase
     {
         RecurringTransactionId = recurringTransactionId;
         IsRecurring = true;
-    }
-
-    public void RemoveRecurringTransaction()
-    {
-        RecurringTransactionId = null;
-        IsRecurring = false;
     }
 
     public void ClearPayment()
