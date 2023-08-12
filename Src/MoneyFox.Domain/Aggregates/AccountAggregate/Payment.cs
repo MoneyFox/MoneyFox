@@ -137,4 +137,8 @@ public class Payment : EntityBase
     {
         Category = null;
     }
+
+    public void AddRecurringPayment(PaymentRecurrence recurrence, bool isLastDayOfMonth, DateTime endDate)
+    {
+    }
 }

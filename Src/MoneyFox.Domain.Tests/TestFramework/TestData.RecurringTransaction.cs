@@ -9,14 +9,14 @@ internal static partial class TestData
     {
         public RecurringTransactionId Id { get; set; } = new(100);
         public Guid RecurringTransactionId { get; } = Guid.NewGuid();
-        public DateOnly StartDate { get; } = new(year: 2023, month: 07, day: 12);
+        public DateOnly StartDate { get; set;  } = new(year: 2023, month: 07, day: 12);
         public DateOnly? EndDate { get; } = null;
         public Money Amount { get; } = new(amount: -1042, currency: Currencies.CHF);
         public string? Note { get; } = null;
         public int ChargedAccount { get; } = 10;
         public int? TargetAccount { get; } = null;
         public int? CategoryId { get; } = 42;
-        public Recurrence Recurrence { get; } = Recurrence.Monthly;
+        public Recurrence Recurrence { get; set; } = Recurrence.Monthly;
         public bool IsLastDayOfMonth { get; } = true;
         public DateOnly LastRecurrence => StartDate;
         public bool IsTransfer { get; } = false;
