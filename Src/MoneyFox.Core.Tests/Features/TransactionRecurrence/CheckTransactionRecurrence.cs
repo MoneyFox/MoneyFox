@@ -3,6 +3,7 @@ namespace MoneyFox.Core.Features.TransactionRecurrence;
 using Common;
 using Common.Interfaces;
 using Domain.Aggregates;
+using Domain.Aggregates.RecurringTransactionAggregate;
 using Domain.Tests.TestFramework;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -91,8 +92,7 @@ public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
         systemDateHelper.TodayDateOnly.Returns(DateOnly.FromDateTime(DateTime.Today.AddDays(1)));
         var recurringTransaction1 = new TestData.RecurringExpense { Recurrence = Recurrence.Daily };
         var recurringTransaction2 = new TestData.RecurringExpense { Recurrence = Recurrence.Daily };
-        var recurringTransaction3
-            = new TestData.RecurringExpense { Recurrence = Recurrence.Daily, EndDate = DateOnly.FromDateTime(DateTime.Today) };
+        var recurringTransaction3 = new TestData.RecurringExpense { Recurrence = Recurrence.Daily, EndDate = DateOnly.FromDateTime(DateTime.Today) };
         Context.RegisterRecurringTransactions(recurringTransaction1, recurringTransaction2, recurringTransaction3);
 
         // Act
@@ -122,9 +122,9 @@ internal static class CheckTransactionRecurrence
 
         public async Task Handle(Command command, CancellationToken cancellationToken)
         {
-            var recurringTransactions = await dbContext.RecurringTransactions
-                .Where(rt => !rt.EndDate.HasValue || rt.EndDate > systemDateHelper.TodayDateOnly)
+            var recurringTransactions = await dbContext.RecurringTransactions.Where(rt => !rt.EndDate.HasValue || rt.EndDate > systemDateHelper.TodayDateOnly)
                 .ToListAsync(cancellationToken);
+
             foreach (var recurringTransaction in recurringTransactions)
             {
                 var createRecurringTransactionCommand = new CreateRecurringTransaction.Command(
@@ -140,18 +140,30 @@ internal static class CheckTransactionRecurrence
                     isLastDayOfMonth: recurringTransaction.IsLastDayOfMonth,
                     isTransfer: recurringTransaction.IsTransfer);
 
-                var dateAfterRecurrence = recurringTransaction.LastRecurrence;
+                await CreateDueRecurrences(
+                    cancellationToken: cancellationToken,
+                    recurringTransaction: recurringTransaction,
+                    createRecurringTransactionCommand: createRecurringTransactionCommand);
+            }
+        }
 
-                while (true)
+        private async Task CreateDueRecurrences(
+            CancellationToken cancellationToken,
+            RecurringTransaction recurringTransaction,
+            CreateRecurringTransaction.Command createRecurringTransactionCommand)
+        {
+            var dateAfterRecurrence = recurringTransaction.LastRecurrence;
+            while (true)
+            {
+                dateAfterRecurrence = DateAfterRecurrence(dateAfterRecurrence: dateAfterRecurrence, recurrence: recurringTransaction.Recurrence);
+                if (dateAfterRecurrence <= systemDateHelper.TodayDateOnly)
                 {
-                    dateAfterRecurrence = DateAfterRecurrence(dateAfterRecurrence: dateAfterRecurrence, recurrence: recurringTransaction.Recurrence);
-                    if (dateAfterRecurrence <= systemDateHelper.TodayDateOnly)
-                    {
-                        await sender.Send(request: createRecurringTransactionCommand, cancellationToken: cancellationToken);
-                        continue;
-                    }
-                    break;
+                    await sender.Send(request: createRecurringTransactionCommand, cancellationToken: cancellationToken);
+
+                    continue;
                 }
+
+                break;
             }
         }
 
@@ -168,7 +180,7 @@ internal static class CheckTransactionRecurrence
                 Recurrence.Quarterly => dateAfterRecurrence.AddMonths(3),
                 Recurrence.Biannually => dateAfterRecurrence.AddMonths(6),
                 Recurrence.Yearly => dateAfterRecurrence.AddYears(1),
-                _ => throw new ArgumentOutOfRangeException(nameof(recurrence), recurrence, null)
+                _ => throw new ArgumentOutOfRangeException(paramName: nameof(recurrence), actualValue: recurrence, message: null)
             };
         }
     }
