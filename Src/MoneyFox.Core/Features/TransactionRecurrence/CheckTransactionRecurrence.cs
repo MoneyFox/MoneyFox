@@ -12,7 +12,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using RecurringTransactionCreation;
 
-internal static class CheckTransactionRecurrence
+public static class CheckTransactionRecurrence
 {
     public record Command : IRequest;
 

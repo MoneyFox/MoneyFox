@@ -8,6 +8,7 @@ using Core.Common.Settings;
 using Core.Features._Legacy_.Payments.ClearPayments;
 using Core.Features._Legacy_.Payments.CreateRecurringPayments;
 using Core.Features.DbBackup;
+using Core.Features.TransactionRecurrence;
 using Domain;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.RecurringTransactionAggregate;
@@ -156,7 +157,7 @@ public partial class App
         try
         {
             await mediator.Send(new ClearPaymentsCommand());
-            await mediator.Send(new ());
+            await mediator.Send(new CheckTransactionRecurrence.Command());
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
         }
         catch (Exception ex)
