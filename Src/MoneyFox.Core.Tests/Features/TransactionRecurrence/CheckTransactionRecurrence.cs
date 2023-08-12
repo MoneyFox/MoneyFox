@@ -141,10 +141,18 @@ internal static class CheckTransactionRecurrence
                     isLastDayOfMonth: recurringTransaction.IsLastDayOfMonth,
                     isTransfer: recurringTransaction.IsTransfer);
 
-                var dateDiff = systemDateHelper.Today - recurringTransaction.LastRecurrence.ToDateTime(TimeOnly.MinValue);
-                for (var i = 0; i < dateDiff.TotalDays; i++)
+                var numberOfDaysForRecurrence = 1;
+                var dateAfterRecurrence = recurringTransaction.LastRecurrence;
+
+                while (true)
                 {
-                    await sender.Send(request: createRecurringTransactionCommand, cancellationToken: cancellationToken);
+                    dateAfterRecurrence = dateAfterRecurrence.AddDays(numberOfDaysForRecurrence);
+                    if (dateAfterRecurrence <= systemDateHelper.TodayDateOnly)
+                    {
+                        await sender.Send(request: createRecurringTransactionCommand, cancellationToken: cancellationToken);
+                        continue;
+                    }
+                    break;
                 }
             }
         }
