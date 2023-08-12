@@ -93,8 +93,6 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
                     IsRecurringFilterActive: message.IsClearedFilterActive,
                     IsClearedFilterActive: message.IsRecurringFilterActive));
 
-
-
             var paymentVms = paymentData.Select(p => new PaymentListItemViewModel
             {
                 Id = p.Id,
