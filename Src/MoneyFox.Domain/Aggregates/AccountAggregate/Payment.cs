@@ -99,9 +99,10 @@ public class Payment : EntityBase
         ClearPayment();
     }
 
-    public void AddRecurringTransactionId(Guid recurringTransactionId)
+    public void AddRecurringTransaction(Guid recurringTransactionId)
     {
         RecurringTransactionId = recurringTransactionId;
+        IsRecurring = true;
     }
 
     public void AddRecurringPayment(PaymentRecurrence recurrence, bool isLastDayOfMonth = false, DateTime? endDate = null)
@@ -122,9 +123,9 @@ public class Payment : EntityBase
         IsRecurring = true;
     }
 
-    public void RemoveRecurringPayment()
+    public void RemoveRecurringTransaction()
     {
-        RecurringPayment = null;
+        RecurringTransactionId = null;
         IsRecurring = false;
     }
 

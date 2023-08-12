@@ -108,7 +108,7 @@ public partial class App
 
                 foreach (var payment in recurringPayment.RelatedPayments)
                 {
-                    payment.AddRecurringTransactionId(recurringTransactionId);
+                    payment.AddRecurringTransaction(recurringTransactionId);
                 }
 
                 appDbContext.Add(recurringTransaction);

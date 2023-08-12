@@ -85,7 +85,7 @@ public static class UpdatePayment
                     .ToList();
 
                 appDbContext.RecurringPayments.Remove(existingPayment.RecurringPayment!);
-                linkedPayments.ForEach(x => x.RemoveRecurringPayment());
+                linkedPayments.ForEach(x => x.RemoveRecurringTransaction());
             }
 
             await appDbContext.SaveChangesAsync(cancellationToken);
