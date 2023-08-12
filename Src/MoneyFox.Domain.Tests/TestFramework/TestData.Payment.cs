@@ -17,7 +17,7 @@ internal static partial class TestData
         public bool IsCleared => true;
         public PaymentType Type { get; init; } = PaymentType.Expense;
         public bool IsRecurring => RecurringTransactionId.HasValue;
-        public Guid? RecurringTransactionId { get; } = null;
+        public Guid? RecurringTransactionId { get; init; } = null;
         public string Note => "6 Bottles";
         public DateTime Created { get; } = DateTime.Now.AddDays(-2);
         public DateTime? LastModified { get; }  = DateTime.Now.AddDays(-1);
@@ -44,8 +44,6 @@ internal static partial class TestData
         public string Note => string.Empty;
         public bool IsRecurring => RecurringTransactionId.HasValue;
         public Guid? RecurringTransactionId { get; } = null;
-        public DateTime Created { get; } = DateTime.Now.AddDays(-2);
-        public DateTime? LastModified { get; }  = DateTime.Now.AddDays(-1);
 
         internal sealed record IncomeCategory : ICategory
         {
@@ -89,9 +87,6 @@ internal static partial class TestData
         bool IsRecurring { get; }
 
         Guid? RecurringTransactionId { get; }
-
-        DateTime Created { get; }
-        DateTime? LastModified { get; }
     }
 
     internal interface IAccount

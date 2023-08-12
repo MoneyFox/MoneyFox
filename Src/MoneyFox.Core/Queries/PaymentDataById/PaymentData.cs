@@ -17,4 +17,4 @@ public record PaymentData(
     DateTime? LastModified,
     RecurrenceData? RecurrenceData);
 
-public record RecurrenceData(Recurrence Recurrence, DateTime StartDate, DateTime? EndDate);
+public record RecurrenceData(Recurrence Recurrence, DateOnly StartDate, DateOnly? EndDate);

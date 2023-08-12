@@ -13,6 +13,30 @@ public class GetPaymentDataByIdHandlerTests : InMemoryTestBase
         handler = new(Context);
     }
 
+    private static void AssertPaymentData(PaymentData actual, TestData.IPayment expectedPayment, TestData.IRecurringTransaction? recurringTransaction)
+    {
+        actual.PaymentId.Should().Be(expectedPayment.Id);
+        actual.Amount.Should().Be(expectedPayment.Amount);
+        actual.ChargedAccountId.Should().Be(expectedPayment.ChargedAccount.Id);
+        actual.TargetAccountId.Should().Be(expectedPayment.TargetAccount?.Id);
+        actual.Date.Should().Be(expectedPayment.Date);
+        actual.IsCleared.Should().Be(expectedPayment.IsCleared);
+        actual.Type.Should().Be(expectedPayment.Type);
+        actual.Note.Should().Be(expectedPayment.Note);
+        actual.Created.Should().BeAfter(DateTime.Today);
+        actual.LastModified.Should().BeAfter(DateTime.Today);
+        if (recurringTransaction == null)
+        {
+            actual.RecurrenceData.Should().BeNull();
+        }
+        else
+        {
+            actual.RecurrenceData!.Recurrence.Should().Be(recurringTransaction.Recurrence);
+            actual.RecurrenceData!.StartDate.Should().Be(recurringTransaction.StartDate);
+            actual.RecurrenceData!.EndDate.Should().Be(recurringTransaction.EndDate);
+        }
+    }
+
     public sealed class PaymentNotFound : GetPaymentDataByIdHandlerTests
     {
         [Fact]
@@ -23,7 +47,7 @@ public class GetPaymentDataByIdHandlerTests : InMemoryTestBase
         }
     }
 
-    public sealed class OnTimePayment : GetPaymentDataByIdHandlerTests
+    public sealed class OnTimeTransaction : GetPaymentDataByIdHandlerTests
     {
         [Fact]
         public async Task ReturnsCorrectData()
@@ -36,17 +60,26 @@ public class GetPaymentDataByIdHandlerTests : InMemoryTestBase
             var result = await handler.Handle(query: new(payment.Id), cancellationToken: default);
 
             // Assert
-            result.PaymentId.Should().Be(payment.Id);
-            result.Amount.Should().Be(payment.Amount);
-            result.ChargedAccountId.Should().Be(payment.ChargedAccount.Id);
-            result.TargetAccountId.Should().Be(payment.TargetAccount?.Id);
-            result.Date.Should().Be(payment.Date);
-            result.IsCleared.Should().Be(payment.IsCleared);
-            result.Type.Should().Be(payment.Type);
-            result.Note.Should().Be(payment.Note);
-            result.Created.Should().BeAfter(DateTime.Today);
-            result.LastModified.Should().BeAfter(DateTime.Today);
-            result.RecurrenceData.Should().BeNull();
+            AssertPaymentData(actual: result, expectedPayment: payment, recurringTransaction: null);
+        }
+    }
+
+    public sealed class RecurringTimeTransaction : GetPaymentDataByIdHandlerTests
+    {
+        [Fact]
+        public async Task ReturnsCorrectData()
+        {
+            // Arrange
+            var recurringTransaction = new TestData.RecurringExpense();
+            var payment = new TestData.ClearedExpense { RecurringTransactionId = recurringTransaction.RecurringTransactionId };
+            Context.RegisterPayment(payment);
+            Context.RegisterRecurringTransaction(recurringTransaction);
+
+            // Act
+            var result = await handler.Handle(query: new(payment.Id), cancellationToken: default);
+
+            // Assert
+            AssertPaymentData(actual: result, expectedPayment: payment, recurringTransaction: recurringTransaction);
         }
     }
 }
