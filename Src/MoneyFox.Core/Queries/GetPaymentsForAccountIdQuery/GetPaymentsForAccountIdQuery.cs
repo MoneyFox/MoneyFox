@@ -55,7 +55,6 @@ public class GetPaymentsForAccountIdQuery : IRequest<List<Payment>>
             var paymentQuery = appDbContext.Payments.Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
                 .Include(x => x.Category)
-                .Include(x => x.RecurringPayment)
                 .HasAccountId(accountId: request.AccountId);
 
             if (request.IsClearedFilterActive)
@@ -70,13 +69,24 @@ public class GetPaymentsForAccountIdQuery : IRequest<List<Payment>>
 
             if (request.FilteredPaymentType != PaymentTypeFilter.All)
             {
-                paymentQuery = paymentQuery.IsPaymentType(PaymentTypeFilterHelper.PaymentTypeFilterToPaymentType(request.FilteredPaymentType));
+                paymentQuery = paymentQuery.IsPaymentType(PaymentTypeFilterToPaymentType(request.FilteredPaymentType));
             }
 
             paymentQuery = paymentQuery.Where(x => x.Date >= request.TimeRangeStart);
             paymentQuery = paymentQuery.Where(x => x.Date <= request.TimeRangeEnd);
 
             return await paymentQuery.OrderByDescending(x => x.Date).ToListAsync(cancellationToken);
+        }
+
+        private static PaymentType PaymentTypeFilterToPaymentType(PaymentTypeFilter paymentTypeFilter)
+        {
+            return paymentTypeFilter switch
+            {
+                PaymentTypeFilter.Expense => PaymentType.Expense,
+                PaymentTypeFilter.Income => PaymentType.Income,
+                PaymentTypeFilter.Transfer => PaymentType.Transfer,
+                _ => throw new InvalidCastException()
+            };
         }
     }
 }

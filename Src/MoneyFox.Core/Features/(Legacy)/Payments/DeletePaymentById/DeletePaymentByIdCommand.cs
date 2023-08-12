@@ -31,7 +31,6 @@ public class DeletePaymentByIdCommand : IRequest
         {
             var entityToDelete = await appDbContext.Payments.Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
-                .Include(x => x.RecurringPayment)
                 .SingleOrDefaultAsync(predicate: x => x.Id == request.PaymentId, cancellationToken: cancellationToken);
 
             if (entityToDelete == null)
@@ -41,13 +40,13 @@ public class DeletePaymentByIdCommand : IRequest
 
             entityToDelete.ChargedAccount.RemovePaymentAmount(entityToDelete);
             entityToDelete.TargetAccount?.RemovePaymentAmount(entityToDelete);
-            if (request.DeleteRecurringPayment && entityToDelete.RecurringPayment != null)
+            if (request.DeleteRecurringPayment && entityToDelete.IsRecurring)
             {
                 var recurringTransaction = await appDbContext.RecurringTransactions.SingleAsync(
                     predicate: rt => rt.RecurringTransactionId == entityToDelete.RecurringTransactionId,
                     cancellationToken: cancellationToken);
 
-                appDbContext.RecurringTransactions.Remove(recurringTransaction);
+                recurringTransaction.EndRecurrence();
             }
 
             appDbContext.Payments.Remove(entityToDelete);
