@@ -86,7 +86,6 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
         => new()
         {
             PaymentRecurrence.Daily,
-            PaymentRecurrence.DailyWithoutWeekend,
             PaymentRecurrence.Weekly,
             PaymentRecurrence.Biweekly,
             PaymentRecurrence.Monthly,
