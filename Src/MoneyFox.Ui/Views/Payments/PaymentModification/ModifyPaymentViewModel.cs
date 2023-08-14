@@ -152,7 +152,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
         }
 
         if (SelectedPayment.IsRecurring
-            && !RecurrenceViewModel!.IsEndless
+            && RecurrenceViewModel.IsEndless is false
             && RecurrenceViewModel.EndDate.HasValue
             && RecurrenceViewModel.EndDate.Value.Date < DateTime.Today)
         {
