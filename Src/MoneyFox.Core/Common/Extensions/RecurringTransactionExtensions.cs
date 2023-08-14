@@ -11,7 +11,7 @@ public static class RecurringTransactionExtensions
         return recurrence switch
         {
             PaymentRecurrence.Daily => Recurrence.Daily,
-            PaymentRecurrence.DailyWithoutWeekend => Recurrence.DailyWithoutWeekend,
+            PaymentRecurrence.DailyWithoutWeekend => Recurrence.Daily,
             PaymentRecurrence.Weekly => Recurrence.Weekly,
             PaymentRecurrence.Biweekly => Recurrence.Biweekly,
             PaymentRecurrence.Monthly => Recurrence.Monthly,
@@ -28,7 +28,6 @@ public static class RecurringTransactionExtensions
         return recurrence switch
         {
             Recurrence.Daily => PaymentRecurrence.Daily,
-            Recurrence.DailyWithoutWeekend => PaymentRecurrence.DailyWithoutWeekend,
             Recurrence.Weekly => PaymentRecurrence.Weekly,
             Recurrence.Biweekly => PaymentRecurrence.Biweekly,
             Recurrence.Monthly => PaymentRecurrence.Monthly,

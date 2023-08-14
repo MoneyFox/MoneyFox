@@ -80,7 +80,6 @@ public static class CheckTransactionRecurrence
             return recurrence switch
             {
                 Recurrence.Daily => dateAfterRecurrence.AddDays(1),
-                Recurrence.DailyWithoutWeekend => dateAfterRecurrence.AddDays(1),
                 Recurrence.Weekly => dateAfterRecurrence.AddDays(7),
                 Recurrence.Biweekly => dateAfterRecurrence.AddDays(14),
                 Recurrence.Monthly => dateAfterRecurrence.AddMonths(1),
