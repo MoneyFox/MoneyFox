@@ -1,4 +1,4 @@
-namespace MoneyFox.Core.Tests.Commands.Payments.CreatePayment;
+namespace MoneyFox.Core.Tests.Features._Legacy_.Payments.CreatePayment;
 
 using Core.Features._Legacy_.Payments.CreatePayment;
 using Domain.Aggregates.AccountAggregate;
@@ -49,25 +49,5 @@ public class CreatePaymentCommandTests : InMemoryTestBase
         var loadedAccount = await Context.Accounts.SingleAsync(a => a.Id == account.Id);
         loadedAccount.Should().NotBeNull();
         loadedAccount.CurrentBalance.Should().Be(newCurrentBalance);
-    }
-
-    [Fact]
-    public async Task CreatePaymentWithRecurring_PaymentSaved()
-    {
-        // Arrange
-        var account = new Account(name: "test", initialBalance: 80);
-        Context.Add(account);
-        await Context.SaveChangesAsync();
-        var payment = new Payment(date: DateTime.Now, amount: 20, type: PaymentType.Expense, chargedAccount: account);
-        payment.AddRecurringPayment(recurrence: PaymentRecurrence.Monthly, isLastDayOfMonth: false);
-
-        // Act
-        await handler.Handle(request: new(payment), cancellationToken: default);
-
-        // Assert
-        Assert.Single(Context.Payments);
-        Assert.Single(Context.RecurringPayments);
-        (await Context.Payments.FindAsync(payment.Id)).Should().NotBeNull();
-        (await Context.RecurringPayments.SingleAsync(p => p.Id == payment.RecurringPayment!.Id)).Should().NotBeNull();
     }
 }

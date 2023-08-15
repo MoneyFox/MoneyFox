@@ -1,4 +1,4 @@
-namespace MoneyFox.Core.Tests.Commands.Accounts.UpdateAccount;
+namespace MoneyFox.Core.Tests.Features._Legacy_.Accounts.UpdateAccount;
 
 using Core.Features._Legacy_.Accounts.UpdateAccount;
 using Domain.Aggregates.AccountAggregate;

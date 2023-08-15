@@ -10,14 +10,10 @@ internal sealed class RecurringTransactionConfiguration : IEntityTypeConfigurati
     public void Configure(EntityTypeBuilder<RecurringTransaction> builder)
     {
         builder.HasKey(b => b.Id);
-        builder.Property(i => i.Id)
-            .ValueGeneratedOnAdd()
-            .HasConversion(convertToProviderExpression: v => v.Value, convertFromProviderExpression: v => new(v));
-
+        builder.Property(i => i.Id).ValueGeneratedOnAdd().HasConversion(convertToProviderExpression: v => v.Value, convertFromProviderExpression: v => new(v));
         builder.Property(p => p.CategoryId);
         builder.Property(p => p.StartDate);
         builder.Property(p => p.EndDate);
-
         builder.OwnsOne<Money>(
             navigationExpression: i => i.Amount,
             buildAction: m =>

@@ -3,7 +3,7 @@ namespace MoneyFox.Core.Tests.Features.RecurringTransactionUpdate;
 using Core.Common.Extensions;
 using Core.Features.RecurringTransactionUpdate;
 using Domain;
-using Domain.Aggregates;
+using Domain.Aggregates.RecurringTransactionAggregate;
 using Domain.Tests.TestFramework;
 using static Domain.Tests.TestFramework.RecurringTransactionAssertion;
 

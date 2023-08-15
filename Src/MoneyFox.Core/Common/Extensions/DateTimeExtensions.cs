@@ -4,7 +4,6 @@ using System;
 
 public static class DateTimeExtensions
 {
-
     public static DateTime GetFirstDayOfMonth(this DateTime self)
     {
         return new(

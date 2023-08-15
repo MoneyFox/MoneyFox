@@ -1,15 +1,12 @@
 namespace MoneyFox.Core.Features._Legacy_.Payments.UpdatePayment;
 
 using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Common.Extensions;
 using Common.Interfaces;
 using Common.Settings;
-using Domain;
 using Domain.Aggregates.AccountAggregate;
-using Domain.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using RecurringTransactionUpdate;
@@ -49,7 +46,6 @@ public static class UpdatePayment
             var existingPayment = await appDbContext.Payments.Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
                 .Include(x => x.Category)
-                .Include(x => x.RecurringPayment)
                 .FirstAsync(predicate: x => x.Id == command.Id, cancellationToken: cancellationToken);
 
             var chargedAccount = await appDbContext.Accounts.SingleAsync(
@@ -78,14 +74,13 @@ public static class UpdatePayment
                         isLastDayOfMonth: command.IsLastDayOfMonth),
                     cancellationToken: cancellationToken);
             }
-            else if (!command.IsRecurring && existingPayment.RecurringPayment != null)
+            else if (command.IsRecurring is false && existingPayment.IsRecurring)
             {
-                var linkedPayments = appDbContext.Payments.Where(x => x.IsRecurring)
-                    .Where(x => x.RecurringPayment!.Id == existingPayment.RecurringPayment!.Id)
-                    .ToList();
+                var recurringTransaction = await appDbContext.RecurringTransactions.SingleAsync(
+                    predicate: rt => rt.RecurringTransactionId == existingPayment.RecurringTransactionId,
+                    cancellationToken: cancellationToken);
 
-                appDbContext.RecurringPayments.Remove(existingPayment.RecurringPayment!);
-                linkedPayments.ForEach(x => x.RemoveRecurringPayment());
+                recurringTransaction.EndRecurrence();
             }
 
             await appDbContext.SaveChangesAsync(cancellationToken);

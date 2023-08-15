@@ -6,8 +6,35 @@ internal static partial class TestData
 {
     private static readonly DateTime defaultDate = new(year: 2022, month: 04, day: 06);
 
+    internal sealed record UnclearedExpense : IPayment
+    {
+        public DateTime Created { get; } = DateTime.Now.AddDays(-2);
+        public DateTime? LastModified { get; } = DateTime.Now.AddDays(-1);
+        public int Id { get; set; } = 10;
+        public IAccount ChargedAccount => new IncludedAccount();
+        public IAccount? TargetAccount => null;
+        public ICategory? Category { get; init; } = new ExpenseCategory();
+        public DateTime Date { get; init; } = DateTime.Today.AddDays(1);
+        public decimal Amount { get; init; } = 105.50m;
+        public bool IsCleared => false;
+        public PaymentType Type { get; init; } = PaymentType.Expense;
+        public bool IsRecurring => RecurringTransactionId.HasValue;
+        public Guid? RecurringTransactionId { get; init; } = null;
+        public string Note => "6 Bottles";
+
+        internal sealed record ExpenseCategory : ICategory
+        {
+            public int Id { get; set; }
+            public string Name { get; } = "Whine";
+            public string? Note { get; } = "Yummi!";
+            public bool RequireNote { get; } = false;
+        }
+    }
+
     internal sealed record ClearedExpense : IPayment
     {
+        public DateTime Created { get; } = DateTime.Now.AddDays(-2);
+        public DateTime? LastModified { get; } = DateTime.Now.AddDays(-1);
         public int Id { get; set; } = 10;
         public IAccount ChargedAccount => new IncludedAccount();
         public IAccount? TargetAccount => null;
@@ -17,10 +44,8 @@ internal static partial class TestData
         public bool IsCleared => true;
         public PaymentType Type { get; init; } = PaymentType.Expense;
         public bool IsRecurring => RecurringTransactionId.HasValue;
-        public Guid? RecurringTransactionId { get; } = null;
+        public Guid? RecurringTransactionId { get; init; } = null;
         public string Note => "6 Bottles";
-        public DateTime Created { get; } = DateTime.Now.AddDays(-2);
-        public DateTime? LastModified { get; }  = DateTime.Now.AddDays(-1);
 
         internal sealed record ExpenseCategory : ICategory
         {
@@ -44,8 +69,6 @@ internal static partial class TestData
         public string Note => string.Empty;
         public bool IsRecurring => RecurringTransactionId.HasValue;
         public Guid? RecurringTransactionId { get; } = null;
-        public DateTime Created { get; } = DateTime.Now.AddDays(-2);
-        public DateTime? LastModified { get; }  = DateTime.Now.AddDays(-1);
 
         internal sealed record IncomeCategory : ICategory
         {
@@ -89,9 +112,6 @@ internal static partial class TestData
         bool IsRecurring { get; }
 
         Guid? RecurringTransactionId { get; }
-
-        DateTime Created { get; }
-        DateTime? LastModified { get; }
     }
 
     internal interface IAccount

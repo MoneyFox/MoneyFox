@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Tests.Commands.Payments.ClearPayments;
+﻿namespace MoneyFox.Core.Tests.Features._Legacy_.Payments.ClearPayments;
 
 using Core.Features._Legacy_.Payments.ClearPayments;
 using Domain.Aggregates.AccountAggregate;

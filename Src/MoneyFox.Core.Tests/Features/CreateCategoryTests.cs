@@ -11,7 +11,7 @@ public class CreateCategoryTests : InMemoryTestBase
     public async Task CategoryAdded_WhenValidValuesPassed()
     {
         // Arrange
-        var testCategory = new TestData.DefaultCategory();
+        var testCategory = new TestData.CategoryBeverages();
 
         // Act
         var command = new CreateCategory.Command(Name: testCategory.Name, Note: testCategory.Note, RequireNote: testCategory.RequireNote);

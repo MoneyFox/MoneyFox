@@ -18,7 +18,7 @@ public class DeleteCategoryByIdCommandTests : InMemoryTestBase
     public async Task DeleteCategoryWithPassedId()
     {
         // Arrange
-        var testCategory = new TestData.DefaultCategory();
+        var testCategory = new TestData.CategoryBeverages();
         Context.RegisterCategory(testCategory: testCategory);
 
         // Act
@@ -32,7 +32,7 @@ public class DeleteCategoryByIdCommandTests : InMemoryTestBase
     public async Task DoesNothingWhenCategoryNotFound()
     {
         // Arrange
-        var testCategory = new TestData.DefaultCategory();
+        var testCategory = new TestData.CategoryBeverages();
         Context.RegisterCategory(testCategory: testCategory);
 
         // Act

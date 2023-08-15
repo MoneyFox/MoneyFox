@@ -1,4 +1,4 @@
-namespace MoneyFox.Core.Tests.Commands.Accounts.CreateAccount;
+namespace MoneyFox.Core.Tests.Features._Legacy_.Accounts.CreateAccount;
 
 using Core.Features._Legacy_.Accounts.CreateAccount;
 

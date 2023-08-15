@@ -1,14 +1,13 @@
-namespace MoneyFox.Domain.Aggregates;
+namespace MoneyFox.Domain.Aggregates.RecurringTransactionAggregate;
 
 public enum Recurrence
 {
     Daily = 0,
-    DailyWithoutWeekend = 1,
-    Weekly = 2,
-    Monthly = 3,
-    Yearly = 4,
-    Biweekly = 5,
-    Bimonthly = 6,
-    Quarterly = 7,
-    Biannually = 8
+    Weekly = 1,
+    Monthly = 2,
+    Yearly = 3,
+    Biweekly = 4,
+    Bimonthly = 5,
+    Quarterly = 6,
+    Biannually = 7
 }

@@ -5,9 +5,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
 using Core.Queries;
 using MediatR;
-using Microsoft.AppCenter.Crashes;
 using Resources.Strings;
-using Serilog;
 
 public abstract class ModifyCategoryViewModel : BasePageViewModel
 {

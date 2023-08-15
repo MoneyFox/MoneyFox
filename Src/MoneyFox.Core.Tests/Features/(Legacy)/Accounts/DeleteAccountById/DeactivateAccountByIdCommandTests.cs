@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Tests.Commands.Accounts.DeleteAccountById;
+﻿namespace MoneyFox.Core.Tests.Features._Legacy_.Accounts.DeleteAccountById;
 
 using Core.Features._Legacy_.Accounts.DeleteAccountById;
 using Domain.Aggregates.AccountAggregate;
