@@ -379,8 +379,8 @@
   <data name="EmailLabel" xml:space="preserve">
     <value>Ел. пошта</value>
   </data>
-  <data name="EnddateLabel" xml:space="preserve">
-    <value>Дата закінчення</value>
+  <data name="EndDateLabel" xml:space="preserve">
+    <value>End Date</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
     <value>Нескінченний</value>
