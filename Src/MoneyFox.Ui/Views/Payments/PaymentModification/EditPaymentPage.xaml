@@ -7,13 +7,101 @@
     xmlns:extensions="clr-namespace:MoneyFox.Ui.Common.Extensions"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:paymentModification="clr-namespace:MoneyFox.Ui.Views.Payments.PaymentModification"
+    xmlns:categorySelection="clr-namespace:MoneyFox.Ui.Controls.CategorySelection"
+    xmlns:accountPicker="clr-namespace:MoneyFox.Ui.Controls.AccountPicker"
+    xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     x:DataType="paymentModification:EditPaymentViewModel"
     Title="{x:Static resources:Translations.EditPaymentTitle}"
     x:Class="MoneyFox.Ui.Views.Payments.PaymentModification.EditPaymentPage">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:InverseBoolConverter x:Key="Inverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <controls:FixedScrollView>
         <VerticalStackLayout Padding="15,12,15,12" Spacing="12">
-            <paymentModification:ModifyPaymentContentView />
+            <controls:PaymentTypePicker PickerTitle="{x:Static resources:Translations.PaymentTypeLabel}"
+                                        PaymentTypeSource="{x:Static paymentModification:ModifyPaymentViewModel.PaymentTypeList}"
+                                        SelectedType="{Binding SelectedPayment.Type}" />
+
+            <accountPicker:AccountPicker PickerTitle="{Binding AccountHeader, Mode=OneWay}"
+                                         AccountsSource="{Binding ChargedAccounts}"
+                                         SelectedAccount="{Binding SelectedPayment.ChargedAccount}" />
+
+            <accountPicker:AccountPicker PickerTitle="{x:Static resources:Translations.TargetAccountLabel}"
+                                         AccountsSource="{Binding TargetAccounts}"
+                                         SelectedAccount="{Binding SelectedPayment.TargetAccount}"
+                                         IsVisible="{Binding SelectedPayment.IsTransfer}" />
+
+            <controls:AmountEntry
+                AmountFieldTitle="{x:Static resources:Translations.AmountLabel}"
+                Amount="{Binding SelectedPayment.Amount}"
+                EntryPlaceholder="{x:Static resources:Translations.AmountLabel}" />
+
+            <Label Text="{x:Static resources:Translations.CategoryLabel}"
+                   Style="{StaticResource TextBodySecondary}" />
+
+            <categorySelection:CategorySelectionControl BindingContext="{Binding CategorySelectionViewModel}" />
+
+            <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Translations.DateLabel}"
+                                       DateField="{Binding SelectedPayment.Date}" />
+
+            <controls:TextEntry
+                TextFieldTitle="{x:Static resources:Translations.NoteLabel}"
+                EntryPlaceholder="{x:Static resources:Translations.NotePlaceholderLabel}"
+                EntryText="{Binding SelectedPayment.Note}" />
+
+            <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*, Auto">
+                <Label Grid.Column="0"
+                       Style="{StaticResource TextBodySecondary}"
+                       VerticalOptions="Center"
+                       Text="{x:Static resources:Translations.RecurringLabel}" />
+
+                <Switch Grid.Column="1"
+                        HorizontalOptions="End"
+                        IsToggled="{Binding SelectedPayment.IsRecurring}" />
+            </Grid>
+
+            <VerticalStackLayout IsVisible="{Binding SelectedPayment.IsRecurring}"
+                                 Spacing="6">
+                <Label Style="{StaticResource TextBodySecondary}"
+                       Text="{x:Static resources:Translations.RecurrenceLabel}" />
+                <Picker ItemsSource="{x:Static paymentModification:ModifyPaymentViewModel.RecurrenceList}"
+                        SelectedItem="{Binding RecurrenceViewModel.Recurrence}" />
+
+                <Grid HorizontalOptions="FillAndExpand"
+                      ColumnDefinitions="70*, 15*"
+                      IsVisible="{Binding RecurrenceViewModel.AllowLastDayOfMonth}">
+
+                    <Label Grid.Column="0"
+                           Style="{StaticResource TextBodySecondary}"
+                           VerticalOptions="Center"
+                           Text="{x:Static resources:Translations.LastDayOfMonthLabel}" />
+
+                    <Switch Grid.Column="1"
+                            HorizontalOptions="End"
+                            IsToggled="{Binding RecurrenceViewModel.IsLastDayOfMonth}" />
+                </Grid>
+
+                <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*, Auto">
+
+                    <Label Grid.Column="0"
+                           Style="{StaticResource TextBodySecondary}"
+                           VerticalOptions="Center"
+                           Text="{x:Static resources:Translations.EndlessLabel}" />
+
+                    <Switch Grid.Column="1"
+                            HorizontalOptions="Start"
+                            IsToggled="{Binding RecurrenceViewModel.IsEndless}" />
+                </Grid>
+
+                <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Translations.EndDateLabel}"
+                                           DateField="{Binding RecurrenceViewModel.EndDate}"
+                                           IsVisible="{Binding RecurrenceViewModel.IsEndless, Converter={StaticResource Inverter}}" />
+
+            </VerticalStackLayout>
 
             <Label Style="{StaticResource TextBodySecondary}"
                    Text="{Binding SelectedPayment.Created, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />

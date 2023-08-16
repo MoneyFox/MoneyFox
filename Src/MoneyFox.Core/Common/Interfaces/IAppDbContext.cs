@@ -7,6 +7,7 @@ using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.BudgetAggregate;
 using Domain.Aggregates.CategoryAggregate;
+using Domain.Aggregates.RecurringTransactionAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
@@ -17,6 +18,8 @@ public interface IAppDbContext : IDisposable
     DbSet<Payment> Payments { get; }
 
     DbSet<RecurringPayment> RecurringPayments { get; }
+
+    DbSet<RecurringTransaction> RecurringTransactions { get; }
 
     DbSet<Category> Categories { get; }
 
