@@ -952,4 +952,7 @@
   <data name="AllAccounts" xml:space="preserve">
         <value>Всички сметки</value>
     </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>Лицензи</value>
+    </data>
 </root>

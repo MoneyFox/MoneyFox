@@ -953,4 +953,7 @@
   <data name="AllAccounts" xml:space="preserve">
         <value>Всі облікові записи</value>
     </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>Ліцензії</value>
+    </data>
 </root>
