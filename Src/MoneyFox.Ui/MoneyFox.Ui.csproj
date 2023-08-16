@@ -148,10 +148,6 @@
             <DependentUpon>EditPaymentPage.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
-        <Compile Update="Views\Payments\PaymentModification\ModifyPaymentContentView.xaml.cs">
-            <DependentUpon>ModifyPaymentContentView.xaml</DependentUpon>
-            <SubType>Code</SubType>
-        </Compile>
         <Compile Update="Views\Budget\ModifyBudget\ModifyBudgetView.xaml.cs">
             <DependentUpon>ModifyBudgetView.xaml</DependentUpon>
             <SubType>Code</SubType>
@@ -232,9 +228,6 @@
             <SubType>Designer</SubType>
         </MauiXaml>
         <MauiXaml Update="Views\Payments\PaymentModification\EditPaymentPage.xaml">
-            <SubType>Designer</SubType>
-        </MauiXaml>
-        <MauiXaml Update="Views\Payments\PaymentModification\ModifyPaymentContentView.xaml">
             <SubType>Designer</SubType>
         </MauiXaml>
         <MauiXaml Update="Views\Budget\ModifyBudget\ModifyBudgetView.xaml">

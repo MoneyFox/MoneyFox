@@ -32,6 +32,7 @@ internal sealed class PaymentForCategoryListViewModel : BasePageViewModel, IReci
     public ReadOnlyObservableCollection<PaymentDayGroup> PaymentDayGroups
     {
         get => paymentDayGroups;
+
         private set
         {
             SetProperty(field: ref paymentDayGroups, newValue: value);

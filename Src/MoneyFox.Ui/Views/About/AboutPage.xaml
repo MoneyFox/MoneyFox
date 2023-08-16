@@ -18,7 +18,7 @@
 
                 <Button
                     Command="{Binding OpenUrlCommand}"
-                    CommandParameter="https://www.apply-solutions.ch" 
+                    CommandParameter="https://www.apply-solutions.ch"
                     Text="{x:Static resources:Translations.WebsiteLabel}" />
 
                 <Button
@@ -42,7 +42,7 @@
                 <Label Text="{x:Static resources:Translations.InfoOpenSource}" />
                 <Button Style="{StaticResource LinkButton}"
                         Command="{Binding OpenUrlCommand}"
-                        CommandParameter="https://github.com/MoneyFox/MoneyFox" 
+                        CommandParameter="https://github.com/MoneyFox/MoneyFox"
                         Text="www.github.com" />
 
                 <Label Text="{x:Static resources:Translations.ContributerLabel}" />
@@ -50,7 +50,7 @@
                         Command="{Binding OpenUrlCommand}"
                         CommandParameter="https://github.com/MoneyFox/MoneyFox/graphs/contributors"
                         Text="GitHub Contribution" />
-                
+
                 <toolkit:Expander>
                     <toolkit:Expander.Header>
                         <Grid>
@@ -65,10 +65,9 @@
                             <DataTemplate x:DataType="about:LicenseViewModel">
                                 <Label>
                                     <Label.GestureRecognizers>
-                                        <TapGestureRecognizer 
+                                        <TapGestureRecognizer
                                             Command="{Binding OpenUrlCommand, Source={RelativeSource AncestorType={x:Type about:AboutViewModel}}}"
-                                            CommandParameter="{Binding ProjectUrl}" 
-                                        />
+                                            CommandParameter="{Binding ProjectUrl}" />
                                     </Label.GestureRecognizers>
                                     <Label.FormattedText>
                                         <FormattedString>
