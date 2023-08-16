@@ -19,7 +19,7 @@
             <converter:InverseBoolConverter x:Key="Inverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <controls:FixedScrollView>
         <VerticalStackLayout Padding="15,12,15,12" Spacing="12">
             <controls:PaymentTypePicker PickerTitle="{x:Static resources:Translations.PaymentTypeLabel}"
