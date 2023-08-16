@@ -131,11 +131,11 @@ jobs:
       - name: Restore Dependencies
         run: dotnet restore ${{env.UI_PROJECT_PATH}}
 
-#      - name: Test
-#        run: |
-#          dotnet test ${{env.UI_TEST_PROJECT_PATH}}
-#          dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
-#          dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
+      - name: Test
+        run: |
+          dotnet test ${{env.UI_TEST_PROJECT_PATH}}
+          dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
+          dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
 
       - name: Get android version
         id: date
