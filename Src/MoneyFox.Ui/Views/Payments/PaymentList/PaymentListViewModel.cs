@@ -101,6 +101,7 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
                         ChargedAccountId = p.ChargedAccountId,
                         CurrentAccountId = SelectedAccount.Id,
                         Date = p.Date.ToDateTime(TimeOnly.MinValue),
+                        CategoryName = p.CategoryName,
                         IsCleared = p.IsCleared,
                         IsRecurring = p.IsRecurring,
                         Note = p.Note,
