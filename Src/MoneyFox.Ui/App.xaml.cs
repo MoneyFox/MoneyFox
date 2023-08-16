@@ -82,7 +82,7 @@ public partial class App
         var settings = ServiceProvider.GetService<ISettingsFacade>();
 
         // Migrate RecurringTransaction
-        if (settings!.RecurringTransactionMigrated)
+        if (settings!.RecurringTransactionMigrated is false)
         {
             foreach (var recurringPayment in appDbContext.RecurringPayments.Include(rp => rp.Category)
                          .Include(rp => rp.ChargedAccount)
