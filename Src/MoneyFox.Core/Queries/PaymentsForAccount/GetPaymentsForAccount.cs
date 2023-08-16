@@ -66,7 +66,6 @@ public static class GetPaymentsForAccount
                         p.IsCleared,
                         p.IsRecurring,
                         p.Type))
-                .OrderByDescending(p => p.Date)
                 .ToListAsync(cancellationToken);
         }
 
