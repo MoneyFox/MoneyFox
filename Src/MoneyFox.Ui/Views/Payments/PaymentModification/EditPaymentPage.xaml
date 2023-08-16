@@ -9,10 +9,17 @@
     xmlns:paymentModification="clr-namespace:MoneyFox.Ui.Views.Payments.PaymentModification"
     xmlns:categorySelection="clr-namespace:MoneyFox.Ui.Controls.CategorySelection"
     xmlns:accountPicker="clr-namespace:MoneyFox.Ui.Controls.AccountPicker"
+    xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     x:DataType="paymentModification:EditPaymentViewModel"
     Title="{x:Static resources:Translations.EditPaymentTitle}"
     x:Class="MoneyFox.Ui.Views.Payments.PaymentModification.EditPaymentPage">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:InverseBoolConverter x:Key="Inverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <controls:FixedScrollView>
         <VerticalStackLayout Padding="15,12,15,12" Spacing="12">
             <controls:PaymentTypePicker PickerTitle="{x:Static resources:Translations.PaymentTypeLabel}"
