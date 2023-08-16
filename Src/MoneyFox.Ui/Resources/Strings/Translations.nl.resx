@@ -381,9 +381,6 @@
     <data name="EmailLabel" xml:space="preserve">
     <value>e-mail</value>
   </data>
-    <data name="EnddateLabel" xml:space="preserve">
-    <value>Einddatum</value>
-  </data>
     <data name="EndlessLabel" xml:space="preserve">
     <value>Is eindeloos</value>
   </data>

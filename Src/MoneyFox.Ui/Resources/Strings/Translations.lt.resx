@@ -380,9 +380,6 @@
     <data name="EmailLabel" xml:space="preserve">
     <value>El. paštas</value>
   </data>
-    <data name="EnddateLabel" xml:space="preserve">
-    <value>Pabaigos data</value>
-  </data>
     <data name="EndlessLabel" xml:space="preserve">
     <value>yra begalinis</value>
   </data>

@@ -96,7 +96,7 @@
                             IsToggled="{Binding RecurrenceViewModel.IsEndless}" />
                 </Grid>
 
-                <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Translations.EnddateLabel}"
+                <controls:CustomDatePicker DatePickerTitle="{x:Static resources:Translations.EndDateLabel}"
                                            DateField="{Binding RecurrenceViewModel.EndDate}"
                                            IsVisible="{Binding RecurrenceViewModel.IsEndless, Converter={StaticResource Inverter}}" />
 

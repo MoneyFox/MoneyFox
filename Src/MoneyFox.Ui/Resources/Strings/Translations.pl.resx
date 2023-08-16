@@ -380,9 +380,6 @@
     <data name="EmailLabel" xml:space="preserve">
     <value>Adres e-mail</value>
   </data>
-    <data name="EnddateLabel" xml:space="preserve">
-    <value>Data zakończenia</value>
-  </data>
     <data name="EndlessLabel" xml:space="preserve">
     <value>Nieskończony</value>
   </data>

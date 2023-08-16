@@ -380,9 +380,6 @@
     <data name="EmailLabel" xml:space="preserve">
     <value>Sähköposti</value>
   </data>
-    <data name="EnddateLabel" xml:space="preserve">
-    <value>Loppu Päivämäärä</value>
-  </data>
     <data name="EndlessLabel" xml:space="preserve">
     <value>On loputon</value>
   </data>
