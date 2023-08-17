@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
              xmlns:about="clr-namespace:MoneyFox.Ui.Views.About"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
              x:DataType="about:AboutViewModel"
              Title="{x:Static resources:Translations.AboutTitle}">
 
@@ -15,7 +17,8 @@
                 </HorizontalStackLayout>
 
                 <Button
-                    Command="{Binding GoToWebsiteCommand}"
+                    Command="{Binding OpenUrlCommand}"
+                    CommandParameter="https://www.apply-solutions.ch" 
                     Text="{x:Static resources:Translations.WebsiteLabel}" />
 
                 <Button
@@ -32,18 +35,54 @@
 
                 <Label Text="{x:Static resources:Translations.TranslationLabel}" />
                 <Button Style="{StaticResource LinkButton}"
-                        Command="{Binding GoToTranslationProjectCommand}"
+                        Command="{Binding OpenUrlCommand}"
+                        CommandParameter="https://crowdin.com/project/money-fox"
                         Text="www.crowdin.com" />
 
                 <Label Text="{x:Static resources:Translations.InfoOpenSource}" />
                 <Button Style="{StaticResource LinkButton}"
-                        Command="{Binding GoToRepositoryCommand}"
+                        Command="{Binding OpenUrlCommand}"
+                        CommandParameter="https://github.com/MoneyFox/MoneyFox" 
                         Text="www.github.com" />
 
                 <Label Text="{x:Static resources:Translations.ContributerLabel}" />
                 <Button Style="{StaticResource LinkButton}"
-                        Command="{Binding GoToContributionPageCommand}"
+                        Command="{Binding OpenUrlCommand}"
+                        CommandParameter="https://github.com/MoneyFox/MoneyFox/graphs/contributors"
                         Text="GitHub Contribution" />
+                
+                <toolkit:Expander>
+                    <toolkit:Expander.Header>
+                        <Grid>
+                            <Label Text="{x:Static resources:Translations.LicensesHeader}"
+                                   FontAttributes="Bold"
+                                   FontSize="Medium" />
+                        </Grid>
+                    </toolkit:Expander.Header>
+
+                    <VerticalStackLayout Spacing="6" BindableLayout.ItemsSource="{Binding Licenses}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="about:LicenseViewModel">
+                                <Label>
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                            Command="{Binding OpenUrlCommand, Source={RelativeSource AncestorType={x:Type about:AboutViewModel}}}"
+                                            CommandParameter="{Binding ProjectUrl}" 
+                                        />
+                                    </Label.GestureRecognizers>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <controls:HyperlinkSpan Text="{Binding Name}"
+                                                                    Url="{Binding ProjectUrl}" />
+                                            <Span Text=" " />
+                                            <Span Text="{Binding License}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </VerticalStackLayout>
+                </toolkit:Expander>
             </VerticalStackLayout>
         </ScrollView>
     </ContentPage.Content>

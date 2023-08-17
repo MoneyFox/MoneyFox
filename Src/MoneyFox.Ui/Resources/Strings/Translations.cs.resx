@@ -944,4 +944,16 @@ Tuto měnu můžete změnit pozdě v nastavení.</value>
   <data name="DateRangeInvalidMessage" xml:space="preserve">
         <value>Datum zahájení musí být před datem ukončení.</value>
     </data>
+  <data name="TotalRevenueTemplate" xml:space="preserve">
+        <value>Celkové příjmy: {0}</value>
+    </data>
+  <data name="TotalExpenseTemplate" xml:space="preserve">
+        <value>Celkové výdaje: {0}</value>
+    </data>
+  <data name="AllAccounts" xml:space="preserve">
+        <value>Všechny účty</value>
+    </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>Licence</value>
+    </data>
 </root>

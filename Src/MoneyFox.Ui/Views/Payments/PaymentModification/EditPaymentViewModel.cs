@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
-using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using Controls.AccountPicker;
 using Controls.CategorySelection;
@@ -15,13 +14,11 @@ using Resources.Strings;
 internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
 {
     private readonly IDialogService dialogService;
-    private readonly IMapper mapper;
     private readonly IMediator mediator;
     private readonly ISettingsFacade settingsFacade;
 
     public EditPaymentViewModel(
         IMediator mediator,
-        IMapper mapper,
         IDialogService dialogService,
         IToastService toastService,
         ISettingsFacade settingsFacade,
@@ -33,7 +30,6 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
         settingsFacade: settingsFacade)
     {
         this.mediator = mediator;
-        this.mapper = mapper;
         this.dialogService = dialogService;
         this.settingsFacade = settingsFacade;
     }
@@ -60,7 +56,21 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
 
         await InitializeAsync();
         var payment = await mediator.Send(new GetPaymentByIdQuery(paymentId));
-        var recurringPaymentViewModel = mapper.Map<RecurringPaymentViewModel>(payment.RecurringPayment);
+        if (payment is { IsRecurring: true, RecurringPayment: not null })
+        {
+            RecurrenceViewModel.Recurrence = payment.RecurringPayment.Recurrence;
+            RecurrenceViewModel.StartDate = payment.RecurringPayment.StartDate;
+            RecurrenceViewModel.EndDate = payment.RecurringPayment.EndDate;
+            RecurrenceViewModel.IsEndless = payment.RecurringPayment.IsEndless;
+        }
+
+        var targetAccountPickerViewModel = payment.TargetAccount == null
+            ? null
+            : new AccountPickerViewModel(
+                Id: payment.TargetAccount.Id,
+                Name: payment.TargetAccount.Name,
+                CurrentBalance: new(amount: payment.TargetAccount.CurrentBalance, currencyAlphaIsoCode: settingsFacade.DefaultCurrency));
+
         SelectedPayment = new()
         {
             Id = payment.Id,
@@ -70,17 +80,11 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
                     Id: payment.ChargedAccount.Id,
                     Name: payment.ChargedAccount.Name,
                     CurrentBalance: new(amount: payment.ChargedAccount.CurrentBalance, currencyAlphaIsoCode: settingsFacade.DefaultCurrency)),
-            TargetAccount = payment.TargetAccount == null
-                ? null
-                : new AccountPickerViewModel(
-                    Id: payment.TargetAccount.Id,
-                    Name: payment.TargetAccount.Name,
-                    CurrentBalance: new(amount: payment.TargetAccount.CurrentBalance, currencyAlphaIsoCode: settingsFacade.DefaultCurrency)),
+            TargetAccount = targetAccountPickerViewModel,
             Date = payment.Date,
             IsCleared = payment.IsCleared,
             Type = payment.Type,
             IsRecurring = payment.IsRecurring,
-            RecurringPayment = recurringPaymentViewModel,
             Note = payment.Note,
             Created = payment.Created,
             LastModified = payment.LastModified
@@ -121,10 +125,10 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
             ChargedAccountId: SelectedPayment.ChargedAccount?.Id ?? 0,
             TargetAccountId: SelectedPayment.TargetAccount?.Id ?? 0,
             UpdateRecurringPayment: updateRecurring,
-            Recurrence: SelectedPayment.RecurringPayment?.Recurrence,
-            IsEndless: SelectedPayment.RecurringPayment?.IsEndless,
-            EndDate: SelectedPayment.RecurringPayment?.EndDate,
-            IsLastDayOfMonth: SelectedPayment.RecurringPayment?.IsLastDayOfMonth ?? false);
+            Recurrence: RecurrenceViewModel.Recurrence,
+            IsEndless: RecurrenceViewModel.IsEndless,
+            EndDate: RecurrenceViewModel.EndDate,
+            IsLastDayOfMonth: RecurrenceViewModel.IsLastDayOfMonth);
 
         await mediator.Send(command);
     }
