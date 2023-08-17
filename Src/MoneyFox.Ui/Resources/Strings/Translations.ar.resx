@@ -380,7 +380,7 @@
     <value>البريد الإلكتروني</value>
   </data>
   <data name="EndDateLabel" xml:space="preserve">
-    <value>End Date</value>
+    <value>تاريخ الانتهاء</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
     <value>لا نهائي</value>
