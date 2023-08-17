@@ -380,7 +380,7 @@
     <value>E-mailová adresa</value>
   </data>
   <data name="EndDateLabel" xml:space="preserve">
-    <value>End Date</value>
+    <value>Datum ukončení</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
     <value>Je nekonečné</value>
