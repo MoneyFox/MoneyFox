@@ -9,7 +9,6 @@ using Core.Features._Legacy_.Payments.CreateRecurringPayments;
 using Core.Features.DbBackup;
 using Domain.Exceptions;
 using Infrastructure.Adapters;
-using InversionOfControl;
 using MediatR;
 using Messages;
 using Serilog;
@@ -20,21 +19,19 @@ public partial class App
 {
     private bool isRunning;
 
-    public App()
+    public App(IServiceProvider serviceProvider)
     {
+        ServiceProvider = serviceProvider;
         var settingsAdapter = new SettingsAdapter();
         var settingsFacade = new SettingsFacade(settingsAdapter);
         InitializeComponent();
-        SetupServices();
         FillResourceDictionary();
         MainPage = settingsFacade.IsSetupCompleted ? GetAppShellPage() : new SetupShell();
     }
 
     public static Dictionary<string, ResourceDictionary> ResourceDictionary { get; } = new();
 
-    public static Action<IServiceCollection>? AddPlatformServicesAction { get; set; }
-
-    private static IServiceProvider? ServiceProvider { get; set; }
+    private static IServiceProvider ServiceProvider { get; set; }
 
     public static Page GetAppShellPage()
     {
@@ -54,7 +51,7 @@ public partial class App
 
     internal static TViewModel GetViewModel<TViewModel>() where TViewModel : BasePageViewModel
     {
-        return ServiceProvider?.GetService<TViewModel>() ?? throw new ResolveViewModelException<TViewModel>();
+        return ServiceProvider.GetService<TViewModel>() ?? throw new ResolveViewModelException<TViewModel>();
     }
 
     protected override void OnStart()
@@ -67,15 +64,6 @@ public partial class App
         StartupTasksAsync().ConfigureAwait(false);
     }
 
-    private static void SetupServices()
-    {
-        var services = new ServiceCollection();
-        AddPlatformServicesAction?.Invoke(services);
-        new MoneyFoxConfig().Register(services);
-        ServiceProvider = services.BuildServiceProvider();
-        ServiceProvider.GetService<IAppDbContext>()?.MigrateDb();
-    }
-
     private async Task StartupTasksAsync()
     {
         // Don't execute this again when already running
@@ -84,12 +72,8 @@ public partial class App
             return;
         }
 
-        if (ServiceProvider == null)
-        {
-            return;
-        }
-
         isRunning = true;
+        ServiceProvider.GetService<IAppDbContext>()?.MigrateDb();
         var settingsFacade = ServiceProvider.GetService<ISettingsFacade>() ?? throw new ResolveDependencyException<ISettingsFacade>();
         var mediator = ServiceProvider.GetService<IMediator>() ?? throw new ResolveDependencyException<IMediator>();
         try

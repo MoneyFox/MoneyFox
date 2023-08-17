@@ -21,7 +21,7 @@ public class MainApplication : MauiApplication
 
     protected override MauiApp CreateMauiApp()
     {
-        App.AddPlatformServicesAction = AddServices;
+        MauiProgram.AddPlatformServicesAction = AddServices;
 
         return MauiProgram.CreateMauiApp();
     }

@@ -4,6 +4,8 @@ using System.Reflection;
 using CommunityToolkit.Maui;
 using Controls;
 using Core.Common;
+using Core.Common.Interfaces;
+using InversionOfControl;
 using JetBrains.Annotations;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
@@ -36,7 +38,8 @@ public static class MauiProgram
                 })
             .AddCustomAppShellHandler()
             .UseSkiaSharp(true)
-            .UseMauiCommunityToolkit();
+            .UseMauiCommunityToolkit()
+            .AddMoneyFoxService();
 
         EntryHandler.Mapper.AppendToMapping(
             key: "Borderless",
@@ -60,6 +63,16 @@ public static class MauiProgram
         PickerHandler.Mapper.Add(nameof(View.HorizontalOptions), MapHorizontalOptions);
 #endif
         return builder.Build();
+    }
+
+    public static Action<IServiceCollection>? AddPlatformServicesAction { get; set; }
+
+    private static MauiAppBuilder AddMoneyFoxService(this MauiAppBuilder builder)
+    {
+        AddPlatformServicesAction?.Invoke(builder.Services);
+        new MoneyFoxConfig().Register(builder.Services);
+
+        return builder;
     }
 
     private static MauiAppBuilder AddCustomAppShellHandler(this MauiAppBuilder builder)
