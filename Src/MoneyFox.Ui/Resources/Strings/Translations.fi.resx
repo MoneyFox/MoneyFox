@@ -380,7 +380,7 @@
     <value>Sähköposti</value>
   </data>
   <data name="EndDateLabel" xml:space="preserve">
-    <value>End Date</value>
+    <value>Loppupäivä</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
     <value>On loputon</value>
