@@ -380,7 +380,7 @@
     <value>电子邮件</value>
   </data>
   <data name="EndDateLabel" xml:space="preserve">
-    <value>End Date</value>
+    <value>结束日期</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
     <value>无期限</value>
