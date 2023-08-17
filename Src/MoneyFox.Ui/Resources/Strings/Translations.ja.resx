@@ -380,7 +380,7 @@
     <value>Eメールアドレス</value>
   </data>
   <data name="EndDateLabel" xml:space="preserve">
-    <value>End Date</value>
+    <value>終了日</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
     <value>無限大です</value>
