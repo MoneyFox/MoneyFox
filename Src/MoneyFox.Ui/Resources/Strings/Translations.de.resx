@@ -380,7 +380,7 @@
     <value>Email</value>
   </data>
   <data name="EndDateLabel" xml:space="preserve">
-    <value>End Date</value>
+    <value>Enddatum</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
     <value>Ohne Endtermin</value>
