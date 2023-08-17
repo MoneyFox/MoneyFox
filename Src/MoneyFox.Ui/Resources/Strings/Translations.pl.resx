@@ -380,7 +380,7 @@
     <value>Adres e-mail</value>
   </data>
   <data name="EndDateLabel" xml:space="preserve">
-    <value>End Date</value>
+    <value>Data zakończenia</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
     <value>Nieskończony</value>
