@@ -20,7 +20,7 @@ public class LoggingPreProcessor<TRequest> : IRequestPreProcessor<TRequest>
     public Task Process(TRequest request, CancellationToken cancellationToken)
     {
         var requestName = typeof(TRequest).FullName;
-        Log.Information(messageTemplate: "MoneyFox Request: {requestName} \tRequestData{@request} ", propertyValue0: requestName, propertyValue1: request);
+        Log.Information(messageTemplate: "MoneyFox Request: {RequestName} \tRequestData{@Request} ", propertyValue0: requestName, propertyValue1: request);
         aptabaseClient.TrackEvent(requestName ?? "unknown_action");
 
         return Task.CompletedTask;
