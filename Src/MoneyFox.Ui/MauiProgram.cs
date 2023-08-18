@@ -4,7 +4,6 @@ using System.Reflection;
 using CommunityToolkit.Maui;
 using Controls;
 using Core.Common;
-using Core.Common.Interfaces;
 using InversionOfControl;
 using JetBrains.Annotations;
 using Microsoft.AppCenter;
@@ -67,12 +66,10 @@ public static class MauiProgram
 
     public static Action<IServiceCollection>? AddPlatformServicesAction { get; set; }
 
-    private static MauiAppBuilder AddMoneyFoxService(this MauiAppBuilder builder)
+    private static void AddMoneyFoxService(this MauiAppBuilder builder)
     {
         AddPlatformServicesAction?.Invoke(builder.Services);
         new MoneyFoxConfig().Register(builder.Services);
-
-        return builder;
     }
 
     private static MauiAppBuilder AddCustomAppShellHandler(this MauiAppBuilder builder)
