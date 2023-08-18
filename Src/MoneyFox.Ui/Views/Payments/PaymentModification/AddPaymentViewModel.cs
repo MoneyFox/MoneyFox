@@ -1,5 +1,6 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
+using Aptabase.Maui;
 using Controls.CategorySelection;
 using Core.Common.Extensions;
 using Core.Common.Interfaces;
@@ -22,12 +23,14 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
         IDialogService dialogService,
         IToastService toastService,
         ISettingsFacade settingsFacade,
-        CategorySelectionViewModel categorySelectionViewModel) : base(
+        CategorySelectionViewModel categorySelectionViewModel,
+        IAptabaseClient aptabaseClient) : base(
         mediator: mediator,
         dialogService: dialogService,
         toastService: toastService,
         categorySelectionViewModel: categorySelectionViewModel,
-        settingsFacade: settingsFacade)
+        settingsFacade: settingsFacade,
+        aptabaseClient: aptabaseClient)
     {
         this.mediator = mediator;
         this.dialogService = dialogService;

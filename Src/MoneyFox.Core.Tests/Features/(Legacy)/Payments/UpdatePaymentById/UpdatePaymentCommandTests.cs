@@ -16,7 +16,10 @@ public class UpdatePaymentCommandTests : InMemoryTestBase
     {
         var sender = Substitute.For<ISender>();
         var settings = Substitute.For<ISettingsFacade>();
-        handler = new(appDbContext: Context, sender: sender, settings: settings);
+        handler = new(
+            appDbContext: Context,
+            sender: sender,
+            settings: settings);
     }
 
     [Fact]

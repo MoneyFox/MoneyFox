@@ -1,5 +1,6 @@
 namespace MoneyFox.Ui;
 
+using Aptabase.Maui;
 using Common.Exceptions;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;
@@ -11,8 +12,6 @@ using Core.Features.TransactionRecurrence;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.RecurringTransactionAggregate;
 using Domain.Exceptions;
-using Infrastructure.Adapters;
-using InversionOfControl;
 using MediatR;
 using Messages;
 using Microsoft.EntityFrameworkCore;
@@ -22,23 +21,35 @@ using Views.Setup;
 
 public partial class App
 {
+    private readonly IAppDbContext appDbContext;
+    private readonly IBackupService backupService;
+    private readonly IMediator mediator;
+    private readonly ISettingsFacade settingsFacade;
+    private readonly IAptabaseClient aptabaseClient;
     private bool isRunning;
 
-    public App()
+    public App(
+        IServiceProvider serviceProvider,
+        IAppDbContext appDbContext,
+        IMediator mediator,
+        ISettingsFacade settingsFacade,
+        IBackupService backupService,
+        IAptabaseClient aptabaseClient)
     {
-        var settingsAdapter = new SettingsAdapter();
-        var settingsFacade = new SettingsFacade(settingsAdapter);
+        this.appDbContext = appDbContext;
+        this.mediator = mediator;
+        this.settingsFacade = settingsFacade;
+        this.backupService = backupService;
+        this.aptabaseClient = aptabaseClient;
+        ServiceProvider = serviceProvider;
         InitializeComponent();
-        SetupServices();
         FillResourceDictionary();
         MainPage = settingsFacade.IsSetupCompleted ? GetAppShellPage() : new SetupShell();
     }
 
     public static Dictionary<string, ResourceDictionary> ResourceDictionary { get; } = new();
 
-    public static Action<IServiceCollection>? AddPlatformServicesAction { get; set; }
-
-    private static IServiceProvider? ServiceProvider { get; set; }
+    private static IServiceProvider ServiceProvider { get; set; }
 
     public static Page GetAppShellPage()
     {
@@ -58,63 +69,18 @@ public partial class App
 
     internal static TViewModel GetViewModel<TViewModel>() where TViewModel : BasePageViewModel
     {
-        return ServiceProvider?.GetService<TViewModel>() ?? throw new ResolveViewModelException<TViewModel>();
+        return ServiceProvider.GetService<TViewModel>() ?? throw new ResolveViewModelException<TViewModel>();
     }
 
     protected override void OnStart()
     {
+        aptabaseClient.TrackEvent("app_start");
         StartupTasksAsync().ConfigureAwait(false);
     }
 
     protected override void OnResume()
     {
         StartupTasksAsync().ConfigureAwait(false);
-    }
-
-    private static void SetupServices()
-    {
-        var services = new ServiceCollection();
-        AddPlatformServicesAction?.Invoke(services);
-        new MoneyFoxConfig().Register(services);
-        ServiceProvider = services.BuildServiceProvider();
-        var appDbContext = ServiceProvider.GetService<IAppDbContext>();
-        appDbContext!.MigrateDb();
-        var settings = ServiceProvider.GetService<ISettingsFacade>();
-
-        // Migrate RecurringTransaction
-        if (settings!.RecurringTransactionMigrated is false)
-        {
-            foreach (var recurringPayment in appDbContext.RecurringPayments.Include(rp => rp.Category)
-                         .Include(rp => rp.ChargedAccount)
-                         .Include(rp => rp.TargetAccount)
-                         .Include(rp => rp.RelatedPayments))
-            {
-                var recurringTransactionId = Guid.NewGuid();
-                var amount = recurringPayment.Type == PaymentType.Expense ? -recurringPayment.Amount : recurringPayment.Amount;
-                var recurringTransaction = RecurringTransaction.Create(
-                    recurringTransactionId: recurringTransactionId,
-                    chargedAccount: recurringPayment.ChargedAccount.Id,
-                    targetAccount: recurringPayment.TargetAccount?.Id,
-                    amount: new(amount: amount, currencyAlphaIsoCode: settings!.DefaultCurrency),
-                    categoryId: recurringPayment.Category?.Id,
-                    startDate: recurringPayment.StartDate.ToDateOnly(),
-                    endDate: recurringPayment.EndDate.HasValue ? DateOnly.FromDateTime(recurringPayment.EndDate.Value) : null,
-                    recurrence: recurringPayment.Recurrence.ToRecurrence(),
-                    note: recurringPayment.Note,
-                    isLastDayOfMonth: recurringPayment.IsLastDayOfMonth,
-                    isTransfer: recurringPayment.Type == PaymentType.Transfer);
-
-                foreach (var payment in recurringPayment.RelatedPayments)
-                {
-                    payment.AddRecurringTransaction(recurringTransactionId);
-                }
-
-                appDbContext.Add(recurringTransaction);
-            }
-
-            appDbContext.SaveChangesAsync().Wait();
-            settings.RecurringTransactionMigrated = true;
-        }
     }
 
     private async Task StartupTasksAsync()
@@ -125,19 +91,12 @@ public partial class App
             return;
         }
 
-        if (ServiceProvider == null)
-        {
-            return;
-        }
-
         isRunning = true;
-        var settingsFacade = ServiceProvider.GetService<ISettingsFacade>() ?? throw new ResolveDependencyException<ISettingsFacade>();
-        var mediator = ServiceProvider.GetService<IMediator>() ?? throw new ResolveDependencyException<IMediator>();
+        appDbContext.MigrateDb();
         try
         {
             if (settingsFacade is { IsBackupAutoUploadEnabled: true, IsLoggedInToBackupService: true })
             {
-                var backupService = ServiceProvider.GetService<IBackupService>() ?? throw new ResolveDependencyException<IBackupService>();
                 await backupService.RestoreBackupAsync();
                 WeakReferenceMessenger.Default.Send(new BackupRestoredMessage());
             }
@@ -156,6 +115,7 @@ public partial class App
             await mediator.Send(new ClearPaymentsCommand());
             await mediator.Send(new CheckTransactionRecurrence.Command());
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
+            MigrateRecurringTransactions();
         }
         catch (Exception ex)
         {
@@ -164,6 +124,44 @@ public partial class App
         finally
         {
             isRunning = false;
+        }
+    }
+
+    private void MigrateRecurringTransactions()
+    {
+        // Migrate RecurringTransaction
+        if (settingsFacade.RecurringTransactionMigrated is false)
+        {
+            foreach (var recurringPayment in appDbContext.RecurringPayments.Include(rp => rp.Category)
+                         .Include(rp => rp.ChargedAccount)
+                         .Include(rp => rp.TargetAccount)
+                         .Include(rp => rp.RelatedPayments))
+            {
+                var recurringTransactionId = Guid.NewGuid();
+                var amount = recurringPayment.Type == PaymentType.Expense ? -recurringPayment.Amount : recurringPayment.Amount;
+                var recurringTransaction = RecurringTransaction.Create(
+                    recurringTransactionId: recurringTransactionId,
+                    chargedAccount: recurringPayment.ChargedAccount.Id,
+                    targetAccount: recurringPayment.TargetAccount?.Id,
+                    amount: new(amount: amount, currencyAlphaIsoCode: settingsFacade!.DefaultCurrency),
+                    categoryId: recurringPayment.Category?.Id,
+                    startDate: recurringPayment.StartDate.ToDateOnly(),
+                    endDate: recurringPayment.EndDate.HasValue ? DateOnly.FromDateTime(recurringPayment.EndDate.Value) : null,
+                    recurrence: recurringPayment.Recurrence.ToRecurrence(),
+                    note: recurringPayment.Note,
+                    isLastDayOfMonth: recurringPayment.IsLastDayOfMonth,
+                    isTransfer: recurringPayment.Type == PaymentType.Transfer);
+
+                foreach (var payment in recurringPayment.RelatedPayments)
+                {
+                    payment.AddRecurringTransaction(recurringTransactionId);
+                }
+
+                appDbContext.Add(recurringTransaction);
+            }
+
+            appDbContext.SaveChangesAsync().Wait();
+            settingsFacade.RecurringTransactionMigrated = true;
         }
     }
 }
