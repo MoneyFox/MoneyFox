@@ -11,7 +11,7 @@ using Domain.Aggregates.CategoryAggregate;
 public class PaymentListItemViewModel : ObservableObject, IHaveCustomMapping
 {
     private decimal amount;
-    private SelectedCategoryViewModel? categoryViewModel;
+    private string? categoryName;
     private int chargedAccountId;
     private int currentAccountId;
     private DateTime date;
@@ -104,12 +104,12 @@ public class PaymentListItemViewModel : ObservableObject, IHaveCustomMapping
     }
 
     /// <summary>
-    ///     The <see cref="Category" /> for this payment
+    ///     The <see cref="CategoryName" /> for this payment
     /// </summary>
-    public SelectedCategoryViewModel? Category
+    public string? CategoryName
     {
-        get => categoryViewModel;
-        set => SetProperty(field: ref categoryViewModel, newValue: value);
+        get => categoryName;
+        set => SetProperty(field: ref categoryName, newValue: value);
     }
 
     /// <summary>

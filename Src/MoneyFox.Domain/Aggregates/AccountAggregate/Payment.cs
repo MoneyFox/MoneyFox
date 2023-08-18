@@ -18,21 +18,19 @@ public class Payment : EntityBase
         Account? targetAccount = null,
         Category? category = null,
         string? note = "",
-        RecurringPayment? recurringPayment = null)
+        Guid? recurringTransactionId = null)
     {
-        AssignValues(
-            date: date,
-            amount: amount,
-            type: type,
-            chargedAccount: chargedAccount,
-            targetAccount: targetAccount,
-            category: category,
-            note: note);
-
+        Date = date;
+        Amount = amount;
+        Type = type;
+        Note = note;
+        ChargedAccount = chargedAccount ?? throw new AccountNullException();
+        TargetAccount = type == PaymentType.Transfer ? targetAccount : null;
+        Category = category;
+        RecurringTransactionId = recurringTransactionId;
         ClearPayment();
-        if (recurringPayment != null)
+        if (RecurringTransactionId.HasValue)
         {
-            RecurringPayment = recurringPayment;
             IsRecurring = true;
         }
     }
@@ -71,7 +69,9 @@ public class Payment : EntityBase
 
     public virtual Account? TargetAccount { get; private set; }
 
-    public virtual RecurringPayment? RecurringPayment { get; private set; }
+    public virtual RecurringPayment? RecurringPayment { get; }
+
+    public Guid? RecurringTransactionId { get; private set; }
 
     public void UpdatePayment(
         DateTime date,
@@ -89,27 +89,6 @@ public class Payment : EntityBase
 
         ChargedAccount.RemovePaymentAmount(this);
         TargetAccount?.RemovePaymentAmount(this);
-        AssignValues(
-            date: date,
-            amount: amount,
-            type: type,
-            chargedAccount: chargedAccount,
-            targetAccount: targetAccount,
-            category: category,
-            note: note);
-
-        ClearPayment();
-    }
-
-    private void AssignValues(
-        DateTime date,
-        decimal amount,
-        PaymentType type,
-        Account chargedAccount,
-        Account? targetAccount,
-        Category? category,
-        string? note)
-    {
         Date = date;
         Amount = amount;
         Type = type;
@@ -117,30 +96,13 @@ public class Payment : EntityBase
         ChargedAccount = chargedAccount ?? throw new AccountNullException();
         TargetAccount = type == PaymentType.Transfer ? targetAccount : null;
         Category = category;
+        ClearPayment();
     }
 
-    public void AddRecurringPayment(PaymentRecurrence recurrence, bool isLastDayOfMonth = false, DateTime? endDate = null)
+    public void AddRecurringTransaction(Guid recurringTransactionId)
     {
-        RecurringPayment = new(
-            startDate: Date,
-            amount: Amount,
-            type: Type,
-            recurrence: recurrence,
-            chargedAccount: ChargedAccount,
-            isLastDayOfMonth: isLastDayOfMonth,
-            note: Note ?? "",
-            endDate: endDate,
-            targetAccount: TargetAccount,
-            category: Category,
-            lastRecurrenceCreated: Date);
-
+        RecurringTransactionId = recurringTransactionId;
         IsRecurring = true;
-    }
-
-    public void RemoveRecurringPayment()
-    {
-        RecurringPayment = null;
-        IsRecurring = false;
     }
 
     public void ClearPayment()

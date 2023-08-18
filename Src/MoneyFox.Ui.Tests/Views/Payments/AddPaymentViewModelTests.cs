@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui.Tests.Views.Payments;
 
-using AutoMapper;
 using Core.Common.Interfaces;
 using Core.Common.Settings;
 using Domain;
@@ -20,7 +19,6 @@ public sealed class AddPaymentViewModelTests
         var mediator = Substitute.For<IMediator>();
         var vm = new AddPaymentViewModel(
             mediator: mediator,
-            mapper: Substitute.For<IMapper>(),
             dialogService: dialogService,
             toastService: toastService,
             settingsFacade: Substitute.For<ISettingsFacade>(),
