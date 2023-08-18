@@ -1,5 +1,6 @@
 namespace MoneyFox.Ui.Tests;
 
+using Aptabase.Maui;
 using Core.Common.Settings;
 using Core.Interfaces;
 using InversionOfControl;
@@ -22,6 +23,7 @@ public sealed class ServiceCollectionTests
 
         // Add a substitute here, since default is not supported in test
         serviceCollection.AddSingleton(Substitute.For<ISettingsFacade>());
+        serviceCollection.AddSingleton(Substitute.For<IAptabaseClient>());
 
         // Assert
         List<InvalidOperationException> exceptions = new();

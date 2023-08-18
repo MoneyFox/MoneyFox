@@ -1,6 +1,6 @@
 namespace MoneyFox.Ui.Tests.Views.Payments;
 
-using AutoMapper;
+using Aptabase.Maui;
 using Core.Common.Interfaces;
 using Core.Common.Settings;
 using Domain;
@@ -20,11 +20,11 @@ public sealed class AddPaymentViewModelTests
         var mediator = Substitute.For<IMediator>();
         var vm = new AddPaymentViewModel(
             mediator: mediator,
-            mapper: Substitute.For<IMapper>(),
             dialogService: dialogService,
             toastService: toastService,
             settingsFacade: Substitute.For<ISettingsFacade>(),
-            categorySelectionViewModel: new(navigationService: Substitute.For<INavigationService>()))
+            categorySelectionViewModel: new(navigationService: Substitute.For<INavigationService>()),
+            aptabaseClient: Substitute.For<IAptabaseClient>())
         {
             SelectedPayment = new() { ChargedAccount = new(Id: 1, Name: "", CurrentBalance: Money.Zero("CHF")) }
         };

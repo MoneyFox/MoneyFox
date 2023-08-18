@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Aptabase.Maui;
 using Common.Interfaces;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Exceptions;
@@ -32,10 +33,12 @@ public static class UpdatePayment
     public class Handler : IRequestHandler<Command>
     {
         private readonly IAppDbContext appDbContext;
+        private readonly IAptabaseClient aptabaseClient;
 
-        public Handler(IAppDbContext appDbContext)
+        public Handler(IAppDbContext appDbContext, IAptabaseClient aptabaseClient)
         {
             this.appDbContext = appDbContext;
+            this.aptabaseClient = aptabaseClient;
         }
 
         public async Task Handle(Command command, CancellationToken cancellationToken)
@@ -74,7 +77,8 @@ public static class UpdatePayment
                 linkedPayments.ForEach(x => x.RemoveRecurringPayment());
             }
 
-            _ = await appDbContext.SaveChangesAsync(cancellationToken);
+            await appDbContext.SaveChangesAsync(cancellationToken);
+            aptabaseClient.TrackEvent("payment_updated");
         }
 
         private static void HandleRecurringPayment(Command request, Payment existingPayment)

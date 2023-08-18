@@ -2,6 +2,7 @@ namespace MoneyFox.Core.Features._Legacy_.Payments.CreatePayment;
 
 using System.Threading;
 using System.Threading.Tasks;
+using Aptabase.Maui;
 using Common.Interfaces;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Exceptions;
@@ -21,10 +22,12 @@ public class CreatePaymentCommand : IRequest
     public class Handler : IRequestHandler<CreatePaymentCommand>
     {
         private readonly IAppDbContext appDbContext;
+        private readonly IAptabaseClient aptabaseClient;
 
-        public Handler(IAppDbContext appDbContext)
+        public Handler(IAppDbContext appDbContext, IAptabaseClient aptabaseClient)
         {
             this.appDbContext = appDbContext;
+            this.aptabaseClient = aptabaseClient;
         }
 
         /// <inheritdoc />
@@ -52,7 +55,8 @@ public class CreatePaymentCommand : IRequest
                 appDbContext.Entry(request.PaymentToSave.RecurringPayment).State = EntityState.Added;
             }
 
-            _ = await appDbContext.SaveChangesAsync(cancellationToken);
+            await appDbContext.SaveChangesAsync(cancellationToken);
+            aptabaseClient.TrackEvent("payment_created");
         }
     }
 }

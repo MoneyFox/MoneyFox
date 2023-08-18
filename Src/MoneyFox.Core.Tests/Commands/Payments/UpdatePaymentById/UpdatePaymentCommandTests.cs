@@ -1,11 +1,13 @@
 namespace MoneyFox.Core.Tests.Commands.Payments.UpdatePaymentById;
 
+using Aptabase.Maui;
 using Core.Features._Legacy_.Payments.CreateRecurringPayments;
 using Core.Features._Legacy_.Payments.UpdatePayment;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.CategoryAggregate;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
+using NSubstitute;
 
 public class UpdatePaymentCommandTests : InMemoryTestBase
 {
@@ -13,7 +15,7 @@ public class UpdatePaymentCommandTests : InMemoryTestBase
 
     public UpdatePaymentCommandTests()
     {
-        handler = new(Context);
+        handler = new(Context, aptabaseClient: Substitute.For<IAptabaseClient>());
     }
 
     [Fact]

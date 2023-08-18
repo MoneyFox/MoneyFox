@@ -1,5 +1,6 @@
 namespace MoneyFox.Ui.Tests.Views.Payments;
 
+using Aptabase.Maui;
 using Core.Common.Interfaces;
 using Core.Common.Settings;
 using Core.Queries;
@@ -32,7 +33,8 @@ public sealed class EditPaymentViewModelTests
             dialogService: dialogService,
             toastService: toastService,
             settingsFacade: settingsFacade,
-            categorySelectionViewModel: new(navigationService: Substitute.For<INavigationService>()));
+            categorySelectionViewModel: new(navigationService: Substitute.For<INavigationService>()),
+            aptabaseClient: Substitute.For<IAptabaseClient>());
 
         dialogService.ShowConfirmMessageAsync(title: Arg.Any<string>(), message: Arg.Any<string>()).Returns(true);
 
@@ -55,7 +57,8 @@ public sealed class EditPaymentViewModelTests
             dialogService: dialogService,
             toastService: toastService,
             settingsFacade: Substitute.For<ISettingsFacade>(),
-            categorySelectionViewModel: new(navigationService: Substitute.For<INavigationService>()))
+            categorySelectionViewModel: new(navigationService: Substitute.For<INavigationService>()),
+            aptabaseClient: Substitute.For<IAptabaseClient>())
         {
             SelectedPayment = new() { ChargedAccount = new(Id: 1, Name: "", CurrentBalance: Money.Zero("CHF")) }
         };
