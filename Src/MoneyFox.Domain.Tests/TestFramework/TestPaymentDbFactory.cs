@@ -10,8 +10,6 @@ internal static class TestPaymentDbFactory
         var dbTargetAccount = payment.TargetAccount?.CreateDbAccount();
         var dbCategory = payment.Category?.CreateDbCategory();
 
-        //TODO Handle RecurringPayment better
-
         return new(
             date: payment.Date,
             amount: payment.Amount,
@@ -19,6 +17,7 @@ internal static class TestPaymentDbFactory
             chargedAccount: dbChargedAccount,
             targetAccount: dbTargetAccount,
             category: dbCategory,
-            note: payment.Note);
+            note: payment.Note,
+            recurringTransactionId: payment.RecurringTransactionId);
     }
 }

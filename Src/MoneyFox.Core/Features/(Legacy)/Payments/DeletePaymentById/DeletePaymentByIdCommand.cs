@@ -1,6 +1,5 @@
 namespace MoneyFox.Core.Features._Legacy_.Payments.DeletePaymentById;
 
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Common.Interfaces;
@@ -15,7 +14,7 @@ public class DeletePaymentByIdCommand : IRequest
         DeleteRecurringPayment = deleteRecurringPayment;
     }
 
-    public int PaymentId { get; }
+    private int PaymentId { get; }
 
     public bool DeleteRecurringPayment { get; set; }
 
@@ -32,7 +31,6 @@ public class DeletePaymentByIdCommand : IRequest
         {
             var entityToDelete = await appDbContext.Payments.Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
-                .Include(x => x.RecurringPayment)
                 .SingleOrDefaultAsync(predicate: x => x.Id == request.PaymentId, cancellationToken: cancellationToken);
 
             if (entityToDelete == null)
@@ -42,26 +40,17 @@ public class DeletePaymentByIdCommand : IRequest
 
             entityToDelete.ChargedAccount.RemovePaymentAmount(entityToDelete);
             entityToDelete.TargetAccount?.RemovePaymentAmount(entityToDelete);
-            if (request.DeleteRecurringPayment && entityToDelete.RecurringPayment != null)
+            if (request.DeleteRecurringPayment && entityToDelete.IsRecurring)
             {
-                await DeleteRecurringPaymentAsync(entityToDelete.RecurringPayment.Id);
+                var recurringTransaction = await appDbContext.RecurringTransactions.SingleAsync(
+                    predicate: rt => rt.RecurringTransactionId == entityToDelete.RecurringTransactionId,
+                    cancellationToken: cancellationToken);
+
+                recurringTransaction.EndRecurrence();
             }
 
-            _ = appDbContext.Payments.Remove(entityToDelete);
-            _ = await appDbContext.SaveChangesAsync(cancellationToken);
-        }
-
-        private async Task DeleteRecurringPaymentAsync(int recurringPaymentId)
-        {
-            var payments = await appDbContext.Payments.Where(x => x.IsRecurring).Where(x => x.RecurringPayment!.Id == recurringPaymentId).ToListAsync();
-            payments.ForEach(x => x.RemoveRecurringPayment());
-            var recurringPayment = await appDbContext.RecurringPayments.FindAsync(recurringPaymentId);
-            if (recurringPayment is null)
-            {
-                return;
-            }
-
-            _ = appDbContext.RecurringPayments.Remove(recurringPayment);
+            appDbContext.Payments.Remove(entityToDelete);
+            await appDbContext.SaveChangesAsync(cancellationToken);
         }
     }
 }

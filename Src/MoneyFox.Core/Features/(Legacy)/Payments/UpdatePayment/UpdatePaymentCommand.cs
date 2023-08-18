@@ -1,15 +1,16 @@
 namespace MoneyFox.Core.Features._Legacy_.Payments.UpdatePayment;
 
 using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Aptabase.Maui;
+using Common.Extensions;
 using Common.Interfaces;
+using Common.Settings;
 using Domain.Aggregates.AccountAggregate;
-using Domain.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using RecurringTransactionUpdate;
 
 public static class UpdatePayment
 {
@@ -17,7 +18,6 @@ public static class UpdatePayment
         int Id,
         DateTime Date,
         decimal Amount,
-        bool IsCleared,
         PaymentType Type,
         string? Note,
         bool IsRecurring,
@@ -26,7 +26,6 @@ public static class UpdatePayment
         int TargetAccountId,
         bool UpdateRecurringPayment,
         PaymentRecurrence? Recurrence,
-        bool? IsEndless,
         DateTime? EndDate,
         bool IsLastDayOfMonth) : IRequest;
 
@@ -34,10 +33,14 @@ public static class UpdatePayment
     {
         private readonly IAppDbContext appDbContext;
         private readonly IAptabaseClient aptabaseClient;
+        private readonly ISender sender;
+        private readonly ISettingsFacade settings;
 
-        public Handler(IAppDbContext appDbContext, IAptabaseClient aptabaseClient)
+        public Handler(IAppDbContext appDbContext, ISender sender, ISettingsFacade settings, IAptabaseClient aptabaseClient)
         {
             this.appDbContext = appDbContext;
+            this.sender = sender;
+            this.settings = settings;
             this.aptabaseClient = aptabaseClient;
         }
 
@@ -46,7 +49,6 @@ public static class UpdatePayment
             var existingPayment = await appDbContext.Payments.Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
                 .Include(x => x.Category)
-                .Include(x => x.RecurringPayment)
                 .FirstAsync(predicate: x => x.Id == command.Id, cancellationToken: cancellationToken);
 
             var chargedAccount = await appDbContext.Accounts.SingleAsync(
@@ -63,50 +65,29 @@ public static class UpdatePayment
                 category: await appDbContext.Categories.FindAsync(command.CategoryId),
                 note: command.Note);
 
-            if (command is { IsRecurring: true, UpdateRecurringPayment: true, Recurrence: not null })
+            if (command is { IsRecurring: true, UpdateRecurringPayment: true })
             {
-                HandleRecurringPayment(request: command, existingPayment: existingPayment);
+                await sender.Send(
+                    request: new UpdateRecurringTransaction.Command(
+                        recurringTransactionId: existingPayment.RecurringTransactionId!.Value,
+                        updatedAmount: new(amount: command.Amount, currencyAlphaIsoCode: settings.DefaultCurrency),
+                        updatedCategoryId: command.CategoryId,
+                        updatedRecurrence: command.Recurrence!.Value.ToRecurrence(),
+                        updatedEndDate: command.EndDate.HasValue ? DateOnly.FromDateTime(command.EndDate.Value) : null,
+                        isLastDayOfMonth: command.IsLastDayOfMonth),
+                    cancellationToken: cancellationToken);
             }
-            else if (!command.IsRecurring && existingPayment.RecurringPayment != null)
+            else if (command.IsRecurring is false && existingPayment.IsRecurring)
             {
-                var linkedPayments = appDbContext.Payments.Where(x => x.IsRecurring)
-                    .Where(x => x.RecurringPayment!.Id == existingPayment.RecurringPayment!.Id)
-                    .ToList();
+                var recurringTransaction = await appDbContext.RecurringTransactions.SingleAsync(
+                    predicate: rt => rt.RecurringTransactionId == existingPayment.RecurringTransactionId,
+                    cancellationToken: cancellationToken);
 
-                _ = appDbContext.RecurringPayments.Remove(existingPayment.RecurringPayment!);
-                linkedPayments.ForEach(x => x.RemoveRecurringPayment());
+                recurringTransaction.EndRecurrence();
             }
 
             await appDbContext.SaveChangesAsync(cancellationToken);
             aptabaseClient.TrackEvent("payment_updated");
-        }
-
-        private static void HandleRecurringPayment(Command request, Payment existingPayment)
-        {
-            if (existingPayment.IsRecurring)
-            {
-                existingPayment.RecurringPayment!.UpdateRecurringPayment(
-                    amount: request.Amount,
-                    recurrence: request.Recurrence ?? existingPayment.RecurringPayment.Recurrence,
-                    chargedAccount: existingPayment.ChargedAccount,
-                    isLastDayOfMonth: request.IsLastDayOfMonth,
-                    note: request.Note,
-                    endDate: request.IsEndless.HasValue && request.IsEndless.Value ? null : request.EndDate,
-                    targetAccount: existingPayment.TargetAccount,
-                    category: existingPayment.Category);
-            }
-            else
-            {
-                if (!request.Recurrence.HasValue)
-                {
-                    throw new RecurrenceNullException(nameof(request.Recurrence));
-                }
-
-                existingPayment.AddRecurringPayment(
-                    recurrence: request.Recurrence.Value,
-                    isLastDayOfMonth: request.IsLastDayOfMonth,
-                    endDate: request.IsEndless.HasValue && request.IsEndless.Value ? null : request.EndDate);
-            }
         }
     }
 }

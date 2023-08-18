@@ -13,12 +13,12 @@
 
     <Grid RowDefinitions="Auto, 6, Auto" BindingContext="{x:Reference This}">
         <Label Grid.Row="0"
-            Margin="3,0,0,0"
-            Style="{StaticResource TextBodySecondary}"
-            Text="{Binding PickerTitle}" />
+               Margin="3,0,0,0"
+               Style="{StaticResource TextBodySecondary}"
+               Text="{Binding PickerTitle}" />
         <Grid ColumnDefinitions="*, Auto" Grid.Row="2">
 
-            <Picker 
+            <Picker
                 Grid.ColumnSpan="2"
                 Title="{OnPlatform Android={Binding PickerTitle}, iOS={Binding PickerTitle}}"
                 ItemsSource="{Binding AccountsSource}"
