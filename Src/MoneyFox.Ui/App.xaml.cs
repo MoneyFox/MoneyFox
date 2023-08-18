@@ -8,7 +8,6 @@ using Core.Features._Legacy_.Payments.ClearPayments;
 using Core.Features._Legacy_.Payments.CreateRecurringPayments;
 using Core.Features.DbBackup;
 using Domain.Exceptions;
-using Infrastructure.Adapters;
 using MediatR;
 using Messages;
 using Serilog;
@@ -17,13 +16,24 @@ using Views.Setup;
 
 public partial class App
 {
+    private readonly IAppDbContext appDbContext;
+    private readonly IBackupService backupService;
+    private readonly IMediator mediator;
+    private readonly ISettingsFacade settingsFacade;
     private bool isRunning;
 
-    public App(IServiceProvider serviceProvider)
+    public App(
+        IServiceProvider serviceProvider,
+        IAppDbContext appDbContext,
+        IMediator mediator,
+        ISettingsFacade settingsFacade,
+        IBackupService backupService)
     {
+        this.appDbContext = appDbContext;
+        this.mediator = mediator;
+        this.settingsFacade = settingsFacade;
+        this.backupService = backupService;
         ServiceProvider = serviceProvider;
-        var settingsAdapter = new SettingsAdapter();
-        var settingsFacade = new SettingsFacade(settingsAdapter);
         InitializeComponent();
         FillResourceDictionary();
         MainPage = settingsFacade.IsSetupCompleted ? GetAppShellPage() : new SetupShell();
@@ -73,14 +83,11 @@ public partial class App
         }
 
         isRunning = true;
-        ServiceProvider.GetService<IAppDbContext>()?.MigrateDb();
-        var settingsFacade = ServiceProvider.GetService<ISettingsFacade>() ?? throw new ResolveDependencyException<ISettingsFacade>();
-        var mediator = ServiceProvider.GetService<IMediator>() ?? throw new ResolveDependencyException<IMediator>();
+        appDbContext.MigrateDb();
         try
         {
             if (settingsFacade is { IsBackupAutoUploadEnabled: true, IsLoggedInToBackupService: true })
             {
-                var backupService = ServiceProvider.GetService<IBackupService>() ?? throw new ResolveDependencyException<IBackupService>();
                 await backupService.RestoreBackupAsync();
                 WeakReferenceMessenger.Default.Send(new BackupRestoredMessage());
             }
