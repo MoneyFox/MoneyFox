@@ -21,7 +21,7 @@ public class LoggingPreProcessor<TRequest> : IRequestPreProcessor<TRequest>
     {
         var requestName = typeof(TRequest).FullName;
         Log.Information(messageTemplate: "MoneyFox Request: {requestName} \tRequestData{@request} ", propertyValue0: requestName, propertyValue1: request);
-        aptabaseClient.TrackEvent(requestName);
+        aptabaseClient.TrackEvent(requestName ?? "unknown_action");
 
         return Task.CompletedTask;
     }
