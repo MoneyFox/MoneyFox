@@ -13,7 +13,7 @@ public class CreatePaymentCommandTests : InMemoryTestBase
 
     public CreatePaymentCommandTests()
     {
-        handler = new(appDbContext: Context, aptabaseClient: Substitute.For<IAptabaseClient>());
+        handler = new(appDbContext: Context);
     }
 
     [Fact]

@@ -1,6 +1,5 @@
 namespace MoneyFox.Core.Tests.Features._Legacy_.Payments.UpdatePaymentById;
 
-using Aptabase.Maui;
 using Core.Common.Settings;
 using Core.Features._Legacy_.Payments.UpdatePayment;
 using Domain.Aggregates.AccountAggregate;
@@ -20,8 +19,7 @@ public class UpdatePaymentCommandTests : InMemoryTestBase
         handler = new(
             appDbContext: Context,
             sender: sender,
-            settings: settings,
-            aptabaseClient: Substitute.For<IAptabaseClient>());
+            settings: settings);
     }
 
     [Fact]

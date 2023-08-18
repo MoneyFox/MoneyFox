@@ -3,7 +3,6 @@ namespace MoneyFox.Core.Features._Legacy_.Payments.UpdatePayment;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Aptabase.Maui;
 using Common.Extensions;
 using Common.Interfaces;
 using Common.Settings;
@@ -32,16 +31,14 @@ public static class UpdatePayment
     public class Handler : IRequestHandler<Command>
     {
         private readonly IAppDbContext appDbContext;
-        private readonly IAptabaseClient aptabaseClient;
         private readonly ISender sender;
         private readonly ISettingsFacade settings;
 
-        public Handler(IAppDbContext appDbContext, ISender sender, ISettingsFacade settings, IAptabaseClient aptabaseClient)
+        public Handler(IAppDbContext appDbContext, ISender sender, ISettingsFacade settings)
         {
             this.appDbContext = appDbContext;
             this.sender = sender;
             this.settings = settings;
-            this.aptabaseClient = aptabaseClient;
         }
 
         public async Task Handle(Command command, CancellationToken cancellationToken)
@@ -87,7 +84,6 @@ public static class UpdatePayment
             }
 
             await appDbContext.SaveChangesAsync(cancellationToken);
-            aptabaseClient.TrackEvent("payment_updated");
         }
     }
 }
