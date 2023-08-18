@@ -1,5 +1,6 @@
 namespace MoneyFox.Ui;
 
+using Aptabase.Maui;
 using Common.Exceptions;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
@@ -20,6 +21,7 @@ public partial class App
     private readonly IBackupService backupService;
     private readonly IMediator mediator;
     private readonly ISettingsFacade settingsFacade;
+    private readonly IAptabaseClient aptabaseClient;
     private bool isRunning;
 
     public App(
@@ -27,12 +29,14 @@ public partial class App
         IAppDbContext appDbContext,
         IMediator mediator,
         ISettingsFacade settingsFacade,
-        IBackupService backupService)
+        IBackupService backupService,
+        IAptabaseClient aptabaseClient)
     {
         this.appDbContext = appDbContext;
         this.mediator = mediator;
         this.settingsFacade = settingsFacade;
         this.backupService = backupService;
+        this.aptabaseClient = aptabaseClient;
         ServiceProvider = serviceProvider;
         InitializeComponent();
         FillResourceDictionary();
@@ -66,6 +70,7 @@ public partial class App
 
     protected override void OnStart()
     {
+        aptabaseClient.TrackEvent("app_start");
         StartupTasksAsync().ConfigureAwait(false);
     }
 

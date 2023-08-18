@@ -27,6 +27,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder.Configuration.AddConfiguration(configuration);
         builder.UseMauiApp<App>()
+            .UseAptabase("A-EU-8707468788")
             .ConfigureFonts(
                 fonts =>
                 {
