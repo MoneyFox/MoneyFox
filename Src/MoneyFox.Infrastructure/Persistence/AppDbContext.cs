@@ -11,7 +11,6 @@ using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.BudgetAggregate;
 using Domain.Aggregates.CategoryAggregate;
 using MediatR;
-using Microsoft.AppCenter.Analytics;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
@@ -79,7 +78,6 @@ public class AppDbContext : DbContext, IAppDbContext
     public void ReleaseLock()
     {
         SqliteConnection.ClearAllPools();
-        Analytics.TrackEvent(nameof(ReleaseLock));
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
