@@ -44,6 +44,8 @@ public partial class App
         ServiceProvider = serviceProvider;
         InitializeComponent();
         FillResourceDictionary();
+        appDbContext.MigrateDb();
+        MigrateRecurringTransactions();
         MainPage = settingsFacade.IsSetupCompleted ? GetAppShellPage() : new SetupShell();
     }
 
@@ -92,7 +94,6 @@ public partial class App
         }
 
         isRunning = true;
-        appDbContext.MigrateDb();
         try
         {
             if (settingsFacade is { IsBackupAutoUploadEnabled: true, IsLoggedInToBackupService: true })
@@ -115,7 +116,6 @@ public partial class App
             await mediator.Send(new ClearPaymentsCommand());
             await mediator.Send(new CheckTransactionRecurrence.Command());
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            MigrateRecurringTransactions();
         }
         catch (Exception ex)
         {
