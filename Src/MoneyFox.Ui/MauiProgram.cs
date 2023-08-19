@@ -23,7 +23,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder.Configuration.AddConfiguration(configuration);
         builder.UseMauiApp<App>()
-            .UseAptabase(configuration["Aptabase:Secret"]!)
+            .UseAptabase(configuration["Aptabase:Secret"] ?? string.Empty)
             .ConfigureFonts(
                 fonts =>
                 {
