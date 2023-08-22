@@ -5,8 +5,6 @@ using Core.Common.Settings;
 using Core.Interfaces;
 using InversionOfControl;
 using Microsoft.Identity.Client;
-using NSubstitute;
-using Xunit;
 
 public sealed class ServiceCollectionTests
 {

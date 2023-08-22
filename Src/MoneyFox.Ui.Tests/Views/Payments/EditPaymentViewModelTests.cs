@@ -5,9 +5,7 @@ using Core.Common.Interfaces;
 using Core.Common.Settings;
 using Domain;
 using MediatR;
-using NSubstitute;
 using Ui.Views.Payments.PaymentModification;
-using Xunit;
 
 public sealed class EditPaymentViewModelTests
 {
