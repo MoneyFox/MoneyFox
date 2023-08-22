@@ -1,12 +1,10 @@
 namespace MoneyFox.Ui.Tests.Views.OverflowMenu;
 
-using NSubstitute;
 using Ui.Views.About;
 using Ui.Views.Backup;
 using Ui.Views.Categories;
 using Ui.Views.OverflowMenu;
 using Ui.Views.Settings;
-using Xunit;
 
 public class OverflowMenuViewModelTests
 {

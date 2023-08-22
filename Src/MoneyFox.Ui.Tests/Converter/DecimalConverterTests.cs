@@ -1,8 +1,6 @@
 namespace MoneyFox.Ui.Tests.Converter;
 
-using FluentAssertions;
 using Ui.Converter;
-using Xunit;
 
 public class DecimalConverterTests
 {

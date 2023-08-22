@@ -2,11 +2,8 @@ namespace MoneyFox.Ui.Tests.Views.Statistics;
 
 using Core.Common.Interfaces;
 using Core.Queries.Statistics.GetCategorySummary;
-using FluentAssertions;
 using MediatR;
-using NSubstitute;
 using Ui.Views.Statistics.CategorySummary;
-using Xunit;
 
 public class StatisticCategorySummaryViewModelTest
 {

@@ -3,11 +3,8 @@ namespace MoneyFox.Ui.Tests.Views.Statistics.CategorySummary;
 using AutoMapper;
 using Core.Queries;
 using Domain.Aggregates.AccountAggregate;
-using FluentAssertions;
 using MediatR;
-using NSubstitute;
 using Ui.Views.Statistics.CategorySummary;
-using Xunit;
 
 public sealed class PaymentForCategoryListViewModelTests
 {
