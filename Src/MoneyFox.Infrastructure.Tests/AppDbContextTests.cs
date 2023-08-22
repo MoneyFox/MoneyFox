@@ -12,14 +12,8 @@ using Persistence;
 
 public sealed class AppDbContextTests
 {
-    private readonly IPublisher publisher;
-    private readonly ISettingsFacade settingsFacade;
-
-    public AppDbContextTests()
-    {
-        publisher = Substitute.For<IPublisher>();
-        settingsFacade = Substitute.For<ISettingsFacade>();
-    }
+    private readonly IPublisher publisher = Substitute.For<IPublisher>();
+    private readonly ISettingsFacade settingsFacade = Substitute.For<ISettingsFacade>();
 
     [Fact]
     public async Task SetCreatedAndLastModifiedDate_OnEntity_WhenNewEntityIsAdded()
