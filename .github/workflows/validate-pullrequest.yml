@@ -124,10 +124,10 @@ jobs:
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
 
-      - name: Xcode Select
-        uses: devbotsxyz/xcode-select@v1.1.0
+      - name: Xcode Select Version
+        uses: mobiledevops/xcode-select-version-action@v1
         with:
-          version: "14.3"
+          xcode-select-version: 14.3
 
       - uses: actions/checkout@v3
 
