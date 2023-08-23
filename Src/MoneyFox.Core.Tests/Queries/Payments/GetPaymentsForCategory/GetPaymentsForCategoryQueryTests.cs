@@ -1,7 +1,6 @@
 namespace MoneyFox.Core.Tests.Queries.Payments.GetPaymentsForCategory;
 
 using Core.Queries;
-using FluentAssertions;
 
 public class GetPaymentsForCategoryQueryTests
 {

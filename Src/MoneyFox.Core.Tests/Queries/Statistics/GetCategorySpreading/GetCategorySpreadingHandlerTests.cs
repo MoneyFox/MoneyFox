@@ -3,7 +3,6 @@ namespace MoneyFox.Core.Tests.Queries.Statistics.GetCategorySpreading;
 using Core.Queries.Statistics;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.CategoryAggregate;
-using FluentAssertions;
 
 public class GetCategorySpreadingHandlerTests : InMemoryTestBase
 {

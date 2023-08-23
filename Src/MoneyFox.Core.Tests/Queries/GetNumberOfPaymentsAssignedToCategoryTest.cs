@@ -2,7 +2,6 @@
 
 using Core.Queries;
 using Domain.Tests.TestFramework;
-using FluentAssertions;
 
 public class GetNumberOfPaymentsAssignedToCategoryTest : InMemoryTestBase
 {

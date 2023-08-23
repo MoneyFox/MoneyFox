@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Domain.Tests.TestFramework;
 
 using Domain.Aggregates.RecurringTransactionAggregate;
-using FluentAssertions;
 using FluentAssertions.Execution;
 
 internal static class RecurringTransactionAssertion

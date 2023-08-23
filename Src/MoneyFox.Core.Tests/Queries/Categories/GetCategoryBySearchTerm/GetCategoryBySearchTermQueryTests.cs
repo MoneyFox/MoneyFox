@@ -2,7 +2,6 @@
 
 using Core.Queries;
 using Domain.Aggregates.CategoryAggregate;
-using FluentAssertions;
 
 public class GetCategoryBySearchTermQueryTests : InMemoryTestBase
 {
