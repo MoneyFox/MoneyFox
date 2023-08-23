@@ -14,8 +14,8 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="FluentAssertions" Version="6.11.0"/>
-        <PackageReference Include="FluentAssertions.Analyzers" Version="0.22.0"/>
+        <PackageReference Include="FluentAssertions" Version="6.12.0"/>
+        <PackageReference Include="FluentAssertions.Analyzers" Version="0.23.0"/>
         <PackageReference Include="NSubstitute" Version="5.0.0"/>
         <PackageReference Include="NSubstitute.Analyzers.CSharp" Version="1.0.16"/>
     </ItemGroup>
