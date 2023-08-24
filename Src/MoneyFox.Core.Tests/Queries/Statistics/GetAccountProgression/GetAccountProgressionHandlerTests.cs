@@ -3,8 +3,6 @@ namespace MoneyFox.Core.Tests.Queries.Statistics.GetAccountProgression;
 using Core.Common.Settings;
 using Core.Queries.Statistics;
 using Domain.Aggregates.AccountAggregate;
-using FluentAssertions;
-using NSubstitute;
 
 public class GetAccountProgressionHandlerTests : InMemoryTestBase
 {

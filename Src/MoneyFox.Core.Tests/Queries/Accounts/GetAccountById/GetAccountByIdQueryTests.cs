@@ -2,7 +2,6 @@ namespace MoneyFox.Core.Tests.Queries.Accounts.GetAccountById;
 
 using Core.Queries;
 using Domain.Aggregates.AccountAggregate;
-using FluentAssertions;
 
 public class GetAccountByIdQueryTests : InMemoryTestBase
 {

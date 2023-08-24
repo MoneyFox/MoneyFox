@@ -3,7 +3,6 @@ namespace MoneyFox.Infrastructure.Tests.DbBackup;
 using Flurl.Http.Testing;
 using Infrastructure.DbBackup;
 using Infrastructure.DbBackup.OneDriveModels;
-using NSubstitute;
 
 public class OneDriveProfileServiceTests
 {

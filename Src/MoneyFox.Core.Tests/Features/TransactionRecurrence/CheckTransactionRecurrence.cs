@@ -6,7 +6,6 @@ using Core.Features.TransactionRecurrence;
 using Domain.Aggregates.RecurringTransactionAggregate;
 using Domain.Tests.TestFramework;
 using MediatR;
-using NSubstitute;
 
 public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
 {

@@ -2,7 +2,6 @@
 
 using Core.Features.CategoryDeletion;
 using Domain.Tests.TestFramework;
-using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 
 public class DeleteCategoryByIdCommandTests : InMemoryTestBase

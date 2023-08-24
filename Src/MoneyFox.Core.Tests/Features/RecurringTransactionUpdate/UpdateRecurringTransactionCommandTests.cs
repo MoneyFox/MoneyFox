@@ -4,7 +4,6 @@ using Core.Features.RecurringTransactionUpdate;
 using Domain;
 using Domain.Aggregates.RecurringTransactionAggregate;
 using Domain.Exceptions;
-using FluentAssertions;
 
 public sealed class UpdateRecurringTransactionCommandTests
 {

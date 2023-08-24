@@ -2,7 +2,6 @@
 
 using Core.Features._Legacy_.Accounts.DeleteAccountById;
 using Domain.Aggregates.AccountAggregate;
-using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 
 public class DeactivateAccountByIdCommandTests : InMemoryTestBase

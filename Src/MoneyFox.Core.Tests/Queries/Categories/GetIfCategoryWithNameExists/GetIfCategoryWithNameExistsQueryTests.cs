@@ -2,7 +2,6 @@ namespace MoneyFox.Core.Tests.Queries.Categories.GetIfCategoryWithNameExists;
 
 using Core.Queries;
 using Domain.Aggregates.CategoryAggregate;
-using FluentAssertions;
 
 public class GetIfCategoryWithNameExistsQueryTests : InMemoryTestBase
 {

@@ -1,11 +1,8 @@
 namespace MoneyFox.Core.Tests.Features._Legacy_.Payments.CreatePayment;
 
-using Aptabase.Maui;
 using Core.Features._Legacy_.Payments.CreatePayment;
 using Domain.Aggregates.AccountAggregate;
-using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using NSubstitute;
 
 public class CreatePaymentCommandTests : InMemoryTestBase
 {
