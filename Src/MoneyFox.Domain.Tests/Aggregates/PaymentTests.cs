@@ -2,7 +2,6 @@
 
 using Domain.Aggregates.AccountAggregate;
 using Exceptions;
-using FluentAssertions;
 
 public class PaymentTests
 {

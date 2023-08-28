@@ -5,8 +5,6 @@ using Core.Common;
 using Core.Queries.BudgetList;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Tests.TestFramework;
-using FluentAssertions;
-using NSubstitute;
 
 public sealed class LoadBudgetDataForListTests : InMemoryTestBase
 {

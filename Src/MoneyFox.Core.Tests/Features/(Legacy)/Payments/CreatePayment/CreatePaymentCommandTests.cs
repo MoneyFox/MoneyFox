@@ -2,7 +2,6 @@ namespace MoneyFox.Core.Tests.Features._Legacy_.Payments.CreatePayment;
 
 using Core.Features._Legacy_.Payments.CreatePayment;
 using Domain.Aggregates.AccountAggregate;
-using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 
 public class CreatePaymentCommandTests : InMemoryTestBase
@@ -11,7 +10,7 @@ public class CreatePaymentCommandTests : InMemoryTestBase
 
     public CreatePaymentCommandTests()
     {
-        handler = new(Context);
+        handler = new(appDbContext: Context);
     }
 
     [Fact]

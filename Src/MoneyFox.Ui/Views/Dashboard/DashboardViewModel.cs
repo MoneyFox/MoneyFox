@@ -12,13 +12,10 @@ using Messages;
 public class DashboardViewModel : BasePageViewModel, IRecipient<BackupRestoredMessage>
 {
     private readonly IMapper mapper;
-
     private readonly IMediator mediator;
     private ObservableCollection<AccountViewModel> accounts = new();
     private decimal assets;
-
     private decimal endOfMonthBalance;
-
     private bool isRunning;
     private decimal monthlyExpenses;
     private decimal monthlyIncomes;

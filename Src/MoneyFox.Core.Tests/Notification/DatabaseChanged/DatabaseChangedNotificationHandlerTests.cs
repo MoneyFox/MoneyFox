@@ -2,10 +2,8 @@
 
 using Core.Common.Settings;
 using Core.Features.BackupUpload;
-using FluentAssertions;
 using MediatR;
 using Notifications.DatabaseChanged;
-using NSubstitute;
 
 public class DatabaseChangedNotificationHandlerTests
 {

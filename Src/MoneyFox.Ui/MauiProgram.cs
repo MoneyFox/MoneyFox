@@ -4,10 +4,8 @@ using System.Reflection;
 using CommunityToolkit.Maui;
 using Controls;
 using Core.Common;
+using InversionOfControl;
 using JetBrains.Annotations;
-using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Maui.Handlers;
 using Serilog;
@@ -22,10 +20,10 @@ public static class MauiProgram
     {
         var configuration = GetConfiguration();
         SetupSerilog();
-        SetupAppCenter(configuration);
         var builder = MauiApp.CreateBuilder();
         builder.Configuration.AddConfiguration(configuration);
         builder.UseMauiApp<App>()
+            .UseAptabase(configuration["Aptabase:Secret"] ?? string.Empty)
             .ConfigureFonts(
                 fonts =>
                 {
@@ -36,7 +34,8 @@ public static class MauiProgram
                 })
             .AddCustomAppShellHandler()
             .UseSkiaSharp(true)
-            .UseMauiCommunityToolkit();
+            .UseMauiCommunityToolkit()
+            .AddMoneyFoxService();
 
         EntryHandler.Mapper.AppendToMapping(
             key: "Borderless",
@@ -60,6 +59,14 @@ public static class MauiProgram
         PickerHandler.Mapper.Add(nameof(View.HorizontalOptions), MapHorizontalOptions);
 #endif
         return builder.Build();
+    }
+
+    public static Action<IServiceCollection>? AddPlatformServicesAction { get; set; }
+
+    private static void AddMoneyFoxService(this MauiAppBuilder builder)
+    {
+        AddPlatformServicesAction?.Invoke(builder.Services);
+        new MoneyFoxConfig().Register(builder.Services);
     }
 
     private static MauiAppBuilder AddCustomAppShellHandler(this MauiAppBuilder builder)
@@ -103,38 +110,6 @@ public static class MauiProgram
         return stream == null ? throw new FileNotFoundException("'appsettings.json' was not found.") : new ConfigurationBuilder().AddJsonStream(stream).Build();
     }
 
-    private static void SetupAppCenter(IConfiguration configuration)
-    {
-        Crashes.GetErrorAttachments = _ =>
-        {
-            var logFile = LogFileService.GetLatestLogFileInfo();
-            if (logFile == null)
-            {
-                return Array.Empty<ErrorAttachmentLog>();
-            }
-
-            try
-            {
-                using var logFileStream = new FileStream(path: logFile.FullName, mode: FileMode.Open, access: FileAccess.Read, share: FileShare.ReadWrite);
-                using var logFileReader = new StreamReader(logFileStream);
-                var logText = logFileReader.ReadToEnd();
-
-                return new[] { ErrorAttachmentLog.AttachmentWithText(text: logText, fileName: logFile.Name) };
-            }
-            catch (Exception)
-            {
-                // Don't block the normal exception upload.
-            }
-
-            return Array.Empty<ErrorAttachmentLog>();
-        };
-
-        var appCenter = configuration.GetRequiredSection("AppCenter").Get<AppCenterOption>()!;
-        AppCenter.Start(
-            appSecret: $"android={appCenter.AndroidSecret};" + $"windowsdesktop={appCenter.WindowsSecret};" + $"ios={appCenter.IosSecret};",
-            typeof(Analytics),
-            typeof(Crashes));
-    }
 
     private static void SetupSerilog()
     {

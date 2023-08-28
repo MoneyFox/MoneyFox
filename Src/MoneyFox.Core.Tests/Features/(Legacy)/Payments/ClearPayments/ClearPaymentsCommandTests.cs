@@ -2,7 +2,6 @@
 
 using Core.Features._Legacy_.Payments.ClearPayments;
 using Domain.Aggregates.AccountAggregate;
-using FluentAssertions;
 
 public class ClearPaymentsCommandTests : InMemoryTestBase
 {

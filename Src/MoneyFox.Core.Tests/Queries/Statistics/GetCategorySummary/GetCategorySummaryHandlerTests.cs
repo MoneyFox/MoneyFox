@@ -3,7 +3,6 @@
 using Core.Queries.Statistics.GetCategorySummary;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.CategoryAggregate;
-using FluentAssertions;
 
 public class GetCategorySummaryHandlerTests : InMemoryTestBase
 {
