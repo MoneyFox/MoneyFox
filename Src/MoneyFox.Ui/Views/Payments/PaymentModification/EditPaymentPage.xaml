@@ -21,7 +21,7 @@
     </ContentPage.Resources>
 
     <controls:FixedScrollView>
-        <VerticalStackLayout Padding="15,12,15,12" Spacing="12">
+        <VerticalStackLayout Padding="15,12,15,12" Spacing="6">
             <controls:PaymentTypePicker PickerTitle="{x:Static resources:Translations.PaymentTypeLabel}"
                                         PaymentTypeSource="{x:Static paymentModification:ModifyPaymentViewModel.PaymentTypeList}"
                                         SelectedType="{Binding SelectedPayment.Type}" />
