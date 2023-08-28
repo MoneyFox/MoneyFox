@@ -52,8 +52,7 @@ public static class GetAccountProgression
 
         public async Task<List<StatisticEntry>> Handle(Query request, CancellationToken cancellationToken)
         {
-            var baseQuery = appDbContext.Payments
-                .Include(x => x.Category)
+            var baseQuery = appDbContext.Payments.Include(x => x.Category)
                 .Include(x => x.ChargedAccount)
                 .HasDateLargerEqualsThan(request.StartDate.Date)
                 .HasDateSmallerEqualsThan(request.EndDate.Date);
@@ -64,7 +63,6 @@ public static class GetAccountProgression
             }
 
             var payments = await baseQuery.ToListAsync(cancellationToken);
-
             List<StatisticEntry> returnList = new();
             foreach (var group in payments.GroupBy(x => new { x.Date.Month, x.Date.Year }))
             {
@@ -83,17 +81,16 @@ public static class GetAccountProgression
         private static decimal GetPaymentAmountForSum(Payment payment, Query request)
         {
             decimal amount = 0;
-
             switch (payment.Type)
             {
                 case PaymentType.Expense:
                     amount = -payment.Amount;
-                    break;
 
+                    break;
                 case PaymentType.Income:
                     amount = payment.Amount;
-                    break;
 
+                    break;
                 case PaymentType.Transfer:
                     if (payment.ChargedAccount.Id == request.AccountId)
                     {
@@ -103,6 +100,7 @@ public static class GetAccountProgression
                     {
                         amount = payment.Amount;
                     }
+
                     break;
             }
 

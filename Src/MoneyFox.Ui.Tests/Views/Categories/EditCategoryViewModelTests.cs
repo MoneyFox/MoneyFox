@@ -4,9 +4,7 @@ using Core.Common.Interfaces;
 using Core.Features.CategoryDeletion;
 using Core.Queries;
 using MediatR;
-using NSubstitute;
 using Ui.Views.Categories.ModifyCategory;
-using Xunit;
 
 public class EditCategoryViewModelTests
 {

@@ -1,9 +1,7 @@
 namespace MoneyFox.Ui.Tests.Views.Payments;
 
 using Domain.Aggregates.AccountAggregate;
-using FluentAssertions;
 using Ui.Views.Payments.PaymentModification;
-using Xunit;
 
 public sealed class RecurrenceViewModelTests
 {

@@ -379,8 +379,8 @@
   <data name="EmailLabel" xml:space="preserve">
     <value>Email</value>
   </data>
-  <data name="EnddateLabel" xml:space="preserve">
-    <value>Tanggal Berakhir</value>
+  <data name="EndDateLabel" xml:space="preserve">
+    <value>Tanggal Akhir</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
     <value>Tidak ada habisnya</value>

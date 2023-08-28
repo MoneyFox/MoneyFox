@@ -4,11 +4,8 @@ using Core.Common.Interfaces;
 using Core.Common.Settings;
 using Core.Features.DbBackup;
 using Core.Interfaces;
-using FluentAssertions;
 using MediatR;
-using NSubstitute;
 using Ui.Views.Backup;
-using Xunit;
 
 public class BackupViewModelTests
 {

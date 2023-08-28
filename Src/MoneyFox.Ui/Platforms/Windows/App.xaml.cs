@@ -22,7 +22,7 @@ public partial class App
     public App()
     {
         InitializeComponent();
-        Ui.App.AddPlatformServicesAction = AddServices;
+        MauiProgram.AddPlatformServicesAction = AddServices;
     }
 
     protected override MauiApp CreateMauiApp()

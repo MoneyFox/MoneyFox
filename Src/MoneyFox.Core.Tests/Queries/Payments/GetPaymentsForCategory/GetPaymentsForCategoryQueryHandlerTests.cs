@@ -3,7 +3,6 @@ namespace MoneyFox.Core.Tests.Queries.Payments.GetPaymentsForCategory;
 using Core.Queries;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.CategoryAggregate;
-using FluentAssertions;
 
 public class GetPaymentsForCategoryQueryHandlerTests : InMemoryTestBase
 {

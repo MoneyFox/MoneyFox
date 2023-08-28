@@ -2,7 +2,6 @@
 
 using Core.Queries;
 using Domain.Aggregates.AccountAggregate;
-using FluentAssertions;
 
 public class GetIncludedAccountBalanceSummaryTests : InMemoryTestBase
 {

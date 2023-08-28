@@ -100,7 +100,7 @@
                                         <Label Grid.Column="0"
                                                Style="{StaticResource TextBody}"
                                                LineBreakMode="TailTruncation"
-                                               Text="{Binding Category.Name}" />
+                                               Text="{Binding CategoryName}" />
 
                                         <Label Grid.Column="1"
                                                Style="{StaticResource TextBody}"

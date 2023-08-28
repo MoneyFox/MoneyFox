@@ -2,7 +2,6 @@
 
 using Core.Queries;
 using Domain.Tests.TestFramework;
-using FluentAssertions;
 
 public class GetNumberOfPaymentsAssignedToCategoryTest : InMemoryTestBase
 {
@@ -17,7 +16,7 @@ public class GetNumberOfPaymentsAssignedToCategoryTest : InMemoryTestBase
     public async Task ReturnsZeroWhenNoPaymentsFoundForPassedId()
     {
         // Arrange
-        var testCategory = new TestData.DefaultCategory();
+        var testCategory = new TestData.CategoryBeverages();
         Context.RegisterCategory(testCategory);
 
         // Act
@@ -43,9 +42,9 @@ public class GetNumberOfPaymentsAssignedToCategoryTest : InMemoryTestBase
     public async Task ReturnsCorrectNumberOfPayments_WhenMultiplePaymentsAvailable()
     {
         // Arrange
-        var expense = new TestData.DefaultExpense { Category = new TestData.DefaultExpense.ExpenseCategory() };
+        var expense = new TestData.ClearedExpense { Category = new TestData.ClearedExpense.ExpenseCategory() };
         Context.RegisterPayment(expense);
-        var payment = new TestData.DefaultIncome { Category = new TestData.DefaultIncome.IncomeCategory() };
+        var payment = new TestData.ClearedIncome { Category = new TestData.ClearedIncome.IncomeCategory() };
         var dbPayment = Context.RegisterPayment(payment);
 
         // Act

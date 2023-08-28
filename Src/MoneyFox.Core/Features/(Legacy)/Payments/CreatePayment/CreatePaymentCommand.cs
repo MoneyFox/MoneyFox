@@ -4,10 +4,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Common.Interfaces;
 using Domain.Aggregates.AccountAggregate;
-using Domain.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Serilog;
 
 public class CreatePaymentCommand : IRequest
 {
@@ -27,7 +25,6 @@ public class CreatePaymentCommand : IRequest
             this.appDbContext = appDbContext;
         }
 
-        /// <inheritdoc />
         public async Task Handle(CreatePaymentCommand request, CancellationToken cancellationToken)
         {
             appDbContext.Entry(request.PaymentToSave).State = EntityState.Added;
@@ -37,22 +34,7 @@ public class CreatePaymentCommand : IRequest
                 appDbContext.Entry(request.PaymentToSave.TargetAccount).State = EntityState.Modified;
             }
 
-            if (request.PaymentToSave.IsRecurring)
-            {
-                if (request.PaymentToSave.RecurringPayment == null)
-                {
-                    RecurringPaymentNullException exception = new(
-                        $"Recurring Payment for Payment {request.PaymentToSave.Id} is null, although payment is marked recurring.");
-
-                    Log.Error(exception: exception, messageTemplate: "Error during Payment Creation");
-
-                    throw exception;
-                }
-
-                appDbContext.Entry(request.PaymentToSave.RecurringPayment).State = EntityState.Added;
-            }
-
-            _ = await appDbContext.SaveChangesAsync(cancellationToken);
+            await appDbContext.SaveChangesAsync(cancellationToken);
         }
     }
 }

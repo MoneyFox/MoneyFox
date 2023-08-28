@@ -1,13 +1,9 @@
 namespace MoneyFox.Ui.Tests.Views.Statistics;
 
-using System.Reflection;
-using FluentAssertions;
+using Core.Common.Interfaces;
+using Core.Queries.Statistics.GetCategorySummary;
 using MediatR;
-using MoneyFox.Core.Common.Interfaces;
-using MoneyFox.Core.Queries.Statistics.GetCategorySummary;
-using MoneyFox.Ui.Views.Statistics.CategorySummary;
-using NSubstitute;
-using Xunit;
+using Ui.Views.Statistics.CategorySummary;
 
 public class StatisticCategorySummaryViewModelTest
 {
@@ -17,16 +13,18 @@ public class StatisticCategorySummaryViewModelTest
         // Arrange
         var mediator = Substitute.For<IMediator>();
         var dialogService = Substitute.For<IDialogService>();
-        var vm = new StatisticCategorySummaryViewModel(mediator, dialogService);
+        var vm = new StatisticCategorySummaryViewModel(mediator: mediator, dialogService: dialogService);
         var categorySummaries = new List<CategoryOverviewItem>
         {
-            new CategoryOverviewItem { Value = -200 },
-            new CategoryOverviewItem { Value = -500 },
-            new CategoryOverviewItem { Value = 1000 },
-            new CategoryOverviewItem { Value = 1500 }
+            new() { Value = -200 },
+            new() { Value = -500 },
+            new() { Value = 1000 },
+            new() { Value = 1500 }
         };
-        var categorySummaryModel = new CategorySummaryModel(default, default, categorySummaries);
-        mediator.Send(Arg.Any<GetCategorySummary.Query>(), Arg.Any<CancellationToken>()).Returns(x => Task.FromResult(categorySummaryModel));
+
+        var categorySummaryModel = new CategorySummaryModel(totalEarned: default, totalSpent: default, categoryOverviewItems: categorySummaries);
+        mediator.Send(request: Arg.Any<GetCategorySummary.Query>(), cancellationToken: Arg.Any<CancellationToken>())
+            .Returns(x => Task.FromResult(categorySummaryModel));
 
         // Act
         vm.LoadedCommand.ExecuteAsync(null);
@@ -42,10 +40,11 @@ public class StatisticCategorySummaryViewModelTest
         // Arrange
         var mediator = Substitute.For<IMediator>();
         var dialogService = Substitute.For<IDialogService>();
-        var vm = new StatisticCategorySummaryViewModel(mediator, dialogService);
+        var vm = new StatisticCategorySummaryViewModel(mediator: mediator, dialogService: dialogService);
         var categorySummaries = new List<CategoryOverviewItem>();
-        var categorySummaryModel = new CategorySummaryModel(default, default, categorySummaries);
-        mediator.Send(Arg.Any<GetCategorySummary.Query>(), Arg.Any<CancellationToken>()).Returns(x => Task.FromResult(categorySummaryModel));
+        var categorySummaryModel = new CategorySummaryModel(totalEarned: default, totalSpent: default, categoryOverviewItems: categorySummaries);
+        mediator.Send(request: Arg.Any<GetCategorySummary.Query>(), cancellationToken: Arg.Any<CancellationToken>())
+            .Returns(x => Task.FromResult(categorySummaryModel));
 
         // Act
         vm.LoadedCommand.ExecuteAsync(null);

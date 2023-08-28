@@ -2,7 +2,6 @@
 
 using System.Reflection;
 using Domain.Aggregates.AccountAggregate;
-using FluentAssertions;
 
 public class AccountTests
 {

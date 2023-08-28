@@ -3,8 +3,6 @@ namespace MoneyFox.Core.Tests.Queries.Statistics.GetAccountProgression;
 using Core.Common.Settings;
 using Core.Queries.Statistics;
 using Domain.Aggregates.AccountAggregate;
-using FluentAssertions;
-using NSubstitute;
 
 public class GetAccountProgressionHandlerTests : InMemoryTestBase
 {
@@ -116,15 +114,21 @@ public class GetAccountProgressionHandlerTests : InMemoryTestBase
     public async Task CalculateCorrectSums_TransferPayments()
     {
         // Arrange
-        var account1 = new Account("Foo1", 100);
-        var account2 = new Account("Foo2", 100);
+        var account1 = new Account(name: "Foo1", initialBalance: 100);
+        var account2 = new Account(name: "Foo2", initialBalance: 100);
         Context.Add(account1);
         Context.Add(account2);
         Context.AddRange(
             new List<Payment>
             {
-                new(date: DateTime.Today, amount: 100, type: PaymentType.Transfer, chargedAccount: account1, targetAccount: account2),
+                new(
+                    date: DateTime.Today,
+                    amount: 100,
+                    type: PaymentType.Transfer,
+                    chargedAccount: account1,
+                    targetAccount: account2)
             });
+
         await Context.SaveChangesAsync();
 
         // Act
