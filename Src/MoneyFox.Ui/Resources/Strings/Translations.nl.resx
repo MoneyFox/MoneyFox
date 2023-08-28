@@ -380,7 +380,7 @@
   <data name="EmailLabel" xml:space="preserve">
     <value>e-mail</value>
   </data>
-  <data name="EnddateLabel" xml:space="preserve">
+  <data name="EndDateLabel" xml:space="preserve">
     <value>Einddatum</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
@@ -946,5 +946,17 @@ Je kunt dit laat wijzigen in de instellingen.</value>
     </data>
   <data name="DateRangeInvalidMessage" xml:space="preserve">
         <value>De begindatum moet voor de einddatum liggen.</value>
+    </data>
+  <data name="TotalRevenueTemplate" xml:space="preserve">
+        <value>Totale inkomsten: {0}</value>
+    </data>
+  <data name="TotalExpenseTemplate" xml:space="preserve">
+        <value>Totale kosten: {0}</value>
+    </data>
+  <data name="AllAccounts" xml:space="preserve">
+        <value>Alle accounts</value>
+    </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>Licenties</value>
     </data>
 </root>

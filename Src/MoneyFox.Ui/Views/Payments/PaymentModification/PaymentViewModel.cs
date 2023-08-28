@@ -1,30 +1,22 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
 using Accounts.AccountModification;
-using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Controls.AccountPicker;
-using Controls.CategorySelection;
-using Core.Common.Interfaces.Mapping;
 using Domain.Aggregates.AccountAggregate;
-using Domain.Aggregates.CategoryAggregate;
 
-public class PaymentViewModel : ObservableObject, IHaveCustomMapping
+public class PaymentViewModel : ObservableObject
 {
     private decimal amount;
 
     private AccountPickerViewModel chargedAccount = null!;
     private DateTime created;
-
-    private int currentAccountId;
     private DateTime date;
-
     private int id;
     private bool isCleared;
     private bool isRecurring;
     private DateTime? lastModified;
     private string note = "";
-    private RecurringPaymentViewModel? recurringPaymentViewModel;
     private AccountPickerViewModel? targetAccount;
     private PaymentType type;
 
@@ -96,13 +88,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     public bool IsRecurring
     {
         get => isRecurring;
-
-        set
-        {
-            SetProperty(field: ref isRecurring, newValue: value);
-            RecurringPayment = isRecurring ? new RecurringPaymentViewModel() : null;
-            OnPropertyChanged(nameof(RecurringPayment));
-        }
+        set => SetProperty(field: ref isRecurring, newValue: value);
     }
 
     public DateTime Created
@@ -138,34 +124,7 @@ public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     }
 
     /// <summary>
-    ///     The <see cref="RecurringPayment" /> if it's recurring.
-    /// </summary>
-    public RecurringPaymentViewModel? RecurringPayment
-    {
-        get => recurringPaymentViewModel;
-        set => SetProperty(field: ref recurringPaymentViewModel, newValue: value);
-    }
-
-    /// <summary>
     ///     This is a shortcut to access if the payment is a transfer or not.
     /// </summary>
     public bool IsTransfer => Type == PaymentType.Transfer;
-
-    /// <summary>
-    ///     Id of the account who currently is used for that view.
-    /// </summary>
-    public int CurrentAccountId
-    {
-        get => currentAccountId;
-        set => SetProperty(field: ref currentAccountId, newValue: value);
-    }
-
-    public void CreateMappings(Profile configuration)
-    {
-        configuration.CreateMap<Category, SelectedCategoryViewModel>();
-        configuration.CreateMap<Account, AccountPickerViewModel>();
-        configuration.CreateMap<Payment, PaymentViewModel>()
-            .ForMember(destinationMember: x => x.CurrentAccountId, memberOptions: opt => opt.Ignore())
-            .ReverseMap();
-    }
 }

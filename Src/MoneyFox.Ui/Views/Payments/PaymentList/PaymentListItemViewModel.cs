@@ -11,23 +11,14 @@ using Domain.Aggregates.CategoryAggregate;
 public class PaymentListItemViewModel : ObservableObject, IHaveCustomMapping
 {
     private decimal amount;
-    private SelectedCategoryViewModel? categoryViewModel;
-
-    private AccountViewModel chargedAccount = null!;
+    private string? categoryName;
     private int chargedAccountId;
-    private DateTime created;
-
     private int currentAccountId;
     private DateTime date;
-
     private int id;
     private bool isCleared;
     private bool isRecurring;
-    private DateTime lastModified;
     private string note = "";
-    private RecurringPaymentViewModel? recurringPaymentViewModel;
-    private AccountViewModel? targetAccount;
-    private int? targetAccountId;
     private PaymentType type;
 
     public PaymentListItemViewModel()
@@ -50,15 +41,6 @@ public class PaymentListItemViewModel : ObservableObject, IHaveCustomMapping
     {
         get => chargedAccountId;
         set => SetProperty(field: ref chargedAccountId, newValue: value);
-    }
-
-    /// <summary>
-    ///     Foreign key to the account who will be credited by a transfer.     Not used for the other payment types.
-    /// </summary>
-    public int? TargetAccountId
-    {
-        get => targetAccountId;
-        set => SetProperty(field: ref targetAccountId, newValue: value);
     }
 
     /// <summary>
@@ -118,63 +100,16 @@ public class PaymentListItemViewModel : ObservableObject, IHaveCustomMapping
     public bool IsRecurring
     {
         get => isRecurring;
-
-        set
-        {
-            SetProperty(field: ref isRecurring, newValue: value);
-            RecurringPayment = isRecurring ? new RecurringPaymentViewModel() : null;
-            OnPropertyChanged(nameof(RecurringPayment));
-        }
-    }
-
-    public DateTime Created
-    {
-        get => created;
-        set => SetProperty(field: ref created, newValue: value);
-    }
-
-    public DateTime LastModified
-    {
-        get => lastModified;
-        set => SetProperty(field: ref lastModified, newValue: value);
+        set => SetProperty(field: ref isRecurring, newValue: value);
     }
 
     /// <summary>
-    ///     In case it's a expense or transfer the account who will be charged.     In case it's an income the account
-    ///     who will be credited.
+    ///     The <see cref="CategoryName" /> for this payment
     /// </summary>
-    public AccountViewModel ChargedAccount
+    public string? CategoryName
     {
-        get => chargedAccount;
-        set => SetProperty(field: ref chargedAccount, newValue: value);
-    }
-
-    /// <summary>
-    ///     The <see cref="AccountViewModel" /> who will be credited by a transfer.     Not used for the other payment
-    ///     types.
-    /// </summary>
-    public AccountViewModel? TargetAccount
-    {
-        get => targetAccount;
-        set => SetProperty(field: ref targetAccount, newValue: value);
-    }
-
-    /// <summary>
-    ///     The <see cref="Category" /> for this payment
-    /// </summary>
-    public SelectedCategoryViewModel? Category
-    {
-        get => categoryViewModel;
-        set => SetProperty(field: ref categoryViewModel, newValue: value);
-    }
-
-    /// <summary>
-    ///     The <see cref="RecurringPayment" /> if it's recurring.
-    /// </summary>
-    public RecurringPaymentViewModel? RecurringPayment
-    {
-        get => recurringPaymentViewModel;
-        set => SetProperty(field: ref recurringPaymentViewModel, newValue: value);
+        get => categoryName;
+        set => SetProperty(field: ref categoryName, newValue: value);
     }
 
     /// <summary>

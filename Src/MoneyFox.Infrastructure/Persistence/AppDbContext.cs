@@ -3,6 +3,7 @@ namespace MoneyFox.Infrastructure.Persistence;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Converter;
 using Core.Common.Interfaces;
 using Core.Common.Settings;
 using Core.Notifications.DatabaseChanged;
@@ -12,9 +13,9 @@ using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.BudgetAggregate;
 using Domain.Aggregates.CategoryAggregate;
 using Domain.Aggregates.LedgerAggregate;
+using Domain.Aggregates.RecurringTransactionAggregate;
 using JetBrains.Annotations;
 using MediatR;
-using Microsoft.AppCenter.Analytics;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
@@ -37,6 +38,8 @@ public class AppDbContext : DbContext, IAppDbContext
     public DbSet<Payment> Payments { get; set; } = null!;
 
     public DbSet<RecurringPayment> RecurringPayments { get; set; } = null!;
+
+    public DbSet<RecurringTransaction> RecurringTransactions { get; set; } = null!;
 
     public DbSet<Category> Categories { get; set; } = null!;
     public DbSet<Ledger> Ledgers { get; set; } = null!;
@@ -84,18 +87,19 @@ public class AppDbContext : DbContext, IAppDbContext
     public void ReleaseLock()
     {
         SqliteConnection.ClearAllPools();
-        Analytics.TrackEvent(nameof(ReleaseLock));
-    }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
     }
 
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {
         base.ConfigureConventions(configurationBuilder);
         configurationBuilder.Properties<Currency>().HaveConversion<CurrencyConverter>();
+        configurationBuilder.Properties<DateOnly>().HaveConversion<DateOnlyConverter>().HaveColumnType("date");
+        configurationBuilder.Properties<DateOnly?>().HaveConversion<NullableDateOnlyConverter>().HaveColumnType("date");
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
     }
 
     public override int SaveChanges()

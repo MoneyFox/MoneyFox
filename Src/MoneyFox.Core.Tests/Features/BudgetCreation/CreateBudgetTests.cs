@@ -14,7 +14,7 @@ public sealed class CreateBudgetTests : InMemoryTestBase
     }
 
     [Fact]
-    public async Task AddBudgetToRepository()
+    public async Task AddBudgetToDb()
     {
         // Arrange
         var testData = new TestData.DefaultBudget();
@@ -29,7 +29,7 @@ public sealed class CreateBudgetTests : InMemoryTestBase
         await handler.Handle(command: query, cancellationToken: CancellationToken.None);
 
         // Assert
-        var loadedBudget = Context.Budgets.First();
-        AssertBudget(actual: loadedBudget, expected: testData);
+        var dbBudget = Context.Budgets.First();
+        AssertBudget(actual: dbBudget, expected: testData);
     }
 }

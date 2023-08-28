@@ -1,6 +1,7 @@
 namespace MoneyFox.Core.Tests.Queries;
 
 using Core.Queries;
+using Domain.Tests.TestFramework;
 using FluentAssertions;
 
 public sealed class GetLedgerListTests : InMemoryTestBase

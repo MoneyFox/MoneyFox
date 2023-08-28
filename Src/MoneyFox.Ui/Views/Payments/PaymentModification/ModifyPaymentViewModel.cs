@@ -2,6 +2,7 @@ namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
 using System.Collections.Immutable;
 using System.Collections.ObjectModel;
+using Aptabase.Maui;
 using Categories.CategorySelection;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -12,7 +13,6 @@ using Core.Common.Settings;
 using Core.Queries;
 using Domain.Aggregates.AccountAggregate;
 using MediatR;
-using Microsoft.AppCenter.Crashes;
 using Resources.Strings;
 using Serilog;
 
@@ -22,6 +22,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
     private readonly IMediator mediator;
     private readonly ISettingsFacade settingsFacade;
     private readonly IToastService toastService;
+    private readonly IAptabaseClient aptabaseClient;
     private ObservableCollection<AccountPickerViewModel> chargedAccounts = new();
 
     private PaymentViewModel selectedPayment = new();
@@ -32,13 +33,15 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
         IDialogService dialogService,
         IToastService toastService,
         CategorySelectionViewModel categorySelectionViewModel,
-        ISettingsFacade settingsFacade)
+        ISettingsFacade settingsFacade,
+        IAptabaseClient aptabaseClient)
     {
         this.mediator = mediator;
         this.dialogService = dialogService;
         this.toastService = toastService;
         CategorySelectionViewModel = categorySelectionViewModel;
         this.settingsFacade = settingsFacade;
+        this.aptabaseClient = aptabaseClient;
     }
 
     public PaymentViewModel SelectedPayment
@@ -53,6 +56,8 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
     }
 
     public CategorySelectionViewModel CategorySelectionViewModel { get; }
+
+    public RecurrenceViewModel RecurrenceViewModel { get; protected set; } = new();
 
     public ObservableCollection<AccountPickerViewModel> ChargedAccounts
     {
@@ -84,7 +89,6 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
         => new()
         {
             PaymentRecurrence.Daily,
-            PaymentRecurrence.DailyWithoutWeekend,
             PaymentRecurrence.Weekly,
             PaymentRecurrence.Biweekly,
             PaymentRecurrence.Monthly,
@@ -151,9 +155,9 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
         }
 
         if (SelectedPayment.IsRecurring
-            && !SelectedPayment.RecurringPayment!.IsEndless
-            && SelectedPayment.RecurringPayment.EndDate.HasValue
-            && SelectedPayment.RecurringPayment.EndDate.Value.Date < DateTime.Today)
+            && RecurrenceViewModel.IsEndless is false
+            && RecurrenceViewModel.EndDate.HasValue
+            && RecurrenceViewModel.EndDate.Value.Date < DateTime.Today)
         {
             await dialogService.ShowMessageAsync(title: Translations.InvalidEnddateTitle, message: Translations.InvalidEnddateMessage);
 
@@ -168,7 +172,10 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
         }
         catch (Exception ex)
         {
-            Crashes.TrackError(ex);
+            aptabaseClient.TrackEvent("failed_to_modify_payment", new Dictionary<string, object>
+            {
+                {"excpetion", ex}
+            });
             Log.Error(exception: ex, messageTemplate: "Failed to modify payment");
             await toastService.ShowToastAsync(string.Format(format: Translations.UnknownErrorMessage, arg0: ex.Message));
         }

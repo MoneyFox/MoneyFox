@@ -3,10 +3,7 @@ namespace MoneyFox.Ui.Tests.Views.Settings;
 using System.Globalization;
 using Core.Common.Settings;
 using Domain;
-using FluentAssertions;
-using NSubstitute;
 using Ui.Views.Settings;
-using Xunit;
 
 public static class SettingsViewModelTests
 {

@@ -31,9 +31,6 @@ We act under the [Contributor Covenant](https://github.com/MoneyFox/MoneyFox/blo
 ### Tools
 We use the latest version of Visual Studio and / or Rider.
 
-### Contact
-Feel free to contact me. Just write me a mail or even better join our slack channel.
-
 ### Sponsoring
 The development of this app is supported by [Apply Solutions](http://www.apply-solutions.ch/).
 

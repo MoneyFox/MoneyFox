@@ -379,7 +379,7 @@
   <data name="EmailLabel" xml:space="preserve">
     <value>E-mail</value>
   </data>
-  <data name="EnddateLabel" xml:space="preserve">
+  <data name="EndDateLabel" xml:space="preserve">
     <value>Slutdato</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
@@ -943,5 +943,17 @@ Du kan ændre denne sent i indstillingerne.</value>
     </data>
   <data name="DateRangeInvalidMessage" xml:space="preserve">
         <value>Startdatoen skal være før slutdatoen.</value>
+    </data>
+  <data name="TotalRevenueTemplate" xml:space="preserve">
+        <value>Indtægter i alt: {0}</value>
+    </data>
+  <data name="TotalExpenseTemplate" xml:space="preserve">
+        <value>Udgifter i alt: {0}</value>
+    </data>
+  <data name="AllAccounts" xml:space="preserve">
+        <value>Alle Konti</value>
+    </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>Licenser</value>
     </data>
 </root>

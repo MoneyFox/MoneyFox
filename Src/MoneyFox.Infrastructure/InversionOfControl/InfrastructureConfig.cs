@@ -14,20 +14,20 @@ public static class InfrastructureConfig
 {
     public static void Register(IServiceCollection serviceCollection)
     {
-        _ = serviceCollection.AddTransient<DbContextOptions>(
+        serviceCollection.AddTransient<DbContextOptions>(
             sp => new DbContextOptionsBuilder<AppDbContext>().UseSqlite($"Data Source={sp.GetService<IDbPathProvider>()!.GetDbPath()}").Options);
 
-        _ = serviceCollection.AddTransient<IAppDbContext, AppDbContext>();
+        serviceCollection.AddTransient<IAppDbContext, AppDbContext>();
         RegisterBackupServices(serviceCollection);
     }
 
     private static void RegisterBackupServices(IServiceCollection serviceCollection)
     {
-        _ = serviceCollection.AddTransient<IBackupUploadService, OneDriveBackupUploadService>();
-        _ = serviceCollection.AddTransient<IOneDriveAuthenticationService, OneDriveAuthenticationService>();
-        _ = serviceCollection.AddTransient<IBackupUploadService, OneDriveBackupUploadService>();
-        _ = serviceCollection.AddTransient<IBackupService, BackupService>();
-        _ = serviceCollection.AddTransient<IOneDriveBackupService, OneDriveService>();
-        _ = serviceCollection.AddTransient<IOneDriveProfileService, OneDriveProfileService>();
+        serviceCollection.AddTransient<IBackupUploadService, OneDriveBackupUploadService>();
+        serviceCollection.AddTransient<IOneDriveAuthenticationService, OneDriveAuthenticationService>();
+        serviceCollection.AddTransient<IBackupUploadService, OneDriveBackupUploadService>();
+        serviceCollection.AddTransient<IBackupService, BackupService>();
+        serviceCollection.AddTransient<IOneDriveBackupService, OneDriveService>();
+        serviceCollection.AddTransient<IOneDriveProfileService, OneDriveProfileService>();
     }
 }

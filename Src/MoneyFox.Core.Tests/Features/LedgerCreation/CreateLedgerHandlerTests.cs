@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Core.Tests.Features.LedgerCreation;
 
+using Domain.Tests.TestFramework;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Core.Features.LedgerCreation;

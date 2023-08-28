@@ -1,8 +1,7 @@
-﻿namespace MoneyFox.Core.Tests.Queries.Statistics.GetCategoryProgression;
+﻿namespace MoneyFox.Core.Tests.Queries.Statistics.GetCategorySpreading;
 
 using Core.Queries.Statistics;
 using Domain.Aggregates.AccountAggregate;
-using FluentAssertions;
 
 public class GetCategorySpreadingQueryTests
 {

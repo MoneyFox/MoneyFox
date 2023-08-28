@@ -379,7 +379,7 @@
   <data name="EmailLabel" xml:space="preserve">
     <value>Adres e-mail</value>
   </data>
-  <data name="EnddateLabel" xml:space="preserve">
+  <data name="EndDateLabel" xml:space="preserve">
     <value>Data zakończenia</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
@@ -941,5 +941,17 @@ Możesz to zmienić w ustawieniach.</value>
     </data>
   <data name="DateRangeInvalidMessage" xml:space="preserve">
         <value>Data rozpoczęcia musi być wcześniejsza niż data zakończenia.</value>
+    </data>
+  <data name="TotalRevenueTemplate" xml:space="preserve">
+        <value>Całkowity przychód: {0}</value>
+    </data>
+  <data name="TotalExpenseTemplate" xml:space="preserve">
+        <value>Całkowite wydatki: {0}</value>
+    </data>
+  <data name="AllAccounts" xml:space="preserve">
+        <value>Wszyscy Klienci</value>
+    </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>Licencje</value>
     </data>
 </root>

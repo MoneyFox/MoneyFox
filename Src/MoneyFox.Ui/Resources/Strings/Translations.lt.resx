@@ -379,7 +379,7 @@
   <data name="EmailLabel" xml:space="preserve">
     <value>El. paštas</value>
   </data>
-  <data name="EnddateLabel" xml:space="preserve">
+  <data name="EndDateLabel" xml:space="preserve">
     <value>Pabaigos data</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
@@ -943,5 +943,17 @@ Norėdami pradėti, sukurkite naują paskyrą. Sąskaitos naudojamos mokėjimams
     </data>
   <data name="DateRangeInvalidMessage" xml:space="preserve">
         <value>Pradžios data turi būti ankstesnė nei pabaigos data.</value>
+    </data>
+  <data name="TotalRevenueTemplate" xml:space="preserve">
+        <value>Visos pajamos: {0}</value>
+    </data>
+  <data name="TotalExpenseTemplate" xml:space="preserve">
+        <value>Iš viso išlaidų: {0}</value>
+    </data>
+  <data name="AllAccounts" xml:space="preserve">
+        <value>Visos sąskaitos</value>
+    </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>Licencijos</value>
     </data>
 </root>

@@ -379,7 +379,7 @@
   <data name="EmailLabel" xml:space="preserve">
     <value>Имейл</value>
   </data>
-  <data name="EnddateLabel" xml:space="preserve">
+  <data name="EndDateLabel" xml:space="preserve">
     <value>Крайна дата</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
@@ -942,5 +942,17 @@
     </data>
   <data name="DateRangeInvalidMessage" xml:space="preserve">
         <value>Началната дата трябва да е преди крайната дата.</value>
+    </data>
+  <data name="TotalRevenueTemplate" xml:space="preserve">
+        <value>Общи приходи: {0}</value>
+    </data>
+  <data name="TotalExpenseTemplate" xml:space="preserve">
+        <value>Общи разходи: {0}</value>
+    </data>
+  <data name="AllAccounts" xml:space="preserve">
+        <value>Всички сметки</value>
+    </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>Лицензи</value>
     </data>
 </root>

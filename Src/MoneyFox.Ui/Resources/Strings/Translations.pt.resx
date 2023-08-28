@@ -379,8 +379,8 @@
   <data name="EmailLabel" xml:space="preserve">
     <value>E-mail</value>
   </data>
-  <data name="EnddateLabel" xml:space="preserve">
-    <value>Data Final</value>
+  <data name="EndDateLabel" xml:space="preserve">
+    <value>Data final</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
     <value>Não tem fim</value>
@@ -942,5 +942,17 @@ Pode alterar esta moeda tardiamente nas definições.</value>
     </data>
   <data name="DateRangeInvalidMessage" xml:space="preserve">
         <value>A data de início tem de ser anterior à data de fim.</value>
+    </data>
+  <data name="TotalRevenueTemplate" xml:space="preserve">
+        <value>Receitas totais: {0}</value>
+    </data>
+  <data name="TotalExpenseTemplate" xml:space="preserve">
+        <value>Total de despesas: {0}</value>
+    </data>
+  <data name="AllAccounts" xml:space="preserve">
+        <value>Todas as Contas</value>
+    </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>Licenças</value>
     </data>
 </root>

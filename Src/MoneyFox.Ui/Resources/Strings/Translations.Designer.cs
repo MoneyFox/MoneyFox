@@ -561,9 +561,9 @@ namespace MoneyFox.Ui.Resources.Strings {
             }
         }
         
-        public static string EnddateLabel {
+        public static string EndDateLabel {
             get {
-                return ResourceManager.GetString("EnddateLabel", resourceCulture);
+                return ResourceManager.GetString("EndDateLabel", resourceCulture);
             }
         }
         
@@ -1722,6 +1722,30 @@ namespace MoneyFox.Ui.Resources.Strings {
         public static string DateRangeInvalidMessage {
             get {
                 return ResourceManager.GetString("DateRangeInvalidMessage", resourceCulture);
+            }
+        }
+        
+        public static string TotalRevenueTemplate {
+            get {
+                return ResourceManager.GetString("TotalRevenueTemplate", resourceCulture);
+            }
+        }
+        
+        public static string TotalExpenseTemplate {
+            get {
+                return ResourceManager.GetString("TotalExpenseTemplate", resourceCulture);
+            }
+        }
+        
+        public static string AllAccounts {
+            get {
+                return ResourceManager.GetString("AllAccounts", resourceCulture);
+            }
+        }
+        
+        public static string LicensesHeader {
+            get {
+                return ResourceManager.GetString("LicensesHeader", resourceCulture);
             }
         }
     }

@@ -488,3 +488,4 @@ dotnet_naming_rule.const_fields_must_be_all_upper.severity = warning
 dotnet_diagnostic.S3925.severity = suggestion
 dotnet_diagnostic.S2094.severity = suggestion
 dotnet_diagnostic.S6608.severity = suggestion
+dotnet_diagnostic.S1125.severity = suggestion

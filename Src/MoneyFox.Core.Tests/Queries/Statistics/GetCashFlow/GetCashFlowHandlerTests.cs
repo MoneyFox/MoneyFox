@@ -2,7 +2,6 @@ namespace MoneyFox.Core.Tests.Queries.Statistics.GetCashFlow;
 
 using Core.Queries.Statistics;
 using Domain.Aggregates.AccountAggregate;
-using FluentAssertions;
 
 public class GetCashFlowHandlerTests : InMemoryTestBase
 {

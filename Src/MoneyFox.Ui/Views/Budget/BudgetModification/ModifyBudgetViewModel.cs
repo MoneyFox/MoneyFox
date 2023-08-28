@@ -3,22 +3,25 @@ namespace MoneyFox.Ui.Views.Budget.BudgetModification;
 using System.Collections.ObjectModel;
 using Categories.CategorySelection;
 using CommunityToolkit.Mvvm.Input;
+using Core.Common.Interfaces;
 using Core.Queries;
 using Domain.Aggregates.BudgetAggregate;
 using MediatR;
 
 internal abstract class ModifyBudgetViewModel : BasePageViewModel, IQueryAttributable
 {
+    private readonly IDialogService dialogService;
     private readonly INavigationService navigationService;
     private readonly ISender sender;
     private string name = null!;
     private int numberOfMonths = 1;
     private decimal spendingLimit;
 
-    protected ModifyBudgetViewModel(INavigationService navigationService, ISender sender)
+    protected ModifyBudgetViewModel(INavigationService navigationService, ISender sender, IDialogService dialogService)
     {
         this.navigationService = navigationService;
         this.sender = sender;
+        this.dialogService = dialogService;
     }
 
     public string Name
@@ -102,5 +105,18 @@ internal abstract class ModifyBudgetViewModel : BasePageViewModel, IQueryAttribu
         _ = SelectedCategories.Remove(budgetCategory);
     }
 
-    protected abstract Task SaveBudgetAsync();
+    private async Task SaveBudgetAsync()
+    {
+        try
+        {
+            await dialogService.ShowLoadingDialogAsync();
+            await SaveAsync();
+        }
+        finally
+        {
+            await dialogService.HideLoadingDialogAsync();
+        }
+    }
+
+    protected abstract Task SaveAsync();
 }

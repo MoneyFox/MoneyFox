@@ -6,8 +6,7 @@ using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Queries;
-using Core.Queries.GetPaymentsForAccountIdQuery;
-using Domain.Aggregates.AccountAggregate;
+using Core.Queries.PaymentsForAccount;
 using MediatR;
 
 [QueryProperty(name: nameof(AccountId), queryId: nameof(accountId))]
@@ -52,20 +51,6 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
         private set => SetProperty(field: ref paymentDayGroups, newValue: value);
     }
 
-    public static List<PaymentRecurrence> RecurrenceList
-        => new()
-        {
-            PaymentRecurrence.Daily,
-            PaymentRecurrence.DailyWithoutWeekend,
-            PaymentRecurrence.Weekly,
-            PaymentRecurrence.Biweekly,
-            PaymentRecurrence.Monthly,
-            PaymentRecurrence.Bimonthly,
-            PaymentRecurrence.Quarterly,
-            PaymentRecurrence.Biannually,
-            PaymentRecurrence.Yearly
-        };
-
     public AsyncRelayCommand GoToAddPaymentCommand
         => new(async () => await Shell.Current.GoToAsync($"{Routes.AddPaymentRoute}?defaultChargedAccountId={SelectedAccount.Id}"));
 
@@ -99,17 +84,31 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
             }
 
             isRunning = true;
-            var paymentVms = mapper.Map<List<PaymentListItemViewModel>>(
-                await mediator.Send(
-                    new GetPaymentsForAccountIdQuery(
-                        accountId: SelectedAccount.Id,
-                        timeRangeStart: message.TimeRangeStart,
-                        timeRangeEnd: message.TimeRangeEnd,
-                        isClearedFilterActive: message.IsClearedFilterActive,
-                        isRecurringFilterActive: message.IsRecurringFilterActive,
-                        filteredPaymentType: message.FilteredPaymentType)));
+            var paymentData = await mediator.Send(
+                new GetPaymentsForAccount.Query(
+                    AccountId: SelectedAccount.Id,
+                    TimeRangeStart: message.TimeRangeStart,
+                    TimeRangeEnd: message.TimeRangeEnd,
+                    FilteredPaymentType: message.FilteredPaymentType,
+                    IsRecurringFilterActive: message.IsClearedFilterActive,
+                    IsClearedFilterActive: message.IsRecurringFilterActive));
 
-            paymentVms.ForEach(x => x.CurrentAccountId = SelectedAccount.Id);
+            var paymentVms = paymentData.Select(
+                    p => new PaymentListItemViewModel
+                    {
+                        Id = p.Id,
+                        Amount = p.Amount,
+                        ChargedAccountId = p.ChargedAccountId,
+                        CurrentAccountId = SelectedAccount.Id,
+                        Date = p.Date.ToDateTime(TimeOnly.MinValue),
+                        CategoryName = p.CategoryName,
+                        IsCleared = p.IsCleared,
+                        IsRecurring = p.IsRecurring,
+                        Note = p.Note,
+                        Type = p.Type
+                    })
+                .OrderByDescending(p => p.Date);
+
             var dailyGroupedPayments = paymentVms.GroupBy(p => p.Date.Date)
                 .Select(g => new PaymentDayGroup(date: DateOnly.FromDateTime(g.Key), payments: g.ToList()))
                 .ToList();

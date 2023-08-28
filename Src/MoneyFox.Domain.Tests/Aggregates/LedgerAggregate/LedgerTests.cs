@@ -4,6 +4,7 @@ using Domain.Aggregates.LedgerAggregate;
 using Exceptions;
 using FluentAssertions;
 using FluentAssertions.Execution;
+using TestFramework;
 using Ui.Common.Exceptions;
 
 public class LedgerTests

@@ -11,13 +11,12 @@
         <accountPicker:AccountNameConverter x:Key="AccountNameConverter" />
     </ContentView.Resources>
 
-    <VerticalStackLayout Spacing="6"
-                         BindingContext="{x:Reference This}">
-        <Label
-            Margin="3,0,0,0"
-            Style="{StaticResource TextBodySecondary}"
-            Text="{Binding PickerTitle}" />
-        <Grid ColumnDefinitions="*, Auto">
+    <Grid RowDefinitions="Auto, 6, Auto" BindingContext="{x:Reference This}">
+        <Label Grid.Row="0"
+               Margin="3,0,0,0"
+               Style="{StaticResource TextBodySecondary}"
+               Text="{Binding PickerTitle}" />
+        <Grid ColumnDefinitions="*, Auto" Grid.Row="2">
 
             <Picker
                 Grid.ColumnSpan="2"
@@ -35,5 +34,5 @@
                 </Image.Source>
             </Image>
         </Grid>
-    </VerticalStackLayout>
+    </Grid>
 </ContentView>

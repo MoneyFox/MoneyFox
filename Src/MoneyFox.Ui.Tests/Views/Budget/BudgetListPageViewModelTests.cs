@@ -3,11 +3,8 @@ namespace MoneyFox.Ui.Tests.Views.Budget;
 using System.Collections.Immutable;
 using Core.Queries.BudgetList;
 using Domain.Tests.TestFramework;
-using FluentAssertions;
 using MediatR;
-using NSubstitute;
 using Ui.Views.Budget;
-using Xunit;
 
 public abstract class BudgetListPageViewModelTests
 {

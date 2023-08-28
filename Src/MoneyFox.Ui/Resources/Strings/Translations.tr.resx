@@ -379,7 +379,7 @@
   <data name="EmailLabel" xml:space="preserve">
     <value>E-posta</value>
   </data>
-  <data name="EnddateLabel" xml:space="preserve">
+  <data name="EndDateLabel" xml:space="preserve">
     <value>Bitiş Tarihi</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
@@ -943,5 +943,17 @@ Bunu ayarlardan geç değiştirebilirsiniz.</value>
     </data>
   <data name="DateRangeInvalidMessage" xml:space="preserve">
         <value>Başlangıç tarihi bitiş tarihinden önce olmalıdır.</value>
+    </data>
+  <data name="TotalRevenueTemplate" xml:space="preserve">
+        <value>Toplam Gelir: {0}</value>
+    </data>
+  <data name="TotalExpenseTemplate" xml:space="preserve">
+        <value>Toplam Gider: {0}</value>
+    </data>
+  <data name="AllAccounts" xml:space="preserve">
+        <value>Tüm Hesaplar</value>
+    </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>Lisanslar</value>
     </data>
 </root>

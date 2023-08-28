@@ -380,7 +380,7 @@
     <data name="EmailLabel" xml:space="preserve">
     <value>Email</value>
   </data>
-    <data name="EnddateLabel" xml:space="preserve">
+    <data name="EndDateLabel" xml:space="preserve">
     <value>End Date</value>
   </data>
     <data name="EndlessLabel" xml:space="preserve">
@@ -968,5 +968,17 @@ You can change this late in the settings.</value>
     </data>
     <data name="DateRangeInvalidMessage" xml:space="preserve">
         <value>Start date has to be before end date.</value>
+    </data>
+    <data name="TotalRevenueTemplate" xml:space="preserve">
+        <value>Total Revenue: {0}</value>
+    </data>
+    <data name="TotalExpenseTemplate" xml:space="preserve">
+        <value>Total Expense: {0}</value>
+    </data>
+    <data name="AllAccounts" xml:space="preserve">
+        <value>All Accounts</value>
+    </data>
+    <data name="LicensesHeader" xml:space="preserve">
+        <value>Licenses</value>
     </data>
 </root>

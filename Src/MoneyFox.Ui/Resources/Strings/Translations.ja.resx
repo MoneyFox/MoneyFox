@@ -379,7 +379,7 @@
   <data name="EmailLabel" xml:space="preserve">
     <value>Eメールアドレス</value>
   </data>
-  <data name="EnddateLabel" xml:space="preserve">
+  <data name="EndDateLabel" xml:space="preserve">
     <value>終了日</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
@@ -943,5 +943,17 @@
     </data>
   <data name="DateRangeInvalidMessage" xml:space="preserve">
         <value>開始日は終了日より前でなければならない。</value>
+    </data>
+  <data name="TotalRevenueTemplate" xml:space="preserve">
+        <value>総収入： {0}</value>
+    </data>
+  <data name="TotalExpenseTemplate" xml:space="preserve">
+        <value>総支出： {0}</value>
+    </data>
+  <data name="AllAccounts" xml:space="preserve">
+        <value>すべてのアカウント</value>
+    </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>ライセンス</value>
     </data>
 </root>

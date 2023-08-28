@@ -63,10 +63,12 @@
                             IsGrouped="True">
 
                 <CollectionView.Header>
-                    <VerticalStackLayout Margin="18,0,18,12">
-                        <Label Style="{StaticResource TextBodySecondary}"
-                               Text="{Binding SelectedAccount.CurrentBalance, StringFormat={extensions:Translate CurrentBalanceTemplate}, Converter={StaticResource AmountFormatConverter}}" />
-                    </VerticalStackLayout>
+                    <ContentView>
+                        <VerticalStackLayout Margin="18,0,18,12">
+                            <Label Style="{StaticResource TextBodySecondary}"
+                                   Text="{Binding SelectedAccount.CurrentBalance, StringFormat={extensions:Translate CurrentBalanceTemplate}, Converter={StaticResource AmountFormatConverter}}" />
+                        </VerticalStackLayout>
+                    </ContentView>
                 </CollectionView.Header>
 
                 <CollectionView.GroupHeaderTemplate>
@@ -98,7 +100,7 @@
                                         <Label Grid.Column="0"
                                                Style="{StaticResource TextBody}"
                                                LineBreakMode="TailTruncation"
-                                               Text="{Binding Category.Name}" />
+                                               Text="{Binding CategoryName}" />
 
                                         <Label Grid.Column="1"
                                                Style="{StaticResource TextBody}"

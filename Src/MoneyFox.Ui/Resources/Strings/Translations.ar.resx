@@ -379,7 +379,7 @@
   <data name="EmailLabel" xml:space="preserve">
     <value>البريد الإلكتروني</value>
   </data>
-  <data name="EnddateLabel" xml:space="preserve">
+  <data name="EndDateLabel" xml:space="preserve">
     <value>تاريخ الانتهاء</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
@@ -943,5 +943,17 @@
     </data>
   <data name="DateRangeInvalidMessage" xml:space="preserve">
         <value>يجب أن يكون تاريخ البدء قبل تاريخ الانتهاء.</value>
+    </data>
+  <data name="TotalRevenueTemplate" xml:space="preserve">
+        <value>إجمالي الإيرادات: {0}</value>
+    </data>
+  <data name="TotalExpenseTemplate" xml:space="preserve">
+        <value>إجمالي المصروفات: {0}</value>
+    </data>
+  <data name="AllAccounts" xml:space="preserve">
+        <value>جميع الحسابات</value>
+    </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>التراخيص</value>
     </data>
 </root>

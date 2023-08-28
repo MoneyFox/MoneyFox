@@ -51,10 +51,16 @@ public abstract class ModifyCategoryViewModel : BasePageViewModel
             return;
         }
 
-        await dialogService.ShowLoadingDialogAsync(Translations.SavingCategoryMessage);
-        await SaveCategoryAsync();
-        await dialogService.HideLoadingDialogAsync();
-        await Shell.Current.Navigation.PopModalAsync();
-        Messenger.Send(new CategoriesChangedMessage());
+        try
+        {
+            await dialogService.ShowLoadingDialogAsync(Translations.SavingCategoryMessage);
+            await SaveCategoryAsync();
+            await Shell.Current.Navigation.PopModalAsync();
+            Messenger.Send(new CategoriesChangedMessage());
+        }
+        finally
+        {
+            await dialogService.HideLoadingDialogAsync();
+        }
     }
 }

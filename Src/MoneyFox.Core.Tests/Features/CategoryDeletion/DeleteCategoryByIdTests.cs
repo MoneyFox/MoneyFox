@@ -1,6 +1,5 @@
 ﻿namespace MoneyFox.Core.Tests.Features.CategoryDeletion;
 
-using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Core.Features.CategoryDeletion;
 using MoneyFox.Domain.Tests.TestFramework;
@@ -18,7 +17,7 @@ public class DeleteCategoryByIdCommandTests : InMemoryTestBase
     public async Task DeleteCategoryWithPassedId()
     {
         // Arrange
-        var testCategory = new TestData.DefaultCategory();
+        var testCategory = new TestData.CategoryBeverages();
         Context.RegisterCategory(testCategory: testCategory);
 
         // Act
@@ -32,7 +31,7 @@ public class DeleteCategoryByIdCommandTests : InMemoryTestBase
     public async Task DoesNothingWhenCategoryNotFound()
     {
         // Arrange
-        var testCategory = new TestData.DefaultCategory();
+        var testCategory = new TestData.CategoryBeverages();
         Context.RegisterCategory(testCategory: testCategory);
 
         // Act
@@ -46,10 +45,10 @@ public class DeleteCategoryByIdCommandTests : InMemoryTestBase
     public async Task RemoveCategoryFromPaymentOnDelete()
     {
         // Arrange
-        var expense = new TestData.DefaultExpense();
-        var dbExpense = Context.RegisterPayment(testCategory: expense);
-        var income = new TestData.DefaultIncome();
-        var dbIncome = Context.RegisterPayment(testCategory: income);
+        var expense = new TestData.ClearedExpense();
+        var dbExpense = Context.RegisterPayment(testPayment: expense);
+        var income = new TestData.ClearedIncome();
+        var dbIncome = Context.RegisterPayment(testPayment: income);
 
         // Act
         await handler.Handle(command: new(dbExpense.Category!.Id), cancellationToken: default);
