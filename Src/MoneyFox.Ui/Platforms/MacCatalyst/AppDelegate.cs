@@ -15,7 +15,7 @@ public class AppDelegate : MauiUIApplicationDelegate
 
     protected override MauiApp CreateMauiApp()
     {
-        App.AddPlatformServicesAction = AddServices;
+        MauiProgram.AddPlatformServicesAction = AddServices;
         RequestToastPermissions();
 
         return MauiProgram.CreateMauiApp();
