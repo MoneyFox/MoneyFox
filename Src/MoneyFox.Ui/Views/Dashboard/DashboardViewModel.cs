@@ -111,7 +111,10 @@ public class DashboardViewModel : BasePageViewModel, IRecipient<BackupRestoredMe
         try
         {
             isRunning = true;
-            Accounts = mapper.Map<ObservableCollection<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
+            var accountVms = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()))
+                .OrderBy(avm => avm.IsExcluded)
+                .ThenBy(avm => avm.Name);
+            Accounts = new(accountVms);
             foreach (var account in Accounts)
             {
                 account.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(account.Id));
