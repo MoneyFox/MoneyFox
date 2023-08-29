@@ -953,4 +953,7 @@ Seda saate hilisemalt seadetes muuta.</value>
   <data name="AllAccounts" xml:space="preserve">
         <value>Kõik kontod</value>
     </data>
+  <data name="LicensesHeader" xml:space="preserve">
+        <value>Litsentsid</value>
+    </data>
 </root>
