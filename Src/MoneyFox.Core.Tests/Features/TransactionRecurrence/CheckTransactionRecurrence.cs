@@ -63,7 +63,8 @@ public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
     public async Task SkipRecurringTransactionsWithEndDateInPast()
     {
         // Arrange
-        systemDateHelper.TodayDateOnly.Returns(DateOnly.FromDateTime(DateTime.Today.AddDays(1)));
+        var firstOfNextMonth = new DateOnly(DateTime.Today.Year, DateTime.Today.Month, 1).AddMonths(1);
+        systemDateHelper.TodayDateOnly.Returns(firstOfNextMonth);
         var recurringTransaction1 = new TestData.RecurringExpense { Recurrence = Recurrence.Daily };
         var recurringTransaction2 = new TestData.RecurringExpense { Recurrence = Recurrence.Daily };
         var recurringTransaction3 = new TestData.RecurringExpense { Recurrence = Recurrence.Daily, EndDate = DateOnly.FromDateTime(DateTime.Today) };
@@ -74,5 +75,21 @@ public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
 
         // Assert
         await sender.Received(2).Send(Arg.Any<CreateRecurringTransaction.Command>());
+    }
+
+    [Fact]
+    public async Task CreateRecurrencesOfTheMonthOnTheFirstDay()
+    {
+        // Arrange
+        var firstOfNextMonth = new DateOnly(DateTime.Today.Year, DateTime.Today.Month, 1).AddMonths(1);
+        systemDateHelper.TodayDateOnly.Returns(firstOfNextMonth);
+        var recurringTransaction1 = new TestData.RecurringExpense { Recurrence = Recurrence.Monthly };
+        Context.RegisterRecurringTransaction(recurringTransaction1);
+
+        // Act
+        await handler.Handle(command: new(), cancellationToken: default);
+
+        // Assert
+        await sender.Received(1).Send(Arg.Any<CreateRecurringTransaction.Command>());
     }
 }
