@@ -379,8 +379,8 @@
   <data name="EmailLabel" xml:space="preserve">
     <value>E-mail</value>
   </data>
-  <data name="EnddateLabel" xml:space="preserve">
-    <value>Data Final</value>
+  <data name="EndDateLabel" xml:space="preserve">
+    <value>Data final</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
     <value>Não tem fim</value>

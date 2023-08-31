@@ -1,13 +1,9 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
 using Accounts.AccountModification;
-using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Controls.AccountPicker;
-using Controls.CategorySelection;
-using Core.Common.Interfaces.Mapping;
 using Domain.Aggregates.AccountAggregate;
-using Domain.Aggregates.CategoryAggregate;
 
 public class PaymentViewModel : ObservableObject
 {

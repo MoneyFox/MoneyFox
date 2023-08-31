@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Core.Tests.Queries.Statistics.GetCashFlow;
 
 using Core.Queries.Statistics;
-using FluentAssertions;
 
 public class GetCashFlowQueryTests
 {

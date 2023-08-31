@@ -2,7 +2,6 @@ namespace MoneyFox.Core.Tests.Queries.Categories.GetCategoryById;
 
 using Core.Queries;
 using Domain.Aggregates.CategoryAggregate;
-using FluentAssertions;
 
 public class GetCategoryByIdQueryTests : InMemoryTestBase
 {

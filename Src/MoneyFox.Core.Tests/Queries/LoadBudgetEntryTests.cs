@@ -3,7 +3,6 @@ namespace MoneyFox.Core.Tests.Queries;
 using System.Collections.Immutable;
 using Core.Queries.BudgetEntryLoading;
 using Domain.Tests.TestFramework;
-using FluentAssertions;
 
 public class LoadBudgetEntryTests : InMemoryTestBase
 {
@@ -34,7 +33,7 @@ public class LoadBudgetEntryTests : InMemoryTestBase
         public async Task ReturnBudgetWithCorrectId()
         {
             // Arrange
-            var testCategory = new TestData.DefaultCategory();
+            var testCategory = new TestData.CategoryBeverages();
             var dbCategory = Context.RegisterCategory(testCategory);
             var testBudget = new TestData.DefaultBudget { Categories = ImmutableList.Create(dbCategory.Id) };
             var dbBudget = Context.RegisterBudget(testBudget);

@@ -379,7 +379,7 @@
   <data name="EmailLabel" xml:space="preserve">
     <value>Eメールアドレス</value>
   </data>
-  <data name="EnddateLabel" xml:space="preserve">
+  <data name="EndDateLabel" xml:space="preserve">
     <value>終了日</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">

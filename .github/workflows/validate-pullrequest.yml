@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  DOTNET_VERSION: "7.x"
+  DOTNET_VERSION: "7.0.400"
   UI_PROJECT_PATH: "src/MoneyFox.Ui/MoneyFox.Ui.csproj"
   CORE_TEST_PROJECT_PATH: "src/MoneyFox.Core.Tests/MoneyFox.Core.Tests.csproj"
   UI_TEST_PROJECT_PATH: "src/MoneyFox.Ui.Tests/MoneyFox.Ui.Tests.csproj"
@@ -123,14 +123,14 @@ jobs:
           # apply provisioning profile
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
-      
-      - name: Xcode Select
-        uses: devbotsxyz/xcode-select@v1.1.0
+
+      - name: Xcode Select Version
+        uses: mobiledevops/xcode-select-version-action@v1
         with:
-          version: "14.3"
-      
+          xcode-select-version: 14.3.1
+
       - uses: actions/checkout@v3
-      
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
@@ -155,7 +155,7 @@ jobs:
           dotnet test ${{env.UI_TEST_PROJECT_PATH}}
           dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
           dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
-        
+
       - name: Build MAUI iOS
         if: ${{ false }}
         run: dotnet build ${{env.UI_PROJECT_PATH}} -f net7.0-ios -c Release /p:packageApp=True

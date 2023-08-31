@@ -6,12 +6,9 @@ using Core.Features.BudgetCreation;
 using Core.Queries;
 using Domain.Aggregates.CategoryAggregate;
 using Domain.Tests.TestFramework;
-using FluentAssertions;
 using MediatR;
-using NSubstitute;
 using Ui.Views.Budget.BudgetModification;
 using Ui.Views.Categories.CategorySelection;
-using Xunit;
 
 public class AddBudgetViewModelTests
 {

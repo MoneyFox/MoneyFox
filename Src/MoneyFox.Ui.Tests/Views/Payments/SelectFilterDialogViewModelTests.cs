@@ -1,8 +1,6 @@
 namespace MoneyFox.Ui.Tests.Views.Payments;
 
-using FluentAssertions;
 using Ui.Views.Payments;
-using Xunit;
 
 public sealed class SelectFilterDialogViewModelTests
 {

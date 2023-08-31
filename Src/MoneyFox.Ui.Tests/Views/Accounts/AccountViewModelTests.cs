@@ -1,8 +1,6 @@
 namespace MoneyFox.Ui.Tests.Views.Accounts;
 
-using FluentAssertions;
 using Ui.Views.Accounts.AccountModification;
-using Xunit;
 
 public class AccountViewModelTests
 {

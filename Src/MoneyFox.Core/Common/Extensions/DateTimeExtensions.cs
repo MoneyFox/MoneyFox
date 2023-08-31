@@ -2,14 +2,8 @@ namespace MoneyFox.Core.Common.Extensions;
 
 using System;
 
-/// <summary>
-///     Extension method for DateTime.
-/// </summary>
 public static class DateTimeExtensions
 {
-    /// <summary>
-    ///     Returns the first day of the current month.
-    /// </summary>
     public static DateTime GetFirstDayOfMonth(this DateTime self)
     {
         return new(
@@ -22,9 +16,6 @@ public static class DateTimeExtensions
             kind: DateTimeKind.Local);
     }
 
-    /// <summary>
-    ///     Returns the last day of the current month.
-    /// </summary>
     public static DateTime GetLastDayOfMonth(this DateTime self)
     {
         return new(
@@ -35,5 +26,10 @@ public static class DateTimeExtensions
             minute: 0,
             second: 0,
             kind: DateTimeKind.Local);
+    }
+
+    public static DateOnly ToDateOnly(this DateTime self)
+    {
+        return DateOnly.FromDateTime(self);
     }
 }

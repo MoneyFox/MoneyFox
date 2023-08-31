@@ -9,6 +9,7 @@ on:
 env:
   MAJOR_VERSION: "8"
   MINOR_VERSION: "3"
+  DOTNET_VERSION: 7.0.400
   UI_PROJECT_PATH: "src/MoneyFox.Ui/MoneyFox.Ui.csproj"
   CORE_TEST_PROJECT_PATH: "src/MoneyFox.Core.Tests/MoneyFox.Core.Tests.csproj"
   UI_TEST_PROJECT_PATH: "src/MoneyFox.Ui.Tests/MoneyFox.Ui.Tests.csproj"
@@ -32,7 +33,7 @@ jobs:
           $store.Open([System.Security.Cryptography.X509Certificates.OpenFlags]"ReadWrite")
           $store.Add($cert)
           $store.Close()
-          
+
       - name: Checkout Repository
         uses: actions/checkout@v3
 
@@ -89,7 +90,7 @@ jobs:
             -o ${{ github.workspace }}/moneyfox-win `
             /p:ApplicationDisplayVersion=$DisplayVersion `
             /p:ApplicationVersion=$Version
-          
+
       - name: Upload Windows build
         uses: actions/upload-artifact@v3
         with:
@@ -109,7 +110,7 @@ jobs:
           if test -f "${{ runner.temp }}\moneyfox.keystore"; then
             echo "{{ runner.temp }}\moneyfox.keystore exists."
           fi
-          
+
       - uses: actions/checkout@v3
 
       - name: Setup .NET
@@ -131,18 +132,18 @@ jobs:
       - name: Restore Dependencies
         run: dotnet restore ${{env.UI_PROJECT_PATH}}
 
-#      - name: Test
-#        run: |
-#          dotnet test ${{env.UI_TEST_PROJECT_PATH}}
-#          dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
-#          dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
+      - name: Test
+        run: |
+          dotnet test ${{env.UI_TEST_PROJECT_PATH}}
+          dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
+          dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
 
       - name: Get android version
         id: date
         run: echo "::set-output name=date::$(date +'%Y%m')${{ GITHUB.run_number }}"
 
       - name: Build Android
-        run: | 
+        run: |
           $DisplayVersion = "${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
           $Version = ${{ steps.date.outputs.date }}
           
@@ -163,19 +164,19 @@ jobs:
         with:
           name: moneyfox-android
           path: ${{ github.workspace }}/moneyfox-android
-          
+  
   build-ios:
     runs-on: macos-13
 
     steps:
-      - name: Xcode Select
-        uses: devbotsxyz/xcode-select@v1.1.0
+      - name: Xcode Select Version
+        uses: mobiledevops/xcode-select-version-action@v1
         with:
-          version: "14.3"
-          
+          xcode-select-version: 14.3.1
+
       - name: Checkout repository
         uses: actions/checkout@v3
-          
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
@@ -200,7 +201,7 @@ jobs:
           dotnet test ${{env.UI_TEST_PROJECT_PATH}}
           dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
           dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
-        
+
       - name: Install the Apple certificate and provisioning profile
         env:
           BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
@@ -229,7 +230,7 @@ jobs:
           # apply provisioning profile
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
-        
+
       - name: Build iOS
         run: |
           DisplayVersion="${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"

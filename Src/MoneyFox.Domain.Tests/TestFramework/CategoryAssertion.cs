@@ -1,12 +1,11 @@
 ﻿namespace MoneyFox.Domain.Tests.TestFramework;
 
 using Domain.Aggregates.CategoryAggregate;
-using FluentAssertions;
 using FluentAssertions.Execution;
 
 internal static class CategoryAssertion
 {
-    public static void AssertCategory(Category actual, TestData.DefaultCategory expected)
+    public static void AssertCategory(Category actual, TestData.CategoryBeverages expected)
     {
         using (new AssertionScope())
         {

@@ -2,7 +2,6 @@ namespace MoneyFox.Domain.Tests.Aggregates.BudgetAggregate;
 
 using Domain.Aggregates.BudgetAggregate;
 using Exceptions;
-using FluentAssertions;
 
 public sealed class SpendingLimitTests
 {

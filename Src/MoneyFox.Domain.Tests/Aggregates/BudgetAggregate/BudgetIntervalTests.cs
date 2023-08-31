@@ -1,7 +1,6 @@
 ﻿namespace MoneyFox.Domain.Tests.Aggregates.BudgetAggregate;
 
 using Domain.Aggregates.BudgetAggregate;
-using FluentAssertions;
 
 public sealed class BudgetIntervalTests
 {

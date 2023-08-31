@@ -2,7 +2,6 @@ namespace MoneyFox.Core.Tests.Features;
 
 using Core.Features.BudgetDeletion;
 using Domain.Tests.TestFramework;
-using FluentAssertions;
 
 public sealed class DeleteBudgetTests : InMemoryTestBase
 {

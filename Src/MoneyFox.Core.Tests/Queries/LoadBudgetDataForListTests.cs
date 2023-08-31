@@ -5,8 +5,6 @@ using Core.Common;
 using Core.Queries.BudgetList;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Tests.TestFramework;
-using FluentAssertions;
-using NSubstitute;
 
 public sealed class LoadBudgetDataForListTests : InMemoryTestBase
 {
@@ -49,7 +47,7 @@ public sealed class LoadBudgetDataForListTests : InMemoryTestBase
 
         systemDateHelper.Now.Returns(now);
         systemDateHelper.Today.Returns(now.Date);
-        var testExpense1 = new TestData.DefaultExpense
+        var testExpense1 = new TestData.ClearedExpense
         {
             Id = 10,
             Amount = 100m,
@@ -57,7 +55,7 @@ public sealed class LoadBudgetDataForListTests : InMemoryTestBase
             Date = now.Date
         };
 
-        var testExpense2 = new TestData.DefaultExpense
+        var testExpense2 = new TestData.ClearedExpense
         {
             Id = 10,
             Amount = 50m,
@@ -65,7 +63,7 @@ public sealed class LoadBudgetDataForListTests : InMemoryTestBase
             Date = now.Date
         };
 
-        var testExpense3 = new TestData.DefaultExpense
+        var testExpense3 = new TestData.ClearedExpense
         {
             Id = 10,
             Amount = 50m,
@@ -109,7 +107,7 @@ public sealed class LoadBudgetDataForListTests : InMemoryTestBase
 
         systemDateHelper.Now.Returns(now);
         systemDateHelper.Today.Returns(now.Date);
-        var testExpense1 = new TestData.DefaultExpense
+        var testExpense1 = new TestData.ClearedExpense
         {
             Id = 10,
             Amount = 100m,
@@ -117,7 +115,7 @@ public sealed class LoadBudgetDataForListTests : InMemoryTestBase
             Date = now.Date
         };
 
-        var testExpense2 = new TestData.DefaultExpense
+        var testExpense2 = new TestData.ClearedExpense
         {
             Id = 10,
             Amount = 50m,
@@ -125,7 +123,7 @@ public sealed class LoadBudgetDataForListTests : InMemoryTestBase
             Date = now.Date
         };
 
-        var testExpense3 = new TestData.DefaultExpense
+        var testExpense3 = new TestData.ClearedExpense
         {
             Id = 10,
             Amount = 50m,
@@ -168,7 +166,7 @@ public sealed class LoadBudgetDataForListTests : InMemoryTestBase
 
         systemDateHelper.Now.Returns(now);
         systemDateHelper.Today.Returns(now.Date);
-        var testExpense1 = new TestData.DefaultExpense
+        var testExpense1 = new TestData.ClearedExpense
         {
             Id = 10,
             Amount = 100m,
@@ -195,7 +193,7 @@ public sealed class LoadBudgetDataForListTests : InMemoryTestBase
     public async Task ReturnAllBudgets_EvenWhenOneBudgetDoesHaveNoPayment()
     {
         // Arrange
-        var testExpense1 = new TestData.DefaultExpense
+        var testExpense1 = new TestData.ClearedExpense
         {
             Id = 10,
             Amount = 100m,

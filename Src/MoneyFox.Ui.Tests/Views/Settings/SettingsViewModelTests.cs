@@ -9,7 +9,6 @@ using MoneyFox.Core.Queries;
 using MoneyFox.Domain.Aggregates.AccountAggregate;
 using NSubstitute;
 using Ui.Views.Settings;
-using Xunit;
 
 public static class SettingsViewModelTests
 {
