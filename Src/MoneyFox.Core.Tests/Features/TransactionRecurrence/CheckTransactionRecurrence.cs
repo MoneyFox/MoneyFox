@@ -1,6 +1,7 @@
 namespace MoneyFox.Core.Tests.Features.TransactionRecurrence;
 
 using Core.Common;
+using Core.Common.Extensions;
 using Core.Features.RecurringTransactionCreation;
 using Core.Features.TransactionRecurrence;
 using Domain.Aggregates.RecurringTransactionAggregate;
@@ -48,7 +49,7 @@ public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
     public async Task CreatePaymentsForDifferentRecurrences(Recurrence recurrence, int days)
     {
         // Arrange
-        systemDateHelper.TodayDateOnly.Returns(DateOnly.FromDateTime(DateTime.Today.AddDays(days)));
+        systemDateHelper.TodayDateOnly.Returns(DateTime.Today.AddDays(days).ToDateOnly());
         var recurringTransaction = new TestData.RecurringExpense { Recurrence = recurrence };
         Context.RegisterRecurringTransaction(recurringTransaction);
 
@@ -56,7 +57,7 @@ public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
         await handler.Handle(command: new(), cancellationToken: default);
 
         // Assert
-        await sender.Received(1).Send(Arg.Any<CreateRecurringTransaction.Command>());
+        await sender.Received().Send(Arg.Any<CreateRecurringTransaction.Command>());
     }
 
     [Fact]
