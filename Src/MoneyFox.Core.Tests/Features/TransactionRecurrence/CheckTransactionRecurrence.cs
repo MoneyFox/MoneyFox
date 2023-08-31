@@ -26,8 +26,8 @@ public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
     public async Task CreateAllMissedRecurrences()
     {
         // Arrange
-        systemDateHelper.TodayDateOnly.Returns(DateOnly.FromDateTime(DateTime.Today.AddDays(2)));
-        var recurringTransaction = new TestData.RecurringExpense { Recurrence = Recurrence.Daily };
+        systemDateHelper.TodayDateOnly.Returns(DateOnly.FromDateTime(DateTime.Today.AddMonths(1)));
+        var recurringTransaction = new TestData.RecurringExpense { Recurrence = Recurrence.Biweekly };
         Context.RegisterRecurringTransaction(recurringTransaction);
 
         // Act
