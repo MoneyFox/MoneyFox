@@ -4,7 +4,6 @@ using Core.Common.Extensions;
 using Core.Features.RecurringTransactionCreation;
 using Domain.Exceptions;
 using Domain.Tests.TestFramework;
-using FluentAssertions;
 
 public sealed class CreateRecurringTransactionCommandTests
 {

@@ -4,10 +4,7 @@ using Core.Common.Interfaces;
 using Core.Common.Settings;
 using Core.Interfaces;
 using Domain.Exceptions;
-using FluentAssertions;
 using Infrastructure.DbBackup.Legacy;
-using NSubstitute;
-using NSubstitute.ExceptionExtensions;
 
 public class BackupServiceTests
 {

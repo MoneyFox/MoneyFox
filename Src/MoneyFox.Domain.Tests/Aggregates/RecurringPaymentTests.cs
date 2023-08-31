@@ -3,7 +3,6 @@ namespace MoneyFox.Domain.Tests.Aggregates;
 using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
 using Exceptions;
-using FluentAssertions;
 
 public class RecurringPaymentTests
 {

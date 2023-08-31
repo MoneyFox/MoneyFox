@@ -3,11 +3,9 @@ namespace MoneyFox.Infrastructure.Tests;
 using Core.Common.Settings;
 using Core.Notifications.DatabaseChanged;
 using Domain.Aggregates.AccountAggregate;
-using FluentAssertions;
 using MediatR;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using NSubstitute;
 using Persistence;
 
 public sealed class AppDbContextTests

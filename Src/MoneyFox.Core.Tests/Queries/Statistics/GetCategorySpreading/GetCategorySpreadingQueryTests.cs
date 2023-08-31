@@ -2,7 +2,6 @@
 
 using Core.Queries.Statistics;
 using Domain.Aggregates.AccountAggregate;
-using FluentAssertions;
 
 public class GetCategorySpreadingQueryTests
 {

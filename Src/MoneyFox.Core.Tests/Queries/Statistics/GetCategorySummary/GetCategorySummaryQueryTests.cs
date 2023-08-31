@@ -2,7 +2,6 @@ namespace MoneyFox.Core.Tests.Queries.Statistics.GetCategorySummary;
 
 using Core.Queries.Statistics;
 using Core.Queries.Statistics.GetCategorySummary;
-using FluentAssertions;
 
 public sealed class GetCategorySummaryQueryTests
 {

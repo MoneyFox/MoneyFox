@@ -2,7 +2,6 @@
 
 using Core.Queries.PaymentDataById;
 using Domain.Tests.TestFramework;
-using FluentAssertions;
 using FluentAssertions.Execution;
 
 public class GetPaymentDataByIdHandlerTests : InMemoryTestBase

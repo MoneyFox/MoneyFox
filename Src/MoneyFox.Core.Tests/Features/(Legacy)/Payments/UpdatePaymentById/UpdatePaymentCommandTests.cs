@@ -3,10 +3,8 @@ namespace MoneyFox.Core.Tests.Features._Legacy_.Payments.UpdatePaymentById;
 using Core.Common.Settings;
 using Core.Features._Legacy_.Payments.UpdatePayment;
 using Domain.Aggregates.AccountAggregate;
-using FluentAssertions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using NSubstitute;
 
 public class UpdatePaymentCommandTests : InMemoryTestBase
 {
@@ -16,10 +14,7 @@ public class UpdatePaymentCommandTests : InMemoryTestBase
     {
         var sender = Substitute.For<ISender>();
         var settings = Substitute.For<ISettingsFacade>();
-        handler = new(
-            appDbContext: Context,
-            sender: sender,
-            settings: settings);
+        handler = new(appDbContext: Context, sender: sender, settings: settings);
     }
 
     [Fact]
