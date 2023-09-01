@@ -10,19 +10,16 @@ internal sealed class AddLedgerViewModel : BasePageViewModel
 {
     private readonly IMediator mediator;
     private readonly INavigationService navigationService;
-    private readonly ISettingsFacade settingsFacade;
+    private Money currentBalance;
+    private bool isExcluded;
 
     private string name = string.Empty;
-    private Money currentBalance;
     private string note = string.Empty;
-    private bool isExcluded;
 
     public AddLedgerViewModel(IMediator mediator, INavigationService navigationService, ISettingsFacade settingsFacade)
     {
         this.mediator = mediator;
         this.navigationService = navigationService;
-        this.settingsFacade = settingsFacade;
-
         currentBalance = Money.Zero(settingsFacade.DefaultCurrency);
     }
 
@@ -50,10 +47,21 @@ internal sealed class AddLedgerViewModel : BasePageViewModel
         set => SetProperty(field: ref isExcluded, newValue: value);
     }
 
-    public AsyncRelayCommand SaveCommand => new(SaveAccountAsync);
+    public bool IsValid => IsBusy is false && string.IsNullOrEmpty(Name) is false;
+
+    public AsyncRelayCommand SaveCommand => new(execute: SaveAccountAsync, canExecute: () => IsValid);
 
     private async Task SaveAccountAsync()
     {
-        await mediator.Send(new CreateLedger.Command(name: Name, currentBalance: CurrentBalance, note: Note, isExcludeFromEndOfMonthSummary: IsExcluded));
+        IsBusy = true;
+        try
+        {
+            await mediator.Send(new CreateLedger.Command(name: Name, currentBalance: CurrentBalance, note: Note, isExcludeFromEndOfMonthSummary: IsExcluded));
+            await navigationService.NavigateBackAsync();
+        }
+        finally
+        {
+            IsBusy = false;
+        }
     }
 }

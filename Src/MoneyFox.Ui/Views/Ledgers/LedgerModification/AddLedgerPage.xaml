@@ -46,7 +46,15 @@
                         VerticalOptions="Center"
                         IsToggled="{Binding IsExcluded}" />
                 </Grid>
-                <Button Command="{Binding SaveCommand}" Text="{x:Static resources:Translations.CreateLedgerLabel}" />
+                <Grid ColumnDefinitions="*, 40">
+                    <Button Grid.ColumnSpan="2"
+                            Command="{Binding SaveCommand}"
+                            CommandParameter="{Binding IsValid}"
+                            Text="{x:Static resources:Translations.CreateLedgerLabel}" />
+
+                    <ActivityIndicator Grid.Column="1" IsRunning="{Binding IsBusy}" />
+                </Grid>
+
             </VerticalStackLayout>
         </ScrollView>
     </ContentPage.Content>
