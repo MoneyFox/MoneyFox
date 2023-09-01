@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 using Common;
 using Common.Extensions;
 using Common.Interfaces;
+using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.RecurringTransactionAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core.Features.PaymentCreation;
-using MoneyFox.Domain.Aggregates.AccountAggregate;
+using PaymentCreation;
 
 public static class CheckTransactionRecurrence
 {
@@ -37,15 +37,11 @@ public static class CheckTransactionRecurrence
 
             foreach (var recurringTransaction in recurringTransactions)
             {
-                await CreateDueRecurrences(
-                    cancellationToken: cancellationToken,
-                    recurringTransaction: recurringTransaction);
+                await CreateDueRecurrences(cancellationToken: cancellationToken, recurringTransaction: recurringTransaction);
             }
         }
 
-        private async Task CreateDueRecurrences(
-            CancellationToken cancellationToken,
-            RecurringTransaction recurringTransaction)
+        private async Task CreateDueRecurrences(CancellationToken cancellationToken, RecurringTransaction recurringTransaction)
         {
             var dateAfterRecurrence = recurringTransaction.LastRecurrence;
             while (true)
@@ -64,14 +60,14 @@ public static class CheckTransactionRecurrence
                     }
 
                     var createRecurringTransactionCommand = new CreatePayment.Command(
-                        recurringTransaction.ChargedAccountId,
-                        recurringTransaction.TargetAccountId,
-                        recurringTransaction.Amount,
-                        paymentType,
-                        dateAfterRecurrence,
-                        recurringTransaction.CategoryId,
-                        recurringTransaction.RecurringTransactionId,
-                        recurringTransaction.Note ?? string.Empty);
+                        ChargedAccountId: recurringTransaction.ChargedAccountId,
+                        TargetAccountId: recurringTransaction.TargetAccountId,
+                        Amount: recurringTransaction.Amount,
+                        Type: paymentType,
+                        Date: dateAfterRecurrence,
+                        CategoryId: recurringTransaction.CategoryId,
+                        RecurringTransactionId: recurringTransaction.RecurringTransactionId,
+                        Note: recurringTransaction.Note ?? string.Empty);
 
                     await sender.Send(request: createRecurringTransactionCommand, cancellationToken: cancellationToken);
 

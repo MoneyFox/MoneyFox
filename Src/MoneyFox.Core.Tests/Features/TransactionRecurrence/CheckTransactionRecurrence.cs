@@ -2,11 +2,11 @@ namespace MoneyFox.Core.Tests.Features.TransactionRecurrence;
 
 using Core.Common;
 using Core.Common.Extensions;
+using Core.Features.PaymentCreation;
 using Core.Features.TransactionRecurrence;
 using Domain.Aggregates.RecurringTransactionAggregate;
 using Domain.Tests.TestFramework;
 using MediatR;
-using MoneyFox.Core.Features.PaymentCreation;
 
 public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
 {
@@ -26,7 +26,11 @@ public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
     public async Task CreateAllRecurrencesForThisMonth()
     {
         // Arrange
-        var recurringTransaction = new TestData.RecurringExpense { Recurrence = Recurrence.Biweekly, LastRecurrence = DateTime.Today.GetFirstDayOfMonth().AddDays(-1).ToDateOnly() };
+        var recurringTransaction = new TestData.RecurringExpense
+        {
+            Recurrence = Recurrence.Biweekly, LastRecurrence = DateTime.Today.GetFirstDayOfMonth().AddDays(-1).ToDateOnly()
+        };
+
         Context.RegisterRecurringTransaction(recurringTransaction);
 
         // Act

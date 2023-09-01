@@ -164,5 +164,47 @@ public partial class App
             appDbContext.SaveChangesAsync().Wait();
             settingsFacade.RecurringTransactionMigrated = true;
         }
+
+        if (settingsFacade.RecurringTransactionMigrated2 is false)
+        {
+            appDbContext.RecurringTransactions.RemoveRange();
+            appDbContext.SaveChangesAsync().Wait();
+
+            var transactions = appDbContext.RecurringTransactions.ToList();
+
+            foreach (var recurringPayment in appDbContext.RecurringPayments.Include(rp => rp.Category)
+                         .Include(rp => rp.ChargedAccount)
+                         .Include(rp => rp.TargetAccount)
+                         .Include(rp => rp.RelatedPayments))
+            {
+                var recurringTransactionId = Guid.NewGuid();
+                var amount = recurringPayment.Type == PaymentType.Expense ? -recurringPayment.Amount : recurringPayment.Amount;
+                var recurringTransaction = RecurringTransaction.Create(
+                    recurringTransactionId: recurringTransactionId,
+                    chargedAccount: recurringPayment.ChargedAccount.Id,
+                    targetAccount: recurringPayment.TargetAccount?.Id,
+                    amount: new(amount: amount, currencyAlphaIsoCode: settingsFacade!.DefaultCurrency),
+                    categoryId: recurringPayment.Category?.Id,
+                    startDate: recurringPayment.StartDate.ToDateOnly(),
+                    endDate: recurringPayment.EndDate.HasValue ? DateOnly.FromDateTime(recurringPayment.EndDate.Value) : null,
+                    recurrence: recurringPayment.Recurrence.ToRecurrence(),
+                    note: recurringPayment.Note,
+                    isLastDayOfMonth: recurringPayment.IsLastDayOfMonth,
+                    lastRecurrence: recurringPayment.LastRecurrenceCreated.ToDateOnly(),
+                    isTransfer: recurringPayment.Type == PaymentType.Transfer);
+
+                foreach (var payment in recurringPayment.RelatedPayments)
+                {
+                    payment.AddRecurringTransaction(recurringTransactionId);
+                }
+
+                appDbContext.Add(recurringTransaction);
+            }
+
+            appDbContext.SaveChangesAsync().Wait();
+
+            var transactions2 = appDbContext.RecurringTransactions.ToList();
+            settingsFacade.RecurringTransactionMigrated2 = true;
+        }
     }
 }
