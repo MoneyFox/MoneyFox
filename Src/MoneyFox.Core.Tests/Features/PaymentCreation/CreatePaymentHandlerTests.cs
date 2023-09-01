@@ -20,6 +20,11 @@ public sealed class CreatePaymentHandlerTests : InMemoryTestBase
     public async Task AddRecurringTransactionToDb()
     {
         // Arrange
+        var testAccount = new TestData.IncludedAccount().CreateDbAccount();
+        Context.Add(testAccount);
+        var testCategory = new TestData.CategoryBeverages().CreateDbCategory();
+        Context.Add(testCategory);
+        await Context.SaveChangesAsync();
         var testPayment = new TestData.UnclearedExpense();
 
         // Act
