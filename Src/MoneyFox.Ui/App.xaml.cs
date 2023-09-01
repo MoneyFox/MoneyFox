@@ -143,7 +143,6 @@ public partial class App
                 .Include(rp => rp.ChargedAccount)
                 .Include(rp => rp.TargetAccount)
                 .Include(rp => rp.RelatedPayments)
-                .Where(rp => rp.EndDate == null || rp.EndDate > DateTime.Today)
                 .Where(rp => rp.LastRecurrenceCreated != DateTime.MinValue)
                 .ToListAsync();
 
