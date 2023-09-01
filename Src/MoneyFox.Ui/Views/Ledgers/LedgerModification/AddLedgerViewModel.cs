@@ -10,7 +10,7 @@ internal sealed class AddLedgerViewModel : BasePageViewModel
 {
     private readonly IMediator mediator;
     private readonly INavigationService navigationService;
-    private Money currentBalance;
+    private Money openingBalance;
     private bool isExcluded;
 
     private string name = string.Empty;
@@ -20,7 +20,7 @@ internal sealed class AddLedgerViewModel : BasePageViewModel
     {
         this.mediator = mediator;
         this.navigationService = navigationService;
-        currentBalance = Money.Zero(settingsFacade.DefaultCurrency);
+        openingBalance = Money.Zero(settingsFacade.DefaultCurrency);
     }
 
     public string Name
@@ -29,10 +29,10 @@ internal sealed class AddLedgerViewModel : BasePageViewModel
         set => SetProperty(field: ref name, newValue: value);
     }
 
-    public Money CurrentBalance
+    public Money OpeningBalance
     {
-        get => currentBalance;
-        set => SetProperty(field: ref currentBalance, newValue: value);
+        get => openingBalance;
+        set => SetProperty(field: ref openingBalance, newValue: value);
     }
 
     public string Note
@@ -56,7 +56,7 @@ internal sealed class AddLedgerViewModel : BasePageViewModel
         IsBusy = true;
         try
         {
-            await mediator.Send(new CreateLedger.Command(name: Name, currentBalance: CurrentBalance, note: Note, isExcludeFromEndOfMonthSummary: IsExcluded));
+            await mediator.Send(new CreateLedger.Command(name: Name, currentBalance: OpeningBalance, note: Note, isExcludeFromEndOfMonthSummary: IsExcluded));
             await navigationService.NavigateBackAsync();
         }
         finally

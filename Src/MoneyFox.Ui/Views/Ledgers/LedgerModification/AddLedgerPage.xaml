@@ -22,7 +22,7 @@
                 <controls:AmountEntry
                     AmountFieldTitle="{x:Static resources:Translations.InitialBalanceLabel}"
                     EntryPlaceholder="{x:Static resources:Translations.InitialBalanceLabel}"
-                    Amount="{Binding CurrentBalance}" />
+                    Amount="{Binding OpeningBalance}" />
 
                 <controls:TextEntry
                     TextFieldTitle="{x:Static resources:Translations.NoteLabel}"
