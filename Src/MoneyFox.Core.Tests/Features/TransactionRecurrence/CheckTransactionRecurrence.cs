@@ -2,7 +2,6 @@ namespace MoneyFox.Core.Tests.Features.TransactionRecurrence;
 
 using Core.Common;
 using Core.Common.Extensions;
-using Core.Features.RecurringTransactionCreation;
 using Core.Features.TransactionRecurrence;
 using Domain.Aggregates.RecurringTransactionAggregate;
 using Domain.Tests.TestFramework;
@@ -19,16 +18,15 @@ public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
     {
         sender = Substitute.For<ISender>();
         systemDateHelper = Substitute.For<ISystemDateHelper>();
-        systemDateHelper.TodayDateOnly.Returns(DateOnly.FromDateTime(DateTime.Today));
+        systemDateHelper.TodayDateOnly.Returns(DateTime.Today.ToDateOnly());
         handler = new(dbContext: Context, sender: sender, systemDateHelper: systemDateHelper);
     }
 
     [Fact]
-    public async Task CreateAllMissedRecurrences()
+    public async Task CreateAllRecurrencesForThisMonth()
     {
         // Arrange
-        systemDateHelper.TodayDateOnly.Returns(DateOnly.FromDateTime(DateTime.Today.AddMonths(1)));
-        var recurringTransaction = new TestData.RecurringExpense { Recurrence = Recurrence.Biweekly };
+        var recurringTransaction = new TestData.RecurringExpense { Recurrence = Recurrence.Biweekly, LastRecurrence = DateTime.Today.GetFirstDayOfMonth().AddDays(-1).ToDateOnly() };
         Context.RegisterRecurringTransaction(recurringTransaction);
 
         // Act
@@ -74,21 +72,5 @@ public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
 
         // Assert
         await sender.DidNotReceive().Send(Arg.Any<CreatePayment.Command>());
-    }
-
-    [Fact]
-    public async Task CreateRecurrencesOfTheMonthOnTheFirstDay()
-    {
-        // Arrange
-        var firstOfNextMonth = new DateOnly(DateTime.Today.Year, DateTime.Today.Month, 1).AddMonths(1);
-        systemDateHelper.TodayDateOnly.Returns(firstOfNextMonth);
-        var recurringTransaction1 = new TestData.RecurringExpense { Recurrence = Recurrence.Monthly };
-        Context.RegisterRecurringTransaction(recurringTransaction1);
-
-        // Act
-        await handler.Handle(command: new(), cancellationToken: default);
-
-        // Assert
-        await sender.Received(1).Send(Arg.Any<CreatePayment.Command>());
     }
 }
