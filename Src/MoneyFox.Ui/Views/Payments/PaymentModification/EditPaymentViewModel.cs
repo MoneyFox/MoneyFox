@@ -141,18 +141,19 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
     {
         if (await dialogService.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeletePaymentConfirmationMessage))
         {
-            var deleteCommand = new DeletePaymentByIdCommand(payment.Id);
+            var deleteRecurringPayment = false;
             if (SelectedPayment.IsRecurring)
             {
-                deleteCommand.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(
+                deleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(
                     title: Translations.DeleteRecurringPaymentTitle,
                     message: Translations.DeleteRecurringPaymentMessage);
             }
 
+            DeletePaymentById.Command command = new(PaymentId: payment.Id, DeleteRecurringPayment: deleteRecurringPayment);
             try
             {
                 await dialogService.ShowLoadingDialogAsync();
-                await mediator.Send(deleteCommand);
+                await mediator.Send(command);
                 await Shell.Current.Navigation.PopModalAsync();
             }
             finally

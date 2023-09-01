@@ -6,19 +6,11 @@ using Common.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-public class DeletePaymentByIdCommand : IRequest
+public static class DeletePaymentById
 {
-    public DeletePaymentByIdCommand(int paymentId, bool deleteRecurringPayment = false)
-    {
-        PaymentId = paymentId;
-        DeleteRecurringPayment = deleteRecurringPayment;
-    }
+    public record Command(int PaymentId, bool DeleteRecurringPayment = false) : IRequest;
 
-    private int PaymentId { get; }
-
-    public bool DeleteRecurringPayment { get; set; }
-
-    public class Handler : IRequestHandler<DeletePaymentByIdCommand>
+    public class Handler : IRequestHandler<Command>
     {
         private readonly IAppDbContext appDbContext;
 
@@ -27,11 +19,11 @@ public class DeletePaymentByIdCommand : IRequest
             this.appDbContext = appDbContext;
         }
 
-        public async Task Handle(DeletePaymentByIdCommand request, CancellationToken cancellationToken)
+        public async Task Handle(Command command, CancellationToken cancellationToken)
         {
             var entityToDelete = await appDbContext.Payments.Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
-                .SingleOrDefaultAsync(predicate: x => x.Id == request.PaymentId, cancellationToken: cancellationToken);
+                .SingleOrDefaultAsync(predicate: x => x.Id == command.PaymentId, cancellationToken: cancellationToken);
 
             if (entityToDelete == null)
             {
@@ -40,7 +32,7 @@ public class DeletePaymentByIdCommand : IRequest
 
             entityToDelete.ChargedAccount.RemovePaymentAmount(entityToDelete);
             entityToDelete.TargetAccount?.RemovePaymentAmount(entityToDelete);
-            if (request.DeleteRecurringPayment && entityToDelete.IsRecurring)
+            if (command.DeleteRecurringPayment && entityToDelete.IsRecurring)
             {
                 var recurringTransaction = await appDbContext.RecurringTransactions.SingleAsync(
                     predicate: rt => rt.RecurringTransactionId == entityToDelete.RecurringTransactionId,
