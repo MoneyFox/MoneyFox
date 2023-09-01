@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Domain.Tests.TestFramework;
+namespace MoneyFox.Domain.Tests.TestFramework;
 
 using Domain.Aggregates.AccountAggregate;
 using Infrastructure.Persistence;

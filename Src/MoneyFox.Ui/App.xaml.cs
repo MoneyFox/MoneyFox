@@ -22,10 +22,10 @@ using Views.Setup;
 public partial class App
 {
     private readonly IAppDbContext appDbContext;
+    private readonly IAptabaseClient aptabaseClient;
     private readonly IBackupService backupService;
     private readonly IMediator mediator;
     private readonly ISettingsFacade settingsFacade;
-    private readonly IAptabaseClient aptabaseClient;
     private bool isRunning;
 
     public App(
@@ -45,7 +45,6 @@ public partial class App
         InitializeComponent();
         FillResourceDictionary();
         appDbContext.MigrateDb();
-        MigrateRecurringTransactions();
         MainPage = settingsFacade.IsSetupCompleted ? GetAppShellPage() : new SetupShell();
     }
 
@@ -114,7 +113,12 @@ public partial class App
         try
         {
             await mediator.Send(new ClearPaymentsCommand());
-            await mediator.Send(new CheckTransactionRecurrence.Command());
+            await MigrateRecurringTransactions();
+            if (settingsFacade.RecurringTransactionMigrated2)
+            {
+                await mediator.Send(new CheckTransactionRecurrence.Command());
+            }
+
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
         }
         catch (Exception ex)
@@ -127,15 +131,21 @@ public partial class App
         }
     }
 
-    private void MigrateRecurringTransactions()
+    private async Task MigrateRecurringTransactions()
     {
         // Migrate RecurringTransaction
-        if (settingsFacade.RecurringTransactionMigrated is false)
+        if (settingsFacade.RecurringTransactionMigrated2 is false)
         {
-            foreach (var recurringPayment in appDbContext.RecurringPayments.Include(rp => rp.Category)
-                         .Include(rp => rp.ChargedAccount)
-                         .Include(rp => rp.TargetAccount)
-                         .Include(rp => rp.RelatedPayments))
+            appDbContext.RecurringTransactions.RemoveRange(await appDbContext.RecurringTransactions.ToListAsync());
+            await appDbContext.SaveChangesAsync();
+            var recurringPayments = await appDbContext.RecurringPayments.Include(rp => rp.Category)
+                .Include(rp => rp.ChargedAccount)
+                .Include(rp => rp.TargetAccount)
+                .Include(rp => rp.RelatedPayments)
+                .Where(rp => rp.LastRecurrenceCreated != DateTime.MinValue)
+                .ToListAsync();
+
+            foreach (var recurringPayment in recurringPayments)
             {
                 var recurringTransactionId = Guid.NewGuid();
                 var amount = recurringPayment.Type == PaymentType.Expense ? -recurringPayment.Amount : recurringPayment.Amount;
@@ -143,13 +153,17 @@ public partial class App
                     recurringTransactionId: recurringTransactionId,
                     chargedAccount: recurringPayment.ChargedAccount.Id,
                     targetAccount: recurringPayment.TargetAccount?.Id,
-                    amount: new(amount: amount, currencyAlphaIsoCode: settingsFacade!.DefaultCurrency),
+                    amount: new(amount: amount, currencyAlphaIsoCode: settingsFacade.DefaultCurrency),
                     categoryId: recurringPayment.Category?.Id,
                     startDate: recurringPayment.StartDate.ToDateOnly(),
                     endDate: recurringPayment.EndDate.HasValue ? DateOnly.FromDateTime(recurringPayment.EndDate.Value) : null,
                     recurrence: recurringPayment.Recurrence.ToRecurrence(),
                     note: recurringPayment.Note,
                     isLastDayOfMonth: recurringPayment.IsLastDayOfMonth,
+                    lastRecurrence: new(
+                        year: recurringPayment.LastRecurrenceCreated.Year,
+                        month: recurringPayment.LastRecurrenceCreated.Month,
+                        day: recurringPayment.StartDate.Day),
                     isTransfer: recurringPayment.Type == PaymentType.Transfer);
 
                 foreach (var payment in recurringPayment.RelatedPayments)
@@ -160,7 +174,8 @@ public partial class App
                 appDbContext.Add(recurringTransaction);
             }
 
-            appDbContext.SaveChangesAsync().Wait();
+            await appDbContext.SaveChangesAsync();
+            settingsFacade.RecurringTransactionMigrated2 = true;
             settingsFacade.RecurringTransactionMigrated = true;
         }
     }

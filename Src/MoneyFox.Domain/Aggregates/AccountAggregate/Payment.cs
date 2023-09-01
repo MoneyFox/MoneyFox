@@ -118,8 +118,6 @@ public class Payment : EntityBase
         {
             if (TargetAccount == null)
             {
-                Log.Warning(messageTemplate: "Target Account on clearing was null for payment {id}", propertyValue: Id);
-
                 return;
             }
 

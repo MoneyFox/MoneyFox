@@ -24,6 +24,7 @@ public sealed class RecurringTransactionTests
             recurrence: testRecurringTransfer.Recurrence,
             note: testRecurringTransfer.Note,
             isLastDayOfMonth: testRecurringTransfer.IsLastDayOfMonth,
+            lastRecurrence: testRecurringTransfer.LastRecurrence,
             isTransfer: testRecurringTransfer.IsTransfer);
 
         // Assert
