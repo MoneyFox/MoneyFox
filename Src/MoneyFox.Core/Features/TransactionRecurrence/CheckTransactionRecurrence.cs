@@ -48,7 +48,7 @@ public static class CheckTransactionRecurrence
                 var dateAfterRecurrence = DateAfterRecurrence(recurringTransaction.LastRecurrence, recurringTransaction.Recurrence);
                 if (dateAfterRecurrence <= systemDateHelper.TodayDateOnly.GetLastDayOfMonth())
                 {
-                    var paymentType = PaymentType.Expense;
+                    PaymentType paymentType;
                     if (recurringTransaction.IsTransfer)
                     {
                         paymentType = PaymentType.Transfer;
