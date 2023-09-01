@@ -70,12 +70,14 @@ public static class CheckTransactionRecurrence
                         Note: recurringTransaction.Note ?? string.Empty);
 
                     await sender.Send(request: createRecurringTransactionCommand, cancellationToken: cancellationToken);
-
+                    recurringTransaction.SetLastRecurrence(dateAfterRecurrence);
                     continue;
                 }
 
                 break;
             }
+
+            await dbContext.SaveChangesAsync(cancellationToken);
         }
 
         private DateOnly DateAfterRecurrence(DateOnly dateAfterRecurrence, Recurrence recurrence)

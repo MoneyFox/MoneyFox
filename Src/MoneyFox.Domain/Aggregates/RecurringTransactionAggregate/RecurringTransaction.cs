@@ -118,4 +118,9 @@ public sealed class RecurringTransaction : EntityBase
     {
         EndDate = DateOnly.FromDateTime(DateTime.Today);
     }
+
+    public void SetLastRecurrence(DateOnly dateOfRecurrence)
+    {
+        LastRecurrence = dateOfRecurrence;
+    }
 }

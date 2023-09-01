@@ -77,4 +77,23 @@ public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
         // Assert
         await sender.DidNotReceive().Send(Arg.Any<CreatePayment.Command>());
     }
+
+    [Fact]
+    public async Task UpdateLastRecurrence()
+    {
+        // Arrange
+        var recurringTransaction = new TestData.RecurringExpense
+        {
+            Recurrence = Recurrence.Monthly, LastRecurrence = DateTime.Today.AddMonths(-1).ToDateOnly()
+        };
+
+        Context.RegisterRecurringTransaction(recurringTransaction);
+
+        // Act
+        await handler.Handle(command: new(), cancellationToken: default);
+
+        // Assert
+        var dbRecurringTransaction = Context.RecurringTransactions.Single();
+        dbRecurringTransaction.LastRecurrence.Should().Be(DateTime.Today.ToDateOnly());
+    }
 }
