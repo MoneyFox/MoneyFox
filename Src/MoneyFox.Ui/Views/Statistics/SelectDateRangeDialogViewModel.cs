@@ -11,7 +11,15 @@ internal sealed class SelectDateRangeDialogViewModel : BasePageViewModel
 
     public SelectDateRangeDialogViewModel()
     {
-        StartDate = new(year: DateTime.Today.Year, month: DateTime.Today.Month, day: 1);
+        StartDate = new(
+            year: DateTime.Today.Year,
+            month: DateTime.Today.Month,
+            day: 1,
+            hour: 0,
+            minute: 0,
+            second: 0,
+            kind: DateTimeKind.Local);
+
         EndDate = DateTime.Today.GetLastDayOfMonth();
     }
 

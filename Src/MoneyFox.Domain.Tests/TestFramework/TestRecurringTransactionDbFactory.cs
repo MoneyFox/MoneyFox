@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Domain.Tests.TestFramework;
+namespace MoneyFox.Domain.Tests.TestFramework;
 
 using Domain.Aggregates.RecurringTransactionAggregate;
 
@@ -17,6 +17,7 @@ internal static class TestRecurringTransactionDbFactory
             recurrence: recurringTransaction.Recurrence,
             note: recurringTransaction.Note,
             isLastDayOfMonth: recurringTransaction.IsLastDayOfMonth,
+            lastRecurrence: recurringTransaction.LastRecurrence,
             isTransfer: recurringTransaction.IsTransfer);
     }
 }

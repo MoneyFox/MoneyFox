@@ -5,11 +5,13 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Common;
+using Common.Extensions;
 using Common.Interfaces;
+using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.RecurringTransactionAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using RecurringTransactionCreation;
+using PaymentCreation;
 
 public static class CheckTransactionRecurrence
 {
@@ -35,43 +37,44 @@ public static class CheckTransactionRecurrence
 
             foreach (var recurringTransaction in recurringTransactions)
             {
-                var createRecurringTransactionCommand = new CreateRecurringTransaction.Command(
-                    recurringTransactionId: recurringTransaction.RecurringTransactionId,
-                    chargedAccount: recurringTransaction.ChargedAccountId,
-                    targetAccount: recurringTransaction.TargetAccountId,
-                    amount: recurringTransaction.Amount,
-                    categoryId: recurringTransaction.CategoryId,
-                    startDate: recurringTransaction.StartDate,
-                    endDate: recurringTransaction.EndDate,
-                    recurrence: recurringTransaction.Recurrence,
-                    note: recurringTransaction.Note,
-                    isLastDayOfMonth: recurringTransaction.IsLastDayOfMonth,
-                    isTransfer: recurringTransaction.IsTransfer);
-
-                await CreateDueRecurrences(
-                    cancellationToken: cancellationToken,
-                    recurringTransaction: recurringTransaction,
-                    createRecurringTransactionCommand: createRecurringTransactionCommand);
+                await CreateDueRecurrences(cancellationToken: cancellationToken, recurringTransaction: recurringTransaction);
+                await dbContext.SaveChangesAsync(cancellationToken);
             }
         }
 
-        private async Task CreateDueRecurrences(
-            CancellationToken cancellationToken,
-            RecurringTransaction recurringTransaction,
-            CreateRecurringTransaction.Command createRecurringTransactionCommand)
+        private async Task CreateDueRecurrences(CancellationToken cancellationToken, RecurringTransaction recurringTransaction)
         {
-            var dateAfterRecurrence = recurringTransaction.LastRecurrence;
-            while (true)
-            {
-                dateAfterRecurrence = DateAfterRecurrence(dateAfterRecurrence: dateAfterRecurrence, recurrence: recurringTransaction.Recurrence);
-                if (dateAfterRecurrence <= systemDateHelper.TodayDateOnly)
-                {
-                    await sender.Send(request: createRecurringTransactionCommand, cancellationToken: cancellationToken);
+            var dateAfterRecurrence = DateAfterRecurrence(
+                dateAfterRecurrence: recurringTransaction.LastRecurrence,
+                recurrence: recurringTransaction.Recurrence);
 
-                    continue;
+            while (dateAfterRecurrence <= systemDateHelper.TodayDateOnly.GetLastDayOfMonth())
+            {
+                PaymentType paymentType;
+                if (recurringTransaction.IsTransfer)
+                {
+                    paymentType = PaymentType.Transfer;
+                }
+                else
+                {
+                    paymentType = recurringTransaction.Amount.Amount < 0 ? PaymentType.Expense : PaymentType.Income;
                 }
 
-                break;
+                var createPaymentCommand = new CreatePayment.Command(
+                    ChargedAccountId: recurringTransaction.ChargedAccountId,
+                    TargetAccountId: recurringTransaction.TargetAccountId,
+                    Amount: recurringTransaction.Amount,
+                    Type: paymentType,
+                    Date: dateAfterRecurrence,
+                    CategoryId: recurringTransaction.CategoryId,
+                    RecurringTransactionId: recurringTransaction.RecurringTransactionId,
+                    Note: recurringTransaction.Note ?? string.Empty);
+
+                await sender.Send(request: createPaymentCommand, cancellationToken: cancellationToken);
+                recurringTransaction.SetLastRecurrence(dateAfterRecurrence);
+                dateAfterRecurrence = DateAfterRecurrence(
+                    dateAfterRecurrence: recurringTransaction.LastRecurrence,
+                    recurrence: recurringTransaction.Recurrence);
             }
         }
 

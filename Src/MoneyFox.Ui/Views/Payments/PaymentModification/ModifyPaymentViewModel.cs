@@ -18,11 +18,11 @@ using Serilog;
 
 public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttributable
 {
+    private readonly IAptabaseClient aptabaseClient;
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
     private readonly ISettingsFacade settingsFacade;
     private readonly IToastService toastService;
-    private readonly IAptabaseClient aptabaseClient;
     private ObservableCollection<AccountPickerViewModel> chargedAccounts = new();
 
     private PaymentViewModel selectedPayment = new();
@@ -172,10 +172,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
         }
         catch (Exception ex)
         {
-            aptabaseClient.TrackEvent("failed_to_modify_payment", new Dictionary<string, object>
-            {
-                {"excpetion", ex}
-            });
+            aptabaseClient.TrackEvent(eventName: "failed_to_modify_payment", props: new() { { "excpetion", ex } });
             Log.Error(exception: ex, messageTemplate: "Failed to modify payment");
             await toastService.ShowToastAsync(string.Format(format: Translations.UnknownErrorMessage, arg0: ex.Message));
         }

@@ -84,7 +84,6 @@ public class GetPaymentDataByIdHandlerTests : InMemoryTestBase
             var result = await handler.Handle(query: new(payment.Id), cancellationToken: default);
 
             // Assert
-            var foo = Context.Accounts.ToList();
             AssertPaymentData(actual: result, expectedPayment: payment, recurringTransaction: null);
         }
     }

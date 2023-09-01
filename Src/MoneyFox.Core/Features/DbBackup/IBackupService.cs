@@ -3,7 +3,6 @@ namespace MoneyFox.Core.Features.DbBackup;
 using System;
 using System.Threading.Tasks;
 
-// TODO Segregate interface
 public interface IBackupService
 {
     Task LoginAsync();

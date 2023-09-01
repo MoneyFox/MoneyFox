@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Domain.Tests.TestFramework;
+namespace MoneyFox.Domain.Tests.TestFramework;
 
 using Domain.Aggregates.AccountAggregate;
 
@@ -24,7 +24,7 @@ internal static partial class TestData
 
         internal sealed record ExpenseCategory : ICategory
         {
-            public int Id { get; set; }
+            public int Id { get; set; } = 1;
             public string Name { get; } = "Whine";
             public string? Note { get; } = "Yummi!";
             public bool RequireNote { get; } = false;

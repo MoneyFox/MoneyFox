@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Tests.Features.RecurringTransactionCreation;
+namespace MoneyFox.Core.Tests.Features.RecurringTransactionCreation;
 
 using Core.Features.RecurringTransactionCreation;
 using Domain.Tests.TestFramework;
@@ -31,6 +31,7 @@ public sealed class CreateRecurringTransactionHandlerTests : InMemoryTestBase
             recurrence: testRecurringTransfer.Recurrence,
             note: testRecurringTransfer.Note,
             isLastDayOfMonth: testRecurringTransfer.IsLastDayOfMonth,
+            lastRecurrence: testRecurringTransfer.LastRecurrence,
             isTransfer: testRecurringTransfer.IsTransfer);
 
         await handler.Handle(command: command, cancellationToken: CancellationToken.None);
