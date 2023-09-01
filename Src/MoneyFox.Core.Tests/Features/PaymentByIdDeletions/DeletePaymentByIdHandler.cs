@@ -1,14 +1,13 @@
-﻿namespace MoneyFox.Core.Tests.Features._Legacy_.Payments.DeletePaymentById;
+﻿namespace MoneyFox.Core.Tests.Features.PaymentByIdDeletions;
 
-using Core.Features._Legacy_.Payments.DeletePaymentById;
-using Domain.Aggregates.AccountAggregate;
-using Domain.Tests.TestFramework;
+using MoneyFox.Core.Features.PaymentByIdDeletions;
+using MoneyFox.Domain.Tests.TestFramework;
 
-public class DeletePaymentByIdCommandTests : InMemoryTestBase
+public class DeletePaymentByIdHandler : InMemoryTestBase
 {
     private readonly DeletePaymentById.Handler handler;
 
-    public DeletePaymentByIdCommandTests()
+    public DeletePaymentByIdHandler()
     {
         handler = new(Context);
     }
