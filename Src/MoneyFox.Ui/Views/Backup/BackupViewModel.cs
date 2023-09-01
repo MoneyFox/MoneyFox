@@ -318,7 +318,6 @@ internal sealed class BackupViewModel : BasePageViewModel
             return;
         }
 
-        await dialogService.ShowLoadingDialogAsync();
         var backupDate = await backupService.GetBackupDateAsync();
         if (settingsFacade.LastDatabaseUpdate <= backupDate || await ShowForceOverrideConfirmationAsync())
         {
@@ -368,7 +367,6 @@ internal sealed class BackupViewModel : BasePageViewModel
 
     private async Task<bool> ShowForceOverrideConfirmationAsync()
     {
-        await dialogService.HideLoadingDialogAsync();
         return await dialogService.ShowConfirmMessageAsync(
             title: Translations.ForceOverrideBackupTitle,
             message: Translations.ForceOverrideBackupMessage,
