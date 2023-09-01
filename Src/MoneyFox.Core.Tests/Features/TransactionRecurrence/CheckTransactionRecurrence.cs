@@ -7,6 +7,7 @@ using Core.Features.TransactionRecurrence;
 using Domain.Aggregates.RecurringTransactionAggregate;
 using Domain.Tests.TestFramework;
 using MediatR;
+using MoneyFox.Core.Features.PaymentCreation;
 
 public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
 {
@@ -34,7 +35,7 @@ public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
         await handler.Handle(command: new(), cancellationToken: default);
 
         // Assert
-        await sender.Received(2).Send(Arg.Any<CreateRecurringTransaction.Command>());
+        await sender.Received(2).Send(Arg.Any<CreatePayment.Command>());
     }
 
     [Theory]
@@ -57,7 +58,7 @@ public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
         await handler.Handle(command: new(), cancellationToken: default);
 
         // Assert
-        await sender.Received().Send(Arg.Any<CreateRecurringTransaction.Command>());
+        await sender.Received().Send(Arg.Any<CreatePayment.Command>());
     }
 
     [Fact]
@@ -72,7 +73,7 @@ public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
         await handler.Handle(command: new(), cancellationToken: default);
 
         // Assert
-        await sender.DidNotReceive().Send(Arg.Any<CreateRecurringTransaction.Command>());
+        await sender.DidNotReceive().Send(Arg.Any<CreatePayment.Command>());
     }
 
     [Fact]
@@ -88,6 +89,6 @@ public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
         await handler.Handle(command: new(), cancellationToken: default);
 
         // Assert
-        await sender.Received(1).Send(Arg.Any<CreateRecurringTransaction.Command>());
+        await sender.Received(1).Send(Arg.Any<CreatePayment.Command>());
     }
 }

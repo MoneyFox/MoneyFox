@@ -1,11 +1,11 @@
-﻿namespace MoneyFox.Domain.Tests.TestFramework;
+namespace MoneyFox.Domain.Tests.TestFramework;
 
 using Domain.Aggregates.RecurringTransactionAggregate;
 using FluentAssertions.Execution;
 
 internal static class RecurringTransactionAssertion
 {
-    public static void AssertRecurringTransaction(RecurringTransaction actual, TestData.RecurringTransfer expected)
+    public static void AssertRecurringTransaction(RecurringTransaction actual, TestData.IRecurringTransaction expected)
     {
         using (new AssertionScope())
         {

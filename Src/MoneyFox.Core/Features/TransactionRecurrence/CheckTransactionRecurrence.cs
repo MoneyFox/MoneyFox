@@ -10,7 +10,8 @@ using Common.Interfaces;
 using Domain.Aggregates.RecurringTransactionAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using RecurringTransactionCreation;
+using MoneyFox.Core.Features.PaymentCreation;
+using MoneyFox.Domain.Aggregates.AccountAggregate;
 
 public static class CheckTransactionRecurrence
 {
@@ -36,30 +37,15 @@ public static class CheckTransactionRecurrence
 
             foreach (var recurringTransaction in recurringTransactions)
             {
-                var createRecurringTransactionCommand = new CreateRecurringTransaction.Command(
-                    recurringTransactionId: recurringTransaction.RecurringTransactionId,
-                    chargedAccount: recurringTransaction.ChargedAccountId,
-                    targetAccount: recurringTransaction.TargetAccountId,
-                    amount: recurringTransaction.Amount,
-                    categoryId: recurringTransaction.CategoryId,
-                    startDate: recurringTransaction.StartDate,
-                    endDate: recurringTransaction.EndDate,
-                    recurrence: recurringTransaction.Recurrence,
-                    note: recurringTransaction.Note,
-                    isLastDayOfMonth: recurringTransaction.IsLastDayOfMonth,
-                    isTransfer: recurringTransaction.IsTransfer);
-
                 await CreateDueRecurrences(
                     cancellationToken: cancellationToken,
-                    recurringTransaction: recurringTransaction,
-                    createRecurringTransactionCommand: createRecurringTransactionCommand);
+                    recurringTransaction: recurringTransaction);
             }
         }
 
         private async Task CreateDueRecurrences(
             CancellationToken cancellationToken,
-            RecurringTransaction recurringTransaction,
-            CreateRecurringTransaction.Command createRecurringTransactionCommand)
+            RecurringTransaction recurringTransaction)
         {
             var dateAfterRecurrence = recurringTransaction.LastRecurrence;
             while (true)
@@ -67,6 +53,26 @@ public static class CheckTransactionRecurrence
                 dateAfterRecurrence = DateAfterRecurrence(dateAfterRecurrence: dateAfterRecurrence, recurrence: recurringTransaction.Recurrence);
                 if (dateAfterRecurrence <= systemDateHelper.TodayDateOnly.GetLastDayOfMonth())
                 {
+                    var paymentType = PaymentType.Expense;
+                    if (recurringTransaction.IsTransfer)
+                    {
+                        paymentType = PaymentType.Transfer;
+                    }
+                    else
+                    {
+                        paymentType = recurringTransaction.Amount.Amount < 0 ? PaymentType.Expense : PaymentType.Income;
+                    }
+
+                    var createRecurringTransactionCommand = new CreatePayment.Command(
+                        recurringTransaction.ChargedAccountId,
+                        recurringTransaction.TargetAccountId,
+                        recurringTransaction.Amount,
+                        paymentType,
+                        dateAfterRecurrence,
+                        recurringTransaction.CategoryId,
+                        recurringTransaction.RecurringTransactionId,
+                        recurringTransaction.Note ?? string.Empty);
+
                     await sender.Send(request: createRecurringTransactionCommand, cancellationToken: cancellationToken);
 
                     continue;
