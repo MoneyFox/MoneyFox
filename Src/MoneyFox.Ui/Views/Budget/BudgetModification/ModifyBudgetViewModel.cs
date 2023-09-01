@@ -59,16 +59,6 @@ internal abstract class ModifyBudgetViewModel : BasePageViewModel, IQueryAttribu
 
     public bool IsValid => string.IsNullOrEmpty(Name) is false && SpendingLimit > 0 && NumberOfMonths > 0;
 
-    public static List<BudgetTimeRange> TimeRangeCollection
-        => new()
-        {
-            BudgetTimeRange.YearToDate,
-            BudgetTimeRange.Last1Year,
-            BudgetTimeRange.Last2Years,
-            BudgetTimeRange.Last3Years,
-            BudgetTimeRange.Last5Years
-        };
-
     public ObservableCollection<BudgetCategoryViewModel> SelectedCategories { get; set; } = new();
 
     public AsyncRelayCommand OpenCategorySelectionCommand => new(OpenCategorySelection);
