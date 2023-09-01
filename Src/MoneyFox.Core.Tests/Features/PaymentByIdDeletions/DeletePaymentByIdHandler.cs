@@ -1,7 +1,8 @@
 ﻿namespace MoneyFox.Core.Tests.Features.PaymentByIdDeletions;
 
-using MoneyFox.Core.Features.PaymentByIdDeletions;
-using MoneyFox.Domain.Tests.TestFramework;
+using Core.Common.Extensions;
+using Core.Features.PaymentByIdDeletions;
+using Domain.Tests.TestFramework;
 
 public class DeletePaymentByIdHandler : InMemoryTestBase
 {
@@ -30,6 +31,24 @@ public class DeletePaymentByIdHandler : InMemoryTestBase
         await handler.Handle(command: new(testPayment.Id), cancellationToken: default);
 
         // Assert
-        Assert.Empty(Context.Payments);
+        Context.Payments.Should().BeEmpty();
+    }
+
+    [Fact]
+    public async Task PaymentIsRemoved_IncludingRecurringTransaction()
+    {
+        // Arrange
+        var testRecurrence = new TestData.RecurringExpense();
+        Context.RegisterRecurringTransaction(testRecurrence);
+        var testPayment = new TestData.ClearedExpense { RecurringTransactionId = testRecurrence.RecurringTransactionId };
+        Context.RegisterPayment(testPayment: testPayment);
+
+        // Act
+        await handler.Handle(command: new(PaymentId: testPayment.Id, DeleteRecurringPayment: true), cancellationToken: default);
+
+        // Assert
+        Context.Payments.Should().BeEmpty();
+        var dbRecurringTransaction = Context.RecurringTransactions.Single();
+        dbRecurringTransaction.EndDate.Should().Be(DateTime.Today.ToDateOnly());
     }
 }

@@ -21,27 +21,27 @@ public static class DeletePaymentById
 
         public async Task Handle(Command command, CancellationToken cancellationToken)
         {
-            var entityToDelete = await appDbContext.Payments.Include(x => x.ChargedAccount)
+            var paymentToDelete = await appDbContext.Payments.Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
                 .SingleOrDefaultAsync(predicate: x => x.Id == command.PaymentId, cancellationToken: cancellationToken);
 
-            if (entityToDelete == null)
+            if (paymentToDelete == null)
             {
                 return;
             }
 
-            entityToDelete.ChargedAccount.RemovePaymentAmount(entityToDelete);
-            entityToDelete.TargetAccount?.RemovePaymentAmount(entityToDelete);
-            if (command.DeleteRecurringPayment && entityToDelete.IsRecurring)
+            paymentToDelete.ChargedAccount.RemovePaymentAmount(paymentToDelete);
+            paymentToDelete.TargetAccount?.RemovePaymentAmount(paymentToDelete);
+            if (command.DeleteRecurringPayment && paymentToDelete.IsRecurring)
             {
                 var recurringTransaction = await appDbContext.RecurringTransactions.SingleAsync(
-                    predicate: rt => rt.RecurringTransactionId == entityToDelete.RecurringTransactionId,
+                    predicate: rt => rt.RecurringTransactionId == paymentToDelete.RecurringTransactionId,
                     cancellationToken: cancellationToken);
 
                 recurringTransaction.EndRecurrence();
             }
 
-            appDbContext.Payments.Remove(entityToDelete);
+            appDbContext.Payments.Remove(paymentToDelete);
             await appDbContext.SaveChangesAsync(cancellationToken);
         }
     }
