@@ -43,37 +43,37 @@ public static class CheckTransactionRecurrence
 
         private async Task CreateDueRecurrences(CancellationToken cancellationToken, RecurringTransaction recurringTransaction)
         {
-            while (true)
+            var dateAfterRecurrence = DateAfterRecurrence(
+                dateAfterRecurrence: recurringTransaction.LastRecurrence,
+                recurrence: recurringTransaction.Recurrence);
+
+            while (dateAfterRecurrence <= systemDateHelper.TodayDateOnly.GetLastDayOfMonth())
             {
-                var dateAfterRecurrence = DateAfterRecurrence(recurringTransaction.LastRecurrence, recurringTransaction.Recurrence);
-                if (dateAfterRecurrence <= systemDateHelper.TodayDateOnly.GetLastDayOfMonth())
+                PaymentType paymentType;
+                if (recurringTransaction.IsTransfer)
                 {
-                    PaymentType paymentType;
-                    if (recurringTransaction.IsTransfer)
-                    {
-                        paymentType = PaymentType.Transfer;
-                    }
-                    else
-                    {
-                        paymentType = recurringTransaction.Amount.Amount < 0 ? PaymentType.Expense : PaymentType.Income;
-                    }
-
-                    var createRecurringTransactionCommand = new CreatePayment.Command(
-                        ChargedAccountId: recurringTransaction.ChargedAccountId,
-                        TargetAccountId: recurringTransaction.TargetAccountId,
-                        Amount: recurringTransaction.Amount,
-                        Type: paymentType,
-                        Date: dateAfterRecurrence,
-                        CategoryId: recurringTransaction.CategoryId,
-                        RecurringTransactionId: recurringTransaction.RecurringTransactionId,
-                        Note: recurringTransaction.Note ?? string.Empty);
-
-                    await sender.Send(request: createRecurringTransactionCommand, cancellationToken: cancellationToken);
-                    recurringTransaction.SetLastRecurrence(dateAfterRecurrence);
-                    continue;
+                    paymentType = PaymentType.Transfer;
+                }
+                else
+                {
+                    paymentType = recurringTransaction.Amount.Amount < 0 ? PaymentType.Expense : PaymentType.Income;
                 }
 
-                break;
+                var createPaymentCommand = new CreatePayment.Command(
+                    ChargedAccountId: recurringTransaction.ChargedAccountId,
+                    TargetAccountId: recurringTransaction.TargetAccountId,
+                    Amount: recurringTransaction.Amount,
+                    Type: paymentType,
+                    Date: dateAfterRecurrence,
+                    CategoryId: recurringTransaction.CategoryId,
+                    RecurringTransactionId: recurringTransaction.RecurringTransactionId,
+                    Note: recurringTransaction.Note ?? string.Empty);
+
+                await sender.Send(request: createPaymentCommand, cancellationToken: cancellationToken);
+                recurringTransaction.SetLastRecurrence(dateAfterRecurrence);
+                dateAfterRecurrence = DateAfterRecurrence(
+                    dateAfterRecurrence: recurringTransaction.LastRecurrence,
+                    recurrence: recurringTransaction.Recurrence);
             }
 
             await dbContext.SaveChangesAsync(cancellationToken);
