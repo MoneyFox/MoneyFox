@@ -35,7 +35,6 @@ public class CreatePaymentCommand : IRequest
             }
 
             await appDbContext.SaveChangesAsync(cancellationToken);
-            
         }
     }
 }

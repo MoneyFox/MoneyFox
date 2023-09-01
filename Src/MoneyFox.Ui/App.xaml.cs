@@ -22,10 +22,10 @@ using Views.Setup;
 public partial class App
 {
     private readonly IAppDbContext appDbContext;
+    private readonly IAptabaseClient aptabaseClient;
     private readonly IBackupService backupService;
     private readonly IMediator mediator;
     private readonly ISettingsFacade settingsFacade;
-    private readonly IAptabaseClient aptabaseClient;
     private bool isRunning;
 
     public App(
@@ -118,6 +118,7 @@ public partial class App
             {
                 await mediator.Send(new CheckTransactionRecurrence.Command());
             }
+
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
         }
         catch (Exception ex)
@@ -137,9 +138,7 @@ public partial class App
         {
             appDbContext.RecurringTransactions.RemoveRange(await appDbContext.RecurringTransactions.ToListAsync());
             await appDbContext.SaveChangesAsync();
-
-            var recurringPayments = await appDbContext.RecurringPayments
-                .Include(rp => rp.Category)
+            var recurringPayments = await appDbContext.RecurringPayments.Include(rp => rp.Category)
                 .Include(rp => rp.ChargedAccount)
                 .Include(rp => rp.TargetAccount)
                 .Include(rp => rp.RelatedPayments)
@@ -161,10 +160,13 @@ public partial class App
                     recurrence: recurringPayment.Recurrence.ToRecurrence(),
                     note: recurringPayment.Note,
                     isLastDayOfMonth: recurringPayment.IsLastDayOfMonth,
-                    lastRecurrence: new(recurringPayment.LastRecurrenceCreated.Year, recurringPayment.LastRecurrenceCreated.Month, recurringPayment.StartDate.Day),
+                    lastRecurrence: new(
+                        year: recurringPayment.LastRecurrenceCreated.Year,
+                        month: recurringPayment.LastRecurrenceCreated.Month,
+                        day: recurringPayment.StartDate.Day),
                     isTransfer: recurringPayment.Type == PaymentType.Transfer);
 
-                 foreach (var payment in recurringPayment.RelatedPayments)
+                foreach (var payment in recurringPayment.RelatedPayments)
                 {
                     payment.AddRecurringTransaction(recurringTransactionId);
                 }

@@ -1,7 +1,7 @@
 namespace MoneyFox.Domain.Tests.TestFramework;
 
+using Domain.Aggregates.AccountAggregate;
 using FluentAssertions.Execution;
-using MoneyFox.Domain.Aggregates.AccountAggregate;
 
 internal static class PaymentAssertion
 {
