@@ -43,10 +43,9 @@ public static class CheckTransactionRecurrence
 
         private async Task CreateDueRecurrences(CancellationToken cancellationToken, RecurringTransaction recurringTransaction)
         {
-            var dateAfterRecurrence = recurringTransaction.LastRecurrence;
             while (true)
             {
-                dateAfterRecurrence = DateAfterRecurrence(dateAfterRecurrence: dateAfterRecurrence, recurrence: recurringTransaction.Recurrence);
+                var dateAfterRecurrence = DateAfterRecurrence(recurringTransaction.LastRecurrence, recurringTransaction.Recurrence);
                 if (dateAfterRecurrence <= systemDateHelper.TodayDateOnly.GetLastDayOfMonth())
                 {
                     var paymentType = PaymentType.Expense;

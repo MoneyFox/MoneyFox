@@ -162,7 +162,7 @@ public partial class App
                     recurrence: recurringPayment.Recurrence.ToRecurrence(),
                     note: recurringPayment.Note,
                     isLastDayOfMonth: recurringPayment.IsLastDayOfMonth,
-                    lastRecurrence: recurringPayment.LastRecurrenceCreated.ToDateOnly(),
+                    lastRecurrence: new(recurringPayment.LastRecurrenceCreated.Year, recurringPayment.LastRecurrenceCreated.Month, recurringPayment.StartDate.Day),
                     isTransfer: recurringPayment.Type == PaymentType.Transfer);
 
                  foreach (var payment in recurringPayment.RelatedPayments)
