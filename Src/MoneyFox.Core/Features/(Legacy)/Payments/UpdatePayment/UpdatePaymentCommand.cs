@@ -46,7 +46,7 @@ public static class UpdatePayment
             var existingPayment = await appDbContext.Payments.Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
                 .Include(x => x.Category)
-                .FirstAsync(predicate: x => x.Id == command.Id, cancellationToken: cancellationToken);
+                .SingleAsync(predicate: x => x.Id == command.Id, cancellationToken: cancellationToken);
 
             var chargedAccount = await appDbContext.Accounts.SingleAsync(
                 predicate: a => a.Id == command.ChargedAccountId,
