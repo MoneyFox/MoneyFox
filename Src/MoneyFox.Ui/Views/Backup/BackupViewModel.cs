@@ -368,6 +368,7 @@ internal sealed class BackupViewModel : BasePageViewModel
 
     private async Task<bool> ShowForceOverrideConfirmationAsync()
     {
+        await dialogService.HideLoadingDialogAsync();
         return await dialogService.ShowConfirmMessageAsync(
             title: Translations.ForceOverrideBackupTitle,
             message: Translations.ForceOverrideBackupMessage,
