@@ -20,7 +20,7 @@ internal static class RecurringTransactionAssertion
             actual.Recurrence.Should().Be(expected.Recurrence);
             actual.Note.Should().Be(expected.Note);
             actual.IsLastDayOfMonth.Should().Be(expected.IsLastDayOfMonth);
-            actual.LastRecurrence.Should().Be(DateOnly.FromDateTime(DateTime.Today));
+            actual.LastRecurrence.Should().Be(expected.LastRecurrence);
         }
     }
 }
