@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Common;
+using Common.Extensions;
 using Common.Interfaces;
 using Domain.Aggregates.RecurringTransactionAggregate;
 using MediatR;
@@ -64,7 +65,7 @@ public static class CheckTransactionRecurrence
             while (true)
             {
                 dateAfterRecurrence = DateAfterRecurrence(dateAfterRecurrence: dateAfterRecurrence, recurrence: recurringTransaction.Recurrence);
-                if (dateAfterRecurrence <= systemDateHelper.TodayDateOnly)
+                if (dateAfterRecurrence <= systemDateHelper.TodayDateOnly.GetLastDayOfMonth())
                 {
                     await sender.Send(request: createRecurringTransactionCommand, cancellationToken: cancellationToken);
 
