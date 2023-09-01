@@ -4,7 +4,7 @@
         <TargetFramework>net7.0</TargetFramework>
         <EnableWindowsTargeting>true</EnableWindowsTargeting>
         <nullable>enable</nullable>
-        <WarningsAsErrors>CS8600;CS8602;CS8603</WarningsAsErrors>
+        <WarningsAsErrors>true</WarningsAsErrors>
         <GenerateSatelliteAssembliesForCore>true</GenerateSatelliteAssembliesForCore>
 
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
