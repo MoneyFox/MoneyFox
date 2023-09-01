@@ -48,7 +48,7 @@ public static class CreatePayment
 
             var payment = new Payment(
                 date: command.Date.ToDateTime(TimeOnly.MinValue),
-                amount: command.Amount.Amount,
+                amount: Math.Abs(command.Amount.Amount),
                 type: command.Type,
                 chargedAccount: chargedAccount,
                 targetAccount: targetAccount,
