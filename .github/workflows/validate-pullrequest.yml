@@ -160,3 +160,46 @@ jobs:
         if: ${{ false }}
         run: dotnet build ${{env.UI_PROJECT_PATH}} -f net7.0-ios -c Release /p:packageApp=True
       
+  
+  buildMacOS:
+
+    runs-on: macos-13
+
+    steps:
+
+      - name: Xcode Select Version
+        uses: mobiledevops/xcode-select-version-action@v1
+        with:
+          xcode-select-version: 14.3.1
+
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{env.DOTNET_VERSION}}
+
+      - uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          # Look to see if there is a cache hit for the corresponding requirements file
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget
+
+      - name: Install MAUI Workloads
+        run: dotnet workload install maui-mobile
+
+      - name: Restore Dependencies
+        run: dotnet restore ${{env.UI_PROJECT_PATH}}
+
+      - name: Test
+        run: |
+          dotnet test ${{env.UI_TEST_PROJECT_PATH}}
+          dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
+          dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
+
+      - name: Build MAUI iOS
+        if: ${{ false }}
+        run: dotnet build ${{env.UI_PROJECT_PATH}} -f net7.0-macos -c Release /p:packageApp=True
+      
