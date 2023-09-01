@@ -40,6 +40,6 @@ public class DeactivateAccountByIdCommandTests : InMemoryTestBase
         await handler.Handle(request: new(account.Id), cancellationToken: default);
 
         // Assert
-        (await Context.Accounts.FirstOrDefaultAsync(x => x.Id == account.Id)).IsDeactivated.Should().BeTrue();
+        (await Context.Accounts.FirstAsync(x => x.Id == account.Id)).IsDeactivated.Should().BeTrue();
     }
 }

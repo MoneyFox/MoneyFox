@@ -3,7 +3,6 @@ namespace MoneyFox.Domain.Aggregates.AccountAggregate;
 using CategoryAggregate;
 using Exceptions;
 using JetBrains.Annotations;
-using Serilog;
 
 public class Payment : EntityBase
 {
@@ -69,7 +68,8 @@ public class Payment : EntityBase
 
     public virtual Account? TargetAccount { get; private set; }
 
-    public virtual RecurringPayment? RecurringPayment { get; }
+    [Obsolete("To be removed")]
+    public virtual RecurringPayment? RecurringPayment { get; } = null!;
 
     public Guid? RecurringTransactionId { get; private set; }
 
