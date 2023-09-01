@@ -12,6 +12,7 @@ public class Ledger : EntityBase
     {
         CurrentBalance = default!;
         OpeningBalance = default!;
+        Currency = default!;
     }
 
     private Ledger(
