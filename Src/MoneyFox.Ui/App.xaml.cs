@@ -153,7 +153,7 @@ public partial class App
                     recurringTransactionId: recurringTransactionId,
                     chargedAccount: recurringPayment.ChargedAccount.Id,
                     targetAccount: recurringPayment.TargetAccount?.Id,
-                    amount: new(amount: amount, currencyAlphaIsoCode: settingsFacade!.DefaultCurrency),
+                    amount: new(amount: amount, currencyAlphaIsoCode: settingsFacade.DefaultCurrency),
                     categoryId: recurringPayment.Category?.Id,
                     startDate: recurringPayment.StartDate.ToDateOnly(),
                     endDate: recurringPayment.EndDate.HasValue ? DateOnly.FromDateTime(recurringPayment.EndDate.Value) : null,

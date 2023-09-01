@@ -31,7 +31,7 @@ public class FileStoreIoBase : FileStoreBase
             var fullTo = AppendPath(destination);
             if (!File.Exists(fullFrom))
             {
-                Log.Error(messageTemplate: "Error during file move {0} : {1}. File does not exist!", propertyValue0: from, propertyValue1: destination);
+                Log.Error(messageTemplate: "Error during file move {from} : {destination}. File does not exist!", propertyValue0: from, propertyValue1: destination);
 
                 return await Task.FromResult(false);
             }
@@ -70,7 +70,7 @@ public class FileStoreIoBase : FileStoreBase
 
         using (var fileStream = File.OpenWrite(fullPath))
         {
-            streamAction?.Invoke(fileStream);
+            streamAction.Invoke(fileStream);
         }
 
         return Task.CompletedTask;

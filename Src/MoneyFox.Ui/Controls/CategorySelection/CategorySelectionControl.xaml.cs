@@ -1,6 +1,6 @@
 namespace MoneyFox.Ui.Controls.CategorySelection;
 
-public partial class CategorySelectionControl : ContentView
+public partial class CategorySelectionControl
 {
     public CategorySelectionControl()
     {
