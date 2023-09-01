@@ -114,7 +114,10 @@ public partial class App
         try
         {
             await mediator.Send(new ClearPaymentsCommand());
-            await mediator.Send(new CheckTransactionRecurrence.Command());
+            if (settingsFacade.RecurringTransactionMigrated2)
+            {
+                await mediator.Send(new CheckTransactionRecurrence.Command());
+            }
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
         }
         catch (Exception ex)
