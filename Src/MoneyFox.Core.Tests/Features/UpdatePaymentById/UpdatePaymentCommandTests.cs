@@ -1,7 +1,7 @@
-namespace MoneyFox.Core.Tests.Features._Legacy_.Payments.UpdatePaymentById;
+namespace MoneyFox.Core.Tests.Features.UpdatePaymentById;
 
 using Core.Common.Settings;
-using Core.Features._Legacy_.Payments.UpdatePayment;
+using Core.Features.UpdatePayment;
 using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
