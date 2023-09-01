@@ -38,6 +38,7 @@ public static class CheckTransactionRecurrence
             foreach (var recurringTransaction in recurringTransactions)
             {
                 await CreateDueRecurrences(cancellationToken: cancellationToken, recurringTransaction: recurringTransaction);
+                await dbContext.SaveChangesAsync(cancellationToken);
             }
         }
 
@@ -75,8 +76,6 @@ public static class CheckTransactionRecurrence
                     dateAfterRecurrence: recurringTransaction.LastRecurrence,
                     recurrence: recurringTransaction.Recurrence);
             }
-
-            await dbContext.SaveChangesAsync(cancellationToken);
         }
 
         private DateOnly DateAfterRecurrence(DateOnly dateAfterRecurrence, Recurrence recurrence)
