@@ -24,7 +24,7 @@ public class StatisticCategorySummaryViewModelTest
 
         var categorySummaryModel = new CategorySummaryModel(totalEarned: default, totalSpent: default, categoryOverviewItems: categorySummaries);
         mediator.Send(request: Arg.Any<GetCategorySummary.Query>(), cancellationToken: Arg.Any<CancellationToken>())
-            .Returns(x => Task.FromResult(categorySummaryModel));
+            .Returns(_ => Task.FromResult(categorySummaryModel));
 
         // Act
         vm.LoadedCommand.ExecuteAsync(null);
@@ -44,7 +44,7 @@ public class StatisticCategorySummaryViewModelTest
         var categorySummaries = new List<CategoryOverviewItem>();
         var categorySummaryModel = new CategorySummaryModel(totalEarned: default, totalSpent: default, categoryOverviewItems: categorySummaries);
         mediator.Send(request: Arg.Any<GetCategorySummary.Query>(), cancellationToken: Arg.Any<CancellationToken>())
-            .Returns(x => Task.FromResult(categorySummaryModel));
+            .Returns(_ => Task.FromResult(categorySummaryModel));
 
         // Act
         vm.LoadedCommand.ExecuteAsync(null);
