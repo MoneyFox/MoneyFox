@@ -1,4 +1,4 @@
-namespace MoneyFox.Core.Features._Legacy_.Payments.UpdatePayment;
+namespace MoneyFox.Core.Features.UpdatePayment;
 
 using System;
 using System.Threading;
