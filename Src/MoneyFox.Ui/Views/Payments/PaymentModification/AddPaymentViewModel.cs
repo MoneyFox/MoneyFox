@@ -93,6 +93,7 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
                     recurrence: RecurrenceViewModel.Recurrence.ToRecurrence(),
                     note: SelectedPayment.Note,
                     isLastDayOfMonth: RecurrenceViewModel.IsLastDayOfMonth,
+                    lastRecurrence: DateTime.Today.ToDateOnly(),
                     isTransfer: SelectedPayment.Type == PaymentType.Transfer));
         }
 

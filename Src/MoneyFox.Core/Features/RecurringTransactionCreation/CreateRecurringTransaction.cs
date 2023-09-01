@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Features.RecurringTransactionCreation;
+namespace MoneyFox.Core.Features.RecurringTransactionCreation;
 
 using System;
 using System.Threading;
@@ -25,6 +25,7 @@ public static class CreateRecurringTransaction
             Recurrence recurrence,
             string? note,
             bool isLastDayOfMonth,
+            DateOnly lastRecurrence,
             bool isTransfer)
         {
             if (endDate != null && endDate < DateTime.Today.ToDateOnly())
@@ -42,6 +43,7 @@ public static class CreateRecurringTransaction
             Recurrence = recurrence;
             Note = note;
             IsLastDayOfMonth = isLastDayOfMonth;
+            LastRecurrence = lastRecurrence;
             IsTransfer = isTransfer;
         }
 
@@ -55,6 +57,7 @@ public static class CreateRecurringTransaction
         public Recurrence Recurrence { get; init; }
         public string? Note { get; init; }
         public bool IsLastDayOfMonth { get; init; }
+        public DateOnly LastRecurrence { get; init; }
         public bool IsTransfer { get; init; }
     }
 
@@ -80,6 +83,7 @@ public static class CreateRecurringTransaction
                 recurrence: command.Recurrence,
                 note: command.Note,
                 isLastDayOfMonth: command.IsLastDayOfMonth,
+                lastRecurrence: command.LastRecurrence,
                 isTransfer: command.IsTransfer);
 
             appDbContext.Add(recurringTransaction);
