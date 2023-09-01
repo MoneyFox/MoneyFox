@@ -1,14 +1,16 @@
-﻿namespace MoneyFox.Domain.Tests.TestFramework;
+namespace MoneyFox.Domain.Tests.TestFramework;
 
 using Domain.Aggregates.RecurringTransactionAggregate;
 
 internal static partial class TestData
 {
+    private static readonly DateOnly startDate = new(year: 2023, month: 07, day: 12);
+
     public sealed record RecurringExpense : IRecurringTransaction
     {
         public RecurringTransactionId Id { get; set; } = new(100);
         public Guid RecurringTransactionId { get; } = Guid.NewGuid();
-        public DateOnly StartDate { get; set; } = new(year: 2023, month: 07, day: 12);
+        public DateOnly StartDate { get; set; } = startDate;
         public DateOnly? EndDate { get; set; } = null;
         public Money Amount { get; } = new(amount: -1042, currency: Currencies.CHF);
         public string? Note { get; } = null;
@@ -17,7 +19,7 @@ internal static partial class TestData
         public int? CategoryId { get; } = 42;
         public Recurrence Recurrence { get; set; } = Recurrence.Monthly;
         public bool IsLastDayOfMonth { get; } = true;
-        public DateOnly LastRecurrence => StartDate;
+        public DateOnly LastRecurrence { get; set; } = startDate;
         public bool IsTransfer { get; } = false;
     }
 
@@ -25,7 +27,7 @@ internal static partial class TestData
     {
         public RecurringTransactionId Id { get; set; } = new(101);
         public Guid RecurringTransactionId { get; } = Guid.NewGuid();
-        public DateOnly StartDate { get; } = new(year: 2023, month: 07, day: 12);
+        public DateOnly StartDate { get; } = startDate;
         public DateOnly? EndDate { get; init; } = new(year: 2050, month: 07, day: 12);
         public Money Amount { get; init; } = new(amount: 1042, currency: Currencies.CHF);
         public string? Note { get; } = null;
@@ -34,7 +36,7 @@ internal static partial class TestData
         public int? CategoryId { get; init; } = 42;
         public Recurrence Recurrence { get; init; } = Recurrence.Monthly;
         public bool IsLastDayOfMonth { get; init; } = true;
-        public DateOnly LastRecurrence => StartDate;
+        public DateOnly LastRecurrence { get; set; } = startDate;
         public bool IsTransfer { get; } = true;
     }
 

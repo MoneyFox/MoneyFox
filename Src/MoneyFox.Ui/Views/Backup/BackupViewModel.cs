@@ -318,7 +318,6 @@ internal sealed class BackupViewModel : BasePageViewModel
             return;
         }
 
-        await dialogService.ShowLoadingDialogAsync();
         var backupDate = await backupService.GetBackupDateAsync();
         if (settingsFacade.LastDatabaseUpdate <= backupDate || await ShowForceOverrideConfirmationAsync())
         {

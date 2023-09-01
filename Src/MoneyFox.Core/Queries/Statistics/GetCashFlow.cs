@@ -27,14 +27,8 @@ public static class GetCashFlow
             EndDate = endDate;
         }
 
-        public DateOnly StartDate { get; init; }
-        public DateOnly EndDate { get; init; }
-
-        public void Deconstruct(out DateOnly StartDate, out DateOnly EndDate)
-        {
-            StartDate = this.StartDate;
-            EndDate = this.EndDate;
-        }
+        public DateOnly StartDate { get; }
+        public DateOnly EndDate { get; }
     }
 
     public class Handler : IRequestHandler<Query, Data>
