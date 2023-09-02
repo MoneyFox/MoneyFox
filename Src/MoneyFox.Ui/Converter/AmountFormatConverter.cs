@@ -7,8 +7,13 @@ using Infrastructure.Adapters;
 
 public class AmountFormatConverter : IValueConverter
 {
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
+        if (value is null)
+        {
+            return null;
+        }
+
         var settingsAdapter = new SettingsAdapter();
         var currency = settingsAdapter.GetValue(key: SettingConstants.DEFAULT_CURRENCY_KEY_NAME, defaultValue: new RegionInfo(culture.Name).ISOCurrencySymbol);
         var currencyValue = (decimal)value;
@@ -16,8 +21,8 @@ public class AmountFormatConverter : IValueConverter
         return currencyValue.FormatCurrency(currency);
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        return value;
+        throw new NotImplementedException();
     }
 }
