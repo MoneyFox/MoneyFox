@@ -8,6 +8,6 @@ internal class PaymentConfiguration : IEntityTypeConfiguration<Payment>
 {
     public void Configure(EntityTypeBuilder<Payment> builder)
     {
-        _ = builder.HasKey(b => b.Id);
+        builder.HasKey(b => b.Id);
     }
 }
