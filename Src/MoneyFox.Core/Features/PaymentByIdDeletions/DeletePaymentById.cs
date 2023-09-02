@@ -2,9 +2,9 @@ namespace MoneyFox.Core.Features.PaymentByIdDeletions;
 
 using System.Threading;
 using System.Threading.Tasks;
+using Common.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core.Common.Interfaces;
 
 public static class DeletePaymentById
 {
