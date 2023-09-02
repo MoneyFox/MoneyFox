@@ -48,7 +48,8 @@ public static class CheckTransactionRecurrence
                 dateAfterRecurrence: recurringTransaction.LastRecurrence,
                 recurrence: recurringTransaction.Recurrence);
 
-            while (dateAfterRecurrence <= systemDateHelper.TodayDateOnly.GetLastDayOfMonth())
+            while (dateAfterRecurrence <= systemDateHelper.TodayDateOnly.GetLastDayOfMonth()
+                   && (recurringTransaction.EndDate.HasValue is false || dateAfterRecurrence <= recurringTransaction.EndDate))
             {
                 PaymentType paymentType;
                 if (recurringTransaction.IsTransfer)
