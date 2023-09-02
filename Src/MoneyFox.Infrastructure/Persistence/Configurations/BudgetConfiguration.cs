@@ -15,10 +15,7 @@ internal class BudgetConfiguration : IEntityTypeConfiguration<Budget>
     public void Configure(EntityTypeBuilder<Budget> builder)
     {
         builder.HasKey(b => b.Id);
-        builder.Property(b => b.Id)
-            .ValueGeneratedOnAdd()
-            .HasConversion(convertToProviderExpression: v => v.Value, convertFromProviderExpression: v => new(v));
-
+        builder.Property(b => b.Id).ValueGeneratedOnAdd().HasConversion(convertToProviderExpression: v => v.Value, convertFromProviderExpression: v => new(v));
         builder.OwnsOne(b => b.SpendingLimit).Property(sl => sl.Value).HasColumnName("SpendingLimit");
         builder.OwnsOne(b => b.Interval).Property(sl => sl.NumberOfMonths).HasColumnName("IntervalNumberOfMonths");
         builder.Property(nameof(Budget.IncludedCategories)).HasConversion(GetSplitStringConverter());
