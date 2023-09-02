@@ -164,8 +164,6 @@ public partial class App
         // Migrate RecurringTransaction
         if (settingsFacade.RecurringTransactionMigrated2 is false)
         {
-            appDbContext.RecurringTransactions.RemoveRange(await appDbContext.RecurringTransactions.ToListAsync());
-            await appDbContext.SaveChangesAsync();
             var recurringPayments = await appDbContext.RecurringPayments.Include(rp => rp.Category)
                 .Include(rp => rp.ChargedAccount)
                 .Include(rp => rp.TargetAccount)
