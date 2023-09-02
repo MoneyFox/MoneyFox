@@ -8,6 +8,6 @@ internal class RecurringPaymentConfiguration : IEntityTypeConfiguration<Recurrin
 {
     public void Configure(EntityTypeBuilder<RecurringPayment> builder)
     {
-        _ = builder.HasKey(b => b.Id);
+        builder.HasKey(b => b.Id);
     }
 }

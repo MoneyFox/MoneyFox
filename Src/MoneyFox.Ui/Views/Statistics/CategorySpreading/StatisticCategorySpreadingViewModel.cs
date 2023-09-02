@@ -52,7 +52,7 @@ internal sealed class StatisticCategorySpreadingViewModel : StatisticViewModel
                 Name = x.CategoryName,
                 DataLabelsFormatter = point => $"{point.Context.Series.Name}: {point.Coordinate.PrimaryValue:C}",
                 Values = new List<decimal> { x.Value },
-                InnerRadius = 150
+                InnerRadius = 50
             });
 
         Series.Clear();
