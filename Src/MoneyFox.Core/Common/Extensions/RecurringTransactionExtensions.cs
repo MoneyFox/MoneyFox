@@ -17,7 +17,7 @@ public static class RecurringTransactionExtensions
             PaymentRecurrence.Monthly => Recurrence.Monthly,
             PaymentRecurrence.Bimonthly => Recurrence.Bimonthly,
             PaymentRecurrence.Quarterly => Recurrence.Quarterly,
-            PaymentRecurrence.Yearly => Recurrence.Quarterly,
+            PaymentRecurrence.Yearly => Recurrence.Yearly,
             PaymentRecurrence.Biannually => Recurrence.Biannually,
             _ => throw new ArgumentOutOfRangeException(paramName: nameof(recurrence), actualValue: recurrence, message: null)
         };
@@ -33,7 +33,7 @@ public static class RecurringTransactionExtensions
             Recurrence.Monthly => PaymentRecurrence.Monthly,
             Recurrence.Bimonthly => PaymentRecurrence.Bimonthly,
             Recurrence.Quarterly => PaymentRecurrence.Quarterly,
-            Recurrence.Yearly => PaymentRecurrence.Quarterly,
+            Recurrence.Yearly => PaymentRecurrence.Yearly,
             Recurrence.Biannually => PaymentRecurrence.Biannually,
             _ => throw new ArgumentOutOfRangeException(paramName: nameof(recurrence), actualValue: recurrence, message: null)
         };

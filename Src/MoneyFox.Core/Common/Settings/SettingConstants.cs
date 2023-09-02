@@ -11,4 +11,5 @@ public static class SettingConstants
     public const string DEFAULT_CURRENCY_KEY_NAME = "DefaultCurrency";
     public const string RECURRING_TRANSACTION_MIGRATED = "RecurringTransactionMigrated";
     public const string RECURRING_TRANSACTION_MIGRATED2 = "RecurringTransactionMigrated2";
+    public const string RECURRING_TRANSACTION_MIGRATED3 = "RecurringTransactionMigrated3";
 }
