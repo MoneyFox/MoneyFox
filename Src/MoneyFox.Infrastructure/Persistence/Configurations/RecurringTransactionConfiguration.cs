@@ -13,8 +13,10 @@ internal sealed class RecurringTransactionConfiguration : IEntityTypeConfigurati
     {
         builder.HasKey(rt => rt.Id);
         builder.HasIndex(rt => rt.RecurringTransactionId).IsUnique();
+        builder.Property(rt => rt.Id)
+            .ValueGeneratedOnAdd()
+            .HasConversion(convertToProviderExpression: v => v.Value, convertFromProviderExpression: v => new(v));
 
-        builder.Property(rt => rt.Id).ValueGeneratedOnAdd().HasConversion(convertToProviderExpression: v => v.Value, convertFromProviderExpression: v => new(v));
         builder.Property(rt => rt.RecurringTransactionId).IsRequired();
         builder.Property(rt => rt.CategoryId);
         builder.Property(rt => rt.StartDate);

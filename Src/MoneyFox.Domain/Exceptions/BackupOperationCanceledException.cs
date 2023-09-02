@@ -1,7 +1,5 @@
 ﻿namespace MoneyFox.Domain.Exceptions;
 
-using System.Runtime.Serialization;
-
 public class BackupOperationCanceledException : Exception
 {
     public BackupOperationCanceledException() { }
