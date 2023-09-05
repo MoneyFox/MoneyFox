@@ -80,11 +80,6 @@ public class AppDbContext : DbContext, IAppDbContext
         Database.Migrate();
     }
 
-    public void ReleaseLock()
-    {
-        SqliteConnection.ClearAllPools();
-    }
-
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {
         base.ConfigureConventions(configurationBuilder);
