@@ -132,7 +132,7 @@ public partial class App
     {
         // Migrate RecurringTransaction
         var migrated = await appDbContext.RecurringTransactions.AnyAsync();
-        if (migrated)
+        if (migrated is false)
         {
             var recurringPayments = await appDbContext.RecurringPayments.Include(rp => rp.Category)
                 .Include(rp => rp.ChargedAccount)
