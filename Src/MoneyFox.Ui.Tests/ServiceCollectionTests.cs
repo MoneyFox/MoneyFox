@@ -2,9 +2,11 @@ namespace MoneyFox.Ui.Tests;
 
 using Aptabase.Maui;
 using Core.Common.Settings;
+using Core.Features;
 using Core.Interfaces;
 using InversionOfControl;
 using Microsoft.Identity.Client;
+using MoneyFox.Infrastructure.Persistence;
 
 public sealed class ServiceCollectionTests
 {
@@ -21,6 +23,7 @@ public sealed class ServiceCollectionTests
 
         // Add a substitute here, since default is not supported in test
         serviceCollection.AddSingleton(Substitute.For<ISettingsFacade>());
+        serviceCollection.AddSingleton(Substitute.For<ISqliteBackupService>());
         serviceCollection.AddSingleton(Substitute.For<IAptabaseClient>());
 
         // Assert

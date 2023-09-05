@@ -4,7 +4,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Common.Settings;
-using Interfaces;
+using JetBrains.Annotations;
 using MediatR;
 
 public static class UploadBackup
@@ -13,24 +13,19 @@ public static class UploadBackup
 
     public sealed class Command : IRequest<UploadResult> { }
 
+    [UsedImplicitly]
     public class Handler : IRequestHandler<Command, UploadResult>
     {
-        private const string BACKUP_NAME_TEMPLATE = "backupmoneyfox3_{0}.db";
         private const int BACKUP_ARCHIVE_THRESHOLD = 15;
 
         private readonly IBackupUploadService backupUploadService;
-        private readonly IDbPathProvider dbPathProvider;
-        private readonly ISqliteBackupService sqliteBackupService;
-        private readonly IFileStore fileStore;
         private readonly ISettingsFacade settingsFacade;
+        private readonly ISqliteBackupService sqliteBackupService;
 
-        public Handler(IBackupUploadService backupUploadService, ISettingsFacade settingsFacade, IFileStore fileStore, IDbPathProvider dbPathProvider,
-            ISqliteBackupService sqliteBackupService)
+        public Handler(IBackupUploadService backupUploadService, ISettingsFacade settingsFacade, ISqliteBackupService sqliteBackupService)
         {
             this.backupUploadService = backupUploadService;
             this.settingsFacade = settingsFacade;
-            this.fileStore = fileStore;
-            this.dbPathProvider = dbPathProvider;
             this.sqliteBackupService = sqliteBackupService;
         }
 
@@ -47,7 +42,8 @@ public static class UploadBackup
                 return UploadResult.Skipped;
             }
 
-            await backupUploadService.UploadAsync(backupName: backupName, dataToUpload: sqliteBackupService.CreateBackup());
+            var backupResult = sqliteBackupService.CreateBackup();
+            await backupUploadService.UploadAsync(backupName: backupResult.backupName, dataToUpload: backupResult.backupAsStream);
             var currentBackupDate = await backupUploadService.GetBackupDateAsync();
             settingsFacade.LastDatabaseUpdate = currentBackupDate.ToLocalTime();
             if (await backupUploadService.GetBackupCount() >= BACKUP_ARCHIVE_THRESHOLD)
