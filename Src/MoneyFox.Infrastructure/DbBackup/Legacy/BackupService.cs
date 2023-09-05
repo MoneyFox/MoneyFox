@@ -8,6 +8,7 @@ using Core.Common.Settings;
 using Core.Features.DbBackup;
 using Core.Interfaces;
 using Domain.Exceptions;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Serilog;
@@ -136,7 +137,7 @@ internal sealed class BackupService : IBackupService
                 await WriteBackupFile(tempDownloadPath: tempDownloadPath, backupStream: backupStream);
             }
 
-            
+            SqliteConnection.ClearAllPools();
             await appDbContext.Database.CloseConnectionAsync();
             var dbPath = Path.Combine(path1: Environment.GetFolderPath(Environment.SpecialFolder.Personal), path2: DATABASE_NAME);
             File.Move(sourceFileName: tempDownloadPath, destFileName: dbPath, overwrite: true);
