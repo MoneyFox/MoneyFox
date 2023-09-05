@@ -1,12 +1,10 @@
 namespace MoneyFox.Infrastructure.Tests.DbBackup;
 
-using Core.Common.Interfaces;
 using Core.Common.Settings;
 using Core.Interfaces;
 using Core.Tests;
 using Domain.Exceptions;
 using Infrastructure.DbBackup.Legacy;
-using Persistence;
 
 public class BackupServiceTests : InMemoryTestBase
 {
