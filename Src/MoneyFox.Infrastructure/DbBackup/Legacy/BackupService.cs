@@ -145,6 +145,7 @@ internal sealed class BackupService : IBackupService
             await appDbContext.Database.CloseConnectionAsync();
             File.Move(sourceFileName: tempDownloadPath, destFileName: dbPathProvider.GetDbPath(), overwrite: true);
             await appDbContext.Database.OpenConnectionAsync();
+            appDbContext.MigrateDb();
 
             return BackupRestoreResult.NewBackupRestored;
         }
