@@ -18,7 +18,7 @@ internal sealed class SqliteBackupService : ISqliteBackupService
 
     public string CreateBackup()
     {
-        var backupPath = Path.Combine(path1: Environment.GetFolderPath(Environment.SpecialFolder.Personal), path2: "money-fox.backup");
+        var backupPath = Path.Combine(path1: Environment.GetFolderPath(Environment.SpecialFolder.Personal), path2: $"money-fox_{DateTime.UtcNow:yyyy-M-d_hh-mm-ssss}.backup");
 
         var dbConnection = new SqliteConnection(context.Database.GetConnectionString());
         var backup = new SqliteConnection($"Data Source={backupPath}");
