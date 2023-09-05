@@ -134,7 +134,8 @@ public partial class App
     private async Task MigrateRecurringTransactions()
     {
         // Migrate RecurringTransaction
-        if (settingsFacade.RecurringTransactionMigrated2 is false)
+        var migrated = await appDbContext.RecurringTransactions.AnyAsync();
+        if (migrated)
         {
             var recurringPayments = await appDbContext.RecurringPayments.Include(rp => rp.Category)
                 .Include(rp => rp.ChargedAccount)
@@ -173,8 +174,6 @@ public partial class App
             }
 
             await appDbContext.SaveChangesAsync();
-            settingsFacade.RecurringTransactionMigrated2 = true;
-            settingsFacade.RecurringTransactionMigrated = true;
         }
     }
 }
