@@ -20,8 +20,6 @@ public class BackupServiceTests : InMemoryTestBase
         cloudBackupService = Substitute.For<IOneDriveBackupService>();
         settingsFacade = Substitute.For<ISettingsFacade>();
         connectivityAdapter = Substitute.For<IConnectivityAdapter>();
-        var dbPathProvider = Substitute.For<IDbPathProvider>();
-        dbPathProvider.GetDbPath().Returns(Path.GetTempFileName());
         backupService = new(
             oneDriveBackupService: cloudBackupService,
             settingsFacade: settingsFacade,

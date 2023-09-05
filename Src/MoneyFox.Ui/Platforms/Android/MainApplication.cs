@@ -3,11 +3,8 @@ namespace MoneyFox.Ui;
 
 using Android.App;
 using Android.Runtime;
-using Common;
-using Core.Interfaces;
 using JetBrains.Annotations;
 using Microsoft.Identity.Client;
-using Platforms.Android.Resources.Src;
 using Serilog;
 
 [Application]
@@ -35,14 +32,8 @@ public class MainApplication : MauiApplication
 
     private static void AddServices(IServiceCollection services)
     {
-        services.AddSingleton<IDbPathProvider, DbPathProvider>();
-        RegisterIdentityClient(services);
-    }
-
-    private static void RegisterIdentityClient(IServiceCollection serviceCollection)
-    {
         var publicClientApplication = PublicClientApplicationBuilder.Create(MSAL_APPLICATION_ID).WithRedirectUri(MSAL_URI).Build();
-        serviceCollection.AddSingleton(publicClientApplication);
+        services.AddSingleton(publicClientApplication);
     }
 
     private void HandleAndroidException(object? sender, RaiseThrowableEventArgs e)

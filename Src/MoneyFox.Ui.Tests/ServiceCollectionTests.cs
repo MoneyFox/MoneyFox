@@ -3,10 +3,8 @@ namespace MoneyFox.Ui.Tests;
 using Aptabase.Maui;
 using Core.Common.Settings;
 using Core.Features;
-using Core.Interfaces;
 using InversionOfControl;
 using Microsoft.Identity.Client;
-using MoneyFox.Infrastructure.Persistence;
 
 public sealed class ServiceCollectionTests
 {
@@ -14,8 +12,7 @@ public sealed class ServiceCollectionTests
     public void AllDependenciesPresentAndAccountedFor()
     {
         // Arrange
-        var serviceCollection = new ServiceCollection().AddSingleton(Substitute.For<IDbPathProvider>())
-            .AddSingleton(Substitute.For<IPublicClientApplication>());
+        var serviceCollection = new ServiceCollection().AddSingleton(Substitute.For<IPublicClientApplication>());
 
         // Act
         new MoneyFoxConfig().Register(serviceCollection);

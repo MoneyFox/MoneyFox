@@ -14,6 +14,8 @@ using Serilog;
 
 internal sealed class BackupService : IBackupService
 {
+    private const string DATABASE_NAME = "moneyfox3.db";
+
     private readonly AppDbContext appDbContext;
     private readonly IConnectivityAdapter connectivity;
     private readonly IOneDriveBackupService oneDriveBackupService;
@@ -127,15 +129,17 @@ internal sealed class BackupService : IBackupService
                 return BackupRestoreResult.Canceled;
             }
 
-            var tempDownloadPath = Path.Combine(path1: Environment.GetFolderPath(Environment.SpecialFolder.Personal), path2: "money-fox_downloaded.backup" );
+            var tempDownloadPath = Path.Combine(path1: Environment.GetFolderPath(Environment.SpecialFolder.Personal), path2: "money-fox_downloaded.backup");
             await using (var backupStream = await oneDriveBackupService.RestoreAsync())
             {
                 settingsFacade.LastDatabaseUpdate = backupDate.ToLocalTime();
                 await WriteBackupFile(tempDownloadPath: tempDownloadPath, backupStream: backupStream);
             }
 
+            
             await appDbContext.Database.CloseConnectionAsync();
-            File.Move(sourceFileName: tempDownloadPath, destFileName: appDbContext.Database.GetConnectionString() ?? string.Empty, overwrite: true);
+            var dbPath = Path.Combine(path1: Environment.GetFolderPath(Environment.SpecialFolder.Personal), path2: DATABASE_NAME);
+            File.Move(sourceFileName: tempDownloadPath, destFileName: dbPath, overwrite: true);
             await appDbContext.Database.OpenConnectionAsync();
             appDbContext.MigrateDb();
 
@@ -152,15 +156,11 @@ internal sealed class BackupService : IBackupService
 
     private static async Task WriteBackupFile(string tempDownloadPath, Stream backupStream)
     {
-        await using (var fileStream = File.OpenWrite(tempDownloadPath))
-        {
-            await using (var binaryWriter = new BinaryWriter(fileStream))
-            {
-                MemoryStream ms = new();
-                await backupStream.CopyToAsync(ms);
-                binaryWriter.Write(ms.ToArray());
-                binaryWriter.Flush();
-            }
-        }
+        await using var fileStream = File.OpenWrite(tempDownloadPath);
+        await using var binaryWriter = new BinaryWriter(fileStream);
+        MemoryStream ms = new();
+        await backupStream.CopyToAsync(ms);
+        binaryWriter.Write(ms.ToArray());
+        binaryWriter.Flush();
     }
 }

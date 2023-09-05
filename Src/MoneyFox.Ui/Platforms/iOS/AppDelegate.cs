@@ -1,11 +1,10 @@
 // ReSharper disable once CheckNamespace
 namespace MoneyFox.Ui;
 
-using Core.Interfaces;
 using Foundation;
 using JetBrains.Annotations;
 using Microsoft.Identity.Client;
-using Platforms.iOS.Src;
+using SQLitePCL;
 using UIKit;
 using UserNotifications;
 
@@ -19,6 +18,7 @@ public class AppDelegate : MauiUIApplicationDelegate
     protected override MauiApp CreateMauiApp()
     {
         MauiProgram.AddPlatformServicesAction = AddServices;
+        Batteries_V2.Init();
         RequestToastPermissions();
 
         return MauiProgram.CreateMauiApp();
@@ -26,18 +26,12 @@ public class AppDelegate : MauiUIApplicationDelegate
 
     private static void AddServices(IServiceCollection services)
     {
-        services.AddSingleton<IDbPathProvider, DbPathProvider>();
-        RegisterIdentityClient(services);
-    }
-
-    private static void RegisterIdentityClient(IServiceCollection serviceCollection)
-    {
         var publicClientApplication = PublicClientApplicationBuilder.Create(MSAL_APPLICATION_ID)
             .WithRedirectUri(MSAL_URI)
             .WithIosKeychainSecurityGroup("com.microsoft.adalcache")
             .Build();
 
-        _ = serviceCollection.AddSingleton(publicClientApplication);
+        services.AddSingleton(publicClientApplication);
     }
 
     // Needed for auth
