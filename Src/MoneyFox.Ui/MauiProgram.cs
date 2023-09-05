@@ -8,12 +8,10 @@ using InversionOfControl;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Maui.Handlers;
-using Platforms.iOS.Renderer;
 using Serilog;
 using Serilog.Events;
 using Serilog.Exceptions;
 using SkiaSharp.Views.Maui.Controls.Hosting;
-using UIKit;
 
 public static class MauiProgram
 {
@@ -50,7 +48,7 @@ public static class MauiProgram
                     handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
 #elif IOS
                     handler.PlatformView.Layer.BorderWidth = 0;
-                    handler.PlatformView.BorderStyle = UITextBorderStyle.None;
+                    handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
 #elif WINDOWS
                     handler.PlatformView.BorderThickness = new(0);
 #endif
@@ -74,7 +72,7 @@ public static class MauiProgram
     private static MauiAppBuilder AddCustomAppShellHandler(this MauiAppBuilder builder)
     {
 #if IOS
-        builder.ConfigureMauiHandlers(handlers => { handlers.AddHandler(viewType: typeof(Shell), handlerType: typeof(CustomShellRenderer)); });
+        builder.ConfigureMauiHandlers(handlers => { handlers.AddHandler(viewType: typeof(Shell), handlerType: typeof(Platforms.iOS.Renderer.CustomShellRenderer)); });
 #endif
         return builder;
     }
@@ -111,6 +109,7 @@ public static class MauiProgram
 
         return stream == null ? throw new FileNotFoundException("'appsettings.json' was not found.") : new ConfigurationBuilder().AddJsonStream(stream).Build();
     }
+
 
     private static void SetupSerilog()
     {
