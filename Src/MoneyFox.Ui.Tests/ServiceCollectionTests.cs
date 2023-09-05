@@ -15,7 +15,6 @@ public sealed class ServiceCollectionTests
     {
         // Arrange
         var serviceCollection = new ServiceCollection().AddSingleton(Substitute.For<IDbPathProvider>())
-            .AddSingleton(Substitute.For<IFileStore>())
             .AddSingleton(Substitute.For<IPublicClientApplication>());
 
         // Act

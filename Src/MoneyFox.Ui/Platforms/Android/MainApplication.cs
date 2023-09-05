@@ -36,7 +36,6 @@ public class MainApplication : MauiApplication
     private static void AddServices(IServiceCollection services)
     {
         services.AddSingleton<IDbPathProvider, DbPathProvider>();
-        services.AddTransient<IFileStore>(_ => new FileStoreIoBase(Context.FilesDir?.Path ?? ""));
         RegisterIdentityClient(services);
     }
 
