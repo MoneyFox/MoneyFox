@@ -23,6 +23,7 @@ public static class InfrastructureConfig
 
     private static void RegisterBackupServices(IServiceCollection serviceCollection)
     {
+        serviceCollection.AddTransient<ISqliteBackupService, SqliteBackupService>();
         serviceCollection.AddTransient<IBackupUploadService, OneDriveBackupUploadService>();
         serviceCollection.AddTransient<IOneDriveAuthenticationService, OneDriveAuthenticationService>();
         serviceCollection.AddTransient<IBackupUploadService, OneDriveBackupUploadService>();
