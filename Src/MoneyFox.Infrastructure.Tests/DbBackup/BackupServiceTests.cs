@@ -3,10 +3,12 @@ namespace MoneyFox.Infrastructure.Tests.DbBackup;
 using Core.Common.Interfaces;
 using Core.Common.Settings;
 using Core.Interfaces;
+using Core.Tests;
 using Domain.Exceptions;
 using Infrastructure.DbBackup.Legacy;
+using Persistence;
 
-public class BackupServiceTests
+public class BackupServiceTests : InMemoryTestBase
 {
     private readonly BackupService backupService;
     private readonly IOneDriveBackupService cloudBackupService;
@@ -18,7 +20,6 @@ public class BackupServiceTests
         cloudBackupService = Substitute.For<IOneDriveBackupService>();
         settingsFacade = Substitute.For<ISettingsFacade>();
         connectivityAdapter = Substitute.For<IConnectivityAdapter>();
-        var appDbMock = Substitute.For<IAppDbContext>();
         var dbPathProvider = Substitute.For<IDbPathProvider>();
         dbPathProvider.GetDbPath().Returns(Path.GetTempFileName());
         backupService = new(
@@ -27,7 +28,7 @@ public class BackupServiceTests
             settingsFacade: settingsFacade,
             connectivity: connectivityAdapter,
             dbPathProvider: dbPathProvider,
-            appDbContext: appDbMock);
+            appDbContext: Context);
     }
 
     [Fact]
