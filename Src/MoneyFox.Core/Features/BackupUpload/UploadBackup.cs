@@ -38,8 +38,8 @@ public static class UploadBackup
                 return UploadResult.Skipped;
             }
 
-            var backupdate = await backupUploadService.GetBackupDateAsync();
-            if (settingsFacade.LastDatabaseUpdate - backupdate.ToLocalTime() < TimeSpan.FromSeconds(1))
+            var backupDate = await backupUploadService.GetBackupDateAsync();
+            if (settingsFacade.LastDatabaseUpdate - backupDate.ToLocalTime() < TimeSpan.FromSeconds(1))
             {
                 return UploadResult.Skipped;
             }
