@@ -20,15 +20,18 @@ public static class UploadBackup
 
         private readonly IBackupUploadService backupUploadService;
         private readonly IDbPathProvider dbPathProvider;
+        private readonly ISqliteBackupService sqliteBackupService;
         private readonly IFileStore fileStore;
         private readonly ISettingsFacade settingsFacade;
 
-        public Handler(IBackupUploadService backupUploadService, ISettingsFacade settingsFacade, IFileStore fileStore, IDbPathProvider dbPathProvider)
+        public Handler(IBackupUploadService backupUploadService, ISettingsFacade settingsFacade, IFileStore fileStore, IDbPathProvider dbPathProvider,
+            ISqliteBackupService sqliteBackupService)
         {
             this.backupUploadService = backupUploadService;
             this.settingsFacade = settingsFacade;
             this.fileStore = fileStore;
             this.dbPathProvider = dbPathProvider;
+            this.sqliteBackupService = sqliteBackupService;
         }
 
         public async Task<UploadResult> Handle(Command request, CancellationToken cancellationToken)
@@ -44,9 +47,7 @@ public static class UploadBackup
                 return UploadResult.Skipped;
             }
 
-            var backupName = string.Format(format: BACKUP_NAME_TEMPLATE, arg0: DateTime.UtcNow.ToString(format: "yyyy-M-d_hh-mm-ssss"));
-            var dbAsStream = await fileStore.OpenReadAsync(dbPathProvider.GetDbPath());
-            await backupUploadService.UploadAsync(backupName: backupName, dataToUpload: dbAsStream);
+            await backupUploadService.UploadAsync(backupName: backupName, dataToUpload: sqliteBackupService.CreateBackup());
             var currentBackupDate = await backupUploadService.GetBackupDateAsync();
             settingsFacade.LastDatabaseUpdate = currentBackupDate.ToLocalTime();
             if (await backupUploadService.GetBackupCount() >= BACKUP_ARCHIVE_THRESHOLD)

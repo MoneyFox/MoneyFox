@@ -1,6 +1,8 @@
 namespace MoneyFox.Core.Features;
 
+using System.IO;
+
 public interface ISqliteBackupService
 {
-    string CreateBackup();
+    (string backupName, FileStream backupAsStream) CreateBackup();
 }

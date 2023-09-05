@@ -16,14 +16,17 @@ internal sealed class SqliteBackupService : ISqliteBackupService
         this.context = context;
     }
 
-    public string CreateBackup()
+    public (string backupName, FileStream backupAsStream) CreateBackup()
     {
-        var backupPath = Path.Combine(path1: Environment.GetFolderPath(Environment.SpecialFolder.Personal), path2: $"money-fox_{DateTime.UtcNow:yyyy-M-d_hh-mm-ssss}.backup");
+        var backupName = $"money-fox_{DateTime.UtcNow:yyyy-M-d_hh-mm-ssss}.backup";
+        var backupPath = Path.Combine(path1: Environment.GetFolderPath(Environment.SpecialFolder.Personal), path2: backupName);
 
         var dbConnection = new SqliteConnection(context.Database.GetConnectionString());
         var backup = new SqliteConnection($"Data Source={backupPath}");
         dbConnection.BackupDatabase(backup);
 
-        return backupPath;
+        var backupAsStream = File.Open(path: backupPath, mode: FileMode.Open, access: FileAccess.Read, share: FileShare.ReadWrite);
+
+        return (backupName, backupAsStream);
     }
 }
