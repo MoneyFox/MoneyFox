@@ -16,7 +16,6 @@ internal sealed class BackupService : IBackupService
 {
     private readonly AppDbContext appDbContext;
     private readonly IConnectivityAdapter connectivity;
-    private readonly IDbPathProvider dbPathProvider;
     private readonly IOneDriveBackupService oneDriveBackupService;
     private readonly ISettingsFacade settingsFacade;
 
@@ -24,13 +23,11 @@ internal sealed class BackupService : IBackupService
         IOneDriveBackupService oneDriveBackupService,
         ISettingsFacade settingsFacade,
         IConnectivityAdapter connectivity,
-        IDbPathProvider dbPathProvider,
         AppDbContext appDbContext)
     {
         this.oneDriveBackupService = oneDriveBackupService;
         this.settingsFacade = settingsFacade;
         this.connectivity = connectivity;
-        this.dbPathProvider = dbPathProvider;
         this.appDbContext = appDbContext;
     }
 
@@ -138,7 +135,7 @@ internal sealed class BackupService : IBackupService
             }
 
             await appDbContext.Database.CloseConnectionAsync();
-            File.Move(sourceFileName: tempDownloadPath, destFileName: dbPathProvider.GetDbPath(), overwrite: true);
+            File.Move(sourceFileName: tempDownloadPath, destFileName: appDbContext.Database.GetConnectionString() ?? string.Empty, overwrite: true);
             await appDbContext.Database.OpenConnectionAsync();
             appDbContext.MigrateDb();
 

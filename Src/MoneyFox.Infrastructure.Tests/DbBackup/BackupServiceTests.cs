@@ -26,7 +26,6 @@ public class BackupServiceTests : InMemoryTestBase
             oneDriveBackupService: cloudBackupService,
             settingsFacade: settingsFacade,
             connectivity: connectivityAdapter,
-            dbPathProvider: dbPathProvider,
             appDbContext: Context);
     }
 
