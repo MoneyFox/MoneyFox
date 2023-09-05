@@ -32,10 +32,9 @@ public partial class App
 
     private static void AddServices(IServiceCollection services)
     {
-        _ = services.AddTransient<IFileStore, WindowsFileStore>();
-        _ = services.AddTransient<IDbPathProvider, DbPathProvider>();
+        services.AddTransient<IFileStore, WindowsFileStore>();
         var publicClientApplication = PublicClientApplicationBuilder.Create(MSAL_APPLICATION_ID).WithRedirectUri($"msal{MSAL_APPLICATION_ID}://auth").Build();
         TokenCacheHelper.EnableSerialization(publicClientApplication.UserTokenCache);
-        _ = services.AddSingleton(publicClientApplication);
+        services.AddSingleton(publicClientApplication);
     }
 }
