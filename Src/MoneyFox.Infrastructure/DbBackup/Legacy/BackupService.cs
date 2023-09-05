@@ -17,20 +17,17 @@ internal sealed class BackupService : IBackupService
     private readonly AppDbContext appDbContext;
     private readonly IConnectivityAdapter connectivity;
     private readonly IDbPathProvider dbPathProvider;
-    private readonly IFileStore fileStore;
     private readonly IOneDriveBackupService oneDriveBackupService;
     private readonly ISettingsFacade settingsFacade;
 
     public BackupService(
         IOneDriveBackupService oneDriveBackupService,
-        IFileStore fileStore,
         ISettingsFacade settingsFacade,
         IConnectivityAdapter connectivity,
         IDbPathProvider dbPathProvider,
         AppDbContext appDbContext)
     {
         this.oneDriveBackupService = oneDriveBackupService;
-        this.fileStore = fileStore;
         this.settingsFacade = settingsFacade;
         this.connectivity = connectivity;
         this.dbPathProvider = dbPathProvider;
@@ -137,9 +134,7 @@ internal sealed class BackupService : IBackupService
             await using (var backupStream = await oneDriveBackupService.RestoreAsync())
             {
                 settingsFacade.LastDatabaseUpdate = backupDate.ToLocalTime();
-                MemoryStream ms = new();
-                await backupStream.CopyToAsync(ms);
-                await fileStore.WriteFileAsync(path: tempDownloadPath, contents: ms.ToArray());
+                await WriteBackupFile(tempDownloadPath: tempDownloadPath, backupStream: backupStream);
             }
 
             await appDbContext.Database.CloseConnectionAsync();
@@ -156,5 +151,19 @@ internal sealed class BackupService : IBackupService
         }
 
         return BackupRestoreResult.BackupNotFound;
+    }
+
+    private static async Task WriteBackupFile(string tempDownloadPath, Stream backupStream)
+    {
+        await using (var fileStream = File.OpenWrite(tempDownloadPath))
+        {
+            await using (var binaryWriter = new BinaryWriter(fileStream))
+            {
+                MemoryStream ms = new();
+                await backupStream.CopyToAsync(ms);
+                binaryWriter.Write(ms.ToArray());
+                binaryWriter.Flush();
+            }
+        }
     }
 }

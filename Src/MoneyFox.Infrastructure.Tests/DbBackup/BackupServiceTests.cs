@@ -24,7 +24,6 @@ public class BackupServiceTests : InMemoryTestBase
         dbPathProvider.GetDbPath().Returns(Path.GetTempFileName());
         backupService = new(
             oneDriveBackupService: cloudBackupService,
-            fileStore: Substitute.For<IFileStore>(),
             settingsFacade: settingsFacade,
             connectivity: connectivityAdapter,
             dbPathProvider: dbPathProvider,
