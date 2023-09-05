@@ -1,6 +1,7 @@
 namespace MoneyFox.Core.Features.BackupUpload;
 
 using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Common.Settings;
@@ -49,6 +50,11 @@ public static class UploadBackup
             if (await backupUploadService.GetBackupCount() >= BACKUP_ARCHIVE_THRESHOLD)
             {
                 await backupUploadService.DeleteOldest();
+            }
+
+            if (File.Exists(backupResult.backupAsStream.Name))
+            {
+                File.Delete(backupResult.backupAsStream.Name);
             }
 
             return UploadResult.Successful;
