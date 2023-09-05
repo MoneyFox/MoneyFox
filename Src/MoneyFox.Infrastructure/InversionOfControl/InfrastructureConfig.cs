@@ -19,7 +19,7 @@ public static class InfrastructureConfig
     public static void Register(IServiceCollection serviceCollection)
     {
         var dbPath = Path.Combine(path1: Environment.GetFolderPath(Environment.SpecialFolder.Personal), path2: DATABASE_NAME);
-        serviceCollection.AddTransient<DbContextOptions>(sp => new DbContextOptionsBuilder<AppDbContext>().UseSqlite($"Data Source={dbPath}").Options);
+        serviceCollection.AddTransient<DbContextOptions>(_ => new DbContextOptionsBuilder<AppDbContext>().UseSqlite($"Data Source={dbPath}").Options);
         serviceCollection.AddTransient<IAppDbContext, AppDbContext>();
         serviceCollection.AddTransient<AppDbContext>();
         RegisterBackupServices(serviceCollection);

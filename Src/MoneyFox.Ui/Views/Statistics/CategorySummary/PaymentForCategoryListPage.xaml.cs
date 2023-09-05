@@ -1,6 +1,6 @@
 namespace MoneyFox.Ui.Views.Statistics.CategorySummary;
 
-public partial class PaymentForCategoryListPage : ContentPage
+public partial class PaymentForCategoryListPage
 {
     public PaymentForCategoryListPage()
     {
