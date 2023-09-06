@@ -73,15 +73,17 @@
                                        IsRunning="{Binding IsLoadingBackupAvailability}"
                                        IsVisible="{Binding IsLoadingBackupAvailability}"
                                        VerticalOptions="CenterAndExpand" />
-                    <HorizontalStackLayout
+                    <VerticalStackLayout
                         IsVisible="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}">
                         <Label HorizontalOptions="Start"
-                               Text="{x:Static resources:Translations.LastBackupDateLabel}" />
+                               Text="{x:Static resources:Translations.LastBackupDateLabel}"
+                               Style="{StaticResource TextBodySecondary}" />
                         <Label Margin="3,0,0,0"
                                HorizontalOptions="Start"
                                LineBreakMode="WordWrap"
-                               Text="{Binding BackupLastModified}" />
-                    </HorizontalStackLayout>
+                               Text="{Binding BackupLastModified}"
+                               Style="{StaticResource TextBodySecondary}" />
+                    </VerticalStackLayout>
 
 
                     <!-- Auto Backup -->
