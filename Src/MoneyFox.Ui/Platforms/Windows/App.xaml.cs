@@ -32,7 +32,6 @@ public partial class App
 
     private static void AddServices(IServiceCollection services)
     {
-        services.AddTransient<IFileStore, WindowsFileStore>();
         var publicClientApplication = PublicClientApplicationBuilder.Create(MSAL_APPLICATION_ID).WithRedirectUri($"msal{MSAL_APPLICATION_ID}://auth").Build();
         TokenCacheHelper.EnableSerialization(publicClientApplication.UserTokenCache);
         services.AddSingleton(publicClientApplication);
