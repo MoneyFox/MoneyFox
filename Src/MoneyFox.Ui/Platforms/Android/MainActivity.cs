@@ -42,9 +42,11 @@ public class MainActivity : MauiAppCompatActivity
                     mask: (int)WindowInsetsControllerAppearance.LightStatusBars);
             }
 
-            if (!OperatingSystem.IsAndroidVersionAtLeast(30) && OperatingSystem.IsAndroidVersionAtLeast(23) && Window is not null)
+            if (OperatingSystem.IsAndroidVersionAtLeast(30) is false && OperatingSystem.IsAndroidVersionAtLeast(23) && Window is not null)
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 Window.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.LightStatusBar;
+#pragma warning restore CS0618 // Type or member is obsolete
             }
         }
         else
