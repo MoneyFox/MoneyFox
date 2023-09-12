@@ -1,3 +1,3 @@
 ﻿namespace MoneyFox.Ui.Views.Payments;
 
-public class PaymentsChangedMessage { }
+public class PaymentsChangedMessage;
