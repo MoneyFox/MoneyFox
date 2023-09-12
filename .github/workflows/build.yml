@@ -35,7 +35,7 @@ jobs:
           $store.Close()
 
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set values in manifest
         run: |
@@ -112,7 +112,7 @@ jobs:
             echo "{{ runner.temp }}\moneyfox.keystore exists."
           fi
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
@@ -177,7 +177,7 @@ jobs:
           xcode-select-version: 14.3.1
 
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
