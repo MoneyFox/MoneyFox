@@ -3,7 +3,7 @@ namespace MoneyFox.Ui.Views.Categories.CategorySelection;
 using Microsoft.Maui.Controls.PlatformConfiguration;
 using Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;
 
-public partial class SelectCategoryPage : ContentPage
+public partial class SelectCategoryPage
 {
     public SelectCategoryPage()
     {
