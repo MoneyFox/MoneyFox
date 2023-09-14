@@ -71,7 +71,7 @@ steps:
     displayName: 'Install maui workload'
     inputs:
       targetType: 'inline'
-      script: 'dotnet workload install maui --ignore-failed-sources'
+      script: 'dotnet workload install maui --skip-sign-check --source https://api.nuget.org/v3/index.json'
 
   - task: DotNetCoreCLI@2
     displayName: 'Run Tests'

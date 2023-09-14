@@ -67,8 +67,8 @@ jobs:
 
       - name: Install MAUI Workload
         run: |
-          dotnet workload install maui-windows
-          dotnet workload install maui-mobile
+          dotnet workload install maui-windows --skip-sign-check --source https://api.nuget.org/v3/index.json
+          dotnet workload install maui-mobile --skip-sign-check --source https://api.nuget.org/v3/index.json
 
       - name: Restore Dependencies
         run: dotnet restore ${{env.UI_PROJECT_PATH}}
@@ -129,7 +129,7 @@ jobs:
             ${{ runner.os }}-nuget
 
       - name: Install MAUI Workload
-        run: dotnet workload install maui-mobile
+        run: dotnet workload install maui-mobile --skip-sign-check --source https://api.nuget.org/v3/index.json
 
       - name: Restore Dependencies
         run: dotnet restore ${{env.UI_PROJECT_PATH}}
@@ -194,7 +194,7 @@ jobs:
             ${{ runner.os }}-nuget
 
       - name: Install MAUI Workloads
-        run: dotnet workload install maui-mobile
+        run: dotnet workload install maui-mobile --skip-sign-check --source https://api.nuget.org/v3/index.json
 
       - name: Restore Dependencies
         run: dotnet restore ${{env.UI_PROJECT_PATH}}
