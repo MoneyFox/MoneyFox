@@ -99,7 +99,7 @@ jobs:
           path: ${{ github.workspace }}/moneyfox-win
   
   build-android:
-    runs-on: windows-latest
+    runs-on: macos-13
 
     steps:
       - name: Download keystore

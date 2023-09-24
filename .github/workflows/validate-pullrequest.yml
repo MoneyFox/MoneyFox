@@ -56,7 +56,7 @@ jobs:
   
   buildAndroid:
 
-    runs-on: windows-latest
+    runs-on: macos13
 
     steps:
       - uses: actions/checkout@v4
