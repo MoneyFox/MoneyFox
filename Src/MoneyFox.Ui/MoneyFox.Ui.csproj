@@ -78,15 +78,12 @@
         <PackageReference Include="Serilog.Sinks.File" Version="5.0.0"/>
         <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.0-rc.1.23419.4" />
         <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0-rc.1.23419.4" />
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="9.8.0.76515" />
-        <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4"/>
-        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0"/>
         <PackageReference Include="SonarAnalyzer.CSharp" Version="9.10.0.77988">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="MediatR" Version="12.1.1"/>
-        <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.0-rc.1.9171" />
+        <PackageReference Include="Microsoft.Maui.ControlsControls" Version="8.0.0-rc.1.9171" />
         <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.6"/>
     </ItemGroup>
 
