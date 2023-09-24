@@ -7,7 +7,7 @@ trigger:
 pr: none
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'macOS-13'
 
 variables:
   BuildConfiguration: 'Release'
