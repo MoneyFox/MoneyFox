@@ -55,7 +55,7 @@
     <ItemGroup>
         <!-- App Icon -->
         <MauiIcon Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'" Include="Resources\AppIcon\appicon.svg"/>
-        <MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#ffffff" ForegroundScale="0.65"/>
+        <MauiIcon Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" Include="Resources\AppIcon\appicon.svg" Color="#ffffff" ForegroundScale="0.65"/>
 
         <!-- Splash Screen -->
         <MauiSplashScreen Include="Resources\Images\splashscreen.svg" Color="#ea9972" BaseSize="128,128"/>
