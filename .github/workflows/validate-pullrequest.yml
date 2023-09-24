@@ -161,5 +161,5 @@ jobs:
 
       - name: Build MAUI iOS
         if: ${{ false }}
-        run: dotnet build ${{env.UI_PROJECT_PATH}} -f net7.0-ios -c Release /p:packageApp=True
+        run: dotnet build ${{env.UI_PROJECT_PATH}} -f net8.0-ios -c Release /p:packageApp=True
       
