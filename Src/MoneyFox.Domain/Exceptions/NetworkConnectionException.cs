@@ -1,3 +1,3 @@
 ﻿namespace MoneyFox.Domain.Exceptions;
 
-public class NetworkConnectionException : Exception;
+public class NetworkConnectionException : Exception { }

@@ -54,9 +54,9 @@ public class DeleteCategoryByIdCommandTests : InMemoryTestBase
         await handler.Handle(command: new(dbExpense.Category!.Id), cancellationToken: default);
 
         // Assert
-        var unassignedPayment = await Context.Payments.Include(p => p.Category).SingleAsync(x => x.Id == dbExpense.Id);
+        var unassignedPayment = await Context.Payments.SingleAsync(x => x.Id == dbExpense.Id);
         unassignedPayment.Category.Should().BeNull();
-        var unmodifiedPayment = await Context.Payments.Include(p => p.Category).SingleAsync(x => x.Id == dbIncome.Id);
+        var unmodifiedPayment = await Context.Payments.SingleAsync(x => x.Id == dbIncome.Id);
         unmodifiedPayment.Category.Should().NotBeNull();
     }
 }

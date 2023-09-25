@@ -7,7 +7,7 @@ trigger:
 pr: none
 
 pool:
-  vmImage: 'macOS-13'
+  vmImage: 'windows-2022'
 
 variables:
   BuildConfiguration: 'Release'
@@ -19,8 +19,7 @@ steps:
   - task: UseDotNet@2
     displayName: 'Install .net sdk'
     inputs:
-      version: 8.x
-      includePreviewVersions: true
+      version: 7.x
 
   - task: PowerShell@2
     displayName: "Set App Version"
@@ -71,7 +70,7 @@ steps:
     displayName: 'Install maui workload'
     inputs:
       targetType: 'inline'
-      script: 'dotnet workload install maui --skip-sign-check --source https://api.nuget.org/v3/index.json'
+      script: 'dotnet workload install maui --ignore-failed-sources'
 
   - task: DotNetCoreCLI@2
     displayName: 'Run Tests'
@@ -86,7 +85,7 @@ steps:
       command: 'publish'
       publishWebProjects: false
       projects: '**/MoneyFox.Ui.csproj'
-      arguments: '-c Release -f net8.0-android  -r android-arm64 /p:AndroidKeyStore="True" /p:AndroidSigningKeyAlias="$(KeyStoreAlias)" /p:AndroidSigningKeyStore="$(keystore.secureFilePath)" /p:AndroidSigningKeyPass="$(KeyStorePass)" /p:AndroidSigningStorePass="$(KeyStorePass)"'
+      arguments: '-c Release -f net7.0-android /p:AndroidKeyStore="True" /p:AndroidSigningKeyAlias="$(KeyStoreAlias)" /p:AndroidSigningKeyStore="$(keystore.secureFilePath)" /p:AndroidSigningKeyPass="$(KeyStorePass)" /p:AndroidSigningStorePass="$(KeyStorePass)"'
 
   - task: CopyFiles@2
     displayName: 'Copy Files to: $(build.artifactstagingdirectory)'

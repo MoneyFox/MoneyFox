@@ -1,3 +1,3 @@
 namespace MoneyFox.Ui.Messages;
 
-public class BackupRestoredMessage;
+public class BackupRestoredMessage { }
