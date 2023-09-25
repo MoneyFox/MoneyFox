@@ -2,7 +2,7 @@ namespace MoneyFox.Ui.Views.Statistics.CategoryProgression;
 
 using CommunityToolkit.Maui.Views;
 
-public partial class StatisticCategoryProgressionPage : ContentPage
+public partial class StatisticCategoryProgressionPage
 {
     public StatisticCategoryProgressionPage()
     {

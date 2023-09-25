@@ -1,16 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net7.0-ios;net7.0-android;net7.0</TargetFrameworks>
-        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.22621.0</TargetFrameworks>
+        <TargetFrameworks>net8.0-ios;net8.0-android;net8.0</TargetFrameworks>
+        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.22621.0</TargetFrameworks>
         <OutputType>Exe</OutputType>
         <RootNamespace>MoneyFox.Ui</RootNamespace>
         <UseMaui>true</UseMaui>
-        <MauiVersion>7.0.92</MauiVersion>
         <SingleProject>true</SingleProject>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <DefaultLanguage>en</DefaultLanguage>
         <GenerateSatelliteAssembliesForCore>true</GenerateSatelliteAssembliesForCore>
+        <SkipValidateMauiImplicitPackageReferences>true</SkipValidateMauiImplicitPackageReferences>
 
         <!-- Display name -->
         <ApplicationTitle>MoneyFox</ApplicationTitle>
@@ -27,7 +27,7 @@
         <EnableSGenConc>True</EnableSGenConc>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(TargetFramework)' == 'net7.0'">
+    <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0'">
         <OutputType>Library</OutputType>
     </PropertyGroup>
 
@@ -55,13 +55,10 @@
     <ItemGroup>
         <!-- App Icon -->
         <MauiIcon Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'" Include="Resources\AppIcon\appicon.svg"/>
-        <MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#ffffff" ForegroundScale="0.65"/>
+        <MauiIcon Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" Include="Resources\AppIcon\appicon.svg" Color="#ffffff" ForegroundScale="0.65"/>
 
         <!-- Splash Screen -->
         <MauiSplashScreen Include="Resources\Images\splashscreen.svg" Color="#ea9972" BaseSize="128,128"/>
-
-        <!-- Images -->
-        <MauiImage Include="Resources\Images\appicon.svg" BaseSize="512, 512" ForegroundScale="0.65"/>
 
         <!-- Custom Fonts -->
         <MauiFont Include="Resources\Fonts\*"/>
@@ -79,13 +76,14 @@
         <PackageReference Include="Serilog" Version="3.0.1"/>
         <PackageReference Include="Serilog.Exceptions" Version="8.4.0"/>
         <PackageReference Include="Serilog.Sinks.File" Version="5.0.0"/>
-        <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4"/>
-        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.0-rc.1.23419.4" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0-rc.1.23419.4" />
         <PackageReference Include="SonarAnalyzer.CSharp" Version="9.10.0.77988">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="MediatR" Version="12.1.1"/>
+        <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.0-rc.1.9171" />
         <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.6"/>
     </ItemGroup>
 

@@ -23,7 +23,7 @@ public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequ
         {
             var requestName = typeof(TRequest).Name;
             Log.Warning(
-                messageTemplate: "MoneyFox Long Running Request: {Name} \tElapsedTime: ({ElapsedMilliseconds} milliseconds) \tRequestData: {@Request}",
+                messageTemplate: "MoneyFox Long Running Request: {name} \tElapsedTime: ({elapsedMilliseconds} milliseconds) \tRequestData: {@request}",
                 propertyValue0: requestName,
                 propertyValue1: elapsedMilliseconds,
                 propertyValue2: request);

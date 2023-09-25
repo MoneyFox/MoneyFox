@@ -24,7 +24,8 @@ jobs:
       - task: UseDotNet@2
         displayName: 'Install .net sdk'
         inputs:
-          version: 7.x
+          version: 8.x
+          includePreviewVersions: true
 
       - task: DownloadSecureFile@1
         displayName: 'download certificate'
@@ -88,7 +89,7 @@ jobs:
         displayName: "install maui workload"
         inputs:
           targetType: 'inline'
-          script: 'dotnet workload install maui'
+          script: 'dotnet workload install maui --skip-sign-check --source https://api.nuget.org/v3/index.json'
 
       - task: DotNetCoreCLI@2
         displayName: publish msix
@@ -96,7 +97,7 @@ jobs:
           command: 'publish'
           publishWebProjects: false
           projects: '**/MoneyFox.Ui.csproj'
-          arguments: "-c Release -f:net7.0-windows10.0.22621.0 /p:AppxPackageDir=$(System.DefaultWorkingDirectory)/publish/ "
+          arguments: "-c Release -f:net8.0-windows10.0.22621.0 /p:AppxPackageDir=$(System.DefaultWorkingDirectory)/publish/ "
           zipAfterPublish: false
           modifyOutputPath: false
 

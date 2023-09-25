@@ -9,7 +9,7 @@ on:
 env:
   MAJOR_VERSION: "8"
   MINOR_VERSION: "3"
-  DOTNET_VERSION: 7.0.400
+  DOTNET_VERSION: "8.x"
   UI_PROJECT_PATH: "src/MoneyFox.Ui/MoneyFox.Ui.csproj"
   CORE_TEST_PROJECT_PATH: "src/MoneyFox.Core.Tests/MoneyFox.Core.Tests.csproj"
   UI_TEST_PROJECT_PATH: "src/MoneyFox.Ui.Tests/MoneyFox.Ui.Tests.csproj"
@@ -55,6 +55,7 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{env.DOTNET_VERSION}}
+          dotnet-quality: 'preview'
 
       - uses: actions/cache@v3
         with:
@@ -66,8 +67,8 @@ jobs:
 
       - name: Install MAUI Workload
         run: |
-          dotnet workload install maui-windows
-          dotnet workload install maui-mobile
+          dotnet workload install maui-windows --skip-sign-check --source https://api.nuget.org/v3/index.json
+          dotnet workload install maui-mobile --skip-sign-check --source https://api.nuget.org/v3/index.json
 
       - name: Restore Dependencies
         run: dotnet restore ${{env.UI_PROJECT_PATH}}
@@ -98,7 +99,7 @@ jobs:
           path: ${{ github.workspace }}/moneyfox-win
   
   build-android:
-    runs-on: windows-latest
+    runs-on: macos-13
 
     steps:
       - name: Download keystore
@@ -117,6 +118,7 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{env.DOTNET_VERSION}}
+          dotnet-quality: 'preview'
 
       - uses: actions/cache@v3
         with:
@@ -127,7 +129,7 @@ jobs:
             ${{ runner.os }}-nuget
 
       - name: Install MAUI Workload
-        run: dotnet workload install maui-mobile
+        run: dotnet workload install maui-mobile --skip-sign-check --source https://api.nuget.org/v3/index.json
 
       - name: Restore Dependencies
         run: dotnet restore ${{env.UI_PROJECT_PATH}}
@@ -181,6 +183,7 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{env.DOTNET_VERSION}}
+          dotnet-quality: 'preview'
 
       - uses: actions/cache@v3
         with:
@@ -191,7 +194,7 @@ jobs:
             ${{ runner.os }}-nuget
 
       - name: Install MAUI Workloads
-        run: dotnet workload install maui-mobile
+        run: dotnet workload install maui-mobile --skip-sign-check --source https://api.nuget.org/v3/index.json
 
       - name: Restore Dependencies
         run: dotnet restore ${{env.UI_PROJECT_PATH}}
