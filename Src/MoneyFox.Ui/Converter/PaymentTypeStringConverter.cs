@@ -6,13 +6,8 @@ using Resources.Strings;
 
 public class PaymentTypeStringConverter : IValueConverter
 {
-    public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        if (value is null)
-        {
-            return string.Empty;
-        }
-
         var paymentType = (PaymentType)Enum.ToObject(enumType: typeof(PaymentType), value: value);
 
         return paymentType switch
@@ -24,7 +19,7 @@ public class PaymentTypeStringConverter : IValueConverter
         };
     }
 
-    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
         throw new NotSupportedException();
     }

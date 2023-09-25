@@ -1,3 +1,3 @@
 ﻿namespace MoneyFox.Domain.Exceptions;
 
-public class InvalidPaymentTypeException : Exception;
+public class InvalidPaymentTypeException : Exception { }

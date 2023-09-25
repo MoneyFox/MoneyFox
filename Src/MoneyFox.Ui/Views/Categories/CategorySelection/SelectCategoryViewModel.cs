@@ -2,6 +2,7 @@ namespace MoneyFox.Ui.Views.Categories.CategorySelection;
 
 using System.Collections.ObjectModel;
 using System.Globalization;
+using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
@@ -10,12 +11,21 @@ using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-internal sealed class SelectCategoryViewModel(IDialogService dialogService, IMediator mediator, INavigationService navigationService)
-    : BasePageViewModel, IRecipient<CategoriesChangedMessage>
+internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<CategoriesChangedMessage>
 {
     public const string SELECTED_CATEGORY_ID_PARAM = "selectedCategoryId";
+    private readonly IDialogService dialogService;
+    private readonly IMediator mediator;
+    private readonly INavigationService navigationService;
 
     private ReadOnlyObservableCollection<CategoryGroup> categoryGroups = null!;
+
+    public SelectCategoryViewModel(IDialogService dialogService, IMapper mapper, IMediator mediator, INavigationService navigationService)
+    {
+        this.dialogService = dialogService;
+        this.mediator = mediator;
+        this.navigationService = navigationService;
+    }
 
     public ReadOnlyObservableCollection<CategoryGroup> CategoryGroups
     {

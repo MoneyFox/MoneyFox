@@ -1,3 +1,3 @@
 namespace MoneyFox.Ui.Controls;
 
-public class BorderlessEntry : Entry;
+public class BorderlessEntry : Entry { }
