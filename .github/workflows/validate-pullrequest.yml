@@ -56,7 +56,7 @@ jobs:
   
   buildAndroid:
 
-    runs-on: macos13
+    runs-on: macos-13
 
     steps:
       - uses: actions/checkout@v4
