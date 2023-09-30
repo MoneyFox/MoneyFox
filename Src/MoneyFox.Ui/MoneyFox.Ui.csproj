@@ -72,7 +72,7 @@
 
     <ItemGroup>
         <PackageReference Include="Aptabase.Maui" Version="0.0.7"/>
-        <PackageReference Include="CommunityToolkit.Maui" Version="6.0.0"/>
+        <PackageReference Include="CommunityToolkit.Maui" Version="5.3.0"/>
         <PackageReference Include="JetBrains.Annotations" Version="2023.2.0"/>
         <PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-rc1.2"/>
         <PackageReference Include="Plugin.StoreReview" Version="6.0.0"/>
