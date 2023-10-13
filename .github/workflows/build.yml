@@ -9,7 +9,7 @@ on:
 env:
   MAJOR_VERSION: "8"
   MINOR_VERSION: "3"
-  DOTNET_VERSION: 7.0.402
+  DOTNET_VERSION: 8.0.0-rc.2
   UI_PROJECT_PATH: "src/MoneyFox.Ui/MoneyFox.Ui.csproj"
   CORE_TEST_PROJECT_PATH: "src/MoneyFox.Core.Tests/MoneyFox.Core.Tests.csproj"
   UI_TEST_PROJECT_PATH: "src/MoneyFox.Ui.Tests/MoneyFox.Ui.Tests.csproj"
@@ -85,7 +85,7 @@ jobs:
           $KeyStorePath = "${{ github.workspace }}\${{ env.WINDOWS_CERTIFICATE_PATH }}"
           
           dotnet publish ${{env.UI_PROJECT_PATH}} `
-            -f net7.0-windows10.0.22621.0 `
+            -f net8.0-windows10.0.22621.0 `
             -c Release `
             -o ${{ github.workspace }}/moneyfox-win `
             /p:ApplicationDisplayVersion=$DisplayVersion `
@@ -148,7 +148,7 @@ jobs:
           $Version = ${{ steps.date.outputs.date }}
           
           dotnet publish ${{env.UI_PROJECT_PATH}} `
-            -f net7.0-android `
+            -f net8.0-android `
             -c Release `
             -o ${{ github.workspace }}/moneyfox-android `
             /p:AndroidKeyStore="True" `
@@ -237,7 +237,7 @@ jobs:
           Version=${{ GITHUB.run_number }}
           
           dotnet build ${{env.UI_PROJECT_PATH}} \
-            -f net7.0-ios \
+            -f net8.0-ios \
             -c Release \
             -o ${{ github.workspace }}/moneyfox-ios \
             /p:packageApp=True \
