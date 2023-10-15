@@ -27,7 +27,7 @@
         <EnableSGenConc>True</EnableSGenConc>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(TargetFramework)' == 'net7.0'">
+    <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0'">
         <OutputType>Library</OutputType>
     </PropertyGroup>
 
