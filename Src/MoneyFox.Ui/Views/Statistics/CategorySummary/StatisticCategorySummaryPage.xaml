@@ -16,10 +16,10 @@
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
     </ContentPage.Resources>
 
-    <Grid RowDefinitions="50, *">
+    <FlexLayout Direction="Column" AlignContent="SpaceBetween" Wrap="NoWrap" >
 
         <Grid ColumnDefinitions="*, Auto"
-              Margin="15,0,15,0">
+              Margin="15,0,15,0" >
             <Label Grid.Row="0"
                    VerticalOptions="Center"
                    Style="{StaticResource TextBodySecondary}"
@@ -40,7 +40,7 @@
         </Grid>
 
         <CollectionView x:Name="CategorySummaryList"
-                        Grid.Row="1"
+                        Margin="0,20,0,0"
                         EmptyView="{x:Static resources:Translations.CategorySummaryPlaceholder}"
                         ItemsSource="{Binding CategorySummary}">
 
@@ -106,5 +106,5 @@
                 </StackLayout>
             </CollectionView.Footer>
         </CollectionView>
-    </Grid>
+    </FlexLayout>
 </ContentPage>

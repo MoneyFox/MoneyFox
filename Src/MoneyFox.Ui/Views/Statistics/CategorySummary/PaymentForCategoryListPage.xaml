@@ -16,7 +16,7 @@
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
     </ContentPage.Resources>
 
-    <Grid>
+    <FlexLayout Direction="Column">
 
         <CollectionView x:Name="PaymentCollectionView"
                         ItemsSource="{Binding PaymentDayGroups}"
@@ -124,5 +124,5 @@
                 </Grid>
             </CollectionView.EmptyView>
         </CollectionView>
-    </Grid>
+    </FlexLayout>
 </ContentPage>

@@ -15,135 +15,132 @@
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
     </ContentPage.Resources>
 
-    <ContentPage.Content>
-        <Grid RowDefinitions="55,*">
-            <Button
-                Grid.Row="0"
-                Margin="0,0,18,0"
-                HorizontalOptions="End"
-                Text="{x:Static resources:Translations.AddAccountLabel}"
-                VerticalOptions="Center"
-                Command="{Binding GoToAddAccountCommand}" />
+    <FlexLayout Direction="Column">
+        <Button
+            Margin="0,0,18,0"
+            HorizontalOptions="End"
+            Text="{x:Static resources:Translations.AddAccountLabel}"
+            VerticalOptions="Center"
+            Command="{Binding GoToAddAccountCommand}" />
 
-            <CollectionView
-                Grid.Row="1"
-                x:Name="AccountCollectionView"
-                IsGrouped="true"
-                ItemsSource="{Binding AccountGroups}">
+        <CollectionView
+            Margin="0,15,0,0"
+            x:Name="AccountCollectionView"
+            IsGrouped="true"
+            ItemsSource="{Binding AccountGroups}">
 
-                <CollectionView.GroupHeaderTemplate>
-                    <DataTemplate x:DataType="accountList:AccountGroup">
-                        <Grid Padding="18, 0, 18, 0">
-                            <Label Text="{Binding Title}"
-                                   Style="{StaticResource TextSubheadSecondary}" />
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.GroupHeaderTemplate>
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate x:DataType="accountList:AccountGroup">
+                    <Grid Padding="18, 0, 18, 0">
+                        <Label Text="{Binding Title}"
+                               Style="{StaticResource TextSubheadSecondary}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
 
-                <CollectionView.GroupFooterTemplate>
-                    <DataTemplate x:DataType="accountList:AccountGroup">
-                        <Grid Padding="18, 0, 18, 0">
-                            <Label
-                                Text="{Binding TotalString, StringFormat={extensions:Translate TotalBalanceTemplate}}"
-                                Style="{StaticResource TextSubheadSecondary}"
-                                HorizontalOptions="End" />
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.GroupFooterTemplate>
+            <CollectionView.GroupFooterTemplate>
+                <DataTemplate x:DataType="accountList:AccountGroup">
+                    <Grid Padding="18, 0, 18, 0">
+                        <Label
+                            Text="{Binding TotalString, StringFormat={extensions:Translate TotalBalanceTemplate}}"
+                            Style="{StaticResource TextSubheadSecondary}"
+                            HorizontalOptions="End" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.GroupFooterTemplate>
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="accountList:AccountListItemViewModel">
-                        <Grid Padding="18,0,18,12">
-                            <controls:Card HeightRequest="80" Padding="6">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="accountList:AccountListItemViewModel">
+                    <Grid Padding="18,0,18,12">
+                        <controls:Card HeightRequest="80" Padding="6">
 
-                                <controls:Card.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                        Command="{Binding ViewModel.GoToTransactionListCommand, Source={x:Reference This}}"
-                                        CommandParameter="{Binding .}" />
-                                </controls:Card.GestureRecognizers>
+                            <controls:Card.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding ViewModel.GoToTransactionListCommand, Source={x:Reference This}}"
+                                    CommandParameter="{Binding .}" />
+                            </controls:Card.GestureRecognizers>
 
-                                <FlyoutBase.ContextFlyout>
-                                    <MenuFlyout>
-                                        <MenuFlyoutItem Text="{x:Static resources:Translations.EditLabel}"
-                                                        Command="{Binding ViewModel.GoToEditAccountCommand, Source={x:Reference This}}"
-                                                        CommandParameter="{Binding .}" />
-                                        <MenuFlyoutItem Text="{x:Static resources:Translations.DeleteLabel}"
-                                                        Command="{Binding ViewModel.DeleteAccountCommand, Source={x:Reference This}}"
-                                                        CommandParameter="{Binding .}" />
-                                    </MenuFlyout>
-                                </FlyoutBase.ContextFlyout>
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="{x:Static resources:Translations.EditLabel}"
+                                                    Command="{Binding ViewModel.GoToEditAccountCommand, Source={x:Reference This}}"
+                                                    CommandParameter="{Binding .}" />
+                                    <MenuFlyoutItem Text="{x:Static resources:Translations.DeleteLabel}"
+                                                    Command="{Binding ViewModel.DeleteAccountCommand, Source={x:Reference This}}"
+                                                    CommandParameter="{Binding .}" />
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
 
-                                <SwipeView>
-                                    <SwipeView.RightItems>
-                                        <SwipeItems>
-                                            <SwipeItem
-                                                BackgroundColor="{AppThemeBinding Dark={StaticResource Gray900}, Light={StaticResource Gray100}}"
-                                                Command="{Binding Source={x:Reference AccountCollectionView}, Path=BindingContext.GoToEditAccountCommand}"
-                                                CommandParameter="{Binding .}"
-                                                Text="{x:Static resources:Translations.EditLabel}" />
-                                            <SwipeItem
-                                                BackgroundColor="{AppThemeBinding Dark={StaticResource Gray900}, Light={StaticResource Gray100}}"
-                                                Command="{Binding Source={x:Reference AccountCollectionView}, Path=BindingContext.DeleteAccountCommand}"
-                                                CommandParameter="{Binding .}"
-                                                Text="{x:Static resources:Translations.DeleteLabel}" />
-                                        </SwipeItems>
-                                    </SwipeView.RightItems>
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem
+                                            BackgroundColor="{AppThemeBinding Dark={StaticResource Gray900}, Light={StaticResource Gray100}}"
+                                            Command="{Binding Source={x:Reference AccountCollectionView}, Path=BindingContext.GoToEditAccountCommand}"
+                                            CommandParameter="{Binding .}"
+                                            Text="{x:Static resources:Translations.EditLabel}" />
+                                        <SwipeItem
+                                            BackgroundColor="{AppThemeBinding Dark={StaticResource Gray900}, Light={StaticResource Gray100}}"
+                                            Command="{Binding Source={x:Reference AccountCollectionView}, Path=BindingContext.DeleteAccountCommand}"
+                                            CommandParameter="{Binding .}"
+                                            Text="{x:Static resources:Translations.DeleteLabel}" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
 
-                                    <Grid
-                                        BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                <Grid
+                                    BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                       Light={StaticResource CardBackgroundLight}}">
 
+                                    <Label
+                                        Margin="10,2,0,0"
+                                        HorizontalTextAlignment="Start"
+                                        Style="{StaticResource TextHead}"
+                                        Text="{Binding Name}"
+                                        VerticalTextAlignment="Start" />
+
+                                    <Label
+                                        Margin="0,0,6,2"
+                                        FontFamily="Product"
+                                        FontSize="20"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
+                                        VerticalTextAlignment="Center" />
+
+                                    <HorizontalStackLayout Spacing="6"
+                                                           HorizontalOptions="End">
                                         <Label
-                                            Margin="10,2,0,0"
-                                            HorizontalTextAlignment="Start"
-                                            Style="{StaticResource TextHead}"
-                                            Text="{Binding Name}"
-                                            VerticalTextAlignment="Start" />
+                                            Margin="0,0,0,2"
+                                            FontFamily="Product"
+                                            FontSize="15"
+                                            HorizontalTextAlignment="End"
+                                            Text="{x:Static resources:Translations.EndOfMonthLabel}"
+                                            VerticalTextAlignment="End" />
 
                                         <Label
                                             Margin="0,0,6,2"
                                             FontFamily="Product"
-                                            FontSize="20"
-                                            HorizontalOptions="Center"
-                                            VerticalOptions="Center"
-                                            Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
-                                            VerticalTextAlignment="Center" />
-
-                                        <HorizontalStackLayout Spacing="6"
-                                                               HorizontalOptions="End">
-                                            <Label
-                                                Margin="0,0,0,2"
-                                                FontFamily="Product"
-                                                FontSize="15"
-                                                HorizontalTextAlignment="End"
-                                                Text="{x:Static resources:Translations.EndOfMonthLabel}"
-                                                VerticalTextAlignment="End" />
-
-                                            <Label
-                                                Margin="0,0,6,2"
-                                                FontFamily="Product"
-                                                FontSize="15"
-                                                HorizontalTextAlignment="End"
-                                                Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}"
-                                                VerticalTextAlignment="End" />
-                                        </HorizontalStackLayout>
-                                    </Grid>
-                                </SwipeView>
-                            </controls:Card>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-
-                <CollectionView.EmptyView>
-                    <Grid>
-                        <Label Style="{StaticResource TextSubheadSecondary}"
-                               Margin="10,0,10,0"
-                               VerticalTextAlignment="Center"
-                               HorizontalTextAlignment="Center"
-                               Text="{x:Static resources:Translations.NoAccountsMessage}" />
+                                            FontSize="15"
+                                            HorizontalTextAlignment="End"
+                                            Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}"
+                                            VerticalTextAlignment="End" />
+                                    </HorizontalStackLayout>
+                                </Grid>
+                            </SwipeView>
+                        </controls:Card>
                     </Grid>
-                </CollectionView.EmptyView>
-            </CollectionView>
-        </Grid>
-    </ContentPage.Content>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.EmptyView>
+                <Grid>
+                    <Label Style="{StaticResource TextSubheadSecondary}"
+                           Margin="10,0,10,0"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           Text="{x:Static resources:Translations.NoAccountsMessage}" />
+                </Grid>
+            </CollectionView.EmptyView>
+        </CollectionView>
+    </FlexLayout>
 </ContentPage>
