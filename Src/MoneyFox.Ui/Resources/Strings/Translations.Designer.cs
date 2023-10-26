@@ -1700,5 +1700,17 @@ namespace MoneyFox.Ui.Resources.Strings {
                 return ResourceManager.GetString("LicensesHeader", resourceCulture);
             }
         }
+        
+        public static string AccountIntroductionTitle {
+            get {
+                return ResourceManager.GetString("AccountIntroductionTitle", resourceCulture);
+            }
+        }
+        
+        public static string AccountSettingText {
+            get {
+                return ResourceManager.GetString("AccountSettingText", resourceCulture);
+            }
+        }
     }
 }

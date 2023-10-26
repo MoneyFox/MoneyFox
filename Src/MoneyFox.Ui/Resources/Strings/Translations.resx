@@ -958,4 +958,10 @@ You can change this late in the settings.</value>
     <data name="LicensesHeader" xml:space="preserve">
         <value>Licenses</value>
     </data>
+    <data name="AccountIntroductionTitle" xml:space="preserve">
+        <value>Default Account</value>
+    </data>
+    <data name="AccountSettingText" xml:space="preserve">
+        <value>Select which account should be preselected as default when you create a new payment.</value>
+    </data>
 </root>
