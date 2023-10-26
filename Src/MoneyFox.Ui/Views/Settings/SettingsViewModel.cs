@@ -2,19 +2,20 @@ namespace MoneyFox.Ui.Views.Settings;
 
 using System.Globalization;
 using Core.Common.Settings;
+using Core.Queries;
 using Domain;
 using MediatR;
-using MoneyFox.Core.Queries;
 
 internal sealed class SettingsViewModel : BasePageViewModel
 {
+    private readonly IMediator mediator;
     private readonly ISettingsFacade settingsFacade;
 
-    private readonly IMediator mediator;
-
-    private CurrencyViewModel selectedCurrency = null!;
+    private List<AccountLiteViewModel> availableAccounts = new();
 
     private AccountLiteViewModel? selectedAccount;
+
+    private CurrencyViewModel selectedCurrency = null!;
 
     public SettingsViewModel(ISettingsFacade settingsFacade, IMediator mediator)
     {
@@ -23,7 +24,6 @@ internal sealed class SettingsViewModel : BasePageViewModel
         AvailableCurrencies = Currencies.GetAll().Select(c => new CurrencyViewModel(c.AlphaIsoCode)).OrderBy(c => c.AlphaIsoCode).ToList();
         var currencyToLoad = string.IsNullOrEmpty(settingsFacade.DefaultCurrency) ? RegionInfo.CurrentRegion.ISOCurrencySymbol : settingsFacade.DefaultCurrency;
         SelectedCurrency = AvailableCurrencies.FirstOrDefault(c => c.AlphaIsoCode == currencyToLoad) ?? AvailableCurrencies[0];
-        LoadAccounts().Wait();
         SelectedAccount = AvailableAccounts.FirstOrDefault(x => x.Id == settingsFacade.DefaultAccount);
     }
 
@@ -35,7 +35,6 @@ internal sealed class SettingsViewModel : BasePageViewModel
         {
             SetProperty(field: ref selectedCurrency, newValue: value);
             settingsFacade.DefaultCurrency = selectedCurrency.AlphaIsoCode;
-            OnPropertyChanged();
         }
     }
 
@@ -48,16 +47,19 @@ internal sealed class SettingsViewModel : BasePageViewModel
         set
         {
             SetProperty(field: ref selectedAccount, newValue: value);
-            settingsFacade.DefaultAccount = selectedAccount == null? default : selectedAccount.Id;
-            OnPropertyChanged();
+            settingsFacade.DefaultAccount = selectedAccount?.Id ?? default;
         }
     }
 
-    public async Task LoadAccounts()
+    public List<AccountLiteViewModel> AvailableAccounts
     {
-        var accounts = await mediator.Send(new GetAccountsQuery());
-        AvailableAccounts = accounts == null ? new List<AccountLiteViewModel>() : accounts.Select(a => new AccountLiteViewModel(a.Id, a.Name)).ToList();
+        get => availableAccounts;
+        set => SetProperty(field: ref availableAccounts, newValue: value);
     }
 
-    public List<AccountLiteViewModel> AvailableAccounts { get; private set; } = new();
+    public async Task InitializeAsync()
+    {
+        var accounts = await mediator.Send(new GetAccountsQuery());
+        AvailableAccounts = accounts.Select(a => new AccountLiteViewModel(Id: a.Id, Name: a.Name)).ToList();
+    }
 }
