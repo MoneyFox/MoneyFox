@@ -11,15 +11,8 @@ using Microsoft.EntityFrameworkCore;
 
 public class GetAccountsQuery : IRequest<IReadOnlyList<Account>>
 {
-    public class Handler : IRequestHandler<GetAccountsQuery, IReadOnlyList<Account>>
+    public class Handler(IAppDbContext appDbContext) : IRequestHandler<GetAccountsQuery, IReadOnlyList<Account>>
     {
-        private readonly IAppDbContext appDbContext;
-
-        public Handler(IAppDbContext appDbContext)
-        {
-            this.appDbContext = appDbContext;
-        }
-
         public async Task<IReadOnlyList<Account>> Handle(GetAccountsQuery request, CancellationToken cancellationToken)
         {
             var accounts = await appDbContext.Accounts.AreActive().OrderByInclusion().OrderByName().ToListAsync(cancellationToken);
