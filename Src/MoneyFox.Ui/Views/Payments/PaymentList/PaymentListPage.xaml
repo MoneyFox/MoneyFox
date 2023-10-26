@@ -19,153 +19,151 @@
         <paymentList:DateGroupCardOpacityConverter x:Key="DateGroupCardOpacityConverter" />
     </ContentPage.Resources>
 
-    <ContentPage.Content>
-        <Grid IsClippedToBounds="False"
-              RowDefinitions="50, *">
-            <Grid ColumnDefinitions="*,Auto ,66 ,6 ,66">
-                <ImageButton Grid.Column="2"
-                             Clicked="ShowFilterPopup"
-                             Margin="0,0,5,0"
-                             Padding="0"
-                             BorderWidth="0"
-                             HeightRequest="44"
-                             HorizontalOptions="End"
-                             VerticalOptions="Start"
-                             WidthRequest="66">
-                    <ImageButton.Source>
-                        <FontImageSource FontFamily="MaterialIcons"
-                                         Glyph="{x:Static views:IconFont.FilterOutline}"
-                                         Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
-                    </ImageButton.Source>
-                </ImageButton>
+    <FlexLayout Direction="Column">
+        
+        <Grid ColumnDefinitions="*,Auto ,66 ,6 ,66">
+            <ImageButton Grid.Column="2"
+                         Clicked="ShowFilterPopup"
+                         Margin="0,0,5,0"
+                         Padding="0"
+                         BorderWidth="0"
+                         HeightRequest="44"
+                         HorizontalOptions="End"
+                         VerticalOptions="Start"
+                         WidthRequest="66">
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="MaterialIcons"
+                                     Glyph="{x:Static views:IconFont.FilterOutline}"
+                                     Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                </ImageButton.Source>
+            </ImageButton>
 
-                <ImageButton Margin="0,0,5,0"
-                             Grid.Column="4"
-                             Padding="0"
-                             BorderWidth="0"
-                             Command="{Binding GoToAddPaymentCommand}"
-                             HeightRequest="44"
-                             HorizontalOptions="End"
-                             VerticalOptions="Start"
-                             WidthRequest="66"
-                             Style="{StaticResource PrimaryImageButton}">
-                    <ImageButton.Source>
-                        <FontImageSource FontFamily="MaterialIcons"
-                                         Glyph="{x:Static views:IconFont.Plus}"
-                                         Color="White" />
-                    </ImageButton.Source>
-                </ImageButton>
-            </Grid>
-
-            <CollectionView Grid.Row="1"
-                            x:Name="PaymentCollectionView"
-                            ItemsSource="{Binding PaymentDayGroups}"
-                            IsGrouped="True">
-
-                <CollectionView.Header>
-                    <ContentView>
-                        <VerticalStackLayout Margin="18,0,18,12">
-                            <Label Style="{StaticResource TextBodySecondary}"
-                                   Text="{Binding SelectedAccount.CurrentBalance, StringFormat={extensions:Translate CurrentBalanceTemplate}, Converter={StaticResource AmountFormatConverter}}" />
-                        </VerticalStackLayout>
-                    </ContentView>
-                </CollectionView.Header>
-
-                <CollectionView.GroupHeaderTemplate>
-                    <DataTemplate x:DataType="paymentList:PaymentDayGroup">
-                        <Grid Padding="18, 0, 18, 0">
-                            <Label Text="{Binding Date, StringFormat='{0:dd. MMM}'}"
-                                   Style="{StaticResource TextSubheadSecondary}" />
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.GroupHeaderTemplate>
-
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="paymentList:PaymentListItemViewModel">
-                        <Grid ColumnDefinitions="80, *, 18">
-                            <controls:Card Grid.Column="1"
-                                           Padding="12"
-                                           Margin="0,6,0,0"
-                                           MinimumHeightRequest="60"
-                                           Opacity="{Binding Date, Converter={StaticResource DateGroupCardOpacityConverter}}">
-
-                                <controls:Card.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                        Command="{Binding BindingContext.GoToEditPaymentCommand, Source={x:Reference PaymentCollectionView}}"
-                                        CommandParameter="{Binding .}" />
-                                </controls:Card.GestureRecognizers>
-
-                                <VerticalStackLayout>
-                                    <Grid ColumnDefinitions="*,*">
-                                        <Label Grid.Column="0"
-                                               Style="{StaticResource TextBody}"
-                                               LineBreakMode="TailTruncation"
-                                               Text="{Binding CategoryName}" />
-
-                                        <Label Grid.Column="1"
-                                               Style="{StaticResource TextBody}"
-                                               LineBreakMode="TailTruncation"
-                                               Text="{Binding ., Converter={StaticResource PaymentAmountConverter}}"
-                                               HorizontalTextAlignment="End"
-                                               HorizontalOptions="End" />
-                                    </Grid>
-
-                                    <Grid ColumnDefinitions="1*, Auto">
-                                        <Label Grid.Column="0"
-                                               Style="{StaticResource TextCaptionSecondary}"
-                                               LineBreakMode="TailTruncation"
-                                               Text="{Binding Note}" />
-
-                                        <HorizontalStackLayout HorizontalOptions="End"
-                                                               Grid.Column="1">
-                                            <Image HeightRequest="15"
-                                                   IsVisible="{Binding IsTransfer}"
-                                                   WidthRequest="15">
-                                                <Image.Source>
-                                                    <FontImageSource FontFamily="MaterialIcons"
-                                                                     Glyph="{x:Static views:IconFont.SwapHorizontal}"
-                                                                     Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
-                                                </Image.Source>
-                                            </Image>
-
-                                            <Image HeightRequest="15"
-                                                   IsVisible="{Binding IsRecurring}"
-                                                   WidthRequest="15">
-                                                <Image.Source>
-                                                    <FontImageSource FontFamily="MaterialIcons"
-                                                                     Glyph="{x:Static views:IconFont.RepeatVariant}"
-                                                                     Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
-                                                </Image.Source>
-                                            </Image>
-
-                                            <Image HeightRequest="15"
-                                                   IsVisible="{Binding IsCleared}"
-                                                   WidthRequest="15">
-                                                <Image.Source>
-                                                    <FontImageSource FontFamily="MaterialIcons"
-                                                                     Glyph="{x:Static views:IconFont.Check}"
-                                                                     Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
-                                                </Image.Source>
-                                            </Image>
-                                        </HorizontalStackLayout>
-                                    </Grid>
-                                </VerticalStackLayout>
-                            </controls:Card>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-
-                <CollectionView.EmptyView>
-                    <Grid>
-                        <Label Style="{StaticResource TextSubheadSecondary}"
-                               Margin="10,0,10,0"
-                               VerticalTextAlignment="Center"
-                               HorizontalTextAlignment="Center"
-                               Text="{x:Static resources:Translations.NoPaymentsMessage}" />
-                    </Grid>
-                </CollectionView.EmptyView>
-            </CollectionView>
+            <ImageButton Margin="0,0,5,0"
+                         Grid.Column="4"
+                         Padding="0"
+                         BorderWidth="0"
+                         Command="{Binding GoToAddPaymentCommand}"
+                         HeightRequest="44"
+                         HorizontalOptions="End"
+                         VerticalOptions="Start"
+                         WidthRequest="66"
+                         Style="{StaticResource PrimaryImageButton}">
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="MaterialIcons"
+                                     Glyph="{x:Static views:IconFont.Plus}"
+                                     Color="White" />
+                </ImageButton.Source>
+            </ImageButton>
         </Grid>
-    </ContentPage.Content>
+
+        <CollectionView Margin="0,15,0,0"
+                        x:Name="PaymentCollectionView"
+                        ItemsSource="{Binding PaymentDayGroups}"
+                        IsGrouped="True">
+
+            <CollectionView.Header>
+                <ContentView>
+                    <VerticalStackLayout Margin="18,0,18,12">
+                        <Label Style="{StaticResource TextBodySecondary}"
+                               Text="{Binding SelectedAccount.CurrentBalance, StringFormat={extensions:Translate CurrentBalanceTemplate}, Converter={StaticResource AmountFormatConverter}}" />
+                    </VerticalStackLayout>
+                </ContentView>
+            </CollectionView.Header>
+
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate x:DataType="paymentList:PaymentDayGroup">
+                    <Grid Padding="18, 0, 18, 0">
+                        <Label Text="{Binding Date, StringFormat='{0:dd. MMM}'}"
+                               Style="{StaticResource TextSubheadSecondary}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="paymentList:PaymentListItemViewModel">
+                    <Grid ColumnDefinitions="80, *, 18">
+                        <controls:Card Grid.Column="1"
+                                       Padding="12"
+                                       Margin="0,6,0,0"
+                                       MinimumHeightRequest="60"
+                                       Opacity="{Binding Date, Converter={StaticResource DateGroupCardOpacityConverter}}">
+
+                            <controls:Card.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding BindingContext.GoToEditPaymentCommand, Source={x:Reference PaymentCollectionView}}"
+                                    CommandParameter="{Binding .}" />
+                            </controls:Card.GestureRecognizers>
+
+                            <VerticalStackLayout>
+                                <Grid ColumnDefinitions="*,*">
+                                    <Label Grid.Column="0"
+                                           Style="{StaticResource TextBody}"
+                                           LineBreakMode="TailTruncation"
+                                           Text="{Binding CategoryName}" />
+
+                                    <Label Grid.Column="1"
+                                           Style="{StaticResource TextBody}"
+                                           LineBreakMode="TailTruncation"
+                                           Text="{Binding ., Converter={StaticResource PaymentAmountConverter}}"
+                                           HorizontalTextAlignment="End"
+                                           HorizontalOptions="End" />
+                                </Grid>
+
+                                <Grid ColumnDefinitions="1*, Auto">
+                                    <Label Grid.Column="0"
+                                           Style="{StaticResource TextCaptionSecondary}"
+                                           LineBreakMode="TailTruncation"
+                                           Text="{Binding Note}" />
+
+                                    <HorizontalStackLayout HorizontalOptions="End"
+                                                           Grid.Column="1">
+                                        <Image HeightRequest="15"
+                                               IsVisible="{Binding IsTransfer}"
+                                               WidthRequest="15">
+                                            <Image.Source>
+                                                <FontImageSource FontFamily="MaterialIcons"
+                                                                 Glyph="{x:Static views:IconFont.SwapHorizontal}"
+                                                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                                            </Image.Source>
+                                        </Image>
+
+                                        <Image HeightRequest="15"
+                                               IsVisible="{Binding IsRecurring}"
+                                               WidthRequest="15">
+                                            <Image.Source>
+                                                <FontImageSource FontFamily="MaterialIcons"
+                                                                 Glyph="{x:Static views:IconFont.RepeatVariant}"
+                                                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                                            </Image.Source>
+                                        </Image>
+
+                                        <Image HeightRequest="15"
+                                               IsVisible="{Binding IsCleared}"
+                                               WidthRequest="15">
+                                            <Image.Source>
+                                                <FontImageSource FontFamily="MaterialIcons"
+                                                                 Glyph="{x:Static views:IconFont.Check}"
+                                                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                                            </Image.Source>
+                                        </Image>
+                                    </HorizontalStackLayout>
+                                </Grid>
+                            </VerticalStackLayout>
+                        </controls:Card>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.EmptyView>
+                <Grid>
+                    <Label Style="{StaticResource TextSubheadSecondary}"
+                           Margin="10,0,10,0"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           Text="{x:Static resources:Translations.NoPaymentsMessage}" />
+                </Grid>
+            </CollectionView.EmptyView>
+        </CollectionView>
+    </FlexLayout>
 
 </ContentPage>
