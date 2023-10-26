@@ -1,8 +1,7 @@
-﻿namespace MoneyFox.Core.Tests.Queries.Statistics.GetCategoryProgression;
+﻿namespace MoneyFox.Core.Tests.Queries.Statistics.GetCategorySpreading;
 
 using Core.Queries.Statistics;
 using Domain.Aggregates.AccountAggregate;
-using FluentAssertions;
 
 public class GetCategorySpreadingQueryTests
 {
@@ -21,9 +20,6 @@ public class GetCategorySpreadingQueryTests
     [Fact]
     public void CreateQueryAndAssignValues()
     {
-        // Arrange
-        var categoryId = 3;
-
         // Act
         var query = new GetCategorySpreading.Query(
             startDate: DateOnly.FromDateTime(DateTime.Today),

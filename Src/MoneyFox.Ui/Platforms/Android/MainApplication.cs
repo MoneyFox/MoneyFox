@@ -3,11 +3,8 @@ namespace MoneyFox.Ui;
 
 using Android.App;
 using Android.Runtime;
-using Common;
-using Core.Interfaces;
 using JetBrains.Annotations;
 using Microsoft.Identity.Client;
-using Platforms.Android.Resources.Src;
 using Serilog;
 
 [Application]
@@ -21,9 +18,35 @@ public class MainApplication : MauiApplication
 
     protected override MauiApp CreateMauiApp()
     {
-        App.AddPlatformServicesAction = AddServices;
+        CreatePersonalFolder();
+        MigrateAndroidDatabaseFile();
+        MauiProgram.AddPlatformServicesAction = AddServices;
 
         return MauiProgram.CreateMauiApp();
+    }
+
+    private static void CreatePersonalFolder()
+    {
+        // This seems to be necessary with .net 8 since the folder does not exist
+        var documentDirectoryPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+        if (Directory.Exists(documentDirectoryPath) is false)
+        {
+            Directory.CreateDirectory(documentDirectoryPath);
+        }
+    }
+
+    /// <summary>
+    ///     Migrates the db file, since there was a breaking change in .net 8 in the paths returned by special folder
+    /// </summary>
+    private static void MigrateAndroidDatabaseFile()
+    {
+        var databaseName = "moneyfox3.db";
+        var oldDbPath = Path.Combine(path1: Environment.GetEnvironmentVariable("HOME") ?? "", path2: databaseName);
+        if (File.Exists(oldDbPath))
+        {
+            var dbPath = Path.Combine(path1: Environment.GetFolderPath(Environment.SpecialFolder.Personal), path2: databaseName);
+            File.Move(sourceFileName: oldDbPath, destFileName: dbPath);
+        }
     }
 
     public override void OnCreate()
@@ -35,15 +58,8 @@ public class MainApplication : MauiApplication
 
     private static void AddServices(IServiceCollection services)
     {
-        services.AddSingleton<IDbPathProvider, DbPathProvider>();
-        services.AddTransient<IFileStore>(_ => new FileStoreIoBase(Context.FilesDir?.Path ?? ""));
-        RegisterIdentityClient(services);
-    }
-
-    private static void RegisterIdentityClient(IServiceCollection serviceCollection)
-    {
         var publicClientApplication = PublicClientApplicationBuilder.Create(MSAL_APPLICATION_ID).WithRedirectUri(MSAL_URI).Build();
-        serviceCollection.AddSingleton(publicClientApplication);
+        services.AddSingleton(publicClientApplication);
     }
 
     private void HandleAndroidException(object? sender, RaiseThrowableEventArgs e)

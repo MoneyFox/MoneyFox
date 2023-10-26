@@ -4,8 +4,6 @@ using Core.Common.Settings;
 using Core.Queries.Statistics;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.CategoryAggregate;
-using FluentAssertions;
-using NSubstitute;
 
 public class GetCategoryProgressionHandlerTests : InMemoryTestBase
 {

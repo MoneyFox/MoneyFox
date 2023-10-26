@@ -4,37 +4,33 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Core.Common.Interfaces;
 using Core.Common.Settings;
 using Core.Features.DbBackup;
 using Core.Interfaces;
 using Domain.Exceptions;
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using Persistence;
 using Serilog;
 
 internal sealed class BackupService : IBackupService
 {
-    private const string TEMP_DOWNLOAD_PATH = "backupmoneyfox3.db";
-    private readonly IAppDbContext appDbContext;
+    private const string DATABASE_NAME = "moneyfox3.db";
 
+    private readonly AppDbContext appDbContext;
     private readonly IConnectivityAdapter connectivity;
-    private readonly IDbPathProvider dbPathProvider;
-    private readonly IFileStore fileStore;
     private readonly IOneDriveBackupService oneDriveBackupService;
     private readonly ISettingsFacade settingsFacade;
 
     public BackupService(
         IOneDriveBackupService oneDriveBackupService,
-        IFileStore fileStore,
         ISettingsFacade settingsFacade,
         IConnectivityAdapter connectivity,
-        IDbPathProvider dbPathProvider,
-        IAppDbContext appDbContext)
+        AppDbContext appDbContext)
     {
         this.oneDriveBackupService = oneDriveBackupService;
-        this.fileStore = fileStore;
         this.settingsFacade = settingsFacade;
         this.connectivity = connectivity;
-        this.dbPathProvider = dbPathProvider;
         this.appDbContext = appDbContext;
     }
 
@@ -134,18 +130,21 @@ internal sealed class BackupService : IBackupService
                 return BackupRestoreResult.Canceled;
             }
 
-            appDbContext.ReleaseLock();
+            var tempDownloadPath = Path.Combine(path1: Environment.GetFolderPath(Environment.SpecialFolder.Personal), path2: "money-fox_downloaded.backup");
             await using (var backupStream = await oneDriveBackupService.RestoreAsync())
             {
                 settingsFacade.LastDatabaseUpdate = backupDate.ToLocalTime();
-                MemoryStream ms = new();
-                await backupStream.CopyToAsync(ms);
-                await fileStore.WriteFileAsync(path: TEMP_DOWNLOAD_PATH, contents: ms.ToArray());
+                await WriteBackupFile(tempDownloadPath: tempDownloadPath, backupStream: backupStream);
             }
 
-            var moveSucceed = await fileStore.TryMoveAsync(from: TEMP_DOWNLOAD_PATH, destination: dbPathProvider.GetDbPath(), overwrite: true);
+            SqliteConnection.ClearAllPools();
+            await appDbContext.Database.CloseConnectionAsync();
+            var dbPath = Path.Combine(path1: Environment.GetFolderPath(Environment.SpecialFolder.Personal), path2: DATABASE_NAME);
+            File.Move(sourceFileName: tempDownloadPath, destFileName: dbPath, overwrite: true);
+            await appDbContext.Database.OpenConnectionAsync();
+            appDbContext.MigrateDb();
 
-            return !moveSucceed ? throw new BackupException("Error Moving downloaded backup file") : BackupRestoreResult.NewBackupRestored;
+            return BackupRestoreResult.NewBackupRestored;
         }
         catch (BackupOperationCanceledException ex)
         {
@@ -154,5 +153,15 @@ internal sealed class BackupService : IBackupService
         }
 
         return BackupRestoreResult.BackupNotFound;
+    }
+
+    private static async Task WriteBackupFile(string tempDownloadPath, Stream backupStream)
+    {
+        await using var fileStream = File.OpenWrite(tempDownloadPath);
+        await using var binaryWriter = new BinaryWriter(fileStream);
+        MemoryStream ms = new();
+        await backupStream.CopyToAsync(ms);
+        binaryWriter.Write(ms.ToArray());
+        binaryWriter.Flush();
     }
 }

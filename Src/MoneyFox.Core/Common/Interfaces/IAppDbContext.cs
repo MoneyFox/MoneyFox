@@ -7,6 +7,7 @@ using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.BudgetAggregate;
 using Domain.Aggregates.CategoryAggregate;
+using Domain.Aggregates.RecurringTransactionAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
@@ -18,6 +19,8 @@ public interface IAppDbContext : IDisposable
 
     DbSet<RecurringPayment> RecurringPayments { get; }
 
+    DbSet<RecurringTransaction> RecurringTransactions { get; }
+
     DbSet<Category> Categories { get; }
 
     DbSet<Budget> Budgets { get; }
@@ -28,11 +31,5 @@ public interface IAppDbContext : IDisposable
 
     EntityEntry<TEntity> Add<TEntity>(TEntity entity) where TEntity : class;
 
-    EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
-
-    EntityEntry Entry(object entity);
-
     void MigrateDb();
-
-    void ReleaseLock();
 }

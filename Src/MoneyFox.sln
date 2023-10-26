@@ -22,6 +22,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{1BCFE065-72D5-45D5-A11D-FE49C54522D6}"
 	ProjectSection(SolutionItems) = preProject
 		..\.github\workflows\validate-pullrequest.yml = ..\.github\workflows\validate-pullrequest.yml
+		..\.github\workflows\build.yml = ..\.github\workflows\build.yml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyFox.Ui", "MoneyFox.Ui\MoneyFox.Ui.csproj", "{AA0D8340-49B4-483C-9B28-8614CA9B0BA5}"

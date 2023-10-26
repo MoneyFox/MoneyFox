@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Domain.Tests.TestFramework;
+namespace MoneyFox.Domain.Tests.TestFramework;
 
 using Domain.Aggregates.AccountAggregate;
 
@@ -6,17 +6,45 @@ internal static partial class TestData
 {
     private static readonly DateTime defaultDate = new(year: 2022, month: 04, day: 06);
 
-    internal sealed record DefaultExpense : IPayment
+    internal sealed record UnclearedExpense : IPayment
     {
-        public int Id { get; init; } = 10;
-        public IAccount ChargedAccount => new DefaultAccount();
+        public DateTime Created { get; } = DateTime.Now.AddDays(-2);
+        public DateTime? LastModified { get; } = DateTime.Now.AddDays(-1);
+        public int Id { get; set; } = 10;
+        public IAccount ChargedAccount => new IncludedAccount();
+        public IAccount? TargetAccount => null;
+        public ICategory? Category { get; init; } = new ExpenseCategory();
+        public DateTime Date { get; init; } = DateTime.Today.AddDays(1);
+        public decimal Amount { get; init; } = 105.50m;
+        public bool IsCleared => false;
+        public PaymentType Type { get; init; } = PaymentType.Expense;
+        public bool IsRecurring => RecurringTransactionId.HasValue;
+        public Guid? RecurringTransactionId { get; init; } = null;
+        public string Note => "6 Bottles";
+
+        internal sealed record ExpenseCategory : ICategory
+        {
+            public int Id { get; set; } = 1;
+            public string Name { get; } = "Whine";
+            public string? Note { get; } = "Yummi!";
+            public bool RequireNote { get; } = false;
+        }
+    }
+
+    internal sealed record ClearedExpense : IPayment
+    {
+        public DateTime Created { get; } = DateTime.Now.AddDays(-2);
+        public DateTime? LastModified { get; } = DateTime.Now.AddDays(-1);
+        public int Id { get; set; } = 10;
+        public IAccount ChargedAccount => new IncludedAccount();
         public IAccount? TargetAccount => null;
         public ICategory? Category { get; init; } = new ExpenseCategory();
         public DateTime Date { get; init; } = defaultDate;
         public decimal Amount { get; init; } = 105.50m;
         public bool IsCleared => true;
         public PaymentType Type { get; init; } = PaymentType.Expense;
-        public bool IsRecurring => false;
+        public bool IsRecurring => RecurringTransactionId.HasValue;
+        public Guid? RecurringTransactionId { get; init; } = null;
         public string Note => "6 Bottles";
 
         internal sealed record ExpenseCategory : ICategory
@@ -28,10 +56,10 @@ internal static partial class TestData
         }
     }
 
-    internal sealed record DefaultIncome : IPayment
+    internal sealed record ClearedIncome : IPayment
     {
         public int Id { get; set; } = 10;
-        public IAccount ChargedAccount => new DefaultAccount();
+        public IAccount ChargedAccount => new IncludedAccount();
         public IAccount? TargetAccount => null;
         public ICategory? Category { get; init; } = new IncomeCategory();
         public DateTime Date { get; } = defaultDate;
@@ -39,7 +67,8 @@ internal static partial class TestData
         public bool IsCleared => true;
         public PaymentType Type { get; set; } = PaymentType.Income;
         public string Note => string.Empty;
-        public bool IsRecurring => false;
+        public bool IsRecurring => RecurringTransactionId.HasValue;
+        public Guid? RecurringTransactionId { get; } = null;
 
         internal sealed record IncomeCategory : ICategory
         {
@@ -50,9 +79,9 @@ internal static partial class TestData
         }
     }
 
-    public sealed record DefaultAccount : IAccount
+    public sealed record IncludedAccount : IAccount
     {
-        public int Id { get; } = 10;
+        public int Id { get; set; } = 1;
         public string Name { get; } = "Spending";
         public decimal CurrentBalance { get; } = 890.60m;
         public string Note => string.Empty;
@@ -62,7 +91,7 @@ internal static partial class TestData
 
     internal interface IPayment
     {
-        int Id { get; }
+        int Id { get; set; }
 
         IAccount ChargedAccount { get; }
 
@@ -81,11 +110,13 @@ internal static partial class TestData
         string Note { get; }
 
         bool IsRecurring { get; }
+
+        Guid? RecurringTransactionId { get; }
     }
 
     internal interface IAccount
     {
-        int Id { get; }
+        int Id { get; set; }
 
         string Name { get; }
 

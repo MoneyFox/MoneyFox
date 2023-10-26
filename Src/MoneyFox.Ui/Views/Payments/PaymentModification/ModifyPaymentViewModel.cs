@@ -2,6 +2,7 @@ namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
 using System.Collections.Immutable;
 using System.Collections.ObjectModel;
+using Aptabase.Maui;
 using Categories.CategorySelection;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -12,12 +13,12 @@ using Core.Common.Settings;
 using Core.Queries;
 using Domain.Aggregates.AccountAggregate;
 using MediatR;
-using Microsoft.AppCenter.Crashes;
 using Resources.Strings;
 using Serilog;
 
 public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttributable
 {
+    private readonly IAptabaseClient aptabaseClient;
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
     private readonly ISettingsFacade settingsFacade;
@@ -32,13 +33,15 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
         IDialogService dialogService,
         IToastService toastService,
         CategorySelectionViewModel categorySelectionViewModel,
-        ISettingsFacade settingsFacade)
+        ISettingsFacade settingsFacade,
+        IAptabaseClient aptabaseClient)
     {
         this.mediator = mediator;
         this.dialogService = dialogService;
         this.toastService = toastService;
         CategorySelectionViewModel = categorySelectionViewModel;
         this.settingsFacade = settingsFacade;
+        this.aptabaseClient = aptabaseClient;
     }
 
     public PaymentViewModel SelectedPayment
@@ -86,7 +89,6 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
         => new()
         {
             PaymentRecurrence.Daily,
-            PaymentRecurrence.DailyWithoutWeekend,
             PaymentRecurrence.Weekly,
             PaymentRecurrence.Biweekly,
             PaymentRecurrence.Monthly,
@@ -153,7 +155,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
         }
 
         if (SelectedPayment.IsRecurring
-            && !RecurrenceViewModel!.IsEndless
+            && RecurrenceViewModel.IsEndless is false
             && RecurrenceViewModel.EndDate.HasValue
             && RecurrenceViewModel.EndDate.Value.Date < DateTime.Today)
         {
@@ -170,7 +172,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
         }
         catch (Exception ex)
         {
-            Crashes.TrackError(ex);
+            aptabaseClient.TrackEvent(eventName: "failed_to_modify_payment", props: new() { { "excpetion", ex } });
             Log.Error(exception: ex, messageTemplate: "Failed to modify payment");
             await toastService.ShowToastAsync(string.Format(format: Translations.UnknownErrorMessage, arg0: ex.Message));
         }

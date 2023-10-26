@@ -1,9 +1,7 @@
 namespace MoneyFox.Ui.Tests.Views.Statistics.CategorySummary;
 
 using Domain.Aggregates.AccountAggregate;
-using FluentAssertions;
 using Ui.Views.Statistics.CategorySummary;
-using Xunit;
 
 public sealed class PaymentDayGroupTests
 {

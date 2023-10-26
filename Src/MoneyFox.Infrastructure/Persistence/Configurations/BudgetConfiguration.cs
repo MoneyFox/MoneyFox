@@ -4,22 +4,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Domain.Aggregates.BudgetAggregate;
+using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+[UsedImplicitly]
 internal class BudgetConfiguration : IEntityTypeConfiguration<Budget>
 {
     public void Configure(EntityTypeBuilder<Budget> builder)
     {
-        _ = builder.HasKey(c => c.Id);
-        _ = builder.Property(i => i.Id)
-            .ValueGeneratedOnAdd()
-            .HasConversion(convertToProviderExpression: v => v.Value, convertFromProviderExpression: v => new(v));
-
-        _ = builder.OwnsOne(b => b.SpendingLimit).Property(sl => sl.Value).HasColumnName("SpendingLimit");
-        _ = builder.OwnsOne(b => b.Interval).Property(sl => sl.NumberOfMonths).HasColumnName("IntervalNumberOfMonths");
-        _ = builder.Property(nameof(Budget.IncludedCategories)).HasConversion(GetSplitStringConverter());
+        builder.HasKey(b => b.Id);
+        builder.Property(b => b.Id).ValueGeneratedOnAdd().HasConversion(convertToProviderExpression: v => v.Value, convertFromProviderExpression: v => new(v));
+        builder.OwnsOne(b => b.SpendingLimit).Property(sl => sl.Value).HasColumnName("SpendingLimit");
+        builder.OwnsOne(b => b.Interval).Property(sl => sl.NumberOfMonths).HasColumnName("IntervalNumberOfMonths");
+        builder.Property(nameof(Budget.IncludedCategories)).HasConversion(GetSplitStringConverter());
     }
 
     private static ValueConverter<IReadOnlyList<int>, string> GetSplitStringConverter()

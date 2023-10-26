@@ -3,7 +3,7 @@ namespace MoneyFox.Ui.Views.Payments.PaymentList;
 using CommunityToolkit.Maui.Views;
 
 [QueryProperty(name: "AccountId", queryId: "accountId")]
-public partial class PaymentListPage : ContentPage
+public partial class PaymentListPage
 {
     public PaymentListPage()
     {

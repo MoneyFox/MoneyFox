@@ -1,11 +1,10 @@
 namespace MoneyFox.Ui.Tests;
 
+using Aptabase.Maui;
 using Core.Common.Settings;
-using Core.Interfaces;
+using Core.Features;
 using InversionOfControl;
 using Microsoft.Identity.Client;
-using NSubstitute;
-using Xunit;
 
 public sealed class ServiceCollectionTests
 {
@@ -13,15 +12,15 @@ public sealed class ServiceCollectionTests
     public void AllDependenciesPresentAndAccountedFor()
     {
         // Arrange
-        var serviceCollection = new ServiceCollection().AddSingleton(Substitute.For<IDbPathProvider>())
-            .AddSingleton(Substitute.For<IFileStore>())
-            .AddSingleton(Substitute.For<IPublicClientApplication>());
+        var serviceCollection = new ServiceCollection().AddSingleton(Substitute.For<IPublicClientApplication>());
 
         // Act
         new MoneyFoxConfig().Register(serviceCollection);
 
         // Add a substitute here, since default is not supported in test
         serviceCollection.AddSingleton(Substitute.For<ISettingsFacade>());
+        serviceCollection.AddSingleton(Substitute.For<ISqliteBackupService>());
+        serviceCollection.AddSingleton(Substitute.For<IAptabaseClient>());
 
         // Assert
         List<InvalidOperationException> exceptions = new();

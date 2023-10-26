@@ -1,0 +1,254 @@
+name: build
+
+on:
+  push:
+    branches: [ "master" ]
+
+  workflow_dispatch:
+
+env:
+  MAJOR_VERSION: "8"
+  MINOR_VERSION: "3"
+  DOTNET_VERSION: "8.0.x"
+  UI_PROJECT_PATH: "src/MoneyFox.Ui/MoneyFox.Ui.csproj"
+  CORE_TEST_PROJECT_PATH: "src/MoneyFox.Core.Tests/MoneyFox.Core.Tests.csproj"
+  UI_TEST_PROJECT_PATH: "src/MoneyFox.Ui.Tests/MoneyFox.Ui.Tests.csproj"
+  INFRASTRUCTURE_PROJECT_PATH: "src/MoneyFox.Infrastructure.Tests/MoneyFox.Infrastructure.Tests.csproj"
+
+jobs:
+  build-win:
+    runs-on: windows-latest
+
+    steps:
+      - name: Install signing certificate
+        env:
+          WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
+          WINDOWS_CERTIFICATE_BASE64: ${{ secrets.WINDOWS_CERTIFICATE_BASE64 }}
+        run: |
+          $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.WINDOWS_CERTIFICATE_BASE64 }}")
+          
+          Add-Type -AssemblyName System.Security
+          $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2($pfx_cert_byte, "${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}")
+          $store = new-object system.security.cryptography.X509Certificates.X509Store -argumentlist "MY", CurrentUser
+          $store.Open([System.Security.Cryptography.X509Certificates.OpenFlags]"ReadWrite")
+          $store.Add($cert)
+          $store.Close()
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set values in manifest
+        run: |
+          [xml]$xmlDoc = Get-Content '${{ github.workspace }}\src\MoneyFox.Ui\Platforms\Windows\Package.appxmanifest'
+          $xmlDoc.Package.Identity.Name="57598ApplySolutionsSoftwa.MoneyFox"
+          $xmlDoc.Package.Identity.Publisher="CN=071307B1-B0E3-434A-AD0E-FFF714A7245C"
+          $xmlDoc.Save('${{ github.workspace }}\src\MoneyFox.Ui\Platforms\Windows\Package.appxmanifest')  
+
+      - name: Set association to store
+        run: |
+          [xml]$xmlDoc = Get-Content '${{ github.workspace }}\src\MoneyFox.Ui\Platforms\Windows\Package.StoreAssociation.xml'
+          $xmlDoc.StoreAssociation.Publisher="CN=071307B1-B0E3-434A-AD0E-FFF714A7245C"
+          $xmlDoc.StoreAssociation.ProductReservedInfo.MainPackageIdentityName="57598ApplySolutionsSoftwa.MoneyFox"
+          $xmlDoc.Save('${{ github.workspace }}\src\MoneyFox.Ui\Platforms\Windows\Package.StoreAssociation.xml')       
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{env.DOTNET_VERSION}}
+          dotnet-quality: 'preview'
+
+      - uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          # Look to see if there is a cache hit for the corresponding requirements file
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget
+
+      - name: Install MAUI Workload
+        run: |
+          dotnet workload install maui-windows
+          dotnet workload install maui-mobile
+
+      - name: Restore Dependencies
+        run: dotnet restore ${{env.UI_PROJECT_PATH}}
+
+      - name: Test
+        run: |
+          dotnet test ${{env.UI_TEST_PROJECT_PATH}}
+          dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
+          dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
+
+      - name: Build Win
+        run: |
+          $DisplayVersion="${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
+          $Version=${{ GITHUB.run_number }}
+          $KeyStorePath = "${{ github.workspace }}\${{ env.WINDOWS_CERTIFICATE_PATH }}"
+          
+          dotnet publish ${{env.UI_PROJECT_PATH}} `
+            -f net8.0-windows10.0.22621.0 `
+            -c Release `
+            -o ${{ github.workspace }}/moneyfox-win `
+            /p:ApplicationDisplayVersion=$DisplayVersion `
+            /p:ApplicationVersion=$Version
+
+      - name: Upload Windows build
+        uses: actions/upload-artifact@v3
+        with:
+          name: moneyfox-win
+          path: ${{ github.workspace }}/moneyfox-win
+  
+  build-android:
+    runs-on: windows-latest
+
+    steps:
+      - name: Download keystore
+        shell: bash
+        run: |
+          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" > moneyfox.base64
+          base64 -d moneyfox.base64 > "${{ runner.temp }}\moneyfox.keystore"
+          
+          if test -f "${{ runner.temp }}\moneyfox.keystore"; then
+            echo "{{ runner.temp }}\moneyfox.keystore exists."
+          fi
+
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{env.DOTNET_VERSION}}
+          dotnet-quality: 'preview'
+
+      - uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          # Look to see if there is a cache hit for the corresponding requirements file
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget
+
+      - name: Install MAUI Workload
+        run: dotnet workload install maui-mobile
+
+      - name: Restore Dependencies
+        run: dotnet restore ${{env.UI_PROJECT_PATH}}
+
+      - name: Test
+        run: |
+          dotnet test ${{env.UI_TEST_PROJECT_PATH}}
+          dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
+          dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
+
+      - name: Get android version
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y%m')${{ GITHUB.run_number }}"
+
+      - name: Build Android
+        run: |
+          $DisplayVersion = "${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
+          $Version = ${{ steps.date.outputs.date }}
+          
+          dotnet publish ${{env.UI_PROJECT_PATH}} `
+            -f net8.0-android `
+            -c Release `
+            -o ${{ github.workspace }}/moneyfox-android `
+            /p:AndroidKeyStore="True" `
+            /p:AndroidSigningKeyAlias="${{ secrets.ANDROID_KEYSTORE_ALIAS }}" `
+            /p:AndroidSigningKeyStore="${{ runner.temp }}\moneyfox.keystore" `
+            /p:AndroidSigningKeyPass="${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" `
+            /p:AndroidSigningStorePass="${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" `
+            /p:ApplicationDisplayVersion=$DisplayVersion `
+            /p:ApplicationVersion=$Version
+
+      - name: Upload Android build
+        uses: actions/upload-artifact@v3
+        with:
+          name: moneyfox-android
+          path: ${{ github.workspace }}/moneyfox-android
+  
+  build-ios:
+    runs-on: macos-13
+
+    steps:
+      - name: Xcode Select Version
+        uses: mobiledevops/xcode-select-version-action@v1
+        with:
+          xcode-select-version: 14.3.1
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{env.DOTNET_VERSION}}
+          dotnet-quality: 'preview'
+
+      - uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          # Look to see if there is a cache hit for the corresponding requirements file
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget
+
+      - name: Install MAUI Workloads
+        run: dotnet workload install maui-mobile
+
+      - name: Restore Dependencies
+        run: dotnet restore ${{env.UI_PROJECT_PATH}}
+
+      - name: Test
+        run: |
+          dotnet test ${{env.UI_TEST_PROJECT_PATH}}
+          dotnet test ${{env.CORE_TEST_PROJECT_PATH}}
+          dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
+
+      - name: Install the Apple certificate and provisioning profile
+        env:
+          BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
+          P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
+          BUILD_PROVISION_PROFILE_BASE64: ${{ secrets.BUILD_PROVISION_PROFILE_BASE64 }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+        run: |
+          # create variables
+          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
+          PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
+          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+
+          # import certificate and provisioning profile from secrets
+          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode -o $CERTIFICATE_PATH
+          echo -n "$BUILD_PROVISION_PROFILE_BASE64" | base64 --decode -o $PP_PATH
+
+          # create temporary keychain
+          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+
+          # import certificate to keychain
+          security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security list-keychain -d user -s $KEYCHAIN_PATH
+
+          # apply provisioning profile
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+
+      - name: Build iOS
+        run: |
+          DisplayVersion="${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
+          Version=${{ GITHUB.run_number }}
+          
+          dotnet build ${{env.UI_PROJECT_PATH}} \
+            -f net8.0-ios \
+            -c Release \
+            -o ${{ github.workspace }}/moneyfox-ios \
+            /p:packageApp=True \
+            /p:ApplicationDisplayVersion=$DisplayVersion \
+            /p:ApplicationVersion=${{ GITHUB.run_number }}
+
+      - name: Upload iOS build
+        uses: actions/upload-artifact@v3
+        with:
+          name: moneyfox-ios
+          path: ${{ github.workspace }}/moneyfox-ios

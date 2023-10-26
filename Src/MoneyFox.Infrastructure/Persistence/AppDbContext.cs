@@ -3,16 +3,17 @@ namespace MoneyFox.Infrastructure.Persistence;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Converter;
 using Core.Common.Interfaces;
 using Core.Common.Settings;
 using Core.Notifications.DatabaseChanged;
+using Domain;
 using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.BudgetAggregate;
 using Domain.Aggregates.CategoryAggregate;
+using Domain.Aggregates.RecurringTransactionAggregate;
 using MediatR;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
 public class AppDbContext : DbContext, IAppDbContext
@@ -33,6 +34,8 @@ public class AppDbContext : DbContext, IAppDbContext
     public DbSet<Payment> Payments { get; set; } = null!;
 
     public DbSet<RecurringPayment> RecurringPayments { get; set; } = null!;
+
+    public DbSet<RecurringTransaction> RecurringTransactions { get; set; } = null!;
 
     public DbSet<Category> Categories { get; set; } = null!;
 
@@ -76,10 +79,12 @@ public class AppDbContext : DbContext, IAppDbContext
         Database.Migrate();
     }
 
-    public void ReleaseLock()
+    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {
-        SqliteConnection.ClearAllPools();
-        Analytics.TrackEvent(nameof(ReleaseLock));
+        base.ConfigureConventions(configurationBuilder);
+        configurationBuilder.Properties<Currency>().HaveConversion<CurrencyConverter>();
+        configurationBuilder.Properties<DateOnly>().HaveConversion<DateOnlyConverter>().HaveColumnType("date");
+        configurationBuilder.Properties<DateOnly?>().HaveConversion<NullableDateOnlyConverter>().HaveColumnType("date");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
