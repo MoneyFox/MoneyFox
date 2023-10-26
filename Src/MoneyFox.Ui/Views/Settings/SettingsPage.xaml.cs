@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Views.Settings;
+namespace MoneyFox.Ui.Views.Settings;
 
 public partial class SettingsPage
 {
