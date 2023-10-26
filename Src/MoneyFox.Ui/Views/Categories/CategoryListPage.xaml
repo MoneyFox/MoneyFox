@@ -12,9 +12,8 @@
     x:Name="This"
     x:Class="MoneyFox.Ui.Views.Categories.CategoryListPage">
 
-    <ContentPage.Content>
-        <Grid IsClippedToBounds="False" RowDefinitions="40, 70, 12, *">
-
+    <FlexLayout Direction="Column">
+        <VerticalStackLayout >
             <Button
                 Margin="0,0,18,0"
                 HorizontalOptions="End"
@@ -22,68 +21,67 @@
                 VerticalOptions="Center"
                 Command="{Binding GoToAddCategoryCommand}" />
 
-            <controls:Search Grid.Row="1"
-                             Margin="18,0,18,0"
+            <controls:Search Margin="18,0,18,0"
                              SearchPlaceholder="{x:Static resources:Translations.SearchLabel}"
                              SearchCommand="{Binding SearchCategoryCommand}" />
+        </VerticalStackLayout>
 
-            <CollectionView Grid.Row="3"
-                            x:Name="CategoryCollectionView"
-                            IsGrouped="true"
-                            ItemsSource="{Binding CategoryGroups}">
+        <CollectionView Margin="0,40,0,0"
+                        x:Name="CategoryCollectionView"
+                        IsGrouped="true"
+                        ItemsSource="{Binding CategoryGroups}">
 
-                <CollectionView.GroupHeaderTemplate>
-                    <DataTemplate x:DataType="categories:CategoryGroup">
-                        <Grid Padding="18,0,18,0">
-                            <Label Text="{Binding Title}"
-                                   Style="{StaticResource TextSubheadSecondary}" />
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.GroupHeaderTemplate>
-
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="categories:CategoryListItemViewModel">
-                        <Grid Padding="18, 0, 18, 6">
-
-                            <controls:Card HeightRequest="50">
-
-                                <controls:Card.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                        Command="{Binding BindingContext.GoToEditCategoryCommand, Source={x:Reference Name=CategoryCollectionView}}"
-                                        CommandParameter="{Binding .}" />
-                                </controls:Card.GestureRecognizers>
-
-                                <FlyoutBase.ContextFlyout>
-                                    <MenuFlyout>
-                                        <MenuFlyoutItem Text="{x:Static resources:Translations.DeleteLabel}"
-                                                        Command="{Binding BindingContext.DeleteCategoryCommand, Source={x:Reference Name=CategoryCollectionView}}"
-                                                        CommandParameter="{Binding .}" />
-                                    </MenuFlyout>
-                                </FlyoutBase.ContextFlyout>
-
-                                <Grid>
-                                    <Label Style="{StaticResource TextHead}"
-                                           Margin="10,0,10,0"
-                                           VerticalTextAlignment="Center"
-                                           HorizontalTextAlignment="Start"
-                                           Text="{Binding Name}" />
-                                </Grid>
-                            </controls:Card>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-
-                <CollectionView.EmptyView>
-                    <Grid>
-                        <Label Style="{StaticResource TextSubheadSecondary}"
-                               Margin="10,0,10,0"
-                               VerticalTextAlignment="Center"
-                               HorizontalTextAlignment="Center"
-                               Text="{x:Static resources:Translations.NoCategoriesMessage}" />
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate x:DataType="categories:CategoryGroup">
+                    <Grid Padding="18,0,18,0">
+                        <Label Text="{Binding Title}"
+                               Style="{StaticResource TextSubheadSecondary}" />
                     </Grid>
-                </CollectionView.EmptyView>
-            </CollectionView>
-        </Grid>
-    </ContentPage.Content>
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="categories:CategoryListItemViewModel">
+                    <Grid Padding="18, 0, 18, 6">
+
+                        <controls:Card HeightRequest="50">
+
+                            <controls:Card.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding BindingContext.GoToEditCategoryCommand, Source={x:Reference Name=CategoryCollectionView}}"
+                                    CommandParameter="{Binding .}" />
+                            </controls:Card.GestureRecognizers>
+
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="{x:Static resources:Translations.DeleteLabel}"
+                                                    Command="{Binding BindingContext.DeleteCategoryCommand, Source={x:Reference Name=CategoryCollectionView}}"
+                                                    CommandParameter="{Binding .}" />
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
+
+                            <Grid>
+                                <Label Style="{StaticResource TextHead}"
+                                       Margin="10,0,10,0"
+                                       VerticalTextAlignment="Center"
+                                       HorizontalTextAlignment="Start"
+                                       Text="{Binding Name}" />
+                            </Grid>
+                        </controls:Card>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.EmptyView>
+                <Grid>
+                    <Label Style="{StaticResource TextSubheadSecondary}"
+                           Margin="10,0,10,0"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           Text="{x:Static resources:Translations.NoCategoriesMessage}" />
+                </Grid>
+            </CollectionView.EmptyView>
+        </CollectionView>
+    </FlexLayout>
 
 </ContentPage>

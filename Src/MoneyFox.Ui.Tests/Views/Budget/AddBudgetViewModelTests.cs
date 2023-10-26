@@ -13,7 +13,6 @@ using Ui.Views.Categories.CategorySelection;
 public class AddBudgetViewModelTests
 {
     private const int CATEGORY_ID = 10;
-    private readonly IDialogService dialogService;
     private readonly INavigationService navigationService;
     private readonly ISender sender;
 
@@ -24,7 +23,7 @@ public class AddBudgetViewModelTests
         sender = Substitute.For<ISender>();
         sender.Send(Arg.Any<GetCategoryByIdQuery>()).Returns(new Category("Beer"));
         navigationService = Substitute.For<INavigationService>();
-        dialogService = Substitute.For<IDialogService>();
+        var dialogService = Substitute.For<IDialogService>();
         Substitute.For<IDialogService>();
         viewModel = new(sender: sender, navigationService: navigationService, dialogService: dialogService);
     }

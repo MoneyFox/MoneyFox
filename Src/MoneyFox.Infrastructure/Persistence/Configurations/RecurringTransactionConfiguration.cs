@@ -2,31 +2,38 @@ namespace MoneyFox.Infrastructure.Persistence.Configurations;
 
 using Domain;
 using Domain.Aggregates.RecurringTransactionAggregate;
+using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+[UsedImplicitly]
 internal sealed class RecurringTransactionConfiguration : IEntityTypeConfiguration<RecurringTransaction>
 {
     public void Configure(EntityTypeBuilder<RecurringTransaction> builder)
     {
-        builder.HasKey(b => b.Id);
-        builder.Property(i => i.Id).ValueGeneratedOnAdd().HasConversion(convertToProviderExpression: v => v.Value, convertFromProviderExpression: v => new(v));
-        builder.Property(p => p.CategoryId);
-        builder.Property(p => p.StartDate);
-        builder.Property(p => p.EndDate);
+        builder.HasKey(rt => rt.Id);
+        builder.HasIndex(rt => rt.RecurringTransactionId).IsUnique();
+        builder.Property(rt => rt.Id)
+            .ValueGeneratedOnAdd()
+            .HasConversion(convertToProviderExpression: v => v.Value, convertFromProviderExpression: v => new(v));
+
+        builder.Property(rt => rt.RecurringTransactionId).IsRequired();
+        builder.Property(rt => rt.CategoryId);
+        builder.Property(rt => rt.StartDate);
+        builder.Property(rt => rt.EndDate);
         builder.OwnsOne<Money>(
-            navigationExpression: i => i.Amount,
-            buildAction: m =>
+            navigationExpression: rt => rt.Amount,
+            buildAction: o =>
             {
-                m.Property(p => p.Amount).HasColumnName("Amount");
-                m.Property(p => p.Currency).HasColumnName("Currency");
+                o.Property(p => p.Amount).HasColumnName("Amount");
+                o.Property(p => p.Currency).HasColumnName("Currency");
             });
 
-        builder.Property(p => p.Note);
-        builder.Property(p => p.ChargedAccountId);
-        builder.Property(p => p.TargetAccountId);
-        builder.Property(p => p.Recurrence);
-        builder.Property(p => p.IsLastDayOfMonth);
-        builder.Property(p => p.LastRecurrence);
+        builder.Property(rt => rt.Note);
+        builder.Property(rt => rt.ChargedAccountId);
+        builder.Property(rt => rt.TargetAccountId);
+        builder.Property(rt => rt.Recurrence);
+        builder.Property(rt => rt.IsLastDayOfMonth);
+        builder.Property(rt => rt.LastRecurrence);
     }
 }

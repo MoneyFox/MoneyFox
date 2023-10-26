@@ -1,7 +1,8 @@
 namespace MoneyFox.Core.Tests.Features.TransactionRecurrence;
 
 using Core.Common;
-using Core.Features.RecurringTransactionCreation;
+using Core.Common.Extensions;
+using Core.Features.PaymentCreation;
 using Core.Features.TransactionRecurrence;
 using Domain.Aggregates.RecurringTransactionAggregate;
 using Domain.Tests.TestFramework;
@@ -17,23 +18,26 @@ public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
     {
         sender = Substitute.For<ISender>();
         systemDateHelper = Substitute.For<ISystemDateHelper>();
-        systemDateHelper.TodayDateOnly.Returns(DateOnly.FromDateTime(DateTime.Today));
+        systemDateHelper.TodayDateOnly.Returns(DateTime.Today.ToDateOnly());
         handler = new(dbContext: Context, sender: sender, systemDateHelper: systemDateHelper);
     }
 
     [Fact]
-    public async Task CreateAllMissedRecurrences()
+    public async Task CreateAllRecurrencesForThisMonth()
     {
         // Arrange
-        systemDateHelper.TodayDateOnly.Returns(DateOnly.FromDateTime(DateTime.Today.AddDays(2)));
-        var recurringTransaction = new TestData.RecurringExpense { Recurrence = Recurrence.Daily };
+        var recurringTransaction = new TestData.RecurringExpense
+        {
+            Recurrence = Recurrence.Biweekly, LastRecurrence = DateTime.Today.GetFirstDayOfMonth().AddDays(-1).ToDateOnly()
+        };
+
         Context.RegisterRecurringTransaction(recurringTransaction);
 
         // Act
         await handler.Handle(command: new(), cancellationToken: default);
 
         // Assert
-        await sender.Received(2).Send(Arg.Any<CreateRecurringTransaction.Command>());
+        await sender.Received(2).Send(Arg.Any<CreatePayment.Command>());
     }
 
     [Theory]
@@ -48,7 +52,7 @@ public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
     public async Task CreatePaymentsForDifferentRecurrences(Recurrence recurrence, int days)
     {
         // Arrange
-        systemDateHelper.TodayDateOnly.Returns(DateOnly.FromDateTime(DateTime.Today.AddDays(days)));
+        systemDateHelper.TodayDateOnly.Returns(DateTime.Today.AddDays(days).ToDateOnly());
         var recurringTransaction = new TestData.RecurringExpense { Recurrence = recurrence };
         Context.RegisterRecurringTransaction(recurringTransaction);
 
@@ -56,23 +60,59 @@ public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
         await handler.Handle(command: new(), cancellationToken: default);
 
         // Assert
-        await sender.Received(1).Send(Arg.Any<CreateRecurringTransaction.Command>());
+        await sender.Received().Send(Arg.Any<CreatePayment.Command>());
     }
 
     [Fact]
     public async Task SkipRecurringTransactionsWithEndDateInPast()
     {
         // Arrange
-        systemDateHelper.TodayDateOnly.Returns(DateOnly.FromDateTime(DateTime.Today.AddDays(1)));
-        var recurringTransaction1 = new TestData.RecurringExpense { Recurrence = Recurrence.Daily };
-        var recurringTransaction2 = new TestData.RecurringExpense { Recurrence = Recurrence.Daily };
-        var recurringTransaction3 = new TestData.RecurringExpense { Recurrence = Recurrence.Daily, EndDate = DateOnly.FromDateTime(DateTime.Today) };
-        Context.RegisterRecurringTransactions(recurringTransaction1, recurringTransaction2, recurringTransaction3);
+        systemDateHelper.TodayDateOnly.Returns(DateOnly.FromDateTime(DateTime.Today));
+        var recurringTransactionWithEndDate = new TestData.RecurringExpense { Recurrence = Recurrence.Daily, EndDate = DateOnly.FromDateTime(DateTime.Today) };
+        Context.RegisterRecurringTransaction(recurringTransactionWithEndDate);
 
         // Act
         await handler.Handle(command: new(), cancellationToken: default);
 
         // Assert
-        await sender.Received(2).Send(Arg.Any<CreateRecurringTransaction.Command>());
+        await sender.DidNotReceive().Send(Arg.Any<CreatePayment.Command>());
+    }
+
+    [Fact]
+    public async Task UpdateLastRecurrence()
+    {
+        // Arrange
+        var recurringTransaction = new TestData.RecurringExpense
+        {
+            Recurrence = Recurrence.Monthly, LastRecurrence = DateTime.Today.AddMonths(-1).ToDateOnly()
+        };
+
+        Context.RegisterRecurringTransaction(recurringTransaction);
+
+        // Act
+        await handler.Handle(command: new(), cancellationToken: default);
+
+        // Assert
+        var dbRecurringTransaction = Context.RecurringTransactions.Single();
+        dbRecurringTransaction.LastRecurrence.Should().Be(DateTime.Today.ToDateOnly());
+    }
+
+    [Fact]
+    public async Task ValidateEndDateDuringMonthCorrectly()
+    {
+        // Arrange
+        systemDateHelper.TodayDateOnly.Returns(DateTime.Today.GetFirstDayOfMonth().ToDateOnly());
+        var recurringTransactionWithEndDate = new TestData.RecurringExpense
+        {
+            Recurrence = Recurrence.Daily, LastRecurrence = systemDateHelper.TodayDateOnly, EndDate = systemDateHelper.TodayDateOnly.AddDays(1)
+        };
+
+        Context.RegisterRecurringTransaction(recurringTransactionWithEndDate);
+
+        // Act
+        await handler.Handle(command: new(), cancellationToken: default);
+
+        // Assert
+        await sender.Received(1).Send(Arg.Any<CreatePayment.Command>());
     }
 }

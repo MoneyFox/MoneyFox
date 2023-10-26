@@ -15,7 +15,7 @@ namespace MoneyFox.Persistence.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.9");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.10");
 
             modelBuilder.Entity("MoneyFox.Domain.Aggregates.AccountAggregate.Account", b =>
                 {
@@ -270,6 +270,9 @@ namespace MoneyFox.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RecurringTransactionId")
+                        .IsUnique();
+
                     b.ToTable("RecurringTransactions");
                 });
 
@@ -286,7 +289,7 @@ namespace MoneyFox.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MoneyFox.Domain.Aggregates.RecurringPayment", "RecurringPayment")
+                    b.HasOne("MoneyFox.Domain.Aggregates.RecurringPayment", null)
                         .WithMany("RelatedPayments")
                         .HasForeignKey("RecurringPaymentId");
 
@@ -297,8 +300,6 @@ namespace MoneyFox.Persistence.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("ChargedAccount");
-
-                    b.Navigation("RecurringPayment");
 
                     b.Navigation("TargetAccount");
                 });

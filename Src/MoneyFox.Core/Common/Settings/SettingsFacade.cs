@@ -21,7 +21,6 @@ public interface ISettingsFacade
     int DefaultAccount { get; set; }
 
     DateTime LastExecutionTimeStampSyncBackup { get; set; }
-    bool RecurringTransactionMigrated { get; set; }
 }
 
 public class SettingsFacade : ISettingsFacade

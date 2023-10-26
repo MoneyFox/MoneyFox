@@ -111,6 +111,7 @@ public class DashboardViewModel : BasePageViewModel, IRecipient<BackupRestoredMe
             var accountVms = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()))
                 .OrderBy(avm => avm.IsExcluded)
                 .ThenBy(avm => avm.Name);
+
             Accounts = new(accountVms);
             foreach (var account in Accounts)
             {

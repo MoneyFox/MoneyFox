@@ -20,9 +20,6 @@ public class GetCategorySpreadingQueryTests
     [Fact]
     public void CreateQueryAndAssignValues()
     {
-        // Arrange
-        var categoryId = 3;
-
         // Act
         var query = new GetCategorySpreading.Query(
             startDate: DateOnly.FromDateTime(DateTime.Today),
