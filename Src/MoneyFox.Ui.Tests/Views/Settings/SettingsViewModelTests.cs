@@ -1,5 +1,6 @@
 namespace MoneyFox.Ui.Tests.Views.Settings;
 
+using System.Collections.Immutable;
 using System.Globalization;
 using Core.Common.Settings;
 using Core.Queries;
@@ -8,34 +9,30 @@ using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Ui.Views.Settings;
 
-public static class SettingsViewModelTests
+public class SettingsViewModelTests
 {
-    public sealed class Constructor
+    private readonly ISettingsFacade settingsFacade;
+    private readonly IMediator mediator;
+    private readonly SettingsViewModel viewModel;
+
+    private SettingsViewModelTests()
+    {
+        settingsFacade = Substitute.For<ISettingsFacade>();
+        mediator = Substitute.For<IMediator>();
+        mediator.Send(Arg.Any<GetAccountsQuery>()).Returns(ImmutableList<Account>.Empty);
+        viewModel = new SettingsViewModel(settingsFacade: settingsFacade, mediator: mediator);
+    }
+
+    public sealed class Initialize  : SettingsViewModelTests
     {
         [Fact]
-        public void CollectionNotNullAfterCreation()
+        public async Task SetCurrencyFromSettings()
         {
             // Arrange
-            var settingsFacade = Substitute.For<ISettingsFacade>();
-            var mediator = Substitute.For<IMediator>();
-
-            // Act
-            var viewModel = new SettingsViewModel(settingsFacade: settingsFacade, mediator: mediator);
-
-            // Assert
-            viewModel.AvailableCurrencies.Should().NotBeNull();
-        }
-
-        [Fact]
-        public void SetCurrencyFromSettings()
-        {
-            // Arrange
-            var settingsFacade = Substitute.For<ISettingsFacade>();
-            var mediator = Substitute.For<IMediator>();
             settingsFacade.DefaultCurrency.Returns("USD");
 
             // Act
-            var viewModel = new SettingsViewModel(settingsFacade: settingsFacade, mediator: mediator);
+            await viewModel.InitializeAsync();
 
             // Assert
             viewModel.AvailableCurrencies.Should().NotBeNull();
@@ -43,14 +40,10 @@ public static class SettingsViewModelTests
         }
 
         [Fact]
-        public void SetCurrencyFromRegion_WhenSettingNotSetYet()
+        public async Task SetCurrencyFromRegion_WhenSettingNotSetYet()
         {
-            // Arrange
-            var settingsFacade = Substitute.For<ISettingsFacade>();
-            var mediator = Substitute.For<IMediator>();
-
             // Act
-            var viewModel = new SettingsViewModel(settingsFacade: settingsFacade, mediator: mediator);
+            await viewModel.InitializeAsync();
 
             // Assert
             viewModel.AvailableCurrencies.Should().NotBeNull();
@@ -61,14 +54,11 @@ public static class SettingsViewModelTests
         public async Task SetAccountFromSettings()
         {
             // Arrange
-            var settingsFacade = Substitute.For<ISettingsFacade>();
-            var mediator = Substitute.For<IMediator>();
             var accounts = new List<Account> { new("Acc1"), new("Acc2") };
             settingsFacade.DefaultAccount.Returns(accounts[1].Id);
             mediator.Send(Arg.Any<GetAccountsQuery>()).Returns(accounts);
 
             // Act
-            var viewModel = new SettingsViewModel(settingsFacade: settingsFacade, mediator: mediator);
             await viewModel.InitializeAsync();
 
             // Assert
@@ -77,16 +67,11 @@ public static class SettingsViewModelTests
         }
     }
 
-    public sealed class CurrencySelected
+    public sealed class CurrencySelected : SettingsViewModelTests
     {
         [Fact]
         public void UpdateSettingsOnSet()
         {
-            // Arrange
-            var settingsFacade = Substitute.For<ISettingsFacade>();
-            var mediator = Substitute.For<IMediator>();
-            var viewModel = new SettingsViewModel(settingsFacade: settingsFacade, mediator: mediator);
-
             // Act
             var newCurrency = new CurrencyViewModel(Currencies.CHF.AlphaIsoCode);
             viewModel.SelectedCurrency = newCurrency;
@@ -96,17 +81,14 @@ public static class SettingsViewModelTests
         }
     }
 
-    public sealed class AccountSelected
+    public sealed class AccountSelected : SettingsViewModelTests
     {
         [Fact]
         public void UpdateAccountOnSet()
         {
             // Arrange
-            var settingsFacade = Substitute.For<ISettingsFacade>();
-            var mediator = Substitute.For<IMediator>();
             var accounts = new List<Account> { new("Acc1"), new("Acc2") };
             mediator.Send(Arg.Any<GetAccountsQuery>()).Returns(accounts);
-            var viewModel = new SettingsViewModel(settingsFacade: settingsFacade, mediator: mediator);
 
             // Act
             var newAccount = new Account("Acc3");

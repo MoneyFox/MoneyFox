@@ -21,10 +21,6 @@ internal sealed class SettingsViewModel : BasePageViewModel
     {
         this.settingsFacade = settingsFacade;
         this.mediator = mediator;
-        AvailableCurrencies = Currencies.GetAll().Select(c => new CurrencyViewModel(c.AlphaIsoCode)).OrderBy(c => c.AlphaIsoCode).ToList();
-        var currencyToLoad = string.IsNullOrEmpty(settingsFacade.DefaultCurrency) ? RegionInfo.CurrentRegion.ISOCurrencySymbol : settingsFacade.DefaultCurrency;
-        SelectedCurrency = AvailableCurrencies.FirstOrDefault(c => c.AlphaIsoCode == currencyToLoad) ?? AvailableCurrencies[0];
-        SelectedAccount = AvailableAccounts.FirstOrDefault(x => x.Id == settingsFacade.DefaultAccount);
     }
 
     public CurrencyViewModel SelectedCurrency
@@ -38,7 +34,7 @@ internal sealed class SettingsViewModel : BasePageViewModel
         }
     }
 
-    public IReadOnlyList<CurrencyViewModel> AvailableCurrencies { get; }
+    public IReadOnlyList<CurrencyViewModel> AvailableCurrencies { get; private set; }
 
     public AccountLiteViewModel? SelectedAccount
     {
@@ -61,5 +57,9 @@ internal sealed class SettingsViewModel : BasePageViewModel
     {
         var accounts = await mediator.Send(new GetAccountsQuery());
         AvailableAccounts = accounts.Select(a => new AccountLiteViewModel(Id: a.Id, Name: a.Name)).ToList();
+        AvailableCurrencies = Currencies.GetAll().Select(c => new CurrencyViewModel(c.AlphaIsoCode)).OrderBy(c => c.AlphaIsoCode).ToList();
+        var currencyToLoad = string.IsNullOrEmpty(settingsFacade.DefaultCurrency) ? RegionInfo.CurrentRegion.ISOCurrencySymbol : settingsFacade.DefaultCurrency;
+        SelectedCurrency = AvailableCurrencies.FirstOrDefault(c => c.AlphaIsoCode == currencyToLoad) ?? AvailableCurrencies[0];
+        SelectedAccount = AvailableAccounts.Find(x => x.Id == settingsFacade.DefaultAccount) ?? AvailableAccounts.FirstOrDefault();
     }
 }
