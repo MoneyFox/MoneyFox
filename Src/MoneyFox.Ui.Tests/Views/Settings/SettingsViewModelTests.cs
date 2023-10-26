@@ -11,8 +11,8 @@ using Ui.Views.Settings;
 
 public class SettingsViewModelTests
 {
-    private readonly ISettingsFacade settingsFacade;
     private readonly IMediator mediator;
+    private readonly ISettingsFacade settingsFacade;
     private readonly SettingsViewModel viewModel;
 
     private SettingsViewModelTests()
@@ -20,10 +20,10 @@ public class SettingsViewModelTests
         settingsFacade = Substitute.For<ISettingsFacade>();
         mediator = Substitute.For<IMediator>();
         mediator.Send(Arg.Any<GetAccountsQuery>()).Returns(ImmutableList<Account>.Empty);
-        viewModel = new SettingsViewModel(settingsFacade: settingsFacade, mediator: mediator);
+        viewModel = new(settingsFacade: settingsFacade, mediator: mediator);
     }
 
-    public sealed class Initialize  : SettingsViewModelTests
+    public sealed class Initialize : SettingsViewModelTests
     {
         [Fact]
         public async Task SetCurrencyFromSettings()
