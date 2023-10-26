@@ -2,12 +2,10 @@ namespace MoneyFox.Ui.Tests.Views.Settings;
 
 using System.Globalization;
 using Core.Common.Settings;
+using Core.Queries;
 using Domain;
-using FluentAssertions;
+using Domain.Aggregates.AccountAggregate;
 using MediatR;
-using MoneyFox.Core.Queries;
-using MoneyFox.Domain.Aggregates.AccountAggregate;
-using NSubstitute;
 using Ui.Views.Settings;
 
 public static class SettingsViewModelTests
@@ -22,7 +20,7 @@ public static class SettingsViewModelTests
             var mediator = Substitute.For<IMediator>();
 
             // Act
-            var viewModel = new SettingsViewModel(settingsFacade, mediator);
+            var viewModel = new SettingsViewModel(settingsFacade: settingsFacade, mediator: mediator);
 
             // Assert
             viewModel.AvailableCurrencies.Should().NotBeNull();
@@ -37,7 +35,7 @@ public static class SettingsViewModelTests
             settingsFacade.DefaultCurrency.Returns("USD");
 
             // Act
-            var viewModel = new SettingsViewModel(settingsFacade, mediator);
+            var viewModel = new SettingsViewModel(settingsFacade: settingsFacade, mediator: mediator);
 
             // Assert
             viewModel.AvailableCurrencies.Should().NotBeNull();
@@ -52,35 +50,30 @@ public static class SettingsViewModelTests
             var mediator = Substitute.For<IMediator>();
 
             // Act
-            var viewModel = new SettingsViewModel(settingsFacade, mediator);
+            var viewModel = new SettingsViewModel(settingsFacade: settingsFacade, mediator: mediator);
 
             // Assert
             viewModel.AvailableCurrencies.Should().NotBeNull();
             viewModel.SelectedCurrency.AlphaIsoCode.Should().Be(RegionInfo.CurrentRegion.ISOCurrencySymbol);
         }
 
-
         [Fact]
-        public void SetAccountFromSettings()
+        public async Task SetAccountFromSettings()
         {
             // Arrange
             var settingsFacade = Substitute.For<ISettingsFacade>();
             var mediator = Substitute.For<IMediator>();
-            var accounts = new List<Account>
-            {
-                new Account("Acc1"),
-                new Account ("Acc2")
-            };
+            var accounts = new List<Account> { new("Acc1"), new("Acc2") };
             settingsFacade.DefaultAccount.Returns(accounts[1].Id);
             mediator.Send(Arg.Any<GetAccountsQuery>()).Returns(accounts);
 
             // Act
-            var viewModel = new SettingsViewModel(settingsFacade, mediator);
-            viewModel.LoadAccounts().Wait();
+            var viewModel = new SettingsViewModel(settingsFacade: settingsFacade, mediator: mediator);
+            await viewModel.InitializeAsync();
 
             // Assert
             viewModel.AvailableAccounts.Should().NotBeNull();
-            viewModel.SelectedAccount.Id.Should().Be(accounts[1].Id);
+            viewModel.SelectedAccount!.Id.Should().Be(accounts[1].Id);
         }
     }
 
@@ -92,7 +85,7 @@ public static class SettingsViewModelTests
             // Arrange
             var settingsFacade = Substitute.For<ISettingsFacade>();
             var mediator = Substitute.For<IMediator>();
-            var viewModel = new SettingsViewModel(settingsFacade, mediator);
+            var viewModel = new SettingsViewModel(settingsFacade: settingsFacade, mediator: mediator);
 
             // Act
             var newCurrency = new CurrencyViewModel(Currencies.CHF.AlphaIsoCode);
@@ -111,17 +104,13 @@ public static class SettingsViewModelTests
             // Arrange
             var settingsFacade = Substitute.For<ISettingsFacade>();
             var mediator = Substitute.For<IMediator>();
-            var accounts = new List<Account>
-            {
-                new Account("Acc1"),
-                new Account ("Acc2")
-            };
+            var accounts = new List<Account> { new("Acc1"), new("Acc2") };
             mediator.Send(Arg.Any<GetAccountsQuery>()).Returns(accounts);
-            var viewModel = new SettingsViewModel(settingsFacade, mediator);
+            var viewModel = new SettingsViewModel(settingsFacade: settingsFacade, mediator: mediator);
 
             // Act
             var newAccount = new Account("Acc3");
-            var defaultAccount = new AccountLiteViewModel(newAccount.Id, newAccount.Name);
+            var defaultAccount = new AccountLiteViewModel(Id: newAccount.Id, Name: newAccount.Name);
             viewModel.SelectedAccount = defaultAccount;
 
             // Assert
