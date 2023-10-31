@@ -78,12 +78,13 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
                 endDate: DateOnly.FromDateTime(EndDate)));
 
         HasNoData = !statisticItems.Any();
+
         var columnSeries = new ColumnSeries<decimal>
         {
             Name = CategorySelectionViewModel.SelectedCategory.Name,
-            DataLabelsFormatter = point => $"{point.Coordinate.PrimaryValue:C}",
+            DataLabelsFormatter = point => $"{-point.Coordinate.PrimaryValue:C}",
             DataLabelsPaint = new SolidColorPaint(SKColor.Parse("b4b2b0")),
-            Values = statisticItems.Select(x => x.Value),
+            Values = statisticItems.Select(x => -x.Value),
             Stroke = new SolidColorPaint(SKColors.DarkRed)
         };
 
