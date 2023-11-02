@@ -27,8 +27,9 @@
 
                 <Label Style="{StaticResource TextHeadline}" Text="{x:Static resources:Translations.WelcomeLabel}" />
 
-                <Grid Grid.Row="1" ColumnDefinitions="*, Auto">
-                    <Button Command="{Binding GoToAddPaymentCommand}"
+                <Grid Grid.Row="1" ColumnDefinitions="*, *">
+                    <Button Grid.Column="1" 
+                            Command="{Binding GoToAddPaymentCommand}"
                             HorizontalOptions="End"
                             VerticalOptions="End"
                             Style="{StaticResource PrimaryButton}"
