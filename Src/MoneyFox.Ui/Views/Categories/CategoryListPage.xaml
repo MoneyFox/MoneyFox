@@ -6,7 +6,6 @@
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:categories="clr-namespace:MoneyFox.Ui.Views.Categories"
-    Shell.NavBarHasShadow="False"
     Title="{x:Static resources:Translations.CategoriesTitle}"
     x:DataType="categories:CategoryListViewModel"
     x:Name="This"
