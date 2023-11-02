@@ -9,6 +9,7 @@ using MediatR;
 internal sealed class SettingsViewModel(ISettingsFacade settingsFacade, IMediator mediator) : BasePageViewModel
 {
     private List<AccountLiteViewModel> availableAccounts = new();
+    private IReadOnlyList<CurrencyViewModel> availableCurrencies;
     private AccountLiteViewModel? selectedAccount;
     private CurrencyViewModel selectedCurrency = null!;
 
@@ -23,7 +24,12 @@ internal sealed class SettingsViewModel(ISettingsFacade settingsFacade, IMediato
         }
     }
 
-    public IReadOnlyList<CurrencyViewModel> AvailableCurrencies { get; private set; }
+    public IReadOnlyList<CurrencyViewModel> AvailableCurrencies
+    {
+        get => availableCurrencies;
+
+        private set => SetProperty(field: ref availableCurrencies, newValue: value);
+    }
 
     public AccountLiteViewModel? SelectedAccount
     {
