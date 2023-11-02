@@ -5,6 +5,7 @@
         <OutputType>Exe</OutputType>
         <RootNamespace>MoneyFox.Ui</RootNamespace>
         <UseMaui>true</UseMaui>
+        <MauiVersion>8.0.0-rc.2.9511</MauiVersion>
         <SingleProject>true</SingleProject>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
@@ -86,8 +87,9 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="MediatR" Version="12.1.1"/>
-        <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.6"/>
-        <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.0-rc.2.9511" />
+        <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.6"/>  
+        <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
     </ItemGroup>
 
     <ItemGroup>
