@@ -14,7 +14,6 @@ using Domain.Aggregates.BudgetAggregate;
 using Domain.Aggregates.CategoryAggregate;
 using Domain.Aggregates.RecurringTransactionAggregate;
 using MediatR;
-using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
 public class AppDbContext : DbContext, IAppDbContext
@@ -78,11 +77,6 @@ public class AppDbContext : DbContext, IAppDbContext
     public void MigrateDb()
     {
         Database.Migrate();
-    }
-
-    public void ReleaseLock()
-    {
-        SqliteConnection.ClearAllPools();
     }
 
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)

@@ -9,18 +9,11 @@ using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-public class GetAccountsQuery : IRequest<List<Account>>
+public class GetAccountsQuery : IRequest<IReadOnlyList<Account>>
 {
-    public class Handler : IRequestHandler<GetAccountsQuery, List<Account>>
+    public class Handler(IAppDbContext appDbContext) : IRequestHandler<GetAccountsQuery, IReadOnlyList<Account>>
     {
-        private readonly IAppDbContext appDbContext;
-
-        public Handler(IAppDbContext appDbContext)
-        {
-            this.appDbContext = appDbContext;
-        }
-
-        public async Task<List<Account>> Handle(GetAccountsQuery request, CancellationToken cancellationToken)
+        public async Task<IReadOnlyList<Account>> Handle(GetAccountsQuery request, CancellationToken cancellationToken)
         {
             var accounts = await appDbContext.Accounts.AreActive().OrderByInclusion().OrderByName().ToListAsync(cancellationToken);
 

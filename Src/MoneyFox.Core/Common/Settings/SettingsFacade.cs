@@ -18,9 +18,9 @@ public interface ISettingsFacade
 
     string DefaultCurrency { get; set; }
 
+    int DefaultAccount { get; set; }
+
     DateTime LastExecutionTimeStampSyncBackup { get; set; }
-    bool RecurringTransactionMigrated { get; set; }
-    bool RecurringTransactionMigrated2 { get; set; }
 }
 
 public class SettingsFacade : ISettingsFacade
@@ -95,15 +95,15 @@ public class SettingsFacade : ISettingsFacade
         set => settingsAdapter.AddOrUpdate(key: SettingConstants.DEFAULT_CURRENCY_KEY_NAME, value: value);
     }
 
+    public int DefaultAccount
+    {
+        get => settingsAdapter.GetValue(key: SettingConstants.DEFAULT_ACCOUNT_KEY_NAME, defaultValue: default(int));
+        set => settingsAdapter.AddOrUpdate(key: SettingConstants.DEFAULT_ACCOUNT_KEY_NAME, value: value);
+    }
+    
     public bool RecurringTransactionMigrated
     {
         get => settingsAdapter.GetValue(key: SettingConstants.RECURRING_TRANSACTION_MIGRATED, defaultValue: false);
         set => settingsAdapter.AddOrUpdate(key: SettingConstants.RECURRING_TRANSACTION_MIGRATED, value: value);
-    }
-
-    public bool RecurringTransactionMigrated2
-    {
-        get => settingsAdapter.GetValue(key: SettingConstants.RECURRING_TRANSACTION_MIGRATED2, defaultValue: false);
-        set => settingsAdapter.AddOrUpdate(key: SettingConstants.RECURRING_TRANSACTION_MIGRATED2, value: value);
     }
 }

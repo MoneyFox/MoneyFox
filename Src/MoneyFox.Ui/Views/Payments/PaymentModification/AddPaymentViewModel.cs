@@ -5,11 +5,9 @@ using Controls.CategorySelection;
 using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Common.Settings;
-using Core.Features._Legacy_.Payments.CreatePayment;
+using Core.Features.PaymentCreation;
 using Core.Features.RecurringTransactionCreation;
-using Core.Queries;
 using Domain.Aggregates.AccountAggregate;
-using Domain.Aggregates.CategoryAggregate;
 using MediatR;
 using Resources.Strings;
 
@@ -17,6 +15,7 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
 {
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
+    private readonly ISettingsFacade settingsFacade;
 
     public AddPaymentViewModel(
         IMediator mediator,
@@ -34,22 +33,17 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
     {
         this.mediator = mediator;
         this.dialogService = dialogService;
+        this.settingsFacade = settingsFacade;
     }
 
     public new void ApplyQueryAttributes(IDictionary<string, object> query)
     {
         if (IsFirstLoad)
         {
-            var accountId = 0;
-            if (query.TryGetValue(key: "defaultChargedAccountId", value: out var defaultChargedAccountId))
-            {
-                accountId = Convert.ToInt32(defaultChargedAccountId);
-            }
-
             InitializeAsync().GetAwaiter().GetResult();
             if (ChargedAccounts.Any())
             {
-                SelectedPayment.ChargedAccount = accountId != 0 ? ChargedAccounts.First(n => n.Id == accountId) : ChargedAccounts[0];
+                SelectedPayment.ChargedAccount = settingsFacade.DefaultAccount == default ? ChargedAccounts[0] : ChargedAccounts.First(n => n.Id == settingsFacade.DefaultAccount);
             }
         }
 
@@ -58,29 +52,10 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
 
     protected override async Task SavePaymentAsync()
     {
-        // Due to a bug in .net maui, the loading dialog can only be called after any other dialog
         await dialogService.ShowLoadingDialogAsync(Translations.SavingPaymentMessage);
-        var chargedAccount = await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id));
-        var targetAccount = SelectedPayment.TargetAccount != null ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id)) : null;
-        Category? category = null;
-        if (CategorySelectionViewModel.SelectedCategory is not null)
-        {
-            category = await mediator.Send(new GetCategoryByIdQuery(CategorySelectionViewModel.SelectedCategory.Id));
-        }
-
-        var payment = new Payment(
-            date: SelectedPayment.Date,
-            amount: SelectedPayment.Amount,
-            type: SelectedPayment.Type,
-            chargedAccount: chargedAccount,
-            targetAccount: targetAccount,
-            category: category,
-            note: SelectedPayment.Note);
-
+        var recurringTransactionId = Guid.NewGuid();
         if (SelectedPayment.IsRecurring)
         {
-            var recurringTransactionId = Guid.NewGuid();
-            payment.AddRecurringTransaction(recurringTransactionId);
             await mediator.Send(
                 new CreateRecurringTransaction.Command(
                     recurringTransactionId: recurringTransactionId,
@@ -97,6 +72,15 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
                     isTransfer: SelectedPayment.Type == PaymentType.Transfer));
         }
 
-        await mediator.Send(new CreatePaymentCommand(payment));
+        await mediator.Send(
+            new CreatePayment.Command(
+                ChargedAccountId: SelectedPayment.ChargedAccount.Id,
+                TargetAccountId: SelectedPayment.TargetAccount?.Id,
+                Amount: new(amount: SelectedPayment.Amount, currency: SelectedPayment.ChargedAccount.CurrentBalance.Currency),
+                Type: SelectedPayment.Type,
+                Date: SelectedPayment.Date.ToDateOnly(),
+                CategoryId: CategorySelectionViewModel.SelectedCategory?.Id,
+                RecurringTransactionId: SelectedPayment.IsRecurring ? recurringTransactionId : null,
+                Note: SelectedPayment.Note ?? string.Empty));
     }
 }

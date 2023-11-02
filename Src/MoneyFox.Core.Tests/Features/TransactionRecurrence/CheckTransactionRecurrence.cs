@@ -96,4 +96,23 @@ public class CheckTransactionRecurrenceHandlerTest : InMemoryTestBase
         var dbRecurringTransaction = Context.RecurringTransactions.Single();
         dbRecurringTransaction.LastRecurrence.Should().Be(DateTime.Today.ToDateOnly());
     }
+
+    [Fact]
+    public async Task ValidateEndDateDuringMonthCorrectly()
+    {
+        // Arrange
+        systemDateHelper.TodayDateOnly.Returns(DateTime.Today.GetFirstDayOfMonth().ToDateOnly());
+        var recurringTransactionWithEndDate = new TestData.RecurringExpense
+        {
+            Recurrence = Recurrence.Daily, LastRecurrence = systemDateHelper.TodayDateOnly, EndDate = systemDateHelper.TodayDateOnly.AddDays(1)
+        };
+
+        Context.RegisterRecurringTransaction(recurringTransactionWithEndDate);
+
+        // Act
+        await handler.Handle(command: new(), cancellationToken: default);
+
+        // Assert
+        await sender.Received(1).Send(Arg.Any<CreatePayment.Command>());
+    }
 }

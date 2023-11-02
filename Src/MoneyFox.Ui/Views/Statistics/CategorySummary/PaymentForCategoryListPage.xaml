@@ -16,10 +16,9 @@
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
     </ContentPage.Resources>
 
-    <ContentPage.Content>
+    <Grid>
 
-        <CollectionView Grid.Row="1"
-                        x:Name="PaymentCollectionView"
+        <CollectionView x:Name="PaymentCollectionView"
                         ItemsSource="{Binding PaymentDayGroups}"
                         IsGrouped="True">
 
@@ -125,5 +124,5 @@
                 </Grid>
             </CollectionView.EmptyView>
         </CollectionView>
-    </ContentPage.Content>
+    </Grid>
 </ContentPage>

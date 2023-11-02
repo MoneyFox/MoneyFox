@@ -19,7 +19,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <controls:FixedScrollView Padding="15,0,15,8">
+    <ScrollView Padding="15,0,15,8">
         <VerticalStackLayout Spacing="6">
             <controls:PaymentTypePicker PickerTitle="{x:Static resources:Translations.PaymentTypeLabel}"
                                         PaymentTypeSource="{x:Static paymentModification:ModifyPaymentViewModel.PaymentTypeList}"
@@ -103,5 +103,5 @@
             </VerticalStackLayout>
             <Button Text="{x:Static resources:Translations.SaveLabel}" Command="{Binding SaveCommand}" />
         </VerticalStackLayout>
-    </controls:FixedScrollView>
+    </ScrollView>
 </ContentPage>

@@ -94,7 +94,7 @@ internal sealed class StatisticAccountMonthlyCashFlowViewModel : StatisticViewMo
             new Axis
             {
                 Labels = monthLabels,
-                LabelsRotation = 0,
+                LabelsRotation = 45,
                 SeparatorsPaint = new SolidColorPaint(new(red: 200, green: 200, blue: 200)),
                 SeparatorsAtCenter = false,
                 TicksPaint = new SolidColorPaint(new(red: 35, green: 35, blue: 35)),
