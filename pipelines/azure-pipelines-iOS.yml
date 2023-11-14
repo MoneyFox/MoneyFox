@@ -47,6 +47,9 @@ steps:
     env:
       Major: $(Major)
       Minor: $(Minor)
+    
+  - bash: |
+      sudo xcode-select -s /Applications/Xcode_15.0.1.app
 
   - bash: |
       # Write your commands here
