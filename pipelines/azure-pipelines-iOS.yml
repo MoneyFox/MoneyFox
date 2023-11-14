@@ -14,18 +14,17 @@ variables:
   Minor: '3'
 
 steps:
-  - task: CmdLine@2
-    displayName: 'Set Xcode v14.3'
-    condition: eq(variables['Agent.OS'], 'Darwin') # Only run this step on macOS
-    inputs:
-      script: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_14.3.1.app;sudo xcode-select --switch /Applications/Xcode_14.3.1.app/Contents/Developer
 
   - task: UseDotNet@2
     displayName: 'Install .net sdk'
     inputs:
       version: 8.x
       includePreviewVersions: true
-
+      
+  - bash: |
+      sudo xcode-select -s /Applications/Xcode_15.0.1.app
+    displayName: "set App Code"
+  
   - task: PowerShell@2
     displayName: "Set App Version"
     enabled: false
@@ -47,9 +46,6 @@ steps:
     env:
       Major: $(Major)
       Minor: $(Minor)
-    
-  - bash: |
-      sudo xcode-select -s /Applications/Xcode_15.0.1.app
 
   - bash: |
       # Write your commands here
