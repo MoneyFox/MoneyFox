@@ -93,7 +93,7 @@ jobs:
   
   buildiOS:
 
-    runs-on: macos-13
+    runs-on: macos-13-arm
 
     steps:
       - name: Install the Apple certificate and provisioning profile
