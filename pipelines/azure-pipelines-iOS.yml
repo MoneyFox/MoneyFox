@@ -20,10 +20,11 @@ steps:
     inputs:
       version: 8.x
       includePreviewVersions: true
-      
-  - bash: |
-      sudo xcode-select -s /Applications/Xcode_15.0.1.app
-    displayName: "set App Code"
+    
+  - task: CmdLine@2
+    displayName: 'Set Xcode v15.0'
+    inputs:
+      script: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_15.0.1.app;sudo xcode-select --switch /Applications/Xcode_15.0.1.app/Contents/Developer
   
   - task: PowerShell@2
     displayName: "Set App Version"
