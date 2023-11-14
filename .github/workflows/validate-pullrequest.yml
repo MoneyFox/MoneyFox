@@ -129,7 +129,7 @@ jobs:
       - name: Xcode Select Version
         uses: mobiledevops/xcode-select-version-action@v1
         with:
-          xcode-select-version: 14.3.1
+          xcode-select-version: 15.0.1
 
       - uses: actions/checkout@v4
 
