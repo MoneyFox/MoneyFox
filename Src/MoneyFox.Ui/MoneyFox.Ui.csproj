@@ -88,8 +88,8 @@
         </PackageReference>
         <PackageReference Include="MediatR" Version="12.1.1"/>
         <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.6"/>  
-        <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.0-rc.2.9530" />
-        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.0-rc.2.9530" />
+        <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.3" />
+        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.3" />
     </ItemGroup>
 
     <ItemGroup>
