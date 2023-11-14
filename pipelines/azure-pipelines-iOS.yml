@@ -7,7 +7,7 @@ trigger:
 pr: none
 
 pool:
-  vmImage: 'macOS-13'
+  vmImage: 'macOS-13-arm'
 
 variables:
   Major: '8'
