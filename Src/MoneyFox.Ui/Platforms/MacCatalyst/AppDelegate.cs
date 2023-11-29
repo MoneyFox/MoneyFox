@@ -1,9 +1,7 @@
 ﻿namespace MoneyFox.Ui;
 
-using Core.Interfaces;
 using Foundation;
 using Microsoft.Identity.Client;
-using Platforms.MacCatalyst.Src;
 using UIKit;
 using UserNotifications;
 
@@ -23,8 +21,6 @@ public class AppDelegate : MauiUIApplicationDelegate
 
     private static void AddServices(IServiceCollection services)
     {
-        services.AddSingleton<IDbPathProvider, DbPathProvider>();
-        services.AddTransient<IFileStore>(_ => new IosFileStore(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)));
         RegisterIdentityClient(services);
     }
 
