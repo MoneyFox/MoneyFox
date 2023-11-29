@@ -11,13 +11,13 @@ public class AmountFormatConverter : IValueConverter
     {
         var settingsAdapter = new SettingsAdapter();
         var currency = settingsAdapter.GetValue(key: SettingConstants.DEFAULT_CURRENCY_KEY_NAME, defaultValue: new RegionInfo(culture.Name).ISOCurrencySymbol);
-        var currencyValue = (decimal)value;
+        var currencyValue = (decimal?)value ?? 0;
 
         return currencyValue.FormatCurrency(currency);
     }
 
     public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        return value;
+        return value ?? 0;
     }
 }
