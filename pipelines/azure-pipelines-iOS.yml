@@ -19,7 +19,7 @@ steps:
     displayName: 'Install .net sdk'
     inputs:
       version: 8.x
-      includePreviewVersions: true
+      includePreviewVersions: false
     
   - task: CmdLine@2
     displayName: 'Set Xcode v15.0'
