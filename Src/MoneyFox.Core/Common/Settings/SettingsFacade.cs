@@ -34,6 +34,12 @@ public class SettingsFacade : ISettingsFacade
         this.settingsAdapter = settingsAdapter;
     }
 
+    public bool RecurringTransactionMigrated
+    {
+        get => settingsAdapter.GetValue(key: SettingConstants.RECURRING_TRANSACTION_MIGRATED, defaultValue: false);
+        set => settingsAdapter.AddOrUpdate(key: SettingConstants.RECURRING_TRANSACTION_MIGRATED, value: value);
+    }
+
     public bool IsBackupAutoUploadEnabled
     {
         get => settingsAdapter.GetValue(key: SettingConstants.AUTO_UPLOAD_BACKUP_KEY_NAME, defaultValue: false);
@@ -99,11 +105,5 @@ public class SettingsFacade : ISettingsFacade
     {
         get => settingsAdapter.GetValue(key: SettingConstants.DEFAULT_ACCOUNT_KEY_NAME, defaultValue: default(int));
         set => settingsAdapter.AddOrUpdate(key: SettingConstants.DEFAULT_ACCOUNT_KEY_NAME, value: value);
-    }
-    
-    public bool RecurringTransactionMigrated
-    {
-        get => settingsAdapter.GetValue(key: SettingConstants.RECURRING_TRANSACTION_MIGRATED, defaultValue: false);
-        set => settingsAdapter.AddOrUpdate(key: SettingConstants.RECURRING_TRANSACTION_MIGRATED, value: value);
     }
 }

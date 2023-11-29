@@ -176,7 +176,7 @@ public partial class App
         }
         catch (Exception ex)
         {
-            aptabaseClient.TrackEvent("RecurringPayment migration failed", new() { { "Exception", ex.ToString() } });
+            aptabaseClient.TrackEvent(eventName: "RecurringPayment migration failed", props: new() { { "Exception", ex.ToString() } });
         }
     }
 }

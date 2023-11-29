@@ -17,10 +17,10 @@
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2"/>
         <PackageReference Include="JetBrains.Annotations" Version="2023.3.0"/>
         <PackageReference Include="MediatR" Version="12.2.0"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.14" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.14"/>
         <PackageReference Include="MediatR" Version="12.2.0"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0"/>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
         <PackageReference Include="Serilog" Version="3.1.1"/>
         <PackageReference Include="SonarAnalyzer.CSharp" Version="9.14.0.81108">
