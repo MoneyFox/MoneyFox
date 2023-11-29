@@ -19,18 +19,11 @@ public static class GetCategoryById
 {
     public record Query(int CategoryId) : IRequest<CategoryData>;
 
-    public class Handler : IRequestHandler<Query, CategoryData>
+    public class Handler(IAppDbContext dbContext) : IRequestHandler<Query, CategoryData>
     {
-        private readonly IAppDbContext appDbContext;
-
-        public Handler(IAppDbContext appDbContext)
-        {
-            this.appDbContext = appDbContext;
-        }
-
         public async Task<CategoryData> Handle(Query request, CancellationToken cancellationToken)
         {
-            var category = await appDbContext.Categories.FirstAsync(predicate: c => c.Id == request.CategoryId, cancellationToken: cancellationToken);
+            var category = await dbContext.Categories.FirstAsync(predicate: c => c.Id == request.CategoryId, cancellationToken: cancellationToken);
 
             return new(
                 Id: category.Id,
