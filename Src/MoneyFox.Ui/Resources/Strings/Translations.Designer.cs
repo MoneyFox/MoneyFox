@@ -51,6 +51,12 @@ namespace MoneyFox.Ui.Resources.Strings {
             }
         }
         
+        public static string AccountIntroductionTitle {
+            get {
+                return ResourceManager.GetString("AccountIntroductionTitle", resourceCulture);
+            }
+        }
+        
         public static string AccountNameLabel {
             get {
                 return ResourceManager.GetString("AccountNameLabel", resourceCulture);
@@ -60,6 +66,12 @@ namespace MoneyFox.Ui.Resources.Strings {
         public static string AccountRequiredMessage {
             get {
                 return ResourceManager.GetString("AccountRequiredMessage", resourceCulture);
+            }
+        }
+        
+        public static string AccountSettingText {
+            get {
+                return ResourceManager.GetString("AccountSettingText", resourceCulture);
             }
         }
         

@@ -21,12 +21,8 @@ public class NoLineAppearanceTracker : IShellNavBarAppearanceTracker
 
     public void SetAppearance(UINavigationController controller, ShellAppearance appearance)
     {
-        var navBar = controller.NavigationBar;
         var navigationBarAppearance = new UINavigationBarAppearance();
-        navigationBarAppearance.ConfigureWithOpaqueBackground();
         navigationBarAppearance.ShadowColor = UIColor.Clear;
-        navigationBarAppearance.BackgroundColor = UIColor.Clear;
-        navBar.ScrollEdgeAppearance = navBar.StandardAppearance = navigationBarAppearance;
     }
 
     public void SetHasShadow(UINavigationController controller, bool hasShadow)

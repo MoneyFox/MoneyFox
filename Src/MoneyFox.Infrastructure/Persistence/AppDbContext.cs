@@ -16,7 +16,6 @@ using Domain.Aggregates.LedgerAggregate;
 using Domain.Aggregates.RecurringTransactionAggregate;
 using JetBrains.Annotations;
 using MediatR;
-using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
@@ -82,11 +81,6 @@ public class AppDbContext : DbContext, IAppDbContext
     public void MigrateDb()
     {
         Database.Migrate();
-    }
-
-    public void ReleaseLock()
-    {
-        SqliteConnection.ClearAllPools();
     }
 
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)

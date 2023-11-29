@@ -34,11 +34,5 @@ public interface IAppDbContext : IDisposable
 
     EntityEntry<TEntity> Add<TEntity>(TEntity entity) where TEntity : class;
 
-    EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
-
-    EntityEntry Entry(object entity);
-
     void MigrateDb();
-
-    void ReleaseLock();
 }

@@ -23,12 +23,13 @@
         <ScrollView>
             <Grid Padding="15"
                   IsClippedToBounds="False"
-                  RowDefinitions="35, 60, 40, 90, 140, 140, *">
+                  RowDefinitions="35, 60, 40, 90, 150, 140, *">
 
                 <Label Style="{StaticResource TextHeadline}" Text="{x:Static resources:Translations.WelcomeLabel}" />
 
-                <Grid Grid.Row="1" ColumnDefinitions="*, Auto">
-                    <Button Command="{Binding GoToAddPaymentCommand}"
+                <Grid Grid.Row="1" ColumnDefinitions="*, *">
+                    <Button Grid.Column="1" 
+                            Command="{Binding GoToAddPaymentCommand}"
                             HorizontalOptions="End"
                             VerticalOptions="End"
                             Style="{StaticResource PrimaryButton}"
@@ -87,7 +88,7 @@
                 </controls:Card>
 
                 <!--  Accounts  -->
-                <Grid Grid.Row="4" VerticalOptions="FillAndExpand" RowDefinitions="100, 35">
+                <Grid Grid.Row="4" VerticalOptions="FillAndExpand" RowDefinitions="110, 35">
 
                     <CollectionView
                         x:Name="AccountCollectionView"

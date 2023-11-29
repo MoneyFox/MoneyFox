@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  DOTNET_VERSION: "7.0.400"
+  DOTNET_VERSION: "8.0.x"
   UI_PROJECT_PATH: "src/MoneyFox.Ui/MoneyFox.Ui.csproj"
   CORE_TEST_PROJECT_PATH: "src/MoneyFox.Core.Tests/MoneyFox.Core.Tests.csproj"
   UI_TEST_PROJECT_PATH: "src/MoneyFox.Ui.Tests/MoneyFox.Ui.Tests.csproj"
@@ -20,7 +20,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
@@ -50,7 +50,7 @@ jobs:
           dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
 
       - name: Build MAUI Win
-        run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-windows10.0.22621.0 -c Release /p:AppxPackageSigningEnabled=false
+        run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net8.0-windows10.0.22621.0 -c Release /p:AppxPackageSigningEnabled=false
   
   
   buildAndroid:
@@ -58,7 +58,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
@@ -86,7 +86,7 @@ jobs:
           dotnet test ${{env.INFRASTRUCTURE_PROJECT_PATH}}
 
       - name: Build MAUI Android
-        run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net7.0-android -c Release /p:EnableLLVM=false
+        run: dotnet publish ${{env.UI_PROJECT_PATH}} -f net8.0-android -c Release /p:EnableLLVM=false
   
   
   buildiOS:
@@ -127,9 +127,9 @@ jobs:
       - name: Xcode Select Version
         uses: mobiledevops/xcode-select-version-action@v1
         with:
-          xcode-select-version: 14.3.1
+          xcode-select-version: 15.0.1
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
@@ -158,5 +158,5 @@ jobs:
 
       - name: Build MAUI iOS
         if: ${{ false }}
-        run: dotnet build ${{env.UI_PROJECT_PATH}} -f net7.0-ios -c Release /p:packageApp=True
+        run: dotnet build ${{env.UI_PROJECT_PATH}} -f net8.0-ios -c Release /p:packageApp=True
       
