@@ -7,7 +7,7 @@
         <OutputType>Exe</OutputType>
         <RootNamespace>MoneyFox.Ui</RootNamespace>
         <UseMaui>true</UseMaui>
-        <MauiVersion>8.0.0-rc.2.9511</MauiVersion>
+        <MauiVersion>8.0.3</MauiVersion>
         <SingleProject>true</SingleProject>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
@@ -63,7 +63,7 @@
     </PropertyGroup>
 
     <PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
-        <EnableLLVM>True</EnableLLVM>
+        <EnableLLVM>False</EnableLLVM>
         <AndroidLinkTool>r8</AndroidLinkTool>
     </PropertyGroup>
 
@@ -86,24 +86,24 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Aptabase.Maui" Version="0.0.7"/>
-        <PackageReference Include="CommunityToolkit.Maui" Version="5.3.0"/>
-        <PackageReference Include="JetBrains.Annotations" Version="2023.2.0"/>
-        <PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-rc1.2"/>
+        <PackageReference Include="Aptabase.Maui" Version="0.0.8"/>
+        <PackageReference Include="CommunityToolkit.Maui" Version="7.0.0"/>
+        <PackageReference Include="JetBrains.Annotations" Version="2023.3.0"/>
+        <PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-rc2"/>
         <PackageReference Include="Plugin.StoreReview" Version="6.0.0"/>
-        <PackageReference Include="Serilog" Version="3.0.1"/>
+        <PackageReference Include="Serilog" Version="3.1.1"/>
         <PackageReference Include="Serilog.Exceptions" Version="8.4.0"/>
         <PackageReference Include="Serilog.Sinks.File" Version="5.0.0"/>
-        <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.0-rc.2.23479.6" />
-        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0-rc.2.23479.6" />
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="9.12.0.78982">
+        <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0"/>
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="9.14.0.81108">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="MediatR" Version="12.1.1"/>
-        <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.6"/>  
-        <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+        <PackageReference Include="MediatR" Version="12.2.0"/>
+        <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.7"/>
+        <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.3"/>
+        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.3"/>
     </ItemGroup>
 
     <ItemGroup>

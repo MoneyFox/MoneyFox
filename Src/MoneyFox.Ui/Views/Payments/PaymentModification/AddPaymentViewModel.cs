@@ -43,7 +43,9 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
             InitializeAsync().GetAwaiter().GetResult();
             if (ChargedAccounts.Any())
             {
-                SelectedPayment.ChargedAccount = settingsFacade.DefaultAccount == default ? ChargedAccounts[0] : ChargedAccounts.First(n => n.Id == settingsFacade.DefaultAccount);
+                SelectedPayment.ChargedAccount = settingsFacade.DefaultAccount == default
+                    ? ChargedAccounts[0]
+                    : ChargedAccounts.First(n => n.Id == settingsFacade.DefaultAccount);
             }
         }
 

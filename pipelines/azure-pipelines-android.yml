@@ -20,7 +20,6 @@ steps:
     displayName: 'Install .net sdk'
     inputs:
       version: 8.x
-      includePreviewVersions: true
 
   - task: PowerShell@2
     displayName: "Set App Version"
