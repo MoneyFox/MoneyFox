@@ -2,7 +2,11 @@ namespace MoneyFox.Ui;
 
 public interface INavigationService
 {
-    Task NavigateToAsync<T>() where T : ContentPage;
+    Task GoTo<TViewModel>(object? parameter = null) where TViewModel : NavigableViewModel;
+
+    Task GoBack();
+
+    Task NavigateToAsync<TPage>() where TPage : ContentPage;
 
     Task NavigateBackAsync();
 
@@ -11,4 +15,11 @@ public interface INavigationService
     Task OpenModalAsync<T>() where T : ContentPage;
 
     Task GoBackFromModalAsync();
+}
+
+public class NavigableViewModel
+{
+    public virtual void OnNavigated(object parameter)
+    {
+    }
 }
