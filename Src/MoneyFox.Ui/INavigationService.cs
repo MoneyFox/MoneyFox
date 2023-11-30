@@ -4,7 +4,7 @@ public interface INavigationService
 {
     Task GoTo<TViewModel>(object? parameter = null) where TViewModel : NavigableViewModel;
 
-    Task GoBack();
+    Task GoBack(object? parameter = null);
 
     Task NavigateToAsync<TPage>() where TPage : ContentPage;
 
@@ -19,7 +19,7 @@ public interface INavigationService
 
 public class NavigableViewModel
 {
-    public virtual void OnNavigated(object parameter)
+    public virtual void OnNavigated(object? parameter)
     {
     }
 }

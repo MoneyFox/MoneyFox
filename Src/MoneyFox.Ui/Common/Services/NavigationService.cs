@@ -21,9 +21,10 @@ internal sealed class NavigationService : INavigationService
         ((NavigableViewModel)view.BindingContext).OnNavigated(parameter);
     }
 
-    public Task GoBack()
+    public async Task GoBack(object? parameter = null)
     {
-        return Shell.Current.GoToAsync("..");
+        var view = await Shell.Current.Navigation.PopAsync();
+        ((NavigableViewModel)view.BindingContext).OnNavigated(parameter);
     }
 
     public async Task NavigateToAsync<T>() where T : ContentPage
