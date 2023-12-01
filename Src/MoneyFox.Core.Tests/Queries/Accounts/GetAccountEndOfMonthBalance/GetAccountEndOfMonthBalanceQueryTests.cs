@@ -12,7 +12,7 @@ public class GetAccountEndOfMonthBalanceQueryTests : InMemoryTestBase
     public GetAccountEndOfMonthBalanceQueryTests()
     {
         systemDateHelper = Substitute.For<ISystemDateHelper>();
-        handler = new(appDbContext: Context, systemDateHelper: systemDateHelper);
+        handler = new(dbContext: Context, dateHelper: systemDateHelper);
     }
 
     [Fact]

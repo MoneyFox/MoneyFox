@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 public static class LoadBudgetDataForList
 {
-    public class Query : IRequest<IReadOnlyCollection<BudgetData>> { }
+    public class Query : IRequest<IReadOnlyCollection<BudgetData>>;
 
     public class Handler : IRequestHandler<Query, IReadOnlyCollection<BudgetData>>
     {

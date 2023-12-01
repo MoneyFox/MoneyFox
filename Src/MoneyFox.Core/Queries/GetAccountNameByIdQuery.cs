@@ -7,27 +7,15 @@ using Common.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-public class GetAccountNameByIdQuery : IRequest<string>
+public class GetAccountNameByIdQuery(int accountId) : IRequest<string>
 {
-    public GetAccountNameByIdQuery(int accountId)
+    public int AccountId { get; } = accountId;
+
+    public class Handler(IAppDbContext dbContext) : IRequestHandler<GetAccountNameByIdQuery, string>
     {
-        AccountId = accountId;
-    }
-
-    public int AccountId { get; }
-
-    public class Handler : IRequestHandler<GetAccountNameByIdQuery, string>
-    {
-        private readonly IAppDbContext appDbContext;
-
-        public Handler(IAppDbContext appDbContext)
-        {
-            this.appDbContext = appDbContext;
-        }
-
         public async Task<string> Handle(GetAccountNameByIdQuery request, CancellationToken cancellationToken)
         {
-            var account = await appDbContext.Accounts.Where(x => x.Id == request.AccountId).Select(x => x.Name).FirstOrDefaultAsync(cancellationToken);
+            var account = await dbContext.Accounts.Where(x => x.Id == request.AccountId).Select(x => x.Name).FirstOrDefaultAsync(cancellationToken);
 
             return account ?? string.Empty;
         }
