@@ -43,7 +43,9 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
             InitializeAsync().GetAwaiter().GetResult();
             if (ChargedAccounts.Any())
             {
-                SelectedPayment.ChargedAccount = settingsFacade.DefaultAccount == default ? ChargedAccounts[0] : ChargedAccounts.First(n => n.Id == settingsFacade.DefaultAccount);
+                SelectedPayment.ChargedAccount = settingsFacade.DefaultAccount == default
+                    ? ChargedAccounts[0]
+                    : ChargedAccounts.First(n => n.Id == settingsFacade.DefaultAccount);
             }
         }
 
@@ -56,12 +58,13 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
         var recurringTransactionId = Guid.NewGuid();
         if (SelectedPayment.IsRecurring)
         {
+            var amountAdjustedForType = SelectedPayment.Type == PaymentType.Expense ? -SelectedPayment.Amount : SelectedPayment.Amount;
             await mediator.Send(
                 new CreateRecurringTransaction.Command(
                     recurringTransactionId: recurringTransactionId,
                     chargedAccount: SelectedPayment.ChargedAccount.Id,
                     targetAccount: SelectedPayment.TargetAccount?.Id,
-                    amount: new(amount: SelectedPayment.Amount, currency: SelectedPayment.ChargedAccount.CurrentBalance.Currency),
+                    amount: new(amount: amountAdjustedForType, currency: SelectedPayment.ChargedAccount.CurrentBalance.Currency),
                     categoryId: CategorySelectionViewModel.SelectedCategory?.Id,
                     startDate: RecurrenceViewModel.StartDate.ToDateOnly(),
                     endDate: RecurrenceViewModel.EndDate?.ToDateOnly(),

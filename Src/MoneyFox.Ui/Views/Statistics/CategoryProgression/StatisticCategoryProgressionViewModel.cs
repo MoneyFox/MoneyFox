@@ -78,7 +78,6 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
                 endDate: DateOnly.FromDateTime(EndDate)));
 
         HasNoData = !statisticItems.Any();
-
         var columnSeries = new ColumnSeries<decimal>
         {
             Name = CategorySelectionViewModel.SelectedCategory.Name,

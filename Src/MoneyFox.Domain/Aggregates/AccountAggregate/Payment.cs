@@ -99,12 +99,6 @@ public class Payment : EntityBase
         ClearPayment();
     }
 
-    public void AddRecurringTransaction(Guid recurringTransactionId)
-    {
-        RecurringTransactionId = recurringTransactionId;
-        IsRecurring = true;
-    }
-
     public void ClearPayment()
     {
         IsCleared = Date.Date <= DateTime.Today.Date;

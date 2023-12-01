@@ -110,7 +110,6 @@ public static class MauiProgram
         return stream == null ? throw new FileNotFoundException("'appsettings.json' was not found.") : new ConfigurationBuilder().AddJsonStream(stream).Build();
     }
 
-
     private static void SetupSerilog()
     {
         var logFile = Path.Combine(path1: FileSystem.AppDataDirectory, path2: LogConfiguration.FileName);

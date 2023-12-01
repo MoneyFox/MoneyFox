@@ -14,32 +14,18 @@ using Domain.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-public class GetAccountEndOfMonthBalanceQuery : IRequest<decimal>
+public class GetAccountEndOfMonthBalanceQuery(int accountId) : IRequest<decimal>
 {
-    public GetAccountEndOfMonthBalanceQuery(int accountId)
+    private int AccountId { get; } = accountId;
+
+    public class Handler(IAppDbContext dbContext, ISystemDateHelper dateHelper) : IRequestHandler<GetAccountEndOfMonthBalanceQuery, decimal>
     {
-        AccountId = accountId;
-    }
-
-    private int AccountId { get; }
-
-    public class Handler : IRequestHandler<GetAccountEndOfMonthBalanceQuery, decimal>
-    {
-        private readonly IAppDbContext appDbContext;
-        private readonly ISystemDateHelper systemDateHelper;
-
         private int accountId;
-
-        public Handler(IAppDbContext appDbContext, ISystemDateHelper systemDateHelper)
-        {
-            this.appDbContext = appDbContext;
-            this.systemDateHelper = systemDateHelper;
-        }
 
         public async Task<decimal> Handle(GetAccountEndOfMonthBalanceQuery request, CancellationToken cancellationToken)
         {
             accountId = request.AccountId;
-            var account = await appDbContext.Accounts.WithId(accountId).FirstAsync(cancellationToken: cancellationToken);
+            var account = await dbContext.Accounts.WithId(accountId).FirstAsync(cancellationToken: cancellationToken);
             var balance = await GetCurrentAccountBalanceAsync();
             foreach (var payment in await GetUnclearedPaymentsForThisMonthAsync())
             {
@@ -101,16 +87,16 @@ public class GetAccountEndOfMonthBalanceQuery : IRequest<decimal>
 
         private async Task<decimal> GetCurrentAccountBalanceAsync()
         {
-            return (await appDbContext.Accounts.WithId(accountId).Select(x => x.CurrentBalance).ToListAsync()).Sum();
+            return (await dbContext.Accounts.WithId(accountId).Select(x => x.CurrentBalance).ToListAsync()).Sum();
         }
 
         private async Task<List<Payment>> GetUnclearedPaymentsForThisMonthAsync()
         {
-            return await appDbContext.Payments.HasAccountId(accountId)
+            return await dbContext.Payments.HasAccountId(accountId)
                 .Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
                 .AreNotCleared()
-                .HasDateSmallerEqualsThan(systemDateHelper.GetEndOfMonth())
+                .HasDateSmallerEqualsThan(dateHelper.GetEndOfMonth())
                 .ToListAsync();
         }
     }

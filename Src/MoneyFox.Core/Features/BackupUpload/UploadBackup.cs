@@ -12,7 +12,7 @@ public static class UploadBackup
 {
     public enum UploadResult { Successful, Skipped }
 
-    public sealed class Command : IRequest<UploadResult> { }
+    public sealed class Command : IRequest<UploadResult>;
 
     [UsedImplicitly]
     public class Handler : IRequestHandler<Command, UploadResult>
