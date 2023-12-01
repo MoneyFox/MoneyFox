@@ -15,7 +15,7 @@ public class DatabaseChangedNotificationHandlerTests
     {
         sender = Substitute.For<ISender>();
         settingsFacade = Substitute.For<ISettingsFacade>();
-        handler = new(sender: sender, settingsFacade: settingsFacade);
+        handler = new(sender: sender, facade: settingsFacade);
     }
 
     public class GivenBackupAutoUploadEnabled : DatabaseChangedNotificationHandlerTests
