@@ -2,6 +2,7 @@ namespace MoneyFox.Ui;
 
 using Aptabase.Maui;
 using Common.Exceptions;
+using Common.Extensions;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
 using Core.Common.Settings;
@@ -48,7 +49,7 @@ public partial class App
 
     public static Page GetAppShellPage()
     {
-        return DeviceInfo.Current.Idiom == DeviceIdiom.Desktop || DeviceInfo.Current.Idiom == DeviceIdiom.Tablet || DeviceInfo.Current.Idiom == DeviceIdiom.TV
+        return DeviceInfo.Current.Idiom.UseDesktopPage()
             ? new AppShellDesktop()
             : new AppShell();
     }
