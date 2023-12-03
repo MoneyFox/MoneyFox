@@ -151,7 +151,7 @@ public abstract class ModifyPaymentViewModel(
         try
         {
             await SavePaymentAsync();
-            await navigationService.NavigateBackAsync();
+            await navigationService.GoBack();
         }
         catch (Exception ex)
         {
