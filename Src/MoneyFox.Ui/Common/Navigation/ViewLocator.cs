@@ -25,7 +25,7 @@ using Views.Statistics.Selector;
 
 internal class ViewLocator(IServiceProvider serviceProvider) : IViewLocator
 {
-    private static readonly List<(Type ViewModelType, Type ViewType)> ViewLocatorDictionary =
+    private static readonly List<(Type ViewModelType, Type ViewType)> viewLocatorDictionary =
     [
         (typeof(DashboardViewModel), typeof(DashboardPage)),
         (typeof(AccountListViewModel), typeof(AccountListPage)),
@@ -55,14 +55,29 @@ internal class ViewLocator(IServiceProvider serviceProvider) : IViewLocator
         (typeof(SetupCurrencyViewModel), typeof(SetupCurrencyPage)),
         (typeof(SetupAccountsViewModel), typeof(SetupAccountPage)),
         (typeof(SetupCategoryViewModel), typeof(SetupCategoryPage)),
-        (typeof(SetupCompletionViewModel), typeof(SetupCompletionPage)),
+        (typeof(SetupCompletionViewModel), typeof(SetupCompletionPage))
     ];
 
-    private static readonly List<(Type ViewModelType, Type ViewType)> DesktopViewLocatorDictionary = new()
-    {
-        (typeof(DashboardViewModel), typeof(DashboardPage)),
-        (typeof(AccountListViewModel), typeof(DesktopAccountListPage))
-    };
+    private static readonly List<(Type ViewModelType, Type ViewType)> desktopViewLocatorDictionary =
+    [
+        (typeof(DashboardViewModel), typeof(DashboardPage)), (typeof(AccountListViewModel), typeof(DesktopAccountListPage)),
+        (typeof(AddAccountViewModel), typeof(AddAccountPage)), (typeof(EditAccountViewModel), typeof(EditAccountPage)),
+        (typeof(BudgetListViewModel), typeof(BudgetListPage)), (typeof(PaymentListViewModel), typeof(PaymentListPage)),
+        (typeof(AddPaymentViewModel), typeof(AddPaymentPage)), (typeof(EditPaymentViewModel), typeof(EditPaymentPage)),
+        (typeof(CategoryListViewModel), typeof(CategoryListPage)), (typeof(SelectCategoryViewModel), typeof(SelectCategoryPage)),
+        (typeof(AddCategoryViewModel), typeof(AddCategoryPage)), (typeof(EditCategoryViewModel), typeof(EditCategoryPage)),
+        (typeof(BackupViewModel), typeof(BackupPage)), (typeof(SettingsViewModel), typeof(SettingsPage)), (typeof(AboutViewModel), typeof(AboutPage)),
+        (typeof(StatisticCashFlowViewModel), typeof(StatisticCashFlowPage)),
+        (typeof(StatisticCategorySpreadingViewModel), typeof(StatisticCategorySpreadingPage)),
+        (typeof(StatisticCategorySummaryViewModel), typeof(StatisticCategorySummaryPage)),
+        (typeof(StatisticAccountMonthlyCashFlowViewModel), typeof(StatisticAccountMonthlyCashFlowPage)),
+        (typeof(StatisticCategoryProgressionViewModel), typeof(StatisticCategoryProgressionPage)),
+        (typeof(StatisticSelectorViewModel), typeof(SelectCategoryPage)), (typeof(PaymentForCategoryListViewModel), typeof(PaymentForCategoryListPage)),
+        (typeof(AddBudgetViewModel), typeof(AddBudgetPage)), (typeof(EditBudgetViewModel), typeof(EditBudgetPage)),
+        (typeof(WelcomeViewModel), typeof(WelcomePage)), (typeof(SetupCurrencyViewModel), typeof(SetupCurrencyPage)),
+        (typeof(SetupAccountsViewModel), typeof(SetupAccountPage)), (typeof(SetupCategoryViewModel), typeof(SetupCategoryPage)),
+        (typeof(SetupCompletionViewModel), typeof(SetupCompletionPage))
+    ];
 
     public IBindablePage GetViewFor<TViewModel>() where TViewModel : NavigableViewModel
     {
@@ -89,7 +104,7 @@ internal class ViewLocator(IServiceProvider serviceProvider) : IViewLocator
 
     private static Type FindViewModelByView(Type viewType)
     {
-        var viewLocatorDictionary = DeviceInfo.Current.Idiom.UseDesktopPage() ? DesktopViewLocatorDictionary : ViewLocatorDictionary;
+        var viewLocatorDictionary = DeviceInfo.Current.Idiom.UseDesktopPage() ? desktopViewLocatorDictionary : ViewLocator.viewLocatorDictionary;
         foreach (var pair in viewLocatorDictionary)
         {
             if (pair.ViewType == viewType)
@@ -103,7 +118,7 @@ internal class ViewLocator(IServiceProvider serviceProvider) : IViewLocator
 
     private static Type FindViewByViewModel(Type viewModelType)
     {
-        var viewLocatorDictionary = DeviceInfo.Current.Idiom.UseDesktopPage() ? DesktopViewLocatorDictionary : ViewLocatorDictionary;
+        var viewLocatorDictionary = DeviceInfo.Current.Idiom.UseDesktopPage() ? desktopViewLocatorDictionary : ViewLocator.viewLocatorDictionary;
         foreach (var pair in viewLocatorDictionary)
         {
             if (pair.ViewModelType == viewModelType)
