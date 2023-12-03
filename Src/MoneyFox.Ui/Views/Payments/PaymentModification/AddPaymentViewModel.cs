@@ -36,19 +36,26 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
         this.settingsFacade = settingsFacade;
     }
 
-    public new void ApplyQueryAttributes(IDictionary<string, object> query)
+    public override void OnNavigated(object? parameter)
     {
-        if (IsFirstLoad)
+        base.OnNavigated(parameter);
+        if (parameter != null)
         {
-            InitializeAsync().GetAwaiter().GetResult();
-            if (ChargedAccounts.Any())
-            {
-                SelectedPayment.ChargedAccount = settingsFacade.DefaultAccount == default
-                    ? ChargedAccounts[0]
-                    : ChargedAccounts.First(n => n.Id == settingsFacade.DefaultAccount);
-            }
+            var currentAccountId = (int)parameter;
+            SelectedPayment.ChargedAccount = ChargedAccounts.First(n => n.Id == currentAccountId);
+        }
+        else
+        {
+            SelectedPayment.ChargedAccount = settingsFacade.DefaultAccount == default
+                ? ChargedAccounts[0]
+                : ChargedAccounts.First(n => n.Id == settingsFacade.DefaultAccount);
         }
 
+
+    }
+
+    public new void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
         base.ApplyQueryAttributes(query);
     }
 

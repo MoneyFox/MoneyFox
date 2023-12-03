@@ -21,6 +21,11 @@ public interface INavigationService
 
 public class NavigableViewModel : ObservableRecipient
 {
+    public virtual Task OnNavigatedAsync(object? parameter)
+    {
+        return Task.CompletedTask;
+    }
+
     public virtual void OnNavigated(object? parameter)
     {
     }

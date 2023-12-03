@@ -89,17 +89,7 @@ public abstract class ModifyPaymentViewModel(
 
     public AsyncRelayCommand SaveCommand => new(SaveAsync);
 
-    public void ApplyQueryAttributes(IDictionary<string, object> query)
-    {
-        if (query.TryGetValue(key: SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, value: out var selectedCategoryIdParam))
-        {
-            var selectedCategoryId = Convert.ToInt32(selectedCategoryIdParam);
-            var category = mediator.Send(new GetCategoryByIdQuery(selectedCategoryId)).GetAwaiter().GetResult();
-            CategorySelectionViewModel.SelectedCategory = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
-        }
-    }
-
-    protected async Task InitializeAsync()
+    public override async Task OnNavigatedAsync(object? parameter)
     {
         var accounts = await mediator.Send(new GetAccountsQuery());
         var pickerVms = accounts.Select(
@@ -112,6 +102,21 @@ public abstract class ModifyPaymentViewModel(
         ChargedAccounts = new(pickerVms);
         TargetAccounts = new(pickerVms);
         IsFirstLoad = false;
+    }
+
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+        if (query.TryGetValue(key: SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, value: out var selectedCategoryIdParam))
+        {
+            var selectedCategoryId = Convert.ToInt32(selectedCategoryIdParam);
+            var category = mediator.Send(new GetCategoryByIdQuery(selectedCategoryId)).GetAwaiter().GetResult();
+            CategorySelectionViewModel.SelectedCategory = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
+        }
+    }
+
+    protected async Task InitializeAsync()
+    {
+
     }
 
     protected abstract Task SavePaymentAsync();

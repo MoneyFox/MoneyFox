@@ -8,25 +8,19 @@ using CommunityToolkit.Mvvm.Messaging;
 using Core.Queries;
 using Core.Queries.PaymentsForAccount;
 using MediatR;
+using PaymentModification;
 
 [QueryProperty(name: nameof(AccountId), queryId: nameof(accountId))]
-internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<PaymentsChangedMessage>, IRecipient<PaymentListFilterChangedMessage>
+internal sealed class PaymentListViewModel(IMediator mediator, IMapper mapper, INavigationService navigationService) : BasePageViewModel,
+    IRecipient<PaymentsChangedMessage>,
+    IRecipient<PaymentListFilterChangedMessage>
 {
-    private readonly IMapper mapper;
-    private readonly IMediator mediator;
-
     private int accountId;
 
     private bool isRunning;
 
     private ReadOnlyObservableCollection<PaymentDayGroup> paymentDayGroups = null!;
     private AccountViewModel selectedAccount = new();
-
-    public PaymentListViewModel(IMediator mediator, IMapper mapper)
-    {
-        this.mediator = mediator;
-        this.mapper = mapper;
-    }
 
     public int AccountId
     {
@@ -52,7 +46,7 @@ internal sealed class PaymentListViewModel : BasePageViewModel, IRecipient<Payme
     }
 
     public AsyncRelayCommand GoToAddPaymentCommand
-        => new(async () => await Shell.Current.GoToAsync($"{Routes.AddPaymentRoute}?defaultChargedAccountId={SelectedAccount.Id}"));
+        => new(() => navigationService.GoTo<AddPaymentViewModel>(SelectedAccount.Id));
 
     public AsyncRelayCommand<PaymentListItemViewModel> GoToEditPaymentCommand
         => new(async pvm => await Shell.Current.GoToAsync($"{Routes.EditPaymentRoute}?paymentId={pvm.Id}"));

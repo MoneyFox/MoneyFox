@@ -12,12 +12,14 @@ internal sealed class NavigationService(IViewLocator locator) : INavigationServi
     {
         var view = locator.GetViewFor<TViewModel>();
         await Navigation.PushAsync((Page)view);
+        await ((NavigableViewModel)view.BindingContext).OnNavigatedAsync(parameter);
         ((NavigableViewModel)view.BindingContext).OnNavigated(parameter);
     }
 
     public async Task GoBack(object? parameter = null)
     {
         var view = await Navigation.PopAsync();
+        await ((NavigableViewModel)view.BindingContext).OnNavigatedAsync(parameter);
         ((NavigableViewModel)view.BindingContext).OnNavigated(parameter);
     }
 
