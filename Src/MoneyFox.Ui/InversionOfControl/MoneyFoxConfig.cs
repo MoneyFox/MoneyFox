@@ -39,7 +39,6 @@ public sealed class MoneyFoxConfig
     public void Register(IServiceCollection serviceCollection)
     {
         serviceCollection.AddSingleton(sp => new ViewLocator(sp));
-        serviceCollection.AddSingleton<INavigation>(Shell.Current.Navigation);
 
         RegisterServices(serviceCollection);
         RegisterSetupViewModels(serviceCollection);
