@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Views.Dashboard;
 
 using System.Collections.ObjectModel;
+using Accounts.AccountList;
 using Accounts.AccountModification;
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
@@ -91,7 +92,7 @@ public class DashboardViewModel : BasePageViewModel, IRecipient<BackupRestoredMe
 
     public AsyncRelayCommand GoToAddPaymentCommand => new(async () => await navigationService.GoTo<AddPaymentViewModel>());
 
-    public AsyncRelayCommand GoToAccountsCommand => new(async () => await Shell.Current.GoToAsync(Routes.AccountListRoute));
+    public AsyncRelayCommand GoToAccountsCommand => new(async () => await navigationService.GoTo<AccountListViewModel>());
 
     public AsyncRelayCommand<AccountViewModel> GoToTransactionListCommand
         => new(async accountViewModel => await Shell.Current.GoToAsync($"{Routes.PaymentListRoute}?accountId={accountViewModel!.Id}"));

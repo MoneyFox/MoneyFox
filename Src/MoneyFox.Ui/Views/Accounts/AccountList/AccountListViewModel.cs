@@ -9,20 +9,11 @@ using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-public sealed class AccountListViewModel : BasePageViewModel, IRecipient<AccountsChangedMessage>
+public sealed class AccountListViewModel(IMediator mediator, IDialogService service) : NavigableViewModel, IRecipient<AccountsChangedMessage>
 {
-    private readonly IDialogService dialogService;
-    private readonly IMediator mediator;
-
     private ReadOnlyObservableCollection<AccountGroup> accountGroup = null!;
 
     private bool isRunning;
-
-    public AccountListViewModel(IMediator mediator, IDialogService dialogService)
-    {
-        this.mediator = mediator;
-        this.dialogService = dialogService;
-    }
 
     public ReadOnlyObservableCollection<AccountGroup> AccountGroups
     {
@@ -79,7 +70,7 @@ public sealed class AccountListViewModel : BasePageViewModel, IRecipient<Account
 
     private async Task DeleteAccountAsync(AccountListItemViewModel accountViewModel)
     {
-        if (await dialogService.ShowConfirmMessageAsync(
+        if (await service.ShowConfirmMessageAsync(
                 title: Translations.DeleteTitle,
                 message: Translations.DeleteAccountConfirmationMessage,
                 positiveButtonText: Translations.YesLabel,
