@@ -42,8 +42,7 @@ internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<Ca
 
     public AsyncRelayCommand<CategoryListItemViewModel> DeleteCategoryCommand => new(async vm => await DeleteCategoryAsync(vm));
 
-    public AsyncRelayCommand<CategoryListItemViewModel> SelectCategoryCommand
-        => new(async c => { await navigationService.NavigateBackAsync(parameterName: SELECTED_CATEGORY_ID_PARAM, queryParameter: c.Id.ToString()); });
+    public AsyncRelayCommand<CategoryListItemViewModel> SelectCategoryCommand => new(c => navigationService.GoBack(c!.Id));
 
     public void Receive(CategoriesChangedMessage message)
     {

@@ -16,12 +16,14 @@ public sealed class EditPaymentViewModelTests
         var dialogService = Substitute.For<IDialogService>();
         var toastService = Substitute.For<IToastService>();
         var mediator = Substitute.For<IMediator>();
+        var navigationService = Substitute.For<INavigationService>();
         var vm = new EditPaymentViewModel(
             mediator: mediator,
             dialogService: dialogService,
             toastService: toastService,
             settingsFacade: Substitute.For<ISettingsFacade>(),
-            categorySelectionViewModel: new(navigationService: Substitute.For<INavigationService>()),
+            categorySelectionViewModel: new(navigationService: navigationService),
+            navigationService: navigationService,
             aptabaseClient: Substitute.For<IAptabaseClient>())
         {
             SelectedPayment = new() { ChargedAccount = new(Id: 1, Name: "", CurrentBalance: Money.Zero("CHF")) }

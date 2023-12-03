@@ -23,12 +23,14 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
         IToastService toastService,
         ISettingsFacade settingsFacade,
         CategorySelectionViewModel categorySelectionViewModel,
+        INavigationService navigationService,
         IAptabaseClient aptabaseClient) : base(
         mediator: mediator,
         service: dialogService,
         toastService: toastService,
         categorySelectionViewModel: categorySelectionViewModel,
         facade: settingsFacade,
+        navigationService: navigationService,
         client: aptabaseClient)
     {
         this.mediator = mediator;
@@ -36,12 +38,12 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
         this.settingsFacade = settingsFacade;
     }
 
-    public override void OnNavigated(object? parameter)
+    protected override void OnNavigated(object? parameter)
     {
         base.OnNavigated(parameter);
-        if (parameter != null)
+        if (parameter is not null)
         {
-            var currentAccountId = (int)parameter;
+            var currentAccountId = Convert.ToInt32(parameter);
             SelectedPayment.ChargedAccount = ChargedAccounts.First(n => n.Id == currentAccountId);
         }
         else

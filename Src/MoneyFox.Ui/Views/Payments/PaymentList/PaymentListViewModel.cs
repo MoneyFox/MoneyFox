@@ -45,11 +45,9 @@ internal sealed class PaymentListViewModel(IMediator mediator, IMapper mapper, I
         private set => SetProperty(field: ref paymentDayGroups, newValue: value);
     }
 
-    public AsyncRelayCommand GoToAddPaymentCommand
-        => new(() => navigationService.GoTo<AddPaymentViewModel>(SelectedAccount.Id));
+    public AsyncRelayCommand GoToAddPaymentCommand => new(() => navigationService.GoTo<AddPaymentViewModel>(SelectedAccount.Id));
 
-    public AsyncRelayCommand<PaymentListItemViewModel> GoToEditPaymentCommand
-        => new(async pvm => await Shell.Current.GoToAsync($"{Routes.EditPaymentRoute}?paymentId={pvm.Id}"));
+    public AsyncRelayCommand<PaymentListItemViewModel> GoToEditPaymentCommand => new(pvm => navigationService.GoTo<EditPaymentViewModel>(pvm.Id));
 
     public void Receive(PaymentListFilterChangedMessage message)
     {

@@ -22,7 +22,8 @@ public abstract class ModifyPaymentViewModel(
     IToastService toastService,
     CategorySelectionViewModel categorySelectionViewModel,
     ISettingsFacade facade,
-    IAptabaseClient client) : NavigableViewModel, IQueryAttributable
+    INavigationService navigationService,
+    IAptabaseClient client) : NavigableViewModel
 {
     private ObservableCollection<AccountPickerViewModel> chargedAccounts = [];
 
@@ -104,19 +105,14 @@ public abstract class ModifyPaymentViewModel(
         IsFirstLoad = false;
     }
 
-    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    public override async Task OnNavigatedBackAsync(object? parameter)
     {
-        if (query.TryGetValue(key: SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, value: out var selectedCategoryIdParam))
+        if (parameter is not null)
         {
-            var selectedCategoryId = Convert.ToInt32(selectedCategoryIdParam);
-            var category = mediator.Send(new GetCategoryByIdQuery(selectedCategoryId)).GetAwaiter().GetResult();
+            var selectedCategoryId = Convert.ToInt32(parameter);
+            var category = await mediator.Send(new GetCategoryByIdQuery(selectedCategoryId));
             CategorySelectionViewModel.SelectedCategory = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
         }
-    }
-
-    protected async Task InitializeAsync()
-    {
-
     }
 
     protected abstract Task SavePaymentAsync();
@@ -157,8 +153,7 @@ public abstract class ModifyPaymentViewModel(
         try
         {
             await SavePaymentAsync();
-            await Shell.Current.Navigation.PopModalAsync();
-            Messenger.Send(new PaymentsChangedMessage());
+            await navigationService.NavigateBackAsync();
         }
         catch (Exception ex)
         {

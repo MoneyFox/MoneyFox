@@ -15,13 +15,15 @@ public sealed class AddPaymentViewModelTests
         // Arrange
         var dialogService = Substitute.For<IDialogService>();
         var toastService = Substitute.For<IToastService>();
+        var navigationService = Substitute.For<INavigationService>();
         var mediator = Substitute.For<IMediator>();
         var vm = new AddPaymentViewModel(
             mediator: mediator,
             dialogService: dialogService,
             toastService: toastService,
             settingsFacade: Substitute.For<ISettingsFacade>(),
-            categorySelectionViewModel: new(navigationService: Substitute.For<INavigationService>()),
+            categorySelectionViewModel: new(navigationService: navigationService),
+            navigationService: navigationService,
             aptabaseClient: Substitute.For<IAptabaseClient>())
         {
             SelectedPayment = new() { ChargedAccount = new(Id: 1, Name: "", CurrentBalance: Money.Zero("CHF")) }

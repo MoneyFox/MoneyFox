@@ -19,7 +19,7 @@ public interface INavigationService
     Task GoBackFromModalAsync();
 }
 
-public class NavigableViewModel : ObservableRecipient
+public class NavigableViewModel : ObservableObject
 {
     public virtual Task OnNavigatedAsync(object? parameter)
     {
