@@ -11,7 +11,7 @@ using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Resources.Strings;
 
-internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
+internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
@@ -50,13 +50,6 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
                 ? ChargedAccounts[0]
                 : ChargedAccounts.First(n => n.Id == settingsFacade.DefaultAccount);
         }
-
-
-    }
-
-    public new void ApplyQueryAttributes(IDictionary<string, object> query)
-    {
-        base.ApplyQueryAttributes(query);
     }
 
     protected override async Task SavePaymentAsync()
