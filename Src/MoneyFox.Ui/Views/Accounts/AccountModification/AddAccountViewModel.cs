@@ -9,7 +9,7 @@ internal sealed class AddAccountViewModel : ModifyAccountViewModel
     private readonly IMediator mediator;
 
     public AddAccountViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService) : base(
-        dialogService: dialogService,
+        service: dialogService,
         mediator: mediator,
         navigationService: navigationService)
     {

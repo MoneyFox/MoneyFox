@@ -17,7 +17,7 @@ public class EditAccountViewModel : ModifyAccountViewModel
     private readonly INavigationService navigationService;
 
     public EditAccountViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, INavigationService navigationService) : base(
-        dialogService: dialogService,
+        service: dialogService,
         mediator: mediator,
         navigationService: navigationService)
     {
