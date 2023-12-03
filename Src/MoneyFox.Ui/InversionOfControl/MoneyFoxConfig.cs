@@ -37,6 +37,9 @@ public sealed class MoneyFoxConfig
 {
     public void Register(IServiceCollection serviceCollection)
     {
+        serviceCollection.AddSingleton(sp => new ViewLocator(sp));
+        serviceCollection.AddSingleton<INavigation>(Shell.Current.Navigation);
+
         RegisterServices(serviceCollection);
         RegisterSetupViewModels(serviceCollection);
         RegisterViewModels(serviceCollection);
@@ -48,9 +51,9 @@ public sealed class MoneyFoxConfig
 
     private static void RegisterServices(IServiceCollection serviceCollection)
     {
-        _ = serviceCollection.AddSingleton<IDialogService, DialogService>()
-            .AddTransient<INavigationService, NavigationService>()
-            .AddTransient<IToastService, ToastService>();
+        serviceCollection.AddSingleton<IDialogService, DialogService>();
+        serviceCollection.AddTransient<IToastService, ToastService>();
+        serviceCollection.AddTransient<INavigationService, NavigationService>();
     }
 
     private static void RegisterSetupViewModels(IServiceCollection services)
