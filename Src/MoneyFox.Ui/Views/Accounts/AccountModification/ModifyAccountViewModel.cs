@@ -68,8 +68,7 @@ public abstract class ModifyAccountViewModel : BasePageViewModel
 
             await dialogService.ShowLoadingDialogAsync(Translations.SavingAccountMessage);
             await SaveAccountAsync();
-            await navigationService.GoBackFromModalAsync();
-            Messenger.Send(new AccountsChangedMessage());
+            await navigationService.GoBack();
         }
         finally
         {
