@@ -1,6 +1,8 @@
 namespace MoneyFox.Ui.Views.Statistics.CategorySummary;
 
-public partial class PaymentForCategoryListPage
+using Common.Navigation;
+
+public partial class PaymentForCategoryListPage: IBindablePage
 {
     public PaymentForCategoryListPage()
     {

@@ -1,6 +1,8 @@
 namespace MoneyFox.Ui.Views.Budget.BudgetModification;
 
-public partial class AddBudgetPage
+using Common.Navigation;
+
+public partial class AddBudgetPage: IBindablePage
 {
     public AddBudgetPage()
     {

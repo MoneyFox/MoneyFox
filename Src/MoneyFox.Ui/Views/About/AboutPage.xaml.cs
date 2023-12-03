@@ -1,6 +1,8 @@
 namespace MoneyFox.Ui.Views.About;
 
-public partial class AboutPage
+using Common.Navigation;
+
+public partial class AboutPage: IBindablePage
 {
     public AboutPage()
     {

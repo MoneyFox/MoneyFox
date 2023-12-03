@@ -1,6 +1,8 @@
 ﻿namespace MoneyFox.Ui.Views.Setup;
 
-public partial class WelcomePage
+using Common.Navigation;
+
+public partial class WelcomePage: IBindablePage
 {
     public WelcomePage()
     {

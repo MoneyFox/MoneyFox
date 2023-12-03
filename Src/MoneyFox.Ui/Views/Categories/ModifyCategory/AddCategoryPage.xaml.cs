@@ -1,6 +1,8 @@
 namespace MoneyFox.Ui.Views.Categories.ModifyCategory;
 
-public partial class AddCategoryPage
+using Common.Navigation;
+
+public partial class AddCategoryPage: IBindablePage
 {
     public AddCategoryPage()
     {

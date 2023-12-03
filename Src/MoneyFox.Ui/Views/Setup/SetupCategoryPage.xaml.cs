@@ -1,6 +1,8 @@
 ﻿namespace MoneyFox.Ui.Views.Setup;
 
-public partial class SetupCategoryPage
+using Common.Navigation;
+
+public partial class SetupCategoryPage: IBindablePage
 {
     public SetupCategoryPage()
     {

@@ -1,6 +1,8 @@
 ﻿namespace MoneyFox.Ui.Views.Categories;
 
-public partial class CategoryListPage
+using Common.Navigation;
+
+public partial class CategoryListPage: IBindablePage
 {
     public CategoryListPage()
     {

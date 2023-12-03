@@ -1,6 +1,8 @@
 namespace MoneyFox.Ui.Views.Dashboard;
 
-public partial class DashboardPage
+using Common.Navigation;
+
+public partial class DashboardPage: IBindablePage
 {
     public DashboardPage()
     {

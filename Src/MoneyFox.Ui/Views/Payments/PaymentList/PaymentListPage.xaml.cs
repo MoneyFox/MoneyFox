@@ -1,9 +1,10 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentList;
 
+using Common.Navigation;
 using CommunityToolkit.Maui.Views;
 
 [QueryProperty(name: "AccountId", queryId: "accountId")]
-public partial class PaymentListPage
+public partial class PaymentListPage: IBindablePage
 {
     public PaymentListPage()
     {

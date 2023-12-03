@@ -1,6 +1,8 @@
 namespace MoneyFox.Ui.Views.Settings;
 
-public partial class SettingsPage
+using Common.Navigation;
+
+public partial class SettingsPage: IBindablePage
 {
     public SettingsPage()
     {

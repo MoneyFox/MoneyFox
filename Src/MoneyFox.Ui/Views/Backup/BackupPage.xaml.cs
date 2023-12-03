@@ -1,6 +1,8 @@
 namespace MoneyFox.Ui.Views.Backup;
 
-public partial class BackupPage
+using Common.Navigation;
+
+public partial class BackupPage: IBindablePage
 {
     public BackupPage()
     {

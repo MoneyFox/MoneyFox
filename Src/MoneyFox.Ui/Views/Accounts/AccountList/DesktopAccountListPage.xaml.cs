@@ -1,6 +1,8 @@
 namespace MoneyFox.Ui.Views.Accounts.AccountList;
 
-public partial class DesktopAccountListPage
+using Common.Navigation;
+
+public partial class DesktopAccountListPage: IBindablePage
 {
     public DesktopAccountListPage()
     {

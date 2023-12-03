@@ -1,6 +1,8 @@
 namespace MoneyFox.Ui.Views.Statistics.Selector;
 
-public partial class StatisticSelectorPage
+using Common.Navigation;
+
+public partial class StatisticSelectorPage: IBindablePage
 {
     public StatisticSelectorPage()
     {
