@@ -9,7 +9,7 @@ public interface INavigationService
     Task GoBack(object? parameter = null);
 
     Task NavigateToAsync<TPage>() where TPage : ContentPage;
-    
+
     Task OpenModalAsync<T>() where T : ContentPage;
 
     Task GoBackFromModalAsync();
