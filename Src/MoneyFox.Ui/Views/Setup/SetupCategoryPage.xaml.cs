@@ -2,7 +2,7 @@
 
 using Common.Navigation;
 
-public partial class SetupCategoryPage: IBindablePage
+public partial class SetupCategoryPage : IBindablePage
 {
     public SetupCategoryPage()
     {

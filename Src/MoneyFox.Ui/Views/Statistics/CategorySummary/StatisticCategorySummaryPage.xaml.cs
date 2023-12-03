@@ -3,7 +3,7 @@ namespace MoneyFox.Ui.Views.Statistics.CategorySummary;
 using Common.Navigation;
 using CommunityToolkit.Maui.Views;
 
-public partial class StatisticCategorySummaryPage: IBindablePage
+public partial class StatisticCategorySummaryPage : IBindablePage
 {
     public StatisticCategorySummaryPage()
     {

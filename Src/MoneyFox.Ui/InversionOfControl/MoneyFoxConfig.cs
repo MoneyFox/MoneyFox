@@ -63,7 +63,6 @@ public sealed class MoneyFoxConfig
         services.AddTransient<SetupAccountPage>();
         services.AddTransient<SetupCategoryPage>();
         services.AddTransient<SetupCompletionPage>();
-
         services.AddTransient<WelcomeViewModel>();
         services.AddTransient<SetupCurrencyViewModel>();
         services.AddTransient<SetupAccountsViewModel>();
@@ -102,6 +101,7 @@ public sealed class MoneyFoxConfig
         services.AddTransient<BudgetListViewModel>();
         services.AddTransient<CategorySelectionViewModel>();
     }
+
     private static void RegisterViews(IServiceCollection services)
     {
         services.AddTransient<AddPaymentPage>();

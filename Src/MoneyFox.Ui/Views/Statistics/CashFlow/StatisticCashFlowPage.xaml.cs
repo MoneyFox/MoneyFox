@@ -3,7 +3,7 @@
 using Common.Navigation;
 using CommunityToolkit.Maui.Views;
 
-public partial class StatisticCashFlowPage: IBindablePage
+public partial class StatisticCashFlowPage : IBindablePage
 {
     public StatisticCashFlowPage()
     {

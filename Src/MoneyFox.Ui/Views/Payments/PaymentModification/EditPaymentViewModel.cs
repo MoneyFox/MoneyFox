@@ -45,7 +45,6 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel
     public override async Task OnNavigatedAsync(object? parameter)
     {
         ArgumentNullException.ThrowIfNull(parameter);
-
         var paymentId = Convert.ToInt32(parameter);
         var paymentData = await mediator.Send(new GetPaymentDataById.Query(paymentId));
         if (paymentData is { IsRecurring: true, RecurrenceData: not null })

@@ -13,7 +13,6 @@ using Domain.Exceptions;
 using MediatR;
 using Messages;
 using Serilog;
-using Views;
 using Views.Setup;
 
 public partial class App
@@ -49,9 +48,7 @@ public partial class App
 
     public static Page GetAppShellPage()
     {
-        return DeviceInfo.Current.Idiom.UseDesktopPage()
-            ? new AppShellDesktop()
-            : new AppShell();
+        return DeviceInfo.Current.Idiom.UseDesktopPage() ? new AppShellDesktop() : new AppShell();
     }
 
     private void FillResourceDictionary()

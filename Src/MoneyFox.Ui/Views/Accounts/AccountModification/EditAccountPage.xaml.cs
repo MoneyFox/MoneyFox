@@ -3,7 +3,7 @@ namespace MoneyFox.Ui.Views.Accounts.AccountModification;
 using Common.Navigation;
 
 [QueryProperty(name: "AccountId", queryId: "accountId")]
-public partial class EditAccountPage: IBindablePage
+public partial class EditAccountPage : IBindablePage
 {
     public EditAccountPage()
     {

@@ -2,7 +2,7 @@
 
 using Common.Navigation;
 
-public partial class CategoryListPage: IBindablePage
+public partial class CategoryListPage : IBindablePage
 {
     public CategoryListPage()
     {

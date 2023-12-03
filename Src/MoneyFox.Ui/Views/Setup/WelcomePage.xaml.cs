@@ -2,7 +2,7 @@
 
 using Common.Navigation;
 
-public partial class WelcomePage: IBindablePage
+public partial class WelcomePage : IBindablePage
 {
     public WelcomePage()
     {

@@ -3,7 +3,7 @@ namespace MoneyFox.Ui.Views.Categories.ModifyCategory;
 using Common.Navigation;
 
 [QueryProperty(name: "CategoryId", queryId: "categoryId")]
-public partial class EditCategoryPage: IBindablePage
+public partial class EditCategoryPage : IBindablePage
 {
     public EditCategoryPage()
     {

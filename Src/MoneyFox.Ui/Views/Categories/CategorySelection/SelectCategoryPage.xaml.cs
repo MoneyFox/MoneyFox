@@ -4,7 +4,7 @@ using Common.Navigation;
 using Microsoft.Maui.Controls.PlatformConfiguration;
 using Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;
 
-public partial class SelectCategoryPage: IBindablePage
+public partial class SelectCategoryPage : IBindablePage
 {
     public SelectCategoryPage()
     {

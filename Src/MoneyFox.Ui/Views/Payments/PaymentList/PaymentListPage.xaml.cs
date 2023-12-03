@@ -4,7 +4,7 @@ using Common.Navigation;
 using CommunityToolkit.Maui.Views;
 
 [QueryProperty(name: "AccountId", queryId: "accountId")]
-public partial class PaymentListPage: IBindablePage
+public partial class PaymentListPage : IBindablePage
 {
     public PaymentListPage()
     {
