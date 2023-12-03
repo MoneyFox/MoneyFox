@@ -1,10 +1,20 @@
 namespace MoneyFox.Ui.Common.Navigation;
 
+using Extensions;
+using Views.Accounts.AccountList;
 using Views.Dashboard;
 
 internal class ViewLocator(IServiceProvider serviceProvider) : IViewLocator
 {
-    private static readonly List<(Type ViewModelType, Type ViewType)> ViewLocatorDictionary = new() { (typeof(DashboardViewModel), typeof(DashboardPage)) };
+    private static readonly List<(Type ViewModelType, Type ViewType)> ViewLocatorDictionary = new()
+    {
+        (typeof(DashboardViewModel), typeof(DashboardPage)), (typeof(AccountListViewModel), typeof(AccountListPage))
+    };
+
+    private static readonly List<(Type ViewModelType, Type ViewType)> DesktopViewLocatorDictionary = new()
+    {
+        (typeof(DashboardViewModel), typeof(DashboardPage)), (typeof(AccountListViewModel), typeof(DesktopAccountListPage))
+    };
 
     public IBindablePage GetViewFor<TViewModel>() where TViewModel : NavigableViewModel
     {
@@ -31,7 +41,8 @@ internal class ViewLocator(IServiceProvider serviceProvider) : IViewLocator
 
     private static Type FindViewModelByView(Type viewType)
     {
-        foreach (var pair in ViewLocatorDictionary)
+        var viewLocatorDictionary = DeviceInfo.Current.Idiom.UseDesktopPage() ? DesktopViewLocatorDictionary : ViewLocatorDictionary;
+        foreach (var pair in viewLocatorDictionary)
         {
             if (pair.ViewType == viewType)
             {
@@ -44,7 +55,8 @@ internal class ViewLocator(IServiceProvider serviceProvider) : IViewLocator
 
     private static Type FindViewByViewModel(Type viewModelType)
     {
-        foreach (var pair in ViewLocatorDictionary)
+        var viewLocatorDictionary = DeviceInfo.Current.Idiom.UseDesktopPage() ? DesktopViewLocatorDictionary : ViewLocatorDictionary;
+        foreach (var pair in viewLocatorDictionary)
         {
             if (pair.ViewModelType == viewModelType)
             {
