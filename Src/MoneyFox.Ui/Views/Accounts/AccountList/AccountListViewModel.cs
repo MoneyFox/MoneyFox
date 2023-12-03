@@ -2,14 +2,13 @@ namespace MoneyFox.Ui.Views.Accounts.AccountList;
 
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
 using Core.Features._Legacy_.Accounts.DeleteAccountById;
 using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-public sealed class AccountListViewModel(ISender mediator, IDialogService service) : NavigableViewModel, IRecipient<AccountsChangedMessage>
+public sealed class AccountListViewModel(ISender mediator, IDialogService service) : NavigableViewModel
 {
     private ReadOnlyObservableCollection<AccountGroup> accountGroup = null!;
 
@@ -31,41 +30,32 @@ public sealed class AccountListViewModel(ISender mediator, IDialogService servic
 
     public AsyncRelayCommand<AccountListItemViewModel> DeleteAccountCommand => new(DeleteAccountAsync);
 
-    public void Receive(AccountsChangedMessage message)
+    public override Task OnNavigatedAsync(object? parameter)
     {
-        InitializeAsync().GetAwaiter().GetResult();
+        return LoadAccountList();
     }
 
-    public async Task InitializeAsync()
+    public override Task OnNavigatedBackAsync(object? parameter)
     {
-        try
-        {
-            IsActive = true;
-            if (isRunning)
-            {
-                return;
-            }
+        return LoadAccountList();
+    }
 
-            isRunning = true;
-            var accounts = await mediator.Send(new GetAccountsQuery());
-            var accountListItems = accounts.Select(
-                    a => new AccountListItemViewModel
-                    {
-                        Id = a.Id,
-                        Name = a.Name,
-                        CurrentBalance = a.CurrentBalance,
-                        EndOfMonthBalance = mediator.Send(new GetAccountEndOfMonthBalanceQuery(a.Id)).GetAwaiter().GetResult(),
-                        IsExcluded = a.IsExcluded
-                    })
-                .ToList();
+    private async Task LoadAccountList()
+    {
+        var accounts = await mediator.Send(new GetAccountsQuery());
+        var accountListItems = accounts.Select(
+                a => new AccountListItemViewModel
+                {
+                    Id = a.Id,
+                    Name = a.Name,
+                    CurrentBalance = a.CurrentBalance,
+                    EndOfMonthBalance = mediator.Send(new GetAccountEndOfMonthBalanceQuery(a.Id)).GetAwaiter().GetResult(),
+                    IsExcluded = a.IsExcluded
+                })
+            .ToList();
 
-            var accountGroups = accountListItems.GroupBy(a => a.IsExcluded).Select(g => new AccountGroup(isExcluded: g.Key, accountItems: g.ToList()));
-            AccountGroups = new(new(accountGroups));
-        }
-        finally
-        {
-            isRunning = false;
-        }
+        var accountGroups = accountListItems.GroupBy(a => a.IsExcluded).Select(g => new AccountGroup(isExcluded: g.Key, accountItems: g.ToList()));
+        AccountGroups = new(new(accountGroups));
     }
 
     private async Task DeleteAccountAsync(AccountListItemViewModel accountViewModel)
@@ -77,7 +67,7 @@ public sealed class AccountListViewModel(ISender mediator, IDialogService servic
                 negativeButtonText: Translations.NoLabel))
         {
             await mediator.Send(new DeactivateAccountByIdCommand(accountViewModel.Id));
-            await InitializeAsync();
+            await LoadAccountList();
         }
     }
 }
