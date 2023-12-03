@@ -23,6 +23,7 @@ public class NavigableViewModel : ObservableRecipient
 {
     public virtual Task OnNavigatedAsync(object? parameter)
     {
+        OnNavigated(parameter);
         return Task.CompletedTask;
     }
 
