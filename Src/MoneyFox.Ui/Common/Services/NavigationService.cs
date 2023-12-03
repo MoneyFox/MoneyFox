@@ -4,26 +4,21 @@ using Extensions;
 using JetBrains.Annotations;
 
 [UsedImplicitly]
-internal sealed class NavigationService : INavigationService
+internal sealed class NavigationService(IViewLocator locator, Lazy<INavigation> lazyNavigation) : INavigationService
 {
-    private readonly IViewLocator viewLocator;
-
-    public NavigationService(IViewLocator viewLocator)
-    {
-        this.viewLocator = viewLocator;
-    }
+    private INavigation Navigation => lazyNavigation.Value;
 
     public async Task GoTo<TViewModel>(object? parameter = null) where TViewModel : NavigableViewModel
     {
-        var view = viewLocator.GetViewFor<TViewModel>();
-        await Shell.Current.Navigation.PushAsync((Page)view);
+        var view = locator.GetViewFor<TViewModel>();
+        await Navigation.PushAsync((Page)view);
 
         ((NavigableViewModel)view.BindingContext).OnNavigated(parameter);
     }
 
     public async Task GoBack(object? parameter = null)
     {
-        var view = await Shell.Current.Navigation.PopAsync();
+        var view = await Navigation.PopAsync();
         ((NavigableViewModel)view.BindingContext).OnNavigated(parameter);
     }
 
@@ -67,4 +62,22 @@ public interface IViewLocator
 public interface IBindablePage
 {
     object BindingContext { get; set; }
+}
+
+internal class ViewLocator : IViewLocator
+{
+    public IBindablePage GetViewFor<TViewModel>() where TViewModel : NavigableViewModel
+    {
+        throw new NotImplementedException();
+    }
+
+    public IBindablePage GetView<TView>() where TView : class, IBindablePage
+    {
+        throw new NotImplementedException();
+    }
+
+    public Type GetViewTypeFor<TViewModel>() where TViewModel : NavigableViewModel
+    {
+        throw new NotImplementedException();
+    }
 }
