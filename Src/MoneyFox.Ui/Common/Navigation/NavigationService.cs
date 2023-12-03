@@ -8,13 +8,6 @@ internal sealed class NavigationService(IViewLocator locator) : INavigationServi
 {
     private INavigation Navigation => Shell.Current.Navigation;
 
-    public async Task GoTo<TViewModel>(object? parameter = null) where TViewModel : NavigableViewModel
-    {
-        var view = locator.GetViewFor<TViewModel>();
-        await Navigation.PushAsync((Page)view);
-        await ((NavigableViewModel)view.BindingContext).OnNavigatedAsync(parameter);
-    }
-
     public async Task GoBack(object? parameter = null)
     {
         var view = await Navigation.PopAsync();
@@ -46,5 +39,20 @@ internal sealed class NavigationService(IViewLocator locator) : INavigationServi
     public async Task GoBackFromModalAsync()
     {
         await Shell.Current.Navigation.PopModalAsync();
+    }
+
+    public async Task GoTo<TViewModel>(object? parameter = null, bool modalNavigation = false) where TViewModel : NavigableViewModel
+    {
+        var view = locator.GetViewFor<TViewModel>();
+        if (modalNavigation)
+        {
+            await Navigation.PushModalAsync((Page)view);
+        }
+        else
+        {
+            await Navigation.PushAsync((Page)view);
+        }
+
+        await ((NavigableViewModel)view.BindingContext).OnNavigatedAsync(parameter);
     }
 }
