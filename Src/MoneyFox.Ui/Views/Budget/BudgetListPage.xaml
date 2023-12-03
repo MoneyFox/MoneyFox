@@ -32,7 +32,6 @@
             <CollectionView Grid.Row="2"
                             BackgroundColor="Transparent"
                             ItemsSource="{Binding Budgets}"
-                            ItemSizingStrategy="MeasureFirstItem"
                             SelectionMode="None">
 
                 <CollectionView.Header>
