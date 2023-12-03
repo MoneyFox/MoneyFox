@@ -12,7 +12,7 @@ pool:
 variables:
   BuildConfiguration: 'Release'
   Major: '8'
-  Minor: '3'
+  Minor: '4'
 
 name: $(date:yyyy)$(DayOfYear)$(rev:rrr)
 steps:

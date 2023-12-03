@@ -11,7 +11,7 @@ pool:
 
 variables:
   Major: '8'
-  Minor: '3'
+  Minor: '4'
 
 steps:
 

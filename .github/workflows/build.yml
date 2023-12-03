@@ -8,7 +8,7 @@ on:
 
 env:
   MAJOR_VERSION: "8"
-  MINOR_VERSION: "3"
+  MINOR_VERSION: "4"
   DOTNET_VERSION: "8.0.x"
   UI_PROJECT_PATH: "src/MoneyFox.Ui/MoneyFox.Ui.csproj"
   CORE_TEST_PROJECT_PATH: "src/MoneyFox.Core.Tests/MoneyFox.Core.Tests.csproj"
