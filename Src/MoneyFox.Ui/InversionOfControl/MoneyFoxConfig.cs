@@ -1,5 +1,6 @@
 namespace MoneyFox.Ui.InversionOfControl;
 
+using Common.Navigation;
 using Common.Services;
 using Controls.CategorySelection;
 using Core.Common.Interfaces;
