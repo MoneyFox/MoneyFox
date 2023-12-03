@@ -25,11 +25,11 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
         CategorySelectionViewModel categorySelectionViewModel,
         IAptabaseClient aptabaseClient) : base(
         mediator: mediator,
-        dialogService: dialogService,
+        service: dialogService,
         toastService: toastService,
         categorySelectionViewModel: categorySelectionViewModel,
-        settingsFacade: settingsFacade,
-        aptabaseClient: aptabaseClient)
+        facade: settingsFacade,
+        client: aptabaseClient)
     {
         this.mediator = mediator;
         this.dialogService = dialogService;

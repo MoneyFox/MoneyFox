@@ -1,5 +1,7 @@
 namespace MoneyFox.Ui;
 
+using CommunityToolkit.Mvvm.ComponentModel;
+
 public interface INavigationService
 {
     Task GoTo<TViewModel>(object? parameter = null) where TViewModel : NavigableViewModel;
@@ -17,7 +19,7 @@ public interface INavigationService
     Task GoBackFromModalAsync();
 }
 
-public class NavigableViewModel
+public class NavigableViewModel : ObservableRecipient
 {
     public virtual void OnNavigated(object? parameter)
     {

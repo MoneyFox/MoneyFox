@@ -1,11 +1,12 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
-public partial class AddPaymentPage
+using Common.Navigation;
+
+public partial class AddPaymentPage : IBindablePage
 {
     public AddPaymentPage()
     {
         InitializeComponent();
-        BindingContext = App.GetViewModel<AddPaymentViewModel>();
     }
 
     private AddPaymentViewModel ViewModel => (AddPaymentViewModel)BindingContext;

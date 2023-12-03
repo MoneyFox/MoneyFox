@@ -8,11 +8,13 @@ using CommunityToolkit.Mvvm.Messaging;
 using Core.Queries;
 using MediatR;
 using Messages;
+using Payments.PaymentModification;
 
 public class DashboardViewModel : BasePageViewModel, IRecipient<BackupRestoredMessage>
 {
     private readonly IMapper mapper;
     private readonly IMediator mediator;
+    private readonly INavigationService navigationService;
     private ObservableCollection<AccountViewModel> accounts = new();
     private decimal assets;
     private decimal endOfMonthBalance;
@@ -20,10 +22,11 @@ public class DashboardViewModel : BasePageViewModel, IRecipient<BackupRestoredMe
     private decimal monthlyExpenses;
     private decimal monthlyIncomes;
 
-    public DashboardViewModel(IMediator mediator, IMapper mapper)
+    public DashboardViewModel(IMediator mediator, IMapper mapper, INavigationService navigationService)
     {
         this.mediator = mediator;
         this.mapper = mapper;
+        this.navigationService = navigationService;
     }
 
     public decimal Assets
@@ -86,7 +89,7 @@ public class DashboardViewModel : BasePageViewModel, IRecipient<BackupRestoredMe
         }
     }
 
-    public AsyncRelayCommand GoToAddPaymentCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddPaymentRoute));
+    public AsyncRelayCommand GoToAddPaymentCommand => new(async () => await navigationService.GoTo<AddPaymentViewModel>());
 
     public AsyncRelayCommand GoToAccountsCommand => new(async () => await Shell.Current.GoToAsync(Routes.AccountListRoute));
 

@@ -16,33 +16,18 @@ using MediatR;
 using Resources.Strings;
 using Serilog;
 
-public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttributable
+public abstract class ModifyPaymentViewModel(
+    IMediator mediator,
+    IDialogService service,
+    IToastService toastService,
+    CategorySelectionViewModel categorySelectionViewModel,
+    ISettingsFacade facade,
+    IAptabaseClient client) : NavigableViewModel, IQueryAttributable
 {
-    private readonly IAptabaseClient aptabaseClient;
-    private readonly IDialogService dialogService;
-    private readonly IMediator mediator;
-    private readonly ISettingsFacade settingsFacade;
-    private readonly IToastService toastService;
-    private ObservableCollection<AccountPickerViewModel> chargedAccounts = new();
+    private ObservableCollection<AccountPickerViewModel> chargedAccounts = [];
 
     private PaymentViewModel selectedPayment = new();
-    private ObservableCollection<AccountPickerViewModel> targetAccounts = new();
-
-    protected ModifyPaymentViewModel(
-        IMediator mediator,
-        IDialogService dialogService,
-        IToastService toastService,
-        CategorySelectionViewModel categorySelectionViewModel,
-        ISettingsFacade settingsFacade,
-        IAptabaseClient aptabaseClient)
-    {
-        this.mediator = mediator;
-        this.dialogService = dialogService;
-        this.toastService = toastService;
-        CategorySelectionViewModel = categorySelectionViewModel;
-        this.settingsFacade = settingsFacade;
-        this.aptabaseClient = aptabaseClient;
-    }
+    private ObservableCollection<AccountPickerViewModel> targetAccounts = [];
 
     public PaymentViewModel SelectedPayment
     {
@@ -55,7 +40,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
         }
     }
 
-    public CategorySelectionViewModel CategorySelectionViewModel { get; }
+    public CategorySelectionViewModel CategorySelectionViewModel { get; } = categorySelectionViewModel;
 
     public RecurrenceViewModel RecurrenceViewModel { get; protected set; } = new();
 
@@ -121,7 +106,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
                 a => new AccountPickerViewModel(
                     Id: a.Id,
                     Name: a.Name,
-                    CurrentBalance: new(amount: a.CurrentBalance, currencyAlphaIsoCode: settingsFacade.DefaultCurrency)))
+                    CurrentBalance: new(amount: a.CurrentBalance, currencyAlphaIsoCode: facade.DefaultCurrency)))
             .ToImmutableList();
 
         ChargedAccounts = new(pickerVms);
@@ -135,21 +120,21 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
     {
         if (SelectedPayment.ChargedAccount == null)
         {
-            await dialogService.ShowMessageAsync(title: Translations.MandatoryFieldEmptyTitle, message: Translations.AccountRequiredMessage);
+            await service.ShowMessageAsync(title: Translations.MandatoryFieldEmptyTitle, message: Translations.AccountRequiredMessage);
 
             return;
         }
 
         if (SelectedPayment.Amount < 0)
         {
-            await dialogService.ShowMessageAsync(title: Translations.AmountMayNotBeNegativeTitle, message: Translations.AmountMayNotBeNegativeMessage);
+            await service.ShowMessageAsync(title: Translations.AmountMayNotBeNegativeTitle, message: Translations.AmountMayNotBeNegativeMessage);
 
             return;
         }
 
         if (CategorySelectionViewModel.SelectedCategory?.RequireNote is true && string.IsNullOrEmpty(SelectedPayment.Note))
         {
-            await dialogService.ShowMessageAsync(title: Translations.MandatoryFieldEmptyTitle, message: Translations.ANoteForPaymentIsRequired);
+            await service.ShowMessageAsync(title: Translations.MandatoryFieldEmptyTitle, message: Translations.ANoteForPaymentIsRequired);
 
             return;
         }
@@ -159,7 +144,7 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
             && RecurrenceViewModel.EndDate.HasValue
             && RecurrenceViewModel.EndDate.Value.Date < DateTime.Today)
         {
-            await dialogService.ShowMessageAsync(title: Translations.InvalidEnddateTitle, message: Translations.InvalidEnddateMessage);
+            await service.ShowMessageAsync(title: Translations.InvalidEnddateTitle, message: Translations.InvalidEnddateMessage);
 
             return;
         }
@@ -172,13 +157,13 @@ public abstract class ModifyPaymentViewModel : BasePageViewModel, IQueryAttribut
         }
         catch (Exception ex)
         {
-            aptabaseClient.TrackEvent(eventName: "failed_to_modify_payment", props: new() { { "excpetion", ex } });
+            client.TrackEvent(eventName: "failed_to_modify_payment", props: new() { { "excpetion", ex } });
             Log.Error(exception: ex, messageTemplate: "Failed to modify payment");
             await toastService.ShowToastAsync(string.Format(format: Translations.UnknownErrorMessage, arg0: ex.Message));
         }
         finally
         {
-            await dialogService.HideLoadingDialogAsync();
+            await service.HideLoadingDialogAsync();
         }
     }
 }
