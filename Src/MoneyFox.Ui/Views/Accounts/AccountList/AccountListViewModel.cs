@@ -9,7 +9,7 @@ using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-public sealed class AccountListViewModel(IMediator mediator, IDialogService service) : NavigableViewModel, IRecipient<AccountsChangedMessage>
+public sealed class AccountListViewModel(ISender mediator, IDialogService service) : NavigableViewModel, IRecipient<AccountsChangedMessage>
 {
     private ReadOnlyObservableCollection<AccountGroup> accountGroup = null!;
 
