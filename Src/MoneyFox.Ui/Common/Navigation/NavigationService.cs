@@ -1,7 +1,7 @@
 namespace MoneyFox.Ui.Common.Navigation;
 
+using Extensions;
 using JetBrains.Annotations;
-using MoneyFox.Ui.Common.Extensions;
 
 [UsedImplicitly]
 internal sealed class NavigationService(IViewLocator locator) : INavigationService
@@ -12,7 +12,6 @@ internal sealed class NavigationService(IViewLocator locator) : INavigationServi
     {
         var view = locator.GetViewFor<TViewModel>();
         await Navigation.PushAsync((Page)view);
-
         ((NavigableViewModel)view.BindingContext).OnNavigated(parameter);
     }
 
