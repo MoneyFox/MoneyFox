@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Common.Navigation;
 
 using Domain.Exceptions;
+using Exceptions;
 using Extensions;
 using Views.About;
 using Views.Accounts.AccountList;
@@ -44,9 +45,8 @@ internal class ViewLocator(IServiceProvider serviceProvider) : IViewLocator
         (typeof(AddBudgetViewModel), typeof(AddBudgetPage)), (typeof(EditBudgetViewModel), typeof(EditBudgetPage)),
         (typeof(WelcomeViewModel), typeof(WelcomePage)), (typeof(SetupCurrencyViewModel), typeof(SetupCurrencyPage)),
         (typeof(SetupAccountsViewModel), typeof(SetupAccountPage)), (typeof(SetupCategoryViewModel), typeof(SetupCategoryPage)),
-        (typeof(SetupCompletionViewModel), typeof(SetupCompletionPage)),
-        (typeof(AboutViewModel), typeof(AboutPage)),
-        (typeof(SettingsViewModel), typeof(SettingsPage)),
+        (typeof(SetupCompletionViewModel), typeof(SetupCompletionPage)), (typeof(AboutViewModel), typeof(AboutPage)),
+        (typeof(SettingsViewModel), typeof(SettingsPage))
     ];
 
     private static readonly List<(Type ViewModelType, Type ViewType)> desktopViewLocatorDictionary =
@@ -67,19 +67,22 @@ internal class ViewLocator(IServiceProvider serviceProvider) : IViewLocator
         (typeof(AddBudgetViewModel), typeof(AddBudgetPage)), (typeof(EditBudgetViewModel), typeof(EditBudgetPage)),
         (typeof(WelcomeViewModel), typeof(WelcomePage)), (typeof(SetupCurrencyViewModel), typeof(SetupCurrencyPage)),
         (typeof(SetupAccountsViewModel), typeof(SetupAccountPage)), (typeof(SetupCategoryViewModel), typeof(SetupCategoryPage)),
-        (typeof(SetupCompletionViewModel), typeof(SetupCompletionPage)),
-        (typeof(AboutViewModel), typeof(AboutPage)),
-        (typeof(SettingsViewModel), typeof(SettingsPage)),
+        (typeof(SetupCompletionViewModel), typeof(SetupCompletionPage)), (typeof(AboutViewModel), typeof(AboutPage)),
+        (typeof(SettingsViewModel), typeof(SettingsPage))
     ];
 
     public IBindablePage GetViewFor<TViewModel>() where TViewModel : NavigableViewModel
     {
         var viewModel = serviceProvider.GetService<TViewModel>();
-        var view = (IBindablePage)serviceProvider.GetService(FindViewByViewModel(typeof(TViewModel)));
+        if (viewModel is null)
+        {
+            throw new ResolveDependencyException(typeof(TViewModel));
+        }
 
+        var view = (IBindablePage?)serviceProvider.GetService(FindViewByViewModel(typeof(TViewModel)));
         if (view is null)
         {
-            throw new NavigationException(viewModel!.GetType());
+            throw new NavigationException(typeof(TViewModel));
         }
 
         view.BindingContext = viewModel;
@@ -89,8 +92,18 @@ internal class ViewLocator(IServiceProvider serviceProvider) : IViewLocator
 
     public IBindablePage GetView<TView>() where TView : class, IBindablePage
     {
-        var view = (IBindablePage)serviceProvider.GetService(typeof(TView));
+        var view = (IBindablePage?)serviceProvider.GetService(typeof(TView));
+        if (view is null)
+        {
+            throw new ResolveDependencyException(typeof(TView));
+        }
+
         var viewModel = serviceProvider.GetService(FindViewModelByView(typeof(TView)));
+        if (viewModel is null)
+        {
+            throw new ViewModelForPageNotFoundException(typeof(TView));
+        }
+
         view.BindingContext = viewModel;
 
         return view;
@@ -98,13 +111,19 @@ internal class ViewLocator(IServiceProvider serviceProvider) : IViewLocator
 
     public Type GetViewTypeFor<TViewModel>() where TViewModel : NavigableViewModel
     {
-        return FindViewByViewModel(typeof(TViewModel));
+        var view = FindViewByViewModel(typeof(TViewModel));
+        if (view is null)
+        {
+            throw new NoPageForViewModelRegisteredException(typeof(TViewModel));
+        }
+
+        return view;
     }
 
     private static Type FindViewModelByView(Type viewType)
     {
-        var viewLocatorDictionary = DeviceInfo.Current.Idiom.UseDesktopPage() ? desktopViewLocatorDictionary : ViewLocator.viewLocatorDictionary;
-        foreach (var pair in viewLocatorDictionary)
+        var locatorDictionary = DeviceInfo.Current.Idiom.UseDesktopPage() ? desktopViewLocatorDictionary : viewLocatorDictionary;
+        foreach (var pair in locatorDictionary)
         {
             if (pair.ViewType == viewType)
             {
@@ -112,13 +131,13 @@ internal class ViewLocator(IServiceProvider serviceProvider) : IViewLocator
             }
         }
 
-        return null;
+        throw new NoViewModelForPageRegisteredException(viewType);
     }
 
     private static Type FindViewByViewModel(Type viewModelType)
     {
-        var viewLocatorDictionary = DeviceInfo.Current.Idiom.UseDesktopPage() ? desktopViewLocatorDictionary : ViewLocator.viewLocatorDictionary;
-        foreach (var pair in viewLocatorDictionary)
+        var locatorDictionary = DeviceInfo.Current.Idiom.UseDesktopPage() ? desktopViewLocatorDictionary : viewLocatorDictionary;
+        foreach (var pair in locatorDictionary)
         {
             if (pair.ViewModelType == viewModelType)
             {
@@ -126,6 +145,6 @@ internal class ViewLocator(IServiceProvider serviceProvider) : IViewLocator
             }
         }
 
-        return null;
+        throw new NoPageForViewModelRegisteredException(viewModelType);
     }
 }

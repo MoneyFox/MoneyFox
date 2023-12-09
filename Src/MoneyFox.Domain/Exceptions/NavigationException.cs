@@ -4,5 +4,5 @@ public class NavigationException : Exception
 {
     public NavigationException(string message, Exception innerException) : base(message: message, innerException: innerException) { }
 
-    public NavigationException(Type viewModelType) : base(message: $"Page for {viewModelType} not found") { }
+    public NavigationException(Type type) : base(message: $"Could not navigate to {type}") { }
 }
