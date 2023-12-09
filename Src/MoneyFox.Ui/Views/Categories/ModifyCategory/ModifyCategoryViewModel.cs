@@ -7,7 +7,7 @@ using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-public abstract class ModifyCategoryViewModel(IMediator mediator, IDialogService service) : NavigableViewModel
+public abstract class ModifyCategoryViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService) : NavigableViewModel
 {
     private CategoryViewModel selectedCategory = null!;
 
@@ -17,7 +17,7 @@ public abstract class ModifyCategoryViewModel(IMediator mediator, IDialogService
     {
         get => selectedCategory;
 
-        set
+        protected set
         {
             selectedCategory = value;
             OnPropertyChanged();
@@ -26,31 +26,31 @@ public abstract class ModifyCategoryViewModel(IMediator mediator, IDialogService
 
     protected abstract Task SaveCategoryAsync();
 
-    protected virtual async Task SaveCategoryBaseAsync()
+    protected async Task SaveCategoryBaseAsync()
     {
         if (string.IsNullOrEmpty(SelectedCategory.Name))
         {
-            await service.ShowMessageAsync(title: Translations.MandatoryFieldEmptyTitle, message: Translations.NameRequiredMessage);
+            await dialogService.ShowMessageAsync(title: Translations.MandatoryFieldEmptyTitle, message: Translations.NameRequiredMessage);
 
             return;
         }
 
         if (await mediator.Send(new GetIfCategoryWithNameExistsQuery(categoryName: SelectedCategory.Name, categoryId: SelectedCategory.Id)))
         {
-            await service.ShowMessageAsync(title: Translations.DuplicatedNameTitle, message: Translations.DuplicateCategoryMessage);
+            await dialogService.ShowMessageAsync(title: Translations.DuplicatedNameTitle, message: Translations.DuplicateCategoryMessage);
 
             return;
         }
 
         try
         {
-            await service.ShowLoadingDialogAsync(Translations.SavingCategoryMessage);
+            await dialogService.ShowLoadingDialogAsync(Translations.SavingCategoryMessage);
             await SaveCategoryAsync();
-            await Shell.Current.Navigation.PopModalAsync();
+            await navigationService.GoBack();
         }
         finally
         {
-            await service.HideLoadingDialogAsync();
+            await dialogService.HideLoadingDialogAsync();
         }
     }
 }

@@ -17,7 +17,8 @@ public class EditCategoryViewModel : ModifyCategoryViewModel
 
     public EditCategoryViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService) : base(
         mediator: mediator,
-        service: dialogService)
+        dialogService: dialogService,
+        navigationService: navigationService)
     {
         this.mediator = mediator;
         this.dialogService = dialogService;
@@ -67,7 +68,7 @@ public class EditCategoryViewModel : ModifyCategoryViewModel
                     negativeButtonText: Translations.CancelLabel))
             {
                 await mediator.Send(new DeleteCategoryById.Command(SelectedCategory.Id));
-                await navigationService.GoBackFromModalAsync();
+                await navigationService.GoBack();
             }
         }
     }
