@@ -1,5 +1,6 @@
 namespace MoneyFox.Ui.Tests.Views.Budget;
 
+using Common.Navigation;
 using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Features.BudgetCreation;

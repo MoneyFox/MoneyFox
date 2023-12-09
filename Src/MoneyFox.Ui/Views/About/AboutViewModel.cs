@@ -1,5 +1,6 @@
 namespace MoneyFox.Ui.Views.About;
 
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Interfaces;
 using Core.Interfaces;

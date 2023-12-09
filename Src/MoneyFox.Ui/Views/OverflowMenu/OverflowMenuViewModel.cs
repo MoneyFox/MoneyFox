@@ -5,6 +5,7 @@ using About;
 using Backup;
 using Budget;
 using Categories;
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using JetBrains.Annotations;
 using Resources.Strings;
@@ -13,15 +14,8 @@ using Settings;
 internal sealed record OverflowItemViewModel(string IconGlyph, string Name, OverflowMenuItemType Type);
 
 [UsedImplicitly]
-internal sealed class OverflowMenuViewModel : BasePageViewModel
+internal sealed class OverflowMenuViewModel(INavigationService service) : BasePageViewModel
 {
-    private readonly INavigationService navigationService;
-
-    public OverflowMenuViewModel(INavigationService navigationService)
-    {
-        this.navigationService = navigationService;
-    }
-
     public AsyncRelayCommand<OverflowItemViewModel> GoToSelectedItemCommand => new(async s => await GoToSelectedItem(s.Type));
 
     public static IReadOnlyList<OverflowItemViewModel> OverflowEntries
@@ -37,23 +31,23 @@ internal sealed class OverflowMenuViewModel : BasePageViewModel
         switch (menuType)
         {
             case OverflowMenuItemType.Budgets:
-                await navigationService.GoTo<BudgetListViewModel>();
+                await service.GoTo<BudgetListViewModel>();
 
                 break;
             case OverflowMenuItemType.Categories:
-                await navigationService.GoTo<CategoryListViewModel>();
+                await service.GoTo<CategoryListViewModel>();
 
                 break;
             case OverflowMenuItemType.Backup:
-                await navigationService.GoTo<BackupViewModel>();
+                await service.GoTo<BackupViewModel>();
 
                 break;
             case OverflowMenuItemType.Settings:
-                await navigationService.GoTo<SettingsViewModel>();
+                await service.GoTo<SettingsViewModel>();
 
                 break;
             case OverflowMenuItemType.About:
-                await navigationService.GoTo<AboutViewModel>();
+                await service.GoTo<AboutViewModel>();
 
                 break;
         }

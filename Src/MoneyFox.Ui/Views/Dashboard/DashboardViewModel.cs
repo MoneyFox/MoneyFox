@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using Accounts.AccountList;
 using Accounts.AccountModification;
 using AutoMapper;
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Queries;

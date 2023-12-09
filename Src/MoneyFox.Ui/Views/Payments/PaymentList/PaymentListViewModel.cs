@@ -3,6 +3,7 @@ namespace MoneyFox.Ui.Views.Payments.PaymentList;
 using System.Collections.ObjectModel;
 using Accounts.AccountModification;
 using AutoMapper;
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Queries;

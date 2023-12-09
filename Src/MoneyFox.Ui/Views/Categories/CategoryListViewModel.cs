@@ -2,6 +2,7 @@ namespace MoneyFox.Ui.Views.Categories;
 
 using System.Collections.ObjectModel;
 using System.Globalization;
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;

@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
 using Aptabase.Maui;
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using Controls.AccountPicker;
 using Controls.CategorySelection;

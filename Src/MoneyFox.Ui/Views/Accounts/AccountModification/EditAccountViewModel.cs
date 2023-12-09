@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Views.Accounts.AccountModification;
 
 using AutoMapper;
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Interfaces;
 using Core.Features._Legacy_.Accounts.DeleteAccountById;

@@ -15,12 +15,6 @@ internal sealed class NavigationService(IViewLocator locator) : INavigationServi
         await ((NavigableViewModel)view.BindingContext).OnNavigatedBackAsync(parameter);
     }
 
-    public async Task NavigateToAsync<T>() where T : ContentPage
-    {
-        var pageName = typeof(T).Name;
-        await Shell.Current.GoToAsync(pageName);
-    }
-
     public async Task OpenModalAsync<T>() where T : ContentPage
     {
         var pageName = typeof(T).Name;

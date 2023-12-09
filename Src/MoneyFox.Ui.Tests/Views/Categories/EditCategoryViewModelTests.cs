@@ -1,5 +1,6 @@
 namespace MoneyFox.Ui.Tests.Views.Categories;
 
+using Common.Navigation;
 using Core.Common.Interfaces;
 using Core.Features.CategoryDeletion;
 using Core.Queries;

@@ -2,6 +2,7 @@ namespace MoneyFox.Ui.Views.Budget.BudgetModification;
 
 using System.Collections.ObjectModel;
 using Categories.CategorySelection;
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Interfaces;
 using Core.Queries;

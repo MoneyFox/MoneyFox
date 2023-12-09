@@ -1,5 +1,6 @@
 namespace MoneyFox.Ui.Controls.CategorySelection;
 
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using Views;
 using Views.Categories.CategorySelection;

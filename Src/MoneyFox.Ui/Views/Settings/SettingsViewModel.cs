@@ -2,6 +2,7 @@ namespace MoneyFox.Ui.Views.Settings;
 
 using System.Collections.Immutable;
 using System.Globalization;
+using Common.Navigation;
 using Core.Common.Settings;
 using Core.Queries;
 using Domain;

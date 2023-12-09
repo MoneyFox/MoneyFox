@@ -1,19 +1,6 @@
-namespace MoneyFox.Ui;
+namespace MoneyFox.Ui.Common.Navigation;
 
 using CommunityToolkit.Mvvm.ComponentModel;
-
-public interface INavigationService
-{
-    Task GoTo<TViewModel>(object? parameter = null, bool modalNavigation = false) where TViewModel : NavigableViewModel;
-
-    Task GoBack(object? parameter = null);
-
-    Task NavigateToAsync<TPage>() where TPage : ContentPage;
-
-    Task OpenModalAsync<T>() where T : ContentPage;
-
-    Task GoBackFromModalAsync();
-}
 
 public class NavigableViewModel : ObservableObject
 {

@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Views.Budget;
 
 using System.Collections.ObjectModel;
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;

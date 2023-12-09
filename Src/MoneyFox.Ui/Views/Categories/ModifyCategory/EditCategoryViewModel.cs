@@ -1,5 +1,6 @@
 namespace MoneyFox.Ui.Views.Categories.ModifyCategory;
 
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Interfaces;
 using Core.Features._Legacy_.Categories.UpdateCategory;

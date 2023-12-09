@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Tests.Views.Payments;
 
 using Aptabase.Maui;
+using Common.Navigation;
 using Core.Common.Interfaces;
 using Core.Common.Settings;
 using Domain;
