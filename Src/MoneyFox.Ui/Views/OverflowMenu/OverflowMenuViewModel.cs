@@ -37,23 +37,23 @@ internal sealed class OverflowMenuViewModel : BasePageViewModel
         switch (menuType)
         {
             case OverflowMenuItemType.Budgets:
-                await navigationService.NavigateToAsync<BudgetListPage>();
+                await navigationService.GoTo<BudgetListViewModel>();
 
                 break;
             case OverflowMenuItemType.Categories:
-                await navigationService.NavigateToAsync<CategoryListPage>();
+                await navigationService.GoTo<CategoryListViewModel>();
 
                 break;
             case OverflowMenuItemType.Backup:
-                await navigationService.NavigateToAsync<BackupPage>();
+                await navigationService.GoTo<BackupViewModel>();
 
                 break;
             case OverflowMenuItemType.Settings:
-                await navigationService.NavigateToAsync<SettingsPage>();
+                await navigationService.GoTo<SettingsViewModel>();
 
                 break;
             case OverflowMenuItemType.About:
-                await navigationService.NavigateToAsync<AboutPage>();
+                await navigationService.GoTo<AboutViewModel>();
 
                 break;
         }

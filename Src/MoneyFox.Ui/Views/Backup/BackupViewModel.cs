@@ -11,15 +11,15 @@ using MediatR;
 using Resources.Strings;
 using Serilog;
 
-internal sealed class BackupViewModel : BasePageViewModel
+internal sealed class BackupViewModel(
+    IMediator mediator,
+    IBackupService backupService,
+    IDialogService dialogService,
+    IConnectivityAdapter connectivity,
+    ISettingsFacade settingsFacade,
+    IToastService toastService,
+    IOneDriveProfileService oneDriveProfileService) : NavigableViewModel
 {
-    private readonly IBackupService backupService;
-    private readonly IConnectivityAdapter connectivity;
-    private readonly IDialogService dialogService;
-    private readonly IMediator mediator;
-    private readonly IOneDriveProfileService oneDriveProfileService;
-    private readonly ISettingsFacade settingsFacade;
-    private readonly IToastService toastService;
     private bool backupAvailable;
 
     private DateTime backupLastModified;
@@ -27,24 +27,6 @@ internal sealed class BackupViewModel : BasePageViewModel
 
     private ImageSource? profilePicture;
     private UserAccountViewModel userAccount = new();
-
-    public BackupViewModel(
-        IMediator mediator,
-        IBackupService backupService,
-        IDialogService dialogService,
-        IConnectivityAdapter connectivity,
-        ISettingsFacade settingsFacade,
-        IToastService toastService,
-        IOneDriveProfileService oneDriveProfileService)
-    {
-        this.backupService = backupService;
-        this.dialogService = dialogService;
-        this.connectivity = connectivity;
-        this.settingsFacade = settingsFacade;
-        this.toastService = toastService;
-        this.mediator = mediator;
-        this.oneDriveProfileService = oneDriveProfileService;
-    }
 
     public UserAccountViewModel UserAccount
     {

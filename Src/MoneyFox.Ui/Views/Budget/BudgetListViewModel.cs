@@ -7,15 +7,8 @@ using Core.Common.Extensions;
 using Core.Queries.BudgetList;
 using MediatR;
 
-public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<BudgetsChangedMessage>
+public sealed class BudgetListViewModel(ISender sender) : NavigableViewModel, IRecipient<BudgetsChangedMessage>
 {
-    private readonly ISender sender;
-
-    public BudgetListViewModel(ISender sender)
-    {
-        this.sender = sender;
-    }
-
     public bool HasBudgets => Budgets.Any();
 
     public ObservableCollection<BudgetListItemViewModel> Budgets { get; } = new();
@@ -23,7 +16,7 @@ public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<BudgetsC
     public decimal BudgetedAmount => Budgets.Sum(b => b.MonthlyBudget);
     public decimal SpentAmount => Budgets.Sum(b => b.MonthlySpending);
 
-    public AsyncRelayCommand InitializeCommand => new(Initialize);
+    public AsyncRelayCommand InitializeCommand => new(InitializeAsync);
 
     public AsyncRelayCommand GoToAddBudgetCommand => new(GoToAddBudget);
 
@@ -31,10 +24,15 @@ public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<BudgetsC
 
     public void Receive(BudgetsChangedMessage message)
     {
-        Initialize().GetAwaiter().GetResult();
+        InitializeAsync().GetAwaiter().GetResult();
     }
 
-    private async Task Initialize()
+    public override Task OnNavigatedAsync(object? parameter)
+    {
+        return InitializeAsync();
+    }
+
+    private async Task InitializeAsync()
     {
         var budgetsListData = await sender.Send(new LoadBudgetDataForList.Query());
         Budgets.Clear();

@@ -10,18 +10,9 @@ using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-public class CategoryListViewModel : BasePageViewModel, IRecipient<CategoriesChangedMessage>
+public class CategoryListViewModel(IMediator mediator, IDialogService service) : NavigableViewModel, IRecipient<CategoriesChangedMessage>
 {
-    private readonly IDialogService dialogService;
-    private readonly IMediator mediator;
-
     private ReadOnlyObservableCollection<CategoryGroup> categoryGroups = null!;
-
-    public CategoryListViewModel(IMediator mediator, IDialogService dialogService)
-    {
-        this.mediator = mediator;
-        this.dialogService = dialogService;
-    }
 
     public ReadOnlyObservableCollection<CategoryGroup> CategoryGroups
     {
@@ -43,9 +34,9 @@ public class CategoryListViewModel : BasePageViewModel, IRecipient<CategoriesCha
         SearchCategoryAsync().GetAwaiter().GetResult();
     }
 
-    public async Task InitializeAsync()
+    public override Task OnNavigatedAsync(object? parameter)
     {
-        await SearchCategoryAsync();
+        return SearchCategoryAsync();
     }
 
     private async Task SearchCategoryAsync(string searchTerm = "")
@@ -65,11 +56,11 @@ public class CategoryListViewModel : BasePageViewModel, IRecipient<CategoriesCha
             return;
         }
 
-        if (await dialogService.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeleteCategoryConfirmationMessage))
+        if (await service.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeleteCategoryConfirmationMessage))
         {
             var numberOfAssignedPayments = await mediator.Send(new GetNumberOfPaymentsAssignedToCategory.Query(categoryListItemViewModel.Id));
             if (numberOfAssignedPayments == 0
-                || await dialogService.ShowConfirmMessageAsync(
+                || await service.ShowConfirmMessageAsync(
                     title: Translations.RemoveCategoryAssignmentTitle,
                     message: string.Format(format: Translations.RemoveCategoryAssignmentOnPaymentMessage, arg0: numberOfAssignedPayments),
                     positiveButtonText: Translations.RemoveLabel,
