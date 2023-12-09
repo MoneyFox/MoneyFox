@@ -5,16 +5,9 @@ using CommunityToolkit.Mvvm.Input;
 using Views;
 using Views.Categories.CategorySelection;
 
-public class CategorySelectionViewModel : BasePageViewModel
+public class CategorySelectionViewModel(INavigationService navigationService) : NavigableViewModel
 {
-    private readonly INavigationService navigationService;
-
     private SelectedCategoryViewModel? selectedCategory;
-
-    public CategorySelectionViewModel(INavigationService navigationService)
-    {
-        this.navigationService = navigationService;
-    }
 
     public SelectedCategoryViewModel? SelectedCategory
     {
@@ -27,12 +20,7 @@ public class CategorySelectionViewModel : BasePageViewModel
         }
     }
 
-    public AsyncRelayCommand GoToSelectCategoryDialogCommand => new(async () => await navigationService.OpenModalAsync<SelectCategoryPage>());
+    public AsyncRelayCommand GoToSelectCategoryDialogCommand => new( () => navigationService.GoTo<CategorySelectionViewModel>());
 
     public RelayCommand ResetCategoryCommand => new(() => SelectedCategory = null);
-
-    protected override void OnDeactivated()
-    {
-        Messenger.UnregisterAll(this);
-    }
 }

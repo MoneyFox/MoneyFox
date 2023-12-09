@@ -27,8 +27,8 @@ public class EditCategoryViewModelTests
     public async Task CallsDelete_WhenConfirmationWasConfirmed()
     {
         // Arrange
-        _ = dialogService.ShowConfirmMessageAsync(title: Arg.Any<string>(), message: Arg.Any<string>()).Returns(true);
-        _ = mediator.Send(Arg.Any<GetCategoryById.Query>())
+        dialogService.ShowConfirmMessageAsync(title: Arg.Any<string>(), message: Arg.Any<string>()).Returns(true);
+        mediator.Send(Arg.Any<GetCategoryById.Query>())
         .Returns(
             new CategoryData(
                 Id: 4,
@@ -39,7 +39,7 @@ public class EditCategoryViewModelTests
                 LastModified: DateTime.Now));
 
         // Act
-        await vm.OnNavigatedBackAsync(4);
+        await vm.OnNavigatedAsync(4);
         await vm.DeleteCommand.ExecuteAsync(null);
 
         // Assert
