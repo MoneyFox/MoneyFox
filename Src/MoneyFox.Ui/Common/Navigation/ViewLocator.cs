@@ -1,5 +1,6 @@
 namespace MoneyFox.Ui.Common.Navigation;
 
+using Domain.Exceptions;
 using Extensions;
 using Views.About;
 using Views.Accounts.AccountList;
@@ -75,6 +76,12 @@ internal class ViewLocator(IServiceProvider serviceProvider) : IViewLocator
     {
         var viewModel = serviceProvider.GetService<TViewModel>();
         var view = (IBindablePage)serviceProvider.GetService(FindViewByViewModel(typeof(TViewModel)));
+
+        if (view is null)
+        {
+            throw new NavigationException(viewModel!.GetType());
+        }
+
         view.BindingContext = viewModel;
 
         return view;
