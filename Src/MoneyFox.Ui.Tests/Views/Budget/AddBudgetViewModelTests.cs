@@ -70,10 +70,10 @@ public class AddBudgetViewModelTests
         await viewModel.SaveBudgetCommand.ExecuteAsync(null);
 
         // Assert
-        _ = passedQuery.Should().NotBeNull();
-        _ = passedQuery!.Name.Should().Be(testBudget.Name);
-        _ = passedQuery.SpendingLimit.Should().Be(testBudget.SpendingLimit);
-        _ = passedQuery.Categories.Should().BeEquivalentTo(testBudget.Categories);
+        passedQuery.Should().NotBeNull();
+        passedQuery!.Name.Should().Be(testBudget.Name);
+        passedQuery.SpendingLimit.Should().Be(testBudget.SpendingLimit);
+        passedQuery.Categories.Should().BeEquivalentTo(testBudget.Categories);
         await navigationService.Received(1).GoBack();
     }
 
@@ -88,7 +88,7 @@ public class AddBudgetViewModelTests
         viewModel.RemoveCategoryCommand.Execute(budgetCategoryViewModel);
 
         // Assert
-        _ = viewModel.SelectedCategories.Should().BeEmpty();
+        viewModel.SelectedCategories.Should().BeEmpty();
     }
 
     [Fact]
@@ -107,7 +107,7 @@ public class AddBudgetViewModelTests
         public void OnInitialized()
         {
             // Assert
-            _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
+            viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
         }
 
         [Fact]
@@ -117,7 +117,7 @@ public class AddBudgetViewModelTests
             viewModel.Name = string.Empty;
 
             // Assert
-            _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
+            viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
         }
     }
 
@@ -134,7 +134,7 @@ public class AddBudgetViewModelTests
             viewModel.NumberOfMonths = 2;
 
             // Assert
-            _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeTrue();
+            viewModel.SaveBudgetCommand.CanExecute(null).Should().BeTrue();
         }
     }
 }
