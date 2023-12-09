@@ -7,6 +7,5 @@ public partial class AboutPage : IBindablePage
     public AboutPage()
     {
         InitializeComponent();
-        BindingContext = App.GetViewModel<AboutViewModel>();
     }
 }

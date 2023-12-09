@@ -43,7 +43,9 @@ internal class ViewLocator(IServiceProvider serviceProvider) : IViewLocator
         (typeof(AddBudgetViewModel), typeof(AddBudgetPage)), (typeof(EditBudgetViewModel), typeof(EditBudgetPage)),
         (typeof(WelcomeViewModel), typeof(WelcomePage)), (typeof(SetupCurrencyViewModel), typeof(SetupCurrencyPage)),
         (typeof(SetupAccountsViewModel), typeof(SetupAccountPage)), (typeof(SetupCategoryViewModel), typeof(SetupCategoryPage)),
-        (typeof(SetupCompletionViewModel), typeof(SetupCompletionPage))
+        (typeof(SetupCompletionViewModel), typeof(SetupCompletionPage)),
+        (typeof(AboutViewModel), typeof(AboutPage)),
+        (typeof(SettingsViewModel), typeof(SettingsPage)),
     ];
 
     private static readonly List<(Type ViewModelType, Type ViewType)> desktopViewLocatorDictionary =
@@ -64,7 +66,9 @@ internal class ViewLocator(IServiceProvider serviceProvider) : IViewLocator
         (typeof(AddBudgetViewModel), typeof(AddBudgetPage)), (typeof(EditBudgetViewModel), typeof(EditBudgetPage)),
         (typeof(WelcomeViewModel), typeof(WelcomePage)), (typeof(SetupCurrencyViewModel), typeof(SetupCurrencyPage)),
         (typeof(SetupAccountsViewModel), typeof(SetupAccountPage)), (typeof(SetupCategoryViewModel), typeof(SetupCategoryPage)),
-        (typeof(SetupCompletionViewModel), typeof(SetupCompletionPage))
+        (typeof(SetupCompletionViewModel), typeof(SetupCompletionPage)),
+        (typeof(AboutViewModel), typeof(AboutPage)),
+        (typeof(SettingsViewModel), typeof(SettingsPage)),
     ];
 
     public IBindablePage GetViewFor<TViewModel>() where TViewModel : NavigableViewModel

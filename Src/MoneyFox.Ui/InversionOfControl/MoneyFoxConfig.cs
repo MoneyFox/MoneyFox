@@ -119,6 +119,7 @@ public sealed class MoneyFoxConfig
         services.AddTransient<EditPaymentPage>();
         services.AddTransient<PaymentListPage>();
         services.AddTransient<SettingsPage>();
+        services.AddTransient<AboutPage>();
         services.AddTransient<PaymentForCategoryListPage>();
         services.AddTransient<StatisticAccountMonthlyCashFlowPage>();
         services.AddTransient<StatisticCashFlowPage>();
