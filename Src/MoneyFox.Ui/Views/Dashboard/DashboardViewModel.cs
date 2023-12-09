@@ -12,7 +12,7 @@ using MediatR;
 using Messages;
 using Payments.PaymentModification;
 
-public class DashboardViewModel : BasePageViewModel, IRecipient<BackupRestoredMessage>
+public class DashboardViewModel : NavigableViewModel, IRecipient<BackupRestoredMessage>
 {
     private readonly IMapper mapper;
     private readonly IMediator mediator;
@@ -91,9 +91,9 @@ public class DashboardViewModel : BasePageViewModel, IRecipient<BackupRestoredMe
         }
     }
 
-    public AsyncRelayCommand GoToAddPaymentCommand => new(async () => await navigationService.GoTo<AddPaymentViewModel>());
+    public AsyncRelayCommand GoToAddPaymentCommand => new(() => navigationService.GoTo<AddPaymentViewModel>());
 
-    public AsyncRelayCommand GoToAccountsCommand => new(async () => await navigationService.GoTo<AccountListViewModel>());
+    public AsyncRelayCommand GoToAccountsCommand => new(() => navigationService.GoTo<AccountListViewModel>());
 
     public AsyncRelayCommand<AccountViewModel> GoToTransactionListCommand
         => new(async accountViewModel => await Shell.Current.GoToAsync($"{Routes.PaymentListRoute}?accountId={accountViewModel!.Id}"));
@@ -101,6 +101,11 @@ public class DashboardViewModel : BasePageViewModel, IRecipient<BackupRestoredMe
     public void Receive(BackupRestoredMessage message)
     {
         InitializeAsync().GetAwaiter().GetResult();
+    }
+
+    public override Task OnNavigatedAsync(object? parameter)
+    {
+        return InitializeAsync();
     }
 
     public async Task InitializeAsync()
