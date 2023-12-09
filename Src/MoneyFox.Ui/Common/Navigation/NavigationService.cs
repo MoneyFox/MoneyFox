@@ -21,11 +21,6 @@ internal sealed class NavigationService(IViewLocator locator) : INavigationServi
         await Shell.Current.GoToModalAsync(pageName);
     }
 
-    public async Task GoBackFromModalAsync()
-    {
-        await Shell.Current.Navigation.PopModalAsync();
-    }
-
     public async Task GoTo<TViewModel>(object? parameter = null, bool modalNavigation = false) where TViewModel : NavigableViewModel
     {
         var view = locator.GetViewFor<TViewModel>();

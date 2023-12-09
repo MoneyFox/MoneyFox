@@ -29,7 +29,7 @@ internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
             Categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
 
         await sender.Send(query);
-        await navigationService.GoBackFromModalAsync();
+        await navigationService.GoBack();
         _ = Messenger.Send(new BudgetsChangedMessage());
     }
 }

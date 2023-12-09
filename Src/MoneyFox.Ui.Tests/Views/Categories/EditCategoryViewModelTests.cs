@@ -44,7 +44,7 @@ public class EditCategoryViewModelTests
 
         // Assert
         await mediator.Received(1).Send(request: Arg.Any<DeleteCategoryById.Command>(), cancellationToken: Arg.Any<CancellationToken>());
-        await navigationService.Received(1).GoBackFromModalAsync();
+        await navigationService.Received(1).GoBack();
     }
 
     [Fact]
@@ -58,6 +58,6 @@ public class EditCategoryViewModelTests
 
         // Assert
         await mediator.Received(0).Send(request: Arg.Any<DeleteCategoryById.Command>(), cancellationToken: Arg.Any<CancellationToken>());
-        await navigationService.Received(0).GoBackFromModalAsync();
+        await navigationService.Received(0).GoBack();
     }
 }

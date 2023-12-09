@@ -38,7 +38,7 @@ public class EditAccountViewModel : ModifyAccountViewModel
         SelectedAccountVm = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
     }
 
-    protected override async Task SaveAccountAsync()
+    protected override Task SaveAccountAsync()
     {
         var command = new UpdateAccount.Command(
             Id: SelectedAccountVm.Id,
@@ -46,7 +46,7 @@ public class EditAccountViewModel : ModifyAccountViewModel
             Note: SelectedAccountVm.Note,
             IsExcluded: SelectedAccountVm.IsExcluded);
 
-        await mediator.Send(command);
+        return mediator.Send(command);
     }
 
     private async Task DeleteAsync()
@@ -54,7 +54,7 @@ public class EditAccountViewModel : ModifyAccountViewModel
         if (await dialogService.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeleteAccountConfirmationMessage))
         {
             await mediator.Send(new DeactivateAccountByIdCommand(SelectedAccountVm.Id));
-            await navigationService.GoBackFromModalAsync();
+            await navigationService.GoBack();
         }
     }
 }

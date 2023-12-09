@@ -74,7 +74,7 @@ public class AddBudgetViewModelTests
         _ = passedQuery!.Name.Should().Be(testBudget.Name);
         _ = passedQuery.SpendingLimit.Should().Be(testBudget.SpendingLimit);
         _ = passedQuery.Categories.Should().BeEquivalentTo(testBudget.Categories);
-        await navigationService.Received(1).GoBackFromModalAsync();
+        await navigationService.Received(1).GoBack();
     }
 
     [Fact]

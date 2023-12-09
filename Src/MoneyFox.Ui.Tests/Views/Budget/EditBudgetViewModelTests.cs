@@ -117,7 +117,7 @@ public class EditBudgetViewModelTests
             _ = capturedCommand!.Name.Should().Be(testBudget.Name);
             _ = capturedCommand.SpendingLimit.Should().Be(testBudget.SpendingLimit);
             _ = capturedCommand.Categories.Should().BeEquivalentTo(testBudget.Categories);
-            await navigationService.Received(1).GoBackFromModalAsync();
+            await navigationService.Received(1).GoBack();
         }
     }
 
@@ -187,7 +187,7 @@ public class EditBudgetViewModelTests
             // Assert
             _ = capturedCommand.Should().NotBeNull();
             _ = capturedCommand!.BudgetId.Value.Should().Be(testBudget.Id);
-            await navigationService.Received(1).GoBackFromModalAsync();
+            await navigationService.Received(1).GoBack();
         }
 
         [Fact]
@@ -201,7 +201,7 @@ public class EditBudgetViewModelTests
 
             // Assert
             await sender.Received(0).Send(Arg.Any<DeleteBudget.Command>());
-            await navigationService.Received(0).GoBackFromModalAsync();
+            await navigationService.Received(0).GoBack();
         }
     }
 
