@@ -1,13 +1,14 @@
 namespace MoneyFox.Ui.Views.Setup;
 
-using Common.Extensions;
+using Accounts.AccountModification;
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 
-public sealed class SetupAccountsViewModel : BasePageViewModel
+public sealed class SetupAccountsViewModel(INavigationService navigationService) : BasePageViewModel
 {
-    public AsyncRelayCommand GoToAddAccountCommand => new(async () => await Shell.Current.GoToModalAsync(Routes.AddAccountRoute));
+    public AsyncRelayCommand GoToAddAccountCommand => new(() => navigationService.GoBack<AddAccountViewModel>());
 
-    public AsyncRelayCommand NextStepCommand => new(async () => await Shell.Current.GoToAsync(Routes.CategoryIntroductionRoute));
+    public AsyncRelayCommand NextStepCommand => new(() => navigationService.GoTo<SetupCategoryViewModel>());
 
-    public AsyncRelayCommand BackCommand => new(Shell.Current.Navigation.PopAsync);
+    public AsyncRelayCommand BackCommand => new(() => navigationService.GoBack());
 }
