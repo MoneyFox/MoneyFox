@@ -73,7 +73,6 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel, IQueryAttribu
             var command = new DeleteBudget.Command(budgetId: Id);
             await sender.Send(command);
             await navigationService.GoBack();
-            _ = Messenger.Send(new BudgetsChangedMessage());
         }
     }
 
@@ -88,6 +87,5 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel, IQueryAttribu
 
         await sender.Send(command);
         await navigationService.GoBack();
-        _ = Messenger.Send(new BudgetsChangedMessage());
     }
 }

@@ -30,6 +30,5 @@ internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
 
         await sender.Send(query);
         await navigationService.GoBack();
-        _ = Messenger.Send(new BudgetsChangedMessage());
     }
 }

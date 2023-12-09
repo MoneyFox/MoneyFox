@@ -7,6 +7,5 @@ public partial class BudgetListPage : IBindablePage
     public BudgetListPage()
     {
         InitializeComponent();
-        BindingContext = App.GetViewModel<BudgetListViewModel>();
     }
 }

@@ -9,7 +9,7 @@ using Core.Queries;
 using Domain.Aggregates.BudgetAggregate;
 using MediatR;
 
-internal abstract class ModifyBudgetViewModel : BasePageViewModel, IQueryAttributable
+internal abstract class ModifyBudgetViewModel : NavigableViewModel
 {
     private readonly IDialogService dialogService;
     private readonly INavigationService navigationService;

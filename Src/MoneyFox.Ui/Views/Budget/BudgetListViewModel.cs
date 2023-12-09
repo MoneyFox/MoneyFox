@@ -1,14 +1,14 @@
 namespace MoneyFox.Ui.Views.Budget;
 
 using System.Collections.ObjectModel;
+using BudgetModification;
 using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;
 using Core.Queries.BudgetList;
 using MediatR;
 
-public sealed class BudgetListViewModel(ISender sender) : NavigableViewModel, IRecipient<BudgetsChangedMessage>
+public sealed class BudgetListViewModel(ISender sender, INavigationService navigationService) : NavigableViewModel
 {
     public bool HasBudgets => Budgets.Any();
 
@@ -19,16 +19,16 @@ public sealed class BudgetListViewModel(ISender sender) : NavigableViewModel, IR
 
     public AsyncRelayCommand InitializeCommand => new(InitializeAsync);
 
-    public AsyncRelayCommand GoToAddBudgetCommand => new(GoToAddBudget);
+    public AsyncRelayCommand GoToAddBudgetCommand => new(() => navigationService.GoTo<AddBudgetViewModel>());
 
     public AsyncRelayCommand<BudgetListItemViewModel> EditBudgetCommand => new(EditBudgetAsync);
 
-    public void Receive(BudgetsChangedMessage message)
+    public override Task OnNavigatedAsync(object? parameter)
     {
-        InitializeAsync().GetAwaiter().GetResult();
+        return InitializeAsync();
     }
 
-    public override Task OnNavigatedAsync(object? parameter)
+    public override Task OnNavigatedBackAsync(object? parameter)
     {
         return InitializeAsync();
     }
@@ -54,18 +54,8 @@ public sealed class BudgetListViewModel(ISender sender) : NavigableViewModel, IR
         OnPropertyChanged(nameof(HasBudgets));
     }
 
-    private static async Task GoToAddBudget()
+    private Task EditBudgetAsync(BudgetListItemViewModel? selectedBudget)
     {
-        await Shell.Current.GoToAsync(Routes.AddBudgetRoute);
-    }
-
-    private async Task EditBudgetAsync(BudgetListItemViewModel? selectedBudget)
-    {
-        if (selectedBudget == null)
-        {
-            return;
-        }
-
-        await Shell.Current.GoToAsync($"{Routes.EditBudgetRoute}?budgetId={selectedBudget.Id}");
+        return selectedBudget == null ? Task.CompletedTask : navigationService.GoTo<EditBudgetViewModel>(selectedBudget.Id);
     }
 }
