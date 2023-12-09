@@ -9,9 +9,10 @@ using Core.Common.Interfaces;
 using Core.Features.CategoryDeletion;
 using Core.Queries;
 using MediatR;
+using ModifyCategory;
 using Resources.Strings;
 
-public class CategoryListViewModel(IMediator mediator, IDialogService service) : NavigableViewModel, IRecipient<CategoriesChangedMessage>
+public class CategoryListViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService) : NavigableViewModel, IRecipient<CategoriesChangedMessage>
 {
     private ReadOnlyObservableCollection<CategoryGroup> categoryGroups = null!;
 
@@ -21,10 +22,10 @@ public class CategoryListViewModel(IMediator mediator, IDialogService service) :
         private set => SetProperty(field: ref categoryGroups, newValue: value);
     }
 
-    public AsyncRelayCommand GoToAddCategoryCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddCategoryRoute));
+    public AsyncRelayCommand GoToAddCategoryCommand => new(() => navigationService.GoTo<AddCategoryViewModel>());
 
     public AsyncRelayCommand<CategoryListItemViewModel> GoToEditCategoryCommand
-        => new(async cvm => await Shell.Current.GoToAsync($"{Routes.EditCategoryRoute}?categoryId={cvm?.Id}"));
+        => new(cvm => navigationService.GoTo<EditCategoryViewModel>(cvm!.Id));
 
     public AsyncRelayCommand<string> SearchCategoryCommand => new(async s => await SearchCategoryAsync(s ?? string.Empty));
 
@@ -36,6 +37,11 @@ public class CategoryListViewModel(IMediator mediator, IDialogService service) :
     }
 
     public override Task OnNavigatedAsync(object? parameter)
+    {
+        return SearchCategoryAsync();
+    }
+
+    public override Task OnNavigatedBackAsync(object? parameter)
     {
         return SearchCategoryAsync();
     }
@@ -57,11 +63,11 @@ public class CategoryListViewModel(IMediator mediator, IDialogService service) :
             return;
         }
 
-        if (await service.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeleteCategoryConfirmationMessage))
+        if (await dialogService.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeleteCategoryConfirmationMessage))
         {
             var numberOfAssignedPayments = await mediator.Send(new GetNumberOfPaymentsAssignedToCategory.Query(categoryListItemViewModel.Id));
             if (numberOfAssignedPayments == 0
-                || await service.ShowConfirmMessageAsync(
+                || await dialogService.ShowConfirmMessageAsync(
                     title: Translations.RemoveCategoryAssignmentTitle,
                     message: string.Format(format: Translations.RemoveCategoryAssignmentOnPaymentMessage, arg0: numberOfAssignedPayments),
                     positiveButtonText: Translations.RemoveLabel,

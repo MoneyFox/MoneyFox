@@ -17,7 +17,7 @@ public class EditCategoryViewModel : ModifyCategoryViewModel
 
     public EditCategoryViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService) : base(
         mediator: mediator,
-        dialogService: dialogService)
+        service: dialogService)
     {
         this.mediator = mediator;
         this.dialogService = dialogService;
@@ -26,8 +26,9 @@ public class EditCategoryViewModel : ModifyCategoryViewModel
 
     public AsyncRelayCommand DeleteCommand => new(DeleteAsync);
 
-    public async Task InitializeAsync(int categoryId)
+    public override async Task OnNavigatedAsync(object? parameter)
     {
+        var categoryId = Convert.ToInt32(parameter);
         var categoryData = await mediator.Send(new GetCategoryById.Query(categoryId));
         SelectedCategory = new()
         {
