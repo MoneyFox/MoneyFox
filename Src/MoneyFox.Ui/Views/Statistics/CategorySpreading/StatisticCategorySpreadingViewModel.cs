@@ -36,6 +36,11 @@ internal sealed class StatisticCategorySpreadingViewModel : StatisticViewModel
         }
     }
 
+    public override Task OnNavigatedAsync(object? parameter)
+    {
+        return LoadAsync();
+    }
+
     public AsyncRelayCommand LoadDataCommand => new(LoadAsync);
 
     protected override async Task LoadAsync()

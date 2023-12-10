@@ -49,11 +49,9 @@ internal sealed class StatisticAccountMonthlyCashFlowViewModel : StatisticViewMo
         }
     }
 
-    public AsyncRelayCommand InitCommand => new(InitAsync);
-
     public AsyncRelayCommand LoadDataCommand => new(LoadAsync);
 
-    private async Task InitAsync()
+    public override async Task OnNavigatedAsync(object? parameter)
     {
         Accounts.Clear();
         var accounts = mapper.Map<List<AccountViewModel>>(await Mediator.Send(new GetAccountsQuery()));

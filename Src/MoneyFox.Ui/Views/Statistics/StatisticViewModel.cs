@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Views.Statistics;
 
 using System.Globalization;
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;
@@ -9,7 +10,7 @@ using MediatR;
 using Resources.Strings;
 using SkiaSharp;
 
-internal abstract class StatisticViewModel : BasePageViewModel, IRecipient<DateSelectedMessage>
+internal abstract class StatisticViewModel : NavigableViewModel, IRecipient<DateSelectedMessage>
 {
     protected readonly IMediator Mediator;
     private DateTime endDate;

@@ -1,10 +1,17 @@
 namespace MoneyFox.Ui.Views.Statistics.Selector;
 
+using CashFlow;
+using CategoryProgression;
+using CategorySpreading;
+using CategorySummary;
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
+using MonthlyAccountCashFlow;
 using Resources.Strings;
 
-internal sealed class StatisticSelectorViewModel : BasePageViewModel
+internal sealed class StatisticSelectorViewModel(INavigationService navigationService) : NavigableViewModel
 {
+
     public static List<StatisticSelectorTypeViewModel> StatisticItems
         => new()
         {
@@ -47,28 +54,28 @@ internal sealed class StatisticSelectorViewModel : BasePageViewModel
 
     public AsyncRelayCommand<StatisticSelectorTypeViewModel> GoToStatisticCommand => new(async s => await GoToStatisticAsync(s!.Type));
 
-    private static async Task GoToStatisticAsync(StatisticType type)
+    private async Task GoToStatisticAsync(StatisticType type)
     {
         switch (type)
         {
             case StatisticType.Cashflow:
-                await Shell.Current.GoToAsync(Routes.StatisticCashFlowRoute);
+                await navigationService.GoTo<StatisticCashFlowViewModel>();
 
                 break;
             case StatisticType.CategorySpreading:
-                await Shell.Current.GoToAsync(Routes.StatisticCategorySpreadingRoute);
+                await navigationService.GoTo<StatisticCategorySpreadingViewModel>();
 
                 break;
             case StatisticType.CategorySummary:
-                await Shell.Current.GoToAsync(Routes.StatisticCategorySummaryRoute);
+                await navigationService.GoTo<StatisticCategorySummaryViewModel>();
 
                 break;
             case StatisticType.MonthlyAccountCashFlow:
-                await Shell.Current.GoToAsync(Routes.StatisticAccountMonthlyCashFlowRoute);
+                await navigationService.GoTo<StatisticAccountMonthlyCashFlowViewModel>();
 
                 break;
             case StatisticType.CategoryProgression:
-                await Shell.Current.GoToAsync(Routes.StatisticCategoryProgressionRoute);
+                await navigationService.GoTo<StatisticCategoryProgressionViewModel>();
 
                 break;
             case StatisticType.CashflowHistory:
