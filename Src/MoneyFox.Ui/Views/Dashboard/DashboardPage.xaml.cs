@@ -7,5 +7,6 @@ public partial class DashboardPage : IBindablePage
     public DashboardPage()
     {
         InitializeComponent();
+        App.GetViewModel<DashboardViewModel>();
     }
 }
