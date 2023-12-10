@@ -2,7 +2,6 @@ namespace MoneyFox.Ui.Views.Categories.CategorySelection;
 
 using System.Collections.ObjectModel;
 using System.Globalization;
-using AutoMapper;
 using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -13,21 +12,12 @@ using MediatR;
 using ModifyCategory;
 using Resources.Strings;
 
-internal sealed class SelectCategoryViewModel : NavigableViewModel, IRecipient<CategoriesChangedMessage>
+internal sealed class SelectCategoryViewModel(IDialogService service, IMediator mediator, INavigationService navigationService) : NavigableViewModel,
+    IRecipient<CategoriesChangedMessage>
 {
     public const string SELECTED_CATEGORY_ID_PARAM = "selectedCategoryId";
-    private readonly IDialogService dialogService;
-    private readonly IMediator mediator;
-    private readonly INavigationService navigationService;
 
     private ReadOnlyObservableCollection<CategoryGroup> categoryGroups = null!;
-
-    public SelectCategoryViewModel(IDialogService dialogService, IMapper mapper, IMediator mediator, INavigationService navigationService)
-    {
-        this.dialogService = dialogService;
-        this.mediator = mediator;
-        this.navigationService = navigationService;
-    }
 
     public ReadOnlyObservableCollection<CategoryGroup> CategoryGroups
     {
@@ -72,11 +62,11 @@ internal sealed class SelectCategoryViewModel : NavigableViewModel, IRecipient<C
             return;
         }
 
-        if (await dialogService.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeleteCategoryConfirmationMessage))
+        if (await service.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeleteCategoryConfirmationMessage))
         {
             var numberOfAssignedPayments = await mediator.Send(new GetNumberOfPaymentsAssignedToCategory.Query(categoryListItemViewModel.Id));
             if (numberOfAssignedPayments == 0
-                || await dialogService.ShowConfirmMessageAsync(
+                || await service.ShowConfirmMessageAsync(
                     title: Translations.RemoveCategoryAssignmentTitle,
                     message: string.Format(format: Translations.RemoveCategoryAssignmentOnPaymentMessage, arg0: numberOfAssignedPayments),
                     positiveButtonText: Translations.RemoveLabel,
