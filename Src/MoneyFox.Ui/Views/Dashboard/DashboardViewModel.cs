@@ -10,6 +10,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using Core.Queries;
 using MediatR;
 using Messages;
+using Payments.PaymentList;
 using Payments.PaymentModification;
 
 public class DashboardViewModel : NavigableViewModel, IRecipient<BackupRestoredMessage>
@@ -96,7 +97,7 @@ public class DashboardViewModel : NavigableViewModel, IRecipient<BackupRestoredM
     public AsyncRelayCommand GoToAccountsCommand => new(() => navigationService.GoTo<AccountListViewModel>());
 
     public AsyncRelayCommand<AccountViewModel> GoToTransactionListCommand
-        => new(async accountViewModel => await Shell.Current.GoToAsync($"{Routes.PaymentListRoute}?accountId={accountViewModel!.Id}"));
+        => new(accountViewModel => navigationService.GoTo<PaymentListViewModel>(accountViewModel!.Id));
 
     public void Receive(BackupRestoredMessage message)
     {

@@ -10,9 +10,10 @@ using Core.Common.Interfaces;
 using Core.Features.CategoryDeletion;
 using Core.Queries;
 using MediatR;
+using ModifyCategory;
 using Resources.Strings;
 
-internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<CategoriesChangedMessage>
+internal sealed class SelectCategoryViewModel : NavigableViewModel, IRecipient<CategoriesChangedMessage>
 {
     public const string SELECTED_CATEGORY_ID_PARAM = "selectedCategoryId";
     private readonly IDialogService dialogService;
@@ -34,10 +35,9 @@ internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<Ca
         private set => SetProperty(field: ref categoryGroups, newValue: value);
     }
 
-    public AsyncRelayCommand GoToAddCategoryCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddCategoryRoute));
+    public AsyncRelayCommand GoToAddCategoryCommand => new(() => navigationService.GoTo<AddCategoryViewModel>());
 
-    public AsyncRelayCommand<CategoryListItemViewModel> GoToEditCategoryCommand
-        => new(async cvm => await Shell.Current.GoToAsync($"{Routes.EditCategoryRoute}?categoryId={cvm?.Id}"));
+    public AsyncRelayCommand<CategoryListItemViewModel> GoToEditCategoryCommand => new(cvm => navigationService.GoTo<EditCategoryViewModel>(cvm!.Id));
 
     public AsyncRelayCommand<string> SearchCategoryCommand => new(async s => await SearchCategoryAsync(s ?? string.Empty));
 
