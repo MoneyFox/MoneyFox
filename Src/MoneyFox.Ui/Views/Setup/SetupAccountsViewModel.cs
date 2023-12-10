@@ -4,7 +4,7 @@ using Accounts.AccountModification;
 using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 
-public sealed class SetupAccountsViewModel(INavigationService navigationService) : BasePageViewModel
+public sealed class SetupAccountsViewModel(INavigationService navigationService) : NavigableViewModel
 {
     public AsyncRelayCommand GoToAddAccountCommand => new(() => navigationService.GoTo<AddAccountViewModel>());
 

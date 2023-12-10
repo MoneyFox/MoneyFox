@@ -15,7 +15,6 @@ internal sealed class SetupCompletionViewModel(ISettingsFacade settingsFacade, I
     {
         settingsFacade.IsSetupCompleted = true;
         Application.Current!.MainPage = App.GetAppShellPage();
-        navigationService.GoTo<DashboardViewModel>();
-        await Shell.Current.GoToAsync(Routes.DashboardRoute);
+        await navigationService.GoTo<DashboardViewModel>();
     }
 }

@@ -48,11 +48,4 @@ public static class Routes
     public static string PaymentForCategoryListRoute => nameof(PaymentForCategoryListPage);
     public static string AddBudgetRoute => nameof(AddBudgetPage);
     public static string EditBudgetRoute => nameof(EditBudgetPage);
-
-    // Setup
-    public static string WelcomeViewRoute => nameof(WelcomePage);
-    public static string CurrencyIntroductionRoute => nameof(SetupCurrencyPage);
-    public static string SetupAccountsRoute => nameof(SetupAccountPage);
-    public static string CategoryIntroductionRoute => nameof(SetupCategoryPage);
-    public static string SetupCompletionRoute => nameof(SetupCompletionPage);
 }
