@@ -51,8 +51,6 @@ internal sealed class BackupViewModel(
         set => SetProperty(field: ref profilePicture, newValue: value);
     }
 
-    public AsyncRelayCommand InitializeCommand => new(async () => await InitializeAsync());
-
     public AsyncRelayCommand LoginCommand => new(async () => await LoginAsync());
 
     public AsyncRelayCommand LogoutCommand => new(async () => await LogoutAsync());
@@ -136,9 +134,9 @@ internal sealed class BackupViewModel(
         }
     }
 
-    private async Task InitializeAsync()
+    public override Task OnNavigatedAsync(object? parameter)
     {
-        await LoadedAsync();
+        return LoadedAsync();
     }
 
     private async Task LoadedAsync()

@@ -7,6 +7,5 @@ public partial class SetupAccountPage : IBindablePage
     public SetupAccountPage()
     {
         InitializeComponent();
-        BindingContext = App.GetViewModel<SetupAccountsViewModel>();
     }
 }

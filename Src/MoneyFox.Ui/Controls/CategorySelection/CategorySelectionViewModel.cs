@@ -20,7 +20,7 @@ public class CategorySelectionViewModel(INavigationService navigationService) : 
         }
     }
 
-    public AsyncRelayCommand GoToSelectCategoryDialogCommand => new( () => navigationService.GoTo<CategorySelectionViewModel>());
+    public AsyncRelayCommand GoToSelectCategoryDialogCommand => new( () => navigationService.GoTo<SelectCategoryViewModel>());
 
     public RelayCommand ResetCategoryCommand => new(() => SelectedCategory = null);
 }

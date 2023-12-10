@@ -12,8 +12,7 @@ using MediatR;
 using ModifyCategory;
 using Resources.Strings;
 
-internal sealed class SelectCategoryViewModel(IDialogService service, IMediator mediator, INavigationService navigationService) : NavigableViewModel,
-    IRecipient<CategoriesChangedMessage>
+internal sealed class SelectCategoryViewModel(IDialogService service, ISender sender, INavigationService navigationService) : NavigableViewModel
 {
     public const string SELECTED_CATEGORY_ID_PARAM = "selectedCategoryId";
 
@@ -35,19 +34,19 @@ internal sealed class SelectCategoryViewModel(IDialogService service, IMediator 
 
     public AsyncRelayCommand<CategoryListItemViewModel> SelectCategoryCommand => new(c => navigationService.GoBack(c!.Id));
 
-    public void Receive(CategoriesChangedMessage message)
+    public override Task OnNavigatedAsync(object? parameter)
     {
-        SearchCategoryAsync().GetAwaiter().GetResult();
+        return SearchCategoryAsync();
     }
 
-    public async Task InitializeAsync()
+    public override Task OnNavigatedBackAsync(object? parameter)
     {
-        await SearchCategoryAsync();
+        return SearchCategoryAsync();
     }
 
     private async Task SearchCategoryAsync(string searchTerm = "")
     {
-        var categories = await mediator.Send(new GetCategoryBySearchTermQuery(searchTerm));
+        var categories = await sender.Send(new GetCategoryBySearchTermQuery(searchTerm));
         var categoryVms = categories.Select(c => new CategoryListItemViewModel { Id = c.Id, Name = c.Name, RequireNote = c.RequireNote }).ToList();
         var groupedCategories = categoryVms.GroupBy(c => c.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture))
             .Select(g => new CategoryGroup(title: g.Key, categoryItems: g.ToList()));
@@ -64,7 +63,7 @@ internal sealed class SelectCategoryViewModel(IDialogService service, IMediator 
 
         if (await service.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeleteCategoryConfirmationMessage))
         {
-            var numberOfAssignedPayments = await mediator.Send(new GetNumberOfPaymentsAssignedToCategory.Query(categoryListItemViewModel.Id));
+            var numberOfAssignedPayments = await sender.Send(new GetNumberOfPaymentsAssignedToCategory.Query(categoryListItemViewModel.Id));
             if (numberOfAssignedPayments == 0
                 || await service.ShowConfirmMessageAsync(
                     title: Translations.RemoveCategoryAssignmentTitle,
@@ -72,7 +71,7 @@ internal sealed class SelectCategoryViewModel(IDialogService service, IMediator 
                     positiveButtonText: Translations.RemoveLabel,
                     negativeButtonText: Translations.CancelLabel))
             {
-                await mediator.Send(new DeleteCategoryById.Command(categoryListItemViewModel.Id));
+                await sender.Send(new DeleteCategoryById.Command(categoryListItemViewModel.Id));
                 await SearchCategoryAsync();
             }
         }

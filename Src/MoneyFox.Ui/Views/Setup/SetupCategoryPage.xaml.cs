@@ -7,6 +7,5 @@ public partial class SetupCategoryPage : IBindablePage
     public SetupCategoryPage()
     {
         InitializeComponent();
-        BindingContext = App.GetViewModel<SetupCategoryViewModel>();
     }
 }
