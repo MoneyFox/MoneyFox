@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Tests.Views.SetupAssistant;
 
 using System.Globalization;
+using Common.Navigation;
 using Core.Common.Settings;
 using Domain;
 using Ui.Views.Setup.SelectCurrency;
@@ -12,13 +13,14 @@ public class CurrencyIntroductionViewModelTests
     {
         // Arrange
         var settingsFacade = Substitute.For<ISettingsFacade>();
+        var navigationService = Substitute.For<INavigationService>();
 
         // Act
-        var vm = new SetupCurrencyViewModel(settingsFacade);
+        var vm = new SetupCurrencyViewModel(settingsFacade, navigationService);
 
         // Assert
-        _ = vm.CurrencyViewModels.Should().HaveCount(Currencies.GetAll().Count);
-        _ = vm.SelectedCurrency.Should().NotBeNull();
+        vm.CurrencyViewModels.Should().HaveCount(Currencies.GetAll().Count);
+        vm.SelectedCurrency.Should().NotBeNull();
         vm.SelectedCurrency.AlphaIsoCode.Should().Be(RegionInfo.CurrentRegion.ISOCurrencySymbol);
     }
 }
