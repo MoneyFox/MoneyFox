@@ -11,29 +11,19 @@ using Core.Queries.PaymentsForAccount;
 using MediatR;
 using PaymentModification;
 
-[QueryProperty(name: nameof(AccountId), queryId: nameof(accountId))]
-internal sealed class PaymentListViewModel(IMediator mediator, IMapper mapper, INavigationService navigationService) : BasePageViewModel,
-    IRecipient<PaymentsChangedMessage>,
+internal sealed class PaymentListViewModel(IMediator mediator, IMapper mapper, INavigationService navigationService) : NavigableViewModel,
     IRecipient<PaymentListFilterChangedMessage>
 {
-    private int accountId;
-
     private bool isRunning;
 
     private ReadOnlyObservableCollection<PaymentDayGroup> paymentDayGroups = null!;
     private AccountViewModel selectedAccount = new();
 
-    public int AccountId
-    {
-        get => accountId;
-        set => SetProperty(field: ref accountId, newValue: value);
-    }
-
     public AccountViewModel SelectedAccount
     {
         get => selectedAccount;
 
-        set
+        private set
         {
             selectedAccount = value;
             OnPropertyChanged();
@@ -48,23 +38,23 @@ internal sealed class PaymentListViewModel(IMediator mediator, IMapper mapper, I
 
     public AsyncRelayCommand GoToAddPaymentCommand => new(() => navigationService.GoTo<AddPaymentViewModel>(SelectedAccount.Id));
 
-    public AsyncRelayCommand<PaymentListItemViewModel> GoToEditPaymentCommand => new(pvm => navigationService.GoTo<EditPaymentViewModel>(pvm.Id));
+    public AsyncRelayCommand<PaymentListItemViewModel> GoToEditPaymentCommand => new(pvm => navigationService.GoTo<EditPaymentViewModel>(pvm!.Id));
 
     public void Receive(PaymentListFilterChangedMessage message)
     {
         LoadPaymentsByMessageAsync(message).GetAwaiter().GetResult();
     }
 
-    public void Receive(PaymentsChangedMessage message)
+    public override async Task OnNavigatedAsync(object? parameter)
     {
-        InitializeAsync().GetAwaiter().GetResult();
+        var accountId = Convert.ToInt32(parameter);
+        SelectedAccount = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
+        await LoadPaymentsByMessageAsync(new());
     }
 
-    public async Task InitializeAsync()
+    public override Task OnNavigatedBackAsync(object? parameter)
     {
-        IsActive = true;
-        SelectedAccount = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(AccountId)));
-        await LoadPaymentsByMessageAsync(new());
+        return LoadPaymentsByMessageAsync(new());
     }
 
     private async Task LoadPaymentsByMessageAsync(PaymentListFilterChangedMessage message)

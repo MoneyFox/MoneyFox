@@ -1,19 +1,19 @@
 namespace MoneyFox.Ui.Views.Accounts.AccountList;
 
 using System.Collections.ObjectModel;
+using AccountModification;
 using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Interfaces;
 using Core.Features._Legacy_.Accounts.DeleteAccountById;
 using Core.Queries;
 using MediatR;
+using Payments.PaymentList;
 using Resources.Strings;
 
-public sealed class AccountListViewModel(ISender mediator, IDialogService service) : NavigableViewModel
+public sealed class AccountListViewModel(ISender mediator, IDialogService service, INavigationService navigationService) : NavigableViewModel
 {
     private ReadOnlyObservableCollection<AccountGroup> accountGroup = null!;
-
-    private bool isRunning;
 
     public ReadOnlyObservableCollection<AccountGroup> AccountGroups
     {
@@ -21,13 +21,12 @@ public sealed class AccountListViewModel(ISender mediator, IDialogService servic
         private set => SetProperty(field: ref accountGroup, newValue: value);
     }
 
-    public AsyncRelayCommand GoToAddAccountCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddAccountRoute));
+    public AsyncRelayCommand GoToAddAccountCommand => new(() => navigationService.GoTo<AddAccountViewModel>());
 
     public AsyncRelayCommand<AccountListItemViewModel> GoToEditAccountCommand
-        => new(async avm => await Shell.Current.GoToAsync($"{Routes.EditAccountRoute}?accountId={avm.Id}"));
+        => new(avm => navigationService.GoTo<EditAccountViewModel>(avm!.Id));
 
-    public AsyncRelayCommand<AccountListItemViewModel> GoToTransactionListCommand
-        => new(async avm => await Shell.Current.GoToAsync($"{Routes.PaymentListRoute}?accountId={avm.Id}"));
+    public AsyncRelayCommand<AccountListItemViewModel> GoToTransactionListCommand => new(avm => navigationService.GoTo<PaymentListViewModel>(avm!.Id));
 
     public AsyncRelayCommand<AccountListItemViewModel> DeleteAccountCommand => new(DeleteAccountAsync);
 
