@@ -1,10 +1,11 @@
 namespace MoneyFox.Ui.Common.Navigation;
 
+using Aptabase.Maui;
 using Extensions;
 using JetBrains.Annotations;
 
 [UsedImplicitly]
-internal sealed class NavigationService(IViewLocator locator) : INavigationService
+internal sealed class NavigationService(IViewLocator locator, IAptabaseClient aptabaseClient) : INavigationService
 {
     private INavigation Navigation => Shell.Current.Navigation;
 
@@ -33,6 +34,7 @@ internal sealed class NavigationService(IViewLocator locator) : INavigationServi
             await Navigation.PushAsync((Page)view);
         }
 
+        aptabaseClient.TrackEvent($"Navigate to {nameof(TViewModel)}");
         await ((NavigableViewModel)view.BindingContext).OnNavigatedAsync(parameter);
     }
 }
