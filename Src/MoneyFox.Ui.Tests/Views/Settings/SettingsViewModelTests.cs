@@ -32,7 +32,7 @@ public class SettingsViewModelTests
             settingsFacade.DefaultCurrency.Returns("USD");
 
             // Act
-            await viewModel.InitializeAsync();
+            await viewModel.OnNavigatedAsync(null);
 
             // Assert
             viewModel.AvailableCurrencies.Should().NotBeNull();
@@ -43,7 +43,7 @@ public class SettingsViewModelTests
         public async Task SetCurrencyFromRegion_WhenSettingNotSetYet()
         {
             // Act
-            await viewModel.InitializeAsync();
+            await viewModel.OnNavigatedAsync(null);
 
             // Assert
             viewModel.AvailableCurrencies.Should().NotBeNull();
@@ -59,7 +59,7 @@ public class SettingsViewModelTests
             mediator.Send(Arg.Any<GetAccountsQuery>()).Returns(accounts);
 
             // Act
-            await viewModel.InitializeAsync();
+            await viewModel.OnNavigatedAsync(null);
 
             // Assert
             viewModel.AvailableAccounts.Should().NotBeNull();

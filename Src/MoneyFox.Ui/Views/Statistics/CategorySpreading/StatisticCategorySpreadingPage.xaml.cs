@@ -8,7 +8,6 @@ public partial class StatisticCategorySpreadingPage : IBindablePage
     public StatisticCategorySpreadingPage()
     {
         InitializeComponent();
-        BindingContext = App.GetViewModel<StatisticCategorySpreadingViewModel>();
     }
 
     private StatisticCategorySpreadingViewModel ViewModel => (StatisticCategorySpreadingViewModel)BindingContext;

@@ -54,34 +54,17 @@ internal sealed class StatisticSelectorViewModel(INavigationService navigationSe
 
     public AsyncRelayCommand<StatisticSelectorTypeViewModel> GoToStatisticCommand => new(async s => await GoToStatisticAsync(s!.Type));
 
-    private async Task GoToStatisticAsync(StatisticType type)
+    private Task GoToStatisticAsync(StatisticType type)
     {
-        switch (type)
+        return type switch
         {
-            case StatisticType.Cashflow:
-                await navigationService.GoTo<StatisticCashFlowViewModel>();
-
-                break;
-            case StatisticType.CategorySpreading:
-                await navigationService.GoTo<StatisticCategorySpreadingViewModel>();
-
-                break;
-            case StatisticType.CategorySummary:
-                await navigationService.GoTo<StatisticCategorySummaryViewModel>();
-
-                break;
-            case StatisticType.MonthlyAccountCashFlow:
-                await navigationService.GoTo<StatisticAccountMonthlyCashFlowViewModel>();
-
-                break;
-            case StatisticType.CategoryProgression:
-                await navigationService.GoTo<StatisticCategoryProgressionViewModel>();
-
-                break;
-            case StatisticType.CashflowHistory:
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(type));
-        }
+            StatisticType.Cashflow => navigationService.GoTo<StatisticCashFlowViewModel>(),
+            StatisticType.CategorySpreading => navigationService.GoTo<StatisticCategorySpreadingViewModel>(),
+            StatisticType.CategorySummary => navigationService.GoTo<StatisticCategorySummaryViewModel>(),
+            StatisticType.MonthlyAccountCashFlow => navigationService.GoTo<StatisticAccountMonthlyCashFlowViewModel>(),
+            StatisticType.CategoryProgression => navigationService.GoTo<StatisticCategoryProgressionViewModel>(),
+            StatisticType.CashflowHistory => Task.CompletedTask,
+            _ => Task.CompletedTask
+        };
     }
 }

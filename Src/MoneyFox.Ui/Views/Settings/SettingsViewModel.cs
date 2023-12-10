@@ -50,7 +50,7 @@ internal sealed class SettingsViewModel(ISettingsFacade settingsFacade, IMediato
         set => SetProperty(field: ref availableAccounts, newValue: value);
     }
 
-    public async Task InitializeAsync()
+    public override async Task OnNavigatedAsync(object? parameter)
     {
         var accounts = await mediator.Send(new GetAccountsQuery());
         AvailableAccounts = accounts.Select(a => new AccountLiteViewModel(Id: a.Id, Name: a.Name)).ToList();
