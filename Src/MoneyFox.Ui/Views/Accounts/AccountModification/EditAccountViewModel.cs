@@ -33,8 +33,9 @@ public class EditAccountViewModel : ModifyAccountViewModel
 
     public AsyncRelayCommand DeleteCommand => new(DeleteAsync);
 
-    public async Task InitializeAsync(int accountId)
+    public override async Task OnNavigatedAsync(object? parameter)
     {
+        var accountId = Convert.ToInt32(parameter);
         SelectedAccountVm = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
     }
 

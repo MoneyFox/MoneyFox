@@ -7,7 +7,7 @@ using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-public abstract class ModifyAccountViewModel(IDialogService service, IMediator mediator, INavigationService navigationService) : BasePageViewModel
+public abstract class ModifyAccountViewModel(IDialogService service, IMediator mediator, INavigationService navigationService) : NavigableViewModel
 {
     private AccountViewModel selectedAccountVm = new();
 

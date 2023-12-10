@@ -6,7 +6,7 @@ using CommunityToolkit.Mvvm.Input;
 
 public sealed class SetupAccountsViewModel(INavigationService navigationService) : BasePageViewModel
 {
-    public AsyncRelayCommand GoToAddAccountCommand => new(() => navigationService.GoBack<AddAccountViewModel>());
+    public AsyncRelayCommand GoToAddAccountCommand => new(() => navigationService.GoTo<AddAccountViewModel>());
 
     public AsyncRelayCommand NextStepCommand => new(() => navigationService.GoTo<SetupCategoryViewModel>());
 

@@ -17,9 +17,9 @@ internal sealed class AddAccountViewModel : ModifyAccountViewModel
         this.mediator = mediator;
     }
 
-    protected override async Task SaveAccountAsync()
+    protected override Task SaveAccountAsync()
     {
-        await mediator.Send(
+        return mediator.Send(
             new CreateAccountCommand(
                 name: SelectedAccountVm.Name,
                 currentBalance: SelectedAccountVm.CurrentBalance,
