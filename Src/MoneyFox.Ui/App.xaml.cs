@@ -46,7 +46,7 @@ public partial class App
 
     private static IServiceProvider ServiceProvider { get; set; }
 
-    public static Page GetAppShellPage()
+    private static Page GetAppShellPage()
     {
         return DeviceInfo.Current.Idiom.UseDesktopPage() ? new AppShellDesktop() : new AppShell();
     }

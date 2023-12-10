@@ -14,9 +14,9 @@ using Settings;
 internal sealed record OverflowItemViewModel(string IconGlyph, string Name, OverflowMenuItemType Type);
 
 [UsedImplicitly]
-internal sealed class OverflowMenuViewModel(INavigationService service) : BasePageViewModel
+internal sealed class OverflowMenuViewModel(INavigationService navigationService) : NavigableViewModel
 {
-    public AsyncRelayCommand<OverflowItemViewModel> GoToSelectedItemCommand => new(async s => await GoToSelectedItem(s.Type));
+    public AsyncRelayCommand<OverflowItemViewModel> GoToSelectedItemCommand => new(s => GoToSelectedItem(s.Type));
 
     public static IReadOnlyList<OverflowItemViewModel> OverflowEntries
         => ImmutableList.Create<OverflowItemViewModel>(
@@ -26,30 +26,16 @@ internal sealed class OverflowMenuViewModel(INavigationService service) : BasePa
             new(IconGlyph: IconFont.CogOutline, Name: Translations.SettingsTitle, Type: OverflowMenuItemType.Settings),
             new(IconGlyph: IconFont.InformationOutline, Name: Translations.AboutTitle, Type: OverflowMenuItemType.About));
 
-    private async Task GoToSelectedItem(OverflowMenuItemType menuType)
+    private Task GoToSelectedItem(OverflowMenuItemType menuType)
     {
-        switch (menuType)
+        return menuType switch
         {
-            case OverflowMenuItemType.Budgets:
-                await service.GoTo<BudgetListViewModel>();
-
-                break;
-            case OverflowMenuItemType.Categories:
-                await service.GoTo<CategoryListViewModel>();
-
-                break;
-            case OverflowMenuItemType.Backup:
-                await service.GoTo<BackupViewModel>();
-
-                break;
-            case OverflowMenuItemType.Settings:
-                await service.GoTo<SettingsViewModel>();
-
-                break;
-            case OverflowMenuItemType.About:
-                await service.GoTo<AboutViewModel>();
-
-                break;
-        }
+            OverflowMenuItemType.Budgets => navigationService.GoTo<BudgetListViewModel>(),
+            OverflowMenuItemType.Categories => navigationService.GoTo<CategoryListViewModel>(),
+            OverflowMenuItemType.Backup => navigationService.GoTo<BackupViewModel>(),
+            OverflowMenuItemType.Settings => navigationService.GoTo<SettingsViewModel>(),
+            OverflowMenuItemType.About => navigationService.GoTo<AboutViewModel>(),
+            _ => Task.CompletedTask
+        };
     }
 }

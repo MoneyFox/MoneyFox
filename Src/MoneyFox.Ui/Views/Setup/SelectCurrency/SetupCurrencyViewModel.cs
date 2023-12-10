@@ -6,7 +6,7 @@ using CommunityToolkit.Mvvm.Input;
 using Core.Common.Settings;
 using Domain;
 
-public class SetupCurrencyViewModel : BasePageViewModel
+public class SetupCurrencyViewModel : NavigableViewModel
 {
     private readonly ISettingsFacade settingsFacade;
     private readonly INavigationService navigationService;

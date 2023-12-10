@@ -5,7 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 using Core.Common.Settings;
 using Dashboard;
 
-internal sealed class WelcomeViewModel(ISettingsFacade facade, INavigationService navigationService) : BasePageViewModel
+internal sealed class WelcomeViewModel(ISettingsFacade facade, INavigationService navigationService) : NavigableViewModel
 {
     public AsyncRelayCommand NextStepCommand => new(() => navigationService.GoTo<SetupCategoryViewModel>());
 
