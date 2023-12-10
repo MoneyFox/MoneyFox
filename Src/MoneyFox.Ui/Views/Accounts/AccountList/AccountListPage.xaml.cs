@@ -8,4 +8,6 @@ public partial class AccountListPage : IBindablePage
     {
         InitializeComponent();
     }
+
+    public AccountListViewModel ViewModel => (AccountListViewModel)BindingContext;
 }

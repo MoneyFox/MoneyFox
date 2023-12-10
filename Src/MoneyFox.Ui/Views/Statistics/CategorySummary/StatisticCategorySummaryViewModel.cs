@@ -44,6 +44,7 @@ internal class StatisticCategorySummaryViewModel : StatisticViewModel
 
     public RelayCommand<CategoryOverviewViewModel> ShowCategoryPaymentsCommand => new(async vm => await ShowCategoryPaymentsAsync(vm));
 
+
     public override Task OnNavigatedAsync(object? parameter)
     {
         return LoadAsync();

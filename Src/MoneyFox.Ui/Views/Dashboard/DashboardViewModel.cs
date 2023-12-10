@@ -109,7 +109,7 @@ public class DashboardViewModel : NavigableViewModel, IRecipient<BackupRestoredM
         return InitializeAsync();
     }
 
-    public async Task InitializeAsync()
+    private async Task InitializeAsync()
     {
         if (isRunning)
         {
