@@ -92,7 +92,7 @@ jobs:
             /p:ApplicationVersion=$Version
 
       - name: Upload Windows build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: moneyfox-win
           path: ${{ github.workspace }}/moneyfox-win
@@ -161,7 +161,7 @@ jobs:
             /p:ApplicationVersion=$Version
 
       - name: Upload Android build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: moneyfox-android
           path: ${{ github.workspace }}/moneyfox-android
@@ -247,7 +247,7 @@ jobs:
             /p:ApplicationVersion=${{ GITHUB.run_number }}
 
       - name: Upload iOS build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: moneyfox-ios
           path: ${{ github.workspace }}/moneyfox-ios
