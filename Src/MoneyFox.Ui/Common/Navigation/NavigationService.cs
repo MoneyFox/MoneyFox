@@ -16,10 +16,11 @@ internal sealed class NavigationService(IViewLocator locator, IAptabaseClient ap
         await ((NavigableViewModel)view.BindingContext).OnNavigatedBackAsync(parameter);
     }
 
-    public async Task OpenModalAsync<T>() where T : ContentPage
+    public Task OpenModalAsync<T>() where T : ContentPage
     {
         var pageName = typeof(T).Name;
-        await Shell.Current.GoToModalAsync(pageName);
+
+        return Shell.Current.GoToModalAsync(pageName);
     }
 
     public async Task GoTo<TViewModel>(object? parameter = null, bool modalNavigation = false) where TViewModel : NavigableViewModel
