@@ -142,17 +142,17 @@ public class EditBudgetViewModelTests
             // Arrange
 
             // Act
-            await viewModel.InitializeCommand.ExecuteAsync(testBudget.Id);
+            await viewModel.OnNavigatedAsync(testBudget.Id);
 
             // Assert
-            _ = capturedQuery.Should().NotBeNull();
-            _ = capturedQuery!.BudgetId.Should().Be(testBudget.Id);
-            _ = viewModel.Id.Value.Should().Be(testBudget.Id);
-            _ = viewModel.Name.Should().Be(testBudget.Name);
-            _ = viewModel.SpendingLimit.Should().Be(testBudget.SpendingLimit);
-            _ = viewModel.NumberOfMonths.Should().Be(testBudget.Interval.NumberOfMonths);
-            _ = viewModel.SelectedCategories[0].CategoryId.Should().Be(categories[0].Id);
-            _ = viewModel.SelectedCategories[0].Name.Should().Be(categories[0].Name);
+            capturedQuery.Should().NotBeNull();
+            capturedQuery!.BudgetId.Should().Be(testBudget.Id);
+            viewModel.Id.Value.Should().Be(testBudget.Id);
+            viewModel.Name.Should().Be(testBudget.Name);
+            viewModel.SpendingLimit.Should().Be(testBudget.SpendingLimit);
+            viewModel.NumberOfMonths.Should().Be(testBudget.Interval.NumberOfMonths);
+            viewModel.SelectedCategories[0].CategoryId.Should().Be(categories[0].Id);
+            viewModel.SelectedCategories[0].Name.Should().Be(categories[0].Name);
         }
     }
 
@@ -179,14 +179,14 @@ public class EditBudgetViewModelTests
                         numberOfMonths: testBudget.Interval.NumberOfMonths,
                         categories: new List<BudgetEntryData.BudgetCategory>()));
 
-            await viewModel.InitializeCommand.ExecuteAsync(testBudget.Id);
+            await viewModel.OnNavigatedAsync(testBudget.Id);
 
             // Act
             await viewModel.DeleteBudgetCommand.ExecuteAsync(null);
 
             // Assert
-            _ = capturedCommand.Should().NotBeNull();
-            _ = capturedCommand!.BudgetId.Value.Should().Be(testBudget.Id);
+            capturedCommand.Should().NotBeNull();
+            capturedCommand!.BudgetId.Value.Should().Be(testBudget.Id);
             await navigationService.Received(1).GoBack();
         }
 
@@ -235,7 +235,7 @@ public class EditBudgetViewModelTests
             viewModel.NumberOfMonths = 1;
 
             // Assert
-            _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
+            viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
         }
     }
 
@@ -252,7 +252,7 @@ public class EditBudgetViewModelTests
             viewModel.NumberOfMonths = 1;
 
             // Assert
-            _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeTrue();
+            viewModel.SaveBudgetCommand.CanExecute(null).Should().BeTrue();
         }
     }
 }

@@ -91,9 +91,9 @@ internal abstract class ModifyBudgetViewModel : NavigableViewModel
         }
     }
 
-    private async Task OpenCategorySelection()
+    private Task OpenCategorySelection()
     {
-        await navigationService.OpenModalAsync<SelectCategoryPage>();
+        return navigationService.GoTo<SelectCategoryViewModel>();
     }
 
     private void RemoveCategory(BudgetCategoryViewModel? budgetCategory)
@@ -103,7 +103,7 @@ internal abstract class ModifyBudgetViewModel : NavigableViewModel
             return;
         }
 
-        _ = SelectedCategories.Remove(budgetCategory);
+        SelectedCategories.Remove(budgetCategory);
     }
 
     private async Task SaveBudgetAsync()
