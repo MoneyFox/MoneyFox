@@ -3,12 +3,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:tabs="http://sharpnado.com"
-             xmlns:extensions="clr-namespace:MoneyFox.Ui.Common.Extensions"
              xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
              xmlns:dashboard="clr-namespace:MoneyFox.Ui.Views.Dashboard"
              xmlns:ui="clr-namespace:MoneyFox.Ui"
              xmlns:overflowMenu="clr-namespace:MoneyFox.Ui.Views.OverflowMenu"
              xmlns:selector="clr-namespace:MoneyFox.Ui.Views.Statistics.Selector"
+             xmlns:views="clr-namespace:MoneyFox.Ui.Views"
              x:DataType="ui:MainPageViewModel"
              x:Class="MoneyFox.Ui.MainPage">
 
@@ -23,13 +23,13 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <Grid ColumnSpacing="0" RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="95" />
         </Grid.RowDefinitions>
-        
+
         <tabs:ViewSwitcher x:Name="Switcher"
                            Grid.RowSpan="3"
                            Margin="0"
@@ -41,19 +41,19 @@
                               Animate="True"
                               BindingContext="{Binding DashboardViewModel}"
                               UseActivityIndicator="True" />
-            
+
             <tabs:DelayedView x:TypeArguments="selector:StatisticSelectorView"
                               AccentColor="{StaticResource Primary}"
                               Animate="True"
                               BindingContext="{Binding StatisticSelectorViewModel}"
                               UseActivityIndicator="True" />
-            
+
             <tabs:DelayedView x:TypeArguments="overflowMenu:OverflowMenuView"
                               AccentColor="{StaticResource Primary}"
                               Animate="True"
                               BindingContext="{Binding OverflowMenuViewModel}"
                               UseActivityIndicator="True" />
-            
+
         </tabs:ViewSwitcher>
 
         <tabs:TabHostView Grid.Row="1"
@@ -69,14 +69,34 @@
                           SelectedIndex="{Binding Source={x:Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}">
             <tabs:TabHostView.Tabs>
                 <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
-                                    IconImageSource="house_96"
-                                    Label="{x:Static resources:Translations.DashboardTitle}" />
+                                    Label="{x:Static resources:Translations.DashboardTitle}">
+                    <tabs:BottomTabItem.IconImageSource>
+                        <FontImageSource FontFamily="MaterialIcons"
+                                         Glyph="{x:Static views:IconFont.HomeOutline}"
+                                         Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
+                                         Size="24" />
+                    </tabs:BottomTabItem.IconImageSource>
+                </tabs:BottomTabItem>
+                
                 <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
-                                    IconImageSource="list_96"
-                                    Label="{x:Static resources:Translations.StatisticsTitle}" />
+                                    Label="{x:Static resources:Translations.StatisticsTitle}">
+                    <tabs:BottomTabItem.IconImageSource>
+                        <FontImageSource FontFamily="MaterialIcons"
+                                         Glyph="{x:Static views:IconFont.ChartArc}"
+                                         Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
+                                         Size="24" />
+                    </tabs:BottomTabItem.IconImageSource>
+                </tabs:BottomTabItem>
+                
                 <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
-                                    IconImageSource="grid_view_96"
-                                    Label="{x:Static resources:Translations.MenuTitle}" />
+                                    Label="{x:Static resources:Translations.MenuTitle}">
+                    <tabs:BottomTabItem.IconImageSource>
+                        <FontImageSource FontFamily="MaterialIcons"
+                                         Glyph="{x:Static views:IconFont.DotsHorizontal}"
+                                         Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
+                                         Size="24" />
+                    </tabs:BottomTabItem.IconImageSource>
+                </tabs:BottomTabItem>
             </tabs:TabHostView.Tabs>
         </tabs:TabHostView>
     </Grid>
