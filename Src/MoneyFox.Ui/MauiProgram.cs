@@ -11,6 +11,7 @@ using Microsoft.Maui.Handlers;
 using Serilog;
 using Serilog.Events;
 using Serilog.Exceptions;
+using Sharpnado.Tabs;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 
 public static class MauiProgram
@@ -35,6 +36,7 @@ public static class MauiProgram
             .AddCustomAppShellHandler()
             .UseSkiaSharp(true)
             .UseMauiCommunityToolkit()
+            .UseSharpnadoTabs(loggerEnable: false)
             .AddMoneyFoxService();
 
         EntryHandler.Mapper.AppendToMapping(
