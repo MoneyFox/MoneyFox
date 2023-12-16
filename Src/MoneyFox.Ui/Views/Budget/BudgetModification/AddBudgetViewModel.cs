@@ -13,7 +13,7 @@ internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
     public AddBudgetViewModel(ISender sender, INavigationService navigationService, IDialogService dialogService) : base(
         navigationService: navigationService,
         sender: sender,
-        dialogService: dialogService)
+        service: dialogService)
     {
         this.sender = sender;
         this.navigationService = navigationService;

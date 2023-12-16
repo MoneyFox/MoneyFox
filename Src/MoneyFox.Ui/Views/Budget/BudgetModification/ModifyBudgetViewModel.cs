@@ -9,21 +9,11 @@ using Core.Queries;
 using Domain.Aggregates.BudgetAggregate;
 using MediatR;
 
-internal abstract class ModifyBudgetViewModel : NavigableViewModel
+internal abstract class ModifyBudgetViewModel(INavigationService navigationService, ISender sender, IDialogService service) : NavigableViewModel
 {
-    private readonly IDialogService dialogService;
-    private readonly INavigationService navigationService;
-    private readonly ISender sender;
     private string name = null!;
     private int numberOfMonths = 1;
     private decimal spendingLimit;
-
-    protected ModifyBudgetViewModel(INavigationService navigationService, ISender sender, IDialogService dialogService)
-    {
-        this.navigationService = navigationService;
-        this.sender = sender;
-        this.dialogService = dialogService;
-    }
 
     public string Name
     {
@@ -107,12 +97,12 @@ internal abstract class ModifyBudgetViewModel : NavigableViewModel
     {
         try
         {
-            await dialogService.ShowLoadingDialogAsync();
+            await service.ShowLoadingDialogAsync();
             await SaveAsync();
         }
         finally
         {
-            await dialogService.HideLoadingDialogAsync();
+            await service.HideLoadingDialogAsync();
         }
     }
 

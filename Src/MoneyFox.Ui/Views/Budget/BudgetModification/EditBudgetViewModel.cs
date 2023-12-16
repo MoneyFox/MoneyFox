@@ -2,7 +2,6 @@ namespace MoneyFox.Ui.Views.Budget.BudgetModification;
 
 using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Features.BudgetDeletion;
@@ -14,17 +13,14 @@ using Resources.Strings;
 
 internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
 {
-    private const string BUDGET_ID = "budgetId";
     private readonly IDialogService dialogService;
     private readonly INavigationService navigationService;
     private readonly ISender sender;
 
-    private bool isFirstLoad = true;
-
     public EditBudgetViewModel(ISender sender, INavigationService navigationService, IDialogService dialogService) : base(
         navigationService: navigationService,
         sender: sender,
-        dialogService: dialogService)
+        service: dialogService)
     {
         this.sender = sender;
         this.navigationService = navigationService;
@@ -45,7 +41,6 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
         NumberOfMonths = budgetData.NumberOfMonths;
         SelectedCategories.Clear();
         SelectedCategories.AddRange(budgetData.Categories.Select(bc => new BudgetCategoryViewModel(categoryId: bc.Id, name: bc.Name)));
-        isFirstLoad = false;
     }
 
     private async Task DeleteBudgetAsync()
