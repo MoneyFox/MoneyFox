@@ -8,9 +8,10 @@ namespace MoneyFox.Ui;
 
 public partial class MainPage : ContentPage
 {
-    public MainPage()
+    public MainPage(MainPageViewModel mainPageViewModel)
     {
         InitializeComponent();
+        BindingContext = mainPageViewModel;
     }
 }
 

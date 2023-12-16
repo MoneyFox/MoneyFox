@@ -40,16 +40,16 @@ public partial class App
         InitializeComponent();
         FillResourceDictionary();
         appDbContext.MigrateDb();
-        MainPage = settingsFacade.IsSetupCompleted ? GetAppShellPage() : new SetupShell();
+        MainPage = settingsFacade.IsSetupCompleted ? GetAppShellPage(mainPageViewModel:mainPageViewModel) : new SetupShell();
     }
 
     public static Dictionary<string, ResourceDictionary> ResourceDictionary { get; } = new();
 
     private static IServiceProvider ServiceProvider { get; set; }
 
-    private static Page GetAppShellPage()
+    private static Page GetAppShellPage(MainPageViewModel mainPageViewModel)
     {
-        return DeviceInfo.Current.Idiom.UseDesktopPage() ? new AppShellDesktop() : new AppShell();
+        return DeviceInfo.Current.Idiom.UseDesktopPage() ? new AppShellDesktop() : new MainPage(mainPageViewModel);
     }
 
     private void FillResourceDictionary()

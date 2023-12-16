@@ -72,6 +72,7 @@ public sealed class MoneyFoxConfig
 
     private static void RegisterViewModels(IServiceCollection services)
     {
+        services.AddTransient<MainPageViewModel>();
         services.AddTransient<AboutViewModel>();
         services.AddTransient<AccountListViewModel>();
         services.AddTransient<AddAccountViewModel>();
