@@ -1,7 +1,6 @@
 namespace MoneyFox.Ui.Views.Budget.BudgetModification;
 
 using Common.Navigation;
-using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
 using Core.Features.BudgetCreation;
 using MediatR;

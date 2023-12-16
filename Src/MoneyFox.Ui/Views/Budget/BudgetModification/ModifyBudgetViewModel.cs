@@ -9,21 +9,11 @@ using Core.Queries;
 using Domain.Aggregates.BudgetAggregate;
 using MediatR;
 
-internal abstract class ModifyBudgetViewModel : NavigableViewModel
+internal abstract class ModifyBudgetViewModel(INavigationService navigationService, ISender sender, IDialogService dialogService) : NavigableViewModel
 {
-    private readonly IDialogService dialogService;
-    private readonly INavigationService navigationService;
-    private readonly ISender sender;
     private string name = null!;
     private int numberOfMonths = 1;
     private decimal spendingLimit;
-
-    protected ModifyBudgetViewModel(INavigationService navigationService, ISender sender, IDialogService dialogService)
-    {
-        this.navigationService = navigationService;
-        this.sender = sender;
-        this.dialogService = dialogService;
-    }
 
     public string Name
     {
@@ -78,22 +68,19 @@ internal abstract class ModifyBudgetViewModel : NavigableViewModel
 
     public AsyncRelayCommand SaveBudgetCommand => new(execute: SaveBudgetAsync, canExecute: () => IsValid);
 
-    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    public override async Task OnNavigatedBackAsync(object? parameter)
     {
-        if (query.TryGetValue(key: SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, value: out var selectedCategoryIdParam))
+        var selectedCategoryId = Convert.ToInt32(parameter);
+        var category = await sender.Send(new GetCategoryByIdQuery(selectedCategoryId));
+        if (SelectedCategories.Any(c => c.CategoryId == selectedCategoryId) is false)
         {
-            var selectedCategoryId = Convert.ToInt32(selectedCategoryIdParam);
-            var category = sender.Send(new GetCategoryByIdQuery(selectedCategoryId)).GetAwaiter().GetResult();
-            if (SelectedCategories.Any(c => c.CategoryId == selectedCategoryId) is false)
-            {
-                SelectedCategories.Add(new(categoryId: selectedCategoryId, name: category.Name));
-            }
+            SelectedCategories.Add(new(categoryId: selectedCategoryId, name: category.Name));
         }
     }
 
-    private async Task OpenCategorySelection()
+    private Task OpenCategorySelection()
     {
-        await navigationService.OpenModalAsync<SelectCategoryPage>();
+        return navigationService.GoTo<SelectCategoryViewModel>();
     }
 
     private void RemoveCategory(BudgetCategoryViewModel? budgetCategory)
@@ -103,7 +90,7 @@ internal abstract class ModifyBudgetViewModel : NavigableViewModel
             return;
         }
 
-        _ = SelectedCategories.Remove(budgetCategory);
+        SelectedCategories.Remove(budgetCategory);
     }
 
     private async Task SaveBudgetAsync()

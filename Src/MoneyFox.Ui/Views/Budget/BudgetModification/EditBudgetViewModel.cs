@@ -2,7 +2,6 @@ namespace MoneyFox.Ui.Views.Budget.BudgetModification;
 
 using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Features.BudgetDeletion;
@@ -12,14 +11,11 @@ using Domain.Aggregates.BudgetAggregate;
 using MediatR;
 using Resources.Strings;
 
-internal sealed class EditBudgetViewModel : ModifyBudgetViewModel, IQueryAttributable
+internal sealed class EditBudgetViewModel : ModifyBudgetViewModel
 {
-    private const string BUDGET_ID = "budgetId";
     private readonly IDialogService dialogService;
     private readonly INavigationService navigationService;
     private readonly ISender sender;
-
-    private bool isFirstLoad = true;
 
     public EditBudgetViewModel(ISender sender, INavigationService navigationService, IDialogService dialogService) : base(
         navigationService: navigationService,
@@ -33,37 +29,18 @@ internal sealed class EditBudgetViewModel : ModifyBudgetViewModel, IQueryAttribu
 
     public BudgetId Id { get; private set; }
 
-    public AsyncRelayCommand<int> InitializeCommand => new(InitializeAsync);
-
     public AsyncRelayCommand DeleteBudgetCommand => new(DeleteBudgetAsync);
 
-    public new void ApplyQueryAttributes(IDictionary<string, object> query)
+    public override async Task OnNavigatedAsync(object? parameter)
     {
-        if (query.TryGetValue(key: BUDGET_ID, value: out var selectedBudgetIdParam))
-        {
-            var selectedBudgetId = Convert.ToInt32(selectedBudgetIdParam);
-            InitializeAsync(selectedBudgetId).GetAwaiter().GetResult();
-        }
-
-        base.ApplyQueryAttributes(query);
-    }
-
-    private async Task InitializeAsync(int budgetId)
-    {
-        if (isFirstLoad is false)
-        {
-            return;
-        }
-
-        var query = new LoadBudgetEntry.Query(budgetId: budgetId);
-        var budgetData = await sender.Send(query);
+        var budgetId = Convert.ToInt32(parameter);
+        var budgetData = await sender.Send(new LoadBudgetEntry.Query(budgetId: budgetId));
         Id = budgetData.Id;
         Name = budgetData.Name;
         SpendingLimit = budgetData.SpendingLimit;
         NumberOfMonths = budgetData.NumberOfMonths;
         SelectedCategories.Clear();
         SelectedCategories.AddRange(budgetData.Categories.Select(bc => new BudgetCategoryViewModel(categoryId: bc.Id, name: bc.Name)));
-        isFirstLoad = false;
     }
 
     private async Task DeleteBudgetAsync()
