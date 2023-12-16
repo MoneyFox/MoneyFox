@@ -11,10 +11,10 @@ using JetBrains.Annotations;
 using Resources.Strings;
 using Settings;
 
-internal sealed record OverflowItemViewModel(string IconGlyph, string Name, OverflowMenuItemType Type);
+public sealed record OverflowItemViewModel(string IconGlyph, string Name, OverflowMenuItemType Type);
 
 [UsedImplicitly]
-internal sealed class OverflowMenuViewModel(INavigationService navigationService) : NavigableViewModel
+public sealed class OverflowMenuViewModel(INavigationService navigationService) : NavigableViewModel
 {
     public AsyncRelayCommand<OverflowItemViewModel> GoToSelectedItemCommand => new(s => GoToSelectedItem(s.Type));
 
