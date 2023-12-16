@@ -40,6 +40,10 @@ public partial class App
         InitializeComponent();
         FillResourceDictionary();
         appDbContext.MigrateDb();
+
+        mainPageViewModel.DashboardViewModel.OnNavigatedAsync(null);
+        mainPageViewModel.StatisticSelectorViewModel.OnNavigatedAsync(null);
+        mainPageViewModel.OverflowMenuViewModel.OnNavigatedAsync(null);
         MainPage = settingsFacade.IsSetupCompleted ? GetAppShellPage(mainPageViewModel:mainPageViewModel) : new SetupShell();
     }
 
