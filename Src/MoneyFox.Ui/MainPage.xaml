@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:tabs="http://sharpnado.com"
+             xmlns:extensions="clr-namespace:MoneyFox.Ui.Common.Extensions"
+             xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
+             xmlns:dashboard="clr-namespace:MoneyFox.Ui.Views.Dashboard"
+             xmlns:ui="clr-namespace:MoneyFox.Ui"
+             xmlns:overflowMenu="clr-namespace:MoneyFox.Ui.Views.OverflowMenu"
+             xmlns:selector="clr-namespace:MoneyFox.Ui.Views.Statistics.Selector"
+             x:DataType="ui:MainPageViewModel"
+             x:Class="MoneyFox.Ui.MainPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BottomTabStyle" TargetType="tabs:BottomTabItem">
+                <Setter Property="SelectedTabColor" Value="{StaticResource Primary}" />
+                <Setter Property="UnselectedLabelColor" Value="Gray" />
+                <Setter Property="UnselectedIconColor" Value="LightGray" />
+                <Setter Property="LabelSize" Value="14" />
+                <Setter Property="IconSize" Value="28" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <Grid ColumnSpacing="0" RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="95" />
+        </Grid.RowDefinitions>
+        
+        <tabs:ViewSwitcher x:Name="Switcher"
+                           Grid.RowSpan="3"
+                           Margin="0"
+                           Animate="True"
+                           SelectedIndex="{Binding SelectedViewModelIndex, Mode=TwoWay}">
+
+            <tabs:DelayedView x:TypeArguments="dashboard:DashboardView"
+                              AccentColor="{StaticResource Primary}"
+                              Animate="True"
+                              BindingContext="{Binding DashboardViewModel}"
+                              UseActivityIndicator="True" />
+            
+            <tabs:DelayedView x:TypeArguments="selector:StatisticSelectorView"
+                              AccentColor="{StaticResource Primary}"
+                              Animate="True"
+                              BindingContext="{Binding StatisticSelectorViewModel}"
+                              UseActivityIndicator="True" />
+            
+            <tabs:DelayedView x:TypeArguments="overflowMenu:OverflowMenuView"
+                              AccentColor="{StaticResource Primary}"
+                              Animate="True"
+                              BindingContext="{Binding OverflowMenuViewModel}"
+                              UseActivityIndicator="True" />
+            
+        </tabs:ViewSwitcher>
+
+        <tabs:TabHostView Grid.Row="1"
+                          HorizontalOptions="Center"
+                          VerticalOptions="Start"
+                          HeightRequest="60"
+                          WidthRequest="280"
+                          TabType="Fixed"
+                          IsSegmented="True"
+                          CornerRadius="30"
+                          Margin="15"
+                          BackgroundColor="#F0F0F3"
+                          SelectedIndex="{Binding Source={x:Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}">
+            <tabs:TabHostView.Tabs>
+                <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
+                                    IconImageSource="house_96"
+                                    Label="{x:Static resources:Translations.DashboardTitle}" />
+                <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
+                                    IconImageSource="list_96"
+                                    Label="{extensions:Translate Tabs_List}" />
+                <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
+                                    IconImageSource="grid_view_96"
+                                    Label="{extensions:Translate Tabs_Grid}" />
+            </tabs:TabHostView.Tabs>
+        </tabs:TabHostView>
+    </Grid>
+</ContentPage>

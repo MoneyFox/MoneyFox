@@ -29,7 +29,8 @@ public partial class App
         IMediator mediator,
         ISettingsFacade settingsFacade,
         IBackupService backupService,
-        IAptabaseClient aptabaseClient)
+        IAptabaseClient aptabaseClient,
+        MainPageViewModel mainPageViewModel)
     {
         this.mediator = mediator;
         this.settingsFacade = settingsFacade;
