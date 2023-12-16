@@ -51,8 +51,6 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
         }
     }
 
-    public AsyncRelayCommand LoadDataCommand => new(LoadAsync);
-
     public AsyncRelayCommand GoToSelectCategoryDialogCommand => new(() => navigationService.GoTo<SelectCategoryViewModel>());
 
     public override async Task OnNavigatedBackAsync(object? parameter)

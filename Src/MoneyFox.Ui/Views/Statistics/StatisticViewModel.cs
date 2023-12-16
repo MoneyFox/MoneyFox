@@ -47,8 +47,6 @@ internal abstract class StatisticViewModel : NavigableViewModel, IRecipient<Date
 
     public SolidColorPaint LegendBackgroundPaint { get; } = new();
 
-    public AsyncRelayCommand LoadedCommand => new(LoadAsync);
-
     public DateTime StartDate
     {
         get => startDate;

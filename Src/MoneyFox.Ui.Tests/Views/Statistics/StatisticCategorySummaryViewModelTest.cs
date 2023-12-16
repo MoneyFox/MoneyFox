@@ -29,7 +29,7 @@ public class StatisticCategorySummaryViewModelTest
             .Returns(_ => Task.FromResult(categorySummaryModel));
 
         // Act
-        vm.LoadedCommand.ExecuteAsync(null);
+        vm.OnNavigatedAsync(null);
 
         // Assert
         vm.TotalExpense.Should().Be(700);
@@ -50,7 +50,7 @@ public class StatisticCategorySummaryViewModelTest
             .Returns(_ => Task.FromResult(categorySummaryModel));
 
         // Act
-        vm.LoadedCommand.ExecuteAsync(null);
+        vm.OnNavigatedAsync(null);
 
         // Assert
         vm.TotalExpense.Should().Be(0);

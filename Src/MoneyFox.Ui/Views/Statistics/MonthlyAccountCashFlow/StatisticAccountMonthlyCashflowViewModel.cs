@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using Accounts.AccountModification;
 using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
-using Core.Common.Settings;
 using Core.Queries;
 using Core.Queries.Statistics;
 using LiveChartsCore;
@@ -20,7 +19,7 @@ internal sealed class StatisticAccountMonthlyCashFlowViewModel : StatisticViewMo
     private readonly IMapper mapper;
     private AccountViewModel selectedAccount = null!;
 
-    public StatisticAccountMonthlyCashFlowViewModel(IMediator mediator, IMapper mapper, ISettingsFacade settingsFacade) : base(mediator)
+    public StatisticAccountMonthlyCashFlowViewModel(IMediator mediator, IMapper mapper) : base(mediator)
     {
         this.mapper = mapper;
         StartDate = DateTime.Now.AddYears(-1);
@@ -45,12 +44,9 @@ internal sealed class StatisticAccountMonthlyCashFlowViewModel : StatisticViewMo
 
             selectedAccount = value;
             OnPropertyChanged();
-            LoadDataCommand.Execute(null);
+            LoadAsync().GetAwaiter().GetResult();
         }
     }
-
-    public AsyncRelayCommand LoadDataCommand => new(LoadAsync);
-
     public override async Task OnNavigatedAsync(object? parameter)
     {
         Accounts.Clear();
