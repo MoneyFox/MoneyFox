@@ -13,25 +13,20 @@ using PaymentModification;
 
 internal sealed class PaymentListViewModel : NavigableViewModel
 {
-    private bool isRunning;
-
+    private readonly IMapper mapper1;
+    private readonly IMediator mediator1;
+    private readonly INavigationService navigationService1;
     private ReadOnlyObservableCollection<PaymentDayGroup> paymentDayGroups = null!;
     private AccountViewModel selectedAccount = new();
-    private readonly IMediator mediator1;
-    private readonly IMapper mapper1;
-    private readonly INavigationService navigationService1;
 
     public PaymentListViewModel(IMediator mediator, IMapper mapper, INavigationService navigationService)
     {
         mediator1 = mediator;
         mapper1 = mapper;
         navigationService1 = navigationService;
-
-
-        WeakReferenceMessenger.Default.Register<PaymentListFilterChangedMessage>(this, (r, m) =>
-        {
-            LoadPaymentsByMessageAsync(m).GetAwaiter().GetResult();
-        });
+        WeakReferenceMessenger.Default.Register<PaymentListFilterChangedMessage>(
+            recipient: this,
+            handler: (_, m) => { LoadPayments(m).GetAwaiter().GetResult(); });
     }
 
     public AccountViewModel SelectedAccount
@@ -59,58 +54,45 @@ internal sealed class PaymentListViewModel : NavigableViewModel
     {
         var accountId = Convert.ToInt32(parameter);
         SelectedAccount = mapper1.Map<AccountViewModel>(await mediator1.Send(new GetAccountByIdQuery(accountId)));
-        await LoadPaymentsByMessageAsync(new());
+        await LoadPayments(new());
     }
 
     public override Task OnNavigatedBackAsync(object? parameter)
     {
-        return LoadPaymentsByMessageAsync(new());
+        return LoadPayments(new());
     }
 
-    private async Task LoadPaymentsByMessageAsync(PaymentListFilterChangedMessage message)
+    private async Task LoadPayments(PaymentListFilterChangedMessage message)
     {
-        try
-        {
-            if (isRunning)
-            {
-                return;
-            }
+        var paymentData = await mediator1.Send(
+            new GetPaymentsForAccount.Query(
+                AccountId: SelectedAccount.Id,
+                TimeRangeStart: message.TimeRangeStart,
+                TimeRangeEnd: message.TimeRangeEnd,
+                FilteredPaymentType: message.FilteredPaymentType,
+                IsRecurringFilterActive: message.IsClearedFilterActive,
+                IsClearedFilterActive: message.IsRecurringFilterActive));
 
-            isRunning = true;
-            var paymentData = await mediator1.Send(
-                new GetPaymentsForAccount.Query(
-                    AccountId: SelectedAccount.Id,
-                    TimeRangeStart: message.TimeRangeStart,
-                    TimeRangeEnd: message.TimeRangeEnd,
-                    FilteredPaymentType: message.FilteredPaymentType,
-                    IsRecurringFilterActive: message.IsClearedFilterActive,
-                    IsClearedFilterActive: message.IsRecurringFilterActive));
+        var paymentVms = paymentData.Select(
+                p => new PaymentListItemViewModel
+                {
+                    Id = p.Id,
+                    Amount = p.Amount,
+                    ChargedAccountId = p.ChargedAccountId,
+                    CurrentAccountId = SelectedAccount.Id,
+                    Date = p.Date.ToDateTime(TimeOnly.MinValue),
+                    CategoryName = p.CategoryName,
+                    IsCleared = p.IsCleared,
+                    IsRecurring = p.IsRecurring,
+                    Note = p.Note,
+                    Type = p.Type
+                })
+            .OrderByDescending(p => p.Date);
 
-            var paymentVms = paymentData.Select(
-                    p => new PaymentListItemViewModel
-                    {
-                        Id = p.Id,
-                        Amount = p.Amount,
-                        ChargedAccountId = p.ChargedAccountId,
-                        CurrentAccountId = SelectedAccount.Id,
-                        Date = p.Date.ToDateTime(TimeOnly.MinValue),
-                        CategoryName = p.CategoryName,
-                        IsCleared = p.IsCleared,
-                        IsRecurring = p.IsRecurring,
-                        Note = p.Note,
-                        Type = p.Type
-                    })
-                .OrderByDescending(p => p.Date);
+        var dailyGroupedPayments = paymentVms.GroupBy(p => p.Date.Date)
+            .Select(g => new PaymentDayGroup(date: DateOnly.FromDateTime(g.Key), payments: g.ToList()))
+            .ToList();
 
-            var dailyGroupedPayments = paymentVms.GroupBy(p => p.Date.Date)
-                .Select(g => new PaymentDayGroup(date: DateOnly.FromDateTime(g.Key), payments: g.ToList()))
-                .ToList();
-
-            PaymentDayGroups = new(new(dailyGroupedPayments));
-        }
-        finally
-        {
-            isRunning = false;
-        }
+        PaymentDayGroups = new(new(dailyGroupedPayments));
     }
 }
