@@ -9,7 +9,7 @@ using Core.Queries;
 using Domain.Aggregates.BudgetAggregate;
 using MediatR;
 
-internal abstract class ModifyBudgetViewModel(INavigationService navigationService, ISender sender, IDialogService service) : NavigableViewModel
+internal abstract class ModifyBudgetViewModel(INavigationService navigationService, ISender sender, IDialogService dialogService) : NavigableViewModel
 {
     private string name = null!;
     private int numberOfMonths = 1;
@@ -97,12 +97,12 @@ internal abstract class ModifyBudgetViewModel(INavigationService navigationServi
     {
         try
         {
-            await service.ShowLoadingDialogAsync();
+            await dialogService.ShowLoadingDialogAsync();
             await SaveAsync();
         }
         finally
         {
-            await service.HideLoadingDialogAsync();
+            await dialogService.HideLoadingDialogAsync();
         }
     }
 
