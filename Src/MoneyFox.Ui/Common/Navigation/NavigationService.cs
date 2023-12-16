@@ -1,7 +1,6 @@
 namespace MoneyFox.Ui.Common.Navigation;
 
 using Aptabase.Maui;
-using Extensions;
 using JetBrains.Annotations;
 
 [UsedImplicitly]
@@ -14,13 +13,6 @@ internal sealed class NavigationService(IViewLocator locator, IAptabaseClient ap
         await Navigation.PopAsync();
         var view = Shell.Current.CurrentPage;
         await ((NavigableViewModel)view.BindingContext).OnNavigatedBackAsync(parameter);
-    }
-
-    public Task OpenModalAsync<T>() where T : ContentPage
-    {
-        var pageName = typeof(T).Name;
-
-        return Shell.Current.GoToModalAsync(pageName);
     }
 
     public async Task GoTo<TViewModel>(object? parameter = null, bool modalNavigation = false) where TViewModel : NavigableViewModel
