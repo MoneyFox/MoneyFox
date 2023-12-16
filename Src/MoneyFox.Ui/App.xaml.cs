@@ -49,7 +49,7 @@ public partial class App
 
     private static Page GetAppShellPage(MainPageViewModel mainPageViewModel)
     {
-        return DeviceInfo.Current.Idiom.UseDesktopPage() ? new AppShellDesktop() : new MainPage(mainPageViewModel);
+        return DeviceInfo.Current.Idiom.UseDesktopPage() ? new AppShellDesktop() : new NavigationPage(new MainPage(mainPageViewModel));
     }
 
     private void FillResourceDictionary()

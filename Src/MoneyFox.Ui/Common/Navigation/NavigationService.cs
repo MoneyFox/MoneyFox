@@ -5,9 +5,11 @@ using Extensions;
 using JetBrains.Annotations;
 
 [UsedImplicitly]
-internal sealed class NavigationService(IViewLocator locator, IAptabaseClient aptabaseClient) : INavigationService
+internal sealed class NavigationService(IViewLocator locator, IAptabaseClient aptabaseClient, Lazy<NavigationPage>? lazyFormsNavigation = null) : INavigationService
 {
-    private INavigation Navigation => Shell.Current.Navigation;
+    private INavigation? MauiNavigation => (Application.Current?.MainPage as NavigationPage)?.Navigation;
+
+    private INavigation Navigation =>  MauiNavigation ?? Shell.Current.Navigation;
 
     public async Task GoBack(object? parameter = null)
     {
