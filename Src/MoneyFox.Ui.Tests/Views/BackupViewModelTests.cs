@@ -43,7 +43,7 @@ public class BackupViewModelTests
             _ = connectivityAdapter.IsConnected.Returns(false);
 
             // Act
-            viewModel.InitializeCommand.Execute(null);
+            await viewModel.OnNavigatedAsync(null);
 
             // Assert
             viewModel.IsLoadingBackupAvailability.Should().BeFalse();
@@ -58,7 +58,7 @@ public class BackupViewModelTests
             _ = connectivityAdapter.IsConnected.Returns(true);
 
             // Act
-            viewModel.InitializeCommand.Execute(null);
+            await viewModel.OnNavigatedAsync(null);
 
             // Assert
             viewModel.IsLoadingBackupAvailability.Should().BeFalse();
@@ -70,14 +70,14 @@ public class BackupViewModelTests
         public void CallInitializations_WhenConnectivitySet_AndUserLoggedIn()
         {
             // Arrange
-            _ = connectivityAdapter.IsConnected.Returns(true);
-            _ = settingsManager.IsLoggedInToBackupService.Returns(true);
+            connectivityAdapter.IsConnected.Returns(true);
+            settingsManager.IsLoggedInToBackupService.Returns(true);
             var returnDate = DateTime.Today;
-            _ = backupService.IsBackupExistingAsync().Returns(true);
-            _ = backupService.GetBackupDateAsync().Returns(returnDate);
+            backupService.IsBackupExistingAsync().Returns(true);
+            backupService.GetBackupDateAsync().Returns(returnDate);
 
             // Act
-            viewModel.InitializeCommand.Execute(null);
+            viewModel.OnNavigatedAsync(null);
 
             // Assert
             viewModel.IsLoadingBackupAvailability.Should().BeFalse();

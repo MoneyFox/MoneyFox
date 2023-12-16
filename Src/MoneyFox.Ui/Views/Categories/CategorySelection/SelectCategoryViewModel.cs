@@ -2,30 +2,21 @@ namespace MoneyFox.Ui.Views.Categories.CategorySelection;
 
 using System.Collections.ObjectModel;
 using System.Globalization;
-using AutoMapper;
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
 using Core.Features.CategoryDeletion;
 using Core.Queries;
 using MediatR;
+using ModifyCategory;
 using Resources.Strings;
 
-internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<CategoriesChangedMessage>
+internal sealed class SelectCategoryViewModel(IDialogService service, ISender sender, INavigationService navigationService) : NavigableViewModel
 {
     public const string SELECTED_CATEGORY_ID_PARAM = "selectedCategoryId";
-    private readonly IDialogService dialogService;
-    private readonly IMediator mediator;
-    private readonly INavigationService navigationService;
 
     private ReadOnlyObservableCollection<CategoryGroup> categoryGroups = null!;
-
-    public SelectCategoryViewModel(IDialogService dialogService, IMapper mapper, IMediator mediator, INavigationService navigationService)
-    {
-        this.dialogService = dialogService;
-        this.mediator = mediator;
-        this.navigationService = navigationService;
-    }
 
     public ReadOnlyObservableCollection<CategoryGroup> CategoryGroups
     {
@@ -33,31 +24,29 @@ internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<Ca
         private set => SetProperty(field: ref categoryGroups, newValue: value);
     }
 
-    public AsyncRelayCommand GoToAddCategoryCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddCategoryRoute));
+    public AsyncRelayCommand GoToAddCategoryCommand => new(() => navigationService.GoTo<AddCategoryViewModel>());
 
-    public AsyncRelayCommand<CategoryListItemViewModel> GoToEditCategoryCommand
-        => new(async cvm => await Shell.Current.GoToAsync($"{Routes.EditCategoryRoute}?categoryId={cvm?.Id}"));
+    public AsyncRelayCommand<CategoryListItemViewModel> GoToEditCategoryCommand => new(cvm => navigationService.GoTo<EditCategoryViewModel>(cvm!.Id));
 
     public AsyncRelayCommand<string> SearchCategoryCommand => new(async s => await SearchCategoryAsync(s ?? string.Empty));
 
     public AsyncRelayCommand<CategoryListItemViewModel> DeleteCategoryCommand => new(async vm => await DeleteCategoryAsync(vm));
 
-    public AsyncRelayCommand<CategoryListItemViewModel> SelectCategoryCommand
-        => new(async c => { await navigationService.NavigateBackAsync(parameterName: SELECTED_CATEGORY_ID_PARAM, queryParameter: c.Id.ToString()); });
+    public AsyncRelayCommand<CategoryListItemViewModel> SelectCategoryCommand => new(c => navigationService.GoBack(c!.Id));
 
-    public void Receive(CategoriesChangedMessage message)
+    public override Task OnNavigatedAsync(object? parameter)
     {
-        SearchCategoryAsync().GetAwaiter().GetResult();
+        return SearchCategoryAsync();
     }
 
-    public async Task InitializeAsync()
+    public override Task OnNavigatedBackAsync(object? parameter)
     {
-        await SearchCategoryAsync();
+        return SearchCategoryAsync();
     }
 
     private async Task SearchCategoryAsync(string searchTerm = "")
     {
-        var categories = await mediator.Send(new GetCategoryBySearchTermQuery(searchTerm));
+        var categories = await sender.Send(new GetCategoryBySearchTermQuery(searchTerm));
         var categoryVms = categories.Select(c => new CategoryListItemViewModel { Id = c.Id, Name = c.Name, RequireNote = c.RequireNote }).ToList();
         var groupedCategories = categoryVms.GroupBy(c => c.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture))
             .Select(g => new CategoryGroup(title: g.Key, categoryItems: g.ToList()));
@@ -72,17 +61,17 @@ internal sealed class SelectCategoryViewModel : BasePageViewModel, IRecipient<Ca
             return;
         }
 
-        if (await dialogService.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeleteCategoryConfirmationMessage))
+        if (await service.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeleteCategoryConfirmationMessage))
         {
-            var numberOfAssignedPayments = await mediator.Send(new GetNumberOfPaymentsAssignedToCategory.Query(categoryListItemViewModel.Id));
+            var numberOfAssignedPayments = await sender.Send(new GetNumberOfPaymentsAssignedToCategory.Query(categoryListItemViewModel.Id));
             if (numberOfAssignedPayments == 0
-                || await dialogService.ShowConfirmMessageAsync(
+                || await service.ShowConfirmMessageAsync(
                     title: Translations.RemoveCategoryAssignmentTitle,
                     message: string.Format(format: Translations.RemoveCategoryAssignmentOnPaymentMessage, arg0: numberOfAssignedPayments),
                     positiveButtonText: Translations.RemoveLabel,
                     negativeButtonText: Translations.CancelLabel))
             {
-                await mediator.Send(new DeleteCategoryById.Command(categoryListItemViewModel.Id));
+                await sender.Send(new DeleteCategoryById.Command(categoryListItemViewModel.Id));
                 await SearchCategoryAsync();
             }
         }

@@ -1,5 +1,6 @@
 namespace MoneyFox.Ui.Views.Categories.ModifyCategory;
 
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Interfaces;
 using Core.Features._Legacy_.Categories.UpdateCategory;
@@ -16,7 +17,8 @@ public class EditCategoryViewModel : ModifyCategoryViewModel
 
     public EditCategoryViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService) : base(
         mediator: mediator,
-        dialogService: dialogService)
+        dialogService: dialogService,
+        navigationService: navigationService)
     {
         this.mediator = mediator;
         this.dialogService = dialogService;
@@ -25,8 +27,9 @@ public class EditCategoryViewModel : ModifyCategoryViewModel
 
     public AsyncRelayCommand DeleteCommand => new(DeleteAsync);
 
-    public async Task InitializeAsync(int categoryId)
+    public override async Task OnNavigatedAsync(object? parameter)
     {
+        var categoryId = Convert.ToInt32(parameter);
         var categoryData = await mediator.Send(new GetCategoryById.Query(categoryId));
         SelectedCategory = new()
         {
@@ -65,7 +68,7 @@ public class EditCategoryViewModel : ModifyCategoryViewModel
                     negativeButtonText: Translations.CancelLabel))
             {
                 await mediator.Send(new DeleteCategoryById.Command(SelectedCategory.Id));
-                await navigationService.GoBackFromModalAsync();
+                await navigationService.GoBack();
             }
         }
     }

@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Views.Statistics;
 
 using System.Globalization;
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;
@@ -9,7 +10,7 @@ using MediatR;
 using Resources.Strings;
 using SkiaSharp;
 
-internal abstract class StatisticViewModel : BasePageViewModel, IRecipient<DateSelectedMessage>
+internal abstract class StatisticViewModel : NavigableViewModel
 {
     protected readonly IMediator Mediator;
     private DateTime endDate;
@@ -40,13 +41,18 @@ internal abstract class StatisticViewModel : BasePageViewModel, IRecipient<DateS
 
             LegendBackgroundPaint = new() { Color = new(legendBackgroundColor.ToUint()) };
         }
+
+        WeakReferenceMessenger.Default.Register<DateSelectedMessage>(this, (r, m) =>
+        {
+            StartDate = m.StartDate;
+            EndDate = m.EndDate;
+            LoadAsync().GetAwaiter().GetResult();
+        });
     }
 
     public SolidColorPaint LegendTextPaint { get; } = new();
 
     public SolidColorPaint LegendBackgroundPaint { get; } = new();
-
-    public AsyncRelayCommand LoadedCommand => new(LoadAsync);
 
     public DateTime StartDate
     {
@@ -78,13 +84,6 @@ internal abstract class StatisticViewModel : BasePageViewModel, IRecipient<DateS
 
     public string Title
         => $"{Translations.StatisticsTimeRangeTitle} {StartDate.ToString(format: "d", provider: CultureInfo.InvariantCulture)} - {EndDate.ToString(format: "d", provider: CultureInfo.InvariantCulture)}";
-
-    public void Receive(DateSelectedMessage message)
-    {
-        StartDate = message.StartDate;
-        EndDate = message.EndDate;
-        LoadAsync().GetAwaiter().GetResult();
-    }
 
     protected abstract Task LoadAsync();
 }

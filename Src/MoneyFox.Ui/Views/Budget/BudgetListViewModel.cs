@@ -1,21 +1,15 @@
 namespace MoneyFox.Ui.Views.Budget;
 
 using System.Collections.ObjectModel;
+using BudgetModification;
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;
 using Core.Queries.BudgetList;
 using MediatR;
 
-public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<BudgetsChangedMessage>
+public sealed class BudgetListViewModel(ISender sender, INavigationService navigationService) : NavigableViewModel
 {
-    private readonly ISender sender;
-
-    public BudgetListViewModel(ISender sender)
-    {
-        this.sender = sender;
-    }
-
     public bool HasBudgets => Budgets.Any();
 
     public ObservableCollection<BudgetListItemViewModel> Budgets { get; } = new();
@@ -23,18 +17,23 @@ public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<BudgetsC
     public decimal BudgetedAmount => Budgets.Sum(b => b.MonthlyBudget);
     public decimal SpentAmount => Budgets.Sum(b => b.MonthlySpending);
 
-    public AsyncRelayCommand InitializeCommand => new(Initialize);
+    public AsyncRelayCommand InitializeCommand => new(LoadData);
 
-    public AsyncRelayCommand GoToAddBudgetCommand => new(GoToAddBudget);
+    public AsyncRelayCommand GoToAddBudgetCommand => new(() => navigationService.GoTo<AddBudgetViewModel>());
 
     public AsyncRelayCommand<BudgetListItemViewModel> EditBudgetCommand => new(EditBudgetAsync);
 
-    public void Receive(BudgetsChangedMessage message)
+    public override Task OnNavigatedAsync(object? parameter)
     {
-        Initialize().GetAwaiter().GetResult();
+        return LoadData();
     }
 
-    private async Task Initialize()
+    public override Task OnNavigatedBackAsync(object? parameter)
+    {
+        return LoadData();
+    }
+
+    private async Task LoadData()
     {
         var budgetsListData = await sender.Send(new LoadBudgetDataForList.Query());
         Budgets.Clear();
@@ -55,18 +54,8 @@ public sealed class BudgetListViewModel : BasePageViewModel, IRecipient<BudgetsC
         OnPropertyChanged(nameof(HasBudgets));
     }
 
-    private static async Task GoToAddBudget()
+    private Task EditBudgetAsync(BudgetListItemViewModel? selectedBudget)
     {
-        await Shell.Current.GoToAsync(Routes.AddBudgetRoute);
-    }
-
-    private async Task EditBudgetAsync(BudgetListItemViewModel? selectedBudget)
-    {
-        if (selectedBudget == null)
-        {
-            return;
-        }
-
-        await Shell.Current.GoToAsync($"{Routes.EditBudgetRoute}?budgetId={selectedBudget.Id}");
+        return selectedBudget == null ? Task.CompletedTask : navigationService.GoTo<EditBudgetViewModel>(selectedBudget.Id);
     }
 }

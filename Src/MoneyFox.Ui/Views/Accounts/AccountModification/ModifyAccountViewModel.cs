@@ -1,31 +1,21 @@
 namespace MoneyFox.Ui.Views.Accounts.AccountModification;
 
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
 using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-public abstract class ModifyAccountViewModel : BasePageViewModel
+public abstract class ModifyAccountViewModel(IDialogService service, IMediator mediator, INavigationService navigationService) : NavigableViewModel
 {
-    private readonly IDialogService dialogService;
-    private readonly INavigationService navigationService;
-
     private AccountViewModel selectedAccountVm = new();
-
-    protected ModifyAccountViewModel(IDialogService dialogService, IMediator mediator, INavigationService navigationService)
-    {
-        this.dialogService = dialogService;
-        this.navigationService = navigationService;
-        Mediator = mediator;
-    }
 
     public virtual bool IsEdit => false;
 
     public virtual string Title => Translations.AddAccountTitle;
 
-    protected IMediator Mediator { get; }
+    protected IMediator Mediator { get; } = mediator;
 
     public AccountViewModel SelectedAccountVm
     {
@@ -46,7 +36,7 @@ public abstract class ModifyAccountViewModel : BasePageViewModel
     {
         if (string.IsNullOrWhiteSpace(SelectedAccountVm.Name))
         {
-            await dialogService.ShowMessageAsync(title: Translations.MandatoryFieldEmptyTitle, message: Translations.NameRequiredMessage);
+            await service.ShowMessageAsync(title: Translations.MandatoryFieldEmptyTitle, message: Translations.NameRequiredMessage);
 
             return;
         }
@@ -61,19 +51,18 @@ public abstract class ModifyAccountViewModel : BasePageViewModel
 
             if (nameChanged
                 && nameAlreadyTaken
-                && await dialogService.ShowConfirmMessageAsync(title: Translations.DuplicatedNameTitle, message: Translations.DuplicateAccountMessage) is false)
+                && await service.ShowConfirmMessageAsync(title: Translations.DuplicatedNameTitle, message: Translations.DuplicateAccountMessage) is false)
             {
                 return;
             }
 
-            await dialogService.ShowLoadingDialogAsync(Translations.SavingAccountMessage);
+            await service.ShowLoadingDialogAsync(Translations.SavingAccountMessage);
             await SaveAccountAsync();
-            await navigationService.GoBackFromModalAsync();
-            Messenger.Send(new AccountsChangedMessage());
+            await navigationService.GoBack();
         }
         finally
         {
-            await dialogService.HideLoadingDialogAsync();
+            await service.HideLoadingDialogAsync();
         }
     }
 }

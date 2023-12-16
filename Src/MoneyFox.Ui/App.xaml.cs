@@ -2,6 +2,7 @@ namespace MoneyFox.Ui;
 
 using Aptabase.Maui;
 using Common.Exceptions;
+using Common.Extensions;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
 using Core.Common.Settings;
@@ -12,7 +13,6 @@ using Domain.Exceptions;
 using MediatR;
 using Messages;
 using Serilog;
-using Views;
 using Views.Setup;
 
 public partial class App
@@ -46,11 +46,9 @@ public partial class App
 
     private static IServiceProvider ServiceProvider { get; set; }
 
-    public static Page GetAppShellPage()
+    private static Page GetAppShellPage()
     {
-        return DeviceInfo.Current.Idiom == DeviceIdiom.Desktop || DeviceInfo.Current.Idiom == DeviceIdiom.Tablet || DeviceInfo.Current.Idiom == DeviceIdiom.TV
-            ? new AppShellDesktop()
-            : new AppShell();
+        return DeviceInfo.Current.Idiom.UseDesktopPage() ? new AppShellDesktop() : new AppShell();
     }
 
     private void FillResourceDictionary()
@@ -62,7 +60,7 @@ public partial class App
         }
     }
 
-    internal static TViewModel GetViewModel<TViewModel>() where TViewModel : BasePageViewModel
+    internal static TViewModel GetViewModel<TViewModel>()
     {
         return ServiceProvider.GetService<TViewModel>() ?? throw new ResolveViewModelException<TViewModel>();
     }

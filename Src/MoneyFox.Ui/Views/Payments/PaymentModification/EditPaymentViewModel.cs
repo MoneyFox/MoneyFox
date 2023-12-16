@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
 using Aptabase.Maui;
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using Controls.AccountPicker;
 using Controls.CategorySelection;
@@ -13,7 +14,7 @@ using Core.Queries.PaymentDataById;
 using MediatR;
 using Resources.Strings;
 
-internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
+internal class EditPaymentViewModel : ModifyPaymentViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
@@ -25,13 +26,15 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
         IToastService toastService,
         ISettingsFacade settingsFacade,
         CategorySelectionViewModel categorySelectionViewModel,
+        INavigationService navigationService,
         IAptabaseClient aptabaseClient) : base(
         mediator: mediator,
-        dialogService: dialogService,
+        service: dialogService,
         toastService: toastService,
         categorySelectionViewModel: categorySelectionViewModel,
-        settingsFacade: settingsFacade,
-        aptabaseClient: aptabaseClient)
+        facade: settingsFacade,
+        navigationService: navigationService,
+        client: aptabaseClient)
     {
         this.mediator = mediator;
         this.dialogService = dialogService;
@@ -40,25 +43,10 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
 
     public AsyncRelayCommand<PaymentViewModel> DeleteCommand => new(async p => await DeletePaymentAsync(p!));
 
-    public new void ApplyQueryAttributes(IDictionary<string, object> query)
+    public override async Task OnNavigatedAsync(object? parameter)
     {
-        if (query.TryGetValue(key: "paymentId", value: out var paymentIdParam))
-        {
-            var paymentId = Convert.ToInt32(paymentIdParam);
-            InitializeAsync(paymentId).GetAwaiter().GetResult();
-        }
-
-        base.ApplyQueryAttributes(query);
-    }
-
-    public async Task InitializeAsync(int paymentId)
-    {
-        if (IsFirstLoad is false)
-        {
-            return;
-        }
-
-        await InitializeAsync();
+        ArgumentNullException.ThrowIfNull(parameter);
+        var paymentId = Convert.ToInt32(parameter);
         var paymentData = await mediator.Send(new GetPaymentDataById.Query(paymentId));
         if (paymentData is { IsRecurring: true, RecurrenceData: not null })
         {
@@ -101,8 +89,6 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
                 Id = paymentData.Category.Id, Name = paymentData.Category.Name, RequireNote = paymentData.Category.RequireNote
             };
         }
-
-        IsFirstLoad = false;
     }
 
     protected override async Task SavePaymentAsync()

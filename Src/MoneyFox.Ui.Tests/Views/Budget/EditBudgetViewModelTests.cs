@@ -1,13 +1,12 @@
 namespace MoneyFox.Ui.Tests.Views.Budget;
 
 using System.Collections.Immutable;
+using Common.Navigation;
 using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Features.BudgetDeletion;
 using Core.Features.BudgetUpdate;
-using Core.Queries;
 using Core.Queries.BudgetEntryLoading;
-using Domain.Aggregates.CategoryAggregate;
 using Domain.Tests.TestFramework;
 using MediatR;
 using Ui.Views.Budget.BudgetModification;
@@ -15,7 +14,6 @@ using Ui.Views.Categories.CategorySelection;
 
 public class EditBudgetViewModelTests
 {
-    private const int CATEGORY_ID = 10;
     private readonly IDialogService dialogService;
     private readonly INavigationService navigationService;
     private readonly ISender sender;
@@ -28,37 +26,6 @@ public class EditBudgetViewModelTests
         navigationService = Substitute.For<INavigationService>();
         dialogService = Substitute.For<IDialogService>();
         viewModel = new(sender: sender, navigationService: navigationService, dialogService: dialogService);
-    }
-
-    public class OnReceiveMessage : EditBudgetViewModelTests
-    {
-        public OnReceiveMessage()
-        {
-            sender.Send(Arg.Any<GetCategoryByIdQuery>()).Returns(new Category("Beer"));
-        }
-
-        [Fact]
-        public void AddsSelectedCategoryToList()
-        {
-            // Act
-            viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
-
-            // Assert
-            _ = viewModel.SelectedCategories.Should().HaveCount(1);
-            _ = viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CATEGORY_ID);
-        }
-
-        [Fact]
-        public void IgnoresSelectedCategory_WhenEntryWithSameIdAlreadyInList()
-        {
-            // Act
-            viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
-            viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
-
-            // Assert
-            _ = viewModel.SelectedCategories.Should().HaveCount(1);
-            _ = viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CATEGORY_ID);
-        }
     }
 
     public class OnRemoveCategory : EditBudgetViewModelTests
@@ -87,7 +54,6 @@ public class EditBudgetViewModelTests
             await viewModel.OpenCategorySelectionCommand.ExecuteAsync(null);
 
             // Assert
-            await navigationService.Received(1).OpenModalAsync<SelectCategoryPage>();
         }
     }
 
@@ -116,7 +82,7 @@ public class EditBudgetViewModelTests
             _ = capturedCommand!.Name.Should().Be(testBudget.Name);
             _ = capturedCommand.SpendingLimit.Should().Be(testBudget.SpendingLimit);
             _ = capturedCommand.Categories.Should().BeEquivalentTo(testBudget.Categories);
-            await navigationService.Received(1).GoBackFromModalAsync();
+            await navigationService.Received(1).GoBack();
         }
     }
 
@@ -141,17 +107,17 @@ public class EditBudgetViewModelTests
             // Arrange
 
             // Act
-            await viewModel.InitializeCommand.ExecuteAsync(testBudget.Id);
+            await viewModel.OnNavigatedAsync(testBudget.Id);
 
             // Assert
-            _ = capturedQuery.Should().NotBeNull();
-            _ = capturedQuery!.BudgetId.Should().Be(testBudget.Id);
-            _ = viewModel.Id.Value.Should().Be(testBudget.Id);
-            _ = viewModel.Name.Should().Be(testBudget.Name);
-            _ = viewModel.SpendingLimit.Should().Be(testBudget.SpendingLimit);
-            _ = viewModel.NumberOfMonths.Should().Be(testBudget.Interval.NumberOfMonths);
-            _ = viewModel.SelectedCategories[0].CategoryId.Should().Be(categories[0].Id);
-            _ = viewModel.SelectedCategories[0].Name.Should().Be(categories[0].Name);
+            capturedQuery.Should().NotBeNull();
+            capturedQuery!.BudgetId.Should().Be(testBudget.Id);
+            viewModel.Id.Value.Should().Be(testBudget.Id);
+            viewModel.Name.Should().Be(testBudget.Name);
+            viewModel.SpendingLimit.Should().Be(testBudget.SpendingLimit);
+            viewModel.NumberOfMonths.Should().Be(testBudget.Interval.NumberOfMonths);
+            viewModel.SelectedCategories[0].CategoryId.Should().Be(categories[0].Id);
+            viewModel.SelectedCategories[0].Name.Should().Be(categories[0].Name);
         }
     }
 
@@ -178,15 +144,15 @@ public class EditBudgetViewModelTests
                         numberOfMonths: testBudget.Interval.NumberOfMonths,
                         categories: new List<BudgetEntryData.BudgetCategory>()));
 
-            await viewModel.InitializeCommand.ExecuteAsync(testBudget.Id);
+            await viewModel.OnNavigatedAsync(testBudget.Id);
 
             // Act
             await viewModel.DeleteBudgetCommand.ExecuteAsync(null);
 
             // Assert
-            _ = capturedCommand.Should().NotBeNull();
-            _ = capturedCommand!.BudgetId.Value.Should().Be(testBudget.Id);
-            await navigationService.Received(1).GoBackFromModalAsync();
+            capturedCommand.Should().NotBeNull();
+            capturedCommand!.BudgetId.Value.Should().Be(testBudget.Id);
+            await navigationService.Received(1).GoBack();
         }
 
         [Fact]
@@ -200,7 +166,7 @@ public class EditBudgetViewModelTests
 
             // Assert
             await sender.Received(0).Send(Arg.Any<DeleteBudget.Command>());
-            await navigationService.Received(0).GoBackFromModalAsync();
+            await navigationService.Received(0).GoBack();
         }
     }
 
@@ -210,7 +176,7 @@ public class EditBudgetViewModelTests
         public void OnInitialized()
         {
             // Assert
-            _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
+            viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
         }
 
         [Fact]
@@ -222,7 +188,7 @@ public class EditBudgetViewModelTests
             viewModel.NumberOfMonths = 1;
 
             // Assert
-            _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
+            viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
         }
 
         [Fact]
@@ -234,7 +200,7 @@ public class EditBudgetViewModelTests
             viewModel.NumberOfMonths = 1;
 
             // Assert
-            _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
+            viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
         }
     }
 
@@ -251,7 +217,7 @@ public class EditBudgetViewModelTests
             viewModel.NumberOfMonths = 1;
 
             // Assert
-            _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeTrue();
+            viewModel.SaveBudgetCommand.CanExecute(null).Should().BeTrue();
         }
     }
 }

@@ -2,7 +2,7 @@ namespace MoneyFox.Ui.Views.Statistics.CategoryProgression;
 
 using System.Collections.ObjectModel;
 using Categories.CategorySelection;
-using Common.Extensions;
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using Controls.CategorySelection;
 using Core.Queries;
@@ -14,13 +14,18 @@ using LiveChartsCore.SkiaSharpView.Painting;
 using MediatR;
 using SkiaSharp;
 
-internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel, IQueryAttributable
+internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
 {
+    private readonly INavigationService navigationService;
     private bool hasNoData = true;
 
-    public StatisticCategoryProgressionViewModel(IMediator mediator, CategorySelectionViewModel categorySelectionViewModel) : base(mediator)
+    public StatisticCategoryProgressionViewModel(
+        IMediator mediator,
+        CategorySelectionViewModel categorySelectionViewModel,
+        INavigationService navigationService) : base(mediator)
     {
         CategorySelectionViewModel = categorySelectionViewModel;
+        this.navigationService = navigationService;
         StartDate = DateTime.Now.AddYears(-1);
     }
 
@@ -46,19 +51,14 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
         }
     }
 
-    public AsyncRelayCommand LoadDataCommand => new(LoadAsync);
+    public AsyncRelayCommand GoToSelectCategoryDialogCommand => new(() => navigationService.GoTo<SelectCategoryViewModel>());
 
-    public AsyncRelayCommand GoToSelectCategoryDialogCommand => new(async () => await Shell.Current.GoToModalAsync(Routes.SelectCategoryRoute));
-
-    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    public override async Task OnNavigatedBackAsync(object? parameter)
     {
-        if (query.TryGetValue(key: SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, value: out var selectedCategoryIdParam))
-        {
-            var selectedCategoryId = Convert.ToInt32(selectedCategoryIdParam);
-            var category = Mediator.Send(new GetCategoryByIdQuery(selectedCategoryId)).GetAwaiter().GetResult();
-            CategorySelectionViewModel.SelectedCategory = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
-            LoadAsync().GetAwaiter().GetResult();
-        }
+        var selectedCategoryId = Convert.ToInt32(parameter);
+        var category = await Mediator.Send(new GetCategoryByIdQuery(selectedCategoryId));
+        CategorySelectionViewModel.SelectedCategory = new() { Id = category.Id, Name = category.Name, RequireNote = category.RequireNote };
+        await LoadAsync();
     }
 
     protected override async Task LoadAsync()

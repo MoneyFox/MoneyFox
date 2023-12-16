@@ -1,9 +1,8 @@
 namespace MoneyFox.Ui.Views.Statistics.CategorySummary;
 
 using System.Collections.ObjectModel;
-using Common.Extensions;
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
 using Core.Queries.Statistics.GetCategorySummary;
 using MediatR;
@@ -12,12 +11,14 @@ using Serilog;
 internal class StatisticCategorySummaryViewModel : StatisticViewModel
 {
     private readonly IDialogService dialogService;
+    private readonly INavigationService navigationService;
 
     private ObservableCollection<CategoryOverviewViewModel> categorySummary = new();
 
-    public StatisticCategorySummaryViewModel(IMediator mediator, IDialogService dialogService) : base(mediator)
+    public StatisticCategorySummaryViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService) : base(mediator)
     {
         this.dialogService = dialogService;
+        this.navigationService = navigationService;
         CategorySummary = new();
     }
 
@@ -42,6 +43,12 @@ internal class StatisticCategorySummaryViewModel : StatisticViewModel
     public bool HasData => CategorySummary.Any();
 
     public RelayCommand<CategoryOverviewViewModel> ShowCategoryPaymentsCommand => new(async vm => await ShowCategoryPaymentsAsync(vm));
+
+
+    public override Task OnNavigatedAsync(object? parameter)
+    {
+        return LoadAsync();
+    }
 
     protected override async Task LoadAsync()
     {
@@ -68,9 +75,9 @@ internal class StatisticCategorySummaryViewModel : StatisticViewModel
         }
     }
 
-    private async Task ShowCategoryPaymentsAsync(CategoryOverviewViewModel categoryOverviewModel)
+    private Task ShowCategoryPaymentsAsync(CategoryOverviewViewModel categoryOverviewModel)
     {
-        await Shell.Current.GoToModalAsync(Routes.PaymentForCategoryListRoute);
-        Messenger.Send(new PaymentsForCategoryMessage(categoryId: categoryOverviewModel.CategoryId, startDate: StartDate, endDate: EndDate));
+        return navigationService.GoTo<PaymentForCategoryListViewModel>(
+            new PaymentsForCategoryParameter(CategoryId: categoryOverviewModel.CategoryId, StartDate: StartDate, EndDate: EndDate));
     }
 }

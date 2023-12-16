@@ -1,32 +1,22 @@
 namespace MoneyFox.Ui.Views.About;
 
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Interfaces;
 using Core.Interfaces;
 using Plugin.StoreReview;
 using Resources.Strings;
 
-public class AboutViewModel : BasePageViewModel
+public class AboutViewModel(IEmailAdapter emailAdapter, IBrowserAdapter adapter, IToastService service) : NavigableViewModel
 {
     private const string SUPPORT_MAIL = "mobile.support@apply-solutions.ch";
-
-    private readonly IBrowserAdapter browserAdapter;
-    private readonly IEmailAdapter emailAdapter;
-    private readonly IToastService toastService;
-
-    public AboutViewModel(IEmailAdapter emailAdapter, IBrowserAdapter browserAdapter, IToastService toastService)
-    {
-        this.emailAdapter = emailAdapter;
-        this.browserAdapter = browserAdapter;
-        this.toastService = toastService;
-    }
 
     public static string Version => AppInfo.VersionString;
 
     public AsyncRelayCommand SendMailCommand => new(SendMailAsync);
     public AsyncRelayCommand RateAppCommand => new(RateAppAsync);
     public AsyncRelayCommand OpenLogFileCommand => new(OpenLogFile);
-    public AsyncRelayCommand<string> OpenUrlCommand => new(url => browserAdapter.OpenWebsiteAsync(new(url ?? string.Empty)));
+    public AsyncRelayCommand<string> OpenUrlCommand => new(url => adapter.OpenWebsiteAsync(new(url ?? string.Empty)));
 
     public List<LicenseViewModel> Licenses
         => new()
@@ -72,7 +62,7 @@ public class AboutViewModel : BasePageViewModel
         }
         catch (Exception)
         {
-            await toastService.ShowToastAsync(Translations.SendEmailFailedMessage);
+            await service.ShowToastAsync(Translations.SendEmailFailedMessage);
         }
     }
 

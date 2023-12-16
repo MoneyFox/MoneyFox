@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentModification;
 
 using Aptabase.Maui;
+using Common.Navigation;
 using Controls.CategorySelection;
 using Core.Common.Extensions;
 using Core.Common.Interfaces;
@@ -11,7 +12,7 @@ using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Resources.Strings;
 
-internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttributable
+internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
@@ -23,33 +24,35 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel, IQueryAttrib
         IToastService toastService,
         ISettingsFacade settingsFacade,
         CategorySelectionViewModel categorySelectionViewModel,
+        INavigationService navigationService,
         IAptabaseClient aptabaseClient) : base(
         mediator: mediator,
-        dialogService: dialogService,
+        service: dialogService,
         toastService: toastService,
         categorySelectionViewModel: categorySelectionViewModel,
-        settingsFacade: settingsFacade,
-        aptabaseClient: aptabaseClient)
+        facade: settingsFacade,
+        navigationService: navigationService,
+        client: aptabaseClient)
     {
         this.mediator = mediator;
         this.dialogService = dialogService;
         this.settingsFacade = settingsFacade;
     }
 
-    public new void ApplyQueryAttributes(IDictionary<string, object> query)
+    protected override void OnNavigated(object? parameter)
     {
-        if (IsFirstLoad)
+        base.OnNavigated(parameter);
+        if (parameter is not null)
         {
-            InitializeAsync().GetAwaiter().GetResult();
-            if (ChargedAccounts.Any())
-            {
-                SelectedPayment.ChargedAccount = settingsFacade.DefaultAccount == default
-                    ? ChargedAccounts[0]
-                    : ChargedAccounts.First(n => n.Id == settingsFacade.DefaultAccount);
-            }
+            var currentAccountId = Convert.ToInt32(parameter);
+            SelectedPayment.ChargedAccount = ChargedAccounts.First(n => n.Id == currentAccountId);
         }
-
-        base.ApplyQueryAttributes(query);
+        else
+        {
+            SelectedPayment.ChargedAccount = settingsFacade.DefaultAccount == default
+                ? ChargedAccounts[0]
+                : ChargedAccounts.First(n => n.Id == settingsFacade.DefaultAccount);
+        }
     }
 
     protected override async Task SavePaymentAsync()

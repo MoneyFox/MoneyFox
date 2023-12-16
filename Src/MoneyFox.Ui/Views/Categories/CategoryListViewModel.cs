@@ -2,26 +2,19 @@ namespace MoneyFox.Ui.Views.Categories;
 
 using System.Collections.ObjectModel;
 using System.Globalization;
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
 using Core.Features.CategoryDeletion;
 using Core.Queries;
 using MediatR;
+using ModifyCategory;
 using Resources.Strings;
 
-public class CategoryListViewModel : BasePageViewModel, IRecipient<CategoriesChangedMessage>
+public class CategoryListViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService) : NavigableViewModel, IRecipient<CategoriesChangedMessage>
 {
-    private readonly IDialogService dialogService;
-    private readonly IMediator mediator;
-
     private ReadOnlyObservableCollection<CategoryGroup> categoryGroups = null!;
-
-    public CategoryListViewModel(IMediator mediator, IDialogService dialogService)
-    {
-        this.mediator = mediator;
-        this.dialogService = dialogService;
-    }
 
     public ReadOnlyObservableCollection<CategoryGroup> CategoryGroups
     {
@@ -29,10 +22,10 @@ public class CategoryListViewModel : BasePageViewModel, IRecipient<CategoriesCha
         private set => SetProperty(field: ref categoryGroups, newValue: value);
     }
 
-    public AsyncRelayCommand GoToAddCategoryCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddCategoryRoute));
+    public AsyncRelayCommand GoToAddCategoryCommand => new(() => navigationService.GoTo<AddCategoryViewModel>());
 
     public AsyncRelayCommand<CategoryListItemViewModel> GoToEditCategoryCommand
-        => new(async cvm => await Shell.Current.GoToAsync($"{Routes.EditCategoryRoute}?categoryId={cvm?.Id}"));
+        => new(cvm => navigationService.GoTo<EditCategoryViewModel>(cvm!.Id));
 
     public AsyncRelayCommand<string> SearchCategoryCommand => new(async s => await SearchCategoryAsync(s ?? string.Empty));
 
@@ -43,9 +36,14 @@ public class CategoryListViewModel : BasePageViewModel, IRecipient<CategoriesCha
         SearchCategoryAsync().GetAwaiter().GetResult();
     }
 
-    public async Task InitializeAsync()
+    public override Task OnNavigatedAsync(object? parameter)
     {
-        await SearchCategoryAsync();
+        return SearchCategoryAsync();
+    }
+
+    public override Task OnNavigatedBackAsync(object? parameter)
+    {
+        return SearchCategoryAsync();
     }
 
     private async Task SearchCategoryAsync(string searchTerm = "")

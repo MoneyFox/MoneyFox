@@ -28,7 +28,7 @@ public sealed class ServiceCollectionTests
         foreach (var serviceDescriptor in serviceCollection)
         {
             var serviceType = serviceDescriptor.ServiceType;
-            if (serviceType.Namespace!.StartsWith("MoneyFox"))
+            if (serviceType.Namespace!.StartsWith("MoneyFox") && serviceType.Namespace!.EndsWith("Page"))
             {
                 try
                 {

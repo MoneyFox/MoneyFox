@@ -8,13 +8,16 @@ using LiveChartsCore.SkiaSharpView;
 using MediatR;
 using Resources.Strings;
 
-internal sealed class StatisticCashFlowViewModel : StatisticViewModel
+internal sealed class StatisticCashFlowViewModel(IMediator mediator) : StatisticViewModel(mediator)
 {
-    public StatisticCashFlowViewModel(IMediator mediator) : base(mediator) { }
-
     public ObservableCollection<ISeries> Series { get; } = new();
 
     public List<ICartesianAxis> XAxis { get; } = new() { new Axis { IsVisible = false } };
+
+    public override Task OnNavigatedAsync(object? parameter)
+    {
+        return LoadAsync();
+    }
 
     protected override async Task LoadAsync()
     {
