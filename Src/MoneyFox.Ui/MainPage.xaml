@@ -73,10 +73,10 @@
                                     Label="{x:Static resources:Translations.DashboardTitle}" />
                 <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
                                     IconImageSource="list_96"
-                                    Label="{extensions:Translate Tabs_List}" />
+                                    Label="{x:Static resources:Translations.StatisticsTitle}" />
                 <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
                                     IconImageSource="grid_view_96"
-                                    Label="{extensions:Translate Tabs_Grid}" />
+                                    Label="{x:Static resources:Translations.MenuTitle}" />
             </tabs:TabHostView.Tabs>
         </tabs:TabHostView>
     </Grid>
