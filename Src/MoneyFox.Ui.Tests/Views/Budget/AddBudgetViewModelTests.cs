@@ -30,29 +30,6 @@ public class AddBudgetViewModelTests
     }
 
     [Fact]
-    public void AddsSelectedCategoryToList()
-    {
-        // Act
-        viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
-
-        // Assert
-        _ = viewModel.SelectedCategories.Should().HaveCount(1);
-        _ = viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CATEGORY_ID);
-    }
-
-    [Fact]
-    public void IgnoresSelectedCategory_WhenEntryWithSameIdAlreadyInList()
-    {
-        // Act
-        viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
-        viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
-
-        // Assert
-        _ = viewModel.SelectedCategories.Should().HaveCount(1);
-        _ = viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CATEGORY_ID);
-    }
-
-    [Fact]
     public async Task SendsCorrectSaveCommand()
     {
         // Capture

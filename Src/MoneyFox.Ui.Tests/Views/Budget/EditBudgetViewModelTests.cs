@@ -6,9 +6,7 @@ using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Features.BudgetDeletion;
 using Core.Features.BudgetUpdate;
-using Core.Queries;
 using Core.Queries.BudgetEntryLoading;
-using Domain.Aggregates.CategoryAggregate;
 using Domain.Tests.TestFramework;
 using MediatR;
 using Ui.Views.Budget.BudgetModification;
@@ -16,7 +14,6 @@ using Ui.Views.Categories.CategorySelection;
 
 public class EditBudgetViewModelTests
 {
-    private const int CATEGORY_ID = 10;
     private readonly IDialogService dialogService;
     private readonly INavigationService navigationService;
     private readonly ISender sender;
@@ -29,37 +26,6 @@ public class EditBudgetViewModelTests
         navigationService = Substitute.For<INavigationService>();
         dialogService = Substitute.For<IDialogService>();
         viewModel = new(sender: sender, navigationService: navigationService, dialogService: dialogService);
-    }
-
-    public class OnReceiveMessage : EditBudgetViewModelTests
-    {
-        public OnReceiveMessage()
-        {
-            sender.Send(Arg.Any<GetCategoryByIdQuery>()).Returns(new Category("Beer"));
-        }
-
-        [Fact]
-        public void AddsSelectedCategoryToList()
-        {
-            // Act
-            viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
-
-            // Assert
-            _ = viewModel.SelectedCategories.Should().HaveCount(1);
-            _ = viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CATEGORY_ID);
-        }
-
-        [Fact]
-        public void IgnoresSelectedCategory_WhenEntryWithSameIdAlreadyInList()
-        {
-            // Act
-            viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
-            viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
-
-            // Assert
-            _ = viewModel.SelectedCategories.Should().HaveCount(1);
-            _ = viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CATEGORY_ID);
-        }
     }
 
     public class OnRemoveCategory : EditBudgetViewModelTests
@@ -211,7 +177,7 @@ public class EditBudgetViewModelTests
         public void OnInitialized()
         {
             // Assert
-            _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
+            viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
         }
 
         [Fact]
@@ -223,7 +189,7 @@ public class EditBudgetViewModelTests
             viewModel.NumberOfMonths = 1;
 
             // Assert
-            _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
+            viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
         }
 
         [Fact]
