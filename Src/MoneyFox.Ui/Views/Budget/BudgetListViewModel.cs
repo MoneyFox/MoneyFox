@@ -17,7 +17,7 @@ public sealed class BudgetListViewModel(ISender sender, INavigationService navig
     public decimal BudgetedAmount => Budgets.Sum(b => b.MonthlyBudget);
     public decimal SpentAmount => Budgets.Sum(b => b.MonthlySpending);
 
-    public AsyncRelayCommand InitializeCommand => new(InitializeAsync);
+    public AsyncRelayCommand InitializeCommand => new(LoadData);
 
     public AsyncRelayCommand GoToAddBudgetCommand => new(() => navigationService.GoTo<AddBudgetViewModel>());
 
@@ -25,15 +25,15 @@ public sealed class BudgetListViewModel(ISender sender, INavigationService navig
 
     public override Task OnNavigatedAsync(object? parameter)
     {
-        return InitializeAsync();
+        return LoadData();
     }
 
     public override Task OnNavigatedBackAsync(object? parameter)
     {
-        return InitializeAsync();
+        return LoadData();
     }
 
-    private async Task InitializeAsync()
+    private async Task LoadData()
     {
         var budgetsListData = await sender.Send(new LoadBudgetDataForList.Query());
         Budgets.Clear();

@@ -75,7 +75,7 @@ public class AddBudgetViewModelTests
         await viewModel.OpenCategorySelectionCommand.ExecuteAsync(null);
 
         // Assert
-        await navigationService.Received(1).OpenModalAsync<SelectCategoryPage>();
+        await navigationService.Received(1).GoTo<SelectCategoryViewModel>();
     }
 
     public class SaveShouldBeDisabled : AddBudgetViewModelTests

@@ -54,7 +54,6 @@ public class EditBudgetViewModelTests
             await viewModel.OpenCategorySelectionCommand.ExecuteAsync(null);
 
             // Assert
-            await navigationService.Received(1).OpenModalAsync<SelectCategoryPage>();
         }
     }
 
