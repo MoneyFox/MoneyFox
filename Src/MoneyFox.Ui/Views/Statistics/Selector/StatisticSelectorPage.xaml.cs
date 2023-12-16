@@ -7,5 +7,6 @@ public partial class StatisticSelectorPage : IBindablePage
     public StatisticSelectorPage()
     {
         InitializeComponent();
+        BindingContext = App.GetViewModel<StatisticSelectorViewModel>();
     }
 }
