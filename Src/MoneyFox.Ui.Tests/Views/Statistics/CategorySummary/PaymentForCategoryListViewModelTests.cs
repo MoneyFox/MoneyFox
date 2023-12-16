@@ -24,7 +24,7 @@ public sealed class PaymentForCategoryListViewModelTests
     }
 
     [Fact]
-    public void ReturnsCorrectExpenseAndRevenue_ForGroups()
+    public async Task ReturnsCorrectExpenseAndRevenue_ForGroups()
     {
         // Arrange
         var mediator = Substitute.For<IMediator>();
@@ -42,7 +42,7 @@ public sealed class PaymentForCategoryListViewModelTests
                 });
 
         // Act
-        vm.Receive(new(categoryId: null, startDate: DateTime.Today, endDate: DateTime.Today));
+        await vm.OnNavigatedAsync(new PaymentsForCategoryParameter(CategoryId: null, StartDate: DateTime.Today, EndDate: DateTime.Today));
 
         // Assert
         vm.TotalRevenue.Should().Be(10);
