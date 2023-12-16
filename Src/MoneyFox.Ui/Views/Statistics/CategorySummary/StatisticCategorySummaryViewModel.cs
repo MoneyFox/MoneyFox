@@ -75,9 +75,9 @@ internal class StatisticCategorySummaryViewModel : StatisticViewModel
         }
     }
 
-    private async Task ShowCategoryPaymentsAsync(CategoryOverviewViewModel categoryOverviewModel)
+    private Task ShowCategoryPaymentsAsync(CategoryOverviewViewModel categoryOverviewModel)
     {
-        await navigationService.GoTo<PaymentForCategoryListViewModel>(
+        return navigationService.GoTo<PaymentForCategoryListViewModel>(
             new PaymentsForCategoryParameter(CategoryId: categoryOverviewModel.CategoryId, StartDate: StartDate, EndDate: EndDate));
     }
 }

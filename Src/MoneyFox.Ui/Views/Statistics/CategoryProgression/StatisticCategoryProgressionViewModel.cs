@@ -2,7 +2,6 @@ namespace MoneyFox.Ui.Views.Statistics.CategoryProgression;
 
 using System.Collections.ObjectModel;
 using Categories.CategorySelection;
-using Common.Extensions;
 using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using Controls.CategorySelection;
@@ -17,10 +16,13 @@ using SkiaSharp;
 
 internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
 {
-    private bool hasNoData = true;
     private readonly INavigationService navigationService;
+    private bool hasNoData = true;
 
-    public StatisticCategoryProgressionViewModel(IMediator mediator, CategorySelectionViewModel categorySelectionViewModel, INavigationService navigationService) : base(mediator)
+    public StatisticCategoryProgressionViewModel(
+        IMediator mediator,
+        CategorySelectionViewModel categorySelectionViewModel,
+        INavigationService navigationService) : base(mediator)
     {
         CategorySelectionViewModel = categorySelectionViewModel;
         this.navigationService = navigationService;
@@ -49,11 +51,9 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
         }
     }
 
-    public AsyncRelayCommand LoadDataCommand => new(LoadAsync);
-
     public AsyncRelayCommand GoToSelectCategoryDialogCommand => new(() => navigationService.GoTo<SelectCategoryViewModel>());
 
-    public override async Task OnNavigatedAsync(object? parameter)
+    public override async Task OnNavigatedBackAsync(object? parameter)
     {
         var selectedCategoryId = Convert.ToInt32(parameter);
         var category = await Mediator.Send(new GetCategoryByIdQuery(selectedCategoryId));
