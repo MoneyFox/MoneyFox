@@ -45,6 +45,7 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel
 
     public override async Task OnNavigatedAsync(object? parameter)
     {
+        await base.OnNavigatedAsync(parameter);
         ArgumentNullException.ThrowIfNull(parameter);
         var paymentId = Convert.ToInt32(parameter);
         var paymentData = await mediator.Send(new GetPaymentDataById.Query(paymentId));
