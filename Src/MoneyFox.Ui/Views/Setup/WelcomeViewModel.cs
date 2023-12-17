@@ -1,24 +1,19 @@
 namespace MoneyFox.Ui.Views.Setup;
 
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Settings;
+using Dashboard;
 
-internal sealed class WelcomeViewModel : BasePageViewModel
+internal sealed class WelcomeViewModel(ISettingsFacade facade, INavigationService navigationService) : NavigableViewModel
 {
-    private readonly ISettingsFacade settingsFacade;
-
-    public WelcomeViewModel(ISettingsFacade settingsFacade)
-    {
-        this.settingsFacade = settingsFacade;
-    }
-
-    public AsyncRelayCommand NextStepCommand => new(async () => await Shell.Current.GoToAsync(Routes.CurrencyIntroductionRoute));
+    public AsyncRelayCommand NextStepCommand => new(() => navigationService.GoTo<SetupCategoryViewModel>());
 
     public async Task InitAsync()
     {
-        if (settingsFacade.IsSetupCompleted)
+        if (facade.IsSetupCompleted)
         {
-            await Shell.Current.GoToAsync(Routes.DashboardRoute);
+            await navigationService.GoTo<DashboardViewModel>();
         }
     }
 }

@@ -1,6 +1,8 @@
 namespace MoneyFox.Ui.Views.OverflowMenu;
 
-public partial class OverflowMenuPage
+using Common.Navigation;
+
+public partial class OverflowMenuPage : IBindablePage
 {
     public OverflowMenuPage()
     {

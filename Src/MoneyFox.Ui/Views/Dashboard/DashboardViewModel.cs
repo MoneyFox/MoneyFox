@@ -1,18 +1,23 @@
 namespace MoneyFox.Ui.Views.Dashboard;
 
 using System.Collections.ObjectModel;
+using Accounts.AccountList;
 using Accounts.AccountModification;
 using AutoMapper;
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Queries;
 using MediatR;
 using Messages;
+using Payments.PaymentList;
+using Payments.PaymentModification;
 
-public class DashboardViewModel : BasePageViewModel, IRecipient<BackupRestoredMessage>
+public class DashboardViewModel : NavigableViewModel, IRecipient<BackupRestoredMessage>
 {
     private readonly IMapper mapper;
     private readonly IMediator mediator;
+    private readonly INavigationService navigationService;
     private ObservableCollection<AccountViewModel> accounts = new();
     private decimal assets;
     private decimal endOfMonthBalance;
@@ -20,10 +25,11 @@ public class DashboardViewModel : BasePageViewModel, IRecipient<BackupRestoredMe
     private decimal monthlyExpenses;
     private decimal monthlyIncomes;
 
-    public DashboardViewModel(IMediator mediator, IMapper mapper)
+    public DashboardViewModel(IMediator mediator, IMapper mapper, INavigationService navigationService)
     {
         this.mediator = mediator;
         this.mapper = mapper;
+        this.navigationService = navigationService;
     }
 
     public decimal Assets
@@ -86,19 +92,24 @@ public class DashboardViewModel : BasePageViewModel, IRecipient<BackupRestoredMe
         }
     }
 
-    public AsyncRelayCommand GoToAddPaymentCommand => new(async () => await Shell.Current.GoToAsync(Routes.AddPaymentRoute));
+    public AsyncRelayCommand GoToAddPaymentCommand => new(() => navigationService.GoTo<AddPaymentViewModel>());
 
-    public AsyncRelayCommand GoToAccountsCommand => new(async () => await Shell.Current.GoToAsync(Routes.AccountListRoute));
+    public AsyncRelayCommand GoToAccountsCommand => new(() => navigationService.GoTo<AccountListViewModel>());
 
     public AsyncRelayCommand<AccountViewModel> GoToTransactionListCommand
-        => new(async accountViewModel => await Shell.Current.GoToAsync($"{Routes.PaymentListRoute}?accountId={accountViewModel!.Id}"));
+        => new(accountViewModel => navigationService.GoTo<PaymentListViewModel>(accountViewModel!.Id));
 
     public void Receive(BackupRestoredMessage message)
     {
         InitializeAsync().GetAwaiter().GetResult();
     }
 
-    public async Task InitializeAsync()
+    public override Task OnNavigatedAsync(object? parameter)
+    {
+        return InitializeAsync();
+    }
+
+    private async Task InitializeAsync()
     {
         if (isRunning)
         {

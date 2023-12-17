@@ -2,26 +2,18 @@ namespace MoneyFox.Ui.Views.Settings;
 
 using System.Collections.Immutable;
 using System.Globalization;
+using Common.Navigation;
 using Core.Common.Settings;
 using Core.Queries;
 using Domain;
 using MediatR;
 
-internal sealed class SettingsViewModel : BasePageViewModel
+internal sealed class SettingsViewModel(ISettingsFacade settingsFacade, IMediator mediator) : NavigableViewModel
 {
-    private readonly IMediator mediator;
-    private readonly ISettingsFacade settingsFacade;
-
     private List<AccountLiteViewModel> availableAccounts = new();
     private IReadOnlyList<CurrencyViewModel> availableCurrencies = ImmutableList<CurrencyViewModel>.Empty;
     private AccountLiteViewModel? selectedAccount;
     private CurrencyViewModel selectedCurrency = null!;
-
-    public SettingsViewModel(ISettingsFacade settingsFacade, IMediator mediator)
-    {
-        this.settingsFacade = settingsFacade;
-        this.mediator = mediator;
-    }
 
     public CurrencyViewModel SelectedCurrency
     {
@@ -58,7 +50,7 @@ internal sealed class SettingsViewModel : BasePageViewModel
         set => SetProperty(field: ref availableAccounts, newValue: value);
     }
 
-    public async Task InitializeAsync()
+    public override async Task OnNavigatedAsync(object? parameter)
     {
         var accounts = await mediator.Send(new GetAccountsQuery());
         AvailableAccounts = accounts.Select(a => new AccountLiteViewModel(Id: a.Id, Name: a.Name)).ToList();

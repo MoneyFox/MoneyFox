@@ -1,6 +1,6 @@
 namespace MoneyFox.Ui.Views.Budget.BudgetModification;
 
-using CommunityToolkit.Mvvm.Messaging;
+using Common.Navigation;
 using Core.Common.Interfaces;
 using Core.Features.BudgetCreation;
 using MediatR;
@@ -28,7 +28,6 @@ internal sealed class AddBudgetViewModel : ModifyBudgetViewModel
             Categories: SelectedCategories.Select(sc => sc.CategoryId).ToList());
 
         await sender.Send(query);
-        await navigationService.GoBackFromModalAsync();
-        _ = Messenger.Send(new BudgetsChangedMessage());
+        await navigationService.GoBack();
     }
 }

@@ -1,5 +1,6 @@
 namespace MoneyFox.Ui.Views.Categories.ModifyCategory;
 
+using Common.Navigation;
 using Core.Common.Interfaces;
 using Core.Features.CategoryCreation;
 using MediatR;
@@ -8,7 +9,7 @@ public sealed class AddCategoryViewModel : ModifyCategoryViewModel
 {
     private readonly IMediator mediator;
 
-    public AddCategoryViewModel(IMediator mediator, IDialogService dialogService) : base(mediator: mediator, dialogService: dialogService)
+    public AddCategoryViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService) : base(mediator: mediator, dialogService: dialogService, navigationService: navigationService)
     {
         this.mediator = mediator;
         SelectedCategory = new()
@@ -22,9 +23,10 @@ public sealed class AddCategoryViewModel : ModifyCategoryViewModel
         };
     }
 
-    protected override async Task SaveCategoryAsync()
+    protected override Task SaveCategoryAsync()
     {
         var command = new CreateCategory.Command(Name: SelectedCategory.Name, Note: SelectedCategory.Note, RequireNote: SelectedCategory.RequireNote);
-        await mediator.Send(command);
+
+        return mediator.Send(command);
     }
 }

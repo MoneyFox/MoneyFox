@@ -1,11 +1,11 @@
-namespace MoneyFox.Ui.Views.Payments;
+namespace MoneyFox.Ui.Views.Payments.PaymentList;
 
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Domain.Aggregates.AccountAggregate;
-using PaymentList;
+using MoneyFox.Domain.Aggregates.AccountAggregate;
 
-internal sealed class SelectFilterDialogViewModel : BasePageViewModel
+internal sealed class SelectFilterDialogViewModel : ObservableRecipient
 {
     private PaymentTypeFilter filteredPaymentType = PaymentTypeFilter.All;
     private bool isClearedFilterActive;
@@ -134,7 +134,7 @@ internal sealed class SelectFilterDialogViewModel : BasePageViewModel
     public bool IsDateRangeValid => TimeRangeStart <= TimeRangeEnd;
 
     /// <summary>
-    ///     Initalize the viewmodel with a previous sent message.
+    ///     Initialize the viewmodel with a previous sent message.
     /// </summary>
     public void Initialize(PaymentListFilterChangedMessage message)
     {

@@ -1,5 +1,6 @@
 namespace MoneyFox.Ui.Tests.Views.Budget;
 
+using Common.Navigation;
 using Core.Common.Extensions;
 using Core.Common.Interfaces;
 using Core.Features.BudgetCreation;
@@ -29,29 +30,6 @@ public class AddBudgetViewModelTests
     }
 
     [Fact]
-    public void AddsSelectedCategoryToList()
-    {
-        // Act
-        viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
-
-        // Assert
-        _ = viewModel.SelectedCategories.Should().HaveCount(1);
-        _ = viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CATEGORY_ID);
-    }
-
-    [Fact]
-    public void IgnoresSelectedCategory_WhenEntryWithSameIdAlreadyInList()
-    {
-        // Act
-        viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
-        viewModel.ApplyQueryAttributes(new Dictionary<string, object> { { SelectCategoryViewModel.SELECTED_CATEGORY_ID_PARAM, CATEGORY_ID } });
-
-        // Assert
-        _ = viewModel.SelectedCategories.Should().HaveCount(1);
-        _ = viewModel.SelectedCategories.Should().Contain(c => c.CategoryId == CATEGORY_ID);
-    }
-
-    [Fact]
     public async Task SendsCorrectSaveCommand()
     {
         // Capture
@@ -69,11 +47,11 @@ public class AddBudgetViewModelTests
         await viewModel.SaveBudgetCommand.ExecuteAsync(null);
 
         // Assert
-        _ = passedQuery.Should().NotBeNull();
-        _ = passedQuery!.Name.Should().Be(testBudget.Name);
-        _ = passedQuery.SpendingLimit.Should().Be(testBudget.SpendingLimit);
-        _ = passedQuery.Categories.Should().BeEquivalentTo(testBudget.Categories);
-        await navigationService.Received(1).GoBackFromModalAsync();
+        passedQuery.Should().NotBeNull();
+        passedQuery!.Name.Should().Be(testBudget.Name);
+        passedQuery.SpendingLimit.Should().Be(testBudget.SpendingLimit);
+        passedQuery.Categories.Should().BeEquivalentTo(testBudget.Categories);
+        await navigationService.Received(1).GoBack();
     }
 
     [Fact]
@@ -87,7 +65,7 @@ public class AddBudgetViewModelTests
         viewModel.RemoveCategoryCommand.Execute(budgetCategoryViewModel);
 
         // Assert
-        _ = viewModel.SelectedCategories.Should().BeEmpty();
+        viewModel.SelectedCategories.Should().BeEmpty();
     }
 
     [Fact]
@@ -97,7 +75,7 @@ public class AddBudgetViewModelTests
         await viewModel.OpenCategorySelectionCommand.ExecuteAsync(null);
 
         // Assert
-        await navigationService.Received(1).OpenModalAsync<SelectCategoryPage>();
+        await navigationService.Received(1).GoTo<SelectCategoryViewModel>();
     }
 
     public class SaveShouldBeDisabled : AddBudgetViewModelTests
@@ -106,7 +84,7 @@ public class AddBudgetViewModelTests
         public void OnInitialized()
         {
             // Assert
-            _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
+            viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
         }
 
         [Fact]
@@ -116,7 +94,7 @@ public class AddBudgetViewModelTests
             viewModel.Name = string.Empty;
 
             // Assert
-            _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
+            viewModel.SaveBudgetCommand.CanExecute(null).Should().BeFalse();
         }
     }
 
@@ -133,7 +111,7 @@ public class AddBudgetViewModelTests
             viewModel.NumberOfMonths = 2;
 
             // Assert
-            _ = viewModel.SaveBudgetCommand.CanExecute(null).Should().BeTrue();
+            viewModel.SaveBudgetCommand.CanExecute(null).Should().BeTrue();
         }
     }
 }

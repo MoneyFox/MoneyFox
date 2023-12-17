@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Views.Accounts.AccountModification;
 
 using AutoMapper;
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Interfaces;
 using Core.Features._Legacy_.Accounts.DeleteAccountById;
@@ -17,7 +18,7 @@ public class EditAccountViewModel : ModifyAccountViewModel
     private readonly INavigationService navigationService;
 
     public EditAccountViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, INavigationService navigationService) : base(
-        dialogService: dialogService,
+        service: dialogService,
         mediator: mediator,
         navigationService: navigationService)
     {
@@ -32,12 +33,13 @@ public class EditAccountViewModel : ModifyAccountViewModel
 
     public AsyncRelayCommand DeleteCommand => new(DeleteAsync);
 
-    public async Task InitializeAsync(int accountId)
+    public override async Task OnNavigatedAsync(object? parameter)
     {
+        var accountId = Convert.ToInt32(parameter);
         SelectedAccountVm = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
     }
 
-    protected override async Task SaveAccountAsync()
+    protected override Task SaveAccountAsync()
     {
         var command = new UpdateAccount.Command(
             Id: SelectedAccountVm.Id,
@@ -45,7 +47,7 @@ public class EditAccountViewModel : ModifyAccountViewModel
             Note: SelectedAccountVm.Note,
             IsExcluded: SelectedAccountVm.IsExcluded);
 
-        await mediator.Send(command);
+        return mediator.Send(command);
     }
 
     private async Task DeleteAsync()
@@ -53,7 +55,7 @@ public class EditAccountViewModel : ModifyAccountViewModel
         if (await dialogService.ShowConfirmMessageAsync(title: Translations.DeleteTitle, message: Translations.DeleteAccountConfirmationMessage))
         {
             await mediator.Send(new DeactivateAccountByIdCommand(SelectedAccountVm.Id));
-            await navigationService.GoBackFromModalAsync();
+            await navigationService.GoBack();
         }
     }
 }

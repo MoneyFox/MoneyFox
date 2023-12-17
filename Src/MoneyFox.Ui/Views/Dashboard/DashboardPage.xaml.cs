@@ -1,6 +1,8 @@
 namespace MoneyFox.Ui.Views.Dashboard;
 
-public partial class DashboardPage
+using Common.Navigation;
+
+public partial class DashboardPage : IBindablePage
 {
     public DashboardPage()
     {
@@ -12,12 +14,6 @@ public partial class DashboardPage
 
     protected override void OnAppearing()
     {
-        ViewModel.IsActive = true;
-        ViewModel.InitializeAsync().GetAwaiter().GetResult();
-    }
-
-    protected override void OnDisappearing()
-    {
-        ViewModel.IsActive = false;
+        ViewModel.OnNavigatedAsync(null);
     }
 }

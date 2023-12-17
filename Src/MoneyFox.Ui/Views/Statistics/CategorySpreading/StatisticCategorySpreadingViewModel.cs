@@ -32,11 +32,14 @@ internal sealed class StatisticCategorySpreadingViewModel : StatisticViewModel
 
             selectedPaymentType = value;
             OnPropertyChanged();
-            LoadDataCommand.Execute(null);
+            LoadAsync().GetAwaiter().GetResult();
         }
     }
 
-    public AsyncRelayCommand LoadDataCommand => new(LoadAsync);
+    public override Task OnNavigatedAsync(object? parameter)
+    {
+        return LoadAsync();
+    }
 
     protected override async Task LoadAsync()
     {
