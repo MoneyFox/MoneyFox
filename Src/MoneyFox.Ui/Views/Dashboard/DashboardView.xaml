@@ -7,7 +7,8 @@
              xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
              xmlns:views="clr-namespace:MoneyFox.Ui.Views"
              xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
-             xmlns:accountModification="clr-namespace:MoneyFox.Ui.Views.Accounts.AccountModification"
+             xmlns:accountModification="clr-namespace:MoneyFox.Ui.Views.Accounts.AccountModification"    
+             x:Name="This"
              x:Class="MoneyFox.Ui.Views.Dashboard.DashboardView">
     
     <ContentView.Resources>

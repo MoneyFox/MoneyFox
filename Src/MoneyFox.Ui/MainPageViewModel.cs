@@ -8,6 +8,7 @@ using Views.Statistics.Selector;
 public sealed class MainPageViewModel : ObservableObject
 {
     private int selectedViewModelIndex;
+    private DashboardViewModel dashboardViewModel;
 
     public MainPageViewModel(
         DashboardViewModel dashboardViewModel,
@@ -19,11 +20,15 @@ public sealed class MainPageViewModel : ObservableObject
         OverflowMenuViewModel = overflowMenuViewModel;
     }
 
-    public DashboardViewModel DashboardViewModel { get; }
-
     public StatisticSelectorViewModel StatisticSelectorViewModel { get; }
 
     public OverflowMenuViewModel OverflowMenuViewModel { get; }
+
+    public DashboardViewModel DashboardViewModel
+    {
+        get => dashboardViewModel;
+        set => SetProperty(field: ref dashboardViewModel, newValue: value);
+    }
 
     public int SelectedViewModelIndex
     {

@@ -36,11 +36,11 @@
                            Animate="True"
                            SelectedIndex="{Binding SelectedViewModelIndex, Mode=TwoWay}">
 
-            <tabs:DelayedView x:TypeArguments="dashboard:DashboardView"
-                              AccentColor="{StaticResource Primary}"
-                              Animate="True"
-                              BindingContext="{Binding DashboardViewModel}"
-                              UseActivityIndicator="True" />
+            <tabs:LazyView x:TypeArguments="dashboard:DashboardView"
+                           AccentColor="{StaticResource Primary}"
+                           Animate="True"
+                           BindingContext="{Binding DashboardViewModel}"
+                           UseActivityIndicator="True" />
 
             <tabs:DelayedView x:TypeArguments="selector:StatisticSelectorView"
                               AccentColor="{StaticResource Primary}"
