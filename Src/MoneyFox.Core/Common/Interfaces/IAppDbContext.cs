@@ -17,8 +17,6 @@ public interface IAppDbContext : IDisposable
 
     DbSet<Payment> Payments { get; }
 
-    DbSet<RecurringPayment> RecurringPayments { get; }
-
     DbSet<RecurringTransaction> RecurringTransactions { get; }
 
     DbSet<Category> Categories { get; }
