@@ -2,7 +2,6 @@ namespace MoneyFox.Ui.Views.Statistics;
 
 using System.Globalization;
 using Common.Navigation;
-using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;
 using LiveChartsCore.SkiaSharpView.Painting;
@@ -42,12 +41,14 @@ internal abstract class StatisticViewModel : NavigableViewModel
             LegendBackgroundPaint = new() { Color = new(legendBackgroundColor.ToUint()) };
         }
 
-        WeakReferenceMessenger.Default.Register<DateSelectedMessage>(this, (r, m) =>
-        {
-            StartDate = m.StartDate;
-            EndDate = m.EndDate;
-            LoadAsync().GetAwaiter().GetResult();
-        });
+        WeakReferenceMessenger.Default.Register<DateSelectedMessage>(
+            recipient: this,
+            handler: (r, m) =>
+            {
+                StartDate = m.StartDate;
+                EndDate = m.EndDate;
+                LoadAsync().GetAwaiter().GetResult();
+            });
     }
 
     public SolidColorPaint LegendTextPaint { get; } = new();

@@ -71,7 +71,7 @@ public class Payment : EntityBase
     [Obsolete("To be removed")]
     public virtual RecurringPayment? RecurringPayment { get; } = null!;
 
-    public Guid? RecurringTransactionId { get; private set; }
+    public Guid? RecurringTransactionId { get; [UsedImplicitly] private set; }
 
     public void UpdatePayment(
         DateTime date,

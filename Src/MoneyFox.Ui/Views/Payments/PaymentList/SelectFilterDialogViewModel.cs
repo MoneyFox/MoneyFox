@@ -3,7 +3,7 @@ namespace MoneyFox.Ui.Views.Payments.PaymentList;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using MoneyFox.Domain.Aggregates.AccountAggregate;
+using Domain.Aggregates.AccountAggregate;
 
 internal sealed class SelectFilterDialogViewModel : ObservableRecipient
 {

@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui.Common.Navigation;
 
-using Controls.CategorySelection;
 using Domain.Exceptions;
 using Exceptions;
 using Extensions;
@@ -47,8 +46,7 @@ internal class ViewLocator(IServiceProvider serviceProvider) : IViewLocator
         (typeof(WelcomeViewModel), typeof(WelcomePage)), (typeof(SetupCurrencyViewModel), typeof(SetupCurrencyPage)),
         (typeof(SetupAccountsViewModel), typeof(SetupAccountPage)), (typeof(SetupCategoryViewModel), typeof(SetupCategoryPage)),
         (typeof(SetupCompletionViewModel), typeof(SetupCompletionPage)), (typeof(AboutViewModel), typeof(AboutPage)),
-        (typeof(SettingsViewModel), typeof(SettingsPage)),
-        (typeof(SelectCategoryViewModel), typeof(SelectCategoryPage))
+        (typeof(SettingsViewModel), typeof(SettingsPage)), (typeof(SelectCategoryViewModel), typeof(SelectCategoryPage))
     ];
 
     private static readonly List<(Type ViewModelType, Type ViewType)> desktopViewLocatorDictionary =
@@ -70,8 +68,7 @@ internal class ViewLocator(IServiceProvider serviceProvider) : IViewLocator
         (typeof(WelcomeViewModel), typeof(WelcomePage)), (typeof(SetupCurrencyViewModel), typeof(SetupCurrencyPage)),
         (typeof(SetupAccountsViewModel), typeof(SetupAccountPage)), (typeof(SetupCategoryViewModel), typeof(SetupCategoryPage)),
         (typeof(SetupCompletionViewModel), typeof(SetupCompletionPage)), (typeof(AboutViewModel), typeof(AboutPage)),
-        (typeof(SettingsViewModel), typeof(SettingsPage)),
-        (typeof(SelectCategoryViewModel), typeof(SelectCategoryPage))
+        (typeof(SettingsViewModel), typeof(SettingsPage)), (typeof(SelectCategoryViewModel), typeof(SelectCategoryPage))
     ];
 
     public IBindablePage GetViewFor<TViewModel>() where TViewModel : NavigableViewModel

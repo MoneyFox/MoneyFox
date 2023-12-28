@@ -12,7 +12,8 @@ using MediatR;
 using ModifyCategory;
 using Resources.Strings;
 
-public class CategoryListViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService) : NavigableViewModel, IRecipient<CategoriesChangedMessage>
+public class CategoryListViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService) : NavigableViewModel,
+    IRecipient<CategoriesChangedMessage>
 {
     private ReadOnlyObservableCollection<CategoryGroup> categoryGroups = null!;
 
@@ -24,8 +25,7 @@ public class CategoryListViewModel(IMediator mediator, IDialogService dialogServ
 
     public AsyncRelayCommand GoToAddCategoryCommand => new(() => navigationService.GoTo<AddCategoryViewModel>());
 
-    public AsyncRelayCommand<CategoryListItemViewModel> GoToEditCategoryCommand
-        => new(cvm => navigationService.GoTo<EditCategoryViewModel>(cvm!.Id));
+    public AsyncRelayCommand<CategoryListItemViewModel> GoToEditCategoryCommand => new(cvm => navigationService.GoTo<EditCategoryViewModel>(cvm!.Id));
 
     public AsyncRelayCommand<string> SearchCategoryCommand => new(async s => await SearchCategoryAsync(s ?? string.Empty));
 

@@ -8,7 +8,7 @@ public partial class PaymentListPage : IBindablePage
     public PaymentListPage()
     {
         InitializeComponent();
-     }
+    }
 
     private void ShowFilterPopup(object sender, EventArgs e)
     {

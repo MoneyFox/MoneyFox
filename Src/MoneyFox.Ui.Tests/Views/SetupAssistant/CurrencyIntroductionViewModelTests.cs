@@ -16,7 +16,7 @@ public class CurrencyIntroductionViewModelTests
         var navigationService = Substitute.For<INavigationService>();
 
         // Act
-        var vm = new SetupCurrencyViewModel(settingsFacade, navigationService);
+        var vm = new SetupCurrencyViewModel(settingsFacade: settingsFacade, navigationService: navigationService);
 
         // Assert
         vm.CurrencyViewModels.Should().HaveCount(Currencies.GetAll().Count);
