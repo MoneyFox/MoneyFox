@@ -951,12 +951,12 @@ Voit muuttaa tätä myöhässä asetuksissa.</value>
     <value>Lisenssit</value>
   </data>
   <data name="CurrencySettingTitle" xml:space="preserve">
-    <value>Currency</value>
+    <value>Valuutta</value>
   </data>
   <data name="DefaultAccountSettingText" xml:space="preserve">
-    <value>Select the account which should be selected as the default if you add a payment.</value>
+    <value>Valitse tili, joka on valittava oletuksena, jos lisäät maksun.</value>
   </data>
   <data name="DefaultAccountSettingTitle" xml:space="preserve">
-    <value>Default Payment Account</value>
+    <value>Oletus Maksutili</value>
   </data>
 </root>
