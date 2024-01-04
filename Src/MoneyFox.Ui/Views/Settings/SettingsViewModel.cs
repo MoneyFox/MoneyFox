@@ -21,10 +21,6 @@ internal sealed class SettingsViewModel : NavigableViewModel
     {
         this.settingsFacade = settingsFacade;
         this.mediator = mediator;
-
-#if WINDOWS
-        OnNavigatedAsync(null).GetAwaiter().GetResult();
-#endif
     }
 
     public CurrencyViewModel SelectedCurrency
