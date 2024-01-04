@@ -68,15 +68,15 @@ internal sealed class BackupViewModel : BasePageViewModel
         set => SetProperty(field: ref profilePicture, newValue: value);
     }
 
-    public AsyncRelayCommand InitializeCommand => new(async () => await InitializeAsync());
+    public AsyncRelayCommand InitializeCommand => new(InitializeAsync);
 
-    public AsyncRelayCommand LoginCommand => new(async () => await LoginAsync());
+    public AsyncRelayCommand LoginCommand => new(LoginAsync);
 
-    public AsyncRelayCommand LogoutCommand => new(async () => await LogoutAsync());
+    public AsyncRelayCommand LogoutCommand => new(LogoutAsync);
 
-    public AsyncRelayCommand BackupCommand => new(async () => await CreateBackupAsync());
+    public AsyncRelayCommand BackupCommand => new(CreateBackupAsync);
 
-    public AsyncRelayCommand RestoreCommand => new(async () => await RestoreBackupAsync());
+    public AsyncRelayCommand RestoreCommand => new(RestoreBackupAsync);
 
     public DateTime BackupLastModified
     {
