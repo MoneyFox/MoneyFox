@@ -46,7 +46,7 @@ public class BackupViewModelTests
             viewModel.InitializeCommand.Execute(null);
 
             // Assert
-            viewModel.IsLoadingBackupAvailability.Should().BeFalse();
+            viewModel.IsLoading.Should().BeFalse();
             _ = await backupService.Received(0).IsBackupExistingAsync();
             _ = await backupService.Received(0).GetBackupDateAsync();
         }
@@ -61,7 +61,7 @@ public class BackupViewModelTests
             viewModel.InitializeCommand.Execute(null);
 
             // Assert
-            viewModel.IsLoadingBackupAvailability.Should().BeFalse();
+            viewModel.IsLoading.Should().BeFalse();
             _ = await backupService.Received(0).IsBackupExistingAsync();
             _ = await backupService.Received(0).GetBackupDateAsync();
         }
@@ -80,7 +80,7 @@ public class BackupViewModelTests
             viewModel.InitializeCommand.Execute(null);
 
             // Assert
-            viewModel.IsLoadingBackupAvailability.Should().BeFalse();
+            viewModel.IsLoading.Should().BeFalse();
             viewModel.BackupAvailable.Should().BeTrue();
             viewModel.BackupLastModified.Should().Be(returnDate);
         }

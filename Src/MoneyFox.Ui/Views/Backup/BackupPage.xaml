@@ -42,10 +42,19 @@
                        HorizontalTextAlignment="Center" />
             </VerticalStackLayout>
 
-            <Button Command="{Binding LoginCommand}" IsEnabled="True"
-                    IsVisible="{Binding IsLoggedIn, Converter={StaticResource Inverter}}"
-                    Text="{x:Static resources:Translations.LoginLabel}" />
-
+            <Grid IsVisible="{Binding IsLoggedIn, Converter={StaticResource Inverter}}">
+                <Button Command="{Binding LoginCommand}" IsEnabled="True"
+                        Text="{x:Static resources:Translations.LoginLabel}" />
+            
+                <ActivityIndicator HeightRequest="20"
+                                   WidthRequest="20"
+                                   HorizontalOptions="End"
+                                   Margin="0,0,15,0"
+                                   IsRunning="True"
+                                   IsVisible="{Binding IsLoading}"
+                                   VerticalOptions="CenterAndExpand" />
+            </Grid>
+            
             <Button Command="{Binding LogoutCommand}"
                     IsVisible="{Binding IsLoggedIn}"
                     Text="{x:Static resources:Translations.LogoutLabel}" />
@@ -63,15 +72,17 @@
                 <Label HorizontalOptions="StartAndExpand"
                        Text="{x:Static resources:Translations.RestoreBackupInformationLabel}" />
 
-                <Button Command="{Binding RestoreCommand}"
-                        Text="{x:Static resources:Translations.RestoreBackupLabel}" />
+                <Grid>
+                    <Button Command="{Binding RestoreCommand}"
+                            Text="{x:Static resources:Translations.RestoreBackupLabel}" />
 
-                <ActivityIndicator HeightRequest="20"
-                                   WidthRequest="20"
-                                   HorizontalOptions="End"
-                                   IsRunning="{Binding IsLoadingBackupAvailability}"
-                                   IsVisible="{Binding IsLoadingBackupAvailability}"
-                                   VerticalOptions="CenterAndExpand" />
+                    <ActivityIndicator HeightRequest="20"
+                                       WidthRequest="20"
+                                       HorizontalOptions="End"
+                                       IsRunning="True"
+                                       IsVisible="{Binding IsLoading}"
+                                       VerticalOptions="CenterAndExpand" />
+                </Grid>
                 <VerticalStackLayout
                     IsVisible="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}">
                     <Label HorizontalOptions="Start"
