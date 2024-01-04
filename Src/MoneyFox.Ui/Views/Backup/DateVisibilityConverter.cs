@@ -1,10 +1,7 @@
-﻿namespace MoneyFox.Ui.Views.Backup;
+namespace MoneyFox.Ui.Views.Backup;
 
 using System.Globalization;
 
-/// <summary>
-///     Hides the date if it is equal to the default DateTime Value.
-/// </summary>
 public class DateVisibilityConverter : IValueConverter
 {
     public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)

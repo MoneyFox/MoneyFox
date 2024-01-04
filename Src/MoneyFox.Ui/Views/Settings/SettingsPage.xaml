@@ -12,19 +12,17 @@
         <ScrollView Padding="15">
             <VerticalStackLayout Spacing="12">
                 <Label Style="{StaticResource PageTitle}"
-                       Text="{x:Static resources:Translations.CurrencyIntroductionTitle}" />
+                       Text="{x:Static resources:Translations.CurrencySettingTitle}" />
 
-                <Label HorizontalOptions="StartAndExpand"
-                       Text="{x:Static resources:Translations.CurrencySettingText}" />
+                <Label Text="{x:Static resources:Translations.CurrencySettingText}" />
 
                 <Picker ItemsSource="{Binding AvailableCurrencies}"
                         SelectedItem="{Binding SelectedCurrency, Mode=TwoWay}" />
 
                 <Label Style="{StaticResource PageTitle}"
-                       Text="{x:Static resources:Translations.AccountIntroductionTitle}" />
+                       Text="{x:Static resources:Translations.DefaultAccountSettingTitle}" />
 
-                <Label HorizontalOptions="StartAndExpand"
-                       Text="{x:Static resources:Translations.AccountSettingText}" />
+                <Label Text="{x:Static resources:Translations.DefaultAccountSettingText}" />
 
                 <Picker x:Name="AccountPicker" ItemDisplayBinding="{Binding Name}"
                         ItemsSource="{Binding AvailableAccounts}"
