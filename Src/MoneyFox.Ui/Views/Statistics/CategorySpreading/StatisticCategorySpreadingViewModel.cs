@@ -1,7 +1,6 @@
 namespace MoneyFox.Ui.Views.Statistics.CategorySpreading;
 
 using System.Collections.ObjectModel;
-using CommunityToolkit.Mvvm.Input;
 using Core.Common.Extensions;
 using Core.Queries.Statistics;
 using Domain.Aggregates.AccountAggregate;

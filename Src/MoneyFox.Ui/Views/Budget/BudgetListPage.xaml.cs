@@ -10,14 +10,13 @@ public partial class BudgetListPage : IBindablePage
         BindingContext = App.GetViewModel<BudgetListViewModel>();
     }
 
+    public BudgetListViewModel ViewModel => (BudgetListViewModel)BindingContext;
+
     protected override void OnAppearing()
     {
         base.OnAppearing();
-
-#if WINDOWS        
+#if WINDOWS
         ViewModel.OnNavigatedAsync(null).GetAwaiter().GetResult();
 #endif
     }
-
-    public BudgetListViewModel ViewModel => (BudgetListViewModel)BindingContext;
 }

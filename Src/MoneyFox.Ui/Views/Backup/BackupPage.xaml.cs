@@ -13,7 +13,6 @@ public partial class BackupPage : IBindablePage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-
 #if WINDOWS
         var viewModel = (BackupViewModel)BindingContext;
         await viewModel.OnNavigatedAsync(null);

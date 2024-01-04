@@ -8,8 +8,8 @@ using Domain;
 
 public class SetupCurrencyViewModel : NavigableViewModel
 {
-    private readonly ISettingsFacade settingsFacade;
     private readonly INavigationService navigationService;
+    private readonly ISettingsFacade settingsFacade;
 
     public SetupCurrencyViewModel(ISettingsFacade settingsFacade, INavigationService navigationService)
     {

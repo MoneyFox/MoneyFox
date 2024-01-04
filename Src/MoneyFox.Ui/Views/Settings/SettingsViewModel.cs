@@ -10,8 +10,8 @@ using MediatR;
 
 internal sealed class SettingsViewModel : NavigableViewModel
 {
-    private readonly ISettingsFacade settingsFacade;
     private readonly IMediator mediator;
+    private readonly ISettingsFacade settingsFacade;
     private List<AccountLiteViewModel> availableAccounts = new();
     private IReadOnlyList<CurrencyViewModel> availableCurrencies = ImmutableList<CurrencyViewModel>.Empty;
     private AccountLiteViewModel? selectedAccount;

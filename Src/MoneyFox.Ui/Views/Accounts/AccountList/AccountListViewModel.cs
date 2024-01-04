@@ -23,8 +23,7 @@ public sealed class AccountListViewModel(ISender mediator, IDialogService servic
 
     public AsyncRelayCommand GoToAddAccountCommand => new(() => navigationService.GoTo<AddAccountViewModel>());
 
-    public AsyncRelayCommand<AccountListItemViewModel> GoToEditAccountCommand
-        => new(avm => navigationService.GoTo<EditAccountViewModel>(avm!.Id));
+    public AsyncRelayCommand<AccountListItemViewModel> GoToEditAccountCommand => new(avm => navigationService.GoTo<EditAccountViewModel>(avm!.Id));
 
     public AsyncRelayCommand<AccountListItemViewModel> GoToTransactionListCommand => new(avm => navigationService.GoTo<PaymentListViewModel>(avm!.Id));
 

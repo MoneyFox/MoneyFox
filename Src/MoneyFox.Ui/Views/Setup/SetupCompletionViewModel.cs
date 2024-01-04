@@ -10,12 +10,13 @@ internal sealed class SetupCompletionViewModel(ISettingsFacade settingsFacade, I
 {
     public AsyncRelayCommand CompleteCommand => new(CompleteSetup);
 
-    public AsyncRelayCommand BackCommand => new( () => navigationService.GoBack());
+    public AsyncRelayCommand BackCommand => new(() => navigationService.GoBack());
 
     private Task CompleteSetup()
     {
         settingsFacade.IsSetupCompleted = true;
         Application.Current!.MainPage = GetAppShellPage();
+
         return navigationService.GoTo<DashboardViewModel>();
     }
 

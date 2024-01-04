@@ -3,7 +3,6 @@ namespace MoneyFox.Ui.Views.Statistics.MonthlyAccountCashFlow;
 using System.Collections.ObjectModel;
 using Accounts.AccountModification;
 using AutoMapper;
-using CommunityToolkit.Mvvm.Input;
 using Core.Queries;
 using Core.Queries.Statistics;
 using LiveChartsCore;
@@ -47,6 +46,7 @@ internal sealed class StatisticAccountMonthlyCashFlowViewModel : StatisticViewMo
             LoadAsync().GetAwaiter().GetResult();
         }
     }
+
     public override async Task OnNavigatedAsync(object? parameter)
     {
         Accounts.Clear();

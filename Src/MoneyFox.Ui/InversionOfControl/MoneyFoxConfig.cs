@@ -20,7 +20,6 @@ using Views.Categories.CategorySelection;
 using Views.Categories.ModifyCategory;
 using Views.Dashboard;
 using Views.OverflowMenu;
-using Views.Payments;
 using Views.Payments.PaymentList;
 using Views.Payments.PaymentModification;
 using Views.Settings;

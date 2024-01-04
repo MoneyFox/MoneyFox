@@ -9,7 +9,10 @@ public sealed class AddCategoryViewModel : ModifyCategoryViewModel
 {
     private readonly IMediator mediator;
 
-    public AddCategoryViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService) : base(mediator: mediator, dialogService: dialogService, navigationService: navigationService)
+    public AddCategoryViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService) : base(
+        mediator: mediator,
+        dialogService: dialogService,
+        navigationService: navigationService)
     {
         this.mediator = mediator;
         SelectedCategory = new()
