@@ -952,12 +952,12 @@
     <value>Лицензи</value>
   </data>
   <data name="CurrencySettingTitle" xml:space="preserve">
-    <value>Currency</value>
+    <value>Валута</value>
   </data>
   <data name="DefaultAccountSettingText" xml:space="preserve">
-    <value>Select the account which should be selected as the default if you add a payment.</value>
+    <value>Изберете сметката, която трябва да бъде избрана по подразбиране, ако добавите плащане.</value>
   </data>
   <data name="DefaultAccountSettingTitle" xml:space="preserve">
-    <value>Default Payment Account</value>
+    <value>Платежна сметка по подразбиране</value>
   </data>
 </root>
