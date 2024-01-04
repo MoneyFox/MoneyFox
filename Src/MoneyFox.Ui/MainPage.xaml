@@ -17,7 +17,6 @@
             <Style x:Key="BottomTabStyle" TargetType="tabs:BottomTabItem">
                 <Setter Property="SelectedTabColor" Value="{StaticResource Primary}" />
                 <Setter Property="UnselectedLabelColor" Value="Gray" />
-                <Setter Property="UnselectedIconColor" Value="LightGray" />
                 <Setter Property="LabelSize" Value="14" />
                 <Setter Property="IconSize" Value="28" />
             </Style>
@@ -57,15 +56,12 @@
         </tabs:ViewSwitcher>
 
         <tabs:TabHostView Grid.Row="1"
-                          HorizontalOptions="Center"
                           VerticalOptions="Start"
                           HeightRequest="60"
-                          WidthRequest="280"
                           TabType="Fixed"
                           IsSegmented="True"
                           CornerRadius="30"
                           Margin="15"
-                          BackgroundColor="#F0F0F3"
                           SelectedIndex="{Binding Source={x:Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}">
             <tabs:TabHostView.Tabs>
                 <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
@@ -73,28 +69,25 @@
                     <tabs:BottomTabItem.IconImageSource>
                         <FontImageSource FontFamily="MaterialIcons"
                                          Glyph="{x:Static views:IconFont.HomeOutline}"
-                                         Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
-                                         Size="24" />
+                                         Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}" />
                     </tabs:BottomTabItem.IconImageSource>
                 </tabs:BottomTabItem>
-                
+
                 <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
                                     Label="{x:Static resources:Translations.StatisticsTitle}">
                     <tabs:BottomTabItem.IconImageSource>
                         <FontImageSource FontFamily="MaterialIcons"
                                          Glyph="{x:Static views:IconFont.ChartArc}"
-                                         Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
-                                         Size="24" />
+                                         Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}" />
                     </tabs:BottomTabItem.IconImageSource>
                 </tabs:BottomTabItem>
-                
+
                 <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
                                     Label="{x:Static resources:Translations.MenuTitle}">
                     <tabs:BottomTabItem.IconImageSource>
                         <FontImageSource FontFamily="MaterialIcons"
                                          Glyph="{x:Static views:IconFont.DotsHorizontal}"
-                                         Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}"
-                                         Size="24" />
+                                         Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}" />
                     </tabs:BottomTabItem.IconImageSource>
                 </tabs:BottomTabItem>
             </tabs:TabHostView.Tabs>
