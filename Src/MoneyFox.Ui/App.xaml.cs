@@ -40,11 +40,10 @@ public partial class App
         InitializeComponent();
         FillResourceDictionary();
         appDbContext.MigrateDb();
-
         mainPageViewModel.DashboardViewModel.OnNavigatedAsync(null);
         mainPageViewModel.StatisticSelectorViewModel.OnNavigatedAsync(null);
         mainPageViewModel.OverflowMenuViewModel.OnNavigatedAsync(null);
-        MainPage = settingsFacade.IsSetupCompleted ? GetAppShellPage(mainPageViewModel:mainPageViewModel) : new SetupShell();
+        MainPage = settingsFacade.IsSetupCompleted ? GetAppShellPage(mainPageViewModel: mainPageViewModel) : new SetupShell();
     }
 
     public static Dictionary<string, ResourceDictionary> ResourceDictionary { get; } = new();
@@ -53,7 +52,9 @@ public partial class App
 
     private static Page GetAppShellPage(MainPageViewModel mainPageViewModel)
     {
-        return DeviceInfo.Current.Idiom.UseDesktopPage() ? new AppShellDesktop() : new NavigationPage(new MainPage(mainPageViewModel));
+        return DeviceInfo.Current.Idiom.UseDesktopPage()
+            ? new AppShellDesktop()
+            : new DefaultNavigationPage(new MainPage(mainPageViewModel));
     }
 
     private void FillResourceDictionary()
@@ -121,5 +122,15 @@ public partial class App
         {
             isRunning = false;
         }
+    }
+}
+
+public class DefaultNavigationPage : NavigationPage
+{
+    public DefaultNavigationPage(Page root) : base(root)
+    {
+        BarBackgroundColor = Application.Current?.RequestedTheme == AppTheme.Dark
+            ? (Color)App.ResourceDictionary["Colors"]["BackgroundColorDark"]
+            : (Color)App.ResourceDictionary["Colors"]["BackgroundColorLight"];
     }
 }
