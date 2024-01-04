@@ -953,12 +953,12 @@ Puteți schimba această monedă târziu în setări.</value>
     <value>Licențe</value>
   </data>
   <data name="CurrencySettingTitle" xml:space="preserve">
-    <value>Currency</value>
+    <value>Monedă</value>
   </data>
   <data name="DefaultAccountSettingText" xml:space="preserve">
-    <value>Select the account which should be selected as the default if you add a payment.</value>
+    <value>Selectați contul care ar trebui să fie selectat ca implicit dacă adăugați o plată.</value>
   </data>
   <data name="DefaultAccountSettingTitle" xml:space="preserve">
-    <value>Default Payment Account</value>
+    <value>Cont de plată implicit</value>
   </data>
 </root>
