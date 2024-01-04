@@ -13,7 +13,6 @@ public partial class SettingsPage : IBindablePage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-
 #if WINDOWS
         var viewModel = (SettingsViewModel)BindingContext;
         viewModel.OnNavigatedAsync(null).GetAwaiter().GetResult();

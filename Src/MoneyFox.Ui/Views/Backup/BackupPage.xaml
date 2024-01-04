@@ -18,7 +18,7 @@
             <backup:DateVisibilityConverter x:Key="DateVisibilityConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <ScrollView>
         <VerticalStackLayout Padding="16" Spacing="6">
             <VerticalStackLayout IsVisible="{Binding IsLoggedIn}"
@@ -45,7 +45,7 @@
             <Grid IsVisible="{Binding IsLoggedIn, Converter={StaticResource Inverter}}">
                 <Button Command="{Binding LoginCommand}" IsEnabled="True"
                         Text="{x:Static resources:Translations.LoginLabel}" />
-            
+
                 <ActivityIndicator HeightRequest="20"
                                    WidthRequest="20"
                                    HorizontalOptions="End"
@@ -54,7 +54,7 @@
                                    IsVisible="{Binding IsLoading}"
                                    VerticalOptions="CenterAndExpand" />
             </Grid>
-            
+
             <Button Command="{Binding LogoutCommand}"
                     IsVisible="{Binding IsLoggedIn}"
                     Text="{x:Static resources:Translations.LogoutLabel}" />
@@ -100,7 +100,7 @@
                 <!-- Auto Backup -->
                 <Label Text="{x:Static resources:Translations.AutobackupTitle}"
                        Style="{StaticResource TextTitle}"
-                       Margin="0,12,0,0"/>
+                       Margin="0,12,0,0" />
 
                 <Label Text="{x:Static resources:Translations.AutobackupInformationLabel}" />
 
