@@ -953,12 +953,12 @@ Du kan endre dette for sent i innstillingene.</value>
     <value>Lisenser</value>
   </data>
   <data name="CurrencySettingTitle" xml:space="preserve">
-    <value>Currency</value>
+    <value>Valuta</value>
   </data>
   <data name="DefaultAccountSettingText" xml:space="preserve">
-    <value>Select the account which should be selected as the default if you add a payment.</value>
+    <value>Velg kontoen som skal velges som standard dersom du legger til en betaling.</value>
   </data>
   <data name="DefaultAccountSettingTitle" xml:space="preserve">
-    <value>Default Payment Account</value>
+    <value>Standard betalingskonto</value>
   </data>
 </root>
