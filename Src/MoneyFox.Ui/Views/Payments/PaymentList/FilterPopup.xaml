@@ -6,11 +6,12 @@
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:payments="clr-namespace:MoneyFox.Ui.Views.Payments"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
+    xmlns:paymentList="clr-namespace:MoneyFox.Ui.Views.Payments.PaymentList"
     CanBeDismissedByTappingOutsideOfPopup="false"
     Size="330, 500"
     Color="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
     x:Class="MoneyFox.Ui.Views.Payments.PaymentList.FilterPopup"
-    x:DataType="payments:SelectFilterDialogViewModel">
+    x:DataType="paymentList:SelectFilterDialogViewModel">
 
     <Grid RowDefinitions="*, 40">
         <Grid.Resources>

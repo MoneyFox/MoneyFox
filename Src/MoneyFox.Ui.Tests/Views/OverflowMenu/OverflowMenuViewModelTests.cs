@@ -1,5 +1,6 @@
 namespace MoneyFox.Ui.Tests.Views.OverflowMenu;
 
+using Common.Navigation;
 using Ui.Views.About;
 using Ui.Views.Backup;
 using Ui.Views.Categories;
@@ -22,7 +23,7 @@ public class OverflowMenuViewModelTests
         await viewModel.GoToSelectedItemCommand.ExecuteAsync(overflowItem);
 
         // Assert
-        await navigationService.Received(1).NavigateToAsync<CategoryListPage>();
+        await navigationService.Received(1).GoTo<CategoryListViewModel>();
     }
 
     [Fact]
@@ -39,7 +40,7 @@ public class OverflowMenuViewModelTests
         await viewModel.GoToSelectedItemCommand.ExecuteAsync(overflowItem);
 
         // Assert
-        await navigationService.Received(1).NavigateToAsync<BackupPage>();
+        await navigationService.Received(1).GoTo<BackupViewModel>();
     }
 
     [Fact]
@@ -56,7 +57,7 @@ public class OverflowMenuViewModelTests
         await viewModel.GoToSelectedItemCommand.ExecuteAsync(overflowItem);
 
         // Assert
-        await navigationService.Received(1).NavigateToAsync<SettingsPage>();
+        await navigationService.Received(1).GoTo<SettingsViewModel>();
     }
 
     [Fact]
@@ -73,6 +74,6 @@ public class OverflowMenuViewModelTests
         await viewModel.GoToSelectedItemCommand.ExecuteAsync(overflowItem);
 
         // Assert
-        await navigationService.Received(1).NavigateToAsync<AboutPage>();
+        await navigationService.Received(1).GoTo<AboutViewModel>();
     }
 }

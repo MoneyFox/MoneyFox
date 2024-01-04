@@ -1,10 +1,11 @@
 ﻿namespace MoneyFox.Ui.Views.Setup;
 
-public partial class SetupCompletionPage
+using Common.Navigation;
+
+public partial class SetupCompletionPage : IBindablePage
 {
     public SetupCompletionPage()
     {
         InitializeComponent();
-        BindingContext = App.GetViewModel<SetupCompletionViewModel>();
     }
 }

@@ -11,19 +11,20 @@ pool:
 
 variables:
   Major: '8'
-  Minor: '3'
+  Minor: '4'
 
 steps:
-  - task: CmdLine@2
-    displayName: 'Set Xcode v14.3'
-    condition: eq(variables['Agent.OS'], 'Darwin') # Only run this step on macOS
-    inputs:
-      script: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_14.3.1.app;sudo xcode-select --switch /Applications/Xcode_14.3.1.app/Contents/Developer
 
   - task: UseDotNet@2
     displayName: 'Install .net sdk'
     inputs:
-      version: 7.x
+      version: 8.x
+      includePreviewVersions: false
+
+  - task: CmdLine@2
+    displayName: 'Set Xcode v15.0'
+    inputs:
+      script: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_15.0.1.app;sudo xcode-select --switch /Applications/Xcode_15.0.1.app/Contents/Developer
 
   - task: PowerShell@2
     displayName: "Set App Version"
@@ -111,7 +112,7 @@ steps:
       publishWebProjects: false
       zipAfterPublish: false
       projects: '**/MoneyFox.Ui.csproj'
-      arguments: '-c Release -f net7.0-ios -o $(build.artifactstagingdirectory) /p:BuildIpa=true /p:Codesignkey="$(APPLE_CERTIFICATE_SIGNING_IDENTITY)" /p:CodesignProvision="$(APPLE_PROV_PROFILE_UUID)"'
+      arguments: '-c Release -f net8.0-ios -o $(build.artifactstagingdirectory) /p:BuildIpa=true /p:Codesignkey="$(APPLE_CERTIFICATE_SIGNING_IDENTITY)" /p:CodesignProvision="$(APPLE_PROV_PROFILE_UUID)"'
 
   - task: PowerShell@2
     inputs:

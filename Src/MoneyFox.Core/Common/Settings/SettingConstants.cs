@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Core.Common.Settings;
+namespace MoneyFox.Core.Common.Settings;
 
 public static class SettingConstants
 {
@@ -9,7 +9,5 @@ public static class SettingConstants
     public const string DATABASE_LAST_UPDATE_KEY_NAME = "DatabaseLastUpdate";
     public const string IS_SETUP_COMPLETED_KEY_NAME = "IsSetupCompleted";
     public const string DEFAULT_CURRENCY_KEY_NAME = "DefaultCurrency";
-    public const string RECURRING_TRANSACTION_MIGRATED = "RecurringTransactionMigrated";
-    public const string RECURRING_TRANSACTION_MIGRATED2 = "RecurringTransactionMigrated2";
-    public const string RECURRING_TRANSACTION_MIGRATED3 = "RecurringTransactionMigrated3";
+    public const string DEFAULT_ACCOUNT_KEY_NAME = "DefaultAccount";
 }

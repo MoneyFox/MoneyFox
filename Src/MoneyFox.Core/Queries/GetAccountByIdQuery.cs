@@ -7,27 +7,15 @@ using Domain.Aggregates.AccountAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-public class GetAccountByIdQuery : IRequest<Account>
+public class GetAccountByIdQuery(int accountId) : IRequest<Account>
 {
-    public GetAccountByIdQuery(int accountId)
+    public int AccountId { get; } = accountId;
+
+    public class Handler(IAppDbContext dbContext) : IRequestHandler<GetAccountByIdQuery, Account>
     {
-        AccountId = accountId;
-    }
-
-    public int AccountId { get; }
-
-    public class Handler : IRequestHandler<GetAccountByIdQuery, Account>
-    {
-        private readonly IAppDbContext appDbContext;
-
-        public Handler(IAppDbContext appDbContext)
+        public Task<Account> Handle(GetAccountByIdQuery request, CancellationToken cancellationToken)
         {
-            this.appDbContext = appDbContext;
-        }
-
-        public async Task<Account> Handle(GetAccountByIdQuery request, CancellationToken cancellationToken)
-        {
-            return await appDbContext.Accounts.FirstAsync(predicate: a => a.Id == request.AccountId, cancellationToken: cancellationToken);
+            return dbContext.Accounts.FirstAsync(predicate: a => a.Id == request.AccountId, cancellationToken: cancellationToken);
         }
     }
 }

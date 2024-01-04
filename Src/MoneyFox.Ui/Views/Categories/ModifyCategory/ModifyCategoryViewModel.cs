@@ -1,24 +1,15 @@
 namespace MoneyFox.Ui.Views.Categories.ModifyCategory;
 
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
 using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-public abstract class ModifyCategoryViewModel : BasePageViewModel
+public abstract class ModifyCategoryViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService) : NavigableViewModel
 {
-    private readonly IDialogService dialogService;
-    private readonly IMediator mediator;
-
     private CategoryViewModel selectedCategory = null!;
-
-    protected ModifyCategoryViewModel(IMediator mediator, IDialogService dialogService)
-    {
-        this.mediator = mediator;
-        this.dialogService = dialogService;
-    }
 
     public AsyncRelayCommand SaveCommand => new(async () => await SaveCategoryBaseAsync());
 
@@ -26,7 +17,7 @@ public abstract class ModifyCategoryViewModel : BasePageViewModel
     {
         get => selectedCategory;
 
-        set
+        protected set
         {
             selectedCategory = value;
             OnPropertyChanged();
@@ -35,7 +26,7 @@ public abstract class ModifyCategoryViewModel : BasePageViewModel
 
     protected abstract Task SaveCategoryAsync();
 
-    protected virtual async Task SaveCategoryBaseAsync()
+    protected async Task SaveCategoryBaseAsync()
     {
         if (string.IsNullOrEmpty(SelectedCategory.Name))
         {
@@ -55,8 +46,7 @@ public abstract class ModifyCategoryViewModel : BasePageViewModel
         {
             await dialogService.ShowLoadingDialogAsync(Translations.SavingCategoryMessage);
             await SaveCategoryAsync();
-            await Shell.Current.Navigation.PopModalAsync();
-            Messenger.Send(new CategoriesChangedMessage());
+            await navigationService.GoBack();
         }
         finally
         {

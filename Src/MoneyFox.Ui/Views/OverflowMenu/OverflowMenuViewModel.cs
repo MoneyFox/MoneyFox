@@ -5,6 +5,7 @@ using About;
 using Backup;
 using Budget;
 using Categories;
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using JetBrains.Annotations;
 using Resources.Strings;
@@ -13,16 +14,9 @@ using Settings;
 internal sealed record OverflowItemViewModel(string IconGlyph, string Name, OverflowMenuItemType Type);
 
 [UsedImplicitly]
-internal sealed class OverflowMenuViewModel : BasePageViewModel
+internal sealed class OverflowMenuViewModel(INavigationService navigationService) : NavigableViewModel
 {
-    private readonly INavigationService navigationService;
-
-    public OverflowMenuViewModel(INavigationService navigationService)
-    {
-        this.navigationService = navigationService;
-    }
-
-    public AsyncRelayCommand<OverflowItemViewModel> GoToSelectedItemCommand => new(async s => await GoToSelectedItem(s.Type));
+    public AsyncRelayCommand<OverflowItemViewModel> GoToSelectedItemCommand => new(s => GoToSelectedItem(s.Type));
 
     public static IReadOnlyList<OverflowItemViewModel> OverflowEntries
         => ImmutableList.Create<OverflowItemViewModel>(
@@ -32,30 +26,16 @@ internal sealed class OverflowMenuViewModel : BasePageViewModel
             new(IconGlyph: IconFont.CogOutline, Name: Translations.SettingsTitle, Type: OverflowMenuItemType.Settings),
             new(IconGlyph: IconFont.InformationOutline, Name: Translations.AboutTitle, Type: OverflowMenuItemType.About));
 
-    private async Task GoToSelectedItem(OverflowMenuItemType menuType)
+    private Task GoToSelectedItem(OverflowMenuItemType menuType)
     {
-        switch (menuType)
+        return menuType switch
         {
-            case OverflowMenuItemType.Budgets:
-                await navigationService.NavigateToAsync<BudgetListPage>();
-
-                break;
-            case OverflowMenuItemType.Categories:
-                await navigationService.NavigateToAsync<CategoryListPage>();
-
-                break;
-            case OverflowMenuItemType.Backup:
-                await navigationService.NavigateToAsync<BackupPage>();
-
-                break;
-            case OverflowMenuItemType.Settings:
-                await navigationService.NavigateToAsync<SettingsPage>();
-
-                break;
-            case OverflowMenuItemType.About:
-                await navigationService.NavigateToAsync<AboutPage>();
-
-                break;
-        }
+            OverflowMenuItemType.Budgets => navigationService.GoTo<BudgetListViewModel>(),
+            OverflowMenuItemType.Categories => navigationService.GoTo<CategoryListViewModel>(),
+            OverflowMenuItemType.Backup => navigationService.GoTo<BackupViewModel>(),
+            OverflowMenuItemType.Settings => navigationService.GoTo<SettingsViewModel>(),
+            OverflowMenuItemType.About => navigationService.GoTo<AboutViewModel>(),
+            _ => Task.CompletedTask
+        };
     }
 }

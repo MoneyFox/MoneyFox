@@ -1,5 +1,6 @@
 namespace MoneyFox.Ui.Tests.Views.Categories;
 
+using Common.Navigation;
 using Core.Common.Interfaces;
 using Core.Features.CategoryDeletion;
 using Core.Queries;
@@ -26,8 +27,8 @@ public class EditCategoryViewModelTests
     public async Task CallsDelete_WhenConfirmationWasConfirmed()
     {
         // Arrange
-        _ = dialogService.ShowConfirmMessageAsync(title: Arg.Any<string>(), message: Arg.Any<string>()).Returns(true);
-        _ = mediator.Send(Arg.Any<GetCategoryById.Query>())
+        dialogService.ShowConfirmMessageAsync(title: Arg.Any<string>(), message: Arg.Any<string>()).Returns(true);
+        mediator.Send(Arg.Any<GetCategoryById.Query>())
         .Returns(
             new CategoryData(
                 Id: 4,
@@ -38,12 +39,12 @@ public class EditCategoryViewModelTests
                 LastModified: DateTime.Now));
 
         // Act
-        await vm.InitializeAsync(4);
+        await vm.OnNavigatedAsync(4);
         await vm.DeleteCommand.ExecuteAsync(null);
 
         // Assert
         await mediator.Received(1).Send(request: Arg.Any<DeleteCategoryById.Command>(), cancellationToken: Arg.Any<CancellationToken>());
-        await navigationService.Received(1).GoBackFromModalAsync();
+        await navigationService.Received(1).GoBack();
     }
 
     [Fact]
@@ -57,6 +58,6 @@ public class EditCategoryViewModelTests
 
         // Assert
         await mediator.Received(0).Send(request: Arg.Any<DeleteCategoryById.Command>(), cancellationToken: Arg.Any<CancellationToken>());
-        await navigationService.Received(0).GoBackFromModalAsync();
+        await navigationService.Received(0).GoBack();
     }
 }

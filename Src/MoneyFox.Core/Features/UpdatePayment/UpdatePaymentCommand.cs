@@ -64,10 +64,11 @@ public static class UpdatePayment
 
             if (command is { IsRecurring: true, UpdateRecurringPayment: true })
             {
+                var amountAdjustedForType = command.Type == PaymentType.Expense ? -command.Amount : command.Amount;
                 await sender.Send(
                     request: new UpdateRecurringTransaction.Command(
                         recurringTransactionId: existingPayment.RecurringTransactionId!.Value,
-                        updatedAmount: new(amount: command.Amount, currencyAlphaIsoCode: settings.DefaultCurrency),
+                        updatedAmount: new(amount: amountAdjustedForType, currencyAlphaIsoCode: settings.DefaultCurrency),
                         updatedCategoryId: command.CategoryId,
                         updatedRecurrence: command.Recurrence!.Value.ToRecurrence(),
                         updatedEndDate: command.EndDate.HasValue ? DateOnly.FromDateTime(command.EndDate.Value) : null,

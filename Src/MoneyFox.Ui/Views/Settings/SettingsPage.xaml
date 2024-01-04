@@ -19,6 +19,16 @@
 
                 <Picker ItemsSource="{Binding AvailableCurrencies}"
                         SelectedItem="{Binding SelectedCurrency, Mode=TwoWay}" />
+
+                <Label Style="{StaticResource PageTitle}"
+                       Text="{x:Static resources:Translations.AccountIntroductionTitle}" />
+
+                <Label HorizontalOptions="StartAndExpand"
+                       Text="{x:Static resources:Translations.AccountSettingText}" />
+
+                <Picker x:Name="AccountPicker" ItemDisplayBinding="{Binding Name}"
+                        ItemsSource="{Binding AvailableAccounts}"
+                        SelectedItem="{Binding SelectedAccount, Mode=TwoWay}" />
             </VerticalStackLayout>
         </ScrollView>
     </ContentPage.Content>

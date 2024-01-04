@@ -9,23 +9,14 @@ using MediatR;
 
 public static class DataBaseChanged
 {
-    public sealed class Notification : INotification { }
+    public sealed class Notification : INotification;
 
-    public class Handler : INotificationHandler<Notification>
+    public class Handler(ISender sender, ISettingsFacade facade) : INotificationHandler<Notification>
     {
-        private readonly ISender sender;
-        private readonly ISettingsFacade settingsFacade;
-
-        public Handler(ISender sender, ISettingsFacade settingsFacade)
-        {
-            this.sender = sender;
-            this.settingsFacade = settingsFacade;
-        }
-
         public async Task Handle(Notification notification, CancellationToken cancellationToken)
         {
-            settingsFacade.LastDatabaseUpdate = DateTime.Now;
-            if (settingsFacade.IsBackupAutoUploadEnabled && settingsFacade.IsLoggedInToBackupService)
+            facade.LastDatabaseUpdate = DateTime.Now;
+            if (facade.IsBackupAutoUploadEnabled && facade.IsLoggedInToBackupService)
             {
                 _ = await sender.Send(request: new UploadBackup.Command(), cancellationToken: cancellationToken);
             }

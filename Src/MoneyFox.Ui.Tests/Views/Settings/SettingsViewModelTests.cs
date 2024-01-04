@@ -1,36 +1,38 @@
 namespace MoneyFox.Ui.Tests.Views.Settings;
 
+using System.Collections.Immutable;
 using System.Globalization;
 using Core.Common.Settings;
+using Core.Queries;
 using Domain;
+using Domain.Aggregates.AccountAggregate;
+using MediatR;
 using Ui.Views.Settings;
 
-public static class SettingsViewModelTests
+public class SettingsViewModelTests
 {
-    public sealed class Constructor
+    private readonly IMediator mediator;
+    private readonly ISettingsFacade settingsFacade;
+    private readonly SettingsViewModel viewModel;
+
+    private SettingsViewModelTests()
+    {
+        settingsFacade = Substitute.For<ISettingsFacade>();
+        mediator = Substitute.For<IMediator>();
+        mediator.Send(Arg.Any<GetAccountsQuery>()).Returns(ImmutableList<Account>.Empty);
+        viewModel = new(settingsFacade: settingsFacade, mediator: mediator);
+    }
+
+    public sealed class Initialize : SettingsViewModelTests
     {
         [Fact]
-        public void CollectionNotNullAfterCreation()
+        public async Task SetCurrencyFromSettings()
         {
             // Arrange
-            var settingsFacade = Substitute.For<ISettingsFacade>();
-
-            // Act
-            var viewModel = new SettingsViewModel(settingsFacade: settingsFacade);
-
-            // Assert
-            viewModel.AvailableCurrencies.Should().NotBeNull();
-        }
-
-        [Fact]
-        public void SetCurrencyFromSettings()
-        {
-            // Arrange
-            var settingsFacade = Substitute.For<ISettingsFacade>();
             settingsFacade.DefaultCurrency.Returns("USD");
 
             // Act
-            var viewModel = new SettingsViewModel(settingsFacade: settingsFacade);
+            await viewModel.OnNavigatedAsync(null);
 
             // Assert
             viewModel.AvailableCurrencies.Should().NotBeNull();
@@ -38,35 +40,63 @@ public static class SettingsViewModelTests
         }
 
         [Fact]
-        public void SetCurrencyFromRegion_WhenSettingNotSetYet()
+        public async Task SetCurrencyFromRegion_WhenSettingNotSetYet()
         {
-            // Arrange
-            var settingsFacade = Substitute.For<ISettingsFacade>();
-
             // Act
-            var viewModel = new SettingsViewModel(settingsFacade: settingsFacade);
+            await viewModel.OnNavigatedAsync(null);
 
             // Assert
             viewModel.AvailableCurrencies.Should().NotBeNull();
             viewModel.SelectedCurrency.AlphaIsoCode.Should().Be(RegionInfo.CurrentRegion.ISOCurrencySymbol);
         }
+
+        [Fact]
+        public async Task SetAccountFromSettings()
+        {
+            // Arrange
+            var accounts = new List<Account> { new("Acc1"), new("Acc2") };
+            settingsFacade.DefaultAccount.Returns(accounts[1].Id);
+            mediator.Send(Arg.Any<GetAccountsQuery>()).Returns(accounts);
+
+            // Act
+            await viewModel.OnNavigatedAsync(null);
+
+            // Assert
+            viewModel.AvailableAccounts.Should().NotBeNull();
+            viewModel.SelectedAccount!.Id.Should().Be(accounts[1].Id);
+        }
     }
 
-    public sealed class CurrencySelected
+    public sealed class CurrencySelected : SettingsViewModelTests
     {
         [Fact]
         public void UpdateSettingsOnSet()
         {
-            // Arrange
-            var settingsFacade = Substitute.For<ISettingsFacade>();
-            var viewModel = new SettingsViewModel(settingsFacade: settingsFacade);
-
             // Act
             var newCurrency = new CurrencyViewModel(Currencies.CHF.AlphaIsoCode);
             viewModel.SelectedCurrency = newCurrency;
 
             // Assert
             settingsFacade.DefaultCurrency.Should().Be(newCurrency.AlphaIsoCode);
+        }
+    }
+
+    public sealed class AccountSelected : SettingsViewModelTests
+    {
+        [Fact]
+        public void UpdateAccountOnSet()
+        {
+            // Arrange
+            var accounts = new List<Account> { new("Acc1"), new("Acc2") };
+            mediator.Send(Arg.Any<GetAccountsQuery>()).Returns(accounts);
+
+            // Act
+            var newAccount = new Account("Acc3");
+            var defaultAccount = new AccountLiteViewModel(Id: newAccount.Id, Name: newAccount.Name);
+            viewModel.SelectedAccount = defaultAccount;
+
+            // Assert
+            settingsFacade.DefaultAccount.Should().Be(defaultAccount.Id);
         }
     }
 }

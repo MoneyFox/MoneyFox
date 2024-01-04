@@ -1,16 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net7.0-ios;net7.0-android;net7.0</TargetFrameworks>
-        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.22621.0</TargetFrameworks>
+        <TargetFrameworks>net8.0-ios;net8.0-android;net8.0</TargetFrameworks>
+        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.22621.0</TargetFrameworks>
         <OutputType>Exe</OutputType>
         <RootNamespace>MoneyFox.Ui</RootNamespace>
         <UseMaui>true</UseMaui>
-        <MauiVersion>7.0.96</MauiVersion>
+        <MauiVersion>8.0.3</MauiVersion>
         <SingleProject>true</SingleProject>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <DefaultLanguage>en</DefaultLanguage>
         <GenerateSatelliteAssembliesForCore>true</GenerateSatelliteAssembliesForCore>
+        <SkipValidateMauiImplicitPackageReferences>true</SkipValidateMauiImplicitPackageReferences>
 
         <!-- Display name -->
         <ApplicationTitle>MoneyFox</ApplicationTitle>
@@ -27,7 +28,7 @@
         <EnableSGenConc>True</EnableSGenConc>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(TargetFramework)' == 'net7.0'">
+    <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0'">
         <OutputType>Library</OutputType>
     </PropertyGroup>
 
@@ -48,20 +49,20 @@
     </PropertyGroup>
 
     <PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
-        <EnableLLVM>True</EnableLLVM>
+        <EnableLLVM>False</EnableLLVM>
         <AndroidLinkTool>r8</AndroidLinkTool>
     </PropertyGroup>
 
     <ItemGroup>
         <!-- App Icon -->
         <MauiIcon Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'" Include="Resources\AppIcon\appicon.svg"/>
-        <MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#ffffff" ForegroundScale="0.65"/>
+        <MauiIcon Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'" Include="Resources\AppIcon\appicon.svg" Color="#ffffff" ForegroundScale="0.65"/>
 
         <!-- Splash Screen -->
         <MauiSplashScreen Include="Resources\Images\splashscreen.svg" Color="#ea9972" BaseSize="128,128"/>
 
         <!-- Images -->
-        <MauiImage Include="Resources\Images\appicon.svg" BaseSize="512, 512" ForegroundScale="0.65"/>
+        <MauiImage Include="Resources\Images\appiconimage.svg" BaseSize="512, 512" ForegroundScale="0.65"/>
 
         <!-- Custom Fonts -->
         <MauiFont Include="Resources\Fonts\*"/>
@@ -71,22 +72,24 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Aptabase.Maui" Version="0.0.7"/>
-        <PackageReference Include="CommunityToolkit.Maui" Version="5.3.0"/>
-        <PackageReference Include="JetBrains.Annotations" Version="2023.2.0"/>
-        <PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-rc1.2"/>
+        <PackageReference Include="Aptabase.Maui" Version="0.0.8"/>
+        <PackageReference Include="CommunityToolkit.Maui" Version="7.0.1"/>
+        <PackageReference Include="JetBrains.Annotations" Version="2023.3.0"/>
+        <PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-rc2"/>
         <PackageReference Include="Plugin.StoreReview" Version="6.0.0"/>
-        <PackageReference Include="Serilog" Version="3.0.1"/>
+        <PackageReference Include="Serilog" Version="3.1.1"/>
         <PackageReference Include="Serilog.Exceptions" Version="8.4.0"/>
         <PackageReference Include="Serilog.Sinks.File" Version="5.0.0"/>
-        <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4"/>
-        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0"/>
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="9.12.0.78982">
+        <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0"/>
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="9.16.0.82469">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="MediatR" Version="12.1.1"/>
-        <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.6"/>
+        <PackageReference Include="MediatR" Version="12.2.0"/>
+        <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.7"/>
+        <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.3"/>
+        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.3"/>
     </ItemGroup>
 
     <ItemGroup>
