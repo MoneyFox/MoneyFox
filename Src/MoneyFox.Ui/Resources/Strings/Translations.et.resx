@@ -953,12 +953,12 @@ Seda saate hilisemalt seadetes muuta.</value>
     <value>Litsentsid</value>
   </data>
   <data name="CurrencySettingTitle" xml:space="preserve">
-    <value>Currency</value>
+    <value>Valuuta</value>
   </data>
   <data name="DefaultAccountSettingText" xml:space="preserve">
-    <value>Select the account which should be selected as the default if you add a payment.</value>
+    <value>Valige konto, mis peaks olema vaikimisi valitud, kui lisate makse.</value>
   </data>
   <data name="DefaultAccountSettingTitle" xml:space="preserve">
-    <value>Default Payment Account</value>
+    <value>Vaikimisi maksekonto</value>
   </data>
 </root>
