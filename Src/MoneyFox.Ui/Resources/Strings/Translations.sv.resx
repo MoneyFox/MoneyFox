@@ -953,12 +953,12 @@ Du kan ändra denna sen i inställningarna.</value>
     <value>Licenser</value>
   </data>
   <data name="CurrencySettingTitle" xml:space="preserve">
-    <value>Currency</value>
+    <value>Valuta</value>
   </data>
   <data name="DefaultAccountSettingText" xml:space="preserve">
-    <value>Select the account which should be selected as the default if you add a payment.</value>
+    <value>Välj det konto som ska väljas som standard om du lägger till en betalning.</value>
   </data>
   <data name="DefaultAccountSettingTitle" xml:space="preserve">
-    <value>Default Payment Account</value>
+    <value>Standard betalningskonto</value>
   </data>
 </root>
