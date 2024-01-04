@@ -953,12 +953,12 @@
     <value>Лицензии</value>
   </data>
   <data name="CurrencySettingTitle" xml:space="preserve">
-    <value>Currency</value>
+    <value>Валюта</value>
   </data>
   <data name="DefaultAccountSettingText" xml:space="preserve">
-    <value>Select the account which should be selected as the default if you add a payment.</value>
+    <value>Выберите счет, который должен быть выбран по умолчанию при добавлении платежа.</value>
   </data>
   <data name="DefaultAccountSettingTitle" xml:space="preserve">
-    <value>Default Payment Account</value>
+    <value>Аккаунт по умолчанию</value>
   </data>
 </root>
