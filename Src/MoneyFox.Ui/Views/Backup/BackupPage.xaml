@@ -79,6 +79,7 @@
                     <ActivityIndicator HeightRequest="20"
                                        WidthRequest="20"
                                        HorizontalOptions="End"
+                                       Margin="0,0,15,0"
                                        IsRunning="True"
                                        IsVisible="{Binding IsLoading}"
                                        VerticalOptions="CenterAndExpand" />
