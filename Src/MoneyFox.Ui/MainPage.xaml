@@ -16,9 +16,10 @@
         <ResourceDictionary>
             <Style x:Key="BottomTabStyle" TargetType="tabs:BottomTabItem">
                 <Setter Property="SelectedTabColor" Value="{StaticResource Primary}" />
-                <Setter Property="UnselectedLabelColor" Value="Gray" />
+                <Setter Property="UnselectedLabelColor" Value="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                 <Setter Property="LabelSize" Value="14" />
-                <Setter Property="IconSize" Value="28" />
+                <Setter Property="IconSize" Value="24" />
+                <Setter Property="Padding" Value="6" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -60,9 +61,18 @@
                           HeightRequest="60"
                           TabType="Fixed"
                           IsSegmented="True"
-                          CornerRadius="30"
                           Margin="15"
+                          BackgroundColor="{AppThemeBinding Dark={StaticResource Gray950}, Light={StaticResource White}}"
+                          SegmentedOutlineColor="{StaticResource Primary}"
                           SelectedIndex="{Binding Source={x:Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}">
+            
+            <tabs:TabHostView.Shadow>
+                <Shadow Brush="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray600}}"
+                        Opacity="0.5"
+                        Radius="4"
+                        Offset="0,1" />
+            </tabs:TabHostView.Shadow>
+            
             <tabs:TabHostView.Tabs>
                 <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
                                     Label="{x:Static resources:Translations.DashboardTitle}">
