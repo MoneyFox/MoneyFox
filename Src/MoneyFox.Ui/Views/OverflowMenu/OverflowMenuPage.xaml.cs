@@ -7,6 +7,5 @@ public partial class OverflowMenuPage : IBindablePage
     public OverflowMenuPage()
     {
         InitializeComponent();
-        BindingContext = App.GetViewModel<OverflowMenuViewModel>();
     }
 }
