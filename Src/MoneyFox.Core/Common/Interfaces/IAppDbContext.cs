@@ -16,7 +16,7 @@ public interface IAppDbContext : IDisposable
     DbSet<Account> Accounts { get; }
 
     DbSet<Payment> Payments { get; }
-    
+
     [Obsolete("To be removed")]
     DbSet<RecurringPayment> RecurringPayments { get; }
 
