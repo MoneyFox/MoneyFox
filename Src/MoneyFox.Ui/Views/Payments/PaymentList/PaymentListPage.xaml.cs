@@ -13,6 +13,6 @@ public partial class PaymentListPage : IBindablePage
     private void ShowFilterPopup(object sender, EventArgs e)
     {
         var popup = new FilterPopup();
-        Shell.Current.ShowPopup(popup);
+        Application.Current!.MainPage!.ShowPopup(popup);
     }
 }

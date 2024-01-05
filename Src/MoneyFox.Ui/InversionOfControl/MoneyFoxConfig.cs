@@ -43,7 +43,8 @@ public sealed class MoneyFoxConfig
         RegisterViewModels(serviceCollection);
         RegisterViews(serviceCollection);
         RegisterAdapters(serviceCollection);
-        _ = serviceCollection.AddSingleton(_ => AutoMapperFactory.Create());
+
+        serviceCollection.AddSingleton(_ => AutoMapperFactory.Create());
         new CoreConfig().Register(serviceCollection);
         InfrastructureConfig.Register(serviceCollection);
     }

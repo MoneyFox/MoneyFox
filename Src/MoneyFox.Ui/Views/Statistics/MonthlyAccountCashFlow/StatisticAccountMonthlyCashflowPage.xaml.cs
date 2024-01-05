@@ -15,6 +15,6 @@ public partial class StatisticAccountMonthlyCashFlowPage : IBindablePage
     private void OpenFilterDialog(object sender, EventArgs e)
     {
         var popup = new DateSelectionPopup(dateFrom: ViewModel.StartDate, dateTo: ViewModel.EndDate);
-        Shell.Current.ShowPopup(popup);
+        Application.Current!.MainPage!.ShowPopup(popup);
     }
 }
