@@ -1,960 +1,968 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-    <!-- 
-        Microsoft ResX Schema 
-        
-        Version 2.0
-        
-        The primary goals of this format is to allow a simple XML format 
-        that is mostly human readable. The generation and parsing of the 
-        various data types are done through the TypeConverter classes 
-        associated with the data types.
-        
-        Example:
-        
-        ... ado.net/XML headers & schema ...
-        <resheader name="resmimetype">text/microsoft-resx</resheader>
-        <resheader name="version">2.0</resheader>
-        <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-        <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-        <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-        <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-        <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-            <value>[base64 mime encoded serialized .NET Framework object]</value>
-        </data>
-        <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-            <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-            <comment>This is a comment</comment>
-        </data>
-                    
-        There are any number of "resheader" rows that contain simple 
-        name/value pairs.
-        
-        Each data row contains a name, and value. The row also contains a 
-        type or mimetype. Type corresponds to a .NET class that support 
-        text/value conversion through the TypeConverter architecture. 
-        Classes that don't support this are serialized and stored with the 
-        mimetype set.
-        
-        The mimetype is used for serialized objects, and tells the 
-        ResXResourceReader how to depersist the object. This is currently not 
-        extensible. For a given mimetype the value must be set accordingly:
-        
-        Note - application/x-microsoft.net.object.binary.base64 is the format 
-        that the ResXResourceWriter will generate, however the reader can 
-        read any of the formats listed below.
-        
-        mimetype: application/x-microsoft.net.object.binary.base64
-        value   : The object must be serialized with 
-                : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-                : and then encoded with base64 encoding.
-        
-        mimetype: application/x-microsoft.net.object.soap.base64
-        value   : The object must be serialized with 
-                : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-                : and then encoded with base64 encoding.
-    
-        mimetype: application/x-microsoft.net.object.bytearray.base64
-        value   : The object must be serialized into a byte array 
-                : using a System.ComponentModel.TypeConverter
-                : and then encoded with base64 encoding.
-        -->
-    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"
-                xmlns="" id="root">
-        <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
-        <xsd:element name="root" msdata:IsDataSet="true">
+  <!-- 
+      Microsoft ResX Schema 
+      
+      Version 2.0
+      
+      The primary goals of this format is to allow a simple XML format 
+      that is mostly human readable. The generation and parsing of the 
+      various data types are done through the TypeConverter classes 
+      associated with the data types.
+      
+      Example:
+      
+      ... ado.net/XML headers & schema ...
+      <resheader name="resmimetype">text/microsoft-resx</resheader>
+      <resheader name="version">2.0</resheader>
+      <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+      <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+      <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+      <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+      <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+          <value>[base64 mime encoded serialized .NET Framework object]</value>
+      </data>
+      <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+          <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+          <comment>This is a comment</comment>
+      </data>
+                  
+      There are any number of "resheader" rows that contain simple 
+      name/value pairs.
+      
+      Each data row contains a name, and value. The row also contains a 
+      type or mimetype. Type corresponds to a .NET class that support 
+      text/value conversion through the TypeConverter architecture. 
+      Classes that don't support this are serialized and stored with the 
+      mimetype set.
+      
+      The mimetype is used for serialized objects, and tells the 
+      ResXResourceReader how to depersist the object. This is currently not 
+      extensible. For a given mimetype the value must be set accordingly:
+      
+      Note - application/x-microsoft.net.object.binary.base64 is the format 
+      that the ResXResourceWriter will generate, however the reader can 
+      read any of the formats listed below.
+      
+      mimetype: application/x-microsoft.net.object.binary.base64
+      value   : The object must be serialized with 
+              : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+              : and then encoded with base64 encoding.
+      
+      mimetype: application/x-microsoft.net.object.soap.base64
+      value   : The object must be serialized with 
+              : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+              : and then encoded with base64 encoding.
+  
+      mimetype: application/x-microsoft.net.object.bytearray.base64
+      value   : The object must be serialized into a byte array 
+              : using a System.ComponentModel.TypeConverter
+              : and then encoded with base64 encoding.
+      -->
+  <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns="" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
             <xsd:complexType>
-                <xsd:choice maxOccurs="unbounded">
-                    <xsd:element name="metadata">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
-                            </xsd:sequence>
-                            <xsd:attribute name="name" use="required" type="xsd:string"/>
-                            <xsd:attribute name="type" type="xsd:string"/>
-                            <xsd:attribute name="mimetype" type="xsd:string"/>
-                            <xsd:attribute ref="xml:space"/>
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="assembly">
-                        <xsd:complexType>
-                            <xsd:attribute name="alias" type="xsd:string"/>
-                            <xsd:attribute name="name" type="xsd:string"/>
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="data">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
-                            </xsd:sequence>
-                            <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-                            <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-                            <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-                            <xsd:attribute ref="xml:space"/>
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="resheader">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                            </xsd:sequence>
-                            <xsd:attribute name="name" type="xsd:string" use="required"/>
-                        </xsd:complexType>
-                    </xsd:element>
-                </xsd:choice>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
-        </xsd:element>
-    </xsd:schema>
-    <resheader name="resmimetype">
-        <value>text/microsoft-resx</value>
-    </resheader>
-    <resheader name="version">
-        <value>2.0</value>
-    </resheader>
-    <resheader name="reader">
-        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
             PublicKeyToken=b77a5c561934e089
         </value>
-    </resheader>
-    <resheader name="writer">
-        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
             PublicKeyToken=b77a5c561934e089
         </value>
-    </resheader>
-    <data name="AboutTitle" xml:space="preserve">
+  </resheader>
+  <data name="AboutTitle" xml:space="preserve">
     <value>Σχετικά</value>
   </data>
-    <data name="AccountNameLabel" xml:space="preserve">
+  <data name="AccountNameLabel" xml:space="preserve">
     <value>Όνομα Λογαριασμού</value>
   </data>
-    <data name="AccountRequiredMessage" xml:space="preserve">
+  <data name="AccountRequiredMessage" xml:space="preserve">
     <value>Παρακαλώ επιλέξτε ένα λογαριασμό.</value>
   </data>
-    <data name="AccountsTitle" xml:space="preserve">
+  <data name="AccountsTitle" xml:space="preserve">
     <value>Λογαριασμοί</value>
   </data>
-    <data name="AddAccountLabel" xml:space="preserve">
+  <data name="AddAccountLabel" xml:space="preserve">
     <value>Προσθήκη Λογαριασμού</value>
   </data>
-    <data name="AddAccountTitle" xml:space="preserve">
+  <data name="AddAccountTitle" xml:space="preserve">
     <value>Προσθήκη Λογαριασμού</value>
   </data>
-    <data name="AddCategoryLabel" xml:space="preserve">
+  <data name="AddCategoryLabel" xml:space="preserve">
     <value>Προσθήκη Κατηγορίας</value>
   </data>
-    <data name="AddCategoryTitle" xml:space="preserve">
+  <data name="AddCategoryTitle" xml:space="preserve">
     <value>Προσθήκη Κατηγορίας</value>
   </data>
-    <data name="AddExpenseTitle" xml:space="preserve">
+  <data name="AddExpenseTitle" xml:space="preserve">
     <value>Προσθήκη Δαπάνης</value>
   </data>
-    <data name="AddIncomeTitle" xml:space="preserve">
+  <data name="AddIncomeTitle" xml:space="preserve">
     <value>Προσθήκη Εισοδήματος</value>
   </data>
-    <data name="AddPaymentLabel" xml:space="preserve">
+  <data name="AddPaymentLabel" xml:space="preserve">
     <value>Προσθήκη Πληρωμής</value>
   </data>
-    <data name="AddTransferTitle" xml:space="preserve">
+  <data name="AddTransferTitle" xml:space="preserve">
     <value>Προσθήκη Μεταφοράς</value>
   </data>
-    <data name="AmountLabel" xml:space="preserve">
+  <data name="AmountLabel" xml:space="preserve">
     <value>Ποσό</value>
   </data>
-    <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
+  <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
     <value>Το ποσό μπορεί να μην είναι αρνητικό. Αν αφαιρεθεί ή προστεθεί deteremined από το είδος της πληρωμής που δημιουργείτε.</value>
   </data>
-    <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
+  <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
     <value>Αρνητικό ποσό</value>
   </data>
-    <data name="ANoteForPaymentIsRequired" xml:space="preserve">
+  <data name="ANoteForPaymentIsRequired" xml:space="preserve">
     <value>Απαιτείται μια σημείωση για την πληρωμή</value>
   </data>
-    <data name="ApplyFilterLabel" xml:space="preserve">
+  <data name="ApplyFilterLabel" xml:space="preserve">
     <value>Εφαρμογή Φίλτρου</value>
   </data>
-    <data name="AssetsLabel" xml:space="preserve">
+  <data name="AssetsLabel" xml:space="preserve">
     <value>Ενεργητικό</value>
   </data>
-    <data name="AuthenticationFailedTitle" xml:space="preserve">
+  <data name="AuthenticationFailedTitle" xml:space="preserve">
     <value>Αποτυχία ταυτοποίησης</value>
   </data>
-    <data name="AutobackupInformationLabel" xml:space="preserve">
+  <data name="AutobackupInformationLabel" xml:space="preserve">
     <value>Εάν ενεργοποιήσετε αυτήν τη ρύθμιση δημιουργούμε αντίγραφα ασφαλείας των δεδομένων σας αυτόματα στο OneDrive. Επίσης, ελέγχουμε περιοδικά αν κάτι έχει αλλάξει σε άλλη συσκευή.</value>
   </data>
-    <data name="AutobackupLabel" xml:space="preserve">
+  <data name="AutobackupLabel" xml:space="preserve">
     <value>Αυτόματη αποστολή και λήψη αντιγράφων ασφαλείας</value>
   </data>
-    <data name="AutobackupTitle" xml:space="preserve">
+  <data name="AutobackupTitle" xml:space="preserve">
     <value>Αυτόματο αντίγραφο</value>
   </data>
-    <data name="BackLabel" xml:space="preserve">
+  <data name="BackLabel" xml:space="preserve">
     <value>Πίσω</value>
   </data>
-    <data name="BackupCreatedMessage" xml:space="preserve">
+  <data name="BackupCreatedMessage" xml:space="preserve">
     <value>Επιτυχής δημιουργία αντιγράφου ασφαλείας</value>
   </data>
-    <data name="BackupFailedTitle" xml:space="preserve">
+  <data name="BackupFailedTitle" xml:space="preserve">
     <value>Αποτυχία αντιγράφου ασφαλείας!</value>
   </data>
-    <data name="BackupInformationLabel" xml:space="preserve">
+  <data name="BackupInformationLabel" xml:space="preserve">
     <value>Τα δεδομένα σας θα αποθηκευτούν στον λογαριασμό OneDrive σας. Θα τα βρείτε στο φάκελο εφαρμογών σε ένα νέο φάκελο που ονομάζεται "MoneyFox".</value>
   </data>
-    <data name="BackupRestoredMessage" xml:space="preserve">
+  <data name="BackupRestoredMessage" xml:space="preserve">
     <value>Επιτυχής επαναφορά αντιγράφου ασφαλείας.</value>
   </data>
-    <data name="BackupTitle" xml:space="preserve">
+  <data name="BackupTitle" xml:space="preserve">
     <value>Αντίγραφα Ασφαλείας</value>
   </data>
-    <data name="BiannuallyLabel" xml:space="preserve">
+  <data name="BiannuallyLabel" xml:space="preserve">
     <value>Biannually</value>
   </data>
-    <data name="BimonthlyLabel" xml:space="preserve">
+  <data name="BimonthlyLabel" xml:space="preserve">
     <value>Bimonthly</value>
   </data>
-    <data name="BiweeklyLabel" xml:space="preserve">
+  <data name="BiweeklyLabel" xml:space="preserve">
     <value>Biweekly</value>
   </data>
-    <data name="BudgetsLabel" xml:space="preserve">
+  <data name="BudgetsLabel" xml:space="preserve">
     <value>Προϋπολογισμοί</value>
   </data>
-    <data name="CanceledTitle" xml:space="preserve">
+  <data name="CanceledTitle" xml:space="preserve">
     <value>Ακυρώθηκε</value>
   </data>
-    <data name="CancelLabel" xml:space="preserve">
+  <data name="CancelLabel" xml:space="preserve">
     <value>Ακύρωση</value>
   </data>
-    <data name="CashflowDescription" xml:space="preserve">
+  <data name="CashflowDescription" xml:space="preserve">
     <value>Έσοδα, έξοδα και κέρδη για την επιλεγμένη χρονική περίοδο.</value>
   </data>
-    <data name="CashflowLabel" xml:space="preserve">
+  <data name="CashflowLabel" xml:space="preserve">
     <value>Μετρητά</value>
   </data>
-    <data name="CashFlowStatisticTitle" xml:space="preserve">
+  <data name="CashFlowStatisticTitle" xml:space="preserve">
     <value>Ροή Μετρητών</value>
   </data>
-    <data name="CategorieIntroductionText" xml:space="preserve">
+  <data name="CategorieIntroductionText" xml:space="preserve">
     <value>Οι κατηγορίες μπορούν να σας βοηθήσουν να παραγγείλετε τις πληρωμές σας. Επίσης διευκολύνουν την ανάλυση των δαπανών και των εισοδημάτων σας στις στατιστικές.</value>
   </data>
-    <data name="CategorieSpreadingDescription" xml:space="preserve">
+  <data name="CategorieSpreadingDescription" xml:space="preserve">
     <value>Διάδοση των εξόδων στις κατηγορίες.</value>
   </data>
-    <data name="CategoriesTitle" xml:space="preserve">
+  <data name="CategoriesTitle" xml:space="preserve">
     <value>Κατηγορίες</value>
   </data>
-    <data name="CategoryLabel" xml:space="preserve">
+  <data name="CategoryLabel" xml:space="preserve">
     <value>Κατηγορία</value>
   </data>
-    <data name="CategoryNameLabel" xml:space="preserve">
+  <data name="CategoryNameLabel" xml:space="preserve">
     <value>Όνομα Κατηγορίας</value>
   </data>
-    <data name="CategorySpreadingLabel" xml:space="preserve">
+  <data name="CategorySpreadingLabel" xml:space="preserve">
     <value>Εξάπλωση Κατηγορίας</value>
   </data>
-    <data name="CategorySpreadingTitle" xml:space="preserve">
+  <data name="CategorySpreadingTitle" xml:space="preserve">
     <value>Εξάπλωση Κατηγορίας</value>
   </data>
-    <data name="CategorySummaryDescription" xml:space="preserve">
+  <data name="CategorySummaryDescription" xml:space="preserve">
     <value>Περίληψη των κατηγοριών με μια πληρωμή.</value>
   </data>
-    <data name="CategorySummaryLabel" xml:space="preserve">
+  <data name="CategorySummaryLabel" xml:space="preserve">
     <value>Περίληψη Κατηγορίας</value>
   </data>
-    <data name="CategorySummaryTitle" xml:space="preserve">
+  <data name="CategorySummaryTitle" xml:space="preserve">
     <value>Περίληψη Κατηγορίας</value>
   </data>
-    <data name="ChargedAccountLabel" xml:space="preserve">
+  <data name="ChargedAccountLabel" xml:space="preserve">
     <value>Χρεωμένος Λογαριασμός</value>
   </data>
-    <data name="ClearedFilterLabel" xml:space="preserve">
+  <data name="ClearedFilterLabel" xml:space="preserve">
     <value>Εκκαθαρίστηκε</value>
   </data>
-    <data name="CompletedText" xml:space="preserve">
+  <data name="CompletedText" xml:space="preserve">
     <value>Αυτό είναι! Είστε έτοιμοι να χρησιμοποιήσετε το MoneyFox.</value>
   </data>
-    <data name="CompletedTitle" xml:space="preserve">
+  <data name="CompletedTitle" xml:space="preserve">
     <value>Ολοκληρώθηκε!</value>
   </data>
-    <data name="CompleteLabel" xml:space="preserve">
+  <data name="CompleteLabel" xml:space="preserve">
     <value>Complete</value>
   </data>
-    <data name="ContactLabel" xml:space="preserve">
+  <data name="ContactLabel" xml:space="preserve">
     <value>Επικοινωνία</value>
   </data>
-    <data name="ContributerLabel" xml:space="preserve">
+  <data name="ContributerLabel" xml:space="preserve">
     <value>Για να δείτε όλες τις συνεισφορές κατευθυνθείτε προς το GitHub:</value>
   </data>
-    <data name="ContributionsLabel" xml:space="preserve">
+  <data name="ContributionsLabel" xml:space="preserve">
     <value>Συνεισφορές</value>
   </data>
-    <data name="CreateAccountNowLabel" xml:space="preserve">
+  <data name="CreateAccountNowLabel" xml:space="preserve">
     <value>Δημιουργία Λογαριασμού Τώρα</value>
   </data>
-    <data name="CreateBackupLabel" xml:space="preserve">
+  <data name="CreateBackupLabel" xml:space="preserve">
     <value>Δημιουργία Αντιγράφου Ασφαλείας</value>
   </data>
-    <data name="CreateCategoryNowLabel" xml:space="preserve">
+  <data name="CreateCategoryNowLabel" xml:space="preserve">
     <value>Δημιουργία κατηγορίας τώρα</value>
   </data>
-    <data name="CreationDateHeader" xml:space="preserve">
+  <data name="CreationDateHeader" xml:space="preserve">
     <value>Ημερομηνία Δημιουργίας</value>
   </data>
-    <data name="CreationDateLabel" xml:space="preserve">
+  <data name="CreationDateLabel" xml:space="preserve">
     <value>Ημερομηνία Δημιουργίας:</value>
   </data>
-    <data name="CreationDateTemplateLabel" xml:space="preserve">
+  <data name="CreationDateTemplateLabel" xml:space="preserve">
     <value>Ημερομηνία Δημιουργίας: {0}</value>
   </data>
-    <data name="CurrentBalanceLabel" xml:space="preserve">
+  <data name="CurrentBalanceLabel" xml:space="preserve">
     <value>Τρέχον Υπόλοιπο</value>
   </data>
-    <data name="DailyLabel" xml:space="preserve">
+  <data name="DailyLabel" xml:space="preserve">
     <value>Καθημερινά</value>
   </data>
-    <data name="DailyWithoutWeekendLabel" xml:space="preserve">
+  <data name="DailyWithoutWeekendLabel" xml:space="preserve">
     <value>Καθημερινά χωρίς Σαββατοκύριακο</value>
   </data>
-    <data name="DarkLabel" xml:space="preserve">
+  <data name="DarkLabel" xml:space="preserve">
     <value>Σκοτεινό</value>
   </data>
-    <data name="DashboardTitle" xml:space="preserve">
+  <data name="DashboardTitle" xml:space="preserve">
     <value>Ταμπλό</value>
   </data>
-    <data name="DateLabel" xml:space="preserve">
+  <data name="DateLabel" xml:space="preserve">
     <value>Ημερομηνία</value>
   </data>
-    <data name="DateRangeHeader" xml:space="preserve">
+  <data name="DateRangeHeader" xml:space="preserve">
     <value>Date Range</value>
   </data>
-    <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
+  <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
     <value>Θέλετε πραγματικά να διαγράψετε αυτόν τον λογαριασμό?</value>
   </data>
-    <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
+  <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
     <value>Θέλετε πραγματικά να διαγράψετε αυτή την κατηγορία?</value>
   </data>
-    <data name="DeleteLabel" xml:space="preserve">
+  <data name="DeleteLabel" xml:space="preserve">
     <value>Διαγραφή</value>
   </data>
-    <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
+  <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
     <value>Θέλετε πραγματικά να διαγράψετε αυτή την πληρωμή?</value>
   </data>
-    <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
+  <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
     <value>Έχετε διαγράψει μια επαναλαμβανόμενη πληρωμή. Θέλετε επίσης να διαγράψετε την επανεμφάνιση?</value>
   </data>
-    <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
+  <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
     <value>Διαγραφή Επαναφοράς?</value>
   </data>
-    <data name="DeleteTitle" xml:space="preserve">
+  <data name="DeleteTitle" xml:space="preserve">
     <value>Διαγραφή?</value>
   </data>
-    <data name="DoneLabel" xml:space="preserve">
+  <data name="DoneLabel" xml:space="preserve">
     <value>Ολοκληρώθηκε</value>
   </data>
-    <data name="DuplicateAccountMessage" xml:space="preserve">
+  <data name="DuplicateAccountMessage" xml:space="preserve">
     <value>Ένας λογαριασμός με αυτό το όνομα υπάρχει ήδη. Συνεχίστε με την αποθήκευση?</value>
   </data>
-    <data name="DuplicateCategoryMessage" xml:space="preserve">
+  <data name="DuplicateCategoryMessage" xml:space="preserve">
     <value>Μια κατηγορία με αυτό το όνομα υπάρχει ήδη.</value>
   </data>
-    <data name="DuplicatedNameTitle" xml:space="preserve">
+  <data name="DuplicatedNameTitle" xml:space="preserve">
     <value>Το όνομα χρησιμοποιείται ήδη</value>
   </data>
-    <data name="EditAccountTitle" xml:space="preserve">
+  <data name="EditAccountTitle" xml:space="preserve">
     <value>Επεξεργασία {0}</value>
   </data>
-    <data name="EditCategoryTitle" xml:space="preserve">
+  <data name="EditCategoryTitle" xml:space="preserve">
     <value>Επεξεργασία Κατηγορίας</value>
   </data>
-    <data name="EditIncomeTitle" xml:space="preserve">
+  <data name="EditIncomeTitle" xml:space="preserve">
     <value>Επεξεργασία Έσοδου</value>
   </data>
-    <data name="EditLabel" xml:space="preserve">
+  <data name="EditLabel" xml:space="preserve">
     <value>Επεξεργασία</value>
   </data>
-    <data name="EditSpendingTitle" xml:space="preserve">
+  <data name="EditSpendingTitle" xml:space="preserve">
     <value>Επεξεργασία Δαπάνης</value>
   </data>
-    <data name="EditTransferTitle" xml:space="preserve">
+  <data name="EditTransferTitle" xml:space="preserve">
     <value>Επεξεργασία Μεταφοράς</value>
   </data>
-    <data name="EmailLabel" xml:space="preserve">
+  <data name="EmailLabel" xml:space="preserve">
     <value>E-mail</value>
   </data>
-    <data name="EndDateLabel" xml:space="preserve">
+  <data name="EndDateLabel" xml:space="preserve">
     <value>Ημερομηνία λήξης</value>
   </data>
-    <data name="EndlessLabel" xml:space="preserve">
+  <data name="EndlessLabel" xml:space="preserve">
     <value>Είναι Ατελείωτο</value>
   </data>
-    <data name="EndOfMonthBalanceLabel" xml:space="preserve">
+  <data name="EndOfMonthBalanceLabel" xml:space="preserve">
     <value>Τέλος του μήνα</value>
   </data>
-    <data name="EndOfMonthLabel" xml:space="preserve">
+  <data name="EndOfMonthLabel" xml:space="preserve">
     <value>Τέλος Μήνα:</value>
   </data>
-    <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
+  <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
     <value>Παρουσιάστηκε σφάλμα κατά τη διάρκεια της επαλήθευσης. Παρακαλώ προσπαθήστε ξανά αργότερα.</value>
   </data>
-    <data name="ExcludedAccountsHeader" xml:space="preserve">
+  <data name="ExcludedAccountsHeader" xml:space="preserve">
     <value>Αποκλεισμένοι Λογαριασμοί</value>
   </data>
-    <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
+  <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
     <value>Έξοδος: {0} / Εισόδημα: {1}</value>
   </data>
-    <data name="ExpenseHeader" xml:space="preserve">
+  <data name="ExpenseHeader" xml:space="preserve">
     <value>Προσθήκη εξόδων</value>
   </data>
-    <data name="ExpenseLabel" xml:space="preserve">
+  <data name="ExpenseLabel" xml:space="preserve">
     <value>Έξοδα</value>
   </data>
-    <data name="FeedbackSubject" xml:space="preserve">
+  <data name="FeedbackSubject" xml:space="preserve">
     <value>Σχόλια MoneyFox</value>
   </data>
-    <data name="FilterLabel" xml:space="preserve">
+  <data name="FilterLabel" xml:space="preserve">
     <value>Φίλτρο</value>
   </data>
-    <data name="ForceOverrideBackupMessage" xml:space="preserve">
+  <data name="ForceOverrideBackupMessage" xml:space="preserve">
     <value>Η τοπική βάση δεδομένων σας έχει μια νεότερη ημερομηνία τροποποίησης από αυτή στο OneDrive. Θέλετε να παρακάμψετε τα τοπικά σας δεδομένα?</value>
   </data>
-    <data name="ForceOverrideBackupTitle" xml:space="preserve">
+  <data name="ForceOverrideBackupTitle" xml:space="preserve">
     <value>Παράκαμψη Τοπικών Δεδομένων</value>
   </data>
-    <data name="GeneralErrorTitle" xml:space="preserve">
+  <data name="GeneralErrorTitle" xml:space="preserve">
     <value>Προέκυψε ένα σφάλμα</value>
   </data>
-    <data name="GoToAccountsLabel" xml:space="preserve">
+  <data name="GoToAccountsLabel" xml:space="preserve">
     <value>Πηγαίνετε στους λογαριασμούς</value>
   </data>
-    <data name="GoToBudgetsLabel" xml:space="preserve">
+  <data name="GoToBudgetsLabel" xml:space="preserve">
     <value>Πηγαίνετε στους προϋπολογισμούς</value>
   </data>
-    <data name="IncludedAccountsHeader" xml:space="preserve">
+  <data name="IncludedAccountsHeader" xml:space="preserve">
     <value>Συμπεριλαμβανόμενοι Λογαριασμοί</value>
   </data>
-    <data name="IncomeAndExpensesLabel" xml:space="preserve">
+  <data name="IncomeAndExpensesLabel" xml:space="preserve">
     <value>Έσοδα και έξοδα</value>
   </data>
-    <data name="IncomeHeader" xml:space="preserve">
+  <data name="IncomeHeader" xml:space="preserve">
     <value>Προσθήκη εισοδήματος</value>
   </data>
-    <data name="IncomeLabel" xml:space="preserve">
+  <data name="IncomeLabel" xml:space="preserve">
     <value>Έσοδα</value>
   </data>
-    <data name="IncomeSpendingLabel" xml:space="preserve">
+  <data name="IncomeSpendingLabel" xml:space="preserve">
     <value>Έσοδα / Έξοδα:</value>
   </data>
-    <data name="IncreaseLabel" xml:space="preserve">
+  <data name="IncreaseLabel" xml:space="preserve">
     <value>Κέρδη</value>
   </data>
-    <data name="InfoLabel" xml:space="preserve">
+  <data name="InfoLabel" xml:space="preserve">
     <value>Πληροφορίες</value>
   </data>
-    <data name="InfoOpenSource" xml:space="preserve">
+  <data name="InfoOpenSource" xml:space="preserve">
     <value>Αυτό είναι ένα έργο ανοιχτού κώδικα - και θα θέλαμε να συνεργαστούμε μαζί σας! Μη διστάσετε να συνεισφέρετε.
 Πατήστε για να επισκεφθείτε το Αποθετήριο:</value>
   </data>
-    <data name="InvalidEnddateMessage" xml:space="preserve">
+  <data name="InvalidEnddateMessage" xml:space="preserve">
     <value>Η ημερομηνία λήξης μιας επαναλαμβανόμενης πληρωμής πρέπει να είναι στο μέλλον. Παρακαλώ ελέγξτε την είσοδό σας.</value>
   </data>
-    <data name="InvalidEnddateTitle" xml:space="preserve">
+  <data name="InvalidEnddateTitle" xml:space="preserve">
     <value>Μη Έγκυρη Ημερομηνία Λήξης</value>
   </data>
-    <data name="InvalidNumberCurrentBalanceMessage" xml:space="preserve">
+  <data name="InvalidNumberCurrentBalanceMessage" xml:space="preserve">
     <value>Το τρέχον υπόλοιπό σας φαίνεται να είναι μη έγκυρος αριθμός. Παρακαλώ ελέγξτε ότι δεν έχετε εισάγει ειδικούς χαρακτήρες και χρησιμοποιήστε το σωστό διαχωριστικό.</value>
   </data>
-    <data name="InvalidNumberTitle" xml:space="preserve">
+  <data name="InvalidNumberTitle" xml:space="preserve">
     <value>Μη Έγκυρος Αριθμός</value>
   </data>
-    <data name="IsClearedLabel" xml:space="preserve">
+  <data name="IsClearedLabel" xml:space="preserve">
     <value>Εκκαθαρίστηκε</value>
   </data>
-    <data name="IsExcludedLabel" xml:space="preserve">
+  <data name="IsExcludedLabel" xml:space="preserve">
     <value>Εξαίρεση λογαριασμού από το υπόλοιπο</value>
   </data>
-    <data name="IsGroupedLabel" xml:space="preserve">
+  <data name="IsGroupedLabel" xml:space="preserve">
     <value>Λίστα Ομάδων</value>
   </data>
-    <data name="IsRecurringFilterLabel" xml:space="preserve">
+  <data name="IsRecurringFilterLabel" xml:space="preserve">
     <value>Είναι Επαναλαμβανόμενο</value>
   </data>
-    <data name="IsRecurringLabel" xml:space="preserve">
+  <data name="IsRecurringLabel" xml:space="preserve">
     <value>Επαναλαμβανόμενες</value>
   </data>
-    <data name="LastBackupDateLabel" xml:space="preserve">
+  <data name="LastBackupDateLabel" xml:space="preserve">
     <value>Τελευταία δημιουργία αντιγράφου ασφαλείας στο:</value>
   </data>
-    <data name="LightLabel" xml:space="preserve">
+  <data name="LightLabel" xml:space="preserve">
     <value>Φωτεινό</value>
   </data>
-    <data name="LoadingLabel" xml:space="preserve">
+  <data name="LoadingLabel" xml:space="preserve">
     <value>Φόρτωση...</value>
   </data>
-    <data name="LoggedInMessage" xml:space="preserve">
+  <data name="LoggedInMessage" xml:space="preserve">
     <value>Επιτυχής σύνδεση.</value>
   </data>
-    <data name="LoggedOutMessage" xml:space="preserve">
+  <data name="LoggedOutMessage" xml:space="preserve">
     <value>Επιτυχής έξοδος.</value>
   </data>
-    <data name="LoggedOutTitle" xml:space="preserve">
+  <data name="LoggedOutTitle" xml:space="preserve">
     <value>Αποσύνδεση</value>
   </data>
-    <data name="LoginCanceledMessage" xml:space="preserve">
+  <data name="LoginCanceledMessage" xml:space="preserve">
     <value>Η σύνδεση ακυρώθηκε.</value>
   </data>
-    <data name="LoginFailedTitle" xml:space="preserve">
+  <data name="LoginFailedTitle" xml:space="preserve">
     <value>Η σύνδεση απέτυχε!</value>
   </data>
-    <data name="LoginLabel" xml:space="preserve">
+  <data name="LoginLabel" xml:space="preserve">
     <value>Είσοδος</value>
   </data>
-    <data name="LogoutCanceledMessage" xml:space="preserve">
+  <data name="LogoutCanceledMessage" xml:space="preserve">
     <value>Η αποσύνδεση ακυρώθηκε.</value>
   </data>
-    <data name="LogoutLabel" xml:space="preserve">
+  <data name="LogoutLabel" xml:space="preserve">
     <value>Αποσύνδεση</value>
   </data>
-    <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
+  <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
     <value>Mandatory field</value>
   </data>
-    <data name="ModificationDateHeader" xml:space="preserve">
+  <data name="ModificationDateHeader" xml:space="preserve">
     <value>Ημερομηνία Τροποποίησης</value>
   </data>
-    <data name="ModificationDateLabel" xml:space="preserve">
+  <data name="ModificationDateLabel" xml:space="preserve">
     <value>Ημερομηνία Τροποποίησης:</value>
   </data>
-    <data name="ModificationDateTemplateLabel" xml:space="preserve">
+  <data name="ModificationDateTemplateLabel" xml:space="preserve">
     <value>Ημερομηνία τροποποίησης: {0}</value>
   </data>
-    <data name="ModifyRecurrenceMessage" xml:space="preserve">
+  <data name="ModifyRecurrenceMessage" xml:space="preserve">
     <value>Έχετε τροποποιήσει μια επαναλαμβανόμενη πληρωμή. Θέλετε να ενημερώσετε την επαναλαμβανόμενη πληρωμή?</value>
   </data>
-    <data name="ModifyRecurrenceTitle" xml:space="preserve">
+  <data name="ModifyRecurrenceTitle" xml:space="preserve">
     <value>Τροποποίηση Επαναφοράς</value>
   </data>
-    <data name="MonthlyAverageLabel" xml:space="preserve">
+  <data name="MonthlyAverageLabel" xml:space="preserve">
     <value>Πέρυσι μηνιαίος μέσος όρος: </value>
   </data>
-    <data name="MonthlyCashflowDescription" xml:space="preserve">
+  <data name="MonthlyCashflowDescription" xml:space="preserve">
     <value>Εμφανίζει τη μηνιαία ταμειακή ροή για τον επιλεγμένο λογαριασμό.</value>
   </data>
-    <data name="MonthlyCashflowLabel" xml:space="preserve">
+  <data name="MonthlyCashflowLabel" xml:space="preserve">
     <value>Μηνιαία ταμειακή Ροή</value>
   </data>
-    <data name="MonthlyCashflowTitle" xml:space="preserve">
+  <data name="MonthlyCashflowTitle" xml:space="preserve">
     <value>Μηνιαία ταμειακή Ροή</value>
   </data>
-    <data name="MonthlyLabel" xml:space="preserve">
+  <data name="MonthlyLabel" xml:space="preserve">
     <value>Μηνιαία</value>
   </data>
-    <data name="NameRequiredMessage" xml:space="preserve">
+  <data name="NameRequiredMessage" xml:space="preserve">
     <value>Παρακαλώ εισάγετε ένα όνομα.</value>
   </data>
-    <data name="NextLabel" xml:space="preserve">
+  <data name="NextLabel" xml:space="preserve">
     <value>Επόμενο</value>
   </data>
-    <data name="NoAccountsMessage" xml:space="preserve">
+  <data name="NoAccountsMessage" xml:space="preserve">
     <value>Δεν υπάρχουν λογαριασμοί για εμφάνιση.</value>
   </data>
-    <data name="NoCategoriesMessage" xml:space="preserve">
+  <data name="NoCategoriesMessage" xml:space="preserve">
     <value>Δεν υπάρχουν κατηγορίες για εμφάνιση. </value>
   </data>
-    <data name="NoCategoryLabel" xml:space="preserve">
+  <data name="NoCategoryLabel" xml:space="preserve">
     <value>[Χωρίς Κατηγορία]</value>
   </data>
-    <data name="NoCategoryTitle" xml:space="preserve">
+  <data name="NoCategoryTitle" xml:space="preserve">
     <value>Καμία Κατηγορία</value>
   </data>
-    <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
+  <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
     <value>Δεν επιλέχθηκε καταχώρηση. Επιλέξτε μια καταχώρηση στη λίστα για να δείτε τις πληρωμές για αυτό.</value>
   </data>
-    <data name="NoLabel" xml:space="preserve">
+  <data name="NoLabel" xml:space="preserve">
     <value>Όχι</value>
   </data>
-    <data name="NoNetworkMessage" xml:space="preserve">
+  <data name="NoNetworkMessage" xml:space="preserve">
     <value>Δεν είστε συνδεδεμένοι στο διαδίκτυο. Παρακαλώ ελέγξτε τη σύνδεσή σας και προσπαθήστε ξανά.</value>
   </data>
-    <data name="NoNetworkTitle" xml:space="preserve">
+  <data name="NoNetworkTitle" xml:space="preserve">
     <value>Χωρίς Σύνδεση Στο Διαδίκτυο</value>
   </data>
-    <data name="NoPaymentsMessage" xml:space="preserve">
+  <data name="NoPaymentsMessage" xml:space="preserve">
     <value>Δεν υπάρχουν πληρωμές. Προσθέστε ένα πατώντας στο κουμπί συν .</value>
   </data>
-    <data name="NoteLabel" xml:space="preserve">
+  <data name="NoteLabel" xml:space="preserve">
     <value>Σημείωση</value>
   </data>
-    <data name="NotNowLabel" xml:space="preserve">
+  <data name="NotNowLabel" xml:space="preserve">
     <value>Όχι Τώρα</value>
   </data>
-    <data name="OkLabel" xml:space="preserve">
+  <data name="OkLabel" xml:space="preserve">
     <value>Εντάξει</value>
   </data>
-    <data name="OthersLabel" xml:space="preserve">
+  <data name="OthersLabel" xml:space="preserve">
     <value>Άλλα</value>
   </data>
-    <data name="OverwriteBackupMessage" xml:space="preserve">
+  <data name="OverwriteBackupMessage" xml:space="preserve">
     <value>Υπάρχοντα αντίγραφα ασφαλείας θα αντικατασταθούν. Θέλετε να συνεχίσετε?</value>
   </data>
-    <data name="OverwriteDataMessage" xml:space="preserve">
+  <data name="OverwriteDataMessage" xml:space="preserve">
     <value>Τα τοπικά δεδομένα σας θα διαγραφούν. Είστε βέβαιοι ότι θα προχωρήσετε?</value>
   </data>
-    <data name="OverwriteTitle" xml:space="preserve">
+  <data name="OverwriteTitle" xml:space="preserve">
     <value>Overwrite?</value>
   </data>
-    <data name="PaymentIntroductionText" xml:space="preserve">
+  <data name="PaymentIntroductionText" xml:space="preserve">
     <value>Όταν δημιουργείτε μια πληρωμή, μπορείτε να επιλέξετε την κατηγορία για την εν λόγω πληρωμή μαζί με το λογαριασμό και αν πρόκειται για κόστος, ένα εισόδημα ή μια μεταφορά.
 Οι πληρωμές που δημιουργήσατε θα εμφανιστούν κάτω από το λογαριασμό που θα επιλέξετε.
 Για να φτάσετε εκεί πηγαίνετε στη λίστα λογαριασμών και επιλέξτε τον αντίστοιχο λογαριασμό.</value>
   </data>
-    <data name="PaymentsForCategoryTitle" xml:space="preserve">
+  <data name="PaymentsForCategoryTitle" xml:space="preserve">
     <value>Λεπτομέρειες για {0}</value>
   </data>
-    <data name="PaymentTypeLabel" xml:space="preserve">
+  <data name="PaymentTypeLabel" xml:space="preserve">
     <value>Τύπος πληρωμής</value>
   </data>
-    <data name="PersonalizationTitle" xml:space="preserve">
+  <data name="PersonalizationTitle" xml:space="preserve">
     <value>Εξατομικοποίηση</value>
   </data>
-    <data name="QuarterlyLabel" xml:space="preserve">
+  <data name="QuarterlyLabel" xml:space="preserve">
     <value>Τριμηνιαία</value>
   </data>
-    <data name="RateLabel" xml:space="preserve">
+  <data name="RateLabel" xml:space="preserve">
     <value>Βαθμολογήστε αυτήν την εφαρμογή!</value>
   </data>
-    <data name="RateReminderText" xml:space="preserve">
+  <data name="RateReminderText" xml:space="preserve">
     <value>Ελπίζουμε ότι σας αρέσει η εφαρμογή μας. Υποστηρίξτε μας με μια βαθμολογία στο κατάστημα.
 Θέλετε να πάτε στο κατάστημα για να αξιολογήσετε?</value>
   </data>
-    <data name="RateReminderTitle" xml:space="preserve">
+  <data name="RateReminderTitle" xml:space="preserve">
     <value>Βαθμολογήστε αυτήν την εφαρμογή</value>
   </data>
-    <data name="RecurrenceLabel" xml:space="preserve">
+  <data name="RecurrenceLabel" xml:space="preserve">
     <value>Επανάληψη</value>
   </data>
-    <data name="RecurringLabel" xml:space="preserve">
+  <data name="RecurringLabel" xml:space="preserve">
     <value>Είναι Επαναλαμβανόμενο</value>
   </data>
-    <data name="RequireNoteCheckbox" xml:space="preserve">
+  <data name="RequireNoteCheckbox" xml:space="preserve">
     <value>Απαιτείται σημείωση</value>
   </data>
-    <data name="RestoreBackupCanceledMessage" xml:space="preserve">
+  <data name="RestoreBackupCanceledMessage" xml:space="preserve">
     <value>Η επαναφορά αντιγράφου ασφαλείας ακυρώθηκε.</value>
   </data>
-    <data name="RestoreBackupInformationLabel" xml:space="preserve">
+  <data name="RestoreBackupInformationLabel" xml:space="preserve">
     <value>Κατεβάστε το προηγούμενο αντίγραφο ασφαλείας της βάσης δεδομένων που μεταφορτώσατε και αντικαταστήστε τα τοπικά σας δεδομένα με αυτό.
 ΠΡΟΕΙΔΟΠΟΙΗΣΗ: Οι τοπικές αλλαγές που κάνατε εν τω μεταξύ θα χαθούν!</value>
   </data>
-    <data name="RestoreBackupLabel" xml:space="preserve">
+  <data name="RestoreBackupLabel" xml:space="preserve">
     <value>Επαναφορά Αντιγράφου Ασφαλείας</value>
   </data>
-    <data name="RevenueLabel" xml:space="preserve">
+  <data name="RevenueLabel" xml:space="preserve">
     <value>Έσοδα</value>
   </data>
-    <data name="SaveLabel" xml:space="preserve">
+  <data name="SaveLabel" xml:space="preserve">
     <value>Αποθήκευση</value>
   </data>
-    <data name="SavingAccountMessage" xml:space="preserve">
+  <data name="SavingAccountMessage" xml:space="preserve">
     <value>Αποθήκευση Λογαριασμού...</value>
   </data>
-    <data name="SavingCategoryMessage" xml:space="preserve">
+  <data name="SavingCategoryMessage" xml:space="preserve">
     <value>Αποθήκευση Κατηγορίας...</value>
   </data>
-    <data name="SavingPaymentMessage" xml:space="preserve">
+  <data name="SavingPaymentMessage" xml:space="preserve">
     <value>Αποθήκευση Πληρωμής...</value>
   </data>
-    <data name="SearchLabel" xml:space="preserve">
+  <data name="SearchLabel" xml:space="preserve">
     <value>Αναζήτηση</value>
   </data>
-    <data name="SelectCategoryTitle" xml:space="preserve">
+  <data name="SelectCategoryTitle" xml:space="preserve">
     <value>Επιλογή Κατηγορίας</value>
   </data>
-    <data name="SelectDateLabel" xml:space="preserve">
+  <data name="SelectDateLabel" xml:space="preserve">
     <value>Επιλογή Ημερομηνίας</value>
   </data>
-    <data name="SelectedAccountHeader" xml:space="preserve">
+  <data name="SelectedAccountHeader" xml:space="preserve">
     <value>Επιλεγμένος Λογαριασμός</value>
   </data>
-    <data name="SelectFilterTitle" xml:space="preserve">
+  <data name="SelectFilterTitle" xml:space="preserve">
     <value>Επιλογή Φίλτρου</value>
   </data>
-    <data name="SelectStatisticTitle" xml:space="preserve">
+  <data name="SelectStatisticTitle" xml:space="preserve">
     <value>Επιλογή Στατιστικών</value>
   </data>
-    <data name="SettingsTitle" xml:space="preserve">
+  <data name="SettingsTitle" xml:space="preserve">
     <value>Ρυθμίσεις</value>
   </data>
-    <data name="SkipLabel" xml:space="preserve">
+  <data name="SkipLabel" xml:space="preserve">
     <value>Παράλειψη</value>
   </data>
-    <data name="StatisticsTimeRangeTitle" xml:space="preserve">
+  <data name="StatisticsTimeRangeTitle" xml:space="preserve">
     <value>Εύρος Ώρας:</value>
   </data>
-    <data name="StatisticsTitle" xml:space="preserve">
+  <data name="StatisticsTitle" xml:space="preserve">
     <value>Στατιστικά</value>
   </data>
-    <data name="TargetAccountLabel" xml:space="preserve">
+  <data name="TargetAccountLabel" xml:space="preserve">
     <value>Λογαριασμός Προορισμού</value>
   </data>
-    <data name="TimeRangeEndLabel" xml:space="preserve">
+  <data name="TimeRangeEndLabel" xml:space="preserve">
     <value>Τέλος Χρονικού εύρους</value>
   </data>
-    <data name="TimeRangeStartLabel" xml:space="preserve">
+  <data name="TimeRangeStartLabel" xml:space="preserve">
     <value>Έναρξη Χρονικού Εύρους</value>
   </data>
-    <data name="TransferHeader" xml:space="preserve">
+  <data name="TransferHeader" xml:space="preserve">
     <value>Προσθήκη μεταφοράς</value>
   </data>
-    <data name="TransferLabel" xml:space="preserve">
+  <data name="TransferLabel" xml:space="preserve">
     <value>Μεταφορά</value>
   </data>
-    <data name="TranslationLabel" xml:space="preserve">
+  <data name="TranslationLabel" xml:space="preserve">
     <value>Είναι κάτι που δεν μεταφράζεται σωστά ή δεν μεταφράζεται καθόλου? Βοηθήστε μας! Προχωρήστε στο crowdin και βοηθήστε στη βελτίωση της MoneyFox:</value>
   </data>
-    <data name="UnknownErrorWithTextMessage" xml:space="preserve">
+  <data name="UnknownErrorWithTextMessage" xml:space="preserve">
     <value>Υπήρξε ένα πρόβλημα κατά τη διάρκεια της λειτουργίας. Μήνυμα σφάλματος {0}</value>
   </data>
-    <data name="UnknownErrorMessage" xml:space="preserve">
+  <data name="UnknownErrorMessage" xml:space="preserve">
     <value>Υπήρξε ένα πρόβλημα κατά τη διάρκεια της λειτουργίας. Μήνυμα σφάλματος {0}</value>
   </data>
-    <data name="UploadBackupCanceledMessage" xml:space="preserve">
+  <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Η μεταφόρτωση αντιγράφου ασφαλείας ακυρώθηκε.</value>
   </data>
-    <data name="VersionLabel" xml:space="preserve">
+  <data name="VersionLabel" xml:space="preserve">
     <value>Έκδοση</value>
   </data>
-    <data name="WebsiteLabel" xml:space="preserve">
+  <data name="WebsiteLabel" xml:space="preserve">
     <value>Ιστοσελίδα</value>
   </data>
-    <data name="WeeklyLabel" xml:space="preserve">
+  <data name="WeeklyLabel" xml:space="preserve">
     <value>Εβδομαδιαία</value>
   </data>
-    <data name="WelcomeLabel" xml:space="preserve">
+  <data name="WelcomeLabel" xml:space="preserve">
     <value>Καλωσορίσατε!</value>
   </data>
-    <data name="WelcomePageSubtitle" xml:space="preserve">
+  <data name="WelcomePageSubtitle" xml:space="preserve">
     <value>Χαίρομαι που σε έχετε!</value>
   </data>
-    <data name="WelcomePageText" xml:space="preserve">
+  <data name="WelcomePageText" xml:space="preserve">
     <value>Το MoneyFox σας βοηθά να παρακολουθείτε τα έξοδα και τα εισοδήματά σας με εύκολο τρόπο.
 Για να ξεκινήσετε τη δημιουργία ενός νέου λογαριασμού. Οι λογαριασμοί χρησιμοποιούνται για την οργάνωση πληρωμών και χρημάτων σε συλλογές.</value>
   </data>
-    <data name="WindowsDefaultLabel" xml:space="preserve">
+  <data name="WindowsDefaultLabel" xml:space="preserve">
     <value>Προεπιλογή Windows</value>
   </data>
-    <data name="YearlyLabel" xml:space="preserve">
+  <data name="YearlyLabel" xml:space="preserve">
     <value>Ετήσια</value>
   </data>
-    <data name="YesLabel" xml:space="preserve">
+  <data name="YesLabel" xml:space="preserve">
     <value>Ναι</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
+  <data name="AccountsToolTip" xml:space="preserve">
     <value>Διαχειριστείτε τους λογαριασμούς σας</value>
   </data>
-    <data name="AddPaymentTitle" xml:space="preserve">
+  <data name="AddPaymentTitle" xml:space="preserve">
     <value>Προσθήκη Πληρωμής</value>
   </data>
-    <data name="AddPaymentToolTip" xml:space="preserve">
+  <data name="AddPaymentToolTip" xml:space="preserve">
     <value>Προσθήκη πληρωμής με λεπτομέρειες</value>
   </data>
-    <data name="BackupToolTip" xml:space="preserve">
+  <data name="BackupToolTip" xml:space="preserve">
     <value>Αντίγραφο ασφαλείας των πληροφοριών σας</value>
   </data>
-    <data name="CategoriesToolTip" xml:space="preserve">
+  <data name="CategoriesToolTip" xml:space="preserve">
     <value>Διαχειριστείτε τις κατηγορίες σας</value>
   </data>
-    <data name="StatisticsToolTip" xml:space="preserve">
+  <data name="StatisticsToolTip" xml:space="preserve">
     <value>Δείτε τα στατιστικά σας</value>
   </data>
-    <data name="FailedToLoginToBackupMessage" xml:space="preserve">
+  <data name="FailedToLoginToBackupMessage" xml:space="preserve">
     <value>Αποτυχία σύνδεσης με την υπηρεσία αντιγράφου ασφαλείας. Η αυτόματη μεταφόρτωση αντιγράφου ασφαλείας απενεργοποιήθηκε. Παρακαλούμε συνδεθείτε και ενεργοποιήστε την ξανά.</value>
   </data>
-    <data name="FailedToLoginToBackupTitle" xml:space="preserve">
+  <data name="FailedToLoginToBackupTitle" xml:space="preserve">
     <value>Η σύνδεση απέτυχε!</value>
   </data>
-    <data name="LoggedInTitle" xml:space="preserve">
+  <data name="LoggedInTitle" xml:space="preserve">
     <value>Συνδεθήκατε!</value>
   </data>
-    <data name="SelectedPaymentTypeHeader" xml:space="preserve">
+  <data name="SelectedPaymentTypeHeader" xml:space="preserve">
     <value>Επιλεγμένος Τύπος Πληρωμής</value>
   </data>
-    <data name="CategoryProgressionDescription" xml:space="preserve">
+  <data name="CategoryProgressionDescription" xml:space="preserve">
     <value>Εμφανίζει την εξέλιξη μιας κατηγορίας ανά μήνα.</value>
   </data>
-    <data name="CategoryProgressionLabel" xml:space="preserve">
+  <data name="CategoryProgressionLabel" xml:space="preserve">
     <value>Πρόοδος Κατηγορίας</value>
   </data>
-    <data name="SelectCategoryLabel" xml:space="preserve">
+  <data name="SelectCategoryLabel" xml:space="preserve">
     <value>Επιλέξτε κατηγορία..</value>
   </data>
-    <data name="CategoryProgressionTitle" xml:space="preserve">
+  <data name="CategoryProgressionTitle" xml:space="preserve">
     <value>Πρόοδος Κατηγορίας</value>
   </data>
-    <data name="EditPaymentTitle" xml:space="preserve">
+  <data name="EditPaymentTitle" xml:space="preserve">
     <value>Επεξεργασία Πληρωμής</value>
   </data>
-    <data name="InitialBalanceLabel" xml:space="preserve">
+  <data name="InitialBalanceLabel" xml:space="preserve">
     <value>Αρχικό Υπόλοιπο</value>
   </data>
-    <data name="AllLabel" xml:space="preserve">
+  <data name="AllLabel" xml:space="preserve">
     <value>Όλα</value>
   </data>
-    <data name="HomeTitle" xml:space="preserve">
+  <data name="HomeTitle" xml:space="preserve">
     <value>Αρχική</value>
   </data>
-    <data name="MenuTitle" xml:space="preserve">
+  <data name="MenuTitle" xml:space="preserve">
     <value>Μενού</value>
   </data>
-    <data name="LastDayOfMonthLabel" xml:space="preserve">
+  <data name="LastDayOfMonthLabel" xml:space="preserve">
     <value>Τελευταία ημέρα του μήνα</value>
   </data>
-    <data name="OpenLogLabel" xml:space="preserve">
+  <data name="OpenLogLabel" xml:space="preserve">
     <value>Άνοιγμα Καταγραφής</value>
   </data>
-    <data name="BudgetsTitle" xml:space="preserve">
+  <data name="BudgetsTitle" xml:space="preserve">
     <value>Προϋπολογισμοί</value>
   </data>
-    <data name="NoBudgetsMessage" xml:space="preserve">
+  <data name="NoBudgetsMessage" xml:space="preserve">
     <value>Δεν υπάρχουν ακόμα προϋπολογισμοί. Προχωρήστε και δημιουργήστε ένα!</value>
   </data>
-    <data name="AddBudgetLabel" xml:space="preserve">
+  <data name="AddBudgetLabel" xml:space="preserve">
     <value>Προσθήκη Προϋπολογισμού</value>
   </data>
-    <data name="AddBudgetTitle" xml:space="preserve">
+  <data name="AddBudgetTitle" xml:space="preserve">
     <value>Προσθήκη Προϋπολογισμού</value>
   </data>
-    <data name="BudgetNameLabel" xml:space="preserve">
+  <data name="BudgetNameLabel" xml:space="preserve">
     <value>Όνομα Προϋπολογισμού</value>
   </data>
-    <data name="MoreTitle" xml:space="preserve">
+  <data name="MoreTitle" xml:space="preserve">
     <value>Περισσότερα</value>
   </data>
-    <data name="SelectedCategoriesLabel" xml:space="preserve">
+  <data name="SelectedCategoriesLabel" xml:space="preserve">
     <value>Επιλεγμένες Κατηγορίες</value>
   </data>
-    <data name="BackupUploadSkippedMessage" xml:space="preserve">
+  <data name="BackupUploadSkippedMessage" xml:space="preserve">
     <value>Το ανέβασμα αντιγράφου ασφαλείας παραλείφθηκε, δεδομένου ότι η απομακρυσμένη έκδοση ήταν ήδη ενημερωμένη.</value>
   </data>
-    <data name="EditBudgetTitle" xml:space="preserve">
+  <data name="EditBudgetTitle" xml:space="preserve">
     <value>Επεξεργασία Προϋπολογισμού</value>
   </data>
-    <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
+  <data name="DeleteBudgetConfirmationMessage" xml:space="preserve">
     <value>Θέλετε πραγματικά να διαγράψετε αυτόν τον προϋπολογισμό?</value>
   </data>
-    <data name="TimeRangeLabel" xml:space="preserve">
+  <data name="TimeRangeLabel" xml:space="preserve">
     <value>Χρονικό Εύρος</value>
   </data>
-    <data name="LastFiveYearsLabel" xml:space="preserve">
+  <data name="LastFiveYearsLabel" xml:space="preserve">
     <value>Τελευταία Πέντε Χρόνια</value>
   </data>
-    <data name="LastThreeYearsLabel" xml:space="preserve">
+  <data name="LastThreeYearsLabel" xml:space="preserve">
     <value>Τελευταία Τρία Έτη</value>
   </data>
-    <data name="LastTwoYearsLabel" xml:space="preserve">
+  <data name="LastTwoYearsLabel" xml:space="preserve">
     <value>Τελευταία Δύο Χρόνια</value>
   </data>
-    <data name="LastYearLabel" xml:space="preserve">
+  <data name="LastYearLabel" xml:space="preserve">
     <value>Προηγούμενο Έτος</value>
   </data>
-    <data name="YearToDateLabel" xml:space="preserve">
+  <data name="YearToDateLabel" xml:space="preserve">
     <value>Έτος μέχρι σήμερα</value>
   </data>
-    <data name="MonthlySpendingLimitLabel" xml:space="preserve">
+  <data name="MonthlySpendingLimitLabel" xml:space="preserve">
     <value>Μηνιαίο Όριο Δαπάνης</value>
   </data>
-    <data name="EvaluationTimeRangeLabel" xml:space="preserve">
+  <data name="EvaluationTimeRangeLabel" xml:space="preserve">
     <value>Χρονικό Εύρος Αξιολόγησης</value>
   </data>
-    <data name="EvaluationTimeRangeMessage" xml:space="preserve">
+  <data name="EvaluationTimeRangeMessage" xml:space="preserve">
     <value>Αυτό καθορίζει το χρονικό εύρος στο οποίο περιλαμβάνονται οι πληρωμές για τον υπολογισμό του μηνιαίου μέσου όρου σας για να συγκρίνετε με το όριο δαπανών σας.</value>
   </data>
-    <data name="CategorySummaryPlaceholder" xml:space="preserve">
+  <data name="CategorySummaryPlaceholder" xml:space="preserve">
     <value>Δεν βρέθηκαν πληρωμές στο επιλεγμένο χρονικό εύρος.</value>
   </data>
-    <data name="InvalidSpendingLimitMessage" xml:space="preserve">
+  <data name="InvalidSpendingLimitMessage" xml:space="preserve">
     <value>Το όριο δαπανών πρέπει να είναι μεγαλύτερο από μηδέν.</value>
   </data>
-    <data name="InvalidSpendingLimitTitle" xml:space="preserve">
+  <data name="InvalidSpendingLimitTitle" xml:space="preserve">
     <value>Μη Έγκυρο Όριο Δαπάνης</value>
   </data>
-    <data name="NotePlaceholderLabel" xml:space="preserve">
+  <data name="NotePlaceholderLabel" xml:space="preserve">
     <value>Εισάγετε σημείωση σε αυτή την πληρωμή..</value>
   </data>
-    <data name="GainsLabel" xml:space="preserve">
+  <data name="GainsLabel" xml:space="preserve">
     <value>Κέρδη</value>
   </data>
-    <data name="SendEmailFailedMessage" xml:space="preserve">
+  <data name="SendEmailFailedMessage" xml:space="preserve">
     <value>Απέτυχε να ανοίξει η εφαρμογή ηλεκτρονικού ταχυδρομείου. Προσπαθήστε ξανά αργότερα ή επικοινωνήστε μαζί μας μέσω του 'mobile.support@apply-solutions.ch'.</value>
   </data>
-    <data name="UnassignPaymentTitle" xml:space="preserve">
+  <data name="UnassignPaymentTitle" xml:space="preserve">
     <value>Κατάργηση Ανάθεσης Πληρωμών</value>
   </data>
-    <data name="UnassignPaymentMessage" xml:space="preserve">
+  <data name="UnassignPaymentMessage" xml:space="preserve">
     <value>Υπάρχουν {0} πληρωμές που έχουν ανατεθεί. Αυτές θα εκχωρηθούν. Θέλετε να συνεχίσετε?</value>
   </data>
-    <data name="RemoveLabel" xml:space="preserve">
+  <data name="RemoveLabel" xml:space="preserve">
     <value>Αφαιρέστε το</value>
   </data>
-    <data name="IntervalLabel" xml:space="preserve">
+  <data name="IntervalLabel" xml:space="preserve">
     <value>Διάστημα</value>
   </data>
-    <data name="MonthLabel" xml:space="preserve">
+  <data name="MonthLabel" xml:space="preserve">
     <value>Μήνας</value>
   </data>
-    <data name="IncludedCategoriesLabel" xml:space="preserve">
+  <data name="IncludedCategoriesLabel" xml:space="preserve">
     <value>Περιλαμβανόμενες κατηγορίες</value>
   </data>
-    <data name="CurrencyIntroductionText" xml:space="preserve">
+  <data name="CurrencyIntroductionText" xml:space="preserve">
     <value>Επιλέξτε το νόμισμα που θέλετε να χρησιμοποιήσετε στην εφαρμογή. Αυτό θα χρησιμοποιείται ως προεπιλεγμένο νόμισμα, για παράδειγμα για λογαριασμούς, πληρωμές και προϋπολογισμούς.
 Μπορείτε να το αλλάξετε αυτό αργότερα στις ρυθμίσεις.</value>
   </data>
-    <data name="CurrencyIntroductionTitle" xml:space="preserve">
+  <data name="CurrencyIntroductionTitle" xml:space="preserve">
     <value>Νόμισμα</value>
   </data>
-    <data name="SetupAccountsSubtitle" xml:space="preserve">
+  <data name="SetupAccountsSubtitle" xml:space="preserve">
     <value>Προσθέστε τον πρώτο σας λογαριασμό</value>
   </data>
-    <data name="SetupAccountsText" xml:space="preserve">
+  <data name="SetupAccountsText" xml:space="preserve">
     <value>Μπορείτε να χρησιμοποιείτε λογαριασμούς για να ομαδοποιείτε συναλλαγές. Μπορούν είτε να αντικατοπτρίζουν τον τραπεζικό σας λογαριασμό είτε να είναι ένας εικονικός λογαριασμός μόνο στην εφαρμογή.</value>
   </data>
-    <data name="SetupAccountsTitle" xml:space="preserve">
+  <data name="SetupAccountsTitle" xml:space="preserve">
     <value>Λογαριασμοί</value>
   </data>
-    <data name="RemoveCategoryAssignmentTitle" xml:space="preserve">
+  <data name="RemoveCategoryAssignmentTitle" xml:space="preserve">
     <value>Κατάργηση ανάθεσης κατηγορίας</value>
   </data>
-    <data name="RemoveCategoryAssignmentOnPaymentMessage" xml:space="preserve">
+  <data name="RemoveCategoryAssignmentOnPaymentMessage" xml:space="preserve">
     <value>Υπάρχουν πληρωμές {0} που έχουν εκχωρηθεί σε αυτή την κατηγορία.Η εκχώρηση για αυτές θα αφαιρεθεί. Θέλετε να συνεχίσετε;</value>
   </data>
-    <data name="CurrencySettingText" xml:space="preserve">
+  <data name="CurrencySettingText" xml:space="preserve">
     <value>Επιλέξτε το νόμισμα που θέλετε να χρησιμοποιήσετε στην εφαρμογή. Αυτό θα χρησιμοποιείται ως προεπιλεγμένο νόμισμα, για παράδειγμα για λογαριασμούς, πληρωμές και προϋπολογισμούς.</value>
   </data>
-    <data name="SaldoTemplate" xml:space="preserve">
+  <data name="SaldoTemplate" xml:space="preserve">
     <value>Saldo: {0}</value>
   </data>
-    <data name="TotalBalanceTemplate" xml:space="preserve">
+  <data name="TotalBalanceTemplate" xml:space="preserve">
     <value>Σύνολο: {0}</value>
   </data>
-    <data name="CurrentBalanceTemplate" xml:space="preserve">
-        <value>Τρέχον υπόλοιπο: {0}</value>
-    </data>
-    <data name="MonthlyBudgetTemplate" xml:space="preserve">
-        <value>Μηνιαίος προϋπολογισμός: {0}</value>
-    </data>
-    <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
-        <value>Μηνιαίες δαπάνες για προϋπολογισμούς: {0}</value>
-    </data>
-    <data name="DateRangeInvalidMessage" xml:space="preserve">
-        <value>Η ημερομηνία έναρξης πρέπει να είναι πριν από την ημερομηνία λήξης.</value>
-    </data>
-    <data name="TotalRevenueTemplate" xml:space="preserve">
-        <value>Συνολικά έσοδα: {0}</value>
-    </data>
-    <data name="TotalExpenseTemplate" xml:space="preserve">
-        <value>Συνολικά έξοδα: {0}</value>
-    </data>
-    <data name="AllAccounts" xml:space="preserve">
-        <value>Όλοι Οι Λογαριασμοί</value>
-    </data>
-    <data name="LicensesHeader" xml:space="preserve">
-        <value>Άδειες</value>
-    </data>
+  <data name="CurrentBalanceTemplate" xml:space="preserve">
+    <value>Τρέχον υπόλοιπο: {0}</value>
+  </data>
+  <data name="MonthlyBudgetTemplate" xml:space="preserve">
+    <value>Μηνιαίος προϋπολογισμός: {0}</value>
+  </data>
+  <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
+    <value>Μηνιαίες δαπάνες για προϋπολογισμούς: {0}</value>
+  </data>
+  <data name="DateRangeInvalidMessage" xml:space="preserve">
+    <value>Η ημερομηνία έναρξης πρέπει να είναι πριν από την ημερομηνία λήξης.</value>
+  </data>
+  <data name="TotalRevenueTemplate" xml:space="preserve">
+    <value>Συνολικά έσοδα: {0}</value>
+  </data>
+  <data name="TotalExpenseTemplate" xml:space="preserve">
+    <value>Συνολικά έξοδα: {0}</value>
+  </data>
+  <data name="AllAccounts" xml:space="preserve">
+    <value>Όλοι Οι Λογαριασμοί</value>
+  </data>
+  <data name="LicensesHeader" xml:space="preserve">
+    <value>Άδειες</value>
+  </data>
+  <data name="CurrencySettingTitle" xml:space="preserve">
+    <value>Νόμισμα</value>
+  </data>
+  <data name="DefaultAccountSettingText" xml:space="preserve">
+    <value>Επιλέξτε το λογαριασμό που πρέπει να επιλεγεί ως προεπιλογή αν προσθέσετε μια πληρωμή.</value>
+  </data>
+  <data name="DefaultAccountSettingTitle" xml:space="preserve">
+    <value>Προεπιλεγμένος Λογαριασμός Πληρωμής</value>
+  </data>
 </root>
