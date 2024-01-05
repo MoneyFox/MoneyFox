@@ -13,11 +13,8 @@ using Messages;
 using Payments.PaymentList;
 using Payments.PaymentModification;
 
-public class DashboardViewModel : NavigableViewModel, IRecipient<BackupRestoredMessage>
+public class DashboardViewModel(IMediator mediator, IMapper mapper, INavigationService service) : NavigableViewModel, IRecipient<BackupRestoredMessage>
 {
-    private readonly IMapper mapper;
-    private readonly IMediator mediator;
-    private readonly INavigationService navigationService;
     private ObservableCollection<AccountViewModel> accounts = new();
     private decimal assets;
     private decimal endOfMonthBalance;
@@ -25,79 +22,41 @@ public class DashboardViewModel : NavigableViewModel, IRecipient<BackupRestoredM
     private decimal monthlyExpenses;
     private decimal monthlyIncomes;
 
-    public DashboardViewModel(IMediator mediator, IMapper mapper, INavigationService navigationService)
-    {
-        this.mediator = mediator;
-        this.mapper = mapper;
-        this.navigationService = navigationService;
-    }
-
     public decimal Assets
     {
         get => assets;
-
-        set
-        {
-            assets = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(field: ref assets, newValue: value);
     }
 
     public decimal EndOfMonthBalance
     {
         get => endOfMonthBalance;
-
-        set
-        {
-            endOfMonthBalance = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(field: ref endOfMonthBalance, newValue: value);
     }
 
     public decimal MonthlyIncomes
     {
         get => monthlyIncomes;
-
-        set
-        {
-            monthlyIncomes = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(field: ref monthlyIncomes, newValue: value);
     }
 
     public decimal MonthlyExpenses
     {
         get => monthlyExpenses;
-
-        set
-        {
-            monthlyExpenses = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(field: ref monthlyExpenses, newValue: value);
     }
 
     public ObservableCollection<AccountViewModel> Accounts
     {
         get => accounts;
-
-        private set
-        {
-            if (accounts == value)
-            {
-                return;
-            }
-
-            accounts = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(field: ref accounts, newValue: value);
     }
 
-    public AsyncRelayCommand GoToAddPaymentCommand => new(() => navigationService.GoTo<AddPaymentViewModel>());
+    public AsyncRelayCommand GoToAddPaymentCommand => new(() => service.GoTo<AddPaymentViewModel>());
 
-    public AsyncRelayCommand GoToAccountsCommand => new(() => navigationService.GoTo<AccountListViewModel>());
+    public AsyncRelayCommand GoToAccountsCommand => new(() => service.GoTo<AccountListViewModel>());
 
-    public AsyncRelayCommand<AccountViewModel> GoToTransactionListCommand
-        => new(accountViewModel => navigationService.GoTo<PaymentListViewModel>(accountViewModel!.Id));
+    public AsyncRelayCommand<AccountViewModel> GoToTransactionListCommand => new(accountViewModel => service.GoTo<PaymentListViewModel>(accountViewModel!.Id));
 
     public void Receive(BackupRestoredMessage message)
     {
