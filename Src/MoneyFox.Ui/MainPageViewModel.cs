@@ -5,29 +5,21 @@ using Views.Dashboard;
 using Views.OverflowMenu;
 using Views.Statistics.Selector;
 
-public sealed class MainPageViewModel : ObservableObject
+public sealed class MainPageViewModel(
+    DashboardViewModel viewModel,
+    StatisticSelectorViewModel statisticSelectorViewModel,
+    OverflowMenuViewModel overflowMenuViewModel) : ObservableObject
 {
     private int selectedViewModelIndex;
-    private DashboardViewModel dashboardViewModel;
 
-    public MainPageViewModel(
-        DashboardViewModel dashboardViewModel,
-        StatisticSelectorViewModel statisticSelectorViewModel,
-        OverflowMenuViewModel overflowMenuViewModel)
-    {
-        DashboardViewModel = dashboardViewModel;
-        StatisticSelectorViewModel = statisticSelectorViewModel;
-        OverflowMenuViewModel = overflowMenuViewModel;
-    }
+    public StatisticSelectorViewModel StatisticSelectorViewModel { get; } = statisticSelectorViewModel;
 
-    public StatisticSelectorViewModel StatisticSelectorViewModel { get; }
-
-    public OverflowMenuViewModel OverflowMenuViewModel { get; }
+    public OverflowMenuViewModel OverflowMenuViewModel { get; } = overflowMenuViewModel;
 
     public DashboardViewModel DashboardViewModel
     {
-        get => dashboardViewModel;
-        set => SetProperty(field: ref dashboardViewModel, newValue: value);
+        get => viewModel;
+        set => SetProperty(field: ref viewModel, newValue: value);
     }
 
     public int SelectedViewModelIndex
