@@ -3,6 +3,7 @@ namespace MoneyFox.Core.Common.Interfaces;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.BudgetAggregate;
 using Domain.Aggregates.CategoryAggregate;
@@ -15,6 +16,9 @@ public interface IAppDbContext : IDisposable
     DbSet<Account> Accounts { get; }
 
     DbSet<Payment> Payments { get; }
+    
+    [Obsolete("To be removed")]
+    DbSet<RecurringPayment> RecurringPayments { get; }
 
     DbSet<RecurringTransaction> RecurringTransactions { get; }
 
