@@ -53,7 +53,7 @@ jobs:
             $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Ui\MoneyFox.Ui.csproj')          
         displayName: 'set values in project file'
         env:
-          CERTIFICATION_THUMPRINT: $((Windows_Certificate_Thumpint)
+          CERTIFICATION_THUMPRINT: $(Windows_Certificate_Thumpint)
 
       - task: PowerShell@2
         displayName: "set values in manifest"
