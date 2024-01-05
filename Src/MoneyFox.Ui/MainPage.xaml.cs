@@ -1,6 +1,6 @@
 namespace MoneyFox.Ui;
 
-public partial class MainPage : ContentPage
+public partial class MainPage
 {
     public MainPage(MainPageViewModel mainPageViewModel)
     {
