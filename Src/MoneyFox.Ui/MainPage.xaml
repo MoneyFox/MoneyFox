@@ -42,6 +42,7 @@
             <tabs:LazyView x:TypeArguments="dashboard:DashboardView"
                            AccentColor="{StaticResource Primary}"
                            Animate="True"
+                           
                            BindingContext="{Binding DashboardViewModel}"
                            UseActivityIndicator="True" />
 
