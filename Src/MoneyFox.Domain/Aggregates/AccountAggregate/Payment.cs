@@ -68,9 +68,6 @@ public class Payment : EntityBase
 
     public virtual Account? TargetAccount { get; private set; }
 
-    [Obsolete("To be removed")]
-    public virtual RecurringPayment? RecurringPayment { get; } = null!;
-
     public Guid? RecurringTransactionId { get; [UsedImplicitly] private set; }
 
     public void UpdatePayment(
