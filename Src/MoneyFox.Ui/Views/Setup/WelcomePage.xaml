@@ -5,8 +5,6 @@
              xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
              xmlns:setup="clr-namespace:MoneyFox.Ui.Views.Setup"
              x:Class="MoneyFox.Ui.Views.Setup.WelcomePage"
-             Shell.NavBarIsVisible="False"
-             Shell.TabBarIsVisible="False"
              x:DataType="setup:WelcomeViewModel">
 
     <ContentPage.Content>
