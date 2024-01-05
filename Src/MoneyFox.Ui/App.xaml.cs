@@ -30,7 +30,8 @@ public partial class App
         ISettingsFacade settingsFacade,
         IBackupService backupService,
         IAptabaseClient aptabaseClient,
-        MainPageViewModel mainPageViewModel)
+        MainPageViewModel mainPageViewModel,
+        WelcomeViewModel welcomeViewModel)
     {
         this.mediator = mediator;
         this.settingsFacade = settingsFacade;
@@ -43,7 +44,7 @@ public partial class App
         mainPageViewModel.DashboardViewModel.OnNavigatedAsync(null);
         mainPageViewModel.StatisticSelectorViewModel.OnNavigatedAsync(null);
         mainPageViewModel.OverflowMenuViewModel.OnNavigatedAsync(null);
-        MainPage = settingsFacade.IsSetupCompleted ? new DefaultNavigationPage(new MainPage(mainPageViewModel)) : new SetupShell();
+        MainPage = new DefaultNavigationPage(settingsFacade.IsSetupCompleted ? new MainPage(mainPageViewModel) : new WelcomePage(welcomeViewModel));
     }
 
     public static Dictionary<string, ResourceDictionary> ResourceDictionary { get; } = new();
