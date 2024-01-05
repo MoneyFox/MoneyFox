@@ -30,7 +30,7 @@ jobs:
         displayName: 'download certificate'
         name: 'signingCert'
         inputs:
-          secureFile: 'MoneyFoxCert_2024.pfx'
+          secureFile: $(Windows_Certification_Name)
 
       - powershell: |
           $pfxpath = '$(signingCert.secureFilePath)'
@@ -46,6 +46,14 @@ jobs:
         displayName: 'Install Cert'
         env:
           CERT_PASSWORD_ENV: $(UWP_Certificate_Password)
+
+      - powershell: |
+            [xml]$xmlDoc = Get-Content '$(Build.SourcesDirectory)\src\MoneyFox.Ui\MoneyFox.Ui.csproj'
+            $xmlDoc.Project.PropertyGroup[2].PackageCertificateThumbprint="$env:CERTIFICATION_THUMPRINT"
+            $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Ui\MoneyFox.Ui.csproj')          
+        displayName: 'set values in project file'
+        env:
+          CERTIFICATION_THUMPRINT: $((Windows_Certificate_Thumpint)
 
       - task: PowerShell@2
         displayName: "set values in manifest"
