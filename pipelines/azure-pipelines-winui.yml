@@ -30,7 +30,7 @@ jobs:
         displayName: 'download certificate'
         name: 'signingCert'
         inputs:
-          secureFile: 'MoneyFoxCert_2024.pfx'
+          secureFile: $(Windows_Certification_Name)
 
       - powershell: |
           $pfxpath = '$(signingCert.secureFilePath)'
