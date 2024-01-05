@@ -43,19 +43,12 @@ public partial class App
         mainPageViewModel.DashboardViewModel.OnNavigatedAsync(null);
         mainPageViewModel.StatisticSelectorViewModel.OnNavigatedAsync(null);
         mainPageViewModel.OverflowMenuViewModel.OnNavigatedAsync(null);
-        MainPage = settingsFacade.IsSetupCompleted ? GetAppShellPage(mainPageViewModel: mainPageViewModel) : new SetupShell();
+        MainPage = settingsFacade.IsSetupCompleted ? new DefaultNavigationPage(new MainPage(mainPageViewModel)) : new SetupShell();
     }
 
     public static Dictionary<string, ResourceDictionary> ResourceDictionary { get; } = new();
 
     private static IServiceProvider ServiceProvider { get; set; }
-
-    private static Page GetAppShellPage(MainPageViewModel mainPageViewModel)
-    {
-        return DeviceInfo.Current.Idiom.UseDesktopPage()
-            ? new AppShellDesktop()
-            : new DefaultNavigationPage(new MainPage(mainPageViewModel));
-    }
 
     private void FillResourceDictionary()
     {
