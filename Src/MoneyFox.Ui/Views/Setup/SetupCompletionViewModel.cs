@@ -1,12 +1,14 @@
 namespace MoneyFox.Ui.Views.Setup;
 
-using Common.Extensions;
 using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Settings;
 using Dashboard;
 
-internal sealed class SetupCompletionViewModel(ISettingsFacade settingsFacade, INavigationService navigationService) : NavigableViewModel
+internal sealed class SetupCompletionViewModel(
+    ISettingsFacade settingsFacade,
+    INavigationService navigationService,
+    MainPageViewModel mainPageViewModel) : NavigableViewModel
 {
     public AsyncRelayCommand CompleteCommand => new(CompleteSetup);
 
@@ -15,13 +17,8 @@ internal sealed class SetupCompletionViewModel(ISettingsFacade settingsFacade, I
     private Task CompleteSetup()
     {
         settingsFacade.IsSetupCompleted = true;
-        Application.Current!.MainPage = GetAppShellPage();
+        Application.Current!.MainPage = new DefaultNavigationPage(new MainPage(mainPageViewModel));
 
         return navigationService.GoTo<DashboardViewModel>();
-    }
-
-    private static Page GetAppShellPage()
-    {
-        return DeviceInfo.Current.Idiom.UseDesktopPage() ? new AppShellDesktop() : new AppShell();
     }
 }
