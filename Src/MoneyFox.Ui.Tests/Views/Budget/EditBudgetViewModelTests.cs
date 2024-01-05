@@ -10,7 +10,6 @@ using Core.Queries.BudgetEntryLoading;
 using Domain.Tests.TestFramework;
 using MediatR;
 using Ui.Views.Budget.BudgetModification;
-using Ui.Views.Categories.CategorySelection;
 
 public class EditBudgetViewModelTests
 {

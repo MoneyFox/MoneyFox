@@ -11,7 +11,6 @@ using Resources.Strings;
 
 public sealed class StatisticSelectorViewModel(INavigationService navigationService) : NavigableViewModel
 {
-
     public static List<StatisticSelectorTypeViewModel> StatisticItems
         => new()
         {

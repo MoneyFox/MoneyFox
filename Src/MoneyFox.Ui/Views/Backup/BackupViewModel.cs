@@ -24,7 +24,7 @@ internal sealed class BackupViewModel(
     private bool backupAvailable;
 
     private DateTime backupLastModified;
-    private bool isLoadingBackupAvailability;
+    private bool isLoading;
 
     private ImageSource? profilePicture;
     private UserAccountViewModel userAccount = new();
@@ -51,13 +51,13 @@ internal sealed class BackupViewModel(
         set => SetProperty(field: ref profilePicture, newValue: value);
     }
 
-    public AsyncRelayCommand LoginCommand => new(async () => await LoginAsync());
+    public AsyncRelayCommand LoginCommand => new(LoginAsync);
 
-    public AsyncRelayCommand LogoutCommand => new(async () => await LogoutAsync());
+    public AsyncRelayCommand LogoutCommand => new(LogoutAsync);
 
-    public AsyncRelayCommand BackupCommand => new(async () => await CreateBackupAsync());
+    public AsyncRelayCommand BackupCommand => new(CreateBackupAsync);
 
-    public AsyncRelayCommand RestoreCommand => new(async () => await RestoreBackupAsync());
+    public AsyncRelayCommand RestoreCommand => new(RestoreBackupAsync);
 
     public DateTime BackupLastModified
     {
@@ -75,33 +75,14 @@ internal sealed class BackupViewModel(
         }
     }
 
-    /// <summary>
-    ///     Indicator that the app is checking if backups available.
-    /// </summary>
-    public bool IsLoadingBackupAvailability
+    public bool IsLoading
     {
-        get => isLoadingBackupAvailability;
-
-        private set
-        {
-            if (isLoadingBackupAvailability == value)
-            {
-                return;
-            }
-
-            isLoadingBackupAvailability = value;
-            OnPropertyChanged();
-        }
+        get => isLoading;
+        set => SetProperty(field: ref isLoading, newValue: value);
     }
 
-    /// <summary>
-    ///     Indicator that the user logged in to the backup service.
-    /// </summary>
     public bool IsLoggedIn => settingsFacade.IsLoggedInToBackupService;
 
-    /// <summary>
-    ///     Indicates if a backup is available for restore.
-    /// </summary>
     public bool BackupAvailable
     {
         get => backupAvailable;
@@ -155,7 +136,7 @@ internal sealed class BackupViewModel(
             return;
         }
 
-        IsLoadingBackupAvailability = true;
+        IsLoading = true;
         try
         {
             BackupAvailable = await backupService.IsBackupExistingAsync();
@@ -186,8 +167,10 @@ internal sealed class BackupViewModel(
 
             Log.Error(exception: ex, messageTemplate: "Issue on loading backup view");
         }
-
-        IsLoadingBackupAvailability = false;
+        finally
+        {
+            IsLoading = false;
+        }
     }
 
     private async Task LoginAsync()
@@ -199,6 +182,7 @@ internal sealed class BackupViewModel(
 
         try
         {
+            IsLoading = true;
             await backupService.LoginAsync();
             var userAccountDto = await oneDriveProfileService.GetUserAccountAsync();
             UserAccount.Name = userAccountDto.Name;
@@ -216,6 +200,10 @@ internal sealed class BackupViewModel(
         {
             Log.Error(exception: ex, messageTemplate: "Login Failed");
             await toastService.ShowToastAsync(Translations.LoginFailedTitle);
+        }
+        finally
+        {
+            IsLoading = false;
         }
 
         OnPropertyChanged(nameof(IsLoggedIn));

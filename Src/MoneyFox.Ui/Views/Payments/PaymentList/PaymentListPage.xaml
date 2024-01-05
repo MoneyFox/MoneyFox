@@ -85,7 +85,7 @@
                         <controls:Card Grid.Column="1"
                                        Padding="12"
                                        Margin="0,6,0,0"
-                                       MinimumHeightRequest="60"
+                                       HeightRequest="60"
                                        Opacity="{Binding Date, Converter={StaticResource DateGroupCardOpacityConverter}}">
 
                             <controls:Card.GestureRecognizers>

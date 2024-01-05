@@ -59,8 +59,7 @@
               : using a System.ComponentModel.TypeConverter
               : and then encoded with base64 encoding.
       -->
-    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"
-                id="root"
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root"
                 xmlns="">
         <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
         <xsd:element name="root" msdata:IsDataSet="true">
@@ -935,27 +934,36 @@ You can change this late in the settings.</value>
     <value>Total: {0}</value>
   </data>
     <data name="CurrentBalanceTemplate" xml:space="preserve">
-        <value>Current Balance: {0}</value>
-    </data>
+    <value>Current Balance: {0}</value>
+  </data>
     <data name="MonthlyBudgetTemplate" xml:space="preserve">
-        <value>Monthly Budget: {0}</value>
-    </data>
+    <value>Monthly Budget: {0}</value>
+  </data>
     <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
-        <value>Monthly Spending on budgets: {0}</value>
-    </data>
+    <value>Monthly Spending on budgets: {0}</value>
+  </data>
     <data name="DateRangeInvalidMessage" xml:space="preserve">
-        <value>Start date has to be before end date.</value>
-    </data>
+    <value>Start date has to be before end date.</value>
+  </data>
     <data name="TotalRevenueTemplate" xml:space="preserve">
-        <value>Total Revenue: {0}</value>
-    </data>
+    <value>Total Revenue: {0}</value>
+  </data>
     <data name="TotalExpenseTemplate" xml:space="preserve">
-        <value>Total Expense: {0}</value>
-    </data>
+    <value>Total Expense: {0}</value>
+  </data>
     <data name="AllAccounts" xml:space="preserve">
-        <value>All Accounts</value>
-    </data>
+    <value>All Accounts</value>
+  </data>
     <data name="LicensesHeader" xml:space="preserve">
-        <value>Licenses</value>
-    </data>
+    <value>Licenses</value>
+  </data>
+    <data name="CurrencySettingTitle" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+    <data name="DefaultAccountSettingText" xml:space="preserve">
+    <value>Select the account which should be selected as the default if you add a payment.</value>
+  </data>
+    <data name="DefaultAccountSettingTitle" xml:space="preserve">
+    <value>Default Payment Account</value>
+  </data>
 </root>
