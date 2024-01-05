@@ -29,7 +29,7 @@ internal sealed class NavigationService(IViewLocator locator, IAptabaseClient ap
             await Navigation.PushAsync((Page)view);
         }
 
-        aptabaseClient.TrackEvent($"Navigate to {nameof(TViewModel)}");
+        aptabaseClient.TrackEvent($"Navigate to {typeof(TViewModel).Name}");
         await ((NavigableViewModel)view.BindingContext).OnNavigatedAsync(parameter);
     }
 }

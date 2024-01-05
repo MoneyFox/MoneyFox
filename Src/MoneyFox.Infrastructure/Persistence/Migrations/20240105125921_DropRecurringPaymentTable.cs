@@ -6,25 +6,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MoneyFox.Infrastructure.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class RemoveRecurringPayment : Migration
+    public partial class DropRecurringPaymentTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Payments_RecurringPayments_RecurringPaymentId",
-                table: "Payments");
-
             migrationBuilder.DropTable(
                 name: "RecurringPayments");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Payments_RecurringPaymentId",
-                table: "Payments");
-
-            migrationBuilder.DropColumn(
-                name: "RecurringPaymentId",
-                table: "Payments");
 
             migrationBuilder.AlterColumn<int>(
                 name: "Id",
@@ -56,12 +44,6 @@ namespace MoneyFox.Infrastructure.Persistence.Migrations
                 oldClrType: typeof(int),
                 oldType: "INTEGER")
                 .Annotation("Sqlite:Autoincrement", true);
-
-            migrationBuilder.AddColumn<int>(
-                name: "RecurringPaymentId",
-                table: "Payments",
-                type: "INTEGER",
-                nullable: true);
 
             migrationBuilder.AlterColumn<int>(
                 name: "Id",
@@ -115,11 +97,6 @@ namespace MoneyFox.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payments_RecurringPaymentId",
-                table: "Payments",
-                column: "RecurringPaymentId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_RecurringPayments_CategoryId",
                 table: "RecurringPayments",
                 column: "CategoryId");
@@ -133,13 +110,6 @@ namespace MoneyFox.Infrastructure.Persistence.Migrations
                 name: "IX_RecurringPayments_TargetAccountId",
                 table: "RecurringPayments",
                 column: "TargetAccountId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Payments_RecurringPayments_RecurringPaymentId",
-                table: "Payments",
-                column: "RecurringPaymentId",
-                principalTable: "RecurringPayments",
-                principalColumn: "Id");
         }
     }
 }

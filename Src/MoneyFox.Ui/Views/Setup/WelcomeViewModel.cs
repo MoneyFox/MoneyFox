@@ -7,7 +7,7 @@ using Dashboard;
 
 internal sealed class WelcomeViewModel(ISettingsFacade facade, INavigationService navigationService) : NavigableViewModel
 {
-    public AsyncRelayCommand NextStepCommand => new(() => navigationService.GoTo<SetupCategoryViewModel>());
+    public AsyncRelayCommand NextStepCommand => new(() => navigationService.GoTo<SetupAccountsViewModel>());
 
     public async Task InitAsync()
     {
