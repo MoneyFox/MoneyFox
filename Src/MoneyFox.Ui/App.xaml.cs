@@ -40,9 +40,6 @@ public partial class App
         InitializeComponent();
         FillResourceDictionary();
         appDbContext.MigrateDb();
-        mainPageViewModel.DashboardViewModel.OnNavigatedAsync(null);
-        mainPageViewModel.StatisticSelectorViewModel.OnNavigatedAsync(null);
-        mainPageViewModel.OverflowMenuViewModel.OnNavigatedAsync(null);
         MainPage = new DefaultNavigationPage(settingsFacade.IsSetupCompleted ? new MainPage(mainPageViewModel) : new WelcomePage(welcomeViewModel));
     }
 
