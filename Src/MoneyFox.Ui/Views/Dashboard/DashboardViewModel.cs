@@ -18,7 +18,6 @@ public class DashboardViewModel(IMediator mediator, IMapper mapper, INavigationS
     private ObservableCollection<AccountViewModel> accounts = new();
     private decimal assets;
     private decimal endOfMonthBalance;
-    private bool isRunning;
     private decimal monthlyExpenses;
     private decimal monthlyIncomes;
 
@@ -60,42 +59,26 @@ public class DashboardViewModel(IMediator mediator, IMapper mapper, INavigationS
 
     public void Receive(BackupRestoredMessage message)
     {
-        InitializeAsync().GetAwaiter().GetResult();
+        LoadData().GetAwaiter().GetResult();
     }
 
     public override Task OnNavigatedAsync(object? parameter)
     {
-        return InitializeAsync();
+        return LoadData();
     }
 
-    private async Task InitializeAsync()
+    private async Task LoadData()
     {
-        if (isRunning)
+        var accountVms = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery())).OrderBy(avm => avm.IsExcluded).ThenBy(avm => avm.Name);
+        Accounts = new(accountVms);
+        foreach (var account in Accounts)
         {
-            return;
+            account.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(account.Id));
         }
 
-        try
-        {
-            isRunning = true;
-            var accountVms = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()))
-                .OrderBy(avm => avm.IsExcluded)
-                .ThenBy(avm => avm.Name);
-
-            Accounts = new(accountVms);
-            foreach (var account in Accounts)
-            {
-                account.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(account.Id));
-            }
-
-            Assets = await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
-            EndOfMonthBalance = await mediator.Send(new GetTotalEndOfMonthBalanceQuery());
-            MonthlyExpenses = await mediator.Send(new GetMonthlyExpenseQuery());
-            MonthlyIncomes = await mediator.Send(new GetMonthlyIncomeQuery());
-        }
-        finally
-        {
-            isRunning = false;
-        }
+        Assets = await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
+        EndOfMonthBalance = await mediator.Send(new GetTotalEndOfMonthBalanceQuery());
+        MonthlyExpenses = await mediator.Send(new GetMonthlyExpenseQuery());
+        MonthlyIncomes = await mediator.Send(new GetMonthlyIncomeQuery());
     }
 }
