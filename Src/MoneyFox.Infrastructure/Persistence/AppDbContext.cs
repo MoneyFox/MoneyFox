@@ -33,8 +33,6 @@ public class AppDbContext : DbContext, IAppDbContext
 
     public DbSet<Payment> Payments { get; set; } = null!;
 
-    public DbSet<RecurringPayment> RecurringPayments { get; set; } = null!;
-
     public DbSet<RecurringTransaction> RecurringTransactions { get; set; } = null!;
 
     public DbSet<Category> Categories { get; set; } = null!;
