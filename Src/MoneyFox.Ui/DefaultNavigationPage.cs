@@ -2,19 +2,17 @@ namespace MoneyFox.Ui;
 
 using Microsoft.Maui.Controls.PlatformConfiguration;
 using Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;
-using Application = Microsoft.Maui.Controls.Application;
+using Application = Application;
+using NavigationPage = Microsoft.Maui.Controls.NavigationPage;
+using Page = Microsoft.Maui.Controls.Page;
 
-public class DefaultNavigationPage : Microsoft.Maui.Controls.NavigationPage
+public class DefaultNavigationPage : NavigationPage
 {
-    public DefaultNavigationPage(Microsoft.Maui.Controls.Page root) : base(root)
+    public DefaultNavigationPage(Page root) : base(root)
     {
         SetbarColors();
         On<iOS>().SetHideNavigationBarSeparator(true);
-
-        Application.Current!.RequestedThemeChanged += (s, a) =>
-        {
-            SetbarColors();
-        };
+        Application.Current!.RequestedThemeChanged += (s, a) => { SetbarColors(); };
     }
 
     private void SetbarColors()

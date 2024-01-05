@@ -3,7 +3,6 @@ namespace MoneyFox.Core.Common.Interfaces;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Domain.Aggregates;
 using Domain.Aggregates.AccountAggregate;
 using Domain.Aggregates.BudgetAggregate;
 using Domain.Aggregates.CategoryAggregate;

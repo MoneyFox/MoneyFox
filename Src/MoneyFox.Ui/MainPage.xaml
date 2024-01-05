@@ -16,7 +16,8 @@
         <ResourceDictionary>
             <Style x:Key="BottomTabStyle" TargetType="tabs:BottomTabItem">
                 <Setter Property="SelectedTabColor" Value="{StaticResource Primary}" />
-                <Setter Property="UnselectedLabelColor" Value="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                <Setter Property="UnselectedLabelColor"
+                        Value="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                 <Setter Property="LabelSize" Value="14" />
                 <Setter Property="IconSize" Value="24" />
                 <Setter Property="Padding" Value="6" />
@@ -24,7 +25,8 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid ColumnSpacing="0" RowSpacing="0"  BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundTabColorDark}, Light={StaticResource BackgroundTabColorLight}}">
+    <Grid ColumnSpacing="0" RowSpacing="0"
+          BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundTabColorDark}, Light={StaticResource BackgroundTabColorLight}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="65" />
@@ -60,14 +62,14 @@
         <tabs:TabHostView Grid.Row="1"
                           BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundTabColorDark}, Light={StaticResource BackgroundTabColorLight}}"
                           SelectedIndex="{Binding Source={x:Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}">
-            
+
             <!-- <tabs:TabHostView.Shadow> -->
             <!--     <Shadow Brush="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray600}}" -->
             <!--             Opacity="0.5" -->
             <!--             Radius="4" -->
             <!--             Offset="0,1" /> -->
             <!-- </tabs:TabHostView.Shadow> -->
-            
+
             <tabs:TabHostView.Tabs>
                 <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
                                     Label="{x:Static resources:Translations.DashboardTitle}">

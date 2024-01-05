@@ -68,7 +68,13 @@ public class Payment : EntityBase
 
     public virtual Account? TargetAccount { get; private set; }
 
-    public Guid? RecurringTransactionId { get; [UsedImplicitly] private set; }
+    public Guid? RecurringTransactionId
+    {
+        get;
+
+        [UsedImplicitly]
+        private set;
+    }
 
     public void UpdatePayment(
         DateTime date,
