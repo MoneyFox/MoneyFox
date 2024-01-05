@@ -8,6 +8,17 @@ public class DefaultNavigationPage : Microsoft.Maui.Controls.NavigationPage
 {
     public DefaultNavigationPage(Microsoft.Maui.Controls.Page root) : base(root)
     {
+        SetbarColors();
+        On<iOS>().SetHideNavigationBarSeparator(true);
+
+        Application.Current!.RequestedThemeChanged += (s, a) =>
+        {
+            SetbarColors();
+        };
+    }
+
+    private void SetbarColors()
+    {
         BarBackgroundColor = Application.Current?.RequestedTheme == AppTheme.Dark
             ? (Color)App.ResourceDictionary["Colors"]["BackgroundColorDark"]
             : (Color)App.ResourceDictionary["Colors"]["BackgroundColorLight"];
@@ -15,7 +26,5 @@ public class DefaultNavigationPage : Microsoft.Maui.Controls.NavigationPage
         BarTextColor = Application.Current?.RequestedTheme == AppTheme.Dark
             ? (Color)App.ResourceDictionary["Colors"]["TextPrimaryColorDark"]
             : (Color)App.ResourceDictionary["Colors"]["TextPrimaryColorLight"];
-
-        On<iOS>().SetHideNavigationBarSeparator(true);
     }
 }
