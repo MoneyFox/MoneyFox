@@ -19,6 +19,6 @@ internal sealed class SetupCompletionViewModel(
         settingsFacade.IsSetupCompleted = true;
         Application.Current!.MainPage = new DefaultNavigationPage(new MainPage(mainPageViewModel));
 
-        return navigationService.GoTo<DashboardViewModel>();
+        return navigationService.NavigateFromMenuToAsync<DashboardViewModel>();
     }
 }

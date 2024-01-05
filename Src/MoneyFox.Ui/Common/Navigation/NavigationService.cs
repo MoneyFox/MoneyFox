@@ -17,6 +17,22 @@ internal sealed class NavigationService(IViewLocator locator, IAptabaseClient ap
         await ((NavigableViewModel)view.BindingContext).OnNavigatedBackAsync(parameter);
     }
 
+    public async Task NavigateFromMenuToAsync<TViewModel>() where TViewModel : NavigableViewModel
+    {
+        var view = locator.GetViewFor<TViewModel>();
+        await Navigation.PushAsync((Page)view);
+        await ((NavigableViewModel)view.BindingContext).OnNavigatedAsync(null);
+
+        foreach (
+            var page in
+            Navigation.NavigationStack
+                .Take(Navigation.NavigationStack.Count - 1)
+                .Skip(1))
+        {
+            Navigation.RemovePage(page);
+        }
+    }
+
     public async Task GoTo<TViewModel>(object? parameter = null, bool modalNavigation = false) where TViewModel : NavigableViewModel
     {
         var view = locator.GetViewFor<TViewModel>();
