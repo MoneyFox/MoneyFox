@@ -25,7 +25,7 @@ public class SetupCurrencyViewModel : NavigableViewModel
 
     public AsyncRelayCommand NextStepCommand => new(NextStep);
 
-    public AsyncRelayCommand BackCommand => new(Shell.Current.Navigation.PopAsync);
+    public AsyncRelayCommand BackCommand => new(() => navigationService.GoBack());
 
     private async Task NextStep()
     {

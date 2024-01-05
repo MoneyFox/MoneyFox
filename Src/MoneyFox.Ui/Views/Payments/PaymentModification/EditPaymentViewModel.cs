@@ -141,7 +141,7 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel
             {
                 await dialogService.ShowLoadingDialogAsync();
                 await mediator.Send(command);
-                await Shell.Current.Navigation.PopModalAsync();
+                await Application.Current!.MainPage!.Navigation.PopModalAsync();
             }
             finally
             {

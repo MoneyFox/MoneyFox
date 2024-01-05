@@ -12,7 +12,7 @@ internal sealed class NavigationService(IViewLocator locator, IAptabaseClient ap
     public async Task GoBack(object? parameter = null)
     {
         await NavigationPage.PopAsync();
-        var view = Shell.Current.CurrentPage;
+        var view = NavigationPage.CurrentPage;
         await ((NavigableViewModel)view.BindingContext).OnNavigatedBackAsync(parameter);
     }
 
