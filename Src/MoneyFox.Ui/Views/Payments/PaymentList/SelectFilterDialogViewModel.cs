@@ -1,11 +1,11 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentList;
 
-using CommunityToolkit.Mvvm.ComponentModel;
+using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Domain.Aggregates.AccountAggregate;
 
-internal sealed class SelectFilterDialogViewModel : ObservableRecipient
+public sealed class SelectFilterDialogViewModel(IMessenger messenger) : NavigableViewModel
 {
     private PaymentTypeFilter filteredPaymentType = PaymentTypeFilter.All;
     private bool isClearedFilterActive;
@@ -24,7 +24,7 @@ internal sealed class SelectFilterDialogViewModel : ObservableRecipient
 
     public RelayCommand FilterSelectedCommand
         => new(
-            () => Messenger.Send(
+            () => messenger.Send(
                 new PaymentListFilterChangedMessage
                 {
                     IsClearedFilterActive = IsClearedFilterActive,

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using Accounts.AccountModification;
 using AutoMapper;
 using Common.Navigation;
+using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Queries;
@@ -16,14 +17,16 @@ internal sealed class PaymentListViewModel : NavigableViewModel
     private readonly IMapper mapper;
     private readonly IMediator mediator;
     private readonly INavigationService navigationService;
+    private readonly IPopupService popupService;
     private ReadOnlyObservableCollection<PaymentDayGroup> paymentDayGroups = null!;
     private AccountViewModel selectedAccount = new();
 
-    public PaymentListViewModel(IMediator mediator, IMapper mapper, INavigationService navigationService)
+    public PaymentListViewModel(IMediator mediator, IMapper mapper, INavigationService navigationService, IPopupService popupService)
     {
         this.mediator = mediator;
         this.mapper = mapper;
         this.navigationService = navigationService;
+        this.popupService = popupService;
         WeakReferenceMessenger.Default.Register<PaymentListFilterChangedMessage>(
             recipient: this,
             handler: (_, m) => { LoadPayments(m).GetAwaiter().GetResult(); });
@@ -47,6 +50,7 @@ internal sealed class PaymentListViewModel : NavigableViewModel
     }
 
     public AsyncRelayCommand GoToAddPaymentCommand => new(() => navigationService.GoTo<AddPaymentViewModel>(SelectedAccount.Id));
+    public AsyncRelayCommand ShowFilterCommand => new(() => popupService.ShowPopupAsync<SelectFilterDialogViewModel>());
 
     public AsyncRelayCommand<PaymentListItemViewModel> GoToEditPaymentCommand => new(pvm => navigationService.GoTo<EditPaymentViewModel>(pvm!.Id));
 
