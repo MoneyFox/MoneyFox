@@ -5,7 +5,7 @@ public partial class FilterPopup
     public FilterPopup()
     {
         InitializeComponent();
-        BindingContext = App.GetViewModel<SelectFilterDialogViewModel>();
+        BindingContext = App.GetViewModel<SelectFilterPopupViewModel>();
     }
 
     public FilterPopup(PaymentListFilterChangedMessage message)
@@ -14,7 +14,7 @@ public partial class FilterPopup
         ViewModel.Initialize(message);
     }
 
-    private SelectFilterDialogViewModel ViewModel => (SelectFilterDialogViewModel)BindingContext;
+    private SelectFilterPopupViewModel ViewModel => (SelectFilterPopupViewModel)BindingContext;
 
     private void Button_OnClicked(object sender, EventArgs e)
     {

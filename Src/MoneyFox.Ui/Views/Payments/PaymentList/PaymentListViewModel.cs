@@ -50,7 +50,7 @@ internal sealed class PaymentListViewModel : NavigableViewModel
     }
 
     public AsyncRelayCommand GoToAddPaymentCommand => new(() => navigationService.GoTo<AddPaymentViewModel>(SelectedAccount.Id));
-    public AsyncRelayCommand ShowFilterCommand => new(() => popupService.ShowPopupAsync<SelectFilterDialogViewModel>());
+    public AsyncRelayCommand ShowFilterCommand => new(() => popupService.ShowPopupAsync<SelectFilterPopupViewModel>());
 
     public AsyncRelayCommand<PaymentListItemViewModel> GoToEditPaymentCommand => new(pvm => navigationService.GoTo<EditPaymentViewModel>(pvm!.Id));
 

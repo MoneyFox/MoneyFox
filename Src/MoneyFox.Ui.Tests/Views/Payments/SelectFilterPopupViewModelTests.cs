@@ -3,11 +3,11 @@ namespace MoneyFox.Ui.Tests.Views.Payments;
 using CommunityToolkit.Mvvm.Messaging;
 using Ui.Views.Payments.PaymentList;
 
-public sealed class SelectFilterDialogViewModelTests
+public sealed class SelectFilterPopupViewModelTests
 {
     public class IsDateRangeValid
     {
-        private readonly SelectFilterDialogViewModel vm = new(Substitute.For<IMessenger>());
+        private readonly SelectFilterPopupViewModel vm = new(Substitute.For<IMessenger>());
 
         [Fact]
         public void ShouldReturnFalse_WhenStartDateAfterEndDate()

@@ -75,7 +75,7 @@ public sealed class MoneyFoxConfig
 
     private static void RegisterPopups(IServiceCollection services)
     {
-        services.AddTransientPopup<FilterPopup, SelectFilterDialogViewModel>();
+        services.AddTransientPopup<FilterPopup, SelectFilterPopupViewModel>();
         services.AddTransientPopup<DateSelectionPopup, SelectDateRangeDialogViewModel>();
     }
 
@@ -105,7 +105,7 @@ public sealed class MoneyFoxConfig
         services.AddTransient<StatisticCategorySummaryViewModel>();
         services.AddTransient<StatisticSelectorViewModel>();
         services.AddTransient<SelectDateRangeDialogViewModel>();
-        services.AddTransient<SelectFilterDialogViewModel>();
+        services.AddTransient<SelectFilterPopupViewModel>();
         services.AddTransient<AddBudgetViewModel>();
         services.AddTransient<EditBudgetViewModel>();
         services.AddTransient<BudgetListViewModel>();

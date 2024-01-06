@@ -5,7 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Domain.Aggregates.AccountAggregate;
 
-public sealed class SelectFilterDialogViewModel(IMessenger messenger) : NavigableViewModel
+public sealed class SelectFilterPopupViewModel(IMessenger messenger) : NavigableViewModel
 {
     private PaymentTypeFilter filteredPaymentType = PaymentTypeFilter.All;
     private bool isClearedFilterActive;
