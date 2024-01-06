@@ -6,4 +6,6 @@ public partial class DashboardView
     {
         InitializeComponent();
     }
+
+    public DashboardViewModel ViewModel => (DashboardViewModel)BindingContext;
 }

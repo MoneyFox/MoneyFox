@@ -3,6 +3,7 @@ namespace MoneyFox.Ui.InversionOfControl;
 using Common.Navigation;
 using Common.Services;
 using CommunityToolkit.Maui;
+using CommunityToolkit.Mvvm.Messaging;
 using Controls.CategorySelection;
 using Core.Common.Interfaces;
 using Core.Interfaces;
@@ -46,6 +47,7 @@ public sealed class MoneyFoxConfig
         RegisterViews(serviceCollection);
         RegisterAdapters(serviceCollection);
         serviceCollection.AddSingleton(_ => AutoMapperFactory.Create());
+        serviceCollection.AddSingleton<IMessenger>(WeakReferenceMessenger.Default);
         new CoreConfig().Register(serviceCollection);
         InfrastructureConfig.Register(serviceCollection);
     }
