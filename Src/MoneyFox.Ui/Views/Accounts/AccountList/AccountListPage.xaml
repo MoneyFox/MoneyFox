@@ -54,7 +54,7 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="accountList:AccountListItemViewModel">
                         <Grid Padding="18,0,18,12">
-                            <controls:Card HeightRequest="80" Padding="6">
+                            <controls:Card HeightRequest="90" >
 
                                 <controls:Card.GestureRecognizers>
                                     <TapGestureRecognizer
@@ -89,13 +89,11 @@
                                         </SwipeItems>
                                     </SwipeView.RightItems>
 
-                                    <Grid
-                                        BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                    <Grid BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                       Light={StaticResource CardBackgroundLight}}">
 
                                         <Label
-                                            Margin="10,2,0,0"
-                                            HorizontalTextAlignment="Start"
+                                            Margin="6"
                                             Style="{StaticResource TextHead}"
                                             Text="{Binding Name}"
                                             VerticalTextAlignment="Start" />
@@ -110,6 +108,7 @@
                                             VerticalTextAlignment="Center" />
 
                                         <HorizontalStackLayout Spacing="6"
+                                                               Margin="6"
                                                                HorizontalOptions="End">
                                             <Label
                                                 Margin="0,0,0,2"
@@ -117,6 +116,7 @@
                                                 FontSize="15"
                                                 HorizontalTextAlignment="End"
                                                 Text="{x:Static resources:Translations.EndOfMonthLabel}"
+                                                Style="{StaticResource TextBodySecondary}"
                                                 VerticalTextAlignment="End" />
 
                                             <Label
@@ -125,6 +125,7 @@
                                                 FontSize="15"
                                                 HorizontalTextAlignment="End"
                                                 Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}"
+                                                Style="{StaticResource TextBodySecondary}"
                                                 VerticalTextAlignment="End" />
                                         </HorizontalStackLayout>
                                     </Grid>
