@@ -2,6 +2,7 @@ namespace MoneyFox.Ui.InversionOfControl;
 
 using Common.Navigation;
 using Common.Services;
+using CommunityToolkit.Maui;
 using Controls.CategorySelection;
 using Core.Common.Interfaces;
 using Core.Interfaces;
@@ -40,6 +41,7 @@ public sealed class MoneyFoxConfig
         serviceCollection.AddSingleton<IViewLocator>(sp => new ViewLocator(sp));
         RegisterServices(serviceCollection);
         RegisterSetup(serviceCollection);
+        RegisterPopups(serviceCollection);
         RegisterViewModels(serviceCollection);
         RegisterViews(serviceCollection);
         RegisterAdapters(serviceCollection);
@@ -67,6 +69,12 @@ public sealed class MoneyFoxConfig
         services.AddTransient<SetupAccountsViewModel>();
         services.AddTransient<SetupCategoryViewModel>();
         services.AddTransient<SetupCompletionViewModel>();
+    }
+
+    private static void RegisterPopups(IServiceCollection services)
+    {
+        services.AddTransientPopup<FilterPopup, SelectFilterDialogViewModel>();
+        services.AddTransientPopup<DateSelectionPopup, SelectDateRangeDialogViewModel>();
     }
 
     private static void RegisterViewModels(IServiceCollection services)
