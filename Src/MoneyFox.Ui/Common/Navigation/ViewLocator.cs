@@ -29,7 +29,7 @@ internal class ViewLocator(IServiceProvider serviceProvider) : IViewLocator
 {
     private static readonly List<(Type ViewModelType, Type ViewType)> viewLocatorDictionary =
     [
-        (typeof(DashboardViewModel), typeof(DashboardPage)), (typeof(AccountListViewModel), typeof(AccountListPage)),
+        (typeof(AccountListViewModel), typeof(AccountListPage)),
         (typeof(AddAccountViewModel), typeof(AddAccountPage)), (typeof(EditAccountViewModel), typeof(EditAccountPage)),
         (typeof(BudgetListViewModel), typeof(BudgetListPage)), (typeof(PaymentListViewModel), typeof(PaymentListPage)),
         (typeof(AddPaymentViewModel), typeof(AddPaymentPage)), (typeof(EditPaymentViewModel), typeof(EditPaymentPage)),
@@ -51,7 +51,7 @@ internal class ViewLocator(IServiceProvider serviceProvider) : IViewLocator
 
     private static readonly List<(Type ViewModelType, Type ViewType)> desktopViewLocatorDictionary =
     [
-        (typeof(DashboardViewModel), typeof(DashboardPage)), (typeof(AccountListViewModel), typeof(DesktopAccountListPage)),
+        (typeof(AccountListViewModel), typeof(DesktopAccountListPage)),
         (typeof(AddAccountViewModel), typeof(AddAccountPage)), (typeof(EditAccountViewModel), typeof(EditAccountPage)),
         (typeof(BudgetListViewModel), typeof(BudgetListPage)), (typeof(PaymentListViewModel), typeof(PaymentListPage)),
         (typeof(AddPaymentViewModel), typeof(AddPaymentPage)), (typeof(EditPaymentViewModel), typeof(EditPaymentPage)),

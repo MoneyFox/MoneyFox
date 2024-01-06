@@ -122,9 +122,7 @@ public sealed class MoneyFoxConfig
         services.AddTransient<CategoryListPage>();
         services.AddTransient<EditCategoryPage>();
         services.AddTransient<SelectCategoryPage>();
-        services.AddTransient<DashboardPage>();
         services.AddTransient<BackupPage>();
-        services.AddTransient<OverflowMenuPage>();
         services.AddTransient<AddPaymentPage>();
         services.AddTransient<EditPaymentPage>();
         services.AddTransient<PaymentListPage>();
@@ -136,7 +134,6 @@ public sealed class MoneyFoxConfig
         services.AddTransient<StatisticCategoryProgressionPage>();
         services.AddTransient<StatisticCategorySpreadingPage>();
         services.AddTransient<StatisticCategorySummaryPage>();
-        services.AddTransient<StatisticSelectorPage>();
         services.AddTransient<AddBudgetPage>();
         services.AddTransient<EditBudgetPage>();
         services.AddTransient<BudgetListPage>();
