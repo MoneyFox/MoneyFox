@@ -143,9 +143,9 @@ public sealed class MoneyFoxConfig
 
     private static void RegisterAdapters(IServiceCollection serviceCollection)
     {
-        _ = serviceCollection.AddTransient<IBrowserAdapter, BrowserAdapter>()
-            .AddTransient<IConnectivityAdapter, ConnectivityAdapter>()
-            .AddTransient<IEmailAdapter, EmailAdapter>()
-            .AddTransient<ISettingsAdapter, SettingsAdapter>();
+        serviceCollection.AddTransient<IBrowserAdapter, BrowserAdapter>();
+        serviceCollection.AddTransient<IConnectivityAdapter, ConnectivityAdapter>();
+        serviceCollection.AddTransient<IEmailAdapter, EmailAdapter>();
+        serviceCollection.AddTransient<ISettingsAdapter, SettingsAdapter>();
     }
 }
