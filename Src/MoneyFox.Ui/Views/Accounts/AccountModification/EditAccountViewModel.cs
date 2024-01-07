@@ -37,6 +37,16 @@ public class EditAccountViewModel : ModifyAccountViewModel
     {
         var accountId = Convert.ToInt32(parameter);
         var accountData = await mediator.Send(new GetAccountById.Query(accountId));
+        SelectedAccountVm = new()
+        {
+            Id = accountData.AccountId,
+            Name = accountData.Name,
+            CurrentBalance = accountData.CurrentBalance.Amount,
+            Note = accountData.Note,
+            IsExcluded = accountData.IsExcluded,
+            Created = accountData.Created,
+            LastModified = accountData.LastModified
+        };
     }
 
     protected override Task SaveAccountAsync()

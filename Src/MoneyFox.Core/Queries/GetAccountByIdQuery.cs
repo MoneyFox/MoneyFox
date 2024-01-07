@@ -1,5 +1,6 @@
 namespace MoneyFox.Core.Queries;
 
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Common.Interfaces;
@@ -22,9 +23,13 @@ public static class GetAccountById
                 AccountId: account.Id,
                 Name: account.Name,
                 CurrentBalance: new(amount: account.CurrentBalance, currencyAlphaIsoCode: settingsFacade.DefaultCurrency),
-                IsExcluded: account.IsExcluded);
+                Note: account.Note,
+                IsExcluded: account.IsExcluded,
+                account.IsDeactivated,
+                account.Created,
+                account.LastModified);
         }
     }
 
-    public record AccountData(int AccountId, string Name, Money CurrentBalance, bool IsExcluded);
+    public record AccountData(int AccountId, string Name, Money CurrentBalance, string? Note, bool IsExcluded, bool IsDeactivated, DateTime Created, DateTime? LastModified);
 }

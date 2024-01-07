@@ -23,7 +23,7 @@ internal sealed class AddAccountViewModel : ModifyAccountViewModel
             new CreateAccountCommand(
                 name: SelectedAccountVm.Name,
                 currentBalance: SelectedAccountVm.CurrentBalance,
-                note: SelectedAccountVm.Note,
+                note: SelectedAccountVm.Note ?? string.Empty,
                 isExcluded: SelectedAccountVm.IsExcluded));
     }
 }
