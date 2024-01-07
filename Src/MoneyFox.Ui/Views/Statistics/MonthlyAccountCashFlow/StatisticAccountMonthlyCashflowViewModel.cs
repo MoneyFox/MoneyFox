@@ -1,8 +1,6 @@
 namespace MoneyFox.Ui.Views.Statistics.MonthlyAccountCashFlow;
 
 using System.Collections.ObjectModel;
-using Accounts.AccountModification;
-using AutoMapper;
 using CommunityToolkit.Maui.Core;
 using Core.Queries;
 using Core.Queries.Statistics;
@@ -16,24 +14,23 @@ using SkiaSharp;
 
 internal sealed class StatisticAccountMonthlyCashFlowViewModel : StatisticViewModel
 {
-    private readonly IMapper mapper;
-    private AccountViewModel selectedAccount = null!;
+    private static CashFlowAccountViewModel allAccountsPlaceHolder = new(AccountId: -1, Name: Translations.AllAccounts);
+    private CashFlowAccountViewModel selectedAccount;
 
-    public StatisticAccountMonthlyCashFlowViewModel(IMediator mediator, IMapper mapper, IPopupService popupService) : base(
+    public StatisticAccountMonthlyCashFlowViewModel(IMediator mediator, IPopupService popupService) : base(
         mediator: mediator,
         popupService: popupService)
     {
-        this.mapper = mapper;
         StartDate = DateTime.Now.AddYears(-1);
     }
 
-    public ObservableCollection<ISeries> Series { get; } = new();
+    public ObservableCollection<ISeries> Series { get; } = [];
 
-    public List<ICartesianAxis> XAxis { get; } = new() { new Axis() };
+    public List<ICartesianAxis> XAxis { get; } = [new Axis()];
 
-    public ObservableCollection<AccountViewModel> Accounts { get; } = new();
+    public ObservableCollection<CashFlowAccountViewModel> Accounts { get; } = new();
 
-    public AccountViewModel SelectedAccount
+    public CashFlowAccountViewModel? SelectedAccount
     {
         get => selectedAccount;
 
@@ -52,18 +49,21 @@ internal sealed class StatisticAccountMonthlyCashFlowViewModel : StatisticViewMo
 
     public override async Task OnNavigatedAsync(object? parameter)
     {
-        Accounts.Clear();
-        var accounts = mapper.Map<List<AccountViewModel>>(await Mediator.Send(new GetAccountsQuery()));
-        Accounts.Add(new() { Name = Translations.AllAccounts });
-        accounts.ForEach(Accounts.Add);
-        SelectedAccount = Accounts.First();
-        await LoadAsync();
+        var accountsData = await Mediator.Send(new GetAccountsQuery());
+        Accounts.Add(allAccountsPlaceHolder);
+        accountsData.Select(a => new CashFlowAccountViewModel(AccountId: a.Id, Name: a.Name)).ToList().ForEach(Accounts.Add);
+        SelectedAccount = allAccountsPlaceHolder;
     }
 
     protected override async Task LoadAsync()
     {
+        if (SelectedAccount is null)
+        {
+            return;
+        }
+
         SetXAxis();
-        var statisticItems = await Mediator.Send(new GetAccountProgression.Query(accountId: SelectedAccount.Id, startDate: StartDate, endDate: EndDate));
+        var statisticItems = await Mediator.Send(new GetAccountProgression.Query(accountId: SelectedAccount.AccountId, startDate: StartDate, endDate: EndDate));
         var columnSeries = new ColumnSeries<decimal>
         {
             Name = string.Empty,
@@ -98,4 +98,6 @@ internal sealed class StatisticAccountMonthlyCashFlowViewModel : StatisticViewMo
                 TicksAtCenter = true
             });
     }
+
+    public record CashFlowAccountViewModel(int AccountId, string Name);
 }
