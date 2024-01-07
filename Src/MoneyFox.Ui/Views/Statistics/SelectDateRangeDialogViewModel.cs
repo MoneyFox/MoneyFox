@@ -24,9 +24,6 @@ public sealed class SelectDateRangeDialogViewModel : ObservableRecipient
         EndDate = DateTime.Today.GetLastDayOfMonth();
     }
 
-    /// <summary>
-    ///     Start Date for the custom date range
-    /// </summary>
     public DateTime StartDate
     {
         get => startDate;
@@ -39,9 +36,6 @@ public sealed class SelectDateRangeDialogViewModel : ObservableRecipient
         }
     }
 
-    /// <summary>
-    ///     End Date for the custom date range
-    /// </summary>
     public DateTime EndDate
     {
         get => endDate;
@@ -57,12 +51,6 @@ public sealed class SelectDateRangeDialogViewModel : ObservableRecipient
     public bool IsDateRangeValid => StartDate <= EndDate;
 
     public RelayCommand DoneCommand => new(Done);
-
-    public void Initialize(DateSelectedMessage message)
-    {
-        StartDate = message.StartDate;
-        EndDate = message.EndDate;
-    }
 
     private void Done()
     {

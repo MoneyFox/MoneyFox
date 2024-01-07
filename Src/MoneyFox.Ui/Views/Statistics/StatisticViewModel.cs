@@ -60,7 +60,14 @@ internal abstract class StatisticViewModel : NavigableViewModel
 
     public SolidColorPaint LegendBackgroundPaint { get; } = new();
 
-    public AsyncRelayCommand ShowFilterCommand => new(() => popupService.ShowPopupAsync<SelectDateRangeDialogViewModel>());
+    public AsyncRelayCommand ShowFilterCommand
+        => new(
+            () => popupService.ShowPopupAsync<SelectDateRangeDialogViewModel>(
+                vm =>
+                {
+                    vm.StartDate = StartDate;
+                    vm.EndDate = EndDate;
+                }));
 
     public DateTime StartDate
     {
