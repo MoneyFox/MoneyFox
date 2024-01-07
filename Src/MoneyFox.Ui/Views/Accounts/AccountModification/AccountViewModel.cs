@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui.Views.Accounts.AccountModification;
 
-using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Domain.Aggregates.AccountAggregate;
 
@@ -74,11 +73,6 @@ public sealed class AccountViewModel : ObservableObject, IEquatable<AccountViewM
     public bool Equals(AccountViewModel? other)
     {
         return other != null && Id.Equals(other.Id);
-    }
-
-    public void CreateMappings(Profile configuration)
-    {
-        configuration.CreateMap<Account, AccountViewModel>();
     }
 
     public override int GetHashCode()

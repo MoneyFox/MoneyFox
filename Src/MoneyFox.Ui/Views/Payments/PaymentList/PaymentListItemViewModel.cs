@@ -1,11 +1,8 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentList;
 
 using Accounts.AccountModification;
-using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Controls.CategorySelection;
 using Domain.Aggregates.AccountAggregate;
-using Domain.Aggregates.CategoryAggregate;
 
 public class PaymentListItemViewModel : ObservableObject
 {
