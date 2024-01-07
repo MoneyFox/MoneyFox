@@ -14,7 +14,7 @@
     Title="{Binding SelectedAccount.Name}">
 
     <ContentPage.Resources>
-        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:MoneyConverter x:Key="MoneyConverter" />
         <paymentList:PaymentAmountConverter x:Key="PaymentAmountConverter" />
         <paymentList:DateGroupCardOpacityConverter x:Key="DateGroupCardOpacityConverter" />
     </ContentPage.Resources>
@@ -65,7 +65,7 @@
                 <ContentView>
                     <VerticalStackLayout Margin="18,0,18,12">
                         <Label Style="{StaticResource TextBodySecondary}"
-                               Text="{Binding SelectedAccount.CurrentBalance, StringFormat={extensions:Translate CurrentBalanceTemplate}, Converter={StaticResource AmountFormatConverter}}" />
+                               Text="{Binding SelectedAccount.CurrentBalance, StringFormat={extensions:Translate CurrentBalanceTemplate}, Converter={StaticResource MoneyConverter}}" />
                     </VerticalStackLayout>
                 </ContentView>
             </CollectionView.Header>

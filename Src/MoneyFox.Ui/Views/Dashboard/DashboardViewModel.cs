@@ -17,7 +17,6 @@ using Payments.PaymentModification;
 public class DashboardViewModel(IMediator mediator, IMapper mapper, INavigationService navigationService) : NavigableViewModel,
     IRecipient<BackupRestoredMessage>
 {
-    private ObservableCollection<DashboardAccountViewModel> accounts = new();
     private decimal assets;
     private decimal endOfMonthBalance;
     private decimal monthlyExpenses;
@@ -53,7 +52,7 @@ public class DashboardViewModel(IMediator mediator, IMapper mapper, INavigationS
 
     public AsyncRelayCommand GoToAccountsCommand => new(() => navigationService.GoTo<AccountListViewModel>());
 
-    public AsyncRelayCommand<AccountViewModel> GoToTransactionListCommand
+    public AsyncRelayCommand<DashboardAccountViewModel> GoToTransactionListCommand
         => new(accountViewModel => navigationService.GoTo<PaymentListViewModel>(accountViewModel!.Id));
 
     public void Receive(BackupRestoredMessage message)

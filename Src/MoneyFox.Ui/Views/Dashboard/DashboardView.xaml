@@ -7,7 +7,6 @@
              xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
              xmlns:views="clr-namespace:MoneyFox.Ui.Views"
              xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
-             xmlns:accountModification="clr-namespace:MoneyFox.Ui.Views.Accounts.AccountModification"
              xmlns:dashboard="clr-namespace:MoneyFox.Ui.Views.Dashboard"
              x:Name="This"
              x:DataType="dashboard:DashboardViewModel"
@@ -16,6 +15,7 @@
     <ContentView.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
         <accountList:BalanceColorConverter x:Key="BalanceColorConverter" />
+        <converter:MoneyConverter x:Key="MoneyConverter" />
     </ContentView.Resources>
 
     <ScrollView>
@@ -96,7 +96,7 @@
                     EmptyView="{x:Static resources:Translations.NoAccountsMessage}">
 
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="accountModification:AccountViewModel">
+                        <DataTemplate x:DataType="dashboard:DashboardAccountViewModel">
                             <Grid Padding="0,12,7,12" Margin="3" WidthRequest="180">
                                 <controls:Card HeightRequest="80">
 
@@ -119,7 +119,7 @@
                                             HorizontalOptions="Center"
                                             VerticalOptions="Center"
                                             Style="{Binding CurrentBalance, Converter={StaticResource BalanceColorConverter}}"
-                                            Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}" />
+                                            Text="{Binding CurrentBalance, Converter={StaticResource MoneyConverter}}" />
 
                                         <StackLayout Orientation="Horizontal"
                                                      VerticalOptions="End"
@@ -137,7 +137,7 @@
                                                 FontSize="10"
                                                 VerticalOptions="End"
                                                 Style="{Binding EndOfMonthBalance, Converter={StaticResource BalanceColorConverter}}"
-                                                Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}" />
+                                                Text="{Binding EndOfMonthBalance, Converter={StaticResource MoneyConverter}}" />
                                         </StackLayout>
                                     </Grid>
                                 </controls:Card>
