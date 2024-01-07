@@ -5,8 +5,10 @@ using AutoMapper;
 using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Controls.CategorySelection;
 using Core.Queries;
 using MediatR;
+using Microsoft.Identity.Client;
 using Payments.PaymentModification;
 using Resources.Strings;
 
@@ -56,14 +58,23 @@ internal sealed class PaymentForCategoryListViewModel(IMediator mediator, IMappe
             Title = Translations.NoCategoryTitle;
         }
 
-        var paymentVms = mapper.Map<List<PaymentListItemViewModel>>(
-            mediator.Send(
-                    new GetPaymentsForCategorySummary.Query(
-                        CategoryId: paymentsForCategoryParameter.CategoryId,
-                        DateRangeFrom: paymentsForCategoryParameter.StartDate,
-                        DateRangeTo: paymentsForCategoryParameter.EndDate))
-                .GetAwaiter()
-                .GetResult());
+        var payments = await mediator.Send(new GetPaymentsForCategorySummary.Query(
+            CategoryId: paymentsForCategoryParameter.CategoryId,
+            DateRangeFrom: paymentsForCategoryParameter.StartDate,
+            DateRangeTo: paymentsForCategoryParameter.EndDate));
+
+        var paymentVms = payments.Select(p => new PaymentListItemViewModel
+        {
+            Id = p.Id,
+            Amount = p.Amount,
+            ChargedAccountId = p.ChargedAccountId,
+            Date = p.Date.ToDateTime(TimeOnly.MinValue),
+            CategoryName = p.CategoryName,
+            IsCleared = p.IsCleared,
+            IsRecurring = p.IsRecurring,
+            Note = p.Note ?? string.Empty,
+            Type = p.Type
+        });
 
         var dailyGroupedPayments = paymentVms.GroupBy(p => p.Date.Date)
             .OrderByDescending(p => p.Key)

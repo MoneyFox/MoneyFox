@@ -1,5 +1,6 @@
 namespace MoneyFox.Ui.Tests.Views.Statistics.CategorySummary;
 
+using System.Collections.Immutable;
 using AutoMapper;
 using Common.Navigation;
 using Core.Queries;
@@ -31,7 +32,7 @@ public sealed class PaymentForCategoryListViewModelTests
         var mapper = Substitute.For<IMapper>();
         var navigationService = Substitute.For<INavigationService>();
         var vm = new PaymentForCategoryListViewModel(mediator: mediator, mapper: mapper, navigationService: navigationService);
-        mediator.Send(Arg.Any<GetPaymentsForCategorySummary.Query>()).Returns(new List<Payment>());
+        mediator.Send(Arg.Any<GetPaymentsForCategorySummary.Query>()).Returns(ImmutableList<GetPaymentsForCategorySummary.PaymentData>.Empty);
         mapper.Map<List<PaymentListItemViewModel>>(Arg.Any<List<Payment>>())
             .Returns(
                 new List<PaymentListItemViewModel>
