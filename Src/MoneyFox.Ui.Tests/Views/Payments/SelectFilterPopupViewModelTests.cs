@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui.Tests.Views.Payments;
 
-using CommunityToolkit.Mvvm.Messaging;
 using Ui.Views.Payments.PaymentList;
 
 public sealed class SelectFilterPopupViewModelTests

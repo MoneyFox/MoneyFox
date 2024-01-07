@@ -23,7 +23,8 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
     public StatisticCategoryProgressionViewModel(
         IMediator mediator,
         CategorySelectionViewModel categorySelectionViewModel,
-        INavigationService navigationService, IPopupService popupService) : base(mediator, popupService)
+        INavigationService navigationService,
+        IPopupService popupService) : base(mediator: mediator, popupService: popupService)
     {
         CategorySelectionViewModel = categorySelectionViewModel;
         this.navigationService = navigationService;

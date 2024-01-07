@@ -13,7 +13,7 @@ internal sealed class StatisticCategorySpreadingViewModel : StatisticViewModel
 {
     private PaymentType selectedPaymentType;
 
-    public StatisticCategorySpreadingViewModel(IMediator mediator, IPopupService popupService) : base(mediator, popupService) { }
+    public StatisticCategorySpreadingViewModel(IMediator mediator, IPopupService popupService) : base(mediator: mediator, popupService: popupService) { }
 
     public List<PaymentType> PaymentTypes => new() { PaymentType.Expense, PaymentType.Income };
 

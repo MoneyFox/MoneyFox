@@ -28,6 +28,7 @@ internal sealed class BackupViewModel(
 
     private ImageSource? profilePicture;
     private UserAccountViewModel userAccount = new();
+
     public UserAccountViewModel UserAccount
     {
         get => userAccount;
@@ -61,7 +62,7 @@ internal sealed class BackupViewModel(
     }
 
     public bool IsLoggedIn => settingsFacade.IsLoggedInToBackupService;
-    
+
     public bool BackupAvailable
     {
         get => backupAvailable;

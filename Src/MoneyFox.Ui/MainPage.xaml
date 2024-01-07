@@ -42,7 +42,7 @@
             <tabs:LazyView x:TypeArguments="dashboard:DashboardView"
                            AccentColor="{StaticResource Primary}"
                            Animate="True"
-                           
+
                            BindingContext="{Binding DashboardViewModel}"
                            UseActivityIndicator="True" />
 
@@ -63,7 +63,7 @@
         <tabs:TabHostView Grid.Row="1"
                           BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundTabColorDark}, Light={StaticResource BackgroundTabColorLight}}"
                           SelectedIndex="{Binding Source={x:Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}">
-            
+
             <tabs:TabHostView.Tabs>
                 <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
                                     Label="{x:Static resources:Translations.DashboardTitle}">

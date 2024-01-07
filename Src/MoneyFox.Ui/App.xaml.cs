@@ -1,7 +1,6 @@
 namespace MoneyFox.Ui;
 
 using Aptabase.Maui;
-using Common.Exceptions;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
 using Core.Common.Settings;

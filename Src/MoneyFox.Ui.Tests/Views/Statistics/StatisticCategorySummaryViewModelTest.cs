@@ -17,7 +17,12 @@ public class StatisticCategorySummaryViewModelTest
         var dialogService = Substitute.For<IDialogService>();
         var popupService = Substitute.For<IPopupService>();
         var navigationService = Substitute.For<INavigationService>();
-        var vm = new StatisticCategorySummaryViewModel(mediator: mediator, dialogService: dialogService, navigationService: navigationService, popupService);
+        var vm = new StatisticCategorySummaryViewModel(
+            mediator: mediator,
+            dialogService: dialogService,
+            navigationService: navigationService,
+            popupService: popupService);
+
         var categorySummaries = new List<CategoryOverviewItem>
         {
             new() { Value = -200 },
@@ -46,7 +51,12 @@ public class StatisticCategorySummaryViewModelTest
         var dialogService = Substitute.For<IDialogService>();
         var popupService = Substitute.For<IPopupService>();
         var navigationService = Substitute.For<INavigationService>();
-        var vm = new StatisticCategorySummaryViewModel(mediator: mediator, dialogService: dialogService, navigationService: navigationService, popupService);
+        var vm = new StatisticCategorySummaryViewModel(
+            mediator: mediator,
+            dialogService: dialogService,
+            navigationService: navigationService,
+            popupService: popupService);
+
         var categorySummaries = new List<CategoryOverviewItem>();
         var categorySummaryModel = new CategorySummaryModel(totalEarned: default, totalSpent: default, categoryOverviewItems: categorySummaries);
         mediator.Send(request: Arg.Any<GetCategorySummary.Query>(), cancellationToken: Arg.Any<CancellationToken>())

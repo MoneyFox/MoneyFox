@@ -10,12 +10,12 @@ public partial class DateSelectionPopup
 
     private SelectDateRangeDialogViewModel ViewModel => (SelectDateRangeDialogViewModel)BindingContext;
 
-     private void Button_OnClicked(object sender, EventArgs e)
-     {
-         if (ViewModel.IsDateRangeValid)
-         {
-             ViewModel.DoneCommand.Execute(null);
-             Close();
-         }
-     }
+    private void Button_OnClicked(object sender, EventArgs e)
+    {
+        if (ViewModel.IsDateRangeValid)
+        {
+            ViewModel.DoneCommand.Execute(null);
+            Close();
+        }
+    }
 }

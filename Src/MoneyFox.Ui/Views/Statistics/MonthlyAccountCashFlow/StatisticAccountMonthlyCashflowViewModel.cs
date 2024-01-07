@@ -19,7 +19,9 @@ internal sealed class StatisticAccountMonthlyCashFlowViewModel : StatisticViewMo
     private readonly IMapper mapper;
     private AccountViewModel selectedAccount = null!;
 
-    public StatisticAccountMonthlyCashFlowViewModel(IMediator mediator, IMapper mapper, IPopupService popupService) : base(mediator, popupService)
+    public StatisticAccountMonthlyCashFlowViewModel(IMediator mediator, IMapper mapper, IPopupService popupService) : base(
+        mediator: mediator,
+        popupService: popupService)
     {
         this.mapper = mapper;
         StartDate = DateTime.Now.AddYears(-1);

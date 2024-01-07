@@ -54,7 +54,7 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="accountList:AccountListItemViewModel">
                         <Grid Padding="18,0,18,12">
-                            <controls:Card HeightRequest="90" >
+                            <controls:Card HeightRequest="90">
 
                                 <controls:Card.GestureRecognizers>
                                     <TapGestureRecognizer
@@ -89,7 +89,8 @@
                                         </SwipeItems>
                                     </SwipeView.RightItems>
 
-                                    <Grid BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                    <Grid
+                                        BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                       Light={StaticResource CardBackgroundLight}}">
 
                                         <Label

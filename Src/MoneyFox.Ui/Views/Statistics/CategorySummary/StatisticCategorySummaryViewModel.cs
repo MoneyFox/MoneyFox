@@ -16,7 +16,8 @@ internal class StatisticCategorySummaryViewModel : StatisticViewModel
 
     private ObservableCollection<CategoryOverviewViewModel> categorySummary = new();
 
-    public StatisticCategorySummaryViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService, IPopupService popupService) : base(mediator, popupService)
+    public StatisticCategorySummaryViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService, IPopupService popupService)
+        : base(mediator: mediator, popupService: popupService)
     {
         this.dialogService = dialogService;
         this.navigationService = navigationService;

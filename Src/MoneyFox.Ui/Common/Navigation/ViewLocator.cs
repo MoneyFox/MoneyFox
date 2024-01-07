@@ -12,7 +12,6 @@ using Views.Budget.BudgetModification;
 using Views.Categories;
 using Views.Categories.CategorySelection;
 using Views.Categories.ModifyCategory;
-using Views.Dashboard;
 using Views.Payments.PaymentList;
 using Views.Payments.PaymentModification;
 using Views.Settings;
@@ -29,13 +28,13 @@ internal class ViewLocator(IServiceProvider serviceProvider) : IViewLocator
 {
     private static readonly List<(Type ViewModelType, Type ViewType)> viewLocatorDictionary =
     [
-        (typeof(AccountListViewModel), typeof(AccountListPage)),
-        (typeof(AddAccountViewModel), typeof(AddAccountPage)), (typeof(EditAccountViewModel), typeof(EditAccountPage)),
-        (typeof(BudgetListViewModel), typeof(BudgetListPage)), (typeof(PaymentListViewModel), typeof(PaymentListPage)),
-        (typeof(AddPaymentViewModel), typeof(AddPaymentPage)), (typeof(EditPaymentViewModel), typeof(EditPaymentPage)),
-        (typeof(CategoryListViewModel), typeof(CategoryListPage)), (typeof(SelectCategoryViewModel), typeof(SelectCategoryPage)),
-        (typeof(AddCategoryViewModel), typeof(AddCategoryPage)), (typeof(EditCategoryViewModel), typeof(EditCategoryPage)),
-        (typeof(BackupViewModel), typeof(BackupPage)), (typeof(SettingsViewModel), typeof(SettingsPage)), (typeof(AboutViewModel), typeof(AboutPage)),
+        (typeof(AccountListViewModel), typeof(AccountListPage)), (typeof(AddAccountViewModel), typeof(AddAccountPage)),
+        (typeof(EditAccountViewModel), typeof(EditAccountPage)), (typeof(BudgetListViewModel), typeof(BudgetListPage)),
+        (typeof(PaymentListViewModel), typeof(PaymentListPage)), (typeof(AddPaymentViewModel), typeof(AddPaymentPage)),
+        (typeof(EditPaymentViewModel), typeof(EditPaymentPage)), (typeof(CategoryListViewModel), typeof(CategoryListPage)),
+        (typeof(SelectCategoryViewModel), typeof(SelectCategoryPage)), (typeof(AddCategoryViewModel), typeof(AddCategoryPage)),
+        (typeof(EditCategoryViewModel), typeof(EditCategoryPage)), (typeof(BackupViewModel), typeof(BackupPage)),
+        (typeof(SettingsViewModel), typeof(SettingsPage)), (typeof(AboutViewModel), typeof(AboutPage)),
         (typeof(StatisticCashFlowViewModel), typeof(StatisticCashFlowPage)),
         (typeof(StatisticCategorySpreadingViewModel), typeof(StatisticCategorySpreadingPage)),
         (typeof(StatisticCategorySummaryViewModel), typeof(StatisticCategorySummaryPage)),
@@ -51,13 +50,13 @@ internal class ViewLocator(IServiceProvider serviceProvider) : IViewLocator
 
     private static readonly List<(Type ViewModelType, Type ViewType)> desktopViewLocatorDictionary =
     [
-        (typeof(AccountListViewModel), typeof(DesktopAccountListPage)),
-        (typeof(AddAccountViewModel), typeof(AddAccountPage)), (typeof(EditAccountViewModel), typeof(EditAccountPage)),
-        (typeof(BudgetListViewModel), typeof(BudgetListPage)), (typeof(PaymentListViewModel), typeof(PaymentListPage)),
-        (typeof(AddPaymentViewModel), typeof(AddPaymentPage)), (typeof(EditPaymentViewModel), typeof(EditPaymentPage)),
-        (typeof(CategoryListViewModel), typeof(CategoryListPage)), (typeof(SelectCategoryViewModel), typeof(SelectCategoryPage)),
-        (typeof(AddCategoryViewModel), typeof(AddCategoryPage)), (typeof(EditCategoryViewModel), typeof(EditCategoryPage)),
-        (typeof(BackupViewModel), typeof(BackupPage)), (typeof(SettingsViewModel), typeof(SettingsPage)), (typeof(AboutViewModel), typeof(AboutPage)),
+        (typeof(AccountListViewModel), typeof(DesktopAccountListPage)), (typeof(AddAccountViewModel), typeof(AddAccountPage)),
+        (typeof(EditAccountViewModel), typeof(EditAccountPage)), (typeof(BudgetListViewModel), typeof(BudgetListPage)),
+        (typeof(PaymentListViewModel), typeof(PaymentListPage)), (typeof(AddPaymentViewModel), typeof(AddPaymentPage)),
+        (typeof(EditPaymentViewModel), typeof(EditPaymentPage)), (typeof(CategoryListViewModel), typeof(CategoryListPage)),
+        (typeof(SelectCategoryViewModel), typeof(SelectCategoryPage)), (typeof(AddCategoryViewModel), typeof(AddCategoryPage)),
+        (typeof(EditCategoryViewModel), typeof(EditCategoryPage)), (typeof(BackupViewModel), typeof(BackupPage)),
+        (typeof(SettingsViewModel), typeof(SettingsPage)), (typeof(AboutViewModel), typeof(AboutPage)),
         (typeof(StatisticCashFlowViewModel), typeof(StatisticCashFlowPage)),
         (typeof(StatisticCategorySpreadingViewModel), typeof(StatisticCategorySpreadingPage)),
         (typeof(StatisticCategorySummaryViewModel), typeof(StatisticCategorySummaryPage)),

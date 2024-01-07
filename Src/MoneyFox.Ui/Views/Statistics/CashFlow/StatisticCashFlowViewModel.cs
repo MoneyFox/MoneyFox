@@ -9,7 +9,9 @@ using LiveChartsCore.SkiaSharpView;
 using MediatR;
 using Resources.Strings;
 
-internal sealed class StatisticCashFlowViewModel(IMediator mediator, IPopupService popupService) : StatisticViewModel(mediator, popupService)
+internal sealed class StatisticCashFlowViewModel(IMediator mediator, IPopupService popupService) : StatisticViewModel(
+    mediator: mediator,
+    popupService: popupService)
 {
     public ObservableCollection<ISeries> Series { get; } = new();
 

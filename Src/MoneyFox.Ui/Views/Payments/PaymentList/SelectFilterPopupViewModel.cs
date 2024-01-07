@@ -124,7 +124,7 @@ public sealed class SelectFilterPopupViewModel : ObservableRecipient
         {
             return;
         }
-        
+
         IsClearedFilterActive = message.IsClearedFilterActive;
         IsRecurringFilterActive = message.IsRecurringFilterActive;
         TimeRangeStart = message.TimeRangeStart;

@@ -18,9 +18,9 @@ internal sealed class PaymentListViewModel : NavigableViewModel
     private readonly IMediator mediator;
     private readonly INavigationService navigationService;
     private readonly IPopupService popupService;
+    private PaymentListFilterChangedMessage? filterChangedMessage;
     private ReadOnlyObservableCollection<PaymentDayGroup> paymentDayGroups = null!;
     private AccountViewModel selectedAccount = new();
-    private PaymentListFilterChangedMessage? filterChangedMessage;
 
     public PaymentListViewModel(IMediator mediator, IMapper mapper, INavigationService navigationService, IPopupService popupService)
     {
@@ -54,10 +54,8 @@ internal sealed class PaymentListViewModel : NavigableViewModel
         private set => SetProperty(field: ref paymentDayGroups, newValue: value);
     }
 
-    public AsyncRelayCommand ShowFilterCommand => new(() => popupService.ShowPopupAsync<SelectFilterPopupViewModel>(vm =>
-    {
-        vm.Initialize(filterChangedMessage);
-    }));
+    public AsyncRelayCommand ShowFilterCommand
+        => new(() => popupService.ShowPopupAsync<SelectFilterPopupViewModel>(vm => { vm.Initialize(filterChangedMessage); }));
 
     public AsyncRelayCommand GoToAddPaymentCommand => new(() => navigationService.GoTo<AddPaymentViewModel>(SelectedAccount.Id));
 
