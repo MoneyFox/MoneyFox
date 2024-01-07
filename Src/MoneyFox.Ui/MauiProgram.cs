@@ -71,14 +71,6 @@ public static class MauiProgram
         new MoneyFoxConfig().Register(builder.Services);
     }
 
-    private static MauiAppBuilder AddCustomAppShellHandler(this MauiAppBuilder builder)
-    {
-#if IOS
-        builder.ConfigureMauiHandlers(handlers => { handlers.AddHandler(viewType: typeof(Shell), handlerType: typeof(Platforms.iOS.Renderer.CustomShellRenderer)); });
-#endif
-        return builder;
-    }
-
 #if WINDOWS
     private static void MapHorizontalOptions(IViewHandler handler, IView view)
     {
