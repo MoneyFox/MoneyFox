@@ -8,6 +8,7 @@ using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Queries;
+using Domain;
 using MediatR;
 using Messages;
 using Payments.PaymentList;
@@ -16,7 +17,7 @@ using Payments.PaymentModification;
 public class DashboardViewModel(IMediator mediator, IMapper mapper, INavigationService navigationService) : NavigableViewModel,
     IRecipient<BackupRestoredMessage>
 {
-    private ObservableCollection<AccountViewModel> accounts = new();
+    private ObservableCollection<DashboardAccountViewModel> accounts = new();
     private decimal assets;
     private decimal endOfMonthBalance;
     private decimal monthlyExpenses;
@@ -46,11 +47,7 @@ public class DashboardViewModel(IMediator mediator, IMapper mapper, INavigationS
         set => SetProperty(field: ref monthlyExpenses, newValue: value);
     }
 
-    public ObservableCollection<AccountViewModel> Accounts
-    {
-        get => accounts;
-        set => SetProperty(field: ref accounts, newValue: value);
-    }
+    public ObservableCollection<DashboardAccountViewModel> Accounts { get; private set; } = new();
 
     public AsyncRelayCommand GoToAddPaymentCommand => new(() => navigationService.GoTo<AddPaymentViewModel>());
 
@@ -71,11 +68,18 @@ public class DashboardViewModel(IMediator mediator, IMapper mapper, INavigationS
 
     private async Task LoadData()
     {
-        var accountVms = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery())).OrderBy(avm => avm.IsExcluded).ThenBy(avm => avm.Name);
-        Accounts = new(accountVms);
-        foreach (var account in Accounts)
+        var accountData = await mediator.Send(new GetAccountsQuery());
+        var orderedAccounts = accountData.OrderBy(avm => avm.IsExcluded).ThenBy(avm => avm.Name);
+        foreach (var account in orderedAccounts)
         {
-            account.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(account.Id));
+            var endOfMonth = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(account.Id));
+            Accounts.Add(
+                new(
+                    Id: account.Id,
+                    Name: account.Name,
+                    CurrentBalance: account.CurrentBalance,
+                    EndOfMonthBalance: new(amount: endOfMonth, currency: account.CurrentBalance.Currency),
+                    IsExcluded: account.IsExcluded));
         }
 
         Assets = await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
@@ -84,3 +88,10 @@ public class DashboardViewModel(IMediator mediator, IMapper mapper, INavigationS
         MonthlyIncomes = await mediator.Send(new GetMonthlyIncomeQuery());
     }
 }
+
+public record DashboardAccountViewModel(
+    int Id,
+    string Name,
+    Money CurrentBalance,
+    Money EndOfMonthBalance,
+    bool IsExcluded);
