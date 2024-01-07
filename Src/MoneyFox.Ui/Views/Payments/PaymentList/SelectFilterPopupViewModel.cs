@@ -34,9 +34,6 @@ public sealed class SelectFilterPopupViewModel : ObservableRecipient
                     FilteredPaymentType = FilteredPaymentType
                 }));
 
-    /// <summary>
-    ///     Indicates whether the filter for only cleared Payments is active or not.
-    /// </summary>
     public bool IsClearedFilterActive
     {
         get => isClearedFilterActive;
@@ -53,9 +50,6 @@ public sealed class SelectFilterPopupViewModel : ObservableRecipient
         }
     }
 
-    /// <summary>
-    ///     Indicates whether the filter to only display recurring Payments is active or not.
-    /// </summary>
     public bool IsRecurringFilterActive
     {
         get => isRecurringFilterActive;
@@ -72,9 +66,6 @@ public sealed class SelectFilterPopupViewModel : ObservableRecipient
         }
     }
 
-    /// <summary>
-    ///     Indicates whether the filter to only display a specific payment type is active or not.
-    /// </summary>
     public PaymentTypeFilter FilteredPaymentType
     {
         get => filteredPaymentType;
@@ -91,9 +82,6 @@ public sealed class SelectFilterPopupViewModel : ObservableRecipient
         }
     }
 
-    /// <summary>
-    ///     Start of the time range to load payments.
-    /// </summary>
     public DateTime TimeRangeStart
     {
         get => timeRangeStart;
@@ -111,9 +99,6 @@ public sealed class SelectFilterPopupViewModel : ObservableRecipient
         }
     }
 
-    /// <summary>
-    ///     End of the time range to load payments.
-    /// </summary>
     public DateTime TimeRangeEnd
     {
         get => timeRangeEnd;
@@ -133,11 +118,13 @@ public sealed class SelectFilterPopupViewModel : ObservableRecipient
 
     public bool IsDateRangeValid => TimeRangeStart <= TimeRangeEnd;
 
-    /// <summary>
-    ///     Initialize the viewmodel with a previous sent message.
-    /// </summary>
-    public void Initialize(PaymentListFilterChangedMessage message)
+    public void Initialize(PaymentListFilterChangedMessage? message)
     {
+        if (message == null)
+        {
+            return;
+        }
+        
         IsClearedFilterActive = message.IsClearedFilterActive;
         IsRecurringFilterActive = message.IsRecurringFilterActive;
         TimeRangeStart = message.TimeRangeStart;
