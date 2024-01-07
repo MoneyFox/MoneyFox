@@ -23,7 +23,6 @@ public partial class App
     private bool isRunning;
 
     public App(
-        IServiceProvider serviceProvider,
         IAppDbContext appDbContext,
         IMediator mediator,
         ISettingsFacade settingsFacade,
@@ -36,7 +35,6 @@ public partial class App
         this.settingsFacade = settingsFacade;
         this.backupService = backupService;
         this.aptabaseClient = aptabaseClient;
-        ServiceProvider = serviceProvider;
         InitializeComponent();
         FillResourceDictionary();
         appDbContext.MigrateDb();
@@ -46,8 +44,6 @@ public partial class App
 
     public static Dictionary<string, ResourceDictionary> ResourceDictionary { get; } = new();
 
-    private static IServiceProvider ServiceProvider { get; set; }
-
     private void FillResourceDictionary()
     {
         foreach (var dictionary in Resources.MergedDictionaries)
@@ -55,11 +51,6 @@ public partial class App
             var key = dictionary.Source.OriginalString.Split(';').First().Split('/').Last().Split('.').First();
             ResourceDictionary.Add(key: key, value: dictionary);
         }
-    }
-
-    internal static TViewModel GetViewModel<TViewModel>()
-    {
-        return ServiceProvider.GetService<TViewModel>() ?? throw new ResolveViewModelException<TViewModel>();
     }
 
     protected override void OnStart()
