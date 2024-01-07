@@ -58,13 +58,12 @@
         </Grid>
 
         <CollectionView Grid.Row="1"
-                        x:Name="PaymentCollectionView"
                         ItemsSource="{Binding PaymentDayGroups}"
                         IsGrouped="True">
 
             <CollectionView.Header>
                 <ContentView>
-                    <VerticalStackLayout Margin="18,0,18,12">
+                    <VerticalStackLayout Margin="18,0,18,22">
                         <Label Style="{StaticResource TextBodySecondary}"
                                Text="{Binding SelectedAccount.CurrentBalance, StringFormat={extensions:Translate CurrentBalanceTemplate}, Converter={StaticResource MoneyConverter}}" />
                     </VerticalStackLayout>
