@@ -9,7 +9,7 @@ using Resources.Strings;
 
 public abstract class ModifyAccountViewModel(IDialogService dialogService, IMediator mediator, INavigationService navigationService) : NavigableViewModel
 {
-    private AccountViewModelNew selectedAccountVm = new();
+    private AccountViewModel selectedAccountVm = new();
 
     public virtual bool IsEdit => false;
 
@@ -17,7 +17,7 @@ public abstract class ModifyAccountViewModel(IDialogService dialogService, IMedi
 
     protected IMediator Mediator { get; } = mediator;
 
-    public AccountViewModelNew SelectedAccountVm
+    public AccountViewModel SelectedAccountVm
     {
         get => selectedAccountVm;
         protected set => SetProperty(field: ref selectedAccountVm, newValue: value);
