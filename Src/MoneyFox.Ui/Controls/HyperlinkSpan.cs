@@ -13,7 +13,7 @@ public class HyperlinkSpan : Span
         GestureRecognizers.Add(
             new TapGestureRecognizer
             {
-                // Launcher.OpenAsync is provided by Essentials.
+                // ReSharper disable once AsyncVoidLambda
                 Command = new Command(async () => await Launcher.OpenAsync(Url))
             });
     }

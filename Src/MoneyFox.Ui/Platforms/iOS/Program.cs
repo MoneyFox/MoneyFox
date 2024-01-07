@@ -3,7 +3,9 @@ namespace MoneyFox.Ui;
 
 using UIKit;
 
+#pragma warning disable S1118
 public class Program
+#pragma warning restore S1118
 {
     // This is the main entry point of the application.
     private static void Main(string[] args)
