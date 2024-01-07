@@ -36,7 +36,7 @@ public class EditAccountViewModel : ModifyAccountViewModel
     public override async Task OnNavigatedAsync(object? parameter)
     {
         var accountId = Convert.ToInt32(parameter);
-        SelectedAccountVm = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
+        var accountData = await mediator.Send(new GetAccountById.Query(accountId));
     }
 
     protected override Task SaveAccountAsync()

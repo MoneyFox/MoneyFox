@@ -1,10 +1,21 @@
 namespace MoneyFox.Core.Tests.Queries.Accounts.GetAccountById;
 
+using Core.Common.Settings;
 using Core.Queries;
+using Domain;
 using Domain.Aggregates.AccountAggregate;
 
 public class GetAccountByIdQueryTests : InMemoryTestBase
 {
+    private readonly GetAccountById.Handler handler;
+
+    public GetAccountByIdQueryTests()
+    {
+        var settingsFacade = Substitute.For<ISettingsFacade>();
+        settingsFacade.DefaultCurrency.Returns(Currencies.USD.AlphaIsoCode);
+        handler = new(dbContext: Context, settingsFacade: settingsFacade);
+    }
+
     [Fact]
     public async Task GetAccountByIdQuery_CorrectNumberLoaded()
     {
@@ -16,7 +27,7 @@ public class GetAccountByIdQueryTests : InMemoryTestBase
         await Context.SaveChangesAsync();
 
         // Act
-        var result = await new GetAccountByIdQuery.Handler(Context).Handle(request: new(account1.Id), cancellationToken: default);
+        var result = await handler.Handle(query: new(account1.Id), cancellationToken: default);
 
         // Assert
         result.Name.Should().Be(account1.Name);
@@ -26,7 +37,7 @@ public class GetAccountByIdQueryTests : InMemoryTestBase
     public async Task ThrowException_WhenAccountNotFound()
     {
         // Act
-        var act = () => new GetAccountByIdQuery.Handler(Context).Handle(request: new(1), cancellationToken: default);
+        var act = () => handler.Handle(query: new(1), cancellationToken: default);
 
         // Assert
         await act.Should().ThrowAsync<InvalidOperationException>();

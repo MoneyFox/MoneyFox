@@ -2,7 +2,6 @@ namespace MoneyFox.Ui.Views.Payments.PaymentList;
 
 using System.Collections.ObjectModel;
 using Accounts.AccountModification;
-using AutoMapper;
 using Common.Navigation;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.Input;
@@ -14,18 +13,16 @@ using PaymentModification;
 
 internal sealed class PaymentListViewModel : NavigableViewModel
 {
-    private readonly IMapper mapper;
     private readonly IMediator mediator;
     private readonly INavigationService navigationService;
     private readonly IPopupService popupService;
     private PaymentListFilterChangedMessage? filterChangedMessage;
     private ReadOnlyObservableCollection<PaymentDayGroup> paymentDayGroups = null!;
-    private AccountViewModel selectedAccount = new();
+    private GetAccountById.AccountData selectedAccount;
 
-    public PaymentListViewModel(IMediator mediator, IMapper mapper, INavigationService navigationService, IPopupService popupService)
+    public PaymentListViewModel(IMediator mediator, INavigationService navigationService, IPopupService popupService)
     {
         this.mediator = mediator;
-        this.mapper = mapper;
         this.navigationService = navigationService;
         this.popupService = popupService;
         WeakReferenceMessenger.Default.Register<PaymentListFilterChangedMessage>(
@@ -37,16 +34,12 @@ internal sealed class PaymentListViewModel : NavigableViewModel
             });
     }
 
-    public AccountViewModel SelectedAccount
+    public GetAccountById.AccountData SelectedAccount
     {
         get => selectedAccount;
-
-        private set
-        {
-            selectedAccount = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(field: ref selectedAccount, newValue: value);
     }
+
 
     public ReadOnlyObservableCollection<PaymentDayGroup> PaymentDayGroups
     {
@@ -57,14 +50,14 @@ internal sealed class PaymentListViewModel : NavigableViewModel
     public AsyncRelayCommand ShowFilterCommand
         => new(() => popupService.ShowPopupAsync<SelectFilterPopupViewModel>(vm => { vm.Initialize(filterChangedMessage); }));
 
-    public AsyncRelayCommand GoToAddPaymentCommand => new(() => navigationService.GoTo<AddPaymentViewModel>(SelectedAccount.Id));
+    public AsyncRelayCommand GoToAddPaymentCommand => new(() => navigationService.GoTo<AddPaymentViewModel>(SelectedAccount.AccountId));
 
     public AsyncRelayCommand<PaymentListItemViewModel> GoToEditPaymentCommand => new(pvm => navigationService.GoTo<EditPaymentViewModel>(pvm!.Id));
 
     public override async Task OnNavigatedAsync(object? parameter)
     {
         var accountId = Convert.ToInt32(parameter);
-        SelectedAccount = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
+        SelectedAccount = await mediator.Send(new GetAccountById.Query(accountId));
         await LoadPayments(new());
     }
 
@@ -77,7 +70,7 @@ internal sealed class PaymentListViewModel : NavigableViewModel
     {
         var paymentData = await mediator.Send(
             new GetPaymentsForAccount.Query(
-                AccountId: SelectedAccount.Id,
+                AccountId: SelectedAccount.AccountId,
                 TimeRangeStart: message.TimeRangeStart,
                 TimeRangeEnd: message.TimeRangeEnd,
                 FilteredPaymentType: message.FilteredPaymentType,
@@ -90,7 +83,7 @@ internal sealed class PaymentListViewModel : NavigableViewModel
                     Id = p.Id,
                     Amount = p.Amount,
                     ChargedAccountId = p.ChargedAccountId,
-                    CurrentAccountId = SelectedAccount.Id,
+                    CurrentAccountId = SelectedAccount.AccountId,
                     Date = p.Date.ToDateTime(TimeOnly.MinValue),
                     CategoryName = p.CategoryName,
                     IsCleared = p.IsCleared,
