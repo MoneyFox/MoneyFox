@@ -83,8 +83,6 @@ public abstract class ModifyPaymentViewModel(
 
     public string AccountHeader => SelectedPayment.Type == PaymentType.Income ? Translations.TargetAccountLabel : Translations.ChargedAccountLabel;
 
-    protected bool IsFirstLoad { get; set; } = true;
-
     public AsyncRelayCommand SaveCommand => new(SaveAsync);
 
     public override async Task OnNavigatedAsync(object? parameter)
@@ -93,7 +91,6 @@ public abstract class ModifyPaymentViewModel(
         var pickerVms = accounts.Select(a => new AccountPickerViewModel(Id: a.Id, Name: a.Name, CurrentBalance: a.CurrentBalance)).ToImmutableList();
         ChargedAccounts = new(pickerVms);
         TargetAccounts = new(pickerVms);
-        IsFirstLoad = false;
     }
 
     public override async Task OnNavigatedBackAsync(object? parameter)
