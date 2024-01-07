@@ -16,7 +16,7 @@ public sealed record OverflowItemViewModel(string IconGlyph, string Name, Overfl
 [UsedImplicitly]
 public sealed class OverflowMenuViewModel(INavigationService navigationService) : NavigableViewModel
 {
-    public AsyncRelayCommand<OverflowItemViewModel> GoToSelectedItemCommand => new(s => GoToSelectedItem(s.Type));
+    public AsyncRelayCommand<OverflowItemViewModel> GoToSelectedItemCommand => new(s => GoToSelectedItem(s!.Type));
 
     public static IReadOnlyList<OverflowItemViewModel> OverflowEntries
         => ImmutableList.Create<OverflowItemViewModel>(
