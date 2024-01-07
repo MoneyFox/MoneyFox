@@ -79,8 +79,8 @@ internal sealed class PaymentListViewModel : NavigableViewModel
                 TimeRangeStart: message.TimeRangeStart,
                 TimeRangeEnd: message.TimeRangeEnd,
                 FilteredPaymentType: message.FilteredPaymentType,
-                IsRecurringFilterActive: message.IsClearedFilterActive,
-                IsClearedFilterActive: message.IsRecurringFilterActive));
+                IsClearedFilterActive: message.IsClearedFilterActive,
+                IsRecurringFilterActive: message.IsRecurringFilterActive));
 
         var paymentVms = paymentData.Select(
                 p => new PaymentListItemViewModel
