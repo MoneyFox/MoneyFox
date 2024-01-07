@@ -9,7 +9,7 @@ internal sealed class MoneyConverter : IValueConverter
     {
         if (value is Money money)
         {
-            return $"{money.Amount} {money.Currency}";
+            return $"{money.Amount} {money.Currency.AlphaIsoCode}";
         }
 
         return string.Empty;
