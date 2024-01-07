@@ -32,7 +32,6 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel
         service: dialogService,
         toastService: toastService,
         categorySelectionViewModel: categorySelectionViewModel,
-        facade: settingsFacade,
         navigationService: navigationService,
         client: aptabaseClient)
     {

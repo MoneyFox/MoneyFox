@@ -8,7 +8,6 @@ using CommunityToolkit.Mvvm.Input;
 using Controls.AccountPicker;
 using Controls.CategorySelection;
 using Core.Common.Interfaces;
-using Core.Common.Settings;
 using Core.Queries;
 using Domain.Aggregates.AccountAggregate;
 using MediatR;
@@ -20,7 +19,6 @@ public abstract class ModifyPaymentViewModel(
     IDialogService service,
     IToastService toastService,
     CategorySelectionViewModel categorySelectionViewModel,
-    ISettingsFacade facade,
     INavigationService navigationService,
     IAptabaseClient client) : NavigableViewModel
 {
