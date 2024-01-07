@@ -17,5 +17,5 @@ public class AccountGroup : List<AccountListItemViewModel>
 
     public string Title => isExcluded ? Translations.ExcludedAccountsHeader : Translations.IncludedAccountsHeader;
 
-    public string TotalString => $"{this.Sum(a => a.CurrentBalance)} {settingsFacade.DefaultCurrency}";
+    public string TotalString => $"{this.Sum(a => a.CurrentBalance.Amount)} {settingsFacade.DefaultCurrency}";
 }

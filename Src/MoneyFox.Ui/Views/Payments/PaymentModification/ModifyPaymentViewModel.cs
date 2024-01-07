@@ -96,7 +96,7 @@ public abstract class ModifyPaymentViewModel(
                 a => new AccountPickerViewModel(
                     Id: a.Id,
                     Name: a.Name,
-                    CurrentBalance: new(amount: a.CurrentBalance, currencyAlphaIsoCode: facade.DefaultCurrency)))
+                    CurrentBalance: a.CurrentBalance))
             .ToImmutableList();
 
         ChargedAccounts = new(pickerVms);

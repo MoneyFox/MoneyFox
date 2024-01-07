@@ -1,10 +1,11 @@
 namespace MoneyFox.Ui.Views.Accounts.AccountList;
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using Domain;
 
 public sealed class AccountListItemViewModel : ObservableObject
 {
-    private decimal currentBalance;
+    private Money currentBalance = Money.Zero(Currencies.USD);
     private decimal endOfMonthBalance;
 
     private int id;
@@ -24,7 +25,7 @@ public sealed class AccountListItemViewModel : ObservableObject
         set => SetProperty(field: ref name, newValue: value);
     }
 
-    public required decimal CurrentBalance
+    public required Money CurrentBalance
     {
         get => currentBalance;
         set => SetProperty(field: ref currentBalance, newValue: value);
