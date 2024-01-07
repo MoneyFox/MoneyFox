@@ -10,6 +10,7 @@
     xmlns:categorySummary="clr-namespace:MoneyFox.Ui.Views.Statistics.CategorySummary"
     xmlns:statistics="clr-namespace:MoneyFox.Ui.Views.Statistics"
     xmlns:extensions="clr-namespace:MoneyFox.Ui.Common.Extensions"
+    x:Name="This"
     Title="{x:Static resources:Translations.CategorySummaryTitle}">
 
     <ContentPage.Resources>
@@ -52,7 +53,7 @@
 
                             <controls:Card.GestureRecognizers>
                                 <TapGestureRecognizer
-                                    Command="{Binding BindingContext.ShowCategoryPaymentsCommand, Source={x:Reference Name=CategorySummaryList}}"
+                                    Command="{Binding ViewModel.ShowCategoryPaymentsCommand, Source={x:Reference Name=This}}"
                                     CommandParameter="{Binding .}" />
                             </controls:Card.GestureRecognizers>
 

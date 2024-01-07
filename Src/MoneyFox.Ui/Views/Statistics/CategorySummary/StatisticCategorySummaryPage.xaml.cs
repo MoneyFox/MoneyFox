@@ -8,4 +8,6 @@ public partial class StatisticCategorySummaryPage : IBindablePage
     {
         InitializeComponent();
     }
+
+    public StatisticCategorySummaryViewModel ViewModel => (StatisticCategorySummaryViewModel)BindingContext;
 }

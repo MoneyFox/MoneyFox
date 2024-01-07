@@ -44,7 +44,9 @@ public class MainActivity : MauiAppCompatActivity
 
             if (!OperatingSystem.IsAndroidVersionAtLeast(30) && OperatingSystem.IsAndroidVersionAtLeast(23) && Window is not null)
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 Window.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.LightStatusBar;
+#pragma warning restore CS0618 // Type or member is obsolete
             }
         }
         else

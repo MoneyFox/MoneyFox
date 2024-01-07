@@ -11,7 +11,7 @@ using MediatR;
 using Resources.Strings;
 using SkiaSharp;
 
-internal abstract class StatisticViewModel : NavigableViewModel
+public abstract class StatisticViewModel : NavigableViewModel
 {
     protected readonly IMediator Mediator;
     private readonly IPopupService popupService;

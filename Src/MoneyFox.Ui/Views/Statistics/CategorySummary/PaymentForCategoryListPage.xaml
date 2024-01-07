@@ -9,6 +9,7 @@
     xmlns:extensions="clr-namespace:MoneyFox.Ui.Common.Extensions"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     x:DataType="categorySummary:PaymentForCategoryListViewModel"
+    x:Name="This"
     Title="{Binding Title}">
 
     <ContentPage.Resources>
@@ -52,7 +53,7 @@
 
                             <controls:Card.GestureRecognizers>
                                 <TapGestureRecognizer
-                                    Command="{Binding BindingContext.GoToEditPaymentCommand, Source={x:Reference PaymentCollectionView}}"
+                                    Command="{Binding ViewModel.GoToEditPaymentCommand, Source={x:Reference This}}"
                                     CommandParameter="{Binding .}" />
                             </controls:Card.GestureRecognizers>
 

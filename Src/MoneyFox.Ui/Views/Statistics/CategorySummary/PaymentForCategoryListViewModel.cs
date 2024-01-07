@@ -9,7 +9,7 @@ using MediatR;
 using Payments.PaymentModification;
 using Resources.Strings;
 
-internal sealed class PaymentForCategoryListViewModel(IMediator mediator, INavigationService navigationService) : NavigableViewModel,
+public sealed class PaymentForCategoryListViewModel(IMediator mediator, INavigationService navigationService) : NavigableViewModel,
     IRecipient<PaymentsForCategoryMessage>
 {
     private ReadOnlyObservableCollection<PaymentDayGroup> paymentDayGroups = new(new());

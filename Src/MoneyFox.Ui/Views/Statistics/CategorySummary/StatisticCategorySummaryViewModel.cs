@@ -9,7 +9,7 @@ using Core.Queries.Statistics.GetCategorySummary;
 using MediatR;
 using Serilog;
 
-internal class StatisticCategorySummaryViewModel : StatisticViewModel
+public class StatisticCategorySummaryViewModel : StatisticViewModel
 {
     private readonly IDialogService dialogService;
     private readonly INavigationService navigationService;
@@ -44,7 +44,7 @@ internal class StatisticCategorySummaryViewModel : StatisticViewModel
 
     public bool HasData => CategorySummary.Any();
 
-    public RelayCommand<CategoryOverviewViewModel> ShowCategoryPaymentsCommand => new(async vm => await ShowCategoryPaymentsAsync(vm));
+    public AsyncRelayCommand<CategoryOverviewViewModel> ShowCategoryPaymentsCommand => new(ShowCategoryPaymentsAsync);
 
     public override Task OnNavigatedAsync(object? parameter)
     {
@@ -76,9 +76,10 @@ internal class StatisticCategorySummaryViewModel : StatisticViewModel
         }
     }
 
-    private Task ShowCategoryPaymentsAsync(CategoryOverviewViewModel categoryOverviewModel)
+    private async Task ShowCategoryPaymentsAsync(CategoryOverviewViewModel? categoryOverviewModel)
     {
-        return navigationService.GoTo<PaymentForCategoryListViewModel>(
+        ArgumentNullException.ThrowIfNull(categoryOverviewModel);
+        await navigationService.GoTo<PaymentForCategoryListViewModel>(
             new PaymentsForCategoryParameter(CategoryId: categoryOverviewModel.CategoryId, StartDate: StartDate, EndDate: EndDate));
     }
 }
