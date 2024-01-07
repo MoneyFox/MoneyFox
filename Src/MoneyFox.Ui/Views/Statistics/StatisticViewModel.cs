@@ -8,7 +8,6 @@ using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;
 using LiveChartsCore.SkiaSharpView.Painting;
 using MediatR;
-using Payments.PaymentList;
 using Resources.Strings;
 using SkiaSharp;
 
@@ -49,7 +48,7 @@ internal abstract class StatisticViewModel : NavigableViewModel
 
         WeakReferenceMessenger.Default.Register<DateSelectedMessage>(
             recipient: this,
-            handler: (r, m) =>
+            handler: (_, m) =>
             {
                 StartDate = m.StartDate;
                 EndDate = m.EndDate;
