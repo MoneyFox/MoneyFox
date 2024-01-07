@@ -6,4 +6,6 @@ public partial class StatisticSelectorView
     {
         InitializeComponent();
     }
+
+    public StatisticSelectorViewModel ViewModel => (StatisticSelectorViewModel)BindingContext;
 }

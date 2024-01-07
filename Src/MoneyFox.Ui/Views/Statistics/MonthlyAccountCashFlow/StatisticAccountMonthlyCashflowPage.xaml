@@ -31,6 +31,7 @@
                 </ImageButton>
             </Grid>
 
+            <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
             <Picker Grid.Row="1"
                     Title="{x:Static resources:Translations.SelectedAccountHeader}"
                     ItemsSource="{Binding Accounts}"

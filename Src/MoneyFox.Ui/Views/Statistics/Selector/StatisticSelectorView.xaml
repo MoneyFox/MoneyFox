@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:statistics="clr-namespace:MoneyFox.Ui.Views.Statistics.Selector"
              xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
+             x:Name="This"
              x:Class="MoneyFox.Ui.Views.Statistics.Selector.StatisticSelectorView">
     <VerticalStackLayout>
         <CollectionView x:Name="StatisticCollectionView"
@@ -18,7 +19,7 @@
 
                             <controls:Card.GestureRecognizers>
                                 <TapGestureRecognizer
-                                    Command="{Binding BindingContext.GoToStatisticCommand, Source={x:Reference Name=StatisticCollectionView}}"
+                                    Command="{Binding ViewModel.GoToStatisticCommand, Source={x:Reference Name=This}}"
                                     CommandParameter="{Binding .}" />
                             </controls:Card.GestureRecognizers>
 
