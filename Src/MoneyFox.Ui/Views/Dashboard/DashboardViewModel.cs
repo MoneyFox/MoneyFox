@@ -2,8 +2,6 @@ namespace MoneyFox.Ui.Views.Dashboard;
 
 using System.Collections.ObjectModel;
 using Accounts.AccountList;
-using Accounts.AccountModification;
-using AutoMapper;
 using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -14,8 +12,7 @@ using Messages;
 using Payments.PaymentList;
 using Payments.PaymentModification;
 
-public class DashboardViewModel(IMediator mediator, IMapper mapper, INavigationService navigationService) : NavigableViewModel,
-    IRecipient<BackupRestoredMessage>
+public class DashboardViewModel(IMediator mediator, INavigationService navigationService) : NavigableViewModel, IRecipient<BackupRestoredMessage>
 {
     private decimal assets;
     private decimal endOfMonthBalance;
@@ -46,7 +43,7 @@ public class DashboardViewModel(IMediator mediator, IMapper mapper, INavigationS
         set => SetProperty(field: ref monthlyExpenses, newValue: value);
     }
 
-    public ObservableCollection<DashboardAccountViewModel> Accounts { get; private set; } = new();
+    public ObservableCollection<DashboardAccountViewModel> Accounts { get; } = new();
 
     public AsyncRelayCommand GoToAddPaymentCommand => new(() => navigationService.GoTo<AddPaymentViewModel>());
 
@@ -77,8 +74,7 @@ public class DashboardViewModel(IMediator mediator, IMapper mapper, INavigationS
                     Id: account.Id,
                     Name: account.Name,
                     CurrentBalance: account.CurrentBalance,
-                    EndOfMonthBalance: new(amount: endOfMonth, currency: account.CurrentBalance.Currency),
-                    IsExcluded: account.IsExcluded));
+                    EndOfMonthBalance: new(amount: endOfMonth, currency: account.CurrentBalance.Currency)));
         }
 
         Assets = await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
@@ -92,5 +88,4 @@ public record DashboardAccountViewModel(
     int Id,
     string Name,
     Money CurrentBalance,
-    Money EndOfMonthBalance,
-    bool IsExcluded);
+    Money EndOfMonthBalance);
