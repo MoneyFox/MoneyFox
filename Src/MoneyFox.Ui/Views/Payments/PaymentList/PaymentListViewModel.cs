@@ -10,14 +10,14 @@ using Core.Queries.PaymentsForAccount;
 using MediatR;
 using PaymentModification;
 
-internal sealed class PaymentListViewModel : NavigableViewModel
+public sealed class PaymentListViewModel : NavigableViewModel
 {
     private readonly IMediator mediator;
     private readonly INavigationService navigationService;
     private readonly IPopupService popupService;
     private PaymentListFilterChangedMessage? filterChangedMessage;
     private ReadOnlyObservableCollection<PaymentDayGroup> paymentDayGroups = null!;
-    private GetAccountById.AccountData selectedAccount;
+    private GetAccountById.AccountData selectedAccount = null!;
 
     public PaymentListViewModel(IMediator mediator, INavigationService navigationService, IPopupService popupService)
     {
@@ -36,7 +36,7 @@ internal sealed class PaymentListViewModel : NavigableViewModel
     public GetAccountById.AccountData SelectedAccount
     {
         get => selectedAccount;
-        set => SetProperty(field: ref selectedAccount, newValue: value);
+        private set => SetProperty(field: ref selectedAccount, newValue: value);
     }
 
     public ReadOnlyObservableCollection<PaymentDayGroup> PaymentDayGroups
@@ -48,7 +48,7 @@ internal sealed class PaymentListViewModel : NavigableViewModel
     public AsyncRelayCommand ShowFilterCommand
         => new(() => popupService.ShowPopupAsync<SelectFilterPopupViewModel>(vm => { vm.Initialize(filterChangedMessage); }));
 
-    public AsyncRelayCommand GoToAddPaymentCommand => new(() => navigationService.GoTo<AddPaymentViewModel>(SelectedAccount.AccountId));
+    public AsyncRelayCommand GoToAddPaymentCommand => new(() => navigationService.GoTo<AddPaymentViewModel>(SelectedAccount?.AccountId));
 
     public AsyncRelayCommand<PaymentListItemViewModel> GoToEditPaymentCommand => new(pvm => navigationService.GoTo<EditPaymentViewModel>(pvm!.Id));
 
@@ -66,6 +66,11 @@ internal sealed class PaymentListViewModel : NavigableViewModel
 
     private async Task LoadPayments(PaymentListFilterChangedMessage message)
     {
+        if (SelectedAccount is null)
+        {
+            return;
+        }
+
         var paymentData = await mediator.Send(
             new GetPaymentsForAccount.Query(
                 AccountId: SelectedAccount.AccountId,

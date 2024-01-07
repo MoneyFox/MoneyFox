@@ -9,6 +9,7 @@
     xmlns:paymentList="clr-namespace:MoneyFox.Ui.Views.Payments.PaymentList"
     xmlns:extensions="clr-namespace:MoneyFox.Ui.Common.Extensions"
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
+    x:Name="This"
     x:DataType="paymentList:PaymentListViewModel"
     x:Class="MoneyFox.Ui.Views.Payments.PaymentList.PaymentListPage"
     Title="{Binding SelectedAccount.Name}">
@@ -90,7 +91,7 @@
 
                             <controls:Card.GestureRecognizers>
                                 <TapGestureRecognizer
-                                    Command="{Binding BindingContext.GoToEditPaymentCommand, Source={x:Reference PaymentCollectionView}}"
+                                    Command="{Binding ViewModel.GoToEditPaymentCommand, Source={x:Reference This}}"
                                     CommandParameter="{Binding .}" />
                             </controls:Card.GestureRecognizers>
 

@@ -8,4 +8,6 @@ public partial class PaymentListPage : IBindablePage
     {
         InitializeComponent();
     }
+
+    public PaymentListViewModel ViewModel => (PaymentListViewModel)BindingContext;
 }
