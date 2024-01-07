@@ -33,7 +33,6 @@ public static class MauiProgram
                     fonts.AddFont(filename: "ProductSans-Regular.ttf", alias: "Product");
                     fonts.AddFont(filename: "materialdesignicons.ttf", alias: "MaterialIcons");
                 })
-            .AddCustomAppShellHandler()
             .UseSkiaSharp(true)
             .UseMauiCommunityToolkit()
             .UseSharpnadoTabs(loggerEnable: false)
