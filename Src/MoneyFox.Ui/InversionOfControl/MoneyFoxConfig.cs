@@ -9,7 +9,6 @@ using Core.Common.Interfaces;
 using Core.Interfaces;
 using Core.InversionOfControl;
 using Infrastructure.Adapters;
-using Mapping;
 using MoneyFox.Infrastructure.InversionOfControl;
 using Views.About;
 using Views.Accounts.AccountList;
@@ -46,7 +45,6 @@ public sealed class MoneyFoxConfig
         RegisterViewModels(serviceCollection);
         RegisterViews(serviceCollection);
         RegisterAdapters(serviceCollection);
-        serviceCollection.AddSingleton(_ => AutoMapperFactory.Create());
         serviceCollection.AddSingleton<IMessenger>(WeakReferenceMessenger.Default);
         new CoreConfig().Register(serviceCollection);
         InfrastructureConfig.Register(serviceCollection);

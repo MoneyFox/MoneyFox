@@ -1,19 +1,13 @@
 namespace MoneyFox.Ui.Views.Statistics.CategorySummary;
 
-using Accounts.AccountModification;
-using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Controls.CategorySelection;
-using Core.Common.Interfaces.Mapping;
 using Domain.Aggregates.AccountAggregate;
-using Domain.Aggregates.CategoryAggregate;
 
 public class PaymentListItemViewModel : ObservableObject
 {
     private decimal amount;
     private string? categoryName;
     private int chargedAccountId;
-    private int currentAccountId;
     private DateTime date;
     private int id;
     private bool isCleared;
@@ -87,4 +81,3 @@ public class PaymentListItemViewModel : ObservableObject
 
     public bool IsTransfer => Type == PaymentType.Transfer;
 }
-

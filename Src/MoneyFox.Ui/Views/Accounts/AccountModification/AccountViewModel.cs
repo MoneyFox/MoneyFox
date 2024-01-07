@@ -2,10 +2,9 @@ namespace MoneyFox.Ui.Views.Accounts.AccountModification;
 
 using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Core.Common.Interfaces.Mapping;
 using Domain.Aggregates.AccountAggregate;
 
-public sealed class AccountViewModel : ObservableObject, IHaveCustomMapping, IEquatable<AccountViewModel>
+public sealed class AccountViewModel : ObservableObject, IEquatable<AccountViewModel>
 {
     private DateTime created;
     private decimal currentBalance;
