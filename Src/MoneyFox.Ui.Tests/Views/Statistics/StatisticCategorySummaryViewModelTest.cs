@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Tests.Views.Statistics;
 
 using Common.Navigation;
+using CommunityToolkit.Maui.Core;
 using Core.Common.Interfaces;
 using Core.Queries.Statistics.GetCategorySummary;
 using MediatR;
@@ -14,8 +15,9 @@ public class StatisticCategorySummaryViewModelTest
         // Arrange
         var mediator = Substitute.For<IMediator>();
         var dialogService = Substitute.For<IDialogService>();
+        var popupService = Substitute.For<IPopupService>();
         var navigationService = Substitute.For<INavigationService>();
-        var vm = new StatisticCategorySummaryViewModel(mediator: mediator, dialogService: dialogService, navigationService: navigationService);
+        var vm = new StatisticCategorySummaryViewModel(mediator: mediator, dialogService: dialogService, navigationService: navigationService, popupService);
         var categorySummaries = new List<CategoryOverviewItem>
         {
             new() { Value = -200 },
@@ -42,8 +44,9 @@ public class StatisticCategorySummaryViewModelTest
         // Arrange
         var mediator = Substitute.For<IMediator>();
         var dialogService = Substitute.For<IDialogService>();
+        var popupService = Substitute.For<IPopupService>();
         var navigationService = Substitute.For<INavigationService>();
-        var vm = new StatisticCategorySummaryViewModel(mediator: mediator, dialogService: dialogService, navigationService: navigationService);
+        var vm = new StatisticCategorySummaryViewModel(mediator: mediator, dialogService: dialogService, navigationService: navigationService, popupService);
         var categorySummaries = new List<CategoryOverviewItem>();
         var categorySummaryModel = new CategorySummaryModel(totalEarned: default, totalSpent: default, categoryOverviewItems: categorySummaries);
         mediator.Send(request: Arg.Any<GetCategorySummary.Query>(), cancellationToken: Arg.Any<CancellationToken>())

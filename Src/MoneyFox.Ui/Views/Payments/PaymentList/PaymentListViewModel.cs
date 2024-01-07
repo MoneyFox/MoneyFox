@@ -49,8 +49,8 @@ internal sealed class PaymentListViewModel : NavigableViewModel
         private set => SetProperty(field: ref paymentDayGroups, newValue: value);
     }
 
-    public AsyncRelayCommand GoToAddPaymentCommand => new(() => navigationService.GoTo<AddPaymentViewModel>(SelectedAccount.Id));
     public AsyncRelayCommand ShowFilterCommand => new(() => popupService.ShowPopupAsync<SelectFilterPopupViewModel>());
+    public AsyncRelayCommand GoToAddPaymentCommand => new(() => navigationService.GoTo<AddPaymentViewModel>(SelectedAccount.Id));
 
     public AsyncRelayCommand<PaymentListItemViewModel> GoToEditPaymentCommand => new(pvm => navigationService.GoTo<EditPaymentViewModel>(pvm!.Id));
 

@@ -2,6 +2,7 @@ namespace MoneyFox.Ui.Views.Statistics.CategorySummary;
 
 using System.Collections.ObjectModel;
 using Common.Navigation;
+using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Interfaces;
 using Core.Queries.Statistics.GetCategorySummary;
@@ -15,7 +16,7 @@ internal class StatisticCategorySummaryViewModel : StatisticViewModel
 
     private ObservableCollection<CategoryOverviewViewModel> categorySummary = new();
 
-    public StatisticCategorySummaryViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService) : base(mediator)
+    public StatisticCategorySummaryViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService, IPopupService popupService) : base(mediator, popupService)
     {
         this.dialogService = dialogService;
         this.navigationService = navigationService;

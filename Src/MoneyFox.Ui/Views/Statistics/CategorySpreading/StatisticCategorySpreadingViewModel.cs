@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Views.Statistics.CategorySpreading;
 
 using System.Collections.ObjectModel;
+using CommunityToolkit.Maui.Core;
 using Core.Common.Extensions;
 using Core.Queries.Statistics;
 using Domain.Aggregates.AccountAggregate;
@@ -12,7 +13,7 @@ internal sealed class StatisticCategorySpreadingViewModel : StatisticViewModel
 {
     private PaymentType selectedPaymentType;
 
-    public StatisticCategorySpreadingViewModel(IMediator mediator) : base(mediator) { }
+    public StatisticCategorySpreadingViewModel(IMediator mediator, IPopupService popupService) : base(mediator, popupService) { }
 
     public List<PaymentType> PaymentTypes => new() { PaymentType.Expense, PaymentType.Income };
 

@@ -7,7 +7,7 @@ public sealed class SelectFilterPopupViewModelTests
 {
     public class IsDateRangeValid
     {
-        private readonly SelectFilterPopupViewModel vm = new(Substitute.For<IMessenger>());
+        private readonly SelectFilterPopupViewModel vm = new();
 
         [Fact]
         public void ShouldReturnFalse_WhenStartDateAfterEndDate()

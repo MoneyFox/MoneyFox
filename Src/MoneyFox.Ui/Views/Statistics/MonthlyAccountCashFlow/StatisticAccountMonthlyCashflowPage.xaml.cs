@@ -9,12 +9,4 @@ public partial class StatisticAccountMonthlyCashFlowPage : IBindablePage
     {
         InitializeComponent();
     }
-
-    private StatisticAccountMonthlyCashFlowViewModel ViewModel => (StatisticAccountMonthlyCashFlowViewModel)BindingContext;
-
-    private void OpenFilterDialog(object sender, EventArgs e)
-    {
-        var popup = new DateSelectionPopup(dateFrom: ViewModel.StartDate, dateTo: ViewModel.EndDate);
-        Application.Current!.MainPage!.ShowPopup(popup);
-    }
 }

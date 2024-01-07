@@ -7,8 +7,8 @@
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:paymentList="clr-namespace:MoneyFox.Ui.Views.Payments.PaymentList"
     CanBeDismissedByTappingOutsideOfPopup="false"
-    Size="330, 500"
     Color="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
+    Size="330, 500"
     x:Class="MoneyFox.Ui.Views.Payments.PaymentList.FilterPopup"
     x:DataType="paymentList:SelectFilterPopupViewModel">
 
@@ -52,7 +52,7 @@
 
         <Button Grid.Row="1"
                 Text="{x:Static resources:Translations.DoneLabel}"
-                IsEnabled="{Binding IsDateRangeValid, Mode=OneWay}"
-                Clicked="Button_OnClicked" />
+                Command="{Binding FilterSelectedCommand}"
+                CommandParameter="{Binding IsDateRangeValid}" />
     </Grid>
 </views:Popup>

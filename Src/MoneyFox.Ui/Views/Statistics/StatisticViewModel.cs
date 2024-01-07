@@ -2,29 +2,35 @@ namespace MoneyFox.Ui.Views.Statistics;
 
 using System.Globalization;
 using Common.Navigation;
+using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Extensions;
 using LiveChartsCore.SkiaSharpView.Painting;
 using MediatR;
+using Payments.PaymentList;
 using Resources.Strings;
 using SkiaSharp;
 
 internal abstract class StatisticViewModel : NavigableViewModel
 {
     protected readonly IMediator Mediator;
+    private readonly IPopupService popupService;
     private DateTime endDate;
     private DateTime startDate;
 
-    protected StatisticViewModel(IMediator mediator) : this(
+    protected StatisticViewModel(IMediator mediator, IPopupService popupService) : this(
         startDate: DateTime.Today.GetFirstDayOfMonth(),
         endDate: DateTime.Today.GetLastDayOfMonth(),
-        mediator: mediator) { }
+        mediator: mediator,
+        popupService: popupService) { }
 
-    private StatisticViewModel(DateTime startDate, DateTime endDate, IMediator mediator)
+    private StatisticViewModel(DateTime startDate, DateTime endDate, IMediator mediator, IPopupService popupService)
     {
         StartDate = startDate;
         EndDate = endDate;
         Mediator = mediator;
+        this.popupService = popupService;
 
         // If Application.Current is null, application is running in the context of a unit test
         if (Application.Current is not null)
@@ -54,6 +60,8 @@ internal abstract class StatisticViewModel : NavigableViewModel
     public SolidColorPaint LegendTextPaint { get; } = new();
 
     public SolidColorPaint LegendBackgroundPaint { get; } = new();
+
+    public AsyncRelayCommand ShowFilterCommand => new(() => popupService.ShowPopupAsync<SelectDateRangeDialogViewModel>());
 
     public DateTime StartDate
     {

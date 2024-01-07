@@ -3,6 +3,7 @@ namespace MoneyFox.Ui.Views.Statistics.MonthlyAccountCashFlow;
 using System.Collections.ObjectModel;
 using Accounts.AccountModification;
 using AutoMapper;
+using CommunityToolkit.Maui.Core;
 using Core.Queries;
 using Core.Queries.Statistics;
 using LiveChartsCore;
@@ -18,7 +19,7 @@ internal sealed class StatisticAccountMonthlyCashFlowViewModel : StatisticViewMo
     private readonly IMapper mapper;
     private AccountViewModel selectedAccount = null!;
 
-    public StatisticAccountMonthlyCashFlowViewModel(IMediator mediator, IMapper mapper) : base(mediator)
+    public StatisticAccountMonthlyCashFlowViewModel(IMediator mediator, IMapper mapper, IPopupService popupService) : base(mediator, popupService)
     {
         this.mapper = mapper;
         StartDate = DateTime.Now.AddYears(-1);

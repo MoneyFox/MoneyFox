@@ -28,7 +28,7 @@
             <ImageButton Grid.Column="1"
                          Padding="0"
                          BorderWidth="0"
-                         Clicked="OpenFilterDialog"
+                         Command="{Binding ShowFilterCommand}"
                          HeightRequest="44"
                          WidthRequest="66">
                 <ImageButton.Source>

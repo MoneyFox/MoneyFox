@@ -9,12 +9,4 @@ public partial class StatisticCategoryProgressionPage : IBindablePage
     {
         InitializeComponent();
     }
-
-    private StatisticCategoryProgressionViewModel ViewModel => (StatisticCategoryProgressionViewModel)BindingContext;
-
-    private void OpenFilterDialog(object sender, EventArgs e)
-    {
-        var popup = new DateSelectionPopup(dateFrom: ViewModel.StartDate, dateTo: ViewModel.EndDate);
-        Application.Current!.MainPage!.ShowPopup(popup);
-    }
 }
