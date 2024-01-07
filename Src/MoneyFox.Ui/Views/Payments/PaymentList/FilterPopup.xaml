@@ -52,7 +52,7 @@
 
         <Button Grid.Row="1"
                 Text="{x:Static resources:Translations.DoneLabel}"
-                Command="{Binding FilterSelectedCommand}"
-                CommandParameter="{Binding IsDateRangeValid}" />
+                IsEnabled="{Binding IsDateRangeValid, Mode=OneWay}"
+                Clicked="Button_OnClicked" />
     </Grid>
 </views:Popup>
