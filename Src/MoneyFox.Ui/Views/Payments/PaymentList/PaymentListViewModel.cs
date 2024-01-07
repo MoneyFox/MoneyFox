@@ -30,7 +30,11 @@ internal sealed class PaymentListViewModel : NavigableViewModel
         this.popupService = popupService;
         WeakReferenceMessenger.Default.Register<PaymentListFilterChangedMessage>(
             recipient: this,
-            handler: (_, m) => { LoadPayments(m).GetAwaiter().GetResult(); });
+            handler: (_, m) =>
+            {
+                filterChangedMessage = m;
+                LoadPayments(m).GetAwaiter().GetResult();
+            });
     }
 
     public AccountViewModel SelectedAccount
