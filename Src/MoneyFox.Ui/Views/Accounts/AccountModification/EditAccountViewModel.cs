@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui.Views.Accounts.AccountModification;
 
-using AutoMapper;
 using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Interfaces;
@@ -13,17 +12,15 @@ using Resources.Strings;
 public class EditAccountViewModel : ModifyAccountViewModel
 {
     private readonly IDialogService dialogService;
-    private readonly IMapper mapper;
     private readonly IMediator mediator;
     private readonly INavigationService navigationService;
 
-    public EditAccountViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, INavigationService navigationService) : base(
-        service: dialogService,
+    public EditAccountViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService) : base(
+        dialogService: dialogService,
         mediator: mediator,
         navigationService: navigationService)
     {
         this.mediator = mediator;
-        this.mapper = mapper;
         this.dialogService = dialogService;
         this.navigationService = navigationService;
     }

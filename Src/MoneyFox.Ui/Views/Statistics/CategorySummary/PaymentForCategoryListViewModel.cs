@@ -1,7 +1,6 @@
 namespace MoneyFox.Ui.Views.Statistics.CategorySummary;
 
 using System.Collections.ObjectModel;
-using AutoMapper;
 using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -12,7 +11,7 @@ using Microsoft.Identity.Client;
 using Payments.PaymentModification;
 using Resources.Strings;
 
-internal sealed class PaymentForCategoryListViewModel(IMediator mediator, IMapper mapper, INavigationService navigationService) : NavigableViewModel,
+internal sealed class PaymentForCategoryListViewModel(IMediator mediator, INavigationService navigationService) : NavigableViewModel,
     IRecipient<PaymentsForCategoryMessage>
 {
     private ReadOnlyObservableCollection<PaymentDayGroup> paymentDayGroups = new(new());

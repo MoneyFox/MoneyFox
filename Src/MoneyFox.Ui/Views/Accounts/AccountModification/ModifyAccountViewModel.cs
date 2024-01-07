@@ -7,7 +7,7 @@ using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-public abstract class ModifyAccountViewModel(IDialogService service, IMediator mediator, INavigationService navigationService) : NavigableViewModel
+public abstract class ModifyAccountViewModel(IDialogService dialogService, IMediator mediator, INavigationService navigationService) : NavigableViewModel
 {
     private AccountViewModelNew selectedAccountVm = new();
 
@@ -31,7 +31,7 @@ public abstract class ModifyAccountViewModel(IDialogService service, IMediator m
     {
         if (string.IsNullOrWhiteSpace(SelectedAccountVm.Name))
         {
-            await service.ShowMessageAsync(title: Translations.MandatoryFieldEmptyTitle, message: Translations.NameRequiredMessage);
+            await dialogService.ShowMessageAsync(title: Translations.MandatoryFieldEmptyTitle, message: Translations.NameRequiredMessage);
 
             return;
         }
@@ -46,18 +46,18 @@ public abstract class ModifyAccountViewModel(IDialogService service, IMediator m
 
             if (nameChanged
                 && nameAlreadyTaken
-                && await service.ShowConfirmMessageAsync(title: Translations.DuplicatedNameTitle, message: Translations.DuplicateAccountMessage) is false)
+                && await dialogService.ShowConfirmMessageAsync(title: Translations.DuplicatedNameTitle, message: Translations.DuplicateAccountMessage) is false)
             {
                 return;
             }
 
-            await service.ShowLoadingDialogAsync(Translations.SavingAccountMessage);
+            await dialogService.ShowLoadingDialogAsync(Translations.SavingAccountMessage);
             await SaveAccountAsync();
             await navigationService.GoBack();
         }
         finally
         {
-            await service.HideLoadingDialogAsync();
+            await dialogService.HideLoadingDialogAsync();
         }
     }
 }
