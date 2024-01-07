@@ -25,11 +25,19 @@ public static class GetAccountById
                 CurrentBalance: new(amount: account.CurrentBalance, currencyAlphaIsoCode: settingsFacade.DefaultCurrency),
                 Note: account.Note,
                 IsExcluded: account.IsExcluded,
-                account.IsDeactivated,
-                account.Created,
-                account.LastModified);
+                IsDeactivated: account.IsDeactivated,
+                Created: account.Created,
+                LastModified: account.LastModified);
         }
     }
 
-    public record AccountData(int AccountId, string Name, Money CurrentBalance, string? Note, bool IsExcluded, bool IsDeactivated, DateTime Created, DateTime? LastModified);
+    public record AccountData(
+        int AccountId,
+        string Name,
+        Money CurrentBalance,
+        string? Note,
+        bool IsExcluded,
+        bool IsDeactivated,
+        DateTime Created,
+        DateTime? LastModified);
 }

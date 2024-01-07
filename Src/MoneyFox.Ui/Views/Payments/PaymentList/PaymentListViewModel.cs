@@ -1,7 +1,6 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentList;
 
 using System.Collections.ObjectModel;
-using Accounts.AccountModification;
 using Common.Navigation;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.Input;
@@ -39,7 +38,6 @@ internal sealed class PaymentListViewModel : NavigableViewModel
         get => selectedAccount;
         set => SetProperty(field: ref selectedAccount, newValue: value);
     }
-
 
     public ReadOnlyObservableCollection<PaymentDayGroup> PaymentDayGroups
     {

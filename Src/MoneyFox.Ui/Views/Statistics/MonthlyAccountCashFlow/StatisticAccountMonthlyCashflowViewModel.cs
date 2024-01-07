@@ -14,12 +14,10 @@ using SkiaSharp;
 
 internal sealed class StatisticAccountMonthlyCashFlowViewModel : StatisticViewModel
 {
-    private static CashFlowAccountViewModel allAccountsPlaceHolder = new(AccountId: -1, Name: Translations.AllAccounts);
+    private static readonly CashFlowAccountViewModel allAccountsPlaceHolder = new(AccountId: -1, Name: Translations.AllAccounts);
     private CashFlowAccountViewModel selectedAccount;
 
-    public StatisticAccountMonthlyCashFlowViewModel(IMediator mediator, IPopupService popupService) : base(
-        mediator: mediator,
-        popupService: popupService)
+    public StatisticAccountMonthlyCashFlowViewModel(IMediator mediator, IPopupService popupService) : base(mediator: mediator, popupService: popupService)
     {
         StartDate = DateTime.Now.AddYears(-1);
     }

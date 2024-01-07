@@ -59,6 +59,7 @@ public class SettingsViewModelTests
                 new(Id: 1, Name: "Acc1", CurrentBalance: Money.Zero(Currencies.USD), IsExcluded: false),
                 new(Id: 2, Name: "Acc2", CurrentBalance: Money.Zero(Currencies.USD), IsExcluded: false)
             };
+
             settingsFacade.DefaultAccount.Returns(accounts[1].Id);
             mediator.Send(Arg.Any<GetAccountsQuery>()).Returns(accounts);
 

@@ -84,8 +84,4 @@ public class DashboardViewModel(IMediator mediator, INavigationService navigatio
     }
 }
 
-public record DashboardAccountViewModel(
-    int Id,
-    string Name,
-    Money CurrentBalance,
-    Money EndOfMonthBalance);
+public record DashboardAccountViewModel(int Id, string Name, Money CurrentBalance, Money EndOfMonthBalance);

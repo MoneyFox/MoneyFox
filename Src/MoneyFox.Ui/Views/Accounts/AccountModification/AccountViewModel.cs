@@ -53,5 +53,4 @@ public class AccountViewModel : ObservableObject
         get => lastModified;
         set => SetProperty(field: ref lastModified, newValue: value);
     }
-
 }

@@ -92,13 +92,7 @@ public abstract class ModifyPaymentViewModel(
     public override async Task OnNavigatedAsync(object? parameter)
     {
         var accounts = await mediator.Send(new GetAccountsQuery());
-        var pickerVms = accounts.Select(
-                a => new AccountPickerViewModel(
-                    Id: a.Id,
-                    Name: a.Name,
-                    CurrentBalance: a.CurrentBalance))
-            .ToImmutableList();
-
+        var pickerVms = accounts.Select(a => new AccountPickerViewModel(Id: a.Id, Name: a.Name, CurrentBalance: a.CurrentBalance)).ToImmutableList();
         ChargedAccounts = new(pickerVms);
         TargetAccounts = new(pickerVms);
         IsFirstLoad = false;
