@@ -64,6 +64,7 @@ public class DashboardViewModel(IMediator mediator, INavigationService navigatio
 
     private async Task LoadData()
     {
+        Accounts.Clear();
         var accountData = await mediator.Send(new GetAccountsQuery());
         var orderedAccounts = accountData.OrderBy(avm => avm.IsExcluded).ThenBy(avm => avm.Name);
         foreach (var account in orderedAccounts)

@@ -37,7 +37,7 @@ public partial class App
         InitializeComponent();
         FillResourceDictionary();
         appDbContext.MigrateDb();
-        mainPageViewModel.DashboardViewModel.OnNavigatedAsync(null);
+        mainPageViewModel.OnNavigatedAsync(null);
         MainPage = new DefaultNavigationPage(settingsFacade.IsSetupCompleted ? new MainPage(mainPageViewModel) : new WelcomePage(welcomeViewModel));
     }
 

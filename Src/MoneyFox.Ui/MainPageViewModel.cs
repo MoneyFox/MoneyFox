@@ -1,6 +1,6 @@
 namespace MoneyFox.Ui;
 
-using CommunityToolkit.Mvvm.ComponentModel;
+using Common.Navigation;
 using Views.Dashboard;
 using Views.OverflowMenu;
 using Views.Statistics.Selector;
@@ -8,7 +8,7 @@ using Views.Statistics.Selector;
 public sealed class MainPageViewModel(
     DashboardViewModel viewModel,
     StatisticSelectorViewModel statisticSelectorViewModel,
-    OverflowMenuViewModel overflowMenuViewModel) : ObservableObject
+    OverflowMenuViewModel overflowMenuViewModel) : NavigableViewModel
 {
     private int selectedViewModelIndex;
 
@@ -26,5 +26,15 @@ public sealed class MainPageViewModel(
     {
         get => selectedViewModelIndex;
         set => SetProperty(field: ref selectedViewModelIndex, newValue: value);
+    }
+
+    public override Task OnNavigatedAsync(object? parameter)
+    {
+        return DashboardViewModel.OnNavigatedAsync(parameter);
+    }
+
+    public override Task OnNavigatedBackAsync(object? parameter)
+    {
+        return DashboardViewModel.OnNavigatedAsync(parameter);
     }
 }
