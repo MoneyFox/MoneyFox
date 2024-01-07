@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:overflowMenu="clr-namespace:MoneyFox.Ui.Views.OverflowMenu"
              xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
+             x:Name="This"
              x:Class="MoneyFox.Ui.Views.OverflowMenu.OverflowMenuView">
 
     <VerticalStackLayout>
@@ -18,7 +19,7 @@
 
                             <controls:Card.GestureRecognizers>
                                 <TapGestureRecognizer
-                                    Command="{Binding BindingContext.GoToSelectedItemCommand, Source={x:Reference Name=OverflowMenuCollectionView}}"
+                                    Command="{Binding ViewModel.GoToSelectedItemCommand, Source={x:Reference Name=This}}"
                                     CommandParameter="{Binding .}" />
                             </controls:Card.GestureRecognizers>
 

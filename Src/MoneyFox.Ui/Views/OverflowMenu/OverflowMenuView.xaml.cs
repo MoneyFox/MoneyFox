@@ -6,4 +6,6 @@ public partial class OverflowMenuView
     {
         InitializeComponent();
     }
+
+    public OverflowMenuViewModel ViewModel => (OverflowMenuViewModel)BindingContext;
 }

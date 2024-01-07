@@ -48,7 +48,7 @@ public sealed class PaymentListViewModel : NavigableViewModel
     public AsyncRelayCommand ShowFilterCommand
         => new(() => popupService.ShowPopupAsync<SelectFilterPopupViewModel>(vm => { vm.Initialize(filterChangedMessage); }));
 
-    public AsyncRelayCommand GoToAddPaymentCommand => new(() => navigationService.GoTo<AddPaymentViewModel>(SelectedAccount?.AccountId));
+    public AsyncRelayCommand GoToAddPaymentCommand => new(() => navigationService.GoTo<AddPaymentViewModel>(SelectedAccount.AccountId));
 
     public AsyncRelayCommand<PaymentListItemViewModel> GoToEditPaymentCommand => new(pvm => navigationService.GoTo<EditPaymentViewModel>(pvm!.Id));
 
@@ -66,11 +66,6 @@ public sealed class PaymentListViewModel : NavigableViewModel
 
     private async Task LoadPayments(PaymentListFilterChangedMessage message)
     {
-        if (SelectedAccount is null)
-        {
-            return;
-        }
-
         var paymentData = await mediator.Send(
             new GetPaymentsForAccount.Query(
                 AccountId: SelectedAccount.AccountId,

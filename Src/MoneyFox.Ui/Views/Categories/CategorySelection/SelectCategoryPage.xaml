@@ -7,6 +7,9 @@
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
     xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
     xmlns:categories="clr-namespace:MoneyFox.Ui.Views.Categories"
+    xmlns:categorySelection="clr-namespace:MoneyFox.Ui.Views.Categories.CategorySelection"
+    x:Name="This"
+    x:DataType="categorySelection:SelectCategoryViewModel"
     Title="{x:Static resources:Translations.CategoriesTitle}">
 
     <ContentPage.Content>
@@ -47,17 +50,17 @@
 
                                 <controls:Card.GestureRecognizers>
                                     <TapGestureRecognizer
-                                        Command="{Binding BindingContext.SelectCategoryCommand, Source={x:Reference Name=CategoryCollectionView}}"
+                                        Command="{Binding ViewModel.SelectCategoryCommand, Source={x:Reference Name=This}}"
                                         CommandParameter="{Binding .}" />
                                 </controls:Card.GestureRecognizers>
 
                                 <FlyoutBase.ContextFlyout>
                                     <MenuFlyout>
                                         <MenuFlyoutItem Text="{x:Static resources:Translations.EditLabel}"
-                                                        Command="{Binding BindingContext.GoToEditCategoryCommand, Source={x:Reference Name=CategoryCollectionView}}"
+                                                        Command="{Binding ViewModel.GoToEditCategoryCommand, Source={x:Reference Name=This}}"
                                                         CommandParameter="{Binding .}" />
                                         <MenuFlyoutItem Text="{x:Static resources:Translations.DeleteLabel}"
-                                                        Command="{Binding BindingContext.DeleteCategoryCommand, Source={x:Reference Name=CategoryCollectionView}}"
+                                                        Command="{Binding ViewModel.DeleteCategoryCommand, Source={x:Reference Name=This}}"
                                                         CommandParameter="{Binding .}" />
                                     </MenuFlyout>
                                 </FlyoutBase.ContextFlyout>
