@@ -19,6 +19,7 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
     private readonly ISettingsFacade settingsFacade;
+    private readonly INavigationService navigationService;
 
     public EditPaymentViewModel(
         IMediator mediator,
@@ -38,6 +39,7 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel
         this.mediator = mediator;
         this.dialogService = dialogService;
         this.settingsFacade = settingsFacade;
+        this.navigationService = navigationService;
     }
 
     public AsyncRelayCommand<PaymentViewModel> DeleteCommand => new(async p => await DeletePaymentAsync(p!));
@@ -140,7 +142,7 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel
             {
                 await dialogService.ShowLoadingDialogAsync();
                 await mediator.Send(command);
-                await Application.Current!.MainPage!.Navigation.PopModalAsync();
+                await navigationService.GoBack();
             }
             finally
             {
