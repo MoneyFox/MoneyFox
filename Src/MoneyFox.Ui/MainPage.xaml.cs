@@ -7,4 +7,12 @@ public partial class MainPage
         InitializeComponent();
         BindingContext = mainPageViewModel;
     }
+
+    private MainPageViewModel ViewModel => (MainPageViewModel)BindingContext;
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        await ViewModel.DashboardViewModel.OnNavigatedBackAsync(null);
+    }
 }
