@@ -11,7 +11,6 @@ public class DefaultNavigationPage : NavigationPage
     public DefaultNavigationPage(Page root) : base(root)
     {
         SetBarColors();
-        On<iOS>().SetHideNavigationBarSeparator(true);
         Application.Current!.RequestedThemeChanged += (_, _) => { SetBarColors(); };
     }
 
@@ -24,5 +23,11 @@ public class DefaultNavigationPage : NavigationPage
         BarTextColor = Application.Current?.RequestedTheme == AppTheme.Dark
             ? (Color)App.ResourceDictionary["Colors"]["TextPrimaryColorDark"]
             : (Color)App.ResourceDictionary["Colors"]["TextPrimaryColorLight"];
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        On<iOS>().SetHideNavigationBarSeparator(true);
     }
 }
