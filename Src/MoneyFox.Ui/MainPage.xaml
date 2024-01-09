@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:tabs="http://sharpnado.com"
+             xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
+             xmlns:dashboard="clr-namespace:MoneyFox.Ui.Views.Dashboard"
+             xmlns:ui="clr-namespace:MoneyFox.Ui"
+             xmlns:overflowMenu="clr-namespace:MoneyFox.Ui.Views.OverflowMenu"
+             xmlns:selector="clr-namespace:MoneyFox.Ui.Views.Statistics.Selector"
+             xmlns:views="clr-namespace:MoneyFox.Ui.Views"
+             x:DataType="ui:MainPageViewModel"
+             x:Class="MoneyFox.Ui.MainPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BottomTabStyle" TargetType="tabs:BottomTabItem">
+                <Setter Property="SelectedTabColor" Value="{StaticResource Primary}" />
+                <Setter Property="UnselectedLabelColor"
+                        Value="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                <Setter Property="LabelSize" Value="14" />
+                <Setter Property="IconSize" Value="24" />
+                <Setter Property="Padding" Value="6" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid ColumnSpacing="0" RowSpacing="0"
+          BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundTabColorDark}, Light={StaticResource BackgroundTabColorLight}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="65" />
+        </Grid.RowDefinitions>
+
+        <tabs:ViewSwitcher x:Name="Switcher"
+                           Grid.RowSpan="3"
+                           Margin="0"
+                           Animate="True"
+                           BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}"
+                           SelectedIndex="{Binding SelectedViewModelIndex, Mode=TwoWay}">
+
+            <tabs:LazyView x:TypeArguments="dashboard:DashboardView"
+                           AccentColor="{StaticResource Primary}"
+                           Animate="True"
+
+                           BindingContext="{Binding DashboardViewModel}"
+                           UseActivityIndicator="True" />
+
+            <tabs:DelayedView x:TypeArguments="selector:StatisticSelectorView"
+                              AccentColor="{StaticResource Primary}"
+                              Animate="True"
+                              BindingContext="{Binding StatisticSelectorViewModel}"
+                              UseActivityIndicator="True" />
+
+            <tabs:DelayedView x:TypeArguments="overflowMenu:OverflowMenuView"
+                              AccentColor="{StaticResource Primary}"
+                              Animate="True"
+                              BindingContext="{Binding OverflowMenuViewModel}"
+                              UseActivityIndicator="True" />
+
+        </tabs:ViewSwitcher>
+
+        <tabs:TabHostView Grid.Row="1"
+                          BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundTabColorDark}, Light={StaticResource BackgroundTabColorLight}}"
+                          SelectedIndex="{Binding Source={x:Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}">
+
+            <tabs:TabHostView.Tabs>
+                <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
+                                    Label="{x:Static resources:Translations.DashboardTitle}">
+                    <tabs:BottomTabItem.IconImageSource>
+                        <FontImageSource FontFamily="MaterialIcons"
+                                         Glyph="{x:Static views:IconFont.HomeOutline}"
+                                         Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}" />
+                    </tabs:BottomTabItem.IconImageSource>
+                </tabs:BottomTabItem>
+
+                <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
+                                    Label="{x:Static resources:Translations.StatisticsTitle}">
+                    <tabs:BottomTabItem.IconImageSource>
+                        <FontImageSource FontFamily="MaterialIcons"
+                                         Glyph="{x:Static views:IconFont.ChartArc}"
+                                         Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}" />
+                    </tabs:BottomTabItem.IconImageSource>
+                </tabs:BottomTabItem>
+
+                <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
+                                    Label="{x:Static resources:Translations.MenuTitle}">
+                    <tabs:BottomTabItem.IconImageSource>
+                        <FontImageSource FontFamily="MaterialIcons"
+                                         Glyph="{x:Static views:IconFont.DotsHorizontal}"
+                                         Color="{OnPlatform iOS={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}}" />
+                    </tabs:BottomTabItem.IconImageSource>
+                </tabs:BottomTabItem>
+            </tabs:TabHostView.Tabs>
+        </tabs:TabHostView>
+    </Grid>
+</ContentPage>

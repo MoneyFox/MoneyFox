@@ -9,7 +9,7 @@ using Resources.Strings;
 public class TranslateExtension : IMarkupExtension
 {
     private static readonly Lazy<ResourceManager> resMgr = new(
-        () => new(baseName: typeof(Translations).FullName, assembly: typeof(Translations).GetTypeInfo().Assembly));
+        () => new(baseName: typeof(Translations).FullName!, assembly: typeof(Translations).GetTypeInfo().Assembly));
 
     public string? Text { get; set; }
 

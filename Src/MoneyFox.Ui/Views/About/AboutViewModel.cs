@@ -19,8 +19,8 @@ public class AboutViewModel(IEmailAdapter emailAdapter, IBrowserAdapter adapter,
     public AsyncRelayCommand<string> OpenUrlCommand => new(url => adapter.OpenWebsiteAsync(new(url ?? string.Empty)));
 
     public List<LicenseViewModel> Licenses
-        => new()
-        {
+        =>
+        [
             new(Name: ".net MAUI", ProjectUrl: "https://github.com/dotnet/maui", License: "MIT"),
             new(Name: "MAUI Community ToolkitProjectUrl", ProjectUrl: "https://github.com/dotnet/maui", License: "MIT"),
             new(Name: "LiveChartsCore.SkiaSharpView", ProjectUrl: "https://github.com/beto-rodriguez/LiveCharts2", License: "MIT"),
@@ -46,8 +46,9 @@ public class AboutViewModel(IEmailAdapter emailAdapter, IBrowserAdapter adapter,
             new(Name: "FluentAssertions", ProjectUrl: "https://github.com/fluentassertions/fluentassertions", License: "Apache-2.0"),
             new(Name: "FluentAssertions.Analyzers", ProjectUrl: "https://github.com/fluentassertions/fluentassertions.analyzers", License: "MIT"),
             new(Name: "NSubstitute", ProjectUrl: "https://github.com/nsubstitute/NSubstitute", License: "BSD"),
-            new(Name: "NSubstitute.Analyzers.CSharp", ProjectUrl: "https://github.com/nsubstitute/NSubstitute.Analyzers", License: "MIT")
-        };
+            new(Name: "NSubstitute.Analyzers.CSharp", ProjectUrl: "https://github.com/nsubstitute/NSubstitute.Analyzers", License: "MIT"),
+            new(Name: "Sharpnado.Tabs", ProjectUrl: "https://github.com/roubachof/Sharpnado.Tabs", License: "MIT")
+        ];
 
     private async Task SendMailAsync()
     {

@@ -2,20 +2,13 @@ namespace MoneyFox.Ui.Views.Payments.PaymentList;
 
 public partial class FilterPopup
 {
-    public FilterPopup()
+    public FilterPopup(SelectFilterPopupViewModel viewModel)
     {
         InitializeComponent();
-        BindingContext = App.GetViewModel<SelectFilterDialogViewModel>();
+        BindingContext = viewModel;
     }
 
-    public FilterPopup(PaymentListFilterChangedMessage message)
-    {
-        InitializeComponent();
-        BindingContext = App.GetViewModel<SelectFilterDialogViewModel>();
-        ViewModel.Initialize(message);
-    }
-
-    private SelectFilterDialogViewModel ViewModel => (SelectFilterDialogViewModel)BindingContext;
+    private SelectFilterPopupViewModel ViewModel => (SelectFilterPopupViewModel)BindingContext;
 
     private void Button_OnClicked(object sender, EventArgs e)
     {

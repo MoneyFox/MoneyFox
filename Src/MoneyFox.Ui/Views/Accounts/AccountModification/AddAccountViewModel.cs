@@ -10,7 +10,7 @@ internal sealed class AddAccountViewModel : ModifyAccountViewModel
     private readonly IMediator mediator;
 
     public AddAccountViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService) : base(
-        service: dialogService,
+        dialogService: dialogService,
         mediator: mediator,
         navigationService: navigationService)
     {
@@ -23,7 +23,7 @@ internal sealed class AddAccountViewModel : ModifyAccountViewModel
             new CreateAccountCommand(
                 name: SelectedAccountVm.Name,
                 currentBalance: SelectedAccountVm.CurrentBalance,
-                note: SelectedAccountVm.Note,
+                note: SelectedAccountVm.Note ?? string.Empty,
                 isExcluded: SelectedAccountVm.IsExcluded));
     }
 }

@@ -1,14 +1,10 @@
 namespace MoneyFox.Ui.Views.Payments.PaymentList;
 
 using Accounts.AccountModification;
-using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Controls.CategorySelection;
-using Core.Common.Interfaces.Mapping;
 using Domain.Aggregates.AccountAggregate;
-using Domain.Aggregates.CategoryAggregate;
 
-public class PaymentListItemViewModel : ObservableObject, IHaveCustomMapping
+public class PaymentListItemViewModel : ObservableObject
 {
     private decimal amount;
     private string? categoryName;
@@ -124,13 +120,5 @@ public class PaymentListItemViewModel : ObservableObject, IHaveCustomMapping
     {
         get => currentAccountId;
         set => SetProperty(field: ref currentAccountId, newValue: value);
-    }
-
-    public void CreateMappings(Profile configuration)
-    {
-        configuration.CreateMap<Category, SelectedCategoryViewModel>();
-        configuration.CreateMap<Payment, PaymentListItemViewModel>()
-            .ForMember(destinationMember: x => x.CurrentAccountId, memberOptions: opt => opt.Ignore())
-            .ReverseMap();
     }
 }

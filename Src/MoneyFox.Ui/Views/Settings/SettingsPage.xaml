@@ -24,6 +24,7 @@
 
                 <Label Text="{x:Static resources:Translations.DefaultAccountSettingText}" />
 
+                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                 <Picker x:Name="AccountPicker" ItemDisplayBinding="{Binding Name}"
                         ItemsSource="{Binding AvailableAccounts}"
                         SelectedItem="{Binding SelectedAccount, Mode=TwoWay}" />

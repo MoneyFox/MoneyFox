@@ -32,17 +32,7 @@ internal sealed class BackupViewModel(
     public UserAccountViewModel UserAccount
     {
         get => userAccount;
-
-        set
-        {
-            if (userAccount == value)
-            {
-                return;
-            }
-
-            userAccount = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(field: ref userAccount, newValue: value);
     }
 
     public ImageSource? ProfilePicture
@@ -62,17 +52,7 @@ internal sealed class BackupViewModel(
     public DateTime BackupLastModified
     {
         get => backupLastModified;
-
-        private set
-        {
-            if (backupLastModified == value)
-            {
-                return;
-            }
-
-            backupLastModified = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(field: ref backupLastModified, newValue: value);
     }
 
     public bool IsLoading
@@ -86,17 +66,7 @@ internal sealed class BackupViewModel(
     public bool BackupAvailable
     {
         get => backupAvailable;
-
-        private set
-        {
-            if (backupAvailable == value)
-            {
-                return;
-            }
-
-            backupAvailable = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(field: ref backupAvailable, newValue: value);
     }
 
     public bool IsAutoBackupEnabled

@@ -1,6 +1,7 @@
 namespace MoneyFox.Ui.Views.Statistics.CashFlow;
 
 using System.Collections.ObjectModel;
+using CommunityToolkit.Maui.Core;
 using Core.Queries.Statistics;
 using LiveChartsCore;
 using LiveChartsCore.Kernel.Sketches;
@@ -8,7 +9,9 @@ using LiveChartsCore.SkiaSharpView;
 using MediatR;
 using Resources.Strings;
 
-internal sealed class StatisticCashFlowViewModel(IMediator mediator) : StatisticViewModel(mediator)
+internal sealed class StatisticCashFlowViewModel(IMediator mediator, IPopupService popupService) : StatisticViewModel(
+    mediator: mediator,
+    popupService: popupService)
 {
     public ObservableCollection<ISeries> Series { get; } = new();
 

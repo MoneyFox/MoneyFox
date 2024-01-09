@@ -7,10 +7,10 @@
     xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
     xmlns:paymentList="clr-namespace:MoneyFox.Ui.Views.Payments.PaymentList"
     CanBeDismissedByTappingOutsideOfPopup="false"
-    Size="330, 500"
     Color="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
+    Size="330, 500"
     x:Class="MoneyFox.Ui.Views.Payments.PaymentList.FilterPopup"
-    x:DataType="paymentList:SelectFilterDialogViewModel">
+    x:DataType="paymentList:SelectFilterPopupViewModel">
 
     <Grid RowDefinitions="*, 40">
         <Grid.Resources>

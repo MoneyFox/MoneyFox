@@ -16,7 +16,7 @@ public class DialogService : IDialogService
         }
 
         loadingDialog = new();
-        Shell.Current.ShowPopup(loadingDialog);
+        Application.Current!.MainPage!.ShowPopup(loadingDialog);
     }
 
     public async Task HideLoadingDialogAsync()
@@ -38,16 +38,16 @@ public class DialogService : IDialogService
         }
     }
 
-    public async Task ShowMessageAsync(string title, string message)
+    public Task ShowMessageAsync(string title, string message)
     {
-        await Shell.Current.DisplayAlert(title: title, message: message, cancel: Translations.OkLabel);
+        return Application.Current!.MainPage!.DisplayAlert(title: title, message: message, cancel: Translations.OkLabel);
     }
 
     public async Task<bool> ShowConfirmMessageAsync(string title, string message, string? positiveButtonText = null, string? negativeButtonText = null)
     {
         await HideLoadingDialogAsync();
 
-        return await Shell.Current.DisplayAlert(
+        return await Application.Current!.MainPage!.DisplayAlert(
             title: title,
             message: message,
             accept: positiveButtonText ?? Translations.YesLabel,

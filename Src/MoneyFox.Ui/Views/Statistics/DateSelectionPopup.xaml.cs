@@ -2,19 +2,10 @@ namespace MoneyFox.Ui.Views.Statistics;
 
 public partial class DateSelectionPopup
 {
-    public DateSelectionPopup(DateTime dateFrom, DateTime dateTo)
+    public DateSelectionPopup(SelectDateRangeDialogViewModel viewModel)
     {
         InitializeComponent();
-        BindingContext = App.GetViewModel<SelectDateRangeDialogViewModel>();
-        ViewModel.StartDate = dateFrom;
-        ViewModel.EndDate = dateTo;
-    }
-
-    public DateSelectionPopup(DateSelectedMessage message)
-    {
-        InitializeComponent();
-        BindingContext = App.GetViewModel<SelectDateRangeDialogViewModel>();
-        ViewModel.Initialize(message);
+        BindingContext = viewModel;
     }
 
     private SelectDateRangeDialogViewModel ViewModel => (SelectDateRangeDialogViewModel)BindingContext;

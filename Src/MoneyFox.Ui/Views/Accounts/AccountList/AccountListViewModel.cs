@@ -57,8 +57,9 @@ public sealed class AccountListViewModel(ISender mediator, IDialogService servic
         AccountGroups = new(new(accountGroups));
     }
 
-    private async Task DeleteAccountAsync(AccountListItemViewModel accountViewModel)
+    private async Task DeleteAccountAsync(AccountListItemViewModel? accountViewModel)
     {
+        ArgumentNullException.ThrowIfNull(accountViewModel);
         if (await service.ShowConfirmMessageAsync(
                 title: Translations.DeleteTitle,
                 message: Translations.DeleteAccountConfirmationMessage,

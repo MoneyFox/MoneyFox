@@ -32,7 +32,7 @@
             <accountPicker:AccountPicker PickerTitle="{x:Static resources:Translations.TargetAccountLabel}"
                                          AccountsSource="{Binding TargetAccounts}"
                                          SelectedAccount="{Binding SelectedPayment.TargetAccount}"
-                                         IsVisible="{Binding SelectedPayment.IsTransfer}" />
+                                         IsVisible="{Binding IsTransfer}" />
 
             <controls:AmountEntry
                 AmountFieldTitle="{x:Static resources:Translations.AmountLabel}"

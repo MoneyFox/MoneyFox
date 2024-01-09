@@ -6,13 +6,28 @@ using JetBrains.Annotations;
 [UsedImplicitly]
 internal sealed class NavigationService(IViewLocator locator, IAptabaseClient aptabaseClient) : INavigationService
 {
-    private INavigation Navigation => Shell.Current.Navigation;
+    private NavigationPage NavigationPage => (NavigationPage)Application.Current!.MainPage!;
+    private INavigation Navigation => NavigationPage.Navigation;
 
     public async Task GoBack(object? parameter = null)
     {
-        await Navigation.PopAsync();
-        var view = Shell.Current.CurrentPage;
-        await ((NavigableViewModel)view.BindingContext).OnNavigatedBackAsync(parameter);
+        await NavigationPage.PopAsync();
+        var view = Navigation.NavigationStack.LastOrDefault();
+        if (view?.BindingContext is NavigableViewModel navigableViewModel)
+        {
+            await navigableViewModel.OnNavigatedBackAsync(parameter);
+        }
+    }
+
+    public async Task NavigateFromMenuToAsync<TViewModel>() where TViewModel : NavigableViewModel
+    {
+        var view = locator.GetViewFor<TViewModel>();
+        await NavigationPage.PushAsync((Page)view);
+        await ((NavigableViewModel)view.BindingContext).OnNavigatedAsync(null);
+        foreach (var page in Navigation.NavigationStack.Take(Navigation.NavigationStack.Count - 1).Skip(1))
+        {
+            Navigation.RemovePage(page);
+        }
     }
 
     public async Task GoTo<TViewModel>(object? parameter = null, bool modalNavigation = false) where TViewModel : NavigableViewModel

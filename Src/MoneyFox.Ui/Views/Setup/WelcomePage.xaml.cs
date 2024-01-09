@@ -4,16 +4,9 @@ using Common.Navigation;
 
 public partial class WelcomePage : IBindablePage
 {
-    public WelcomePage()
+    public WelcomePage(WelcomeViewModel welcomeViewModel)
     {
         InitializeComponent();
-        BindingContext = App.GetViewModel<WelcomeViewModel>();
-    }
-
-    private WelcomeViewModel ViewModel => (WelcomeViewModel)BindingContext;
-
-    protected override void OnAppearing()
-    {
-        ViewModel.InitAsync().GetAwaiter().GetResult();
+        BindingContext = welcomeViewModel;
     }
 }

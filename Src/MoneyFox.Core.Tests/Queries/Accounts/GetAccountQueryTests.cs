@@ -1,6 +1,8 @@
 namespace MoneyFox.Core.Tests.Queries.Accounts;
 
+using Core.Common.Settings;
 using Core.Queries;
+using Domain;
 using Domain.Aggregates.AccountAggregate;
 
 public class GetAccountQueryTests : InMemoryTestBase
@@ -9,7 +11,9 @@ public class GetAccountQueryTests : InMemoryTestBase
 
     public GetAccountQueryTests()
     {
-        handler = new(Context);
+        var settingsFacade = Substitute.For<ISettingsFacade>();
+        settingsFacade.DefaultCurrency.Returns(Currencies.USD.AlphaIsoCode);
+        handler = new(appDbContext: Context, settingsFacade: settingsFacade);
     }
 
     [Fact]
@@ -32,7 +36,7 @@ public class GetAccountQueryTests : InMemoryTestBase
     {
         // Arrange
         var account1 = new Account(name: "test", initialBalance: 80);
-        var account2 = new Account(name: "test", initialBalance: 80);
+        var account2 = new Account(name: "test", initialBalance: 100);
         account2.Deactivate();
         await Context.AddAsync(account1);
         await Context.AddAsync(account2);

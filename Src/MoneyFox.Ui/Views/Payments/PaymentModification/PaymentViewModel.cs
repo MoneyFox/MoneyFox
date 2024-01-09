@@ -16,7 +16,7 @@ public class PaymentViewModel : ObservableObject
     private bool isCleared;
     private bool isRecurring;
     private DateTime? lastModified;
-    private string note = "";
+    private string? note;
     private AccountPickerViewModel? targetAccount;
     private PaymentType type;
 

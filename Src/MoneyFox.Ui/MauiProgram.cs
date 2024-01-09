@@ -11,6 +11,7 @@ using Microsoft.Maui.Handlers;
 using Serilog;
 using Serilog.Events;
 using Serilog.Exceptions;
+using Sharpnado.Tabs;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 
 public static class MauiProgram
@@ -32,9 +33,9 @@ public static class MauiProgram
                     fonts.AddFont(filename: "ProductSans-Regular.ttf", alias: "Product");
                     fonts.AddFont(filename: "materialdesignicons.ttf", alias: "MaterialIcons");
                 })
-            .AddCustomAppShellHandler()
             .UseSkiaSharp(true)
             .UseMauiCommunityToolkit()
+            .UseSharpnadoTabs(loggerEnable: false)
             .AddMoneyFoxService();
 
         EntryHandler.Mapper.AppendToMapping(
@@ -67,14 +68,6 @@ public static class MauiProgram
     {
         AddPlatformServicesAction?.Invoke(builder.Services);
         new MoneyFoxConfig().Register(builder.Services);
-    }
-
-    private static MauiAppBuilder AddCustomAppShellHandler(this MauiAppBuilder builder)
-    {
-#if IOS
-        builder.ConfigureMauiHandlers(handlers => { handlers.AddHandler(viewType: typeof(Shell), handlerType: typeof(Platforms.iOS.Renderer.CustomShellRenderer)); });
-#endif
-        return builder;
     }
 
 #if WINDOWS
