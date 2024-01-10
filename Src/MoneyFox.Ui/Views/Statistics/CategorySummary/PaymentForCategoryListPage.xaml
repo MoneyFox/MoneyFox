@@ -19,8 +19,7 @@
 
     <Grid>
 
-        <CollectionView x:Name="PaymentCollectionView"
-                        ItemsSource="{Binding PaymentDayGroups}"
+        <CollectionView ItemsSource="{Binding PaymentDayGroups}"
                         IsGrouped="True">
 
             <CollectionView.Header>

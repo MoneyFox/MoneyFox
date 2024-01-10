@@ -281,9 +281,6 @@
     <data name="ContactLabel" xml:space="preserve">
     <value>Kontakt</value>
   </data>
-    <data name="ContributerLabel" xml:space="preserve">
-    <value>Kõikide panuste vaatamiseks mine GitHubi:</value>
-  </data>
     <data name="ContributionsLabel" xml:space="preserve">
     <value>Panused</value>
   </data>

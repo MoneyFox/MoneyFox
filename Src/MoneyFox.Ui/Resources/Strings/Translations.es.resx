@@ -281,9 +281,6 @@
     <data name="ContactLabel" xml:space="preserve">
     <value>Contacto</value>
   </data>
-    <data name="ContributerLabel" xml:space="preserve">
-    <value>Para ver todas los contribuciones diríjase a GitHub:</value>
-  </data>
     <data name="ContributionsLabel" xml:space="preserve">
     <value>Contribuciones</value>
   </data>

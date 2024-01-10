@@ -281,9 +281,6 @@
     <data name="ContactLabel" xml:space="preserve">
     <value>Ota yhteyttä</value>
   </data>
-    <data name="ContributerLabel" xml:space="preserve">
-    <value>Mene GitHub:iin nähdäksesi kaikki avustajat:</value>
-  </data>
     <data name="ContributionsLabel" xml:space="preserve">
     <value>Muokkaukset</value>
   </data>

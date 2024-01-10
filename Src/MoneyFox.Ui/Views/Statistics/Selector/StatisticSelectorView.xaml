@@ -7,8 +7,7 @@
              x:Name="This"
              x:Class="MoneyFox.Ui.Views.Statistics.Selector.StatisticSelectorView">
     <VerticalStackLayout>
-        <CollectionView x:Name="StatisticCollectionView"
-                        BackgroundColor="Transparent"
+        <CollectionView BackgroundColor="Transparent"
                         ItemsSource="{x:Static statistics:StatisticSelectorViewModel.StatisticItems}">
 
             <CollectionView.ItemTemplate>

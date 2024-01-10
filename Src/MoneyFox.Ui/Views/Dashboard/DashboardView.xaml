@@ -89,7 +89,6 @@
             <Grid Grid.Row="4" VerticalOptions="FillAndExpand" RowDefinitions="110, 35">
 
                 <CollectionView
-                    x:Name="AccountCollectionView"
                     SelectionMode="None"
                     ItemsLayout="HorizontalList"
                     ItemsSource="{Binding Accounts}"

@@ -281,9 +281,6 @@
     <data name="ContactLabel" xml:space="preserve">
     <value>Susisiekite su</value>
   </data>
-    <data name="ContributerLabel" xml:space="preserve">
-    <value>Jei norite peržiūrėti visus įnašus, eikite į "GitHub":</value>
-  </data>
     <data name="ContributionsLabel" xml:space="preserve">
     <value>Įnašai</value>
   </data>

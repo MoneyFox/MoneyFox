@@ -281,9 +281,6 @@
     <data name="ContactLabel" xml:space="preserve">
     <value>お問い合わせ</value>
   </data>
-    <data name="ContributerLabel" xml:space="preserve">
-    <value>すべての貢献を確認するには、GitHub にアクセスしてください。</value>
-  </data>
     <data name="ContributionsLabel" xml:space="preserve">
     <value>貢献</value>
   </data>

@@ -27,7 +27,6 @@
                              SearchCommand="{Binding SearchCategoryCommand}" />
 
             <CollectionView Grid.Row="3"
-                            x:Name="CategoryCollectionView"
                             IsGrouped="true"
                             ItemsSource="{Binding CategoryGroups}">
 

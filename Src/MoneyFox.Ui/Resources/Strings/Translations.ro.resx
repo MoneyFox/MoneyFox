@@ -281,9 +281,6 @@
     <data name="ContactLabel" xml:space="preserve">
     <value>Contact</value>
   </data>
-    <data name="ContributerLabel" xml:space="preserve">
-    <value>Pentru a vedea toate contribuțiile direct către GitHub:</value>
-  </data>
     <data name="ContributionsLabel" xml:space="preserve">
     <value>Contribuții</value>
   </data>

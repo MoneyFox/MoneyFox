@@ -65,8 +65,7 @@
                 <Label HorizontalOptions="StartAndExpand"
                        Text="{x:Static resources:Translations.BackupInformationLabel}" />
 
-                <Button x:Name="ButtonRestoreBackup"
-                        Command="{Binding BackupCommand}"
+                <Button Command="{Binding BackupCommand}"
                         Text="{x:Static resources:Translations.CreateBackupLabel}" />
 
                 <Label HorizontalOptions="StartAndExpand"
