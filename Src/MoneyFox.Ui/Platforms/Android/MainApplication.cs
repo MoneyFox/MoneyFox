@@ -9,12 +9,10 @@ using Serilog;
 
 [Application]
 [UsedImplicitly]
-public class MainApplication : MauiApplication
+public class MainApplication(nint handle, JniHandleOwnership ownership) : MauiApplication(handle: handle, ownership: ownership)
 {
     private const string MSAL_APPLICATION_ID = "00a3e4cd-b4b0-4730-be62-5fcf90a94a1d";
     private const string MSAL_URI = $"msal{MSAL_APPLICATION_ID}://auth";
-
-    public MainApplication(nint handle, JniHandleOwnership ownership) : base(handle: handle, ownership: ownership) { }
 
     protected override MauiApp CreateMauiApp()
     {
