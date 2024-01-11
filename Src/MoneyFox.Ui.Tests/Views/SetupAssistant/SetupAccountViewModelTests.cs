@@ -4,7 +4,6 @@ using Common.Navigation;
 using MediatR;
 using MoneyFox.Core.Queries;
 using Domain.Aggregates.AccountAggregate;
-
 using Ui.Views.Setup;
 using MoneyFox.Domain;
 
