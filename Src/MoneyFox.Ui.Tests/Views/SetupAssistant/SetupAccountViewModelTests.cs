@@ -6,6 +6,7 @@ using MoneyFox.Core.Queries;
 using Domain.Aggregates.AccountAggregate;
 
 using Ui.Views.Setup;
+using MoneyFox.Domain;
 
 public class SetupAccountViewModelTests
 {
@@ -23,7 +24,7 @@ public class SetupAccountViewModelTests
         await vm.MadeAccount();
         vm.HasAnyAccount.Should().BeFalse();
 
-        var accounts = new List<Account> { new("TestAccount") };
+        var accounts = new List<GetAccountsQuery.AccountData> { new(Id: 1, Name: "TestAccount", CurrentBalance: Money.Zero(Currencies.USD), IsExcluded: false) };
         mediator.Send(Arg.Any<GetAccountsQuery>()).Returns(accounts);
 
         await vm.MadeAccount();
