@@ -282,9 +282,6 @@
     <data name="ContactLabel" xml:space="preserve">
     <value>Contact</value>
   </data>
-    <data name="ContributerLabel" xml:space="preserve">
-    <value>To see all contributions head over to GitHub:</value>
-  </data>
     <data name="ContributionsLabel" xml:space="preserve">
     <value>Contributions</value>
   </data>
@@ -967,4 +964,7 @@ You can change this late in the settings.</value>
     <data name="DefaultAccountSettingTitle" xml:space="preserve">
     <value>Default Payment Account</value>
   </data>
+    <data name="ContributorLabel" xml:space="preserve">
+        <value>To see all contributions head over to GitHub:</value>
+    </data>
 </root>
