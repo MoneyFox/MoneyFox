@@ -3,10 +3,10 @@ namespace MoneyFox.Ui.Views.Setup;
 using Accounts.AccountModification;
 using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
+using Core.Queries;
 using MediatR;
-using MoneyFox.Core.Queries;
 
-public sealed class SetupAccountsViewModel(INavigationService navigationService, IMediator mediator) : NavigableViewModel
+public sealed class SetupAccountsViewModel(INavigationService navigationService, ISender mediator) : NavigableViewModel
 {
     public AsyncRelayCommand GoToAddAccountCommand => new(() => navigationService.GoTo<AddAccountViewModel>());
 
@@ -14,12 +14,11 @@ public sealed class SetupAccountsViewModel(INavigationService navigationService,
 
     public AsyncRelayCommand BackCommand => new(() => navigationService.GoBack());
 
+    public bool HasAnyAccount { get; private set; }
+
     public async Task MadeAccount()
     {
         var accountVms = await mediator.Send(new GetAccountsQuery());
-
         HasAnyAccount = accountVms.Any();
     }
-
-    public bool HasAnyAccount { get; private set; }
 }
