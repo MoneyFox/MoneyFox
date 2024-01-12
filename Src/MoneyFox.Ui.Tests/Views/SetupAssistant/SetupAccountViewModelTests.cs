@@ -6,6 +6,7 @@ using MoneyFox.Core.Queries;
 using Domain.Aggregates.AccountAggregate;
 using Ui.Views.Setup;
 using MoneyFox.Domain;
+using Ui.Views.Setup.SetupAccounts;
 
 public class SetupAccountViewModelTests
 {
