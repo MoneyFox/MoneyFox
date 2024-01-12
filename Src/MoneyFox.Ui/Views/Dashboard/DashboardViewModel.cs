@@ -62,6 +62,11 @@ public class DashboardViewModel(IMediator mediator, INavigationService navigatio
         return LoadData();
     }
 
+    public override Task OnNavigatedBackAsync(object? parameter)
+    {
+        return LoadData();
+    }
+
     private async Task LoadData()
     {
         Accounts.Clear();

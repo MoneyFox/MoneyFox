@@ -23,6 +23,8 @@ public class DefaultNavigationPage : NavigationPage
         BarTextColor = Application.Current?.RequestedTheme == AppTheme.Dark
             ? (Color)App.ResourceDictionary["Colors"]["TextPrimaryColorDark"]
             : (Color)App.ResourceDictionary["Colors"]["TextPrimaryColorLight"];
+
+        On<iOS>().SetHideNavigationBarSeparator(true);
     }
 
     protected override void OnAppearing()

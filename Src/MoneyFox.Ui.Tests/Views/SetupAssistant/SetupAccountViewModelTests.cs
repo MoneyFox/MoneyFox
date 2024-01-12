@@ -1,32 +1,46 @@
 namespace MoneyFox.Ui.Tests.Views.SetupAssistant;
 
 using Common.Navigation;
+using Core.Queries;
+using Domain;
 using MediatR;
-using MoneyFox.Core.Queries;
-using Domain.Aggregates.AccountAggregate;
-using Ui.Views.Setup;
-using MoneyFox.Domain;
+using Ui.Views.Setup.SetupAccounts;
 
 public class SetupAccountViewModelTests
 {
     [Fact]
-    public async void HasAccount()
+    public async Task MarkNextStepAsNotAvailableWhenNoAccountWasCreated()
     {
         // Arrange
         var navigationService = Substitute.For<INavigationService>();
         var mediator = Substitute.For<IMediator>();
 
         // Act
-        var vm = new SetupAccountsViewModel(navigationService, mediator);
+        var vm = new SetupAccountsViewModel(navigationService: navigationService, mediator: mediator);
+        await vm.OnNavigatedAsync(null);
 
         // Assert
-        await vm.MadeAccount();
-        vm.HasAnyAccount.Should().BeFalse();
+        vm.NextStepCommand.CanExecute(null).Should().BeFalse();
+    }
 
-        var accounts = new List<GetAccountsQuery.AccountData> { new(Id: 1, Name: "TestAccount", CurrentBalance: Money.Zero(Currencies.USD), IsExcluded: false) };
+    [Fact]
+    public async Task MarkNextStepAsAvailableWhenAtLeastOneAccountIsAvailable()
+    {
+        // Arrange
+        var navigationService = Substitute.For<INavigationService>();
+        var mediator = Substitute.For<IMediator>();
+        var accounts = new List<GetAccountsQuery.AccountData>
+        {
+            new(Id: 1, Name: "TestAccount", CurrentBalance: Money.Zero(Currencies.USD), IsExcluded: false)
+        };
+
         mediator.Send(Arg.Any<GetAccountsQuery>()).Returns(accounts);
 
-        await vm.MadeAccount();
-        vm.HasAnyAccount.Should().BeTrue();
+        // Act
+        var vm = new SetupAccountsViewModel(navigationService: navigationService, mediator: mediator);
+        await vm.OnNavigatedAsync(null);
+
+        // Assert
+        vm.NextStepCommand.CanExecute(null).Should().BeTrue();
     }
 }

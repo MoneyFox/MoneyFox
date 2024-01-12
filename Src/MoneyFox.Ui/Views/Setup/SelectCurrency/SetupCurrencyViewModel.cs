@@ -5,6 +5,7 @@ using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Settings;
 using Domain;
+using SetupAccounts;
 
 public class SetupCurrencyViewModel : NavigableViewModel
 {

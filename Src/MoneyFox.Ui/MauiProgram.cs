@@ -13,6 +13,9 @@ using Serilog.Events;
 using Serilog.Exceptions;
 using Sharpnado.Tabs;
 using SkiaSharp.Views.Maui.Controls.Hosting;
+#if IOS
+using UIKit;
+#endif
 
 public static class MauiProgram
 {
@@ -49,7 +52,7 @@ public static class MauiProgram
                     handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
 #elif IOS
                     handler.PlatformView.Layer.BorderWidth = 0;
-                    handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
+                    handler.PlatformView.BorderStyle = UITextBorderStyle.None;
 #elif WINDOWS
                     handler.PlatformView.BorderThickness = new(0);
 #endif

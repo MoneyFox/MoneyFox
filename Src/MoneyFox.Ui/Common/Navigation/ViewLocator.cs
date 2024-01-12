@@ -17,6 +17,7 @@ using Views.Payments.PaymentModification;
 using Views.Settings;
 using Views.Setup;
 using Views.Setup.SelectCurrency;
+using Views.Setup.SetupAccounts;
 using Views.Statistics.CashFlow;
 using Views.Statistics.CategoryProgression;
 using Views.Statistics.CategorySpreading;
