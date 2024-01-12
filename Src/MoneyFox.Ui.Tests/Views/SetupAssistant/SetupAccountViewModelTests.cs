@@ -10,7 +10,7 @@ using MoneyFox.Domain;
 public class SetupAccountViewModelTests
 {
     [Fact]
-    public async void HasAccount()
+    public async Task MarkNextStepAsNotAvailableWhenNoAccountWasCreated()
     {
         // Arrange
         var navigationService = Substitute.For<INavigationService>();
@@ -18,15 +18,29 @@ public class SetupAccountViewModelTests
 
         // Act
         var vm = new SetupAccountsViewModel(navigationService, mediator);
+        await vm.OnNavigatedAsync(null);
 
         // Assert
-        await vm.CheckIfAccountWasMade();
         vm.HasAnyAccount.Should().BeFalse();
+        vm.NextStepCommand.CanExecute(null).Should().BeFalse();
+    }
+
+    [Fact]
+    public async Task MarkNextStepAsAvailableWhenAtLeastOneAccountIsAvailable()
+    {
+        // Arrange
+        var navigationService = Substitute.For<INavigationService>();
+        var mediator = Substitute.For<IMediator>();
 
         var accounts = new List<GetAccountsQuery.AccountData> { new(Id: 1, Name: "TestAccount", CurrentBalance: Money.Zero(Currencies.USD), IsExcluded: false) };
         mediator.Send(Arg.Any<GetAccountsQuery>()).Returns(accounts);
 
-        await vm.CheckIfAccountWasMade();
-        vm.HasAnyAccount.Should().BeTrue();
+        // Act
+        var vm = new SetupAccountsViewModel(navigationService, mediator);
+        await vm.OnNavigatedAsync(null);
+
+        // Assert
+        vm.HasAnyAccount.Should().BeFalse();
+        vm.NextStepCommand.CanExecute(null).Should().BeFalse();
     }
 }
