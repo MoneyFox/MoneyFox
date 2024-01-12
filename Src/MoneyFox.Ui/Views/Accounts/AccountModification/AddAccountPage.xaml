@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
     xmlns:accountModification="clr-namespace:MoneyFox.Ui.Views.Accounts.AccountModification"
-    Title="{x:Static resources:Translations.AddAccountLabel}"
+    Title="{Binding Title}"
     x:DataType="accountModification:AddAccountViewModel"
     x:Class="MoneyFox.Ui.Views.Accounts.AccountModification.AddAccountPage">
 
