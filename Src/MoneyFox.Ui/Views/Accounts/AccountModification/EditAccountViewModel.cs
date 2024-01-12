@@ -23,9 +23,10 @@ public class EditAccountViewModel : ModifyAccountViewModel
         this.mediator = mediator;
         this.dialogService = dialogService;
         this.navigationService = navigationService;
+
+        IsEdit = true;
     }
 
-    public override bool IsEdit => true;
     public override string Title => string.Format(format: Translations.EditAccountTitle, arg0: SelectedAccountVm.Name);
 
     public AsyncRelayCommand DeleteCommand => new(DeleteAsync);

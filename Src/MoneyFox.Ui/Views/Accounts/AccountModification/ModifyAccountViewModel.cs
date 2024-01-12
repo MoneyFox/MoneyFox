@@ -11,11 +11,9 @@ public abstract class ModifyAccountViewModel(IDialogService dialogService, IMedi
 {
     private AccountViewModel selectedAccountVm = new();
 
-    public virtual bool IsEdit => false;
+    public bool IsEdit { get; protected init; }
 
-    public virtual string Title => Translations.AddAccountTitle;
-
-    protected IMediator Mediator { get; } = mediator;
+    public abstract string Title { get; }
 
     public AccountViewModel SelectedAccountVm
     {
@@ -39,10 +37,10 @@ public abstract class ModifyAccountViewModel(IDialogService dialogService, IMedi
         try
         {
             var nameChanged = SelectedAccountVm.Id == 0
-                              || !SelectedAccountVm.Name.Equals(await Mediator.Send(new GetAccountNameByIdQuery(SelectedAccountVm.Id)));
+                              || !SelectedAccountVm.Name.Equals(await mediator.Send(new GetAccountNameByIdQuery(SelectedAccountVm.Id)));
 
             var nameAlreadyTaken
-                = await Mediator.Send(new GetIfAccountWithNameExistsQuery(accountName: SelectedAccountVm.Name, accountId: SelectedAccountVm.Id));
+                = await mediator.Send(new GetIfAccountWithNameExistsQuery(accountName: SelectedAccountVm.Name, accountId: SelectedAccountVm.Id));
 
             if (nameChanged
                 && nameAlreadyTaken
