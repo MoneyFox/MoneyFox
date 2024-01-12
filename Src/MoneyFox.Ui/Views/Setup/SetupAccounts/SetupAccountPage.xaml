@@ -44,7 +44,7 @@
                            Margin="10,0,10,0"
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Center"
-                           Text="{x:Static resources:Translations.NoAccountsMessage}" />
+                           Text="{x:Static resources:Translations.CreateAccountToProceedMessage}" />
                 </Grid>
             </CollectionView.EmptyView>
         </CollectionView>
