@@ -8,11 +8,4 @@ public partial class SetupAccountPage : IBindablePage
     {
         InitializeComponent();
     }
-    private SetupAccountsViewModel ViewModel => (SetupAccountsViewModel)BindingContext;
-
-    protected override async void OnAppearing()
-    {
-        await ViewModel.MadeAccount();
-        NextStepButton.IsVisible = ViewModel.HasAnyAccount;
-    }
 }

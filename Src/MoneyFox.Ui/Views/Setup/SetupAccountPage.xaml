@@ -35,7 +35,6 @@
 
             <Button Grid.Column="2"
                     VerticalOptions="Center"
-                    x:Name="NextStepButton"
                     Text="{x:Static resources:Translations.NextLabel}"
                     Command="{Binding NextStepCommand}" />
         </Grid>

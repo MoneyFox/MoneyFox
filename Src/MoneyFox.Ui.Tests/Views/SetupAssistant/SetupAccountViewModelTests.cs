@@ -20,13 +20,13 @@ public class SetupAccountViewModelTests
         var vm = new SetupAccountsViewModel(navigationService, mediator);
 
         // Assert
-        await vm.MadeAccount();
+        await vm.CheckIfAccountWasMade();
         vm.HasAnyAccount.Should().BeFalse();
 
         var accounts = new List<GetAccountsQuery.AccountData> { new(Id: 1, Name: "TestAccount", CurrentBalance: Money.Zero(Currencies.USD), IsExcluded: false) };
         mediator.Send(Arg.Any<GetAccountsQuery>()).Returns(accounts);
 
-        await vm.MadeAccount();
+        await vm.CheckIfAccountWasMade();
         vm.HasAnyAccount.Should().BeTrue();
     }
 }
