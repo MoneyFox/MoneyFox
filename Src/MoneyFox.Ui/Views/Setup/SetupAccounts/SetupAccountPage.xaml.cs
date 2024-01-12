@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.Views.Setup;
+namespace MoneyFox.Ui.Views.Setup.SetupAccounts;
 
 using Common.Navigation;
 

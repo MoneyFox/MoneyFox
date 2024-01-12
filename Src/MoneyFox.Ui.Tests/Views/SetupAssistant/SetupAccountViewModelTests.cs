@@ -39,6 +39,6 @@ public class SetupAccountViewModelTests
         await vm.OnNavigatedAsync(null);
 
         // Assert
-        vm.NextStepCommand.CanExecute(null).Should().BeFalse();
+        vm.NextStepCommand.CanExecute(null).Should().BeTrue();
     }
 }

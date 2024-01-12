@@ -1,4 +1,4 @@
-namespace MoneyFox.Ui.Views.Setup;
+namespace MoneyFox.Ui.Views.Setup.SetupAccounts;
 
 using Accounts.AccountModification;
 using Common.Navigation;
@@ -10,13 +10,14 @@ public sealed class SetupAccountsViewModel(INavigationService navigationService,
 {
     public AsyncRelayCommand GoToAddAccountCommand => new(() => navigationService.GoTo<AddAccountViewModel>());
 
-    public AsyncRelayCommand NextStepCommand => new(() => navigationService.GoTo<SetupCategoryViewModel>(), CheckIfAccountWasMade);
+    public AsyncRelayCommand NextStepCommand => new(execute: () => navigationService.GoTo<SetupCategoryViewModel>(), canExecute: CheckIfAccountWasMade);
 
     public AsyncRelayCommand BackCommand => new(() => navigationService.GoBack());
 
     private bool CheckIfAccountWasMade()
     {
         var accountVms = mediator.Send(new GetAccountsQuery()).GetAwaiter().GetResult();
+
         return accountVms.Any();
     }
 }
