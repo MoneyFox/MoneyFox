@@ -13,6 +13,6 @@ public partial class MainPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        await ViewModel.DashboardViewModel.OnNavigatedAsync(null);
+        await ViewModel.OnNavigatedAsync(null);
     }
 }
