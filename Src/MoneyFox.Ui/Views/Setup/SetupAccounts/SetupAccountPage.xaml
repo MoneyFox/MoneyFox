@@ -9,7 +9,7 @@
 
     <Grid Padding="15"
           IsClippedToBounds="False"
-          RowDefinitions="*, Auto"
+          RowDefinitions="250, *,Auto"
           VerticalOptions="FillAndExpand">
 
         <VerticalStackLayout Spacing="12">
@@ -24,10 +24,32 @@
             <Button VerticalOptions="Center"
                     Text="{x:Static resources:Translations.CreateAccountNowLabel}"
                     Command="{Binding GoToAddAccountCommand}" />
-
         </VerticalStackLayout>
+        
+        <CollectionView Grid.Row="1"
+                        Header="{x:Static resources:Translations.ExistingAccountsTitle}"
+                        ItemsSource="{Binding ExistingAccounts}">
 
-        <Grid Grid.Row="6" ColumnDefinitions="*, 6, 2*">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="setupAccounts:AccountViewModel">
+                    <Label Style="{StaticResource TextBody}"
+                           LineBreakMode="TailTruncation"
+                           Text="{Binding Name}" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.EmptyView>
+                <Grid>
+                    <Label Style="{StaticResource TextSubheadSecondary}"
+                           Margin="10,0,10,0"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           Text="{x:Static resources:Translations.NoAccountsMessage}" />
+                </Grid>
+            </CollectionView.EmptyView>
+        </CollectionView>
+
+        <Grid Grid.Row="2" ColumnDefinitions="*, 6, 2*">
             <Button Grid.Column="0"
                     VerticalOptions="Center"
                     Text="{x:Static resources:Translations.BackLabel}"
@@ -36,7 +58,8 @@
             <Button Grid.Column="2"
                     VerticalOptions="Center"
                     Text="{x:Static resources:Translations.NextLabel}"
-                    Command="{Binding NextStepCommand}" />
+                    Command="{Binding NextStepCommand}"
+                    CommandParameter="{Binding IsNextStepAvailable}"/>
         </Grid>
     </Grid>
 </ContentPage>
