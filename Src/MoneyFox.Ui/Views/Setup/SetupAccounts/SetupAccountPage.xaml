@@ -25,7 +25,7 @@
                     Text="{x:Static resources:Translations.CreateAccountNowLabel}"
                     Command="{Binding GoToAddAccountCommand}" />
         </VerticalStackLayout>
-        
+
         <CollectionView Grid.Row="1"
                         Header="{x:Static resources:Translations.ExistingAccountsTitle}"
                         ItemsSource="{Binding ExistingAccounts}">
@@ -59,7 +59,7 @@
                     VerticalOptions="Center"
                     Text="{x:Static resources:Translations.NextLabel}"
                     Command="{Binding NextStepCommand}"
-                    CommandParameter="{Binding IsNextStepAvailable}"/>
+                    CommandParameter="{Binding IsNextStepAvailable}" />
         </Grid>
     </Grid>
 </ContentPage>

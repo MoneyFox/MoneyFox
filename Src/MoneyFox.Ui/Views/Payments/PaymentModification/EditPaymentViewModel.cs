@@ -18,8 +18,8 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
-    private readonly ISettingsFacade settingsFacade;
     private readonly INavigationService navigationService;
+    private readonly ISettingsFacade settingsFacade;
 
     public EditPaymentViewModel(
         IMediator mediator,

@@ -12,8 +12,7 @@ public sealed class SetupAccountsViewModel(INavigationService navigationService,
 {
     public AsyncRelayCommand GoToAddAccountCommand => new(() => navigationService.GoTo<AddAccountViewModel>());
 
-    public AsyncRelayCommand NextStepCommand
-        => new(execute: () => navigationService.GoTo<SetupCategoryViewModel>(), canExecute: () => IsNextStepAvailable);
+    public AsyncRelayCommand NextStepCommand => new(execute: () => navigationService.GoTo<SetupCategoryViewModel>(), canExecute: () => IsNextStepAvailable);
 
     public AsyncRelayCommand BackCommand => new(() => navigationService.GoBack());
 

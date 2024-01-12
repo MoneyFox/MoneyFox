@@ -31,7 +31,7 @@
                                                          Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                                     </Image.Source>
                                 </Image>
-                                <Label Text="{Binding Name}" 
+                                <Label Text="{Binding Name}"
                                        Style="{DynamicResource TextSubHead}"
                                        VerticalOptions="Center" />
                             </HorizontalStackLayout>

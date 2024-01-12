@@ -1,11 +1,9 @@
 namespace MoneyFox.Ui.Tests.Views.SetupAssistant;
 
 using Common.Navigation;
+using Core.Queries;
+using Domain;
 using MediatR;
-using MoneyFox.Core.Queries;
-using Domain.Aggregates.AccountAggregate;
-using Ui.Views.Setup;
-using MoneyFox.Domain;
 using Ui.Views.Setup.SetupAccounts;
 
 public class SetupAccountViewModelTests
@@ -18,7 +16,7 @@ public class SetupAccountViewModelTests
         var mediator = Substitute.For<IMediator>();
 
         // Act
-        var vm = new SetupAccountsViewModel(navigationService, mediator);
+        var vm = new SetupAccountsViewModel(navigationService: navigationService, mediator: mediator);
         await vm.OnNavigatedAsync(null);
 
         // Assert
@@ -31,12 +29,15 @@ public class SetupAccountViewModelTests
         // Arrange
         var navigationService = Substitute.For<INavigationService>();
         var mediator = Substitute.For<IMediator>();
+        var accounts = new List<GetAccountsQuery.AccountData>
+        {
+            new(Id: 1, Name: "TestAccount", CurrentBalance: Money.Zero(Currencies.USD), IsExcluded: false)
+        };
 
-        var accounts = new List<GetAccountsQuery.AccountData> { new(Id: 1, Name: "TestAccount", CurrentBalance: Money.Zero(Currencies.USD), IsExcluded: false) };
         mediator.Send(Arg.Any<GetAccountsQuery>()).Returns(accounts);
 
         // Act
-        var vm = new SetupAccountsViewModel(navigationService, mediator);
+        var vm = new SetupAccountsViewModel(navigationService: navigationService, mediator: mediator);
         await vm.OnNavigatedAsync(null);
 
         // Assert
