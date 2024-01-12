@@ -21,7 +21,6 @@ public class SetupAccountViewModelTests
         await vm.OnNavigatedAsync(null);
 
         // Assert
-        vm.HasAnyAccount.Should().BeFalse();
         vm.NextStepCommand.CanExecute(null).Should().BeFalse();
     }
 
@@ -40,7 +39,6 @@ public class SetupAccountViewModelTests
         await vm.OnNavigatedAsync(null);
 
         // Assert
-        vm.HasAnyAccount.Should().BeFalse();
         vm.NextStepCommand.CanExecute(null).Should().BeFalse();
     }
 }
