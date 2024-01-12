@@ -281,9 +281,6 @@
     <data name="ContactLabel" xml:space="preserve">
     <value>Επικοινωνία</value>
   </data>
-    <data name="ContributerLabel" xml:space="preserve">
-    <value>Για να δείτε όλες τις συνεισφορές κατευθυνθείτε προς το GitHub:</value>
-  </data>
     <data name="ContributionsLabel" xml:space="preserve">
     <value>Συνεισφορές</value>
   </data>

@@ -8,4 +8,6 @@ public partial class AboutPage : IBindablePage
     {
         InitializeComponent();
     }
+
+    public AboutViewModel ViewModel => (AboutViewModel)BindingContext;
 }

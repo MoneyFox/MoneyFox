@@ -8,8 +8,7 @@
              x:Class="MoneyFox.Ui.Views.OverflowMenu.OverflowMenuView">
 
     <VerticalStackLayout>
-        <CollectionView x:Name="OverflowMenuCollectionView"
-                        ItemsSource="{x:Static overflowMenu:OverflowMenuViewModel.OverflowEntries}">
+        <CollectionView ItemsSource="{x:Static overflowMenu:OverflowMenuViewModel.OverflowEntries}">
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="overflowMenu:OverflowItemViewModel">

@@ -40,8 +40,7 @@
             </ImageButton>
         </Grid>
 
-        <CollectionView x:Name="CategorySummaryList"
-                        Grid.Row="1"
+        <CollectionView Grid.Row="1"
                         EmptyView="{x:Static resources:Translations.CategorySummaryPlaceholder}"
                         ItemsSource="{Binding CategorySummary}">
 

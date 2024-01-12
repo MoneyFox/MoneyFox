@@ -281,9 +281,6 @@
     <data name="ContactLabel" xml:space="preserve">
     <value>Kontakt os</value>
   </data>
-    <data name="ContributerLabel" xml:space="preserve">
-    <value>For at se alle bidrag gå ind på GitHub:</value>
-  </data>
     <data name="ContributionsLabel" xml:space="preserve">
     <value>Bidrag</value>
   </data>

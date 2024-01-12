@@ -281,9 +281,6 @@
     <data name="ContactLabel" xml:space="preserve">
     <value>Kontak</value>
   </data>
-    <data name="ContributerLabel" xml:space="preserve">
-    <value>Untuk melihat semua kontribusi ke Github:</value>
-  </data>
     <data name="ContributionsLabel" xml:space="preserve">
     <value>Kontribusi</value>
   </data>

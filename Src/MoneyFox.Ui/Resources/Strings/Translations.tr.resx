@@ -281,9 +281,6 @@
     <data name="ContactLabel" xml:space="preserve">
     <value>İletişim</value>
   </data>
-    <data name="ContributerLabel" xml:space="preserve">
-    <value>Bütün katkı sağlayanları github üstünde gör:</value>
-  </data>
     <data name="ContributionsLabel" xml:space="preserve">
     <value>Katkılar</value>
   </data>

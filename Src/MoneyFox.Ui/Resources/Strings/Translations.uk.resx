@@ -281,9 +281,6 @@
     <data name="ContactLabel" xml:space="preserve">
     <value>Контакт</value>
   </data>
-    <data name="ContributerLabel" xml:space="preserve">
-    <value>Щоб побачити всі внески на GitHub:</value>
-  </data>
     <data name="ContributionsLabel" xml:space="preserve">
     <value>Внески</value>
   </data>

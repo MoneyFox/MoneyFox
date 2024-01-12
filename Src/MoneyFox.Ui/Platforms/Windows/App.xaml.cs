@@ -4,7 +4,6 @@
 // ReSharper disable once CheckNamespace
 namespace MoneyFox.Ui.WinUI;
 
-using Core.Interfaces;
 using Microsoft.Identity.Client;
 using Platforms.Windows.Src;
 

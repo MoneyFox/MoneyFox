@@ -27,7 +27,6 @@
 
             <CollectionView
                 Grid.Row="1"
-                x:Name="AccountCollectionView"
                 IsGrouped="true"
                 ItemsSource="{Binding AccountGroups}">
 

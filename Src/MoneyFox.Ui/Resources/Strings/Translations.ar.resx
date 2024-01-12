@@ -281,9 +281,6 @@
     <data name="ContactLabel" xml:space="preserve">
     <value>التواصل</value>
   </data>
-    <data name="ContributerLabel" xml:space="preserve">
-    <value>لرؤية جميع المساهمات قم بزيارة GitHub:</value>
-  </data>
     <data name="ContributionsLabel" xml:space="preserve">
     <value>المساهمات</value>
   </data>
