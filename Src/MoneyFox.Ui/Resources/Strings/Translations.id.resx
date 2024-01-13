@@ -964,4 +964,10 @@ Anda dapat mengubahnya di bagian akhir pengaturan.</value>
     <data name="ContributorLabel" xml:space="preserve">
         <value>Untuk melihat semua kontribusi ke Github:</value>
     </data>
+  <data name="ExistingAccountsTitle" xml:space="preserve">
+        <value>Existing Accounts</value>
+    </data>
+  <data name="CreateAccountToProceedMessage" xml:space="preserve">
+        <value>Create at least one account to continue</value>
+    </data>
 </root>

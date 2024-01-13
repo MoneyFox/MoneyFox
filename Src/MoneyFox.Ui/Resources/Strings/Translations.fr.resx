@@ -963,4 +963,10 @@ Tu peux la modifier dans les paramètres.</value>
     <data name="ContributorLabel" xml:space="preserve">
         <value>Voir toutes les contributions sur GitHub :</value>
     </data>
+  <data name="ExistingAccountsTitle" xml:space="preserve">
+        <value>Existing Accounts</value>
+    </data>
+  <data name="CreateAccountToProceedMessage" xml:space="preserve">
+        <value>Create at least one account to continue</value>
+    </data>
 </root>

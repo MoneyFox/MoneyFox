@@ -966,4 +966,10 @@ Du kan ændre denne sent i indstillingerne.</value>
     <data name="ContributorLabel" xml:space="preserve">
         <value>For at se alle bidrag gå ind på GitHub:</value>
     </data>
+  <data name="ExistingAccountsTitle" xml:space="preserve">
+        <value>Existing Accounts</value>
+    </data>
+  <data name="CreateAccountToProceedMessage" xml:space="preserve">
+        <value>Create at least one account to continue</value>
+    </data>
 </root>

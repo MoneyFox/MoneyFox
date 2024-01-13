@@ -965,4 +965,10 @@ Pode alterar esta moeda tardiamente nas definições.</value>
     <data name="ContributorLabel" xml:space="preserve">
         <value>Para ver todas as contribuições vá ao GitHub:</value>
     </data>
+  <data name="ExistingAccountsTitle" xml:space="preserve">
+        <value>Existing Accounts</value>
+    </data>
+  <data name="CreateAccountToProceedMessage" xml:space="preserve">
+        <value>Create at least one account to continue</value>
+    </data>
 </root>
