@@ -740,9 +740,6 @@ Pentru a începe crearea unui nou cont. Conturile sunt utilizate pentru a organi
     <data name="YesLabel" xml:space="preserve">
     <value>Da</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Gestionează-ți conturile</value>
-  </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Adăugare plată</value>
   </data>

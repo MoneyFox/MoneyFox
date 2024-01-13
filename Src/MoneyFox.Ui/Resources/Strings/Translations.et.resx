@@ -740,9 +740,6 @@ Alustamiseks looge uus konto. Kontod on mõeldud maksete ja raha kogumise korral
     <data name="YesLabel" xml:space="preserve">
     <value>Jah</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Halda oma kontosid</value>
-  </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Lisa makse</value>
   </data>

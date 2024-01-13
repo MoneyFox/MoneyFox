@@ -737,9 +737,6 @@ Pour commencer, créez un nouveau compte. Les comptes sont utilisés pour organi
     <data name="YesLabel" xml:space="preserve">
     <value>Oui</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Gérez votre compte</value>
-  </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Ajouter un paiement</value>
   </data>

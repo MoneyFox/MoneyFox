@@ -740,9 +740,6 @@ Ak chcete začať, vytvorte si nový účet. Účty slúžia na organizáciu pla
     <data name="YesLabel" xml:space="preserve">
     <value>Áno</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Spravujte svoje účty</value>
-  </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Pridať platbu</value>
   </data>

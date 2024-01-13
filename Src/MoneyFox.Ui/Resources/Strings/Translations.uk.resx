@@ -740,9 +740,6 @@
     <data name="YesLabel" xml:space="preserve">
     <value>Так</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Керування обліковими записами</value>
-  </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Додати платіж</value>
   </data>

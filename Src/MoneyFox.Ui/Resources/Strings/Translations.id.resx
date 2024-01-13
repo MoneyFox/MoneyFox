@@ -738,9 +738,6 @@ Untuk memulai, buat akun baru. Akun digunakan untuk mengatur pembayaran dan uang
     <data name="YesLabel" xml:space="preserve">
     <value>Iya</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Kelola Akun Anda</value>
-  </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Tambahkan Pembayaran</value>
   </data>

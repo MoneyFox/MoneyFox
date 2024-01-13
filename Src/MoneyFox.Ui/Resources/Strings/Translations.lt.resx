@@ -740,9 +740,6 @@ Norėdami pradėti, sukurkite naują paskyrą. Sąskaitos naudojamos mokėjimams
     <data name="YesLabel" xml:space="preserve">
     <value>Taip</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Tvarkykite savo paskyras</value>
-  </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Pridėti mokėjimą</value>
   </data>

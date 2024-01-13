@@ -739,9 +739,6 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
     <data name="YesLabel" xml:space="preserve">
     <value>Ja</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Verwalte deine Konten</value>
-  </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Zahlung hinzufügen</value>
   </data>

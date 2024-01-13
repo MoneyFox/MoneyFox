@@ -738,9 +738,6 @@ Aby rozpocząć tworzenie nowego konta. Konta są używane do organizowania pła
     <data name="YesLabel" xml:space="preserve">
     <value>Tak</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Zarządzaj kontami</value>
-  </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Dodaj Płatność</value>
   </data>

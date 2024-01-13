@@ -739,9 +739,6 @@ Para começar a criar uma nova conta. Contas são usadas para organizar pagament
     <data name="YesLabel" xml:space="preserve">
     <value>Sim</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Gerenciar suas contas</value>
-  </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Adicionar pagamento</value>
   </data>

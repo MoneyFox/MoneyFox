@@ -740,9 +740,6 @@
     <data name="YesLabel" xml:space="preserve">
     <value>نعم</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>إدارة حساباتك</value>
-  </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>إضافة دفعة</value>
   </data>

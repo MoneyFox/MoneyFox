@@ -740,9 +740,6 @@ For å starte å opprette en ny konto. Kontoer benyttes til å organisere betali
     <data name="YesLabel" xml:space="preserve">
     <value>Ja</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Administrer dine kontoer</value>
-  </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Legg til betaling</value>
   </data>

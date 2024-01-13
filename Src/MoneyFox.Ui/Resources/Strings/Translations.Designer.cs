@@ -1269,12 +1269,6 @@ namespace MoneyFox.Ui.Resources.Strings {
             }
         }
         
-        public static string AccountsToolTip {
-            get {
-                return ResourceManager.GetString("AccountsToolTip", resourceCulture);
-            }
-        }
-        
         public static string AddPaymentTitle {
             get {
                 return ResourceManager.GetString("AddPaymentTitle", resourceCulture);

@@ -740,9 +740,6 @@ Başlamak için yeni bir hesap oluşturun. Hesaplar, ödemeleri ve tahsilatlarda
     <data name="YesLabel" xml:space="preserve">
     <value>Evet</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Hesaplarınızı Yönetin</value>
-  </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Ödeme Ekle</value>
   </data>

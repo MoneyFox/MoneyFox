@@ -743,9 +743,6 @@ Maak een nieuw account aan om hier dan uw budgetten op een gemakkelijke manier b
     <data name="YesLabel" xml:space="preserve">
     <value>Ja</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Je account beheren</value>
-  </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Betaling toevoegen</value>
   </data>

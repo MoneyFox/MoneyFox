@@ -740,9 +740,6 @@
     <data name="YesLabel" xml:space="preserve">
     <value>Ναι</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Διαχειριστείτε τους λογαριασμούς σας</value>
-  </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Προσθήκη Πληρωμής</value>
   </data>

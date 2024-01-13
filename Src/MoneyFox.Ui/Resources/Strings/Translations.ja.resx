@@ -740,9 +740,6 @@
     <data name="YesLabel" xml:space="preserve">
     <value>はい</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>アカウントの管理</value>
-  </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>支払いを追加</value>
   </data>

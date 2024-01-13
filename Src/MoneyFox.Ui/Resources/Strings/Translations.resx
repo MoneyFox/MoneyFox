@@ -741,9 +741,6 @@ We will lead you through the first steps and help you get started.</value>
     <data name="YesLabel" xml:space="preserve">
     <value>Yes</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Manage your Accounts</value>
-  </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Add Payment</value>
   </data>

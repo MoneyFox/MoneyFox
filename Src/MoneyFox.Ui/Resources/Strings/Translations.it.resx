@@ -740,9 +740,6 @@ Per iniziare a creare un nuovo conto. I conti sono utilizzati per organizzare pa
     <data name="YesLabel" xml:space="preserve">
     <value>Si</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Gestisci i tuoi account</value>
-  </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Aggiungi pagamento</value>
   </data>

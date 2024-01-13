@@ -739,9 +739,6 @@
     <data name="YesLabel" xml:space="preserve">
     <value>Да</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Управление на вашите акаунти</value>
-  </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Добавяне на плащане</value>
   </data>

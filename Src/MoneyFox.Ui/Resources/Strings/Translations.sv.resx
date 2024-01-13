@@ -740,9 +740,6 @@ För att börja skapa ett nytt konto. Konton används för att organisera betaln
     <data name="YesLabel" xml:space="preserve">
     <value>Ja</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Hantera dina konton</value>
-  </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Lägg till betalning</value>
   </data>

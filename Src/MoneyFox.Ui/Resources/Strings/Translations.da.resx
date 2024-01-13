@@ -740,9 +740,6 @@ For at starte skal du oprette en ny konto. Konti bruges til at organisere betali
     <data name="YesLabel" xml:space="preserve">
     <value>Ja</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Administrér dine konti</value>
-  </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Tilføj betaling</value>
   </data>
