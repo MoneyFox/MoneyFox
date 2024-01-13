@@ -543,9 +543,6 @@ Depoyu ziyaret etmek için dokunun:</value>
     <data name="MonthlyLabel" xml:space="preserve">
     <value>Aylık</value>
   </data>
-    <data name="NameRequiredMessage" xml:space="preserve">
-    <value>Lütfen bir ad girin.</value>
-  </data>
     <data name="NextLabel" xml:space="preserve">
     <value>Sonraki</value>
   </data>

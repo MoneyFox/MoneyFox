@@ -543,9 +543,6 @@
     <data name="MonthlyLabel" xml:space="preserve">
     <value>Щомісячно</value>
   </data>
-    <data name="NameRequiredMessage" xml:space="preserve">
-    <value>Будь ласка, введіть ім'я.</value>
-  </data>
     <data name="NextLabel" xml:space="preserve">
     <value>Уперед</value>
   </data>

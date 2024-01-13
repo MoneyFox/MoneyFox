@@ -543,9 +543,6 @@ Atinge pentru a vizita Repozitorul:</value>
     <data name="MonthlyLabel" xml:space="preserve">
     <value>Lunar</value>
   </data>
-    <data name="NameRequiredMessage" xml:space="preserve">
-    <value>Vă rugăm să introduceţi un nume.</value>
-  </data>
     <data name="NextLabel" xml:space="preserve">
     <value>Următoarea</value>
   </data>

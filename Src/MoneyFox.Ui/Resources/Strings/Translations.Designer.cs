@@ -885,12 +885,6 @@ namespace MoneyFox.Ui.Resources.Strings {
             }
         }
         
-        public static string NameRequiredMessage {
-            get {
-                return ResourceManager.GetString("NameRequiredMessage", resourceCulture);
-            }
-        }
-        
         public static string NextLabel {
             get {
                 return ResourceManager.GetString("NextLabel", resourceCulture);
