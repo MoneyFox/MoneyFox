@@ -542,9 +542,6 @@
     <data name="MonthlyLabel" xml:space="preserve">
     <value>Mensual</value>
   </data>
-    <data name="NameRequiredMessage" xml:space="preserve">
-    <value>Por favor, introduzca un nombre.</value>
-  </data>
     <data name="NextLabel" xml:space="preserve">
     <value>Siguiente</value>
   </data>
@@ -740,9 +737,6 @@ Para empezar crea una nueva cuenta. Las cuentas se utilizan para organizar en gr
   </data>
     <data name="YesLabel" xml:space="preserve">
     <value>Sí</value>
-  </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Gestionar tus Cuentas</value>
   </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Registrar Pago</value>

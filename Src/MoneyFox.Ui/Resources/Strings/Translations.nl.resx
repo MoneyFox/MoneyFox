@@ -544,9 +544,6 @@ Tik hier om jou bijdrage te leveren.</value>
     <data name="MonthlyLabel" xml:space="preserve">
     <value>Maandelijks</value>
   </data>
-    <data name="NameRequiredMessage" xml:space="preserve">
-    <value>Geef een naam op aub.</value>
-  </data>
     <data name="NextLabel" xml:space="preserve">
     <value>Volgende</value>
   </data>
@@ -745,9 +742,6 @@ Maak een nieuw account aan om hier dan uw budgetten op een gemakkelijke manier b
   </data>
     <data name="YesLabel" xml:space="preserve">
     <value>Ja</value>
-  </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Je account beheren</value>
   </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Betaling toevoegen</value>

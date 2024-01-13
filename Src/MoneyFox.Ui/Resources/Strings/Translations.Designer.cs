@@ -885,12 +885,6 @@ namespace MoneyFox.Ui.Resources.Strings {
             }
         }
         
-        public static string NameRequiredMessage {
-            get {
-                return ResourceManager.GetString("NameRequiredMessage", resourceCulture);
-            }
-        }
-        
         public static string NextLabel {
             get {
                 return ResourceManager.GetString("NextLabel", resourceCulture);
@@ -1272,12 +1266,6 @@ namespace MoneyFox.Ui.Resources.Strings {
         public static string YesLabel {
             get {
                 return ResourceManager.GetString("YesLabel", resourceCulture);
-            }
-        }
-        
-        public static string AccountsToolTip {
-            get {
-                return ResourceManager.GetString("AccountsToolTip", resourceCulture);
             }
         }
         

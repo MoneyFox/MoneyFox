@@ -543,9 +543,6 @@
     <data name="MonthlyLabel" xml:space="preserve">
     <value>شهرياً</value>
   </data>
-    <data name="NameRequiredMessage" xml:space="preserve">
-    <value>الرجاء إدخال اسم.</value>
-  </data>
     <data name="NextLabel" xml:space="preserve">
     <value>التالي</value>
   </data>
@@ -742,9 +739,6 @@
   </data>
     <data name="YesLabel" xml:space="preserve">
     <value>نعم</value>
-  </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>إدارة حساباتك</value>
   </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>إضافة دفعة</value>

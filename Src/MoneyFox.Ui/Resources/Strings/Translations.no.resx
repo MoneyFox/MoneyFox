@@ -543,9 +543,6 @@ Trykk for å besøke Repository:</value>
     <data name="MonthlyLabel" xml:space="preserve">
     <value>Månedlig</value>
   </data>
-    <data name="NameRequiredMessage" xml:space="preserve">
-    <value>Angi et navn.</value>
-  </data>
     <data name="NextLabel" xml:space="preserve">
     <value>Neste</value>
   </data>
@@ -742,9 +739,6 @@ For å starte å opprette en ny konto. Kontoer benyttes til å organisere betali
   </data>
     <data name="YesLabel" xml:space="preserve">
     <value>Ja</value>
-  </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Administrer dine kontoer</value>
   </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Legg til betaling</value>

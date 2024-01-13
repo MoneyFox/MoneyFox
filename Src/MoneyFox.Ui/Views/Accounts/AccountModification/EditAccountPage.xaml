@@ -21,7 +21,9 @@
                 <Label Style="{StaticResource TextBodySecondary}"
                        Text="{Binding SelectedAccountVm.LastModified, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
 
-                <Button Command="{Binding SaveCommand}" Text="{x:Static resources:Translations.SaveLabel}" />
+                <Button Command="{Binding SaveCommand}"
+                        CommandParameter="{Binding SelectedAccountVm.IsValid}"
+                        Text="{x:Static resources:Translations.SaveLabel}" />
 
                 <Button Style="{StaticResource WarningButton}"
                         Command="{Binding DeleteCommand}"

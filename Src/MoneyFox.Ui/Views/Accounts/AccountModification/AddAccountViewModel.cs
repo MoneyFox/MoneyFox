@@ -4,6 +4,7 @@ using Common.Navigation;
 using Core.Common.Interfaces;
 using Core.Features._Legacy_.Accounts.CreateAccount;
 using MediatR;
+using Resources.Strings;
 
 internal sealed class AddAccountViewModel : ModifyAccountViewModel
 {
@@ -16,6 +17,8 @@ internal sealed class AddAccountViewModel : ModifyAccountViewModel
     {
         this.mediator = mediator;
     }
+
+    public override string Title => Translations.AddAccountTitle;
 
     protected override Task SaveAccountAsync()
     {

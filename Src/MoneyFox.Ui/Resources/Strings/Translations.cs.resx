@@ -543,9 +543,6 @@ Klepnutím navštivte repozitář:</value>
     <data name="MonthlyLabel" xml:space="preserve">
     <value>Měsíčně</value>
   </data>
-    <data name="NameRequiredMessage" xml:space="preserve">
-    <value>Vložte prosím jméno.</value>
-  </data>
     <data name="NextLabel" xml:space="preserve">
     <value>Další</value>
   </data>
@@ -742,9 +739,6 @@ Chcete-li začít zakládat nový účet. Účty slouží k organizaci plateb a 
   </data>
     <data name="YesLabel" xml:space="preserve">
     <value>Ano</value>
-  </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Spravovat své účty</value>
   </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Přidat platbu</value>

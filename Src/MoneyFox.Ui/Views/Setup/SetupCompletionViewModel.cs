@@ -3,7 +3,6 @@ namespace MoneyFox.Ui.Views.Setup;
 using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Settings;
-using Dashboard;
 
 internal sealed class SetupCompletionViewModel(
     ISettingsFacade settingsFacade,
@@ -19,6 +18,6 @@ internal sealed class SetupCompletionViewModel(
         settingsFacade.IsSetupCompleted = true;
         Application.Current!.MainPage = new DefaultNavigationPage(new MainPage(mainPageViewModel));
 
-        return navigationService.NavigateFromMenuToAsync<DashboardViewModel>();
+        return Task.CompletedTask;
     }
 }

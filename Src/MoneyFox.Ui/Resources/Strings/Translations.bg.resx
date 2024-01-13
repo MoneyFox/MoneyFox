@@ -542,9 +542,6 @@
     <data name="MonthlyLabel" xml:space="preserve">
     <value>Месечно</value>
   </data>
-    <data name="NameRequiredMessage" xml:space="preserve">
-    <value>Въведете име.</value>
-  </data>
     <data name="NextLabel" xml:space="preserve">
     <value>Следваща</value>
   </data>
@@ -741,9 +738,6 @@
   </data>
     <data name="YesLabel" xml:space="preserve">
     <value>Да</value>
-  </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Управление на вашите акаунти</value>
   </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Добавяне на плащане</value>

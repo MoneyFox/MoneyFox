@@ -542,9 +542,6 @@
     <data name="MonthlyLabel" xml:space="preserve">
     <value>Bulanan</value>
   </data>
-    <data name="NameRequiredMessage" xml:space="preserve">
-    <value>Mohon masukkan nama.</value>
-  </data>
     <data name="NextLabel" xml:space="preserve">
     <value>Berikutnya</value>
   </data>
@@ -740,9 +737,6 @@ Untuk memulai, buat akun baru. Akun digunakan untuk mengatur pembayaran dan uang
   </data>
     <data name="YesLabel" xml:space="preserve">
     <value>Iya</value>
-  </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Kelola Akun Anda</value>
   </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Tambahkan Pembayaran</value>

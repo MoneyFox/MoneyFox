@@ -542,9 +542,6 @@
     <data name="MonthlyLabel" xml:space="preserve">
     <value>Kuukausittain</value>
   </data>
-    <data name="NameRequiredMessage" xml:space="preserve">
-    <value>Syötä nimi.</value>
-  </data>
     <data name="NextLabel" xml:space="preserve">
     <value>Seuraava</value>
   </data>
@@ -740,9 +737,6 @@ Aloittaaksesi luoda uuden tilin. Tilejä käytetään järjestämään maksuja j
   </data>
     <data name="YesLabel" xml:space="preserve">
     <value>Kyllä</value>
-  </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Hallinnoi tilejäsi</value>
   </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Lisää Maksu</value>
