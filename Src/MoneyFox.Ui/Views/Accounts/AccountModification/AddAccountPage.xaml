@@ -13,7 +13,9 @@
         <ScrollView Padding="15,0,15,0">
             <StackLayout Spacing="6">
                 <accountModification:ModifyAccountContentView />
-                <Button Command="{Binding SaveCommand}" Text="{x:Static resources:Translations.SaveLabel}" />
+                <Button Command="{Binding SaveCommand}" 
+                        CommandParameter="{Binding SelectedAccountVm.IsValid}"
+                        Text="{x:Static resources:Translations.SaveLabel}" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

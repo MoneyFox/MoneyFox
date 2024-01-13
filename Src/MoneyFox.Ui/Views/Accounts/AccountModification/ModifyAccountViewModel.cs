@@ -21,19 +21,12 @@ public abstract class ModifyAccountViewModel(IDialogService dialogService, ISend
         protected set => SetProperty(field: ref selectedAccountVm, newValue: value);
     }
 
-    public AsyncRelayCommand SaveCommand => new(SaveAsync);
+    public AsyncRelayCommand SaveCommand => new(execute: SaveAsync, canExecute: () => SelectedAccountVm.IsValid);
 
     protected abstract Task SaveAccountAsync();
 
     private async Task SaveAsync()
     {
-        if (string.IsNullOrWhiteSpace(SelectedAccountVm.Name))
-        {
-            await dialogService.ShowMessageAsync(title: Translations.MandatoryFieldEmptyTitle, message: Translations.NameRequiredMessage);
-
-            return;
-        }
-
         try
         {
             var nameChanged = SelectedAccountVm.Id == 0
