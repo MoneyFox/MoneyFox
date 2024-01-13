@@ -11,7 +11,7 @@ public abstract class ModifyCategoryViewModel(IMediator mediator, IDialogService
 {
     private CategoryViewModel selectedCategory = null!;
 
-    public AsyncRelayCommand SaveCommand => new(async () => await SaveCategoryBaseAsync());
+    public AsyncRelayCommand SaveCommand => new(async () => await SaveCategoryBaseAsync(), canExecute: () => SelectedCategory.IsValid);
 
     public CategoryViewModel SelectedCategory
     {
@@ -28,13 +28,6 @@ public abstract class ModifyCategoryViewModel(IMediator mediator, IDialogService
 
     protected async Task SaveCategoryBaseAsync()
     {
-        if (string.IsNullOrEmpty(SelectedCategory.Name))
-        {
-            await dialogService.ShowMessageAsync(title: Translations.MandatoryFieldEmptyTitle, message: Translations.NameRequiredMessage);
-
-            return;
-        }
-
         if (await mediator.Send(new GetIfCategoryWithNameExistsQuery(categoryName: SelectedCategory.Name, categoryId: SelectedCategory.Id)))
         {
             await dialogService.ShowMessageAsync(title: Translations.DuplicatedNameTitle, message: Translations.DuplicateCategoryMessage);

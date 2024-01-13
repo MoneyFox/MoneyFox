@@ -13,6 +13,7 @@
         <VerticalStackLayout Spacing="12">
             <modifyCategory:ModifyCategoryContentView />
             <Button Command="{Binding SaveCommand}"
+                    CommandParameter="{Binding SelectedCategory.IsValid}"
                     Text="{x:Static resources:Translations.SaveLabel}" />
         </VerticalStackLayout>
     </ScrollView>
