@@ -14,13 +14,18 @@ public class CategoryViewModel : ObservableObject
     public required int Id
     {
         get => id;
-        set => SetProperty(field: ref id, newValue: value);
+        init => SetProperty(field: ref id, newValue: value);
     }
 
     public required string Name
     {
         get => name;
-        set => SetProperty(field: ref name, newValue: value);
+
+        set
+        {
+            SetProperty(field: ref name, newValue: value);
+            OnPropertyChanged(nameof(IsValid));
+        }
     }
 
     public required string? Note
@@ -46,4 +51,6 @@ public class CategoryViewModel : ObservableObject
         get => lastModified;
         set => SetProperty(field: ref lastModified, newValue: value);
     }
+
+    public bool IsValid => string.IsNullOrEmpty(Name) is false;
 }

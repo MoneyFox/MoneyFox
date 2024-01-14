@@ -9,9 +9,8 @@ using CommunityToolkit.Mvvm.Input;
 using MonthlyAccountCashFlow;
 using Resources.Strings;
 
-internal sealed class StatisticSelectorViewModel(INavigationService navigationService) : NavigableViewModel
+public sealed class StatisticSelectorViewModel(INavigationService navigationService) : NavigableViewModel
 {
-
     public static List<StatisticSelectorTypeViewModel> StatisticItems
         => new()
         {

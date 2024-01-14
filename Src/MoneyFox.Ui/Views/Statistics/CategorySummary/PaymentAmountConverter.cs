@@ -22,14 +22,9 @@ public class PaymentAmountConverter : IValueConverter
     {
         var settingsAdapter = new SettingsAdapter();
         var currency = settingsAdapter.GetValue(key: SettingConstants.DEFAULT_CURRENCY_KEY_NAME, defaultValue: RegionInfo.CurrentRegion.ISOCurrencySymbol);
-        var sign = paymentViewModel.Type == PaymentType.Transfer ? GetSignForTransfer(paymentViewModel) : GetSignForNonTransfer(paymentViewModel);
+        var sign = GetSignForNonTransfer(paymentViewModel);
 
         return $"{sign} {paymentViewModel.Amount.FormatCurrency(currency)}";
-    }
-
-    private static string GetSignForTransfer(PaymentListItemViewModel payment)
-    {
-        return payment.ChargedAccountId == payment.CurrentAccountId ? "-" : "+";
     }
 
     private static string GetSignForNonTransfer(PaymentListItemViewModel payment)

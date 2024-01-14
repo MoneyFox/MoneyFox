@@ -15,7 +15,7 @@ public class DecimalConverterTests
         var converter = new DecimalConverter();
 
         // Act
-        var result = (string)converter.Convert(value: value, targetType: null!, parameter: null!, culture: new(culture));
+        var result = converter.Convert(value: value, targetType: null!, parameter: null!, culture: new(culture));
 
         // Assert
         _ = result.Should().Be(expectedResult);
@@ -32,7 +32,7 @@ public class DecimalConverterTests
         var converter = new DecimalConverter();
 
         // Act
-        var result = (decimal)converter.ConvertBack(value: value, targetType: null!, parameter: null!, culture: new(culture));
+        var result = converter.ConvertBack(value: value, targetType: null!, parameter: null!, culture: new(culture));
 
         // Assert
         _ = result.Should().Be(expectedResult);

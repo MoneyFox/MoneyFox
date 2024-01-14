@@ -1,6 +1,5 @@
 namespace MoneyFox.Ui.Views.Accounts.AccountModification;
 
-using AutoMapper;
 using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Interfaces;
@@ -13,22 +12,21 @@ using Resources.Strings;
 public class EditAccountViewModel : ModifyAccountViewModel
 {
     private readonly IDialogService dialogService;
-    private readonly IMapper mapper;
     private readonly IMediator mediator;
     private readonly INavigationService navigationService;
 
-    public EditAccountViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService, INavigationService navigationService) : base(
-        service: dialogService,
+    public EditAccountViewModel(IMediator mediator, IDialogService dialogService, INavigationService navigationService) : base(
+        dialogService: dialogService,
         mediator: mediator,
         navigationService: navigationService)
     {
         this.mediator = mediator;
-        this.mapper = mapper;
         this.dialogService = dialogService;
         this.navigationService = navigationService;
+
+        IsEdit = true;
     }
 
-    public override bool IsEdit => true;
     public override string Title => string.Format(format: Translations.EditAccountTitle, arg0: SelectedAccountVm.Name);
 
     public AsyncRelayCommand DeleteCommand => new(DeleteAsync);
@@ -36,7 +34,17 @@ public class EditAccountViewModel : ModifyAccountViewModel
     public override async Task OnNavigatedAsync(object? parameter)
     {
         var accountId = Convert.ToInt32(parameter);
-        SelectedAccountVm = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
+        var accountData = await mediator.Send(new GetAccountById.Query(accountId));
+        SelectedAccountVm = new()
+        {
+            Id = accountData.AccountId,
+            Name = accountData.Name,
+            CurrentBalance = accountData.CurrentBalance.Amount,
+            Note = accountData.Note,
+            IsExcluded = accountData.IsExcluded,
+            Created = accountData.Created,
+            LastModified = accountData.LastModified
+        };
     }
 
     protected override Task SaveAccountAsync()

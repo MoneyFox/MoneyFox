@@ -18,6 +18,7 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel
 {
     private readonly IDialogService dialogService;
     private readonly IMediator mediator;
+    private readonly INavigationService navigationService;
     private readonly ISettingsFacade settingsFacade;
 
     public EditPaymentViewModel(
@@ -32,19 +33,20 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel
         service: dialogService,
         toastService: toastService,
         categorySelectionViewModel: categorySelectionViewModel,
-        facade: settingsFacade,
         navigationService: navigationService,
         client: aptabaseClient)
     {
         this.mediator = mediator;
         this.dialogService = dialogService;
         this.settingsFacade = settingsFacade;
+        this.navigationService = navigationService;
     }
 
     public AsyncRelayCommand<PaymentViewModel> DeleteCommand => new(async p => await DeletePaymentAsync(p!));
 
     public override async Task OnNavigatedAsync(object? parameter)
     {
+        await base.OnNavigatedAsync(parameter);
         ArgumentNullException.ThrowIfNull(parameter);
         var paymentId = Convert.ToInt32(parameter);
         var paymentData = await mediator.Send(new GetPaymentDataById.Query(paymentId));
@@ -140,7 +142,7 @@ internal class EditPaymentViewModel : ModifyPaymentViewModel
             {
                 await dialogService.ShowLoadingDialogAsync();
                 await mediator.Send(command);
-                await Shell.Current.Navigation.PopModalAsync();
+                await navigationService.GoBack();
             }
             finally
             {

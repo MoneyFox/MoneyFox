@@ -11,4 +11,6 @@ public partial class SelectCategoryPage : IBindablePage
         InitializeComponent();
         On<iOS>().SetModalPresentationStyle(UIModalPresentationStyle.FormSheet);
     }
+
+    public SelectCategoryViewModel ViewModel => (SelectCategoryViewModel)BindingContext;
 }

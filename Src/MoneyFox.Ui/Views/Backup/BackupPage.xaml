@@ -19,96 +19,106 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.Content>
-        <ScrollView>
-            <VerticalStackLayout Padding="16" Spacing="6">
-                <VerticalStackLayout IsVisible="{Binding IsLoggedIn}"
-                                     Spacing="6"
-                                     Margin="0,0,0,10">
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="6">
+            <VerticalStackLayout IsVisible="{Binding IsLoggedIn}"
+                                 Spacing="6"
+                                 Margin="0,0,0,10">
 
-                    <toolkit:AvatarView HeightRequest="80"
-                                        WidthRequest="80"
-                                        CornerRadius="40"
-                                        Text=""
-                                        ImageSource="{Binding ProfilePicture}" />
+                <toolkit:AvatarView HeightRequest="80"
+                                    WidthRequest="80"
+                                    CornerRadius="40"
+                                    Text=""
+                                    ImageSource="{Binding ProfilePicture}" />
 
-                    <Label Style="{StaticResource TextTitle}"
-                           Text="{Binding UserAccount.Name}"
-                           FontAttributes="Bold"
-                           HorizontalOptions="Center"
-                           HorizontalTextAlignment="Center" />
+                <Label Style="{StaticResource TextTitle}"
+                       Text="{Binding UserAccount.Name}"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center" />
 
-                    <Label Text="{Binding UserAccount.Email}"
-                           HorizontalOptions="Center"
-                           HorizontalTextAlignment="Center" />
-                </VerticalStackLayout>
+                <Label Text="{Binding UserAccount.Email}"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
 
-                <Button Command="{Binding LoginCommand}"
-                        IsVisible="{Binding IsLoggedIn, Converter={StaticResource Inverter}}"
+            <Grid IsVisible="{Binding IsLoggedIn, Converter={StaticResource Inverter}}">
+                <Button Command="{Binding LoginCommand}" IsEnabled="True"
                         Text="{x:Static resources:Translations.LoginLabel}" />
 
-                <Button Command="{Binding LogoutCommand}"
-                        IsVisible="{Binding IsLoggedIn}"
-                        Text="{x:Static resources:Translations.LogoutLabel}" />
+                <ActivityIndicator HeightRequest="20"
+                                   WidthRequest="20"
+                                   HorizontalOptions="End"
+                                   Margin="0,0,15,0"
+                                   IsRunning="True"
+                                   IsVisible="{Binding IsLoading}"
+                                   VerticalOptions="CenterAndExpand" />
+            </Grid>
 
-                <VerticalStackLayout IsVisible="{Binding IsLoggedIn}"
-                                     Spacing="6">
+            <Button Command="{Binding LogoutCommand}"
+                    IsVisible="{Binding IsLoggedIn}"
+                    Text="{x:Static resources:Translations.LogoutLabel}" />
 
-                    <Label HorizontalOptions="StartAndExpand"
-                           Text="{x:Static resources:Translations.BackupInformationLabel}" />
+            <VerticalStackLayout IsVisible="{Binding IsLoggedIn}"
+                                 Spacing="6">
 
-                    <Button x:Name="ButtonRestoreBackup"
-                            Command="{Binding BackupCommand}"
-                            Text="{x:Static resources:Translations.CreateBackupLabel}" />
+                <Label HorizontalOptions="StartAndExpand"
+                       Text="{x:Static resources:Translations.BackupInformationLabel}" />
 
-                    <Label HorizontalOptions="StartAndExpand"
-                           Text="{x:Static resources:Translations.RestoreBackupInformationLabel}" />
+                <Button Command="{Binding BackupCommand}"
+                        Text="{x:Static resources:Translations.CreateBackupLabel}" />
 
+                <Label HorizontalOptions="StartAndExpand"
+                       Text="{x:Static resources:Translations.RestoreBackupInformationLabel}" />
+
+                <Grid>
                     <Button Command="{Binding RestoreCommand}"
                             Text="{x:Static resources:Translations.RestoreBackupLabel}" />
 
                     <ActivityIndicator HeightRequest="20"
                                        WidthRequest="20"
                                        HorizontalOptions="End"
-                                       IsRunning="{Binding IsLoadingBackupAvailability}"
-                                       IsVisible="{Binding IsLoadingBackupAvailability}"
+                                       Margin="0,0,15,0"
+                                       IsRunning="True"
+                                       IsVisible="{Binding IsLoading}"
                                        VerticalOptions="CenterAndExpand" />
-                    <VerticalStackLayout
-                        IsVisible="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}">
-                        <Label HorizontalOptions="Start"
-                               Text="{x:Static resources:Translations.LastBackupDateLabel}"
-                               Style="{StaticResource TextBodySecondary}" />
-                        <Label Margin="3,0,0,0"
-                               HorizontalOptions="Start"
-                               LineBreakMode="WordWrap"
-                               Text="{Binding BackupLastModified}"
-                               Style="{StaticResource TextBodySecondary}" />
-                    </VerticalStackLayout>
-
-
-                    <!-- Auto Backup -->
-                    <Label Text="{x:Static resources:Translations.AutobackupTitle}"
-                           Style="{StaticResource TextTitle}" />
-
-                    <Label Text="{x:Static resources:Translations.AutobackupInformationLabel}" />
-
-                    <Grid HorizontalOptions="FillAndExpand"
-                          Margin="0,5,0,0">
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="70*" />
-                            <ColumnDefinition Width="20*" />
-                        </Grid.ColumnDefinitions>
-
-                        <Label Grid.Column="0"
-                               Text="{x:Static resources:Translations.AutobackupLabel}" />
-
-                        <Switch Grid.Column="1"
-                                HorizontalOptions="End"
-                                IsToggled="{Binding IsAutoBackupEnabled}" />
-                    </Grid>
+                </Grid>
+                <VerticalStackLayout
+                    IsVisible="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}">
+                    <Label HorizontalOptions="Start"
+                           Text="{x:Static resources:Translations.LastBackupDateLabel}"
+                           Style="{StaticResource TextBodySecondary}" />
+                    <Label Margin="3,0,0,0"
+                           HorizontalOptions="Start"
+                           LineBreakMode="WordWrap"
+                           Text="{Binding BackupLastModified}"
+                           Style="{StaticResource TextBodySecondary}" />
                 </VerticalStackLayout>
+
+
+                <!-- Auto Backup -->
+                <Label Text="{x:Static resources:Translations.AutobackupTitle}"
+                       Style="{StaticResource TextTitle}"
+                       Margin="0,12,0,0" />
+
+                <Label Text="{x:Static resources:Translations.AutobackupInformationLabel}" />
+
+                <Grid HorizontalOptions="FillAndExpand"
+                      Margin="0,5,0,0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70*" />
+                        <ColumnDefinition Width="20*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0"
+                           Text="{x:Static resources:Translations.AutobackupLabel}" />
+
+                    <Switch Grid.Column="1"
+                            HorizontalOptions="End"
+                            IsToggled="{Binding IsAutoBackupEnabled}" />
+                </Grid>
             </VerticalStackLayout>
-        </ScrollView>
-    </ContentPage.Content>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

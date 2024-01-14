@@ -8,4 +8,6 @@ public partial class CategoryListPage : IBindablePage
     {
         InitializeComponent();
     }
+
+    public CategoryListViewModel ViewModel => (CategoryListViewModel)BindingContext;
 }

@@ -1,9 +1,8 @@
 namespace MoneyFox.Ui.Views.Accounts.AccountModification;
 
-// Compilation has to be skipped due to an issue with data binding.
-// https://github.com/MoneyFox/MoneyFox/issues/2792
+// Compilation needs to be disabled here, since otherwise the binding does not work on Android
 [XamlCompilation(XamlCompilationOptions.Skip)]
-public partial class ModifyAccountContentView : ContentView
+public partial class ModifyAccountContentView
 {
     public ModifyAccountContentView()
     {

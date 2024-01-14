@@ -30,7 +30,6 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
         service: dialogService,
         toastService: toastService,
         categorySelectionViewModel: categorySelectionViewModel,
-        facade: settingsFacade,
         navigationService: navigationService,
         client: aptabaseClient)
     {
@@ -39,9 +38,9 @@ internal sealed class AddPaymentViewModel : ModifyPaymentViewModel
         this.settingsFacade = settingsFacade;
     }
 
-    protected override void OnNavigated(object? parameter)
+    public override async Task OnNavigatedAsync(object? parameter)
     {
-        base.OnNavigated(parameter);
+        await base.OnNavigatedAsync(parameter);
         if (parameter is not null)
         {
             var currentAccountId = Convert.ToInt32(parameter);

@@ -13,7 +13,6 @@ using Ui.Views.Categories.CategorySelection;
 
 public class AddBudgetViewModelTests
 {
-    private const int CATEGORY_ID = 10;
     private readonly INavigationService navigationService;
     private readonly ISender sender;
 

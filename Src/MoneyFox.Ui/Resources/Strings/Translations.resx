@@ -282,9 +282,6 @@
     <data name="ContactLabel" xml:space="preserve">
     <value>Contact</value>
   </data>
-    <data name="ContributerLabel" xml:space="preserve">
-    <value>To see all contributions head over to GitHub:</value>
-  </data>
     <data name="ContributionsLabel" xml:space="preserve">
     <value>Contributions</value>
   </data>
@@ -547,9 +544,6 @@ Tap to visit the Repository:</value>
     <data name="MonthlyLabel" xml:space="preserve">
     <value>Monthly</value>
   </data>
-    <data name="NameRequiredMessage" xml:space="preserve">
-    <value>Please insert a name.</value>
-  </data>
     <data name="NextLabel" xml:space="preserve">
     <value>Next</value>
   </data>
@@ -747,9 +741,6 @@ We will lead you through the first steps and help you get started.</value>
     <data name="YesLabel" xml:space="preserve">
     <value>Yes</value>
   </data>
-    <data name="AccountsToolTip" xml:space="preserve">
-    <value>Manage your Accounts</value>
-  </data>
     <data name="AddPaymentTitle" xml:space="preserve">
     <value>Add Payment</value>
   </data>
@@ -935,27 +926,45 @@ You can change this late in the settings.</value>
     <value>Total: {0}</value>
   </data>
     <data name="CurrentBalanceTemplate" xml:space="preserve">
-        <value>Current Balance: {0}</value>
-    </data>
+    <value>Current Balance: {0}</value>
+  </data>
     <data name="MonthlyBudgetTemplate" xml:space="preserve">
-        <value>Monthly Budget: {0}</value>
-    </data>
+    <value>Monthly Budget: {0}</value>
+  </data>
     <data name="MonthlySpendingOnBudgetsTemplate" xml:space="preserve">
-        <value>Monthly Spending on budgets: {0}</value>
-    </data>
+    <value>Monthly Spending on budgets: {0}</value>
+  </data>
     <data name="DateRangeInvalidMessage" xml:space="preserve">
-        <value>Start date has to be before end date.</value>
-    </data>
+    <value>Start date has to be before end date.</value>
+  </data>
     <data name="TotalRevenueTemplate" xml:space="preserve">
-        <value>Total Revenue: {0}</value>
-    </data>
+    <value>Total Revenue: {0}</value>
+  </data>
     <data name="TotalExpenseTemplate" xml:space="preserve">
-        <value>Total Expense: {0}</value>
-    </data>
+    <value>Total Expense: {0}</value>
+  </data>
     <data name="AllAccounts" xml:space="preserve">
-        <value>All Accounts</value>
-    </data>
+    <value>All Accounts</value>
+  </data>
     <data name="LicensesHeader" xml:space="preserve">
-        <value>Licenses</value>
+    <value>Licenses</value>
+  </data>
+    <data name="CurrencySettingTitle" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+    <data name="DefaultAccountSettingText" xml:space="preserve">
+    <value>Select the account which should be selected as the default if you add a payment.</value>
+  </data>
+    <data name="DefaultAccountSettingTitle" xml:space="preserve">
+    <value>Default Payment Account</value>
+  </data>
+    <data name="ContributorLabel" xml:space="preserve">
+        <value>To see all contributions head over to GitHub:</value>
+    </data>
+    <data name="ExistingAccountsTitle" xml:space="preserve">
+        <value>Existing Accounts</value>
+    </data>
+    <data name="CreateAccountToProceedMessage" xml:space="preserve">
+        <value>Create at least one account to continue</value>
     </data>
 </root>

@@ -1,6 +1,8 @@
 namespace MoneyFox.Ui.Views.Setup.SelectCurrency;
 
-public partial class SetupCurrencyPage
+using Common.Navigation;
+
+public partial class SetupCurrencyPage : IBindablePage
 {
     public SetupCurrencyPage()
     {

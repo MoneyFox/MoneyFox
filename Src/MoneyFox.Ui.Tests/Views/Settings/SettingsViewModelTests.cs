@@ -19,7 +19,7 @@ public class SettingsViewModelTests
     {
         settingsFacade = Substitute.For<ISettingsFacade>();
         mediator = Substitute.For<IMediator>();
-        mediator.Send(Arg.Any<GetAccountsQuery>()).Returns(ImmutableList<Account>.Empty);
+        mediator.Send(Arg.Any<GetAccountsQuery>()).Returns(ImmutableList<GetAccountsQuery.AccountData>.Empty);
         viewModel = new(settingsFacade: settingsFacade, mediator: mediator);
     }
 
@@ -54,7 +54,12 @@ public class SettingsViewModelTests
         public async Task SetAccountFromSettings()
         {
             // Arrange
-            var accounts = new List<Account> { new("Acc1"), new("Acc2") };
+            var accounts = new List<GetAccountsQuery.AccountData>
+            {
+                new(Id: 1, Name: "Acc1", CurrentBalance: Money.Zero(Currencies.USD), IsExcluded: false),
+                new(Id: 2, Name: "Acc2", CurrentBalance: Money.Zero(Currencies.USD), IsExcluded: false)
+            };
+
             settingsFacade.DefaultAccount.Returns(accounts[1].Id);
             mediator.Send(Arg.Any<GetAccountsQuery>()).Returns(accounts);
 
@@ -87,7 +92,12 @@ public class SettingsViewModelTests
         public void UpdateAccountOnSet()
         {
             // Arrange
-            var accounts = new List<Account> { new("Acc1"), new("Acc2") };
+            var accounts = new List<GetAccountsQuery.AccountData>
+            {
+                new(Id: 1, Name: "Acc1", CurrentBalance: Money.Zero(Currencies.USD), IsExcluded: false),
+                new(Id: 2, Name: "Acc2", CurrentBalance: Money.Zero(Currencies.USD), IsExcluded: false)
+            };
+
             mediator.Send(Arg.Any<GetAccountsQuery>()).Returns(accounts);
 
             // Act

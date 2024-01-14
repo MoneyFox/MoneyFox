@@ -3,6 +3,7 @@ namespace MoneyFox.Ui.Views.Statistics.CategoryProgression;
 using System.Collections.ObjectModel;
 using Categories.CategorySelection;
 using Common.Navigation;
+using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.Input;
 using Controls.CategorySelection;
 using Core.Queries;
@@ -22,7 +23,8 @@ internal sealed class StatisticCategoryProgressionViewModel : StatisticViewModel
     public StatisticCategoryProgressionViewModel(
         IMediator mediator,
         CategorySelectionViewModel categorySelectionViewModel,
-        INavigationService navigationService) : base(mediator)
+        INavigationService navigationService,
+        IPopupService popupService) : base(mediator: mediator, popupService: popupService)
     {
         CategorySelectionViewModel = categorySelectionViewModel;
         this.navigationService = navigationService;

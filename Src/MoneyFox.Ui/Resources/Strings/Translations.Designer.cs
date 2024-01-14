@@ -51,12 +51,6 @@ namespace MoneyFox.Ui.Resources.Strings {
             }
         }
         
-        public static string AccountIntroductionTitle {
-            get {
-                return ResourceManager.GetString("AccountIntroductionTitle", resourceCulture);
-            }
-        }
-        
         public static string AccountNameLabel {
             get {
                 return ResourceManager.GetString("AccountNameLabel", resourceCulture);
@@ -66,12 +60,6 @@ namespace MoneyFox.Ui.Resources.Strings {
         public static string AccountRequiredMessage {
             get {
                 return ResourceManager.GetString("AccountRequiredMessage", resourceCulture);
-            }
-        }
-        
-        public static string AccountSettingText {
-            get {
-                return ResourceManager.GetString("AccountSettingText", resourceCulture);
             }
         }
         
@@ -372,12 +360,6 @@ namespace MoneyFox.Ui.Resources.Strings {
         public static string ContactLabel {
             get {
                 return ResourceManager.GetString("ContactLabel", resourceCulture);
-            }
-        }
-        
-        public static string ContributerLabel {
-            get {
-                return ResourceManager.GetString("ContributerLabel", resourceCulture);
             }
         }
         
@@ -903,12 +885,6 @@ namespace MoneyFox.Ui.Resources.Strings {
             }
         }
         
-        public static string NameRequiredMessage {
-            get {
-                return ResourceManager.GetString("NameRequiredMessage", resourceCulture);
-            }
-        }
-        
         public static string NextLabel {
             get {
                 return ResourceManager.GetString("NextLabel", resourceCulture);
@@ -1290,12 +1266,6 @@ namespace MoneyFox.Ui.Resources.Strings {
         public static string YesLabel {
             get {
                 return ResourceManager.GetString("YesLabel", resourceCulture);
-            }
-        }
-        
-        public static string AccountsToolTip {
-            get {
-                return ResourceManager.GetString("AccountsToolTip", resourceCulture);
             }
         }
         
@@ -1710,6 +1680,42 @@ namespace MoneyFox.Ui.Resources.Strings {
         public static string LicensesHeader {
             get {
                 return ResourceManager.GetString("LicensesHeader", resourceCulture);
+            }
+        }
+        
+        public static string CurrencySettingTitle {
+            get {
+                return ResourceManager.GetString("CurrencySettingTitle", resourceCulture);
+            }
+        }
+        
+        public static string DefaultAccountSettingText {
+            get {
+                return ResourceManager.GetString("DefaultAccountSettingText", resourceCulture);
+            }
+        }
+        
+        public static string DefaultAccountSettingTitle {
+            get {
+                return ResourceManager.GetString("DefaultAccountSettingTitle", resourceCulture);
+            }
+        }
+        
+        public static string ContributorLabel {
+            get {
+                return ResourceManager.GetString("ContributorLabel", resourceCulture);
+            }
+        }
+        
+        public static string ExistingAccountsTitle {
+            get {
+                return ResourceManager.GetString("ExistingAccountsTitle", resourceCulture);
+            }
+        }
+        
+        public static string CreateAccountToProceedMessage {
+            get {
+                return ResourceManager.GetString("CreateAccountToProceedMessage", resourceCulture);
             }
         }
     }

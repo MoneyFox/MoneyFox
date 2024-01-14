@@ -23,6 +23,7 @@
                        Text="{Binding SelectedCategory.LastModified, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
 
                 <Button Command="{Binding SaveCommand}"
+                        CommandParameter="{Binding SelectedCategory.IsValid}"
                         Text="{x:Static resources:Translations.SaveLabel}" />
 
                 <Button Style="{StaticResource WarningButton}"

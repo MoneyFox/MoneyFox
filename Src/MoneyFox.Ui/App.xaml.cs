@@ -1,8 +1,6 @@
 namespace MoneyFox.Ui;
 
 using Aptabase.Maui;
-using Common.Exceptions;
-using Common.Extensions;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
 using Core.Common.Settings;
@@ -24,32 +22,26 @@ public partial class App
     private bool isRunning;
 
     public App(
-        IServiceProvider serviceProvider,
         IAppDbContext appDbContext,
         IMediator mediator,
         ISettingsFacade settingsFacade,
         IBackupService backupService,
-        IAptabaseClient aptabaseClient)
+        IAptabaseClient aptabaseClient,
+        MainPageViewModel mainPageViewModel,
+        WelcomeViewModel welcomeViewModel)
     {
         this.mediator = mediator;
         this.settingsFacade = settingsFacade;
         this.backupService = backupService;
         this.aptabaseClient = aptabaseClient;
-        ServiceProvider = serviceProvider;
         InitializeComponent();
         FillResourceDictionary();
         appDbContext.MigrateDb();
-        MainPage = settingsFacade.IsSetupCompleted ? GetAppShellPage() : new SetupShell();
+        mainPageViewModel.OnNavigatedAsync(null);
+        MainPage = new DefaultNavigationPage(settingsFacade.IsSetupCompleted ? new MainPage(mainPageViewModel) : new WelcomePage(welcomeViewModel));
     }
 
     public static Dictionary<string, ResourceDictionary> ResourceDictionary { get; } = new();
-
-    private static IServiceProvider ServiceProvider { get; set; }
-
-    private static Page GetAppShellPage()
-    {
-        return DeviceInfo.Current.Idiom.UseDesktopPage() ? new AppShellDesktop() : new AppShell();
-    }
 
     private void FillResourceDictionary()
     {
@@ -58,11 +50,6 @@ public partial class App
             var key = dictionary.Source.OriginalString.Split(';').First().Split('/').Last().Split('.').First();
             ResourceDictionary.Add(key: key, value: dictionary);
         }
-    }
-
-    internal static TViewModel GetViewModel<TViewModel>()
-    {
-        return ServiceProvider.GetService<TViewModel>() ?? throw new ResolveViewModelException<TViewModel>();
     }
 
     protected override void OnStart()

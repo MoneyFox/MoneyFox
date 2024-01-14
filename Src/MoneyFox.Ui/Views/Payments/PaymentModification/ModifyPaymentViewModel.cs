@@ -8,7 +8,6 @@ using CommunityToolkit.Mvvm.Input;
 using Controls.AccountPicker;
 using Controls.CategorySelection;
 using Core.Common.Interfaces;
-using Core.Common.Settings;
 using Core.Queries;
 using Domain.Aggregates.AccountAggregate;
 using MediatR;
@@ -20,7 +19,6 @@ public abstract class ModifyPaymentViewModel(
     IDialogService service,
     IToastService toastService,
     CategorySelectionViewModel categorySelectionViewModel,
-    ISettingsFacade facade,
     INavigationService navigationService,
     IAptabaseClient client) : NavigableViewModel
 {
@@ -85,23 +83,14 @@ public abstract class ModifyPaymentViewModel(
 
     public string AccountHeader => SelectedPayment.Type == PaymentType.Income ? Translations.TargetAccountLabel : Translations.ChargedAccountLabel;
 
-    protected bool IsFirstLoad { get; set; } = true;
-
     public AsyncRelayCommand SaveCommand => new(SaveAsync);
 
     public override async Task OnNavigatedAsync(object? parameter)
     {
         var accounts = await mediator.Send(new GetAccountsQuery());
-        var pickerVms = accounts.Select(
-                a => new AccountPickerViewModel(
-                    Id: a.Id,
-                    Name: a.Name,
-                    CurrentBalance: new(amount: a.CurrentBalance, currencyAlphaIsoCode: facade.DefaultCurrency)))
-            .ToImmutableList();
-
+        var pickerVms = accounts.Select(a => new AccountPickerViewModel(Id: a.Id, Name: a.Name, CurrentBalance: a.CurrentBalance)).ToImmutableList();
         ChargedAccounts = new(pickerVms);
         TargetAccounts = new(pickerVms);
-        IsFirstLoad = false;
     }
 
     public override async Task OnNavigatedBackAsync(object? parameter)

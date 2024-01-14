@@ -5,11 +5,12 @@ using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Settings;
 using Domain;
+using SetupAccounts;
 
 public class SetupCurrencyViewModel : NavigableViewModel
 {
-    private readonly ISettingsFacade settingsFacade;
     private readonly INavigationService navigationService;
+    private readonly ISettingsFacade settingsFacade;
 
     public SetupCurrencyViewModel(ISettingsFacade settingsFacade, INavigationService navigationService)
     {
@@ -25,7 +26,7 @@ public class SetupCurrencyViewModel : NavigableViewModel
 
     public AsyncRelayCommand NextStepCommand => new(NextStep);
 
-    public AsyncRelayCommand BackCommand => new(Shell.Current.Navigation.PopAsync);
+    public AsyncRelayCommand BackCommand => new(() => navigationService.GoBack());
 
     private async Task NextStep()
     {

@@ -38,6 +38,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set values in manifest
+        env:
+          WINDOWS_CERTIFICATE_THUMBPRINT: ${{ secrets.WINDOWS_CERTIFICATE_THUMBPRINT }}
+        run: |
+          [xml]$xmlDoc = Get-Content '$(Build.SourcesDirectory)\src\MoneyFox.Ui\MoneyFox.Ui.csproj'
+          $xmlDoc.Project.PropertyGroup[2].PackageCertificateThumbprint="${{ secrets.WINDOWS_CERTIFICATE_THUMBPRINT }}"
+          $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Ui\MoneyFox.Ui.csproj') 
+
+      - name: Set values in manifest
         run: |
           [xml]$xmlDoc = Get-Content '${{ github.workspace }}\src\MoneyFox.Ui\Platforms\Windows\Package.appxmanifest'
           $xmlDoc.Package.Identity.Name="57598ApplySolutionsSoftwa.MoneyFox"
@@ -82,7 +90,6 @@ jobs:
         run: |
           $DisplayVersion="${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{ GITHUB.run_number }}"
           $Version=${{ GITHUB.run_number }}
-          $KeyStorePath = "${{ github.workspace }}\${{ env.WINDOWS_CERTIFICATE_PATH }}"
           
           dotnet publish ${{env.UI_PROJECT_PATH}} `
             -f net8.0-windows10.0.22621.0 `

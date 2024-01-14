@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MoneyFox.Ui.Views.Setup.SetupAccounts.SetupAccountPage"
+             xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
+             xmlns:setupAccounts="clr-namespace:MoneyFox.Ui.Views.Setup.SetupAccounts"
+             x:DataType="setupAccounts:SetupAccountsViewModel">
+
+    <Grid Padding="15"
+          IsClippedToBounds="False"
+          RowDefinitions="250, *,Auto"
+          VerticalOptions="FillAndExpand">
+
+        <VerticalStackLayout Spacing="12">
+            <Label Style="{StaticResource TextHeadline}"
+                   Text="{x:Static resources:Translations.SetupAccountsTitle}" />
+
+            <Label Style="{StaticResource TextTitle}"
+                   Text="{x:Static resources:Translations.SetupAccountsSubtitle}" />
+
+            <Label Text="{x:Static resources:Translations.SetupAccountsText}" />
+
+            <Button VerticalOptions="Center"
+                    Text="{x:Static resources:Translations.CreateAccountNowLabel}"
+                    Command="{Binding GoToAddAccountCommand}" />
+        </VerticalStackLayout>
+
+        <CollectionView Grid.Row="1"
+                        Header="{x:Static resources:Translations.ExistingAccountsTitle}"
+                        ItemsSource="{Binding ExistingAccounts}">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="setupAccounts:AccountViewModel">
+                    <Label Style="{StaticResource TextBody}"
+                           LineBreakMode="TailTruncation"
+                           Text="{Binding Name}" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.EmptyView>
+                <Grid>
+                    <Label Style="{StaticResource TextSubheadSecondary}"
+                           Margin="10,0,10,0"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           Text="{x:Static resources:Translations.CreateAccountToProceedMessage}" />
+                </Grid>
+            </CollectionView.EmptyView>
+        </CollectionView>
+
+        <Grid Grid.Row="2" ColumnDefinitions="*, 6, 2*">
+            <Button Grid.Column="0"
+                    VerticalOptions="Center"
+                    Text="{x:Static resources:Translations.BackLabel}"
+                    Command="{Binding BackCommand}" />
+
+            <Button Grid.Column="2"
+                    VerticalOptions="Center"
+                    Text="{x:Static resources:Translations.NextLabel}"
+                    Command="{Binding NextStepCommand}"
+                    CommandParameter="{Binding IsNextStepAvailable}" />
+        </Grid>
+    </Grid>
+</ContentPage>

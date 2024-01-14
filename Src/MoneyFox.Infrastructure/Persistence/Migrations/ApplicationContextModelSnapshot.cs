@@ -15,7 +15,7 @@ namespace MoneyFox.Persistence.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.10");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.14");
 
             modelBuilder.Entity("MoneyFox.Domain.Aggregates.AccountAggregate.Account", b =>
                 {
@@ -85,9 +85,6 @@ namespace MoneyFox.Persistence.Migrations
                     b.Property<string>("Note")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("RecurringPaymentId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<Guid?>("RecurringTransactionId")
                         .HasColumnType("TEXT");
 
@@ -102,8 +99,6 @@ namespace MoneyFox.Persistence.Migrations
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("ChargedAccountId");
-
-                    b.HasIndex("RecurringPaymentId");
 
                     b.HasIndex("TargetAccountId");
 
@@ -162,65 +157,6 @@ namespace MoneyFox.Persistence.Migrations
                     b.HasIndex("Name");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("MoneyFox.Domain.Aggregates.RecurringPayment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ChargedAccountId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("EndDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsEndless")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsLastDayOfMonth")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime?>("LastModified")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("LastRecurrenceCreated")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Recurrence")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("TargetAccountId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("ChargedAccountId");
-
-                    b.HasIndex("TargetAccountId");
-
-                    b.ToTable("RecurringPayments");
                 });
 
             modelBuilder.Entity("MoneyFox.Domain.Aggregates.RecurringTransactionAggregate.RecurringTransaction", b =>
@@ -289,10 +225,6 @@ namespace MoneyFox.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MoneyFox.Domain.Aggregates.RecurringPayment", null)
-                        .WithMany("RelatedPayments")
-                        .HasForeignKey("RecurringPaymentId");
-
                     b.HasOne("MoneyFox.Domain.Aggregates.AccountAggregate.Account", "TargetAccount")
                         .WithMany()
                         .HasForeignKey("TargetAccountId");
@@ -347,29 +279,6 @@ namespace MoneyFox.Persistence.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MoneyFox.Domain.Aggregates.RecurringPayment", b =>
-                {
-                    b.HasOne("MoneyFox.Domain.Aggregates.CategoryAggregate.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId");
-
-                    b.HasOne("MoneyFox.Domain.Aggregates.AccountAggregate.Account", "ChargedAccount")
-                        .WithMany()
-                        .HasForeignKey("ChargedAccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MoneyFox.Domain.Aggregates.AccountAggregate.Account", "TargetAccount")
-                        .WithMany()
-                        .HasForeignKey("TargetAccountId");
-
-                    b.Navigation("Category");
-
-                    b.Navigation("ChargedAccount");
-
-                    b.Navigation("TargetAccount");
-                });
-
             modelBuilder.Entity("MoneyFox.Domain.Aggregates.RecurringTransactionAggregate.RecurringTransaction", b =>
                 {
                     b.OwnsOne("MoneyFox.Domain.Money", "Amount", b1 =>
@@ -401,11 +310,6 @@ namespace MoneyFox.Persistence.Migrations
             modelBuilder.Entity("MoneyFox.Domain.Aggregates.CategoryAggregate.Category", b =>
                 {
                     b.Navigation("Payments");
-                });
-
-            modelBuilder.Entity("MoneyFox.Domain.Aggregates.RecurringPayment", b =>
-                {
-                    b.Navigation("RelatedPayments");
                 });
 #pragma warning restore 612, 618
         }

@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
 using Core.Features.CategoryDeletion;
 using Core.Queries;
@@ -12,7 +11,7 @@ using MediatR;
 using ModifyCategory;
 using Resources.Strings;
 
-internal sealed class SelectCategoryViewModel(IDialogService service, ISender sender, INavigationService navigationService) : NavigableViewModel
+public sealed class SelectCategoryViewModel(IDialogService service, ISender sender, INavigationService navigationService) : NavigableViewModel
 {
     public const string SELECTED_CATEGORY_ID_PARAM = "selectedCategoryId";
 

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:overflowMenu="clr-namespace:MoneyFox.Ui.Views.OverflowMenu"
+             xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
+             x:Name="This"
+             x:Class="MoneyFox.Ui.Views.OverflowMenu.OverflowMenuView">
+
+    <VerticalStackLayout>
+        <CollectionView ItemsSource="{x:Static overflowMenu:OverflowMenuViewModel.OverflowEntries}">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="overflowMenu:OverflowItemViewModel">
+                    <Grid Padding="15,6,15,0">
+
+                        <controls:Card HeightRequest="50">
+
+                            <controls:Card.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding ViewModel.GoToSelectedItemCommand, Source={x:Reference Name=This}}"
+                                    CommandParameter="{Binding .}" />
+                            </controls:Card.GestureRecognizers>
+
+                            <HorizontalStackLayout Spacing="6" Padding="12"
+                                                   x:DataType="overflowMenu:OverflowItemViewModel">
+                                <Image HeightRequest="15" WidthRequest="15">
+                                    <Image.Source>
+                                        <FontImageSource FontFamily="MaterialIcons"
+                                                         Glyph="{Binding IconGlyph}"
+                                                         Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                                    </Image.Source>
+                                </Image>
+                                <Label Text="{Binding Name}"
+                                       Style="{DynamicResource TextSubHead}"
+                                       VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </controls:Card>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentView>

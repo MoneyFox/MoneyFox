@@ -1,13 +1,12 @@
 namespace MoneyFox.Ui.Tests.Views.Payments;
 
-using Ui.Views.Payments;
 using Ui.Views.Payments.PaymentList;
 
-public sealed class SelectFilterDialogViewModelTests
+public sealed class SelectFilterPopupViewModelTests
 {
     public class IsDateRangeValid
     {
-        private readonly SelectFilterDialogViewModel vm = new();
+        private readonly SelectFilterPopupViewModel vm = new();
 
         [Fact]
         public void ShouldReturnFalse_WhenStartDateAfterEndDate()

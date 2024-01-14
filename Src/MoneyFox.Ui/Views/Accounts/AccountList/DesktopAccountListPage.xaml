@@ -27,7 +27,6 @@
 
             <CollectionView
                 Grid.Row="1"
-                x:Name="AccountCollectionView"
                 IsGrouped="true"
                 ItemsSource="{Binding AccountGroups}">
 
@@ -56,7 +55,7 @@
 
                                 <controls:Card.GestureRecognizers>
                                     <TapGestureRecognizer
-                                        Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference This}}"
+                                        Command="{Binding ViewModel.GoToTransactionListCommand, Source={x:Reference This}}"
                                         CommandParameter="{Binding .}" />
                                 </controls:Card.GestureRecognizers>
 

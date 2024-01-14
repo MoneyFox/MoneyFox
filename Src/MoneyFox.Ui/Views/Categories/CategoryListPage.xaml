@@ -27,7 +27,6 @@
                              SearchCommand="{Binding SearchCategoryCommand}" />
 
             <CollectionView Grid.Row="3"
-                            x:Name="CategoryCollectionView"
                             IsGrouped="true"
                             ItemsSource="{Binding CategoryGroups}">
 
@@ -48,14 +47,14 @@
 
                                 <controls:Card.GestureRecognizers>
                                     <TapGestureRecognizer
-                                        Command="{Binding BindingContext.GoToEditCategoryCommand, Source={x:Reference Name=CategoryCollectionView}}"
+                                        Command="{Binding ViewModel.GoToEditCategoryCommand, Source={x:Reference Name=This}}"
                                         CommandParameter="{Binding .}" />
                                 </controls:Card.GestureRecognizers>
 
                                 <FlyoutBase.ContextFlyout>
                                     <MenuFlyout>
                                         <MenuFlyoutItem Text="{x:Static resources:Translations.DeleteLabel}"
-                                                        Command="{Binding BindingContext.DeleteCategoryCommand, Source={x:Reference Name=CategoryCollectionView}}"
+                                                        Command="{Binding ViewModel.DeleteCategoryCommand, Source={x:Reference Name=This}}"
                                                         CommandParameter="{Binding .}" />
                                     </MenuFlyout>
                                 </FlyoutBase.ContextFlyout>

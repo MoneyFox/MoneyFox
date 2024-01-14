@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:statistics="clr-namespace:MoneyFox.Ui.Views.Statistics.Selector"
+             xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
+             x:Name="This"
+             x:Class="MoneyFox.Ui.Views.Statistics.Selector.StatisticSelectorView">
+    <VerticalStackLayout>
+        <CollectionView BackgroundColor="Transparent"
+                        ItemsSource="{x:Static statistics:StatisticSelectorViewModel.StatisticItems}">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="0,6, 0,0">
+
+                        <controls:Card Padding="12" Margin="15,0,15,0">
+
+                            <controls:Card.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding ViewModel.GoToStatisticCommand, Source={x:Reference Name=This}}"
+                                    CommandParameter="{Binding .}" />
+                            </controls:Card.GestureRecognizers>
+
+                            <VerticalStackLayout Spacing="6"
+                                                 x:DataType="statistics:StatisticSelectorTypeViewModel">
+                                <HorizontalStackLayout Spacing="6">
+                                    <Image HeightRequest="15"
+                                           WidthRequest="15">
+                                        <Image.Source>
+                                            <FontImageSource FontFamily="MaterialIcons"
+                                                             Glyph="{Binding IconGlyph}"
+                                                             Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                                        </Image.Source>
+                                    </Image>
+                                    <Label Text="{Binding Name}" Style="{DynamicResource TextSubHead}" />
+                                </HorizontalStackLayout>
+                                <Label Text="{Binding Description}"
+                                       Style="{StaticResource TextBodySecondary}" />
+                            </VerticalStackLayout>
+                        </controls:Card>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentView>

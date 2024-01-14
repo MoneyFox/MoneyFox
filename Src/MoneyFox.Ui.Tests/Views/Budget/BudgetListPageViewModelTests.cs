@@ -9,13 +9,13 @@ using Ui.Views.Budget;
 
 public abstract class BudgetListPageViewModelTests
 {
-    private readonly ISender sender = Substitute.For<ISender>();
     private readonly INavigationService navigationService = Substitute.For<INavigationService>();
+    private readonly ISender sender = Substitute.For<ISender>();
     private readonly BudgetListViewModel viewModel;
 
     protected BudgetListPageViewModelTests()
     {
-        viewModel = new(sender, navigationService);
+        viewModel = new(sender: sender, navigationService: navigationService);
     }
 
     private static void AssertBudgetListViewModel(BudgetListItemViewModel actualBudgetVm, TestData.IBudget expectedBudgetData)

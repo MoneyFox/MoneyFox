@@ -7,62 +7,48 @@ using Core.Queries;
 using MediatR;
 using Resources.Strings;
 
-public abstract class ModifyAccountViewModel(IDialogService service, IMediator mediator, INavigationService navigationService) : NavigableViewModel
+public abstract class ModifyAccountViewModel(IDialogService dialogService, ISender mediator, INavigationService navigationService) : NavigableViewModel
 {
     private AccountViewModel selectedAccountVm = new();
 
-    public virtual bool IsEdit => false;
+    public bool IsEdit { get; protected init; }
 
-    public virtual string Title => Translations.AddAccountTitle;
-
-    protected IMediator Mediator { get; } = mediator;
+    public abstract string Title { get; }
 
     public AccountViewModel SelectedAccountVm
     {
         get => selectedAccountVm;
-
-        set
-        {
-            selectedAccountVm = value;
-            OnPropertyChanged();
-        }
+        protected set => SetProperty(field: ref selectedAccountVm, newValue: value);
     }
 
-    public AsyncRelayCommand SaveCommand => new(SaveAsync);
+    public AsyncRelayCommand SaveCommand => new(execute: SaveAsync, canExecute: () => SelectedAccountVm.IsValid);
 
     protected abstract Task SaveAccountAsync();
 
     private async Task SaveAsync()
     {
-        if (string.IsNullOrWhiteSpace(SelectedAccountVm.Name))
-        {
-            await service.ShowMessageAsync(title: Translations.MandatoryFieldEmptyTitle, message: Translations.NameRequiredMessage);
-
-            return;
-        }
-
         try
         {
             var nameChanged = SelectedAccountVm.Id == 0
-                              || !SelectedAccountVm.Name.Equals(await Mediator.Send(new GetAccountNameByIdQuery(SelectedAccountVm.Id)));
+                              || !SelectedAccountVm.Name.Equals(await mediator.Send(new GetAccountNameByIdQuery(SelectedAccountVm.Id)));
 
             var nameAlreadyTaken
-                = await Mediator.Send(new GetIfAccountWithNameExistsQuery(accountName: SelectedAccountVm.Name, accountId: SelectedAccountVm.Id));
+                = await mediator.Send(new GetIfAccountWithNameExistsQuery(accountName: SelectedAccountVm.Name, accountId: SelectedAccountVm.Id));
 
             if (nameChanged
                 && nameAlreadyTaken
-                && await service.ShowConfirmMessageAsync(title: Translations.DuplicatedNameTitle, message: Translations.DuplicateAccountMessage) is false)
+                && await dialogService.ShowConfirmMessageAsync(title: Translations.DuplicatedNameTitle, message: Translations.DuplicateAccountMessage) is false)
             {
                 return;
             }
 
-            await service.ShowLoadingDialogAsync(Translations.SavingAccountMessage);
+            await dialogService.ShowLoadingDialogAsync(Translations.SavingAccountMessage);
             await SaveAccountAsync();
             await navigationService.GoBack();
         }
         finally
         {
-            await service.HideLoadingDialogAsync();
+            await dialogService.HideLoadingDialogAsync();
         }
     }
 }

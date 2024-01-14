@@ -13,6 +13,7 @@
 
     <ContentPage.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:MoneyConverter x:Key="MoneyConverter" />
     </ContentPage.Resources>
 
     <ContentPage.Content>
@@ -27,7 +28,6 @@
 
             <CollectionView
                 Grid.Row="1"
-                x:Name="AccountCollectionView"
                 IsGrouped="true"
                 ItemsSource="{Binding AccountGroups}">
 
@@ -54,7 +54,7 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="accountList:AccountListItemViewModel">
                         <Grid Padding="18,0,18,12">
-                            <controls:Card HeightRequest="80" Padding="6">
+                            <controls:Card HeightRequest="90">
 
                                 <controls:Card.GestureRecognizers>
                                     <TapGestureRecognizer
@@ -78,12 +78,12 @@
                                         <SwipeItems>
                                             <SwipeItem
                                                 BackgroundColor="{AppThemeBinding Dark={StaticResource Gray900}, Light={StaticResource Gray100}}"
-                                                Command="{Binding Source={x:Reference AccountCollectionView}, Path=BindingContext.GoToEditAccountCommand}"
+                                                Command="{Binding Source={x:Reference This}, Path=ViewModel.GoToEditAccountCommand}"
                                                 CommandParameter="{Binding .}"
                                                 Text="{x:Static resources:Translations.EditLabel}" />
                                             <SwipeItem
                                                 BackgroundColor="{AppThemeBinding Dark={StaticResource Gray900}, Light={StaticResource Gray100}}"
-                                                Command="{Binding Source={x:Reference AccountCollectionView}, Path=BindingContext.DeleteAccountCommand}"
+                                                Command="{Binding Source={x:Reference This}, Path=ViewModel.DeleteAccountCommand}"
                                                 CommandParameter="{Binding .}"
                                                 Text="{x:Static resources:Translations.DeleteLabel}" />
                                         </SwipeItems>
@@ -94,8 +94,7 @@
                                                                       Light={StaticResource CardBackgroundLight}}">
 
                                         <Label
-                                            Margin="10,2,0,0"
-                                            HorizontalTextAlignment="Start"
+                                            Margin="6"
                                             Style="{StaticResource TextHead}"
                                             Text="{Binding Name}"
                                             VerticalTextAlignment="Start" />
@@ -106,10 +105,11 @@
                                             FontSize="20"
                                             HorizontalOptions="Center"
                                             VerticalOptions="Center"
-                                            Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
+                                            Text="{Binding CurrentBalance, Converter={StaticResource MoneyConverter}}"
                                             VerticalTextAlignment="Center" />
 
                                         <HorizontalStackLayout Spacing="6"
+                                                               Margin="6"
                                                                HorizontalOptions="End">
                                             <Label
                                                 Margin="0,0,0,2"
@@ -117,6 +117,7 @@
                                                 FontSize="15"
                                                 HorizontalTextAlignment="End"
                                                 Text="{x:Static resources:Translations.EndOfMonthLabel}"
+                                                Style="{StaticResource TextBodySecondary}"
                                                 VerticalTextAlignment="End" />
 
                                             <Label
@@ -125,6 +126,7 @@
                                                 FontSize="15"
                                                 HorizontalTextAlignment="End"
                                                 Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}"
+                                                Style="{StaticResource TextBodySecondary}"
                                                 VerticalTextAlignment="End" />
                                         </HorizontalStackLayout>
                                     </Grid>
