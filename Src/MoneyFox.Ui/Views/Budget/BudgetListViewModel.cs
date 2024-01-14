@@ -51,6 +51,7 @@ public sealed class BudgetListViewModel(ISender sender, INavigationService navig
                     }));
 
         OnPropertyChanged(nameof(BudgetedAmount));
+        OnPropertyChanged(nameof(SpentAmount));
         OnPropertyChanged(nameof(HasBudgets));
     }
 
