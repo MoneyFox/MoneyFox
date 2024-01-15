@@ -10,22 +10,24 @@
              x:Name="This"
              x:DataType="budgetOverview:BudgetOverviewViewModel"
              x:Class="MoneyFox.Ui.Views.Budget.BudgetOverview.BudgetOverviewPage">
-    
+
     <ContentPage.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
     </ContentPage.Resources>
-    
-    <Grid RowDefinitions="40, Auto, *">
+
+    <Grid RowDefinitions="60, Auto, *">
         <Button
             Grid.Row="0"
             Margin="0,0,16,0"
             HorizontalOptions="End"
             VerticalOptions="Center"
-            CornerRadius="40"
+            CornerRadius="22"
+            WidthRequest="60"
+            Padding="6"
             Command="{Binding GoToEditCommand}">
             <Button.ImageSource>
                 <FontImageSource FontFamily="MaterialIcons"
-                                 Glyph="{x:Static views:IconFont.NoteEdit}"
+                                 Glyph="{x:Static views:IconFont.Pencil}"
                                  Size="24"
                                  Color="White" />
             </Button.ImageSource>
@@ -39,7 +41,8 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="budgetOverview:BudgetPaymentViewModel">
                     <Grid Padding="12,6,12,0">
-                        <controls:Card HeightRequest="85" Padding="12">
+                        <controls:Card Padding="12" 
+                                       HeightRequest="60">
                             <Border.GestureRecognizers>
                                 <TapGestureRecognizer
                                     Command="{Binding ViewModel.GoToEditCommand, Source={x:Reference This}}"
@@ -60,7 +63,34 @@
                                            HorizontalTextAlignment="End"
                                            HorizontalOptions="End" />
                                 </Grid>
+                                <Grid VerticalOptions="Fill">
+                                    <Label Style="{StaticResource TextCaption}"
+                                           LineBreakMode="TailTruncation"
+                                           Text="{Binding AccountName}" />
+                                    <HorizontalStackLayout HorizontalOptions="End">
+                                        <Image HeightRequest="15"
+                                               IsVisible="{Binding IsRecurring}"
+                                               WidthRequest="15">
+                                            <Image.Source>
+                                                <FontImageSource FontFamily="MaterialIcons"
+                                                                 Glyph="{x:Static views:IconFont.RepeatVariant}"
+                                                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                                            </Image.Source>
+                                        </Image>
+
+                                        <Image HeightRequest="15"
+                                               IsVisible="{Binding IsCleared}"
+                                               WidthRequest="15">
+                                            <Image.Source>
+                                                <FontImageSource FontFamily="MaterialIcons"
+                                                                 Glyph="{x:Static views:IconFont.Check}"
+                                                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
+                                            </Image.Source>
+                                        </Image>
+                                    </HorizontalStackLayout>
+                                </Grid>
                             </VerticalStackLayout>
+
                         </controls:Card>
                     </Grid>
                 </DataTemplate>
