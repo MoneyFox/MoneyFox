@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using BudgetModification;
 using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
-using Core.Common.Extensions;
 using Core.Common.Settings;
 using Core.Queries;
 using MediatR;
@@ -13,9 +12,9 @@ public sealed class BudgetOverviewViewModel(ISender sender, ISettingsFacade sett
 {
     private int budgetId;
 
-    public AsyncRelayCommand GoToEditCommand => new(() => navigationService.GoTo<EditBudgetViewModel>());
+    public AsyncRelayCommand GoToEditCommand => new(() => navigationService.GoTo<EditBudgetViewModel>(budgetId));
 
-    public ObservableCollection<BudgetPaymentViewModel> Payments { get; } = [];
+    public ObservableCollection<PaymentDayGroup> PaymentsGroups { get; private set; } = [];
 
     public override Task OnNavigatedAsync(object? parameter)
     {
@@ -33,17 +32,18 @@ public sealed class BudgetOverviewViewModel(ISender sender, ISettingsFacade sett
     {
         var currency = settingsFacade.DefaultCurrency;
         var paymentData = await sender.Send(new GetPaymentsInBudget.Query(new(budgetId)));
-        Payments.Clear();
-        Payments.AddRange(
-            paymentData.Select(
-                p => new BudgetPaymentViewModel
-                {
-                    AccountName = p.Account,
-                    Date = DateOnly.FromDateTime(p.Date),
-                    Amount = new(amount: p.Amount, currencyAlphaIsoCode: currency),
-                    Category = p.Category,
-                    IsCleared = p.IsCleared,
-                    IsRecurring = p.IsRecurring
-                }));
+        var viewModels = paymentData.Select(
+            p => new BudgetPaymentViewModel
+            {
+                AccountName = p.Account,
+                Date = DateOnly.FromDateTime(p.Date),
+                Amount = new(amount: p.Amount, currencyAlphaIsoCode: currency),
+                Category = p.Category,
+                IsCleared = p.IsCleared,
+                IsRecurring = p.IsRecurring
+            });
+
+        PaymentsGroups = new(viewModels.GroupBy(pd => pd.Date).Select(g => new PaymentDayGroup(date: g.Key, payments: g.ToList())));
+        OnPropertyChanged(nameof(PaymentsGroups));
     }
 }

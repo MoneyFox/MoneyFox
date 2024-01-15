@@ -35,9 +35,20 @@
 
         <CollectionView Grid.Row="2"
                         BackgroundColor="Transparent"
-                        ItemsSource="{Binding Payments}"
+                        IsGrouped="True"
+                        ItemsSource="{Binding PaymentsGroups}"
                         SelectionMode="None">
+            
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate x:DataType="budgetOverview:PaymentDayGroup">
+                    <Grid Padding="18, 0, 18, 0">
+                        <Label Text="{Binding Date, StringFormat='{0:dd. MMM}'}"
+                               Style="{StaticResource TextSubheadSecondary}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
 
+            
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="budgetOverview:BudgetPaymentViewModel">
                     <Grid Padding="12,6,12,0">
