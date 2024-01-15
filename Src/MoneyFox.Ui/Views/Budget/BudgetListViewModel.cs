@@ -2,6 +2,7 @@ namespace MoneyFox.Ui.Views.Budget;
 
 using System.Collections.ObjectModel;
 using BudgetModification;
+using BudgetOverview;
 using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
 using Core.Common.Extensions;
@@ -10,8 +11,6 @@ using MediatR;
 
 public sealed class BudgetListViewModel(ISender sender, INavigationService navigationService) : NavigableViewModel
 {
-    public bool HasBudgets => Budgets.Any();
-
     public ObservableCollection<BudgetListItemViewModel> Budgets { get; } = new();
 
     public decimal BudgetedAmount => Budgets.Sum(b => b.MonthlyBudget);
@@ -21,7 +20,7 @@ public sealed class BudgetListViewModel(ISender sender, INavigationService navig
 
     public AsyncRelayCommand GoToAddBudgetCommand => new(() => navigationService.GoTo<AddBudgetViewModel>());
 
-    public AsyncRelayCommand<BudgetListItemViewModel> EditBudgetCommand => new(EditBudgetAsync);
+    public AsyncRelayCommand<BudgetListItemViewModel> GoToOverviewCommand => new(ShowBudgetOverviewAsync);
 
     public override Task OnNavigatedAsync(object? parameter)
     {
@@ -52,11 +51,10 @@ public sealed class BudgetListViewModel(ISender sender, INavigationService navig
 
         OnPropertyChanged(nameof(BudgetedAmount));
         OnPropertyChanged(nameof(SpentAmount));
-        OnPropertyChanged(nameof(HasBudgets));
     }
 
-    private Task EditBudgetAsync(BudgetListItemViewModel? selectedBudget)
+    private Task ShowBudgetOverviewAsync(BudgetListItemViewModel? selectedBudget)
     {
-        return selectedBudget == null ? Task.CompletedTask : navigationService.GoTo<EditBudgetViewModel>(selectedBudget.Id);
+        return selectedBudget == null ? Task.CompletedTask : navigationService.GoTo<BudgetOverviewViewModel>(selectedBudget.Id);
     }
 }

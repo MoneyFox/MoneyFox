@@ -9,6 +9,7 @@ using Views.Accounts.AccountModification;
 using Views.Backup;
 using Views.Budget;
 using Views.Budget.BudgetModification;
+using Views.Budget.BudgetOverview;
 using Views.Categories;
 using Views.Categories.CategorySelection;
 using Views.Categories.ModifyCategory;
@@ -46,7 +47,8 @@ internal class ViewLocator(IServiceProvider serviceProvider) : IViewLocator
         (typeof(WelcomeViewModel), typeof(WelcomePage)), (typeof(SetupCurrencyViewModel), typeof(SetupCurrencyPage)),
         (typeof(SetupAccountsViewModel), typeof(SetupAccountPage)), (typeof(SetupCategoryViewModel), typeof(SetupCategoryPage)),
         (typeof(SetupCompletionViewModel), typeof(SetupCompletionPage)), (typeof(AboutViewModel), typeof(AboutPage)),
-        (typeof(SettingsViewModel), typeof(SettingsPage)), (typeof(SelectCategoryViewModel), typeof(SelectCategoryPage))
+        (typeof(SettingsViewModel), typeof(SettingsPage)), (typeof(SelectCategoryViewModel), typeof(SelectCategoryPage)),
+        (typeof(BudgetOverviewViewModel), typeof(BudgetOverviewPage))
     ];
 
     private static readonly List<(Type ViewModelType, Type ViewType)> desktopViewLocatorDictionary =
@@ -68,7 +70,8 @@ internal class ViewLocator(IServiceProvider serviceProvider) : IViewLocator
         (typeof(WelcomeViewModel), typeof(WelcomePage)), (typeof(SetupCurrencyViewModel), typeof(SetupCurrencyPage)),
         (typeof(SetupAccountsViewModel), typeof(SetupAccountPage)), (typeof(SetupCategoryViewModel), typeof(SetupCategoryPage)),
         (typeof(SetupCompletionViewModel), typeof(SetupCompletionPage)), (typeof(AboutViewModel), typeof(AboutPage)),
-        (typeof(SettingsViewModel), typeof(SettingsPage)), (typeof(SelectCategoryViewModel), typeof(SelectCategoryPage))
+        (typeof(SettingsViewModel), typeof(SettingsPage)), (typeof(SelectCategoryViewModel), typeof(SelectCategoryPage)),
+        (typeof(BudgetOverviewViewModel), typeof(BudgetOverviewPage))
     ];
 
     public IBindablePage GetViewFor<TViewModel>() where TViewModel : NavigableViewModel

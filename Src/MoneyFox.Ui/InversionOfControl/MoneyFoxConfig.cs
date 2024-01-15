@@ -16,6 +16,7 @@ using Views.Accounts.AccountModification;
 using Views.Backup;
 using Views.Budget;
 using Views.Budget.BudgetModification;
+using Views.Budget.BudgetOverview;
 using Views.Categories;
 using Views.Categories.CategorySelection;
 using Views.Categories.ModifyCategory;
@@ -70,6 +71,7 @@ public sealed class MoneyFoxConfig
         services.AddTransient<SetupAccountsViewModel>();
         services.AddTransient<SetupCategoryViewModel>();
         services.AddTransient<SetupCompletionViewModel>();
+        services.AddTransient<BudgetOverviewPage>();
     }
 
     private static void RegisterPopups(IServiceCollection services)
@@ -109,6 +111,7 @@ public sealed class MoneyFoxConfig
         services.AddTransient<EditBudgetViewModel>();
         services.AddTransient<BudgetListViewModel>();
         services.AddTransient<CategorySelectionViewModel>();
+        services.AddTransient<BudgetOverviewViewModel>();
     }
 
     private static void RegisterViews(IServiceCollection services)

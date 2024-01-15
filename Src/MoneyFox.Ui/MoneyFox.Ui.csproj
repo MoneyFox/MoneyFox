@@ -206,6 +206,10 @@
             <DependentUpon>SetupAccountPage.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Compile Update="Views\Budget\BudgetOverview\BudgetOverviewPage.xaml.cs">
+          <DependentUpon>BudgetOverviewPage.xaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -277,6 +281,9 @@
         </MauiXaml>
         <MauiXaml Update="Views\Setup\SetupAccounts\SetupAccountPage.xaml">
             <SubType>Designer</SubType>
+        </MauiXaml>
+        <MauiXaml Update="Views\Budget\BudgetOverview\BudgetOverviewPage.xaml">
+          <SubType>Designer</SubType>
         </MauiXaml>
     </ItemGroup>
 

@@ -62,7 +62,7 @@ internal static partial class TestData
         public IAccount ChargedAccount => new IncludedAccount();
         public IAccount? TargetAccount => null;
         public ICategory? Category { get; init; } = new IncomeCategory();
-        public DateTime Date { get; } = defaultDate;
+        public DateTime Date { get; init; } = defaultDate;
         public decimal Amount => 105.50m;
         public bool IsCleared => true;
         public PaymentType Type { get; set; } = PaymentType.Income;

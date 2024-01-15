@@ -16,77 +16,76 @@
 
     <ContentPage.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
-        <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
     </ContentPage.Resources>
 
-    <ContentPage.Content>
-        <Grid IsClippedToBounds="False" RowDefinitions="40, Auto, *">
-            <Button
-                Grid.Row="0"
-                Margin="0,0,16,0"
-                HorizontalOptions="End"
-                Text="{x:Static resources:Translations.AddBudgetLabel}"
-                VerticalOptions="Center"
-                Command="{Binding GoToAddBudgetCommand}" />
+    <Grid IsClippedToBounds="False" RowDefinitions="40, Auto, *">
+        <Button
+            Grid.Row="0"
+            Margin="0,0,16,0"
+            HorizontalOptions="End"
+            Text="{x:Static resources:Translations.AddBudgetLabel}"
+            VerticalOptions="Center"
+            Command="{Binding GoToAddBudgetCommand}" />
 
-            <CollectionView Grid.Row="2"
-                            BackgroundColor="Transparent"
-                            ItemsSource="{Binding Budgets}"
-                            SelectionMode="None">
+        <CollectionView Grid.Row="2"
+                        BackgroundColor="Transparent"
+                        ItemsSource="{Binding Budgets}"
+                        SelectionMode="None">
 
-                <CollectionView.Header>
-                    <ContentView>
-                        <VerticalStackLayout Spacing="6" Margin="18,0, 12,0">
-                            <Label Style="{StaticResource TextBodySecondary}"
-                                   Text="{Binding BudgetedAmount, StringFormat={extensions:Translate MonthlyBudgetTemplate}, Converter={StaticResource AmountFormatConverter}}" />
-                            <Label Style="{StaticResource TextBodySecondary}"
-                                   Text="{Binding SpentAmount, StringFormat={extensions:Translate MonthlySpendingOnBudgetsTemplate}, Converter={StaticResource AmountFormatConverter}}" />
-                        </VerticalStackLayout>
-                    </ContentView>
-                </CollectionView.Header>
+            <CollectionView.Header>
+                <ContentView>
+                    <VerticalStackLayout Spacing="6" Margin="18,0, 12,0">
+                        <Label Style="{StaticResource TextBodySecondary}"
+                               Text="{Binding BudgetedAmount, StringFormat={extensions:Translate MonthlyBudgetTemplate}, Converter={StaticResource AmountFormatConverter}}" />
+                        <Label Style="{StaticResource TextBodySecondary}"
+                               Text="{Binding SpentAmount, StringFormat={extensions:Translate MonthlySpendingOnBudgetsTemplate}, Converter={StaticResource AmountFormatConverter}}" />
+                    </VerticalStackLayout>
+                </ContentView>
+            </CollectionView.Header>
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="budget:BudgetListItemViewModel">
-                        <Grid Padding="12,6,12,0">
-                            <controls:Card HeightRequest="85" Padding="12">
-                                <Border.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                        Command="{Binding ViewModel.EditBudgetCommand, Source={x:Reference BudgetList}}"
-                                        CommandParameter="{Binding .}" />
-                                </Border.GestureRecognizers>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="budget:BudgetListItemViewModel">
+                    <Grid Padding="12,6,12,0">
+                        <controls:Card HeightRequest="85" Padding="12">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding ViewModel.GoToOverviewCommand, Source={x:Reference BudgetList}}"
+                                    CommandParameter="{Binding .}" />
+                            </Border.GestureRecognizers>
 
-                                <VerticalStackLayout Spacing="6">
-                                    <Label Style="{StaticResource TextHead}"
-                                           Text="{Binding Name}" />
+                            <VerticalStackLayout Spacing="6">
+                                <Label Style="{StaticResource TextHead}"
+                                       Text="{Binding Name}" />
 
-                                    <Border StrokeShape="RoundRectangle 40" StrokeThickness="0">
-                                        <ProgressBar Progress="{Binding SpendingPercentage}" HeightRequest="4" />
-                                    </Border>
-                                    <Grid>
-                                        <Label
-                                            Text="{Binding CurrentSpending, Converter={StaticResource AmountFormatConverter}}"
-                                            HorizontalOptions="Start"
-                                            Style="{StaticResource TextBodySecondary}" />
+                                <Border StrokeShape="RoundRectangle 40" StrokeThickness="0">
+                                    <ProgressBar Progress="{Binding SpendingPercentage}" HeightRequest="4" />
+                                </Border>
+                                <Grid>
+                                    <Label
+                                        Text="{Binding CurrentSpending, Converter={StaticResource AmountFormatConverter}}"
+                                        HorizontalOptions="Start"
+                                        Style="{StaticResource TextBodySecondary}" />
 
-                                        <Label
-                                            Text="{Binding SpendingLimit, Converter={StaticResource AmountFormatConverter}}"
-                                            HorizontalOptions="End"
-                                            Style="{StaticResource TextBodySecondary}" />
-                                    </Grid>
-                                </VerticalStackLayout>
-                            </controls:Card>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-
-            <Label Grid.Row="2"
-                   IsVisible="{Binding HasBudgets, Converter={StaticResource InverseBoolConverter}}"
-                   Style="{StaticResource TextSubheadSecondary}"
-                   Margin="10,0,10,0"
-                   VerticalTextAlignment="Center"
-                   HorizontalTextAlignment="Center"
-                   Text="{x:Static resources:Translations.NoBudgetsMessage}" />
-        </Grid>
-    </ContentPage.Content>
+                                    <Label
+                                        Text="{Binding SpendingLimit, Converter={StaticResource AmountFormatConverter}}"
+                                        HorizontalOptions="End"
+                                        Style="{StaticResource TextBodySecondary}" />
+                                </Grid>
+                            </VerticalStackLayout>
+                        </controls:Card>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
+            <CollectionView.EmptyView>
+                <Grid>
+                    <Label Style="{StaticResource TextSubheadSecondary}"
+                           Margin="10,0,10,0"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           Text="{x:Static resources:Translations.NoBudgetsMessage}" />
+                </Grid>
+            </CollectionView.EmptyView>
+        </CollectionView>
+    </Grid>
 </ContentPage>

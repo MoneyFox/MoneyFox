@@ -1,6 +1,7 @@
 ﻿namespace MoneyFox.Domain.Tests.TestFramework;
 
 using Domain.Aggregates.AccountAggregate;
+using Domain.Aggregates.CategoryAggregate;
 
 internal static class TestPaymentDbFactory
 {
@@ -17,6 +18,22 @@ internal static class TestPaymentDbFactory
             chargedAccount: dbChargedAccount,
             targetAccount: dbTargetAccount,
             category: dbCategory,
+            note: payment.Note,
+            recurringTransactionId: payment.RecurringTransactionId);
+    }
+
+    internal static Payment CreateDbPayment(this TestData.IPayment payment, Category category)
+    {
+        var dbChargedAccount = payment.ChargedAccount.CreateDbAccount();
+        var dbTargetAccount = payment.TargetAccount?.CreateDbAccount();
+
+        return new(
+            date: payment.Date,
+            amount: payment.Amount,
+            type: payment.Type,
+            chargedAccount: dbChargedAccount,
+            targetAccount: dbTargetAccount,
+            category: category,
             note: payment.Note,
             recurringTransactionId: payment.RecurringTransactionId);
     }

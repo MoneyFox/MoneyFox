@@ -1718,5 +1718,11 @@ namespace MoneyFox.Ui.Resources.Strings {
                 return ResourceManager.GetString("CreateAccountToProceedMessage", resourceCulture);
             }
         }
+        
+        public static string PaymentsInBudgetHeader {
+            get {
+                return ResourceManager.GetString("PaymentsInBudgetHeader", resourceCulture);
+            }
+        }
     }
 }
