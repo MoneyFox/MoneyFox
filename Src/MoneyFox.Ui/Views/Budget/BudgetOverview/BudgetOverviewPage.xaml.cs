@@ -1,6 +1,6 @@
-namespace MoneyFox.Ui.Views.Budget;
+namespace MoneyFox.Ui.Views.Budget.BudgetOverview;
 
-using Common.Navigation;
+using MoneyFox.Ui.Common.Navigation;
 
 public partial class BudgetOverviewPage : IBindablePage
 {
