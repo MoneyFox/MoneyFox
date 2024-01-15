@@ -1,11 +1,6 @@
 namespace MoneyFox.Ui.Views.Budget.BudgetOverview;
 
-public class PaymentDayGroup : List<BudgetPaymentViewModel>
+public class PaymentDayGroup(DateOnly date, List<BudgetPaymentViewModel> payments) : List<BudgetPaymentViewModel>(payments)
 {
-    public PaymentDayGroup(DateOnly date, List<BudgetPaymentViewModel> payments) : base(payments)
-    {
-        Date = date;
-    }
-
-    public DateOnly Date { get; }
+    public DateOnly Date { get; } = date;
 }

@@ -11,10 +11,23 @@ using MediatR;
 public sealed class BudgetOverviewViewModel(ISender sender, ISettingsFacade settingsFacade, INavigationService navigationService) : NavigableViewModel
 {
     private int budgetId;
+    private string budgetName = string.Empty;
+    private ObservableCollection<PaymentDayGroup> paymentsGroups = [];
 
     public AsyncRelayCommand GoToEditCommand => new(() => navigationService.GoTo<EditBudgetViewModel>(budgetId));
 
-    public ObservableCollection<PaymentDayGroup> PaymentsGroups { get; private set; } = [];
+    public ObservableCollection<PaymentDayGroup> PaymentsGroups
+    {
+        get => paymentsGroups;
+
+        private set => SetProperty(field: ref paymentsGroups, newValue: value);
+    }
+
+    public string BudgetName
+    {
+        get => budgetName;
+        private set => SetProperty(field: ref budgetName, newValue: value);
+    }
 
     public override Task OnNavigatedAsync(object? parameter)
     {
@@ -30,6 +43,7 @@ public sealed class BudgetOverviewViewModel(ISender sender, ISettingsFacade sett
 
     private async Task LoadData()
     {
+        BudgetName = await sender.Send(new GetBudgetNameById.Query(new(budgetId)));
         var currency = settingsFacade.DefaultCurrency;
         var paymentData = await sender.Send(new GetPaymentsInBudget.Query(new(budgetId)));
         var viewModels = paymentData.Select(
@@ -44,6 +58,5 @@ public sealed class BudgetOverviewViewModel(ISender sender, ISettingsFacade sett
             });
 
         PaymentsGroups = new(viewModels.GroupBy(pd => pd.Date).Select(g => new PaymentDayGroup(date: g.Key, payments: g.ToList())));
-        OnPropertyChanged(nameof(PaymentsGroups));
     }
 }

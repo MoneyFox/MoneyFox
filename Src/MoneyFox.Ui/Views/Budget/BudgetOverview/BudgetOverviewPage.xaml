@@ -9,6 +9,7 @@
              xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
              x:Name="This"
              x:DataType="budgetOverview:BudgetOverviewViewModel"
+             Title="{x:Static resources:Translations.BudgetsTitle}"
              x:Class="MoneyFox.Ui.Views.Budget.BudgetOverview.BudgetOverviewPage">
 
     <ContentPage.Resources>
