@@ -39,6 +39,7 @@ public sealed class BudgetOverviewViewModel(ISender sender, ISettingsFacade sett
                 p => new BudgetPaymentViewModel
                 {
                     AccountName = p.Account,
+                    Date = DateOnly.FromDateTime(p.Date),
                     Amount = new(amount: p.Amount, currencyAlphaIsoCode: currency),
                     Category = p.Category,
                     IsCleared = p.IsCleared,

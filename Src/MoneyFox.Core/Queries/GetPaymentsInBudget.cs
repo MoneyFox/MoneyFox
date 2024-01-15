@@ -1,5 +1,6 @@
 namespace MoneyFox.Core.Queries;
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -15,6 +16,7 @@ public static class GetPaymentsInBudget
 {
     public record Data(
         int PaymentId,
+        DateTime Date,
         decimal Amount,
         string Account,
         string Category,
@@ -38,6 +40,7 @@ public static class GetPaymentsInBudget
                 .Select(
                     p => new Data(
                         p.Id,
+                        p.Date,
                         p.Amount,
                         p.ChargedAccount.Name,
                         p.Category!.Name,
