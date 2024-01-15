@@ -2,6 +2,79 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resources="clr-namespace:MoneyFox.Ui.Resources.Strings"
+             xmlns:views="clr-namespace:MoneyFox.Ui.Views"
+             xmlns:budgetOverview="clr-namespace:MoneyFox.Ui.Views.Budget.BudgetOverview"
+             xmlns:controls="clr-namespace:MoneyFox.Ui.Controls"
+             xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
+             x:Name="This"
+             x:DataType="budgetOverview:BudgetOverviewViewModel"
              x:Class="MoneyFox.Ui.Views.Budget.BudgetOverview.BudgetOverviewPage">
+    
+    <ContentPage.Resources>
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
+    </ContentPage.Resources>
+    
+    <Grid RowDefinitions="40, Auto, *">
+        <Button
+            Grid.Row="0"
+            Margin="0,0,16,0"
+            HorizontalOptions="End"
+            VerticalOptions="Center"
+            CornerRadius="40"
+            Command="{Binding GoToEditCommand}">
+            <Button.ImageSource>
+                <FontImageSource FontFamily="MaterialIcons"
+                                 Glyph="{x:Static views:IconFont.NoteEdit}"
+                                 Size="24"
+                                 Color="White" />
+            </Button.ImageSource>
+        </Button>
 
+        <CollectionView Grid.Row="2"
+                        BackgroundColor="Transparent"
+                        ItemsSource="{Binding Payments}"
+                        SelectionMode="None">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="budgetOverview:BudgetPaymentViewModel">
+                    <Grid Padding="12,6,12,0">
+                        <controls:Card HeightRequest="85" Padding="12">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding ViewModel.GoToEditCommand, Source={x:Reference This}}"
+                                    CommandParameter="{Binding .}" />
+                            </Border.GestureRecognizers>
+
+                            <VerticalStackLayout Spacing="6">
+                                <Grid ColumnDefinitions="*,*">
+                                    <Label Grid.Column="0"
+                                           Style="{StaticResource TextBody}"
+                                           LineBreakMode="TailTruncation"
+                                           Text="{Binding Category}" />
+
+                                    <Label Grid.Column="1"
+                                           Style="{StaticResource TextBody}"
+                                           LineBreakMode="TailTruncation"
+                                           Text="{Binding Amount.Amount, Converter={StaticResource AmountFormatConverter}}"
+                                           HorizontalTextAlignment="End"
+                                           HorizontalOptions="End" />
+                                </Grid>
+                            </VerticalStackLayout>
+                        </controls:Card>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.EmptyView>
+                <Grid>
+                    <Label Style="{StaticResource TextSubheadSecondary}"
+                           Margin="10,0,10,0"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           Text="{x:Static resources:Translations.NoBudgetsMessage}" />
+                </Grid>
+            </CollectionView.EmptyView>
+        </CollectionView>
+    </Grid>
 </ContentPage>

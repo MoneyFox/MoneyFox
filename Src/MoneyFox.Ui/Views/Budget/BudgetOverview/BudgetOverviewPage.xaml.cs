@@ -8,4 +8,6 @@ public partial class BudgetOverviewPage : IBindablePage
     {
         InitializeComponent();
     }
+
+    public BudgetOverviewViewModel ViewModel => (BudgetOverviewViewModel)BindingContext;
 }

@@ -9,7 +9,7 @@ using Core.Common.Settings;
 using Core.Queries;
 using MediatR;
 
-internal sealed class BudgetOverviewViewModel(ISender sender, ISettingsFacade settingsFacade, INavigationService navigationService) : NavigableViewModel
+public sealed class BudgetOverviewViewModel(ISender sender, ISettingsFacade settingsFacade, INavigationService navigationService) : NavigableViewModel
 {
     private int budgetId;
 
