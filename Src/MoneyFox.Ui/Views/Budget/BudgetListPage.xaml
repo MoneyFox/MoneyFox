@@ -49,7 +49,7 @@
                         <controls:Card HeightRequest="85" Padding="12">
                             <Border.GestureRecognizers>
                                 <TapGestureRecognizer
-                                    Command="{Binding ViewModel.EditBudgetCommand, Source={x:Reference BudgetList}}"
+                                    Command="{Binding ViewModel.GoToOverviewCommand, Source={x:Reference BudgetList}}"
                                     CommandParameter="{Binding .}" />
                             </Border.GestureRecognizers>
 
