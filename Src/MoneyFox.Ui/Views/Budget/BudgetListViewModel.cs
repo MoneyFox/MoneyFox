@@ -10,8 +10,6 @@ using MediatR;
 
 public sealed class BudgetListViewModel(ISender sender, INavigationService navigationService) : NavigableViewModel
 {
-    public bool HasBudgets => Budgets.Any();
-
     public ObservableCollection<BudgetListItemViewModel> Budgets { get; } = new();
 
     public decimal BudgetedAmount => Budgets.Sum(b => b.MonthlyBudget);
@@ -52,7 +50,6 @@ public sealed class BudgetListViewModel(ISender sender, INavigationService navig
 
         OnPropertyChanged(nameof(BudgetedAmount));
         OnPropertyChanged(nameof(SpentAmount));
-        OnPropertyChanged(nameof(HasBudgets));
     }
 
     private Task EditBudgetAsync(BudgetListItemViewModel? selectedBudget)

@@ -16,7 +16,6 @@
 
     <ContentPage.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
-        <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
     </ContentPage.Resources>
 
     <Grid IsClippedToBounds="False" RowDefinitions="40, Auto, *">
@@ -77,14 +76,16 @@
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
+            
+            <CollectionView.EmptyView>
+                <Grid>
+                    <Label Style="{StaticResource TextSubheadSecondary}"
+                           Margin="10,0,10,0"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           Text="{x:Static resources:Translations.NoBudgetsMessage}" />
+                </Grid>
+            </CollectionView.EmptyView>
         </CollectionView>
-
-        <Label Grid.Row="2"
-               IsVisible="{Binding HasBudgets, Converter={StaticResource InverseBoolConverter}}"
-               Style="{StaticResource TextSubheadSecondary}"
-               Margin="10,0,10,0"
-               VerticalTextAlignment="Center"
-               HorizontalTextAlignment="Center"
-               Text="{x:Static resources:Translations.NoBudgetsMessage}" />
     </Grid>
 </ContentPage>
