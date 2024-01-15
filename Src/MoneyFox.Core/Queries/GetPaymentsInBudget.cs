@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 public static class GetPaymentsInBudget
 {
-    internal record Data(
+    public record Data(
         int PaymentId,
         decimal Amount,
         string Account,
