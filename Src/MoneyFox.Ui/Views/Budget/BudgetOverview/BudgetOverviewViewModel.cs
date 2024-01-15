@@ -4,9 +4,12 @@ using System.Collections.ObjectModel;
 using BudgetModification;
 using Common.Navigation;
 using CommunityToolkit.Mvvm.Input;
+using Core.Common.Extensions;
+using Core.Common.Settings;
+using Core.Queries;
 using MediatR;
 
-internal sealed class BudgetOverviewViewModel(ISender sender, INavigationService navigationService) : NavigableViewModel
+internal sealed class BudgetOverviewViewModel(ISender sender, ISettingsFacade settingsFacade, INavigationService navigationService) : NavigableViewModel
 {
     private int budgetId;
 
@@ -26,8 +29,20 @@ internal sealed class BudgetOverviewViewModel(ISender sender, INavigationService
         return LoadData();
     }
 
-    private Task LoadData()
+    private async Task LoadData()
     {
-        return Task.CompletedTask;
+        var currency = settingsFacade.DefaultCurrency;
+        var paymentData = await sender.Send(new GetPaymentsInBudget.Query(new(budgetId)));
+        Payments.Clear();
+        Payments.AddRange(
+            paymentData.Select(
+                p => new BudgetPaymentViewModel
+                {
+                    AccountName = p.Account,
+                    Amount = new(amount: p.Amount, currencyAlphaIsoCode: currency),
+                    Category = p.Category,
+                    IsCleared = p.IsCleared,
+                    IsRecurring = p.IsRecurring
+                }));
     }
 }

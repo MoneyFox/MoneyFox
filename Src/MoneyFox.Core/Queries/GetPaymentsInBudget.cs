@@ -11,17 +11,17 @@ using Domain.Aggregates.BudgetAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-internal static class GetPaymentsInBudget
+public static class GetPaymentsInBudget
 {
     internal record Data(
         int PaymentId,
         decimal Amount,
-        string AccountName,
+        string Account,
         string Category,
         bool IsCleared,
         bool IsRecurring);
 
-    internal record Query(BudgetId BudgetId) : IRequest<IReadOnlyList<Data>>;
+    public record Query(BudgetId BudgetId) : IRequest<IReadOnlyList<Data>>;
 
     public class Handler(IAppDbContext dbContext, ISystemDateHelper systemDateHelper) : IRequestHandler<Query, IReadOnlyList<Data>>
     {

@@ -38,7 +38,7 @@ public sealed class GetPaymentsInBudgetTests : InMemoryTestBase
         var entry = result.Single();
         entry.PaymentId.Should().Be(expense.Id);
         entry.Amount.Should().Be(expense.Amount);
-        entry.AccountName.Should().Be(expense.ChargedAccount.Name);
+        entry.Account.Should().Be(expense.ChargedAccount.Name);
         entry.Category.Should().Be(category.Name);
         entry.IsCleared.Should().BeTrue();
         entry.IsRecurring.Should().BeFalse();
@@ -64,7 +64,7 @@ public sealed class GetPaymentsInBudgetTests : InMemoryTestBase
         var entry = result.Single();
         entry.PaymentId.Should().Be(expense.Id);
         entry.Amount.Should().Be(expense.Amount);
-        entry.AccountName.Should().Be(expense.ChargedAccount.Name);
+        entry.Account.Should().Be(expense.ChargedAccount.Name);
         entry.Category.Should().Be(expense.Category.Name);
         entry.IsCleared.Should().BeTrue();
         entry.IsRecurring.Should().BeFalse();
