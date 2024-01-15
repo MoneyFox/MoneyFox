@@ -37,6 +37,7 @@
         <CollectionView Grid.Row="2"
                         BackgroundColor="Transparent"
                         IsGrouped="True"
+                        Header="{x:Static resources:Translations.PaymentsInBudgetHeader}"
                         ItemsSource="{Binding PaymentsGroups}"
                         SelectionMode="None">
             
@@ -52,8 +53,10 @@
             
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="budgetOverview:BudgetPaymentViewModel">
-                    <Grid Padding="12,6,12,0">
-                        <controls:Card Padding="12" 
+                    <Grid ColumnDefinitions="80, *, 18" >
+                        <controls:Card Grid.Column="1"
+                                       Padding="12" 
+                                       Margin="0,6,0,0"
                                        HeightRequest="60">
                             <Border.GestureRecognizers>
                                 <TapGestureRecognizer
