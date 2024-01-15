@@ -962,4 +962,7 @@ Tu peux la modifier dans les paramètres.</value>
   <data name="CreateAccountToProceedMessage" xml:space="preserve">
         <value>Create at least one account to continue</value>
     </data>
+  <data name="PaymentsInBudgetHeader" xml:space="preserve">
+        <value>Payments in Budget</value>
+    </data>
 </root>
