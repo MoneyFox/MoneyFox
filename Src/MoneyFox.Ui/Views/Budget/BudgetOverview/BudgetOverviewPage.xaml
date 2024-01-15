@@ -39,7 +39,7 @@
                         IsGrouped="True"
                         Header="{x:Static resources:Translations.PaymentsInBudgetHeader}"
                         ItemsSource="{Binding PaymentsGroups}"
-                        SelectionMode="None">
+                        SelectionMode="Single">
             
             <CollectionView.GroupHeaderTemplate>
                 <DataTemplate x:DataType="budgetOverview:PaymentDayGroup">
@@ -60,7 +60,7 @@
                                        HeightRequest="60">
                             <Border.GestureRecognizers>
                                 <TapGestureRecognizer
-                                    Command="{Binding ViewModel.GoToEditCommand, Source={x:Reference This}}"
+                                    Command="{Binding ViewModel.GoToEditPaymentCommand, Source={x:Reference This}}"
                                     CommandParameter="{Binding .}" />
                             </Border.GestureRecognizers>
 

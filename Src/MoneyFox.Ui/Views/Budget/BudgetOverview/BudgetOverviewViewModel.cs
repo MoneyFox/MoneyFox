@@ -7,6 +7,7 @@ using CommunityToolkit.Mvvm.Input;
 using Core.Common.Settings;
 using Core.Queries;
 using MediatR;
+using Payments.PaymentModification;
 
 public sealed class BudgetOverviewViewModel(ISender sender, ISettingsFacade settingsFacade, INavigationService navigationService) : NavigableViewModel
 {
@@ -15,6 +16,7 @@ public sealed class BudgetOverviewViewModel(ISender sender, ISettingsFacade sett
     private ObservableCollection<PaymentDayGroup> paymentsGroups = [];
 
     public AsyncRelayCommand GoToEditCommand => new(() => navigationService.GoTo<EditBudgetViewModel>(budgetId));
+    public AsyncRelayCommand<BudgetPaymentViewModel> GoToEditPaymentCommand => new((vm) => navigationService.GoTo<EditPaymentViewModel>(vm!.Id));
 
     public ObservableCollection<PaymentDayGroup> PaymentsGroups
     {
@@ -49,6 +51,7 @@ public sealed class BudgetOverviewViewModel(ISender sender, ISettingsFacade sett
         var viewModels = paymentData.Select(
             p => new BudgetPaymentViewModel
             {
+                Id = p.PaymentId,
                 AccountName = p.Account,
                 Date = DateOnly.FromDateTime(p.Date),
                 Amount = new(amount: p.Amount, currencyAlphaIsoCode: currency),
