@@ -15,17 +15,8 @@ public static class LoadBudgetDataForList
 {
     public class Query : IRequest<IReadOnlyCollection<BudgetData>>;
 
-    public class Handler : IRequestHandler<Query, IReadOnlyCollection<BudgetData>>
+    public class Handler(ISystemDateHelper systemDateHelper, IAppDbContext appDbContext) : IRequestHandler<Query, IReadOnlyCollection<BudgetData>>
     {
-        private readonly IAppDbContext appDbContext;
-        private readonly ISystemDateHelper systemDateHelper;
-
-        public Handler(ISystemDateHelper systemDateHelper, IAppDbContext appDbContext)
-        {
-            this.appDbContext = appDbContext;
-            this.systemDateHelper = systemDateHelper;
-        }
-
         public async Task<IReadOnlyCollection<BudgetData>> Handle(Query request, CancellationToken cancellationToken)
         {
             var budgets = await appDbContext.Budgets.ToListAsync(cancellationToken);

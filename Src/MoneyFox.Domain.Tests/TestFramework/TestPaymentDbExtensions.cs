@@ -22,6 +22,11 @@ internal static class TestPaymentDbExtensions
         db.SaveChanges();
         testPayment.Id = dbPayment.Id;
         testPayment.ChargedAccount.Id = dbPayment.ChargedAccount.Id;
+        if (testPayment.Category is not null)
+        {
+            testPayment.Category.Id = dbPayment.Category!.Id;
+        }
+
         if (testPayment.TargetAccount is not null && dbPayment.TargetAccount is not null)
         {
             testPayment.TargetAccount.Id = dbPayment.TargetAccount.Id;
