@@ -958,12 +958,12 @@ Anda dapat mengubahnya di bagian akhir pengaturan.</value>
         <value>Untuk melihat semua kontribusi ke Github:</value>
     </data>
   <data name="ExistingAccountsTitle" xml:space="preserve">
-        <value>Existing Accounts</value>
+        <value>Akun yang sudah ada</value>
     </data>
   <data name="CreateAccountToProceedMessage" xml:space="preserve">
-        <value>Create at least one account to continue</value>
+        <value>Buat setidaknya satu akun untuk melanjutkan</value>
     </data>
   <data name="PaymentsInBudgetHeader" xml:space="preserve">
-        <value>Payments in Budget</value>
+        <value>Pembayaran dalam Anggaran</value>
     </data>
 </root>
