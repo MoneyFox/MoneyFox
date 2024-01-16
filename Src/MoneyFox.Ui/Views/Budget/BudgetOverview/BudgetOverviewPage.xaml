@@ -91,16 +91,6 @@
                                                                  Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                                             </Image.Source>
                                         </Image>
-
-                                        <Image HeightRequest="15"
-                                               IsVisible="{Binding IsCleared}"
-                                               WidthRequest="15">
-                                            <Image.Source>
-                                                <FontImageSource FontFamily="MaterialIcons"
-                                                                 Glyph="{x:Static views:IconFont.Check}"
-                                                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
-                                            </Image.Source>
-                                        </Image>
                                     </HorizontalStackLayout>
                                 </Grid>
                                 <Label Style="{StaticResource TextCaptionSecondary}"
