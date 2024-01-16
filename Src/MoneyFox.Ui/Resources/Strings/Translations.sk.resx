@@ -960,12 +960,12 @@ Túto neskorú menu môžete zmeniť v nastaveniach.</value>
         <value>Ak si chcete pozrieť všetky príspevky, prejdite na GitHub:</value>
     </data>
   <data name="ExistingAccountsTitle" xml:space="preserve">
-        <value>Existing Accounts</value>
+        <value>Existujúce účty</value>
     </data>
   <data name="CreateAccountToProceedMessage" xml:space="preserve">
-        <value>Create at least one account to continue</value>
+        <value>Ak chcete pokračovať, vytvorte si aspoň jedno konto</value>
     </data>
   <data name="PaymentsInBudgetHeader" xml:space="preserve">
-        <value>Payments in Budget</value>
+        <value>Platby v rozpočte</value>
     </data>
 </root>
