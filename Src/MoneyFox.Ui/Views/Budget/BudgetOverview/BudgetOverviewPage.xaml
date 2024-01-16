@@ -9,7 +9,7 @@
              xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
              x:Name="This"
              x:DataType="budgetOverview:BudgetOverviewViewModel"
-             Title="{x:Static resources:Translations.BudgetsTitle}"
+             Title="{Binding BudgetName}"
              x:Class="MoneyFox.Ui.Views.Budget.BudgetOverview.BudgetOverviewPage">
 
     <ContentPage.Resources>
@@ -56,8 +56,7 @@
                     <Grid ColumnDefinitions="80, *, 18" >
                         <controls:Card Grid.Column="1"
                                        Padding="12" 
-                                       Margin="0,6,0,0"
-                                       HeightRequest="60">
+                                       Margin="0,6,0,0" >
                             <Border.GestureRecognizers>
                                 <TapGestureRecognizer
                                     Command="{Binding ViewModel.GoToEditPaymentCommand, Source={x:Reference This}}"
@@ -81,7 +80,7 @@
                                 <Grid VerticalOptions="Fill">
                                     <Label Style="{StaticResource TextCaption}"
                                            LineBreakMode="TailTruncation"
-                                           Text="{Binding AccountName}" />
+                                           Text="{Binding Account}" />
                                     <HorizontalStackLayout HorizontalOptions="End">
                                         <Image HeightRequest="15"
                                                IsVisible="{Binding IsRecurring}"
@@ -92,18 +91,11 @@
                                                                  Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
                                             </Image.Source>
                                         </Image>
-
-                                        <Image HeightRequest="15"
-                                               IsVisible="{Binding IsCleared}"
-                                               WidthRequest="15">
-                                            <Image.Source>
-                                                <FontImageSource FontFamily="MaterialIcons"
-                                                                 Glyph="{x:Static views:IconFont.Check}"
-                                                                 Color="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Gray950}}" />
-                                            </Image.Source>
-                                        </Image>
                                     </HorizontalStackLayout>
                                 </Grid>
+                                <Label Style="{StaticResource TextCaptionSecondary}"
+                                       LineBreakMode="TailTruncation"
+                                       Text="{Binding Note}" />
                             </VerticalStackLayout>
 
                         </controls:Card>

@@ -5,19 +5,20 @@ using Domain;
 
 public class BudgetPaymentViewModel : ObservableObject
 {
-    private string accountName = null!;
-    private Money amount = null!;
-    private string category = null!;
+    private string account = string.Empty;
+    private Money amount = Money.Zero("USD");
+    private string category = string.Empty;
+    private string note = string.Empty;
     private DateOnly date;
     private bool isCleared;
     private bool isRecurring;
 
     public int Id { get; init; }
 
-    public required string AccountName
+    public required string Account
     {
-        get => accountName;
-        set => SetProperty(field: ref accountName, newValue: value);
+        get => account;
+        set => SetProperty(field: ref account, newValue: value);
     }
 
     public required DateOnly Date
@@ -36,6 +37,12 @@ public class BudgetPaymentViewModel : ObservableObject
     {
         get => category;
         set => SetProperty(field: ref category, newValue: value);
+    }
+
+    public required string Note
+    {
+        get => note;
+        set => SetProperty(field: ref note, newValue: value);
     }
 
     public required bool IsCleared
