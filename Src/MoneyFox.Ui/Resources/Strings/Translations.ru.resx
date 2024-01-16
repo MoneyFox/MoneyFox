@@ -960,12 +960,12 @@
         <value>Чтобы увидеть все взносы посетите нас в GitHub:</value>
     </data>
   <data name="ExistingAccountsTitle" xml:space="preserve">
-        <value>Existing Accounts</value>
+        <value>Существующие аккаунты</value>
     </data>
   <data name="CreateAccountToProceedMessage" xml:space="preserve">
-        <value>Create at least one account to continue</value>
+        <value>Создайте хотя бы одну учетную запись для продолжения</value>
     </data>
   <data name="PaymentsInBudgetHeader" xml:space="preserve">
-        <value>Payments in Budget</value>
+        <value>Бюджетные выплаты</value>
     </data>
 </root>
