@@ -960,12 +960,12 @@ Puteți schimba această monedă târziu în setări.</value>
         <value>Pentru a vedea toate contribuțiile, accesați GitHub:</value>
     </data>
   <data name="ExistingAccountsTitle" xml:space="preserve">
-        <value>Existing Accounts</value>
+        <value>Conturi existente</value>
     </data>
   <data name="CreateAccountToProceedMessage" xml:space="preserve">
-        <value>Create at least one account to continue</value>
+        <value>Creați cel puțin un cont pentru a continua</value>
     </data>
   <data name="PaymentsInBudgetHeader" xml:space="preserve">
-        <value>Payments in Budget</value>
+        <value>Plăți în buget</value>
     </data>
 </root>
