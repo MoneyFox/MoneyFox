@@ -960,12 +960,12 @@ Norėdami pradėti, sukurkite naują paskyrą. Sąskaitos naudojamos mokėjimams
         <value>Jei norite peržiūrėti visus įnašus, eikite į "GitHub":</value>
     </data>
   <data name="ExistingAccountsTitle" xml:space="preserve">
-        <value>Existing Accounts</value>
+        <value>Esamos sąskaitos</value>
     </data>
   <data name="CreateAccountToProceedMessage" xml:space="preserve">
-        <value>Create at least one account to continue</value>
+        <value>Norėdami tęsti, sukurkite bent vieną paskyrą</value>
     </data>
   <data name="PaymentsInBudgetHeader" xml:space="preserve">
-        <value>Payments in Budget</value>
+        <value>Mokėjimai biudžete</value>
     </data>
 </root>
