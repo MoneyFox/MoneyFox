@@ -960,12 +960,12 @@ Puoi cambiare questa valuta nelle impostazioni.</value>
         <value>Per vedere tutti i contributi vai su GitHub:</value>
     </data>
   <data name="ExistingAccountsTitle" xml:space="preserve">
-        <value>Existing Accounts</value>
+        <value>Account Esistenti</value>
     </data>
   <data name="CreateAccountToProceedMessage" xml:space="preserve">
-        <value>Create at least one account to continue</value>
+        <value>Crea almeno un account per continuare</value>
     </data>
   <data name="PaymentsInBudgetHeader" xml:space="preserve">
-        <value>Payments in Budget</value>
+        <value>Pagamenti in bilancio</value>
     </data>
 </root>

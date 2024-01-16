@@ -960,12 +960,12 @@ Seda saate hilisemalt seadetes muuta.</value>
         <value>Kõikide panuste vaatamiseks mine GitHubi:</value>
     </data>
   <data name="ExistingAccountsTitle" xml:space="preserve">
-        <value>Existing Accounts</value>
+        <value>Olemasolevad kontod</value>
     </data>
   <data name="CreateAccountToProceedMessage" xml:space="preserve">
-        <value>Create at least one account to continue</value>
+        <value>Loo vähemalt üks konto, et jätkata</value>
     </data>
   <data name="PaymentsInBudgetHeader" xml:space="preserve">
-        <value>Payments in Budget</value>
+        <value>Maksed eelarves</value>
     </data>
 </root>

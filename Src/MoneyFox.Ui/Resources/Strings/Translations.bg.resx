@@ -959,12 +959,12 @@
         <value>За да видите разработката се насочете към GitHub:</value>
     </data>
   <data name="ExistingAccountsTitle" xml:space="preserve">
-        <value>Existing Accounts</value>
+        <value>Съществуващи сметки</value>
     </data>
   <data name="CreateAccountToProceedMessage" xml:space="preserve">
-        <value>Create at least one account to continue</value>
+        <value>Създайте поне един акаунт, за да продължите</value>
     </data>
   <data name="PaymentsInBudgetHeader" xml:space="preserve">
-        <value>Payments in Budget</value>
+        <value>Плащания в бюджета</value>
     </data>
 </root>

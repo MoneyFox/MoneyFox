@@ -960,12 +960,12 @@
         <value>すべての貢献を見るにはGitHubへ：</value>
     </data>
   <data name="ExistingAccountsTitle" xml:space="preserve">
-        <value>Existing Accounts</value>
+        <value>既存のアカウント</value>
     </data>
   <data name="CreateAccountToProceedMessage" xml:space="preserve">
-        <value>Create at least one account to continue</value>
+        <value>続行するには少なくとも1つのアカウントを作成してください</value>
     </data>
   <data name="PaymentsInBudgetHeader" xml:space="preserve">
-        <value>Payments in Budget</value>
+        <value>予算での支払い</value>
     </data>
 </root>

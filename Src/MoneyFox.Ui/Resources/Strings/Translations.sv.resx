@@ -960,12 +960,12 @@ Du kan ändra denna sen i inställningarna.</value>
         <value>För att se alla bidrag gå över till GitHub:</value>
     </data>
   <data name="ExistingAccountsTitle" xml:space="preserve">
-        <value>Existing Accounts</value>
+        <value>Befintliga konton</value>
     </data>
   <data name="CreateAccountToProceedMessage" xml:space="preserve">
-        <value>Create at least one account to continue</value>
+        <value>Skapa minst ett konto för att fortsätta</value>
     </data>
   <data name="PaymentsInBudgetHeader" xml:space="preserve">
-        <value>Payments in Budget</value>
+        <value>Betalningar i budget</value>
     </data>
 </root>

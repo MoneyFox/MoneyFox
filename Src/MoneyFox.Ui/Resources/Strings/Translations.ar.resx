@@ -960,12 +960,12 @@
         <value>لرؤية جميع المساهمات قم بزيارة GitHub:</value>
     </data>
   <data name="ExistingAccountsTitle" xml:space="preserve">
-        <value>Existing Accounts</value>
+        <value>الحسابات الموجودة</value>
     </data>
   <data name="CreateAccountToProceedMessage" xml:space="preserve">
-        <value>Create at least one account to continue</value>
+        <value>إنشاء حساب واحد على الأقل للمتابعة</value>
     </data>
   <data name="PaymentsInBudgetHeader" xml:space="preserve">
-        <value>Payments in Budget</value>
+        <value>المدفوعات في الميزانية</value>
     </data>
 </root>

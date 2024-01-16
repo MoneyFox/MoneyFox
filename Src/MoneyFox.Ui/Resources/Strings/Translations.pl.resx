@@ -958,12 +958,12 @@ Możesz to zmienić w ustawieniach.</value>
         <value>Aby zobaczyć wszystkie kontrybucje przejdź do GitHub:</value>
     </data>
   <data name="ExistingAccountsTitle" xml:space="preserve">
-        <value>Existing Accounts</value>
+        <value>Istniejące konta</value>
     </data>
   <data name="CreateAccountToProceedMessage" xml:space="preserve">
-        <value>Create at least one account to continue</value>
+        <value>Utwórz co najmniej jedno konto, aby kontynuować</value>
     </data>
   <data name="PaymentsInBudgetHeader" xml:space="preserve">
-        <value>Payments in Budget</value>
+        <value>Płatności w budżecie</value>
     </data>
 </root>

@@ -960,12 +960,12 @@ Bunu ayarlardan geç değiştirebilirsiniz.</value>
         <value>Bütün katkı sağlayanları github üstünde gör:</value>
     </data>
   <data name="ExistingAccountsTitle" xml:space="preserve">
-        <value>Existing Accounts</value>
+        <value>Mevcut Hesaplar</value>
     </data>
   <data name="CreateAccountToProceedMessage" xml:space="preserve">
-        <value>Create at least one account to continue</value>
+        <value>Devam etmek için en az bir hesap oluşturun</value>
     </data>
   <data name="PaymentsInBudgetHeader" xml:space="preserve">
-        <value>Payments in Budget</value>
+        <value>Bütçe Ödemeleri</value>
     </data>
 </root>

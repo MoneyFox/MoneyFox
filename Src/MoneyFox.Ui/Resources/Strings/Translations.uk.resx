@@ -960,12 +960,12 @@
         <value>Щоб переглянути всі внески, перейдіть на GitHub:</value>
     </data>
   <data name="ExistingAccountsTitle" xml:space="preserve">
-        <value>Existing Accounts</value>
+        <value>Існуючі облікові записи</value>
     </data>
   <data name="CreateAccountToProceedMessage" xml:space="preserve">
-        <value>Create at least one account to continue</value>
+        <value>Створіть принаймні один обліковий запис, щоб продовжити</value>
     </data>
   <data name="PaymentsInBudgetHeader" xml:space="preserve">
-        <value>Payments in Budget</value>
+        <value>Платежі в бюджеті</value>
     </data>
 </root>

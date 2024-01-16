@@ -959,12 +959,12 @@ Pode alterar esta moeda tardiamente nas definições.</value>
         <value>Para ver todas as contribuições vá ao GitHub:</value>
     </data>
   <data name="ExistingAccountsTitle" xml:space="preserve">
-        <value>Existing Accounts</value>
+        <value>Contas Existentes</value>
     </data>
   <data name="CreateAccountToProceedMessage" xml:space="preserve">
-        <value>Create at least one account to continue</value>
+        <value>Crie pelo menos uma conta para continuar</value>
     </data>
   <data name="PaymentsInBudgetHeader" xml:space="preserve">
-        <value>Payments in Budget</value>
+        <value>Pagamentos no Orçamento</value>
     </data>
 </root>

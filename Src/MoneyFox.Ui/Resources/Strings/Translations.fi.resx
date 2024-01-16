@@ -958,12 +958,12 @@ Voit muuttaa tätä myöhässä asetuksissa.</value>
         <value>Mene GitHub:iin nähdäksesi kaikki avustajat:</value>
     </data>
   <data name="ExistingAccountsTitle" xml:space="preserve">
-        <value>Existing Accounts</value>
+        <value>Olemassa Olevat Tilit</value>
     </data>
   <data name="CreateAccountToProceedMessage" xml:space="preserve">
-        <value>Create at least one account to continue</value>
+        <value>Luo vähintään yksi tili jatkaaksesi</value>
     </data>
   <data name="PaymentsInBudgetHeader" xml:space="preserve">
-        <value>Payments in Budget</value>
+        <value>Maksut talousarviossa</value>
     </data>
 </root>
