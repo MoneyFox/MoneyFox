@@ -8,6 +8,7 @@ public class BudgetPaymentViewModel : ObservableObject
     private string account = string.Empty;
     private Money amount = Money.Zero("USD");
     private string category = string.Empty;
+    private string note = string.Empty;
     private DateOnly date;
     private bool isCleared;
     private bool isRecurring;
@@ -36,6 +37,12 @@ public class BudgetPaymentViewModel : ObservableObject
     {
         get => category;
         set => SetProperty(field: ref category, newValue: value);
+    }
+
+    public required string Note
+    {
+        get => note;
+        set => SetProperty(field: ref note, newValue: value);
     }
 
     public required bool IsCleared
