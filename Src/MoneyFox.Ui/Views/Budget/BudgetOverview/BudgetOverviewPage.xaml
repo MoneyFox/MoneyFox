@@ -9,7 +9,7 @@
              xmlns:converter="clr-namespace:MoneyFox.Ui.Converter"
              x:Name="This"
              x:DataType="budgetOverview:BudgetOverviewViewModel"
-             Title="{x:Static resources:Translations.BudgetsTitle}"
+             Title="{Binding BudgetName}"
              x:Class="MoneyFox.Ui.Views.Budget.BudgetOverview.BudgetOverviewPage">
 
     <ContentPage.Resources>
@@ -56,8 +56,7 @@
                     <Grid ColumnDefinitions="80, *, 18" >
                         <controls:Card Grid.Column="1"
                                        Padding="12" 
-                                       Margin="0,6,0,0"
-                                       HeightRequest="60">
+                                       Margin="0,6,0,0" >
                             <Border.GestureRecognizers>
                                 <TapGestureRecognizer
                                     Command="{Binding ViewModel.GoToEditPaymentCommand, Source={x:Reference This}}"
@@ -104,6 +103,9 @@
                                         </Image>
                                     </HorizontalStackLayout>
                                 </Grid>
+                                <Label Style="{StaticResource TextCaptionSecondary}"
+                                       LineBreakMode="TailTruncation"
+                                       Text="{Binding Note}" />
                             </VerticalStackLayout>
 
                         </controls:Card>
