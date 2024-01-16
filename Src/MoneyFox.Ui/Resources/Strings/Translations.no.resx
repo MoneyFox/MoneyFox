@@ -957,15 +957,15 @@ Du kan endre dette for sent i innstillingene.</value>
     <value>Standard betalingskonto</value>
   </data>
   <data name="ContributorLabel" xml:space="preserve">
-        <value>To see all contributions head over to GitHub:</value>
+        <value>For å se alle bidrag gå over til GitHub:</value>
     </data>
   <data name="ExistingAccountsTitle" xml:space="preserve">
-        <value>Existing Accounts</value>
+        <value>Eksisterende kontoer</value>
     </data>
   <data name="CreateAccountToProceedMessage" xml:space="preserve">
-        <value>Create at least one account to continue</value>
+        <value>Opprett minst én konto for å fortsette</value>
     </data>
   <data name="PaymentsInBudgetHeader" xml:space="preserve">
-        <value>Payments in Budget</value>
+        <value>Betaling i budsjett</value>
     </data>
 </root>
