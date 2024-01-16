@@ -960,12 +960,12 @@ Du kan ændre denne sent i indstillingerne.</value>
         <value>For at se alle bidrag gå ind på GitHub:</value>
     </data>
   <data name="ExistingAccountsTitle" xml:space="preserve">
-        <value>Existing Accounts</value>
+        <value>Eksisterende Konti</value>
     </data>
   <data name="CreateAccountToProceedMessage" xml:space="preserve">
-        <value>Create at least one account to continue</value>
+        <value>Opret mindst én konto for at fortsætte</value>
     </data>
   <data name="PaymentsInBudgetHeader" xml:space="preserve">
-        <value>Payments in Budget</value>
+        <value>Betalinger i budgettet</value>
     </data>
 </root>
