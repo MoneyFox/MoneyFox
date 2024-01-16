@@ -57,7 +57,8 @@ public sealed class BudgetOverviewViewModel(ISender sender, ISettingsFacade sett
                 Amount = new(amount: p.Amount, currencyAlphaIsoCode: currency),
                 Category = p.Category,
                 IsCleared = p.IsCleared,
-                IsRecurring = p.IsRecurring
+                IsRecurring = p.IsRecurring,
+                Note = string.Empty
             });
 
         PaymentsGroups = new(viewModels.GroupBy(pd => pd.Date).Select(g => new PaymentDayGroup(date: g.Key, payments: g.ToList())));

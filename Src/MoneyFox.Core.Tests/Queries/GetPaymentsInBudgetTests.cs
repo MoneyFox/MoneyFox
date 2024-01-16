@@ -66,6 +66,7 @@ public sealed class GetPaymentsInBudgetTests : InMemoryTestBase
         entry.Amount.Should().Be(expense.Amount);
         entry.Account.Should().Be(expense.ChargedAccount.Name);
         entry.Category.Should().Be(expense.Category.Name);
+        entry.Note.Should().Be(expense.Note);
         entry.IsCleared.Should().BeTrue();
         entry.IsRecurring.Should().BeFalse();
     }

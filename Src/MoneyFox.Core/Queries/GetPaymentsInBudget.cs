@@ -20,6 +20,7 @@ public static class GetPaymentsInBudget
         decimal Amount,
         string Account,
         string Category,
+        string Note,
         bool IsCleared,
         bool IsRecurring);
 
@@ -44,6 +45,7 @@ public static class GetPaymentsInBudget
                         p.Amount,
                         p.ChargedAccount.Name,
                         p.Category!.Name,
+                        p.Note ?? "",
                         p.IsCleared,
                         p.IsRecurring))
                 .ToListAsync(cancellationToken);
