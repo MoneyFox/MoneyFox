@@ -963,12 +963,12 @@ Je kunt dit laat wijzigen in de instellingen.</value>
         <value>Ga naar GitHub om all bijdragen te zien</value>
     </data>
   <data name="ExistingAccountsTitle" xml:space="preserve">
-        <value>Existing Accounts</value>
+        <value>Bestaande accounts</value>
     </data>
   <data name="CreateAccountToProceedMessage" xml:space="preserve">
-        <value>Create at least one account to continue</value>
+        <value>Maak ten minste één account aan om door te gaan</value>
     </data>
   <data name="PaymentsInBudgetHeader" xml:space="preserve">
-        <value>Payments in Budget</value>
+        <value>Betalingen in budget</value>
     </data>
 </root>
