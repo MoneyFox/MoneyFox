@@ -960,9 +960,12 @@ Du kannst das später in den Einstellungen ändern.</value>
         <value>Um alle Beiträge zu sehen wechsle zu GitHub:</value>
     </data>
   <data name="ExistingAccountsTitle" xml:space="preserve">
-        <value>Existing Accounts</value>
+        <value>Bestehende Konten</value>
     </data>
   <data name="CreateAccountToProceedMessage" xml:space="preserve">
-        <value>Create at least one account to continue</value>
+        <value>Erstelle mindestens ein Konto, um fortzufahren</value>
+    </data>
+  <data name="PaymentsInBudgetHeader" xml:space="preserve">
+        <value>Zahlungen im Budget</value>
     </data>
 </root>
