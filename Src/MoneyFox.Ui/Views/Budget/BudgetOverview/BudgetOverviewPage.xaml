@@ -81,7 +81,7 @@
                                 <Grid VerticalOptions="Fill">
                                     <Label Style="{StaticResource TextCaption}"
                                            LineBreakMode="TailTruncation"
-                                           Text="{Binding AccountName}" />
+                                           Text="{Binding Account}" />
                                     <HorizontalStackLayout HorizontalOptions="End">
                                         <Image HeightRequest="15"
                                                IsVisible="{Binding IsRecurring}"
