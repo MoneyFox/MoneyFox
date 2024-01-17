@@ -83,7 +83,7 @@
         <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1"/>
         <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0"/>
         <PackageReference Include="Sharpnado.Tabs.Maui" Version="3.0.1"/>
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="9.16.0.82469">
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="9.17.0.82934">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
