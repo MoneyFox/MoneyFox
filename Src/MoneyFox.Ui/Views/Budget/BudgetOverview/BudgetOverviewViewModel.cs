@@ -48,18 +48,19 @@ public sealed class BudgetOverviewViewModel(ISender sender, ISettingsFacade sett
         BudgetName = await sender.Send(new GetBudgetNameById.Query(new(budgetId)));
         var currency = settingsFacade.DefaultCurrency;
         var paymentData = await sender.Send(new GetPaymentsInBudget.Query(new(budgetId)));
-        var viewModels = paymentData.Select(
-            p => new BudgetPaymentViewModel
-            {
-                Id = p.PaymentId,
-                Account = p.Account,
-                Date = DateOnly.FromDateTime(p.Date),
-                Amount = new(amount: p.Amount, currencyAlphaIsoCode: currency),
-                Category = p.Category,
-                IsCleared = p.IsCleared,
-                IsRecurring = p.IsRecurring,
-                Note = p.Note
-            });
+        var viewModels = paymentData.OrderByDescending(d => d.Date)
+            .Select(
+                p => new BudgetPaymentViewModel
+                {
+                    Id = p.PaymentId,
+                    Account = p.Account,
+                    Date = DateOnly.FromDateTime(p.Date),
+                    Amount = new(amount: p.Amount, currencyAlphaIsoCode: currency),
+                    Category = p.Category,
+                    IsCleared = p.IsCleared,
+                    IsRecurring = p.IsRecurring,
+                    Note = p.Note
+                });
 
         PaymentsGroups = new(viewModels.GroupBy(pd => pd.Date).Select(g => new PaymentDayGroup(date: g.Key, payments: g.ToList())));
     }
