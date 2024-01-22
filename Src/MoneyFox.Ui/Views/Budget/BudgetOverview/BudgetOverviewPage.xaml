@@ -16,12 +16,10 @@
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
     </ContentPage.Resources>
 
-    <Grid RowDefinitions="60, Auto, *">
+    <Grid RowDefinitions="50, *" RowSpacing="6">
         <Button
-            Grid.Row="0"
             Margin="0,0,16,0"
             HorizontalOptions="End"
-            VerticalOptions="Center"
             CornerRadius="22"
             WidthRequest="60"
             Padding="6"
