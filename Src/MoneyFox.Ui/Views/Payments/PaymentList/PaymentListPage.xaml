@@ -20,7 +20,7 @@
         <paymentList:DateGroupCardOpacityConverter x:Key="DateGroupCardOpacityConverter" />
     </ContentPage.Resources>
 
-    <Grid RowDefinitions="50, *">
+    <Grid RowDefinitions="50, *" RowSpacing="6">
         <HorizontalStackLayout HorizontalOptions="End" Spacing="6" Margin="0,0, 16,0">
             <ImageButton Command="{Binding ShowFilterCommand}"
                          HeightRequest="44"
