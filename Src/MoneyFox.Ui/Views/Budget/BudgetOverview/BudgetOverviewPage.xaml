@@ -53,6 +53,7 @@
                 <DataTemplate x:DataType="budgetOverview:BudgetPaymentViewModel">
                     <Grid ColumnDefinitions="80, *, 18" >
                         <controls:Card Grid.Column="1"
+                                       HeightRequest="80"
                                        Padding="12" 
                                        Margin="0,6,0,0" >
                             <Border.GestureRecognizers>
