@@ -16,12 +16,10 @@
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
     </ContentPage.Resources>
 
-    <Grid RowDefinitions="60, Auto, *">
+    <Grid RowDefinitions="50, *" RowSpacing="6">
         <Button
-            Grid.Row="0"
             Margin="0,0,16,0"
             HorizontalOptions="End"
-            VerticalOptions="Center"
             CornerRadius="22"
             WidthRequest="60"
             Padding="6"
@@ -40,7 +38,7 @@
                         Header="{x:Static resources:Translations.PaymentsInBudgetHeader}"
                         ItemsSource="{Binding PaymentsGroups}"
                         SelectionMode="Single">
-            
+
             <CollectionView.GroupHeaderTemplate>
                 <DataTemplate x:DataType="budgetOverview:PaymentDayGroup">
                     <Grid Padding="18, 0, 18, 0">
@@ -50,14 +48,14 @@
                 </DataTemplate>
             </CollectionView.GroupHeaderTemplate>
 
-            
+
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="budgetOverview:BudgetPaymentViewModel">
-                    <Grid ColumnDefinitions="80, *, 18" >
+                    <Grid ColumnDefinitions="80, *, 18">
                         <controls:Card Grid.Column="1"
                                        HeightRequest="80"
-                                       Padding="12" 
-                                       Margin="0,6,0,0" >
+                                       Padding="12"
+                                       Margin="0,6,0,0">
                             <Border.GestureRecognizers>
                                 <TapGestureRecognizer
                                     Command="{Binding ViewModel.GoToEditPaymentCommand, Source={x:Reference This}}"

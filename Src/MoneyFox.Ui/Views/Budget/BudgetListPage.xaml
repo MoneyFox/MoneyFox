@@ -18,7 +18,7 @@
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
     </ContentPage.Resources>
 
-    <Grid IsClippedToBounds="False" RowDefinitions="40, Auto, *">
+    <Grid RowDefinitions="40, *" RowSpacing="6">
         <Button
             Grid.Row="0"
             Margin="0,0,16,0"
@@ -27,7 +27,7 @@
             VerticalOptions="Center"
             Command="{Binding GoToAddBudgetCommand}" />
 
-        <CollectionView Grid.Row="2"
+        <CollectionView Grid.Row="1"
                         BackgroundColor="Transparent"
                         ItemsSource="{Binding Budgets}"
                         SelectionMode="None">
@@ -76,7 +76,7 @@
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-            
+
             <CollectionView.EmptyView>
                 <Grid>
                     <Label Style="{StaticResource TextSubheadSecondary}"

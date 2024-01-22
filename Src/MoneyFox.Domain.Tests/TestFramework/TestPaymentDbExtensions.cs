@@ -10,7 +10,7 @@ internal static class TestPaymentDbExtensions
     {
         foreach (var testPayment in payments)
         {
-            RegisterPayment(db, testPayment);
+            RegisterPayment(db: db, testPayment: testPayment);
         }
 
         db.SaveChanges();
@@ -44,7 +44,6 @@ internal static class TestPaymentDbExtensions
         testPayment.Id = dbPayment.Id;
         testPayment.ChargedAccount.Id = dbPayment.ChargedAccount.Id;
         testPayment.Category!.Id = category.Id;
-
         if (testPayment.TargetAccount is not null && dbPayment.TargetAccount is not null)
         {
             testPayment.TargetAccount.Id = dbPayment.TargetAccount.Id;

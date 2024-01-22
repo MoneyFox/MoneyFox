@@ -11,7 +11,7 @@ public abstract class ModifyCategoryViewModel(IMediator mediator, IDialogService
 {
     private CategoryViewModel selectedCategory = null!;
 
-    public AsyncRelayCommand SaveCommand => new(async () => await SaveCategoryBaseAsync(), canExecute: () => SelectedCategory.IsValid);
+    public AsyncRelayCommand SaveCommand => new(execute: async () => await SaveCategoryBaseAsync(), canExecute: () => SelectedCategory.IsValid);
 
     public CategoryViewModel SelectedCategory
     {

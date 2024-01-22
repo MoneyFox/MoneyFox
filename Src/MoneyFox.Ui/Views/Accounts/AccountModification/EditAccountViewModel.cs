@@ -23,7 +23,6 @@ public class EditAccountViewModel : ModifyAccountViewModel
         this.mediator = mediator;
         this.dialogService = dialogService;
         this.navigationService = navigationService;
-
         IsEdit = true;
     }
 
