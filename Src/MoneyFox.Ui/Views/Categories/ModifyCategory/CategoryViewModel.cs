@@ -5,7 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 public class CategoryViewModel : ObservableObject
 {
     private DateTime created;
-    private int id;
+    private readonly int id;
     private DateTime? lastModified;
     private string name = "";
     private string? note;

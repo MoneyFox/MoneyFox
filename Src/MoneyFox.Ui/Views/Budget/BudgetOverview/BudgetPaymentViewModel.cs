@@ -8,10 +8,10 @@ public class BudgetPaymentViewModel : ObservableObject
     private string account = string.Empty;
     private Money amount = Money.Zero("USD");
     private string category = string.Empty;
-    private string note = string.Empty;
     private DateOnly date;
     private bool isCleared;
     private bool isRecurring;
+    private string note = string.Empty;
 
     public int Id { get; init; }
 

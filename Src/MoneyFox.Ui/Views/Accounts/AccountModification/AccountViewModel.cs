@@ -6,7 +6,7 @@ public class AccountViewModel : ObservableObject
 {
     private DateTime created;
     private decimal currentBalance;
-    private int id;
+    private readonly int id;
     private bool isExcluded;
     private DateTime? lastModified;
     private string name = "";

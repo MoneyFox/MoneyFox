@@ -16,7 +16,7 @@ public sealed class BudgetOverviewViewModel(ISender sender, ISettingsFacade sett
     private ObservableCollection<PaymentDayGroup> paymentsGroups = [];
 
     public AsyncRelayCommand GoToEditCommand => new(() => navigationService.GoTo<EditBudgetViewModel>(budgetId));
-    public AsyncRelayCommand<BudgetPaymentViewModel> GoToEditPaymentCommand => new((vm) => navigationService.GoTo<EditPaymentViewModel>(vm!.Id));
+    public AsyncRelayCommand<BudgetPaymentViewModel> GoToEditPaymentCommand => new(vm => navigationService.GoTo<EditPaymentViewModel>(vm!.Id));
 
     public ObservableCollection<PaymentDayGroup> PaymentsGroups
     {
