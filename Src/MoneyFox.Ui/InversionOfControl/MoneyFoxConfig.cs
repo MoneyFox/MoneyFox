@@ -40,6 +40,7 @@ public sealed class MoneyFoxConfig
 {
     public void Register(IServiceCollection serviceCollection)
     {
+        serviceCollection.AddSingleton(new Lazy<NavigationPage>(() => (NavigationPage)Application.Current!.MainPage!));
         serviceCollection.AddSingleton<IViewLocator>(sp => new ViewLocator(sp));
         RegisterServices(serviceCollection);
         RegisterSetup(serviceCollection);

@@ -10,6 +10,8 @@ using Core.Features.TransactionRecurrence;
 using Domain.Exceptions;
 using MediatR;
 using Messages;
+using Microsoft.Maui.Controls.PlatformConfiguration;
+using Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;
 using Serilog;
 using Views.Setup;
 
@@ -60,6 +62,7 @@ public partial class App
 
     protected override void OnResume()
     {
+        (MainPage as DefaultNavigationPage)!.On<iOS>().SetHideNavigationBarSeparator(true);
         StartupTasksAsync().ConfigureAwait(false);
     }
 
