@@ -12,11 +12,6 @@ internal sealed class NavigationService(Lazy<NavigationPage> lazyNavigation, IVi
     public async Task GoBack(object? parameter = null)
     {
         await NavigationPage.PopAsync();
-        var view = Navigation.NavigationStack.LastOrDefault();
-        if (view?.BindingContext is NavigableViewModel navigableViewModel)
-        {
-            await navigableViewModel.OnNavigatedBackAsync(parameter);
-        }
     }
 
     public async Task NavigateFromMenuToAsync<TViewModel>() where TViewModel : NavigableViewModel
