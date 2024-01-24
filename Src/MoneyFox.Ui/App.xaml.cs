@@ -62,7 +62,6 @@ public partial class App
 
     protected override void OnResume()
     {
-        (MainPage as DefaultNavigationPage)!.On<iOS>().SetHideNavigationBarSeparator(true);
         StartupTasksAsync().ConfigureAwait(false);
     }
 

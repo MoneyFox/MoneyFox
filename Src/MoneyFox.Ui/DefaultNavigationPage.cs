@@ -13,7 +13,7 @@ public class DefaultNavigationPage : NavigationPage
     {
         SetBarColors();
         Application.Current!.RequestedThemeChanged += (_, _) => { SetBarColors(); };
-        On<iOS>().SetHideNavigationBarSeparator(true);
+        On<iOS>().HideNavigationBarSeparator();
 
         Popped += (sender, _) =>
         {
@@ -34,13 +34,5 @@ public class DefaultNavigationPage : NavigationPage
         BarTextColor = Application.Current?.RequestedTheme == AppTheme.Dark
             ? (Color)App.ResourceDictionary["Colors"]["TextPrimaryColorDark"]
             : (Color)App.ResourceDictionary["Colors"]["TextPrimaryColorLight"];
-
-        On<iOS>().SetHideNavigationBarSeparator(true);
-    }
-
-    protected override void OnAppearing()
-    {
-        base.OnAppearing();
-        On<iOS>().SetHideNavigationBarSeparator(true);
     }
 }
