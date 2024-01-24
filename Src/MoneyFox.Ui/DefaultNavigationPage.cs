@@ -12,7 +12,9 @@ public class DefaultNavigationPage : NavigationPage
     public DefaultNavigationPage(Page root) : base(root)
     {
         SetBarColors();
-        Application.Current!.RequestedThemeChanged += (_, _) => { SetBarColors(); };
+        // For the moment removed, since it causes issues with the separator for some reason..
+        // https://stackoverflow.com/questions/77821225/net-maui-hide-separator-in-title?noredirect=1#comment137211588_77821225
+        //Application.Current!.RequestedThemeChanged += (_, _) => { SetBarColors(); };
         On<iOS>().SetHideNavigationBarSeparator(true);
 
         Popped += (sender, _) =>
@@ -34,13 +36,5 @@ public class DefaultNavigationPage : NavigationPage
         BarTextColor = Application.Current?.RequestedTheme == AppTheme.Dark
             ? (Color)App.ResourceDictionary["Colors"]["TextPrimaryColorDark"]
             : (Color)App.ResourceDictionary["Colors"]["TextPrimaryColorLight"];
-
-        On<iOS>().SetHideNavigationBarSeparator(true);
-    }
-
-    protected override void OnAppearing()
-    {
-        base.OnAppearing();
-        On<iOS>().SetHideNavigationBarSeparator(true);
     }
 }
