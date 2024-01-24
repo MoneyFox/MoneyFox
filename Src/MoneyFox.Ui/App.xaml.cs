@@ -39,6 +39,14 @@ public partial class App
         appDbContext.MigrateDb();
         mainPageViewModel.OnNavigatedAsync(null);
         MainPage = new DefaultNavigationPage(settingsFacade.IsSetupCompleted ? new MainPage(mainPageViewModel) : new WelcomePage(welcomeViewModel));
+        (MainPage as NavigationPage)!.Popped += (sender, _) =>
+        {
+            var view = (sender as NavigationPage)!.Navigation.NavigationStack.LastOrDefault();
+            if (view?.BindingContext is NavigableViewModel navigableViewModel)
+            {
+                navigableViewModel.OnNavigatedBackAsync(null);
+            }
+        };
     }
 
     public static Dictionary<string, ResourceDictionary> ResourceDictionary { get; } = new();
