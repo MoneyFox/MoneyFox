@@ -1,7 +1,6 @@
 namespace MoneyFox.Ui;
 
 using Aptabase.Maui;
-using Common.Navigation;
 using CommunityToolkit.Mvvm.Messaging;
 using Core.Common.Interfaces;
 using Core.Common.Settings;
@@ -12,10 +11,9 @@ using Domain.Exceptions;
 using MediatR;
 using Messages;
 using Microsoft.Maui.Controls.PlatformConfiguration;
+using Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;
 using Serilog;
 using Views.Setup;
-using Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;
-using NavigationPage = NavigationPage;
 
 public partial class App
 {
