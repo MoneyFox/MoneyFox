@@ -4,9 +4,9 @@ using Aptabase.Maui;
 using JetBrains.Annotations;
 
 [UsedImplicitly]
-internal sealed class NavigationService(IViewLocator locator, IAptabaseClient aptabaseClient) : INavigationService
+internal sealed class NavigationService(Lazy<NavigationPage> lazyNavigation, IViewLocator locator, IAptabaseClient aptabaseClient) : INavigationService
 {
-    private NavigationPage NavigationPage => (NavigationPage)Application.Current!.MainPage!;
+    private NavigationPage NavigationPage => lazyNavigation.Value;
     private INavigation Navigation => NavigationPage.Navigation;
 
     public async Task GoBack(object? parameter = null)
