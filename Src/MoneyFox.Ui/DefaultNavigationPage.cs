@@ -12,8 +12,8 @@ public class DefaultNavigationPage : NavigationPage
     public DefaultNavigationPage(Page root) : base(root)
     {
         SetBarColors();
-        Application.Current!.RequestedThemeChanged += (_, _) => { SetBarColors(); };
-        On<iOS>().HideNavigationBarSeparator();
+        //Application.Current!.RequestedThemeChanged += (_, _) => { SetBarColors(); };
+        On<iOS>().SetHideNavigationBarSeparator(true);
 
         Popped += (sender, _) =>
         {
