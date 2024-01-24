@@ -12,6 +12,7 @@ public class DefaultNavigationPage : NavigationPage
     {
         SetBarColors();
         Application.Current!.RequestedThemeChanged += (_, _) => { SetBarColors(); };
+        On<iOS>().SetHideNavigationBarSeparator(true);
     }
 
     private void SetBarColors()
