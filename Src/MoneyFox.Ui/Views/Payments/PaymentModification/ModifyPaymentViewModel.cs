@@ -64,8 +64,6 @@ public abstract class ModifyPaymentViewModel(
         }
     }
 
-    public bool IsTransfer => SelectedPayment.IsTransfer;
-
     public static List<PaymentType> PaymentTypeList => new() { PaymentType.Expense, PaymentType.Income, PaymentType.Transfer };
 
     public static List<PaymentRecurrence> RecurrenceList
