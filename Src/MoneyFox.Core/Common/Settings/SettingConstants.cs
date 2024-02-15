@@ -10,4 +10,5 @@ public static class SettingConstants
     public const string IS_SETUP_COMPLETED_KEY_NAME = "IsSetupCompleted";
     public const string DEFAULT_CURRENCY_KEY_NAME = "DefaultCurrency";
     public const string DEFAULT_ACCOUNT_KEY_NAME = "DefaultAccount";
+    public const string DEFAULT_NUM_OF_CATEGORIES_IN_SPREAD = "DefaultNumberOfCategoriesInSpreading";
 }
