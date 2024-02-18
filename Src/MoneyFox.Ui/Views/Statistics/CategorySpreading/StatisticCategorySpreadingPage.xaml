@@ -7,6 +7,7 @@
     xmlns:views="clr-namespace:MoneyFox.Ui.Views"
     xmlns:categorySpreading="clr-namespace:MoneyFox.Ui.Views.Statistics.CategorySpreading"
     x:Class="MoneyFox.Ui.Views.Statistics.CategorySpreading.StatisticCategorySpreadingPage"
+    xmlns:customControls="clr-namespace:MoneyFox.Ui.Controls"
     Title="{x:Static resources:Translations.CategorySpreadingTitle}">
 
     <ContentPage.Resources>
@@ -48,31 +49,7 @@
                            Text="Number of categories to show:"
                            VerticalOptions="Center"/>
 
-                    <FlexLayout Grid.Column="1"
-                                Direction="Row"
-                                JustifyContent="SpaceBetween">
-                        <Button Text="-"
-                                FontAttributes="Bold"
-                                TextColor="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Black}}"
-                                BackgroundColor="{AppThemeBinding Dark={StaticResource Gray950}, Light={StaticResource White}}"
-                                WidthRequest="40"
-                                Command="{Binding DecreaseNumberOfCategories}"/>
-
-                        <Entry x:Name="numberOfCategoriesEntry"
-                               Text="{Binding NumberOfCategories}"
-                               Margin="2,0,2,0"
-                               HorizontalTextAlignment="Center"
-                               Keyboard="Numeric"
-                               WidthRequest="50"
-                               TextChanged="NumberOfCategoriesEntry_TextChanged"/>
-
-                        <Button Text="+"
-                                FontAttributes="Bold"
-                                TextColor="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Black}}"
-                                BackgroundColor="{AppThemeBinding Dark={StaticResource Gray950}, Light={StaticResource White}}"
-                                WidthRequest="40"
-                                Command="{Binding IncreaseNumberOfCategories}"/>
-                    </FlexLayout>
+                    <customControls:CustomStepperWithEntry Grid.Column="1" MinValue="1" MaxValue="15" StepperValue="{Binding NumberOfCategories}"/>
                 </Grid>
 
                 <maui:PieChart Series="{Binding Series, Mode=OneWay}"

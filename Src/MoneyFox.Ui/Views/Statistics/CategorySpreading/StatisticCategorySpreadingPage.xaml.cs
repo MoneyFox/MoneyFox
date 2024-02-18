@@ -8,13 +8,4 @@ public partial class StatisticCategorySpreadingPage : IBindablePage
     {
         InitializeComponent();
     }
-
-    private void NumberOfCategoriesEntry_TextChanged(object? sender, TextChangedEventArgs e)
-    {
-        if (!int.TryParse(e.NewTextValue, out var numberOfCategories))
-        {
-            // clean out invalid characters
-            numberOfCategoriesEntry.Text = new string(e.NewTextValue.Where(char.IsDigit).ToArray());
-        }
-    }
 }

@@ -1,10 +1,7 @@
 namespace MoneyFox.Ui.Views.Statistics.CategorySpreading;
 
 using System.Collections.ObjectModel;
-using System.Windows.Input;
-using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Core;
-using CommunityToolkit.Mvvm.Input;
 using Core.Common.Extensions;
 using Core.Queries.Statistics;
 using Domain.Aggregates.AccountAggregate;
@@ -53,25 +50,11 @@ internal sealed class StatisticCategorySpreadingViewModel : StatisticViewModel
         set
         {
             if (settingsFacade.DefaultNumberOfCategoriesInSpreading == value) return;
-            if (value < 1) value = 1;
-            if (value > 15) value = 15; // 15 categories should be plenty
-
             settingsFacade.DefaultNumberOfCategoriesInSpreading = value;
 
             OnPropertyChanged();
             LoadAsync().GetAwaiter().GetResult();
         }
-    }
-
-    public RelayCommand IncreaseNumberOfCategories => new(
-        () => UpdateNumberOfCategories(1, 1));
-
-    public RelayCommand DecreaseNumberOfCategories => new(
-        () => UpdateNumberOfCategories(1, -1));
-
-    public void UpdateNumberOfCategories(int step, int index)
-    {
-        NumberOfCategories += step * index;
     }
 
     public override Task OnNavigatedAsync(object? parameter)

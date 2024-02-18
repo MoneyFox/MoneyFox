@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="This"
+             x:Class="MoneyFox.Ui.Controls.CustomStepperWithEntry">
+
+    <FlexLayout Direction="Row"
+                JustifyContent="SpaceBetween"
+                BindingContext="{x:Reference This}">
+        
+        <Button Text="-"
+            FontAttributes="Bold"
+            TextColor="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Black}}"
+            BackgroundColor="{AppThemeBinding Dark={StaticResource Gray950}, Light={StaticResource White}}"
+            WidthRequest="40"
+            Command="{Binding DecreaseStepperValue}"/>
+
+        <Entry x:Name="stepperValueEntry"
+           Text="{Binding StepperValue}"
+           Margin="2,0,2,0"
+           HorizontalTextAlignment="Center"
+           Keyboard="Numeric"
+           WidthRequest="50"
+           TextChanged="StepperValueEntry_TextChanged"/>
+
+        <Button Text="+"
+            FontAttributes="Bold"
+            TextColor="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Black}}"
+            BackgroundColor="{AppThemeBinding Dark={StaticResource Gray950}, Light={StaticResource White}}"
+            WidthRequest="40"
+            Command="{Binding IncreaseStepperValue}"/>
+    </FlexLayout>
+</ContentView>
