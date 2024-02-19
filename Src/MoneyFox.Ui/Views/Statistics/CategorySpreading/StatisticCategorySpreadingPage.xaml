@@ -7,6 +7,7 @@
     xmlns:views="clr-namespace:MoneyFox.Ui.Views"
     xmlns:categorySpreading="clr-namespace:MoneyFox.Ui.Views.Statistics.CategorySpreading"
     x:Class="MoneyFox.Ui.Views.Statistics.CategorySpreading.StatisticCategorySpreadingPage"
+    xmlns:customControls="clr-namespace:MoneyFox.Ui.Controls"
     Title="{x:Static resources:Translations.CategorySpreadingTitle}">
 
     <ContentPage.Resources>
@@ -15,7 +16,7 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <Grid RowDefinitions="38, auto, *" Padding="15,0,15,15"
+            <Grid RowDefinitions="38, auto, auto, *" Padding="15,0,15,15"
                   x:DataType="categorySpreading:StatisticCategorySpreadingViewModel">
 
                 <Grid ColumnDefinitions="*, Auto">
@@ -36,15 +37,23 @@
                         </ImageButton.Source>
                     </ImageButton>
                 </Grid>
-
+                
                 <Picker Grid.Row="1"
                         Title="{x:Static resources:Translations.SelectedPaymentTypeHeader}"
                         ItemsSource="{Binding PaymentTypes}"
                         SelectedItem="{Binding SelectedPaymentType, Mode=TwoWay}"
                         ItemDisplayBinding="{Binding ., Converter={StaticResource PaymentTypeStringConverter}}" />
 
+                <Grid Grid.Row="2" ColumnDefinitions="*, Auto" Padding="0,15,0,0" VerticalOptions="Start">
+                    <Label Style="{StaticResource TextBodySecondary}"
+                           Text="Number of categories to show:"
+                           VerticalOptions="Center"/>
+
+                    <customControls:CustomStepperWithEntry Grid.Column="1" MinValue="1" MaxValue="15" StepperValue="{Binding NumberOfCategories}"/>
+                </Grid>
+
                 <maui:PieChart Series="{Binding Series, Mode=OneWay}"
-                               Grid.Row="2"
+                               Grid.Row="3"
                                LegendPosition="{OnPlatform WinUI=Right,Default=Bottom}"
                                LegendBackgroundPaint="{Binding LegendBackgroundPaint, Mode=OneTime}"
                                LegendTextPaint="{Binding LegendTextPaint, Mode=OneTime}" />

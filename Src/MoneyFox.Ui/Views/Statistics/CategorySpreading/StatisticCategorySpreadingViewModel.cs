@@ -8,12 +8,19 @@ using Domain.Aggregates.AccountAggregate;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using MediatR;
+using MoneyFox.Core.Common.Settings;
+using Infrastructure.Adapters;
 
 internal sealed class StatisticCategorySpreadingViewModel : StatisticViewModel
 {
     private PaymentType selectedPaymentType;
 
-    public StatisticCategorySpreadingViewModel(IMediator mediator, IPopupService popupService) : base(mediator: mediator, popupService: popupService) { }
+    private readonly ISettingsFacade settingsFacade;
+
+    public StatisticCategorySpreadingViewModel(IMediator mediator, IPopupService popupService) : base(mediator: mediator, popupService: popupService)
+    {
+        settingsFacade = new SettingsFacade(new SettingsAdapter());
+    }
 
     public List<PaymentType> PaymentTypes => new() { PaymentType.Expense, PaymentType.Income };
 
@@ -36,6 +43,20 @@ internal sealed class StatisticCategorySpreadingViewModel : StatisticViewModel
         }
     }
 
+    public int NumberOfCategories
+    {
+        get => settingsFacade.DefaultNumberOfCategoriesInSpreading;
+
+        set
+        {
+            if (settingsFacade.DefaultNumberOfCategoriesInSpreading == value) return;
+            settingsFacade.DefaultNumberOfCategoriesInSpreading = value;
+
+            OnPropertyChanged();
+            LoadAsync().GetAwaiter().GetResult();
+        }
+    }
+
     public override Task OnNavigatedAsync(object? parameter)
     {
         return LoadAsync();
@@ -47,7 +68,8 @@ internal sealed class StatisticCategorySpreadingViewModel : StatisticViewModel
             new GetCategorySpreading.Query(
                 startDate: DateOnly.FromDateTime(StartDate),
                 endDate: DateOnly.FromDateTime(EndDate),
-                paymentType: SelectedPaymentType));
+                paymentType: SelectedPaymentType,
+                numberOfCategoriesToShow: NumberOfCategories));
 
         var pieSeries = statisticEntries.Select(
             x => new PieSeries<decimal>

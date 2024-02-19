@@ -20,6 +20,8 @@ public interface ISettingsFacade
 
     int DefaultAccount { get; set; }
 
+    int DefaultNumberOfCategoriesInSpreading { get; set; }
+
     DateTime LastExecutionTimeStampSyncBackup { get; set; }
 }
 
@@ -99,5 +101,11 @@ public class SettingsFacade : ISettingsFacade
     {
         get => settingsAdapter.GetValue(key: SettingConstants.DEFAULT_ACCOUNT_KEY_NAME, defaultValue: default(int));
         set => settingsAdapter.AddOrUpdate(key: SettingConstants.DEFAULT_ACCOUNT_KEY_NAME, value: value);
+    }
+
+    public int DefaultNumberOfCategoriesInSpreading
+    {
+        get => settingsAdapter.GetValue(key: SettingConstants.DEFAULT_NUM_OF_CATEGORIES_IN_SPREAD, defaultValue: 10);
+        set => settingsAdapter.AddOrUpdate(key: SettingConstants.DEFAULT_NUM_OF_CATEGORIES_IN_SPREAD, value: value);
     }
 }

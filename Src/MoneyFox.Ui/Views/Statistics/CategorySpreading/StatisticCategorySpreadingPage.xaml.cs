@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Ui.Views.Statistics.CategorySpreading;
+namespace MoneyFox.Ui.Views.Statistics.CategorySpreading;
 
 using Common.Navigation;
 
