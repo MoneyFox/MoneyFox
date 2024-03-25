@@ -75,7 +75,7 @@
         <PackageReference Include="CommunityToolkit.Maui" Version="7.0.1"/>
         <PackageReference Include="JetBrains.Annotations" Version="2023.3.0"/>
         <PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-rc2"/>
-        <PackageReference Include="Plugin.StoreReview" Version="6.0.0"/>
+        <PackageReference Include="Plugin.StoreReview" Version="6.2.0"/>
         <PackageReference Include="Serilog" Version="3.1.1"/>
         <PackageReference Include="Serilog.Exceptions" Version="8.4.0"/>
         <PackageReference Include="Serilog.Sinks.File" Version="5.0.0"/>
