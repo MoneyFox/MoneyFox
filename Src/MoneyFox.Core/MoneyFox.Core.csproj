@@ -20,7 +20,7 @@
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0"/>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
         <PackageReference Include="Serilog" Version="3.1.1"/>
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="9.23.0.88079">
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="9.28.0.94264">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
